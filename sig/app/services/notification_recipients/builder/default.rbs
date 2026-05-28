@@ -1,0 +1,43 @@
+module NotificationRecipients
+  module Builder
+    class Default < Base
+      @target: untyped
+
+      @current_user: untyped
+
+      @action: untyped
+
+      @custom_action: untyped
+
+      @previous_assignees: untyped
+
+      @skip_current_user: untyped
+
+      MENTION_TYPE_ACTIONS: ::Array[:new_issue | :new_merge_request | :new_work_item]
+
+      attr_reader target: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader action: untyped
+
+      attr_reader previous_assignees: untyped
+
+      attr_reader skip_current_user: untyped
+
+      def initialize: (untyped target, untyped current_user, action: untyped, ?custom_action: untyped?, ?previous_assignees: untyped?, ?skip_current_user: bool) -> void
+
+      def add_watchers: () -> untyped
+
+      def build!: () -> untyped
+
+      def acting_user: () -> (untyped | nil)
+
+      # Build event key to search on custom notification level
+      # Check NotificationSetting.email_events
+      def custom_action: () -> untyped
+
+      def self.mention_type_actions: () -> untyped
+    end
+  end
+end

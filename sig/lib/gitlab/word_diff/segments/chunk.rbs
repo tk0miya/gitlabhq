@@ -1,0 +1,26 @@
+# Chunk is a part of the line that starts with ` `, `-`, `+`
+# Consecutive chunks build a line. Line that starts with `~` is an identifier of
+# end of the line.
+module Gitlab
+  module WordDiff
+    module Segments
+      class Chunk
+        @line: untyped
+
+        def initialize: (untyped line) -> void
+
+        def removed?: () -> untyped
+
+        def added?: () -> untyped
+
+        def to_s: () -> untyped
+
+        def length: () -> untyped
+
+        private
+
+        attr_reader line: untyped
+      end
+    end
+  end
+end

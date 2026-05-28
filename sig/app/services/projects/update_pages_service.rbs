@@ -1,0 +1,65 @@
+module Projects
+  class UpdatePagesService < BaseService
+    @project: untyped
+
+    @build: untyped
+
+    @deployment_validations: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    include Gitlab::Utils::StrongMemoize
+
+    # old deployment can be cached by pages daemon
+    # so we need to give pages daemon some time update cache
+    # 10 minutes is enough, but 30 feels safer
+    OLD_DEPLOYMENTS_DESTRUCTION_DELAY: untyped
+
+    attr_reader build: untyped
+
+    attr_reader deployment_validations: untyped
+
+    def initialize: (untyped project, untyped build) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def config: () -> (untyped | ::Hash[untyped, untyped])
+
+    def extra_deployment?: () -> untyped
+
+    def path_prefix: () -> untyped
+
+    def success: () -> untyped
+
+    def error: (untyped message) -> untyped
+
+    # Create status notifying the deployment of pages
+    def commit_status: () -> untyped
+
+    # rubocop: disable Performance/ActiveRecordSubtransactionMethods
+    def stage: () -> untyped
+
+    def create_pages_deployment: (untyped file, untyped build) -> (nil | untyped)
+
+    # overridden on EE
+    def pages_deployment_attributes: (untyped file, untyped build) -> { file: untyped, file_count: untyped, file_sha256: untyped, ci_build_id: untyped, root_directory: untyped }
+
+    def deactive_old_deployments: (untyped deployment) -> untyped
+
+    def register_attempt: () -> untyped
+
+    def register_failure: () -> untyped
+
+    def pages_deployments_total_counter: () -> untyped
+
+    def pages_deployments_failed_total_counter: () -> untyped
+
+    def handle_deployment_with_open_file: () -> untyped
+
+    def handle_deployment: (untyped file) -> untyped
+
+    def track_deployment_events: () -> (nil | untyped)
+  end
+end

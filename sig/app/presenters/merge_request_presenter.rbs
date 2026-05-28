@@ -1,0 +1,105 @@
+class MergeRequestPresenter < Gitlab::View::Presenter::Delegated
+  # rubocop: disable CodeReuse/ServiceClass
+  @conflicts: untyped
+
+  @pipeline: untyped
+
+  include GitlabRoutingHelper
+
+  include MarkupHelper
+
+  include TreeHelper
+
+  include ChecksCollaboration
+
+  include Gitlab::Utils::StrongMemoize
+
+  APPROVALS_WIDGET_BASE_TYPE: "base"
+
+  def ci_status: () -> untyped
+
+  def cancel_auto_merge_path: () -> (untyped | nil)
+
+  def create_issue_to_resolve_discussions_path: () -> (untyped | nil)
+
+  def remove_wip_path: () -> (untyped | nil)
+
+  def merge_path: () -> (untyped | nil)
+
+  def revert_in_fork_path: () -> (untyped | nil)
+
+  def cherry_pick_in_fork_path: () -> (untyped | nil)
+
+  def conflict_resolution_path: () -> (untyped | nil)
+
+  def rebase_path: () -> (untyped | nil)
+
+  def target_branch_tree_path: () -> (untyped | nil)
+
+  def target_branch_commits_path: () -> (untyped | nil)
+
+  def target_branch_path: () -> (untyped | nil)
+
+  def source_branch_commits_path: () -> (untyped | nil)
+
+  def source_branch_path: () -> (untyped | nil)
+
+  def source_branch_with_namespace_link: () -> untyped
+
+  def closing_issues_links: () -> untyped
+
+  def mentioned_issues_links: () -> untyped
+
+  def assign_to_closing_issues_path: () -> untyped
+
+  def assign_to_closing_issues_count: () -> untyped
+
+  def can_revert_on_current_merge_request?: () -> untyped
+
+  def can_cherry_pick_on_current_merge_request?: () -> untyped
+
+  def can_push_to_source_branch?: () -> (false | untyped)
+
+  def can_remove_source_branch?: () -> untyped
+
+  def can_read_pipeline?: () -> untyped
+
+  def mergeable_discussions_state: () -> untyped
+
+  def subscribed?: () -> untyped
+
+  def source_branch_link: () -> untyped
+
+  def target_branch_link: () -> untyped
+
+  def api_approvals_path: () -> untyped
+
+  def api_approve_path: () -> untyped
+
+  def api_unapprove_path: () -> untyped
+
+  def approvals_widget_type: () -> untyped
+
+  def closing_issues: () -> untyped
+
+  def mentioned_issues: () -> untyped
+
+  def pipeline_coverage_delta: () -> (nil | untyped)
+
+  def jenkins_integration_active: () -> untyped
+
+  private
+
+  def cached_can_be_reverted?: () -> untyped
+
+  def conflicts: () -> untyped
+
+  def pipeline: () -> untyped
+
+  def issues_sentence: (untyped project, untyped issues) -> untyped
+
+  def user_can_fork_project?: () -> untyped
+
+  # Avoid including ActionView::Helpers::UrlHelper
+  def link_to: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+end

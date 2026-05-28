@@ -1,0 +1,19 @@
+module Gitlab
+  module SlashCommands
+    class IssueNew < IssueCommand
+      def self.match: (untyped text) -> untyped
+
+      def self.help_message: () -> ::String
+
+      def self.allowed?: (untyped project, untyped user) -> untyped
+
+      def execute: (untyped match) -> untyped
+
+      private
+
+      def create_issue: (title: untyped, description: untyped) -> untyped
+
+      def presenter: (untyped issue) -> untyped
+    end
+  end
+end

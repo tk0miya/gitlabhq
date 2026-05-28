@@ -1,0 +1,93 @@
+module Tasks
+  module Ci
+    class JobTokensTask
+      @routes: untyped
+
+      @doc_path: untyped
+
+      @template_path: untyped
+
+      @valid_policies: untyped
+
+      ADMIN_PERMISSION: "admin"
+
+      READ_LABEL: "Read"
+
+      READ_AND_WRITE_LABEL: "Read and write"
+
+      POLICY_PATTERN: ::Regexp
+
+      def initialize: () -> void
+
+      def check_policies_completeness: () -> untyped
+
+      def check_policies_correctness: () -> untyped
+
+      def check_docs: () -> untyped
+
+      def compile_docs: () -> untyped
+
+      def allowed_endpoints: () -> { categorized: untyped, unavailable: untyped }
+
+      private
+
+      attr_reader routes: untyped
+
+      attr_reader doc_path: untyped
+
+      attr_reader template_path: untyped
+
+      def find_allowed_routes_without_policies: () -> untyped
+
+      def find_routes_with_invalid_policies: () -> untyped
+
+      def valid_policies: () -> untyped
+
+      def table_for_routes: (untyped routes, ?include_policies: bool) -> untyped
+
+      def format_route: (untyped route) -> untyped
+
+      def scope_for: (untyped route) -> (nil | untyped)
+
+      def allowed_route?: (untyped route) -> untyped
+
+      def skip_route?: (untyped route) -> untyped
+
+      def policies_for: (untyped route) -> untyped
+
+      def route_path: (untyped route) -> untyped
+
+      def extract_permission: (untyped policy) -> untyped
+
+      def extract_category: (untyped policy) -> untyped
+
+      def primary_category_for_route: (untyped route) -> untyped
+
+      def sort_routes_by_permission_level: (untyped routes) -> untyped
+
+      def has_admin_permission?: (untyped route) -> untyped
+
+      def format_unavailable_route: (untyped route) -> untyped
+
+      def markdown_row: (untyped row) -> ::String
+
+      def permission_names: (untyped route) -> ("" | untyped)
+
+      def build_category_section: (untyped category, untyped category_routes) -> ::String
+
+      def generate_category_table: (untyped routes) -> untyped
+
+      def build_table: (untyped header) { () -> untyped } -> untyped
+
+      def find_allowed_routes: () -> untyped
+
+      def has_policies?: (untyped route) -> untyped
+
+      def build_categorized_documentation: (untyped routes) -> untyped
+
+      def build_unavailable_table: (untyped routes) -> untyped
+
+      def group_routes_by_category_simple: (untyped routes) -> untyped
+    end
+  end
+end

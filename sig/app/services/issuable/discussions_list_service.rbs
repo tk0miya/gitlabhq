@@ -1,0 +1,29 @@
+# This service return notes grouped by discussion ID and paginated per discussion.
+# System notes also have a discussion ID assigned including Synthetic system notes.
+module Issuable
+  class DiscussionsListService
+    @current_user: untyped
+
+    @issuable: untyped
+
+    @params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader current_user: untyped
+
+    attr_reader issuable: untyped
+
+    attr_reader params: untyped
+
+    MAX_PER_PAGE: 100
+
+    def initialize: (untyped current_user, untyped issuable, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    def paginator: () -> untyped
+
+    def can_read_issuable_notes?: () -> untyped
+  end
+end

@@ -1,0 +1,47 @@
+module BulkImports
+  class ExportStatus < ::Import::ExportStatus
+    @configuration: untyped
+
+    @client: untyped
+
+    def initialize: (untyped pipeline_tracker, untyped relation) -> void
+
+    def in_progress?: () -> untyped
+
+    def failed?: () -> untyped
+
+    def waiting_on_export?: () -> untyped
+
+    def error: () -> untyped
+
+    def batched?: () -> untyped
+
+    def batches_count: () -> untyped
+
+    def all_batch_numbers: () -> untyped
+
+    def batch_failed?: (untyped batch_number) -> untyped
+
+    def batch_error: (untyped batch_number) -> untyped
+
+    def total_objects_count: () -> (0 | untyped)
+
+    private
+
+    attr_reader client: untyped
+
+    def status: () -> untyped
+
+    def status_from_remote: () -> untyped
+
+    def parse_status_from_remote: (untyped status) -> untyped
+
+    def cache_status?: (untyped status) -> untyped
+
+    def status_endpoint: () -> untyped
+
+    def batch: (untyped batch_number) -> (nil | untyped)
+
+    def default_error_response: (untyped message) -> { "status" => untyped, "error" => untyped }
+  end
+end

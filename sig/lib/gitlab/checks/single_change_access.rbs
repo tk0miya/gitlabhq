@@ -1,0 +1,55 @@
+module Gitlab
+  module Checks
+    class SingleChangeAccess
+      @oldrev: untyped
+
+      @newrev: untyped
+
+      @ref: untyped
+
+      @branch_ref: untyped
+
+      @branch_name: untyped
+
+      @tag_ref: untyped
+
+      @tag_name: untyped
+
+      @user_access: untyped
+
+      @project: untyped
+
+      @protocol: untyped
+
+      @commits: untyped
+
+      @gitaly_context: untyped
+
+      @push_options: untyped
+
+      @changes_access_logger: untyped
+
+      @logger: untyped
+
+      ATTRIBUTES: ::Array[:user_access | :project | :skip_authorization | :protocol | :oldrev | :newrev | :ref | :branch_name | :tag_name | :logger | :commits | :gitaly_context | :push_options]
+
+      def initialize: (untyped change, user_access: untyped, project: untyped, protocol: untyped, logger: untyped, ?commits: untyped?, ?gitaly_context: untyped?, ?push_options: untyped?, ?changes_access_logger: untyped?) -> void
+
+      def validate!: () -> true
+
+      def commits: () -> untyped
+
+      def branch_ref?: () -> untyped
+
+      def tag_ref?: () -> untyped
+
+      def ref_level_checks: () -> untyped
+
+      def commits_check: () -> untyped
+
+      private
+
+      def instrument: (untyped name) { () -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,64 @@
+# This class handles JSON Web Token (JWT) operations for CI job tokens.
+#
+# This class provides methods to encode and decode JWTs specifically for CI jobs.
+# It uses RSA encryption for secure token generation and verification.
+#
+# Key features:
+# - Encodes JWTs for CI::Build objects
+# - Decodes and verifies JWTs
+#
+module Ci
+  module JobToken
+    class Jwt
+      @jwt: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      # After finishing, jobs need to be able to POST their final state to the `jobs` API endpoint,
+      # for example to update their status or the final trace.
+      # A leeway of 5 minutes ensures a job is able to do that after they have timed out.
+      LEEWAY: untyped
+
+      extend Gitlab::Utils::StrongMemoize
+
+      def self.encode: (untyped job) -> (nil | untyped)
+
+      def self.decode: (untyped token, ?verify_expiration: bool) -> (nil | untyped)
+
+      def self.build_payload: (untyped job) -> untyped
+
+      # Creating routing information for routable tokens https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cells/routable_tokens/
+      def self.routable_payload: (untyped job) -> untyped
+
+      def self.token_prefix: () -> untyped
+
+      def self.subject_type: () -> untyped
+
+      def self.expire_time: (untyped job) -> untyped
+
+      def self.key: () -> untyped
+
+      def initialize: (untyped jwt) -> void
+
+      def job: () -> untyped
+
+      def scoped_user: () -> untyped
+
+      def cell_id: () -> untyped
+
+      def organization_id: () -> untyped
+
+      def project_id: () -> untyped
+
+      def user_id: () -> untyped
+
+      def group_id: () -> untyped
+
+      def expired?: () -> untyped
+
+      private
+
+      def decode: (untyped encoded_value) -> untyped
+    end
+  end
+end

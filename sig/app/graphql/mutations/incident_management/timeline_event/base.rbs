@@ -1,0 +1,13 @@
+module Mutations
+  module IncidentManagement
+    module TimelineEvent
+      class Base < BaseMutation
+        private
+
+        def response: (untyped result) -> { timeline_event: untyped, errors: untyped }
+
+        def find_object: (id: untyped) -> untyped
+      end
+    end
+  end
+end

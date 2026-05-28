@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    class Config
+      module Yaml
+        module Tags
+          class Reference < Base
+            MissingReferenceError: untyped
+
+            def self.tag: () -> "!reference"
+
+            def valid?: () -> untyped
+
+            private
+
+            def location: () -> untyped
+
+            def _resolve: (untyped resolver) -> untyped
+
+            def config_at_location: (untyped resolver) -> untyped
+
+            def missing_ref_error_message: () -> ::String
+          end
+        end
+      end
+    end
+  end
+end

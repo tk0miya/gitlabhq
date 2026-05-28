@@ -1,0 +1,7 @@
+module Counters
+  class CleanupRefreshWorker
+    include ApplicationWorker
+
+    def perform: (untyped model_name, untyped model_id, untyped attribute) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,42 @@
+# frozen_string_literal: true
+#
+module Gitlab
+  module DiscussionsDiff
+    class HighlightCache
+      extend Gitlab::Utils::Gzip
+
+      VERSION: 1
+
+      EXPIRATION: untyped
+
+      # Sets multiple keys to a given value. The value
+      # is serialized as JSON.
+      #
+      # mapping - Write multiple cache values at once
+      def self.write_multiple: (untyped mapping) -> untyped
+
+      # Reads multiple cache keys at once.
+      #
+      # raw_keys - An Array of unique cache keys, without namespaces.
+      #
+      # It returns a list of deserialized diff lines. Ex.:
+      # [[Gitlab::Diff::Line, ...], [Gitlab::Diff::Line]]
+      def self.read_multiple: (untyped raw_keys) -> (::Array[untyped] | untyped)
+
+      # Clears multiple cache keys at once.
+      #
+      # raw_keys - An Array of unique cache keys, without namespaces.
+      #
+      # It returns the number of cache keys cleared. Ex.: 42
+      def self.clear_multiple: (untyped raw_keys) -> (::Array[untyped] | untyped)
+
+      def self.cache_key_for: (untyped raw_key) -> ::String
+
+      private
+
+      def self.cache_key_prefix: () -> ::String
+
+      def self.with_redis: () { (?) -> untyped } -> untyped
+    end
+  end
+end

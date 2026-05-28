@@ -1,0 +1,24 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a configuration of release assets.
+        #
+        class Release
+          class Assets < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Configurable
+
+            include ::Gitlab::Config::Entry::Validatable
+
+            include ::Gitlab::Config::Entry::Attributable
+
+            ALLOWED_KEYS: ::Array[:links]
+
+            def value: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

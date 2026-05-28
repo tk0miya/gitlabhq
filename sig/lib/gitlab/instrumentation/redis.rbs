@@ -1,0 +1,25 @@
+module Gitlab
+  module Instrumentation
+    # Aggregates Redis measurements from different request storage sources.
+    class Redis
+      self.@storage_hash: untyped
+
+      STORAGES: untyped
+
+      # Milliseconds represented in seconds
+      QUERY_TIME_BUCKETS: ::Array[::Float]
+
+      extend ::Gitlab::Instrumentation::RedisPayload
+
+      def self.storage_key: () -> nil
+
+      def self.shard_key: () -> nil
+
+      def self.payload: () -> untyped
+
+      def self.storage_hash: () -> untyped
+
+      def self.detail_store: () -> untyped
+    end
+  end
+end

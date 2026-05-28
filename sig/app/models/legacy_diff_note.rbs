@@ -1,0 +1,53 @@
+# A note on merge request or commit diffs, using the legacy implementation.
+#
+# All new diff notes are of the type `DiffNote`, but any diff notes created
+# before the introduction of the new implementation still use `LegacyDiffNote`.
+#
+# A note of this type is never resolvable.
+class LegacyDiffNote < Note
+  @diff: untyped
+
+  @diff_file: untyped
+
+  @diff_line: untyped
+
+  @active: untyped
+
+  include NoteOnDiff
+
+  def discussion_class: (*untyped) -> untyped
+
+  def project_repository: () -> untyped
+
+  def diff_file_hash: () -> (untyped | nil)
+
+  def diff: () -> (untyped | nil)
+
+  def diff_file: () -> (untyped | nil)
+
+  def diff_line: () -> untyped
+
+  def original_line_code: () -> untyped
+
+  # Check if this note is part of an "active" discussion
+  #
+  # This will always return true for anything except MergeRequest noteables,
+  # which have special logic.
+  #
+  # If the note's current diff cannot be matched in the MergeRequest's current
+  # diff, it's considered inactive.
+  def active?: (?untyped? diff_refs) -> (untyped | true | false)
+
+  private
+
+  def find_diff: () -> (nil | untyped)
+
+  def set_diff: () -> untyped
+
+  def skip_setting_st_diff?: () -> untyped
+
+  def diff_for_line_code: () -> untyped
+
+  # Find the diff on noteable that matches our own
+  def find_noteable_diff: () -> untyped
+end

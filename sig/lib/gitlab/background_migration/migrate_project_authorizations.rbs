@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateProjectAuthorizations < BatchedMigrationJob
+      DEST_TABLE: "project_authorizations_for_migration"
+
+      def perform: () -> untyped
+
+      def insert_query: (untyped relation) -> ::String
+    end
+  end
+end

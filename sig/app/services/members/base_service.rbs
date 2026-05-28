@@ -1,0 +1,29 @@
+module Members
+  class BaseService < ::BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    # current_user - The user that performs the action
+    # params - A hash of parameters
+    def initialize: (?untyped? current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def after_execute: (untyped args) -> nil
+
+    private
+
+    def update_member_permission: (untyped member) -> untyped
+
+    def override_member_permission: (untyped member) -> untyped
+
+    def action_member_permission: (untyped action, untyped member) -> untyped
+
+    def resolve_access_request_todos: (untyped member) -> untyped
+
+    def enqueue_delete_todos: (untyped member) -> untyped
+
+    def cannot_assign_owner_responsibilities_to_member_in_project?: (untyped member) -> untyped
+
+    alias cannot_revoke_owner_responsibilities_from_member_in_project? cannot_assign_owner_responsibilities_to_member_in_project?
+  end
+end

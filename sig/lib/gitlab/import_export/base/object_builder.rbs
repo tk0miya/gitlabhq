@@ -1,0 +1,81 @@
+module Gitlab
+  module ImportExport
+    module Base
+      # Base class for Group & Project Object Builders.
+      # This class is not intended to be used on its own but
+      # rather inherited from.
+      #
+      # Cache keeps 1000 entries at most, 1000 is chosen based on:
+      #    - one cache entry uses around 0.5K memory, 1000 items uses around 500K.
+      #      (leave some buffer it should be less than 1M). It is afforable cost for project import.
+      #    - for projects in Gitlab.com, it seems 1000 entries for labels/milestones is enough.
+      #      For example, gitlab has ~970 labels and 26 milestones.
+      LRU_CACHE_SIZE: 1000
+
+      class ObjectBuilder
+        @klass: untyped
+
+        @attributes: untyped
+
+        @lru_cache: untyped
+
+        @cache_key: untyped
+
+        @table: untyped
+
+        def self.build: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def initialize: (untyped klass, untyped attributes) -> void
+
+        def find: () -> untyped
+
+        def create_object: () -> untyped
+
+        def where_clauses: () -> untyped
+
+        # attributes wrapped in a method to be
+        # adjusted in sub-class if needed
+        def prepare_attributes: () -> untyped
+
+        def find_with_cache: (?untyped key) { () -> untyped } -> untyped
+
+        private
+
+        attr_reader klass: untyped
+
+        attr_reader attributes: untyped
+
+        attr_reader lru_cache: untyped
+
+        attr_reader cache_key: untyped
+
+        def cache_from_request_store: () -> untyped
+
+        def find_object: () -> untyped
+
+        def where_clause: () -> untyped
+
+        def table: () -> untyped
+
+        # Returns Arel clause:
+        # `"{table_name}"."{attrs.keys[0]}" = '{attrs.values[0]} AND {table_name}"."{attrs.keys[1]}" = '{attrs.values[1]}"`
+        # from the given Hash of attributes.
+        def attrs_to_arel: (untyped attrs) -> untyped
+
+        # Returns Arel clause `"{table_name}"."title" = '{attributes['title']}'`
+        # if attributes has 'title key, otherwise `nil`.
+        def where_clause_for_title: () -> untyped
+
+        # Returns Arel clause `"{table_name}"."description" = '{attributes['description']}'`
+        # if attributes has 'description key, otherwise `nil`.
+        def where_clause_for_description: () -> untyped
+
+        # Returns Arel clause `"{table_name}"."created_at" = '{attributes['created_at']}'`
+        # if attributes has 'created_at key, otherwise `nil`.
+        def where_clause_for_created_at: () -> untyped
+
+        def label?: () -> untyped
+      end
+    end
+  end
+end

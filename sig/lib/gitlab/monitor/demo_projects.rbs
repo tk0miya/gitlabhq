@@ -1,0 +1,15 @@
+module Gitlab
+  module Monitor
+    # See Demo Project documentation
+    # https://about.gitlab.com/handbook/engineering/development/ops/monitor/#demo-environments
+    module DemoProjects
+      # [https://gitlab.com/gitlab-org/monitor/tanuki-inc, https://gitlab.com/gitlab-org/monitor/monitor-sandbox]
+      DOT_COM_IDS: ::Array[14986497 | 12507547]
+
+      # [https://staging.gitlab.com/gitlab-org/monitor/monitor-sandbox]
+      STAGING_IDS: ::Array[4422333]
+
+      def self.primary_keys: () -> (untyped | untyped | untyped | ::Array[untyped])
+    end
+  end
+end

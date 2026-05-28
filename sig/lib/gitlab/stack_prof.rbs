@@ -1,0 +1,27 @@
+module Gitlab
+  class StackProf
+    DEFAULT_FILE_PREFIX: untyped
+
+    DEFAULT_TIMEOUT_SEC: 30
+
+    DEFAULT_MODE: :cpu
+
+    # Sample interval as a frequency in microseconds (~99hz); appropriate for CPU profiles
+    DEFAULT_INTERVAL_US: 10100
+
+    # Sample interval in event occurrences (n = every nth event); appropriate for allocation profiles
+    DEFAULT_INTERVAL_EVENTS: 100
+
+    # this is a workaround for sidekiq, which defines its own SIGUSR2 handler.
+    # by deferring to the sidekiq startup event, we get to set up our own
+    # handler late enough.
+    # see also: https://github.com/mperham/sidekiq/pull/4653
+    def self.install: () -> untyped
+
+    def self.on_worker_start: () -> untyped
+
+    def self.log_event: (untyped event, ?::Hash[untyped, untyped] labels) -> untyped
+
+    def self.interval: (untyped mode) -> untyped
+  end
+end

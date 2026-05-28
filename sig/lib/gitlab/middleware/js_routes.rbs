@@ -1,0 +1,25 @@
+module Gitlab
+  module Middleware
+    class JsRoutes
+      @app: untyped
+
+      DIGEST_FILE_PATH: untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def read_digest: () -> (nil | untyped)
+
+      def update_digest: (untyped new_digest) -> untyped
+
+      def generate_digest: () -> untyped
+
+      def html_get_request?: (untyped env) -> (false | untyped)
+
+      def generate!: (untyped env) -> (nil | untyped)
+    end
+  end
+end

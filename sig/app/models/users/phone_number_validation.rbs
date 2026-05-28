@@ -1,0 +1,20 @@
+module Users
+  class PhoneNumberValidation < ApplicationRecord
+    # SMS send attempts subsequent to the first one will have wait times of 1
+    # min, 3 min, 5 min after each one respectively. Wait time between the fifth
+    # attempt and so on will be 10 minutes.
+    SMS_SEND_WAIT_TIMES: ::Array[untyped]
+
+    def similar_records: () -> untyped
+
+    def duplicate_records: () -> untyped
+
+    def self.related_to_banned_user?: (untyped international_dial_code, untyped phone_number) -> untyped
+
+    def self.by_reference_id: (untyped ref_id) -> untyped
+
+    def validated?: () -> untyped
+
+    def sms_send_allowed_after: () -> (nil | untyped)
+  end
+end

@@ -1,0 +1,23 @@
+module Mutations
+  # This concern can be mixed into a mutation to provide support for spam checking,
+  # and optionally support the workflow to allow clients to display and solve CAPTCHAs.
+  module SpamProtection
+    extend ActiveSupport::Concern
+
+    include Spam::Concerns::HasSpamActionResponseFields
+
+    SpamActionError: untyped
+
+    NeedsCaptchaResponseError: untyped
+
+    SpamDisallowedError: untyped
+
+    NEEDS_CAPTCHA_RESPONSE_MESSAGE: "Request denied. Solve CAPTCHA challenge and retry"
+
+    SPAM_DISALLOWED_MESSAGE: "Request denied. Spam detected"
+
+    private
+
+    def check_spam_action_response!: (untyped object) -> untyped
+  end
+end

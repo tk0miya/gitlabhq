@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class Base
+            def evaluate: (**untyped variables) -> untyped
+
+            def name: () -> untyped
+
+            def self.build: (untyped token) -> untyped
+
+            def self.scan: (untyped scanner) -> (untyped | nil)
+
+            def self.pattern: () -> untyped
+
+            def self.consume?: (untyped lexeme) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

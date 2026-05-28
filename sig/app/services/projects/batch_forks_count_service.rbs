@@ -1,0 +1,13 @@
+# Service class for getting and caching the number of forks of several projects
+# Warning: do not user this service with a really large set of projects
+# because the service use maps to retrieve the project ids
+module Projects
+  class BatchForksCountService < Projects::BatchCountService
+    @global_count: untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def global_count: () -> untyped
+
+    def count_service: () -> untyped
+  end
+end

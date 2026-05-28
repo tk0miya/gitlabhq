@@ -1,0 +1,19 @@
+module IssueEmailParticipants
+  class DestroyService < BaseService
+    def execute: () -> untyped
+
+    private
+
+    def remove_participants: (untyped emails_to_remove) -> (::Array[untyped] | untyped)
+
+    def system_note_text: () -> untyped
+
+    def system_note_unsubscribe_text: () -> untyped
+
+    def system_note_author: () -> (untyped | nil)
+
+    def unsubscribe_context?: () -> untyped
+
+    def error_no_participants_removed: () -> untyped
+  end
+end

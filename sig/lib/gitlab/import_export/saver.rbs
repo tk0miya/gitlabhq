@@ -1,0 +1,69 @@
+module Gitlab
+  module ImportExport
+    class Saver
+      @exportable: untyped
+
+      @shared: untyped
+
+      @user: untyped
+
+      @compress_duration_s: untyped
+
+      @archive_file: untyped
+
+      @upload_bytes: untyped
+
+      @assign_duration_s: untyped
+
+      @upload_duration_s: untyped
+
+      # TODO: Remove these diagnostic fields once #329982 is resolved.
+      # https://gitlab.com/gitlab-org/gitlab/-/work_items/329982
+      @export_file_saved: untyped
+
+      @export_file_exists: untyped
+
+      @export_archive_exists: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      def self.save: (*untyped args, **untyped kwargs) -> untyped
+
+      def initialize: (exportable: untyped, shared: untyped, user: untyped) -> void
+
+      def save: () -> untyped
+
+      private
+
+      attr_accessor compress_duration_s: untyped
+
+      attr_accessor assign_duration_s: untyped
+
+      attr_accessor upload_duration_s: untyped
+
+      attr_accessor upload_bytes: untyped
+
+      attr_accessor export_file_saved: untyped
+
+      attr_accessor export_file_exists: untyped
+
+      attr_accessor export_archive_exists: untyped
+
+      def compress_and_save: () -> untyped
+
+      def remove_archive_tmp_dir: () -> untyped
+
+      def archive_file: () -> untyped
+
+      def save_upload: () -> true
+
+      def error_message: () -> ::String
+
+      def initialize_upload: () -> untyped
+
+      def log_export_results: (untyped message) -> untyped
+
+      def log_data: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,55 @@
+# This concern assumes:
+# - a `#container` accessor
+# - a `#project` accessor
+# - a `#user` accessor
+# - a `#deploy_token` accessor
+# - a `#authentication_result` accessor
+# - a `#can?(object, action, subject)` method
+# - a `#ci?` method
+# - a `#download_request?` method
+# - a `#upload_request?` method
+# - a `#has_authentication_ability?(ability)` method
+module LfsRequest
+  @objects: untyped
+
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  CONTENT_TYPE: "application/vnd.git-lfs+json"
+
+  private
+
+  def require_lfs_enabled!: () -> (nil | untyped)
+
+  def lfs_check_access!: () -> (untyped | nil)
+
+  def lfs_forbidden!: () -> untyped
+
+  def render_lfs_forbidden: () -> untyped
+
+  def render_lfs_not_found: () -> untyped
+
+  def lfs_download_access?: () -> untyped
+
+  def deploy_token_can_download_code?: () -> untyped
+
+  def lfs_upload_access?: () -> (false | true | untyped)
+
+  def any_branch_allows_collaboration?: () -> untyped
+
+  def lfs_deploy_token?: () -> untyped
+
+  def user_can_download_code?: () -> untyped
+
+  def build_can_download_code?: () -> untyped
+
+  def objects: () -> untyped
+
+  def objects_oids: () -> untyped
+
+  def has_authentication_ability?: (untyped capability) -> untyped
+
+  # Overridden in EE
+  def limit_exceeded?: () -> false
+end

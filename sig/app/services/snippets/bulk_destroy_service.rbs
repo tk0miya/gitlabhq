@@ -1,0 +1,35 @@
+module Snippets
+  class BulkDestroyService
+    @current_user: untyped
+
+    @snippets: untyped
+
+    include Gitlab::Allowable
+
+    NO_ACCESS_ERROR: { reason: :no_access_error, message: "You don't have access to delete these snippets." }
+
+    SNIPPET_REPOSITORIES_DELETE_ERROR: { reason: :snippet_repositories_delete_error, message: "Failed to delete snippet repositories." }
+
+    SNIPPETS_DELETE_ERROR: { reason: :snippet_delete_error, message: "Failed to remove snippets." }
+
+    attr_reader current_user: untyped
+
+    attr_reader snippets: untyped
+
+    DeleteRepositoryError: untyped
+
+    SnippetAccessError: untyped
+
+    def initialize: (untyped user, untyped snippets) -> void
+
+    def execute: (?skip_authorization: bool) -> untyped
+
+    private
+
+    def user_can_delete_snippets!: () -> untyped
+
+    def user_can_delete_snippet?: (untyped snippet) -> untyped
+
+    def attempt_delete_repositories!: () -> untyped
+  end
+end

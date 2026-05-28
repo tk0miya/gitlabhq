@@ -1,0 +1,138 @@
+# Add capabilities to increment a numeric model attribute efficiently by
+# using Redis and flushing the increments asynchronously to the database
+# after a period of time (10 minutes).
+#
+# The ActiveRecord model is required to either have a project_id or a
+# group_id foreign key.
+#
+# When an attribute is incremented by a value, the increment is added
+# to a Redis key. Then, FlushCounterIncrementsWorker will execute
+# `commit_increment!` which removes increments from Redis for a
+# given model attribute and updates the values in the database.
+#
+# @example:
+#
+#   class ProjectStatistics
+#     include CounterAttribute
+#
+#     counter_attribute :commit_count
+#     counter_attribute :storage_size
+#   end
+#
+# It's possible to define a conditional counter attribute. You need to pass a proc
+# that must accept a single argument, the object instance on which this concern is
+# included.
+#
+# @example:
+#
+#   class ProjectStatistics
+#     include CounterAttribute
+#
+#     counter_attribute :conditional_one, if: -> { |object| object.use_counter_attribute? }
+#   end
+#
+# The `counter_attribute` by default will return last persisted value.
+# It's possible to always return accurate (real) value instead by using `returns_current: true`.
+# While doing this the `counter_attribute` will overwrite attribute accessor to fetch
+# the buffered information added to the last persisted value. This will incur cost a Redis call per attribute fetched.
+#
+# @example:
+#
+#   class ProjectStatistics
+#     include CounterAttribute
+#
+#     counter_attribute :commit_count, returns_current: true
+#   end
+#
+# in that case
+#   model.commit_count => persisted value + buffered amount to be added
+#
+# To increment the counter we can use the method:
+#   increment_amount(:commit_count, 3)
+#
+# Bumping counters relies on the Rails .update_counters class method. As such, we can pass a :touch option
+# that can accept true, timestamp columns are updated, or attribute names, which will be updated along with
+# updated_at/on
+#
+# @example:
+#
+# class ProjectStatistics
+#   include CounterAttribute
+#
+#   counter_attribute :my_counter, touch: :my_counter_updated_at
+# end
+#
+# This method would determine whether it would increment the counter using Redis,
+# or fallback to legacy increment on ActiveRecord counters.
+#
+# It is possible to register callbacks to be executed after increments have
+# been flushed to the database. Callbacks are not executed if there are no increments
+# to flush.
+#
+#  counter_attribute_after_commit do |statistic|
+#    Namespaces::ScheduleAggregationWorker.perform_async(statistic.namespace_id)
+#  end
+#
+module CounterAttribute
+  extend ActiveSupport::Concern
+
+  include AfterCommitQueue
+
+  include Gitlab::ExclusiveLeaseHelpers
+
+  include Gitlab::Utils::StrongMemoize
+
+  def counter_attribute_enabled?: (untyped attribute) -> (false | true | untyped)
+
+  def counter: (untyped attribute) -> untyped
+
+  def increment_amount: (untyped attribute, untyped amount) -> untyped
+
+  def current_counter: (untyped attribute) -> untyped
+
+  def increment_counter: (untyped attribute, untyped increment) -> (nil | untyped)
+
+  def bulk_increment_counter: (untyped attribute, untyped increments) -> untyped
+
+  def update_counters: (untyped increments) -> untyped
+
+  def update_counters_with_lease: (untyped increments) -> untyped
+
+  def initiate_refresh!: (untyped attribute) -> untyped
+
+  def finalize_refresh: (untyped attribute) -> untyped
+
+  def execute_after_commit_callbacks: () -> untyped
+
+  def counters_key_prefix: () -> untyped
+
+  private
+
+  def build_counter_for: (untyped attribute) -> untyped
+
+  def legacy_counter: (untyped attribute) -> untyped
+
+  def buffered_counter: (untyped attribute) -> untyped
+
+  def database_lock_key: () -> ::String
+
+  # This method uses a lease to monitor access to the model row.
+  # This is needed to detect concurrent attempts to increment columns,
+  # which could result in a race condition.
+  #
+  # As the purpose is to detect and warn concurrent attempts,
+  # it falls back to direct update on the row if it fails to obtain the lease.
+  #
+  # It does not guarantee that there will not be any concurrent updates.
+  def detect_race_on_record: (?log_fields: ::Hash[untyped, untyped]) { () -> untyped } -> untyped
+
+  def log_increment_counter: (untyped attribute, untyped increment, untyped new_value) -> untyped
+
+  def log_bulk_increment_counter: (untyped attribute, untyped increments, untyped new_value) -> untyped
+
+  def log_clear_counter: (untyped attribute) -> untyped
+
+  def parent_log_fields: () -> untyped
+
+  def with_parent: () { (untyped, untyped) -> untyped } -> untyped
+end

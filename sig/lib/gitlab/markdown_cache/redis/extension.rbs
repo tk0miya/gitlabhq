@@ -1,0 +1,33 @@
+module Gitlab
+  module MarkdownCache
+    module Redis
+      module Extension
+        @cached_data: untyped
+
+        @store: untyped
+
+        extend ActiveSupport::Concern
+
+        attr_reader cached_markdown_version: untyped
+
+        def write_markdown_field: (untyped field_name, untyped value) -> untyped
+
+        private
+
+        def save_markdown: (untyped updates) -> untyped
+
+        def markdown_field_changed?: (untyped field_name) -> false
+
+        def changed_attributes: () -> ::Hash[untyped, untyped]
+
+        def cached_markdown: () -> untyped
+
+        def load_cached_markdown: () -> untyped
+
+        def markdown_data_loaded?: () -> untyped
+
+        def markdown_store: () -> untyped
+      end
+    end
+  end
+end

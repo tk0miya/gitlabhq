@@ -1,0 +1,15 @@
+class HealthController < BaseActionController
+  include RequiresAllowlistedMonitoringClient
+
+  CHECKS: ::Array[untyped]
+
+  ALL_CHECKS: untyped
+
+  def readiness: () -> untyped
+
+  def liveness: () -> untyped
+
+  private
+
+  def render_checks: (?untyped checks) -> untyped
+end

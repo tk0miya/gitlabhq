@@ -1,0 +1,48 @@
+class AwardEmoji < ApplicationRecord
+  THUMBS_UP: "thumbsup"
+
+  THUMBS_DOWN: "thumbsdown"
+
+  UPVOTE_NAME: untyped
+
+  DOWNVOTE_NAME: untyped
+
+  include Participable
+
+  include GhostUser
+
+  include Importable
+
+  include EachBatch
+
+  def self.votes_for_collection: (untyped ids, untyped type) -> untyped
+
+  # Returns the top 100 emoji awarded by the given user.
+  #
+  # The returned value is a Hash mapping emoji names to the number of times
+  # they were awarded:
+  #
+  #     { 'thumbsup' => 2, 'thumbsdown' => 1 }
+  #
+  # user - The User to get the awards for.
+  # limt - The maximum number of emoji to return.
+  def self.award_counts_for_user: (untyped user, ?::Integer limit) -> untyped
+
+  def downvote?: () -> untyped
+
+  def upvote?: () -> untyped
+
+  def url: () -> (nil | untyped)
+
+  def expire_cache: () -> untyped
+
+  def broadcast_note_update: () -> untyped
+
+  def to_ability_name: () -> "emoji"
+
+  def hook_attrs: () -> untyped
+
+  private
+
+  def ensure_sharding_key: () -> (nil | untyped)
+end

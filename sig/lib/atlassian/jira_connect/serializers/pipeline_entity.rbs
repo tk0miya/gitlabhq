@@ -1,0 +1,18 @@
+module Atlassian
+  module JiraConnect
+    module Serializers
+      # Both this an BuildEntity represent a Ci::Pipeline
+      class PipelineEntity < Grape::Entity
+        include Gitlab::Routing
+
+        private
+
+        alias pipeline object
+
+        def display_name: () -> ::String
+
+        def url: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module ProtectedBranches
+  class CacheService < ProtectedBranches::BaseService
+    @metrics: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    TTL_UNSET: -1
+
+    CACHE_EXPIRE_IN: untyped
+
+    CACHE_LIMIT: 1000
+
+    def fetch: (untyped ref_name, ?dry_run: bool) { (?) -> untyped } -> untyped
+
+    def refresh: () -> (nil | untyped)
+
+    private
+
+    def with_redis: () { (?) -> untyped } -> untyped
+
+    def check_and_log_discrepancy: (untyped cached_value, untyped real_value, untyped ref_name) -> (nil | untyped)
+
+    def redis_key: (?untyped entity) -> untyped
+
+    def metrics: () -> untyped
+
+    def cache_metadata: () -> untyped
+  end
+end

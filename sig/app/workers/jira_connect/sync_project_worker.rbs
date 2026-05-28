@@ -1,0 +1,18 @@
+module JiraConnect
+  class SyncProjectWorker
+    include ApplicationWorker
+
+    include SortingTitlesValuesHelper
+
+    MAX_RECORDS_LIMIT: 400
+
+    def perform: (untyped project_id, untyped update_sequence_id) -> (nil | untyped)
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def merge_requests_to_sync: (untyped project) -> untyped
+
+    def branches_to_sync: (untyped project) -> untyped
+  end
+end

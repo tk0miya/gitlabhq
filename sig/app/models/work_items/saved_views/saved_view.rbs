@@ -1,0 +1,24 @@
+module WorkItems
+  module SavedViews
+    class SavedView < ApplicationRecord
+      include Spammable
+
+      include Gitlab::SQL::Pattern
+
+      def self.sort_by_attributes: (untyped attribute, ?user: untyped?, ?scoped_to_subscribed: bool) -> untyped
+
+      def self.column_order_name_asc: () -> untyped
+
+      def self.order_relative_position: (untyped user) -> untyped
+
+      def self.column_order_relative_position: () -> untyped
+
+      def self.column_order_id_desc: () -> untyped
+
+      # Limit spam checks to public saved views in public namespaces
+      def allow_possible_spam?: (*untyped) -> (true | untyped)
+
+      def unsubscribe_other_users!: (user: untyped) -> untyped
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module Gitlab
+  module Redis
+    class HLL
+      BATCH_SIZE: 300
+
+      KEY_REGEX: ::Regexp
+
+      KeyFormatError: untyped
+
+      def self.count: (untyped params) -> untyped
+
+      def self.add: (untyped params) -> untyped
+
+      def count: (keys: untyped) -> untyped
+
+      # Check a basic format for the Redis key in order to ensure the keys are in the same hash slot
+      #
+      # Examples of keys
+      #   project:{1}:set_a
+      #   project:{1}:set_b
+      #   project:{2}:set_c
+      #   2020-216-{project_action}
+      #   i_{analytics}_dev_ops_score-2020-32
+      def add: (key: untyped, value: untyped, expiry: untyped) -> untyped
+
+      private
+
+      def validate_key!: (untyped key) -> (nil | untyped)
+    end
+  end
+end

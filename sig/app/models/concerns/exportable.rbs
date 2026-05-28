@@ -1,0 +1,25 @@
+module Exportable
+  extend ActiveSupport::Concern
+
+  def exportable_association?: (untyped association, ?current_user: untyped?) -> (false | true | untyped)
+
+  def restricted_associations: (untyped keys) -> untyped
+
+  def to_authorized_json: (untyped keys_to_authorize, untyped current_user, untyped options) -> untyped
+
+  private
+
+  def exportable_restricted_associations: () -> ::Array[untyped]
+
+  def readable_record?: (untyped record, untyped user) -> untyped
+
+  def has_many_association?: (untyped association_name) -> untyped
+
+  def readable_records: (untyped association, ?current_user: untyped?) -> (nil | untyped)
+
+  def authorized_association_records: (untyped key, untyped current_user, untyped options) -> untyped
+
+  def filtered_associations_opts: (untyped options, untyped associations) -> untyped
+
+  def association_options: (untyped key, untyped options) -> untyped
+end

@@ -1,0 +1,35 @@
+module Integrations
+  module Base
+    module Teamcity
+      extend ActiveSupport::Concern
+
+      include Base::Ci
+
+      TEAMCITY_SAAS_HOSTNAME: ::Regexp
+
+      def execute: (untyped data) -> untyped
+
+      def enable_ssl_verification: () -> untyped
+
+      private
+
+      def url_is_saas?: () -> untyped
+
+      def execute_push: (untyped data) -> untyped
+
+      def execute_merge_request: (untyped data) -> untyped
+
+      def read_build_page: (untyped response) -> untyped
+
+      def read_commit_status: (untyped response) -> (:error | untyped)
+
+      def build_url: (untyped path) -> untyped
+
+      def get_path: (untyped path) -> untyped
+
+      def post_to_build_queue: (untyped _data, untyped branch) -> untyped
+
+      def basic_auth: () -> { username: untyped, password: untyped }
+    end
+  end
+end

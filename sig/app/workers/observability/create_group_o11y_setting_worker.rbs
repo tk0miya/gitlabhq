@@ -1,0 +1,23 @@
+module Observability
+  class CreateGroupO11ySettingWorker
+    include ApplicationWorker
+
+    HOURS_TO_WAIT_FOR_BACKFILL: 1
+
+    def perform: (untyped user_id, untyped group_id) -> (nil | untyped)
+
+    private
+
+    def handle_successful_api_call: (untyped group, untyped settings_params, untyped group_id, untyped user_id, untyped user) -> untyped
+
+    def add_ci_variable: (untyped group, untyped user) -> untyped
+
+    def backfill_existing_pipelines: (untyped group) -> untyped
+
+    def log_completion: (untyped status, untyped group_id, ?untyped? error_message) -> untyped
+
+    def log_missing_entities: (untyped user, untyped group, untyped user_id, untyped group_id) -> untyped
+
+    def log_error: (untyped message, untyped group_id, untyped user_id, ?untyped? error) -> untyped
+  end
+end

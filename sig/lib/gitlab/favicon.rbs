@@ -1,0 +1,25 @@
+module Gitlab
+  class Favicon
+    self.@available_status_names: untyped
+
+    def self.main: () -> untyped
+
+    def self.development_favicon: () -> "favicon-blue.png"
+
+    def self.ci_status_overlay: (untyped status_name) -> untyped
+
+    def self.mr_status_overlay: (untyped status_name) -> untyped
+
+    def self.web_ide_favicon: () -> untyped
+
+    def self.available_status_names: () -> untyped
+
+    private
+
+    # we only want to create full urls when there's a different asset_host
+    # configured.
+    def self.host: () -> untyped
+
+    def self.appearance: () -> untyped
+  end
+end

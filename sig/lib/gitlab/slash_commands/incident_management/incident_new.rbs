@@ -1,0 +1,19 @@
+module Gitlab
+  module SlashCommands
+    module IncidentManagement
+      class IncidentNew < IncidentCommand
+        def self.help_message: () -> "incident declare *(Beta)*"
+
+        def self.allowed?: (untyped _project, untyped _user) -> untyped
+
+        def self.match: (untyped text) -> untyped
+
+        def execute: (untyped _match) -> untyped
+
+        private
+
+        def presenter: () -> untyped
+      end
+    end
+  end
+end

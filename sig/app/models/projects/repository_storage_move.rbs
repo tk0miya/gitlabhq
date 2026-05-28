@@ -1,0 +1,18 @@
+# Projects::RepositoryStorageMove are details of repository storage moves for a
+# project. For example, moving a project to another gitaly node to help
+# balance storage capacity.
+module Projects
+  class RepositoryStorageMove < ApplicationRecord
+    extend ::Gitlab::Utils::Override
+
+    include RepositoryStorageMovable
+
+    alias project container
+
+    def schedule_repository_storage_update_worker: () -> untyped
+
+    private
+
+    def error_key: () -> :project
+  end
+end

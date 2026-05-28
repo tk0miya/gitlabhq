@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module Type
+      class JsonbBoolean < ActiveModel::Type::Value
+        FALSE_VALUES: untyped
+
+        TRUE_VALUES: untyped
+
+        def cast: (untyped value) -> (false | true | untyped)
+
+        private
+
+        def normalize_value: (untyped value) -> untyped
+      end
+    end
+  end
+end

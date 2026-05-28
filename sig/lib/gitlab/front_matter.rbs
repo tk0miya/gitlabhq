@@ -1,0 +1,20 @@
+module Gitlab
+  module FrontMatter
+    DELIM_LANG: { "---" => "yaml", "+++" => "toml", ";;;" => "json" }
+
+    DELIM_UNTRUSTED: ::String
+
+    # Original pattern:
+    #   \A(?<encoding>[^\r\n]*coding:[^\r\n]*\R)? # optional encoding line
+    #   (?<before>\s*)
+    #   ^(?<delim>#{DELIM})[ \t]*(?<lang>\S*)\R # opening front matter marker (optional language specifier)
+    #   (?<front_matter>.*?)                    # front matter block content (not greedy)
+    #   ^(\k<delim> | \.{3})                    # closing front matter marker
+    #   [^\S\r\n]*(\R|\z)
+    # rubocop:disable Style/StringConcatenation
+    # rubocop:disable Style/LineEndConcatenation
+    PATTERN_UNTRUSTED: untyped
+
+    PATTERN_UNTRUSTED_REGEX: untyped
+  end
+end

@@ -1,0 +1,31 @@
+module Resolvers
+  class UserMergeRequestsResolverBase < MergeRequestsResolver
+    @project: untyped
+
+    include ResolvesProject
+
+    attr_reader project: untyped
+
+    alias user object
+
+    def ready?: (?project_id: untyped?, ?project_path: untyped?, **untyped args) -> untyped
+
+    def resolve: (**untyped args) -> untyped
+
+    def user_role: () -> untyped
+
+    private
+
+    def can_read_profile?: () -> untyped
+
+    def can_read_project?: () -> untyped
+
+    def load_project: (untyped project_path, untyped project_id) -> untyped
+
+    def no_results_possible?: (untyped args) -> untyped
+
+    # These arguments are handled in load_project, and should not be passed to
+    # the finder directly.
+    def prepare_args: (untyped args) -> untyped
+  end
+end

@@ -1,0 +1,14 @@
+module ServicePing
+  module ServicePingSettings
+    extend ::ServicePing::ServicePingSettings
+
+    def enabled_and_consented?: () -> untyped
+
+    def license_operational_metric_enabled?: () -> false
+
+    # If it is EE and license operational metric is true,
+    # then we will show enable service ping checkbox checked,
+    # as it will always send service ping
+    def enabled?: () -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module Analytics
+  module CycleAnalytics
+    class ValueStream < ApplicationRecord
+      MAX_VALUE_STREAMS_PER_NAMESPACE: 50
+
+      include Analytics::CycleAnalytics::Parentable
+
+      def custom?: () -> untyped
+
+      def self.build_default_value_stream: (untyped namespace) -> untyped
+
+      def project: () -> (nil | untyped)
+
+      def to_global_id: () -> untyped
+
+      private
+
+      def max_value_streams_count: () -> (nil | untyped)
+
+      def ensure_aggregation_record_presence: () -> untyped
+    end
+  end
+end

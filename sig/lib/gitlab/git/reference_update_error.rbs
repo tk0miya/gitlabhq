@@ -1,0 +1,17 @@
+module Gitlab
+  module Git
+    # ReferenceUpdateError represents an error that happen when trying to
+    # update a Git reference.
+    class ReferenceUpdateError < StandardError
+      @message: untyped
+
+      @reference: untyped
+
+      @old_oid: untyped
+
+      @new_oid: untyped
+
+      def initialize: (untyped message, untyped reference, untyped old_oid, untyped new_oid) -> void
+    end
+  end
+end

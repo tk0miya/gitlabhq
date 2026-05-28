@@ -1,0 +1,65 @@
+module Packages
+  module Cargo
+    class UpdatePackageFromMetadataService
+      @package_file: untyped
+
+      @request_file: untyped
+
+      @user_or_deploy_token: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      INVALID_METADATA_ERROR_MESSAGE: "package name, version and/or index content not found in metadata"
+
+      PROTECTED_PACKAGE_ERROR_MESSAGE: "Package Protected"
+
+      DUPLICATE_PACKAGE_ERROR_MESSAGE: "Package already exists"
+
+      InvalidMetadataError: untyped
+
+      ProtectedPackageError: untyped
+
+      DuplicatePackageError: untyped
+
+      def initialize: (untyped package_file, untyped request_file, untyped user_or_deploy_token) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def process_package_update: () -> untyped
+
+      def valid_metadata?: () -> untyped
+
+      def existing_package?: () -> untyped
+
+      def package_protected?: () -> untyped
+
+      def update_linked_package: () -> untyped
+
+      def create_metadatum: () -> untyped
+
+      def package_name: () -> untyped
+
+      def package_version: () -> untyped
+
+      def package_index_content: () -> untyped
+
+      def crate_data: () -> untyped
+
+      def metadata: () -> untyped
+
+      def package_filename: () -> ::String
+
+      def lease_key: () -> ::String
+
+      def lease_timeout: () -> untyped
+
+      def replace_uploaded_file_with_extracted_crate: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,82 @@
+module Banzai
+  module Filter
+    # HTML filter that "fixes" relative links to files in a repository.
+    #
+    # Context options:
+    #   :commit
+    #   :current_user
+    #   :project
+    #   :wiki
+    #   :ref
+    #   :requested_path
+    #   :system_note
+    class RepositoryLinkFilter < BaseRelativeLinkFilter
+      @uri_types: untyped
+
+      @current_commit: untyped
+
+      @repository: untyped
+
+      prepend Concerns::PipelineTimingCheck
+
+      def call: () -> untyped
+
+      def load_uri_types: () -> (nil | ::Hash[untyped, untyped] | untyped)
+
+      def linkable_files?: () -> untyped
+
+      def get_uri_types: (untyped paths) -> (::Hash[untyped, untyped] | untyped)
+
+      def get_blob_types: (untyped paths) -> untyped
+
+      def get_uri: (untyped html_attr) -> untyped
+
+      def process_link_to_repository_attr: (untyped html_attr) -> untyped
+
+      def rebuild_relative_uri: (untyped uri) -> untyped
+
+      def nested_file_path_if_exists: (untyped uri) -> untyped
+
+      def cleaned_file_path: (untyped uri) -> untyped
+
+      def relative_file_path: (untyped uri) -> (nil | untyped)
+
+      def request_path: () -> (nil | untyped)
+
+      # Convert a relative path into its correct location based on the currently
+      # requested path
+      #
+      # path         - Relative path String
+      # request_path - Currently-requested path String
+      #
+      # Examples:
+      #
+      #   # File in the same directory as the current path
+      #   build_relative_path("users.md", "doc/api/README.md")
+      #   # => "doc/api/users.md"
+      #
+      #   # File in the same directory, which is also the current path
+      #   build_relative_path("users.md", "doc/api")
+      #   # => "doc/api/users.md"
+      #
+      #   # Going up one level to a different directory
+      #   build_relative_path("../update/7.14-to-8.0.md", "doc/api/README.md")
+      #   # => "doc/update/7.14-to-8.0.md"
+      #
+      # Returns a String
+      def build_relative_path: (untyped path, untyped request_path) -> untyped
+
+      def uri_type: (untyped path) -> (:blob | untyped)
+
+      def current_commit: () -> untyped
+
+      def repo_visible_to_user?: () -> untyped
+
+      def ref: () -> untyped
+
+      def current_user: () -> untyped
+
+      def repository: () -> untyped
+    end
+  end
+end

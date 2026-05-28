@@ -1,0 +1,32 @@
+module Banzai
+  module Filter
+    # Validate links and remove unsafe protocols.
+    # This can be intensive, so it was split from BaseSanitizationFilter in order
+    # for it to have its own time period.
+    class SanitizeLinkFilter < HTML::Pipeline::Filter
+      prepend Concerns::TimeoutFilterHandler
+
+      include Gitlab::Utils::SanitizeNodeLink
+
+      # [href], [src], [data-src], [data-canonical-src]
+      CSS: untyped
+
+      XPATH: untyped
+
+      TIMEOUT_MARKDOWN_MESSAGE: "<p>Timeout while sanitizing links - rendering aborted. Please reduce the number of links if possible.</p>\n"
+
+      # We have seen documents with thousands of links
+      MAX_LINK_ATTRIBUTES: 10000
+
+      def call: () -> untyped
+
+      private
+
+      def render_timeout: () -> untyped
+
+      # If sanitization times out, we can not return partial un-sanitized results.
+      # It's ok to allow any following filters to run since this is safe HTML.
+      def returned_timeout_value: () -> untyped
+    end
+  end
+end

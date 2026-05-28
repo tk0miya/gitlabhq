@@ -1,0 +1,51 @@
+# Controller for viewing a file's blame
+class Projects::BlameController < Projects::ApplicationController
+  @ref_type: untyped
+
+  @blob: untyped
+
+  @environment: untyped
+
+  @blame_mode: untyped
+
+  @blame_pagination: untyped
+
+  @blame: untyped
+
+  @gitaly_unavailable: untyped
+
+  include ExtractsPath
+
+  include RedirectsForMissingPathOnTree
+
+  include HandlesGitalyErrors
+
+  def show: () -> untyped
+
+  def streaming: () -> untyped
+
+  def page: () -> untyped
+
+  private
+
+  def load_blob: () -> (nil | untyped)
+
+  def require_non_binary_blob: () -> (nil | untyped)
+
+  def load_environment: () -> untyped
+
+  def load_blame: () -> untyped
+
+  def ignore_revs: () -> untyped
+
+  def blame_attributes: () -> ::Array[:page | :no_pagination | :streaming | :ignore_revs]
+
+  def blame_params: () -> untyped
+
+  def redirect_show_with_flash: (untyped message) -> untyped
+
+  # Override because #streaming and #page don't have their own templates.
+  # Always render the 'show' template which handles @gitaly_unavailable.
+  #
+  def handle_gitaly_error: (untyped exception) -> untyped
+end

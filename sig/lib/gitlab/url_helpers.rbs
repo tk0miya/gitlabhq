@@ -1,0 +1,13 @@
+module Gitlab
+  class UrlHelpers
+    WSS_PROTOCOL: "wss"
+
+    def self.as_wss: (untyped url) -> untyped
+
+    # Returns hostname of a URL.
+    #
+    # @param url [String] URL to parse
+    # @return [String|Nilclass] Normalized base URL, or nil if url was unparsable.
+    def self.normalized_base_url: (untyped url) -> (nil | untyped)
+  end
+end

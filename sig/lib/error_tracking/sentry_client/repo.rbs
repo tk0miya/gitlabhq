@@ -1,0 +1,15 @@
+module ErrorTracking
+  class SentryClient
+    module Repo
+      def repos: (untyped organization_slug) -> untyped
+
+      private
+
+      def repos_api_url: (untyped organization_slug) -> untyped
+
+      def map_to_repos: (untyped repos) -> untyped
+
+      def map_to_repo: (untyped repo) -> untyped
+    end
+  end
+end

@@ -1,0 +1,51 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class ReleasesImporter
+        @existing_tags: untyped
+
+        @github_users: untyped
+
+        @user_finder: untyped
+
+        include BulkImporting
+
+        include ::Import::PlaceholderReferences::Pusher
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def existing_tags: () -> untyped
+
+        def github_users: () -> untyped
+
+        # Note: if you're going to replace `legacy_bulk_insert` with something that triggers callback
+        # to generate HTML version - you also need to regenerate it in
+        # Gitlab::GithubImport::Importer::NoteAttachmentsImporter.
+        def execute: () -> untyped
+
+        def build_releases: () -> untyped
+
+        def already_imported?: (untyped release) -> untyped
+
+        def build_attributes: (untyped release) -> { name: untyped, tag: untyped, author_id: untyped, description: untyped, created_at: untyped, updated_at: untyped, released_at: untyped, project_id: untyped }
+
+        def map_github_user_info: (untyped release) -> { id: untyped, login: untyped }
+
+        def each_release: () -> untyped
+
+        def description_for: (untyped release) -> untyped
+
+        def object_type: () -> :release
+
+        private
+
+        def fetch_author_id: (untyped release) -> untyped
+
+        def user_finder: () -> untyped
+
+        def model: () -> untyped
+
+        def github_identifiers: (untyped release) -> { tag: untyped, object_type: untyped }
+      end
+    end
+  end
+end

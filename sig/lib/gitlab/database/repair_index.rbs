@@ -1,0 +1,102 @@
+module Gitlab
+  module Database
+    class RepairIndex
+      @connection: untyped
+
+      @database_name: untyped
+
+      @indexes_to_repair: untyped
+
+      @logger: untyped
+
+      @dry_run: untyped
+
+      include Gitlab::Database::Migrations::TimeoutHelpers
+
+      BATCH_SIZE: 100
+
+      # SQL templates with placeholders
+      REINDEX_SQL: "REINDEX INDEX CONCURRENTLY %{index_name}"
+
+      CREATE_INDEX_SQL: "CREATE%{unique_clause} INDEX CONCURRENTLY %{index_name} ON %{table_name} (%{column_list})"
+
+      UPDATE_REFERENCES_SQL: "UPDATE %{ref_table} SET %{ref_column} = %{good_id} WHERE %{ref_column} IN (%{bad_ids})"
+
+      DELETE_DUPLICATES_SQL: "DELETE FROM %{table_name} WHERE id IN (%{bad_ids})"
+
+      # Bulk update SQL with truncation handling
+      BULK_UPDATE_DUPLICATES_SQL: "UPDATE %{table_name}\nSET %{column} = CASE\n  WHEN LENGTH(%{column}) + LENGTH('-dup-' || id::text) > %{max_length}\n  THEN LEFT(%{column}, %{max_length} - LENGTH('-dup-' || id::text)) || '-dup-' || id::text\n  ELSE %{column} || '-dup-' || id::text\nEND\nWHERE id IN (%{bad_ids})\n"
+
+      FIND_DUPLICATE_SETS_SQL: "SELECT ARRAY_AGG(id ORDER BY id ASC) as ids\nFROM %{table_name}\nWHERE %{not_null_conditions}\nGROUP BY %{column_list}\nHAVING COUNT(*) > 1\n"
+
+      RECORDS_WITH_DUPLICATE_REFS_SQL: "SELECT DISTINCT %{deduplication_column}\nFROM %{ref_table}\nWHERE %{ref_column} = %{good_id}\nAND EXISTS (\n  SELECT 1\n  FROM %{ref_table} sub\n  WHERE sub.%{deduplication_column} = %{ref_table}.%{deduplication_column}\n  AND sub.%{ref_column} = %{bad_id}\n)\n"
+
+      DELETE_DUPLICATE_REFS_SQL: "DELETE FROM %{ref_table}\nWHERE %{ref_column} = %{bad_id}\nAND %{deduplication_column} IN (%{duplicate_ids})\n"
+
+      FIND_ARRAY_REFS_SQL: "SELECT id, %{array_column}\nFROM %{ref_table}\nWHERE %{array_column}::bigint[] && ARRAY[%{bad_ids}]::bigint[]\n"
+
+      UPDATE_ARRAY_REFS_SQL: "UPDATE %{ref_table}\nSET %{array_column} = ARRAY[%{updated_array}]\nWHERE id = %{record_id}\n"
+
+      INDEX_EXISTS_SQL: "SELECT 1 FROM pg_indexes\nWHERE indexname = %{index_name}\nAND tablename = %{table_name}\n"
+
+      # Configuration for known problematic indexes which can be injected via SchemaChecker or CollationChecker
+      # Implementation based on scripts to fix index on https://gitlab.com/gitlab-org/gitlab/-/issues/372150#note_1083479615
+      # and https://gitlab.com/gitlab-org/gitlab/-/issues/523146#note_2418277173.
+      INDEXES_TO_REPAIR: { "merge_request_diff_commit_users" => { "index_merge_request_diff_commit_users_on_org_id_name_email" => { "columns" => ::Array["organization_id" | "name" | "email"], "unique" => true, "references" => ::Array[{ "table" => "merge_request_diff_commits", "column" => "committer_id" } | { "table" => "merge_request_diff_commits", "column" => "commit_author_id" }] } }, "topics" => { "index_topics_on_organization_id_and_name" => { "columns" => ::Array["organization_id" | "name"], "unique" => true, "references" => ::Array[{ "table" => "project_topics", "column" => "topic_id" }] } }, "ci_refs" => { "index_ci_refs_on_project_id_and_ref_path" => { "columns" => ::Array["project_id" | "ref_path"], "unique" => true, "references" => ::Array[{ "table" => "p_ci_pipelines", "column" => "ci_ref_id" }] } }, "ci_resource_groups" => { "index_ci_resource_groups_on_project_id_and_key" => { "columns" => ::Array["project_id" | "key"], "unique" => true, "references" => ::Array[{ "table" => "p_ci_builds", "column" => "resource_group_id" } | { "table" => "ci_builds", "column" => "resource_group_id" } | { "table" => "ci_resources", "column" => "resource_group_id" }] } }, "environments" => { "index_environments_on_project_id_and_name" => { "columns" => ::Array["project_id" | "name"], "unique" => true, "references" => ::Array[{ "table" => "deployment_merge_requests", "column" => "environment_id", "deduplication_column" => "merge_request_id" } | { "table" => "alert_management_alerts", "column" => "environment_id" } | { "table" => "self_managed_prometheus_alert_events", "column" => "environment_id" } | { "table" => "prometheus_alerts", "column" => "environment_id" } | { "table" => "clusters_kubernetes_namespaces", "column" => "environment_id" } | { "table" => "metrics_dashboard_annotations", "column" => "environment_id" } | { "table" => "deployments", "column" => "environment_id" } | { "table" => "dora_daily_metrics", "column" => "environment_id" }] } }, "sbom_components" => { "idx_sbom_components_on_name_purl_type_component_type_and_org_id" => { "columns" => ::Array["name" | "purl_type" | "component_type" | "organization_id"], "unique" => true, "references" => ::Array[{ "table" => "sbom_occurrences", "column" => "component_id" } | { "table" => "sbom_component_versions", "column" => "component_id", "deduplication_column" => "version" }] } }, "tags" => { "index_tags_on_name" => { "columns" => ::Array["name"], "unique" => true, "references" => ::Array[{ "table" => "p_ci_build_tags", "column" => "tag_id", "deduplication_column" => "build_id" } | { "table" => "ci_runner_taggings", "column" => "tag_id", "deduplication_column" => "runner_id" } | { "table" => "ci_pending_builds", "column" => "tag_ids", "type" => "array" } | { "table" => "dast_profile_tags", "column" => "tag_id" }] } }, "pm_packages" => { "i_pm_packages_purl_type_and_name" => { "columns" => ::Array["purl_type" | "name"], "unique" => true, "references" => ::Array[{ "table" => "pm_package_versions", "column" => "pm_package_id" }] } }, "pm_affected_packages" => { "i_affected_packages_unique_for_upsert" => { "columns" => ::Array["pm_advisory_id" | "purl_type" | "package_name" | "distro_version"], "unique" => true } }, "container_repositories" => { "index_container_repositories_on_project_id_and_name" => { "columns" => ::Array["project_id" | "name"], "unique" => true, "references" => ::Array[{ "table" => "container_repository_states", "column" => "container_repository_id", "delete_orphaned" => true }] } }, "audit_events_group_external_streaming_destinations" => { "unique_idx_group_destinations_on_name_category_group" => { "columns" => ::Array["group_id" | "category" | "name"], "unique" => true, "action" => "update", "column_to_update" => "name", "max_length" => 72 } }, "audit_events_instance_external_streaming_destinations" => { "unique_idx_instance_destinations_on_name_category" => { "columns" => ::Array["category" | "name"], "unique" => true, "action" => "update", "column_to_update" => "name", "max_length" => 72 } } }
+
+      def self.run: (?database_name: untyped?, ?indexes_to_repair: untyped, ?logger: untyped, ?dry_run: bool) -> untyped
+
+      attr_reader connection: untyped
+
+      attr_reader database_name: untyped
+
+      attr_reader indexes_to_repair: untyped
+
+      attr_reader logger: untyped
+
+      attr_reader dry_run: untyped
+
+      def initialize: (untyped connection, untyped database_name, untyped indexes_to_repair, untyped logger, untyped dry_run) -> void
+
+      def run: () -> untyped
+
+      private
+
+      def execute: (untyped sql) -> untyped
+
+      def execute_local: (untyped sql, ?read_only: bool, ?disable_index_scans: bool) { () -> untyped } -> (nil | untyped)
+
+      def with_index_scans_disabled: (untyped disable) { () -> untyped } -> untyped
+
+      def table_exists?: (untyped table_name) -> untyped
+
+      def index_exists?: (untyped table_name, untyped index_name) -> untyped
+
+      def deduplicate_data: (untyped table_name, untyped columns, untyped references, ?action: untyped?, ?column_to_update: untyped?, ?max_length: untyped?) -> (nil | untyped)
+
+      def generate_id_mapping: (untyped duplicate_sets) -> untyped
+
+      def process_references: (untyped references, untyped id_mapping) -> (nil | untyped)
+
+      def delete_orphaned_references: (untyped ref_table, untyped ref_column, untyped id_mapping) -> untyped
+
+      def handle_array_references: (untyped ref_table, untyped ref_column, untyped id_mapping) -> untyped
+
+      def handle_duplicate_references: (untyped ref_table, untyped ref_column, untyped deduplication_column, untyped id_mapping) -> untyped
+
+      def update_references: (untyped ref_table, untyped ref_column, untyped id_mapping) -> untyped
+
+      def find_duplicate_sets: (untyped table_name, untyped columns) -> untyped
+
+      def delete_duplicates: (untyped table_name, untyped id_mapping) -> (nil | untyped)
+
+      def deduplicate_data_with_updates: (untyped table_name, untyped duplicate_sets, untyped column_to_update, untyped max_length) -> untyped
+
+      def reindex_index: (untyped index_name) -> untyped
+
+      def create_index: (untyped table_name, untyped index_name, untyped columns, ?bool unique) -> untyped
+
+      def parse_pg_array: (untyped pg_array_string) -> (::Array[untyped] | untyped)
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Todos
+  module Destroy
+    class UnauthorizedFeaturesService < ::Todos::Destroy::BaseService
+      @project_id: untyped
+
+      @user_id: untyped
+
+      attr_reader project_id: untyped
+
+      attr_reader user_id: untyped
+
+      BATCH_SIZE: 1000
+
+      def initialize: (untyped project_id, ?untyped? user_id) -> void
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def without_authorized: (untyped items) -> untyped
+
+      def authorized_users: () -> untyped
+
+      def related_todos: () -> untyped
+
+      # Compatibility for #authorized_users in this class we always work
+      # with 1 project for queries efficiency
+      def project_ids: () -> ::Array[untyped]
+    end
+  end
+end

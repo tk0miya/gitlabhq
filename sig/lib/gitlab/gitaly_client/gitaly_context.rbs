@@ -1,0 +1,29 @@
+module Gitlab
+  module GitalyClient
+    # A utility class that collects properties for gitaly_context into the
+    # request store. The primary entrypoint is
+    # `GitalyContext.with_context(&block)`, which pushes properties to the
+    # context for the code within `&block`.
+    class GitalyContext
+      @stack: untyped
+
+      def self.current_context: () -> untyped
+
+      def self.with_context: (**untyped context) { () -> untyped } -> untyped
+
+      private
+
+      def self.instance: () -> untyped
+
+      public
+
+      def initialize: () -> void
+
+      # Execute a block with the entries in `context` merged into the gitaly
+      # client's context.
+      def with_context: (**untyped context) { () -> untyped } -> untyped
+
+      def current_context: () -> untyped
+    end
+  end
+end

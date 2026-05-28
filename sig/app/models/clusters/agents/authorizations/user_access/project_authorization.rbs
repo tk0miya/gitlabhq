@@ -1,0 +1,17 @@
+module Clusters
+  module Agents
+    module Authorizations
+      module UserAccess
+        class ProjectAuthorization < ApplicationRecord
+          include Scopes
+
+          def config_project: () -> untyped
+
+          def self.upsert_configs: (untyped configs) -> untyped
+
+          def self.delete_unlisted: (untyped project_ids) -> untyped
+        end
+      end
+    end
+  end
+end

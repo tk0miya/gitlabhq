@@ -1,0 +1,11 @@
+module Gitlab
+  module Cache
+    # Utility method for performing a fetch but only
+    # once per request, storing the returned value in
+    # the request store, if active.
+    def self.fetch_once: (untyped key, **untyped kwargs) { () -> untyped } -> untyped
+
+    # Hook for EE
+    def self.delete: (untyped key) -> untyped
+  end
+end

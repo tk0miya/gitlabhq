@@ -1,0 +1,22 @@
+module Gitlab
+  module Graphql
+    module Loaders
+      # Suitable for use to find resources that expose `where_full_path_in`,
+      # such as Project, Group, Namespace
+      # full path is always converted to lowercase for case-insensitive results
+      class FullPathModelLoader
+        @model_class: untyped
+
+        @full_path: untyped
+
+        attr_reader model_class: untyped
+
+        attr_reader full_path: untyped
+
+        def initialize: (untyped model_class, untyped full_path) -> void
+
+        def find: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class DiffNotesImporter
+        include ParallelScheduling
+
+        def representation_class: () -> untyped
+
+        def importer_class: () -> untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def collection_method: () -> :pull_requests_comments
+
+        def object_type: () -> :diff_note
+
+        def id_for_already_imported_cache: (untyped note) -> untyped
+      end
+    end
+  end
+end

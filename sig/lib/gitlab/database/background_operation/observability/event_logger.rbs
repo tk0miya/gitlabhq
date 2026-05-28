@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      module Observability
+        class EventLogger
+          EVENTS: { "worker_transition" => untyped, "worker_optimization" => untyped, "job_transition" => untyped }
+
+          def self.log: (event: untyped, record: untyped, **untyped attributes) -> untyped
+        end
+      end
+    end
+  end
+end

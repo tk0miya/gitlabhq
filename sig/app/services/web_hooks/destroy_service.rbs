@@ -1,0 +1,28 @@
+module WebHooks
+  # Destroys a WebHook record.
+  #
+  # Note: Log cleanup is handled automatically through daily partitioning
+  # of the `web_hook_logs` table, so manual log purging is not required.
+  class DestroyService
+    @current_user: untyped
+
+    include Services::ReturnServiceResponses
+
+    attr_accessor current_user: untyped
+
+    DENIED: "Insufficient permissions"
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped web_hook) -> untyped
+
+    private
+
+    # Overridden in EE
+    def after_destroy: (untyped _web_hook) -> untyped
+
+    def log_message: (untyped hook) -> ::String
+
+    def authorized?: (untyped web_hook) -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+module Peek
+  module Views
+    class DetailedView < View
+      def self.thresholds: () -> ::Hash[untyped, untyped]
+
+      def results: () -> { duration: untyped, calls: untyped, details: untyped, warnings: untyped }
+
+      def detail_store: () -> untyped
+
+      private
+
+      def duration: () -> untyped
+
+      def calls: () -> untyped
+
+      def details: () -> untyped
+
+      def warnings: () -> untyped
+
+      def call_details: () -> untyped
+
+      def format_call_details: (untyped call) -> untyped
+
+      def warning_for: (untyped actual, untyped threshold, ?label: untyped?) -> (::Array[::String] | ::Array[untyped])
+
+      def format_duration: (untyped ms) -> untyped
+    end
+  end
+end

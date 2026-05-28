@@ -1,0 +1,19 @@
+module Analytics
+  module CycleAnalytics
+    class StagePresenter < Gitlab::View::Presenter::Delegated
+      @default_stage_attributes: untyped
+
+      def title: () -> untyped
+
+      def description: () -> untyped
+
+      def legend: () -> ""
+
+      private
+
+      def extract_default_stage_attribute: (untyped attribute) -> untyped
+
+      def default_stage_attributes: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module API
+  module Helpers
+    module Packages
+      module Nuget
+        module WarningHeader
+          extend ::Gitlab::Utils::Override
+
+          HEADER_NAME: "X-NuGet-Warning"
+
+          def render_structured_api_error!: (untyped hash, untyped status) -> untyped
+        end
+      end
+    end
+  end
+end

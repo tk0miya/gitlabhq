@@ -1,0 +1,9 @@
+module MergeRequests
+  class ProcessAutoMergeFromEventWorker
+    include Gitlab::EventStore::Subscriber
+
+    # The difference with this worker and AutoMergeProcessWorker is that this will
+    # handle the execution from the event store code
+    def handle_event: (untyped event) -> (nil | untyped)
+  end
+end

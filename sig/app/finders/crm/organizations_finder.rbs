@@ -1,0 +1,46 @@
+# Finder for retrieving crm_organizations scoped to a group
+#
+# Arguments:
+#   current_user - user performing the action. Must have the correct permission level for the group.
+#   params:
+#     group: Group, required
+#     search: String, optional
+#     state: CustomerRelations::OrganizationStateEnum, optional
+#     ids: int[], optional
+module Crm
+  class OrganizationsFinder
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Allowable
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    def self.counts_by_state: (untyped current_user, ?::Hash[untyped, untyped] params) -> untyped
+
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def sort_crm_organizations: (untyped crm_organizations) -> untyped
+
+    def by_search: (untyped crm_organizations) -> untyped
+
+    def by_state: (untyped crm_organizations) -> untyped
+
+    def by_ids: (untyped crm_organizations) -> untyped
+
+    def search?: () -> untyped
+
+    def state?: () -> untyped
+
+    def ids?: () -> untyped
+  end
+end

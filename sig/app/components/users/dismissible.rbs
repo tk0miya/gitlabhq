@@ -1,0 +1,49 @@
+module Users
+  module Dismissible
+    private
+
+    attr_reader wrapper_options: untyped
+
+    attr_reader dismiss_options: untyped
+
+    # Due to the way rendering in the controller/rack context happens
+    # we need to make this a separate module to execute call
+    # instead of defining this in the base dismissible class.
+    # When we put this in the base dismissible class it renders parent
+    # inside of parent as each class along the way will execute a parent
+    # render.
+    # This placement and then calling inside the child classes
+    # solves that.
+    def call: () -> untyped
+
+    def render?: () -> untyped
+
+    def render_with_wrapper_options: (untyped options) -> untyped
+
+    def wrapper_options?: () -> untyped
+
+    def add_wrapper_data_attributes!: (untyped data_attributes) -> untyped
+
+    def build_html_options: (untyped html_options) -> untyped
+
+    def add_css_class: (untyped html_options) -> untyped
+
+    def add_data_attributes: (untyped html_options) -> untyped
+
+    def build_data_attributes: () -> { dismiss_endpoint: untyped, feature_id: untyped }
+
+    def dismiss_endpoint: () -> nil
+
+    def verify_callout_setup!: () -> untyped
+
+    def verify_feature_id!: () -> (nil | untyped)
+
+    def callout_class: () -> nil
+
+    def user_dismissed?: () -> nil
+
+    def verify_field_presence!: (untyped dismiss_option_key) -> (nil | untyped)
+
+    def user: () -> untyped
+  end
+end

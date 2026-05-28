@@ -1,0 +1,15 @@
+module Gitlab
+  module HookData
+    class ReleaseBuilder < BaseBuilder
+      def self.safe_hook_attributes: () -> ::Array[:id | :created_at | :description | :name | :released_at | :tag]
+
+      alias release object
+
+      def build: (untyped action) -> untyped
+
+      private
+
+      def object_kind: () -> untyped
+    end
+  end
+end

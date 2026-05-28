@@ -1,0 +1,71 @@
+# The method `filename` must be defined in classes that mix in this module.
+#
+# This module is intended to be used as a helper and not a security gate
+# to validate that a file is safe, as it identifies files only by the
+# file extension and not its actual contents.
+#
+# An example usage of this module is in `FileMarkdownLinkBuilder` that
+# renders markdown depending on a file name.
+#
+# We use Workhorse to detect the real extension when we serve files with
+# the `SendsBlob` helper methods, and ask Workhorse to set the content
+# type when it serves the file:
+# https://gitlab.com/gitlab-org/gitlab/blob/33e5955/app/helpers/workhorse_helper.rb#L48.
+#
+# Because Workhorse has access to the content when it is downloaded, if
+# the type/extension doesn't match the real type, we adjust the
+# `Content-Type` and `Content-Disposition` to the one we get from the detection.
+module Gitlab
+  module FileTypeDetection
+    SAFE_IMAGE_EXT: ::Array["png" | "jpg" | "jpeg" | "gif" | "bmp" | "tiff" | "ico" | "webp"]
+
+    SAFE_IMAGE_FOR_SCALING_EXT: ::Array["png" | "jpg" | "jpeg"]
+
+    PDF_EXT: "pdf"
+
+    # We recommend using the .mp4 format over .mov. Videos in .mov format can
+    # still be used but you really need to make sure they are served with the
+    # proper MIME type video/mp4 and not video/quicktime or your videos won't play
+    # on IE >= 9.
+    # http://archive.sublimevideo.info/20150912/docs.sublimevideo.net/troubleshooting.html
+    SAFE_VIDEO_EXT: ::Array["mp4" | "m4v" | "mov" | "webm" | "ogv"]
+
+    SAFE_AUDIO_EXT: ::Array["mp3" | "oga" | "ogg" | "spx" | "wav"]
+
+    # These extension types can contain dangerous code and should only be embedded inline with
+    # proper filtering. They should always be tagged as "Content-Disposition: attachment", not "inline".
+    DANGEROUS_IMAGE_EXT: ::Array["svg"]
+
+    DANGEROUS_VIDEO_EXT: ::Array[untyped]
+
+    DANGEROUS_AUDIO_EXT: ::Array[untyped]
+
+    def self.extension_match?: (untyped filename, untyped extensions) -> (false | untyped)
+
+    def image?: () -> untyped
+
+    # For the time being, we restrict image scaling requests to the most popular and safest formats only,
+    # which are JPGs and PNGs. See https://gitlab.com/gitlab-org/gitlab/-/issues/237848 for more info.
+    def image_safe_for_scaling?: () -> untyped
+
+    def video?: () -> untyped
+
+    def audio?: () -> untyped
+
+    def pdf?: () -> untyped
+
+    def embeddable?: () -> untyped
+
+    def dangerous_image?: () -> untyped
+
+    def dangerous_video?: () -> untyped
+
+    def dangerous_audio?: () -> untyped
+
+    def dangerous_embeddable?: () -> untyped
+
+    private
+
+    def extension_match?: (untyped extensions) -> untyped
+  end
+end

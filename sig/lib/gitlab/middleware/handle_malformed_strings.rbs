@@ -1,0 +1,29 @@
+module Gitlab
+  module Middleware
+    # There is no valid reason for a request to contain a malformed string
+    # so just return HTTP 400 (Bad Request) if we receive one
+    class HandleMalformedStrings
+      @app: untyped
+
+      include ActionController::HttpAuthentication::Basic
+
+      attr_reader app: untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> (::Array[400 | { "Content-Type" => "text/plain" } | ::Array["Bad Request"]] | untyped)
+
+      private
+
+      def request_contains_malformed_string?: (untyped env) -> untyped
+
+      def malformed_path?: (untyped path) -> untyped
+
+      def credentials_malformed?: (untyped request) -> (false | untyped)
+
+      def param_has_null_byte?: (untyped value, ?::Integer depth) -> (false | untyped)
+
+      def string_malformed?: (untyped string) -> untyped
+    end
+  end
+end

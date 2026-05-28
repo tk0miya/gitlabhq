@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents CI/CD variables.
+        class Variables < ::Gitlab::Config::Entry::ComposableHash
+          include ::Gitlab::Config::Entry::Validatable
+
+          def self.default: (**untyped) -> ::Hash[untyped, untyped]
+
+          def value: () -> untyped
+
+          def value_with_data: () -> untyped
+
+          def value_with_prefill_data: () -> untyped
+
+          private
+
+          def composable_class: (untyped _name, untyped _config) -> untyped
+
+          def composable_metadata: () -> { allowed_value_data: untyped }
+        end
+      end
+    end
+  end
+end

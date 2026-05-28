@@ -1,0 +1,12 @@
+class ScheduleMigrateExternalDiffsWorker
+  include ApplicationWorker
+
+  # rubocop:disable Scalability/CronWorkerContext:
+  # This schedules the `MigrateExternalDiffsWorker`
+  # issue for adding context: https://gitlab.com/gitlab-org/gitlab/issues/202100
+  include CronjobQueue
+
+  include Gitlab::ExclusiveLeaseHelpers
+
+  def perform: () -> untyped
+end

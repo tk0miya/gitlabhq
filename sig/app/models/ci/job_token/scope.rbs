@@ -1,0 +1,56 @@
+module Ci
+  module JobToken
+    class Scope
+      @current_project: untyped
+
+      attr_reader current_project: untyped
+
+      def initialize: (untyped current_project) -> void
+
+      def accessible?: (untyped accessed_project) -> (true | false)
+
+      def policies_allowed?: (untyped accessed_project, untyped policies) -> (true | false | untyped)
+
+      def outbound_projects: () -> untyped
+
+      def inbound_projects: () -> untyped
+
+      def inbound_projects_count: () -> untyped
+
+      def groups: () -> untyped
+
+      def groups_count: () -> untyped
+
+      def autopopulated_group_ids: () -> untyped
+
+      def autopopulated_inbound_project_ids: () -> untyped
+
+      def self_referential?: (untyped accessed_project) -> untyped
+
+      private
+
+      def inbound_accessible?: (untyped accessed_project) -> (untyped | true)
+
+      def policies_allowed_for_accessed_project?: (untyped accessed_project, untyped policies) -> (true | false | untyped)
+
+      def nearest_scope: (untyped accessed_project) -> untyped
+
+      # We don't check the inbound allowlist here. That is because
+      # the access check starts from the current project but the inbound
+      # allowlist contains projects that can access the current project.
+      def inbound_linked_as_accessible?: (untyped accessed_project) -> untyped
+
+      def group_linked_as_accessible?: (untyped accessed_project) -> untyped
+
+      def inbound_accessible_projects: (untyped accessed_project) -> untyped
+
+      # User created list of projects allowed to access the current project
+      def inbound_allowlist: () -> untyped
+
+      # User created list of projects that can be accessed from the current project
+      def outbound_allowlist: () -> untyped
+
+      def same_root_ancestor?: (untyped accessed_project) -> untyped
+    end
+  end
+end

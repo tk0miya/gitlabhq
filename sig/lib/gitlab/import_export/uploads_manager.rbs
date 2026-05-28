@@ -1,0 +1,47 @@
+module Gitlab
+  module ImportExport
+    class UploadsManager
+      @project: untyped
+
+      @shared: untyped
+
+      @relative_export_path: untyped
+
+      @uploads_export_path: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      include ::Import::Framework::ProgressTracking
+
+      UPLOADS_BATCH_SIZE: 100
+
+      attr_reader project: untyped
+
+      def initialize: (project: untyped, shared: untyped, ?relative_export_path: ::String) -> void
+
+      def save: () -> untyped
+
+      def restore: () -> untyped
+
+      private
+
+      def add_upload: (untyped upload) -> untyped
+
+      def copy_project_uploads: () -> untyped
+
+      def uploads_export_path: () -> untyped
+
+      def each_uploader: () { (untyped) -> untyped } -> untyped
+
+      def project_uploads_except_avatar: (untyped avatar_path) -> untyped
+
+      def download_and_copy: (untyped upload) -> untyped
+
+      def progress_tracking_options: (untyped upload_path) -> { scope: { project_id: untyped }, data: untyped }
+
+      # Returns filename and the dir name the upload is in
+      # e.g. 72a497a02fe3ee09edae2ed06d390038/image.png
+      def filename_with_object_id: (untyped upload_path) -> untyped
+    end
+  end
+end

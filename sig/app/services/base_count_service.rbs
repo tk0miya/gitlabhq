@@ -1,0 +1,25 @@
+# Base class for services that count a single resource such as the number of
+# issues for a project.
+class BaseCountService
+  def relation_for_count: () -> untyped
+
+  def count: () -> untyped
+
+  def count_stored?: () -> untyped
+
+  def refresh_cache: () { (?) -> untyped } -> untyped
+
+  def uncached_count: () -> untyped
+
+  def delete_cache: () -> untyped
+
+  def raw?: () -> false
+
+  def cache_key: () -> untyped
+
+  # subclasses can override to add any specific options, such as
+  #   super.merge({ expires_in: 5.minutes })
+  def cache_options: () -> { raw: untyped }
+
+  def update_cache_for_key: (untyped key) ?{ () -> untyped } -> untyped
+end

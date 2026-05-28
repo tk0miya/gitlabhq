@@ -1,0 +1,22 @@
+module Gitlab
+  module Graphql
+    class KnownOperations
+      self.@default: untyped
+
+      @operation_hash: untyped
+
+      Operation: untyped
+
+      UNKNOWN: untyped
+
+      def self.default: () -> untyped
+
+      def initialize: (untyped operation_data) -> void
+
+      # Returns the known operation from the given ::GraphQL::Query object
+      def from_query: (untyped query) -> untyped
+
+      def operations: () -> untyped
+    end
+  end
+end

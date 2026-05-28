@@ -1,0 +1,13 @@
+class Projects::BoardsController < Projects::ApplicationController
+  include BoardsActions
+
+  include IssuableCollections
+
+  private
+
+  def board_finder: () -> untyped
+
+  def board_create_service: () -> untyped
+
+  def authorize_read_board!: () -> (untyped | nil)
+end

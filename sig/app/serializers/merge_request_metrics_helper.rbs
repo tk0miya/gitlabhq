@@ -1,0 +1,10 @@
+module MergeRequestMetricsHelper
+  # There are cases where the metrics object doesn't exist and it needs to be rebuilt.
+  # TODO: Once https://gitlab.com/gitlab-org/gitlab/-/issues/342508 has been resolved and
+  # all merge requests have metrics we can remove this helper method.
+  def build_metrics: (untyped merge_request) -> (nil | untyped)
+
+  private
+
+  def build_metrics_from_events: (untyped merge_request) -> untyped
+end

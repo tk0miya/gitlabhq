@@ -1,0 +1,9 @@
+module Gitlab
+  module Asciidoc
+    module SyntaxHighlighter
+      class HtmlPipelineAdapter < Asciidoctor::SyntaxHighlighter::Base
+        def format: (untyped node, untyped lang, untyped opts) -> ::String
+      end
+    end
+  end
+end

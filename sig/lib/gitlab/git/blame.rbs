@@ -1,0 +1,75 @@
+module Gitlab
+  module Git
+    class Blame
+      @repo: untyped
+
+      @sha: untyped
+
+      @path: untyped
+
+      @range: untyped
+
+      @lines: untyped
+
+      @ignore_revisions_blob: untyped
+
+      @blames: untyped
+
+      include Gitlab::EncodingHelper
+
+      IgnoreRevsFormatError: untyped
+
+      IgnoreRevsFileError: untyped
+
+      attr_reader lines: untyped
+
+      attr_reader blames: untyped
+
+      attr_reader range: untyped
+
+      def initialize: (untyped repository, untyped sha, untyped path, ?range: untyped?, ?ignore_revisions_blob: untyped?) -> void
+
+      def each: () ?{ (untyped, untyped, untyped, untyped) -> untyped } -> untyped
+
+      private
+
+      attr_reader ignore_revisions_blob: untyped
+
+      def range_spec: () -> (::String | nil)
+
+      def load_blame: () -> untyped
+
+      def fetch_raw_blame: () -> untyped
+
+      def process_raw_blame: (untyped output) -> untyped
+    end
+
+    class BlameLine
+      @lineno: untyped
+
+      @oldlineno: untyped
+
+      @commit: untyped
+
+      @line: untyped
+
+      @previous_path: untyped
+
+      @span: untyped
+
+      attr_accessor lineno: untyped
+
+      attr_accessor oldlineno: untyped
+
+      attr_accessor commit: untyped
+
+      attr_accessor line: untyped
+
+      attr_accessor previous_path: untyped
+
+      attr_accessor span: untyped
+
+      def initialize: (untyped lineno, untyped oldlineno, untyped commit, untyped line, untyped previous_path, untyped span) -> void
+    end
+  end
+end

@@ -1,0 +1,33 @@
+module Gitlab
+  module Graphql
+    module Loaders
+      class IssuableLoader
+        @parent: untyped
+
+        @issuable_finder: untyped
+
+        attr_reader parent: untyped
+
+        attr_reader issuable_finder: untyped
+
+        BatchKey: untyped
+
+        def initialize: (untyped parent, untyped issuable_finder) -> void
+
+        def batching_find_all: () { (?) -> untyped } -> untyped
+
+        def find_all: () -> untyped
+
+        private
+
+        def post_process: (untyped query, untyped with_query) -> untyped
+
+        def batch_load_issuables: (untyped iids, untyped with_query) -> untyped
+
+        def batch_load: (untyped iid, untyped with_query) -> (nil | untyped)
+
+        def batch_key: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module MergeRequests
+  class RemoveApprovalService < MergeRequests::BaseService
+    # rubocop: disable CodeReuse/ActiveRecord
+    def execute: (untyped merge_request, ?skip_updating_state: bool, ?skip_system_note: bool, ?skip_notification: bool) -> (nil | untyped)
+
+    private
+
+    def reset_approvals_cache: (untyped merge_request) -> untyped
+
+    def trigger_approval_hooks: (untyped merge_request, untyped skip_notification) { () -> untyped } -> (nil | untyped)
+
+    def create_note: (untyped merge_request) -> untyped
+  end
+end

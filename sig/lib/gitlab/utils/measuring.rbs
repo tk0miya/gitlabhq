@@ -1,0 +1,41 @@
+module Gitlab
+  module Utils
+    class Measuring
+      self.@logger: untyped
+
+      @base_log_data: untyped
+
+      @sql_calls_count: untyped
+
+      @gc_stats: untyped
+
+      @time_to_finish: untyped
+
+      attr_writer self.logger: untyped
+
+      def self.logger: () -> untyped
+
+      def initialize: (?::Hash[untyped, untyped] base_log_data) -> void
+
+      def with_measuring: () { () -> untyped } -> untyped
+
+      private
+
+      attr_reader gc_stats: untyped
+
+      attr_reader time_to_finish: untyped
+
+      attr_reader sql_calls_count: untyped
+
+      attr_reader base_log_data: untyped
+
+      def with_count_queries: () { (?) -> untyped } -> untyped
+
+      def with_gc_stats: () { () -> untyped } -> untyped
+
+      def with_measure_time: () { () -> untyped } -> untyped
+
+      def log_info: (untyped details) -> untyped
+    end
+  end
+end

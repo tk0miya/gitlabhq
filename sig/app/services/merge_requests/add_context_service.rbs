@@ -1,0 +1,31 @@
+module MergeRequests
+  class AddContextService < MergeRequests::BaseService
+    @context_commit_rows: untyped
+
+    @diff_rows: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def raw_repository: () -> untyped
+
+    def merge_request: () -> untyped
+
+    def commit_ids: () -> untyped
+
+    def commits: () -> untyped
+
+    def context_commit_rows: () -> untyped
+
+    def diff_rows: (untyped context_commit_ids) -> untyped
+
+    def encode_in_base64?: (untyped diff_text) -> untyped
+
+    def duplicates: () -> untyped
+
+    def build_context_commit_rows: (untyped merge_request_id, untyped commits) -> untyped
+
+    def build_diff_rows: (untyped raw_repository, untyped commits, untyped context_commit_ids) -> untyped
+  end
+end

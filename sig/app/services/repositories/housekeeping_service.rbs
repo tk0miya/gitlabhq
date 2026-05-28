@@ -1,0 +1,50 @@
+# Used for git housekeeping
+#
+# Ex.
+#   ::Repositories::HousekeepingService.new(project).execute
+#   ::Repositories::HousekeepingService.new(project.wiki).execute
+#
+module Repositories
+  class HousekeepingService < BaseService
+    @resource: untyped
+
+    @task: untyped
+
+    # Timeout set to 24h
+    LEASE_TIMEOUT: 86400
+
+    GC_PERIOD: 200
+
+    class LeaseTaken < StandardError
+      def to_s: () -> ::String
+    end
+
+    def initialize: (untyped resource, ?untyped? task) -> void
+
+    def execute: () ?{ () -> untyped } -> untyped
+
+    def needed?: () -> untyped
+
+    def increment!: () -> untyped
+
+    private
+
+    def execute_gitlab_shell_gc: (untyped lease_uuid) -> untyped
+
+    def try_obtain_lease: () -> untyped
+
+    def lease_key: () -> ::String
+
+    def pushes_since_gc: () -> untyped
+
+    def task: () -> untyped
+
+    def period_match?: () -> untyped
+
+    def housekeeping_enabled?: () -> untyped
+
+    def gc_period: () -> untyped
+
+    def repack_period: () -> untyped
+  end
+end

@@ -1,0 +1,30 @@
+module Ci
+  module Catalog
+    # This class is the SSoT to displaying the list of resources in the CI/CD Catalog.
+    class Listing
+      @current_user: untyped
+
+      MIN_SEARCH_LENGTH: 3
+
+      def initialize: (untyped current_user) -> void
+
+      def resources: (?sort: untyped?, ?search: untyped?, ?scope: ::Symbol, ?verification_level: untyped?, ?topics: untyped?, ?min_access_level: untyped?, ?group_ids: untyped?) -> untyped
+
+      def find_resource: (?id: untyped?, ?full_path: untyped?) -> (nil | untyped)
+
+      private
+
+      attr_reader current_user: untyped
+
+      def by_search: (untyped relation, untyped search) -> untyped
+
+      def by_scope: (untyped relation, untyped scope, untyped min_access_level) -> untyped
+
+      def by_verification_level: (untyped relation, untyped level) -> untyped
+
+      def by_topics: (untyped relation, untyped topics) -> untyped
+
+      def by_group_ids: (untyped relation, untyped group_ids) -> untyped
+    end
+  end
+end

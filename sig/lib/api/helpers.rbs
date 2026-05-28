@@ -1,0 +1,395 @@
+module API
+  module Helpers
+    @current_user: untyped
+
+    @group: untyped
+
+    @project: untyped
+
+    @initial_current_user: untyped
+
+    @sudo_identifier: untyped
+
+    include Gitlab::Allowable
+
+    include Gitlab::Utils
+
+    include Helpers::Caching
+
+    include Helpers::Pagination
+
+    include Helpers::PaginationStrategies
+
+    include Gitlab::Ci::Artifacts::Logger
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::RackLoadBalancingHelpers
+
+    SUDO_HEADER: "HTTP_SUDO"
+
+    GITLAB_SHARED_SECRET_HEADER: "Gitlab-Shared-Secret"
+
+    SUDO_PARAM: :sudo
+
+    API_USER_ENV: "gitlab.api.user"
+
+    API_EXCEPTION_ENV: "gitlab.api.exception"
+
+    API_RESPONSE_STATUS_CODE: "gitlab.api.response_status_code"
+
+    INTEGER_ID_REGEX: ::Regexp
+
+    GLOBAL_ID_LOG_REGEXES: ::Array[::Regexp]
+
+    # ai_workflows scope is used by Duo Workflow which is an AI automation tool, requests authenticated by token with
+    # this scope are audited to keep track of all actions done by Duo Workflow.
+    TOKEN_SCOPES_TO_AUDIT: ::Array[:ai_workflows]
+
+    def logger: () -> untyped
+
+    def declared_params: (?::Hash[untyped, untyped] options) -> untyped
+
+    def check_unmodified_since!: (untyped last_modified) -> untyped
+
+    def destroy_conditionally!: (untyped resource, ?last_updated: untyped?) ?{ (untyped) -> untyped } -> untyped
+
+    def job_token_authentication?: () -> untyped
+
+    # Returns the job associated with the token provided for
+    # authentication, if any
+    def current_authenticated_job: () -> untyped
+
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables
+    # We can't rewrite this with StrongMemoize because `sudo!` would
+    # actually write to `@current_user`, and `sudo?` would immediately
+    # call `current_user` again which reads from `@current_user`.
+    # We should rewrite this in a way that using StrongMemoize is possible
+    def current_user: () -> untyped
+
+    def set_current_organization: (?user: untyped) -> untyped
+
+    def save_current_user_in_env: (untyped user) -> untyped
+
+    def sudo?: () -> untyped
+
+    def user_group: () -> untyped
+
+    def user_project: () -> untyped
+
+    def available_labels_for: (untyped label_parent, ?::Hash[untyped, untyped] params) -> untyped
+
+    def find_user: (untyped id) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_project: (untyped id) -> (nil | untyped)
+
+    # Can be overridden by API endpoints
+    def find_project_scopes: () -> untyped
+
+    def find_project!: (untyped id) -> (untyped | nil)
+
+    def authorize_job_token_policies!: (untyped project) -> (untyped | nil)
+
+    def read_project_ability: () -> :read_project
+
+    def authorized_project_scope?: (untyped project) -> (true | untyped)
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_pipeline: (untyped id) -> (nil | untyped)
+
+    def find_pipeline!: (untyped id) -> untyped
+
+    def check_pipeline_access: (untyped pipeline) -> untyped
+
+    def find_organization!: (untyped id) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_group: (untyped id, ?organization: untyped?) -> untyped
+
+    def find_group!: (untyped id, ?organization: untyped?) -> untyped
+
+    def find_group_by_full_path!: (untyped full_path) -> untyped
+
+    def check_group_access: (untyped group) -> untyped
+
+    def check_namespace_access: (untyped namespace) -> untyped
+
+    # find_namespace returns the namespace regardless of user access level on the namespace
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_namespace: (untyped id, ?allow_project_namespaces: bool) -> untyped
+
+    def find_namespace_by_path: (untyped path, ?allow_project_namespaces: bool) -> (untyped | nil)
+
+    # find_namespace! returns the namespace if the current user can read the given namespace
+    # Otherwise, returns a not_found! error
+    def find_namespace!: (untyped id, ?allow_project_namespaces: bool) -> untyped
+
+    def find_namespace_by_path!: (untyped path, ?allow_project_namespaces: bool) -> untyped
+
+    def find_branch!: (untyped branch_name) -> untyped
+
+    def find_tag!: (untyped tag_name) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_project_issue: (untyped iid, ?untyped? project_id) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_project_merge_request: (untyped iid, ?project: untyped) -> untyped
+
+    def find_project_commit: (untyped id) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_merge_request_with_access: (untyped iid, ?::Symbol access_level) -> untyped
+
+    def find_build!: (untyped id) -> untyped
+
+    def find_job!: (untyped id) -> untyped
+
+    def authenticate!: () -> (untyped | nil)
+
+    def authenticate_non_get!: () -> (untyped | nil)
+
+    def authenticate_by_gitlab_shell_token!: () -> (untyped | nil)
+
+    def authenticate_by_gitlab_shell_or_workhorse_token!: () -> untyped
+
+    def authenticated_with_can_read_all_resources!: () -> untyped
+
+    def authenticated_as_admin!: () -> untyped
+
+    def authorize_read_application_statistics!: () -> untyped
+
+    def authorize!: (untyped action, ?::Symbol subject, ?untyped? reason) -> (untyped | nil)
+
+    def authorize_any!: (untyped abilities, ?::Symbol subject, ?untyped? reason) -> (untyped | nil)
+
+    def authorize_push_project: () -> untyped
+
+    def authorize_admin_tag: () -> untyped
+
+    def authorize_admin_project: () -> untyped
+
+    def authorize_admin_project_integrations: () -> untyped
+
+    def authorize_admin_group_integrations: () -> untyped
+
+    def authorize_admin_group: () -> untyped
+
+    def authorize_admin_member_role_on_group!: () -> untyped
+
+    def authorize_admin_member_role_on_instance!: () -> untyped
+
+    def authorize_read_attestations!: () -> untyped
+
+    def authorize_read_builds!: () -> untyped
+
+    def authorize_read_code!: () -> untyped
+
+    def authorize_read_build_trace!: (untyped build) -> untyped
+
+    def authorize_read_job_artifacts!: (untyped build) -> untyped
+
+    def authorize_delete_job_artifact!: () -> untyped
+
+    def authorize_cancel_builds!: () -> untyped
+
+    def require_repository_enabled!: (?::Symbol subject) -> (untyped | nil)
+
+    def require_gitlab_workhorse!: () -> untyped
+
+    def verify_workhorse_api!: () -> untyped
+
+    def require_pages_enabled!: () -> (untyped | nil)
+
+    def require_pages_config_enabled!: () -> (untyped | nil)
+
+    # Checks the occurrences of required attributes, each attribute must be present in the params hash
+    # or a Bad Request error is invoked.
+    #
+    # Parameters:
+    #   keys (required) - A hash consisting of keys that must be present
+    def required_attributes!: (untyped keys) -> untyped
+
+    def attributes_for_keys: (untyped keys, ?untyped? custom_params) -> untyped
+
+    def filter_by_iid: (untyped items, untyped iid) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def filter_by_title: (untyped items, untyped title) -> untyped
+
+    def filter_by_search: (untyped items, untyped text) -> untyped
+
+    def order_options_with_tie_breaker: (?override_created_at: bool) -> untyped
+
+    # An error is raised to interrupt user's request and redirect them to the right route.
+    # The error! helper behaves similarly, but it cannot be used because it formats the
+    # response message.
+    def redirect!: (untyped location_url) -> untyped
+
+    def forbidden!: (?untyped? reason) -> untyped
+
+    def bad_request!: (?untyped? reason) -> untyped
+
+    def bad_request_missing_attribute!: (untyped attribute) -> untyped
+
+    def not_found!: (?untyped? resource) -> untyped
+
+    def check_sha_param!: (untyped params, untyped merge_request) -> (untyped | nil)
+
+    def unauthorized!: (?untyped? reason) -> untyped
+
+    def not_allowed!: (?untyped? message) -> untyped
+
+    def not_acceptable!: (?untyped? message) -> untyped
+
+    def service_unavailable!: (?untyped? message) -> untyped
+
+    def conflict!: (?untyped? message) -> untyped
+
+    def unprocessable_entity!: (?untyped? message) -> untyped
+
+    def file_too_large!: (?untyped? message) -> untyped
+
+    def too_many_requests!: (?untyped? message, ?retry_after: untyped) -> untyped
+
+    def not_modified!: (?untyped? message) -> untyped
+
+    def no_content!: (?untyped? message) -> untyped
+
+    def created!: (?untyped? message) -> untyped
+
+    def accepted!: (?untyped? message) -> untyped
+
+    def render_validation_error!: (untyped models, ?::Integer status) -> untyped
+
+    def model_errors: (untyped model) -> untyped
+
+    def render_api_error_with_reason!: (untyped status, untyped message, untyped reason) -> untyped
+
+    def render_api_error!: (untyped message, untyped status) -> untyped
+
+    def render_structured_api_error!: (untyped hash, untyped status) -> untyped
+
+    def set_status_code_in_env: (untyped status) -> untyped
+
+    def handle_api_exception: (untyped exception) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def reorder_projects: (untyped projects) -> untyped
+
+    def project_finder_params: () -> untyped
+
+    def present_disk_file!: (untyped path, untyped filename, ?content_type: untyped?, ?extra_response_headers: ::Hash[untyped, untyped]) -> untyped
+
+    def present_artifacts_file!: (untyped file, **untyped args) -> untyped
+
+    # Return back the given file depending on the object storage configuration.
+    # For disabled mode, the disk file is returned.
+    # For enabled mode, the response depends on the direct download support:
+    #   * direct download supported by the uploader class: a redirect to the file signed url is returned.
+    #   * direct download not supported: a workhorse send_url response is returned.
+    #
+    # Params:
+    # @file the carrierwave file.
+    # @supports_direct_download set to false to force a workhorse send_url response. true by default.
+    # @content_disposition controls the Content-Disposition response header. nil by default. Forced to attachment for object storage disabled mode.
+    # @content_type controls the Content-Type response header. By default, it will rely on the 'application/octet-stream' value or the content type detected by carrierwave.
+    # @extra_response_headers. Set additional response headers. Not used in the direct download supported case.
+    # @extra_send_url_params. Additional parameters to send to workhorse send_url call. See Gitlab::Workhorse.send_url for more information
+    def present_carrierwave_file!: (untyped file, ?supports_direct_download: bool, ?content_disposition: untyped?, ?content_type: untyped?, ?extra_response_headers: ::Hash[untyped, untyped], ?extra_send_url_params: ::Hash[untyped, untyped]) -> untyped
+
+    def increment_counter: (untyped event_name) -> untyped
+
+    # @param event_name [String] the event name
+    # @param values [Array|String] the values counted
+    def increment_unique_values: (untyped event_name, untyped values) -> untyped
+
+    def track_event: (untyped event_name, user: untyped, ?send_snowplow_event: bool, ?namespace_id: untyped?, ?project_id: untyped?, ?additional_properties: ::Hash[untyped, untyped]) -> untyped
+
+    def order_by_similarity?: (?allow_unauthorized: bool) -> untyped
+
+    def project_finder_params_visibility_ce: () -> untyped
+
+    def project_finder_params_ce: () -> untyped
+
+    # Overridden in EE
+    def project_finder_params_ee: () -> ::Hash[untyped, untyped]
+
+    def validate_search_rate_limit!: () -> untyped
+
+    def audit_request_with_token_scope: (untyped user) -> (nil | untyped)
+
+    private
+
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables
+    def initial_current_user: () -> untyped
+
+    def sudo!: () -> (nil | untyped)
+
+    def sudo_identifier: () -> untyped
+
+    def check_organization_access: (untyped organization) -> untyped
+
+    def secret_token: () -> untyped
+
+    def authenticate_non_public?: () -> untyped
+
+    def send_git_blob: (untyped repository, untyped blob) -> untyped
+
+    def send_git_diff: (untyped repository, untyped diff_refs) -> untyped
+
+    def send_git_archive: (untyped repository, **untyped kwargs) -> untyped
+
+    # Respond to HEAD requests for archive endpoints without generating the archive.
+    # Sets appropriate Content-Type and Content-Disposition headers.
+    # Raises an exception if the ref is not found, matching send_git_archive behavior.
+    def send_git_archive_head: (untyped repository, ref: untyped, format: untyped, append_sha: untyped, ?path: untyped?) -> untyped
+
+    # Deprecated. Use `send_artifacts_entry` instead.
+    def legacy_send_artifacts_entry: (untyped file, untyped entry) -> untyped
+
+    def send_artifacts_entry: (untyped file, untyped entry) -> untyped
+
+    # The Grape Error Middleware only has access to `env` but not `params` nor
+    # `request`. We workaround this by defining methods that returns the right
+    # values.
+    def define_params_for_grape_middleware: () -> untyped
+
+    # We could get a Grape or a standard Ruby exception. We should only report anything that
+    # is clearly an error.
+    def report_exception?: (untyped exception) -> (true | untyped)
+
+    def archived_param: () -> ("only" | untyped)
+
+    def ip_address: () -> untyped
+
+    def sanitize_id_param: (untyped id) -> (untyped | nil)
+
+    def project_moved?: (untyped id, untyped project) -> (false | true)
+
+    def url_with_project_id: (untyped project) -> untyped
+
+    def handle_job_token_failure!: (untyped project) -> untyped
+
+    def job_token_policies_authorized?: (untyped project) -> (true | untyped)
+
+    def job_token_policies_unauthorized_message: (untyped project) -> untyped
+
+    def job_token_policies: () -> (::Array[untyped] | untyped)
+
+    def skip_job_token_policies?: () -> (false | untyped)
+
+    def publicly_accessible_feature?: (untyped project) -> (false | untyped)
+
+    def authorization_settings: () -> untyped
+
+    def authorize_granular_token?: () -> untyped
+
+    def permissions_for_endpoint: () -> untyped
+
+    def boundaries_for_endpoint: () -> untyped
+
+    def build_boundary: (untyped boundary_type, ?untyped? boundary_param) -> untyped
+  end
+end

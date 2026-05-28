@@ -1,0 +1,11 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class PartDefinition < ::Gitlab::Database::Aggregation::PartDefinition
+          def secondary_arel: (untyped _context) -> untyped
+        end
+      end
+    end
+  end
+end

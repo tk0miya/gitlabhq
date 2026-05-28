@@ -1,0 +1,19 @@
+module GroupLinkable
+  extend ActiveSupport::Concern
+
+  def execute: () -> untyped
+
+  private
+
+  attr_reader shared_with_group: untyped
+
+  attr_reader link: untyped
+
+  def sharing_allowed?: () -> untyped
+
+  def sharing_outside_hierarchy_allowed?: () -> untyped
+
+  def within_hierarchy?: () -> untyped
+
+  def after_successful_save: () -> untyped
+end

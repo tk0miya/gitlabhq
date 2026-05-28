@@ -1,0 +1,45 @@
+module Gitlab
+  module Suggestions
+    class FileSuggestion
+      @file_path: untyped
+
+      @suggestions: untyped
+
+      @blob: untyped
+
+      @new_content: untyped
+
+      @current_content: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      SuggestionForDifferentFileError: untyped
+
+      attr_reader file_path: untyped
+
+      attr_reader blob: untyped
+
+      attr_reader suggestions: untyped
+
+      def initialize: (untyped file_path, untyped suggestions) -> void
+
+      def line_conflict?: () -> untyped
+
+      def new_content: () -> untyped
+
+      private
+
+      def blob_data_lines: () -> untyped
+
+      def current_content: () -> untyped
+
+      def _new_content: () -> untyped
+
+      def line_range: (untyped suggestion, ?::Integer offset) -> ::Range[untyped]
+
+      def _line_conflict?: () -> untyped
+
+      def has_range_conflict?: (untyped range_in_test, untyped ranges) -> untyped
+    end
+  end
+end

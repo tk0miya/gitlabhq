@@ -1,0 +1,19 @@
+module InviteMembersHelper
+  include Gitlab::Utils::StrongMemoize
+
+  def can_invite_members_for_project?: (untyped project) -> untyped
+
+  def invite_accepted_notice: (untyped member) -> untyped
+
+  # Overridden in EE
+  def common_invite_group_modal_data: (untyped source, untyped member_class) -> untyped
+
+  # Overridden in EE
+  def common_invite_modal_dataset: (untyped source) -> untyped
+
+  private
+
+  def root_group_invite_data: (untyped source, untyped root_ancestor) -> (::Hash[untyped, untyped] | { root_group_name: untyped, is_top_level_group: untyped, can_invite_to_root_group: untyped })
+
+  def group_select_data: (untyped source) -> ({ groups_filter: "descendant_groups", parent_id: untyped } | ::Hash[untyped, untyped])
+end

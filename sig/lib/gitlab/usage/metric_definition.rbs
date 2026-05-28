@@ -1,0 +1,121 @@
+module Gitlab
+  module Usage
+    class MetricDefinition
+      self.@paths: untyped
+
+      self.@definitions: untyped
+
+      self.@all: untyped
+
+      self.@metrics_yaml: untyped
+
+      self.@definition_schema: untyped
+
+      @path: untyped
+
+      @attributes: untyped
+
+      @event_selection_rules: untyped
+
+      @json_schema: untyped
+
+      METRIC_SCHEMA_PATH: untyped
+
+      AVAILABLE_STATUSES: untyped
+
+      VALID_SERVICE_PING_STATUSES: untyped
+
+      TIME_FRAME_SUFFIX: { "7d" => "_weekly", "28d" => "_monthly", "all" => "" }
+
+      InvalidError: untyped
+
+      attr_reader path: untyped
+
+      def initialize: (untyped path, ?::Hash[untyped, untyped] opts) -> void
+
+      def key: () -> untyped
+
+      alias key_path key
+
+      def events: () -> untyped
+
+      def event_selection_rules: () -> (::Array[untyped] | untyped)
+
+      def instrumentation_class: () -> (untyped | nil | "TotalSumMetric" | "UniqueTotalsMetric")
+
+      # This method can be removed when the refactoring is complete. It is only here to
+      # limit access to @attributes in a gradual manner.
+      def raw_attributes: () -> untyped
+
+      def status: () -> untyped
+
+      def value_json_schema: () -> untyped
+
+      def value_type: () -> untyped
+
+      def to_context: () -> (nil | untyped)
+
+      def to_h: () -> untyped
+
+      def json_schema: () -> (nil | untyped)
+
+      def json_schema_path: () -> ("" | untyped)
+
+      def has_json_schema?: () -> untyped
+
+      def validation_errors: () -> untyped
+
+      def product_group: () -> untyped
+
+      def time_frame: () -> untyped
+
+      def time_framed?: () -> untyped
+
+      def active?: () -> untyped
+
+      def broken?: () -> untyped
+
+      def available?: () -> untyped
+
+      def valid_service_ping_status?: () -> untyped
+
+      def data_category: () -> untyped
+
+      def data_source: () -> untyped
+
+      def internal_events?: () -> untyped
+
+      alias to_dictionary to_h
+
+      def self.paths: () -> untyped
+
+      def self.definitions: () -> untyped
+
+      def self.all: () -> untyped
+
+      def self.not_removed: () -> untyped
+
+      def self.with_instrumentation_class: () -> untyped
+
+      def self.context_for: (untyped key_path) -> untyped
+
+      def self.dump_metrics_yaml: (include_paths: untyped) -> untyped
+
+      def self.definition_schema: () -> untyped
+
+      private
+
+      def self.load_all!: () -> untyped
+
+      def self.load_from_file: (untyped path) -> untyped
+
+      def self.load_all_from_path!: (untyped definitions, untyped glob_path) -> untyped
+
+      def self.map_time_frames: (untyped path, untyped definition, untyped time_frames) -> (::Array[untyped] | untyped)
+
+      def events_from_new_structure: () -> (nil | untyped)
+
+      def events_from_old_structure: () -> (nil | untyped)
+    end
+  end
+end

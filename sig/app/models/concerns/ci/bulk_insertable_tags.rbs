@@ -1,0 +1,12 @@
+module Ci
+  module BulkInsertableTags
+    extend ActiveSupport::Concern
+
+    BULK_INSERT_TAG_THREAD_KEY: "ci_bulk_insert_tags"
+
+    def self.with_bulk_insert_tags: () { () -> untyped } -> untyped
+
+    # overrides save_tags from acts-as-taggable
+    def save_tags: () -> (untyped | nil)
+  end
+end

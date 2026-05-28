@@ -1,0 +1,34 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a key.
+        #
+        class Key < ::Gitlab::Config::Entry::Simplifiable
+          class SimpleKey < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            def self.default: () -> "default"
+
+            def value: () -> untyped
+          end
+
+          class ComplexKey < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Attributable
+
+            include ::Gitlab::Config::Entry::Configurable
+
+            ALLOWED_KEYS: ::Array[:files | :files_commits | :prefix]
+          end
+
+          class UnknownStrategy < ::Gitlab::Config::Entry::Node
+            def errors: () -> ::Array[::String]
+          end
+
+          def self.default: () -> "default"
+        end
+      end
+    end
+  end
+end

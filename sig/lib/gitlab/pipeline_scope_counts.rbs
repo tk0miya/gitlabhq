@@ -1,0 +1,29 @@
+module Gitlab
+  class PipelineScopeCounts
+    @current_user: untyped
+
+    @project: untyped
+
+    @params: untyped
+
+    attr_reader project: untyped
+
+    PIPELINES_COUNT_LIMIT: 1000
+
+    def self.declarative_policy_class: () -> "Ci::ProjectPipelinesPolicy"
+
+    def initialize: (untyped current_user, untyped project, untyped params) -> void
+
+    def all: () -> untyped
+
+    def running: () -> untyped
+
+    def finished: () -> untyped
+
+    def pending: () -> untyped
+
+    private
+
+    def finder: (?::Hash[untyped, untyped] params) -> untyped
+  end
+end

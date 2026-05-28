@@ -1,0 +1,23 @@
+module Gitlab
+  module ResourceEvents
+    class AssignmentEventRecorder
+      @parent: untyped
+
+      @old_assignees: untyped
+
+      BATCH_SIZE: 100
+
+      def initialize: (parent: untyped, old_assignees: untyped) -> void
+
+      def record: () -> untyped
+
+      private
+
+      attr_reader parent: untyped
+
+      attr_reader old_assignees: untyped
+
+      def record_for_parent: (untyped resource_klass, untyped foreign_key, untyped parent, untyped old_assignees) -> untyped
+    end
+  end
+end

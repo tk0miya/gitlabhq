@@ -1,0 +1,27 @@
+module IncidentManagement
+  module LinkAlerts
+    class CreateService < BaseService
+      @incident: untyped
+
+      @current_user: untyped
+
+      @alert_references: untyped
+
+      # @param incident [Issue] an incident to link alerts
+      # @param current_user [User]
+      # @param alert_references [[String]] a list of alert references. Can be either a short reference or URL
+      #   Examples:
+      #     "^alert#IID"
+      #     "https://gitlab.com/company/project/-/alert_management/IID/details"
+      def initialize: (untyped incident, untyped current_user, untyped alert_references) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader alert_references: untyped
+
+      def extract_alerts_from_references: () -> untyped
+    end
+  end
+end

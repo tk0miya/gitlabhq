@@ -1,0 +1,10 @@
+module BatchedGitRefUpdates
+  class CleanupSchedulerWorker
+    include ApplicationWorker
+
+    # Ignore RuboCop as the context is added in the service
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

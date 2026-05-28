@@ -1,0 +1,13 @@
+module Gitlab
+  module Diff
+    class InlineDiffMarker < Gitlab::StringRangeMarker
+      def initialize: (untyped line, ?untyped? rich_line) -> void
+
+      def mark: (untyped line_inline_diffs) -> untyped
+
+      private
+
+      def html_class_names: (untyped left, untyped right, untyped mode) -> untyped
+    end
+  end
+end

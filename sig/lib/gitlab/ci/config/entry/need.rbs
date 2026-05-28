@@ -1,0 +1,53 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Need < ::Gitlab::Config::Entry::Simplifiable
+          def self.same_pipeline_need?: (untyped config) -> untyped
+
+          def self.cross_pipeline_need?: (untyped config) -> untyped
+
+          class JobString < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            def type: () -> :job
+
+            def value: () -> { name: untyped, artifacts: true, optional: false }
+          end
+
+          class JobHash < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Attributable
+
+            include ::Gitlab::Config::Entry::Configurable
+
+            ALLOWED_KEYS: ::Array[:job | :artifacts | :optional | :parallel]
+
+            def type: () -> :job
+
+            def value: () -> untyped
+          end
+
+          class CrossPipelineDependency < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            include ::Gitlab::Config::Entry::Attributable
+
+            ALLOWED_KEYS: ::Array[:pipeline | :job | :artifacts]
+
+            def type: () -> :cross_dependency
+
+            def value: () -> untyped
+          end
+
+          class UnknownStrategy < ::Gitlab::Config::Entry::Node
+            def type: () -> nil
+
+            def value: () -> nil
+
+            def errors: () -> ::Array[::String]
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,46 @@
+# Service for calculating visible Snippet counts via one query
+# for the given user or project.
+#
+# Authorisation level checks will be included, ensuring the correct
+# counts will be returned for the given user (if any).
+#
+# Basic usage:
+#
+#   user = User.find(1)
+#
+#   Snippets::CountService.new(user, author: user).execute
+#   #=> {
+#     are_public: 1,
+#     are_internal: 1,
+#     are_private: 1,
+#     all: 3
+#   }
+#
+# Counts can be scoped to a project:
+#
+#   user = User.find(1)
+#   project = Project.find(1)
+#
+#   Snippets::CountService.new(user, project: project).execute
+#   #=> {
+#     are_public: 1,
+#     are_internal: 1,
+#     are_private: 0,
+#     all: 2
+#   }
+#
+# Either a project or an author *must* be supplied.
+module Snippets
+  class CountService
+    @snippets_finder: untyped
+
+    def initialize: (untyped current_user, ?organization_id: untyped?, ?author: untyped?, ?project: untyped?) -> void
+
+    def execute: () -> (::Hash[untyped, untyped] | untyped)
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def snippet_counts: () -> untyped
+  end
+end

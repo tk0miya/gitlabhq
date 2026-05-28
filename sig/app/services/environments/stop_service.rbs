@@ -1,0 +1,27 @@
+module Environments
+  class StopService < BaseService
+    @ref: untyped
+
+    @environments: untyped
+
+    attr_reader ref: untyped
+
+    def execute: (untyped environment) -> untyped
+
+    #
+    # Stops the environment without checking user permissions. This
+    # should only be used if initiated by a system action and a user
+    # cannot be specified.
+    def unsafe_execute!: (untyped environment) -> untyped
+
+    def execute_for_branch: (untyped branch_name) -> (nil | untyped)
+
+    def execute_for_merge_request_pipeline: (untyped merge_request) -> (nil | untyped)
+
+    private
+
+    def environments: () -> untyped
+
+    def delete_managed_resources: (untyped environment) -> untyped
+  end
+end

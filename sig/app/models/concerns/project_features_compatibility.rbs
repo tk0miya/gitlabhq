@@ -1,0 +1,75 @@
+module ProjectFeaturesCompatibility
+  extend ActiveSupport::Concern
+
+  # TODO: remove in API v5, replaced by *_access_level
+  def wiki_enabled=: (untyped value) -> untyped
+
+  # TODO: remove in API v5, replaced by *_access_level
+  def builds_enabled=: (untyped value) -> untyped
+
+  # TODO: remove in API v5, replaced by *_access_level
+  def merge_requests_enabled=: (untyped value) -> untyped
+
+  # TODO: remove in API v5, replaced by *_access_level
+  def issues_enabled=: (untyped value) -> untyped
+
+  # TODO: remove in API v5, replaced by *_access_level
+  def snippets_enabled=: (untyped value) -> untyped
+
+  def security_and_compliance_enabled=: (untyped value) -> untyped
+
+  def repository_access_level=: (untyped value) -> untyped
+
+  def wiki_access_level=: (untyped value) -> untyped
+
+  def builds_access_level=: (untyped value) -> untyped
+
+  def merge_requests_access_level=: (untyped value) -> untyped
+
+  def forking_access_level=: (untyped value) -> untyped
+
+  def issues_access_level=: (untyped value) -> untyped
+
+  def snippets_access_level=: (untyped value) -> untyped
+
+  def package_registry_access_level=: (untyped value) -> untyped
+
+  def pages_access_level=: (untyped value) -> untyped
+
+  def metrics_dashboard_access_level=: (untyped value) -> untyped
+
+  def analytics_access_level=: (untyped value) -> untyped
+
+  def operations_access_level=: (untyped value) -> untyped
+
+  def monitor_access_level=: (untyped value) -> untyped
+
+  def security_and_compliance_access_level=: (untyped value) -> untyped
+
+  def container_registry_access_level=: (untyped value) -> untyped
+
+  def environments_access_level=: (untyped value) -> untyped
+
+  def feature_flags_access_level=: (untyped value) -> untyped
+
+  def releases_access_level=: (untyped value) -> untyped
+
+  def infrastructure_access_level=: (untyped value) -> untyped
+
+  def model_experiments_access_level=: (untyped value) -> untyped
+
+  def model_registry_access_level=: (untyped value) -> untyped
+
+  # TODO: Remove this method after we drop support for project create/edit APIs to set the
+  # container_registry_enabled attribute. They can instead set the container_registry_access_level
+  # attribute.
+  def container_registry_enabled=: (untyped value) -> untyped
+
+  private
+
+  def write_feature_attribute_boolean: (untyped field, untyped value) -> untyped
+
+  def write_feature_attribute_string: (untyped field, untyped value) -> untyped
+
+  def write_feature_attribute_raw: (untyped field, untyped value) -> untyped
+end

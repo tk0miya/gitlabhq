@@ -1,0 +1,26 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      module InOperatorOptimization
+        class OrderByColumnData < ColumnData
+          @column: untyped
+
+          extend ::Gitlab::Utils::Override
+
+          attr_reader column: untyped
+
+          # column - a ColumnOrderDefinition object
+          # as - custom alias for the column
+          # arel_table - relation where the column is located
+          def initialize: (untyped column, untyped as, untyped arel_table) -> void
+
+          def arel_column: () -> untyped
+
+          def column_expression: () -> untyped
+
+          def column_for_projection: () -> untyped
+        end
+      end
+    end
+  end
+end

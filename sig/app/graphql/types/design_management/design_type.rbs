@@ -1,0 +1,18 @@
+module Types
+  module DesignManagement
+    class DesignType < BaseObject
+      alias design object
+
+      # Returns a `DesignManagement::Version` for this query based on the
+      # `atVersion` argument passed to a parent node if present, or otherwise
+      # the most recent `Version` for the issue.
+      def cached_stateful_version: (untyped parent_node) -> untyped
+
+      def request_cache_base_key: () -> untyped
+
+      def web_url: () -> untyped
+
+      def name: () -> untyped
+    end
+  end
+end

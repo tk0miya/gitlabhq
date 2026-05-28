@@ -1,0 +1,51 @@
+module Gitlab
+  module Auth
+    class Result
+      @actor: untyped
+
+      @project: untyped
+
+      @type: untyped
+
+      @authentication_abilities: untyped
+
+      @authentication_context: untyped
+
+      attr_reader actor: untyped
+
+      attr_reader project: untyped
+
+      attr_reader type: untyped
+
+      attr_reader authentication_abilities: untyped
+
+      attr_reader authentication_context: untyped
+
+      def initialize: (untyped actor, untyped project, untyped type, untyped authentication_abilities, ?::Hash[untyped, untyped] authentication_context) -> void
+
+      EMPTY: untyped
+
+      def ci?: (untyped for_project) -> untyped
+
+      def lfs_deploy_token?: (untyped for_project) -> untyped
+
+      def success?: () -> untyped
+
+      def failed?: () -> untyped
+
+      def auth_user: () -> (untyped | nil)
+
+      alias user auth_user
+
+      def deploy_token: () -> (untyped | nil)
+
+      def can?: (untyped action) -> untyped
+
+      def can_perform_action_on_project?: (untyped action, untyped given_project) -> untyped
+
+      def authentication_abilities_include?: (untyped ability) -> (false | untyped)
+
+      def personal_access_token: () -> untyped
+    end
+  end
+end

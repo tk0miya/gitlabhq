@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      class WorkerCellLocal < SharedModel
+        include CommonWorker
+
+        include Queueable
+
+        include Observable
+
+        WORKER_TYPE: :local
+      end
+    end
+  end
+end

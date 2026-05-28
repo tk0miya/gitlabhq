@@ -1,0 +1,13 @@
+module Types
+  module Tree
+    # rubocop: disable Graphql/AuthorizeTypes
+    # This is presented through `Repository` that has its own authorization
+    class TreeType < BaseObject
+      def trees: () -> untyped
+
+      def submodules: () -> untyped
+
+      def blobs: () -> untyped
+    end
+  end
+end

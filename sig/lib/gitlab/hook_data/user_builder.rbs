@@ -1,0 +1,15 @@
+module Gitlab
+  module HookData
+    class UserBuilder < BaseBuilder
+      alias user object
+
+      def build: (untyped event) -> untyped
+
+      private
+
+      def user_data: () -> { name: untyped, email: untyped, user_id: untyped, username: untyped }
+
+      def event_specific_user_data: (untyped event) -> untyped
+    end
+  end
+end

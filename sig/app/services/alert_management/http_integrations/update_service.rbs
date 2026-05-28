@@ -1,0 +1,24 @@
+module AlertManagement
+  module HttpIntegrations
+    class UpdateService < BaseService
+      @integration: untyped
+
+      # @param integration [AlertManagement::HttpIntegration]
+      # @param current_user [User]
+      # @param params [Hash]
+      def initialize: (untyped integration, untyped current_user, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader integration: untyped
+
+      def token_params: () -> (::Hash[untyped, untyped] | { token: nil })
+
+      def type_update?: () -> untyped
+
+      def error_no_permissions: () -> untyped
+    end
+  end
+end

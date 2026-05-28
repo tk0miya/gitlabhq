@@ -1,0 +1,122 @@
+module Gitlab
+  module BackgroundMigration
+    # Class that will create fill the project_repositories table
+    # for projects an entry is is missing in this table.
+    class BackfillProjectRepositories
+      @shard_finder: untyped
+
+      OrphanedNamespaceError: untyped
+
+      # Shard model
+      class Shard < ActiveRecord::Base
+      end
+
+      # Class that will find or create the shard by name.
+      # There is only a small set of shards, which would
+      # not change quickly, so look them up from memory
+      # instead of hitting the DB each time.
+      class ShardFinder
+        @shards: untyped
+
+        def find_shard_id: (untyped name) -> untyped
+
+        private
+
+        def create!: (untyped name) -> untyped
+
+        def shards: () -> untyped
+
+        def reload!: () -> untyped
+      end
+
+      module Storage
+        # Class that returns the disk path for a project using hashed storage
+        class Hashed
+          @project: untyped
+
+          @disk_hash: untyped
+
+          attr_accessor project: untyped
+
+          ROOT_PATH_PREFIX: "@hashed"
+
+          def initialize: (untyped project) -> void
+
+          def disk_path: () -> ::String
+
+          def disk_hash: () -> untyped
+        end
+
+        # Class that returns the disk path for a project using legacy storage
+        class LegacyProject
+          @project: untyped
+
+          attr_accessor project: untyped
+
+          def initialize: (untyped project) -> void
+
+          def disk_path: () -> untyped
+        end
+      end
+
+      # Concern used by Project and Namespace to determine the full route to the project
+      module Routable
+        extend ActiveSupport::Concern
+
+        def full_path: () -> untyped
+
+        def build_full_path: () -> untyped
+
+        def has_parent?: () -> untyped
+      end
+
+      # Route model
+      class Route < ActiveRecord::Base
+      end
+
+      # Namespace model
+      class Namespace < ActiveRecord::Base
+        include Routable
+      end
+
+      # ProjectRegistry model
+      class ProjectRepository < ActiveRecord::Base
+      end
+
+      # Project model
+      class Project < ActiveRecord::Base
+        @storage: untyped
+
+        include Routable
+
+        HASHED_STORAGE_FEATURES: { repository: 1, attachments: 2 }
+
+        def self.on_hashed_storage: () -> untyped
+
+        def self.on_legacy_storage: () -> untyped
+
+        def self.without_project_repository: () -> untyped
+
+        def self.left_outer_join_project_repository: () -> untyped
+
+        def storage: () -> untyped
+
+        def hashed_storage?: () -> untyped
+      end
+
+      def perform: (untyped start_id, untyped stop_id) -> untyped
+
+      private
+
+      def projects: () -> untyped
+
+      def project_repositories: (untyped start_id, untyped stop_id) -> untyped
+
+      def build_attributes_for_project: (untyped project) -> { project_id: untyped, shard_id: untyped, disk_path: untyped }
+
+      def find_shard_id: (untyped repository_storage) -> untyped
+
+      def shard_finder: () -> untyped
+    end
+  end
+end

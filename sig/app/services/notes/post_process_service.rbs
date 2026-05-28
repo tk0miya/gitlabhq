@@ -1,0 +1,21 @@
+module Notes
+  class PostProcessService
+    @note: untyped
+
+    attr_accessor note: untyped
+
+    def initialize: (untyped note) -> void
+
+    def execute: () -> (nil | untyped | nil)
+
+    private
+
+    def create_design_discussion_system_note?: () -> untyped
+
+    def hook_data: () -> untyped
+
+    def execute_note_hooks: () -> (nil | untyped)
+
+    def execute_group_mention_hooks: (untyped note, untyped note_data, untyped is_confidential) -> untyped
+  end
+end

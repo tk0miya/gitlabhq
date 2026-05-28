@@ -1,0 +1,21 @@
+module Clusters
+  module Providers
+    class Aws < ApplicationRecord
+      include Gitlab::Utils::StrongMemoize
+
+      include Clusters::Concerns::ProviderStatus
+
+      include Gitlab::EncryptedAttribute
+
+      DEFAULT_REGION: "us-east-1"
+
+      def nullify_credentials: () -> untyped
+
+      def has_rbac_enabled?: () -> true
+
+      def knative_pre_installed?: () -> false
+
+      def created_by_user: () -> untyped
+    end
+  end
+end

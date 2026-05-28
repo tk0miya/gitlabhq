@@ -1,0 +1,11 @@
+class GroupMemberPresenter < MemberPresenter
+  def last_owner?: () -> untyped
+
+  private
+
+  def admin_member_permission: () -> :admin_group_member
+
+  def update_member_permission: () -> :update_group_member
+
+  def destroy_member_permission: () -> :destroy_group_member
+end

@@ -1,0 +1,1238 @@
+class Project < ApplicationRecord
+  self.@markdown_reference_pattern: untyped
+
+  @init_attributes: untyped
+
+  @team: untyped
+
+  @repository: untyped
+
+  @images: untyped
+
+  @external_issue_tracker: untyped
+
+  @external_wiki: untyped
+
+  @ci_integration: untyped
+
+  @has_active_hooks: untyped
+
+  @has_active_integrations: untyped
+
+  @latest_successful_pipeline_for_default_branch: untyped
+
+  @shared_runners: untyped
+
+  @available_shared_runners: untyped
+
+  @group_runners: untyped
+
+  @pipeline_status: untyped
+
+  @import_export_shared: untyped
+
+  @route_maps_by_commit: untyped
+
+  @storage: untyped
+
+  @topic_list: untyped
+
+  @integration_instances: untyped
+
+  @online_runners_with_tags: untyped
+
+  include Gitlab::ConfigHelper
+
+  include Gitlab::VisibilityLevel
+
+  include AccessRequestable
+
+  include Authz::HasRoles
+
+  include Avatarable
+
+  include CacheMarkdownField
+
+  include Sortable
+
+  include AfterCommitQueue
+
+  include CaseSensitivity
+
+  include TokenAuthenticatable
+
+  include ValidAttribute
+
+  include ProjectAPICompatibility
+
+  include ProjectFeaturesCompatibility
+
+  include SelectForProjectAuthorization
+
+  include Presentable
+
+  include HasRepository
+
+  include HasWiki
+
+  include WebHooks::HasWebHooks
+
+  include CanMoveRepositoryStorage
+
+  include Routable
+
+  include GroupDescendant
+
+  include Gitlab::SQL::Pattern
+
+  include DeploymentPlatform
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  include ChronicDurationAttribute
+
+  include FastDestroyAll::Helpers
+
+  include WithUploads
+
+  include BatchDestroyDependentAssociations
+
+  include FeatureGate
+
+  include OptionallySearch
+
+  include FromUnion
+
+  include ::Repositories::CanHousekeepRepository
+
+  include EachBatch
+
+  include GitlabRoutingHelper
+
+  include BulkMemberAccessLoad
+
+  include BulkUsersByEmailLoad
+
+  include RunnerTokenExpirationInterval
+
+  include BlocksUnsafeSerialization
+
+  include Subquery
+
+  include WorkItems::Parent
+
+  include UpdatedAtFilterable
+
+  include UseSqlFunctionForPrimaryKeyLookups
+
+  include Importable
+
+  include SafelyChangeColumnDefault
+
+  include Todoable
+
+  include Namespaces::AdjournedDeletable
+
+  include Cells::Claimable
+
+  extend Gitlab::Cache::RequestCache
+
+  extend Gitlab::Utils::Override
+
+  extend Gitlab::ConfigHelper
+
+  BoardLimitExceeded: untyped
+
+  ExportLimitExceeded: untyped
+
+  ExportAlreadyInProgress: untyped
+
+  EPOCH_CACHE_EXPIRATION: untyped
+
+  STATISTICS_ATTRIBUTE: "repositories_count"
+
+  UNKNOWN_IMPORT_URL: "http://unknown.git"
+
+  # Hashed Storage versions handle rolling out new storage to project and dependents models:
+  # nil: legacy
+  # 1: repository
+  # 2: attachments
+  LATEST_STORAGE_VERSION: 2
+
+  HASHED_STORAGE_FEATURES: { repository: 1, attachments: 2 }
+
+  VALID_IMPORT_PORTS: ::Array[80 | 443]
+
+  VALID_IMPORT_PROTOCOLS: ::Array["http" | "https" | "git"]
+
+  VALID_MIRROR_PORTS: ::Array[22 | 80 | 443]
+
+  VALID_MIRROR_PROTOCOLS: ::Array["http" | "https" | "ssh" | "git"]
+
+  SORTING_PREFERENCE_FIELD: :projects_sort
+
+  MAX_BUILD_TIMEOUT: untyped
+
+  GL_REPOSITORY_TYPES: ::Array[untyped]
+
+  MAX_SUGGESTIONS_TEMPLATE_LENGTH: 255
+
+  MAX_COMMIT_TEMPLATE_LENGTH: 500
+
+  MAX_MR_TITLE_TEMPLATE_LENGTH: 100
+
+  MAX_MERGE_REQUEST_TITLE_REGEX: 255
+
+  MAX_MERGE_REQUEST_TITLE_REGEX_DESCRIPTION: 255
+
+  INSTANCE_RUNNER_RUNNING_JOBS_MAX_BUCKET: 5
+
+  DEFAULT_MERGE_COMMIT_TEMPLATE: untyped
+
+  DEFAULT_SQUASH_COMMIT_TEMPLATE: "%{title}"
+
+  PROJECT_FEATURES_DEFAULTS: { issues: untyped, merge_requests: untyped, builds: untyped, wiki: untyped, snippets: untyped }
+
+  # List of attributes that, when updated, should be considered as Project Activity
+  PROJECT_ACTIVITY_ATTRIBUTES: ::Array["description" | "name"]
+
+  attr_accessor old_path_with_namespace: untyped
+
+  attr_accessor template_name: untyped
+
+  attr_writer pipeline_status: untyped
+
+  attr_accessor skip_disk_validation: untyped
+
+  attr_writer topic_list: untyped
+
+  alias notification_group group
+
+  alias parent namespace
+
+  def self.integration_association_name: (untyped name) -> ::String
+
+  alias members project_members
+
+  def self.with_api_entity_associations: () -> untyped
+
+  def self.with_web_entity_associations: () -> untyped
+
+  def self.with_api_commit_entity_associations: () -> untyped
+
+  def self.with_api_blob_entity_associations: () -> untyped
+
+  def self.with_slack_application_disabled: () -> untyped
+
+  def self.eager_load_namespace_and_owner: () -> untyped
+
+  # Returns a collection of projects that is either public or visible to the
+  # logged in user.
+  def self.public_or_visible_to_user: (?untyped? user, ?untyped? min_access_level) -> untyped
+
+  # Returns a collection of projects that is either:
+  # - public and not forked
+  # - or visible to the logged in user
+  def self.public_non_forked_or_visible_to_user: (untyped user, ?untyped? min_access_level) -> untyped
+
+  # Auditors can :read_all_resources while admins can :read_all_resources and
+  # read_admin_projects. In EE, a regular user can read_admin_projects through
+  # custom admin roles.
+  def self.visibility_levels_for_user: (untyped user) -> untyped
+
+  # Define two instance methods:
+  #
+  # - [attribute]?(inherit_group_setting) Returns the final value after inheriting the parent group
+  # - [attribute]_locked?                 Returns true if the value is inherited from the parent group
+  #
+  # These functions will be overridden in EE to make sense afterwards
+  def self.cascading_with_parent_namespace: (untyped attribute) -> untyped
+
+  def self.with_feature_available_for_user: (untyped feature, untyped user) -> untyped
+
+  def self.projects_user_can: (untyped projects, untyped user, untyped action) -> untyped
+
+  def self.filter_out_public_projects_with_unauthorized_private_repos: (untyped projects, untyped user) -> untyped
+
+  # This scope returns projects where user has access to both the project and the feature.
+  def self.filter_by_feature_visibility: (untyped feature, untyped user) -> untyped
+
+  def self.wrap_with_cte: (untyped collection) -> untyped
+
+  def self.dormant: () -> untyped
+
+  # Searches for a list of projects based on the query given in `query`.
+  #
+  # On PostgreSQL this method uses "ILIKE" to perform a case-insensitive
+  # search.
+  #
+  # query - The search query as a String.
+  def self.search: (untyped query, ?include_namespace: bool, ?exclude_description: bool, ?use_minimum_char_limit: bool) -> untyped
+
+  def self.search_by_title: (untyped query) -> untyped
+
+  def self.visibility_levels: () -> untyped
+
+  # rubocop:disable Metrics/CyclomaticComplexity -- stick to existing implementation for sort params:
+  def self.sort_by_attribute: (untyped method) -> untyped
+
+  def self.reference_pattern: () -> untyped
+
+  def self.reference_postfix: () -> ">"
+
+  def self.reference_postfix_escaped: () -> "&gt;"
+
+  # Pattern used to extract `namespace/project>` project references from text.
+  # '>' or its escaped form ('&gt;') are checked for because '>' is sometimes escaped
+  # when the reference comes from an external source.
+  def self.markdown_reference_pattern: () -> untyped
+
+  def self.trending: () -> untyped
+
+  def self.cached_count: () -> untyped
+
+  def self.group_ids: () -> untyped
+
+  # Returns ids of projects with issuables available for given user
+  #
+  # Used on queries to find milestones or labels which user can see
+  # For example: Milestone.where(project_id: ids_with_issuables_available_for(user))
+  def self.ids_with_issuables_available_for: (untyped user) -> untyped
+
+  def self.find_by_url: (untyped url) -> untyped
+
+  def self.without_integration: (untyped integration) -> untyped
+
+  def self.project_features_defaults: () -> untyped
+
+  def self.by_pages_enabled_unique_domain: (untyped domain) -> untyped
+
+  def self.project_namespace_for: (id: untyped) -> untyped
+
+  def self.group_by_namespace_traversal_ids: (untyped project_batch) -> untyped
+
+  def self.root_ids_for: (untyped project_ids) -> (::Array[untyped] | untyped)
+
+  def initialize: (?untyped? attributes) -> void
+
+  def owner_entity: () -> self
+
+  def owner_entity_name: () -> :project
+
+  # Remove along with ProjectFeaturesCompatibility module
+  def set_project_feature_defaults: () -> untyped
+
+  def resource_parent: () -> self
+
+  def certificate_based_clusters_enabled?: () -> untyped
+
+  def jenkins_integration_active?: () -> untyped
+
+  def service_accounts: () -> untyped
+
+  def personal_namespace_holder?: (untyped user) -> (false | untyped)
+
+  def invalidate_personal_projects_count_of_owner: () -> (nil | untyped)
+
+  def project_setting: () -> untyped
+
+  def show_default_award_emojis?: () -> untyped
+
+  def enforce_auth_checks_on_uploads?: () -> untyped
+
+  def warn_about_potentially_unwanted_characters?: () -> untyped
+
+  def extended_prat_expiry_webhooks_execute?: () -> untyped
+
+  def no_import?: () -> untyped
+
+  def import_scheduled?: () -> untyped
+
+  def import_started?: () -> untyped
+
+  def import_in_progress?: () -> untyped
+
+  def import_failed?: () -> untyped
+
+  def import_finished?: () -> untyped
+
+  def all_pipelines: () -> untyped
+
+  def ci_pipelines: () -> untyped
+
+  def active_webide_pipelines: (user: untyped) -> untyped
+
+  def default_pipeline_lock: () -> (:artifacts_locked | :unlocked)
+
+  def autoclose_referenced_issues: () -> (true | untyped)
+
+  def preload_protected_branches: () -> untyped
+
+  # returns all ancestor-groups upto but excluding the given namespace
+  # when no namespace is given, all ancestors upto the top are returned
+  def ancestors_upto: (?untyped? top, ?hierarchy_order: untyped?) -> untyped
+
+  def ancestors: (?hierarchy_order: untyped?) -> untyped
+
+  alias group_and_ancestors ancestors
+
+  def self_and_ancestors_ids: () -> untyped
+
+  def ancestors_upto_ids: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def emails_disabled?: () -> untyped
+
+  def lfs_enabled?: () -> untyped
+
+  alias lfs_enabled lfs_enabled?
+
+  def auto_devops_enabled?: () -> untyped
+
+  def has_auto_devops_implicitly_enabled?: () -> untyped
+
+  def packages_cleanup_policy: () -> untyped
+
+  def first_auto_devops_config: () -> (untyped | { scope: :project, status: untyped })
+
+  # LFS and hashed repository storage are required for using Design Management.
+  def design_management_enabled?: () -> untyped
+
+  def team: () -> untyped
+
+  # @return [Repository]
+  def repository: () -> untyped
+
+  def find_or_create_design_management_repository: () -> untyped
+
+  def design_repository: () -> untyped
+
+  def cleanup: () -> untyped
+
+  alias reload_repository! cleanup
+
+  def container_registry_url: () -> (::String | nil)
+
+  def container_repositories_size: () -> untyped
+
+  def has_container_registry_tags?: () -> untyped
+
+  # ref can't be HEAD, can only be branch/tag name
+  def latest_successful_build_for_ref: (untyped job_name, ?untyped ref) -> (nil | untyped)
+
+  def latest_successful_build_for_sha: (untyped job_name, untyped sha) -> (nil | untyped)
+
+  def latest_successful_build_for_ref!: (untyped job_name, ?untyped ref) -> untyped
+
+  def latest_pipelines: (?ref: untyped, ?sha: untyped?, ?limit: untyped?, ?source: untyped?) -> untyped
+
+  def latest_unscheduled_pipelines: (?ref: untyped, ?sha: untyped?) -> untyped
+
+  def latest_unscheduled_pipeline: (?untyped ref, ?untyped? sha) -> untyped
+
+  def latest_pipeline: (?untyped ref, ?untyped? sha, ?untyped? source) -> untyped
+
+  def latest_pipeline_for_ci_and_security_orchestration: (?untyped ref) -> untyped
+
+  def merge_base_commit: (untyped first_commit_id, untyped second_commit_id) -> untyped
+
+  def saved?: () -> untyped
+
+  def import_status: () -> untyped
+
+  def import_checksums: () -> untyped
+
+  def jira_import_status: () -> untyped
+
+  def human_import_status_name: () -> untyped
+
+  def beautified_import_status_name: () -> ("completed" | untyped | untyped)
+
+  def add_import_job: () -> untyped
+
+  def log_import_activity: (untyped job_id, ?type: ::Symbol) -> untyped
+
+  def reset_cache_and_import_attrs: () -> untyped
+
+  # This method is overridden in EE::Project model
+  def remove_import_data: () -> untyped
+
+  def ci_config_path=: (untyped value) -> untyped
+
+  # Used by Import/Export to export commit notes
+  def commit_notes: () -> untyped
+
+  # Returns sanitized import URL.
+  #
+  # @param `masked:` [Boolean] Toggles how URL will be sanitized. Defaults to `true`.
+  #  when `true` the userinfo credentials will be masked,
+  #  when `false` the userinfo credentials will be stripped.
+  #
+  # @example project.safe_import_url #=> "https://*****:*****@example.com"
+  # @example project.safe_import_url(masked: false) # => "https://example.com"
+  #
+  # @return [String] Sanitized import URL.
+  def safe_import_url: (?masked: bool) -> untyped
+
+  def import_url=: (untyped value) -> untyped
+
+  # WARNING - This method returns sensitive userinfo credentials of the import URL.
+  # Use `#safe_import_url` instead unless it is necessary to include sensitive credentials.
+  #
+  # Builds an import URL including userinfo credentials from the `import_url` attribute
+  # and the encrypted `ProjectImportData#credentials`.
+  #
+  # @see #safe_import_url
+  #
+  # @example project.unsafe_import_url #=> "https://user:secretpassword@example.com"
+  #
+  # @return [String] Unsanitized import URL.
+  def unsafe_import_url: () -> untyped
+
+  def build_or_assign_import_data: (?data: untyped?, ?credentials: untyped?) -> untyped
+
+  def import?: () -> untyped
+
+  def external_import?: () -> untyped
+
+  def notify_project_import_complete?: () -> (false | untyped)
+
+  def jira_import?: () -> untyped
+
+  def gitlab_project_import?: () -> untyped
+
+  def gitlab_project_migration?: () -> untyped
+
+  def gitea_import?: () -> untyped
+
+  def github_import?: () -> untyped
+
+  def bitbucket_import?: () -> untyped
+
+  def bitbucket_server_import?: () -> untyped
+
+  def github_enterprise_import?: () -> untyped
+
+  # Determine whether any kind of import is in progress.
+  # - Full file import
+  # - Relation import
+  # - Direct Transfer
+  def any_import_in_progress?: () -> untyped
+
+  def has_remote_mirror?: () -> untyped
+
+  def updating_remote_mirror?: () -> untyped
+
+  def update_remote_mirrors: () -> (nil | untyped)
+
+  def mark_stuck_remote_mirrors_as_failed!: () -> untyped
+
+  def mark_remote_mirrors_for_removal: () -> untyped
+
+  def remote_mirror_available?: () -> untyped
+
+  def check_personal_projects_limit: () -> (nil | untyped)
+
+  def should_validate_visibility_level?: () -> untyped
+
+  def visibility_level_allowed_by_namespace: () -> (nil | untyped)
+
+  def visibility_level_allowed_as_fork: () -> (nil | untyped)
+
+  def pages_https_only: () -> (false | untyped)
+
+  def pages_https_only?: () -> (false | untyped)
+
+  def validate_pages_https_only: () -> (nil | untyped)
+
+  def changing_shared_runners_enabled_is_allowed: () -> (nil | untyped)
+
+  def parent_organization_match: () -> (nil | untyped)
+
+  def shared_runners_setting_conflicting_with_group?: () -> untyped
+
+  def reconcile_shared_runners_setting!: () -> (untyped | nil)
+
+  def to_param: () -> untyped
+
+  # Produce a valid reference (see Referable#to_reference)
+  #
+  # NB: For projects, all references are 'full' - i.e. they all include the
+  # full_path, rather than just the project name. For this reason, we ignore
+  # the value of `full:` passed to this method, which is part of the Referable
+  # interface.
+  def to_reference: (?untyped? from, ?full: bool) -> ::String
+
+  # `from` argument can be a Namespace or Project.
+  def to_reference_base: (?untyped? from, ?full: bool, ?absolute_path: bool) -> (::String | untyped | untyped | nil)
+
+  def to_human_reference: (?untyped? from) -> (untyped | untyped | nil)
+
+  def readme_url: () -> untyped
+
+  def new_issuable_address: (untyped author, untyped address_type) -> (nil | untyped)
+
+  def build_commit_note: (untyped commit) -> untyped
+
+  def last_activity: () -> untyped
+
+  def project_id: () -> untyped
+
+  def get_issue: (untyped issue_id, untyped current_user) -> untyped
+
+  def issue_exists?: (untyped issue_id) -> untyped
+
+  def external_issue_reference_pattern: () -> untyped
+
+  def default_issues_tracker?: () -> untyped
+
+  def external_issue_tracker: () -> (nil | untyped)
+
+  def external_references_supported?: () -> untyped
+
+  def has_wiki?: () -> untyped
+
+  def external_wiki: () -> (nil | untyped)
+
+  def find_or_initialize_integrations: () -> untyped
+
+  # Returns a list of integration names that should be disabled at the project-level.
+  # Globally disabled integrations should go in Integration.disabled_integration_names.
+  def disabled_integrations: () -> ::Array["zentao"]
+
+  def find_or_initialize_integration: (untyped name) -> (nil | untyped)
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def create_labels: () -> untyped
+
+  def ci_integrations: () -> untyped
+
+  def ci_integration: () -> untyped
+
+  def avatar_in_git: () -> untyped
+
+  def avatar_url: (**untyped args) -> (untyped | nil)
+
+  # For compatibility with old code
+  def code: () -> untyped
+
+  def all_clusters: () -> untyped
+
+  def items_for: (untyped entity) -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def send_move_instructions: (untyped old_path_with_namespace) -> untyped
+
+  def owner: () -> untyped
+
+  def deprecated_owner: () -> untyped
+
+  def owners: () -> untyped
+
+  def first_owner: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def execute_hooks: (untyped data, ?::Symbol hooks_scope) -> untyped
+
+  def triggered_hooks: (untyped hooks_scope, untyped data) -> untyped
+
+  def execute_integrations: (untyped data, ?::Symbol hooks_scope, ?skip_ci: bool) -> untyped
+
+  def execute_flow_triggers: (untyped _, untyped _) -> nil
+
+  def has_active_hooks?: (?::Symbol hooks_scope) -> untyped
+
+  def has_active_integrations?: (?::Symbol hooks_scope) -> untyped
+
+  def feature_usage: () -> untyped
+
+  def forked?: () -> untyped
+
+  def fork_source: () -> (nil | untyped)
+
+  def valid_lfs_oids: (untyped oids_to_check) -> untyped
+
+  def lfs_objects_for_repository_types: (*untyped types) -> untyped
+
+  def lfs_objects_oids: (?oids: untyped) -> untyped
+
+  def lfs_objects_oids_from_fork_source: (?oids: untyped) -> (::Array[untyped] | untyped)
+
+  def personal?: () -> untyped
+
+  # Expires various caches before a project is renamed.
+  def expire_caches_before_rename: (untyped old_path) -> untyped
+
+  # Check if repository already exists on disk
+  def check_repository_path_availability: () -> untyped
+
+  # When the project has an existing project_repository record, we want to update it.
+  # Otherwise, if a corresponding Git repository exists, we create a new record.
+  # This method might be called when a project_repository record already exists,
+  # during project transfer to another namespace, in Projects::TransferService
+  # or when repository storage is being updated in Projects::UpdateRepositoryStorageService
+  def track_project_repository: () -> (nil | untyped)
+
+  def create_repository: (?force: bool, ?default_branch: untyped?, ?object_format: untyped?) -> untyped
+
+  def hook_attrs: (?backward: bool) -> untyped
+
+  def member: (untyped user) -> untyped
+
+  # Overridden in EE
+  def membership_locked?: () -> false
+
+  def bots: () -> untyped
+
+  # Filters `users` to return only authorized users of the project
+  def members_among: (untyped users) -> (untyped | ::Array[untyped] | untyped)
+
+  def visibility_level_field: () -> :visibility_level
+
+  def after_repository_change_head: () -> untyped
+
+  def forked_from?: (untyped other_project) -> untyped
+
+  def in_fork_network_of?: (untyped other_project) -> (false | untyped)
+
+  def origin_merge_requests: () -> untyped
+
+  def ensure_repository: () -> (untyped | nil)
+
+  # Overridden in EE
+  def allowed_to_share_with_group?: () -> untyped
+
+  def share_with_group_enabled?: () -> untyped
+
+  def latest_successful_pipeline_for_default_branch: () -> untyped
+
+  def feature_available?: (untyped feature, ?untyped? user) -> untyped
+
+  def builds_enabled?: () -> untyped
+
+  def wiki_enabled?: () -> untyped
+
+  def merge_requests_enabled?: () -> untyped
+
+  def forking_enabled?: () -> untyped
+
+  def issues_enabled?: () -> untyped
+
+  def pages_enabled?: () -> untyped
+
+  def analytics_enabled?: () -> untyped
+
+  def snippets_enabled?: () -> untyped
+
+  def public_pages?: () -> untyped
+
+  def private_pages?: () -> (false | untyped)
+
+  def pages_access_control_forced_by_ancestor?: () -> (true | untyped)
+
+  def operations_enabled?: () -> untyped
+
+  def container_registry_enabled?: () -> untyped
+
+  alias container_registry_enabled container_registry_enabled?
+
+  def enable_ci: () -> untyped
+
+  def shared_runners_available?: () -> untyped
+
+  def shared_runners: () -> untyped
+
+  def available_shared_runners: () -> untyped
+
+  def group_runners: () -> untyped
+
+  def all_runners: () -> untyped
+
+  def all_available_runners: () -> untyped
+
+  def active_runners: () -> untyped
+
+  def any_online_runners?: () { (?) -> untyped } -> untyped
+
+  def valid_runners_token?: (untyped token) -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def open_issues_count: (?untyped? current_user) -> untyped
+
+  # rubocop: enable CodeReuse/ServiceClass
+  # rubocop: disable CodeReuse/ServiceClass
+  def open_merge_requests_count: (?untyped? _current_user) -> untyped
+
+  def visibility_level_allowed_as_fork?: (?untyped level) -> (true | untyped)
+
+  def visibility_level_allowed_by_namespace?: (?untyped level) -> (true | untyped)
+
+  def visibility_level_allowed?: (?untyped level) -> untyped
+
+  def runners_token: () -> (nil | untyped)
+
+  def pages_deployed?: () -> untyped
+
+  def pages_show_onboarding?: () -> untyped
+
+  def pages_unique_domain_enabled?: () -> untyped
+
+  def remove_private_deploy_keys: () -> untyped
+
+  def mark_pages_onboarding_complete: () -> untyped
+
+  def after_import: () -> untyped
+
+  def reset_counters_and_iids: () -> untyped
+
+  def update_project_counter_caches: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def after_create_default_branch: () -> untyped
+
+  # Lazy loading of the `pipeline_status` attribute
+  def pipeline_status: () -> untyped
+
+  def add_export_job: (current_user: untyped, ?after_export_strategy: untyped?, ?params: ::Hash[untyped, untyped]) -> untyped
+
+  def import_export_shared: () -> untyped
+
+  def export_path: () -> (nil | untyped)
+
+  def export_status: (untyped user) -> (:regeneration_in_progress | :queued | :started | :finished | :failed | :none)
+
+  def export_in_progress?: (untyped user) -> untyped
+
+  def export_enqueued?: (untyped user) -> untyped
+
+  def export_failed?: (untyped user) -> untyped
+
+  def regeneration_in_progress?: (untyped user) -> untyped
+
+  def remove_exports: () -> untyped
+
+  def remove_export_for_user: (untyped user) -> (nil | untyped)
+
+  def import_export_upload_by_user: (untyped user) -> untyped
+
+  def export_file_exists?: (untyped user) -> untyped
+
+  def export_archive_exists?: (untyped user) -> untyped
+
+  def export_file: (untyped user) -> untyped
+
+  def full_path_slug: () -> untyped
+
+  def has_ci?: () -> untyped
+
+  def has_ci_config_file?: () -> untyped
+
+  def predefined_variables: () -> untyped
+
+  # rubocop: disable Metrics/AbcSize -- TODO: Method size will be reduced in follow-up MR, see https://gitlab.com/gitlab-org/gitlab/-/merge_requests/199182#note_2655958320
+  def predefined_project_variables: () -> untyped
+
+  def predefined_ci_server_variables: () -> untyped
+
+  def pages_variables: () -> untyped
+
+  def api_variables: () -> untyped
+
+  def ci_template_variables: () -> untyped
+
+  def dependency_proxy_variables: () -> untyped
+
+  def container_registry_variables: () -> untyped
+
+  def default_environment: () -> untyped
+
+  def protected_for?: (untyped ref) -> (false | untyped)
+
+  def deployment_variables: (environment: untyped, ?kubernetes_namespace: untyped?) -> (::Array[untyped] | untyped)
+
+  def auto_devops_variables: () -> (::Array[untyped] | untyped)
+
+  def route_map_for: (untyped commit_sha) -> untyped
+
+  def public_path_for_source_path: (untyped path, untyped commit_sha) -> (nil | untyped)
+
+  def parent_changed?: () -> untyped
+
+  def default_merge_request_target: () -> (self | untyped)
+
+  def mr_can_target_upstream?: () -> untyped
+
+  def multiple_issue_boards_available?: () -> true
+
+  def full_path_before_last_save: () -> untyped
+
+  alias name_with_namespace full_name
+
+  alias human_name full_name
+
+  # @deprecated cannot remove yet because it has an index with its name in elasticsearch
+  alias path_with_namespace full_path
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def forks_count: () -> untyped
+
+  def legacy_storage?: () -> untyped
+
+  # Check if Hashed Storage is enabled for the project with at least informed feature rolled out
+  #
+  # @param [Symbol] feature that needs to be rolled out for the project (:repository, :attachments)
+  def hashed_storage?: (untyped feature) -> untyped
+
+  def archived: () -> untyped
+
+  alias self_archived? archived
+
+  def self_or_ancestors_archived?: () -> untyped
+
+  def ancestors_archived?: () -> untyped
+
+  def self_or_ancestors_transfer_scheduled?: () -> untyped
+
+  def self_or_ancestors_transfer_in_progress?: () -> untyped
+
+  def renamed?: () -> untyped
+
+  def human_merge_method: () -> ("Fast-forward" | untyped)
+
+  def merge_method: () -> (:ff | :rebase_merge | :merge)
+
+  def can_create_new_ref_commits?: () -> untyped
+
+  def merge_method=: (untyped method) -> untyped
+
+  def ff_merge_must_be_possible?: () -> untyped
+
+  def git_transfer_in_progress?: () -> untyped
+
+  def storage_version=: (untyped value) -> untyped
+
+  def badges: () -> untyped
+
+  def merge_requests_allowing_push_to_user: (untyped user) -> untyped
+
+  def any_branch_allows_collaboration?: (untyped user) -> untyped
+
+  def branch_allows_collaboration?: (untyped user, untyped branch_name) -> untyped
+
+  def external_authorization_classification_label: () -> untyped
+
+  # Overridden in EE::Project
+  def licensed_feature_available?: (untyped _feature) -> false
+
+  def licensed_features: () -> ::Array[untyped]
+
+  def toggle_ci_cd_settings!: (untyped settings_attribute) -> untyped
+
+  def gitlab_deploy_token: () -> untyped
+
+  def any_lfs_file_locks?: () -> untyped
+
+  def auto_cancel_pending_pipelines?: () -> untyped
+
+  def storage: () -> untyped
+
+  def storage_upgradable?: () -> untyped
+
+  def snippets_visible?: (?untyped? user) -> untyped
+
+  def max_attachment_size: () -> untyped
+
+  # Git objects are only poolable when the project is or has:
+  # - Hashed storage -> The object pool will have a remote to its members, using relative paths.
+  #                     If the repository path changes we would have to update the remote.
+  # - not private    -> The visibility level or repository access level has to be greater than private
+  #                     to prevent fetching objects that might not exist
+  # - Repository     -> Else the disk path will be empty, and there's nothing to pool
+  def git_objects_poolable?: () -> untyped
+
+  def leave_pool_repository: () -> (nil | untyped)
+
+  # After repository is moved from shard to shard, disconnect it from the previous object pool and connect to the new pool
+  def swap_pool_repository!: () -> (nil | untyped)
+
+  def link_pool_repository: () -> (nil | untyped)
+
+  def has_pool_repository?: () -> untyped
+
+  def access_request_approvers_to_be_notified: () -> untyped
+
+  def closest_setting: (untyped name) -> untyped
+
+  def drop_visibility_level!: () -> untyped
+
+  def template_source?: () -> false
+
+  def jira_subscription_exists?: () -> untyped
+
+  def group_protected_branches: () -> untyped
+
+  def default_branch_protected?: () -> untyped
+
+  def environments_for_scope: (untyped scope) -> untyped
+
+  def batch_loaded_environment_by_name: (untyped name) -> untyped
+
+  def latest_jira_import: () -> untyped
+
+  def root_namespace: () -> untyped
+
+  def root_group: () -> (nil | untyped)
+
+  def related_group_ids: () -> untyped
+
+  def default_branch_or_main: () -> untyped
+
+  def ci_config_path_or_default: () -> untyped
+
+  def ci_config_for: (untyped sha) -> untyped
+
+  def feature_flags_client_token: () -> untyped
+
+  def git_garbage_collect_worker_klass: () -> untyped
+
+  def ci_display_pipeline_variables?: () -> (false | untyped)
+
+  def ci_forward_deployment_enabled?: () -> (false | untyped)
+
+  def ci_forward_deployment_rollback_allowed?: () -> (false | untyped)
+
+  def ci_allow_fork_pipelines_to_run_in_parent_project?: () -> (false | untyped)
+
+  def ci_outbound_job_token_scope_enabled?: () -> (false | untyped)
+
+  def ci_inbound_job_token_scope_enabled?: () -> (true | untyped)
+
+  def restrict_user_defined_variables?: () -> (false | untyped)
+
+  def override_pipeline_variables_allowed?: (untyped access_level, untyped user) -> (false | untyped)
+
+  def ci_push_repository_for_job_token_allowed?: () -> (false | untyped)
+
+  def ci_cross_project_push_for_job_token_allowed?: () -> (false | untyped)
+
+  def keep_latest_artifacts_available?: () -> (false | untyped)
+
+  def keep_latest_artifact?: () -> (false | untyped)
+
+  def group_runners_enabled?: () -> (false | untyped)
+
+  def topic_list: () -> untyped
+
+  def after_change_head_branch_does_not_exist: (untyped branch) -> untyped
+
+  def visible_group_links: (for_user: untyped) -> untyped
+
+  def parent_groups: () -> untyped
+
+  def enforced_runner_token_expiration_interval: () -> untyped
+
+  def merge_commit_template_or_default: () -> untyped
+
+  def merge_commit_template_or_default=: (untyped value) -> untyped
+
+  def squash_commit_template_or_default: () -> untyped
+
+  def squash_commit_template_or_default=: (untyped value) -> untyped
+
+  def self_deletion_in_progress?: () -> untyped
+
+  def self_deletion_in_progress_or_hidden?: () -> untyped
+
+  def work_item_tasks_on_boards_feature_flag_enabled?: () -> untyped
+
+  def glql_load_on_click_feature_flag_enabled?: () -> untyped
+
+  def markdown_placeholders_feature_flag_enabled?: () -> untyped
+
+  def allow_iframes_in_markdown_feature_flag_enabled?: () -> untyped
+
+  def sscs_malware_detection_feature_flag_enabled?: () -> untyped
+
+  def use_work_item_url?: () -> (false | true | untyped)
+
+  def enqueue_record_project_target_platforms: () -> (nil | untyped)
+
+  def dormant?: () -> untyped
+
+  def refreshing_build_artifacts_size?: () -> untyped
+
+  def group_group_links: () -> untyped
+
+  def security_training_available?: () -> untyped
+
+  def packages_policy_subject: () -> untyped
+
+  def destroy_deployment_by_id: (untyped deployment_id) -> untyped
+
+  def can_create_custom_domains?: () -> (true | untyped)
+
+  def pages_domain_present?: (untyped domain_url) -> untyped
+
+  # overridden in EE
+  def can_suggest_reviewers?: () -> false
+
+  # overridden in EE
+  def suggested_reviewers_available?: () -> false
+
+  def crm_enabled?: () -> (false | untyped)
+
+  def crm_group: () -> (nil | untyped)
+
+  def supports_lock_on_merge?: () -> untyped
+
+  def path_availability: () -> (nil | untyped)
+
+  def repository_object_format: () -> untyped
+
+  def instance_runner_running_jobs_count: () -> untyped
+
+  # Overridden in EE
+  def allows_multiple_merge_request_assignees?: () -> false
+
+  # Overridden in EE
+  def allows_multiple_merge_request_reviewers?: () -> false
+
+  # Overridden in EE
+  def on_demand_dast_available?: () -> false
+
+  # Overridden in EE
+  def supports_saved_replies?: () -> false
+
+  # Overridden in EE
+  def merge_trains_enabled?: () -> false
+
+  def lfs_file_locks_changed_epoch: () -> untyped
+
+  def refresh_lfs_file_locks_changed_epoch: () -> untyped
+
+  def placeholder_reference_store: () -> (nil | untyped)
+
+  def pages_url: (?untyped? options) -> untyped
+
+  def pages_hostname: (?untyped? options) -> untyped
+
+  def uploads_sharding_key: () -> { project_id: untyped }
+
+  def pages_url_builder: (?untyped? options) -> untyped
+
+  def has_container_registry_protected_tag_rules?: (action: untyped, access_level: untyped) -> untyped
+
+  # Overridden for EE
+  def licensed_ai_features_available?: () -> false
+
+  # Ensures project has a pool repository without exposing private creation logic
+  def ensure_pool_repository: () -> untyped
+
+  private
+
+  def check_duplicate_export!: (untyped current_user) -> (nil | untyped)
+
+  def with_redis: () { (?) -> untyped } -> untyped
+
+  def lfs_file_locks_changed_epoch_cache_key: () -> ::String
+
+  def get_epoch_from: (untyped cache_key) -> untyped
+
+  def refresh_epoch_cache: (untyped cache_key) -> untyped
+
+  # overridden in EE
+  def project_group_links_with_preload: () -> untyped
+
+  def save_topics: () -> untyped
+
+  def update_topics: () -> (nil | untyped)
+
+  def find_integration: (untyped integrations, untyped name) -> untyped
+
+  def build_from_instance: (untyped name) -> (nil | untyped)
+
+  def build_integration: (untyped name) -> untyped
+
+  def integration_instances: () -> untyped
+
+  def closest_namespace_setting: (untyped name) -> untyped
+
+  def app_settings_for: (untyped name) -> untyped
+
+  def merge_requests_allowing_collaboration: (?untyped? source_branch) -> untyped
+
+  def create_new_pool_repository: () -> untyped
+
+  def join_pool_repository: () -> (nil | untyped)
+
+  def use_hashed_storage: () -> (untyped | nil)
+
+  def check_repository_absence!: () -> (nil | untyped)
+
+  def repository_with_same_path_already_exists?: () -> untyped
+
+  def set_timestamps_for_create: () -> untyped
+
+  def cross_namespace_reference?: (untyped from) -> untyped
+
+  # Check if a reference is being done cross-project
+  def cross_project_reference?: (untyped from) -> untyped
+
+  def update_project_statistics: () -> untyped
+
+  def check_pending_delete: () -> (nil | untyped)
+
+  def pending_delete_twin: () -> (false | untyped)
+
+  #
+  # This method is here because of support for legacy container repository
+  # which has exactly the same path like project does, but which might not be
+  # persisted in `container_repositories` table.
+  #
+  def has_root_container_repository_tags?: () -> (false | untyped)
+
+  def fetch_branch_allows_collaboration: (untyped user, ?untyped? branch_name) -> (false | untyped)
+
+  def ensure_pages_metadatum: () -> untyped
+
+  def oids: (untyped objects, ?oids: untyped) -> untyped
+
+  def cache_has_external_wiki: () -> (untyped | nil)
+
+  def cache_has_external_issue_tracker: () -> (untyped | nil)
+
+  def online_runners_with_tags: () -> untyped
+
+  def ensure_project_namespace_in_sync: () -> untyped
+
+  def project_namespace_creation_enabled?: () -> untyped
+
+  def sync_project_namespace?: () -> untyped
+
+  def reload_project_namespace_details: () -> (nil | untyped)
+
+  # SyncEvents are created by PG triggers (with the function `insert_projects_sync_event`)
+  def schedule_sync_event_worker: () -> untyped
+
+  def check_project_export_limit!: () -> (nil | untyped)
+
+  def remove_leading_spaces_on_name: () -> untyped
+
+  def set_last_activity_at: () -> (nil | untyped)
+
+  def set_package_registry_access_level: () -> (nil | untyped)
+
+  def enabled_package_registry_access_level_by_project_visibility: () -> untyped
+
+  def runners_token_prefix: () -> untyped
+
+  def pool_repository_shard_matches_repository?: (untyped pool) -> untyped
+
+  # Catalog resource SyncEvents are created by PG triggers
+  def enqueue_catalog_resource_sync_event_worker: () -> untyped
+
+  def ancestors_scheduled_for_deletion: () -> (::Array[untyped] | untyped)
+
+  def validate_unsafe_import_url?: () -> untyped
+
+  def unique_attributes: () -> ::Array[:path]
+end

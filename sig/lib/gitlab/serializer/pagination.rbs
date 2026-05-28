@@ -1,0 +1,35 @@
+module Gitlab
+  module Serializer
+    class Pagination
+      @request: untyped
+
+      @response: untyped
+
+      InvalidResourceError: untyped
+
+      class CursorPagination < Gitlab::Pagination::Base
+        @request_context: untyped
+
+        attr_reader request_context: untyped
+
+        def initialize: (untyped request_context) -> void
+
+        def paginate: (untyped resource) -> untyped
+
+        private
+
+        def apply_pagination_headers: (untyped paginator) -> untyped
+      end
+
+      def initialize: (untyped request, untyped response) -> void
+
+      def paginate: (untyped resource) -> untyped
+
+      attr_reader request: untyped
+
+      def params: () -> untyped
+
+      def header: (untyped header, untyped value) -> untyped
+    end
+  end
+end

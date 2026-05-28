@@ -1,0 +1,42 @@
+# Controller for viewing a repository's file structure
+class Projects::TreeController < Projects::ApplicationController
+  @skip_logs_tree_loading: untyped
+
+  @tree: untyped
+
+  @branch_name: untyped
+
+  @dir_name: untyped
+
+  @commit_params: untyped
+
+  include ExtractsPath
+
+  include CreatesCommit
+
+  include ActionView::Helpers::SanitizeHelper
+
+  include RedirectsForMissingPathOnTree
+
+  include SourcegraphDecorator
+
+  include HandlesGitalyErrors
+
+  def show: () -> untyped
+
+  def create_dir: () -> untyped
+
+  private
+
+  def require_auth?: () -> untyped
+
+  def tree: () -> untyped
+
+  def redirect_renamed_default_branch?: () -> untyped
+
+  def assign_dir_vars: () -> untyped
+
+  def permitted_params: () -> untyped
+
+  def create_dir_params_attributes: () -> ::Array[:branch_name | :dir_name | :commit_message]
+end

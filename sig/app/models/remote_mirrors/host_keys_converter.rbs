@@ -1,0 +1,74 @@
+module RemoteMirrors
+  # Converts host_keys array (API format) to ssh_known_hosts string (internal format)
+  #
+  # Accepts two formats for host keys:
+  # 1. Bare key format: "ssh-ed25519 AAAA..." - hostname is extracted from the URL
+  # 2. Full known_hosts format: "hostname ssh-ed25519 AAAA..." - hostname is preserved
+  #
+  # @example Bare key format (hostname extracted from URL)
+  #   converter = HostKeysConverter.new(['ssh-ed25519 AAAA...'], url: 'ssh://git@example.com/repo.git')
+  #   converter.to_ssh_known_hosts!
+  #   # => "example.com ssh-ed25519 AAAA..."
+  #
+  # @example Full known_hosts format (hostname preserved)
+  #   keys = ['git.example.org ssh-ed25519 AAAA...']
+  #   converter = HostKeysConverter.new(keys, url: 'ssh://git@example.com/repo.git')
+  #   converter.to_ssh_known_hosts!
+  #   # => "git.example.org ssh-ed25519 AAAA..."
+  #
+  # @example Non-standard port
+  #   converter = HostKeysConverter.new(['ssh-ed25519 AAAA...'], url: 'ssh://git@example.com:2222/repo.git')
+  #   converter.to_ssh_known_hosts!
+  #   # => "[example.com]:2222 ssh-ed25519 AAAA..."
+  #
+  class HostKeysConverter
+    @host_keys: untyped
+
+    @url: untyped
+
+    @sanitized_keys: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    class InvalidHostKeyError < StandardError
+      @invalid_keys: untyped
+
+      attr_reader invalid_keys: untyped
+
+      def initialize: (untyped invalid_keys) -> void
+    end
+
+    STANDARD_SSH_PORT: 22
+
+    MAX_HOST_KEYS: 10
+
+    # Matches lines starting with hostname followed by key type
+    # Examples that match: "example.com ssh-ed25519", "host,ip ecdsa-sha2-nistp256", "[host]:2222 ssh-rsa"
+    # Examples that don't match: "ssh-ed25519 AAAA...", "ecdsa-sha2-nistp256 AAAA..."
+    KEY_WITH_HOSTNAME_REGEX: ::Regexp
+
+    def initialize: (untyped host_keys, url: untyped) -> void
+
+    def to_ssh_known_hosts!: () -> (nil | untyped)
+
+    private
+
+    attr_reader host_keys: untyped
+
+    attr_reader url: untyped
+
+    def validate!: () -> untyped
+
+    def sanitized_keys: () -> untyped
+
+    def sanitize_key: (untyped key) -> untyped
+
+    # Form-encoded params (application/x-www-form-urlencoded) decode '+' as spaces.
+    # SSH key base64 data uses '+' characters, so we restore them here.
+    def restore_base64_encoding: (untyped key_data) -> untyped
+
+    def normalize_key: (untyped key) -> (nil | untyped | ::String)
+
+    def known_hosts_hostname: () -> untyped
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Ci
+    module Matching
+      class BuildMatcher
+        ATTRIBUTES: ::Array[:protected | :tag_list | :build_ids | :project]
+
+        alias protected? protected
+
+        def initialize: (untyped params) -> void
+
+        def has_tags?: () -> untyped
+      end
+    end
+  end
+end

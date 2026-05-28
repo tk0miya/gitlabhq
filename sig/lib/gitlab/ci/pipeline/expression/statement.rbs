@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        class Statement
+          @lexer: untyped
+
+          @variables: untyped
+
+          StatementError: untyped
+
+          def initialize: (untyped statement, ?untyped? variables) -> void
+
+          def parse_tree: () -> untyped
+
+          def evaluate: () -> untyped
+
+          def truthful?: () -> untyped
+
+          def valid?: () -> untyped
+
+          def input_names: () -> untyped
+
+          private
+
+          def collect_input_names: (untyped node) -> (::Array[untyped] | untyped)
+        end
+      end
+    end
+  end
+end

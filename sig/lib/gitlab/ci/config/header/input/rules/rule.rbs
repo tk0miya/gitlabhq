@@ -1,0 +1,26 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        class Input
+          class Rules
+            #
+            # A rule defines conditional options and defaults for an input based on expressions.
+            #
+            class Rule < ::Gitlab::Config::Entry::Node
+              include ::Gitlab::Config::Entry::Validatable
+
+              include ::Gitlab::Config::Entry::Attributable
+
+              ALLOWED_KEYS: ::Array[:if | :options | :default]
+
+              def value: () -> untyped
+
+              def default: () -> nil
+            end
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Banzai
+  module ColorParser
+    ALPHA: ::Regexp
+
+    PERCENTS: ::Regexp
+
+    ALPHA_CHANNEL: ::Regexp
+
+    BITS: ::Regexp
+
+    DEGS: ::Regexp
+
+    RADS: ::Regexp
+
+    HEX_FORMAT: ::Regexp
+
+    RGB_FORMAT: ::Regexp
+
+    HSL_FORMAT: ::Regexp
+
+    FORMATS: ::Array[untyped]
+
+    COLOR_FORMAT: ::Regexp
+
+    # Public: Analyzes whether the String is a color code.
+    #
+    # text - The String to be parsed.
+    #
+    # Returns the recognized color String or nil if none was found.
+    def self.parse: (untyped text) -> (untyped | nil)
+  end
+end

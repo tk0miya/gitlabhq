@@ -1,0 +1,59 @@
+module Gitlab
+  module Seeders
+    module Ci
+      module Runner
+        class RunnerFleetPipelineSeeder
+          @logger: untyped
+
+          @user: untyped
+
+          @projects_to_runners: untyped
+
+          @job_count: untyped
+
+          DEFAULT_JOB_COUNT: 400
+
+          DEFAULT_USERNAME: "root"
+
+          MAX_QUEUE_TIME_IN_SECONDS: untyped
+
+          PIPELINE_CREATION_RANGE_MIN_IN_SECONDS: untyped
+
+          PIPELINE_CREATION_RANGE_MAX_IN_SECONDS: untyped
+
+          PIPELINE_START_RANGE_MAX_IN_SECONDS: untyped
+
+          PIPELINE_FINISH_RANGE_MAX_IN_SECONDS: untyped
+
+          PROJECT_JOB_DISTRIBUTION: ::Array[{ allocation: 70, job_count_default: 10 } | { allocation: 15, job_count_default: 10 } | { allocation: 15, job_count_default: 100 }]
+
+          attr_reader logger: untyped
+
+          # Initializes the class
+          #
+          # @param [Gitlab::Logger] logger
+          # @param [Integer] job_count the number of jobs to create across the runners
+          # @param [Array<Hash>] projects_to_runners list of project IDs to respective runner IDs
+          # @param [String] username the user that will create the pipelines
+          def initialize: (?untyped logger, projects_to_runners: untyped, job_count: untyped, username: untyped) -> void
+
+          def seed: () -> nil
+
+          private
+
+          def create_pipelines_and_distribute_jobs: (untyped remaining_job_count, project_index: untyped, allocation: untyped, job_count_default: untyped) -> untyped
+
+          def create_pipelines: (untyped remaining_job_count, project_id: untyped, runners: untyped, total_jobs: untyped, pipeline_job_count: untyped) -> (0 | untyped)
+
+          def create_pipeline: (job_count: untyped, runners: untyped, project_id: untyped, name: untyped, ?status: ::String, **untyped attrs) -> untyped
+
+          def create_build: (untyped pipeline, untyped runner, untyped job_status, untyped index) -> untyped
+
+          def random_pipeline_status: () -> (untyped | "success" | "failed")
+
+          def job_status: (untyped pipeline_status, untyped job_index, untyped job_count) -> untyped
+        end
+      end
+    end
+  end
+end

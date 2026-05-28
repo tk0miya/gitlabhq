@@ -1,0 +1,13 @@
+module Gitlab
+  module Gpg
+    class Tag < Gitlab::SignedTag
+      include Gitlab::Utils::StrongMemoize
+
+      def signature: () -> untyped
+
+      def attributes: () -> (nil | { gpg_key: untyped, gpg_key_user_name: untyped, gpg_key_user_email: untyped, gpg_key_primary_keyid: untyped, verification_status: untyped, project: untyped, object_name: untyped })
+
+      def signature_class: () -> untyped
+    end
+  end
+end

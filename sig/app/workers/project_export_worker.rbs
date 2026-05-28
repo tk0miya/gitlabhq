@@ -1,0 +1,15 @@
+class ProjectExportWorker
+  include ApplicationWorker
+
+  include ExceptionBacktrace
+
+  def perform: (untyped current_user_id, untyped project_id, ?::Hash[untyped, untyped] after_export_strategy, ?::Hash[untyped, untyped] params) -> untyped
+
+  private
+
+  def build!: (untyped after_export_strategy) -> untyped
+
+  def log_failure: (untyped project_id, untyped ex) -> untyped
+
+  def log_exporters_duration: (untyped export_service) -> untyped
+end

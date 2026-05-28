@@ -1,0 +1,238 @@
+# ANSI color library
+#
+# Implementation per http://en.wikipedia.org/wiki/ANSI_escape_code
+module Gitlab
+  module Ci
+    module Ansi2html
+      # Timestamp line prefix format:
+      # <timestamp> <stream number><stream type><full line type>
+      # - timestamp: UTC RFC3339 timestamp
+      # - stream number: 1 byte (2 hex chars) stream number
+      # - stream type: E/O (Err or Out)
+      # - full line type: `+` if line is continuation of previous line, ` ` otherwise
+      TIMESTAMP_HEADER_REGEX: untyped
+
+      TIMESTAMP_HEADER_DATETIME_LENGTH: untyped
+
+      TIMESTAMP_HEADER_LENGTH: untyped
+
+      # keys represent the trailing digit in color changing command (30-37, 40-47, 90-97. 100-107)
+      COLOR: { 0 => "black", 1 => "red", 2 => "green", 3 => "yellow", 4 => "blue", 5 => "magenta", 6 => "cyan", 7 => "white" }
+
+      STYLE_SWITCHES: { bold: 1, italic: 2, underline: 4, conceal: 8, cross: 16 }
+
+      def self.convert: (untyped ansi, ?untyped? state) -> untyped
+
+      Result: untyped
+
+      class Converter
+        @offset: untyped
+
+        # First line, initialize check for timestamps
+        @has_timestamps: untyped
+
+        @current_line_buffer: untyped
+
+        @lineno_in_section: untyped
+
+        @n_open_tags: untyped
+
+        @out: untyped
+
+        @sections: untyped
+
+        @fg_color: untyped
+
+        @bg_color: untyped
+
+        @style_mask: untyped
+
+        include EncodingHelper
+
+        STATE_PARAMS: ::Array[:offset | :n_open_tags | :fg_color | :bg_color | :style_mask | :sections | :lineno_in_section]
+
+        def convert: (untyped stream, untyped new_state) -> untyped
+
+        def section_to_class_name: (untyped section) -> untyped
+
+        private
+
+        attr_accessor offset: untyped
+
+        attr_accessor n_open_tags: untyped
+
+        attr_accessor fg_color: untyped
+
+        attr_accessor bg_color: untyped
+
+        attr_accessor style_mask: untyped
+
+        attr_accessor sections: untyped
+
+        attr_accessor lineno_in_section: untyped
+
+        def process_stream_with_lookahead: (untyped stream) -> untyped
+
+        def handle_line: (untyped line, untyped next_line) -> (nil | untyped)
+
+        def consume_line: (untyped line) -> untyped
+
+        def consume_token: (untyped scanner, untyped at_line_start) -> (nil | untyped)
+
+        def has_timestamp_prefix?: (untyped line) -> (nil | untyped)
+
+        def skip_timestamp: (untyped scanner) -> (nil | untyped)
+
+        def handle_new_line: () -> untyped
+
+        def handle_section: (untyped scanner) -> untyped
+
+        def handle_section_start: (untyped section, untyped timestamp) -> (nil | untyped)
+
+        def handle_section_end: (untyped section, untyped timestamp) -> (nil | untyped)
+
+        def data_section_names: () -> untyped
+
+        def handle_sequence: (untyped scanner) -> (nil | untyped)
+
+        def evaluate_command_stack: (untyped stack) -> (nil | untyped)
+
+        def write_in_tag: (untyped data) -> untyped
+
+        def write_raw: (untyped data) -> untyped
+
+        def ensure_open_new_tag: () -> (untyped | nil)
+
+        def open_new_tag: () -> untyped
+
+        def close_open_tags: () -> untyped
+
+        def reset_state: () -> untyped
+
+        def state: () -> untyped
+
+        def restore_state: (untyped new_state, untyped stream) -> (nil | untyped)
+
+        def reset: () -> untyped
+
+        def enable: (untyped flag) -> untyped
+
+        def disable: (untyped flag) -> untyped
+
+        def set_fg_color: (untyped color_index, ?untyped? prefix) -> untyped
+
+        def set_bg_color: (untyped color_index, ?untyped? prefix) -> untyped
+
+        def get_term_color_class: (untyped color_index, untyped prefix) -> (nil | untyped)
+
+        def set_fg_color_256: (untyped command_stack) -> untyped
+
+        def set_bg_color_256: (untyped command_stack) -> untyped
+
+        def get_xterm_color_class: (untyped command_stack, untyped prefix) -> (nil | untyped)
+
+        def get_color_class: (untyped segments) -> untyped
+
+        def on_0: (untyped _) -> untyped
+
+        def on_1: (untyped _) -> untyped
+
+        def on_3: (untyped _) -> untyped
+
+        def on_4: (untyped _) -> untyped
+
+        def on_8: (untyped _) -> untyped
+
+        def on_9: (untyped _) -> untyped
+
+        def on_21: (untyped _) -> untyped
+
+        def on_22: (untyped _) -> untyped
+
+        def on_23: (untyped _) -> untyped
+
+        def on_24: (untyped _) -> untyped
+
+        def on_28: (untyped _) -> untyped
+
+        def on_29: (untyped _) -> untyped
+
+        def on_30: (untyped _) -> untyped
+
+        def on_31: (untyped _) -> untyped
+
+        def on_32: (untyped _) -> untyped
+
+        def on_33: (untyped _) -> untyped
+
+        def on_34: (untyped _) -> untyped
+
+        def on_35: (untyped _) -> untyped
+
+        def on_36: (untyped _) -> untyped
+
+        def on_37: (untyped _) -> untyped
+
+        def on_38: (untyped stack) -> untyped
+
+        def on_39: (untyped _) -> untyped
+
+        def on_40: (untyped _) -> untyped
+
+        def on_41: (untyped _) -> untyped
+
+        def on_42: (untyped _) -> untyped
+
+        def on_43: (untyped _) -> untyped
+
+        def on_44: (untyped _) -> untyped
+
+        def on_45: (untyped _) -> untyped
+
+        def on_46: (untyped _) -> untyped
+
+        def on_47: (untyped _) -> untyped
+
+        def on_48: (untyped stack) -> untyped
+
+        def on_49: (untyped _) -> untyped
+
+        def on_90: (untyped _) -> untyped
+
+        def on_91: (untyped _) -> untyped
+
+        def on_92: (untyped _) -> untyped
+
+        def on_93: (untyped _) -> untyped
+
+        def on_94: (untyped _) -> untyped
+
+        def on_95: (untyped _) -> untyped
+
+        def on_96: (untyped _) -> untyped
+
+        def on_97: (untyped _) -> untyped
+
+        def on_99: (untyped _) -> untyped
+
+        def on_100: (untyped _) -> untyped
+
+        def on_101: (untyped _) -> untyped
+
+        def on_102: (untyped _) -> untyped
+
+        def on_103: (untyped _) -> untyped
+
+        def on_104: (untyped _) -> untyped
+
+        def on_105: (untyped _) -> untyped
+
+        def on_106: (untyped _) -> untyped
+
+        def on_107: (untyped _) -> untyped
+
+        def on_109: (untyped _) -> untyped
+      end
+    end
+  end
+end

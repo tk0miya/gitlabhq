@@ -1,0 +1,19 @@
+module BulkImports
+  module Common
+    module Pipelines
+      class BadgesPipeline
+        include Pipeline
+
+        include HexdigestCacheStrategy
+
+        def transform: (untyped context, untyped data) -> (nil | { name: untyped, link_url: untyped, image_url: untyped })
+
+        def load: (untyped context, untyped data) -> (nil | untyped)
+
+        private
+
+        def group_badge?: (untyped data) -> untyped
+      end
+    end
+  end
+end

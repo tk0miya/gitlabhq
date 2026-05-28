@@ -1,0 +1,13 @@
+module AwardEmojis
+  class AddService < AwardEmojis::BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    def execute: () -> untyped
+
+    private
+
+    def after_create: (untyped award) -> untyped
+
+    def todoable: () -> untyped
+  end
+end

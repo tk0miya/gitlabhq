@@ -1,0 +1,54 @@
+# PagesDeployment stores a zip archive containing GitLab Pages web-site
+class PagesDeployment < ApplicationRecord
+  include GlobalID::Identification
+
+  include EachBatch
+
+  include FromUnion
+
+  include Sortable
+
+  include FileStoreMounter
+
+  include ObjectStorable
+
+  include Gitlab::Utils::StrongMemoize
+
+  STORE_COLUMN: :file_store
+
+  def self.declarative_policy_class: () -> "Pages::DeploymentPolicy"
+
+  def self.latest_pipeline_id: () -> untyped
+
+  def self.deactivate_all: (untyped project) -> untyped
+
+  def self.deactivate_deployments_older_than: (untyped deployment, ?time: untyped?) -> untyped
+
+  def self.deactivate: () -> untyped
+
+  def self.count_versioned_deployments_for: (untyped projects, untyped limit, ?group_by_project: bool) -> untyped
+
+  def active?: () -> untyped
+
+  def url: () -> untyped
+
+  def deactivate: () -> untyped
+
+  def restore: () -> untyped
+
+  private
+
+  def set_size: () -> untyped
+
+  def store_file_after_commit!: () -> (nil | untyped)
+
+  # We have to mark the PagesDeployment upload as ready to ensure we only
+  # serve PagesDeployment which files are already uploaded.
+  #
+  # This is required because we're uploading the file outside of the db transaction
+  # (https://gitlab.com/gitlab-org/gitlab/-/merge_requests/114774)
+  def mark_upload_as_finished!: () -> (nil | untyped)
+
+  # Stop existing active deployment with same path when a deleted one is restored
+  def deactivate_deployments_with_same_path_prefix: () -> untyped
+end

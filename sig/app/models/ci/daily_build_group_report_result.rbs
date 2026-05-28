@@ -1,0 +1,9 @@
+module Ci
+  class DailyBuildGroupReportResult < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    PARAM_TYPES: ::Array["coverage"]
+
+    def self.upsert_reports: (untyped data) -> (untyped | nil)
+  end
+end

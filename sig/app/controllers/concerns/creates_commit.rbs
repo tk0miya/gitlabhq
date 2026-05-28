@@ -1,0 +1,47 @@
+module CreatesCommit
+  @project_to_commit_into: untyped
+
+  @different_project: untyped
+
+  @branch_name: untyped
+
+  @start_branch: untyped
+
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  include SafeFormatHelper
+
+  include ActionView::Helpers::SanitizeHelper
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def create_commit: (untyped service, success_path: untyped, failure_path: untyped, ?failure_view: untyped?, ?success_notice: untyped?, ?target_project: untyped?) -> untyped
+
+  def authorize_edit_tree!: () -> (nil | untyped)
+
+  def format_flash_notice: (untyped message) -> untyped
+
+  private
+
+  def flash_message: (untyped result, untyped project, untyped branch_name, untyped commit_params) -> ({ message: untyped, button_text: untyped, button_path: untyped } | untyped)
+
+  def generated_branch_name: (untyped project) -> (nil | untyped)
+
+  def update_flash_notice: (untyped success_notice, untyped success_path) -> untyped
+
+  def final_success_path: (untyped success_path, untyped target_project) -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def new_merge_request_path: (untyped _target_project) -> untyped
+
+  def existing_merge_request_path: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  # rubocop: disable CodeReuse/ActiveRecord
+  def merge_request_exists?: () -> untyped
+
+  def create_merge_request?: () -> untyped
+
+  def branch_name_or_ref: () -> untyped
+end

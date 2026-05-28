@@ -1,0 +1,33 @@
+module Groups
+  class AcceptingGroupTransfersFinder < Base
+    @current_user: untyped
+
+    @group_to_be_transferred: untyped
+
+    @params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped current_user, untyped group_to_be_transferred, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader group_to_be_transferred: untyped
+
+    attr_reader params: untyped
+
+    def find_groups: () -> untyped
+
+    def find_all_groups: () -> untyped
+
+    def groups_originating_from_group_shares_with_owner_access: () -> untyped
+
+    def exclude_groups: () -> untyped
+
+    def can_transfer_group?: () -> untyped
+  end
+end

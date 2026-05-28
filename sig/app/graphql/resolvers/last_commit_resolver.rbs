@@ -1,0 +1,9 @@
+module Resolvers
+  class LastCommitResolver < BaseResolver
+    # "container" will either be a Repository or a Tree, depending on which version of the
+    # path_last_commit.query.graphql query triggered this resolver.
+    alias container object
+
+    def resolve: (**untyped args) -> untyped
+  end
+end

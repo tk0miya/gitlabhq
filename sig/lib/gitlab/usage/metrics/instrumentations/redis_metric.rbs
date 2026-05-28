@@ -1,0 +1,38 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        # Usage example
+        #
+        # In metric YAML definition:
+        #
+        # instrumentation_class: RedisMetric
+        # options:
+        #   event: pushes
+        #   prefix: source_code
+        #
+        class RedisMetric < BaseMetric
+          include Gitlab::UsageDataCounters::RedisCounter
+
+          USAGE_PREFIX: "USAGE_"
+
+          OPTIONS_PREFIX_KEY: :prefix
+
+          def initialize: (untyped metric_definition) -> void
+
+          def validate_options!: () -> untyped
+
+          def metric_event: () -> untyped
+
+          def prefix: () -> untyped
+
+          def include_usage_prefix?: () -> untyped
+
+          def value: () -> untyped
+
+          def redis_key: () -> untyped
+        end
+      end
+    end
+  end
+end

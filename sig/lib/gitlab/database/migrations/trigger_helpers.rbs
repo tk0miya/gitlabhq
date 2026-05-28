@@ -1,0 +1,42 @@
+module Gitlab
+  module Database
+    module Migrations
+      module TriggerHelpers
+        # Installs triggers in a table that keep a new column in sync with an old
+        # one.
+        #
+        # table - The name of the table to install the trigger in.
+        # old_column - The name of the old column.
+        # new_column - The name of the new column.
+        # trigger_name - The name of the trigger to use (optional).
+        def install_rename_triggers: (untyped table, untyped old, untyped new, ?trigger_name: untyped?) -> untyped
+
+        # Removes the triggers used for renaming a column concurrently.
+        def remove_rename_triggers: (untyped table, untyped trigger) -> untyped
+
+        # Returns the (base) name to use for triggers when renaming columns.
+        def rename_trigger_name: (untyped table, untyped old, untyped new) -> untyped
+
+        # Installs a trigger in a table that assigns a sharding key from an associated table.
+        #
+        # table: The table to install the trigger in.
+        # sharding_key: The column to be assigned on `table`.
+        # parent_table: The associated table with the sharding key to be copied.
+        # parent_sharding_key: The sharding key on the parent table that will be copied to `sharding_key` on `table`.
+        # foreign_key: The column used to fetch the relevant record from `parent_table`.
+        def install_sharding_key_assignment_trigger: (**untyped args) -> untyped
+
+        # Removes trigger used for assigning sharding keys.
+        #
+        # table: The table to install the trigger in.
+        # sharding_key: The column to be assigned on `table`.
+        # parent_table: The associated table with the sharding key to be copied.
+        # parent_sharding_key: The sharding key on the parent table that will be copied to `sharding_key` on `table`.
+        # foreign_key: The column used to fetch the relevant record from `parent_table`.
+        def remove_sharding_key_assignment_trigger: (**untyped args) -> untyped
+
+        def check_trigger_permissions!: (untyped table) -> (nil | untyped)
+      end
+    end
+  end
+end

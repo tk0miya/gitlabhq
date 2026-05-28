@@ -1,0 +1,23 @@
+class CertificateFingerprintValidator < ActiveModel::EachValidator
+  FINGERPRINT_PATTERN: ::Regexp
+
+  SHA1_FINGERPRINT_PATTERN: ::Regexp
+
+  SHA256_FINGERPRINT_PATTERN: ::Regexp
+
+  MIN_LENGTH: 40
+
+  MAX_LENGTH: 95
+
+  def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+
+  private
+
+  def validate_sha1_or_sha256_pattern: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+  def validate_length_and_pattern: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+  def within_length_limits?: (untyped value) -> untyped
+
+  def matches_sha1_or_sha256_pattern?: (untyped value) -> untyped
+end

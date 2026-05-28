@@ -1,0 +1,15 @@
+module Gitlab
+  module Asciidoc
+    class Html5Converter
+      def convert_stem: (untyped node) -> (untyped | ::String)
+
+      def convert_inline_quoted: (untyped node) -> (untyped | ::String)
+
+      def convert_inline_anchor: (untyped node) -> untyped
+
+      private
+
+      def id_attribute: (untyped node) -> (::String | nil)
+    end
+  end
+end

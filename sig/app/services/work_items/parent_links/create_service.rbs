@@ -1,0 +1,15 @@
+module WorkItems
+  module ParentLinks
+    class CreateService < WorkItems::ParentLinks::BaseService
+      private
+
+      def relate_issuables: (untyped work_item) -> untyped
+
+      def extract_references: () -> untyped
+
+      def create_notes_and_resource_event: (untyped work_item, untyped link, untyped prev_parent) -> untyped
+
+      def after_create_for: (untyped link) -> untyped
+    end
+  end
+end

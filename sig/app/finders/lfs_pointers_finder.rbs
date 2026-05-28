@@ -1,0 +1,21 @@
+class LfsPointersFinder
+  @repository: untyped
+
+  @path: untyped
+
+  def initialize: (untyped repository, untyped path) -> void
+
+  def execute: () -> (::Array[untyped] | untyped)
+
+  private
+
+  attr_reader repository: untyped
+
+  attr_reader path: untyped
+
+  def ref: () -> untyped
+
+  def tree: () -> untyped
+
+  def current_blob: () -> untyped
+end

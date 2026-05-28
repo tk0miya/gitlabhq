@@ -1,0 +1,9 @@
+module Gitlab
+  module Database
+    module Type
+      class JsonbInteger < ActiveModel::Type::Value
+        def cast: (untyped value) -> untyped
+      end
+    end
+  end
+end

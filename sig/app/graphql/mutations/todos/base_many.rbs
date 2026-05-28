@@ -1,0 +1,25 @@
+module Mutations
+  module Todos
+    class BaseMany < ::Mutations::BaseMutation
+      MAX_UPDATE_AMOUNT: 100
+
+      def resolve: (ids: untyped, **untyped kwargs) -> { updated_ids: untyped, todos: untyped, errors: untyped }
+
+      private
+
+      def process_todos: (untyped todos) -> untyped
+
+      def todo_state_to_find: () -> untyped
+
+      def model_ids_of: (untyped ids) -> untyped
+
+      def raise_too_many_todos_requested_error: () -> untyped
+
+      def check_update_limit!: (amount: untyped) -> (untyped | nil)
+
+      def errors_on_objects: (untyped todos) -> untyped
+
+      def authorized_find_all_pending_by_current_user: (untyped ids) -> untyped
+    end
+  end
+end

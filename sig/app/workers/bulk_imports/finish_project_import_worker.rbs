@@ -1,0 +1,7 @@
+module BulkImports
+  class FinishProjectImportWorker
+    include ApplicationWorker
+
+    def perform: (untyped project_id) -> (nil | untyped)
+  end
+end

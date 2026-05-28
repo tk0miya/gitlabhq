@@ -1,0 +1,33 @@
+module ResourceEvents
+  class ChangeStateService
+    @user: untyped
+
+    @resource: untyped
+
+    @params: untyped
+
+    attr_reader resource: untyped
+
+    attr_reader user: untyped
+
+    def initialize: (user: untyped, resource: untyped) -> void
+
+    def execute: (untyped params) -> untyped
+
+    private
+
+    attr_reader params: untyped
+
+    def close_auto_resolve_prometheus_alert: () -> untyped
+
+    def close_after_error_tracking_resolve: () -> untyped
+
+    def state: () -> untyped
+
+    def mentionable_source: () -> untyped
+
+    def commit_id_of: (untyped mentionable_source) -> (nil | untyped)
+
+    def merge_request_id_of: (untyped mentionable_source) -> (nil | untyped)
+  end
+end

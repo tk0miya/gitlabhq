@@ -1,0 +1,15 @@
+module Ci
+  module TrackEnvironmentUsage
+    extend ActiveSupport::Concern
+
+    def track_deployment_usage: () -> (nil | untyped)
+
+    def track_verify_environment_usage: () -> (nil | untyped)
+
+    def verifies_environment?: () -> untyped
+
+    def count_user_deployment?: () -> untyped
+
+    def deployment_name?: () -> untyped
+  end
+end

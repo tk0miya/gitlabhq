@@ -1,0 +1,40 @@
+module DesignManagement
+  class DesignsFinder
+    @issue: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Allowable
+
+    include FinderMethods
+
+    # Params:
+    # ids: integer[]
+    # filenames: string[]
+    # visible_at_version: ?version
+    # filenames: String[]
+    def initialize: (untyped issue, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader issue: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def init_collection: () -> untyped
+
+    # Returns all designs that existed at a particular design version,
+    # where `nil` means `at-current-version`.
+    def by_visible_at_version: (untyped items) -> untyped
+
+    def by_filename: (untyped items) -> untyped
+
+    def by_id: (untyped items) -> untyped
+  end
+end

@@ -1,0 +1,31 @@
+module Jira
+  module Requests
+    module Issues
+      class ListService < Base
+        @jql: untyped
+
+        @per_page: untyped
+
+        extend ::Gitlab::Utils::Override
+
+        PER_PAGE: 100
+
+        DEFAULT_FIELDS: untyped
+
+        def initialize: (untyped jira_integration, ?::Hash[untyped, untyped] params) -> void
+
+        attr_reader jql: untyped
+
+        attr_reader per_page: untyped
+
+        def build_service_response: (untyped response) -> untyped
+
+        def build_success_response: (untyped response) -> untyped
+
+        def map_issues: (untyped response) -> untyped
+
+        def empty_payload: () -> { issues: ::Array[untyped], is_last: true }
+      end
+    end
+  end
+end

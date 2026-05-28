@@ -1,0 +1,29 @@
+module IssueLinks
+  class CreateService < IssuableLinks::CreateService
+    @linkable_issuables: untyped
+
+    @related_issues: untyped
+
+    @readonly_issuables: untyped
+
+    include IncidentManagement::UsageData
+
+    def success: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def linkable_issuables: (untyped issues) -> untyped
+
+    def previous_related_issuables: () -> untyped
+
+    private
+
+    def readonly_issuables: (untyped issuables) -> untyped
+
+    def track_event: () -> untyped
+
+    def link_class: () -> untyped
+
+    def issuables_no_permission_error_message: () -> untyped
+
+    def extractor_context: () -> ({ group: untyped } | ::Hash[untyped, untyped])
+  end
+end

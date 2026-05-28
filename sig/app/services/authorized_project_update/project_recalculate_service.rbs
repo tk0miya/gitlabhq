@@ -1,0 +1,34 @@
+module AuthorizedProjectUpdate
+  class ProjectRecalculateService
+    @project: untyped
+
+    # Service for refreshing all the authorizations to a particular project.
+    include Gitlab::Utils::StrongMemoize
+
+    BATCH_SIZE: 1000
+
+    def initialize: (untyped project) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    def needs_refresh?: () -> untyped
+
+    def current_authorizations: () -> untyped
+
+    def fresh_authorizations: () -> untyped
+
+    def user_ids_to_remove: () -> untyped
+
+    def authorizations_to_create: () -> untyped
+
+    def refresh_authorizations: () -> untyped
+
+    def apply_scopes: (untyped project_authorizations) -> untyped
+
+    def effective_access_levels: () -> untyped
+  end
+end

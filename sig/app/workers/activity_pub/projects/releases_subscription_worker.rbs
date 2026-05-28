@@ -1,0 +1,11 @@
+module ActivityPub
+  module Projects
+    class ReleasesSubscriptionWorker
+      include ApplicationWorker
+
+      def perform: (untyped subscription_id) -> (nil | untyped)
+
+      def needs_resolving?: (untyped subscription) -> untyped
+    end
+  end
+end

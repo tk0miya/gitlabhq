@@ -1,0 +1,17 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Events
+        class Reopened < BaseImporter
+          def execute: (untyped issue_event) -> untyped
+
+          private
+
+          def create_event: (untyped issue_event) -> (nil | untyped)
+
+          def create_state_event: (untyped issue_event) -> untyped
+        end
+      end
+    end
+  end
+end

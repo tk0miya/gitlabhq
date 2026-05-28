@@ -1,0 +1,53 @@
+module Gitlab
+  module Auth
+    module Ldap
+      class Adapter
+        @provider: untyped
+
+        @ldap: untyped
+
+        SEARCH_RETRY_FACTOR: ::Array[1 | 2 | 3]
+
+        MAX_SEARCH_RETRIES: untyped
+
+        NON_ERROR_LDAP_RESPONSE_CODES: ::Array[10 | 32]
+
+        attr_reader provider: untyped
+
+        attr_reader ldap: untyped
+
+        def self.open: (untyped provider) { (untyped) -> untyped } -> untyped
+
+        def self.config: (untyped provider) -> untyped
+
+        def initialize: (untyped provider, ?untyped? ldap) -> void
+
+        def config: () -> untyped
+
+        def users: (untyped fields, untyped value, ?untyped? limit) -> untyped
+
+        def user: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def dn_matches_filter?: (untyped dn, untyped filter) -> untyped
+
+        def ldap_search: (*untyped args) -> untyped
+
+        private
+
+        def timeout_time: (untyped retry_number) -> untyped
+
+        def users_search: (untyped options) -> untyped
+
+        def user_options: (untyped fields, untyped value, untyped limit) -> untyped
+
+        def user_filter: (?untyped? filter) -> untyped
+
+        def connection_error_message: (untyped exception) -> ::String
+
+        def renew_connection_adapter: () -> untyped
+
+        def check_empty_response_code: (untyped response) -> (nil | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module WorkItems
+  module Widgets
+    class StartAndDueDate < Base
+      include ::Gitlab::Utils::StrongMemoize
+
+      def self.quick_action_commands: () -> ::Array[:due | :remove_due_date]
+
+      def self.quick_action_params: () -> ::Array[:due_date]
+
+      def self.sorting_keys: () -> { start_date_asc: { description: "Start date by ascending order.", experiment: { milestone: "17.9" } }, start_date_desc: { description: "Start date by descending order.", experiment: { milestone: "17.9" } }, due_date_asc: { description: "Due date by ascending order.", experiment: { milestone: "17.9" } }, due_date_desc: { description: "Due date by descending order.", experiment: { milestone: "17.9" } } }
+
+      def self.process_quick_action_param: (untyped param_name, untyped value) -> (untyped | { due_date: untyped, is_fixed: true })
+
+      # rubocop:disable Gitlab/NoCodeCoverageComment -- overridden and tested in EE
+      # :nocov:
+      def fixed?: () -> untyped
+
+      def can_rollup?: () -> false
+
+      def start_date: () -> untyped
+
+      def due_date: () -> untyped
+
+      private
+
+      def rollupable_dates: () -> untyped
+
+      def dates_source_present?: () -> (false | untyped)
+    end
+  end
+end

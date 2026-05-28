@@ -1,0 +1,11 @@
+module ResourceEvents
+  class SyntheticMilestoneNotesBuilderService < BaseSyntheticNotesBuilderService
+    private
+
+    def synthetic_notes: () -> untyped
+
+    def milestone_change_events: () -> (::Array[untyped] | untyped)
+
+    def table_name: () -> "resource_milestone_events"
+  end
+end

@@ -1,0 +1,71 @@
+module Gitlab
+  module Database
+    module Partitioning
+      class IntRangeStrategy < BaseStrategy
+        @model: untyped
+
+        @partitioning_key: untyped
+
+        @partition_size: untyped
+
+        @analyze_interval: untyped
+
+        @sequence_name: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader model: untyped
+
+        attr_reader partitioning_key: untyped
+
+        attr_reader partition_size: untyped
+
+        attr_reader analyze_interval: untyped
+
+        # We create this many partitions in the future
+        HEADROOM: 6
+
+        MIN_ID: 1
+
+        def initialize: (untyped model, untyped partitioning_key, partition_size: untyped, ?analyze_interval: untyped?, ?sequence_name: untyped?) -> void
+
+        def sequence_name: () -> untyped
+
+        def current_partitions: () -> untyped
+
+        # Check the currently existing partitions and determine which ones are missing
+        def missing_partitions: () -> untyped
+
+        def extra_partitions: () -> ::Array[untyped]
+
+        def after_adding_partitions: () -> untyped
+
+        def validate_and_fix: () -> untyped
+
+        private
+
+        def local_partitions: () -> untyped
+
+        def are_last_partitions_empty?: (untyped number_of_partitions) -> untyped
+
+        def desired_partitions: () -> untyped
+
+        def create_int_range_partitions: (untyped start_id, untyped end_id) -> untyped
+
+        def min_id: () -> untyped
+
+        def max_value: () -> (nil | untyped)
+
+        def max_id: () -> untyped
+
+        def are_partitions_syncronized?: () -> untyped
+
+        def partition_name: (untyped lower_bound) -> ::String
+
+        def last_partition: () -> untyped
+
+        def partition_for: (upper_bound: untyped, lower_bound: untyped, partition_name: untyped) -> untyped
+      end
+    end
+  end
+end

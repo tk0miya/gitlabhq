@@ -1,0 +1,19 @@
+module Peek
+  module Views
+    class BulletDetailed < DetailedView
+      WARNING_MESSAGE: "Unoptimized queries detected"
+
+      def key: () -> "bullet"
+
+      def results: () -> (::Hash[untyped, untyped] | { calls: untyped, details: untyped, warnings: ::Array[untyped] })
+
+      private
+
+      def details: () -> untyped
+
+      def calls: () -> untyped
+
+      def notifications: () -> untyped
+    end
+  end
+end

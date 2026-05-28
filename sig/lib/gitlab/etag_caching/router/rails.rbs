@@ -1,0 +1,31 @@
+module Gitlab
+  module EtagCaching
+    module Router
+      class Rails
+        extend EtagCaching::Router::Helpers
+
+        # We enable an ETag for every request matching the regex.
+        # To match a regex the path needs to match the following:
+        #   - Don't contain a reserved word (expect for the words used in the
+        #     regex itself)
+        #   - Ending in `issues/id`/realtime_changes` for the `issue_title` route
+        USED_IN_ROUTES: ::Array["noteable" | "issue" | "issues" | "realtime_changes" | "commit" | "pipelines" | "merge_requests" | "builds" | "new" | "environments"]
+
+        RESERVED_WORDS: untyped
+
+        RESERVED_WORDS_REGEX: untyped
+
+        RESERVED_WORDS_PREFIX: ::String
+
+        ROUTES: untyped
+
+        # Overridden in EE to add more routes
+        def self.all_routes: () -> untyped
+
+        def self.match: (untyped request) -> untyped
+
+        def self.cache_key: (untyped request) -> untyped
+      end
+    end
+  end
+end

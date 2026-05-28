@@ -1,0 +1,9 @@
+module CloudConnector
+  class ServiceAccessToken < ApplicationRecord
+    include Gitlab::EncryptedAttribute
+
+    def expired?: () -> untyped
+
+    def refresh_required?: () -> untyped
+  end
+end

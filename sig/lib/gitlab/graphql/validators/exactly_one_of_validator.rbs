@@ -1,0 +1,13 @@
+module Gitlab
+  module Graphql
+    module Validators
+      class ExactlyOneOfValidator < GraphQL::Schema::Validator
+        @mutually_exclusive_arg_names: untyped
+
+        def initialize: (untyped mutually_exclusive_arg_names, **untyped default_options) -> void
+
+        def validate: (untyped _object, untyped _context, untyped args) -> (nil | ::String)
+      end
+    end
+  end
+end

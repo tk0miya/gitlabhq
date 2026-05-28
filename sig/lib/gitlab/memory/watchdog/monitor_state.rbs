@@ -1,0 +1,51 @@
+module Gitlab
+  module Memory
+    class Watchdog
+      class MonitorState
+        @monitor: untyped
+
+        @max_strikes: untyped
+
+        @monitor_name: untyped
+
+        @strikes: untyped
+
+        class Result
+          @strikes_exceeded: untyped
+
+          @threshold_violated: untyped
+
+          @monitor_name: untyped
+
+          @payload: untyped
+
+          attr_reader payload: untyped
+
+          attr_reader monitor_name: untyped
+
+          def initialize: (strikes_exceeded: untyped, threshold_violated: untyped, monitor_name: untyped, payload: untyped) -> void
+
+          def strikes_exceeded?: () -> untyped
+
+          def threshold_violated?: () -> untyped
+        end
+
+        def initialize: (untyped monitor, max_strikes: untyped, monitor_name: untyped) -> void
+
+        def call: () -> untyped
+
+        private
+
+        def build_result: (untyped monitor_result) -> untyped
+
+        def payload: () -> { memwd_max_strikes: untyped, memwd_cur_strikes: untyped }
+
+        def strikes_exceeded?: () -> untyped
+
+        def issue_strike: () -> untyped
+
+        def reset_strikes: () -> untyped
+      end
+    end
+  end
+end

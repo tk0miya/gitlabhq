@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class NoPipeline < Chain::Base
+          include Chain::Helpers
+
+          def perform!: () -> (nil | untyped)
+
+          def break?: () -> untyped
+
+          private
+
+          def no_pipeline?: () -> untyped
+        end
+      end
+    end
+  end
+end

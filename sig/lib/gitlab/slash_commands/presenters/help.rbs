@@ -1,0 +1,27 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      class Help < Presenters::Base
+        @project: untyped
+
+        @commands: untyped
+
+        @params: untyped
+
+        def initialize: (untyped project, untyped commands, ?::Hash[untyped, untyped] params) -> void
+
+        def present: (untyped trigger, untyped text) -> untyped
+
+        private
+
+        def help_message: (untyped trigger, untyped text) -> (::String | untyped)
+
+        def help_footer: () -> untyped
+
+        def project_info: () -> ::String
+
+        def full_commands_message: (untyped trigger) -> ::String
+      end
+    end
+  end
+end

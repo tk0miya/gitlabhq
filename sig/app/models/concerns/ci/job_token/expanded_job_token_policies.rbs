@@ -1,0 +1,13 @@
+module Ci
+  module JobToken
+    module ExpandedJobTokenPolicies
+      extend ActiveSupport::Concern
+
+      ADMIN_POLICY_PREFIX: "admin"
+
+      READ_POLICY_PREFIX: "read"
+
+      def expanded_job_token_policies: () -> untyped
+    end
+  end
+end

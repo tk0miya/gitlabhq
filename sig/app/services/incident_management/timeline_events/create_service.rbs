@@ -1,0 +1,59 @@
+module IncidentManagement
+  module TimelineEvents
+    DEFAULT_ACTION: "comment"
+
+    DEFAULT_EDITABLE: false
+
+    DEFAULT_AUTO_CREATED: false
+
+    class CreateService < TimelineEvents::BaseService
+      @project: untyped
+
+      @incident: untyped
+
+      @user: untyped
+
+      @params: untyped
+
+      @auto_created: untyped
+
+      def initialize: (untyped incident, untyped user, untyped params) -> void
+
+      def self.create_incident: (untyped incident, untyped user) -> untyped
+
+      def self.reopen_incident: (untyped incident, untyped user) -> untyped
+
+      def self.resolve_incident: (untyped incident, untyped user) -> untyped
+
+      def self.change_incident_status: (untyped incident, untyped user, untyped escalation_status) -> untyped
+
+      def self.change_severity: (untyped incident, untyped user) -> untyped
+
+      def self.change_labels: (untyped incident, untyped user, ?added_labels: untyped, ?removed_labels: untyped) -> (nil | untyped)
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader user: untyped
+
+      attr_reader incident: untyped
+
+      attr_reader params: untyped
+
+      attr_reader auto_created: untyped
+
+      def allowed?: () -> (true | untyped)
+
+      def add_system_note: (untyped timeline_event) -> (nil | untyped)
+
+      def validation_context: () -> (:user_input | nil)
+
+      def create_timeline_event_tag_links: (untyped timeline_event, untyped tag_names) -> (nil | untyped)
+
+      def validate_tags: (untyped project, untyped tag_names) -> (::Array[untyped] | untyped)
+    end
+  end
+end

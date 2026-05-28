@@ -1,0 +1,89 @@
+module Gitlab
+  # A GitLab-rails specific accessor for `Labkit::Logging::ApplicationContext`
+  class ApplicationContext
+    @set_values: untyped
+
+    include Gitlab::Utils::LazyAttributes
+
+    include Gitlab::Utils::StrongMemoize
+
+    Attribute: untyped
+
+    LOG_KEY: untyped
+
+    KNOWN_KEYS: ::Array[:organization_id | :user | :user_id | untyped | :scoped_user | :scoped_user_id | :project | :root_namespace | :client_id | :caller_id | :remote_ip | :job_id | :pipeline_id | :related_class | :feature_category | :artifact_size | :artifact_used_cdn | :artifacts_dependencies_size | :artifacts_dependencies_count | :root_caller_id | :merge_action_status | :bulk_import_entity_id | :sidekiq_destination_shard_redis | :auth_fail_reason | :auth_fail_token_id | :auth_fail_requested_scopes | :http_router_rule_action | :http_router_rule_type | :kubernetes_agent_id | :auth_fail_token_type | :auth_fail_auth_header_type]
+
+    WEB_ONLY_KEYS: ::Array[:auth_fail_reason | :auth_fail_token_id | :auth_fail_requested_scopes | :http_router_rule_action | :http_router_rule_type | :auth_fail_token_type | :auth_fail_auth_header_type]
+
+    APPLICATION_ATTRIBUTES: ::Array[untyped]
+
+    def self.known_keys: () -> untyped
+
+    # Sidekiq jobs may be deleted by matching keys in ApplicationContext.
+    # Filter out keys that aren't available in Sidekiq jobs.
+    def self.allowed_job_keys: () -> untyped
+
+    def self.application_attributes: () -> untyped
+
+    def self.with_context: (untyped args) { (?) -> untyped } -> untyped
+
+    def self.with_raw_context: (?::Hash[untyped, untyped] attributes) { (?) -> untyped } -> untyped
+
+    def self.push: (untyped args) -> untyped
+
+    def self.current: () -> untyped
+
+    def self.current_context_include?: (untyped attribute_name) -> untyped
+
+    def self.current_context_attribute: (untyped attribute_name) -> untyped
+
+    def initialize: (**untyped args) -> void
+
+    # rubocop: disable Metrics/AbcSize
+    # rubocop: disable Metrics/CyclomaticComplexity -- inherently leads to higher cyclomatic due to
+    #   all the conditional assignments, the added complexity from adding more abstractions like
+    #   `assign_hash_if_value` is not worth the tradeoff.
+    # rubocop: disable Metrics/PerceivedComplexity -- same as above
+    def to_lazy_hash: () -> untyped
+
+    def use: () { () -> untyped } -> untyped
+
+    private
+
+    attr_reader set_values: untyped
+
+    def set_attr_readers: () -> untyped
+
+    def assign_hash_if_value: (untyped hash, untyped attribute_name) -> untyped
+
+    def assign_attributes: (untyped values) -> untyped
+
+    def project_path: () -> untyped
+
+    def username: () -> untyped
+
+    def user_id: () -> untyped
+
+    def root_namespace_path: () -> untyped
+
+    def include_namespace?: () -> untyped
+
+    def include_client?: () -> (false | untyped)
+
+    def include_user?: () -> untyped
+
+    def include_scoped_user?: () -> untyped
+
+    def include_project?: () -> untyped
+
+    def client: () -> ::String
+
+    def runner_project: () -> untyped
+
+    def runner_group: () -> untyped
+
+    def job_project: () -> untyped
+
+    def job_user: () -> untyped
+  end
+end

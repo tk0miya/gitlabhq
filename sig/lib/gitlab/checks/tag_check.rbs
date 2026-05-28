@@ -1,0 +1,37 @@
+module Gitlab
+  module Checks
+    class TagCheck < BaseSingleChecker
+      ERROR_MESSAGES: { change_existing_tags: "You are not allowed to change existing tags on this project.", update_protected_tag: "Protected tags cannot be updated.", delete_protected_tag: "You are not allowed to delete protected tags from this project. Only a project maintainer or owner can delete a protected tag.", delete_protected_tag_non_web: "You can only delete protected tags using the web interface.", create_protected_tag: "You are not allowed to create this tag as it is protected.", default_branch_collision: "You cannot use default branch name to create a tag", prohibited_tag_name: "You cannot create a tag with a prohibited pattern.", prohibited_sha_tag_name: "You cannot create a tag with a SHA-1 or SHA-256 tag name.", prohibited_tag_name_encoding: "Tag names must be valid when converted to UTF-8 encoding" }
+
+      LOG_MESSAGES: { tag_checks: "Checking if you are allowed to change existing tags...", default_branch_collision_check: "Checking if you are providing a valid tag name...", protected_tag_checks: "Checking if you are creating, updating or deleting a protected tag..." }
+
+      STARTS_WITH_SHA_REGEX: untyped
+
+      def validate!: () -> (nil | untyped)
+
+      private
+
+      def tag_checks: () -> (nil | untyped)
+
+      def default_branch_collision_check: () -> (nil | untyped)
+
+      def prohibited_tag_checks: () -> (nil | untyped)
+
+      def protected_tag_checks: () -> (nil | untyped)
+
+      def validate_encoding!: () -> (nil | untyped)
+
+      def validate_valid_tag_name!: () -> (nil | untyped)
+
+      def validate_tag_name_not_fully_qualified!: () -> (nil | untyped)
+
+      def validate_protected_tag_update!: () -> (nil | untyped)
+
+      def validate_protected_tag_deletion!: () -> (nil | untyped)
+
+      def validate_protected_tag_creation!: () -> (nil | untyped)
+
+      def validate_tag_name_not_sha_like!: () -> (nil | untyped)
+    end
+  end
+end

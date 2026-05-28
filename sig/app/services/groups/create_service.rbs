@@ -1,0 +1,53 @@
+module Groups
+  class CreateService < Groups::BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    @chat_team: untyped
+
+    @group: untyped
+
+    def initialize: (untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def valid?: () -> untyped
+
+    def error_response: () -> untyped
+
+    def create_chat_team: () -> (nil | untyped)
+
+    def build_group: () -> untyped
+
+    def create_group: () -> untyped
+
+    def after_build_hook: () -> untyped
+
+    def after_successful_creation_hook: () -> nil
+
+    def remove_unallowed_params: () -> untyped
+
+    def valid_to_create_chat_team?: () -> untyped
+
+    def valid_user_permissions?: () -> (false | true)
+
+    def can_create_group_in_organization?: () -> (true | false)
+
+    def matches_parent_organization?: () -> (true | false)
+
+    def organization_setting_valid?: () -> (true | untyped)
+
+    def valid_visibility_level?: () -> (true | false)
+
+    def set_visibility_level: () -> (nil | untyped)
+
+    def set_jwt_ci_cd_job_token_enabled: () -> (nil | untyped)
+
+    def inherit_group_shared_runners_settings: () -> (nil | untyped)
+
+    def set_organization: () -> (untyped | untyped | nil)
+  end
+end

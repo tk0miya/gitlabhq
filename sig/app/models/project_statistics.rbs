@@ -1,0 +1,71 @@
+class ProjectStatistics < ApplicationRecord
+  include CounterAttribute
+
+  COLUMNS_TO_REFRESH: ::Array[:repository_size | :wiki_size | :lfs_objects_size | :commit_count | :snippets_size | :uploads_size | :container_registry_size]
+
+  INCREMENTABLE_COLUMNS: ::Array[:pipeline_artifacts_size | :snippets_size]
+
+  NAMESPACE_RELATABLE_COLUMNS: ::Array[:repository_size | :wiki_size | :lfs_objects_size | :uploads_size | :container_registry_size]
+
+  STORAGE_SIZE_COMPONENTS: ::Array[:repository_size | :wiki_size | :lfs_objects_size | :build_artifacts_size | :packages_size | :snippets_size | :uploads_size]
+
+  def total_repository_size: () -> untyped
+
+  def refresh!: (?only: untyped) -> (nil | untyped)
+
+  def update_commit_count: () -> untyped
+
+  def update_repository_size: () -> untyped
+
+  def update_wiki_size: () -> untyped
+
+  def update_snippets_size: () -> untyped
+
+  def update_lfs_objects_size: () -> untyped
+
+  def update_uploads_size: () -> untyped
+
+  def update_container_registry_size: () -> untyped
+
+  # `wiki_size` and `snippets_size` have no default value in the database
+  # and the column can be nil.
+  # This means that, when the columns were added, all rows had nil
+  # values on them.
+  # Therefore, any call to any of those methods will return nil instead of 0.
+  #
+  # These two methods provide consistency and avoid returning nil.
+  def wiki_size: () -> untyped
+
+  def snippets_size: () -> untyped
+
+  # Since this incremental update method does not update the storage_size directly,
+  # we have to update the storage_size separately in an after_commit action.
+  def refresh_storage_size!: () -> untyped
+
+  # For counter attributes, storage_size will be refreshed after the counter is flushed,
+  # through counter_attribute_after_commit
+  #
+  # For non-counter attributes, storage_size is updated depending on key => [columns] in INCREMENTABLE_COLUMNS
+  def self.increment_statistic: (untyped project, untyped key, untyped increment) -> (nil | untyped)
+
+  def self.bulk_increment_statistic: (untyped project, untyped key, untyped increments) -> (nil | untyped)
+
+  def increment_statistic: (untyped key, untyped increment) -> untyped
+
+  def bulk_increment_statistic: (untyped key, untyped increments) -> untyped
+
+  # Build artifacts & packages are not included in the project export
+  def export_size: () -> untyped
+
+  private
+
+  def incrementable_attribute?: (untyped key) -> untyped
+
+  def storage_size_components: () -> untyped
+
+  def storage_size_sum: () -> untyped
+
+  def schedule_namespace_aggregation_worker: () -> untyped
+
+  def storage_size_components_changed?: () -> untyped
+end

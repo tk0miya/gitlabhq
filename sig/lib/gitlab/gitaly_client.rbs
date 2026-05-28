@@ -1,0 +1,213 @@
+module Gitlab
+  module GitalyClient
+    self.@channels: untyped
+
+    class TooManyInvocationsError < StandardError
+      @call_site: untyped
+
+      @invocation_count: untyped
+
+      @max_call_stack: untyped
+
+      attr_reader call_site: untyped
+
+      attr_reader invocation_count: untyped
+
+      attr_reader max_call_stack: untyped
+
+      def initialize: (untyped call_site, untyped invocation_count, untyped max_call_stack, untyped most_invoked_stack) -> void
+    end
+
+    SERVER_VERSION_FILE: "GITALY_SERVER_VERSION"
+
+    MAXIMUM_GITALY_CALLS: 30
+
+    CLIENT_NAME: untyped
+
+    GITALY_METADATA_FILENAME: ".gitaly-metadata"
+
+    CLIENT_RETRY_DEFAULT_MAX_ATTEMPTS: 4
+
+    CLIENT_RETRY_DEFAULT_MAX_BACKOFF: ::Float
+
+    CLIENT_RETRY_DEFAULT_INITIAL_BACKOFF: ::Float
+
+    MUTEX: untyped
+
+    def self.stub: (untyped name, untyped storage) -> untyped
+
+    def self.with_context: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def self.interceptors: () -> ::Array[untyped]
+
+    def self.retry_policy: () -> { maxAttempts: untyped, initialBackoff: ::String, maxBackoff: untyped, backoffMultiplier: 2, retryableStatusCodes: ::Array["UNAVAILABLE" | "ABORTED"] }
+
+    def self.channel_args: (?untyped? storage) -> untyped
+
+    def self.stub_creds: (untyped storage) -> untyped
+
+    def self.stub_class: (untyped name) -> untyped
+
+    def self.stub_address: (untyped storage) -> untyped
+
+    # Cache gRPC servers by storage. All the client stubs in the same process can share the underlying connection to the
+    # same host thanks to HTTP2 framing protocol that gRPC is built on top. This method is not thread-safe. It is
+    # intended to be a part of `stub`, method behind a mutex protection.
+    def self.create_channel: (untyped storage) -> untyped
+
+    def self.clear_stubs!: () -> untyped
+
+    def self.random_storage: () -> untyped
+
+    def self.address: (untyped storage) -> untyped
+
+    def self.address_metadata: (untyped storage) -> untyped
+
+    def self.connection_data: (untyped storage) -> { "address" => untyped, "token" => untyped }
+
+    # All Gitaly RPC call sites should use GitalyClient.call. This method
+    # makes sure that per-request authentication headers are set.
+    #
+    # This method optionally takes a block which receives the keyword
+    # arguments hash 'kwargs' that will be passed to gRPC. This allows the
+    # caller to modify or augment the keyword arguments. The block must
+    # return a hash.
+    #
+    # For example:
+    #
+    # GitalyClient.call(storage, service, rpc, request) do |kwargs|
+    #   kwargs.merge(deadline: Time.now + 10)
+    # end
+    #
+    # The optional remote_storage keyword argument is used to enable
+    # inter-gitaly calls. Say you have an RPC that needs to pull data from
+    # one repository to another. For example, to fetch a branch from a
+    # (non-deduplicated) fork into the fork parent. In that case you would
+    # send an RPC call to the Gitaly server hosting the fork parent, and in
+    # the request, you would tell that Gitaly server to pull Git data from
+    # the fork. How does that Gitaly server connect to the Gitaly server the
+    # forked repo lives on? This is the problem `remote_storage:` solves: it
+    # adds address and authentication information to the call, as gRPC
+    # metadata (under the `gitaly-servers` header). The request would say
+    # "pull from repo X on gitaly-2". In the Ruby code you pass
+    # `remote_storage: 'gitaly-2'`. And then the metadata would say
+    # "gitaly-2 is at network address tcp://10.0.1.2:8075".
+    #
+    def self.call: (untyped storage, untyped service, untyped rpc, untyped request, ?remote_storage: untyped?, ?timeout: untyped, ?gitaly_context: ::Hash[untyped, untyped]) { (?) -> untyped } -> untyped
+
+    def self.execute: (untyped storage, untyped service, untyped rpc, untyped request, remote_storage: untyped, timeout: untyped, ?gitaly_context: ::Hash[untyped, untyped]) ?{ (untyped) -> untyped } -> untyped
+
+    def self.query_time: () -> untyped
+
+    def self.add_query_time: (untyped duration) -> (nil | untyped)
+
+    # For some time related tasks we can't rely on `Time.now` since it will be
+    # affected by Timecop in some tests, and the clock of some gitaly-related
+    # components (grpc's c-core and gitaly server) use system time instead of
+    # timecop's time, so tests will fail.
+    # `Time.at(Process.clock_gettime(Process::CLOCK_REALTIME))` will circumvent
+    # timecop.
+    def self.real_time: () -> untyped
+
+    def self.authorization_token: (untyped storage) -> ::String
+
+    def self.request_kwargs: (untyped storage, timeout: untyped, ?remote_storage: untyped?, ?gitaly_context: ::Hash[untyped, untyped]) -> { metadata: untyped, deadline: untyped }
+
+    # The GitLab `internal/allowed/` API sets the :gitlab_git_relative_path
+    # variable. This provides the repository relative path which can be used to
+    # locate snapshot repositories in Gitaly which act as a quarantine repository
+    # until a transaction is committed.
+    def self.fetch_relative_path: () -> (nil | untyped)
+
+    # Gitlab::Git::HookEnv will set the :gitlab_git_env variable in case we're
+    # running in the context of a Gitaly hook call, which may make use of
+    # quarantined object directories. We thus need to pass along the path of
+    # the quarantined object directory to Gitaly, otherwise it won't be able to
+    # find these quarantined objects. Given that the quarantine directory is
+    # generated with a random name, they'll have different names when multiple
+    # Gitaly nodes take part in a single transaction. As a result, we are
+    # forced to route all requests to the primary node which has injected the
+    # quarantine object directory to us.
+    def self.route_to_primary: () -> (::Hash[untyped, untyped] | { "gitaly-route-repository-accessor-policy" => "primary-only" })
+
+    def self.request_deadline: (untyped timeout) -> ({ deadline: untyped } | { deadline: untyped, deadline_type: untyped })
+
+    def self.session_id: () -> untyped
+
+    def self.token: (untyped storage) -> untyped
+
+    # Ensures that Gitaly is not being abuse through n+1 misuse etc
+    def self.enforce_gitaly_request_limits: (untyped call_site) -> (nil | untyped)
+
+    def self.enforce_gitaly_request_limits?: () -> (false | true | untyped)
+
+    def self.allow_n_plus_1_calls: () { () -> untyped } -> untyped
+
+    # Normally a FindCommit RPC will cache the commit with its SHA
+    # instead of a ref name, since it's possible the branch is mutated
+    # afterwards. However, for read-only requests that never mutate the
+    # branch, this method allows caching of the ref name directly.
+    def self.allow_ref_name_caching: () { () -> untyped } -> untyped
+
+    def self.ref_name_caching_allowed?: () -> untyped
+
+    def self.get_call_count: (untyped key) -> untyped
+
+    def self.increment_call_count: (untyped key) -> untyped
+
+    def self.decrement_call_count: (untyped key) -> (nil | untyped)
+
+    # Returns the of the number of Gitaly calls made for this request
+    def self.get_request_count: () -> untyped
+
+    def self.reset_counts: () -> (nil | untyped)
+
+    def self.add_call_details: (untyped details) -> untyped
+
+    def self.list_call_details: () -> (::Array[untyped] | untyped)
+
+    def self.expected_server_version: () -> untyped
+
+    def self.timestamp: (untyped time) -> untyped
+
+    # The default timeout on all Gitaly calls
+    def self.default_timeout: () -> untyped
+
+    def self.fast_timeout: () -> untyped
+
+    def self.medium_timeout: () -> untyped
+
+    def self.long_timeout: () -> untyped
+
+    def self.filesystem_id: (untyped storage) -> untyped
+
+    def self.filesystem_disk_available: (untyped storage) -> untyped
+
+    def self.filesystem_disk_used: (untyped storage) -> untyped
+
+    def self.timeout: (untyped timeout_name) -> untyped
+
+    # Count a stack. Used for n+1 detection
+    def self.count_stack: () -> (nil | untyped)
+
+    # Returns a count for the stack which called Gitaly the most times. Used for n+1 detection
+    def self.max_call_count: () -> (0 | untyped)
+
+    # Returns the stacks that calls Gitaly the most times. Used for n+1 detection
+    def self.max_stacks: () -> (nil | untyped)
+
+    def self.decode_detailed_error: (untyped err) -> untyped
+
+    # This method attempts to unwrap a detailed error from a Gitaly RPC error.
+    # It first decodes the detailed error using decode_detailed_error. If successful,
+    # it tries to extract the unwrapped error by calling the method named by the
+    # error attribute on the decoded error object.
+    def self.unwrap_detailed_error: (untyped err) -> untyped
+
+    def self.with_feature_flag_actors: (?repository: untyped?, ?user: untyped?, ?project: untyped?, ?group: untyped?) { () -> untyped } -> untyped
+
+    def self.feature_flag_actors: () -> untyped
+
+    def self.raise_if_concurrent_ruby!: () -> untyped
+  end
+end

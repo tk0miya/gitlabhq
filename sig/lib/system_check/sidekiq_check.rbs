@@ -1,0 +1,18 @@
+module SystemCheck
+  # Used by gitlab:sidekiq:check rake task
+  class SidekiqCheck < BaseCheck
+    SYSTEMD_UNIT_PATH: "/run/systemd/units/invocation:gitlab-sidekiq.service"
+
+    def multi_check: () -> untyped
+
+    private
+
+    def check_sidekiq_running: () -> untyped
+
+    def only_one_sidekiq_running: () -> (nil | untyped)
+
+    def sidekiq_worker_process_count: () -> untyped
+
+    def sidekiq_cluster_process_count: () -> untyped
+  end
+end

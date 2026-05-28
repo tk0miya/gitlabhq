@@ -1,0 +1,31 @@
+module Projects
+  module ImportExport
+    class ImportCompletionNotificationWorker
+      @project: untyped
+
+      @user_mapping_enabled: untyped
+
+      @notify_group_owners: untyped
+
+      @safe_import_url: untyped
+
+      include ApplicationWorker
+
+      attr_reader project: untyped
+
+      attr_reader user_mapping_enabled: untyped
+
+      attr_reader notify_group_owners: untyped
+
+      attr_reader safe_import_url: untyped
+
+      def perform: (untyped project_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+      private
+
+      def send_completion_notification: () -> untyped
+
+      def completion_notification_recipients: () -> untyped
+    end
+  end
+end

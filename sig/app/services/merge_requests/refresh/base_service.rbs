@@ -1,0 +1,11 @@
+module MergeRequests
+  module Refresh
+    class BaseService < MergeRequests::BaseService
+      @source_merge_requests: untyped
+
+      private
+
+      def merge_requests_for_source_branch: (?reload: bool) -> untyped
+    end
+  end
+end

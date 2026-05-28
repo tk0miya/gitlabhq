@@ -1,0 +1,9 @@
+module Mutations
+  module Labels
+    class Create < BaseMutation
+      include Mutations::ResolvesResourceParent
+
+      def resolve: (untyped args) -> { label: untyped, errors: untyped }
+    end
+  end
+end

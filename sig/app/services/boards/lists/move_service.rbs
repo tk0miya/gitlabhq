@@ -1,0 +1,35 @@
+module Boards
+  module Lists
+    class MoveService < Boards::BaseService
+      @board: untyped
+
+      @old_position: untyped
+
+      @new_position: untyped
+
+      def execute: (untyped list) -> (false | untyped)
+
+      private
+
+      attr_reader board: untyped
+
+      attr_reader old_position: untyped
+
+      attr_reader new_position: untyped
+
+      def valid_move?: () -> untyped
+
+      def max_position: () -> untyped
+
+      def reorder_intermediate_lists: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def decrement_intermediate_lists: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def increment_intermediate_lists: () -> untyped
+
+      def update_list_position: (untyped list) -> untyped
+    end
+  end
+end

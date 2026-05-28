@@ -1,0 +1,41 @@
+module Gitlab
+  module Ci
+    module Build
+      module Prerequisite
+        class KubernetesNamespace < Base
+          def unmet?: () -> untyped
+
+          def complete!: () -> (nil | untyped)
+
+          private
+
+          def missing_namespace?: () -> untyped
+
+          def deployment_cluster: () -> untyped
+
+          def environment: () -> untyped
+
+          def kubernetes_namespace: () -> untyped
+
+          def create_namespace: () -> (nil | untyped)
+
+          #
+          # A namespace can only be specified via gitlab-ci.yml
+          # for unmanaged clusters, as we currently have no way
+          # of preventing a job requesting a namespace it
+          # shouldn't have access to.
+          #
+          # To make this clear, we fail the build instead of
+          # silently using a namespace other than the one
+          # explicitly specified.
+          #
+          # Support for managed clusters will be added in
+          # https://gitlab.com/gitlab-org/gitlab/issues/38054
+          def conflicting_ci_namespace_requested?: (untyped namespace_record) -> untyped
+
+          def build_namespace_record: () -> untyped
+        end
+      end
+    end
+  end
+end

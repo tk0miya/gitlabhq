@@ -1,0 +1,117 @@
+# Gitlab::Access module
+#
+# Define allowed roles that can be used
+# in GitLab code to determine authorization level
+#
+module Gitlab
+  module Access
+    AccessDeniedError: untyped
+
+    NO_ACCESS: 0
+
+    MINIMAL_ACCESS: 5
+
+    GUEST: 10
+
+    PLANNER: 15
+
+    REPORTER: 20
+
+    SECURITY_MANAGER: 25
+
+    DEVELOPER: 30
+
+    MAINTAINER: 40
+
+    OWNER: 50
+
+    ADMIN: 60
+
+    # Branch protection settings
+    PROTECTION_NONE: 0
+
+    PROTECTION_DEV_CAN_PUSH: 1
+
+    PROTECTION_FULL: 2
+
+    PROTECTION_DEV_CAN_MERGE: 3
+
+    PROTECTION_DEV_CAN_INITIAL_PUSH: 4
+
+    # Default project creation level
+    NO_ONE_PROJECT_ACCESS: 0
+
+    MAINTAINER_PROJECT_ACCESS: 1
+
+    DEVELOPER_PROJECT_ACCESS: 2
+
+    ADMINISTRATOR_PROJECT_ACCESS: 3
+
+    OWNER_PROJECT_ACCESS: 4
+
+    # Default subgroup creation level
+    OWNER_SUBGROUP_ACCESS: 0
+
+    MAINTAINER_SUBGROUP_ACCESS: 1
+
+    def self.level_encompasses?: (current_access_level: untyped, level_to_assign: untyped) -> untyped
+
+    def self.all_values: () -> untyped
+
+    def self.all_keys: () -> untyped
+
+    def self.options: () -> untyped
+
+    def self.options_with_owner: () -> untyped
+
+    def self.options_with_none: () -> untyped
+
+    def self.option_descriptions: () -> untyped
+
+    def self.sym_options: () -> untyped
+
+    def self.sym_options_with_owner: () -> untyped
+
+    def self.sym_options_with_admin: () -> untyped
+
+    def self.protection_options: () -> ::Array[{ label: untyped, help_text: untyped, value: untyped }]
+
+    def self.global_protection_levels: () -> ::Array[{ label: untyped, help_text: untyped, value: false } | { label: untyped, help_text: untyped, value: true }]
+
+    def self.protection_values: () -> untyped
+
+    def self.human_access: (untyped access, ?untyped? _member_role) -> untyped
+
+    def self.role_description: (untyped access) -> untyped
+
+    def self.human_access_with_none: (untyped access, ?untyped? _member_role) -> untyped
+
+    def self.project_creation_options: () -> ::Hash[untyped, untyped]
+
+    def self.project_creation_string_options: () -> { "noone" => untyped, "owner" => untyped, "maintainer" => untyped, "developer" => untyped, "administrator" => untyped }
+
+    def self.project_creation_values: () -> untyped
+
+    def self.project_creation_string_values: () -> untyped
+
+    def self.project_creation_level_name: (untyped name) -> untyped
+
+    def self.subgroup_creation_options: () -> ::Hash[untyped, untyped]
+
+    def self.subgroup_creation_string_options: () -> { "owner" => untyped, "maintainer" => untyped }
+
+    def self.subgroup_creation_values: () -> untyped
+
+    def self.subgroup_creation_string_values: () -> untyped
+
+    def human_access: () -> untyped
+
+    def role_description: () -> untyped
+
+    def human_access_with_none: () -> untyped
+
+    def human_access_labeled: () -> untyped
+
+    def owner?: () -> untyped
+  end
+end

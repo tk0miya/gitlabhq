@@ -1,0 +1,17 @@
+module Mutations
+  module Projects
+    class SyncFork < BaseMutation
+      include FindsProject
+
+      def resolve: (project_path: untyped, target_branch: untyped) -> untyped
+
+      def enqueue_sync_fork: (untyped project, untyped target_branch, untyped details) -> untyped
+
+      def rate_limit_throttled?: (untyped project) -> untyped
+
+      def respond: (untyped details, untyped errors) -> { details: untyped, errors: untyped }
+
+      def authorized_find!: (untyped project_path, untyped target_branch) -> untyped
+    end
+  end
+end

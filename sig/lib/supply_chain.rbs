@@ -1,0 +1,19 @@
+module SupplyChain
+  ATTEST_ARTIFACTS_VARIABLE: "ATTEST_BUILD_ARTIFACTS"
+
+  ATTEST_CONTAINERS_VARIABLE: "ATTEST_CONTAINER_IMAGES"
+
+  IMAGE_DIGEST_VARIABLE: "IMAGE_DIGEST"
+
+  ATTEST_BUILD_STAGE_NAME: "build"
+
+  def self.publish_provenance_for_build?: (untyped build) -> (false | untyped)
+
+  def self.publish_artifact_provenance?: (untyped build) -> untyped
+
+  def self.publish_container_provenance?: (untyped build) -> untyped
+
+  private
+
+  def self.yaml_variable_truthy?: (untyped build, untyped variable) -> (false | untyped)
+end

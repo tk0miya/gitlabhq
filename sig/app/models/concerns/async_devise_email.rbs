@@ -1,0 +1,12 @@
+module AsyncDeviseEmail
+  extend ActiveSupport::Concern
+
+  include AfterCommitQueue
+
+  private
+
+  # Added according to https://github.com/plataformatec/devise/blob/7df57d5081f9884849ca15e4fde179ef164a575f/README.md#activejob-integration
+  def send_devise_notification: (untyped notification, *untyped args) -> (true | untyped)
+
+  def can_receive_notification: (untyped notification) -> untyped
+end

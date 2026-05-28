@@ -1,0 +1,168 @@
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  @user: untyped
+
+  @oauth: untyped
+
+  @provider: untyped
+
+  @error: untyped
+
+  include ActionView::Helpers::TextHelper
+
+  include AuthenticatesWithTwoFactorForAdminMode
+
+  include Devise::Controllers::Rememberable
+
+  include AuthHelper
+
+  include InitializesCurrentUserMode
+
+  include KnownSignIn
+
+  include AcceptsPendingInvitations
+
+  include Onboarding::Redirectable
+
+  include InternalRedirect
+
+  include SafeFormatHelper
+
+  include SynchronizeBroadcastMessageDismissals
+
+  ACTIVE_SINCE_KEY: "active_since"
+
+  # Following https://www.rfc-editor.org/rfc/rfc3986.txt
+  # to check for the present of reserved characters
+  # in redirect_fragment
+  INVALID_FRAGMENT_EXP: ::Regexp
+
+  InvalidFragmentError: untyped
+
+  # To be used in ee version for raising error on user signup if user is from restricted country
+  SignUpFromRestrictedCountyError: untyped
+
+  def handle_omniauth: () -> untyped
+
+  # overridden in EE
+  def openid_connect: () -> untyped
+
+  def jwt: () -> untyped
+
+  # Extend the standard implementation to also increment
+  # the number of failed sign in attempts
+  def failure: () -> untyped
+
+  # Extend the standard message generation to accept our custom exception
+  def failure_message: () -> untyped
+
+  def saml: () -> untyped
+
+  def auth0: () -> untyped
+
+  def salesforce: () -> untyped
+
+  def atlassian_oauth2: () -> untyped
+
+  private
+
+  def verify_redirect_fragment: (untyped fragment) -> untyped
+
+  def track_event: (untyped user, untyped provider, untyped status) -> untyped
+
+  def update_login_counter_metric: (untyped provider, untyped status) -> untyped
+
+  def omniauth_login_counter: () -> untyped
+
+  def log_failed_login: (untyped user, untyped provider) -> nil
+
+  def after_omniauth_failure_path_for: (untyped scope) -> untyped
+
+  def store_redirect_to: () -> nil
+
+  def omniauth_flow: (untyped auth_module, ?identity_linker: untyped?) -> untyped
+
+  def admin_mode_request?: () -> untyped
+
+  def link_identity: (untyped identity_linker) -> untyped
+
+  def redirect_identity_exists: () -> untyped
+
+  def redirect_identity_link_failed: (untyped error_message) -> untyped
+
+  def redirect_identity_linked: () -> untyped
+
+  def redirect_authorize_identity_link: (untyped identity_linker) -> untyped
+
+  def build_auth_user: (untyped auth_user_class) -> untyped
+
+  # Overridden in EE
+  def build_auth_user_params: () -> { organization_id: untyped }
+
+  # Overridden in EE
+  def set_session_active_since: (untyped id) -> nil
+
+  def sign_in_user_flow: (untyped auth_user_class) -> untyped
+
+  def handle_signup_from_restricted_country_error: () -> untyped
+
+  def handle_signup_error: () -> untyped
+
+  def oauth: () -> untyped
+
+  def normalize_iam_provider!: (untyped auth) -> (nil | untyped)
+
+  def fail_login: (untyped user) -> untyped
+
+  def fail_auth0_login: () -> untyped
+
+  def fail_salesforce_login: () -> untyped
+
+  def fail_login_with_message: (untyped message) -> untyped
+
+  def redirect_unverified_saml_initiation: () -> untyped
+
+  def handle_identity_with_untrusted_extern_uid: () -> untyped
+
+  def handle_disabled_provider: () -> untyped
+
+  def log_audit_event: (untyped user, ?::Hash[untyped, untyped] options, ?::String name) -> (nil | untyped)
+
+  def set_remember_me: (untyped user, untyped auth_user) -> (nil | untyped)
+
+  def remember_me?: () -> untyped
+
+  def store_redirect_fragment: (untyped redirect_fragment) -> (nil | untyped)
+
+  def handle_step_up_auth: () -> untyped
+
+  def handle_step_up_auth_for_admin_mode: () -> untyped
+
+  def handle_step_up_auth_for_namespace: () -> untyped
+
+  def handle_step_up_auth_for: (untyped scope) -> (nil | untyped)
+
+  def admin_mode_flow: (untyped auth_user_class) -> untyped
+
+  def omniauth_identity_matches_current_user?: () -> untyped
+
+  def fail_admin_mode_invalid_credentials: () -> untyped
+
+  def persist_accepted_terms_if_required: (untyped user) -> (nil | untyped)
+
+  def perform_registration_tasks: (untyped _user, untyped _provider) -> untyped
+
+  def onboarding_status_presenter: () -> untyped
+
+  # overridden in EE
+  def sign_in_and_redirect_or_verify_identity: (untyped user, untyped _, untyped _) -> untyped
+
+  # overridden in specific EE class
+  def enqueue_after_sign_in_workers: (untyped _user, untyped _auth_user) -> true
+
+  # overridden in specific EE class
+  def allowed_new_user?: (untyped auth_user) -> untyped
+
+  def store_idp_two_factor_status: (untyped bypass_2fa) -> (untyped | nil)
+
+  def log_saml_response: () -> untyped
+end

@@ -1,0 +1,15 @@
+module Clusters
+  module Concerns
+    module ApplicationStatus
+      extend ActiveSupport::Concern
+
+      def status_states: () -> untyped
+
+      def updateable?: () -> untyped
+
+      def available?: () -> untyped
+
+      def update_in_progress?: () -> untyped
+    end
+  end
+end

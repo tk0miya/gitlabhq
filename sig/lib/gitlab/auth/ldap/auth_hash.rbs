@@ -1,0 +1,29 @@
+# Class to parse and transform the info provided by omniauth
+#
+module Gitlab
+  module Auth
+    module Ldap
+      class AuthHash < Gitlab::Auth::OAuth::AuthHash
+        @uid: untyped
+
+        @ldap_config: untyped
+
+        extend ::Gitlab::Utils::Override
+
+        def uid: () -> untyped
+
+        def username: () -> untyped
+
+        private
+
+        def get_info: (untyped key) -> untyped
+
+        def get_raw: (untyped key) -> (untyped | nil)
+
+        def ldap_config: () -> untyped
+
+        def get_username: () -> untyped
+      end
+    end
+  end
+end

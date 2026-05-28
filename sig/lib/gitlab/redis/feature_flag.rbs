@@ -1,0 +1,14 @@
+module Gitlab
+  module Redis
+    class FeatureFlag < ::Gitlab::Redis::Wrapper
+      self.@cache_store: untyped
+
+      FeatureFlagStore: untyped
+
+      # The data we store on FeatureFlag is currently stored on Cache.
+      def self.config_fallback: () -> untyped
+
+      def self.cache_store: () -> untyped
+    end
+  end
+end

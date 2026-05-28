@@ -1,0 +1,8 @@
+module Types
+  module WorkItems
+    # rubocop:disable Graphql/AuthorizeTypes -- only a wrapper type
+    class FeaturesType < BaseObject
+      def self.authorization_scopes: () -> untyped
+    end
+  end
+end

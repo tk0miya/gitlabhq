@@ -1,0 +1,202 @@
+module Gitlab
+  module Regex
+    # The character range \p{Alnum} overlaps with \u{00A9}-\u{1f9ff}
+    # hence the Ruby warning.
+    # https://gitlab.com/gitlab-org/gitlab/merge_requests/23165#not-easy-fixable
+    @project_name_regex: untyped
+
+    @oci_repository_path_regex: untyped
+
+    @group_name_regex: untyped
+
+    @group_name_regex_chars: untyped
+
+    @container_registry_tag_regex: untyped
+
+    @environment_name_regex: untyped
+
+    @environment_scope_regex: untyped
+
+    @environment_slug_regex: untyped
+
+    @build_trace_section_regexp: untyped
+
+    @markdown_code_or_html_blocks_untrusted: untyped
+
+    @markdown_code_or_html_comments_untrusted: untyped
+
+    @jira_issue_key_project_key_extraction_regex: untyped
+
+    @jira_transition_id_regex: untyped
+
+    @breakline_regex: untyped
+
+    @utc_date_regex: untyped
+
+    @base64_regex: untyped
+
+    @x509_subject_key_identifier_regex: untyped
+
+    @rubygems_gemspec_file_name_regex: untyped
+
+    @ml_model_file_name_regex: untyped
+
+    extend ::Gitlab::Regex
+
+    extend MergeRequests
+
+    extend Packages
+
+    # Matches a single URL path segment (any characters except a forward slash).
+    # Defined here rather than in API::API so that it can be referenced from
+    # files that are loaded before API::API without triggering a Zeitwerk
+    # circular autoload.
+    NO_SLASH_URL_PART_REGEX: ::Regexp
+
+    def project_name_regex: () -> untyped
+
+    def project_name_regex_message: () -> "can contain only letters, digits, emoji, '_', '.', '+', dashes, or spaces. It must start with a letter, digit, emoji, or '_'."
+
+    # Project path must conform to this regex. See https://gitlab.com/gitlab-org/gitlab/-/issues/27483
+    def oci_repository_path_regex: () -> untyped
+
+    def oci_repository_path_regex_message: () -> "can only include non-accented letters, digits, '_', '-' and '.'. It must not start with '-', '_', or '.', nor end with '-', '_', '.', '.git', or '.atom'."
+
+    def group_name_regex: () -> untyped
+
+    def group_name_regex_chars: () -> untyped
+
+    def group_name_regex_message: () -> "can contain only letters, digits, emoji, '_', '.', dash, space, parenthesis. It must start with letter, digit, emoji or '_'."
+
+    #
+    # Docker Distribution Registry repository / tag name rules
+    #
+    # See https://github.com/docker/distribution/blob/master/reference/regexp.go.
+    #
+    def container_repository_name_regex: (?untyped? other_accepted_chars) -> untyped
+
+    #
+    # We do not use regexp anchors here because these are not allowed when
+    # used as a routing constraint.
+    #
+    def container_registry_tag_regex: () -> untyped
+
+    def environment_name_regex_chars: () -> "a-zA-Z0-9_/\\$\\{\\}\\. \\-"
+
+    def environment_name_regex_chars_without_slash: () -> "a-zA-Z0-9_\\$\\{\\}\\. -"
+
+    def environment_name_regex: () -> untyped
+
+    def environment_name_regex_message: () -> "can contain only letters, digits, '-', '_', '/', '$', '{', '}', '.', and spaces, but it cannot start or end with '/'"
+
+    def environment_scope_regex_chars: () -> ::String
+
+    def environment_scope_regex: () -> untyped
+
+    def environment_scope_regex_message: () -> "can contain only letters, digits, '-', '_', '/', '$', '{', '}', '.', '*' and spaces"
+
+    # https://gitlab.com/gitlab-org/cluster-integration/gitlab-agent/-/blob/master/doc/identity_and_auth.md#agent-identity-and-name
+    def cluster_agent_name_regex: () -> ::Regexp
+
+    def cluster_agent_name_regex_message: () -> "can contain only lowercase letters, digits, and '-', but cannot start or end with '-'"
+
+    def kubernetes_namespace_regex: () -> ::Regexp
+
+    def kubernetes_namespace_regex_message: () -> "can contain only lowercase letters, digits, and '-'. Must start with a letter, and cannot end with '-'"
+
+    # Pod name adheres to DNS Subdomain Names(RFC 1123) naming convention
+    # https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
+    def kubernetes_dns_subdomain_regex: () -> ::Regexp
+
+    def environment_slug_regex: () -> untyped
+
+    def environment_slug_regex_message: () -> "can contain only lowercase letters, digits, and '-'. Must start with a letter, and cannot end with '-'"
+
+    # The section start, e.g. section_start:12345678:NAME
+    def logs_section_prefix_regex: () -> ::Regexp
+
+    # The optional section options, e.g. [collapsed=true]
+    def logs_section_options_regex: () -> ::Regexp
+
+    # The region end, always: \r\e\[0K
+    def logs_section_suffix_regex: () -> ::Regexp
+
+    def build_trace_section_regex: () -> untyped
+
+    # Code blocks:
+    # ```
+    # Anything, including `>>>` blocks which are ignored by this filter
+    # ```
+    MARKDOWN_CODE_BLOCK_REGEX_UNTRUSTED: "(?P<code>^```.*?\\n(?:\\n|.)*?\\n```\\ *$)"
+
+    # HTML block:
+    # <tag>
+    # Anything, including `>>>` blocks which are ignored by this filter
+    # </tag>
+    MARKDOWN_HTML_BLOCK_REGEX_UNTRUSTED: "(?P<html>^<[^>]+?>\\ *\\n(?:\\n|.)*?\\n<\\/[^>]+?>\\ *$)"
+
+    # HTML comment line:
+    # <!-- some commented text -->
+    MARKDOWN_HTML_COMMENT_LINE_REGEX_UNTRUSTED: "(?P<html_comment_line>^<!--\\ .*?\\ -->\\ *$)"
+
+    MARKDOWN_HTML_COMMENT_BLOCK_REGEX_UNTRUSTED: "(?P<html_comment_block>^<!--.*?\\n(?:\\n|.)*?\\n.*?-->\\ *$)"
+
+    def markdown_code_or_html_blocks_untrusted: () -> untyped
+
+    def markdown_code_or_html_comments_untrusted: () -> untyped
+
+    def markdown_code_or_html_blocks_or_html_comments_untrusted: () -> untyped
+
+    # Based on Jira's project key format
+    # https://confluence.atlassian.com/adminjiraserver073/changing-the-project-key-format-861253229.html
+    #
+    # `\b` is unreliable: Onigmo treats most non-ASCII letters as word
+    # characters, so an issue key directly adjacent to CJK or accented text
+    # never matches. The ASCII-only negative lookbehind preserves the
+    # word-boundary semantics for ASCII input (the class mirrors Onigmo's
+    # ASCII word-char set) while letting non-ASCII input fall through.
+    #
+    # Callers that interpolate the source into RE2 (which does not support
+    # lookbehind) must pass `expression_escape: '\b'` explicitly.
+    def jira_issue_key_regex: (?expression_escape: ::String) -> ::Regexp
+
+    def jira_issue_key_project_key_extraction_regex: () -> untyped
+
+    def jira_transition_id_regex: () -> untyped
+
+    def breakline_regex: () -> untyped
+
+    # https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html
+    def aws_account_id_regex: () -> ::Regexp
+
+    def aws_account_id_message: () -> "must be a 12-digit number"
+
+    # https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html
+    def aws_arn_regex: () -> ::Regexp
+
+    def aws_arn_regex_message: () -> "must be a valid Amazon Resource Name"
+
+    def utc_date_regex: () -> untyped
+
+    def issue: (?untyped? reference_postfix) -> ::Regexp
+
+    def work_item: (?untyped? reference_postfix) -> ::Regexp
+
+    def base64_regex: () -> untyped
+
+    def feature_flag_regex: () -> ::Regexp
+
+    # One or more `part`s, separated by separator
+    def sep_by_1: (untyped separator, untyped part) -> ::Regexp
+
+    def x509_subject_key_identifier_regex: () -> untyped
+
+    def ml_model_name_regex: () -> untyped
+
+    def ml_model_version_name_regex: () -> untyped
+
+    def rubygems_gemspec_file_name_regex: () -> untyped
+
+    def ml_model_file_name_regex: () -> untyped
+  end
+end

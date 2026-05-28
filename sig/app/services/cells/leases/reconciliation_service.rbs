@@ -1,0 +1,60 @@
+module Cells
+  module Leases
+    class ReconciliationService
+      @claim_service: untyped
+
+      @processed_count: untyped
+
+      @committed_count: untyped
+
+      @rolled_back_count: untyped
+
+      @pending_count: untyped
+
+      @orphaned_count: untyped
+
+      @ts_lease_uuids: untyped
+
+      # A lease is considered stale if not updated in the last 5 minutes
+      LEASE_STALENESS_THRESHOLD: untyped
+
+      # Number of leases to process per batch when paginating through remote leases
+      LIMIT: 100
+
+      # Local leases older than 1 hour are forcibly deleted as orphaned
+      ORPHANED_LEASE_CLEANUP_THRESHOLD: untyped
+
+      TIMEOUT_IN_SECONDS: 1
+
+      def initialize: () -> void
+
+      def execute: () -> { processed: untyped, committed: untyped, rolled_back: untyped, pending: untyped, orphaned: untyped }
+
+      private
+
+      attr_reader claim_service: untyped
+
+      # Fetches all remote leases from the Topology Service and reconciles them with local state.
+      # Uses cursor-based pagination to handle large numbers of leases efficiently.
+      # Tracks all Topology Service lease UUIDs for orphaned cleanup.
+      def reconcile_leases: () -> untyped
+
+      def commit_rails_leases: (untyped leases) -> untyped
+
+      def rollback_lost_leases: (untyped leases) -> untyped
+
+      def fetch_rails_leases: (untyped leases) -> untyped
+
+      # Deletes local leases that are stale and don't exist in the Topology service.
+      def cleanup_orphaned_leases: () -> untyped
+
+      def grpc_deadline: () -> untyped
+
+      def track_error: (untyped exception, untyped uuid) -> untyped
+
+      def log_lease: (untyped lease, untyped message) -> untyped
+
+      def log_orphaned_cleanup: (untyped orphaned_lease_uuids, untyped cutoff_time) -> untyped
+    end
+  end
+end

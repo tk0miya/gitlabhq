@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Reports
+      class AccessibilityReports
+        @urls: untyped
+
+        @error_message: untyped
+
+        attr_reader urls: untyped
+
+        attr_reader error_message: untyped
+
+        def initialize: () -> void
+
+        def add_url: (untyped url, untyped data) -> untyped
+
+        def scans_count: () -> untyped
+
+        def passes_count: () -> untyped
+
+        def errors_count: () -> untyped
+
+        def set_error_message: (untyped error) -> untyped
+
+        def all_errors: () -> untyped
+      end
+    end
+  end
+end

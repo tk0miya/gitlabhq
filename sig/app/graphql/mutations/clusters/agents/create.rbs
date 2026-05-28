@@ -1,0 +1,11 @@
+module Mutations
+  module Clusters
+    module Agents
+      class Create < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, name: untyped) -> { cluster_agent: untyped, errors: untyped }
+      end
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Sidebars
+  module Admin
+    module Menus
+      class MonitoringMenu < ::Sidebars::Admin::BaseMenu
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "monitor"
+
+        def extra_container_html_options: () -> { testid: "admin-monitoring-menu-link" }
+
+        private
+
+        def system_info_menu_item: () -> untyped
+
+        def background_migrations_menu_item: () -> untyped
+
+        def background_jobs_menu_item: () -> untyped
+
+        def health_check_menu_item: () -> untyped
+
+        def database_diagnostics_menu_item: () -> untyped
+
+        def metrics_dashboard_menu_item: () -> untyped
+      end
+    end
+  end
+end

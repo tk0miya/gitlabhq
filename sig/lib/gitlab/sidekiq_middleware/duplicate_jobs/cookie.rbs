@@ -1,0 +1,42 @@
+module Gitlab
+  module SidekiqMiddleware
+    module DuplicateJobs
+      class Cookie
+        @cookie: untyped
+
+        SCHEMA: { "jid" => untyped, "offsets" => untyped, "wal_locations" => untyped, "existing_wal_locations" => untyped }
+
+        # Maps values inside the cookie to respective proc
+        CONVERTER: ::Hash[untyped, untyped]
+
+        # Generally speaking, updating a Redis key by deserializing and
+        # serializing it on the Redis server is bad for performance. However in
+        # the case of DuplicateJobs we know that key updates are rare, and the
+        # most common operations are setting, getting and deleting the key. The
+        # aim of this design is to make the common operations as fast as
+        # possible.
+        UPDATE_WAL_COOKIE_SCRIPT: "local cookie_msgpack = redis.call(\"get\", KEYS[1])\nif not cookie_msgpack then\n  return\nend\nlocal cookie = cmsgpack.unpack(cookie_msgpack)\n\nfor i = 1, #ARGV, 3 do\n  local connection = ARGV[i]\n  local current_offset = cookie.offsets[connection]\n  local new_offset = tonumber(ARGV[i+1])\n  if not current_offset or (new_offset and current_offset < new_offset) then\n    cookie.offsets[connection] = new_offset\n    cookie.wal_locations[connection] = ARGV[i+2]\n  end\nend\n\nredis.call(\"set\", KEYS[1], cmsgpack.pack(cookie), \"keepttl\")\n"
+
+        def self.read: (untyped key) -> untyped
+
+        def self.delete!: (untyped key) -> untyped
+
+        def self.update_wal_locations!: (untyped key, untyped argv) -> untyped
+
+        def self.with_redis: () { (?) -> untyped } -> untyped
+
+        def self.validate!: (untyped cookie) -> untyped
+
+        def self.convert_values!: (untyped cookie) -> untyped
+
+        def self.needs_conversion?: (untyped key, untyped val) -> (false | untyped)
+
+        attr_accessor cookie: untyped
+
+        def initialize: (jid: untyped, existing_wal_locations: untyped) -> void
+
+        def write: (untyped key, untyped expiry) -> untyped
+      end
+    end
+  end
+end

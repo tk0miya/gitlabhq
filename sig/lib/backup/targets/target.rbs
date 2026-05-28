@@ -1,0 +1,30 @@
+module Backup
+  module Targets
+    class Target
+      @progress: untyped
+
+      @options: untyped
+
+      # Backup creation and restore option flags
+      #
+      # @return [Backup::Options]
+      attr_reader options: untyped
+
+      # Backup creation and restore option flags
+      #
+      # @return [Backup::Options]
+      attr_reader progress: untyped
+
+      def initialize: (untyped progress, options: untyped) -> void
+
+      # dump task backup to `path`
+      #
+      # @param [String] path fully qualified backup task destination
+      # @param [String] backup_id unique identifier for the backup
+      def dump: (untyped path, untyped backup_id) -> untyped
+
+      # restore task backup from `path`
+      def restore: (untyped path, untyped backup_id) -> untyped
+    end
+  end
+end

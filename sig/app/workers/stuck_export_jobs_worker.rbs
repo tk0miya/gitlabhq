@@ -1,0 +1,20 @@
+# rubocop:disable Scalability/IdempotentWorker
+class StuckExportJobsWorker
+  include ApplicationWorker
+
+  # rubocop:disable Scalability/CronWorkerContext
+  # This worker updates export states inline and does not schedule
+  # other jobs.
+  include CronjobQueue
+
+  EXPORT_JOBS_EXPIRATION: untyped
+
+  def perform: () -> untyped
+
+  private
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def mark_stuck_jobs_as_failed!: () -> (nil | untyped)
+
+  def enqueued_exports: () -> untyped
+end

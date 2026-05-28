@@ -1,0 +1,20 @@
+module Packages
+  module Cleanup
+    class Policy < ApplicationRecord
+      include Schedulable
+
+      KEEP_N_DUPLICATED_PACKAGE_FILES_VALUES: ::Array["all" | "1" | "10" | "20" | "30" | "40" | "50"]
+
+      # used by Schedulable
+      def self.active: () -> untyped
+
+      def self.with_packages: () -> untyped
+
+      def self.runnable: () -> untyped
+
+      def set_next_run_at: () -> untyped
+
+      def keep_n_duplicated_package_files_disabled?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+# NPM Package Manager Client API
+#
+# These API endpoints are not consumed directly by users, so there is no documentation for the
+# individual endpoints. They are called by the NPM package manager client when users run commands
+# like `npm install` or `npm publish`. The usage of the GitLab NPM registry is documented here:
+# https://docs.gitlab.com/ee/user/packages/npm_registry/
+#
+# Technical debt: https://gitlab.com/gitlab-org/gitlab/issues/35798
+module API
+  module Concerns
+    module Packages
+      module NpmEndpoints
+        extend ActiveSupport::Concern
+      end
+    end
+  end
+end

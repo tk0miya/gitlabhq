@@ -1,0 +1,47 @@
+module UserSettings
+  class PersonalAccessTokensController < ApplicationController
+    @hide_search_settings: untyped
+
+    @access_token_params: untyped
+
+    include FeedTokenHelper
+
+    def index: () -> (nil | untyped)
+
+    def legacy_new: () -> nil
+
+    def granular_new: () -> nil
+
+    def create: () -> untyped
+
+    def toggle_dpop: () -> (nil | untyped)
+
+    private
+
+    def set_hide_search_settings: () -> untyped
+
+    def set_access_token_params: () -> untyped
+
+    def expiry_ics: () -> untyped
+
+    def personal_access_token_params: () -> untyped
+
+    def legacy_new_params: () -> untyped
+
+    def dpop_params: () -> untyped
+
+    def parse_scopes_from_params: () -> (::Array[untyped] | untyped)
+
+    def check_personal_access_tokens_enabled: () -> (untyped | nil)
+
+    def ensure_granular_tokens_feature_flag: () -> (untyped | nil)
+
+    def check_granular_token_enforced: () -> (untyped | nil)
+
+    def granular_tokens_enforced?: () -> (false | untyped)
+
+    def redirect_for_legacy_new?: () -> untyped
+
+    def granular_tokens_feature_enabled?: () -> untyped
+  end
+end

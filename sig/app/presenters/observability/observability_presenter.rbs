@@ -1,0 +1,52 @@
+module Observability
+  class ObservabilityPresenter
+    @group: untyped
+
+    @path: untyped
+
+    @query_params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include ReactiveCaching
+
+    SEGMENT_TITLES: { "services" => "Observability|Services", "service-map" => "Observability|Service map", "trace" => "Observability|Traces", "traces" => "Observability|Traces", "traces-explorer" => "Observability|Traces", "logs" => "Observability|Logs", "logs-explorer" => "Observability|Logs", "dashboard" => "Observability|Dashboard", "alerts" => "Observability|Alerts", "exceptions" => "Observability|Exceptions", "metrics-explorer" => "Observability|Metrics explorer", "infrastructure-monitoring" => "Observability|Infrastructure monitoring", "messaging-queues" => "Observability|Messaging queues", "api-monitoring" => "Observability|API monitoring", "settings" => "Observability|Notification channels", "settings/api-keys" => "Observability|API keys" }
+
+    PATHS: ::Array["services" | "services/:servicename" | "services/:servicename/top-level-operations" | "service-map" | "trace" | "trace/:id" | "traces-explorer" | "traces/saved-views" | "traces/funnels" | "traces/funnels/:funnelId" | "logs" | "logs/logs-explorer" | "logs/old-logs-explorer" | "logs/logs-explorer/live" | "logs/pipelines" | "logs/saved-views" | "logs-explorer/index-fields" | "dashboard" | "dashboard/:dashboardId" | "dashboard/:dashboardId/:widgetId" | "alerts" | "alerts/edit" | "alerts/new" | "alerts/history" | "alerts/overview" | "exceptions" | "metrics-explorer/summary" | "metrics-explorer/explorer" | "metrics-explorer/views" | "infrastructure-monitoring/hosts" | "infrastructure-monitoring/kubernetes" | "messaging-queues" | "messaging-queues/overview" | "messaging-queues/kafka" | "messaging-queues/kafka/detail" | "messaging-queues/celery-task" | "api-monitoring" | "api-monitoring/explorer" | "settings/channels" | "settings/api-keys"]
+
+    ALLOWED_QUERY_PARAMS: ::Array["startTime" | "endTime" | "relativeTime" | "compositeQuery" | "panelTypes" | "resourceAttribute" | "ruleId" | "alertType" | "ruleType" | "tab" | "timelineFilter" | "viewAllTopContributors" | "order" | "offset" | "page" | "pageSize" | "pagination" | "search" | "columnKey" | "selectedExplorerView" | "viewName" | "viewKey" | "activeLogId" | "options" | "limit" | "expandedWidgetId" | "graphType" | "widgetId" | "variables" | "summaryFilters" | "orderParam" | "exceptionType" | "serviceName" | "isMetricDetailsOpen" | "isInspectModalOpen" | "selectedMetricName" | "hostName" | "view" | "hostsFilters" | "logFilters" | "tracesFilters" | "eventsFilters" | "mqServiceView" | "selectedTimelineQuery" | "configDetail" | "consumerGrp" | "topic" | "partition" | "apiMonitoringParams"]
+
+    QUERY_STRING_MAX_BYTES: 10000
+
+    # Pre-compiled regexes - one per PATHS template pattern.
+    # A template segment starting with `:` matches any non-empty, non-slash token.
+    PATH_PATTERNS: untyped
+
+    def self.valid_path?: (untyped path) -> untyped
+
+    def initialize: (untyped group, untyped path, ?query_params: ::Hash[untyped, untyped]) -> void
+
+    # Required by ReactiveCaching to generate cache keys
+    def id: () -> untyped
+
+    def calculate_reactive_cache: () -> untyped
+
+    def title: () -> untyped
+
+    def auth_tokens: () -> (::Hash[untyped, untyped] | { "status" => "loading" } | untyped)
+
+    def url_with_path: () -> (nil | untyped)
+
+    def to_h: () -> { o11y_url: untyped, path: untyped, auth_tokens: untyped, title: untyped, query_params: untyped }
+
+    def provisioning?: () -> untyped
+
+    private
+
+    attr_reader group: untyped
+
+    attr_reader path: untyped
+
+    def observability_setting: () -> untyped
+  end
+end

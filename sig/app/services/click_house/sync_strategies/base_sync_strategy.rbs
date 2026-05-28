@@ -1,0 +1,51 @@
+module ClickHouse
+  module SyncStrategies
+    class BaseSyncStrategy
+      @context: untyped
+
+      include Gitlab::ExclusiveLeaseHelpers
+
+      include Gitlab::Utils::StrongMemoize
+
+      # the job is scheduled every 3 minutes and we will allow maximum 2.5 minutes runtime
+      MAX_TTL: untyped
+
+      MAX_RUNTIME: untyped
+
+      BATCH_SIZE: 500
+
+      INSERT_BATCH_SIZE: 5000
+
+      def execute: () -> ({ status: :disabled } | untyped)
+
+      private
+
+      def enabled?: () -> untyped
+
+      def context: () -> untyped
+
+      def last_id_in_postgresql: () -> untyped
+
+      def next_batch: () -> untyped
+
+      def process_batch: (untyped context) -> untyped
+
+      def transform_row: (untyped row) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord -- because model here is dynamic and is passed by child class
+      def batching_scope: () -> untyped
+
+      def projections: () -> untyped
+
+      # UInt type primary key used for cursor management,
+      # override if necessary.
+      def primary_key: () -> :id
+
+      def sync_cursor_identifier: () -> untyped
+
+      def csv_mapping: () -> untyped
+
+      def insert_query: () -> untyped
+    end
+  end
+end

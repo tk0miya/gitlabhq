@@ -1,0 +1,18 @@
+module Gitlab
+  # noinspection RubyClassModuleNamingConvention -- JetBrains is changing this to allow shorter names
+  module Fp
+    module RopHelpers
+      # @param [Class] base
+      # @return void
+      def self.extended: (untyped base) -> untyped
+
+      # @param [Class] fp_module_or_class
+      # @raise [RuntimeError]
+      # @return [Symbol]
+      def retrieve_single_public_singleton_method: (untyped fp_module_or_class) -> untyped
+
+      # @return [Array<Symbol>]
+      def public_singleton_methods_to_ignore: () -> untyped
+    end
+  end
+end

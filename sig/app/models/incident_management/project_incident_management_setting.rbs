@@ -1,0 +1,21 @@
+module IncidentManagement
+  class ProjectIncidentManagementSetting < ApplicationRecord
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::EncryptedAttribute
+
+    def available_issue_templates: () -> untyped
+
+    def issue_template_content: () -> untyped
+
+    private
+
+    def issue_template_exists: () -> (nil | untyped)
+
+    def issue_template: () -> untyped
+
+    def ensure_pagerduty_token: () -> (nil | untyped)
+
+    def generate_pagerduty_token: () -> untyped
+  end
+end

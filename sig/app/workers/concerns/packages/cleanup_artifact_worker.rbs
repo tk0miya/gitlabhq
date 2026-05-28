@@ -1,0 +1,33 @@
+module Packages
+  module CleanupArtifactWorker
+    extend ActiveSupport::Concern
+
+    include CronjobChildWorker
+
+    include LimitedCapacity::Worker
+
+    include Gitlab::Utils::StrongMemoize
+
+    def perform_work: () -> (nil | untyped)
+
+    def remaining_work_count: () -> untyped
+
+    private
+
+    def model: () -> untyped
+
+    def log_metadata: () -> untyped
+
+    def log_cleanup_item: () -> untyped
+
+    def before_destroy: () -> nil
+
+    def after_destroy: () -> nil
+
+    def artifact: () -> untyped
+
+    def artifacts_pending_destruction: () -> untyped
+
+    def next_item: () -> untyped
+  end
+end

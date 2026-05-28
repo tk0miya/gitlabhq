@@ -1,0 +1,17 @@
+module Gitlab
+  module Ssh
+    class Tag < Gitlab::SignedTag
+      include Gitlab::Utils::StrongMemoize
+
+      def signature: () -> untyped
+
+      def attributes: () -> { key_id: untyped, key_fingerprint_sha256: untyped, verification_status: untyped, project: untyped, object_name: untyped }
+
+      def signature_class: () -> untyped
+
+      private
+
+      def tag_commit: () -> untyped
+    end
+  end
+end

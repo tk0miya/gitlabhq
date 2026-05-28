@@ -1,0 +1,39 @@
+module Gitlab
+  module Graphql
+    module QueryAnalyzers
+      module AST
+        class LoggerAnalyzer < GraphQL::Analysis::AST::Analyzer
+          @results: untyped
+
+          COMPLEXITY_ANALYZER: untyped
+
+          DEPTH_ANALYZER: untyped
+
+          FIELD_USAGE_ANALYZER: untyped
+
+          ALL_ANALYZERS: ::Array[untyped]
+
+          FILTER_PARAMETERS: untyped
+
+          def initialize: (untyped query) -> void
+
+          def result: () -> untyped
+
+          private
+
+          attr_reader results: untyped
+
+          def push_to_request_store: (untyped results) -> untyped
+
+          def process_variables: (untyped variables) -> untyped
+
+          def filter_sensitive_variables: (untyped variables) -> untyped
+
+          def duration: (untyped time_started) -> untyped
+
+          def default_initial_values: (untyped query) -> { time_started: untyped, duration_s: nil }
+        end
+      end
+    end
+  end
+end

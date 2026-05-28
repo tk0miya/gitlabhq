@@ -1,0 +1,21 @@
+module Discussions
+  class CaptureDiffNotePositionService
+    @project: untyped
+
+    @tracer: untyped
+
+    def initialize: (untyped merge_request, untyped paths) -> void
+
+    def execute: (untyped discussion) -> (nil | untyped)
+
+    private
+
+    attr_reader tracer: untyped
+
+    attr_reader project: untyped
+
+    def build_tracer: (untyped merge_request, untyped paths) -> (nil | untyped)
+
+    def build_diff_refs: (untyped merge_request) -> (nil | ::Array[untyped])
+  end
+end

@@ -1,0 +1,11 @@
+module Mutations
+  module Clusters
+    module AgentTokens
+      class Revoke < BaseMutation
+        TokenID: untyped
+
+        def resolve: (id: untyped) -> { errors: untyped }
+      end
+    end
+  end
+end

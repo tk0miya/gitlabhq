@@ -1,0 +1,13 @@
+module Mutations
+  module Snippets
+    class Base < BaseMutation
+      private
+
+      def authorized_resource?: (untyped snippet) -> (false | untyped)
+
+      def ability_for: (untyped snippet) -> ::Symbol
+
+      def ability_name: () -> untyped
+    end
+  end
+end

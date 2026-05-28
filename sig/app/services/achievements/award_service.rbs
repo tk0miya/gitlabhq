@@ -1,0 +1,29 @@
+module Achievements
+  class AwardService
+    @current_user: untyped
+
+    @achievement_id: untyped
+
+    @recipient_id: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader achievement_id: untyped
+
+    attr_reader recipient_id: untyped
+
+    def initialize: (untyped current_user, untyped achievement_id, untyped recipient_id) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def allowed?: (untyped achievement) -> untyped
+
+    def error_no_permissions: () -> untyped
+
+    def error_awarding: (untyped user_achievement) -> untyped
+
+    def error: (untyped message) -> untyped
+  end
+end

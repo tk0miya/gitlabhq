@@ -1,0 +1,29 @@
+module ClickHouse
+  module MigrationSupport
+    class ExclusiveLock
+      MIGRATION_LEASE_KEY: "click_house:migrations"
+
+      MIGRATION_RETRY_DELAY: untyped
+
+      MIGRATION_LOCK_DURATION: untyped
+
+      ACTIVE_WORKERS_REDIS_KEY: "click_house:workers:active_workers"
+
+      DEFAULT_CLICKHOUSE_WORKER_TTL: untyped
+
+      WORKERS_WAIT_SLEEP: untyped
+
+      extend ::Gitlab::ExclusiveLeaseHelpers
+
+      def self.register_running_worker: (untyped worker_class, untyped worker_id) { () -> untyped } -> untyped
+
+      def self.execute_migration: () { () -> untyped } -> untyped
+
+      def self.pause_workers?: () -> untyped
+
+      def self.active_sidekiq_workers?: () -> untyped
+
+      def self.wait_until_workers_inactive: (untyped worker_wait_ttl) -> (nil | untyped)
+    end
+  end
+end

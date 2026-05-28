@@ -1,0 +1,62 @@
+module Gitlab
+  module Import
+    class ImportFailureService
+      @import_state: untyped
+
+      @project: untyped
+
+      @exception: untyped
+
+      @error_source: untyped
+
+      @fail_import: untyped
+
+      @metrics: untyped
+
+      @external_identifiers: untyped
+
+      @message: untyped
+
+      @extra_attributes: untyped
+
+      @capture_exception: untyped
+
+      # rubocop:disable Metrics/ParameterLists -- all arguments needed
+      def self.track: (exception: untyped, ?import_state: untyped?, ?project_id: untyped?, ?error_source: untyped?, ?fail_import: bool, ?metrics: bool, ?external_identifiers: ::Hash[untyped, untyped], ?message: ::String, ?extra_attributes: ::Hash[untyped, untyped], ?capture_exception: bool) -> untyped
+
+      def initialize: (exception: untyped, ?import_state: untyped?, ?project_id: untyped?, ?error_source: untyped?, ?fail_import: bool, ?metrics: bool, ?external_identifiers: ::Hash[untyped, untyped], ?message: ::String, ?extra_attributes: ::Hash[untyped, untyped], ?capture_exception: bool) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader exception: untyped
+
+      attr_reader import_state: untyped
+
+      attr_reader project: untyped
+
+      attr_reader error_source: untyped
+
+      attr_reader fail_import: untyped
+
+      attr_reader metrics: untyped
+
+      attr_reader external_identifiers: untyped
+
+      attr_reader message: untyped
+
+      attr_reader extra_attributes: untyped
+
+      attr_reader capture_exception: untyped
+
+      def track_exception: () -> untyped
+
+      # Failures with `retry_count: 0` are considered "hard_failures" and those
+      # are exposed on the REST API projects/:id/import
+      def persist_failure: () -> untyped
+
+      def track_metrics: () -> untyped
+    end
+  end
+end

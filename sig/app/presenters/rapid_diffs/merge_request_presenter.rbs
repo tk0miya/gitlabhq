@@ -1,0 +1,75 @@
+module RapidDiffs
+  class MergeRequestPresenter < BasePresenter
+    @conflicts: untyped
+
+    @diffs_slice: untyped
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    extend ::Gitlab::Utils::Override
+
+    attr_reader conflicts: untyped
+
+    attr_reader current_user: untyped
+
+    def initialize: (untyped subject, diff_view: untyped, diff_options: untyped, ?current_user: untyped?, ?request_params: untyped?, ?environment: untyped?, ?conflicts: untyped?) -> void
+
+    def diffs_stats_endpoint: () -> untyped
+
+    def diff_files_endpoint: () -> untyped
+
+    def diff_file_endpoint: () -> untyped
+
+    def coverage_endpoint: () -> (nil | untyped)
+
+    def reload_stream_url: (?offset: untyped?, ?diff_view: untyped?, ?skip_old_path: untyped?, ?skip_new_path: untyped?) -> untyped
+
+    def discussions_endpoint: () -> untyped
+
+    def only_context_commits?: () -> untyped
+
+    def diffs_slice: () -> (nil | untyped)
+
+    def sorted?: () -> true
+
+    def mr_path: () -> untyped
+
+    def project_path: () -> untyped
+
+    def user_permissions: () -> { can_create_note: untyped }
+
+    def noteable_type: () -> untyped
+
+    def preview_markdown_endpoint: () -> untyped
+
+    def markdown_docs_path: () -> untyped
+
+    def suggestions_help_path: () -> untyped
+
+    def default_suggestion_commit_message: () -> untyped
+
+    def register_path: () -> untyped
+
+    def sign_in_path: () -> untyped
+
+    def report_abuse_path: () -> untyped
+
+    def new_comment_template_paths: () -> ::Array[{ text: untyped, href: untyped }]
+
+    def code_review_enabled: () -> untyped
+
+    def versions: () -> (nil | untyped)
+
+    def transform_file: (untyped diff_file) -> untyped
+
+    def transform_file_collection: (untyped collection) -> untyped
+
+    private
+
+    def collection_unfolder: () -> untyped
+
+    def diff_options_from_params: () -> { diff_id: untyped, start_sha: untyped, commit_id: untyped, only_context_commits: untyped }
+
+    def resolved_diff_id: () -> (nil | untyped)
+  end
+end

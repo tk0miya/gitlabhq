@@ -1,0 +1,27 @@
+module Ci
+  class PipelineSchedulesFinder
+    @project: untyped
+
+    @pipeline_schedules: untyped
+
+    @params: untyped
+
+    attr_reader project: untyped
+
+    attr_reader pipeline_schedules: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped project, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: (?scope: untyped?, ?ids: untyped?) -> untyped
+
+    private
+
+    def by_ids: (untyped items, untyped ids) -> untyped
+
+    def by_scope: (untyped items, untyped scope) -> untyped
+
+    def sort_items: (untyped items) -> untyped
+  end
+end

@@ -1,0 +1,33 @@
+# Worker for processing individual commit messages pushed to a repository.
+#
+# Jobs for this worker are scheduled for every commit that contains mentionable
+# references in its message and does not exist in the upstream project. As a
+# result of this the workload of this worker should be kept to a bare minimum.
+# Consider using an extra worker if you need to add any extra (and potentially
+# slow) processing of commits.
+class ProcessCommitWorker
+  include ApplicationWorker
+
+  MAX_TIME_TRACKING_REFERENCES: 5
+
+  # project_id - The ID of the project this commit belongs to.
+  # user_id - The ID of the user that pushed the commit.
+  # commit_hash - Hash containing commit details to use for constructing a
+  #               Commit object without having to use the Git repository.
+  # default - The data was pushed to the default branch.
+  def perform: (untyped project_id, untyped user_id, untyped commit_hash, ?bool default) -> (nil | untyped)
+
+  private
+
+  def process_commit_message: (untyped project, untyped commit, untyped user, ?bool default) -> untyped
+
+  def track_time_from_commit_message: (untyped project, untyped commit, untyped user) -> (nil | untyped)
+
+  def close_issues: (untyped project, untyped user, untyped commit, untyped issues) -> untyped
+
+  def issues_to_close: (untyped project, untyped commit, untyped user) -> untyped
+
+  def update_issue_metrics: (untyped commit, untyped user) -> (nil | untyped)
+
+  def validate_and_limit_time_tracking_references: (untyped message, untyped commit, untyped project, untyped user) -> (nil | untyped)
+end

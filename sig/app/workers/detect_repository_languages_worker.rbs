@@ -1,0 +1,21 @@
+class DetectRepositoryLanguagesWorker
+  @project: untyped
+
+  include ApplicationWorker
+
+  include ExceptionBacktrace
+
+  include ExclusiveLeaseGuard
+
+  LEASE_TIMEOUT: 600
+
+  attr_reader project: untyped
+
+  def perform: (untyped project_id, ?untyped? user_id) -> untyped
+
+  private
+
+  def lease_timeout: () -> untyped
+
+  def lease_key: () -> ::String
+end

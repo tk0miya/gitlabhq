@@ -1,0 +1,77 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      module WorkspaceOperations
+        module Create
+          module DesiredConfig
+            # rubocop:disable Metrics/MethodLength -- The original method is copied from ee/lib/remotedevelopment
+            # rubocop:disable Metrics/ClassLength -- The original class is copied from ee/lib/remotedevelopment
+            class BmDevfileResourceAppender
+              include BmWorkspaceOperationsConstants
+
+              # @param [Hash] context
+              # @return [Hash]
+              def self.append: (untyped context) -> untyped
+
+              # @param [Array] desired_config_array
+              # @param [String] name
+              # @param [String] namespace
+              # @param [Hash<String, String>] labels
+              # @param [Hash<String, String>] annotations
+              # @param [Boolean] prepend -- If true, prepend the configmap to the desired_config_array
+              # @return [void]
+              def self.append_inventory_configmap: (desired_config_array: untyped, name: untyped, namespace: untyped, labels: untyped, annotations: untyped, ?prepend: bool) -> nil
+
+              # @param [Array] desired_config_array
+              # @param [String] name
+              # @param [String] namespace
+              # @param [Hash] labels
+              # @param [Hash] annotations
+              # @return [void]
+              def self.append_secret: (desired_config_array: untyped, name: untyped, namespace: untyped, labels: untyped, annotations: untyped) -> nil
+
+              # @param [Array] desired_config_array
+              # @param [String] gitlab_workspaces_proxy_namespace
+              # @param [String] name
+              # @param [String] namespace
+              # @param [Boolean] network_policy_enabled
+              # @param [Array] network_policy_egress
+              # @param [Hash] labels
+              # @param [Hash] annotations
+              # @return [void]
+              def self.append_network_policy: (desired_config_array: untyped, name: untyped, namespace: untyped, gitlab_workspaces_proxy_namespace: untyped, network_policy_enabled: untyped, network_policy_egress: untyped, labels: untyped, annotations: untyped) -> nil
+
+              # @param [Array] desired_config_array
+              # @param [String] processed_devfile_yaml
+              # @param [String] name
+              # @param [String] namespace
+              # @param [Hash] labels
+              # @param [Hash] annotations
+              # @return [void]
+              def self.append_scripts_resources: (desired_config_array: untyped, processed_devfile_yaml: untyped, name: untyped, namespace: untyped, labels: untyped, annotations: untyped) -> nil
+
+              # @param [Array] desired_config_array
+              # @param [String] name
+              # @param [String] namespace
+              # @param [Hash] labels
+              # @param [Hash] annotations
+              # @param [Hash] max_resources_per_workspace
+              # @param [String] shared_namespace
+              # @return [void]
+              def self.append_resource_quota: (desired_config_array: untyped, name: untyped, namespace: untyped, labels: untyped, annotations: untyped, max_resources_per_workspace: untyped, shared_namespace: untyped) -> nil
+
+              # @param [Array] desired_config_array
+              # @param [String] name
+              # @param [String] namespace
+              # @param [Hash] labels
+              # @param [Hash] annotations
+              # @param [Array] image_pull_secrets
+              # @return [void]
+              def self.append_image_pull_secrets_service_account: (desired_config_array: untyped, name: untyped, namespace: untyped, labels: untyped, annotations: untyped, image_pull_secrets: untyped) -> nil
+            end
+          end
+        end
+      end
+    end
+  end
+end

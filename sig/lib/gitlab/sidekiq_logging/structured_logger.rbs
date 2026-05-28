@@ -1,0 +1,29 @@
+module Gitlab
+  module SidekiqLogging
+    class StructuredLogger < Sidekiq::JobLogger
+      include LogsJobs
+
+      def call: (untyped job, untyped queue) { () -> untyped } -> untyped
+
+      private
+
+      def add_instrumentation_keys!: (untyped job, untyped output_payload) -> (untyped | nil)
+
+      def add_logging_extras!: (untyped job, untyped output_payload) -> untyped
+
+      def log_job_start: (untyped job, untyped payload) -> untyped
+
+      def log_job_done: (untyped job, untyped started_time, untyped payload, ?untyped? job_exception) -> untyped
+
+      def add_thread_identity: (untyped payload) -> untyped
+
+      def add_time_keys!: (untyped time, untyped payload) -> untyped
+
+      def elapsed: (untyped t0) -> { duration: untyped }
+
+      def get_time: () -> { now: untyped }
+
+      def current_time: () -> untyped
+    end
+  end
+end

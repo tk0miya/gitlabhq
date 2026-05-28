@@ -1,0 +1,21 @@
+module Resolvers
+  module Ci
+    class RunnerProjectsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      include LooksAhead
+
+      include ProjectSearchArguments
+
+      alias runner object
+
+      def resolve_with_lookahead: (**untyped args) -> (nil | untyped)
+
+      private
+
+      def unconditional_includes: () -> ::Array[:project_feature]
+
+      def preloads: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,49 @@
+module Banzai
+  module Filter
+    module References
+      class DesignReferenceFilter < AbstractReferenceFilter
+        class Identifier
+          @issue_iid: untyped
+
+          @filename: untyped
+
+          include Comparable
+
+          attr_reader issue_iid: untyped
+
+          attr_reader filename: untyped
+
+          def initialize: (issue_iid: untyped, filename: untyped) -> void
+
+          def as_composite_id: (untyped id_for_iid) -> (nil | { issue_id: untyped, filename: untyped })
+
+          def <=>: (untyped other) -> (nil | untyped)
+
+          alias eql? ==
+
+          def hash: () -> untyped
+        end
+
+        def find_object: (untyped project, untyped identifier) -> untyped
+
+        def parent_records: (untyped parent, untyped identifiers) -> untyped
+
+        def relation_for_paths: (untyped paths) -> untyped
+
+        def url_for_object: (untyped design, untyped project) -> untyped
+
+        def data_attributes_for: (untyped _original, untyped _project, untyped design, **untyped _attrs) -> untyped
+
+        def object_sym: () -> :design
+
+        def parse_symbol: (untyped raw, untyped match_data) -> untyped
+
+        def record_identifier: (untyped design) -> untyped
+
+        private
+
+        def designs: (untyped identifiers, untyped id_for_iid) -> untyped
+      end
+    end
+  end
+end

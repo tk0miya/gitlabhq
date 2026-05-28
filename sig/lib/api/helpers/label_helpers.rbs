@@ -1,0 +1,27 @@
+module API
+  module Helpers
+    module LabelHelpers
+      @params_id_or_title: untyped
+
+      extend Grape::API::Helpers
+
+      def find_label: (untyped parent, untyped id_or_title, ?::Hash[untyped, untyped] params) -> untyped
+
+      def get_labels: (untyped parent, untyped entity, ?::Hash[untyped, untyped] params) -> untyped
+
+      def get_label: (untyped parent, untyped entity, ?::Hash[untyped, untyped] params) -> untyped
+
+      def create_label: (untyped parent, untyped entity) -> untyped
+
+      def update_label: (untyped parent, untyped entity) -> untyped
+
+      def delete_label: (untyped parent) -> untyped
+
+      def promote_label: (untyped parent) -> untyped
+
+      def params_id_or_title: () -> untyped
+
+      def create_service_params: (untyped parent) -> untyped
+    end
+  end
+end

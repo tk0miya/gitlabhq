@@ -1,0 +1,33 @@
+module Gitlab
+  module Instrumentation
+    class ElasticsearchTransport
+      ELASTICSEARCH_REQUEST_COUNT: :elasticsearch_request_count
+
+      ELASTICSEARCH_CALL_DURATION: :elasticsearch_call_duration
+
+      ELASTICSEARCH_CALL_DETAILS: :elasticsearch_call_details
+
+      ELASTICSEARCH_TIMED_OUT_COUNT: :elasticsearch_timed_out_count
+
+      module Interceptor
+        def perform_request: (untyped method, untyped path, ?::Hash[untyped, untyped] params, ?untyped? body, ?untyped? headers) -> untyped
+      end
+
+      def self.get_request_count: () -> untyped
+
+      def self.increment_request_count: () -> untyped
+
+      def self.detail_store: () -> untyped
+
+      def self.query_time: () -> untyped
+
+      def self.add_duration: (untyped duration) -> untyped
+
+      def self.increment_timed_out_count: () -> untyped
+
+      def self.get_timed_out_count: () -> untyped
+
+      def self.add_call_details: (untyped duration, untyped method, untyped path, untyped params, untyped body) -> (nil | untyped)
+    end
+  end
+end

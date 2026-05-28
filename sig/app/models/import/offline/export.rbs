@@ -1,0 +1,30 @@
+module Import
+  module Offline
+    class Export < ApplicationRecord
+      include AfterCommitQueue
+
+      KNOWN_IMPORT_HOSTS: ::Array["github.com" | "bitbucket.org" | "gitea.com"]
+
+      PURGE_CONFIGURATION_DELAY: untyped
+
+      def self.all_human_statuses: () -> untyped
+
+      def completed?: () -> untyped
+
+      def validate_source_hostname: () -> (untyped | nil)
+
+      def schedule_configuration_purge: () -> (nil | untyped)
+
+      def update_has_failures!: () -> (nil | untyped)
+
+      def included_group_routes: () -> untyped
+
+      def included_project_routes: () -> untyped
+
+      private
+
+      # Only finished relation exports are considered included in the export
+      def included_routes_for_portable_type: (untyped portable_class) -> untyped
+    end
+  end
+end

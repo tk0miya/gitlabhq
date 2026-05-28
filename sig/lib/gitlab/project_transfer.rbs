@@ -1,0 +1,19 @@
+module Gitlab
+  # This class is used to move local, unhashed files owned by projects to their new location
+  class ProjectTransfer
+    # nil parent_path (or parent_path_was) represents a root namespace
+    def move_namespace: (untyped path, untyped parent_path_was, untyped parent_path) -> untyped
+
+    alias move_project move_namespace
+
+    def rename_project: (untyped path_was, untyped path, untyped namespace_path) -> untyped
+
+    def rename_namespace: (untyped path_was, untyped path) -> untyped
+
+    def root_dir: () -> untyped
+
+    private
+
+    def move: (untyped path_was, untyped path, ?untyped? base_dir) -> untyped
+  end
+end

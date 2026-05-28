@@ -1,0 +1,26 @@
+module Packages
+  module Nuget
+    module VersionHelpers
+      private
+
+      def sort_versions: (untyped versions) -> untyped
+
+      # NuGet version sorting algorithm as per https://semver.org/spec/v2.0.0.html#spec-item-11
+      def compare_versions: (untyped version_a, untyped version_b) -> (0 | 1 | -1 | untyped)
+
+      def compare_core_parts: (untyped a_core_parts, untyped b_core_parts) -> untyped
+
+      def compare_pre_release_parts: (untyped a_pre, untyped b_pre) -> (nil | -1 | 1 | untyped)
+
+      def compare_build_meta_parts: (untyped a_build_meta, untyped b_build_meta) -> untyped
+
+      def select_numeric_before_alphanumeric: (untyped a_num, untyped a_pre_part, untyped b_num, untyped b_pre_part) -> (-1 | untyped)
+
+      def numeric?: (untyped pre_part) -> untyped
+
+      def compare_numeric_parts: (untyped a_pre_part, untyped a_num, untyped b_pre_part, untyped b_num) -> (untyped | nil)
+
+      def pick_non_nil: (untyped var_a, untyped var_b) -> (-1 | untyped)
+    end
+  end
+end

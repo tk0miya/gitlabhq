@@ -1,0 +1,24 @@
+module Gitlab
+  module HealthChecks
+    module Redis
+      module RedisAbstractCheck
+        include SimpleAbstractCheck
+
+        def check_up: () -> untyped
+
+        def redis_instance_class_name: () -> untyped
+
+        private
+
+        def metric_prefix: () -> ::String
+
+        def redis_instance_name: () -> untyped
+
+        def successful?: (untyped result) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def check: () -> untyped
+      end
+    end
+  end
+end

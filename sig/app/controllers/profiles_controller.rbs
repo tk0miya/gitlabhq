@@ -1,0 +1,33 @@
+class ProfilesController < Profiles::ApplicationController
+  @user: untyped
+
+  @username_param: untyped
+
+  @user_params: untyped
+
+  include ActionView::Helpers::SanitizeHelper
+
+  include Gitlab::Tracking
+
+  include SafeFormatHelper
+
+  def reset_incoming_email_token: () -> untyped
+
+  def reset_feed_token: () -> untyped
+
+  def reset_static_object_token: () -> untyped
+
+  def update_username: () -> untyped
+
+  private
+
+  def user: () -> untyped
+
+  def authorize_change_username!: () -> (untyped | nil)
+
+  def username_param: () -> untyped
+
+  def user_params_attributes: () -> ::Array[:achievements_enabled | :avatar | :bio | :bluesky | :commit_email | :discord | :email | :gitpod_enabled | :hide_no_password | :hide_no_ssh_key | :hide_project_limit | :include_private_contributions | :job_title | :linkedin | :location | :mastodon | :name | :company | :private_profile | :pronouns | :pronunciation | :public_email | :role | :timezone | :twitter | :username | :validation_password | :website_url | :github | { status: ::Array[:emoji | :message | :availability | :clear_status_after] }]
+
+  def user_params: () -> untyped
+end

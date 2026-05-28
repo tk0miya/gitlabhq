@@ -1,0 +1,41 @@
+module Users
+  module ParticipableService
+    extend ActiveSupport::Concern
+
+    include Gitlab::Utils::StrongMemoize
+
+    SEARCH_LIMIT: 10
+
+    private
+
+    def participation_object: () -> untyped
+
+    def noteable_owner: () -> (::Array[untyped] | untyped)
+
+    def participants_in_noteable: () -> (::Array[untyped] | untyped)
+
+    def filter_and_sort_users: (untyped users_relation) -> untyped
+
+    def sorted: (untyped users) -> untyped
+
+    def relation_at_search_limit?: (untyped users_relation) -> untyped
+
+    def groups: (?organization: untyped?) -> (::Array[untyped] | untyped)
+
+    def render_participants_as_hash: (untyped participants) -> untyped
+
+    def participant_as_hash: (untyped participant) -> untyped
+
+    def user_as_hash: (untyped user) -> { type: untyped, username: untyped, name: untyped, avatar_url: untyped, availability: untyped, composite_identity_enforced: untyped }
+
+    def group_as_hash: (untyped group) -> { type: untyped, username: untyped, name: untyped, avatar_url: untyped, count: untyped, mentionsDisabled: untyped }
+
+    def org_user_detail_as_hash: (untyped org_user_detail) -> { type: untyped, username: untyped, name: untyped, avatar_url: untyped, availability: untyped, original_username: untyped, original_displayname: untyped, composite_identity_enforced: untyped }
+
+    def group_counts: () -> untyped
+
+    def preload_associations: (untyped users) { (untyped) -> untyped } -> untyped
+
+    def lazy_user_availability: (untyped user) -> untyped
+  end
+end

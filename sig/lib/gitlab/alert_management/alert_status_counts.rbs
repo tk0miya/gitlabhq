@@ -1,0 +1,34 @@
+module Gitlab
+  module AlertManagement
+    # Represents counts of each status or category of statuses
+    class AlertStatusCounts
+      @project: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader project: untyped
+
+      def self.declarative_policy_class: () -> "AlertManagement::AlertPolicy"
+
+      def initialize: (untyped current_user, untyped project, untyped params) -> void
+
+      def open: () -> untyped
+
+      def all: () -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def counts: () -> untyped
+
+      def counts_by_status: () -> untyped
+    end
+  end
+end

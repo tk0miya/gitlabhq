@@ -1,0 +1,25 @@
+module Ci
+  class ParseDotenvArtifactService < ::BaseService
+    include ::Gitlab::Utils::StrongMemoize
+
+    include ::Gitlab::EncodingHelper
+
+    SizeLimitError: untyped
+
+    ParserError: untyped
+
+    def execute: (untyped artifact) -> untyped
+
+    private
+
+    def validate!: (untyped artifact) -> untyped
+
+    def parse!: (untyped artifact) -> untyped
+
+    def scan_line!: (untyped line) -> untyped
+
+    def dotenv_variable_limit: () -> untyped
+
+    def dotenv_size_limit: () -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+module Ci
+  module Partitions
+    class ArchiveService
+      @current_partition: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped current_partition) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader current_partition: untyped
+
+      def archivable?: (untyped partition) -> (false | untyped)
+
+      def archive_builds_older_than: () -> untyped
+    end
+  end
+end

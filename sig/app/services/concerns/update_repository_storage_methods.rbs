@@ -1,0 +1,31 @@
+module UpdateRepositoryStorageMethods
+  @repository_storage_move: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  MAX_ERROR_LENGTH: 256
+
+  Error: untyped
+
+  attr_reader repository_storage_move: untyped
+
+  def initialize: (untyped repository_storage_move) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def track_repository: (untyped destination_shard) -> untyped
+
+  def mirror_repositories: () -> untyped
+
+  def mirror_object_pool: (untyped _destination_shard) -> nil
+
+  def mirror_repository: (type: untyped) -> untyped
+
+  def same_filesystem?: () -> untyped
+
+  def remove_old_paths: () -> (untyped | nil)
+
+  def wait_for_pushes: (untyped type) -> (true | false)
+end

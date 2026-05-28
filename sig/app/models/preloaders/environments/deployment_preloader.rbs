@@ -1,0 +1,20 @@
+module Preloaders
+  module Environments
+    # This class is to batch-load deployments of multiple environments.
+    # The deployments to batch-load are fetched using UNION of N selects in a single query instead of default scoping with `IN (environment_id1, environment_id2 ...)`.
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/345672#note_761852224 for more details.
+    class DeploymentPreloader
+      @environments: untyped
+
+      attr_reader environments: untyped
+
+      def initialize: (untyped environments) -> void
+
+      def execute_with_union: (untyped association_name, untyped association_attributes) -> untyped
+
+      private
+
+      def load_deployment_association: (untyped association_name, untyped association_attributes) -> (nil | untyped)
+    end
+  end
+end

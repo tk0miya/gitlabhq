@@ -1,0 +1,21 @@
+module Sidebars
+  module Projects
+    module Menus
+      class SnippetsMenu < ::Sidebars::Menu
+        def link: () -> untyped
+
+        def extra_container_html_options: () -> { class: "shortcuts-snippets" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "snippet"
+
+        def render?: () -> untyped
+
+        def active_routes: () -> { controller: :snippets }
+
+        def serialize_as_menu_item_args: () -> untyped
+      end
+    end
+  end
+end

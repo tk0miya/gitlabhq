@@ -1,0 +1,33 @@
+module Authn
+  module TokenField
+    module Finders
+      class BaseEncrypted
+        @strategy: untyped
+
+        @token: untyped
+
+        @unscoped: untyped
+
+        @options: untyped
+
+        @tokens: untyped
+
+        def initialize: (untyped strategy, untyped token, untyped unscoped, ?::Hash[untyped, untyped] options) -> void
+
+        def execute: () -> untyped
+
+        attr_reader strategy: untyped
+
+        attr_reader token: untyped
+
+        attr_reader unscoped: untyped
+
+        attr_reader options: untyped
+
+        def tokens: () -> untyped
+
+        def base_scope: () -> untyped
+      end
+    end
+  end
+end

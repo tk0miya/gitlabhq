@@ -1,0 +1,23 @@
+module Gitlab
+  class GlRepository
+    include Singleton
+
+    PROJECT: untyped
+
+    WIKI: untyped
+
+    SNIPPET: untyped
+
+    DESIGN: untyped
+
+    TYPES: ::Hash[untyped, untyped]
+
+    def self.types: () -> untyped
+
+    def self.parse: (untyped gl_repository) -> ::Array[untyped]
+
+    def self.default_type: () -> untyped
+
+    def types: () -> untyped
+  end
+end

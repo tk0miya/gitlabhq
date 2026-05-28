@@ -1,0 +1,33 @@
+# Enforces step-up authentication requirements for admin access
+#
+# This controller concern ensures users complete step-up authentication
+# before accessing admin functionality. Include this module in admin
+# controllers to enforce the authentication check.
+#
+# @example
+#   class Admin::ApplicationController < ApplicationController
+#     include EnforcesStepUpAuthentication
+#   end
+module EnforcesStepUpAuthentication
+  extend ActiveSupport::Concern
+
+  private
+
+  def enforce_step_up_authentication: () -> (nil | untyped)
+
+  def step_up_auth_disabled_for_admin_mode?: () -> untyped
+
+  def step_up_auth_flow_state_success?: () -> untyped
+
+  def step_up_authentication_expired?: () -> untyped
+
+  def handle_expired_step_up_authentication: () -> untyped
+
+  def handle_failed_authentication: () -> untyped
+
+  def disable_admin_mode: () -> (untyped | nil)
+
+  def build_step_up_auth_notice: () -> untyped
+
+  def documentation_links_for_failed_step_up_auth_providers: (?::String scope) -> untyped
+end

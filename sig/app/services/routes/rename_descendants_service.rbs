@@ -1,0 +1,65 @@
+module Routes
+  class RenameDescendantsService
+    @parent_route: untyped
+
+    @routes_to_update: untyped
+
+    @redirect_routes_to_insert: untyped
+
+    @route_claims_destroy_metadata: untyped
+
+    @route_claims_create_ids: untyped
+
+    BATCH_SIZE: 100
+
+    class RouteChanges
+      @saved_change_to_parent_path: untyped
+
+      @old_path_of_parent: untyped
+
+      @saved_change_to_parent_name: untyped
+
+      @old_name_of_parent: untyped
+
+      attr_reader saved_change_to_parent_path: untyped
+
+      attr_reader saved_change_to_parent_name: untyped
+
+      attr_reader old_path_of_parent: untyped
+
+      attr_reader old_name_of_parent: untyped
+
+      def initialize: (untyped changes) -> void
+    end
+
+    def initialize: (untyped parent_route) -> void
+
+    def execute: (untyped changes) -> untyped
+
+    private
+
+    def process_changes: (untyped changes) -> (nil | untyped)
+
+    def push_to_routes_data: (untyped descendant_route, untyped attributes_to_update) -> (nil | untyped)
+
+    def push_to_redirect_routes_data: (untyped descendant_route) -> untyped
+
+    def update_routes_for_descendants: () -> (nil | untyped)
+
+    def create_redirect_routes_for_descendants: () -> (nil | untyped)
+
+    # Early filter to top-level routes (path has no '/') to avoid collecting
+    # thousands of non-claimable descendant IDs into Sidekiq payloads.
+    def collect_route_claims_metadata: (untyped descendant_route, untyped attributes_to_update) -> (nil | untyped)
+
+    def schedule_route_claims: () -> (nil | untyped)
+
+    def schedule_redirect_route_claims: (untyped inserted_ids) -> (nil | untyped)
+
+    def current_name_of_parent: () -> untyped
+
+    def current_path_of_parent: () -> untyped
+
+    def descendant_routes_inside: (untyped path) -> untyped
+  end
+end

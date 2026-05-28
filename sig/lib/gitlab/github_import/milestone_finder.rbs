@@ -1,0 +1,26 @@
+module Gitlab
+  module GithubImport
+    class MilestoneFinder
+      @project: untyped
+
+      attr_reader project: untyped
+
+      # The base cache key to use for storing/retrieving milestone IDs.
+      CACHE_KEY: "github-import/milestone-finder/%{project}/%{iid}"
+
+      CACHE_OBJECT_NOT_FOUND: -1
+
+      # project - An instance of `Project`
+      def initialize: (untyped project) -> void
+
+      # issuable - An instance of `Gitlab::GithubImport::Representation::Issue`
+      #            or `Gitlab::GithubImport::Representation::PullRequest`.
+      def id_for: (untyped issuable) -> (nil | untyped)
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def build_cache: () -> untyped
+
+      def cache_key_for: (untyped iid) -> untyped
+    end
+  end
+end

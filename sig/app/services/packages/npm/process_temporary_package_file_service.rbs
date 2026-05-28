@@ -1,0 +1,27 @@
+module Packages
+  module Npm
+    class ProcessTemporaryPackageFileService < ::BaseService
+      @package_file: untyped
+
+      ERRORS: { unauthorized: untyped, missing_versions: untyped, missing_deprecated_versions: untyped }
+
+      def initialize: (package_file: untyped, user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_file: untyped
+
+      def handle_deprecation: (untyped json_doc) -> untyped
+
+      def can_destroy_package?: () -> untyped
+
+      def deprecate_package_versions: (untyped json_doc) -> untyped
+
+      def mark_package_for_destruction: () -> untyped
+
+      def handle_creation: (untyped json_doc) -> untyped
+    end
+  end
+end

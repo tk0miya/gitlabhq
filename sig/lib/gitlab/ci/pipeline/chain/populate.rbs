@@ -1,0 +1,26 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class Populate < Chain::Base
+          include Chain::Helpers
+
+          PopulateError: untyped
+
+          def perform!: () -> untyped
+
+          def break?: () -> untyped
+
+          private
+
+          def no_pipeline_to_create?: () -> untyped
+
+          def stage_names: () -> untyped
+
+          # Overridden in EE
+          def force_pipeline_creation_to_continue?: () -> false
+        end
+      end
+    end
+  end
+end

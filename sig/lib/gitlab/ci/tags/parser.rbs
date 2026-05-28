@@ -1,0 +1,43 @@
+module Gitlab
+  module Ci
+    module Tags
+      class Parser
+        @tag_list: untyped
+
+        def initialize: (untyped tag_list) -> void
+
+        def parse: () -> untyped
+
+        private
+
+        def delimiter: () -> ","
+
+        # (             # Tag start delimiter ($1)
+        # \A       |  # Either string start or
+        # #{delimiter}        # a delimiter
+        # )
+        # \s*"          # quote (") optionally preceded by whitespace
+        # (.*?)         # Tag ($2)
+        # "\s*          # quote (") optionally followed by whitespace
+        # (?=           # Tag end delimiter (not consumed; is zero-length lookahead)
+        # #{delimiter}\s*  |  # Either a delimiter optionally followed by whitespace or
+        # \z          # string end
+        # )
+        def double_quote_pattern: () -> ::Regexp
+
+        # (             # Tag start delimiter ($1)
+        # \A       |  # Either string start or
+        # #{delimiter}        # a delimiter
+        # )
+        # \s*'          # quote (') optionally preceded by whitespace
+        # (.*?)         # Tag ($2)
+        # '\s*          # quote (') optionally followed by whitespace
+        # (?=           # Tag end delimiter (not consumed; is zero-length lookahead)
+        # #{delimiter}\s*  | d # Either a delimiter optionally followed by whitespace or
+        # \z          # string end
+        # )
+        def single_quote_pattern: () -> ::Regexp
+      end
+    end
+  end
+end

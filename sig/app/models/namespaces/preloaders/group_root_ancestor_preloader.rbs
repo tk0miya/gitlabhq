@@ -1,0 +1,11 @@
+module Namespaces
+  module Preloaders
+    class GroupRootAncestorPreloader < NamespaceRootAncestorPreloader
+      extend Gitlab::Utils::Override
+
+      private
+
+      def join_sql: () -> untyped
+    end
+  end
+end

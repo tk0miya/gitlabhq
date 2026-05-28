@@ -1,0 +1,41 @@
+module BulkImports
+  class EntityWorker
+    @entity: untyped
+
+    @running_tracker: untyped
+
+    @logger: untyped
+
+    include ApplicationWorker
+
+    include ExclusiveLeaseGuard
+
+    PERFORM_DELAY: untyped
+
+    def perform: (untyped entity_id) -> (nil | untyped)
+
+    def perform_failure: (untyped exception, untyped entity_id) -> (nil | untyped)
+
+    private
+
+    attr_reader entity: untyped
+
+    def re_enqueue: () -> untyped
+
+    def running_tracker: () -> untyped
+
+    def next_pipeline_trackers_for: (untyped entity_id) -> untyped
+
+    def start_next_stage: () -> untyped
+
+    def lease_timeout: () -> untyped
+
+    def lease_key: () -> ::String
+
+    def log_lease_taken: () -> untyped
+
+    def logger: () -> untyped
+
+    def log_info: (untyped payload) -> untyped
+  end
+end

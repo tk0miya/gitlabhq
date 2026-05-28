@@ -1,0 +1,31 @@
+module Gitlab
+  module BitbucketImport
+    module Importers
+      class IssuesImporter
+        @repo: untyped
+
+        include ParallelScheduling
+
+        def execute: () -> untyped
+
+        private
+
+        def sidekiq_worker_class: () -> untyped
+
+        def collection_method: () -> :issues
+
+        def collection_options: () -> { raw: true }
+
+        def representation_type: () -> :issue
+
+        def id_for_already_enqueued_cache: (untyped object) -> untyped
+
+        def default_issue_type_id: () -> untyped
+
+        def build_labels_hash: () -> untyped
+
+        def repo: () -> untyped
+      end
+    end
+  end
+end

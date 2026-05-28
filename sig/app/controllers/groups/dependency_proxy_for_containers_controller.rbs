@@ -1,0 +1,73 @@
+class Groups::DependencyProxyForContainersController < ::Groups::DependencyProxy::ApplicationController
+  @blob_file_name: untyped
+
+  @manifest_file_name: untyped
+
+  @dependency_proxy_setting: untyped
+
+  @token: untyped
+
+  include DependencyProxy::GroupAccess
+
+  include SendFileUpload
+
+  include ::PackagesHelper
+
+  include WorkhorseRequest
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader token: untyped
+
+  PERMITTED_PARAMS: ::Array[:image | :tag | :file | :sha | :group_id]
+
+  def manifest: () -> untyped
+
+  def blob: () -> untyped
+
+  def authorize_upload_blob: () -> untyped
+
+  def upload_blob: () -> untyped
+
+  def authorize_upload_manifest: () -> untyped
+
+  def upload_manifest: () -> untyped
+
+  def referrers_not_found: () -> untyped
+
+  private
+
+  def group: () -> untyped
+
+  def send_manifest: (untyped manifest, from_cache: untyped) -> untyped
+
+  def blob_file_name: () -> untyped
+
+  def manifest_file_name: () -> untyped
+
+  def image: () -> untyped
+
+  def tag: () -> untyped
+
+  def permitted_params: () -> untyped
+
+  def tracking_event_name: (object_type: untyped, from_cache: untyped) -> untyped
+
+  def dependency_proxy_setting: () -> untyped
+
+  def ensure_group: () -> (untyped | nil)
+
+  def ensure_feature_enabled!: () -> (untyped | nil)
+
+  def ensure_token_granted!: () -> untyped
+
+  def token_header: () -> { Authorization: ::Array[::String] }
+
+  def manifest_header: () -> untyped
+
+  def ssrf_params: () -> (::Hash[untyped, untyped] | { ssrf_filter: true, allow_localhost: untyped, allowed_endpoints: untyped })
+
+  def allow_localhost?: () -> untyped
+
+  def tracking_user: () -> (untyped | nil)
+end

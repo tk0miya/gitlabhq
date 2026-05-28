@@ -1,0 +1,30 @@
+module Projects
+  module HashedStorage
+    class MigrateAttachmentsService < BaseAttachmentService
+      @skipped: untyped
+
+      @new_disk_path: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      # List of paths that can be excluded while evaluation if a target can be discarded
+      DISCARDABLE_PATHS: ::Array["tmp" | "tmp/cache" | "tmp/work"]
+
+      def initialize: (project: untyped, old_disk_path: untyped, ?logger: untyped?) -> void
+
+      def execute: () ?{ () -> untyped } -> untyped
+
+      # Check if target path has discardable content
+      #
+      # @param [String] new_path
+      # @return [Boolean] whether we can discard the target path or not
+      def target_path_discardable?: (untyped new_path) -> (false | untyped)
+
+      private
+
+      def discardable_paths: (untyped new_path) -> untyped
+
+      def find_old_attachments_path: (untyped project) -> untyped
+    end
+  end
+end

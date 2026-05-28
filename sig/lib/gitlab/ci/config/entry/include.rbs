@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a single include.
+        #
+        class Include < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          include ::Gitlab::Ci::Config::Entry::Concerns::BaseInclude
+
+          # Additional keys beyond the common ones
+          ADDITIONAL_ALLOWED_KEYS: ::Array[:template | :artifact | :inputs | :job | :rules | :component]
+
+          ALLOWED_KEYS: untyped
+        end
+      end
+    end
+  end
+end

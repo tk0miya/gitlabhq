@@ -1,0 +1,42 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a retry config for a job.
+        #
+        class Retry < ::Gitlab::Config::Entry::Simplifiable
+          class SimpleRetry < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            def value: () -> { max: untyped }
+
+            def location: () -> "retry"
+          end
+
+          class FullRetry < ::Gitlab::Config::Entry::Node
+            self.@possible_retry_when_values: untyped
+
+            include ::Gitlab::Config::Entry::Validatable
+
+            include ::Gitlab::Config::Entry::Attributable
+
+            ALLOWED_KEYS: ::Array[:max | :when | :exit_codes]
+
+            def self.possible_retry_when_values: () -> untyped
+
+            def value: () -> untyped
+
+            def location: () -> "retry"
+          end
+
+          class UnknownStrategy < ::Gitlab::Config::Entry::Node
+            def errors: () -> ::Array[::String]
+
+            def location: () -> "retry config"
+          end
+        end
+      end
+    end
+  end
+end

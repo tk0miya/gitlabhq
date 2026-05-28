@@ -1,0 +1,23 @@
+# It is a Range object extended with `mode` attribute
+# MarkerRange not only keeps information about changed characters, but also
+# the type of changes
+module Gitlab
+  class MarkerRange < Range
+    @mode: untyped
+
+    DELETION: :deletion
+
+    ADDITION: :addition
+
+    # Converts Range object to MarkerRange class
+    def self.from_range: (untyped range) -> untyped
+
+    def initialize: (untyped first, untyped last, ?exclude_end: bool, ?mode: untyped?) -> void
+
+    def to_range: () -> untyped
+
+    def ==: (untyped other) -> (false | untyped)
+
+    attr_reader mode: untyped
+  end
+end

@@ -1,0 +1,15 @@
+module MicrosoftTeams
+  class Activity
+    @title: untyped
+
+    @subtitle: untyped
+
+    @text: untyped
+
+    @image: untyped
+
+    def initialize: (title: untyped, subtitle: untyped, text: untyped, image: untyped) -> void
+
+    def prepare: () -> { type: "ColumnSet", columns: ::Array[{ type: "Column", width: "auto", items: ::Array[{ type: "Image", url: untyped, size: "medium" }] } | { type: "Column", width: "stretch", items: ::Array[{ type: "TextBlock", text: untyped, weight: "bolder", wrap: true } | { type: "TextBlock", text: untyped, isSubtle: true, wrap: true } | { type: "TextBlock", text: untyped, wrap: true }] }] }
+  end
+end

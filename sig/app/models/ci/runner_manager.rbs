@@ -1,0 +1,62 @@
+module Ci
+  class RunnerManager < Ci::ApplicationRecord
+    include EachBatch
+
+    include FromUnion
+
+    include RedisCacheable
+
+    include Ci::HasRunnerExecutor
+
+    include Ci::HasRunnerStatus
+
+    AVAILABLE_STATUSES: ::Array["online" | "offline" | "never_contacted" | "stale"]
+
+    AVAILABLE_STATUSES_INCL_DEPRECATED: untyped
+
+    # The `UPDATE_CONTACT_COLUMN_EVERY` defines how often the Runner Machine DB entry can be updated
+    UPDATE_CONTACT_COLUMN_EVERY: ::Range[untyped]
+
+    EXECUTOR_NAME_TO_TYPES: { "unknown" => :unknown, "custom" => :custom, "shell" => :shell, "docker" => :docker, "docker-windows" => :docker_windows, "docker-ssh" => :docker_ssh, "ssh" => :ssh, "parallels" => :parallels, "virtualbox" => :virtualbox, "docker+machine" => :docker_machine, "docker-ssh+machine" => :docker_ssh_machine, "kubernetes" => :kubernetes, "docker-autoscaler" => :docker_autoscaler, "instance" => :instance }
+
+    EXECUTOR_TYPE_TO_NAMES: untyped
+
+    # The `STALE_TIMEOUT` constant defines the how far past the last contact or creation date a runner manager
+    # will be considered stale
+    STALE_TIMEOUT: untyped
+
+    def self.online_contact_time_deadline: () -> untyped
+
+    def self.stale_deadline: () -> untyped
+
+    def self.aggregate_upgrade_status_by_runner_id: () -> untyped
+
+    def self.ip_address_exists?: (untyped ip_address) -> untyped
+
+    def self.version_regex_expression_for_version: (untyped version) -> untyped
+
+    def self.ids_with_running_builds: (untyped ids) -> (::Array[untyped] | untyped)
+
+    def uncached_contacted_at: () -> untyped
+
+    def heartbeat: (untyped values) -> untyped
+
+    # While using update_columns may be useful from performance perspective, we still want
+    # the `updated_at` column to be updated when actual runner attributes change.
+    # However, we don't want to update it when only contacted_at changes, as this would
+    # cause unnecessary incremental sync operations in downstream systems (e.g., Snowflake).
+    def update_columns: (?::Hash[untyped, untyped] attrs) -> untyped
+
+    def supports_after_script_on_cancel?: () -> untyped
+
+    private
+
+    def changed_values: (untyped values) -> untyped
+
+    def persist_cached_data?: () -> untyped
+
+    def schedule_runner_version_update: (untyped new_version) -> (nil | untyped)
+
+    def no_organization_id: () -> (untyped | nil)
+  end
+end

@@ -1,0 +1,19 @@
+module Resolvers
+  module Admin
+    module Analytics
+      module UsageTrends
+        class MeasurementsResolver < BaseResolver
+          include Gitlab::Graphql::Authorize::AuthorizeResource
+
+          def resolve: (identifier: untyped, ?recorded_before: untyped?, ?recorded_after: untyped?) -> untyped
+
+          private
+
+          def authorize!: () -> untyped
+
+          def admin?: () -> untyped
+        end
+      end
+    end
+  end
+end

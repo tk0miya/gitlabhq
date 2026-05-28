@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Validate
+          class AfterConfig < Chain::Base
+            include Chain::Helpers
+
+            ERROR_MESSAGE: "This pipeline did not run because the code should be reviewed by a non-AI user first. Please verify this change is okay before running a new pipeline."
+
+            def perform!: () -> (nil | untyped)
+
+            def break?: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

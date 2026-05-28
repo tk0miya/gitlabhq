@@ -1,0 +1,27 @@
+module ErrorTracking
+  class IssueUpdateService < ErrorTracking::BaseService
+    private
+
+    def perform: () -> untyped
+
+    def update_related_issue: () -> (nil | untyped)
+
+    def close_and_create_note: (untyped issue) -> (nil | untyped)
+
+    def close_issue: (untyped issue) -> untyped
+
+    def create_system_note: (untyped issue) -> untyped
+
+    def related_issue: () -> untyped
+
+    def resolving?: () -> untyped
+
+    def update_params: () -> untyped
+
+    def parse_response: (untyped response) -> { updated: untyped, closed_issue_iid: untyped }
+
+    def unauthorized: () -> untyped
+
+    def update_issue: (untyped opts) -> ({ updated: untyped } | untyped)
+  end
+end

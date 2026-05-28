@@ -1,0 +1,39 @@
+module Gitlab
+  module LetsEncrypt
+    class Client
+      @acme_client: untyped
+
+      @acme_account: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      PRODUCTION_DIRECTORY_URL: "https://acme-v02.api.letsencrypt.org/directory"
+
+      STAGING_DIRECTORY_URL: "https://acme-staging-v02.api.letsencrypt.org/directory"
+
+      def new_order: (untyped domain_name) -> untyped
+
+      def load_order: (untyped url) -> untyped
+
+      def load_challenge: (untyped url) -> untyped
+
+      def terms_of_service_url: () -> untyped
+
+      private
+
+      def acme_client: () -> untyped
+
+      def private_key: () -> untyped
+
+      def admin_email: () -> untyped
+
+      def contact: () -> ::String
+
+      def ensure_account: () -> untyped
+
+      def acme_api_directory_url: () -> untyped
+
+      def generate_private_key: () -> (nil | untyped)
+    end
+  end
+end

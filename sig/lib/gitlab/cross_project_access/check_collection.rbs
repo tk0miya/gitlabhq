@@ -1,0 +1,23 @@
+module Gitlab
+  class CrossProjectAccess
+    class CheckCollection
+      @checks: untyped
+
+      @skips: untyped
+
+      @runs: untyped
+
+      attr_reader checks: untyped
+
+      def initialize: () -> void
+
+      def add_collection: (untyped collection) -> untyped
+
+      def add_check: (untyped check) -> untyped
+
+      def should_run?: (untyped object) -> (false | untyped)
+
+      def arranged_checks: () -> ::Array[untyped]
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module BitbucketImport
+    class RefConverter
+      @project: untyped
+
+      REPO_MATCHER: "https://bitbucket.org/%s"
+
+      PR_NOTE_ISSUE_NAME_REGEX: "(issues/.*/(.*)\\))"
+
+      UNWANTED_NOTE_REF_HTML: "{: data-inline-card='' }"
+
+      attr_reader project: untyped
+
+      def initialize: (untyped project) -> void
+
+      def convert_note: (untyped note) -> untyped
+
+      private
+
+      def url_helpers: () -> untyped
+
+      def issue_name: (untyped note) -> (nil | untyped)
+    end
+  end
+end

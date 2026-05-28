@@ -1,0 +1,23 @@
+module Gitlab
+  module Metrics
+    module SliConfig
+      self.@registered_classes: untyped
+
+      RegisterClass: untyped
+
+      def self.registered_classes: () -> untyped
+
+      def self.enabled_slis: () -> untyped
+
+      def self.register: (untyped register_class) -> untyped
+
+      module ConfigMethods
+        def puma_enabled!: (?bool enable) -> untyped
+
+        def sidekiq_enabled!: (?bool enable) -> untyped
+      end
+
+      def self.included: (untyped base) -> untyped
+    end
+  end
+end

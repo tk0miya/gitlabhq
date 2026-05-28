@@ -1,0 +1,39 @@
+module Packages
+  module Nuget
+    class SyncMetadatumService
+      @package: untyped
+
+      @metadata: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped package, untyped metadata) -> void
+
+      def execute: () -> (untyped | nil | untyped)
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader metadata: untyped
+
+      def metadatum: () -> untyped
+
+      def blank_metadata?: () -> untyped
+
+      def authors: () -> untyped
+
+      def description: () -> untyped
+
+      def project_url: () -> untyped
+
+      def license_url: () -> untyped
+
+      def icon_url: () -> untyped
+
+      def truncate_value: (untyped field, untyped max_length) -> (nil | untyped)
+
+      def log_info: (untyped message, untyped field) -> untyped
+    end
+  end
+end

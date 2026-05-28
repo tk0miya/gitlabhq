@@ -1,0 +1,17 @@
+class X509IssuerCrlCheckWorker
+  @logger: untyped
+
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  attr_accessor logger: untyped
+
+  def perform: () -> untyped
+
+  private
+
+  def update_certificates: (untyped issuer) -> (nil | untyped)
+
+  def download_crl: (untyped issuer) -> untyped
+end

@@ -1,0 +1,13 @@
+module WorkItems
+  # TODO: This model and its table (work_item_descriptions) will be removed in a future MR
+  # once all reads have been confirmed safe to remove.
+  class Description < ApplicationRecord
+    def set_namespace: () -> (nil | untyped)
+
+    private
+
+    # we will need to switch this validation off for record backfilling process to avoid breaking validations
+    # for some of existing records which were created before we introduced a length restriction
+    def validate_description_length?: () -> (false | true | untyped)
+  end
+end

@@ -1,0 +1,44 @@
+module Admin
+  module PlanLimits
+    class UpdateService < ::BaseService
+      @current_user: untyped
+
+      @params: untyped
+
+      @plan: untyped
+
+      @plan_limits: untyped
+
+      def initialize: (?::Hash[untyped, untyped] params, current_user: untyped, plan: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_accessor current_user: untyped
+
+      attr_accessor params: untyped
+
+      attr_accessor plan: untyped
+
+      attr_accessor plan_limits: untyped
+
+      def can_update?: () -> untyped
+
+      def add_history_to_params!: () -> untyped
+
+      def validate_storage_limits: () -> untyped
+
+      def validate_notification_limit: () -> (nil | untyped)
+
+      def validate_enforcement_limit: () -> (nil | untyped)
+
+      def validate_storage_size_limit: () -> (nil | untyped)
+
+      # Overridden in EE
+      def parsed_params: () -> untyped
+
+      def unlimited_value?: (untyped limit) -> untyped
+    end
+  end
+end

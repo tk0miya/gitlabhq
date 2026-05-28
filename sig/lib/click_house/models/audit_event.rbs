@@ -1,0 +1,29 @@
+module ClickHouse
+  module Models
+    class AuditEvent < ClickHouse::Models::BaseModel
+      def self.table_name: () -> "audit_events"
+
+      def by_entity_type: (untyped entity_type) -> untyped
+
+      def by_entity_id: (untyped entity_id) -> untyped
+
+      def by_author_id: (untyped author_id) -> untyped
+
+      def by_entity_username: (untyped username) -> untyped
+
+      def by_author_username: (untyped username) -> untyped
+
+      def self.by_entity_type: (untyped entity_type) -> untyped
+
+      def self.by_entity_id: (untyped entity_id) -> untyped
+
+      def self.by_author_id: (untyped author_id) -> untyped
+
+      def self.by_entity_username: (untyped username) -> untyped
+
+      def self.by_author_username: (untyped username) -> untyped
+
+      def self.find_user_id: (untyped username) -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Packages
+  module Helm
+    class PackageFilesFinder
+      @project: untyped
+
+      @channel: untyped
+
+      @params: untyped
+
+      DEFAULT_PACKAGE_FILES_COUNT: 20
+
+      MAX_PACKAGE_FILES_COUNT: 1000
+
+      def initialize: (untyped project, untyped channel, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def limit: () -> untyped
+
+      def by_file_name: (untyped files) -> untyped
+    end
+  end
+end

@@ -1,0 +1,71 @@
+class EventsFinder
+  @source: untyped
+
+  @current_user: untyped
+
+  @scope: untyped
+
+  @params: untyped
+
+  prepend FinderMethods
+
+  prepend FinderWithCrossProjectAccess
+
+  MAX_PER_PAGE: 100
+
+  attr_reader source: untyped
+
+  attr_reader params: untyped
+
+  attr_reader current_user: untyped
+
+  attr_reader scope: untyped
+
+  # Used to filter Events
+  #
+  # Arguments:
+  #   source - which user or project to looks for events on
+  #   current_user - only return events for projects visible to this user
+  #   scope - return all events across a user's projects
+  #   params:
+  #     action: string
+  #     target_type: string
+  #     before: datetime
+  #     after: datetime
+  #     per_page: integer (max. 100)
+  #     page: integer
+  #     with_associations: boolean
+  #     sort: 'asc' or 'desc'
+  def initialize: (?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def get_events: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def by_current_user_access: (untyped events) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def by_action: (untyped events) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def by_target_type: (untyped events) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def by_created_at_before: (untyped events) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def by_created_at_after: (untyped events) -> untyped
+
+  def cannot_access_private_profile?: () -> untyped
+
+  def sort: (untyped events) -> untyped
+
+  def paginated_filtered_by_user_visibility: (untyped events) -> untyped
+
+  def per_page: () -> untyped
+
+  def page: () -> untyped
+end

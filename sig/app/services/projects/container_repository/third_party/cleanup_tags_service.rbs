@@ -1,0 +1,37 @@
+module Projects
+  module ContainerRepository
+    module ThirdParty
+      class CleanupTagsService < CleanupTagsBaseService
+        @params: untyped
+
+        @counts: untyped
+
+        def initialize: (container_repository: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def filter_keep_n: (untyped tags) -> untyped
+
+        def filter_by_older_than: (untyped tags) -> untyped
+
+        def pushed_at: (untyped tag) -> untyped
+
+        def truncate: (untyped tags) -> untyped
+
+        def populate_from_cache: (untyped tags) -> (untyped | nil)
+
+        def cache_tags: (untyped tags) -> (untyped | nil)
+
+        def cache: () -> untyped
+
+        def caching_enabled?: () -> untyped
+
+        def max_list_size: () -> untyped
+
+        def current_application_settings: () -> untyped
+      end
+    end
+  end
+end

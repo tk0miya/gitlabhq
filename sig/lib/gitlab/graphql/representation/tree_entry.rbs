@@ -1,0 +1,17 @@
+module Gitlab
+  module Graphql
+    module Representation
+      class TreeEntry < SimpleDelegator
+        @repository: untyped
+
+        include GlobalID::Identification
+
+        def self.decorate: (untyped entries, untyped repository) -> (nil | untyped)
+
+        attr_accessor repository: untyped
+
+        def initialize: (untyped raw_entry, untyped repository) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateEpicEventsToWorkItems < BatchedMigrationJob
+      EVENTS_BATCH_SIZE: 50
+
+      def perform: () -> untyped
+
+      private
+
+      # Migrate remaining Epic events to point to the work item
+      def migrate_epic_events: (untyped sub_batch) -> untyped
+    end
+  end
+end

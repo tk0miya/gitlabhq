@@ -1,0 +1,23 @@
+module Ci
+  class RunnerManagersFinder
+    @runner: untyped
+
+    @params: untyped
+
+    def initialize: (runner: untyped, params: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader runner: untyped
+
+    attr_reader params: untyped
+
+    def by_status: (untyped items) -> untyped
+
+    def by_system_id: (untyped items) -> untyped
+
+    def sort_items: (untyped items) -> untyped
+  end
+end

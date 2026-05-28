@@ -1,0 +1,7 @@
+module AcceptsPendingInvitations
+  extend ActiveSupport::Concern
+
+  def accept_pending_invitations: (?user: untyped) -> (nil | untyped)
+
+  def after_pending_invitations_hook: () -> nil
+end

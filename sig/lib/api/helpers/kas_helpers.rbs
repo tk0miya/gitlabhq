@@ -1,0 +1,17 @@
+module API
+  module Helpers
+    module KasHelpers
+      FEATURE_FLAG_HEADER_NAME: "Gitlab-Feature-Flag"
+
+      def authenticate_gitlab_kas_request!: () -> (untyped | nil)
+
+      def gitaly_info: (untyped project) -> untyped
+
+      def gitaly_repository: (untyped project) -> untyped
+
+      def set_feature_flag_header: (?user: untyped?, ?project: untyped?, ?group: untyped?) -> untyped
+
+      def set_feature_flag_header_for_agent: (?user: untyped?, ?agent: untyped?) -> untyped
+    end
+  end
+end

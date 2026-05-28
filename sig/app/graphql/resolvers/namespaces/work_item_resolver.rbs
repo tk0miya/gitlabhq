@@ -1,0 +1,19 @@
+module Resolvers
+  module Namespaces
+    class WorkItemResolver < Resolvers::BaseResolver
+      self.@recent_services_map: untyped
+
+      def self.recent_services_map: () -> untyped
+
+      def ready?: (**untyped args) -> (false | untyped)
+
+      def resolve: (iid: untyped) -> untyped
+
+      private
+
+      def log_recent_view: (untyped work_item) -> (nil | untyped)
+
+      def resource_parent: () -> untyped
+    end
+  end
+end

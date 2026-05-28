@@ -1,0 +1,18 @@
+module Types
+  module Ci
+    module Catalog
+      module Resources
+        # rubocop: disable Graphql/AuthorizeTypes -- Authorization is handled by VersionType
+        class ComponentType < BaseObject
+          def description: () -> untyped
+
+          def inputs: () -> untyped
+
+          private
+
+          def input_hash: (untyped key, untyped value) -> { name: untyped, :required? => untyped, default: untyped, description: untyped, regex: untyped, type: untyped, rules: untyped }
+        end
+      end
+    end
+  end
+end

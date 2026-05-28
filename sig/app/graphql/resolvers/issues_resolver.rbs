@@ -1,0 +1,23 @@
+module Resolvers
+  class IssuesResolver < Issues::BaseResolver
+    extend ::Gitlab::Utils::Override
+
+    prepend ::Issues::LookAheadPreloads
+
+    include ::Issues::SortArguments
+
+    NON_FILTER_ARGUMENTS: ::Array[:sort | :lookahead | :include_archived]
+
+    def self.project_associations: () -> ::Array[:namespace | :organization]
+
+    def ready?: (**untyped args) -> untyped
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    private
+
+    def prepare_finder_params: (untyped args) -> untyped
+
+    def filter_provided?: (untyped args) -> untyped
+  end
+end

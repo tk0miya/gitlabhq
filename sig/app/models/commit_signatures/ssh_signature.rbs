@@ -1,0 +1,17 @@
+module CommitSignatures
+  class SshSignature < ApplicationRecord
+    extend ::Gitlab::Utils::Override
+
+    include CommitSignature
+
+    include SignatureType
+
+    def self.safe_create!: (untyped attributes) -> untyped
+
+    def type: () -> :ssh
+
+    def signed_by_user: () -> untyped
+
+    def key_fingerprint_sha256: () -> untyped
+  end
+end

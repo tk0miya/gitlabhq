@@ -1,0 +1,13 @@
+module Mutations
+  module AlertManagement
+    class UpdateAlertStatus < Base
+      def resolve: (project_path: untyped, iid: untyped, status: untyped) -> untyped
+
+      private
+
+      def update_status: (untyped alert, untyped status) -> untyped
+
+      def prepare_response: (untyped result) -> { alert: untyped, errors: untyped }
+    end
+  end
+end

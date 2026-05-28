@@ -1,0 +1,74 @@
+module Gitlab
+  module Database
+    class CollationChecker
+      @connection: untyped
+
+      @database_name: untyped
+
+      @logger: untyped
+
+      @max_table_size: untyped
+
+      include Gitlab::Database::Migrations::TimeoutHelpers
+
+      # Maximum table size in bytes for running duplicate checks
+      MAX_TABLE_SIZE_FOR_DUPLICATE_CHECK: untyped
+
+      COLLATION_VERSION_MISMATCH_QUERY: "SELECT\n  collname AS collation_name,\n  collprovider AS provider,\n  collversion AS stored_version,\n  pg_collation_actual_version(oid) AS actual_version,\n  collversion <> pg_collation_actual_version(oid) AS has_mismatch\nFROM\n  pg_collation\nWHERE\n  collprovider IN ('c', 'd')\nAND (collversion IS DISTINCT FROM pg_collation_actual_version(oid));\n"
+
+      # Few Tables/indexes prone to corruption issues for spot check
+      # based on the issue: https://gitlab.com/gitlab-org/gitlab/-/issues/505982
+      INDEXES_TO_SPOT_CHECK: { "main" => { "merge_request_diff_commit_users" => ::Array["index_merge_request_diff_commit_users_on_org_id_name_email"], "topics" => ::Array["index_topics_on_organization_id_and_name"], "ci_refs" => ::Array["index_ci_refs_on_project_id_and_ref_path"], "ci_resource_groups" => ::Array["index_ci_resource_groups_on_project_id_and_key"], "environments" => ::Array["index_environments_on_project_id_and_name"], "sbom_components" => ::Array["idx_sbom_components_on_name_purl_type_component_type_and_org_id"], "tags" => ::Array["index_tags_on_name"], "pm_packages" => ::Array["i_pm_packages_purl_type_and_name"], "pm_affected_packages" => ::Array["i_affected_packages_unique_for_upsert"], "container_repositories" => ::Array["index_container_repositories_on_project_id_and_name"] } }
+
+      INDEXES_TO_SPOT_CHECK_QUERY: "SELECT DISTINCT\n    indrelid::regclass::text AS table_name,\n    indexrelid::regclass::text AS index_name,\n    string_agg(a.attname, ', ' ORDER BY a.attnum) AS affected_columns,\n    i.indisunique AS is_unique,\n    pg_relation_size(indexrelid) AS index_size_bytes,\n    pg_relation_size(indrelid) AS table_size_bytes\nFROM\n    pg_index i\nJOIN\n    pg_class idx ON idx.oid = i.indexrelid\nJOIN\n    pg_class tbl ON tbl.oid = i.indrelid\nJOIN\n    pg_attribute a ON a.attrelid = i.indrelid AND a.attnum = ANY(i.indkey)\nWHERE\n    idx.relname IN (%{indexes_to_spot_check})\nGROUP BY\n    i.indexrelid, i.indrelid, i.indisunique, idx.relname, indrelid::regclass::text, indexrelid::regclass::text\nORDER BY\n    table_name, index_name;\n"
+
+      def self.run: (?database_name: untyped?, ?logger: untyped, ?max_table_size: untyped) -> untyped
+
+      attr_reader connection: untyped
+
+      attr_reader database_name: untyped
+
+      attr_reader logger: untyped
+
+      attr_reader max_table_size: untyped
+
+      def initialize: (untyped connection, untyped database_name, untyped logger, untyped max_table_size) -> void
+
+      def run: () -> untyped
+
+      private
+
+      def execute: (untyped sql) -> untyped
+
+      def check_collation_mismatches: () -> untyped
+
+      def transform_indexes_to_spot_check: () -> untyped
+
+      def identify_corrupted_indexes: (untyped indexes) -> (::Array[untyped] | untyped)
+
+      def log_results: (untyped corrupted_indexes, ?untyped skipped_indexes) -> untyped
+
+      def log_index_details: (untyped idx) -> (nil | untyped)
+
+      def unique?: (untyped index) -> untyped
+
+      def fetch_index_info: (untyped indexes) -> untyped
+
+      def check_unique_index_duplicates: (untyped indexes) -> untyped
+
+      def human_size: (untyped bytes) -> untyped
+
+      def provide_remediation_guidance: (untyped corrupted_indexes) -> untyped
+
+      def log_remediation_header: () -> untyped
+
+      def log_duplicate_entry_fixes: (untyped corrupted_indexes) -> (nil | untyped)
+
+      def log_index_rebuild_commands: (untyped corrupted_indexes) -> (nil | untyped)
+
+      def log_collation_refresh_commands: () -> untyped
+
+      def log_conclusion: () -> untyped
+    end
+  end
+end

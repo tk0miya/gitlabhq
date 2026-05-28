@@ -1,0 +1,35 @@
+module BulkImports
+  class SourceInternalUserFinder
+    @configuration: untyped
+
+    @client: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    GHOST_USER_CACHE_KEY: "bulk_imports/ghost_user_id/%{bulk_import_id}"
+
+    MAX_RETRIES: 3
+
+    # @param [BulkImports::Configuration] configuration
+    def initialize: (untyped configuration) -> void
+
+    # @return [Hash, nil]
+    def fetch_ghost_user: () -> untyped
+
+    # @return [String, nil]
+    def set_ghost_user_id: () -> untyped
+
+    # Returns the cached ID of the ghost user from the source instance, if it exists.
+    #
+    # @return [String, nil]
+    def cached_ghost_user_id: () -> untyped
+
+    private
+
+    attr_reader configuration: untyped
+
+    def client: () -> untyped
+
+    def cache_key: () -> untyped
+  end
+end

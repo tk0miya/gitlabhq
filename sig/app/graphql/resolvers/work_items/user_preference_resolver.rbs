@@ -1,0 +1,9 @@
+module Resolvers
+  module WorkItems
+    class UserPreferenceResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (namespace_path: untyped, ?work_item_type_id: untyped?) -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class SumNumberOfInternalEventInvocationsMetric < GenericMetric
+          include Gitlab::UsageDataCounters::RedisCounter
+
+          def value: () -> untyped
+
+          private
+
+          def all_internal_event_keys: () -> untyped
+
+          def keys_for_event_definition: (untyped event_definition) -> untyped
+        end
+      end
+    end
+  end
+end

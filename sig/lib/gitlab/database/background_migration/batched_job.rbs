@@ -1,0 +1,74 @@
+module Gitlab
+  module Database
+    module BackgroundMigration
+      SplitAndRetryError: untyped
+
+      ReduceSubBatchSizeError: untyped
+
+      class BatchedJob < SharedModel
+        include EachBatch
+
+        include FromUnion
+
+        MINIMUM_BATCH_SIZE: 1
+
+        BATCH_SIZE_DIVISOR: 2
+
+        MINIMUM_PAUSE_MS: 100
+
+        MAX_ATTEMPTS: 3
+
+        MAX_SIDEKIQ_SHUTDOWN_FAILURES: 15
+
+        MIN_BATCH_SIZE: 1
+
+        SUB_BATCH_SIZE_REDUCE_FACTOR: ::Float
+
+        SUB_BATCH_SIZE_THRESHOLD: 65
+
+        STUCK_JOBS_TIMEOUT: untyped
+
+        TIMEOUT_EXCEPTIONS: ::Array[untyped]
+
+        def self.extract_transition_options: (untyped args) -> ::Array[untyped]
+
+        def job_attributes: () -> untyped
+
+        def time_efficiency: () -> (nil | untyped)
+
+        def can_split?: (untyped exception) -> (nil | untyped)
+
+        def can_reduce_sub_batch_size?: () -> untyped
+
+        def split_and_retry!: () -> untyped
+
+        # It reduces the size of +sub_batch_size+ by 25%
+        def reduce_sub_batch_size!: () -> (nil | untyped)
+
+        def still_retryable?: () -> untyped
+
+        def within_batch_size_boundaries?: () -> untyped
+
+        # It doesn't allow sub-batch size to be reduced lower than the threshold
+        #
+        # @info It will prevent the next iteration to reduce the +sub_batch_size+ lower
+        #       than the +SUB_BATCH_SIZE_THRESHOLD+ or 65% of its original size.
+        def sub_batch_exceeds_threshold?: () -> untyped
+
+        def sidekiq_shutdown_failures_count: () -> untyped
+
+        def handle_sidekiq_shutdown_failure?: (untyped exception) -> (false | true)
+
+        private
+
+        def validate_split_preconditions!: () -> untyped
+
+        def calculate_midpoint: (untyped new_batch_size) -> untyped
+
+        def split_job_at_midpoint: (untyped midpoint, untyped new_batch_size) -> untyped
+
+        def create_continuation_job: (untyped midpoint, untyped old_max_value) -> untyped
+      end
+    end
+  end
+end

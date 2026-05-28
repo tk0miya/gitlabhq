@@ -1,0 +1,23 @@
+module Gitlab
+  module Diff
+    class SuggestionDiff
+      @suggestible: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped suggestible) -> void
+
+      def diff_lines: () -> untyped
+
+      private
+
+      def raw_diff: () -> ::String
+
+      def diff_header: () -> ::String
+
+      def from_content_as_diff: () -> untyped
+
+      def to_content_as_diff: () -> untyped
+    end
+  end
+end

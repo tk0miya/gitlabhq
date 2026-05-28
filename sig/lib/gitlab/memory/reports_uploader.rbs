@@ -1,0 +1,31 @@
+module Gitlab
+  module Memory
+    class ReportsUploader
+      @gcs_bucket: untyped
+
+      @fog: untyped
+
+      @logger: untyped
+
+      def initialize: (gcs_key: untyped, gcs_project: untyped, gcs_bucket: untyped, logger: untyped) -> void
+
+      def upload: (untyped path) -> untyped
+
+      private
+
+      attr_reader gcs_bucket: untyped
+
+      attr_reader fog: untyped
+
+      attr_reader logger: untyped
+
+      def log_upload_requested: (untyped path) -> untyped
+
+      def log_upload_success: (untyped path, untyped duration_s) -> untyped
+
+      def log_exception: (untyped error) -> untyped
+
+      def log_labels: () -> { message: "Diagnostic reports", class: untyped, pid: untyped }
+    end
+  end
+end

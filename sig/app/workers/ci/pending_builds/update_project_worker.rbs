@@ -1,0 +1,11 @@
+module Ci
+  module PendingBuilds
+    class UpdateProjectWorker
+      include ApplicationWorker
+
+      include PipelineBackgroundQueue
+
+      def perform: (untyped project_id, untyped update_params) -> untyped
+    end
+  end
+end

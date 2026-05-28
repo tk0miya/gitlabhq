@@ -1,0 +1,19 @@
+module Resolvers
+  module Organizations
+    class OrganizationUsersResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      include LooksAhead
+
+      alias organization object
+
+      def resolve_with_lookahead: () -> untyped
+
+      private
+
+      def organization_users: () -> untyped
+
+      def preloads: () -> { user: ::Array[:user], badges: ::Array[{ user: ::Array[:identities] }] }
+    end
+  end
+end

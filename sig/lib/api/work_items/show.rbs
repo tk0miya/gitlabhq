@@ -1,0 +1,9 @@
+module API
+  module WorkItems
+    class Show < ::API::Base
+      include ::API::Concerns::AiWorkflowsAccess
+
+      include APIGuard
+    end
+  end
+end

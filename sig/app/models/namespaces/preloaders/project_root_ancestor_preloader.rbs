@@ -1,0 +1,19 @@
+module Namespaces
+  module Preloaders
+    class ProjectRootAncestorPreloader
+      @projects: untyped
+
+      @namespace_sti_name: untyped
+
+      @root_ancestor_preloads: untyped
+
+      def initialize: (untyped projects, ?::Symbol namespace_sti_name, ?untyped root_ancestor_preloads) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def join_sql: () -> untyped
+    end
+  end
+end

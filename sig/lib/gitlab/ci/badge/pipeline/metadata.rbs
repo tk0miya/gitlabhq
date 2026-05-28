@@ -1,0 +1,22 @@
+module Gitlab::Ci
+  module Badge
+    module Pipeline
+      #
+      # Class that describes pipeline badge metadata
+      #
+      class Metadata < Badge::Metadata
+        @project: untyped
+
+        @ref: untyped
+
+        def initialize: (untyped badge) -> void
+
+        def title: () -> "pipeline status"
+
+        def image_url: () -> untyped
+
+        def link_url: () -> untyped
+      end
+    end
+  end
+end

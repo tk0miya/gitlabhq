@@ -1,0 +1,19 @@
+module WorkItems
+  module TypesFramework
+    module SystemDefined
+      module Definitions
+        module Task
+          def self.widgets: () -> ::Array["agent_plan" | "ai_session" | "assignees" | "award_emoji" | "crm_contacts" | "current_user_todos" | "custom_fields" | "description" | "development" | "hierarchy" | "iteration" | "labels" | "linked_items" | "linked_resources" | "milestone" | "notes" | "notifications" | "participants" | "start_and_due_date" | "time_tracking" | "weight" | "status"]
+
+          def self.widget_options: () -> ::Hash[untyped, untyped]
+
+          def self.configuration: () -> { id: 5, name: "Task", base_type: "task", icon_name: "work-item-task" }
+
+          def self.filterable_board_view?: () -> false
+
+          def self.configurable?: () -> false
+        end
+      end
+    end
+  end
+end

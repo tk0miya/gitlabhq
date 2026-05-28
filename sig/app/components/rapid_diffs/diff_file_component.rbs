@@ -1,0 +1,40 @@
+module RapidDiffs
+  class DiffFileComponent < ViewComponent::Base
+    @diff_file: untyped
+
+    @parallel_view: untyped
+
+    @environment: untyped
+
+    @extra_file_data: untyped
+
+    @extra_options: untyped
+
+    include TreeHelper
+
+    include DiffHelper
+
+    def initialize: (diff_file: untyped, ?parallel_view: bool, ?plain_view: bool, ?environment: untyped?, ?extra_file_data: ::Hash[untyped, untyped], ?extra_options: ::Hash[untyped, untyped]) -> void
+
+    def id: () -> untyped
+
+    def file_data: () -> untyped
+
+    def viewer_component: () -> untyped
+
+    def viewer_component_instance: () -> untyped
+
+    def default_header: () -> untyped
+
+    # enables virtual rendering through content-visibility: auto, significantly boosts client performance
+    def virtual?: () -> untyped
+
+    def virtual_rendering_styles: () -> untyped
+
+    def heading_id: () -> untyped
+
+    def classes: () -> untyped
+
+    def root_options: () -> untyped
+  end
+end

@@ -1,0 +1,20 @@
+class RemoveExpiredMembersWorker
+  @updated_count: untyped
+
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  BATCH_SIZE: 1000
+
+  BATCH_DELAY: untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def perform: (?untyped? cursor) -> (nil | untyped)
+
+  private
+
+  def paginate: (untyped cursor) -> untyped
+
+  def process_member: (untyped member) -> untyped
+end

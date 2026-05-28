@@ -1,0 +1,23 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      class IssueMove < Presenters::Base
+        include Presenters::IssueBase
+
+        def present: (untyped old_issue) -> untyped
+
+        def display_move_error: (untyped error) -> untyped
+
+        private
+
+        def moved_issue: (untyped old_issue) -> untyped
+
+        def fallback_message: () -> ::String
+
+        def custom_pretext: (untyped old_issue) -> ::String
+
+        def issue_link: (untyped issue) -> ::String
+      end
+    end
+  end
+end

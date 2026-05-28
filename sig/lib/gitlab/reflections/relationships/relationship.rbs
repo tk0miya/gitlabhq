@@ -1,0 +1,30 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      # Represents a single relationship in the relationship collection between database tables.
+      class Relationship
+        include ActiveModel::Model
+
+        include ActiveModel::Attributes
+
+        VALID_ASSOCIATION_TYPES: ::Array["has_many" | "has_one" | "belongs_to" | "has_and_belongs_to_many" | "has_many_attached" | "has_one_attached"]
+
+        def polymorphic?: () -> untyped
+
+        def polymorphic_belongs_to?: () -> untyped
+
+        def polymorphic_has_association?: () -> untyped
+
+        def to_h: () -> untyped
+
+        def to_json: (*untyped args) -> untyped
+
+        private
+
+        def valid_associations?: () -> untyped
+
+        def validate_association: (untyped field, untyped association) -> (nil | untyped)
+      end
+    end
+  end
+end

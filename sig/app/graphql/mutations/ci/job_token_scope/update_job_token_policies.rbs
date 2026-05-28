@@ -1,0 +1,15 @@
+module Mutations
+  module Ci
+    module JobTokenScope
+      class UpdateJobTokenPolicies < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, target_path: untyped, default_permissions: untyped, job_token_policies: untyped) -> untyped
+
+        private
+
+        def find_target_using_path: (untyped target_path) -> untyped
+      end
+    end
+  end
+end

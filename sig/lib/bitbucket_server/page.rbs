@@ -1,0 +1,25 @@
+module BitbucketServer
+  class Page
+    @attrs: untyped
+
+    @items: untyped
+
+    attr_reader attrs: untyped
+
+    attr_reader items: untyped
+
+    def initialize: (untyped raw, untyped type) -> void
+
+    def next?: () -> untyped
+
+    def next: () -> untyped
+
+    private
+
+    def parse_attrs: (untyped raw) -> untyped
+
+    def parse_values: (untyped raw, untyped bitbucket_rep_class) -> (::Array[untyped] | untyped)
+
+    def representation_class: (untyped type) -> untyped
+  end
+end

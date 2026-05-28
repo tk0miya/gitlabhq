@@ -1,0 +1,60 @@
+module Ci
+  module JobArtifacts
+    class DestroyBatchService
+      @job_artifacts: untyped
+
+      @pick_up_at: untyped
+
+      @skip_projects_on_refresh: untyped
+
+      @destroyed_ids: untyped
+
+      @metrics: untyped
+
+      include BaseServiceUtility
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      # Adds the passed batch of job artifacts to the `ci_deleted_objects` table
+      # for asyncronous destruction of the objects in Object Storage via the `Ci::DeleteObjectsService`
+      # and then deletes the batch of related `ci_job_artifacts` records.
+      # Params:
+      # +job_artifacts+:: A relation of job artifacts to destroy (fewer than MAX_JOB_ARTIFACT_BATCH_SIZE)
+      # +pick_up_at+:: When to pick up for deletion of files
+      # Returns:
+      # +Hash+:: A hash with status and destroyed_artifacts_count keys
+      def initialize: (untyped job_artifacts, ?pick_up_at: untyped?, ?skip_projects_on_refresh: bool) -> void
+
+      def execute: (?update_stats: bool) -> untyped
+
+      private
+
+      # Overridden in EE
+      # :nocov:
+      def destroy_around_hook: (untyped artifacts) { () -> untyped } -> untyped
+
+      # Overridden in EE
+      def destroy_related_records: (untyped artifacts) -> nil
+
+      # Overridden in EE
+      def after_batch_destroy_hook: (untyped artifacts) -> nil
+
+      # using ! here since this can't be called inside a transaction
+      def update_project_statistics!: () -> untyped
+
+      def statistics_updates_per_project: () -> untyped
+
+      def increment_monitoring_statistics: (untyped size, untyped bytes) -> untyped
+
+      def metrics: () -> untyped
+
+      def artifacts_count: () -> untyped
+
+      def artifacts_bytes: () -> untyped
+
+      def track_artifacts_undergoing_stats_refresh: () -> untyped
+
+      def exclude_artifacts_undergoing_stats_refresh: () -> untyped
+    end
+  end
+end

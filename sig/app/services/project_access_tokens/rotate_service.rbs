@@ -1,0 +1,13 @@
+module ProjectAccessTokens
+  class RotateService < ::PersonalAccessTokens::RotateService
+    extend ::Gitlab::Utils::Override
+
+    alias project resource
+
+    def valid_access_level?: () -> (false | untyped)
+
+    private
+
+    def track_rotation_event: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module SidekiqStatus
+    class ServerMiddleware
+      def call: (untyped _worker, untyped job, untyped _queue) { () -> untyped } -> untyped
+
+      private
+
+      def job_will_retry?: (untyped job) -> (false | untyped)
+    end
+  end
+end

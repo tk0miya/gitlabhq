@@ -1,0 +1,58 @@
+module Gitlab
+  module Gpg
+    class Signature
+      @signature_text: untyped
+
+      @signed_text: untyped
+
+      @signer: untyped
+
+      @email: untyped
+
+      @preloaded_gpg_key: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include SignatureType
+
+      def initialize: (untyped signature_text, untyped signed_text, untyped signer, untyped email, ?preloaded_gpg_key: untyped?) -> void
+
+      attr_reader signature_text: untyped
+
+      attr_reader signed_text: untyped
+
+      attr_reader email: untyped
+
+      attr_reader signer: untyped
+
+      def type: () -> :gpg
+
+      def user_infos: () -> untyped
+
+      def verification_status: () -> untyped
+
+      def gpg_key_primary_keyid: () -> untyped
+
+      def gpg_key: () -> untyped
+
+      def fingerprint: () -> untyped
+
+      private
+
+      def keychain_attributes: () -> untyped
+
+      def gpg_signatures: () -> untyped
+
+      def calculate_verification_status: (untyped signatures, untyped key) -> (:verified_system | :multiple_signatures | :unknown_key | :unverified_key | :revoked_key | :expired_key | :unverified | untyped)
+
+      # A commit signed by Gitaly returns `SIGNER_SYSTEM` as a signer
+      # In order to calculate it, the signature is verified using the Gitaly's public key:
+      # https://gitlab.com/gitlab-org/gitaly/-/blob/v16.2.0-rc2/internal/gitaly/service/commit/commit_signatures.go#L63
+      #
+      # It is safe to skip verification step if the commit has been signed by Gitaly
+      def verified_by_gitlab?: () -> untyped
+
+      def find_gpg_key: (untyped fingerprint) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module PoolRepositories
+    class CsvWriter
+      @csv: untyped
+
+      COLUMNS: ::Array[{ key: :pool_id, header: "Pool ID" } | { key: :disk_path, header: "Disk Path" } | { key: :relative_path, header: "Relative Path (Gitaly)" } | { key: :source_project_id, header: "Source Project ID" } | { key: :state, header: "State" } | { key: :reason_codes, header: "Reason Codes" } | { key: :reasons, header: "Reasons" } | { key: :member_projects_count, header: "Member Projects Count" } | { key: :shard_name, header: "Shard Name" }]
+
+      CSV_HEADERS: untyped
+
+      def initialize: (untyped output_file) -> void
+
+      def write_row: (untyped record) -> untyped
+
+      def close: () -> untyped
+    end
+  end
+end

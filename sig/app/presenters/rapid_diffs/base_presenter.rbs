@@ -1,0 +1,71 @@
+module RapidDiffs
+  class BasePresenter < Gitlab::View::Presenter::Delegated
+    @diff_view: untyped
+
+    @diff_options: untyped
+
+    @current_user: untyped
+
+    @request_params: untyped
+
+    @environment: untyped
+
+    @diffs_slice: untyped
+
+    @linked_file: untyped
+
+    @highlight: untyped
+
+    @diffs_count: untyped
+
+    def initialize: (untyped subject, diff_view: untyped, diff_options: untyped, ?current_user: untyped?, ?request_params: untyped?, ?environment: untyped?) -> void
+
+    attr_reader environment: untyped
+
+    def diffs_resource: (?::Hash[untyped, untyped] options) -> untyped
+
+    def diff_files: (?::Hash[untyped, untyped] options) -> untyped
+
+    def diffs_slice: () -> (nil | untyped)
+
+    def diff_files_for_streaming: (?::Hash[untyped, untyped] diff_options) -> untyped
+
+    def diff_files_for_streaming_by_changed_paths: (?::Hash[untyped, untyped] diff_options) ?{ (untyped) -> untyped } -> untyped
+
+    def linked_file: () -> (nil | untyped)
+
+    def diffs_stream_url: () -> (nil | untyped)
+
+    def reload_stream_url: (?offset: untyped?, ?diff_view: untyped?, ?skip_old_path: untyped?, ?skip_new_path: untyped?) -> untyped
+
+    def diffs_stats_endpoint: () -> untyped
+
+    def diff_files_endpoint: () -> untyped
+
+    def diff_file_endpoint: () -> untyped
+
+    def sorted?: () -> false
+
+    def lazy?: () -> untyped
+
+    attr_accessor offset: untyped
+
+    attr_reader request_params: untyped
+
+    def transform_file_collection: (untyped collection) -> untyped
+
+    def transform_file: (untyped diff_file) -> untyped
+
+    private
+
+    def highlight?: () -> untyped
+
+    def transform_file_array: (untyped diff_files) -> untyped
+
+    def diffs_count: () -> untyped
+
+    def linked_file_params: () -> { old_path: untyped, new_path: untyped }
+
+    def with_linked_file_first: (untyped collection) -> untyped
+  end
+end

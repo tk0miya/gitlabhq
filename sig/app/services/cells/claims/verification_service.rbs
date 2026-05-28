@@ -1,0 +1,60 @@
+module Cells
+  module Claims
+    class VerificationService < BaseService
+      @model: untyped
+
+      @created_count: untyped
+
+      @destroyed_count: untyped
+
+      @runtime_limiter: untyped
+
+      @start_id: untyped
+
+      @on_batch_processed: untyped
+
+      PaginationError: untyped
+
+      DriftError: untyped
+
+      LIMIT: 1000
+
+      RECENTLY_CHANGED_THRESHOLD: untyped
+
+      attr_reader model: untyped
+
+      # @param on_batch_processed [Proc] optional callback invoked with the last processed ID after each
+      #   successful batch. The worker uses this to persist progress to Redis mid-loop, so that if a later
+      #   batch fails the Sidekiq retry resumes from the last successful batch rather than restarting from
+      #   the beginning of the run.
+      def initialize: (untyped model, timeout: untyped, ?start_id: ::Integer) { (?) -> untyped } -> void
+
+      def execute: () -> ({ created: 0, destroyed: 0, over_time: false, last_id: nil } | { created: untyped, destroyed: untyped, over_time: untyped, last_id: untyped })
+
+      private
+
+      attr_reader runtime_limiter: untyped
+
+      def reconcile_claims: () -> untyped
+
+      def find_local_records: (untyped start_id) -> untyped
+
+      def list_ts_records: (untyped start_id, untyped end_id) -> untyped
+
+      def fetch_ts_records_page: (untyped model, untyped start_id_bytes, untyped end_id_bytes) -> untyped
+
+      def process_batch: (untyped local_records, untyped ts_records) -> ::Array[untyped]
+
+      def compute_changes: (untyped local_records_by_id, untyped ts_records_map) -> ::Array[untyped]
+
+      def diff_record: (untyped local_record, untyped ts_records) -> (::Array[::Array[untyped]] | ::Array[untyped])
+
+      # Checking updated_at covers both recently created and recently updated records
+      def recently_changed_record?: (untyped record) -> (false | untyped)
+
+      def log_drift: (untyped kind, untyped local_record, untyped bucket_type, untyped local_meta, untyped ts_meta) -> untyped
+
+      def metadata_from_ts_record: (untyped record) -> { bucket: { type: untyped, value: untyped }, subject: { type: untyped, id: untyped }, source: { type: untyped, rails_primary_key_id: untyped } }
+    end
+  end
+end

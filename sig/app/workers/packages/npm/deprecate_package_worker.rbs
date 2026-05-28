@@ -1,0 +1,9 @@
+module Packages
+  module Npm
+    class DeprecatePackageWorker
+      include ApplicationWorker
+
+      def perform: (untyped project_id, untyped params) -> untyped
+    end
+  end
+end

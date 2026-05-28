@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    module Migrations
+      module Observers
+        class QueryLog < MigrationObserver
+          @logger_was: untyped
+
+          @logger: untyped
+
+          def before: () -> untyped
+
+          def after: () -> untyped
+
+          def record: () -> nil
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Config
+    module Entry
+      #
+      # Entry that represents a composable hash definition
+      # Where each hash key can be any value written by the user
+      #
+      class ComposableHash < ::Gitlab::Config::Entry::Node
+        include ::Gitlab::Config::Entry::Validatable
+
+        def compose!: (?untyped? deps) -> untyped
+
+        private
+
+        def composable_class: (untyped name, untyped config) -> untyped
+
+        def composable_metadata: () -> ::Hash[untyped, untyped]
+      end
+    end
+  end
+end

@@ -1,0 +1,90 @@
+module Gitlab
+  module Ci
+    module Build
+      class Releaser
+        @job: untyped
+
+        @config: untyped
+
+        @runner_manager: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        RELEASE_CLI_CREATE_BASE_COMMAND: "release-cli create"
+
+        RELEASE_CLI_CREATE_SINGLE_FLAGS: ::Array[:name | :description | :tag_name | :tag_message | :ref | :released_at]
+
+        RELEASE_CLI_CREATE_ARRAY_FLAGS: ::Array[:milestones]
+
+        RELEASE_CLI_CATALOG_PUBLISH_FLAG: "--catalog-publish"
+
+        TROUBLESHOOTING_URL: untyped
+
+        GLAB_REQUIRED_VERSION: "1.58.0"
+
+        GLAB_WARNING_MESSAGE: ::String
+
+        GLAB_ENV_SET_UNIX: "export GITLAB_HOST=$CI_SERVER_URL"
+
+        GLAB_ENV_SET_WINDOWS: "$$env:GITLAB_HOST = $$env:CI_SERVER_URL"
+
+        GLAB_LOGIN_UNIX: "glab auth login --job-token $CI_JOB_TOKEN --hostname \"$CI_SERVER_FQDN\" --api-protocol $CI_SERVER_PROTOCOL"
+
+        GLAB_LOGIN_WINDOWS: "glab auth login --job-token $$env:CI_JOB_TOKEN --hostname \"$$env:CI_SERVER_FQDN\" --api-protocol $$env:CI_SERVER_PROTOCOL"
+
+        GLAB_CREATE_UNIX: "glab release create -R $CI_PROJECT_PATH"
+
+        GLAB_CREATE_WINDOWS: "glab release create -R $$env:CI_PROJECT_PATH"
+
+        GLAB_PUBLISH_TO_CATALOG_FLAG: "--publish-to-catalog"
+
+        GLAB_NO_UPDATE_FLAG: "--no-update"
+
+        GLAB_NO_CLOSE_MILESTONE_FLAG: "--no-close-milestone"
+
+        GLAB_CA_CERT_FILENAME: "ca_cert_for_releasing_with_glab.pem"
+
+        # This approach was inherited from
+        # https://gitlab.com/gitlab-org/release-cli/-/blob/v0.24.0/internal/app/http_client.go
+        # We check if ADDITIONAL_CA_CERT_BUNDLE contains inline certificate content or is a file path.
+        # - If it contains newlines, it's inline certificate content and we write it to a temporary file
+        # - If it doesn't contain newlines, it's a file path and we use it directly
+        GLAB_CA_CERT_CONFIG_UNIX: untyped
+
+        GLAB_CA_CERT_CLEANUP_UNIX: untyped
+
+        GLAB_CA_CERT_CONFIG_WINDOWS: untyped
+
+        GLAB_CA_CERT_CLEANUP_WINDOWS: untyped
+
+        attr_reader job: untyped
+
+        attr_reader config: untyped
+
+        attr_reader runner_manager: untyped
+
+        def initialize: (job: untyped) -> void
+
+        def script: () -> ::Array[untyped]
+
+        private
+
+        def windows_script: () -> ::String
+
+        def unix_script: () -> ::String
+
+        def script_with_release_cli: () -> untyped
+
+        def glab_create_command: (untyped platform) -> untyped
+
+        def create_asset_links: () -> untyped
+
+        def stringified_json: (untyped object) -> untyped
+
+        def catalog_publish?: () -> untyped
+
+        def ci_release_cli_catalog_publish_option?: () -> untyped
+      end
+    end
+  end
+end

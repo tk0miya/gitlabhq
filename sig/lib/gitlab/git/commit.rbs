@@ -1,0 +1,282 @@
+# Gitlab::Git::Commit is a wrapper around Gitaly::GitCommit
+module Gitlab
+  module Git
+    class Commit
+      @repository: untyped
+
+      @head: untyped
+
+      @lazy_load_parents: untyped
+
+      @safe_message: untyped
+
+      @parent_ids: untyped
+
+      @deltas: untyped
+
+      @raw_commit: untyped
+
+      @id: untyped
+
+      # TODO: Consider separating the subject from the message to make it
+      # clearer when there's one available but not the other.
+      @message: untyped
+
+      @author_name: untyped
+
+      @author_email: untyped
+
+      @committer_name: untyped
+
+      @committer_email: untyped
+
+      @trailers: untyped
+
+      @extended_trailers: untyped
+
+      @referenced_by: untyped
+
+      include Gitlab::EncodingHelper
+
+      extend Gitlab::Git::WrapsGitalyErrors
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_accessor raw_commit: untyped
+
+      attr_accessor head: untyped
+
+      MAX_COMMIT_MESSAGE_DISPLAY_SIZE: untyped
+
+      SHA1_LENGTH: 40
+
+      SHA256_LENGTH: 64
+
+      MIN_SHA_LENGTH: 7
+
+      MAX_SHA_LENGTH: untyped
+
+      RAW_SHA_PATTERN: ::String
+
+      SHA_PATTERN: ::Regexp
+
+      # Match a full SHA. Note that because this expression is not anchored it will match any SHA that is at
+      # least SHA1_LENGTH long.
+      RAW_FULL_SHA_PATTERN: ::String
+
+      FULL_SHA_PATTERN: ::Regexp
+
+      SERIALIZE_KEYS: ::Array[:id | :message | :parent_ids | :authored_date | :author_name | :author_email | :committed_date | :committer_name | :committer_email | :trailers | :extended_trailers | :referenced_by]
+
+      attr_reader repository: untyped
+
+      def ==: (untyped other) -> (false | untyped)
+
+      # Get commits collection
+      #
+      # Ex.
+      #   Commit.where(
+      #     repo: repo,
+      #     ref: 'master',
+      #     path: 'app/models',
+      #     limit: 10,
+      #     offset: 5,
+      #   )
+      #
+      def self.where: (untyped options) -> untyped
+
+      # Get single commit
+      #
+      # Ex.
+      #   Commit.find(repo, '29eda46b')
+      #
+      #   Commit.find(repo, 'master')
+      #
+      # Gitaly migration: https://gitlab.com/gitlab-org/gitaly/issues/321
+      def self.find: (untyped repo, ?::String commit_id) -> untyped
+
+      def self.find_commit: (untyped repo, untyped commit_id) -> untyped
+
+      # Get last commit for HEAD
+      #
+      # Ex.
+      #   Commit.last(repo)
+      #
+      def self.last: (untyped repo) -> untyped
+
+      # Get last commit for specified path and ref
+      #
+      # Ex.
+      #   Commit.last_for_path(repo, '29eda46b', 'app/models')
+      #
+      #   Commit.last_for_path(repo, 'master', 'Gemfile')
+      #
+      def self.last_for_path: (untyped repo, untyped ref, ?untyped? path, ?literal_pathspec: bool) -> untyped
+
+      # Get commits between two revspecs
+      # See also #repository.commits_between
+      #
+      # Ex.
+      #   Commit.between(repo, '29eda46b', 'master') # all commits, ordered oldest to newest
+      #   Commit.between(repo, '29eda46b', 'master', limit: 100) # 100 newest commits, ordered oldest to newest
+      #
+      def self.between: (untyped repo, untyped base, untyped head, ?limit: untyped?) -> (::Array[untyped] | untyped)
+
+      # Prefer `list_all` since it deprecates this RPC and `FindCommits`.
+      #
+      # Returns commits collection
+      #
+      # Ex.
+      #   Commit.find_all(
+      #     repo,
+      #     ref: 'master',
+      #     max_count: 10,
+      #     skip: 5,
+      #     order: :date
+      #   )
+      #
+      #   +options+ is a Hash of optional arguments to git
+      #     :ref is the ref from which to begin (SHA1 or name)
+      #     :max_count is the maximum number of commits to fetch
+      #     :skip is the number of commits to skip
+      #     :order is the commits order and allowed value is :none (default), :date,
+      #        :topo, or any combination of them (in an array). Commit ordering types
+      #        are documented here: https://git-scm.com/docs/git-log#_commit_ordering
+      def self.find_all: (untyped repo, ?::Hash[untyped, untyped] options) -> untyped
+
+      # ListCommits lists all commits reachable via a set of references by doing a graph walk.
+      # This deprecates FindAllCommits and FindCommits (except Follow is not yet supported).
+      # Any unknown revisions will cause the RPC to fail.
+      def self.list_all: (untyped repo, ?::Hash[untyped, untyped] options) -> untyped
+
+      def self.decorate: (untyped repository, untyped commit, ?untyped? ref) -> untyped
+
+      def self.shas_with_signatures: (untyped repository, untyped shas) -> untyped
+
+      # Only to be used when the object ids will not necessarily have a
+      # relation to each other. The last 10 commits for a branch for example,
+      # should go through .where
+      def self.batch_by_oid: (untyped repo, untyped oids) -> untyped
+
+      def self.extract_signature_lazily: (untyped repository, untyped commit_id) -> untyped
+
+      def self.batch_signature_extraction: (untyped repository, untyped commit_ids) -> untyped
+
+      def self.get_message: (untyped repository, untyped commit_id) -> untyped
+
+      def self.get_messages: (untyped repository, untyped commit_ids) -> untyped
+
+      def initialize: (untyped repository, untyped raw_commit, ?untyped? head, ?lazy_load_parents: bool) -> void
+
+      def init_commit: (untyped raw_commit) -> untyped
+
+      def sha: () -> untyped
+
+      def short_id: (?::Integer length) -> untyped
+
+      def tree_id: () -> (nil | untyped)
+
+      def safe_message: () -> untyped
+
+      def created_at: () -> untyped
+
+      # Was this commit committed by a different person than the original author?
+      def different_committer?: () -> untyped
+
+      def parent_ids: () -> untyped
+
+      def parent_id: () -> untyped
+
+      def committed_date: () -> untyped
+
+      def authored_date: () -> untyped
+
+      # Returns a diff object for the changes from this commit's first parent.
+      # If there is no parent, then the diff is between this commit and an
+      # empty repo. See Repository#diff for keys allowed in the +options+
+      # hash.
+      def diff_from_parent: (?::Hash[untyped, untyped] options) -> untyped
+
+      def deltas: () -> untyped
+
+      def has_zero_stats?: () -> untyped
+
+      def no_commit_message: () -> "No commit message"
+
+      def to_hash: () -> untyped
+
+      def date: () -> untyped
+
+      def diffs: (?::Hash[untyped, untyped] options) -> untyped
+
+      def parents: () -> untyped
+
+      def stats: () -> untyped
+
+      # Get ref names collection
+      #
+      # Ex.
+      #   commit.ref_names(repo)
+      #
+      def ref_names: (untyped repo) -> untyped
+
+      def first_ref_by_oid: (untyped repo) -> (nil | untyped)
+
+      def message: () -> untyped
+
+      def author_name: () -> untyped
+
+      def author_email: () -> untyped
+
+      def committer_name: () -> untyped
+
+      def committer_email: () -> untyped
+
+      def merge_commit?: () -> untyped
+
+      def gitaly_commit?: () -> untyped
+
+      def tree_entry: (untyped path) -> (nil | untyped)
+
+      def commit_tree_entry: (untyped path) -> (nil | untyped)
+
+      def to_gitaly_commit: () -> untyped
+
+      private
+
+      def init_from_hash: (untyped hash) -> untyped
+
+      def init_from_gitaly: (untyped commit) -> untyped
+
+      # Turn the commit trailers into a hash of key: [value, value] arrays
+      def parse_commit_trailers: (untyped trailers) -> untyped
+
+      # Gitaly provides a UNIX timestamp in author.date.seconds, and a timezone
+      # offset in author.timezone. If the latter isn't present, assume UTC.
+      def init_date_from_gitaly: (untyped author) -> untyped
+
+      def date_in_utc: (untyped author) -> untyped
+
+      def serialize_keys: () -> untyped
+
+      def gitaly_commit_author_from_raw: (untyped author_or_committer) -> untyped
+
+      # Get a collection of Gitlab::Git::Ref objects for this commit.
+      #
+      # Ex.
+      #   commit.ref(repo)
+      #
+      def refs: (untyped repo) -> untyped
+
+      def message_from_gitaly_body: () -> untyped
+
+      def full_body_fetched_from_gitaly?: () -> untyped
+
+      def fetch_body_from_gitaly: () -> untyped
+
+      def self.valid?: (untyped commit_id) -> untyped
+
+      def strip_ref_prefix: (untyped ref) -> untyped
+    end
+  end
+end

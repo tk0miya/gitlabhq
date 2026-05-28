@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillMissingProjectPushRules < BatchedMigrationJob
+      def perform: () -> untyped
+
+      def backfill_missing_project_push_rules: (untyped sub_batch) -> untyped
+    end
+  end
+end

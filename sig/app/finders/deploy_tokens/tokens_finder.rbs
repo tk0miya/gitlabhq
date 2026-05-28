@@ -1,0 +1,30 @@
+# Arguments:
+#   current_user: The currently logged in user.
+#   scope: A Project or Group to scope deploy tokens to (or :all for all tokens).
+#   params:
+#     active: Boolean - When true, only return active deployments.
+module DeployTokens
+  class TokensFinder
+    @current_user: untyped
+
+    @scope: untyped
+
+    @params: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    attr_reader scope: untyped
+
+    def initialize: (untyped current_user, untyped scope, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def init_collection: () -> untyped
+
+    def by_active: (untyped items) -> untyped
+  end
+end

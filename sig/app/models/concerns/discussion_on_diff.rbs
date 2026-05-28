@@ -1,0 +1,25 @@
+# Contains functionality shared between `DiffDiscussion` and `LegacyDiffDiscussion`.
+module DiscussionOnDiff
+  extend ActiveSupport::Concern
+
+  NUMBER_OF_TRUNCATED_DIFF_LINES: 16
+
+  TruncatedDiffLinesError: untyped
+
+  def diff_discussion?: () -> true
+
+  def file_new_path: () -> untyped
+
+  def on_merge_request_commit?: () -> untyped
+
+  # Returns an array of at most 16 highlighted lines above a diff note
+  def truncated_diff_lines: (?highlight: bool, ?diff_limit: untyped?) -> (::Array[untyped] | untyped)
+
+  def diff_file: () -> untyped
+
+  def line_code_in_diffs: (untyped diff_refs) -> (untyped | untyped | nil)
+
+  private
+
+  def fetch_preloaded_diff_file: () -> untyped
+end

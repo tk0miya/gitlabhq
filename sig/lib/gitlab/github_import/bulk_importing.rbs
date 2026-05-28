@@ -1,0 +1,41 @@
+module Gitlab
+  module GithubImport
+    module BulkImporting
+      @project: untyped
+
+      @client: untyped
+
+      @validation_errors: untyped
+
+      attr_reader project: untyped
+
+      attr_reader client: untyped
+
+      # project - An instance of `Project`.
+      # client - An instance of `Gitlab::GithubImport::Client`.
+      def initialize: (untyped project, untyped client) -> void
+
+      # Builds and returns an Array of objects to bulk insert into the
+      # database and array of validation errors if object is invalid.
+      #
+      # enum - An Enumerable that returns the objects to turn into database
+      #        rows.
+      def build_database_rows: (untyped enum) -> ::Array[untyped]
+
+      # Bulk inserts the given rows into the database.
+      def bulk_insert: (untyped rows, ?batch_size: ::Integer) -> untyped
+
+      def object_type: () -> untyped
+
+      def bulk_insert_failures: (untyped errors) -> untyped
+
+      private
+
+      def log_and_increment_counter: (untyped value, untyped operation) -> untyped
+
+      def log_error: (untyped github_identifiers, untyped messages) -> untyped
+
+      def github_identifiers: (untyped object) -> untyped
+    end
+  end
+end

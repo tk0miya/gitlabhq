@@ -1,0 +1,11 @@
+module Gitlab
+  module Ci
+    class ProjectConfig
+      class Parameter < Source
+        def content: () -> untyped
+
+        def source: () -> :parameter_source
+      end
+    end
+  end
+end

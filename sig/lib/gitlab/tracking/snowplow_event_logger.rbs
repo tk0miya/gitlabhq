@@ -1,0 +1,9 @@
+module Gitlab
+  module Tracking
+    class SnowplowEventLogger < Gitlab::JsonLogger
+      def self.file_name_noext: () -> "product_usage_data"
+
+      def self.log_level: () -> untyped
+    end
+  end
+end

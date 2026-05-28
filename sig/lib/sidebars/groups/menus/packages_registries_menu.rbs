@@ -1,0 +1,29 @@
+module Sidebars
+  module Groups
+    module Menus
+      class PackagesRegistriesMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "package"
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def packages_registry_menu_item: () -> untyped
+
+        def container_registry_menu_item: () -> untyped
+
+        def infrastructure_registry_menu_item: () -> untyped
+
+        def harbor_registry_menu_item: () -> untyped
+
+        def dependency_proxy_menu_item: () -> untyped
+
+        def nil_menu_item: (untyped item_id) -> untyped
+      end
+    end
+  end
+end

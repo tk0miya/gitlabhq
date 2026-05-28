@@ -1,0 +1,39 @@
+module Gitlab
+  module Database
+    module Partitioning
+      class CiSlidingListStrategy < SlidingListStrategy
+        INITIAL_PARTITION: 100
+
+        POSSIBLE_PARTITIONS_PER_EXECUTION: 5
+
+        def current_partitions: () -> untyped
+
+        def initial_partition: () -> untyped
+
+        def next_partition: () -> untyped
+
+        def missing_partitions: () -> untyped
+
+        def validate_and_fix: () -> nil
+
+        def after_adding_partitions: () -> nil
+
+        def extra_partitions: () -> ::Array[untyped]
+
+        def active_partition: () -> untyped
+
+        private
+
+        def desired_partitions: () -> untyped
+
+        def next_partitions: (untyped value) -> untyped
+
+        def ensure_partitioning_column_ignored_or_readonly!: () -> nil
+
+        def partition_for: (untyped value) -> untyped
+
+        def partition_name: (untyped value) -> untyped
+      end
+    end
+  end
+end

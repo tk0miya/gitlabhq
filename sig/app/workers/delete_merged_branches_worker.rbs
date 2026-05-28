@@ -1,0 +1,5 @@
+class DeleteMergedBranchesWorker
+  include ApplicationWorker
+
+  def perform: (untyped project_id, untyped user_id) -> (nil | untyped)
+end

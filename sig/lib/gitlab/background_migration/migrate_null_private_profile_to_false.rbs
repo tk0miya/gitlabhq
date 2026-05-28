@@ -1,0 +1,12 @@
+module Gitlab
+  module BackgroundMigration
+    # This class is responsible for migrating a range of users with private_profile == NULL to false
+    class MigrateNullPrivateProfileToFalse
+      # Temporary AR class for users
+      class User < ActiveRecord::Base
+      end
+
+      def perform: (untyped start_id, untyped stop_id) -> untyped
+    end
+  end
+end

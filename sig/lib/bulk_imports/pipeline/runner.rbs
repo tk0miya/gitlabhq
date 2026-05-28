@@ -1,0 +1,69 @@
+module BulkImports
+  module Pipeline
+    module Runner
+      # Using memoization to execute delete_existing_records method only once
+      @clean_up_upon_retry: untyped
+
+      @logger: untyped
+
+      extend ActiveSupport::Concern
+
+      MarkedAsFailedError: untyped
+
+      def run: () -> untyped
+
+      def on_finish: () -> nil
+
+      private
+
+      def run_pipeline_step: (untyped step, ?untyped? class_name, ?untyped? entry) { () -> untyped } -> untyped
+
+      def extracted_data_from: () -> untyped
+
+      def cache_key: () -> ::String
+
+      # Overridden by child pipelines with different caching strategies
+      def already_processed?: (*untyped) -> false
+
+      def save_processed_entry: (*untyped) -> nil
+
+      # Overridden by child pipelines
+      # This method is called once for the first non-processed item returned in the extract step,
+      # meaning that, in the case of a pipeline retrial, it is called again for the latest partially
+      # processed item.
+      def delete_existing_records: (*untyped) -> nil
+
+      def delete_partial_imported_records: (untyped entry) -> untyped
+
+      def after_run: (untyped extracted_data) -> (untyped | nil)
+
+      def log_and_fail: (untyped exception, untyped step, ?untyped? entry) -> nil
+
+      def skip!: (untyped message, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def log_import_failure: (untyped exception, untyped step, untyped entry) -> untyped
+
+      def info: (?::Hash[untyped, untyped] extra) -> untyped
+
+      def warn: (?::Hash[untyped, untyped] extra) -> untyped
+
+      def log_params: (untyped extra) -> untyped
+
+      def logger: () -> untyped
+
+      def log_exception: (untyped exception, untyped payload) -> untyped
+
+      def structured_payload: (?::Hash[untyped, untyped] payload) -> untyped
+
+      def refresh_entity_and_import: () -> untyped
+
+      def set_source_objects_counter: () -> untyped
+
+      def increment_fetched_objects_counter: (untyped entry) -> untyped
+
+      def increment_imported_objects_counter: (untyped entry) -> untyped
+
+      def increment_counter: (untyped counter_type, untyped entry) -> untyped
+    end
+  end
+end

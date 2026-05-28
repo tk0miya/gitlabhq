@@ -1,0 +1,31 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      module InOperatorOptimization
+        module Strategies
+          class OrderValuesLoaderStrategy
+            @model: untyped
+
+            @order_by_columns: untyped
+
+            def initialize: (untyped model, untyped order_by_columns) -> void
+
+            def initializer_columns: () -> untyped
+
+            def columns: () -> untyped
+
+            def final_projections: () -> untyped
+
+            private
+
+            attr_reader model: untyped
+
+            attr_reader order_by_columns: untyped
+
+            def null_with_type_cast: (untyped column_data) -> ::String
+          end
+        end
+      end
+    end
+  end
+end

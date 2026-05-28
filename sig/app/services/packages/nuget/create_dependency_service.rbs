@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+module Packages
+  module Nuget
+    class CreateDependencyService < BaseService
+      @package: untyped
+
+      @dependencies: untyped
+
+      def initialize: (untyped package, ?untyped dependencies) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def create_dependency_links: () -> untyped
+
+      def create_dependency_link_metadata: () -> (nil | untyped)
+
+      def raw_dependency_for: (untyped dependency) -> untyped
+
+      def dependencies_for_create_dependency_service: () -> { "dependencies" => untyped }
+
+      def version_or_empty_string: (untyped version) -> ("" | untyped)
+    end
+  end
+end

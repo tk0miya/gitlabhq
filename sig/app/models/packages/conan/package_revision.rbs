@@ -1,0 +1,9 @@
+module Packages
+  module Conan
+    class PackageRevision < ApplicationRecord
+      include ShaAttribute
+
+      include PackageFileable
+    end
+  end
+end

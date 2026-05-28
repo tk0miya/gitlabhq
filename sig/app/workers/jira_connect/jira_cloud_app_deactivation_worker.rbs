@@ -1,0 +1,9 @@
+module JiraConnect
+  class JiraCloudAppDeactivationWorker
+    include ApplicationWorker
+
+    BATCH_SIZE: 1000
+
+    def perform: (untyped namespace_id) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,35 @@
+module Boards
+  module Issues
+    class ListService < Boards::BaseItemsListService
+      @board: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def self.valid_params: () -> untyped
+
+      # It is a class method because we cannot apply it
+      # prior to knowing how many items should be fetched for a list.
+      def self.initialize_relative_positions: (untyped board, untyped current_user, untyped issues) -> (untyped | nil)
+
+      private
+
+      def order: (untyped items) -> untyped
+
+      def finder: () -> untyped
+
+      def board: () -> untyped
+
+      def filter_params: () -> untyped
+
+      def set_scope: () -> untyped
+
+      def set_non_archived: () -> untyped
+
+      def set_work_item_type_ids: () -> untyped
+
+      def item_model: () -> untyped
+
+      def work_item_type_provider: () -> untyped
+    end
+  end
+end

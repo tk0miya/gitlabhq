@@ -1,0 +1,9 @@
+module Clusters
+  module Cleanup
+    class ProjectNamespaceWorker
+      include ClusterCleanupMethods
+
+      def perform: (untyped cluster_id, ?::Integer execution_count) -> untyped
+    end
+  end
+end

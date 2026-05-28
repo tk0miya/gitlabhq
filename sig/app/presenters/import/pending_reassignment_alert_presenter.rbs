@@ -1,0 +1,23 @@
+module Import
+  class PendingReassignmentAlertPresenter < Gitlab::View::Presenter::Simple
+    include Gitlab::Utils::StrongMemoize
+
+    include ActionView::Helpers::TagHelper
+
+    include SafeFormatHelper
+
+    def show_alert?: () -> untyped
+
+    def groups_awaiting_placeholder_assignment: () -> (::Array[untyped] | untyped)
+
+    def group_names: () -> ("" | untyped)
+
+    def source_hostname: () -> (untyped | "")
+
+    def title: () -> untyped
+
+    def body: () -> untyped
+
+    def group_links: () -> untyped
+  end
+end

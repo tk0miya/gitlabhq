@@ -1,0 +1,11 @@
+module MergeRequests
+  class GeneratedRefCommit < ApplicationRecord
+    include ShaAttribute
+
+    include PartitionedTable
+
+    PARTITION_SIZE: 2000000
+
+    def self.oldest_merge_request_id_per_commit: (untyped project_id, untyped shas) -> untyped
+  end
+end

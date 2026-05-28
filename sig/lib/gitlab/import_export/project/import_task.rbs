@@ -1,0 +1,33 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class ImportTask < BaseTask
+        def import: () -> untyped
+
+        private
+
+        # We want to ensure that all Sidekiq jobs are executed
+        # synchronously as part of that process.
+        # This ensures that all expensive operations do not escape
+        # to general Sidekiq clusters/nodes.
+        def with_isolated_sidekiq_job: () { () -> untyped } -> untyped
+
+        def run_isolated_sidekiq_job: () -> untyped
+
+        def create_project: () -> untyped
+
+        def execute_sidekiq_job: () -> untyped
+
+        def full_path: () -> ::String
+
+        def show_import_start_message: () -> untyped
+
+        def import_params: () -> { namespace_id: untyped, path: untyped, file: untyped }
+
+        def override_params: () -> { name: untyped }
+
+        def show_import_failures_count: () -> (nil | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Authz
+  module PermissionGroups
+    class Category
+      include Authz::Concerns::YamlPermission
+
+      BASE_PATH: "config/authz/permission_groups/assignable_permissions"
+
+      def self.config_path: () -> untyped
+
+      private
+
+      def self.resource_identifier: (untyped _, untyped file_path) -> untyped
+    end
+  end
+end

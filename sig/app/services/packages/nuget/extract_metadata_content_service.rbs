@@ -1,0 +1,37 @@
+module Packages
+  module Nuget
+    class ExtractMetadataContentService
+      @doc: untyped
+
+      ROOT_XPATH: "//xmlns:package/xmlns:metadata/xmlns"
+
+      XPATHS: { package_name: ::String, package_version: ::String, authors: ::String, description: ::String, license_url: ::String, project_url: ::String, icon_url: ::String }
+
+      XPATH_DEPENDENCIES: ::String
+
+      XPATH_DEPENDENCY_GROUPS: ::String
+
+      XPATH_TAGS: ::String
+
+      XPATH_PACKAGE_TYPES: ::String
+
+      def initialize: (untyped nuspec_file_content) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader doc: untyped
+
+      def extract_metadata: () -> untyped
+
+      def extract_dependencies: () -> untyped
+
+      def extract_dependency: (untyped node) -> untyped
+
+      def extract_tags: () -> (::Array[untyped] | untyped)
+
+      def extract_package_types: () -> untyped
+    end
+  end
+end

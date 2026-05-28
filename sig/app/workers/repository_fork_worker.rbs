@@ -1,0 +1,33 @@
+class RepositoryForkWorker
+  @target_project_id: untyped
+
+  @source_project: untyped
+
+  include ApplicationWorker
+
+  include Gitlab::Utils::StrongMemoize
+
+  include ProjectStartImport
+
+  include ProjectImportOptions
+
+  def perform: (*untyped args) -> untyped
+
+  private
+
+  def target_project: () -> untyped
+
+  def source_project: () -> untyped
+
+  def branch: () -> (nil | untyped)
+
+  def fork_repository: (untyped target_project, untyped source_project) -> (nil | untyped)
+
+  def start_fork: (untyped project) -> (true | false)
+
+  def gitaly_fork!: (untyped source_project, untyped target_project) -> untyped
+
+  def link_lfs_objects: (untyped source_project, untyped target_project) -> untyped
+
+  def raise_fork_failure: (untyped source_project, untyped target_project, untyped reason) -> untyped
+end

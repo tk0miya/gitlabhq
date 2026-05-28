@@ -1,0 +1,13 @@
+module Integrations
+  module Loggable
+    def log_info: (untyped message, ?::Hash[untyped, untyped] params) -> untyped
+
+    def log_error: (untyped message, ?::Hash[untyped, untyped] params) -> untyped
+
+    def log_exception: (untyped error, ?::Hash[untyped, untyped] params) -> untyped
+
+    def build_message: (untyped message, ?::Hash[untyped, untyped] params) -> untyped
+
+    def logger: () -> untyped
+  end
+end

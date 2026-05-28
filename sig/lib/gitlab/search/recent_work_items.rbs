@@ -1,0 +1,20 @@
+module Gitlab
+  module Search
+    class RecentWorkItems < RecentItems
+      extend ::Gitlab::Utils::Override
+
+      def search: (untyped term) -> untyped
+
+      private
+
+      def query_items_by_ids: (untyped term, untyped ids) -> untyped
+
+      def filter_by_permissions: (untyped items) -> untyped
+
+      # Override to use the same Redis key as RecentIssues since WorkItem < Issue
+      # and they represent the same underlying data. This ensures recent items
+      # tracked through IssuesController are visible in WorkItems autocomplete.
+      def key: () -> ::String
+    end
+  end
+end

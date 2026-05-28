@@ -1,0 +1,18 @@
+class Repositories::BaseService < BaseService
+  @repository: untyped
+
+  include Gitlab::ShellAdapter
+
+  attr_reader repository: untyped
+
+  def initialize: (untyped repository) -> void
+
+  def repo_exists?: (untyped path) -> untyped
+
+  # If we get a Gitaly error, the repository may be corrupted. We can
+  # ignore these errors since we're going to trash the repositories
+  # anyway.
+  def ignore_git_errors: () { () -> untyped } -> untyped
+
+  def move_error: (untyped path) -> untyped
+end

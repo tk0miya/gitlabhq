@@ -1,0 +1,48 @@
+#
+# Cascading attributes enables managing settings in a flexible way.
+#
+# - Instance administrator can define an instance-wide default setting, or
+#   lock the setting to prevent change by group owners.
+# - Group maintainers/owners can define a default setting for their group, or
+#   lock the setting to prevent change by sub-group maintainers/owners.
+#
+# Behavior:
+#
+# - When a group does not have a value (value is `nil`), cascade up the
+#   hierarchy to find the first non-nil value.
+# - Settings can be locked at any level to prevent groups/sub-groups from
+#   overriding.
+# - If the setting isn't locked, the default can be overridden.
+# - An instance administrator or group maintainer/owner can push settings values
+#   to groups/sub-groups to override existing values, even when the setting
+#   is not otherwise locked.
+#
+module CascadingNamespaceSettingAttribute
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  def locked_value: (untyped attribute) -> untyped
+
+  def locked_ancestor: (untyped attribute) -> (nil | untyped)
+
+  def locked_by_ancestor?: (untyped attribute) -> untyped
+
+  def locked_by_application_setting?: (untyped attribute) -> untyped
+
+  def cascading_attribute_locked?: (untyped attribute, include_self: untyped) -> untyped
+
+  def cascading_attribute_changed?: (untyped attribute) -> untyped
+
+  def cascaded_ancestor_value: (untyped attribute) -> (nil | untyped)
+
+  def application_setting_value: (untyped attribute) -> untyped
+
+  def namespace_ancestor_ids: () -> untyped
+
+  def descendants: () -> untyped
+
+  def to_bool: (untyped value) -> untyped
+end

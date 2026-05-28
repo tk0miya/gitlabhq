@@ -1,0 +1,17 @@
+module Gitlab
+  module Tracking
+    module Destinations
+      class SnowplowMicro < Snowplow
+        include ::Gitlab::Utils::StrongMemoize
+
+        extend ::Gitlab::Utils::Override
+
+        COOKIE_DOMAIN: ".gitlab.com"
+
+        def initialize: () -> void
+
+        def snowplow_options: () -> untyped
+      end
+    end
+  end
+end

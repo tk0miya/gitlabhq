@@ -1,0 +1,35 @@
+module Milestones
+  class PromoteService < Milestones::BaseService
+    # Pluck need to be used here instead of select so the array of ids
+    # is persistent after old milestones gets deleted.
+    @milestone_ids_for_merge: untyped
+
+    @group: untyped
+
+    PromoteMilestoneError: untyped
+
+    def execute: (untyped milestone) -> untyped
+
+    private
+
+    def milestone_ids_for_merge: (untyped group_milestone) -> untyped
+
+    def move_children_to_group_milestone: (untyped group_milestone) -> untyped
+
+    def check_project_milestone!: (untyped milestone) -> (untyped | nil)
+
+    def clone_project_milestone: (untyped milestone) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_children: (untyped group_milestone, untyped milestone_ids) -> untyped
+
+    def group: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def destroy_old_milestones: (untyped milestone) -> untyped
+
+    def group_project_ids: () -> untyped
+
+    def raise_error: (untyped message) -> untyped
+  end
+end

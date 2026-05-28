@@ -1,0 +1,36 @@
+module Clusters
+  module Agents
+    module Authorizations
+      module CiAccess
+        class Finder
+          @project: untyped
+
+          @agent: untyped
+
+          def initialize: (untyped project, ?agent: untyped?) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader project: untyped
+
+          attr_reader agent: untyped
+
+          def implicit_authorizations: () -> untyped
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def project_authorizations: () -> untyped
+
+          def group_authorizations: () -> (::Array[untyped] | untyped)
+
+          def organization_authorizations: () -> untyped
+
+          def all_namespace_ids: () -> untyped
+
+          def organization_agents_enabled?: () -> untyped
+        end
+      end
+    end
+  end
+end

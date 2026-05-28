@@ -1,0 +1,11 @@
+module Ci
+  module MergeRequests
+    class AddTodoWhenBuildFailsWorker
+      include ApplicationWorker
+
+      include PipelineQueue
+
+      def perform: (untyped job_id) -> (nil | untyped)
+    end
+  end
+end

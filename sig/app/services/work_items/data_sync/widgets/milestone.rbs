@@ -1,0 +1,29 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class Milestone < Base
+        include ::Gitlab::Utils::StrongMemoize
+
+        def before_create: () -> (nil | untyped)
+
+        def after_save_commit: () -> (nil | untyped)
+
+        def post_move_cleanup: () -> untyped
+
+        private
+
+        def handle_changed_milestone_system_notes: () -> (nil | untyped)
+
+        def matching_milestone: () -> untyped
+
+        def by_id: (untyped params) -> (nil | untyped)
+
+        def by_title: (untyped params) -> (nil | untyped)
+
+        def find_milestone: (untyped params) -> untyped
+
+        def ancestors: () -> untyped
+      end
+    end
+  end
+end

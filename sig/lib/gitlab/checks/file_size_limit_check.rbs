@@ -1,0 +1,15 @@
+module Gitlab
+  module Checks
+    class FileSizeLimitCheck < BaseBulkChecker
+      include ActionView::Helpers::NumberHelper
+
+      def validate!: () -> nil
+
+      private
+
+      # rubocop:disable Gitlab/NoCodeCoverageComment -- This is fully overridden in EE,Lint/MissingCopEnableDirective
+      # :nocov:
+      def file_size_limit: () -> nil
+    end
+  end
+end

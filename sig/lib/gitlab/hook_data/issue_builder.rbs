@@ -1,0 +1,15 @@
+module Gitlab
+  module HookData
+    # Used for legacy issues, Service Desk issues and all work item types
+    # See https://gitlab.com/groups/gitlab-org/-/epics/10150
+    class IssueBuilder < BaseBuilder
+      def self.safe_hook_relations: () -> ::Array[:assignees | :labels | :total_time_spent | :time_change | :severity | :escalation_status | :customer_relations_contacts]
+
+      def self.safe_hook_attributes: () -> ::Array[:assignee_id | :author_id | :closed_at | :confidential | :created_at | :description | :discussion_locked | :due_date | :id | :iid | :last_edited_at | :last_edited_by_id | :milestone_id | :moved_to_id | :duplicated_to_id | :project_id | :relative_position | :state_id | :time_estimate | :title | :updated_at | :updated_by_id]
+
+      alias issue object
+
+      def build: () -> untyped
+    end
+  end
+end

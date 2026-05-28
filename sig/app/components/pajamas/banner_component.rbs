@@ -1,0 +1,36 @@
+module Pajamas
+  class BannerComponent < Pajamas::Component
+    @button_text: untyped
+
+    @button_link: untyped
+
+    @variant: untyped
+
+    @svg_path: untyped
+
+    @banner_options: untyped
+
+    @button_options: untyped
+
+    @close_options: untyped
+
+    VARIANT_OPTIONS: ::Array[:introduction | :promotion]
+
+    # @param [String] button_text
+    # @param [String] button_link
+    # @param [Symbol] variant
+    # @param [String] svg_path
+    # @param [Hash] banner_options
+    # @param [Hash] button_options
+    # @param [Hash] close_options
+    def initialize: (?button_text: ::String, ?button_link: ::String, ?variant: ::Symbol, ?svg_path: untyped?, ?banner_options: ::Hash[untyped, untyped], ?button_options: ::Hash[untyped, untyped], ?close_options: ::Hash[untyped, untyped]) -> void
+
+    private
+
+    def banner_class: () -> untyped
+
+    def close_button_variant: () -> (:confirm | :default)
+
+    def introduction?: () -> untyped
+  end
+end

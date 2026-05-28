@@ -1,0 +1,45 @@
+module ContainerExpirationPolicies
+  class CleanupContainerRepositoryWorker
+    include ApplicationWorker
+
+    include LimitedCapacity::Worker
+
+    include Gitlab::Utils::StrongMemoize
+
+    LOG_ON_DONE_FIELDS: ::Array[:cleanup_status | :cleanup_tags_service_original_size | :cleanup_tags_service_before_truncate_size | :cleanup_tags_service_after_truncate_size | :cleanup_tags_service_cached_tags_count | :cleanup_tags_service_before_delete_size | :cleanup_tags_service_deleted_size]
+
+    def perform_work: () -> (nil | untyped)
+
+    def max_running_jobs: () -> untyped
+
+    def remaining_work_count: () -> untyped
+
+    private
+
+    def container_repository: () -> untyped
+
+    def next_container_repository: () -> untyped
+
+    def next_ten_requiring_ids_from_replica: () -> untyped
+
+    def cleanup_scheduled_count: () -> untyped
+
+    def cleanup_unfinished_count: () -> untyped
+
+    def allowed_to_run?: () -> (false | untyped)
+
+    def max_cleanup_execution_time: () -> untyped
+
+    def log_info: (untyped extra_structure) -> untyped
+
+    def log_on_done: (untyped result) -> untyped
+
+    def log_cache_ratio: (untyped result) -> (nil | untyped)
+
+    def log_truncate: (untyped result) -> untyped
+
+    def policy: () -> untyped
+
+    def project: () -> untyped
+  end
+end

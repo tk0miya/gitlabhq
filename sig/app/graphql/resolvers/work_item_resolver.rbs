@@ -1,0 +1,7 @@
+module Resolvers
+  class WorkItemResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    def resolve: (id: untyped) -> untyped
+  end
+end

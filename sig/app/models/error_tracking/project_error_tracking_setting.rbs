@@ -1,0 +1,104 @@
+module ErrorTracking
+  class ProjectErrorTrackingSetting < ApplicationRecord
+    @project_name_from_slug: untyped
+
+    @organization_name_from_slug: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include ReactiveCaching
+
+    include Gitlab::Routing
+
+    include Gitlab::EncryptedAttribute
+
+    SENTRY_API_ERROR_TYPE_BAD_REQUEST: "bad_request_for_sentry_api"
+
+    SENTRY_API_ERROR_TYPE_MISSING_KEYS: "missing_keys_in_sentry_response"
+
+    SENTRY_API_ERROR_TYPE_NON_20X_RESPONSE: "non_20x_response_from_sentry"
+
+    SENTRY_API_ERROR_INVALID_SIZE: "invalid_size_of_sentry_response"
+
+    API_URL_PATH_REGEXP: ::Regexp
+
+    def sentry_enabled: () -> untyped
+
+    def integrated_client?: () -> untyped
+
+    def integrated_enabled?: () -> untyped
+
+    def gitlab_dsn: () -> untyped
+
+    def api_url=: (untyped value) -> untyped
+
+    def project_name: () -> untyped
+
+    def organization_name: () -> untyped
+
+    def project_slug: () -> untyped
+
+    def organization_slug: () -> untyped
+
+    def self.build_api_url_from: (api_host: untyped, project_slug: untyped, organization_slug: untyped) -> untyped
+
+    def sentry_client: () -> untyped
+
+    def sentry_external_url: () -> untyped
+
+    def list_sentry_issues: (?::Hash[untyped, untyped] opts) -> untyped
+
+    def list_sentry_projects: () -> untyped
+
+    def issue_details: (?::Hash[untyped, untyped] opts) -> untyped
+
+    def issue_latest_event: (?::Hash[untyped, untyped] opts) -> untyped
+
+    def update_issue: (?::Hash[untyped, untyped] opts) -> untyped
+
+    def calculate_reactive_cache: (untyped request, untyped opts) -> untyped
+
+    def expire_issues_cache: () -> untyped
+
+    # http://HOST/api/0/projects/ORG/PROJECT
+    # ->
+    # http://HOST/ORG/PROJECT
+    def self.extract_sentry_external_url: (untyped url) -> untyped
+
+    def api_host: () -> (nil | untyped)
+
+    private
+
+    def reset_token: () -> (untyped | nil)
+
+    def ensure_issue_belongs_to_project!: (untyped project_id_from_api) -> (untyped | nil)
+
+    def ensure_sentry_project_id!: () -> untyped
+
+    def sentry_project: () -> untyped
+
+    def add_gitlab_issue_details: (untyped issue) -> untyped
+
+    def match_gitlab_commit: (untyped release_version) -> (nil | untyped)
+
+    def handle_exceptions: () { () -> untyped } -> untyped
+
+    def project_name_from_slug: () -> untyped
+
+    def organization_name_from_slug: () -> untyped
+
+    def project_slug_from_api_url: () -> untyped
+
+    def organization_slug_from_api_url: () -> untyped
+
+    def api_url_slug: (untyped capture) -> untyped
+
+    def extract_api_url_slugs: () -> (nil | untyped)
+
+    def validate_api_url_path: () -> (nil | untyped)
+
+    def client_key: () -> untyped
+
+    def create_client_key!: () -> (untyped | nil)
+  end
+end

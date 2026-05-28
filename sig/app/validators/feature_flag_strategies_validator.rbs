@@ -1,0 +1,36 @@
+class FeatureFlagStrategiesValidator < ActiveModel::EachValidator
+  STRATEGY_DEFAULT: "default"
+
+  STRATEGY_GRADUALROLLOUTUSERID: "gradualRolloutUserId"
+
+  STRATEGY_USERWITHID: "userWithId"
+
+  # Order key names alphabetically
+  STRATEGIES: ::Hash[untyped, ::Array[untyped] | ::Array["groupId" | "percentage"] | ::Array["userIds"]]
+
+  USERID_MAX_LENGTH: 256
+
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+  private
+
+  def strategy_validations: (untyped record, untyped attribute, untyped strategy) -> untyped
+
+  def validate_name: (untyped record, untyped attribute, untyped strategy) -> untyped
+
+  def validate_parameters_type: (untyped record, untyped attribute, untyped strategy) -> untyped
+
+  def validate_parameters_keys: (untyped record, untyped attribute, untyped strategy) -> untyped
+
+  def validate_parameters_values: (untyped record, untyped attribute, untyped strategy) -> untyped
+
+  def gradual_rollout_user_id_parameters_validation: (untyped record, untyped attribute, untyped strategy) -> untyped
+
+  def user_with_id_parameters_validation: (untyped record, untyped attribute, untyped strategy) -> untyped
+
+  def valid_ids?: (untyped user_ids) -> untyped
+
+  def valid_id?: (untyped user_id) -> untyped
+
+  def error: (untyped record, untyped attribute, untyped msg) -> false
+end

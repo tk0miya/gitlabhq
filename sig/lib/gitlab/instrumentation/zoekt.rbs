@@ -1,0 +1,29 @@
+module Gitlab
+  module Instrumentation
+    class Zoekt
+      ZOEKT_REQUEST_COUNT: :zoekt_request_count
+
+      ZOEKT_CALL_DURATION: :zoekt_call_duration
+
+      ZOEKT_GRAPHQL_DURATION: :zoekt_graphql_duration
+
+      ZOEKT_CALL_DETAILS: :zoekt_call_details
+
+      def self.get_request_count: () -> untyped
+
+      def self.increment_request_count: () -> untyped
+
+      def self.detail_store: () -> untyped
+
+      def self.zoekt_call_duration: () -> untyped
+
+      def self.query_time: () -> untyped
+
+      def self.add_duration: (untyped duration) -> untyped
+
+      def self.add_graphql_duration: (untyped duration) -> untyped
+
+      def self.add_call_details: (duration: untyped, method: untyped, path: untyped, ?params: untyped?, ?body: untyped?) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module DynamicModelHelpers
+      BATCH_SIZE: 1000
+
+      def self?.define_batchable_model: (untyped table_name, connection: untyped, ?primary_key: untyped?, ?base_class: untyped) -> untyped
+
+      def each_batch: (untyped table_name, connection: untyped, ?scope: untyped, ?of: untyped, **untyped opts) { (untyped, untyped) -> untyped } -> untyped
+
+      def each_batch_range: (untyped table_name, connection: untyped, ?scope: untyped, ?of: untyped, **untyped opts) { (untyped) -> untyped } -> untyped
+    end
+  end
+end

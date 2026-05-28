@@ -1,0 +1,49 @@
+class AbuseReportsFinder
+  @params: untyped
+
+  @reports: untyped
+
+  @status_filter: untyped
+
+  attr_reader params: untyped
+
+  attr_reader reports: untyped
+
+  STATUS_OPEN: "open"
+
+  DEFAULT_SORT_STATUS_CLOSED: "created_at_desc"
+
+  ALLOWED_SORT: ::Array[untyped | "created_at_asc" | "updated_at_desc" | "updated_at_asc"]
+
+  DEFAULT_SORT_STATUS_OPEN: "number_of_reports_desc"
+
+  SORT_BY_COUNT: ::Array[untyped]
+
+  def initialize: (?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def filter_reports: () -> untyped
+
+  def filter_by_status: () -> (nil | untyped)
+
+  def filter_by_category: () -> (nil | untyped)
+
+  def filter_by_user: () -> (nil | untyped)
+
+  def filter_by_reporter: () -> (nil | untyped)
+
+  def sort_key: () -> untyped
+
+  def sort_reports: () -> (nil | untyped)
+
+  def find_user_id: (untyped username) -> untyped
+
+  def aggregate_reports: () -> untyped
+
+  def status_filter: () -> untyped
+
+  def status_open?: () -> (false | untyped)
+end

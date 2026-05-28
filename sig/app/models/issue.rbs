@@ -1,0 +1,325 @@
+class Issue < ApplicationRecord
+  self.@reference_pattern: untyped
+
+  self.@link_reference_pattern: untyped
+
+  @design_collection: untyped
+
+  include AtomicInternalId
+
+  include IidRoutes
+
+  include Issuable
+
+  include Noteable
+
+  include Referable
+
+  include Spammable
+
+  include FasterCacheKeys
+
+  include RelativePositioning
+
+  include TimeTrackable
+
+  include ThrottledTouch
+
+  include LabelEventable
+
+  include MilestoneEventable
+
+  include WhereComposite
+
+  include StateEventable
+
+  include IdInOrdered
+
+  include Presentable
+
+  include IssueAvailableFeatures
+
+  include Todoable
+
+  include FromUnion
+
+  include EachBatch
+
+  include PgFullTextSearchable
+
+  include Gitlab::DueAtFilterable
+
+  include WorkItems::TypesFramework::HasType
+
+  include Gitlab::Utils::StrongMemoize
+
+  extend ::Gitlab::Utils::Override
+
+  DueDateStruct: untyped
+
+  NoDueDate: untyped
+
+  AnyDueDate: untyped
+
+  Overdue: untyped
+
+  DueToday: untyped
+
+  DueTomorrow: untyped
+
+  DueThisWeek: untyped
+
+  DueThisMonth: untyped
+
+  DueNextMonthAndPreviousTwoWeeks: untyped
+
+  IssueTypeOutOfSyncError: untyped
+
+  SORTING_PREFERENCE_FIELD: :issues_sort
+
+  MAX_BRANCH_TEMPLATE: 255
+
+  # Types of issues that should be displayed on issue lists across the app
+  # for example, project issues list, group issues list, and issues dashboard.
+  #
+  # This should be kept consistent with the enums used for the GraphQL issue list query in
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/1379c2d7bffe2a8d809f23ac5ef9b4114f789c07/app/assets/javascripts/issues/list/constants.js#L154-158
+  TYPES_FOR_LIST: ::Array["issue" | "incident" | "test_case" | "task" | "objective" | "key_result" | "ticket"]
+
+  # This default came from the enum `issue_type` column. Defined as default in the DB
+  DEFAULT_ISSUE_TYPE: :issue
+
+  # A list of types user can change between - both original and new
+  # type must be included in this list. This is needed for legacy issues
+  # where it's possible to switch between issue and incident.
+  CHANGEABLE_BASE_TYPES: ::Array["issue" | "incident" | "test_case"]
+
+  alias email_participants issue_email_participants
+
+  alias escalation_status incident_management_issuable_escalation_status
+
+  extend ::Gitlab::Utils::Override
+
+  def self.in_namespaces_with_cte: (untyped namespaces) -> untyped
+
+  def self.with_accessible_sub_namespace_ids_cte: (untyped namespace_ids) -> untyped
+
+  def self.order_upvotes_desc: () -> untyped
+
+  def self.order_upvotes_asc: () -> untyped
+
+  def self.full_search: (untyped query, ?matched_columns: untyped?, ?use_minimum_char_limit: bool) -> untyped
+
+  def self.related_link_class: () -> untyped
+
+  def self.participant_includes: () -> untyped
+
+  def next_object_by_relative_position: (?ignoring: untyped?, ?order: ::Symbol) -> untyped
+
+  def self.relative_positioning_query_base: (untyped issue) -> untyped
+
+  def self.relative_positioning_parent_column: () -> :project_id
+
+  def self.reference_prefix: () -> "#"
+
+  # Alternative prefix for situations where the standard prefix would be
+  # interpreted as a comment, most notably to begin commit messages with
+  # (e.g. "GL-123: My commit")
+  def self.alternative_reference_prefix_without_postfix: () -> "GL-"
+
+  def self.alternative_reference_prefix_with_postfix: () -> "[issue:"
+
+  def self.reference_postfix: () -> "]"
+
+  # Pattern used to extract issue references from text
+  # This pattern supports cross-project references.
+  def self.reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> untyped
+
+  def self.reference_valid?: (untyped reference) -> untyped
+
+  def self.project_foreign_key: () -> "project_id"
+
+  def self.simple_sorts: () -> untyped
+
+  def self.sort_by_attribute: (untyped method, ?excluded_labels: untyped) -> untyped
+
+  def self.order_by_relative_position: () -> untyped
+
+  def self.column_order_relative_position: () -> untyped
+
+  def self.column_order_id_asc: () -> untyped
+
+  def self.to_branch_name: (untyped id, untyped title, ?project: untyped?) -> untyped
+
+  def self.supported_keyset_orderings: () -> { id: ::Array[:asc | :desc], title: ::Array[:asc | :desc], created_at: ::Array[:asc | :desc], updated_at: ::Array[:asc | :desc], due_date: ::Array[:asc | :desc], relative_position: ::Array[:asc | :desc] }
+
+  # Temporary disable moving null elements because of performance problems
+  # For more information check https://gitlab.com/gitlab-com/gl-infra/production/-/issues/4321
+  def check_repositioning_allowed!: () -> (untyped | nil)
+
+  def blocked_for_repositioning?: () -> untyped
+
+  # `from` argument can be a Namespace or Project.
+  def to_reference: (?untyped? from, ?full: bool, ?absolute_path: bool) -> ::String
+
+  def suggested_branch_name: () -> untyped
+
+  # To allow polymorphism with MergeRequest.
+  def source_project: () -> untyped
+
+  def moved?: () -> untyped
+
+  def duplicated?: () -> untyped
+
+  def clear_closure_reason_references: () -> untyped
+
+  def can_move?: (untyped user, ?untyped? to_namespace) -> (false | untyped)
+
+  alias can_clone? can_move?
+
+  def to_branch_name: () -> (::String | untyped)
+
+  def related_issues: (?untyped? current_user, ?authorize: bool, ?preload: untyped?) ?{ (untyped) -> untyped } -> (::Array[untyped] | untyped)
+
+  def linked_items_count: () -> untyped
+
+  def can_be_worked_on?: () -> untyped
+
+  # Always enforce spam check for support bot but allow for other users when issue is not publicly visible
+  def allow_possible_spam?: (untyped user) -> (true | false | untyped)
+
+  def supports_recaptcha?: () -> true
+
+  # Overridden in EE
+  def supports_parent?: () -> nil
+
+  def as_json: (?::Hash[untyped, untyped] options) -> untyped
+
+  def real_time_notes_enabled?: () -> true
+
+  def discussions_rendered_on_frontend?: () -> true
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def invalidate_project_counter_caches: () -> (nil | untyped)
+
+  def merge_requests_count: (?untyped? user) -> untyped
+
+  def previous_updated_at: () -> untyped
+
+  def banzai_render_context: (untyped field) -> untyped
+
+  def design_collection: () -> untyped
+
+  def from_service_desk?: () -> untyped
+
+  def issue_link_type: () -> (nil | untyped)
+
+  def relocation_target: () -> untyped
+
+  def supports_assignee?: () -> untyped
+
+  def supports_time_tracking?: () -> untyped
+
+  def supports_move_and_clone?: () -> untyped
+
+  def email_participants_emails: () -> untyped
+
+  def email_participants_emails_downcase: () -> untyped
+
+  def issue_assignee_user_ids: () -> untyped
+
+  def update_upvotes_count: () -> untyped
+
+  def hidden?: () -> untyped
+
+  def expire_etag_cache: () -> (nil | untyped)
+
+  def supports_confidentiality?: () -> true
+
+  # we want to have subscriptions working on work items only, legacy issues do not support graphql subscriptions, yet so
+  # we need sometimes GID of an issue instance to be represented as WorkItem GID. E.g. notes subscriptions.
+  def to_work_item_global_id: () -> untyped
+
+  def resource_parent: () -> untyped
+
+  alias issuing_parent resource_parent
+
+  def issuing_parent_id: () -> untyped
+
+  # Persisted records will always have a work_item_type. This method is useful
+  # in places where we use a non persisted issue to perform feature checks
+  def work_item_type_with_default: () -> untyped
+
+  def issue_type: () -> untyped
+
+  def hook_attrs: () -> untyped
+
+  def gfm_reference: (?untyped? from) -> ::String
+
+  def skip_metrics?: () -> untyped
+
+  def has_widget?: (untyped widget) -> untyped
+
+  def group_level?: () -> untyped
+
+  def autoclose_by_merged_closing_merge_request?: () -> (false | untyped)
+
+  # Overridden in EE
+  def epic_work_item?: () -> false
+
+  def group_epic_work_item?: () -> untyped
+
+  def use_work_item_url?: () -> (false | true | untyped)
+
+  # Some Issues types/conditions were not fully migrated to WorkItems UI/workflows yet.
+  # On the other hand some other Issue types/conditions are only available through
+  # WorkItems UI/workflows.
+  #
+  # Overridden in EE (For OKRs and Epics)
+  def show_as_work_item?: () -> untyped
+
+  # Legacy views/workflows only
+  # - Service Desk were not converted to the work items framework.
+  # - Incidents were not converted to the work items framework.
+  #
+  # Overridden in EE for test case check
+  def require_legacy_views?: () -> untyped
+
+  def ==: (untyped other) -> untyped
+
+  alias eql? ==
+
+  private
+
+  def due_date_after_start_date: () -> (nil | untyped)
+
+  # Although parent/child relationship can be set only for WorkItems, we
+  # still need to validate it for Issue model too, because both models use
+  # same table.
+  def parent_link_confidentiality: () -> (nil | untyped)
+
+  def persist_pg_full_text_search_vector: (untyped search_vector) -> (nil | untyped)
+
+  def ensure_metrics!: () -> untyped
+
+  def record_create_action: () -> untyped
+
+  # Returns `true` if this Issue is visible to everybody.
+  def publicly_visible?: () -> untyped
+
+  def could_not_move: (untyped exception) -> untyped
+
+  def ensure_namespace_id: () -> (untyped | nil)
+
+  def ensure_work_item_type: () -> (nil | untyped)
+
+  def ensure_namespace_traversal_ids: () -> untyped
+
+  def allowed_work_item_type_change: () -> (nil | untyped)
+
+  def linked_issues_select: () -> untyped
+
+  def validate_due_date?: () -> true
+end

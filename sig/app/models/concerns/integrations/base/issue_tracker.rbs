@@ -1,0 +1,56 @@
+module Integrations
+  module Base
+    module IssueTracker
+      @legacy_properties_data: untyped
+
+      @other_external_issue_trackers: untyped
+
+      extend ActiveSupport::Concern
+
+      REFERENCE_PATTERN_LONG_REGEXP: ::Regexp
+
+      REFERENCE_PATTERN_REGEXP: ::Regexp
+
+      def reference_pattern: (?only_long: bool) -> untyped
+
+      def handle_properties: () -> (nil | untyped)
+
+      def legacy_properties_data: () -> untyped
+
+      def supports_data_fields?: () -> true
+
+      def data_fields: () -> untyped
+
+      def default?: () -> untyped
+
+      def issue_url: (untyped iid) -> untyped
+
+      def issue_tracker_path: () -> untyped
+
+      def new_issue_path: () -> untyped
+
+      def issue_path: (untyped iid) -> untyped
+
+      # Initialize with default properties values
+      def set_default_data: () -> (nil | untyped)
+
+      def execute: (untyped data) -> (nil | untyped)
+
+      def support_close_issue?: () -> false
+
+      def support_cross_reference?: () -> false
+
+      def create_cross_reference_note: (untyped external_issue, untyped mentioned_in, untyped author) -> nil
+
+      def activate_disabled_reason: () -> ({ trackers: untyped } | nil)
+
+      private
+
+      def other_external_issue_trackers: () -> (::Array[untyped] | untyped)
+
+      def issues_tracker: () -> untyped
+
+      def one_issue_tracker: () -> (nil | untyped)
+    end
+  end
+end

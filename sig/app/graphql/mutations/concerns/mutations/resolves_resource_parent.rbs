@@ -1,0 +1,17 @@
+module Mutations
+  module ResolvesResourceParent
+    extend ActiveSupport::Concern
+
+    include Mutations::ResolvesGroup
+
+    include ResolvesProject
+
+    def ready?: (**untyped args) -> untyped
+
+    private
+
+    def authorized_resource_parent_find!: (untyped args) -> untyped
+
+    def find_object: (?project_path: untyped?, ?group_path: untyped?) -> untyped
+  end
+end

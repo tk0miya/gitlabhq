@@ -1,0 +1,17 @@
+module Resolvers
+  module Kas
+    class AgentConfigurationsResolver < BaseResolver
+      @kas_client: untyped
+
+      alias project object
+
+      def resolve: () -> untyped
+
+      private
+
+      def can_read_agent_configuration?: () -> untyped
+
+      def kas_client: () -> untyped
+    end
+  end
+end

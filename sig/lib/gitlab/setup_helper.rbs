@@ -1,0 +1,60 @@
+module Gitlab
+  module SetupHelper
+    def create_configuration: (untyped dir, untyped storage_paths, ?force: bool, ?options: ::Hash[untyped, untyped]) -> untyped
+
+    # rubocop:disable Rails/Output
+    def generate_configuration: (untyped toml_data, untyped config_path, ?force: bool) -> untyped
+
+    module Workhorse
+      extend Gitlab::SetupHelper
+
+      def self.configuration_toml: (untyped dir, untyped _, untyped _) -> untyped
+
+      def self.redis_url: () -> untyped
+
+      def self.redis_db: () -> untyped
+
+      def self.get_config_path: (untyped dir, untyped _) -> untyped
+
+      def self.compile_into: (untyped dir) -> untyped
+
+      def self.make: () -> untyped
+    end
+
+    module Gitaly
+      extend Gitlab::SetupHelper
+
+      # We cannot create config.toml files for all possible Gitaly configurations.
+      # For instance, if Gitaly is running on another machine then it makes no
+      # sense to write a config.toml file on the current machine. This method will
+      # only generate a configuration for the most common and simplest case: when
+      # we have exactly one Gitaly process and we are sure it is running locally
+      # because it uses a Unix socket.
+      # For development and testing purposes, an extra storage is added to gitaly,
+      # which is not known to Rails, but must be explicitly stubbed.
+      def self.configuration_toml: (untyped gitaly_dir, untyped storage_paths, untyped options) -> untyped
+
+      # We cannot create config.toml files for all possible Gitaly
+      # configurations. For instance, if Gitaly is running on another machine
+      # then it makes no sense to write a config.toml file on the current
+      # machine. This method validates that we have the most common and
+      # simplest case: when we have exactly one Gitaly process and we are
+      # sure it is running locally because it uses a Unix socket.
+      def self.ensure_single_socket!: () -> untyped
+
+      private
+
+      def self.get_config_path: (untyped dir, untyped options) -> untyped
+    end
+
+    module Praefect
+      extend Gitlab::SetupHelper
+
+      def self.configuration_toml: (untyped gitaly_dir, untyped _storage_paths, untyped options) -> untyped
+
+      private
+
+      def self.get_config_path: (untyped dir, untyped options) -> untyped
+    end
+  end
+end

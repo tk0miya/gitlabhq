@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillResourceLabelEventsForEpicWorkItems < BatchedMigrationJob
+      RESOURCE_LABEL_EVENTS_BATCH_SIZE: 100
+
+      def perform: () -> untyped
+
+      private
+
+      def backfill_resource_label_events: (untyped sub_batch) -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+# Gitlab::EmojiNameValidator
+#
+# Validates that the provided value matches an indexed emoji alpha code
+#
+# @example Usage
+#    class AwardEmoji < ApplicationRecord
+#      validate :name, 'gitlab/emoji_name':  true
+#    end
+module Gitlab
+  class EmojiNameValidator < ActiveModel::EachValidator
+    def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+    private
+
+    def valid_tanuki_emoji?: (untyped value) -> untyped
+
+    def valid_custom_emoji?: (untyped record, untyped value) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,9 @@
+class KeyPresenter < Gitlab::View::Presenter::Delegated
+  include SafeFormatHelper
+
+  def humanized_error_message: (?type: ::Symbol) -> untyped
+
+  private
+
+  def help_page_link: (untyped title, untyped doc_link) -> untyped
+end

@@ -1,0 +1,15 @@
+module Mutations
+  module BranchRules
+    class Create < BaseMutation
+      def resolve: (project_path: untyped, name: untyped) -> untyped
+
+      def protected_branch_params: (untyped name) -> { name: untyped, push_access_levels_attributes: untyped, merge_access_levels_attributes: untyped }
+
+      def access_level_attributes: (untyped type) -> untyped
+
+      private
+
+      def find_object: (untyped full_path) -> untyped
+    end
+  end
+end

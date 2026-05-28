@@ -1,0 +1,14 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class UniqueUsersAllImportsMetric < NumbersMetric
+          IMPORTS_METRICS: ::Array[untyped]
+
+          # overwriting instrumentation to generate the appropriate sql query
+          def instrumentation: () -> ::String
+        end
+      end
+    end
+  end
+end

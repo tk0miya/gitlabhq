@@ -1,0 +1,45 @@
+module Gitlab
+  module ExternalAuthorization
+    class Access
+      @user: untyped
+
+      @label: untyped
+
+      @load_type: untyped
+
+      @access: untyped
+
+      @reason: untyped
+
+      @loaded_at: untyped
+
+      @cache: untyped
+
+      attr_reader user: untyped
+
+      attr_reader reason: untyped
+
+      attr_reader loaded_at: untyped
+
+      attr_reader label: untyped
+
+      attr_reader load_type: untyped
+
+      def initialize: (untyped user, untyped label) -> void
+
+      def loaded?: () -> untyped
+
+      def has_access?: () -> untyped
+
+      def load!: () -> self
+
+      private
+
+      def load_from_cache: () -> untyped
+
+      def load_from_service: () -> untyped
+
+      def cache: () -> untyped
+    end
+  end
+end

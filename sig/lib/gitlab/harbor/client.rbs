@@ -1,0 +1,36 @@
+module Gitlab
+  module Harbor
+    class Client
+      @integration: untyped
+
+      Error: untyped
+
+      ConfigError: untyped
+
+      RESPONSE_SIZE_LIMIT: untyped
+
+      RESPONSE_MEMORY_SIZE_LIMIT: untyped
+
+      attr_reader integration: untyped
+
+      def initialize: (untyped integration) -> void
+
+      def check_project_availability: () -> { success: untyped }
+
+      def get_repositories: (untyped params) -> untyped
+
+      def get_artifacts: (untyped params) -> untyped
+
+      def get_tags: (untyped params) -> untyped
+
+      private
+
+      def get: (untyped path, ?::Hash[untyped, untyped] params) -> untyped
+
+      # url must be used within get method otherwise this would avoid validation by GitLab::HTTP
+      def url: (untyped path) -> untyped
+
+      def headers: () -> { :"Content-Type" => "application/json", Authorization: ::String }
+    end
+  end
+end

@@ -1,0 +1,52 @@
+module Gitlab
+  class UsageMetricDefinitionGenerator < Rails::Generators::Base
+    @directory: untyped
+
+    @definitions: untyped
+
+    Directory: untyped
+
+    TIME_FRAME_DIRS: ::Array[untyped]
+
+    TOP_LEVEL_DIR: "config"
+
+    TOP_LEVEL_DIR_EE: "ee"
+
+    VALID_INPUT_DIRS: untyped
+
+    def create_metric_file: () -> (nil | untyped)
+
+    def time_frame: () -> untyped
+
+    def value_type: () -> untyped
+
+    def tier: () -> untyped
+
+    def milestone: () -> untyped
+
+    def class_name: () -> untyped
+
+    private
+
+    def file_path: (untyped key_path) -> untyped
+
+    def validate!: () -> untyped
+
+    def ee?: () -> untyped
+
+    def input_dir: () -> untyped
+
+    # Example of file name
+    #
+    # 20210201124931_g_project_management_issue_title_changed_weekly.yml
+    def file_name: (untyped key_path) -> ::String
+
+    def directory: () -> untyped
+
+    def metric_name: (untyped key_path) -> untyped
+
+    def metric_definitions: () -> untyped
+
+    def metric_definition_exists?: (untyped key_path) -> untyped
+  end
+end

@@ -1,0 +1,65 @@
+module Gitlab
+  # Module containing GitLab's application theme definitions and helper methods
+  # for accessing them.
+  module Themes
+    @default_id: untyped
+
+    extend ::Gitlab::Themes
+
+    # Theme ID used when no `default_theme` configuration setting is provided.
+    APPLICATION_DEFAULT: 3
+
+    # Theme IDs previously used
+    DEPRECATED_THEME_IDS: ::Array[6 | 7 | 8 | 10 | 11]
+
+    # Struct class representing a single Theme
+    Theme: untyped
+
+    # All available Themes
+    def available_themes: () -> ::Array[untyped]
+
+    # Convenience method to get a space-separated String of all the theme
+    # classes that might be applied to the `body` element
+    #
+    # Returns a String
+    def body_classes: () -> untyped
+
+    # Maps deprecated light themes to their default counterpart
+    def map_deprecated_themes: () -> { 6 => 1, 7 => 4, 8 => 5, 10 => 9 }
+
+    # Get a Theme by its ID
+    #
+    # If the ID is invalid, returns the default Theme.
+    #
+    # id - Integer ID
+    #
+    # Returns a Theme
+    def by_id: (untyped id) -> untyped
+
+    # Returns the number of defined Themes
+    def count: () -> untyped
+
+    # Get the default Theme
+    #
+    # Returns a Theme
+    def default: () -> untyped
+
+    # Iterate through each Theme
+    #
+    # Yields the Theme object
+    def each: () { (?) -> untyped } -> untyped
+
+    # Get the Theme for the specified user, or the default
+    #
+    # user - User record
+    #
+    # Returns a Theme
+    def for_user: (untyped user) -> untyped
+
+    def self.valid_ids: () -> untyped
+
+    private
+
+    def default_id: () -> untyped
+  end
+end

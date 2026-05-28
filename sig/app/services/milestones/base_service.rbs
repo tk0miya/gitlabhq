@@ -1,0 +1,22 @@
+module Milestones
+  class BaseService < ::BaseService
+    # Parent can either a group or a project
+    @parent: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_accessor parent: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor params: untyped
+
+    def initialize: (untyped parent, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    private
+
+    def execute_hooks: (untyped milestone, untyped action) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,16 @@
+module Ci
+  class DeleteUnitTestsService
+    include EachBatch
+
+    BATCH_SIZE: 100
+
+    def execute: () -> untyped
+
+    private
+
+    def purge_data!: (untyped klass) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def delete_batch!: (untyped klass) -> untyped
+  end
+end

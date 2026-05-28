@@ -1,0 +1,19 @@
+module Ci
+  module Refs
+    class EnqueuePipelinesToUnlockService
+      include BaseServiceUtility
+
+      BATCH_SIZE: 50
+
+      ENQUEUE_INTERVAL_SECONDS: ::Float
+
+      EXCLUDED_IDS_LIMIT: 1000
+
+      def execute: (untyped ci_ref, ?before_pipeline: untyped?) -> untyped
+
+      private
+
+      def pipelines_scope: (untyped ci_ref, untyped before_pipeline) -> untyped
+    end
+  end
+end

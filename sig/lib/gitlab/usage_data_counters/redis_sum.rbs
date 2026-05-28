@@ -1,0 +1,9 @@
+module Gitlab
+  module UsageDataCounters
+    module RedisSum
+      def increment_sum_by: (untyped redis_counter_key, untyped incr, ?expiry: untyped?) -> untyped
+
+      def get: (untyped redis_counter_key) -> untyped
+    end
+  end
+end

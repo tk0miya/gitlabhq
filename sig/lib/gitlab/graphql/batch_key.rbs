@@ -1,0 +1,23 @@
+module Gitlab
+  module Graphql
+    class BatchKey
+      @object: untyped
+
+      @lookahead: untyped
+
+      @object_name: untyped
+
+      attr_reader object: untyped
+
+      def initialize: (untyped object, ?untyped? lookahead, ?object_name: untyped?) -> void
+
+      def requires?: (untyped path) -> (false | untyped)
+
+      def eql?: (untyped other) -> untyped
+
+      alias == eql?
+
+      def method_missing: (untyped method_name, *untyped args, **untyped kwargs) -> untyped
+    end
+  end
+end

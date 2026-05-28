@@ -1,0 +1,26 @@
+module MergeRequests
+  class CreateService < MergeRequests::BaseService
+    # @project is used to determine whether the user can set the merge request's
+    # assignee, milestone and labels. Whether they can depends on their
+    # permissions on the target project.
+    @source_project: untyped
+
+    @project: untyped
+
+    def execute: () -> untyped
+
+    def after_create: (untyped issuable) -> untyped
+
+    private
+
+    def before_create: (untyped merge_request) -> untyped
+
+    def set_projects!: () -> untyped
+
+    def set_default_attributes!: () -> untyped
+
+    def set_default_force_remove_source_branch!: () -> untyped
+
+    def set_default_squash!: () -> untyped
+  end
+end

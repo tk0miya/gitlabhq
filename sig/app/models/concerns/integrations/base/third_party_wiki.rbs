@@ -1,0 +1,17 @@
+module Integrations
+  module Base
+    module ThirdPartyWiki
+      extend ActiveSupport::Concern
+
+      include SafeFormatHelper
+
+      private
+
+      def only_one_third_party_wiki: () -> (nil | untyped)
+
+      def cache_project_has_integration: () -> (nil | untyped)
+
+      def project_settings_cache_key: () -> ::String
+    end
+  end
+end

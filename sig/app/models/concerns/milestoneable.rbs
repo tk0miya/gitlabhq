@@ -1,0 +1,16 @@
+# == Milestoneable concern
+#
+# Contains functionality related to objects that can be assigned Milestones
+#
+# Used by Issuable
+#
+module Milestoneable
+  extend ActiveSupport::Concern
+
+  def milestone_available?: () -> (true | untyped)
+
+  #
+  # Overridden on EE module
+  #
+  def supports_milestone?: () -> untyped
+end

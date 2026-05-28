@@ -1,0 +1,22 @@
+# This module handles element positions in a list.
+module Sidebars
+  module Concerns
+    module PositionableList
+      def add_element: (untyped list, untyped element) -> (nil | untyped)
+
+      def insert_element_before: (untyped list, untyped before_element, untyped new_element) -> (nil | untyped)
+
+      def insert_element_after: (untyped list, untyped after_element, untyped new_element) -> (nil | untyped)
+
+      def replace_element: (untyped list, untyped element_to_replace, untyped new_element) -> (nil | untyped)
+
+      def remove_element: (untyped list, untyped element_to_remove) -> (nil | untyped)
+
+      private
+
+      # Classes including this method will have to define
+      # the way to identify elements through this method
+      def index_of: (untyped list, untyped element) -> untyped
+    end
+  end
+end

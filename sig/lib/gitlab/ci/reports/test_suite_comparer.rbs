@@ -1,0 +1,59 @@
+module Gitlab
+  module Ci
+    module Reports
+      class TestSuiteComparer
+        @name: untyped
+
+        @base_suite: untyped
+
+        @head_suite: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        DEFAULT_MAX_TESTS: 100
+
+        DEFAULT_MIN_TESTS: 10
+
+        TestSummary: untyped
+
+        attr_reader name: untyped
+
+        attr_reader base_suite: untyped
+
+        attr_reader head_suite: untyped
+
+        def initialize: (untyped name, untyped base_suite, untyped head_suite) -> void
+
+        def new_failures: () -> untyped
+
+        def existing_failures: () -> untyped
+
+        def resolved_failures: () -> untyped
+
+        def new_errors: () -> untyped
+
+        def existing_errors: () -> untyped
+
+        def resolved_errors: () -> untyped
+
+        def total_count: () -> untyped
+
+        def total_status: () -> untyped
+
+        def resolved_count: () -> untyped
+
+        def failed_count: () -> untyped
+
+        def error_count: () -> untyped
+
+        # This is used to limit the presented test cases but does not affect
+        # total count of tests in the summary
+        def limited_tests: () -> untyped
+
+        private
+
+        def max_tests: (*untyped used) -> untyped
+      end
+    end
+  end
+end

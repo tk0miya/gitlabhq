@@ -1,0 +1,13 @@
+module Types
+  module Namespaces
+    module LinkPaths
+      class UserNamespaceLinksType < BaseObject
+        # Do not expose the export email for user namespaces, since exporting work items on this namespace type is not
+        # supported
+        def user_export_email: () -> nil
+
+        def new_trial_path: () -> nil
+      end
+    end
+  end
+end

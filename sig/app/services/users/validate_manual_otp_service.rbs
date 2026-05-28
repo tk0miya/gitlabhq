@@ -1,0 +1,19 @@
+module Users
+  class ValidateManualOtpService < BaseService
+    @current_user: untyped
+
+    @strategy: untyped
+
+    include ::Gitlab::Auth::Otp::Fortinet
+
+    include ::Gitlab::Auth::Otp::DuoAuth
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped otp_code) -> untyped
+
+    private
+
+    attr_reader strategy: untyped
+  end
+end

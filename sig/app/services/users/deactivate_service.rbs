@@ -1,0 +1,24 @@
+module Users
+  class DeactivateService < BaseService
+    @current_user: untyped
+
+    @skip_authorization: untyped
+
+    def initialize: (untyped current_user, ?skip_authorization: bool) -> void
+
+    def execute: (untyped user) -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    # Wrapped in a method to allow overriding in subclasses
+    def can_be_deactivated?: (untyped user) -> untyped
+
+    def allowed?: () -> (true | untyped)
+
+    def log_event: (untyped user) -> untyped
+
+    def log_error: (untyped error_message, untyped user, untyped reason) -> untyped
+  end
+end

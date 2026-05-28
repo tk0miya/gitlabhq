@@ -1,0 +1,30 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # The exceptions raised for connection errors.
+      CONNECTION_ERRORS: ::Array[untyped]
+
+      def self.configure!: () { (untyped) -> untyped } -> untyped
+
+      def self.base_models: () -> untyped
+
+      def self.each_load_balancer: () ?{ (untyped) -> untyped } -> untyped
+
+      def self.primary_only?: () -> untyped
+
+      def self.primary?: (untyped name) -> untyped
+
+      def self.release_hosts: (?force: bool) -> untyped
+
+      DB_ROLES: ::Array[untyped]
+
+      # Returns the role (primary/replica) of the database the connection is
+      # connecting to.
+      def self.db_role_for_connection: (untyped connection) -> untyped
+
+      def self.db_config_for_connection: (untyped connection) -> (nil | untyped)
+
+      def self.empty_config?: (untyped db_config) -> (true | untyped)
+    end
+  end
+end

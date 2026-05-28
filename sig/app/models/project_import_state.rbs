@@ -1,0 +1,43 @@
+class ProjectImportState < ApplicationRecord
+  @errors: untyped
+
+  include AfterCommitQueue
+
+  include ImportState::SidekiqJobTracker
+
+  attr_accessor user_mapping_enabled: untyped
+
+  attr_accessor safe_import_url: untyped
+
+  def expire_etag_cache: () -> (untyped | nil)
+
+  def realtime_changes_path: () -> untyped
+
+  def relation_hard_failures: (limit: untyped) -> untyped
+
+  def mark_as_failed: (untyped error_message) -> untyped
+
+  alias no_import? none?
+
+  # This method is coupled to the repository mirror domain.
+  # Use with caution in the importers domain. As an alternative, use the `#completed?` method.
+  # See EE-override and https://gitlab.com/gitlab-org/gitlab/-/merge_requests/4697
+  def in_progress?: () -> untyped
+
+  def completed?: () -> untyped
+
+  def started?: () -> untyped
+
+  def send_completion_notification: (?notify_group_owners: bool) -> (nil | untyped)
+
+  def set_notification_data: () -> untyped
+
+  private
+
+  # Return whether or not user mapping was enabled during the project's import to determine who to
+  # send completion emails to. user_mapping_enabled should be set if import_data is removed.
+  # This can be removed when all 3rd party project importer user mapping feature flags are removed.
+  def user_mapping_enabled?: () -> untyped
+
+  def sanitized_failure_message: (untyped error_message) -> untyped
+end

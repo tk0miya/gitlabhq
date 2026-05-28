@@ -1,0 +1,15 @@
+module Ci
+  module Sources
+    class Pipeline < Ci::ApplicationRecord
+      include Ci::Partitionable
+
+      include Ci::NamespacedModelName
+
+      include FromUnion
+
+      private
+
+      def set_source_partition_id: () -> (nil | untyped)
+    end
+  end
+end

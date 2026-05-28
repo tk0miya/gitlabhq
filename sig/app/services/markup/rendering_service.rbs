@@ -1,0 +1,37 @@
+module Markup
+  class RenderingService
+    @text: untyped
+
+    @file_name: untyped
+
+    @context: untyped
+
+    @postprocess_context: untyped
+
+    def initialize: (untyped text, ?file_name: untyped?, ?context: ::Hash[untyped, untyped], ?postprocess_context: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> ("" | untyped)
+
+    private
+
+    def markup_unsafe: () -> untyped
+
+    def markdown_unsafe: () -> untyped
+
+    def asciidoc_unsafe: () -> untyped
+
+    def plain_unsafe: () -> untyped
+
+    def other_markup_unsafe: () -> untyped
+
+    def postprocess: (untyped html) -> untyped
+
+    attr_reader text: untyped
+
+    attr_reader file_name: untyped
+
+    attr_reader context: untyped
+
+    attr_reader postprocess_context: untyped
+  end
+end

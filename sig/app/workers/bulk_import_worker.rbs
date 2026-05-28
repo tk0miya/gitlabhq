@@ -1,0 +1,7 @@
+class BulkImportWorker
+  include ApplicationWorker
+
+  def perform: (untyped bulk_import_id) -> (nil | untyped)
+
+  def perform_failure: (untyped exception, untyped bulk_import_id) -> untyped
+end

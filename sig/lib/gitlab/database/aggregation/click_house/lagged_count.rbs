@@ -1,0 +1,20 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class LaggedCount < BitmapWindow
+          def initialize: (untyped name, ?::Symbol type, ?untyped? expression, over: untyped, ?lag_offset: ::Integer, **untyped kwargs) -> void
+
+          # No inner aggregation needed: user_id is already projected via the
+          # primary key passthrough, so we reference it directly in the outer query.
+          def to_inner_arel: (untyped _context) -> nil
+
+          def to_outer_arel: (untyped context) -> untyped
+
+          # Already a UInt64 from to_outer_arel: no finalization step needed.
+          def finalization_sql: (untyped alias_name) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module BulkImports
+  module NdjsonPipeline
+    extend ActiveSupport::Concern
+
+    include Pipeline
+
+    include Pipeline::IndexCacheStrategy
+
+    IGNORE_PLACEHOLDER_USER_CREATION: { "approvals" => ::Array["user_id"], "bridges" => ::Array["user_id"], "builds" => ::Array["user_id"], "ci_pipelines" => ::Array["user_id"], "events" => ::Array["author_id"], "generic_commit_statuses" => ::Array["user_id"], "issues" => ::Array["last_edited_by_id"], "notes" => ::Array["updated_by_id" | "resolved_by_id"] }
+
+    def persist_relation: (untyped attributes) -> untyped
+  end
+end

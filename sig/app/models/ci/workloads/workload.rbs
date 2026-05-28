@@ -1,0 +1,19 @@
+module Ci
+  module Workloads
+    class Workload < Ci::ApplicationRecord
+      include AfterCommitQueue
+
+      include Ci::Partitionable
+
+      def self.workload_ref?: (untyped ref) -> untyped
+
+      def logs_url: () -> (nil | untyped)
+
+      def included_ci_variable_names: () -> untyped
+
+      def ref_path: () -> untyped
+
+      def cleanup_refs: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,50 @@
+module BranchRules
+  class UpdateService < BaseService
+    private
+
+    def authorized?: () -> untyped
+
+    def execute_on_branch_rule: () -> untyped
+
+    def update_params: () -> untyped
+
+    def extract_branch_protection_params!: (untyped transformed_params) -> (nil | untyped)
+
+    def extract_push_access_levels_params!: (untyped transformed_params) -> (nil | untyped)
+
+    def extract_merge_access_levels_params!: (untyped transformed_params) -> (nil | untyped)
+
+    def skip_empty_access_levels?: (untyped access_levels_params) -> untyped
+
+    # In ProtectedBranch we are using:
+    #
+    #   `accepts_nested_attributes_for :{type}_access_levels, allow_destroy: true`
+    #
+    # This branch rule update service acts like we have defined this
+    # `accepts_nested_attributes_for` with `update: true`.
+    #
+    # Unfortunately we are unable to modify the `accepts_nested_attributes_for`
+    # config as we use this logic in other locations. As we are reusing the
+    # ProtectedBranches::UpdateService we also can't custom write the logic to
+    # persist the access levels manually.
+    #
+    # For now the best solution appears to be matching the params against the
+    # existing levels to check which access levels still exist and marking
+    # unmatched access levels for destruction.
+    #
+    # Given the following:
+    #   access_levels = [{ id: 1, access_level: 30 }, { id: 2, user_id: 1 }, { id: 3, group_id: 1 }]
+    #   access_levels_params = [{ access_level: 30 }, { user_id: 1 }, { deploy_key_id: 1 }]
+    #
+    # The output should be:
+    #   [{ id: 3, _destroy: true }, { deploy_key_id: 1 }]
+    #
+    # NOTE: :user_id and :group_id are only available in EE.
+    #
+    def access_levels_attributes: (untyped access_levels, untyped access_levels_params) -> untyped
+
+    def remove_matched_access_level_params!: (untyped access_levels_params, untyped access_level) -> untyped
+
+    def permitted_params: () -> ::Array[:name | { branch_protection: ::Array[:allow_force_push | { push_access_levels: ::Array[:access_level | :deploy_key_id], merge_access_levels: ::Array[:access_level] }] }]
+  end
+end

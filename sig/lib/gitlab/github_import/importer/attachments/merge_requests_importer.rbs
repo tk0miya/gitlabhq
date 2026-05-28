@@ -1,0 +1,23 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Attachments
+        class MergeRequestsImporter < ::Gitlab::GithubImport::Importer::Attachments::BaseImporter
+          def sidekiq_worker_class: () -> untyped
+
+          def collection_method: () -> :merge_request_attachments
+
+          def object_type: () -> :merge_request_attachment
+
+          def id_for_already_imported_cache: (untyped merge_request) -> untyped
+
+          private
+
+          def collection: () -> untyped
+
+          def ordering_column: () -> :iid
+        end
+      end
+    end
+  end
+end

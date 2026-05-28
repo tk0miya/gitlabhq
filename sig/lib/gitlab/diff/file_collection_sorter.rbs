@@ -1,0 +1,29 @@
+module Gitlab
+  module Diff
+    class FileCollectionSorter
+      @diffs: untyped
+
+      B_FOLLOWS_A: 1
+
+      A_FOLLOWS_B: -1
+
+      EQUIVALENT: 0
+
+      attr_reader diffs: untyped
+
+      def initialize: (untyped diffs) -> void
+
+      def sort: () -> untyped
+
+      private
+
+      def path_parts: (untyped diff) -> untyped
+
+      # Used for sorting the file paths by:
+      # 1. Directory name
+      # 2. Depth
+      # 3. File name
+      def compare_path_parts: (untyped a_parts, untyped b_parts) -> untyped
+    end
+  end
+end

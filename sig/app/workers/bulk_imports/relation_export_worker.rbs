@@ -1,0 +1,29 @@
+module BulkImports
+  class RelationExportWorker
+    @user: untyped
+
+    @params: untyped
+
+    include ApplicationWorker
+
+    include ExceptionBacktrace
+
+    include Sidekiq::InterruptionsExhausted
+
+    def self.perform_failure: (untyped job, untyped exception) -> untyped
+
+    def self.portable: (untyped portable_id, untyped portable_class) -> untyped
+
+    # @param params [Hash] optional parameters
+    # @option params [Integer] :offline_export_id ID of offline export to which export is related
+    def perform: (untyped user_id, untyped portable_id, untyped portable_class, untyped relation, untyped batched, ?::Hash[untyped, untyped] params) -> untyped
+
+    private
+
+    attr_reader params: untyped
+
+    attr_reader user: untyped
+
+    def export_user_contributions?: () -> untyped
+  end
+end

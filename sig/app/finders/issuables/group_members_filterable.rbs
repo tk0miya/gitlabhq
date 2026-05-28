@@ -1,0 +1,18 @@
+module Issuables
+  module GroupMembersFilterable
+    include Gitlab::Utils::StrongMemoize
+
+    TooManyGroupMembersError: untyped
+
+    TooManyAssignedIssuesError: untyped
+
+    MAX_GROUP_MEMBERS_COUNT: 100
+
+    MAX_ASSIGNED_ISSUES_COUNT: 10000
+
+    # Returns active record relation if search parameter is a group handle, eg '@group/subgroup'
+    def extract_group_member_ids: (untyped username_param) -> (nil | untyped)
+
+    def username_param_is_a_group_handle?: (untyped username_param) -> (false | untyped)
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module RapidDiffs
+    class ServerTimings
+      @metrics: untyped
+
+      CLOCK: untyped
+
+      def initialize: () -> void
+
+      def measure: (untyped name) { () -> untyped } -> untyped
+
+      def to_html_attributes: () -> untyped
+
+      def to_server_timing_header: () -> untyped
+    end
+  end
+end

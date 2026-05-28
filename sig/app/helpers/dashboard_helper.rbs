@@ -1,0 +1,11 @@
+module DashboardHelper
+  include IconsHelper
+
+  def has_start_trial?: () -> false
+
+  def feature_entry: (untyped title, ?href: untyped?, ?enabled: bool, ?doc_href: untyped?, ?last: bool, ?css_class: untyped?) -> untyped
+
+  def user_groups_requiring_reauth: () -> ::Array[untyped]
+
+  def user_roles_mapping: () -> { planner: "Planner", reporter: "Reporter", security_manager: "Security Manager", developer: "Developer", maintainer: "Maintainer", owner: "Owner", guest: "Guest" }
+end

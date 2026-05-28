@@ -1,0 +1,15 @@
+module Gitlab
+  module Template
+    class IssueTemplate < BaseTemplate
+      def self.extension: () -> ".md"
+
+      def self.base_dir: () -> ".gitlab/issue_templates/"
+
+      def self.finder: (untyped project) -> untyped
+
+      def self.template_names: (untyped project) -> (::Hash[untyped, untyped] | untyped)
+
+      def self.by_category: (untyped category, ?untyped? project, ?empty_category_title: untyped?) -> untyped
+    end
+  end
+end

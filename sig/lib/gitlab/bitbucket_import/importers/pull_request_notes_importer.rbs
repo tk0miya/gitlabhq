@@ -1,0 +1,71 @@
+module Gitlab
+  module BitbucketImport
+    module Importers
+      class PullRequestNotesImporter
+        @project: untyped
+
+        @formatter: untyped
+
+        @user_finder: untyped
+
+        @ref_converter: untyped
+
+        @mentions_converter: untyped
+
+        @object: untyped
+
+        @position_map: untyped
+
+        @discussion_map: untyped
+
+        @merge_request: untyped
+
+        include ParallelScheduling
+
+        def initialize: (untyped project, untyped hash) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader object: untyped
+
+        attr_reader project: untyped
+
+        attr_reader formatter: untyped
+
+        attr_reader user_finder: untyped
+
+        attr_reader ref_converter: untyped
+
+        attr_reader mentions_converter: untyped
+
+        attr_reader discussion_map: untyped
+
+        attr_reader position_map: untyped
+
+        def import_pull_request_comments: () -> untyped
+
+        def import_inline_comments: (untyped inline_comments) -> untyped
+
+        def import_comment: (untyped comment) -> untyped
+
+        def create_diff_note: (untyped comment, untyped position, untyped discussion_id) -> untyped
+
+        def create_fallback_diff_note: (untyped comment, untyped position) -> untyped
+
+        def build_position: (untyped pr_comment) -> untyped
+
+        def import_standalone_pr_comments: (untyped pr_comments) -> untyped
+
+        def pull_request_comment_attributes: (untyped comment) -> { project: untyped, author_id: untyped, note: untyped, created_at: untyped, updated_at: untyped, imported_from: untyped }
+
+        def comment_note: (untyped comment) -> untyped
+
+        def merge_request: () -> untyped
+
+        def comments: () -> untyped
+      end
+    end
+  end
+end

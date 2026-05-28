@@ -1,0 +1,28 @@
+module Gitlab
+  class ShardHealthCache
+    HEALTHY_SHARDS_KEY: "gitlab-healthy-shards"
+
+    HEALTHY_SHARDS_TIMEOUT: 300
+
+    # Clears the Redis set storing the list of healthy shards
+    def self.clear: () -> untyped
+
+    # Updates the list of healthy shards using a Redis set
+    #
+    # shards - An array of shard names to store
+    def self.update: (untyped shards) -> untyped
+
+    # Returns an array of strings of healthy shards
+    def self.cached_healthy_shards: () -> untyped
+
+    # Checks whether the given shard name is in the list of healthy shards.
+    #
+    # shard_name - The string to check
+    def self.healthy_shard?: (untyped shard_name) -> untyped
+
+    # Returns the number of healthy shards in the Redis set
+    def self.healthy_shard_count: () -> untyped
+
+    def self.with_redis: () { (?) -> untyped } -> untyped
+  end
+end

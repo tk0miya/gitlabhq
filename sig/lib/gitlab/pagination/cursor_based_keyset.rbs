@@ -1,0 +1,23 @@
+module Gitlab
+  module Pagination
+    module CursorBasedKeyset
+      # Relation types that are enforced in this list
+      # enforce the use of keyset pagination, thus erroring out requests
+      # made with offset pagination above a certain limit.
+      #
+      # In many cases this could introduce a breaking change
+      # so enforcement is optional.
+      ENFORCED_TYPES: ::Array[untyped]
+
+      def self.available_for_type?: (untyped relation) -> untyped
+
+      def self.available?: (untyped cursor_based_request_context, untyped relation) -> untyped
+
+      def self.enforced_for_type?: (untyped request_scope, untyped relation, untyped current_user) -> untyped
+
+      def self.enforced_for_project?: (untyped request_scope, untyped current_user) -> untyped
+
+      def self.order_satisfied?: (untyped relation, untyped cursor_based_request_context) -> untyped
+    end
+  end
+end

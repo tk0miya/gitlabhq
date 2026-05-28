@@ -1,0 +1,13 @@
+module Ci
+  class StagePresenter < Gitlab::View::Presenter::Delegated
+    PRELOADED_RELATIONS: ::Array[:pipeline | :metadata | :job_definition | :tags | :job_artifacts_archive | :downstream_pipeline]
+
+    def latest_ordered_statuses: () -> untyped
+
+    def retried_ordered_statuses: () -> untyped
+
+    private
+
+    def preload_statuses: (untyped statuses) -> untyped
+  end
+end

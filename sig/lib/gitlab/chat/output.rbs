@@ -1,0 +1,54 @@
+module Gitlab
+  module Chat
+    # Class for gathering and formatting the output of a `Ci::Build`.
+    class Output
+      @build: untyped
+
+      @trace_sections: untyped
+
+      @trace: untyped
+
+      attr_reader build: untyped
+
+      MissingBuildSectionError: untyped
+
+      # The primary trace section to look for.
+      PRIMARY_SECTION: "chat_reply"
+
+      # The backup trace section in case the primary one could not be found.
+      FALLBACK_SECTION: "step_script"
+
+      # `step_script` used to be `build_script` before runner 13.1
+      LEGACY_SECTION: "build_script"
+
+      # build - The `Ci::Build` to obtain the output from.
+      def initialize: (untyped build) -> void
+
+      # Returns a `String` containing the output of the build.
+      #
+      # The output _does not_ include the command that was executed.
+      def to_s: () -> untyped
+
+      # Removes the line containing the executed command from the build output.
+      #
+      # output - A `String` containing the output of a trace section.
+      def without_executed_command_line: (untyped output) -> (untyped | "")
+
+      # Returns the trace section for the given name, or `nil` if the section
+      # could not be found.
+      #
+      # name - The name of the trace section to find.
+      def find_build_trace_section: (untyped name) -> untyped
+
+      def trace_sections: () -> untyped
+
+      def trace: () -> untyped
+
+      private
+
+      # Returns the offset to seek to and the number of bytes to read relative
+      # to the offset.
+      def read_offset_and_length: () -> ::Array[untyped]
+    end
+  end
+end

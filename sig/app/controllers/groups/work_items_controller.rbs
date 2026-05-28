@@ -1,0 +1,26 @@
+module Groups
+  class WorkItemsController < Groups::ApplicationController
+    @work_item: untyped
+
+    @work_items: untyped
+
+    include SearchRateLimitable
+
+    include WorkItemsCollections
+
+    def index: () -> nil
+
+    def show: () -> untyped
+
+    def rss: () -> untyped
+
+    def calendar: () -> untyped
+
+    private
+
+    # The work_items/:iid route renders a Vue app that takes care of the show and new pages.
+    def handle_new_work_item_path: () -> (nil | untyped)
+
+    def show_params: () -> untyped
+  end
+end

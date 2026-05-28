@@ -1,0 +1,13 @@
+module Gitlab
+  module RelativePositioning
+    class EndingAt < RelativePositioning::Range
+      @rhs: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped rhs) -> void
+
+      def lhs: () -> untyped
+    end
+  end
+end

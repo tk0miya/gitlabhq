@@ -1,0 +1,39 @@
+module SystemCheck
+  # Helpers used inside a SystemCheck instance to standardize output responses
+  module Helpers
+    include ::Gitlab::TaskHelpers
+
+    # Write a line to stdout. Wraps +puts+ so that callers do not trigger
+    # the +Rails/Output+ cop.
+    def say: (?::String message) -> untyped
+
+    # Display a message telling to fix and rerun the checks
+    def fix_and_rerun: () -> untyped
+
+    # Display a formatted list of references (documentation or links) where to find more information
+    #
+    # @param [Array<String>] sources one or more references (documentation or links)
+    def for_more_information: (*untyped sources) -> untyped
+
+    def see_installation_guide_section: (untyped section) -> ::String
+
+    # @deprecated This will no longer be used when all checks were executed using SystemCheck
+    def finished_checking: (untyped component) -> untyped
+
+    # @deprecated This will no longer be used when all checks were executed using SystemCheck
+    def start_checking: (untyped component) -> untyped
+
+    # Display a formatted list of instructions on how to fix the issue identified by the #check?
+    #
+    # @param [Array<String>] steps one or short sentences with help how to fix the issue
+    def try_fixing_it: (*untyped steps) -> untyped
+
+    def sanitized_message: (untyped project) -> ::String
+
+    def should_sanitize?: () -> untyped
+
+    def omnibus_gitlab?: () -> untyped
+
+    def sudo_gitlab: (untyped command) -> ::String
+  end
+end

@@ -1,0 +1,17 @@
+module BlobViewer
+  class Gemspec < DependencyManager
+    @package_name: untyped
+
+    include ServerSide
+
+    def manager_name: () -> "RubyGems"
+
+    def manager_url: () -> "https://rubygems.org/"
+
+    def package_type: () -> "gem"
+
+    def package_name: () -> untyped
+
+    def package_url: () -> ::String
+  end
+end

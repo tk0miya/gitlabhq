@@ -1,0 +1,58 @@
+module Import
+  module BulkImports
+    class HttpFileDownloadStrategy < FileDownloadStrategy
+      @context: untyped
+
+      @relative_url: untyped
+
+      @allowed_content_types: untyped
+
+      @remote_content_validated: untyped
+
+      @http_client: untyped
+
+      @limit: untyped
+
+      @app_limit: untyped
+
+      LAST_CHUNK_CONTEXT_CHAR_LIMIT: 200
+
+      # @param context [BulkImports::Context] Context object containing import configuration detail
+      # @param relative_url [String] Relative URL to download the file from.
+      # @param allowed_content_types [Array<String>] Allowed file content types
+      def initialize: (context: untyped, relative_url: untyped, ?allowed_content_types: untyped) -> void
+
+      def validate!: () -> untyped
+
+      private
+
+      attr_reader context: untyped
+
+      attr_reader relative_url: untyped
+
+      attr_reader allowed_content_types: untyped
+
+      attr_reader response_headers: untyped
+
+      attr_reader response_code: untyped
+
+      def perform_download: (untyped filepath) -> untyped
+
+      def log_error_params: () -> { response_code: untyped, response_headers: untyped, last_chunk_context: untyped }
+
+      def log_oversized_file: (untyped size, untyped filepath) -> (nil | untyped)
+
+      def http_client: () -> untyped
+
+      def validate_content_type: () -> (nil | untyped)
+
+      def file_size_limit: () -> untyped
+
+      def application_file_size_limit: () -> untyped
+
+      # Before logging, we truncate the context to a reasonable length and scrub
+      # any non-printable characters.
+      def last_chunk_context: () -> untyped
+    end
+  end
+end

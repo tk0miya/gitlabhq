@@ -1,0 +1,11 @@
+class JiraConnect::AppDataSerializer
+  @subscriptions: untyped
+
+  include Gitlab::Routing
+
+  include ::API::Helpers::RelatedResourcesHelpers
+
+  def initialize: (untyped subscriptions) -> void
+
+  def as_json: () -> { groups_path: untyped, subscriptions: untyped, subscriptions_path: untyped }
+end

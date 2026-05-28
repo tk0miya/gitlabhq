@@ -1,0 +1,33 @@
+module Packages
+  module Nuget
+    module Symbols
+      class CreateSymbolFilesService
+        @package: untyped
+
+        @symbol_entries: untyped
+
+        ExtractionError: untyped
+
+        SYMBOL_ENTRIES_LIMIT: 100
+
+        CONTENT_TYPE: "application/octet-stream"
+
+        def initialize: (untyped package, untyped package_zip_file) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader package: untyped
+
+        attr_reader symbol_entries: untyped
+
+        def process_symbol_entries: () -> untyped
+
+        def create_symbol: (untyped path, untyped file) -> untyped
+
+        def extract_signature_and_checksum: (untyped file) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Banzai
+  module Filter
+    # HTML filter that renders `color` followed by a color "chip".
+    #
+    class ColorFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      COLOR_CHIP_CLASS: "gfm-color_chip"
+
+      CSS: "code"
+
+      XPATH: untyped
+
+      BACKSLASH_PREFIX: "\\"
+
+      def call: () -> untyped
+
+      private
+
+      def color_chip: (untyped color) -> untyped
+
+      def inline_styles: (color: untyped) -> ::String
+    end
+  end
+end

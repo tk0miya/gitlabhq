@@ -1,0 +1,80 @@
+module Gitlab
+  module Template
+    class BaseTemplate
+      @path: untyped
+
+      @category: untyped
+
+      @project: untyped
+
+      @finder: untyped
+
+      attr_accessor category: untyped
+
+      def initialize: (untyped path, ?untyped? project, ?category: untyped?) -> void
+
+      def name: () -> untyped
+
+      alias key name
+
+      def full_name: () -> untyped
+
+      def content: () -> untyped
+
+      def description: () -> nil
+
+      def project_id: () -> untyped
+
+      # Present for compatibility with license templates, which can replace text
+      # like `[fullname]` with a user-specified string. This is a no-op for
+      # other templates
+      def resolve!: (?::Hash[untyped, untyped] _placeholders) -> self
+
+      def to_json: (*untyped) -> { key: untyped, name: untyped, content: untyped }
+
+      alias as_json to_json
+
+      def <=>: (untyped other) -> untyped
+
+      def self.all: (?untyped? project) -> untyped
+
+      def self.find: (untyped key, ?untyped? project) -> untyped
+
+      # Set categories as sub directories
+      # Example: { "category_name_1" => "directory_path_1", "category_name_2" => "directory_name_2" }
+      # Default is no category with all files in base dir of each class
+      def self.categories: () -> ::Hash[untyped, untyped]
+
+      def self.extension: () -> untyped
+
+      def self.base_dir: () -> untyped
+
+      # Defines which strategy will be used to get templates files
+      # RepoTemplateFinder - Finds templates on project repository, templates are filtered per project
+      # GlobalTemplateFinder - Finds templates on gitlab installation source, templates can be used in all projects
+      def self.finder: (?untyped? project) -> untyped
+
+      def self.by_category: (untyped category, ?untyped? project, ?empty_category_title: untyped?) -> untyped
+
+      def self.category_directory: (untyped category) -> untyped
+
+      # `repository_template_names` - reads through Gitaly the actual templates names within a
+      # given project's repository. This is only used by issue and merge request templates,
+      # that need to call this once and then cache the returned value.
+      #
+      # `template_names` - is an alias to `repository_template_names`. It would read through
+      # Gitaly the actual template names within a given project's repository for all file templates
+      # other than `issue` and `merge request` description templates, which would instead
+      # overwrite the `template_names` method to return a redis cached version, by reading cached values
+      # from `repository.issue_template_names_hash` and `repository.merge_request_template_names_hash`
+      # methods.
+      def self.repository_template_names: (untyped project) -> untyped
+
+      alias self.template_names self.repository_template_names
+
+      def self.template_names_by_category: (untyped items) -> untyped
+
+      def self.template_subsets: (?untyped? project) -> (::Array[untyped] | untyped)
+    end
+  end
+end

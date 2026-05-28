@@ -1,0 +1,5 @@
+class PropagateIntegrationWorker
+  include ApplicationWorker
+
+  def perform: (untyped integration_id) -> (nil | untyped)
+end

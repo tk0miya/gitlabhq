@@ -1,0 +1,47 @@
+module SafeZip
+  class Entry
+    @zip_archive: untyped
+
+    @zip_entry: untyped
+
+    @params: untyped
+
+    @path: untyped
+
+    attr_reader zip_archive: untyped
+
+    attr_reader zip_entry: untyped
+
+    attr_reader path: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped zip_archive, untyped zip_entry, untyped params) -> void
+
+    def path_dir: () -> untyped
+
+    def real_path_dir: () -> untyped
+
+    def exist?: () -> untyped
+
+    def extract: () -> untyped
+
+    private
+
+    def extract_file: () -> untyped
+
+    def extract_dir: () -> untyped
+
+    def extract_symlink: () -> untyped
+
+    def create_path_dir: () -> untyped
+
+    def matching_target_directory: () -> untyped
+
+    def matching_target_file: () -> untyped
+
+    def read_symlink: () -> untyped
+
+    def expand_symlink: (untyped source_path) -> untyped
+  end
+end

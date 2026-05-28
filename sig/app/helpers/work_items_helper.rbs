@@ -1,0 +1,47 @@
+module WorkItemsHelper
+  include IssuesHelper
+
+  # overridden in EE
+  def work_items_data: (untyped resource_parent, untyped current_user) -> untyped
+
+  # Minimal data for GraphQL-enabled views, returns only server-provided properties not yet migrated to GraphQL.
+  # This method will be removed once all properties are migrated to GraphQL.
+  # overridden in EE
+  def work_item_views_only_data: (untyped resource_parent) -> untyped
+
+  # overridden in EE
+  def add_work_item_show_breadcrumb: (untyped resource_parent, untyped _iid) -> untyped
+
+  # overridden in EE
+  def instance_type_new_trial_path: (untyped _group) -> untyped
+
+  def work_item_path: (untyped work_item, **untyped options) -> untyped
+
+  def work_item_reference: (untyped work_item) -> untyped
+
+  private
+
+  def add_project_specific_data: (untyped data, untyped resource_parent, untyped current_user) -> (nil | untyped)
+
+  def extract_group: (untyped resource_parent) -> untyped
+
+  def base_data: (untyped resource_parent, untyped current_user, untyped group) -> { autocomplete_award_emojis_path: untyped, can_admin_label: untyped, can_bulk_update: untyped, can_edit: untyped, full_path: untyped, group_path: untyped, issues_list_path: untyped, labels_manage_path: untyped, register_path: untyped, sign_in_path: untyped, new_trial_path: untyped, new_comment_template_paths: untyped, report_abuse_path: untyped, default_branch: untyped, initial_sort: untyped, is_signed_in: untyped, show_new_work_item: untyped, is_issue_repositioning_disabled: untyped, can_create_projects: untyped, new_project_path: untyped, project_namespace_full_path: untyped, group_id: untyped, time_tracking_limit_to_hours: untyped, can_read_crm_contact: untyped, max_attachment_size: untyped, can_read_crm_organization: untyped, rss_path: untyped, calendar_path: untyped, has_projects: untyped }
+
+  def base_data_legacy_only: (untyped resource_parent) -> { full_path: untyped, default_branch: untyped, router_path: untyped }
+
+  def issues_path_for: (untyped resource_parent) -> untyped
+
+  def labels_path_for: (untyped resource_parent) -> untyped
+
+  def router_path_for: (untyped resource_parent) -> untyped
+
+  def rss_path_for: (untyped resource_parent) -> untyped
+
+  def calendar_path_for: (untyped resource_parent) -> untyped
+
+  def show_new_work_item_link?: (untyped resource_parent) -> (false | true | untyped)
+
+  def issue_repositioning_disabled: (untyped resource_parent) -> (untyped | untyped | nil)
+
+  def has_group_projects?: (untyped group) -> (false | untyped)
+end

@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      # Class for preloading data associated with pipelines such as commit
+      # authors.
+      class Preloader
+        @pipeline: untyped
+
+        def self.preload!: (untyped pipelines) -> untyped
+
+        def initialize: (untyped pipeline) -> void
+
+        # This also preloads the author of every commit. We're using "lazy_author"
+        # here since "author" immediately loads the data on the first call.
+        def preload_commit_authors: () -> untyped
+
+        # This preloads latest commits for given refs and therefore makes it
+        # much less expensive to check if a pipeline is a latest one for
+        # given branch.
+        def preload_ref_commits: () -> untyped
+
+        def preload_pipeline_warnings: () -> untyped
+
+        # This preloads the number of warnings for every stage, ensuring
+        # that Ci::Stage#has_warnings? doesn't execute any additional
+        # queries.
+        def preload_stages_warnings: () -> untyped
+
+        # This batch loads the associated environments of multiple actions (builds)
+        # that can't use `preload` due to the indirect relationship.
+        def preload_persisted_environments: () -> untyped
+      end
+    end
+  end
+end

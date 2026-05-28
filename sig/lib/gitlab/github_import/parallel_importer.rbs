@@ -1,0 +1,23 @@
+module Gitlab
+  module GithubImport
+    # The ParallelImporter schedules the importing of a GitHub project using
+    # Sidekiq.
+    class ParallelImporter
+      @project: untyped
+
+      attr_reader project: untyped
+
+      def self.async?: () -> true
+
+      def self.imports_repository?: () -> true
+
+      def self.track_start_import: (untyped project) -> untyped
+
+      def self.requires_ci_cd_setup?: () -> untyped
+
+      def initialize: (untyped project) -> void
+
+      def execute: () -> true
+    end
+  end
+end

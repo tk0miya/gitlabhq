@@ -1,0 +1,112 @@
+class UsersController < ApplicationController
+  @calendar_date: untyped
+
+  @events: untyped
+
+  @user: untyped
+
+  @contributions_calendar: untyped
+
+  @projects: untyped
+
+  @contributed_projects: untyped
+
+  @starred_projects: untyped
+
+  @groups: untyped
+
+  @snippets: untyped
+
+  @noteable_meta_data: untyped
+
+  @action: untyped
+
+  @endpoint: untyped
+
+  include InternalRedirect
+
+  include RoutableActions
+
+  include RendersMemberAccess
+
+  include RendersProjectsList
+
+  include ControllerWithCrossProjectAccessCheck
+
+  include Gitlab::NoteableMetadata
+
+  include SafeFormatHelper
+
+  FOLLOWERS_FOLLOWING_USERS_PER_PAGE: 21
+
+  def show: () -> untyped
+
+  # Get all keys of a user(params[:username]) in a text format
+  # Helpful for sysadmins to put in respective servers
+  def ssh_keys: () -> untyped
+
+  def activity: () -> untyped
+
+  # Get all gpg keys of a user(params[:username]) in a text format
+  def gpg_keys: () -> untyped
+
+  def groups: () -> untyped
+
+  def projects: () -> untyped
+
+  def contributed: () -> untyped
+
+  def starred: () -> untyped
+
+  def followers: () -> untyped
+
+  def following: () -> untyped
+
+  def present_projects: () { () -> untyped } -> untyped
+
+  def snippets: () -> untyped
+
+  def calendar: () -> untyped
+
+  def calendar_activities: () -> untyped
+
+  def exists: () -> untyped
+
+  def follow: () -> untyped
+
+  def unfollow: () -> untyped
+
+  private
+
+  def user: () -> untyped
+
+  def personal_projects: () -> untyped
+
+  def contributed_projects: () -> untyped
+
+  def starred_projects: () -> untyped
+
+  def contributions_calendar: () -> untyped
+
+  def load_events: () -> untyped
+
+  def load_projects: () -> untyped
+
+  def load_contributed_projects: () -> untyped
+
+  def load_starred_projects: () -> untyped
+
+  def load_groups: () -> untyped
+
+  def load_snippets: () -> untyped
+
+  def build_canonical_path: (untyped user) -> untyped
+
+  def authorize_read_user_profile!: () -> (untyped | nil)
+
+  def present_users: () { () -> untyped } -> untyped
+
+  def finder_params: () -> { not_aimed_for_deletion: true }
+
+  def set_legacy_data: () -> untyped
+end

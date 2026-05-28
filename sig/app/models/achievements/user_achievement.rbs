@@ -1,0 +1,9 @@
+module Achievements
+  class UserAchievement < ApplicationRecord
+    include FromUnion
+
+    include SafelyChangeColumnDefault
+
+    def revoked?: () -> untyped
+  end
+end

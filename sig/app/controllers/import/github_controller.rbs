@@ -1,0 +1,106 @@
+class Import::GithubController < Import::BaseController
+  @project: untyped
+
+  @client_proxy: untyped
+
+  @client_repos_response: untyped
+
+  @filter: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include ImportHelper
+
+  include SafeFormatHelper
+
+  include ActionView::Helpers::SanitizeHelper
+
+  include Import::GithubOauth
+
+  PAGE_LENGTH: 25
+
+  def new: () -> (untyped | untyped | nil)
+
+  def callback: () -> untyped
+
+  def personal_access_token: () -> untyped
+
+  def status: () -> untyped
+
+  def details: () -> nil
+
+  def create: () -> untyped
+
+  def realtime_changes: () -> untyped
+
+  def failures: () -> untyped
+
+  def cancel: () -> untyped
+
+  def cancel_all: () -> untyped
+
+  def counts: () -> untyped
+
+  def importable_repos: () -> untyped
+
+  def incompatible_repos: () -> ::Array[untyped]
+
+  def provider_name: () -> :github
+
+  def provider_url: () -> untyped
+
+  private
+
+  def project: () -> untyped
+
+  def import_params: () -> untyped
+
+  def permitted_import_params: () -> ::Array[:repo_id | :new_name | :target_namespace | { optional_stages: ::Hash[untyped, untyped] }]
+
+  def serialized_imported_projects: (?untyped projects) -> untyped
+
+  def expire_etag_cache: () -> untyped
+
+  def client_proxy: () -> untyped
+
+  def client_repos_response: () -> untyped
+
+  def client_repos: () -> untyped
+
+  def sanitized_filter_param: () -> untyped
+
+  def sanitize_query_param: (untyped value) -> untyped
+
+  def verify_import_enabled: () -> (untyped | nil)
+
+  def import_enabled?: () -> untyped
+
+  def realtime_changes_path: () -> untyped
+
+  def new_import_url: () -> untyped
+
+  def status_import_url: () -> untyped
+
+  def provider_unauthorized: () -> untyped
+
+  def provider_rate_limit: (untyped exception) -> untyped
+
+  def provider_forbidden: () -> untyped
+
+  def auth_state_key: () -> ::Symbol
+
+  def access_token_key: () -> ::Symbol
+
+  def access_params: () -> { github_access_token: untyped }
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def logged_in_with_provider?: () -> untyped
+
+  def rate_limit_threshold_exceeded: () -> untyped
+
+  def fetch_repos_options: () -> untyped
+
+  def pagination_options: () -> { before: untyped, after: untyped, first: untyped }
+
+  def relation_options: () -> { relation_type: untyped, organization_login: untyped }
+end

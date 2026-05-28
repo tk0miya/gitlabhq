@@ -1,0 +1,39 @@
+module Sidebars
+  module Projects
+    module Menus
+      class MonitorMenu < ::Sidebars::Menu
+        include Gitlab::Utils::StrongMemoize
+
+        def configure_menu_items: () -> (false | true)
+
+        def extra_container_html_options: () -> { class: "shortcuts-monitor" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "monitor"
+
+        def active_routes: () -> { controller: ::Array[:user | :gcp] }
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def feature_enabled?: () -> untyped
+
+        def error_tracking_menu_item: () -> untyped
+
+        def alert_management_menu_item: () -> untyped
+
+        def incidents_menu_item: () -> untyped
+
+        def observability_portal_allowed?: () -> (false | untyped)
+
+        def traces_explorer_menu_item: () -> untyped
+
+        def metrics_explorer_menu_item: () -> untyped
+
+        def logs_explorer_menu_item: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,47 @@
+module Authn
+  module TokenField
+    class Encrypted < Base
+      @encrypted_field: untyped
+
+      @insecure_strategy: untyped
+
+      @finder_class: untyped
+
+      def token_fields: () -> untyped
+
+      def find_token_authenticatable: (untyped token, ?bool unscoped, ?uniqueness_check: bool) -> (nil | untyped)
+
+      def ensure_token: (untyped token_owner_record) -> untyped
+
+      def get_token: (untyped token_owner_record) -> untyped
+
+      def encode: (untyped token) -> untyped
+
+      def set_token: (untyped token_owner_record, untyped token) -> untyped
+
+      def required?: () -> untyped
+
+      def migrating?: () -> untyped
+
+      def optional?: () -> untyped
+
+      def encrypted_field: () -> untyped
+
+      def get_encrypted_token: (untyped token_owner_record) -> untyped
+
+      def encrypted_strategy: () -> untyped
+
+      def find_by_plaintext_token: (untyped token, untyped unscoped) -> untyped
+
+      def find_by_encrypted_token: (untyped token, untyped unscoped, ?uniqueness_check: bool) -> untyped
+
+      def insecure_strategy: () -> untyped
+
+      def matches_prefix?: (untyped token_owner_record, untyped token) -> untyped
+
+      def token_set?: (untyped token_owner_record) -> untyped
+
+      def finder_class: () -> untyped
+    end
+  end
+end

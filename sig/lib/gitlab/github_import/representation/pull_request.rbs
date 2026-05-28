@@ -1,0 +1,39 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      class PullRequest
+        @attributes: untyped
+
+        include Representable
+
+        # Builds a PR from a GitHub API response.
+        #
+        # issue - An instance of `Hash` containing the PR details.
+        def self.from_api_response: (untyped pr, ?::Hash[untyped, untyped] additional_data) -> untyped
+
+        # Builds a new PR using a Hash that was built from a JSON payload.
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        # attributes - A Hash containing the raw PR details. The keys of this
+        #              Hash (and any nested hashes) must be symbols.
+        def initialize: (untyped attributes) -> void
+
+        def truncated_title: () -> untyped
+
+        # Returns a formatted source branch.
+        #
+        # For cross-project pull requests the branch name will be in the format
+        # `github/fork/owner-name/branch-name`.
+        def formatted_source_branch: () -> (::String | ::String | untyped)
+
+        def state: () -> (:merged | untyped)
+
+        def cross_project?: () -> (true | untyped)
+
+        def issuable_type: () -> "MergeRequest"
+
+        def github_identifiers: () -> { iid: untyped, issuable_type: untyped, title: untyped }
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Integrations
+  class SlackInteractionService
+    @interaction_type: untyped
+
+    @params: untyped
+
+    UnknownInteractionError: untyped
+
+    INTERACTIONS: { "view_closed" => untyped, "view_submission" => untyped, "block_actions" => untyped }
+
+    def initialize: (untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader interaction_type: untyped
+
+    attr_reader params: untyped
+
+    def interaction?: (untyped type) -> untyped
+  end
+end

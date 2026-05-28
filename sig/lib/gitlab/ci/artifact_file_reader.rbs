@@ -1,0 +1,32 @@
+# This class takes in input a Ci::Build object and an artifact path to read.
+# It downloads and extracts the artifacts archive, then returns the content
+# of the artifact, if found.
+module Gitlab
+  module Ci
+    class ArtifactFileReader
+      @job: untyped
+
+      @max_archive_size: untyped
+
+      @max_file_size: untyped
+
+      Error: untyped
+
+      TMP_ARTIFACT_EXTRACTION_DIR: "extracted_artifacts_job_%{id}"
+
+      def initialize: (untyped job, max_archive_size: untyped) -> void
+
+      def read: (untyped path, max_size: untyped) -> (nil | untyped)
+
+      private
+
+      attr_reader job: untyped
+
+      def validate!: (max_archive_size: untyped) -> untyped
+
+      def read_zip_file!: (untyped file_path) -> untyped
+
+      def bytes_to_human_size: (untyped size) -> untyped
+    end
+  end
+end

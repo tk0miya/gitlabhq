@@ -1,0 +1,49 @@
+module Ci
+  module Pipelines
+    class AutoCleanupService
+      @project: untyped
+
+      @processing_cache: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      BATCH_SIZE: 50
+
+      OTHER_STATUSES_GROUP: "other"
+
+      def initialize: (project: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader processing_cache: untyped
+
+      def load_destroyable_pipelines: () -> untyped
+
+      def status_groups: () -> untyped
+
+      def with_processing_cache: (untyped group_name, untyped statuses) { (untyped) -> untyped } -> (::Array[untyped] | untyped)
+
+      def processing_complete_for_group?: (untyped last_processed_at) -> untyped
+
+      def load_pipelines_batch: (untyped statuses, untyped created_after) -> untyped
+
+      def min_created_at_for_statuses: (untyped statuses) -> untyped
+
+      def flush_processing_cache: () -> untyped
+
+      def can_be_destroyed?: (untyped pipeline) -> (false | true)
+
+      def deletion_cutoff_time: () -> untyped
+
+      def cache_store: () -> untyped
+
+      def skip_protected_pipelines?: () -> untyped
+
+      def skip_locked_pipelines?: () -> untyped
+    end
+  end
+end

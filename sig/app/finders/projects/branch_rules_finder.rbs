@@ -1,0 +1,73 @@
+module Projects
+  class BranchRulesFinder
+    @project: untyped
+
+    @custom_rules: untyped
+
+    @protected_branches: untyped
+
+    @default_branch: untyped
+
+    @default_protected_branch: untyped
+
+    DEFAULT_LIMIT: 20
+
+    MAX_LIMIT: 100
+
+    ALL_BRANCHES_IDENTIFIER: "all_branches"
+
+    Page: untyped
+
+    def initialize: (untyped project, custom_rules: untyped, protected_branches: untyped) -> void
+
+    def execute: (?cursor: untyped?, ?limit: untyped) -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader custom_rules: untyped
+
+    attr_reader protected_branches: untyped
+
+    attr_reader default_branch: untyped
+
+    attr_reader default_protected_branch: untyped
+
+    def paginate_from_start: (untyped limit) -> untyped
+
+    def paginate_after_custom_rule: (untyped cursor, untyped limit) -> untyped
+
+    def paginate_protected_branches_after_custom_rule: (untyped limit) -> untyped
+
+    def paginate_after_protected_branch_rule: (untyped after_cursor, untyped limit) -> untyped
+
+    def paginate_protected_branches: (untyped branches, untyped limit, ?prioritize_default_branch: bool) -> untyped
+
+    def create_protected_branch_page: (untyped page_branches, untyped has_next) -> untyped
+
+    def first_page_with_default_branch?: (untyped after_cursor) -> untyped
+
+    def prioritise_default_branch: (untyped page_branches) -> untyped
+
+    def custom_rules_page: (untyped limit) -> untyped
+
+    def build_page_from_custom_rules: (untyped limit, ?untyped? custom_rules_subset) -> untyped
+
+    def custom_rules_only_page: (untyped custom_rules_subset) -> untyped
+
+    def custom_and_protected_rules_page: (untyped custom_rules_subset, untyped remaining_limit) -> untyped
+
+    def custom_rule_index: (untyped cursor_name) -> untyped
+
+    def custom_rule_cursor?: (untyped cursor) -> untyped
+
+    def identifier_for_rule: (untyped rule) -> (untyped | nil)
+
+    def custom_rule_names: () -> ::Array[untyped]
+
+    def decode_cursor: (untyped encoded_cursor) -> untyped
+
+    def encode_cursor: (untyped name, ?untyped? id) -> (nil | untyped)
+  end
+end

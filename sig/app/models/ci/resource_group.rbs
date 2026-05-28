@@ -1,0 +1,27 @@
+module Ci
+  class ResourceGroup < Ci::ApplicationRecord
+    RESOURCE_GROUP_PROCESS_MODES: { unordered: 0, oldest_first: 1, newest_first: 2, newest_ready_first: 3 }
+
+    #
+    # NOTE: This is concurrency-safe method that the subquery in the `UPDATE`
+    # works as explicit locking.
+    def assign_resource_to: (untyped processable) -> untyped
+
+    def release_resource_from: (untyped processable) -> untyped
+
+    def upcoming_processables: () -> untyped
+
+    def current_processable: () -> untyped
+
+    private
+
+    # In order to avoid deadlock, we do NOT specify the job execution order in the same pipeline.
+    # The system processes wherever ready to transition to `pending` status from `waiting_for_resource`.
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/202186 for more information.
+    def sort_by_job_status: () -> "CASE status\n  WHEN 'waiting_for_resource' THEN 0\n  ELSE 1\nEND ASC\n"
+
+    def ensure_resource: () -> (untyped | nil)
+
+    def log_event: (success: untyped, processable: untyped, action: untyped) -> untyped
+  end
+end

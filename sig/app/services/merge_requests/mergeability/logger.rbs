@@ -1,0 +1,37 @@
+module MergeRequests
+  module Mergeability
+    class Logger
+      @destination: untyped
+
+      @merge_request: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (merge_request: untyped, ?destination: untyped) -> void
+
+      def commit: () -> untyped
+
+      def instrument: (mergeability_name: untyped) ?{ () -> untyped } -> untyped
+
+      private
+
+      attr_reader destination: untyped
+
+      attr_reader merge_request: untyped
+
+      attr_reader stored_result: untyped
+
+      def observe_result: (untyped name, untyped result) -> untyped
+
+      def observe: (untyped name, untyped value) -> untyped
+
+      def commit_logs: () -> untyped
+
+      def observations_hash: () -> untyped
+
+      def observations: () -> untyped
+
+      def current_monotonic_time: () -> untyped
+    end
+  end
+end

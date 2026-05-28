@@ -1,0 +1,9 @@
+module Resolvers
+  module Environments
+    class NestedEnvironmentsResolver < EnvironmentsResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (**untyped args) -> untyped
+    end
+  end
+end

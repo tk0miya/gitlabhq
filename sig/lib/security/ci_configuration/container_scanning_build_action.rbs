@@ -1,0 +1,13 @@
+module Security
+  module CiConfiguration
+    class ContainerScanningBuildAction < BaseBuildAction
+      private
+
+      def update_existing_content!: () -> untyped
+
+      def template: () -> ("Auto-DevOps.gitlab-ci.yml" | "Jobs/Container-Scanning.gitlab-ci.yml")
+
+      def comment: () -> ::String
+    end
+  end
+end

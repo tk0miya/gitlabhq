@@ -1,0 +1,89 @@
+module Authz
+  # Service to perform batch authorization checks for resources.
+  #
+  # This service is designed to check whether a user has access to a batch
+  # of resources using GitLab's standard Ability system. It's used by the
+  # Knowledge Graph service for final redaction but is generic enough
+  # to be used by any service requiring batch authorization checks.
+  #
+  # IMPORTANT: This service assumes that the user has already been authenticated
+  # and authorized to make API requests. It does NOT perform user-level validation
+  # (e.g., checking if user is blocked or deactivated). The caller is responsible
+  # for ensuring the user is valid before invoking this service.
+  #
+  # The caller always passes in the ability name for each resource type.
+  # If no ability is provided, access is denied (fail-closed).
+  #
+  # @example
+  #   service = Authz::RedactionService.new(
+  #     user: current_user,
+  #     resources_by_type: {
+  #       'project' => {
+  #         'ids' => [123, 456],
+  #         'ability' => 'read_project'
+  #       },
+  #       'merge_request' => {
+  #         'ids' => [789],
+  #         'ability' => 'read_merge_request'
+  #       }
+  #     },
+  #     source: 'knowledge_graph'
+  #   )
+  #   result = service.execute
+  #   # => {
+  #   #      'project' => { 123 => true, 456 => false },
+  #   #      'merge_request' => { 789 => true }
+  #   #    }
+  class RedactionService
+    @user: untyped
+
+    @resources_by_type: untyped
+
+    @source: untyped
+
+    @logger: untyped
+
+    @metrics_observer: untyped
+
+    include Gitlab::Allowable
+
+    RESOURCE_CLASSES: { issue: untyped, merge_request: untyped, project: untyped, milestone: untyped, snippet: untyped, user: untyped, group: untyped, work_item: untyped }
+
+    PRELOAD_ASSOCIATIONS: { issue: ::Array[:namespace | :assignees | { project: ::Array[:namespace | :project_feature | :group | :organization] } | :author], merge_request: ::Array[{ target_project: ::Array[:namespace | :project_feature | :group | :organization] } | :author], project: ::Array[:namespace | :project_feature | :group | :organization], milestone: ::Array[{ project: ::Array[:namespace | :project_feature | :group | :organization] } | :group], snippet: ::Array[{ project: ::Array[:namespace | :project_feature] } | :author], user: ::Array[untyped], group: ::Array[:parent | :organization], work_item: ::Array[:namespace | :assignees | :author | { project: ::Array[:namespace | :project_feature | :group | :organization] }] }
+
+    def self.supported_types: () -> untyped
+
+    def initialize: (user: untyped, resources_by_type: untyped, source: untyped, ?logger: untyped?, ?metrics_observer: untyped?) -> void
+
+    def execute: () -> (::Hash[untyped, untyped] | untyped)
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader resources_by_type: untyped
+
+    attr_reader source: untyped
+
+    attr_reader logger: untyped
+
+    attr_reader metrics_observer: untyped
+
+    def preseed_authorization_caches: (untyped loaded_resources_by_type) -> untyped
+
+    def collect_policy_subjects: (untyped loaded_resources_by_type) -> ::Array[untyped]
+
+    def load_all_resources: () -> untyped
+
+    # rubocop:disable CodeReuse/ActiveRecord -- Batch loading with preloads for authorization checks
+    def load_resources_for_type: (untyped type, untyped ids) -> (::Hash[untyped, untyped] | untyped)
+
+    def authorize_resources_of_type: (untyped type, untyped ids, untyped ability, untyped loaded_resources) -> (::Hash[untyped, untyped] | untyped)
+
+    def check_ability: (untyped resource, untyped ability) -> (false | untyped)
+
+    def observe_redaction_metrics: (untyped results, untyped duration) -> untyped
+
+    def log_redacted_results: (untyped results) -> (nil | untyped)
+  end
+end

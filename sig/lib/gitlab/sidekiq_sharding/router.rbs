@@ -1,0 +1,21 @@
+module Gitlab
+  module SidekiqSharding
+    class Router
+      self.@migrated_shards: untyped
+
+      def self.enabled?: () -> untyped
+
+      def self.get_shard_instance: (untyped store_name) -> ::Array[untyped]
+
+      def self.route: (untyped klass) { () -> untyped } -> untyped
+
+      def self.with_routed_client: () { () -> untyped } -> untyped
+
+      def self.migrated_shards: () -> untyped
+
+      private
+
+      def self.route_to: (untyped shard_name) -> untyped
+    end
+  end
+end

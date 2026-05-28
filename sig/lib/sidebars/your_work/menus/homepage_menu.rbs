@@ -1,0 +1,17 @@
+module Sidebars
+  module YourWork
+    module Menus
+      class HomepageMenu < ::Sidebars::Menu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "home"
+
+        def render?: () -> untyped
+
+        def active_routes: () -> { controller: ::Array["root"], path: "dashboard#home" }
+      end
+    end
+  end
+end

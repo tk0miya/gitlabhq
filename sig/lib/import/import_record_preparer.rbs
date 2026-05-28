@@ -1,0 +1,25 @@
+module Import
+  class ImportRecordPreparer
+    @record: untyped
+
+    DIFF_NOTE_TO_DISCUSSION_NOTE_EXCLUDED_ATTRS: ::Array["original_position" | "change_position" | "position" | "line_code" | "type" | "commit_id"]
+
+    DIFF_NOTE_RECOVERABLE_ERRORS: ::Array[:missing_diff_file | :missing_diff_line]
+
+    SUPPORTED_TYPES: ::Array[untyped]
+
+    def self.recover_invalid_record: (untyped record) -> untyped
+
+    def initialize: (untyped record) -> void
+
+    # If we notice this is being used for many models in the future we should consider refactoring,
+    # so each model has its own preparer. We can use metaprogramming to infer the preparer class.
+    def recover_invalid_record: () -> untyped
+
+    private
+
+    attr_reader record: untyped
+
+    def create_discussion_note_on_missing_diff: () -> (nil | untyped)
+  end
+end

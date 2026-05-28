@@ -1,0 +1,11 @@
+# Worker for updating group statistics.
+module Groups
+  class UpdateStatisticsWorker
+    include ApplicationWorker
+
+    # group_id - The ID of the group for which to flush the cache.
+    # statistics - An Array containing columns from NamespaceStatistics to
+    #              refresh, if empty all columns will be refreshed
+    def perform: (untyped group_id, ?untyped statistics) -> (nil | untyped)
+  end
+end

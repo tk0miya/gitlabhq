@@ -1,0 +1,7 @@
+module SshKeysHelper
+  def ssh_key_delete_modal_data: (untyped key, untyped path) -> { path: untyped, method: "delete", testid: "delete-ssh-key-button", title: untyped, aria_label: untyped, modal_attributes: { :"data-testid" => "ssh-key-delete-modal", title: untyped, message: untyped, okVariant: "danger", okTitle: untyped }, toggle: "tooltip", placement: "top", container: "body" }
+
+  def ssh_key_revoke_modal_data: (untyped key, untyped path) -> { path: untyped, method: "delete", title: untyped, aria_label: untyped, modal_attributes: { title: untyped, message: untyped, okVariant: "danger", okTitle: untyped }, toggle: "tooltip", placement: "top", container: "body" }
+
+  def ssh_key_allowed_algorithms: () -> untyped
+end

@@ -1,0 +1,13 @@
+module Resolvers
+  module DataTransfer
+    class GroupDataTransferResolver < BaseResolver
+      include DataTransferArguments
+
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias group object
+
+      def resolve: (**untyped args) -> ({ egress_nodes: ::Array[untyped] } | { egress_nodes: untyped })
+    end
+  end
+end

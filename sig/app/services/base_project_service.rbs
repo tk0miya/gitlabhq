@@ -1,0 +1,14 @@
+# Base class, scoped by project
+class BaseProjectService < ::BaseContainerService
+  @project: untyped
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  attr_accessor project: untyped
+
+  def initialize: (project: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+  private
+
+  def project_group: () -> untyped
+end

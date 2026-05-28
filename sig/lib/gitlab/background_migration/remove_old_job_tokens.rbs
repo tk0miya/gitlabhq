@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    class RemoveOldJobTokens < BatchedMigrationJob
+      ACTIVE_STATUSES: ::Array["waiting_for_resource" | "preparing" | "waiting_for_callback" | "pending" | "running"]
+
+      def perform: () -> untyped
+    end
+  end
+end

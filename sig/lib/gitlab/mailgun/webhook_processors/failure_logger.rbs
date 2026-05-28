@@ -1,0 +1,17 @@
+module Gitlab
+  module Mailgun
+    module WebhookProcessors
+      class FailureLogger < Base
+        def execute: () -> (untyped | nil)
+
+        def permanent_failure_over_threshold?: () -> untyped
+
+        def temporary_failure_over_threshold?: () -> untyped
+
+        private
+
+        def log_failure: () -> untyped
+      end
+    end
+  end
+end

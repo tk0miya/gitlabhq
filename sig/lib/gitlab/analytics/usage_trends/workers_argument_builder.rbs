@@ -1,0 +1,28 @@
+module Gitlab
+  module Analytics
+    module UsageTrends
+      class WorkersArgumentBuilder
+        @measurement_identifiers: untyped
+
+        @recorded_at: untyped
+
+        def initialize: (?measurement_identifiers: untyped, ?recorded_at: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader measurement_identifiers: untyped
+
+        attr_reader recorded_at: untyped
+
+        # Determining the query range (id range) as early as possible in order to get more accurate counts.
+        def determine_start_and_finish: (untyped measurement_identifier, untyped query_scope) -> untyped
+
+        def custom_min_max_queries: () -> untyped
+
+        def query_mappings: () -> untyped
+      end
+    end
+  end
+end

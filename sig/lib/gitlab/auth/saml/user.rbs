@@ -1,0 +1,40 @@
+# SAML extension for User model
+#
+# * Find GitLab user based on SAML uid and provider
+# * Create new user from SAML data
+#
+module Gitlab
+  module Auth
+    module Saml
+      class User < Gitlab::Auth::OAuth::User
+        @auth_hash: untyped
+
+        extend ::Gitlab::Utils::Override
+
+        def find_user: () -> untyped
+
+        def should_save?: () -> (true | untyped)
+
+        def bypass_two_factor?: () -> untyped
+
+        def protocol_name: () -> "SAML"
+
+        def saml_config: () -> untyped
+
+        def auto_link_saml_user?: () -> untyped
+
+        def external_users_enabled?: () -> untyped
+
+        def any_external_config_present?: () -> untyped
+
+        def auth_hash=: (untyped auth_hash) -> untyped
+
+        private
+
+        def external_user?: () -> (true | untyped | false)
+
+        def intersecting_external_groups?: () -> untyped
+      end
+    end
+  end
+end

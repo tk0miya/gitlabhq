@@ -1,0 +1,17 @@
+module Gitlab
+  module DataBuilder
+    module Repository
+      extend ::Gitlab::DataBuilder::Repository
+
+      SAMPLE_DATA: { event_name: "repository_update", user_id: 10, user_name: "john.doe", user_email: "test@example.com", user_avatar: "http://example.com/avatar/user.png", project_id: 40, changes: ::Array[{ before: "8205ea8d81ce0c6b90fbe8280d118cc9fdad6130", after: "4045ea7a3df38697b3730a20fb73c8bed8a3e69e", ref: "refs/heads/master" }], refs: ::Array["refs/heads/master"] }
+
+      # Produce a hash of post-receive data
+      def update: (untyped project, untyped user, untyped changes, untyped refs) -> { event_name: "repository_update", user_id: untyped, user_name: untyped, user_email: untyped, user_avatar: untyped, project_id: untyped, project: untyped, changes: untyped, refs: untyped }
+
+      # Produce a hash of partial data for a single change
+      def single_change: (untyped oldrev, untyped newrev, untyped ref) -> { before: untyped, after: untyped, ref: untyped }
+
+      def sample_data: () -> untyped
+    end
+  end
+end

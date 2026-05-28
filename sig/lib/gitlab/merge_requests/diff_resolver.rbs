@@ -1,0 +1,37 @@
+module Gitlab
+  module MergeRequests
+    class DiffResolver
+      @merge_request: untyped
+
+      @params: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped merge_request, ?::Hash[untyped, untyped] params) -> void
+
+      def resolve: () -> untyped
+
+      private
+
+      attr_reader merge_request: untyped
+
+      attr_reader params: untyped
+
+      def merge_head_diff?: () -> untyped
+
+      def latest_diff_id?: () -> untyped
+
+      def commit: () -> (nil | untyped)
+
+      def merge_request_diff_by_id: () -> untyped
+
+      def viewable_merge_request_diffs: () -> untyped
+
+      def diff_id: () -> untyped
+
+      def start_sha: () -> untyped
+
+      def commit_id: () -> untyped
+    end
+  end
+end

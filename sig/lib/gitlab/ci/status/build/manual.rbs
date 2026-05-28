@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class Manual < Status::Extended
+          def self.matches?: (untyped build, untyped user) -> untyped
+
+          def illustration: () -> { image: "illustrations/empty-state/empty-job-manual-md.svg", size: "", title: untyped, content: untyped }
+
+          private
+
+          def illustration_content: () -> untyped
+
+          def manual_job_action_message: () -> untyped
+
+          def generic_permission_failure_message: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Mutations
+  module MergeRequests
+    class Accept < Base
+      NOT_MERGEABLE: "This branch cannot be merged"
+
+      HOOKS_VALIDATION_ERROR: "Pre-merge hooks failed"
+
+      SHA_MISMATCH: "The merge-head is not at the anticipated SHA"
+
+      MERGE_FAILED: "The merge failed"
+
+      ALREADY_SCHEDULED: "The merge request is already scheduled to be merged"
+
+      def resolve: (project_path: untyped, iid: untyped, **untyped args) -> untyped
+
+      def validate: (untyped merge_request, untyped merge_service, untyped merge_params) -> (untyped | untyped | untyped | untyped | nil)
+
+      def mergeable_for_strategy?: (untyped merge_request, untyped strategy) -> untyped
+    end
+  end
+end

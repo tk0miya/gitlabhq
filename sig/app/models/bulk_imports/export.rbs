@@ -1,0 +1,37 @@
+module BulkImports
+  class Export < ApplicationRecord
+    include Gitlab::Utils::StrongMemoize
+
+    PENDING: -2
+
+    STARTED: 0
+
+    FINISHED: 1
+
+    FAILED: -1
+
+    IN_PROGRESS_STATUSES: ::Array[untyped]
+
+    MAX_CONCURRENT_RELATION_EXPORTS: 5
+
+    def self.find_or_create_user_contributions_export!: (untyped portable, untyped offline_export_id) -> untyped
+
+    def portable_relation?: () -> (nil | untyped)
+
+    def portable: () -> untyped
+
+    def relation_definition: () -> untyped
+
+    def config: () -> untyped
+
+    def remove_existing_upload!: () -> (nil | untyped)
+
+    def relation_has_user_contributions?: () -> untyped
+
+    def completed?: () -> untyped
+
+    def offline?: () -> untyped
+
+    def flag_failure_on_offline_export: () -> untyped
+  end
+end

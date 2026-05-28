@@ -1,0 +1,37 @@
+module Gitlab
+  module Kubernetes
+    class RoleBinding
+      @name: untyped
+
+      @role_name: untyped
+
+      @role_kind: untyped
+
+      @namespace: untyped
+
+      @service_account_name: untyped
+
+      def initialize: (name: untyped, role_name: untyped, role_kind: untyped, namespace: untyped, service_account_name: untyped) -> void
+
+      def generate: () -> untyped
+
+      private
+
+      attr_reader name: untyped
+
+      attr_reader role_name: untyped
+
+      attr_reader role_kind: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader service_account_name: untyped
+
+      def metadata: () -> { name: untyped, namespace: untyped }
+
+      def role_ref: () -> { apiGroup: "rbac.authorization.k8s.io", kind: untyped, name: untyped }
+
+      def subjects: () -> ::Array[{ kind: "ServiceAccount", name: untyped, namespace: untyped }]
+    end
+  end
+end

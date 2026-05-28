@@ -1,0 +1,18 @@
+# SnoozingService class
+#
+# Used for snoozing/un-snoozing todos
+#
+# Ex.
+#   Todos::SnoozingService.new.snooze_todo(todo, 1.day.from_now)
+#
+module Todos
+  class SnoozingService
+    def snooze_todo: (untyped todo, untyped snooze_until) -> untyped
+
+    def un_snooze_todo: (untyped todo) -> untyped
+
+    def snooze_todos: (untyped todos, untyped snooze_until) -> untyped
+
+    def unsnooze_todos: (untyped todos) -> untyped
+  end
+end

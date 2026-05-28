@@ -1,0 +1,250 @@
+module Feature
+  self.@flipper: untyped
+
+  self.@flipper_request: untyped
+
+  self.@flipper_pod: untyped
+
+  self.@flipper_gitlab_instance: untyped
+
+  self.@logger: untyped
+
+  # Feature is loaded before the Rails environment is initialized
+  # so we need to constantize these at runtime.
+  self.@supported_models: untyped
+
+  SUPPORTED_MODELS: ::Array["User" | "Project" | "Namespace" | "Ci::Runner" | "Organizations::Organization" | "Authn::OauthApplication"]
+
+  class FlipperRecord < ActiveRecord::Base
+    extend SkipLoadBalancer
+
+    # Flipper::Adapters::ActiveRecord::Model, which inherits ActiveRecord::Base
+    include DatabaseReflection
+  end
+
+  class FlipperFeature < FlipperRecord
+  end
+
+  class FlipperGate < FlipperRecord
+  end
+
+  class OptOut
+    @inner: untyped
+
+    def initialize: (untyped inner) -> void
+
+    def flipper_id: () -> ::String
+  end
+
+  # Generates the same flipper_id when in a request
+  # If not in a request, it generates a unique flipper_id every time
+  class FlipperRequest
+    def flipper_id: () -> untyped
+  end
+
+  # Generates the same flipper_id for a given kubernetes pod,
+  # or for the entire gitlab application if deployed on a single host.
+  class FlipperPod
+    @flipper_id: untyped
+
+    attr_reader flipper_id: untyped
+
+    def initialize: () -> void
+  end
+
+  # Generates a unique flipper_id for the current GitLab instance.
+  class FlipperGitlabInstance
+    @flipper_id: untyped
+
+    attr_reader flipper_id: untyped
+
+    def initialize: () -> void
+  end
+
+  # Represents a code execution path as defined by the GitLab caller_id context.
+  # Generates flipper_id from caller_id (e.g., "ApplicationController#index" or "GET /api/v4/projects")
+  class Endpoint
+    @caller_id: untyped
+
+    @flipper_id: untyped
+
+    attr_reader caller_id: untyped
+
+    attr_reader flipper_id: untyped
+
+    def initialize: (untyped caller_id) -> void
+  end
+
+  # To enable EE overrides
+  class ActiveSupportCacheStoreAdapter < Flipper::Adapters::ActiveSupportCacheStore
+  end
+
+  InvalidFeatureFlagError: untyped
+
+  InvalidOperation: untyped
+
+  def self.all: () -> untyped
+
+  # Preload the features with the given names.
+  #
+  # names - An Array of String or Symbol names of the features.
+  #
+  # https://github.com/flippercloud/flipper/blob/bf6a13f34fc7f45a597c3d66ec291f3e5855e830/lib/flipper/dsl.rb#L229
+  def self.preload: (untyped names) -> untyped
+
+  RecursionError: untyped
+
+  def self.get: (untyped key) -> untyped
+
+  def self.persisted_names: () -> (::Array[untyped] | untyped)
+
+  def self.persisted_name?: (untyped feature_name) -> untyped
+
+  # The default state of feature flag is read from `YAML`:
+  # 1. If feature flag does not have YAML it will fallback to `default_enabled: false`
+  #    in production environment, but raise exception in development or tests.
+  # 2. The `default_enabled_if_undefined:` is tech debt related to Gitaly flags
+  #    and should not be used outside of Gitaly's `lib/feature/gitaly.rb`
+  def self.enabled?: (untyped key, ?untyped? thing, ?type: untyped?, ?default_enabled_if_undefined: untyped?) -> untyped
+
+  def self.disabled?: (untyped key, ?untyped? thing, ?type: untyped?, ?default_enabled_if_undefined: untyped?) -> untyped
+
+  def self.enable: (untyped key, ?bool thing) -> untyped
+
+  def self.disable: (untyped key, ?bool thing) -> untyped
+
+  def self.opted_out?: (untyped key, untyped thing) -> (false | untyped)
+
+  def self.opt_out: (untyped key, untyped thing) -> (nil | untyped)
+
+  def self.remove_opt_out: (untyped key, untyped thing) -> (nil | untyped)
+
+  def self.enable_percentage_of_time: (untyped key, untyped percentage) -> untyped
+
+  def self.disable_percentage_of_time: (untyped key) -> untyped
+
+  def self.enable_percentage_of_actors: (untyped key, untyped percentage) -> untyped
+
+  def self.disable_percentage_of_actors: (untyped key) -> untyped
+
+  def self.remove: (untyped key) -> (nil | untyped)
+
+  def self.reset: () -> untyped
+
+  # This method is called from config/initializers/0_inject_feature_flags.rb and can be used
+  # to register Flipper groups.
+  # See https://docs.gitlab.com/ee/development/feature_flags/
+  #
+  # EE feature groups should go inside the ee/lib/ee/feature.rb version of this method.
+  def self.register_feature_groups: () -> nil
+
+  def self.register_definitions: () -> untyped
+
+  def self.register_hot_reloader: () -> (nil | untyped)
+
+  def self.current_request: () -> untyped
+
+  def self.current_pod: () -> untyped
+
+  def self.gitlab_instance: () -> untyped
+
+  def self.current_endpoint: () -> (nil | untyped)
+
+  def self.logger: () -> untyped
+
+  def self.log_feature_flag_states?: (untyped key) -> untyped
+
+  def self.log_feature_flag_state: (untyped key, untyped feature_value) -> untyped
+
+  def self.logged_states: () -> untyped
+
+  def self.logged_states_for_log: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord -- rubocop doesn't recognize Flipper::Adapters::ActiveRecord::Gate as ActiveRecord.
+  def self.group_ids_for: (untyped feature_key) -> untyped
+
+  private
+
+  def self.database_exists?: () -> untyped
+
+  def self.sanitized_thing: (untyped thing) -> untyped
+
+  # Compute if thing is enabled, taking opt-out overrides into account
+  # Evaluate if `default enabled: false` or the feature has been persisted.
+  # `persisted_name?` can potentially generate DB queries and also checks for inclusion
+  # in an array of feature names (177 at last count), possibly reducing performance by half.
+  # So we only perform the `persisted` check if `default_enabled: true`
+  def self.current_feature_value: (untyped key, untyped thing, default_enabled: untyped) -> untyped
+
+  # NOTE: it is not safe to call `Flipper::Feature#enabled?` outside the block
+  def self.with_feature: (untyped key) { (untyped) -> untyped } -> untyped
+
+  def self.unsafe_get: (untyped key) -> (nil | untyped)
+
+  def self.pop_recursion_stack: () -> untyped
+
+  def self.flipper: () -> untyped
+
+  def self.build_flipper_instance: (?memoize: bool) -> untyped
+
+  def self.check_feature_flags_definition?: () -> untyped
+
+  def self.check_feature_flags_definition!: (untyped key, untyped thing, untyped type) -> (nil | untyped)
+
+  # Validate if a feature flag YAML definition exists for the given key before allowing
+  # mutation operations (enable/disable).
+  #
+  # In development/test environment: raise InvalidFeatureFlagError.
+  # In production environment: log a warning instead to avoid
+  # breaking existing automation that may reference undefined flags.
+  def self.check_feature_flags_definition_for_mutation!: (untyped key) -> (nil | untyped)
+
+  def self.suggest_similar_flag_names: (untyped key) -> (::Array[untyped] | untyped)
+
+  def self.validate_thing!: (untyped key, untyped thing) -> (nil | untyped)
+
+  def self.supported_models: () -> untyped
+
+  def self.l1_cache_backend: () -> untyped
+
+  def self.l2_cache_backend: () -> untyped
+
+  def self.log: (key: untyped, action: untyped, **untyped extra) -> untyped
+
+  public
+
+  class Target
+    @params: untyped
+
+    UnknownTargetError: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped params) -> void
+
+    def gate_specified?: () -> untyped
+
+    def targets: () -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def feature_group: () -> (nil | untyped)
+
+    def users: () -> untyped
+
+    def projects: () -> untyped
+
+    def groups: () -> untyped
+
+    def namespaces: () -> untyped
+
+    def repositories: () -> (nil | untyped)
+
+    def runners: () -> untyped
+
+    def endpoints: () -> (nil | untyped)
+
+    def find_targets: (untyped param_key) { (untyped) -> untyped } -> (nil | untyped)
+  end
+end

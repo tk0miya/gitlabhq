@@ -1,0 +1,23 @@
+module Mutations
+  module Packages
+    class DestroyFiles < ::Mutations::BaseMutation
+      include FindsProject
+
+      include Mutations::Packages::DeleteProtection
+
+      MAXIMUM_FILES: 100
+
+      def resolve: (project_path: untyped, ids: untyped) -> { errors: untyped }
+
+      private
+
+      def ensure_file_access!: (untyped project, untyped package_files) -> untyped
+
+      def parse_gids: (untyped gids) -> untyped
+
+      def sync_helm_metadata_caches: (untyped package_files) -> untyped
+
+      def filter_protected_files: (untyped project, untyped package_files) -> ::Array[untyped]
+    end
+  end
+end

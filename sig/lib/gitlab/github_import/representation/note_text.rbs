@@ -1,0 +1,40 @@
+# This class only partly represents MODELS_ALLOWLIST records from DB and
+# is used to connect ReleasesAttachmentsImporter, NotesAttachmentsImporter etc.
+# with NoteAttachmentsImporter without modifying ObjectImporter a lot.
+# Attachments are inside release's `description`.
+module Gitlab
+  module GithubImport
+    module Representation
+      class NoteText
+        @attributes: untyped
+
+        include Representable
+
+        MODELS_ALLOWLIST: ::Array[untyped]
+
+        ModelNotSupported: untyped
+
+        attr_accessor object_type: untyped
+
+        # Builds a note text representation from DB record of Note or Release.
+        #
+        # record - An instance of `Note`, `Release`, `Issue`, `MergeRequest` model
+        def self.from_db_record: (untyped record) -> untyped
+
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        def self.check_record_class!: (untyped record) -> (untyped | nil)
+
+        # attributes - A Hash containing the event details. The keys of this
+        #              Hash (and any nested hashes) must be symbols.
+        def initialize: (untyped attributes) -> void
+
+        def github_identifiers: () -> untyped
+
+        private
+
+        def record_type_specific_attribute: () -> untyped
+      end
+    end
+  end
+end

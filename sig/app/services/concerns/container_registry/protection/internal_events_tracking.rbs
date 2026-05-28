@@ -1,0 +1,21 @@
+module ContainerRegistry
+  module Protection
+    module InternalEventsTracking
+      include Gitlab::InternalEventsTracking
+
+      def track_tag_rule_creation: (untyped protection_rule) -> untyped
+
+      def track_tag_rule_deletion: (untyped protection_rule) -> untyped
+
+      def track_tag_rule_update: (untyped protection_rule) -> untyped
+
+      def track_repository_rule_creation: (untyped protection_rule) -> untyped
+
+      def track_repository_rule_deletion: (untyped protection_rule) -> untyped
+
+      private
+
+      def track_event: (untyped event_name, untyped protection_rule) -> untyped
+    end
+  end
+end

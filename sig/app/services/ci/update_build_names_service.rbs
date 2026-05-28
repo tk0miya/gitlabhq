@@ -1,0 +1,15 @@
+module Ci
+  class UpdateBuildNamesService
+    @pipeline: untyped
+
+    attr_reader pipeline: untyped
+
+    def initialize: (untyped pipeline) -> void
+
+    def execute: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- plucking attributes is more efficient than loading the records
+    # rubocop: disable Database/AvoidUsingPluckWithoutLimit -- plucking on batch
+    def upsert_records: (untyped batch) -> (nil | untyped)
+  end
+end

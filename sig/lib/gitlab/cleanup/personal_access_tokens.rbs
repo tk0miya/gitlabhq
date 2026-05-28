@@ -1,0 +1,39 @@
+module Gitlab
+  module Cleanup
+    class PersonalAccessTokens
+      @cut_off_date: untyped
+
+      @group: untyped
+
+      # Use a static revocation time to make correlation of revoked
+      # tokens easier, should it be needed.
+      @revocation_time: untyped
+
+      @logger: untyped
+
+      # By default tokens that haven't been used for over 1 year will be revoked
+      DEFAULT_TIME_PERIOD: untyped
+
+      # To prevent inadvertently revoking all tokens, we provide a minimum time
+      MINIMUM_TIME_PERIOD: untyped
+
+      attr_reader logger: untyped
+
+      attr_reader cut_off_date: untyped
+
+      attr_reader revocation_time: untyped
+
+      attr_reader group: untyped
+
+      def initialize: (group_full_path: untyped, ?cut_off_date: untyped, ?logger: untyped?) -> void
+
+      def run!: (?dry_run: bool, ?revoke_active_tokens: bool) -> untyped
+
+      private
+
+      def revocable_tokens: (untyped revoke_active_tokens) -> untyped
+
+      def revoke_batch: (untyped access_tokens, untyped dry_run) -> untyped
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces wiki page references with links.
+      #
+      # This filter supports cross-project and cross-group references.
+      class WikiPageReferenceFilter < AbstractReferenceFilter
+        include CrossNamespaceReference
+
+        def find_object: (untyped parent_object, untyped id) -> untyped
+
+        def parse_symbol: (untyped string, untyped _match) -> untyped
+
+        def url_for_object: (untyped object, untyped parent_object) -> untyped
+
+        def parent_type: () -> :namespace
+
+        def parent: () -> untyped
+      end
+    end
+  end
+end

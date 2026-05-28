@@ -1,0 +1,25 @@
+#
+# DEPRECATED
+#
+# These helpers are deprecated in favor of detailed CI/CD statuses.
+#
+# See 'detailed_status?` method and `Gitlab::Ci::Status` module.
+#
+module Ci
+  module StatusHelper
+    # rubocop:disable Metrics/CyclomaticComplexity
+    def ci_icon_for_status: (untyped status, ?size: ::Integer) -> untyped
+
+    def render_commit_status: (untyped commit, untyped status, ?ref: untyped?, ?tooltip_placement: ::String) -> untyped
+
+    def render_ci_icon: (untyped status, ?untyped? path, ?tooltip_placement: ::String, ?container: ::String, ?show_status_text: bool) -> untyped
+
+    private
+
+    def detailed_status?: (untyped status) -> untyped
+
+    def ci_label_for_status: (untyped status) -> untyped
+
+    def badge_variant: (untyped status) -> untyped
+  end
+end

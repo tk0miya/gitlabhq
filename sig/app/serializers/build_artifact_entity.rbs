@@ -1,0 +1,11 @@
+class BuildArtifactEntity < Grape::Entity
+  include RequestAwareEntity
+
+  include GitlabRoutingHelper
+
+  alias artifact object
+
+  private
+
+  def project: () -> untyped
+end

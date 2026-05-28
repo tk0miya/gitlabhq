@@ -1,0 +1,45 @@
+module Import
+  module GitlabProjects
+    module FileAcquisitionStrategies
+      class RemoteFile
+        @params: untyped
+
+        @current_user: untyped
+
+        @project_params: untyped
+
+        @file_url: untyped
+
+        @content_type: untyped
+
+        @content_length: untyped
+
+        @headers: untyped
+
+        include ActiveModel::Validations
+
+        def self.allow_local_requests?: () -> untyped
+
+        def initialize: (params: untyped, ?current_user: untyped?) -> void
+
+        def project_params: () -> untyped
+
+        def file_url: () -> untyped
+
+        def content_type: () -> untyped
+
+        def content_length: () -> untyped
+
+        private
+
+        attr_reader params: untyped
+
+        attr_reader current_user: untyped
+
+        def s3_request?: () -> untyped
+
+        def headers: () -> untyped
+      end
+    end
+  end
+end

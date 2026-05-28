@@ -1,0 +1,33 @@
+module Gitlab
+  module UsageDataCounters
+    module RedisCounter
+      include Gitlab::Utils::StrongMemoize
+
+      # This file overrides (or aliases) some keys for legacy Redis metric counters to delay migrating them to new
+      # names for now, because doing that in bulk will be a lot easier.
+      KEY_OVERRIDES_PATH: untyped
+
+      def increment: (untyped redis_counter_key, ?expiry: untyped?) -> (nil | untyped)
+
+      def increment_by: (untyped redis_counter_key, untyped incr, ?expiry: untyped?) -> (nil | untyped)
+
+      def total_count: (untyped redis_counter_key) -> untyped
+
+      def with_batched_redis_writes: () { () -> untyped } -> untyped
+
+      private
+
+      def flush_redis_batch: () -> untyped
+
+      def legacy_key: (untyped redis_key) -> untyped
+
+      def key_overrides: () -> untyped
+
+      def batch_mode?: () -> untyped
+
+      def batch_key_count: () -> untyped
+
+      def batch_expires: () -> untyped
+    end
+  end
+end

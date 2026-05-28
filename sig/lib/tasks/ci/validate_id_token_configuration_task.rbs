@@ -1,0 +1,29 @@
+module Tasks
+  module Ci
+    class ValidateIdTokenConfigurationTask
+      def validate!: () -> untyped
+
+      private
+
+      def aud_claim: () -> "test_aud_claim"
+
+      def generate_ci_id_token_for_last_build: () -> untyped
+
+      def decode_jwt_token: (untyped token) -> untyped
+
+      def parse_kid_algorithm_issuer_from_jwt_token: (untyped decoded_token) -> ::Array[untyped]
+
+      def get_open_id_configuration: (untyped issuer_url) -> untyped
+
+      def validate_issuer_configuration!: (open_id_configuration: untyped, id_token_issuer: untyped) -> (nil | untyped)
+
+      def get_jwks: (untyped open_id_configuration) -> untyped
+
+      def validate_jwks!: (open_id_configuration: untyped, kid: untyped) -> untyped
+
+      def get_public_key: (open_id_configuration: untyped, kid: untyped) -> untyped
+
+      def verify_jwt_id_token!: (id_token: untyped, open_id_configuration: untyped, algorithm: untyped, kid: untyped) -> untyped
+    end
+  end
+end

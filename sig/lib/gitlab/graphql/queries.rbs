@@ -1,0 +1,171 @@
+module Gitlab
+  module Graphql
+    module Queries
+      self.@fragments: untyped
+
+      self.@known_failures: untyped
+
+      IMPORT_RE: ::Regexp
+
+      CONN_DIRECTIVE: ::Regexp
+
+      class WrappedError
+        @error: untyped
+
+        def initialize: (untyped error) -> void
+
+        def path: () -> ::Array[untyped]
+      end
+
+      class FileNotFound
+        @file: untyped
+
+        def initialize: (untyped file) -> void
+
+        def message: () -> ::String
+
+        def path: () -> ::Array[untyped]
+      end
+
+      # We need to re-write queries to remove all @client fields. Ideally we
+      # would do that as a source-to-source transformation of the AST, but doing it using a
+      # printer is much simpler.
+      class ClientFieldRedactor < GraphQL::Language::Printer
+        @skips: untyped
+
+        @fields_printed: untyped
+
+        @in_operation: untyped
+
+        @skipped_arguments: untyped
+
+        @printed_arguments: untyped
+
+        @used_fragments: untyped
+
+        @skipped_fragments: untyped
+
+        attr_reader fields_printed: untyped
+
+        attr_reader skipped_arguments: untyped
+
+        attr_reader printed_arguments: untyped
+
+        attr_reader used_fragments: untyped
+
+        def initialize: (?bool skips) -> void
+
+        def print_variable_identifier: (untyped variable_identifier) -> untyped
+
+        def print_fragment_spread: (untyped fragment_spread, ?indent: ::String) -> untyped
+
+        def print_operation_definition: (untyped op, ?indent: ::String) -> untyped
+
+        def print_field: (untyped field, ?indent: ::String) -> (nil | untyped)
+
+        def print_fragment_definition: (untyped fragment_def, ?indent: ::String) -> (nil | untyped)
+
+        def skips?: () -> untyped
+      end
+
+      class Definition
+        @file: untyped
+
+        @fragments: untyped
+
+        @imports: untyped
+
+        @errors: untyped
+
+        # CONN_DIRECTIVEs are purely client-side constructs
+        @query: untyped
+
+        SKIP_INCLUDE_DIRECTIVES: ::Array["skip" | "include"]
+
+        attr_reader file: untyped
+
+        attr_reader imports: untyped
+
+        def initialize: (untyped path, untyped fragments) -> void
+
+        def text: () -> untyped
+
+        # @skip / @include directives are driven by a Boolean `if` argument and
+        # may reference distinct variables. Enumerate every true/false assignment
+        # of those variables so the reported complexity is the worst case for
+        # any single variable assignment rather than summing mutually-exclusive
+        # branches.
+        def complexity: (untyped schema) -> untyped
+
+        def query: () -> untyped
+
+        def all_imports: () -> (::Array[untyped] | untyped)
+
+        def all_errors: () -> untyped
+
+        def validate: (untyped schema) -> untyped
+
+        private
+
+        def fragment: (untyped path) -> untyped
+
+        # Compute complexity for one boolean assignment of @skip / @include
+        # variables. Field-level argument lookups still get the historical
+        # fake values so resolver_complexity (see BaseResolver) yields the
+        # maximum possible cost.
+        def complexity_for_assignment: (untyped schema, untyped var_assignment) -> untyped
+
+        # @return [Array<String>] variable names referenced by @skip / @include `if:` args.
+        def directive_if_variable_names: () -> untyped
+
+        def visit_directives: (untyped node) { (?) -> untyped } -> untyped
+
+        # @return [Array<Hash>] every 2^N combination of true/false for the given variable names.
+        def boolean_assignments: (untyped variable_names) -> (::Array[::Hash[untyped, untyped]] | untyped)
+      end
+
+      # TODO: some queries live under app/graphql/queries - we should look there if/when we add fragments there
+      # See: https://gitlab.com/gitlab-org/gitlab/-/issues/361079
+      # for fragments too.
+      class Fragments
+        @root: untyped
+
+        @store: untyped
+
+        @dir: untyped
+
+        HOME_RE: ::Regexp
+
+        DOTS_RE: ::Regexp
+
+        DOT_RE: ::Regexp
+
+        IMPLICIT_ROOT: ::Regexp
+
+        def initialize: (untyped root, ?::String dir) -> void
+
+        attr_reader root: untyped
+
+        attr_reader dir: untyped
+
+        def get: (untyped frag_path) -> untyped
+
+        def resolve: (untyped import_path, untyped current_file) -> untyped
+
+        private
+
+        def rel_dir: (untyped path, untyped n_steps_up) -> untyped
+      end
+
+      def self.find: (untyped root) -> untyped
+
+      def self.fragments: () -> untyped
+
+      def self.all: () -> untyped
+
+      def self.known_failure?: (untyped path) -> untyped
+
+      def self.query_for_gitlab_schema?: (untyped path) -> untyped
+    end
+  end
+end

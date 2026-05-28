@@ -1,0 +1,45 @@
+module Namespaces
+  module DeletableHelper
+    include NamespaceHelper
+
+    def permanent_deletion_date_formatted: (?untyped container_or_date, ?format: ::String) -> (nil | untyped)
+
+    def deletion_in_progress_or_scheduled_in_hierarchy_chain?: (untyped namespace) -> (false | untyped)
+
+    def self_or_ancestors_deletion_in_progress_or_scheduled_message: (untyped namespace) -> untyped
+
+    def _self_deletion_in_progress_message: (untyped namespace) -> (nil | untyped)
+
+    def _deletion_scheduled_in_hierarchy_chain_message: (untyped namespace) -> untyped
+
+    def _self_deletion_scheduled_message: (untyped namespace) -> untyped
+
+    def _parent_deletion_scheduled_message: (untyped namespace) -> untyped
+
+    def delete_delayed_namespace_message: (untyped namespace) -> untyped
+
+    def delete_immediately_namespace_scheduled_for_deletion_message: (untyped namespace) -> untyped
+
+    def group_confirm_modal_data: (group: untyped, ?remove_form_id: untyped?, ?permanently_remove: bool, ?button_text: untyped?, ?has_security_policy_project: bool) -> { remove_form_id: untyped, button_text: untyped, button_testid: "remove-group-button", disabled: untyped, confirm_danger_message: untyped, phrase: untyped, html_confirmation_message: "true", form_path: untyped, confirm_phrase: untyped, full_name: untyped, subgroups_count: untyped, projects_count: untyped, marked_for_deletion: untyped, permanent_deletion_date: untyped }
+
+    def confirm_remove_group_message: (untyped group, untyped permanently_remove) -> untyped
+
+    def project_delete_delayed_button_data: (untyped project) -> untyped
+
+    def project_delete_immediately_button_data: (untyped project) -> untyped
+
+    def restore_namespace_title: (untyped namespace) -> untyped
+
+    def restore_namespace_path: (untyped namespace) -> untyped
+
+    def restore_namespace_scheduled_for_deletion_message: (untyped namespace) -> untyped
+
+    def _permanently_delete_group_message: (untyped group) -> untyped
+
+    def _additional_removed_items: (untyped group) -> untyped
+
+    def _remove_group_warning: () -> untyped
+
+    def _project_delete_button_shared_data: (untyped project, ?untyped? button_text) -> { confirm_phrase: untyped, name_with_namespace: untyped, is_fork: untyped, issues_count: untyped, merge_requests_count: untyped, forks_count: untyped, stars_count: untyped, button_text: untyped, permanent_deletion_date: untyped, marked_for_deletion: untyped }
+  end
+end

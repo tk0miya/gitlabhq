@@ -1,0 +1,23 @@
+module Authn
+  module IamService
+    class GrpcClient
+      RequestError: untyped
+
+      TIMEOUT_SECONDS: 5
+
+      def health: (untyped request) -> untyped
+
+      private
+
+      def call: (untyped method_name, untyped request) -> untyped
+
+      def stub: () -> untyped
+
+      def channel_credentials: (untyped address) -> untyped
+
+      def strip_scheme: (untyped address) -> untyped
+
+      def metadata: () -> ::Hash[untyped, untyped]
+    end
+  end
+end

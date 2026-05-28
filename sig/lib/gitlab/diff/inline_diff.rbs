@@ -1,0 +1,21 @@
+module Gitlab
+  module Diff
+    class InlineDiff
+      @old_line: untyped
+
+      @new_line: untyped
+
+      @offset: untyped
+
+      attr_accessor old_line: untyped
+
+      attr_accessor new_line: untyped
+
+      attr_accessor offset: untyped
+
+      def initialize: (untyped old_line, untyped new_line, ?offset: ::Integer) -> void
+
+      def inline_diffs: () -> (nil | untyped)
+    end
+  end
+end

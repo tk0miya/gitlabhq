@@ -1,0 +1,40 @@
+module DesignManagement
+  class VersionsFinder
+    @design_or_collection: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_reader design_or_collection: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    # The `design_or_collection` argument should be either a:
+    #
+    # - DesignManagement::Design, or
+    # - DesignManagement::DesignCollection
+    #
+    # The object will have `#versions` called on it to set up the
+    # initial scope of the versions.
+    #
+    # valid params:
+    #   - earlier_or_equal_to: Version
+    #   - sha: String
+    #   - version_id: Integer
+    #
+    def initialize: (untyped design_or_collection, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def by_earlier_or_equal_to: (untyped items) -> untyped
+
+    def by_version_id: (untyped items) -> untyped
+
+    def by_sha: (untyped items) -> untyped
+  end
+end

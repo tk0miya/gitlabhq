@@ -1,0 +1,30 @@
+module Mutations
+  module WorkItems
+    class Create < BaseMutation
+      include Mutations::SpamProtection
+
+      include FindsNamespace
+
+      include Mutations::WorkItems::SharedArguments
+
+      include Mutations::WorkItems::Widgetable
+
+      MUTUALLY_EXCLUSIVE_ARGUMENTS_ERROR: "Please provide either projectPath or namespacePath argument, but not both."
+
+      def self.authorization_scopes: () -> untyped
+
+      def ready?: (**untyped args) -> untyped
+
+      def resolve: (?project_path: untyped?, ?namespace_path: untyped?, **untyped attributes) -> { work_item: untyped, errors: untyped }
+
+      private
+
+      # Overridden on EE
+      def check_feature_available!: (untyped container, untyped type, untyped params) -> (nil | untyped)
+
+      def params_with_resolve_discussion_params: (untyped attributes) -> untyped
+
+      def params_with_work_item_type: (untyped attributes, untyped container) -> untyped
+    end
+  end
+end

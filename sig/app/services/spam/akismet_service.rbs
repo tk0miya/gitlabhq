@@ -1,0 +1,37 @@
+module Spam
+  class AkismetService
+    @owner_name: untyped
+
+    @owner_email: untyped
+
+    @text: untyped
+
+    @options: untyped
+
+    @akismet_client: untyped
+
+    attr_accessor text: untyped
+
+    attr_accessor options: untyped
+
+    def initialize: (untyped owner_name, untyped owner_email, untyped text, ?::Hash[untyped, untyped] options) -> void
+
+    def spam?: () -> (false | untyped)
+
+    def submit_ham: () -> untyped
+
+    def submit_spam: () -> untyped
+
+    private
+
+    attr_accessor owner_name: untyped
+
+    attr_accessor owner_email: untyped
+
+    def akismet_client: () -> untyped
+
+    def akismet_enabled?: () -> untyped
+
+    def submit: (untyped type) -> (false | untyped)
+  end
+end

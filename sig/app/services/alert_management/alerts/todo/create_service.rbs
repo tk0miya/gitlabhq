@@ -1,0 +1,33 @@
+module AlertManagement
+  module Alerts
+    module Todo
+      class CreateService
+        @alert: untyped
+
+        @current_user: untyped
+
+        # @param alert [AlertManagement::Alert]
+        # @param current_user [User]
+        def initialize: (untyped alert, untyped current_user) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader alert: untyped
+
+        attr_reader current_user: untyped
+
+        def allowed?: () -> untyped
+
+        def error: (untyped message) -> untyped
+
+        def success: (untyped todo) -> untyped
+
+        def error_no_permissions: () -> untyped
+
+        def error_existing_todo: () -> untyped
+      end
+    end
+  end
+end

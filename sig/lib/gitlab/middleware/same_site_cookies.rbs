@@ -1,0 +1,71 @@
+# This middleware sets the SameSite directive to None on all cookies.
+# It also adds the Secure directive if HTTPS is enabled.
+#
+# Chrome v80, rolled out in March 2020, treats any cookies without the
+# SameSite directive set as though they are SameSite=Lax
+# (https://www.chromestatus.com/feature/5088147346030592). This is a
+# breaking change from the previous default behavior, which was to treat
+# those cookies as SameSite=None.
+#
+# This middleware is needed until we upgrade to Rack v2.1.0+
+# (https://github.com/rack/rack/commit/c859bbf7b53cb59df1837612a8c330dfb4147392)
+# and a version of Rails that has native support
+# (https://github.com/rails/rails/commit/7ccaa125ba396d418aad1b217b63653d06044680).
+#
+module Gitlab
+  module Middleware
+    class SameSiteCookies
+      @app: untyped
+
+      COOKIE_SEPARATOR: "\n"
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      # Taken from https://www.chromium.org/updates/same-site/incompatible-clients
+      # We use RE2 instead of the browser gem for performance.
+      IOS_REGEX: untyped
+
+      MACOS_REGEX: untyped
+
+      SAFARI_REGEX: untyped
+
+      CHROMIUM_REGEX: untyped
+
+      CHROMIUM_VERSION_REGEX: untyped
+
+      UC_BROWSER_REGEX: untyped
+
+      UC_BROWSER_VERSION_REGEX: untyped
+
+      SECURE_REGEX: untyped
+
+      SAME_SITE_REGEX: untyped
+
+      def ssl?: () -> untyped
+
+      def same_site_none_incompatible?: (untyped user_agent) -> (false | untyped)
+
+      def has_webkit_same_site_bug?: (untyped user_agent) -> untyped
+
+      def drops_unrecognized_same_site_cookies?: (untyped user_agent) -> untyped
+
+      def ios_version?: (untyped major, untyped user_agent) -> (false | untyped)
+
+      def macos_version?: (untyped major, untyped minor, untyped user_agent) -> (false | untyped)
+
+      def safari?: (untyped user_agent) -> untyped
+
+      def chromium_based?: (untyped user_agent) -> untyped
+
+      def chromium_version_between?: (untyped from_major, untyped to_major, untyped user_agent) -> (false | untyped)
+
+      def uc_browser?: (untyped user_agent) -> untyped
+
+      def uc_browser_version_at_least?: (untyped major, untyped minor, untyped build, untyped user_agent) -> (false | untyped)
+    end
+  end
+end

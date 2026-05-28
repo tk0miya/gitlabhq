@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    module Migrations
+      module MigrationOrderMixin
+        module MigrationProxyOverrides
+          def version: () -> untyped
+
+          def milestone: () -> untyped
+
+          private
+
+          def load_migration: () -> untyped
+        end
+
+        module MigratorOverrides
+          @reverse_sorted_migrations: untyped
+
+          def current_version: () -> untyped
+
+          private
+
+          def reverse_sorted_migrations: () -> untyped
+        end
+
+        def self.patch!: () -> untyped
+      end
+    end
+  end
+end

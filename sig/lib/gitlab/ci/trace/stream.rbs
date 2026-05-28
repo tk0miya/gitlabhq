@@ -1,0 +1,71 @@
+module Gitlab
+  module Ci
+    class Trace
+      class Stream
+        @stream: untyped
+
+        @metrics: untyped
+
+        @timestamped: untyped
+
+        BUFFER_SIZE: 4096
+
+        LIMIT_SIZE: untyped
+
+        TIMESTAMP_HEADER_DATETIME: "\\d{4}-[01][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]\\.[0-9]{6}Z"
+
+        TIMESTAMP_HEADER_DATETIME_LENGTH: 27
+
+        TIMESTAMP_HEADER_REGEX: ::Regexp
+
+        TIMESTAMP_HEADER_LENGTH: 32
+
+        attr_reader stream: untyped
+
+        attr_reader metrics: untyped
+
+        def initialize: (?untyped metrics) { () -> untyped } -> void
+
+        def valid?: () -> untyped
+
+        alias present? valid?
+
+        def file?: () -> untyped
+
+        def path: () -> (untyped | nil)
+
+        def limit: (?untyped last_bytes) -> (untyped | nil)
+
+        def append: (untyped data, untyped offset) -> untyped
+
+        def set: (untyped data) -> untyped
+
+        def raw: (?last_lines: untyped?, ?max_size: untyped?) -> (nil | untyped)
+
+        def raw_range: (byte_offset: untyped, byte_limit: untyped) -> (nil | untyped)
+
+        def html: (?last_lines: untyped?, ?max_size: untyped?) -> untyped
+
+        def extract_coverage: (untyped regex) -> untyped
+
+        def extract_sections: () -> (::Array[untyped] | untyped)
+
+        private
+
+        def each_line_with_pos: () { (untyped) -> untyped } -> untyped
+
+        def read_last_lines: (untyped limit) -> untyped
+
+        def read_last_lines_with_max_size: (untyped limit, untyped max_size) -> untyped
+
+        def reverse_line_with_max_size: (untyped max_size) { (untyped) -> untyped } -> untyped
+
+        def reverse_line: () { (untyped) -> untyped } -> untyped
+
+        def read_backward: (untyped length) -> untyped
+
+        def has_timestamps?: () -> untyped
+      end
+    end
+  end
+end

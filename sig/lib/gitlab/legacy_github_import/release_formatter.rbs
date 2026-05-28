@@ -1,0 +1,13 @@
+module Gitlab
+  module LegacyGithubImport
+    class ReleaseFormatter < BaseFormatter
+      def attributes: () -> { project: untyped, tag: untyped, name: untyped, description: untyped, created_at: untyped, released_at: untyped, updated_at: untyped }
+
+      def project_association: () -> :releases
+
+      def find_condition: () -> { tag: untyped }
+
+      def valid?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Resolvers
+  module Ci
+    class UserRunnersResolver < RunnersResolver
+      def runners_finder_params: (untyped params) -> untyped
+
+      def parent_param: () -> { user: untyped }
+
+      def unconditional_includes: () -> untyped
+    end
+  end
+end

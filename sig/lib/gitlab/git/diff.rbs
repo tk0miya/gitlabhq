@@ -1,0 +1,212 @@
+module Gitlab
+  module Git
+    class Diff
+      @expanded: untyped
+
+      @generated: untyped
+
+      @line_count: untyped
+
+      @diff_bytesize: untyped
+
+      @too_large: untyped
+
+      @diff: untyped
+
+      @collapsed: untyped
+
+      @new_path: untyped
+
+      @old_path: untyped
+
+      @a_mode: untyped
+
+      @b_mode: untyped
+
+      @new_file: untyped
+
+      @renamed_file: untyped
+
+      @deleted_file: untyped
+
+      @from_id: untyped
+
+      @to_id: untyped
+
+      @overflow: untyped
+
+      @encoded_file_path: untyped
+
+      TimeoutError: untyped
+
+      include Gitlab::EncodingHelper
+
+      # Diff properties
+      attr_accessor old_path: untyped
+
+      # Diff properties
+      attr_accessor new_path: untyped
+
+      # Diff properties
+      attr_accessor a_mode: untyped
+
+      # Diff properties
+      attr_accessor b_mode: untyped
+
+      # Diff properties
+      attr_accessor diff: untyped
+
+      attr_reader from_id: untyped
+
+      attr_reader to_id: untyped
+
+      # Stats properties
+      attr_accessor new_file: untyped
+
+      # Stats properties
+      attr_accessor renamed_file: untyped
+
+      # Stats properties
+      attr_accessor deleted_file: untyped
+
+      # Stats properties
+      attr_accessor generated: untyped
+
+      # Stats properties
+      attr_accessor encoded_file_path: untyped
+
+      alias new_file? new_file
+
+      alias deleted_file? deleted_file
+
+      alias renamed_file? renamed_file
+
+      attr_accessor expanded: untyped
+
+      attr_writer too_large: untyped
+
+      alias expanded? expanded
+
+      alias generated? generated
+
+      # The default maximum content size to display a diff patch.
+      #
+      # If this value ever changes, make sure to create a migration to update
+      # current records, and default of `ApplicationSettings#diff_max_patch_bytes`.
+      DEFAULT_MAX_PATCH_BYTES: untyped
+
+      # This is a limitation applied on the source (Gitaly), therefore we don't allow
+      # persisting limits over that.
+      MAX_PATCH_BYTES_UPPER_BOUND: untyped
+
+      SERIALIZE_KEYS: ::Array[:diff | :new_path | :old_path | :a_mode | :b_mode | :new_file | :renamed_file | :deleted_file | :too_large | :generated | :encoded_file_path]
+
+      BINARY_NOTICE_PATTERN: ::Regexp
+
+      def self.between: (untyped repo, untyped head, untyped base, ?::Hash[untyped, untyped] options, *untyped paths) -> untyped
+
+      # Return a copy of the +options+ hash containing only recognized keys.
+      # Allowed options are:
+      #
+      #  :ignore_whitespace_change ::
+      #    If true, changes in amount of whitespace will be ignored.
+      #
+      #  :max_files ::
+      #    Limit how many files will patches be allowed for before collapsing
+      #
+      #  :max_lines ::
+      #    Limit how many patch lines (across all files) will be allowed for
+      #    before collapsing
+      #
+      #  :limits ::
+      #    A hash with additional limits to check before collapsing patches.
+      #    Allowed keys are: `max_bytes`, `safe_max_files`, `safe_max_lines`
+      #    and `safe_max_bytes`
+      #
+      #  :expanded ::
+      #    If false, patch raw data will not be included in the diff after
+      #    `max_files`, `max_lines` or any of the limits in `limits` are
+      #    exceeded
+      #  :generated_files ::
+      #    If the list of generated files is given, those files will be marked
+      #    as generated.
+      def self.filter_diff_options: (untyped options, ?::Hash[untyped, untyped] default_options) -> untyped
+
+      # Return a binary diff message like:
+      #
+      # "Binary files a/file/path and b/file/path differ\n"
+      # This is used when we detect that a diff is binary
+      # using CharlockHolmes.
+      def self.binary_message: (untyped old_path, untyped new_path) -> ::String
+
+      # Returns the limit of bytes a single diff file can reach before it
+      # appears as 'collapsed' for end-users.
+      # By convention, it's 10% of the persisted `diff_max_patch_bytes`.
+      #
+      # Example: If we have 100k for the `diff_max_patch_bytes`, it will be 10k by
+      # default.
+      #
+      # Patches surpassing this limit should still be persisted in the database.
+      def self.patch_safe_limit_bytes: (?untyped limit) -> untyped
+
+      def self.collect_patch_overage?: () -> untyped
+
+      # Returns the limit for a single diff file (patch).
+      #
+      # Patches surpassing this limit shouldn't be persisted in the database
+      # and will be presented as 'too large' for end-users.
+      def self.patch_hard_limit_bytes: () -> untyped
+
+      def self.has_binary_notice?: (untyped text) -> (false | untyped)
+
+      def initialize: (untyped raw_diff, ?expanded: bool, ?replace_invalid_utf8_chars: bool, ?generated: untyped?) -> void
+
+      def to_hash: () -> untyped
+
+      def mode_changed?: () -> untyped
+
+      def submodule?: () -> untyped
+
+      def unidiff: () -> untyped
+
+      def line_count: () -> untyped
+
+      def diff_bytesize: () -> untyped
+
+      def too_large?: () -> untyped
+
+      # This is used by `to_hash` and `init_from_hash`.
+      alias too_large too_large?
+
+      def prune!: () -> untyped
+
+      def too_large!: () -> untyped
+
+      def collapsed?: () -> untyped
+
+      def collapse!: () -> untyped
+
+      def overflow?: () -> (untyped | false)
+
+      def json_safe_diff: () -> untyped
+
+      def has_binary_notice?: () -> untyped
+
+      private
+
+      def collapse_generated_file?: () -> untyped
+
+      def encode_diff_to_utf8: (untyped replace_invalid_utf8_chars) -> (nil | untyped)
+
+      def diff_should_be_converted?: () -> untyped
+
+      def init_from_hash: (untyped hash) -> untyped
+
+      def init_from_gitaly: (untyped gitaly_diff) -> untyped
+
+      def prune_diff_if_eligible: () -> (nil | untyped)
+
+      def file_path_encoded?: (untyped raw_path, untyped encoded_path) -> (false | untyped)
+    end
+  end
+end

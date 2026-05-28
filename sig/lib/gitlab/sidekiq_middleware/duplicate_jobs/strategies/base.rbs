@@ -1,0 +1,25 @@
+module Gitlab
+  module SidekiqMiddleware
+    module DuplicateJobs
+      module Strategies
+        class Base
+          @duplicate_job: untyped
+
+          def initialize: (untyped duplicate_job) -> void
+
+          def schedule: (untyped job) -> untyped
+
+          def perform: (untyped _job) -> untyped
+
+          private
+
+          attr_reader duplicate_job: untyped
+
+          def strategy_name: () -> untyped
+
+          def check!: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Subscriptions
+  module Ci
+    module Jobs
+      class JobProcessed < Subscriptions::BaseSubscription
+        include Gitlab::Graphql::Laziness
+
+        def authorized?: (project_id: untyped, **untyped _kwargs) -> untyped
+
+        def update: (project_id: untyped, ?with_artifacts: bool) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+class Projects::Analytics::CycleAnalytics::StagesController < Projects::ApplicationController
+  include ::Analytics::CycleAnalytics::StageActions
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  def namespace: () -> untyped
+
+  def cycle_analytics_configuration: (untyped stages) -> untyped
+
+  def only_default_value_stream_is_allowed!: () -> (nil | untyped)
+
+  def permitted_stage?: (untyped stage) -> untyped
+
+  def permissions: () -> untyped
+
+  def authorize_stage: () -> (untyped | nil)
+
+  def requests_default_value_stream?: () -> untyped
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module EncryptedAttribute
+    extend ActiveSupport::Concern
+
+    private
+
+    def db_key_base: () -> untyped
+
+    def db_key_base_32: () -> untyped
+
+    def db_key_base_truncated: () -> untyped
+
+    def dynamic_encryption_key: (untyped key_type) -> untyped
+
+    def dynamic_encryption_key_for_operation: (untyped key_type) -> untyped
+  end
+end

@@ -1,0 +1,28 @@
+module Projects
+  class AutocompleteService < BaseService
+    include LabelsAsHash
+
+    include Routing::WikiHelper
+
+    SEARCH_LIMIT: 5
+
+    # Will be deprecated in favor of work_items when work_items_autocomplete FF is removed
+    def issues: () -> untyped
+
+    def work_items: () -> untyped
+
+    def milestones: () -> untyped
+
+    def merge_requests: () -> untyped
+
+    def commands: (untyped noteable) -> (::Array[untyped] | untyped)
+
+    def snippets: () -> untyped
+
+    def wikis: () -> (::Array[untyped] | untyped)
+
+    def contacts: (untyped target) -> untyped
+
+    def labels_as_hash: (untyped target) -> untyped
+  end
+end

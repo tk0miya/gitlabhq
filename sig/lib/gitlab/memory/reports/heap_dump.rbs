@@ -1,0 +1,19 @@
+module Gitlab
+  module Memory
+    module Reports
+      class HeapDump
+        self.@write_heap_dump: untyped
+
+        def self.enqueue!: () -> untyped
+
+        def self.enqueued?: () -> untyped
+
+        def name: () -> "heap_dump"
+
+        def active?: () -> untyped
+
+        def run: (untyped writer) -> (false | true)
+      end
+    end
+  end
+end

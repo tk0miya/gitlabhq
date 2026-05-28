@@ -1,0 +1,49 @@
+module Gitlab
+  module Ci
+    class Config
+      module Yaml
+        class Loader
+          @content: untyped
+
+          @inputs: untyped
+
+          @context: untyped
+
+          @external_context: untyped
+
+          @filename: untyped
+
+          @ensure_custom_tags: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          AVAILABLE_TAGS: ::Array[untyped]
+
+          MAX_DOCUMENTS: 2
+
+          def initialize: (untyped content, ?inputs: ::Hash[untyped, untyped], ?context: untyped, ?external_context: untyped?, ?filename: untyped?) -> void
+
+          def load: () -> untyped
+
+          def load_uninterpolated_yaml: () -> untyped
+
+          private
+
+          attr_reader content: untyped
+
+          attr_reader inputs: untyped
+
+          attr_reader context: untyped
+
+          attr_reader external_context: untyped
+
+          attr_reader filename: untyped
+
+          def load_yaml!: () -> untyped
+
+          def ensure_custom_tags: () -> untyped
+        end
+      end
+    end
+  end
+end

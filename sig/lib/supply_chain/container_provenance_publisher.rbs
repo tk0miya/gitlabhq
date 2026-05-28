@@ -1,0 +1,13 @@
+module SupplyChain
+  class ContainerProvenancePublisher < ProvenancePublisher
+    def self.should_publish?: (untyped build) -> untyped
+
+    def publish: () -> (::Array[::Array[untyped] | true] | ::Array[untyped] | ::Array[::Array[untyped] | false])
+
+    private
+
+    def image_digest: () -> (nil | untyped)
+
+    def attest_container: (untyped hash) -> untyped
+  end
+end

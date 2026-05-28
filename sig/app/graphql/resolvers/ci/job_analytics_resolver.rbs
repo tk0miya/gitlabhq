@@ -1,0 +1,32 @@
+module Resolvers
+  module Ci
+    class JobAnalyticsResolver < BaseResolver
+      MAX_LOOKBACK: untyped
+
+      def resolve: (lookahead: untyped, **untyped args) -> untyped
+
+      private
+
+      def project: () -> untyped
+
+      # Detects which fields to SELECT and GROUP BY based on the GraphQL query.
+      # Always includes `:name` as the minimum selection because it serves as the
+      # primary grouping key for job analytics aggregations in ClickHouse.
+      # Without a grouping key, aggregations would collapse all jobs into a single row.
+      def detect_select_fields: (untyped nodes, ?untyped? sort) -> untyped
+
+      def detect_aggregations: (untyped nodes, ?untyped? sort) -> untyped
+
+      def extract_duration_aggregations: (untyped statistics) -> (::Array[untyped] | untyped)
+
+      def extract_status_aggregations: (untyped statistics) -> untyped
+
+      # Extracts the sort field and returns it as a single-element array when it matches the requested type.
+      # Select fields (e.g. name, stage_name) need to be added to select/group-by,
+      # while aggregation fields need to be added to aggregations.
+      def extract_sort_field: (untyped sort, select_field: untyped) -> ::Array[untyped]
+
+      def node_selection: (untyped lookahead) -> untyped
+    end
+  end
+end

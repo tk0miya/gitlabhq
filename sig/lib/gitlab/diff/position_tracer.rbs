@@ -1,0 +1,49 @@
+# Finds the diff position in the new diff that corresponds to the same location
+# specified by the provided position in the old diff.
+module Gitlab
+  module Diff
+    class PositionTracer
+      @project: untyped
+
+      @old_diff_refs: untyped
+
+      @new_diff_refs: untyped
+
+      @paths: untyped
+
+      @ignore_whitespace_change: untyped
+
+      @ac_diffs: untyped
+
+      @bd_diffs: untyped
+
+      @cd_diffs: untyped
+
+      attr_accessor project: untyped
+
+      attr_accessor old_diff_refs: untyped
+
+      attr_accessor new_diff_refs: untyped
+
+      attr_accessor paths: untyped
+
+      def initialize: (project: untyped, old_diff_refs: untyped, new_diff_refs: untyped, ?paths: untyped?) -> void
+
+      def trace: (untyped old_position) -> (nil | untyped)
+
+      def ac_diffs: () -> untyped
+
+      def bd_diffs: () -> untyped
+
+      def cd_diffs: () -> untyped
+
+      def diff_file: (untyped position) -> untyped
+
+      private
+
+      def strategy: (untyped old_position) -> untyped
+
+      def compare: (untyped start_sha, untyped head_sha, ?straight: bool) -> untyped
+    end
+  end
+end

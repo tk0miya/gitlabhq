@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    class Config
+      module Yaml
+        module Tags
+          # This class is the entry point for transforming custom YAML tags back
+          # into primitive objects.
+          # Usage: `Resolver.new(a_hash_including_custom_tag_objects).to_hash`
+          #
+          class Resolver
+            @config: untyped
+
+            attr_reader config: untyped
+
+            def initialize: (untyped config) -> void
+
+            def to_hash: () -> untyped
+
+            def deep_resolve: (untyped object) -> untyped
+
+            def resolve_wrapper: (untyped object) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,26 @@
+module Gitlab
+  module GithubImport
+    module Stage
+      class ImportAttachmentsWorker
+        include ApplicationWorker
+
+        include StageMethods
+
+        # client - An instance of Gitlab::GithubImport::Client.
+        # project - An instance of Project.
+        def import: (untyped client, untyped project) -> untyped
+
+        private
+
+        # For future issue/mr/milestone/etc attachments importers
+        def importers: () -> ::Array[untyped]
+
+        def start_importer: (untyped project, untyped importer, untyped client) -> untyped
+
+        def skip_to_next_stage: (untyped project) -> untyped
+
+        def move_to_next_stage: (untyped project, ?::Hash[untyped, untyped] waiters) -> untyped
+      end
+    end
+  end
+end

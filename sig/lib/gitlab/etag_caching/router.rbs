@@ -1,0 +1,18 @@
+module Gitlab
+  module EtagCaching
+    module Router
+      Route: untyped
+
+      module Helpers
+        def build_graphql_route: (untyped regexp, untyped name, untyped feature_category) -> untyped
+
+        def build_rails_route: (untyped regexp, untyped name, untyped controller, untyped action_name) -> untyped
+      end
+
+      # Performing Rails routing match before GraphQL would be more expensive
+      # for the GraphQL requests because we need to traverse all of the RESTful
+      # route definitions before falling back to GraphQL.
+      def self.match: (untyped request) -> untyped
+    end
+  end
+end

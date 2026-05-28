@@ -1,0 +1,187 @@
+module Gitlab
+  module GithubImport
+    # Class that can be used for finding a GitLab user ID based on a GitHub user
+    # ID or username.
+    #
+    # Any found user IDs are cached in Redis to reduce the number of SQL queries
+    # executed over time. Valid keys are refreshed upon access so frequently
+    # used keys stick around.
+    #
+    # Lookups are cached even if no ID was found to remove the need for querying
+    # the database when most queries are not going to return results anyway.
+    class UserFinder
+      @project: untyped
+
+      @client: untyped
+
+      include Gitlab::ExclusiveLeaseHelpers
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader project: untyped
+
+      attr_reader client: untyped
+
+      # The base cache key to use for caching user IDs for a given GitHub user ID.
+      ID_CACHE_KEY: "github-import/user-finder/user-id/%s"
+
+      # The base cache key to use for caching user IDs for a given GitHub email address.
+      ID_FOR_EMAIL_CACHE_KEY: "github-import/user-finder/id-for-email/%s"
+
+      # The base cache key to use for caching the Email addresses of GitHub usernames.
+      EMAIL_FOR_USERNAME_CACHE_KEY: "github-import/user-finder/email-for-username/%s"
+
+      # The base cache key to use for caching the user ETAG response headers
+      USERNAME_ETAG_CACHE_KEY: "github-import/user-finder/user-etag/%s"
+
+      # The base cache key to store whether an email has been fetched for a project
+      EMAIL_FETCHED_FOR_PROJECT_CACHE_KEY: "github-import/user-finder/%{project}/email-fetched/%{username}"
+
+      SOURCE_NAME_CACHE_KEY: "github-import/user-finder/%{project}/source-name/%{username}"
+
+      EMAIL_API_CALL_LOGGING_MESSAGE: { true => "Fetching email from GitHub with ETAG header", false => "Fetching email from GitHub" }
+
+      # project - An instance of `Project`
+      # client - An instance of `Gitlab::GithubImport::Client`
+      def initialize: (untyped project, untyped client) -> void
+
+      # Returns the GitLab user ID of an object's author.
+      #
+      # If the object has no author ID we'll use the ID of the GitLab ghost
+      # user.
+      # object - An instance of `Hash` or a `Github::Representer`
+      def author_id_for: (untyped object, ?author_key: ::Symbol) -> untyped
+
+      # Returns the GitLab user ID for a GitHub user. Can return nil if `ghost` is `false`.
+      # The `ghost: false` argument is used to avoid assigning ghost users as assignees or reviewers.
+      #
+      # @param user [Gitlab::GithubImport::Representation::User, Hash]
+      # @param ghost [Boolean] Determines what to do if user is nil or is the GitHub ghost.
+      #   If `true`, ID of the GitLab ghost is returned.
+      #   If `false`, nil is returned.
+      # @return [Integer, NilClass]
+      def user_id_for: (untyped user, ?ghost: bool) -> untyped
+
+      # Returns the GitLab user ID from placeholder or reassigned_to user.
+      def source_user: (untyped user) -> untyped
+
+      # Returns true if GitLab user has accepted their reassignment status or if UCM is not enabled
+      def source_user_accepted?: (untyped user) -> (true | untyped)
+
+      # Retrieves the name of the user associated with a specified GitHub username.
+      #
+      # To prevent multiple concurrent requests for the same user, a exclusive lock is used.
+      # The name is cached to avoid multiple calls to GitHub.
+      #
+      # @param [String] username GitHub username
+      # @return [String] name of the user
+      def fetch_source_name_from_github: (untyped username) -> untyped
+
+      # Returns the GitLab ID for the given GitHub ID or username.
+      #
+      # id - The ID of the GitHub user.
+      # username - The username of the GitHub user.
+      def find: (untyped id, untyped username) -> untyped
+
+      # Finds a user ID from the cache for a given GitHub ID or Email.
+      def find_from_cache: (untyped id, ?untyped? email) -> (::Array[untyped] | ::Array[false] | untyped)
+
+      # Finds a GitLab user ID from the database for a given GitHub user ID or
+      # Email.
+      def find_id_from_database: (untyped id, untyped email) -> untyped
+
+      # @param username [String] The username of the GitHub user.
+      #
+      # @return [String] If public email is found
+      # @return [Nil] If public email or username does not exist
+      def email_for_github_username: (untyped username) -> untyped
+
+      def cached_id_for_github_id: (untyped id) -> untyped
+
+      def cached_id_for_github_email: (untyped email) -> untyped
+
+      # If importing from github.com, queries and caches the GitLab user ID for
+      # a GitHub user ID, if one was found.
+      #
+      # When importing from Github Enterprise, do not query user by Github ID
+      # since we only have users' Github ID from github.com.
+      def id_for_github_id: (untyped id) -> untyped
+
+      # Queries and caches the GitLab user ID for a GitHub email, if one was
+      # found.
+      def id_for_github_email: (untyped email) -> untyped
+
+      def query_id_for_github_id: (untyped id) -> untyped
+
+      def query_id_for_github_email: (untyped email) -> untyped
+
+      # Reads an ID from the cache.
+      #
+      # The return value is an Array with two values:
+      #
+      # 1. A boolean indicating if the key was present or not.
+      # 2. The ID as an Integer, or nil in case no ID could be found.
+      def read_id_from_cache: (untyped key) -> ::Array[untyped]
+
+      private
+
+      def lease_key: (untyped username) -> ::String
+
+      # Reads source name from internal cache for the given username
+      #
+      # @param [String] username The username of the GitHub user.
+      # @return [String|nil] Return the cached source name or nil
+      def read_source_name_from_cache: (untyped username) -> untyped
+
+      # Caches the source name associated to the username
+      #
+      # @param [String] username The username of the GitHub user.
+      # @param [String] source_name The source_name to value to be cached.
+      def cache_source_name: (untyped username, untyped source_name) -> untyped
+
+      # Retrieves the email associated with the given username from the cache.
+      #
+      # The return value can be an email, an empty string, or nil.
+      #
+      # If an empty string is returned, it indicates that the user's email was fetched but not set on GitHub.
+      # If nil is returned, it indicates that the user's email wasn't fetched or the cache has expired.
+      # If an email is returned, it means the user has a public email set, and it has been successfully cached.
+      def read_email_from_cache: (untyped username) -> untyped
+
+      def read_etag_from_cache: (untyped username) -> untyped
+
+      def email_fetched_for_project?: (untyped username) -> untyped
+
+      def fetch_email_from_github: (untyped username, ?etag: untyped?) -> untyped
+
+      # Caches the email associated to the username
+      #
+      # An empty email is cached when the user email isn't set on GitHub.
+      # This is done to prevent UserFinder from fetching the user's email again when the user's email isn't set on
+      # GitHub
+      def cache_email!: (untyped username, untyped email) -> (nil | untyped)
+
+      def cache_etag!: (untyped username) -> (nil | untyped)
+
+      def set_project_as_checked!: (untyped username) -> untyped
+
+      def clear_caches!: (untyped username) -> untyped
+
+      def email_cache_key: (untyped username) -> untyped
+
+      def etag_cache_key: (untyped username) -> untyped
+
+      def source_name_cache_key: (untyped username) -> untyped
+
+      def email_fetched_for_project_cache_key: (untyped username) -> untyped
+
+      def log: (untyped message, ?username: untyped?) -> untyped
+
+      def source_user_mapper: () -> untyped
+
+      def user_mapping_enabled?: () -> untyped
+
+      def map_to_personal_namespace_owner?: () -> untyped
+    end
+  end
+end

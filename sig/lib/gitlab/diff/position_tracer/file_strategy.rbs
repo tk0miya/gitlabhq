@@ -1,0 +1,13 @@
+module Gitlab
+  module Diff
+    class PositionTracer
+      class FileStrategy < BaseStrategy
+        def trace: (untyped position) -> ({ position: untyped, outdated: true } | { position: untyped, outdated: false } | { outdated: true })
+
+        private
+
+        def new_position: (untyped position, untyped diff_file) -> untyped
+      end
+    end
+  end
+end

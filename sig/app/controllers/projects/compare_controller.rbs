@@ -1,0 +1,85 @@
+class Projects::CompareController < Projects::ApplicationController
+  @rapid_diffs_presenter: untyped
+
+  @compare: untyped
+
+  @start_ref: untyped
+
+  @ref: untyped
+
+  @diffs: untyped
+
+  @environment: untyped
+
+  @diff_notes_disabled: untyped
+
+  @merge_request: untyped
+
+  @compare_params: untyped
+
+  include DiffForPath
+
+  include DiffHelper
+
+  include RendersCommits
+
+  include CompareHelper
+
+  include Projects::TargetProjects
+
+  include RapidDiffs::Resource
+
+  include HandlesGitalyErrors
+
+  def index: () -> untyped
+
+  def show: () -> untyped
+
+  def diff_for_path: () -> untyped
+
+  def create: () -> untyped
+
+  def signatures: () -> untyped
+
+  def target_projects_json: () -> untyped
+
+  private
+
+  def rapid_diffs_presenter: () -> (nil | untyped)
+
+  def build_from_to_vars: () -> { from: untyped, to: untyped, from_project_id: untyped }
+
+  def validate_refs!: () -> (nil | untyped)
+
+  # target == start_ref == from
+  def target_project: () -> untyped
+
+  # source == head_ref == to
+  def source_project: () -> untyped
+
+  def compare: () -> untyped
+
+  # Check if Gitaly is available using the health check service.
+  # Raises Gitlab::Git::CommandError if Gitaly is unavailable, which will be
+  # caught by HandlesGitalyErrors and show the graceful degradation message.
+  def verify_gitaly_availability!: () -> (nil | untyped)
+
+  def straight: () -> untyped
+
+  def start_ref: () -> untyped
+
+  def head_ref: () -> untyped
+
+  def define_commits: () -> untyped
+
+  def define_diffs: () -> untyped
+
+  def define_environment: () -> (untyped | nil)
+
+  def define_diff_notes_disabled: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def merge_request: () -> untyped
+
+  def compare_params: () -> untyped
+end

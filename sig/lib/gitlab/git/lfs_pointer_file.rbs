@@ -1,0 +1,27 @@
+module Gitlab
+  module Git
+    class LfsPointerFile
+      @data: untyped
+
+      @pointer: untyped
+
+      @size: untyped
+
+      @sha256: untyped
+
+      VERSION: "https://git-lfs.github.com/spec/v1"
+
+      VERSION_LINE: ::String
+
+      def initialize: (untyped data) -> void
+
+      def pointer: () -> untyped
+
+      def size: () -> untyped
+
+      def sha256: () -> untyped
+
+      def inspect: () -> ::String
+    end
+  end
+end

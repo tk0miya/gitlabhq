@@ -1,0 +1,47 @@
+module Gitlab
+  class Seeder
+    extend ActionView::Helpers::NumberHelper
+
+    MASS_INSERT_PREFIX: "mass_insert"
+
+    MASS_INSERT_PROJECT_START: ::String
+
+    MASS_INSERT_GROUP_START: ::String
+
+    MASS_INSERT_USER_START: ::String
+
+    REPORTED_USER_START: "reported_user_"
+
+    ESTIMATED_INSERT_PER_MINUTE: 250000
+
+    MASS_INSERT_ENV: "MASS_INSERT"
+
+    module NamespaceSeed
+      extend ActiveSupport::Concern
+    end
+
+    module ProjectSeed
+      extend ActiveSupport::Concern
+    end
+
+    module UserSeed
+      extend ActiveSupport::Concern
+    end
+
+    def self.log_message: (untyped message) -> untyped
+
+    def self.with_mass_insert: (untyped size, untyped model) { () -> untyped } -> (nil | untyped)
+
+    def self.estimated_time_message: (untyped size) -> untyped
+
+    def self.quiet: () { () -> untyped } -> untyped
+
+    def self.without_gitaly_timeout: () { () -> untyped } -> untyped
+
+    def self.without_new_note_notifications: () { () -> untyped } -> untyped
+
+    def self.without_statement_timeout: () { () -> untyped } -> untyped
+
+    def self.without_database_logging: () { () -> untyped } -> untyped
+  end
+end

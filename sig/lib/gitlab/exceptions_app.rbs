@@ -1,0 +1,21 @@
+module Gitlab
+  class ExceptionsApp < ActionDispatch::PublicExceptions
+    @html_rendered: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    REQUEST_ID_PLACEHOLDER: "<!-- REQUEST_ID -->"
+
+    REQUEST_ID_PARAGRAPH: "<p>Request ID: <code>%s</code></p>"
+
+    def call: (untyped env) -> ::Array[untyped]
+
+    private
+
+    def render_html: (untyped status) -> untyped
+
+    def html_rendered?: () -> untyped
+
+    def insert_request_id: (untyped env, untyped body) -> untyped
+  end
+end

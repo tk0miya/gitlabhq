@@ -1,0 +1,75 @@
+module Banzai
+  module Filter
+    # Using `[[_TOC_]]` or `[TOC]` (both case insensitive) on it's own line,
+    # inserts a Table of Contents list.
+    #
+    # `[[_TOC_]]` is based on the Gollum syntax. This way we have
+    # some consistency between wiki and normal markdown.
+    # Parser will have converted it into a wikilink.
+    #
+    # `[toc]` is a generally accepted form, used by Typora for example.
+    #
+    # Based on Banzai::Filter::GollumTagsFilter
+    class TableOfContentsTagFilter < HTML::Pipeline::Filter
+      @toc: untyped
+
+      prepend Concerns::PipelineTimingCheck
+
+      OR_SELF: "descendant-or-self::text()"
+
+      TOC_QUERY: ::String
+
+      GOLLUM_TOC_QUERY: ::String
+
+      HEADER_CSS: "h1, h2, h3, h4, h5, h6"
+
+      HEADER_XPATH: untyped
+
+      def call: () -> untyped
+
+      private
+
+      def process_toc_tag: (untyped node) -> untyped
+
+      def toc_tag_gollum?: (untyped node) -> untyped
+
+      def build_toc: () -> untyped
+
+      def build_toc_list: (untyped children, ?root: bool) -> (nil | untyped)
+
+      def build_toc_item: (untyped header_node) -> untyped
+
+      class HeaderNode
+        @node: untyped
+
+        @href: untyped
+
+        @children: untyped
+
+        @parent: untyped
+
+        @level: untyped
+
+        @text: untyped
+
+        attr_reader node: untyped
+
+        attr_reader href: untyped
+
+        attr_reader parent: untyped
+
+        attr_reader children: untyped
+
+        def initialize: (?node: untyped?, ?href: untyped?, ?previous_header: untyped?) -> void
+
+        def level: () -> (0 | untyped)
+
+        def text: () -> ("" | untyped)
+
+        private
+
+        def find_parent: (untyped previous_header) -> (nil | untyped)
+      end
+    end
+  end
+end

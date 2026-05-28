@@ -1,0 +1,11 @@
+module Resolvers
+  module Ci
+    class ProjectPipelineScheduleStatusCountsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias project object
+
+      def resolve: () -> { active: untyped, inactive: untyped, total: untyped }
+    end
+  end
+end

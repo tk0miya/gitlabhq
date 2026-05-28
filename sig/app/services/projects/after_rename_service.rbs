@@ -1,0 +1,76 @@
+module Projects
+  # Service class for performing operations that should take place after a
+  # project has been renamed.
+  #
+  # Example usage:
+  #
+  #     project = Project.find(42)
+  #
+  #     project.update(...)
+  #
+  #     Projects::AfterRenameService.new(project).execute
+  class AfterRenameService
+    @project: untyped
+
+    @path_before: untyped
+
+    @full_path_before: untyped
+
+    @full_path_after: untyped
+
+    @send_move_instructions: untyped
+
+    include BaseServiceUtility
+
+    # @return [String] The Project being renamed.
+    attr_reader project: untyped
+
+    # @return [String] The path slug the project was using, before the rename took place.
+    attr_reader path_before: untyped
+
+    # @return [String] The full path of the namespace + project, before the rename took place.
+    attr_reader full_path_before: untyped
+
+    # @return [String] The full path of the namespace + project, after the rename took place.
+    attr_reader full_path_after: untyped
+
+    RenameFailedError: untyped
+
+    # @param [Project] project The Project being renamed.
+    # @param [String] path_before The path slug the project was using, before the rename took place.
+    # @param [Boolean] send_move_instructions Whether to email project move instructions.
+    def initialize: (untyped project, path_before: untyped, full_path_before: untyped, ?send_move_instructions: bool) -> void
+
+    def execute: () -> untyped
+
+    def rename_base_repository_in_registry!: () -> (nil | untyped)
+
+    def ensure_registry_tags_can_be_handled: () -> (nil | untyped)
+
+    def expire_caches_before_rename: () -> untyped
+
+    def rename_or_migrate_repository!: () -> (nil | untyped)
+
+    def send_move_instructions: () -> (nil | untyped)
+
+    def execute_system_hooks: () -> untyped
+
+    def update_repository_configuration: () -> untyped
+
+    def rename_transferred_documents: () -> (untyped | nil)
+
+    def log_completion: () -> untyped
+
+    def send_move_instructions?: () -> untyped
+
+    def rename_uploads?: () -> untyped
+
+    def project_path: () -> untyped
+
+    def namespace_full_path: () -> untyped
+
+    def rename_failed!: (untyped error) -> untyped
+
+    def publish_event: () -> untyped
+  end
+end

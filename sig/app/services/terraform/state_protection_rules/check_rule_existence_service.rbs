@@ -1,0 +1,19 @@
+module Terraform
+  module StateProtectionRules
+    class CheckRuleExistenceService < BaseProjectService
+      SUCCESS_RESPONSE_PROTECTED: untyped
+
+      SUCCESS_RESPONSE_UNPROTECTED: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def find_protection_rule: () -> untyped
+
+      def role_sufficient?: (untyped rule) -> (false | untyped)
+
+      def source_allowed?: (untyped rule) -> untyped
+    end
+  end
+end

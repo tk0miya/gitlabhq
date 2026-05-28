@@ -1,0 +1,19 @@
+module WebpackHelper
+  @used_paths: untyped
+
+  include ViteHelper
+
+  def prefetch_link_tag: (untyped source) -> untyped
+
+  def webpack_bundle_tag: (untyped bundle) -> untyped
+
+  def webpack_preload_asset_tag: (untyped asset, ?::Hash[untyped, untyped] options) -> untyped
+
+  def webpack_controller_bundle_tags: (?untyped? custom_action_name) -> untyped
+
+  def webpack_entrypoint_paths: (untyped source, ?extension: untyped?, ?exclude_duplicates: bool) -> ("" | untyped)
+
+  def webpack_public_host: () -> untyped
+
+  def webpack_public_path: () -> untyped
+end

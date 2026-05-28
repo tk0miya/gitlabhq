@@ -1,0 +1,9 @@
+class PostReceive
+  include ApplicationWorker
+
+  include Gitlab::Experiment::Dsl
+
+  include ::Gitlab::ExclusiveLeaseHelpers
+
+  def perform: (untyped gl_repository, untyped identifier, untyped changes, ?::Hash[untyped, untyped] push_options, ?::Hash[untyped, untyped] params) -> untyped
+end

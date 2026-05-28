@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+module Packages
+  module Npm
+    class CreateTagService
+      @package: untyped
+
+      @tag_name: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader package: untyped
+
+      attr_reader tag_name: untyped
+
+      def initialize: (untyped package, untyped tag_name) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def existing_tag: () -> untyped
+    end
+  end
+end

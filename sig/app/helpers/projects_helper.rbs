@@ -1,0 +1,240 @@
+module ProjectsHelper
+  @project_incident_management_setting: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include CompareHelper
+
+  include Gitlab::Allowable
+
+  def project_incident_management_setting: () -> untyped
+
+  def link_to_project: (untyped project) -> untyped
+
+  def link_to_member_avatar: (untyped author, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def author_content_tag: (untyped author, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def link_to_member: (untyped author, ?::Hash[untyped, untyped] opts) ?{ (?) -> untyped } -> ("(deleted)" | untyped)
+
+  def push_project_breadcrumbs: (untyped project) -> untyped
+
+  def remove_project_message: () -> untyped
+
+  def link_to_namespace_change_doc: () -> untyped
+
+  def link_to_data_loss_doc: () -> untyped
+
+  def transfer_project_message: (untyped project) -> untyped
+
+  def transfer_project_confirm_button: () -> untyped
+
+  def remove_fork_project_description_message: (untyped project) -> untyped
+
+  def vue_fork_divergence_data: (untyped project, untyped ref) -> (::Hash[untyped, untyped] | { project_path: untyped, selected_branch: untyped, source_name: untyped, source_path: untyped, source_default_branch: untyped, can_sync_branch: untyped, ahead_compare_path: untyped, create_mr_path: untyped, view_mr_path: untyped, behind_compare_path: untyped })
+
+  def remove_fork_project_warning_message: (untyped project) -> untyped
+
+  def remove_fork_project_confirm_json: (untyped project, untyped remove_form_id) -> { remove_form_id: untyped, button_text: untyped, confirm_danger_message: untyped, phrase: untyped }
+
+  def visible_fork_source: (untyped project) -> (untyped | nil)
+
+  def can_change_visibility_level?: (untyped project, untyped current_user) -> untyped
+
+  def can_disable_emails?: (untyped project, untyped current_user) -> (false | untyped)
+
+  def can_set_diff_preview_in_email?: (untyped project, untyped current_user) -> (false | untyped)
+
+  def last_push_event: () -> untyped
+
+  def link_to_autodeploy_doc: () -> untyped
+
+  def autodeploy_flash_notice: (untyped branch_name) -> untyped
+
+  def load_pipeline_status: (untyped projects) -> untyped
+
+  def load_catalog_resources: (untyped projects) -> untyped
+
+  def last_pipeline_from_status_cache: (untyped project) -> (nil | untyped)
+
+  def show_no_ssh_key_message?: (untyped project) -> untyped
+
+  def show_invalid_gpg_key_message?: (untyped project) -> (false | true)
+
+  def show_no_password_message?: () -> untyped
+
+  def no_password_message: () -> untyped
+
+  # Returns true if any projects are present.
+  #
+  # If the relation has a LIMIT applied we'll cast the relation to an Array
+  # since repeated any? checks would otherwise result in multiple COUNT queries
+  # being executed.
+  #
+  # If no limit is applied we'll just issue a COUNT since the result set could
+  # be too large to load into memory.
+  def any_projects?: (untyped projects) -> untyped
+
+  def push_to_create_project_command: (?untyped user) -> ::String
+
+  def show_xcode_link?: (?untyped project) -> untyped
+
+  def xcode_uri_to_repo: (?untyped project) -> ::String
+
+  def explore_projects_tab?: () -> untyped
+
+  def show_count?: (?disabled: bool, ?compact_mode: bool) -> untyped
+
+  def error_tracking_setting_project_json: () -> (nil | untyped)
+
+  def external_classification_label_help_message: () -> untyped
+
+  def project_can_be_shared?: () -> untyped
+
+  def membership_locked?: () -> false
+
+  def project_license_name: (untyped project) -> untyped
+
+  def show_lfs_misconfiguration_banner?: (untyped project) -> (false | untyped)
+
+  def project_permissions_panel_data: (untyped project) -> { packagesAvailable: untyped, packagesHelpPath: untyped, currentSettings: untyped, canAddCatalogResource: untyped, canSetDiffPreviewInEmail: untyped, canChangeVisibilityLevel: untyped, canDisableEmails: untyped, allowedVisibilityOptions: untyped, visibilityHelpPath: untyped, registryAvailable: untyped, registryHelpPath: untyped, lfsAvailable: untyped, lfsHelpPath: untyped, lfsObjectsExist: untyped, lfsObjectsRemovalHelpPath: untyped, pagesAvailable: untyped, pagesAccessControlEnabled: untyped, pagesAccessControlForced: untyped, pagesHelpPath: untyped, issuesHelpPath: untyped, membersPagePath: untyped, environmentsHelpPath: untyped, featureFlagsHelpPath: untyped, releasesHelpPath: untyped, infrastructureHelpPath: untyped, groupPathRegex: untyped }
+
+  def project_classes: (untyped project) -> ("project-highlight-puc" | "")
+
+  # Returns the confirm phrase the user needs to type in order to delete the project
+  #
+  # Thus the phrase should include the namespace to make it very clear to the
+  # user which project is subject to deletion.
+  # Relevant issue: https://gitlab.com/gitlab-org/gitlab/-/issues/343591
+  def delete_confirm_phrase: (untyped project) -> untyped
+
+  def able_to_see_issues?: (untyped project, untyped user) -> untyped
+
+  def able_to_see_merge_requests?: (untyped project, untyped user) -> untyped
+
+  def able_to_see_forks_count?: (untyped project, untyped user) -> untyped
+
+  def fork_button_data_attributes: (untyped project) -> (nil | { can_fork_project: untyped, can_read_code: untyped, forks_count: untyped, new_fork_url: untyped, project_forks_url: untyped, user_fork_url: untyped })
+
+  def star_count_data_attributes: (untyped project) -> { project_id: untyped, sign_in_path: untyped, star_count: untyped, starred: untyped, starrers_path: untyped }
+
+  def notification_data_attributes: (untyped project) -> (nil | { emails_disabled: untyped, notification_dropdown_items: untyped, notification_help_page_path: untyped, notification_level: untyped })
+
+  def home_panel_data_attributes: () -> untyped
+
+  def import_from_bitbucket_message: () -> untyped
+
+  def archiving_available?: (untyped project) -> (false | untyped)
+
+  def show_dormant_project_deletion_banner?: (untyped project) -> (false | untyped)
+
+  def dormant_project_deletion_date: (untyped project) -> untyped
+
+  def show_clusters_alert?: (untyped project) -> untyped
+
+  def clusters_deprecation_alert_message: () -> untyped
+
+  def project_coverage_chart_data_attributes: (untyped daily_coverage_options, untyped ref) -> { graph_endpoint: ::String, graph_start_date: untyped, graph_end_date: untyped, graph_ref: untyped, graph_csv_path: ::String }
+
+  def localized_project_human_access: (untyped access) -> untyped
+
+  def badge_count: (untyped number) -> untyped
+
+  def remote_mirror_setting_enabled?: () -> false
+
+  def http_clone_url_to_repo: (untyped project) -> untyped
+
+  def ssh_clone_url_to_repo: (untyped project) -> untyped
+
+  def can_view_branch_rules?: () -> untyped
+
+  def can_push_code?: () -> untyped
+
+  def can_admin_associated_clusters?: (untyped project) -> untyped
+
+  def branch_rules_path: () -> untyped
+
+  def visibility_level_content: (untyped project, ?css_class: untyped?, ?icon_css_class: untyped?, ?icon_variant: untyped?) -> untyped
+
+  def dashboard_projects_app_data: () -> untyped
+
+  def show_dashboard_projects_welcome_page?: () -> untyped
+
+  def project_pages_domain_choices: () -> untyped
+
+  def project_archive_settings_app_data: (untyped project) -> { resource_type: "project", resource_id: untyped, resource_path: untyped, marked_for_deletion: untyped, help_path: untyped }
+
+  def project_unarchive_settings_app_data: (untyped project) -> { resource_type: "project", resource_id: untyped, resource_path: untyped, ancestors_archived: untyped, help_path: untyped }
+
+  def show_archived_badge?: (untyped project) -> untyped
+
+  private
+
+  def issues_help_page_path: (untyped project) -> untyped
+
+  def can_admin_project_clusters?: (untyped project) -> untyped
+
+  def can_admin_group_clusters?: (untyped project) -> untyped
+
+  def create_merge_request_path: (untyped project, untyped source_project, untyped ref, untyped merge_request) -> (nil | untyped)
+
+  def can_sync_branch?: (untyped project, untyped ref) -> (false | untyped)
+
+  def can_push_initial_commit_to_namespace?: (untyped namespace) -> untyped
+
+  # This function is here to solve rubocop error of line too long.
+  # Need to remove in the cleanup of the security manager feature flag.
+  def localized_security_manager_role_name: () -> untyped
+
+  def localized_access_names: () -> untyped
+
+  def configure_oauth_import_message: (untyped provider, untyped help_url) -> untyped
+
+  def project_lfs_status: (untyped project) -> untyped
+
+  def git_user_name: () -> untyped
+
+  def git_user_email: () -> (untyped | "your@email.com")
+
+  def default_url_to_repo: (?untyped project) -> untyped
+
+  def default_clone_label: () -> untyped
+
+  def default_clone_protocol: () -> untyped
+
+  def extra_default_clone_protocol: () -> (untyped | "ssh")
+
+  def current_ref: () -> untyped
+
+  def project_child_container_class: (untyped view_path) -> ("gl-mt-3" | ::String)
+
+  def project_merge_requests: (untyped project) -> untyped
+
+  def restricted_levels: () -> (::Array[untyped] | untyped)
+
+  def project_permissions_settings: (untyped project) -> { packagesEnabled: untyped, packageRegistryAccessLevel: untyped, packageRegistryAllowAnyoneToPullOption: untyped, visibilityLevel: untyped, requestAccessEnabled: untyped, issuesAccessLevel: untyped, repositoryAccessLevel: untyped, forkingAccessLevel: untyped, mergeRequestsAccessLevel: untyped, buildsAccessLevel: untyped, wikiAccessLevel: untyped, snippetsAccessLevel: untyped, pagesAccessLevel: untyped, analyticsAccessLevel: untyped, containerRegistryEnabled: untyped, lfsEnabled: untyped, emailsEnabled: untyped, extendedPratExpiryWebhooksExecute: untyped, showDiffPreviewInEmail: untyped, monitorAccessLevel: untyped, showDefaultAwardEmojis: untyped, warnAboutPotentiallyUnwantedCharacters: untyped, enforceAuthChecksOnUploads: untyped, securityAndComplianceAccessLevel: untyped, containerRegistryAccessLevel: untyped, environmentsAccessLevel: untyped, featureFlagsAccessLevel: untyped, releasesAccessLevel: untyped, infrastructureAccessLevel: untyped, modelExperimentsAccessLevel: untyped, modelRegistryAccessLevel: untyped }
+
+  def project_allowed_visibility_levels: (untyped project) -> untyped
+
+  def can_show_last_commit_in_list?: (untyped project) -> untyped
+
+  def pages_https_only_disabled?: () -> untyped
+
+  def pages_https_only_title: () -> (nil | "You must enable HTTPS for all your domains first")
+
+  def filter_starrer_path: (?::Hash[untyped, untyped] options) -> ::String
+
+  def sidebar_operations_paths: () -> ::Array["environments" | "clusters" | "cluster_agents" | "functions" | "error_tracking" | "alert_management" | "incidents" | "incident_management" | "user" | "gcp" | "logs" | "product_analytics" | "metrics_dashboard" | "feature_flags" | "terraform"]
+
+  def show_visibility_confirm_modal?: (untyped project) -> untyped
+
+  def confirm_reduce_visibility_message: (untyped project) -> untyped
+
+  def project_permissions_data: (untyped project, ?untyped? target_form_id) -> { target_form_id: untyped, button_testid: "reduce-project-visibility-button", confirm_button_text: untyped, confirm_danger_message: untyped, phrase: untyped, additional_information: untyped, html_confirmation_message: untyped, show_visibility_confirm_modal: untyped }
+
+  def gitlab_duo_settings_data: (untyped project) -> { duo_availability_cascading_settings: untyped, duo_remote_flows_cascading_settings: untyped, duo_foundational_flows_cascading_settings: untyped, tool_approval_for_session_cascading_settings: untyped }
+
+  def delete_dormant_projects?: () -> untyped
+
+  def project_more_action_data: (untyped project) -> { can_request_access: untyped, can_withdraw_access_request: untyped, request_access_path: untyped, withdraw_access_request_path: untyped, dashboard_path: untyped }
+end

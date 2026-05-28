@@ -1,0 +1,49 @@
+# Groups::UserGroupsFinder
+#
+# Used to filter Groups where a user is member
+#
+# Arguments:
+#   current_user - user requesting group info on target user
+#   target_user - user for which groups will be found
+#   params:
+#     permissions: string (see Types::Groups::UserPermissionsEnum)
+#     search: string used for search on path and group name
+#     sort: string (see Types::Namespaces::GroupSortEnum)
+#     exact_matches_first: boolean used to enable priotization of exact matches
+#
+# Initially created to filter user groups and descendants where the user can create projects
+module Groups
+  class UserGroupsFinder < Base
+    @current_user: untyped
+
+    @target_user: untyped
+
+    @params: untyped
+
+    def initialize: (untyped current_user, untyped target_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader target_user: untyped
+
+    attr_reader params: untyped
+
+    def by_permission_scope: () -> untyped
+
+    def permission_scope_create_projects?: () -> untyped
+
+    def permission_scope_transfer_projects?: () -> untyped
+
+    def permission_scope_import_projects?: () -> untyped
+
+    def by_organization: (untyped items) -> untyped
+
+    def sort: (untyped items) -> untyped
+
+    def exact_matches_first_enabled?: () -> untyped
+  end
+end

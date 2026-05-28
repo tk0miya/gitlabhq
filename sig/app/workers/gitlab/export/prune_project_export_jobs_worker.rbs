@@ -1,0 +1,14 @@
+module Gitlab
+  module Export
+    class PruneProjectExportJobsWorker
+      include ApplicationWorker
+
+      # rubocop:disable Scalability/CronWorkerContext
+      # This worker updates several import states inline and does not schedule
+      # other jobs. So no context needed
+      include CronjobQueue
+
+      def perform: () -> untyped
+    end
+  end
+end

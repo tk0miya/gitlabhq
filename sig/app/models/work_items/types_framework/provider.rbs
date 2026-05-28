@@ -1,0 +1,132 @@
+module WorkItems
+  module TypesFramework
+    # This is the single source of truth to fetch work item types.
+    #
+    # In the future namespaces can use system-defined and custom work item types.
+    # This class aims to abstract that fetching logic away so application code doesn't need to care
+    # about the composition of types of a given namespace.
+    #
+    # For now, we use this interface to fetch types from the database to make the switchover easier.
+    # We already use the final methods from the POC, but will change the implementation using caching etc.
+    # See https://gitlab.com/gitlab-org/gitlab/-/merge_requests/214894
+    class Provider
+      # Always try to pass the current namespace or subtypes(Group, Project::Namespace) and not the root ancestor.
+      #
+      # We will use it to fetch custom types and apply filtering.
+      #
+      # For custom types we need to either
+      # 1. fetch types by organization_id of the namespace for Self-Managed
+      # 2. fetch types by the root group for Saas
+      #
+      # See https://gitlab.com/groups/gitlab-org/-/work_items/20291
+      #
+      # NOTE: If a `Project` instance is passed, we automatically use its `project_namespace`.
+      # Projects are not Namespace objects and will cause unexpected behaviour otherwise.
+      @namespace: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ALL_BASE_TYPES: ::Array["issue" | "incident" | "test_case" | "requirement" | "task" | "objective" | "key_result" | "epic" | "ticket"]
+
+      def self.unfiltered_base_types: () -> untyped
+
+      # Returns base types that can be used as issue types.
+      # This method supports legacy systems that work with issue types
+      # (e.g., API endpoints, issue type enums, build parameters).
+      def self.unfiltered_base_types_for_issues: () -> untyped
+
+      def initialize: (?untyped? namespace) -> void
+
+      attr_reader namespace: untyped
+
+      def fetch_work_item_type: (untyped work_item_type) -> untyped
+
+      def all: () -> untyped
+
+      # Temporary method to maintain compatibility for deprecated
+      # name and onlyAvailable args that will be removed in 19.0
+      def allowed_types: () -> (::Array[untyped] | untyped)
+
+      # Override in EE
+      # TODO: Integrate filtering into .all
+      # https://gitlab.com/gitlab-org/gitlab/-/work_items/585707
+      def filtered_types: () -> untyped
+
+      # Returns all types for the namespace with FF/license filters applied,
+      # but without the project-only OKR gating that `filtered_types` applies.
+      #
+      # Use this when callers need OKR types to be visible for both a group
+      # and its projects under the same FF state, instead of being hidden on
+      # groups by the `project_namespace?` guard in `filtered_types`. Typical
+      # use case: surfacing the full set of available types in UI/admin
+      # contexts where group and project should answer identically for OKR.
+      #
+      # Epic gating is unchanged from `filtered_types` (the project-level
+      # `project_epics_enabled?` check still applies on projects).
+      #
+      # In CE there is no FF/license filtering, so this is equivalent to
+      # `all`. The EE override applies the same disabled-workflow and epic
+      # rejects as `filtered_types`, but bypasses the `project_namespace?`
+      # guard for OKR.
+      #
+      # Override in EE
+      def available_types: () -> untyped
+
+      def available_system_defined_types_count: () -> untyped
+
+      def by_base_types: (untyped names) -> untyped
+
+      def ids_by_base_types: (untyped types) -> untyped
+
+      def type_exists?: (untyped type) -> untyped
+
+      def find_by_base_type: (untyped name) -> untyped
+
+      def find_by_name: (untyped name) -> untyped
+
+      def default_issue_type: () -> untyped
+
+      def find_by_gid: (untyped gid) -> (nil | untyped)
+
+      def find_by_id: (untyped id) -> untyped
+
+      def by_ids: (untyped ids) -> untyped
+
+      def base_types_by_ids: (untyped ids) -> untyped
+
+      def all_ordered_by_name: () -> untyped
+
+      def by_ids_ordered_by_name: (untyped ids) -> untyped
+
+      def by_base_types_ordered_by_name: (untyped names) -> untyped
+
+      private
+
+      def resource_parent: () -> (nil | untyped)
+
+      def root_ancestor: () -> (nil | untyped)
+
+      # Override in EE to include custom types via the indexed cache.
+      # In CE, resolves from system-defined types only.
+      def resolve_by_id: (untyped id) -> untyped
+
+      # Override in EE to return the converted custom type when one exists.
+      # In CE, returns the system-defined type for the given base_type.
+      def resolve_by_base_type: (untyped name) -> untyped
+
+      # Override in EE to return all types (system-defined + custom) from the indexed cache.
+      # In CE, returns system-defined types only.
+      def resolve_all: () -> untyped
+
+      def namespaced_type: (untyped type) -> (nil | untyped)
+
+      def tasks_on_boards?: () -> (false | untyped)
+
+      def type_class: () -> untyped
+
+      def group_namespace?: () -> (false | untyped)
+
+      def project_namespace?: () -> untyped
+    end
+  end
+end

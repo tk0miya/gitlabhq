@@ -1,0 +1,29 @@
+module Gitlab
+  module Cleanup
+    module OrphanJobArtifactFinalObjects
+      module Paginators
+        class BasePaginator
+          @bucket_prefix: untyped
+
+          BATCH_SIZE: untyped
+
+          def initialize: (?bucket_prefix: untyped?) -> void
+
+          def filters: (untyped marker) -> ::Hash[untyped | :prefix, untyped]
+
+          def last_page?: (untyped batch) -> untyped
+
+          def get_next_marker: (untyped batch) -> untyped
+
+          private
+
+          attr_reader bucket_prefix: untyped
+
+          def page_marker_filter_key: () -> untyped
+
+          def max_results_filter_key: () -> untyped
+        end
+      end
+    end
+  end
+end

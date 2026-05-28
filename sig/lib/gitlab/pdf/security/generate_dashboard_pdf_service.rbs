@@ -1,0 +1,93 @@
+module Gitlab
+  module PDF
+    module Security
+      class GenerateDashboardPdfService
+        @filename: untyped
+
+        @report_data: untyped
+
+        @exportable: untyped
+
+        @pdf: untyped
+
+        @section_pages: untyped
+
+        @first_section: untyped
+
+        HEADER_SPACING: 60
+
+        SECTION_SPACING: 20
+
+        GRID_COLUMNS: 12
+
+        RISK_SCORE_COLUMNS: 5
+
+        def initialize: (untyped filename, untyped report_data, untyped exportable) -> void
+
+        attr_reader filename: untyped
+
+        attr_reader report_data: untyped
+
+        attr_reader pdf: untyped
+
+        attr_reader section_pages: untyped
+
+        attr_reader exportable: untyped
+
+        def execute: () -> untyped
+
+        private
+
+        def exportable_group?: () -> untyped
+
+        def ensure_space_for: (untyped height) -> untyped
+
+        def start_new_section: () -> untyped
+
+        def add_section_page: (untyped title, untyped page_number) -> untyped
+
+        def draw_header: () -> untyped
+
+        def setup_index_tree: () -> untyped
+
+        def should_render_vulnerability_history?: () -> untyped
+
+        def render_vulnerability_history: () -> (nil | untyped)
+
+        def draw_vulnerability_history_graphs: () -> untyped
+
+        def render_vulnerabilities_severity_count: () -> untyped
+
+        def draw_vulnerabilities_by_severity_count: () -> untyped
+
+        def should_render_group_security_status?: () -> untyped
+
+        def render_group_security_status: () -> (nil | untyped)
+
+        def draw_group_security_status: () -> untyped
+
+        def should_render_total_risk_score?: () -> untyped
+
+        def should_render_vulnerabilities_over_time?: () -> untyped
+
+        def render_risk_row: () -> (nil | untyped)
+
+        def draw_total_risk_score: (untyped y_pos) -> untyped
+
+        def draw_vulnerabilities_over_time: (untyped y_pos) -> untyped
+
+        def risk_score_column_width: () -> untyped
+
+        def vot_column_x: () -> untyped
+
+        def vot_column_width: () -> untyped
+
+        def should_render_vulnerabilities_by_age?: () -> untyped
+
+        def render_vulnerabilities_by_age: () -> (nil | untyped)
+
+        def draw_vulnerabilities_by_age: () -> untyped
+      end
+    end
+  end
+end

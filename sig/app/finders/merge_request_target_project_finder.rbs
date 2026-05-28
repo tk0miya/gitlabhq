@@ -1,0 +1,26 @@
+class MergeRequestTargetProjectFinder
+  @current_user: untyped
+
+  @source_project: untyped
+
+  @project_feature: untyped
+
+  include FinderMethods
+
+  attr_reader current_user: untyped
+
+  attr_reader source_project: untyped
+
+  def initialize: (source_project: untyped, ?current_user: untyped?, ?project_feature: ::Symbol) -> void
+
+  def execute: (?search: untyped?, ?include_routes: bool, ?include_fork_networks: bool) -> untyped
+
+  private
+
+  attr_reader project_feature: untyped
+
+  def projects: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def by_search: (untyped items, untyped search) -> untyped
+end

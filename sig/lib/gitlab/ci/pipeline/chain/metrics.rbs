@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class Metrics < Chain::Base
+          def perform!: () -> untyped
+
+          def break?: () -> false
+
+          private
+
+          def inputs_count: () -> (nil | untyped)
+
+          def collect_template_names: () -> untyped
+
+          def collect_keyword_usage: () -> (nil | { "run" => untyped, "only" => untyped, "except" => untyped, "artifacts_reports_junit" => untyped, "job_inputs" => untyped, "inputs" => untyped, "input_rules" => untyped })
+        end
+      end
+    end
+  end
+end

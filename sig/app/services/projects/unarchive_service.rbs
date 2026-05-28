@@ -1,0 +1,19 @@
+module Projects
+  class UnarchiveService < ::BaseProjectService
+    include ::Projects::ArchiveEvents
+
+    NotAuthorizedError: untyped
+
+    AncestorArchivedError: untyped
+
+    UnarchivingFailedError: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def unarchive_project: () -> untyped
+
+    def after_unarchive: () -> untyped
+  end
+end

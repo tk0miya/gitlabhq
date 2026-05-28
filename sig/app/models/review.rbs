@@ -1,0 +1,11 @@
+class Review < ApplicationRecord
+  include Participable
+
+  include Mentionable
+
+  def discussion_ids: () -> untyped
+
+  def all_references: (?untyped? current_user, ?extractor: untyped?) -> untyped
+
+  def user_mentions: () -> untyped
+end

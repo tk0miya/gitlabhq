@@ -1,0 +1,24 @@
+module API
+  module Helpers
+    module RelatedResourcesHelpers
+      include GrapePathHelpers::NamedRouteMatcher
+
+      def issues_available?: (untyped project, untyped options) -> untyped
+
+      def project_feature_string_access_level: (untyped project, untyped feature) -> untyped
+
+      def mrs_available?: (untyped project, untyped options) -> untyped
+
+      def expose_path: (untyped path) -> untyped
+
+      # This function should only be used to expose an API path or URL.
+      # It should not be used with Rails
+      # See https://gitlab.com/gitlab-org/gitlab/-/merge_requests/183415#note_2387443102
+      def expose_url: (untyped path) -> untyped
+
+      private
+
+      def available?: (untyped feature, untyped project, untyped current_user) -> untyped
+    end
+  end
+end

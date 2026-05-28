@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      # Resolves a Ci::Pipeline by id using PartitionCache to prune by
+      # partition_id, falling back to a full-table scan when:
+      #   - no cached range covers the id (cache cold/stale or id outside any range), or
+      #   - the partition-pruned query returns nothing.
+      #
+      class ByIdLookup
+        @scope: untyped
+
+        @id: untyped
+
+        def initialize: (untyped scope, untyped id) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        attr_reader scope: untyped
+
+        attr_reader id: untyped
+
+        # rubocop:disable CodeReuse/ActiveRecord -- partition-aware lookup is intentionally co-located here
+        def find_in_partitions: () -> (nil | untyped)
+
+        def full_scan: () -> untyped
+
+        def log_cache_miss: () -> untyped
+
+        def log_full_table_scan: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+class LinkedIssueEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  def current_user: () -> untyped
+
+  def issuable: () -> untyped
+end

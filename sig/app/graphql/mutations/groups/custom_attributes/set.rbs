@@ -1,0 +1,16 @@
+module Mutations
+  # rubocop: disable Gitlab/BoundedContexts -- generic mutation for custom attribute
+  module Groups
+    module CustomAttributes
+      class Set < BaseMutation
+        include Mutations::ResolvesGroup
+
+        def resolve: (group_path: untyped, key: untyped, value: untyped) -> ({ custom_attribute: nil, errors: untyped } | { custom_attribute: untyped, errors: ::Array[untyped] })
+
+        private
+
+        def find_object: (full_path: untyped) -> untyped
+      end
+    end
+  end
+end

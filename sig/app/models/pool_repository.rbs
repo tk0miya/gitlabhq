@@ -1,0 +1,34 @@
+# The PoolRepository model is the database equivalent of an ObjectPool for Gitaly
+# That is; PoolRepository is the record in the database, ObjectPool is the
+# repository on disk
+class PoolRepository < ApplicationRecord
+  @object_pool: untyped
+
+  include Shardable
+
+  include AfterCommitQueue
+
+  def create_object_pool: () -> untyped
+
+  # The members of the pool should have fetched the missing objects to their own
+  # objects directory. If the caller fails to do so, data loss might occur
+  def delete_object_pool: () -> untyped
+
+  def link_repository: (untyped repository) -> untyped
+
+  def unlink_repository: (untyped repository, ?disconnect: bool) -> untyped
+
+  def object_pool: () -> untyped
+
+  def inspect: () -> ::String
+
+  private
+
+  def set_organization: () -> (nil | untyped)
+
+  def pool_exists?: () -> untyped
+
+  def set_disk_path: () -> (untyped | nil)
+
+  def storage: () -> untyped
+end

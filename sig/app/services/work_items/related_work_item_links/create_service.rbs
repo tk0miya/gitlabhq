@@ -1,0 +1,39 @@
+module WorkItems
+  module RelatedWorkItemLinks
+    class CreateService < IssuableLinks::CreateService
+      @linkable_issuables: untyped
+
+      @related_issues: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      def execute: () -> untyped
+
+      def linkable_issuables: (untyped work_items) -> untyped
+
+      def previous_related_issuables: () -> untyped
+
+      private
+
+      def references: (untyped extractor) -> untyped
+
+      def after_execute: () -> (untyped | nil)
+
+      def can_admin_work_item_link?: (untyped work_item) -> untyped
+
+      def create_notes: (untyped _issuable_link) -> nil
+
+      def link_class: () -> untyped
+
+      def can_link_item?: (untyped work_item) -> (true | false)
+
+      def linked_ids: (untyped created_links) -> untyped
+
+      def create_notes_async: () -> untyped
+
+      def issuables_already_assigned_message: () -> untyped
+
+      def issuables_not_found_message: () -> untyped
+    end
+  end
+end

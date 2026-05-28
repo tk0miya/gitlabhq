@@ -1,0 +1,11 @@
+module BlameHelper
+  def age_map_duration: (untyped blame_groups, untyped project) -> { now: untyped, started_days_ago: untyped }
+
+  def age_map_class: (untyped commit_date, untyped duration) -> ("blame-commit-age-0" | ::String)
+
+  def blame_pages_streaming_url: (untyped id, untyped project) -> untyped
+
+  def entire_blame_path: (untyped id, untyped project) -> untyped
+
+  def blame_preferences: (untyped project) -> { has_revs_file: untyped }
+end

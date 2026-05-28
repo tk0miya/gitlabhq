@@ -1,0 +1,12 @@
+module Mutations
+  # rubocop:disable Gitlab/BoundedContexts -- the Achievements module already exists and holds the other mutations as well
+  module Achievements
+    class UpdateUserAchievement < BaseMutation
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (untyped args) -> { user_achievement: untyped, errors: untyped }
+
+      def find_object: (id: untyped) -> untyped
+    end
+  end
+end

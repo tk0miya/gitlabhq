@@ -1,0 +1,58 @@
+# Demonstrated Proof of Possession (DPoP) is a mechanism to tie a user's
+# Personal Access Token (PAT) to one of their signing keys.
+#
+# A DPoP Token is a signed JSON Web Token. This class implements
+# the logic to ensure a provided DPoP Token is well-formed, cryptographically
+# signed and belongs to the provided user.
+#
+module Gitlab
+  module Auth
+    class DpopTokenUser
+      @token: untyped
+
+      @user: untyped
+
+      @personal_access_token_plaintext: untyped
+
+      SUPPORTED_JWS_ALGORITHMS: { "ssh-rsa" => "RS512" }
+
+      SUPPORTED_TYPES: ::Array["dpop+jwt"]
+
+      SUPPORTED_KEY_TYPES: ::Array["RSA"]
+
+      SUPPORTED_PROOF_KEY_ID_HASHING_ALGORITHMS: ::Array["SHA256"]
+
+      def initialize: (token: untyped, user: untyped, personal_access_token_plaintext: untyped) -> void
+
+      def validate!: () -> untyped
+
+      private
+
+      attr_reader token: untyped
+
+      attr_reader user: untyped
+
+      attr_reader personal_access_token_plaintext: untyped
+
+      def pat_belongs_to_user!: () -> (nil | untyped)
+
+      # Check that the DPoP is signed with a SSH key belonging to the user
+      def valid_token_for_user!: () -> untyped
+
+      def decode_json_token!: (untyped user_public_key, untyped openssh_public_key) -> untyped
+
+      def signing_key_for_user!: () -> untyped
+
+      # Finds the algorithm from the public key to decode the JWT in
+      # valid_for_user!
+      def algorithm_for_dpop_validation: (untyped key) -> (untyped | nil)
+
+      def convert_public_key_to_openssh_key!: (untyped key) -> untyped
+
+      # Check that the DPoP contains a hash of the PAT being used.
+      # Users can have multiple PATs, so we still need to check that
+      # they created this DPoP for this particular PAT.
+      def valid_access_token_hash!: () -> (nil | untyped)
+    end
+  end
+end

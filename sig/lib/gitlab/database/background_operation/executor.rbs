@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      class Executor
+        @connection: untyped
+
+        @metrics: untyped
+
+        SubBatchTimeoutError: untyped
+
+        def initialize: (connection: untyped, ?metrics: untyped) -> void
+
+        def perform: (untyped job) -> untyped
+
+        private
+
+        attr_reader connection: untyped
+
+        attr_reader metrics: untyped
+
+        def execute_job: (untyped job) -> untyped
+
+        def create_worker_instance: (untyped worker_class, untyped job) -> untyped
+
+        def fetch_feature_category: (untyped worker_class) -> untyped
+      end
+    end
+  end
+end

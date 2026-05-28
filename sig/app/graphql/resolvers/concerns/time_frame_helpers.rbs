@@ -1,0 +1,9 @@
+module TimeFrameHelpers
+  extend ActiveSupport::Concern
+
+  TIMEFRAME_LIMIT_YEARS: ::Float
+
+  def transform_timeframe_parameters: (untyped args) -> (::Hash[untyped, untyped] | untyped)
+
+  def validate_timeframe_limit!: (untyped timeframe) -> (nil | untyped)
+end

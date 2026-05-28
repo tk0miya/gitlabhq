@@ -1,0 +1,21 @@
+module Resolvers
+  module Repositories
+    class CommitsResolver < BaseResolver
+      include LooksAhead
+
+      alias repository object
+
+      def resolve_with_lookahead: (**untyped arguments) -> untyped
+
+      private
+
+      # Checks the user defined limit, the field's max page size or the schemas
+      # default, and returns the most restrictive limit.
+      def compute_limit: (untyped first) -> untyped
+
+      def list_commits_arguments: (untyped arguments, untyped limit, untyped page_token) -> untyped
+
+      def empty_result: () -> untyped
+    end
+  end
+end

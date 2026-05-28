@@ -1,0 +1,11 @@
+module Gitlab
+  module DependencyLinker
+    class ComposerJsonLinker < PackageJsonLinker
+      private
+
+      def link_packages: () -> untyped
+
+      def package_url: (untyped name) -> (::String | nil)
+    end
+  end
+end

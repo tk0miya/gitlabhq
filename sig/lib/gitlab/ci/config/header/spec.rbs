@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        class Spec < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          ALLOWED_ENTRIES: ::Array[:inputs | :include | :component]
+
+          ALLOWED_ATTRIBUTES: ::Array[:description]
+
+          ALLOWED_KEYS: untyped
+        end
+      end
+    end
+  end
+end

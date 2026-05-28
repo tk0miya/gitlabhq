@@ -1,0 +1,44 @@
+# PostReceiveService class
+#
+# Used for scheduling related jobs after a push action has been performed
+class PostReceiveService
+  @user: untyped
+
+  @repository: untyped
+
+  @project: untyped
+
+  @params: untyped
+
+  @push_options: untyped
+
+  attr_reader user: untyped
+
+  attr_reader repository: untyped
+
+  attr_reader project: untyped
+
+  attr_reader params: untyped
+
+  def initialize: (untyped user, untyped repository, untyped project, untyped params) -> void
+
+  def execute: () -> untyped
+
+  def push_options: () -> untyped
+
+  def process_mr_push_options: (untyped push_options, untyped changes) -> (nil | untyped)
+
+  def push_options_warning: (untyped warning) -> ::String
+
+  def merge_request_urls: () -> (::Array[untyped] | untyped)
+
+  private
+
+  def schedule_post_receive_worker: () -> untyped
+
+  def add_user_repository_messages: (untyped response) -> (nil | untyped)
+
+  def update_rebuildable_ref_cache: () -> untyped
+
+  def broadcast_message: () -> untyped
+end

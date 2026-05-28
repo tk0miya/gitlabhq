@@ -1,0 +1,89 @@
+module Banzai
+  module Filter
+    # Detect include / transclusion syntax. Include the specified file/url, replacing
+    # the existing include instruction with the contents of the file/url.
+    # - does not recursively handle includes
+    # - only supports wikis or repository files
+    #
+    # Syntax is `::include{file=FILE_OR_URL}`
+    #
+    # Based on lib/gitlab/asciidoc/include_processor.rb
+    class IncludeFilter < HTML::Pipeline::TextFilter
+      @included_content: untyped
+
+      @total_included: untyped
+
+      @text: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      # This regex must be able to handle `\n` or `\r\n` line endings
+      REGEX: untyped
+
+      def call: () -> untyped
+
+      private
+
+      attr_reader included_content: untyped
+
+      def include_allowed?: (untyped filename) -> (false | true)
+
+      def read_lines: (untyped filename) -> (untyped | "")
+
+      def read_content: (untyped filename) -> untyped
+
+      # Gets Blob at a path for a specific revision.
+      # This method will check that the Blob exists and contains readable text.
+      #
+      # revision - The String SHA1.
+      # path     - The String file path.
+      #
+      # Returns a string containing the blob content
+      def read_blob: (untyped ref, untyped filename) -> untyped
+
+      def read_uri: (untyped uri) -> untyped
+
+      def target_http?: (untyped target) -> untyped
+
+      def resolve_target_path: (untyped filename) -> (nil | untyped)
+
+      # Resolves the given relative path of file in repository into canonical
+      # path based on the specified base_path.
+      #
+      # Examples:
+      #
+      #   # File in the same directory as the current path
+      #   resolve_relative_path("users.adoc", "doc/api/README.adoc")
+      #   # => "doc/api/users.adoc"
+      #
+      #   # File in the same directory, which is also the current path
+      #   resolve_relative_path("users.adoc", "doc/api")
+      #   # => "doc/api/users.adoc"
+      #
+      #   # Going up one level to a different directory
+      #   resolve_relative_path("../update/7.14-to-8.0.adoc", "doc/api/README.adoc")
+      #   # => "doc/update/7.14-to-8.0.adoc"
+      #
+      # Returns a String
+      def resolve_relative_path: (untyped path, untyped base_path) -> untyped
+
+      def ref: () -> untyped
+
+      def requested_path: () -> untyped
+
+      def allow_uri_read: () -> untyped
+
+      def max_includes: () -> untyped
+
+      def repository: () -> untyped
+
+      def wiki?: () -> untyped
+
+      def blob?: () -> untyped
+
+      def markdown_link: (untyped url) -> ::String
+
+      def error_message: (untyped filename, untyped reason) -> ::String
+    end
+  end
+end

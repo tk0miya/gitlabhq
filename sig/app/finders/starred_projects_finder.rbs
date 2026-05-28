@@ -1,0 +1,9 @@
+class StarredProjectsFinder < ProjectsFinder
+  @user: untyped
+
+  include Gitlab::Allowable
+
+  def initialize: (untyped user, ?params: ::Hash[untyped, untyped], ?current_user: untyped?) -> void
+
+  def execute: () -> untyped
+end

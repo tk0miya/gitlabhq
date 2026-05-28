@@ -1,0 +1,23 @@
+module Issuable
+  module ImportCsv
+    class BaseService < ::ImportCsv::BaseService
+      @available_milestones: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      def self.required_headers: () -> ::Array["title" | "description"]
+
+      private
+
+      def attributes_for: (untyped row) -> { title: untyped, description: untyped, due_date: untyped, milestone_id: untyped }
+
+      def validate_headers_presence!: (untyped headers) -> (nil | untyped)
+
+      def preprocess!: () -> untyped
+
+      def preprocess_milestones!: () -> (nil | untyped)
+
+      def find_milestone_by_title: (untyped title) -> (nil | untyped)
+    end
+  end
+end

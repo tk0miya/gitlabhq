@@ -1,0 +1,37 @@
+module Mcp
+  module Tools
+    class SearchService < AggregatedService
+      include Gitlab::Utils::StrongMemoize
+
+      extend ::Gitlab::Utils::Override
+
+      def self.tool_name: () -> "search"
+
+      def self.tool_aliases: () -> ::Array["gitlab_search"]
+
+      def description: () -> untyped
+
+      def input_schema: () -> { type: "object", properties: untyped, required: ::Array["scope" | "search"], additionalProperties: false }
+
+      private
+
+      def properties: () -> untyped
+
+      def description_parts: () -> ::Array["Search across GitLab with automatic selection of the best available search method." | "" | ::String | "**Syntax Examples:**" | "- Basic: \"bug fix\", \"filename:*.rb\", \"extension:js\""]
+
+      def search_capabilities: () -> ::Array["basic (keywords, file filters)"]
+
+      def select_tool: (untyped args) -> untyped
+
+      def transform_arguments: (untyped args) -> untyped
+
+      def search_level: (untyped args) -> untyped
+
+      # overridden in EE
+      def advanced_search_enabled?: () -> false
+
+      # overridden in EE
+      def exact_code_search_enabled?: () -> false
+    end
+  end
+end

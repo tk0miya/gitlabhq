@@ -1,0 +1,37 @@
+module Groups
+  class CountService < BaseCountService
+    @group: untyped
+
+    @user: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    VERSION: 1
+
+    CACHED_COUNT_THRESHOLD: 1000
+
+    EXPIRATION_TIME: untyped
+
+    attr_reader group: untyped
+
+    attr_reader user: untyped
+
+    def initialize: (untyped group, ?untyped? user) -> void
+
+    def count: () -> untyped
+
+    def refresh_cache_over_threshold: (?untyped? key) -> untyped
+
+    def cache_key: (?untyped? key_name) -> ::Array["groups" | ::String | untyped]
+
+    private
+
+    def relation_for_count: () -> untyped
+
+    def cache_options: () -> untyped
+
+    def cache_key_name: () -> untyped
+
+    def issuable_key: () -> untyped
+  end
+end

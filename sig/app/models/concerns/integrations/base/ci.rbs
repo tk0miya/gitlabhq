@@ -1,0 +1,34 @@
+# Base module for CI integrations
+# List methods you need to implement to get your CI integration
+# working with GitLab merge requests
+module Integrations
+  module Base
+    module Ci
+      extend ActiveSupport::Concern
+
+      def valid_token?: (untyped token) -> untyped
+
+      # Return complete url to build page
+      #
+      # Ex.
+      #   http://jenkins.example.com:8888/job/test1/scm/bySHA1/12d65c
+      #
+      def build_page: (untyped sha, untyped ref) -> nil
+
+      # Return string with build status or :error symbol
+      #
+      # Allowed states: 'success', 'failed', 'running', 'pending', 'skipped'
+      #
+      #
+      # Ex.
+      #   @integration.commit_status('13be4ac', 'master')
+      #   # => 'success'
+      #
+      #   @integration.commit_status('2abe4ac', 'dev')
+      #   # => 'running'
+      #
+      #
+      def commit_status: (untyped sha, untyped ref) -> nil
+    end
+  end
+end

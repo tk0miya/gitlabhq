@@ -1,0 +1,22 @@
+module Gitlab
+  module Sanitizers
+    module SVG
+      def self.clean: (untyped data) -> untyped
+
+      class Scrubber < Loofah::Scrubber
+        # http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#embedding-custom-non-visible-data-with-the-data-*-attributes
+        DATA_ATTR_PATTERN: ::Regexp
+
+        def scrub: (untyped node) -> (nil | untyped)
+
+        def attribute_name_with_namespace: (untyped attr) -> (::String | untyped)
+
+        def allows_data_attribute?: (untyped node) -> untyped
+
+        def unsafe_href?: (untyped attr) -> untyped
+
+        def data_attribute?: (untyped attr) -> untyped
+      end
+    end
+  end
+end

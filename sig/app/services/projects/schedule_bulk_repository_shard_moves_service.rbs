@@ -1,0 +1,18 @@
+module Projects
+  # Tries to schedule a move for every project with repositories on the source shard
+  class ScheduleBulkRepositoryShardMovesService
+    include ScheduleBulkRepositoryShardMovesMethods
+
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def repository_klass: () -> untyped
+
+    def container_klass: () -> untyped
+
+    def container_column: () -> :project_id
+
+    def self.schedule_bulk_worker_klass: () -> untyped
+  end
+end

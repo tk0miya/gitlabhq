@@ -1,0 +1,85 @@
+module Organizations
+  module Transfer
+    class UsersService
+      @users: untyped
+
+      @new_organization: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include Organizations::Transfer::Concerns::OrganizationUpdater
+
+      BATCH_SIZE: 50
+
+      extend Gitlab::Utils::StrongMemoize
+
+      # Ensure Rails.application.eager_load! returns true before calling this method
+      def self.migratable_models: () -> untyped
+
+      def self.skipped_transfer_models: () -> ::Array["User" | "Project" | "Group" | "AbuseReport" | "GitlabSubscriptions::AddOnPurchase" | "GitlabSubscriptions::SeatAssignment" | "GitlabSubscriptions::UserAddOnAssignment" | "Authz::AdminRole" | "Authz::GranularScope" | "Authz::PersonalAccessTokenGranularScope" | "MemberRole" | "Ai::Catalog::ItemConsumer" | "ProjectSnippet" | "Snippet" | "ImportFailure" | "Clusters::Cluster" | "AntiAbuse::Event" | "Dependencies::DependencyListExport"]
+
+      def initialize: (users: untyped, new_organization: untyped) -> void
+
+      def execute: () -> untyped
+
+      # Pre-create bot users before the transaction to avoid exclusive lease errors
+      # This is called by the group transfer service before starting the transaction
+      def prepare_bots: () -> untyped
+
+      def can_transfer_users?: () -> (false | true)
+
+      def transfer_error: () -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord -- Query specific to this service
+      # rubocop:disable Database/AvoidUsingPluckWithoutLimit -- Using batches of 50
+      def users_belong_to_single_organization?: () -> untyped
+
+      private
+
+      attr_reader users: untyped
+
+      attr_reader new_organization: untyped
+
+      def perform_transfer: () -> untyped
+
+      # Add simple associated organization_id updates here.
+      # Use a block to define the where clause/scopes for the query.
+      # `.where(organization_id: old_organization.id)` is automatically added to all queries.
+      # See Organizations::Transfer::Concerns::OrganizationUpdater#update_organization_id_for for more details.
+      def update_associated_organization_ids: (untyped user_ids) -> untyped
+
+      def update_users: (untyped user_ids) -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord -- Only for .ids and .pluck which are reasonable uses
+      def update_user_projects: (untyped user_ids) -> untyped
+
+      def update_todos: (untyped user_ids) -> untyped
+
+      def update_import_failures: (untyped user_ids) -> untyped
+
+      def new_organization_bots: () -> untyped
+
+      def old_organization: () -> untyped
+
+      # These are organization-specific bots that may be the author of Todos.
+      def old_organization_bots: () -> untyped
+
+      def transfer_attributes: () -> { organization_id: untyped, visibility_level: untyped }
+
+      def user_transfer_attributes: () -> untyped
+
+      def user_namespaces: (untyped user_ids) -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord -- Query specific to this service
+      def update_granular_scopes: (untyped user_ids) -> untyped
+
+      def update_personal_snippet_notes: (untyped user_ids) -> untyped
+
+      def note_transfer_attributes: (untyped transferring_user_ids) -> untyped
+
+      def organization_not_found_error: () -> untyped
+
+      def users_different_organizations_error: () -> untyped
+    end
+  end
+end

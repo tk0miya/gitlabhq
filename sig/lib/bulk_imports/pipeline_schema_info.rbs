@@ -1,0 +1,27 @@
+module BulkImports
+  class PipelineSchemaInfo
+    @pipeline_class: untyped
+
+    @portable_class: untyped
+
+    @relation: untyped
+
+    @association: untyped
+
+    def initialize: (untyped pipeline_class, untyped portable_class) -> void
+
+    def db_schema: () -> (nil | untyped)
+
+    def db_table: () -> (nil | untyped)
+
+    private
+
+    attr_reader pipeline_class: untyped
+
+    attr_reader portable_class: untyped
+
+    def relation: () -> untyped
+
+    def association: () -> untyped
+  end
+end

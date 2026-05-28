@@ -1,0 +1,29 @@
+module AlertManagement
+  class ProcessPrometheusAlertService
+    @project: untyped
+
+    @payload: untyped
+
+    @integration: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    include ::AlertManagement::AlertProcessing
+
+    include ::AlertManagement::Responses
+
+    def initialize: (untyped project, untyped payload, ?integration: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader payload: untyped
+
+    attr_reader integration: untyped
+
+    def incoming_payload: () -> untyped
+  end
+end

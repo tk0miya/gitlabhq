@@ -1,0 +1,27 @@
+module Import
+  SOURCE_NONE: :none
+
+  SOURCE_DIRECT_TRANSFER: :gitlab_migration
+
+  SOURCE_PROJECT_EXPORT_IMPORT: :gitlab_project
+
+  SOURCE_GROUP_EXPORT_IMPORT: :gitlab_group
+
+  SOURCE_GITHUB: :github
+
+  SOURCE_GITEA: :gitea
+
+  SOURCE_BITBUCKET: :bitbucket
+
+  SOURCE_BITBUCKET_SERVER: :bitbucket_server
+
+  SOURCE_JIRA: :jira
+
+  module HasImportSource
+    extend ActiveSupport::Concern
+
+    IMPORT_SOURCES: ::Hash[untyped | :fogbugz | :git | :manifest | :custom_template, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12]
+
+    def imported?: () -> untyped
+  end
+end

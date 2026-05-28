@@ -1,0 +1,88 @@
+module Gitlab
+  module Diff
+    module FileCollection
+      class Base
+        @diffable: untyped
+
+        @include_stats: untyped
+
+        @pagination_data: untyped
+
+        @project: untyped
+
+        @diff_options: untyped
+
+        @diff_refs: untyped
+
+        @fallback_diff_refs: untyped
+
+        @repository: untyped
+
+        @use_extra_viewer_as_main: untyped
+
+        @diffs: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader project: untyped
+
+        attr_reader diff_options: untyped
+
+        attr_reader diff_refs: untyped
+
+        attr_reader fallback_diff_refs: untyped
+
+        attr_reader diffable: untyped
+
+        def self.default_options: () -> untyped
+
+        def initialize: (untyped diffable, project: untyped, ?diff_options: untyped?, ?diff_refs: untyped?, ?fallback_diff_refs: untyped?) -> void
+
+        def diffs: () -> untyped
+
+        def diff_files: (?sorted: bool) -> untyped
+
+        def raw_diff_files: (?sorted: bool) -> untyped
+
+        # This is either the new path, otherwise the old path for the diff_file
+        def diff_file_paths: () -> untyped
+
+        # This is both the new and old paths for the diff_file
+        def diff_paths: () -> untyped
+
+        def pagination_data: () -> untyped
+
+        # This mutates `diff_files` lines.
+        def unfold_diff_files: (untyped positions) -> untyped
+
+        def diff_file_with_old_path: (untyped old_path) -> untyped
+
+        def diff_file_with_new_path: (untyped new_path) -> untyped
+
+        def clear_cache: () -> nil
+
+        def write_cache: () -> nil
+
+        def overflow?: () -> untyped
+
+        private
+
+        def empty_pagination_data: () -> { total_pages: nil }
+
+        def diff_stats_collection: () -> untyped
+
+        def fetch_diff_stats?: () -> untyped
+
+        def decorate_diff!: (untyped diff) -> untyped
+
+        def sort_diffs: (untyped diffs) -> untyped
+
+        def diff_stats_for: (untyped diff) -> (nil | untyped)
+
+        def combine_rename_stats: (untyped new_path_stats, untyped old_path_stats, untyped path) -> untyped
+
+        def self.max_blob_size: (untyped _) -> nil
+      end
+    end
+  end
+end

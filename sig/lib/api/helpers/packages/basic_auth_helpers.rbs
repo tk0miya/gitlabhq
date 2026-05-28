@@ -1,0 +1,31 @@
+module API
+  module Helpers
+    module Packages
+      module BasicAuthHelpers
+        extend ::Gitlab::Utils::Override
+
+        module Constants
+          AUTHENTICATE_REALM_HEADER: "WWW-Authenticate"
+
+          AUTHENTICATE_REALM_NAME: "Basic realm=\"GitLab Packages Registry\""
+        end
+
+        include Constants
+
+        include Gitlab::Utils::StrongMemoize
+
+        def authorized_user_project: (?action: ::Symbol) -> untyped
+
+        def authorized_project_find!: (?action: ::Symbol) -> untyped
+
+        def find_authorized_group!: (?action: ::Symbol) -> untyped
+
+        def authorize!: (untyped action, ?::Symbol subject, ?untyped? reason) -> (nil | untyped)
+
+        def unauthorized_or!: () { () -> untyped } -> untyped
+
+        def unauthorized!: () -> untyped
+      end
+    end
+  end
+end

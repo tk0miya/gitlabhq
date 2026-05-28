@@ -1,0 +1,15 @@
+module Gitlab
+  module HookData
+    class ProjectMemberBuilder < BaseBuilder
+      alias project_member object
+
+      def build: (untyped event) -> untyped
+
+      private
+
+      def project_member_data: () -> { project_name: untyped, project_path: untyped, project_path_with_namespace: untyped, project_id: untyped, user_username: untyped, user_name: untyped, user_email: untyped, user_id: untyped, access_level: untyped, project_visibility: untyped }
+
+      def event_data: (untyped event) -> { event_name: untyped }
+    end
+  end
+end

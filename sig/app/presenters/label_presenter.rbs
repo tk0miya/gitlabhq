@@ -1,0 +1,21 @@
+class LabelPresenter < Gitlab::View::Presenter::Delegated
+  @label_subject: untyped
+
+  def edit_path: () -> untyped
+
+  def text_color_class: () -> ::String
+
+  def destroy_path: () -> untyped
+
+  def filter_path: (?type: ::Symbol) -> untyped
+
+  def can_subscribe_to_label_in_different_levels?: () -> untyped
+
+  def project_label?: () -> untyped
+
+  def label_subject: () -> (untyped | nil)
+
+  private
+
+  def context_subject: () -> untyped
+end

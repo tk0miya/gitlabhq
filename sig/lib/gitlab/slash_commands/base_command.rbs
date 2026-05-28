@@ -1,0 +1,44 @@
+module Gitlab
+  module SlashCommands
+    class BaseCommand
+      @project: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      @chat_name: untyped
+
+      QUERY_LIMIT: 5
+
+      def self.match: (untyped _text) -> untyped
+
+      def self.help_message: () -> untyped
+
+      def self.available?: (untyped _project) -> untyped
+
+      def self.allowed?: (untyped _user, untyped _ability) -> true
+
+      def self.can?: (untyped object, untyped action, untyped subject) -> untyped
+
+      def execute: (untyped _) -> untyped
+
+      def collection: () -> untyped
+
+      attr_accessor project: untyped
+
+      attr_accessor current_user: untyped
+
+      attr_accessor params: untyped
+
+      attr_accessor chat_name: untyped
+
+      def initialize: (untyped project, untyped chat_name, ?::Hash[untyped, untyped] params) -> void
+
+      private
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def find_by_iid: (untyped iid) -> untyped
+    end
+  end
+end

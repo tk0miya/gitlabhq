@@ -1,0 +1,29 @@
+module Gitlab
+  class GitAccessWiki < GitAccess
+    extend ::Gitlab::Utils::Override
+
+    ERROR_MESSAGES: { download: "You are not allowed to download files from this wiki.", not_found: "The wiki you were looking for could not be found.", no_repo: "A repository for this wiki does not exist yet.", read_only: "You can't push code to a read-only GitLab instance.", write_to_wiki: "You are not allowed to write to this project's wiki." }
+
+    def project: () -> (untyped | nil)
+
+    def download_ability: () -> :download_wiki_code
+
+    def push_ability: () -> :create_wiki
+
+    private
+
+    def build_can_download?: () -> untyped
+
+    def deploy_token_can_download?: () -> untyped
+
+    def repository_access_level: () -> untyped
+
+    def check_change_access!: () -> true
+
+    def push_to_read_only_message: () -> untyped
+
+    def write_to_wiki_message: () -> untyped
+
+    def not_found_message: () -> untyped
+  end
+end

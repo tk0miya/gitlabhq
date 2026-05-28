@@ -1,0 +1,26 @@
+module Gitlab
+  module Cache
+    # It replaces Rails.cache with metrics support
+    class Client
+      @metrics: untyped
+
+      @backend: untyped
+
+      DEFAULT_BACKING_RESOURCE: :unknown
+
+      DEFAULT_FEATURE_CATEGORY: :not_owned
+
+      def initialize: (untyped metrics, ?backend: untyped) -> void
+
+      def read: (untyped name, ?untyped? options, ?::Hash[untyped, untyped] labels) -> untyped
+
+      def fetch: (untyped name, ?untyped? options, ?::Hash[untyped, untyped] labels) ?{ (?) -> untyped } -> untyped
+
+      private
+
+      attr_reader metrics: untyped
+
+      attr_reader backend: untyped
+    end
+  end
+end

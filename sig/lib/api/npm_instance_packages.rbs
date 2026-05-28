@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+module API
+  class NpmInstancePackages < ::API::Base
+    def self.authorization_boundary_options: () -> { boundary_type: :project, boundary: untyped }
+  end
+end

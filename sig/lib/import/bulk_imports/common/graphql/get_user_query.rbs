@@ -1,0 +1,11 @@
+module Import
+  module BulkImports
+    module Common
+      module Graphql
+        class GetUserQuery
+          def to_s: () -> "              query($id: UserID!) {\n                user(id: $id) {\n                  id\n                  name\n                  username\n                }\n              }\n"
+        end
+      end
+    end
+  end
+end

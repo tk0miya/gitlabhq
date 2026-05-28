@@ -1,0 +1,17 @@
+module Sidebars
+  module Explore
+    module Menus
+      class GroupsMenu < ::Sidebars::Menu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "group"
+
+        def render?: () -> true
+
+        def active_routes: () -> { controller: ::Array["explore/groups"] }
+      end
+    end
+  end
+end

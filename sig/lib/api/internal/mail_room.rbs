@@ -1,0 +1,13 @@
+module API
+  # This internal endpoint receives webhooks sent from the MailRoom component.
+  # This component constantly listens to configured email accounts. When it
+  # finds any incoming email or service desk email, it makes a POST request to
+  # this endpoint. The target mailbox type is indicated in the request path.
+  # The email raw content is attached to the request body.
+  #
+  # For more information, please visit https://gitlab.com/groups/gitlab-com/gl-infra/-/epics/644
+  module Internal
+    class MailRoom < ::API::Base
+    end
+  end
+end

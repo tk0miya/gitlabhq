@@ -1,0 +1,23 @@
+module Packages
+  module Pypi
+    class CreatePackageService < ::Packages::CreatePackageService
+      include ::Gitlab::Utils::StrongMemoize
+
+      ERROR_REASON_INVALID_PARAMETER: :invalid_parameter
+
+      ERROR_RESPONSE_UNAUTHORIZED: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def package_protected?: () -> untyped
+
+      def created_package: () -> untyped
+
+      def file_params: () -> { build: untyped, file: untyped, file_name: untyped, file_md5: untyped, file_sha256: untyped }
+
+      def truncate_fields: (untyped meta) -> (nil | untyped)
+    end
+  end
+end

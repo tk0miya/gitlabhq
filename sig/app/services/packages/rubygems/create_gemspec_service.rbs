@@ -1,0 +1,21 @@
+module Packages
+  module Rubygems
+    class CreateGemspecService
+      @package: untyped
+
+      @gemspec: untyped
+
+      def initialize: (untyped package, untyped gemspec) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader gemspec: untyped
+
+      def write_gemspec_to_file: () -> untyped
+    end
+  end
+end

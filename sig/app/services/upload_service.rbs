@@ -1,0 +1,25 @@
+class UploadService
+  @model: untyped
+
+  @file: untyped
+
+  @uploader_class: untyped
+
+  @uploader_context: untyped
+
+  def initialize: (untyped model, untyped file, ?untyped uploader_class, **untyped uploader_context) -> void
+
+  def execute: () -> (nil | untyped)
+
+  private
+
+  attr_reader model: untyped
+
+  attr_reader file: untyped
+
+  attr_reader uploader_class: untyped
+
+  attr_reader uploader_context: untyped
+
+  def max_attachment_size: () -> untyped
+end

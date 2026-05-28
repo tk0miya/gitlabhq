@@ -1,0 +1,21 @@
+module Ci
+  class DropPipelinesAndDisableSchedulesForUserService
+    def execute: (untyped user, ?reason: ::Symbol, ?include_owned_projects_and_groups: bool) -> untyped
+
+    private
+
+    def drop_pipelines_for_user: (untyped user, untyped reason) -> untyped
+
+    def drop_pipelines_for_projects: (untyped user, untyped project_ids, untyped reason) -> untyped
+
+    # Excluded the waiting_for_callback and cancelling for performance reasons
+    def indexed_alive_statuses: () -> untyped
+
+    # DropPipelineForBlockedUserWorker is used for all pipelines (user and project) when reason is :user_blocked.
+    def drop_pipeline_worker_for: (untyped reason) -> untyped
+
+    def disable_schedules_for_user: (untyped user) -> untyped
+
+    def disable_schedules_for_projects: (untyped project_ids) -> untyped
+  end
+end

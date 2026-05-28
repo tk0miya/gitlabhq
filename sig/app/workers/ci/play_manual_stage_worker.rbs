@@ -1,0 +1,9 @@
+module Ci
+  class PlayManualStageWorker
+    include ApplicationWorker
+
+    include PipelineQueue
+
+    def perform: (untyped stage_id, untyped user_id) -> (nil | untyped)
+  end
+end

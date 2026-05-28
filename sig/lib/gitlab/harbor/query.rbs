@@ -1,0 +1,63 @@
+module Gitlab
+  module Harbor
+    class Query
+      @client: untyped
+
+      @repository_id: untyped
+
+      @artifact_id: untyped
+
+      @search: untyped
+
+      @limit: untyped
+
+      @sort: untyped
+
+      @page: untyped
+
+      include ActiveModel::Validations
+
+      attr_reader client: untyped
+
+      attr_reader repository_id: untyped
+
+      attr_reader artifact_id: untyped
+
+      attr_reader search: untyped
+
+      attr_reader limit: untyped
+
+      attr_reader sort: untyped
+
+      attr_reader page: untyped
+
+      DEFAULT_LIMIT: 10
+
+      SORT_REGEX: ::Regexp
+
+      def initialize: (untyped integration, untyped params) -> void
+
+      def repositories: () -> (::Array[untyped] | untyped)
+
+      def artifacts: () -> (::Array[untyped] | untyped)
+
+      def tags: () -> (::Array[untyped] | untyped)
+
+      private
+
+      def query_artifacts_options: () -> untyped
+
+      def query_options: () -> untyped
+
+      def query_tags_options: () -> untyped
+
+      def query_page: () -> untyped
+
+      def query_page_size: () -> untyped
+
+      def query_search: () -> untyped
+
+      def query_sort: () -> ::String
+    end
+  end
+end

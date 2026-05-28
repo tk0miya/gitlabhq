@@ -1,0 +1,63 @@
+module Bitbucket
+  class Client
+    @connection: untyped
+
+    @user: untyped
+
+    attr_reader connection: untyped
+
+    PULL_REQUEST_VALUES: ::Array["pagelen" | "size" | "page" | "next" | "previous" | "values.comment_count" | "values.task_count" | "values.type" | "values.id" | "values.title" | "values.description" | "values.state" | "values.merge_commit" | "values.close_source_branch" | "values.closed_by" | "values.author" | "values.reason" | "values.created_on" | "values.updated_on" | "values.destination" | "values.source" | "values.links" | "values.summary" | "values.reviewers"]
+
+    WORKSPACE_PAGE_LENGTH: 100
+
+    def initialize: (?::Hash[untyped, untyped] options) -> void
+
+    # Fetches data from the Bitbucket API and yields a Page object for every page
+    # of data, without loading all of them into memory.
+    #
+    # method - The method name used for getting the data.
+    # representation_type - The representation type name used to wrap the result
+    # args - Arguments to pass to the method.
+    def each_page: (untyped method, untyped representation_type, *untyped args) { (untyped) -> untyped } -> untyped
+
+    def last_issue: (untyped repo) -> (nil | untyped)
+
+    def last_pull_request: (untyped repo) -> (nil | untyped)
+
+    def issues: (untyped repo, ?::Hash[untyped, untyped] options) -> untyped
+
+    def issue_comments: (untyped repo, untyped issue_id) -> untyped
+
+    def pull_requests: (untyped repo, ?::Hash[untyped, untyped] options) -> untyped
+
+    def pull_request_comments: (untyped repo, untyped pull_request) -> untyped
+
+    def pull_request_diff: (untyped repo, untyped pull_request) -> untyped
+
+    def repo: (untyped name) -> untyped
+
+    def repos: (?filter: untyped?, ?limit: untyped?, ?after_cursor: untyped?) -> untyped
+
+    def multi_workspace_repos: (?filter: untyped?, ?limit: untyped?, ?workspace_paging_info: untyped) -> untyped
+
+    def user: () -> untyped
+
+    def users: (untyped workspace_key, ?page_number: untyped?, ?limit: untyped?) -> untyped
+
+    private
+
+    def workspaces: (?page_number: untyped?, ?limit: untyped, ?after_cursor: untyped?) -> untyped
+
+    def build_workspace_config: (untyped workspace_slug, untyped path, untyped page_info, untyped type) -> { workspace: untyped, path: untyped, type: untyped, page_number: untyped, has_next_page: untyped }
+
+    def build_repos_path: (untyped workspace_slug, untyped filter) -> untyped
+
+    def all_workspaces: () -> untyped
+
+    def fetch_data: (untyped method, *untyped args) -> untyped
+
+    def get_collection: (untyped path, untyped type, ?page_number: untyped?, ?limit: untyped?, ?after_cursor: untyped?) -> untyped
+
+    def pull_request_values: () -> untyped
+  end
+end

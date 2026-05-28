@@ -1,0 +1,49 @@
+module Gitlab
+  # The +otp_key_base+ param is used to encrypt the User#otp_secret attribute.
+  #
+  # When +otp_key_base+ is changed, it invalidates the current encrypted values
+  # of User#otp_secret. This class can be used to decrypt all the values with
+  # the old key, encrypt them with the new key, and and update the database
+  # with the new values.
+  #
+  # For persistence between runs, a CSV file is used with the following columns:
+  #
+  #   user_id, old_value, new_value
+  #
+  # Only the encrypted values are stored in this file.
+  #
+  # As users may have their 2FA settings changed at any time, this is only
+  # guaranteed to be safe if run offline.
+  class OtpKeyRotator
+    @filename: untyped
+
+    @otp_secret_settings: untyped
+
+    HEADERS: ::Array["user_id" | "old_value" | "new_value"]
+
+    attr_reader filename: untyped
+
+    # Create a new rotator. +filename+ is used to store values by +calculate!+,
+    # and to update the database with new and old values in +apply!+ and
+    # +rollback!+, respectively.
+    def initialize: (untyped filename) -> void
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def rotate!: (old_key: untyped, new_key: untyped) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def rollback!: () -> untyped
+
+    private
+
+    attr_reader old_key: untyped
+
+    attr_reader new_key: untyped
+
+    def otp_secret_settings: () -> untyped
+
+    def reencrypt: (untyped user, untyped old_key, untyped new_key) -> untyped
+
+    def write_csv: () { (untyped) -> untyped } -> untyped
+  end
+end

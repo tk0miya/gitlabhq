@@ -1,0 +1,17 @@
+module Gitlab
+  module CryptoHelper
+    @encryption_key: untyped
+
+    extend ::Gitlab::CryptoHelper
+
+    AES256_GCM_OPTIONS: { algorithm: "aes-256-gcm" }
+
+    def sha256: (untyped value) -> untyped
+
+    def encryption_key: () -> untyped
+
+    def aes256_gcm_encrypt: (untyped value, ?nonce: untyped?) -> untyped
+
+    def aes256_gcm_decrypt: (untyped value, ?nonce: untyped?) -> (nil | untyped)
+  end
+end

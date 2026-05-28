@@ -1,0 +1,17 @@
+module Ci
+  module Builds
+    module TokenPrefix
+      ENCODING_BASE: 16
+
+      SEPARATOR: "_"
+
+      def self?.encode: (untyped job) -> untyped
+
+      def self?.decode_partition: (untyped token) -> (nil | untyped)
+
+      def self?.gitlab_prefix: () -> untyped
+
+      def self?.encoded_partition_id: (untyped job) -> untyped
+    end
+  end
+end

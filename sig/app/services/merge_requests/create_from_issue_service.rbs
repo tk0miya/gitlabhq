@@ -1,0 +1,62 @@
+module MergeRequests
+  class CreateFromIssueService < MergeRequests::CreateService
+    @branch_name: untyped
+
+    @issue_iid: untyped
+
+    @ref: untyped
+
+    @target_project_id: untyped
+
+    @issue: untyped
+
+    @branch: untyped
+
+    @target_project: untyped
+
+    # TODO: This constructor does not use the "params:" argument from the superclass,
+    #   but instead has a custom "mr_params:" argument. This is because historically,
+    #   prior to named arguments being introduced to the constructor, it never passed
+    #   along the third positional argument when calling `super`.
+    #   This should be changed, in order to be consistent (all subclasses should pass
+    #   along all of the arguments to the superclass, otherwise it is probably not an
+    #   "is a" relationship). However, we need to be sure that passing the params
+    #   argument to `super` (especially target_project_id) will not cause any unexpected
+    #   behavior in the superclass. Since the addition of the named arguments is
+    #   intended to be a low-risk pure refactor, we will defer this fix
+    #   to this follow-on issue:
+    #   https://gitlab.com/gitlab-org/gitlab/-/issues/328726
+    def initialize: (project: untyped, current_user: untyped, ?mr_params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def can_create_merge_request?: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def issue: () -> untyped
+
+    def branch_name: () -> untyped
+
+    def ref: () -> untyped
+
+    def valid_ref?: () -> untyped
+
+    def ref_is_branch?: () -> untyped
+
+    def ref_is_tag?: () -> untyped
+
+    def default_branch: () -> untyped
+
+    def merge_request: () -> untyped
+
+    def merge_request_params: () -> { issue_iid: untyped, source_project_id: untyped, source_branch: untyped, target_project_id: untyped, target_branch: untyped, assignee_ids: ::Array[untyped] }
+
+    def target_branch: () -> untyped
+
+    def success: (untyped merge_request) -> untyped
+
+    def target_project: () -> untyped
+  end
+end

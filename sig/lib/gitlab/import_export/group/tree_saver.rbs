@@ -1,0 +1,43 @@
+module Gitlab
+  module ImportExport
+    module Group
+      class TreeSaver
+        @params: untyped
+
+        @current_user: untyped
+
+        @shared: untyped
+
+        @group: untyped
+
+        @full_path: untyped
+
+        @groups: untyped
+
+        @group_tree: untyped
+
+        @json_writer: untyped
+
+        attr_reader full_path: untyped
+
+        attr_reader shared: untyped
+
+        def initialize: (group: untyped, current_user: untyped, shared: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        def save: () -> untyped
+
+        private
+
+        def groups: () -> untyped
+
+        def serialize: (untyped group) -> untyped
+
+        def group_tree: () -> untyped
+
+        def group_config: () -> untyped
+
+        def json_writer: () -> untyped
+      end
+    end
+  end
+end

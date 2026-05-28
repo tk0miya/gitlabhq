@@ -1,0 +1,11 @@
+module ClickHouse
+  module Models
+    module Ci
+      class FinishedPipeline < FinishedPipelinesBase
+        def self.table_name: () -> "ci_finished_pipelines"
+
+        def within_dates: (untyped from_time, untyped to_time) -> untyped
+      end
+    end
+  end
+end

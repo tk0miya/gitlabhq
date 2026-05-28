@@ -1,0 +1,30 @@
+module Gitlab
+  module Metrics
+    module Subscribers
+      class LoadBalancing < ActiveSupport::Subscriber
+        PROMETHEUS_COUNTER: :gitlab_transaction_caught_up_replica_pick_count_total
+
+        LOG_COUNTERS: { true => :caught_up_replica_pick_ok, false => :caught_up_replica_pick_fail }
+
+        def caught_up_replica_pick: (untyped event) -> (nil | untyped)
+
+        # we want to update Prometheus counter after the controller/action are set
+        def web_transaction_completed: (untyped _event) -> (nil | untyped)
+
+        def self.load_balancing_payload: () -> (::Hash[untyped, untyped] | untyped)
+
+        private
+
+        def increment: (untyped counter) -> untyped
+
+        def increment_prometheus_for_result_label: (untyped label_value) -> (nil | untyped)
+
+        def increment_prometheus: (labels: untyped, value: untyped) -> untyped
+
+        def counter: (untyped result) -> untyped
+
+        def current_transaction: () -> untyped
+      end
+    end
+  end
+end

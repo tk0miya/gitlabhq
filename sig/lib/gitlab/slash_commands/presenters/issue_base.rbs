@@ -1,0 +1,23 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      module IssueBase
+        def color: (untyped issuable) -> ("#38ae67" | "#d22852")
+
+        def status_text: (untyped issuable) -> ("Open" | "Closed")
+
+        def project: () -> untyped
+
+        def author: () -> untyped
+
+        def fields: () -> ::Array[{ title: "Assignee", value: untyped, short: true } | { title: "Milestone", value: untyped, short: true } | { title: "Labels", value: untyped, short: true }]
+
+        private
+
+        attr_reader resource: untyped
+
+        alias issue resource
+      end
+    end
+  end
+end

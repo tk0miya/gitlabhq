@@ -1,0 +1,21 @@
+class Ci::PipelineEntity < Grape::Entity
+  include RequestAwareEntity
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  alias pipeline object
+
+  def can_retry?: () -> untyped
+
+  def can_cancel?: () -> untyped
+
+  def can_delete?: () -> untyped
+
+  def has_presentable_merge_request?: () -> untyped
+
+  def detailed_status: () -> untyped
+
+  def presented_pipeline: () -> untyped
+end

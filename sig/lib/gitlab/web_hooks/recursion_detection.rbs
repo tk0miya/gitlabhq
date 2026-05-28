@@ -1,0 +1,54 @@
+# This module detects and blocks recursive webhook requests.
+#
+# Recursion can happen when a webhook has been configured to make a call
+# to its own GitLab instance (i.e., its API), and during the execution of
+# the call the webhook is triggered again to create an infinite loop of
+# being triggered.
+#
+# Additionally the module blocks a webhook once the number of requests to
+# the instance made by a series of webhooks triggering other webhooks reaches
+# a limit.
+#
+# Blocking recursive webhooks allows GitLab to continue to support workflows
+# that use webhooks to call the API non-recursively, or do not go on to
+# trigger an unreasonable number of other webhooks.
+module Gitlab
+  module WebHooks
+    module RecursionDetection
+      COUNT_LIMIT: 100
+
+      TOUCH_CACHE_TTL: untyped
+
+      def self.set_from_headers: (untyped headers) -> (nil | untyped)
+
+      def self.set_request_uuid: (untyped uuid) -> untyped
+
+      # Before a webhook is executed, `.register!` should be called.
+      # Adds the webhook ID to a cache (see `#cache_key_for_hook` for
+      # details of the cache).
+      def self.register!: (untyped hook) -> untyped
+
+      # Returns true if the webhook ID is present in the cache, or if the
+      # number of IDs in the cache exceeds the limit (see
+      # `#cache_key_for_hook` for details of the cache).
+      def self.block?: (untyped hook) -> (false | untyped)
+
+      def self.header: (untyped hook) -> untyped
+
+      def self.to_log: (untyped hook) -> { uuid: untyped, ids: untyped }
+
+      private
+
+      # Returns a cache key scoped to a UUID.
+      #
+      # The particular UUID will be either:
+      #
+      #   - A UUID that was recycled from the request headers if the request was made by a webhook.
+      #   - a new UUID initialized for the webhook.
+      #
+      # This means that cycles of webhooks that are triggered from other webhooks
+      # will share the same cache, and other webhooks will use a new cache.
+      def self.cache_key_for_hook: (untyped hook) -> untyped
+    end
+  end
+end

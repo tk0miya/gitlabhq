@@ -1,0 +1,21 @@
+module API
+  module Helpers
+    module PersonalAccessTokensHelpers
+      extend Grape::API::Helpers
+
+      def finder_params: (untyped current_user) -> untyped
+
+      def find_pat_user_by_id: (untyped user_id) -> untyped
+
+      def restrict_non_admins!: () -> (nil | untyped)
+
+      def find_token: (untyped id) -> untyped
+
+      def revoke_token: (untyped token, ?group: untyped?, ?project: untyped?) -> untyped
+
+      def rotate_token: (untyped token, untyped params) -> untyped
+
+      def rotate_token_for_resource: (untyped token, untyped resource, untyped params) -> untyped
+    end
+  end
+end

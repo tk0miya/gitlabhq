@@ -1,0 +1,12 @@
+# Caution: This Concern has to be included at the end of the API class
+# The last route of this Concern has a globbing wildcard that will match all GET urls.
+# As such, GET routes declared after the last route of this Concern will not match any url.
+module API
+  module Concerns
+    module Packages
+      module NpmNamespaceEndpoints
+        extend ActiveSupport::Concern
+      end
+    end
+  end
+end

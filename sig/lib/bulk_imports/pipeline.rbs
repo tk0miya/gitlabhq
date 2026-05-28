@@ -1,0 +1,43 @@
+module BulkImports
+  module Pipeline
+    @context: untyped
+
+    @tracker: untyped
+
+    @portable: untyped
+
+    @import_export_config: untyped
+
+    @current_user: untyped
+
+    extend ActiveSupport::Concern
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::ClassAttributes
+
+    include Runner
+
+    NotAllowedError: untyped
+
+    ExpiredError: untyped
+
+    FailedError: untyped
+
+    CACHE_KEY_EXPIRATION: untyped
+
+    NDJSON_EXPORT_TIMEOUT: untyped
+
+    EXPORT_PENDING_TIMEOUT: untyped
+
+    def initialize: (untyped context) -> void
+
+    def tracker: () -> untyped
+
+    def portable: () -> untyped
+
+    def import_export_config: () -> untyped
+
+    def current_user: () -> untyped
+  end
+end

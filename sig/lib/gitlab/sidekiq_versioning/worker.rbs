@@ -1,0 +1,13 @@
+module Gitlab
+  module SidekiqVersioning
+    module Worker
+      @job_version: untyped
+
+      extend ActiveSupport::Concern
+
+      # Version is not set if `new.perform` is called directly,
+      # and in that case we fallback to latest version
+      def job_version: () -> untyped
+    end
+  end
+end

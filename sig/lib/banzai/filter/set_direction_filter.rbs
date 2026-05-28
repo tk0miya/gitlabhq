@@ -1,0 +1,10 @@
+module Banzai
+  module Filter
+    # HTML filter that sets dir="auto" for RTL languages support
+    class SetDirectionFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      def call: () -> untyped
+    end
+  end
+end

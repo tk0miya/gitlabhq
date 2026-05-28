@@ -1,0 +1,11 @@
+module API
+  module Entities
+    module Ci
+      class RunnerDetails < Runner
+        include Gitlab::Utils::StrongMemoize
+
+        def latest_runner_manager: (untyped runner) -> untyped
+      end
+    end
+  end
+end

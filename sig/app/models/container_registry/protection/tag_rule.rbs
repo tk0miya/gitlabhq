@@ -1,0 +1,33 @@
+module ContainerRegistry
+  module Protection
+    class TagRule < ApplicationRecord
+      ACCESS_LEVELS: untyped
+
+      MAX_TAG_RULES_PER_PROJECT: 5
+
+      DELETE_ACTIONS: ::Array["delete"]
+
+      def self.base_conditions_for_actions_and_access: (untyped actions, untyped access_level) -> untyped
+
+      def push_restricted?: (untyped access_level) -> untyped
+
+      def delete_restricted?: (untyped access_level) -> untyped
+
+      def mutable?: () -> untyped
+
+      def can_be_deleted?: (untyped user) -> (false | true | untyped)
+
+      def matches_tag_name?: (untyped name) -> untyped
+
+      def type: () -> "mutable"
+
+      def uniqueness_scope: () -> untyped
+
+      private
+
+      def validate_access_levels: () -> (nil | untyped)
+
+      def minimum_level_to_delete_rule: () -> untyped
+    end
+  end
+end

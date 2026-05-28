@@ -1,0 +1,9 @@
+class Namespace::PackageSetting < ApplicationRecord
+  include CascadingNamespaceSettingAttribute
+
+  PackageSettingNotImplemented: untyped
+
+  PACKAGES_WITH_SETTINGS: ::Array["maven" | "generic" | "nuget" | "terraform_module"]
+
+  def self.duplicates_allowed?: (untyped package) -> (true | untyped)
+end

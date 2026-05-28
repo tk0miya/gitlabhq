@@ -1,0 +1,7 @@
+module API
+  class ContainerRepositories < ::API::Base
+    include Gitlab::Utils::StrongMemoize
+
+    include ::API::Helpers::ContainerRegistryHelpers
+  end
+end

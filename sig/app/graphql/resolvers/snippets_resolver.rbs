@@ -1,0 +1,17 @@
+module Resolvers
+  class SnippetsResolver < BaseResolver
+    include ResolvesIds
+
+    include ResolvesSnippets
+
+    ERROR_MESSAGE: "Filtering by both an author and a project is not supported"
+
+    alias user object
+
+    def resolve: (**untyped args) -> untyped
+
+    private
+
+    def snippet_finder_params: (untyped args) -> untyped
+  end
+end

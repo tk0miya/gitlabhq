@@ -1,0 +1,11 @@
+module Ci
+  class JobAnnotation < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include BulkInsertSafe
+
+    private
+
+    def set_project_id: () -> untyped
+  end
+end

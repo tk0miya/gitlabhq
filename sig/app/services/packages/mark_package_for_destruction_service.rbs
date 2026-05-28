@@ -1,0 +1,27 @@
+module Packages
+  class MarkPackageForDestructionService < BaseContainerService
+    @skip_protection_check: untyped
+
+    alias package container
+
+    def initialize: (container: untyped, ?current_user: untyped?, ?skip_protection_check: bool) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader skip_protection_check: untyped
+
+    def deletion_protected?: () -> (false | untyped)
+
+    def service_response_error: (untyped message, untyped http_status) -> untyped
+
+    def service_response_success: (untyped message) -> untyped
+
+    def user_can_delete_package?: () -> untyped
+
+    def track_exception: (untyped error) -> untyped
+
+    def sync_helm_metadata_caches: (untyped user) -> untyped
+  end
+end

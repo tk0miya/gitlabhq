@@ -1,0 +1,30 @@
+# Mirroring may use password or SSH public-key authentication. This concern
+# implements support for persisting the necessary data in a `credentials`
+# serialized attribute. It also needs an `url` method to be defined
+module MirrorAuthentication
+  @ssh_known_hosts_verified_by: untyped
+
+  extend ActiveSupport::Concern
+
+  attr_accessor regenerate_ssh_private_key: untyped
+
+  def ssh_key_auth?: () -> untyped
+
+  def password_auth?: () -> untyped
+
+  def ssh_mirror_url?: () -> untyped
+
+  def ssh_known_hosts_verified_by: () -> untyped
+
+  def ssh_known_hosts_fingerprints: () -> untyped
+
+  def auth_method: () -> untyped
+
+  def ssh_public_key: () -> (nil | untyped)
+
+  def generate_ssh_private_key!: () -> untyped
+
+  private
+
+  def user_by_ssh_known_hosts_verified_by_id: () -> (nil | untyped)
+end

@@ -1,0 +1,55 @@
+module Bitbucket
+  class OauthConnection
+    @api_version: untyped
+
+    @base_uri: untyped
+
+    @default_query: untyped
+
+    @token: untyped
+
+    @expires_at: untyped
+
+    @expires_in: untyped
+
+    @refresh_token: untyped
+
+    @connection: untyped
+
+    @client: untyped
+
+    @root_url: untyped
+
+    include Bitbucket::ExponentialBackoff
+
+    attr_reader expires_at: untyped
+
+    attr_reader expires_in: untyped
+
+    attr_reader refresh_token: untyped
+
+    attr_reader token: untyped
+
+    def initialize: (?::Hash[untyped, untyped] options) -> void
+
+    def get: (untyped path, ?::Hash[untyped, untyped] extra_query) -> untyped
+
+    def refresh!: () -> untyped
+
+    private
+
+    def client: () -> untyped
+
+    def logger: () -> untyped
+
+    def connection: () -> untyped
+
+    def build_url: (untyped path) -> (untyped | ::String)
+
+    def root_url: () -> untyped
+
+    def provider: () -> untyped
+
+    def options: () -> untyped
+  end
+end

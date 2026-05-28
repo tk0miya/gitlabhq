@@ -1,0 +1,13 @@
+module Ci
+  class PipelineScheduleInput < Ci::ApplicationRecord
+    MAX_VALUE_SIZE: untyped
+
+    def self.pluck_identifiers: (untyped pipeline_schedule_id, untyped inputs_names) -> untyped
+
+    private
+
+    def value_does_not_exceed_max_size: () -> (nil | untyped)
+
+    def assign_project_id: () -> untyped
+  end
+end

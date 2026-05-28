@@ -1,0 +1,31 @@
+module Resolvers
+  class WorkItemsResolver < BaseResolver
+    prepend ::WorkItems::LookAheadPreloads
+
+    include SearchArguments
+
+    include ::WorkItems::SharedFilterArguments
+
+    include ::WorkItems::NonStableCursorSortOptions
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    private
+
+    def choose_finder: (untyped args) -> untyped
+
+    def advanced_finder: (untyped args) -> untyped
+
+    def using_elasticsearch_finder?: (untyped finder) -> untyped
+
+    # When we search on a group level, this finder is being overwritten in
+    # app/graphql/resolvers/namespaces/work_items_resolver.rb:32
+    def finder: (untyped args) -> untyped
+
+    def prepare_finder_params: (untyped args) -> untyped
+
+    def resource_parent: () -> untyped
+
+    def skip_field_authorization?: () -> untyped
+  end
+end

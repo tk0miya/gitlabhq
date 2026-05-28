@@ -1,0 +1,46 @@
+module Gitlab
+  # DEPRECATED. Use Gitlab::BackgroundTask for new code instead.
+  class Daemon
+    self.@instance: untyped
+
+    @synchronous: untyped
+
+    @mutex: untyped
+
+    # Options:
+    # - recreate: We usually only allow a single instance per process to exist;
+    #             this can be overridden with this switch, so that existing
+    #             instances are stopped and recreated.
+    def self.initialize_instance: (*untyped args, ?recreate: bool, **untyped options) -> untyped
+
+    def self.instance: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    attr_reader thread: untyped
+
+    def thread?: () -> untyped
+
+    # Possible options:
+    # - synchronous [Boolean] if true, turns `start` into a blocking call
+    def initialize: (**untyped options) -> void
+
+    def enabled?: () -> true
+
+    def thread_name: () -> untyped
+
+    def start: () -> (nil | untyped)
+
+    def stop: () -> untyped
+
+    private
+
+    # Executed in lock context before starting thread
+    # Needs to return success
+    def start_working: () -> true
+
+    # Executed in separate thread
+    def run_thread: () -> untyped
+
+    # Executed in lock context
+    def stop_working: () -> nil
+  end
+end

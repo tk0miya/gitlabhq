@@ -1,0 +1,7 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillSnippetRepositoryStatesSnippetProjectId < BackfillDesiredShardingKeyJob
+      def backfill_via_table_primary_key: () -> "snippet_id"
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Ci
+  class JobVariable < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include Ci::NewHasVariable
+
+    include Ci::RawVariable
+
+    include Ci::ProjectsWithVariablesQuery
+
+    include BulkInsertSafe
+
+    def set_project_id: () -> untyped
+  end
+end

@@ -1,0 +1,40 @@
+# Renders a Pajamas compliant checkbox element
+module Pajamas
+  class CheckboxTagComponent < Pajamas::Component
+    @name: untyped
+
+    @label_options: untyped
+
+    @input_options: untyped
+
+    @checkbox_wrapper_options: untyped
+
+    @value: untyped
+
+    @checked: untyped
+
+    include Pajamas::Concerns::CheckboxRadioLabelWithHelpText
+
+    include Pajamas::Concerns::CheckboxRadioOptions
+
+    def initialize: (name: untyped, ?label_options: ::Hash[untyped, untyped], ?checkbox_options: ::Hash[untyped, untyped], ?checkbox_wrapper_options: ::Hash[untyped, untyped], ?value: ::String, ?checked: bool) -> void
+
+    private
+
+    attr_reader name: untyped
+
+    attr_reader label_options: untyped
+
+    attr_reader input_options: untyped
+
+    attr_reader checkbox_wrapper_options: untyped
+
+    attr_reader value: untyped
+
+    attr_reader checked: untyped
+
+    def label_content: () -> untyped
+
+    def help_text_content: () -> untyped
+  end
+end

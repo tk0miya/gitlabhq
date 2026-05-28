@@ -1,0 +1,21 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class CountCreatingCiBuildMetric < DatabaseMetric
+          SECURE_PRODUCT_TYPES: ::Array[:apifuzzer_fuzz | :apifuzzer_fuzz_dnd | :container_scanning | :coverage_fuzzing | :dast | :dependency_scanning | :license_management | :license_scanning | :sast | :secret_detection]
+
+          def initialize: (untyped metric_definition) -> void
+
+          private
+
+          def relation: () -> untyped
+
+          def secure_type: () -> untyped
+
+          def secure_type_all?: () -> untyped
+        end
+      end
+    end
+  end
+end

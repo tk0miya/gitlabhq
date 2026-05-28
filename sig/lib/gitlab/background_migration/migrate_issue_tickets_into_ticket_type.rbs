@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateIssueTicketsIntoTicketType < BatchedMigrationJob
+      SUPPORT_BOT_USER_TYPE: 1
+
+      TICKET_TYPE_ID: 9
+
+      def perform: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Projects
+  module Registry
+    class RepositoriesController < ::Projects::Registry::ApplicationController
+      @image: untyped
+
+      include PackagesHelper
+
+      include ::Registry::ConnectionErrorsHandler
+
+      def index: () -> untyped
+
+      # The show action renders index to allow frontend routing to work on page refresh
+      def show: () -> untyped
+
+      def destroy: () -> untyped
+
+      private
+
+      def image: () -> untyped
+
+      #
+      # Container repository object for root project path.
+      #
+      # Needed to maintain a backwards compatibility.
+      #
+      def ensure_root_container_repository!: () -> untyped
+    end
+  end
+end

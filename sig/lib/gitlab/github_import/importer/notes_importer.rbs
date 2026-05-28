@@ -1,0 +1,21 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class NotesImporter
+        include ParallelScheduling
+
+        def importer_class: () -> untyped
+
+        def representation_class: () -> untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def object_type: () -> :note
+
+        def collection_method: () -> :issues_comments
+
+        def id_for_already_imported_cache: (untyped note) -> untyped
+      end
+    end
+  end
+end

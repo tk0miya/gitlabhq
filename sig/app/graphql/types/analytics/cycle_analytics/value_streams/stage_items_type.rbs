@@ -1,0 +1,16 @@
+module Types
+  module Analytics
+    module CycleAnalytics
+      module ValueStreams
+        # rubocop: disable Graphql/AuthorizeTypes -- # Already authorized in parent.
+        class StageItemsType < BaseObject
+          include EntityDateHelper
+
+          def duration: () -> (nil | untyped)
+
+          def record: () -> untyped
+        end
+      end
+    end
+  end
+end

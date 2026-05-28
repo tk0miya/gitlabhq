@@ -1,0 +1,7 @@
+module Mutations
+  module MergeRequests
+    class SetLabels < Base
+      def resolve: (project_path: untyped, iid: untyped, label_ids: untyped, ?operation_mode: untyped) -> { merge_request: untyped, errors: untyped }
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Ci
+  class BuildReportResultService
+    include Gitlab::Utils::UsageData
+
+    EVENT_NAME: "i_testing_test_case_parsed"
+
+    def execute: (untyped build) -> (nil | untyped)
+
+    private
+
+    def generate_test_suite_report: (untyped build) -> untyped
+
+    def tests_params: (untyped test_suite) -> { tests: { name: untyped, duration: untyped, failed: untyped, errored: untyped, skipped: untyped, success: untyped, suite_error: untyped } }
+
+    def track_test_cases: (untyped build, untyped test_suite) -> untyped
+
+    def test_case_hashes: (untyped build, untyped test_suite) -> untyped
+  end
+end

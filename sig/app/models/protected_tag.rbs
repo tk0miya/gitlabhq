@@ -1,0 +1,7 @@
+class ProtectedTag < ApplicationRecord
+  include ProtectedRef
+
+  include EachBatch
+
+  def self.protected?: (untyped project, untyped ref_name) -> (false | untyped)
+end

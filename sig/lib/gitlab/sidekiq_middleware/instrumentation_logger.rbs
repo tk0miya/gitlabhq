@@ -1,0 +1,11 @@
+module Gitlab
+  module SidekiqMiddleware
+    class InstrumentationLogger
+      def call: (untyped worker, untyped job, untyped queue) { () -> untyped } -> untyped
+
+      private
+
+      def ensure_gvl_instrumentation: () -> untyped
+    end
+  end
+end

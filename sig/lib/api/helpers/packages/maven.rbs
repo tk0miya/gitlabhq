@@ -1,0 +1,23 @@
+module API
+  module Helpers
+    module Packages
+      module Maven
+        extend Grape::API::Helpers
+
+        SHA1_CHECKSUM_HEADER: "x-checksum-sha1"
+
+        MD5_CHECKSUM_HEADER: "x-checksum-md5"
+
+        def extract_format: (untyped file_name, ?skip_fips_check: bool) -> untyped
+
+        def fetch_package: (file_name: untyped, ?project: untyped?, ?group: untyped?) -> untyped
+
+        def project: () -> nil
+
+        def group: () -> nil
+
+        def download_package_file!: (untyped package_file, ?extra_send_url_params: ::Hash[untyped, untyped], ?extra_response_headers: ::Hash[untyped, untyped]) -> untyped
+      end
+    end
+  end
+end

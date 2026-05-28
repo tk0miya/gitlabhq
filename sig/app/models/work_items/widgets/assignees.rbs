@@ -1,0 +1,11 @@
+module WorkItems
+  module Widgets
+    class Assignees < Base
+      def self.quick_action_commands: () -> ::Array[:assign | :unassign | :reassign]
+
+      def self.quick_action_params: () -> ::Array[:assignee_ids]
+
+      def self.can_invite_members?: (untyped user, untyped resource_parent) -> untyped
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Builder
+        class Instance
+          include Gitlab::Utils::StrongMemoize
+
+          def secret_variables: (?protected_ref: bool, ?only: untyped?) -> untyped
+        end
+      end
+    end
+  end
+end

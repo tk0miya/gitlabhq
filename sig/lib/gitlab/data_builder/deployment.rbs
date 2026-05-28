@@ -1,0 +1,10 @@
+module Gitlab
+  module DataBuilder
+    module Deployment
+      extend ::Gitlab::DataBuilder::Deployment
+
+      # NOTE: Time-sensitive attributes should be explicitly passed as argument instead of reading from database.
+      def build: (untyped deployment, untyped status, untyped status_changed_at) -> { object_kind: "deployment", status: untyped, status_changed_at: untyped, deployment_id: untyped, deployable_id: untyped, deployable_url: untyped, environment: untyped, environment_tier: untyped, environment_slug: untyped, environment_external_url: untyped, project: untyped, short_sha: untyped, user: untyped, user_url: untyped, commit_url: untyped, commit_title: untyped, ref: untyped }
+    end
+  end
+end

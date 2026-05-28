@@ -1,0 +1,27 @@
+module Authn
+  module IamService
+    class GetConsentChallengeService
+      @challenge: untyped
+
+      @client: untyped
+
+      CONSENT_REQUEST_PATH: "/oauth2/internal/auth/requests/consent"
+
+      MANDATORY_FIELDS: ::Array[:subject | :requested_scopes | :client_id | :client_name | :client_owner | :client_created_at | :client_scopes]
+
+      def initialize: (challenge: untyped, ?client: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def http_error: (untyped response) -> untyped
+
+      def invalid_body_error: () -> untyped
+
+      def missing_mandatory_fields_error: (untyped fields) -> untyped
+
+      def log_failure: (reason: untyped, ?http_status: untyped?) -> untyped
+    end
+  end
+end

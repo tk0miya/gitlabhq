@@ -1,0 +1,23 @@
+module Resolvers
+  module Ci
+    class ConfigResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      include ResolvesProject
+
+      def resolve: (project_path: untyped, content: untyped, ?sha: untyped?, ?dry_run: bool, ?skip_verify_project_sha: bool) -> untyped
+
+      private
+
+      def response: (untyped result) -> { status: untyped, errors: untyped, warnings: untyped, stages: untyped, merged_yaml: untyped, includes: untyped }
+
+      def make_jobs: (untyped config_jobs) -> untyped
+
+      def make_groups: (untyped job_data) -> untyped
+
+      def make_stages: (untyped result) -> (::Array[untyped] | untyped)
+
+      def find_object: (project_path: untyped) -> untyped
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Database
+  class BaseMigrationService
+    @connection: untyped
+
+    @executed_versions: untyped
+
+    @arel_table: untyped
+
+    def initialize: (connection: untyped) -> void
+
+    private
+
+    attr_reader connection: untyped
+
+    def migration_context: () -> untyped
+
+    def executed_versions: () -> untyped
+
+    def all_executed_migrations: () -> untyped
+
+    def arel_table: () -> untyped
+  end
+end

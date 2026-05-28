@@ -1,0 +1,41 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class BaseTask
+        @project_path: untyped
+
+        @file_path: untyped
+
+        @namespace: untyped
+
+        @current_user: untyped
+
+        @logger: untyped
+
+        def initialize: (untyped opts, ?logger: untyped) -> void
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader namespace: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader file_path: untyped
+
+        attr_reader project_path: untyped
+
+        attr_reader logger: untyped
+
+        def disable_upload_object_storage: () { () -> untyped } -> untyped
+
+        def overwrite_uploads_setting: (untyped key, untyped value) { () -> untyped } -> untyped
+
+        def success: (untyped message) -> true
+
+        def error: (untyped message) -> false
+      end
+    end
+  end
+end

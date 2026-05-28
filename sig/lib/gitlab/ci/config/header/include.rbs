@@ -1,0 +1,14 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        class Include < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Ci::Config::Entry::Concerns::BaseInclude
+
+          # Header includes only use the common allowed keys (no additional keys)
+          ALLOWED_KEYS: untyped
+        end
+      end
+    end
+  end
+end

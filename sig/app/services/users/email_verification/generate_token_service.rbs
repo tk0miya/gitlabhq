@@ -1,0 +1,15 @@
+module Users
+  module EmailVerification
+    class GenerateTokenService < EmailVerification::BaseService
+      @token: untyped
+
+      TOKEN_LENGTH: 6
+
+      def execute: () -> ::Array[untyped]
+
+      private
+
+      def generate_token: () -> untyped
+    end
+  end
+end

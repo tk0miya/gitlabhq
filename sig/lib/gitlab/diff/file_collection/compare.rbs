@@ -1,0 +1,15 @@
+module Gitlab
+  module Diff
+    module FileCollection
+      class Compare < Base
+        @pagination: untyped
+
+        def initialize: (untyped compare, project: untyped, diff_options: untyped, ?diff_refs: untyped?) -> void
+
+        def unfold_diff_lines: (untyped positions) -> nil
+
+        def cache_key: () -> ::Array["compare" | untyped]
+      end
+    end
+  end
+end

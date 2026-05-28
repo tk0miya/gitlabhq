@@ -1,0 +1,21 @@
+class BulkImports::Tracker < ApplicationRecord
+  include AfterCommitQueue
+
+  DEFAULT_PAGE_SIZE: 500
+
+  def pipeline_class: () -> untyped
+
+  def checksums: () -> (nil | ::Hash[untyped, untyped])
+
+  def checksums_empty?: () -> (true | untyped)
+
+  def importing_relation: () -> untyped
+
+  def propagate_cancel: () -> untyped
+
+  private
+
+  def cached_checksums: () -> untyped
+
+  def persisted_checksums: () -> { source: untyped, fetched: untyped, imported: untyped }
+end

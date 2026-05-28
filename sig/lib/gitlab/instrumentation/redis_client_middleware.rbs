@@ -1,0 +1,19 @@
+# This module references https://github.com/redis-rb/redis-client#instrumentation-and-middlewares
+# implementing `call`, and `call_pipelined`.
+module Gitlab
+  module Instrumentation
+    module RedisClientMiddleware
+      include RedisHelper
+
+      def call: (untyped command, untyped redis_config) -> untyped
+
+      def call_pipelined: (untyped commands, untyped redis_config) -> untyped
+
+      private
+
+      def measure_io: (untyped command, untyped result, untyped instrumentation) -> untyped
+
+      def instrumentation_class: (untyped config) -> untyped
+    end
+  end
+end

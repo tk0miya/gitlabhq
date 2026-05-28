@@ -1,0 +1,13 @@
+module AutocompleteSources
+  module ExpiresIn
+    extend ActiveSupport::Concern
+
+    AUTOCOMPLETE_EXPIRES_IN: untyped
+
+    AUTOCOMPLETE_CACHED_ACTIONS: ::Array[:members | :labels]
+
+    private
+
+    def set_expires_in: () -> untyped
+  end
+end

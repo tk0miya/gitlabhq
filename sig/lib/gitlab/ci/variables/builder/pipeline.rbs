@@ -1,0 +1,57 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Builder
+        class Pipeline
+          @pipeline: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          include GitHelper
+
+          MAX_COMMIT_MESSAGE_SIZE_IN_BYTES: untyped
+
+          def initialize: (untyped pipeline) -> void
+
+          def predefined_variables: () -> untyped
+
+          private
+
+          attr_reader pipeline: untyped
+
+          def predefined_pipeline_variables: () -> untyped
+
+          def predefined_commit_variables: () -> untyped
+
+          def predefined_commit_tag_variables: () -> untyped
+
+          def git_tag: () -> untyped
+
+          def predefined_merge_request_variables: () -> untyped
+
+          def predefined_upstream_variables: () -> untyped
+
+          def merge_request_diff: () -> untyped
+
+          def git_commit_message_truncated: () -> untyped
+
+          def git_commit_title_truncated: () -> untyped
+
+          def git_commit_description_truncated: () -> untyped
+
+          def git_commit_message_truncated?: () -> untyped
+
+          def git_commit_message: () -> untyped
+
+          def git_commit_full_title: () -> untyped
+
+          def git_commit_description: () -> untyped
+
+          def truncate_in_bytes: (untyped text, untyped max_size) -> untyped
+
+          def append_variable: (untyped variables, key: untyped) { (?) -> untyped } -> untyped
+        end
+      end
+    end
+  end
+end

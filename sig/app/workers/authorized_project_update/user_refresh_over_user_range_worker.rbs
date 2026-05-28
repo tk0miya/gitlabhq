@@ -1,0 +1,13 @@
+module AuthorizedProjectUpdate
+  class UserRefreshOverUserRangeWorker
+    include ApplicationWorker
+
+    def perform: (untyped start_user_id, untyped end_user_id) -> untyped
+
+    private
+
+    def project_authorizations_needs_refresh?: (untyped user) -> untyped
+
+    def enqueue_project_authorizations_refresh: (untyped user) -> untyped
+  end
+end

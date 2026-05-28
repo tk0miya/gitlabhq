@@ -1,0 +1,19 @@
+module ProtectedBranches
+  class BaseService < ::BaseService
+    @project_or_group: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_reader project_or_group: untyped
+
+    # current_user - The user that performs the action
+    # params - A hash of parameters
+    def initialize: (untyped project_or_group, ?untyped? current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def after_execute: (*untyped) -> nil
+
+    def refresh_cache: () -> untyped
+  end
+end

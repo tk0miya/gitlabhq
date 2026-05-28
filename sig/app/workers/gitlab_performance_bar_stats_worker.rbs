@@ -1,0 +1,18 @@
+class GitlabPerformanceBarStatsWorker
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  STATS_KEY: "performance_bar_stats:pending_request_ids"
+
+  STATS_KEY_EXPIRE: untyped
+
+  # _uuid is kept for backward compatibility, but it's not used anymore
+  def perform: (?untyped? _uuid) -> untyped
+
+  private
+
+  def with_redis: () { (?) -> untyped } -> untyped
+
+  def fetch_request_ids: (untyped redis) -> untyped
+end

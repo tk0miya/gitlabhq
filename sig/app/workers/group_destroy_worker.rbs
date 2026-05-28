@@ -1,0 +1,7 @@
+class GroupDestroyWorker
+  include ApplicationWorker
+
+  include ExceptionBacktrace
+
+  def perform: (untyped group_id, untyped user_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+end

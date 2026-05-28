@@ -1,0 +1,49 @@
+module RepositoryCheck
+  class BatchWorker
+    @shard_name: untyped
+
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include RepositoryCheckQueue
+
+    include ExclusiveLeaseGuard
+
+    RUN_TIME: 3600
+
+    BATCH_SIZE: 10000
+
+    LEASE_TIMEOUT: untyped
+
+    attr_reader shard_name: untyped
+
+    def perform: (untyped shard_name) -> (nil | untyped)
+
+    def lease_timeout: () -> untyped
+
+    def lease_key: () -> ::String
+
+    def perform_repository_checks: () -> untyped
+
+    private
+
+    # Project.find_each does not support WHERE clauses and
+    # Project.find_in_batches does not support ordering. So we just build an
+    # array of ID's. This is OK because we do it only once an hour, because
+    # getting ID's from Postgres is not terribly slow, and because no user
+    # has to sit and wait for this query to finish.
+    def project_ids: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def never_checked_project_ids: (untyped batch_size) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def old_checked_project_ids: (untyped batch_size) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def projects_on_shard: () -> untyped
+
+    def try_obtain_lease_for_project: (untyped id) -> untyped
+  end
+end

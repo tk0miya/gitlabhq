@@ -1,0 +1,48 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      class PreventSetOperatorMismatch
+        class SelectStmt
+          @node: untyped
+
+          @cte_references: untyped
+
+          @all_references: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          attr_reader node: untyped
+
+          attr_reader cte_references: untyped
+
+          attr_reader all_references: untyped
+
+          # @param [PgQuery::SelectStmt] node The PgQuery node of the select statement.
+          # @param [Hash] inherited_cte_references CTE References available to the select statement.
+          def initialize: (untyped node, ?::Hash[untyped, untyped] inherited_cte_references) -> void
+
+          # returns Set of Types.
+          #
+          # STATIC - queries that don't require a database schema lookup. E.g. `SELECT users.id FROM users`
+          # DYNAMIC - queries that require a database schema lookup. E.g. `SELECT users.* FROM users`
+          # INVALID - set operator queries that mix static and dynamic queries.
+          def types: () -> untyped
+
+          private
+
+          # Standard SELECT, not a set operator (UNION/INTERSECT/EXCEPT)
+          def resolve_normal_select_types: () -> untyped
+
+          # Set operator (UNION/INTERSECT/EXCEPT)
+          def resolve_set_operator_select_types: () -> untyped
+
+          def set_operator?: () -> untyped
+
+          SET_OPERATOR_PART_LOCATIONS: ::Array[:larg | :rarg]
+
+          def set_operator_parts: () { (untyped) -> untyped } -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

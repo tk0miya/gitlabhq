@@ -1,0 +1,11 @@
+module ErrorTracking
+  class IssueLatestEventService < ErrorTracking::BaseService
+    private
+
+    def perform: () -> untyped
+
+    def parse_response: (untyped response) -> { latest_event: untyped }
+
+    def find_issue_latest_event: (untyped issue_id) -> untyped
+  end
+end

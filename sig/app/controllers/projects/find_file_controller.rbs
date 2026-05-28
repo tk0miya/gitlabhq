@@ -1,0 +1,14 @@
+# Controller for viewing a repository's file structure
+class Projects::FindFileController < Projects::ApplicationController
+  @ref_type: untyped
+
+  include ExtractsPath
+
+  include ActionView::Helpers::SanitizeHelper
+
+  include TreeHelper
+
+  def show: () -> untyped
+
+  def list: () -> untyped
+end

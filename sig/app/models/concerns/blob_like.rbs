@@ -1,0 +1,27 @@
+module BlobLike
+  extend ActiveSupport::Concern
+
+  include Gitlab::BlobHelper
+
+  def id: () -> untyped
+
+  def name: () -> untyped
+
+  def path: () -> untyped
+
+  def size: () -> 0
+
+  def data: () -> nil
+
+  def mode: () -> nil
+
+  def binary_in_repo?: () -> false
+
+  def load_all_data!: (untyped repository) -> nil
+
+  def truncated?: () -> false
+
+  def external_storage: () -> nil
+
+  def external_size: () -> nil
+end

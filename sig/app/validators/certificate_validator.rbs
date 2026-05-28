@@ -1,0 +1,15 @@
+# UrlValidator
+#
+# Custom validator for private keys.
+#
+#   class Project < ActiveRecord::Base
+#     validates :certificate_key, certificate: true
+#   end
+#
+class CertificateValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+  private
+
+  def valid_certificate_pem?: (untyped value) -> untyped
+end

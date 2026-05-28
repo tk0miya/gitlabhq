@@ -1,0 +1,23 @@
+module Issues
+  class ExportCsvService < ExportCsv::BaseService
+    @labels: untyped
+
+    include GitlabRoutingHelper
+
+    def initialize: (untyped relation, untyped resource_parent, ?untyped? user) -> void
+
+    def email: (untyped mail_to_user) -> untyped
+
+    private
+
+    def associations_to_preload: () -> ::Array[:namespace | :author | :assignees | :timelogs | :milestone | { project: { namespace: :route } }]
+
+    def header_to_value_hash: () -> { "Title" => "title", "Description" => "description", "Issue ID" => "iid", "URL" => untyped, "State" => untyped, "Author" => "author_name", "Author Username" => untyped, "Assignee" => untyped, "Assignee Username" => untyped, "Confidential" => untyped, "Locked" => untyped, "Due Date" => untyped, "Created At (UTC)" => untyped, "Updated At (UTC)" => untyped, "Closed At (UTC)" => untyped, "Milestone" => untyped, "Weight" => untyped, "Labels" => untyped, "Time Estimate" => untyped, "Time Spent" => untyped }
+
+    def issue_labels: (untyped issue) -> untyped
+
+    def issue_time_spent: (untyped issue) -> untyped
+
+    def preload_associations_in_batches?: () -> untyped
+  end
+end

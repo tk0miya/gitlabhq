@@ -1,0 +1,65 @@
+module Gitlab
+  module Diff
+    module Rendered
+      module Notebook
+        class DiffFile < Gitlab::Diff::File
+          @source_diff: untyped
+
+          @rendered_timeout: untyped
+
+          include Gitlab::Diff::Rendered::Notebook::DiffFileHelper
+
+          include Gitlab::Utils::StrongMemoize
+
+          RENDERED_TIMEOUT_BACKGROUND: untyped
+
+          BACKGROUND_EXECUTION: "background"
+
+          FOREGROUND_EXECUTION: "foreground"
+
+          LOG_IPYNBDIFF_GENERATED: "IPYNB_DIFF_GENERATED"
+
+          LOG_IPYNBDIFF_TIMEOUT: "IPYNB_DIFF_TIMEOUT"
+
+          LOG_IPYNBDIFF_INVALID: "IPYNB_DIFF_INVALID"
+
+          LOG_IPYNBDIFF_TRUNCATED: "IPYNB_DIFF_TRUNCATED"
+
+          attr_reader source_diff: untyped
+
+          def initialize: (untyped diff_file) -> void
+
+          def old_blob: () -> (nil | untyped)
+
+          def new_blob: () -> (nil | untyped)
+
+          def diff: () -> untyped
+
+          def has_renderable?: () -> untyped
+
+          def rendered: () -> (self | nil)
+
+          def rendered?: () -> true
+
+          def highlighted_diff_lines: () -> untyped
+
+          def diff_lines_with_match_tail: () -> (::Array[untyped] | untyped)
+
+          private
+
+          def notebook_diff: () -> untyped
+
+          def transformed_diff: () -> (nil | untyped)
+
+          def transformed_blocks: () -> { from: untyped, to: untyped }
+
+          def rendered_timeout: () -> untyped
+
+          def log_event: (untyped message, ?untyped? error) -> nil
+
+          def mutate_line: (untyped line, untyped mapped_positions, untyped source_diff_lines) -> untyped
+        end
+      end
+    end
+  end
+end

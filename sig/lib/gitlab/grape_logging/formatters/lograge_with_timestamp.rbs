@@ -1,0 +1,19 @@
+module Gitlab
+  module GrapeLogging
+    module Formatters
+      class LogrageWithTimestamp
+        include Gitlab::EncodingHelper
+
+        EMPTY_ARRAY: ::Array[untyped]
+
+        def call: (untyped severity, untyped datetime, untyped _, untyped data) -> untyped
+
+        private
+
+        def process_params: (untyped data) -> untyped
+
+        def utf8_encode_values: (untyped data) -> untyped
+      end
+    end
+  end
+end

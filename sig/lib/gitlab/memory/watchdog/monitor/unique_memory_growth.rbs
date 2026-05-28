@@ -1,0 +1,30 @@
+module Gitlab
+  module Memory
+    class Watchdog
+      module Monitor
+        class UniqueMemoryGrowth
+          @max_mem_growth: untyped
+
+          @reference_mem: untyped
+
+          attr_reader max_mem_growth: untyped
+
+          def initialize: (max_mem_growth: untyped) -> void
+
+          def call: () -> ({ threshold_violated: false, payload: ::Hash[untyped, untyped] } | { threshold_violated: true, payload: untyped })
+
+          private
+
+          def payload: (untyped worker_uss, untyped reference_uss, untyped memory_limit) -> { message: "memory limit exceeded", memwd_uss_bytes: untyped, memwd_ref_uss_bytes: untyped, memwd_max_uss_bytes: untyped }
+
+          # On pre-fork systems this would be the primary process memory from which workers fork.
+          # Otherwise it is the current process' memory.
+          #
+          # We initialize this lazily because in the initializer the application may not have
+          # finished booting yet, which would yield an incorrect baseline.
+          def reference_mem: () -> untyped
+        end
+      end
+    end
+  end
+end

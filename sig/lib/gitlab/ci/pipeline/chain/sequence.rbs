@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class Sequence
+          @pipeline: untyped
+
+          @command: untyped
+
+          @sequence: untyped
+
+          @start: untyped
+
+          def initialize: (untyped pipeline, untyped command, untyped sequence) -> void
+
+          def build!: () -> untyped
+
+          private
+
+          def current_monotonic_time: () -> untyped
+        end
+      end
+    end
+  end
+end

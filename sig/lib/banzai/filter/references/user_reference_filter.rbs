@@ -1,0 +1,83 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces user or group references with links.
+      #
+      # A special `@all` reference is also supported.
+      class UserReferenceFilter < ReferenceFilter
+        include Gitlab::Utils::StrongMemoize
+
+        # Public: Find `@user` user references in text
+        #
+        #   references_in(text) do |match_text, username|
+        #     "<a href=...>@#{user}</a>"
+        #   end
+        #
+        # text - String text to search.
+        #
+        # Yields the String match text, and the String user name.
+        #
+        # Returns a HTML String with replacements made, or nil if no replacements were made.
+        #
+        # See ReferenceFilter#references_in for a detailed discussion.
+        def references_in: (untyped text, ?untyped pattern) { (untyped, untyped) -> untyped } -> untyped
+
+        def call: () -> untyped
+
+        private
+
+        # Replace `@user` user references in text with links to the referenced
+        # user's profile page.
+        #
+        # text - String text to replace references in.
+        # link_content_html - Original HTML content of the link being replaced.
+        #
+        # Returns a HTML String with `@user` references replaced with links. All links
+        # have `gfm` and `gfm-project_member` class names attached for styling.
+        #
+        # Returns nil if no replacements were made.
+        def object_link_filter: (untyped text, untyped pattern, ?link_content_html: untyped?, ?link_reference: bool) -> untyped
+
+        # Returns a Hash containing all Namespace objects for the username
+        # references in the current document.
+        #
+        # The keys of this Hash are the namespace paths, the values the
+        # corresponding Namespace objects.
+        def namespaces: () -> untyped
+
+        # check for users that have an aliased name within an organization,
+        # for example the bot users created by Users::Internal
+        def org_user_details: () -> untyped
+
+        # Returns all usernames referenced in the current document.
+        def usernames: () -> untyped
+
+        def urls: () -> untyped
+
+        def link_class: () -> untyped
+
+        def link_to_all: (match_text: untyped, link_content_html: untyped) -> untyped
+
+        def link_to_namespace: (untyped namespace, match_text: untyped, link_content_html: untyped) -> untyped
+
+        def link_to_group: (untyped group, untyped namespace, match_text: untyped, link_content_html: untyped) -> untyped
+
+        def link_to_user: (untyped user, untyped namespace, match_text: untyped, link_content_html: untyped) -> untyped
+
+        def link_to_org_user_detail: (untyped org_user_detail, match_text: untyped, link_content_html: untyped) -> untyped
+
+        def link_tag: (untyped url, untyped data_attributes, untyped link_content_html, untyped title) -> untyped
+
+        def organization: () -> untyped
+
+        def parent: () -> untyped
+
+        def parent_group?: () -> untyped
+
+        def team_member?: (untyped user) -> untyped
+
+        def parent_url: (untyped author, match_text: untyped, link_content_html: untyped) -> untyped
+      end
+    end
+  end
+end

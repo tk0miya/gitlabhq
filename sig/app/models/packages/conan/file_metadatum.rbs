@@ -1,0 +1,25 @@
+class Packages::Conan::FileMetadatum < ApplicationRecord
+  DEFAULT_REVISION: "0"
+
+  RECIPE_FILES: untyped
+
+  PACKAGE_FILES: untyped
+
+  PACKAGE_BINARY: "conan_package.tgz"
+
+  CONANINFO_TXT: "conaninfo.txt"
+
+  MANIFEST_FILE: "conanmanifest.txt"
+
+  def recipe_revision_value: () -> untyped
+
+  def package_revision_value: () -> (nil | untyped)
+
+  def package_reference_value: () -> untyped
+
+  private
+
+  def conan_package_type: () -> (untyped | nil)
+
+  def ensure_recipe_revision_with_package_revision: () -> (nil | untyped)
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Checks
+    class BaseChecker
+      include Gitlab::Utils::StrongMemoize
+
+      def validate!: () -> untyped
+
+      private
+
+      def updated_from_web?: () -> untyped
+
+      def validate_once: (untyped resource) { (untyped) -> untyped } -> untyped
+
+      def cache_key_for_resource: (untyped resource) -> ::String
+
+      def checker_cache_key: () -> untyped
+    end
+  end
+end

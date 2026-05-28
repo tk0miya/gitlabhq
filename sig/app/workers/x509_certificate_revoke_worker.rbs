@@ -1,0 +1,5 @@
+class X509CertificateRevokeWorker
+  include ApplicationWorker
+
+  def perform: (untyped certificate_id) -> (nil | untyped)
+end

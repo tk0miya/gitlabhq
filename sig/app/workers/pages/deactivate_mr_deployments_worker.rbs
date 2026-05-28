@@ -1,0 +1,11 @@
+module Pages
+  class DeactivateMrDeploymentsWorker
+    include ApplicationWorker
+
+    def perform: (untyped merge_request_id) -> untyped
+
+    private
+
+    def deactivate_deployments_with_build_ids: (untyped build_ids) -> untyped
+  end
+end

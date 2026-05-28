@@ -1,0 +1,121 @@
+class ContainerRepository < ApplicationRecord
+  @path: untyped
+
+  @manifest: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Gitlab::SQL::Pattern
+
+  include EachBatch
+
+  include Sortable
+
+  include AfterCommitQueue
+
+  include Packages::Destructible
+
+  WAITING_CLEANUP_STATUSES: ::Array[:cleanup_scheduled | :cleanup_unfinished]
+
+  REQUIRING_CLEANUP_STATUSES: ::Array[:cleanup_unscheduled | :cleanup_scheduled]
+
+  MAX_TAGS_PAGES: 2000
+
+  MAX_DELETION_FAILURES: 10
+
+  # The Registry client uses JWT token to authenticate to Registry. We cache the client using expiration
+  # time of JWT token. However it's possible that the token is valid but by the time the request is made to
+  # Regsitry, it's already expired. To prevent this case, we are subtracting a few seconds, defined by this constant
+  # from the cache expiration time.
+  AUTH_TOKEN_USAGE_RESERVED_TIME_IN_SECS: 5
+
+  # Container Repository model and the code that makes API calls
+  # are tied. Sometimes (mainly in Geo) we need to work with Registry
+  # when Container Repository record doesn't even exist.
+  # The ability to create a not-persisted record with a certain "path" parameter
+  # is very useful
+  attr_writer path: untyped
+
+  def self.exists_by_path?: (untyped path) -> untyped
+
+  def self.with_enabled_policy: () -> untyped
+
+  def self.requiring_cleanup: () -> untyped
+
+  def self.with_unfinished_cleanup: () -> untyped
+
+  def self.registry_client_expiration_time: () -> untyped
+
+  # needed by Packages::Destructible
+  def self.pending_destruction: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def registry: () -> untyped
+
+  def path: () -> untyped
+
+  def location: () -> untyped
+
+  # If the container registry GitLab API is available, the API
+  # does a search of tags containing the name and we filter them
+  # to find the exact match. Otherwise, we instantiate a tag.
+  def tag: (untyped tag) -> (nil | untyped | untyped)
+
+  def tag_details: (name: untyped) -> (nil | untyped)
+
+  def image_manifest: (untyped reference) -> untyped
+
+  def manifest: () -> untyped
+
+  def tags: () -> untyped
+
+  def each_tags_page: (?page_size: ::Integer) ?{ (untyped) -> untyped } -> untyped
+
+  def tags_page: (?before: untyped?, ?last: untyped?, ?sort: untyped?, ?name: untyped?, ?page_size: ::Integer, ?referrers: untyped?, ?referrer_type: untyped?) -> { tags: untyped, pagination: untyped }
+
+  def tags_count: () -> (0 | untyped)
+
+  def blob: (untyped config) -> untyped
+
+  def has_tags?: () -> untyped
+
+  def delete_tags!: () -> (nil | untyped)
+
+  def delete_tag: (untyped name_or_digest) -> untyped
+
+  def start_expiration_policy!: () -> untyped
+
+  def size: () -> untyped
+
+  def last_published_at: () -> untyped
+
+  def set_delete_ongoing_status: () -> untyped
+
+  def set_delete_scheduled_status: () -> untyped
+
+  def set_delete_failed_status: () -> untyped
+
+  def self.build_from_path: (untyped path) -> untyped
+
+  def self.find_or_create_from_path!: (untyped path) -> untyped
+
+  def self.build_root_repository: (untyped project) -> untyped
+
+  def self.find_by_path!: (untyped path) -> untyped
+
+  def self.find_by_path: (untyped path) -> untyped
+
+  def protected_from_delete_by_tag_rules?: (untyped user) -> (true | false)
+
+  private
+
+  def transform_tags_page: (untyped tags_response_body) -> (::Array[untyped] | untyped)
+
+  def transform_tag_details: (untyped tag_details_response_body) -> (nil | untyped)
+
+  def set_status_updated_at_to_now: () -> untyped
+
+  def gitlab_api_client_repository_details: () -> untyped
+
+  def next_delete_attempt_with_delay: (?untyped now) -> untyped
+end

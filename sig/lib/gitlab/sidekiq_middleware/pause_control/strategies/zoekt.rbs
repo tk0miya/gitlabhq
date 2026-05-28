@@ -1,0 +1,11 @@
+module Gitlab
+  module SidekiqMiddleware
+    module PauseControl
+      module Strategies
+        class Zoekt < Base
+          def should_pause?: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,16 @@
+module Gitlab
+  module Database
+    # Class for casting binary data to hexadecimal SHA256 hashes (and vice-versa).
+    #
+    # Using Sha256Attribute allows you to store SHA256 values as binary while still
+    # using them as if they were stored as string values. This gives you the
+    # ease of use of string values, but without the storage overhead.
+    class Sha256Attribute < ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Bytea
+      # Casts binary data to a SHA256 and remove trailing = and newline from encode64
+      def deserialize: (untyped value) -> untyped
+
+      # Casts a SHA256 in a proper binary format. which is 32 bytes long
+      def serialize: (untyped value) -> untyped
+    end
+  end
+end

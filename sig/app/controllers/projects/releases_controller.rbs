@@ -1,0 +1,29 @@
+class Projects::ReleasesController < Projects::ApplicationController
+  @release: untyped
+
+  @latest_tag: untyped
+
+  def index: () -> untyped
+
+  def downloads: () -> untyped
+
+  def latest_permalink: () -> untyped
+
+  private
+
+  def releases: (?::Hash[untyped, untyped] params) -> untyped
+
+  def authorize_update_release!: () -> (untyped | nil)
+
+  def release: () -> untyped
+
+  def link: () -> untyped
+
+  # Default order_by is 'released_at', which is set in ReleasesFinder.
+  # Also if the passed order_by is invalid, we reject and default to 'released_at'.
+  def fetch_latest_tag: () -> untyped
+
+  def validate_suffix_path: () -> (untyped | nil)
+
+  def internal_url?: (untyped redirect_url) -> untyped
+end

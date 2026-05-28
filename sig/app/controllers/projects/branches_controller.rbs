@@ -1,0 +1,79 @@
+class Projects::BranchesController < Projects::ApplicationController
+  @branches: untyped
+
+  @prev_path: untyped
+
+  @next_path: untyped
+
+  @related_merge_requests: untyped
+
+  @active_branches: untyped
+
+  @stale_branches: untyped
+
+  include ActionView::Helpers::SanitizeHelper
+
+  include SortingHelper
+
+  include HandlesGitalyErrors
+
+  def index: () -> untyped
+
+  def diverging_commit_counts: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def create: () -> untyped
+
+  def destroy: () -> untyped
+
+  def destroy_all_merged: () -> untyped
+
+  private
+
+  def sort_param: () -> untyped
+
+  def default_sort: () -> untyped
+
+  def supported_sort_options: () -> ::Array[nil | untyped]
+
+  # It can be expensive to calculate the diverging counts for each
+  # branch. Normally the frontend should be specifying a set of branch
+  # names, but prior to
+  # https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/32496, the
+  # frontend could omit this set. To prevent excessive I/O, we require
+  # that a list of names be specified.
+  def limit_diverging_commit_counts!: () -> (nil | untyped)
+
+  def ref: () -> untyped
+
+  # Safely unescape URI-encoded branch names.
+  # Handles branch names with slashes (e.g., feature%2Flogin -> feature/login)
+  # while preserving literal percent characters (e.g., test%ab stays test%ab).
+  # If unescaping produces invalid UTF-8, the percent was meant to be literal.
+  # Returns a plain String (not SafeBuffer) for Gitaly compatibility.
+  def safe_unescape: (untyped name) -> untyped
+
+  def url_to_autodeploy_setup: (untyped project, untyped branch_name) -> untyped
+
+  def redirect_for_legacy_index_sort_or_search: () -> (untyped | nil)
+
+  def fetch_branches_by_mode: () -> untyped
+
+  def fetch_merge_requests_for_branches: () -> untyped
+
+  def fetch_branches_for_overview: () -> untyped
+
+  def fetch_mode: () -> ("overview" | untyped)
+
+  def confidential_issue_project: () -> (nil | untyped)
+
+  def branches_params: () -> untyped
+
+  # Parse search from raw query string so '+' is not decoded as space (branch names can contain '+')
+  # See https://gitlab.com/gitlab-org/gitlab/-/issues/589047
+  def search_param_from_raw_query_string: () -> (nil | untyped)
+
+  # CGI.unescape decodes '+' as space; branch names can contain '+'. Decode %XX only and preserve literal '+'.
+  # Use a unique placeholder (not null char) so URLs containing actual null characters are handled correctly.
+  def unescape_value_preserving_plus: (untyped value) -> untyped
+end

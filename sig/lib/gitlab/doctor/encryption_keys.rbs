@@ -1,0 +1,31 @@
+module Gitlab
+  module Doctor
+    class EncryptionKeys
+      @logger: untyped
+
+      @known_keys: untyped
+
+      attr_reader logger: untyped
+
+      KEY_TYPES: untyped
+
+      Key: untyped
+
+      def initialize: (untyped logger) -> void
+
+      def run!: () -> untyped
+
+      private
+
+      def known_keys: () -> untyped
+
+      def populate_actual_secrets!: (untyped keys) -> untyped
+
+      def gather_encryption_keys: (untyped model) -> (::Hash[untyped, untyped] | untyped)
+
+      def encryption_keys: (untyped model, untyped attr) -> untyped
+
+      def models_with_encrypted_attributes: () -> untyped
+    end
+  end
+end

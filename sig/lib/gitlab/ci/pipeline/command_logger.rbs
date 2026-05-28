@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      class CommandLogger
+        @destination: untyped
+
+        def initialize: (?destination: untyped) -> void
+
+        def commit: (pipeline: untyped, command: untyped) -> (nil | untyped)
+
+        private
+
+        attr_reader destination: untyped
+
+        def log?: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,92 @@
+class ApplicationRecord < ActiveRecord::Base
+  self.@underscore: untyped
+
+  include DisablesSti
+
+  include DatabaseReflection
+
+  include Transactions
+
+  include LegacyBulkInsert
+
+  include CrossDatabaseModification
+
+  include Gitlab::SensitiveAttributes
+
+  include Gitlab::SensitiveSerializableHash
+
+  include ResetOnColumnErrors
+
+  include HasCheckConstraints
+
+  include IgnorableColumns
+
+  include Organizations::Sharding
+
+  include PopulatesShardingKey
+
+  include EachBatch
+
+  # We should avoid using pluck https://docs.gitlab.com/ee/development/sql.html#plucking-ids
+  # but, if we are going to use it, let's try and limit the number of records
+  MAX_PLUCK: 1000
+
+  alias reset reload
+
+  # It is strongly suggested use the `.ids` method instead.
+  #
+  #     User.ids # => returns all the user IDs
+  #     User.where(...).ids # => returns the IDs of records matching the where clause.
+  #
+  alias self.pluck_primary_key self.ids
+
+  def self.without_order: () -> untyped
+
+  def self.id_in: (untyped ids) -> untyped
+
+  def self.primary_key_in: (untyped values) -> untyped
+
+  def self.iid_in: (untyped iids) -> untyped
+
+  def self.id_not_in: (untyped ids) -> untyped
+
+  def self.safe_ensure_unique: (?retries: ::Integer) { () -> untyped } -> untyped
+
+  def self.safe_find_or_create_by!: (*untyped args) { (?) -> untyped } -> untyped
+
+  # Start a new transaction with a shorter-than-usual statement timeout. This is
+  # currently one third of the default 15-second timeout with a 500ms buffer
+  # to allow callers gracefully handling the errors to still complete within
+  # the 5s target duration of a low urgency request.
+  def self.with_fast_read_statement_timeout: (?::Integer timeout_ms) { () -> untyped } -> untyped
+
+  def self.safe_find_or_create_by: (*untyped args) { (?) -> untyped } -> untyped
+
+  def self.current_transaction: () -> untyped
+
+  def create_or_load_association: (untyped association_name) -> untyped
+
+  def self.underscore: () -> untyped
+
+  def self.where_exists: (untyped query) -> untyped
+
+  def self.where_not_exists: (untyped query) -> untyped
+
+  def self.declarative_enum: (untyped enum_mod) -> untyped
+
+  def self.cached_column_list: () -> untyped
+
+  def self.default_select_columns: () -> untyped
+
+  # This method has been removed in Rails 7.1
+  # However, application relies on it in case-when usages with objects wrapped in presenters
+  def self.===: (untyped object) -> untyped
+
+  def self.nullable_column?: (untyped column_name) -> untyped
+
+  def self.delete_all_returning: (*untyped columns) -> untyped
+
+  def readable_by?: (untyped user) -> untyped
+
+  def to_ability_name: () -> untyped
+end

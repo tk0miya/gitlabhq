@@ -1,0 +1,15 @@
+module Gitlab
+  module Import
+    class RemoveImportFileWorker
+      @logger: untyped
+
+      include ApplicationWorker
+
+      def perform: (untyped upload_id) -> (nil | untyped)
+
+      private
+
+      def logger: () -> untyped
+    end
+  end
+end

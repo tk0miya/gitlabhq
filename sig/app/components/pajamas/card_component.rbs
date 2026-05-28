@@ -1,0 +1,35 @@
+# Renders a GlCard root element
+module Pajamas
+  class CardComponent < Pajamas::Component
+    @card_options: untyped
+
+    @header_options: untyped
+
+    @body_options: untyped
+
+    @footer_options: untyped
+
+    @card: untyped
+
+    # @param [Hash] card_options
+    # @param [Hash] header_options
+    # @param [Hash] body_options
+    # @param [Hash] footer_options
+    # @card [Hash] card structure as an object. This enables .with_collection functionality.
+    def initialize: (?card: ::Hash[untyped, untyped], ?card_options: ::Hash[untyped, untyped], ?header_options: ::Hash[untyped, untyped], ?body_options: ::Hash[untyped, untyped], ?footer_options: ::Hash[untyped, untyped]) -> void
+
+    private
+
+    attr_reader card: untyped
+
+    def parsed_header?: () -> untyped
+
+    def parsed_header: () -> untyped
+
+    def parsed_body: () -> untyped
+
+    def parsed_footer?: () -> untyped
+
+    def parsed_footer: () -> untyped
+  end
+end

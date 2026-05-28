@@ -1,0 +1,11 @@
+module WorkItems
+  module Widgets
+    class CurrentUserTodos < Base
+      def self.quick_action_commands: () -> ::Array[:todo | :done]
+
+      def self.quick_action_params: () -> ::Array[:todo_event]
+
+      def self.process_quick_action_param: (untyped param_name, untyped value) -> (untyped | { action: untyped })
+    end
+  end
+end

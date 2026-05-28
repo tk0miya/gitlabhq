@@ -1,0 +1,58 @@
+module Gitlab
+  module Kubernetes
+    # Wrapper around Kubeclient::Client to dispatch
+    # the right message to the client that can respond to the message.
+    # We must have a kubeclient for each ApiGroup as there is no
+    # other way to use the Kubeclient gem.
+    #
+    # See https://github.com/abonas/kubeclient/issues/348.
+    class KubeClient
+      @api_prefix: untyped
+
+      @kubeclient_options: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      SUPPORTED_API_GROUPS: { core: { group: "api", version: "v1" }, rbac: { group: "apis/rbac.authorization.k8s.io", version: "v1" }, apps: { group: "apis/apps", version: "v1" }, extensions: { group: "apis/extensions", version: "v1beta1" }, istio: { group: "apis/networking.istio.io", version: "v1alpha3" }, knative: { group: "apis/serving.knative.dev", version: "v1alpha1" }, metrics: { group: "apis/metrics.k8s.io", version: "v1beta1" }, networking: { group: "apis/networking.k8s.io", version: "v1" }, cilium_networking: { group: "apis/cilium.io", version: "v2" } }
+
+      attr_reader api_prefix: untyped
+
+      attr_reader kubeclient_options: untyped
+
+      DEFAULT_KUBECLIENT_OPTIONS: { timeouts: { open: 10, read: 30 } }
+
+      def self.graceful_request: (untyped cluster_id) { () -> untyped } -> untyped
+
+      # KubeClient uses the same error class
+      # For connection errors (eg. timeout) and
+      # for Kubernetes errors.
+      def self.kubeclient_error_status: (untyped message) -> (:unreachable | :authentication_failure)
+
+      # We disable redirects through 'http_max_redirects: 0',
+      # so that KubeClient does not follow redirects and
+      # expose internal services.
+      def initialize: (untyped api_prefix, **untyped kubeclient_options) -> void
+
+      def create_or_update_cluster_role_binding: (untyped resource) -> untyped
+
+      # Note that we cannot update roleRef as that is immutable
+      def create_or_update_role_binding: (untyped resource) -> untyped
+
+      def create_or_update_service_account: (untyped resource) -> untyped
+
+      def create_or_update_secret: (untyped resource) -> untyped
+
+      private
+
+      def validate_url!: () -> (nil | untyped)
+
+      def service_account_exists?: (untyped resource) -> untyped
+
+      def secret_exists?: (untyped resource) -> untyped
+
+      def build_kubeclient: (untyped api_group, untyped api_version) -> untyped
+
+      def join_api_url: (untyped api_prefix, untyped api_path) -> untyped
+    end
+  end
+end

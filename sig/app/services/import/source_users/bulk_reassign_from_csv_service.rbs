@@ -1,0 +1,59 @@
+module Import
+  module SourceUsers
+    class BulkReassignFromCsvService
+      @upload: untyped
+
+      @current_user: untyped
+
+      @namespace: untyped
+
+      @reassignment_stats: untyped
+
+      @reassignment_error_csv_data: untyped
+
+      @csv_validator: untyped
+
+      def initialize: (untyped current_user, untyped namespace, untyped upload) -> void
+
+      # @return [ServiceResponse]
+      def async_execute: () -> untyped
+
+      # @return [ServiceResponse]
+      def execute: () -> untyped
+
+      private
+
+      attr_reader upload: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader csv_validator: untyped
+
+      attr_reader reassignment_stats: untyped
+
+      attr_reader reassignment_error_csv_data: untyped
+
+      def process_csv: () -> untyped
+
+      def csv_data: () -> untyped
+
+      def attributes_for: (untyped row) -> { source_user_identifier: untyped, username: untyped, email: untyped, host: untyped, import_type: untyped }
+
+      def process_line: (untyped attributes) -> untyped
+
+      def find_source_user: (untyped attributes) -> untyped
+
+      def find_reassign_to_user: (untyped attributes) -> untyped
+
+      def user_by_email: (untyped scope, untyped email) -> untyped
+
+      def search_criteria: (untyped attributes) -> untyped
+
+      def current_user_is_admin?: () -> untyped
+
+      def failure_csv: () -> untyped
+    end
+  end
+end

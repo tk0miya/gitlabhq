@@ -1,0 +1,12 @@
+module Gitlab
+  module Cleanup
+    module ObjectStorageCleanerMapping
+      # Maps buckets to their respective model classes and cleaners
+      MAPPING: { artifacts: untyped, ci_secure_files: untyped, uploads: untyped }
+
+      def self.buckets: () -> untyped
+
+      def self.cleaner_class_for: (untyped bucket) -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class Unschedule < Status::Extended
+          def label: () -> "unschedule action"
+
+          def has_action?: () -> untyped
+
+          def action_icon: () -> "time-out"
+
+          def action_title: () -> "Unschedule"
+
+          def action_button_title: () -> untyped
+
+          def action_path: () -> untyped
+
+          def action_method: () -> :post
+
+          def self.matches?: (untyped build, untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

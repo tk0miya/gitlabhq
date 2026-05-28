@@ -1,0 +1,21 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces work item references with links. References to
+      # work items that do not exist are ignored.
+      #
+      # This filter supports cross-project references.
+      class WorkItemReferenceFilter < IssueReferenceFilter
+        def parent_records: (untyped parent, untyped ids) -> untyped
+
+        def parent_type: () -> :namespace
+
+        def parent: () -> untyped
+
+        private
+
+        def additional_object_attributes: (untyped work_item) -> { work_item_type: untyped }
+      end
+    end
+  end
+end

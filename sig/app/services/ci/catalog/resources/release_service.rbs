@@ -1,0 +1,44 @@
+module Ci
+  module Catalog
+    module Resources
+      class ReleaseService
+        @release: untyped
+
+        @user: untyped
+
+        @metadata: untyped
+
+        @project: untyped
+
+        @errors: untyped
+
+        def initialize: (untyped release, untyped user, untyped metadata) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader errors: untyped
+
+        attr_reader release: untyped
+
+        attr_reader user: untyped
+
+        attr_reader metadata: untyped
+
+        def track_release_duration: () { () -> untyped } -> untyped
+
+        def check_user_access: () -> (nil | untyped)
+
+        # overridden in EE
+        def check_project_access: () -> nil
+
+        def validate_catalog_resource: () -> (nil | untyped)
+
+        def create_version: () -> (nil | untyped)
+      end
+    end
+  end
+end

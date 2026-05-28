@@ -1,0 +1,39 @@
+module Bitbucket
+  class MultiWorkspaceCollection < Enumerator
+    @workspace_configs: untyped
+
+    @connection: untyped
+
+    @limit: untyped
+
+    @total_fetched_items_count: untyped
+
+    @workspace_paging_info: untyped
+
+    DEFAULT_LIMIT: 25
+
+    attr_reader limit: untyped
+
+    attr_reader total_fetched_items_count: untyped
+
+    attr_reader workspace_configs: untyped
+
+    attr_reader workspace_paging_info: untyped
+
+    def initialize: (untyped workspace_configs, untyped connection, ?limit: untyped) -> void
+
+    def page_info: () -> { has_next_page: untyped }
+
+    private
+
+    def process_workspace_config: (untyped config, untyped yielder) -> (nil | untyped)
+
+    def should_skip_workspace?: () -> untyped
+
+    def add_unfetched_workspace_info: (untyped config) -> untyped
+
+    def create_workspace_collection: (untyped config) -> untyped
+
+    def process_workspace_items: (untyped collection, untyped yielder, untyped workspace_slug) -> (nil | untyped)
+  end
+end

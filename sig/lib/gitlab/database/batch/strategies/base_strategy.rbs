@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module Batch
+      module Strategies
+        # Simple base class for batching strategy job classes.
+        #
+        # Any strategy class that inherits from the base class will have connection to the tracking database set on
+        # initialization.
+        class BaseStrategy
+          @connection: untyped
+
+          def initialize: (connection: untyped) -> void
+
+          def next_batch: (*untyped arguments) -> untyped
+
+          private
+
+          attr_reader connection: untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module Auth
+    module OAuth
+      class Provider
+        LABELS: { "alicloud" => "AliCloud", "github" => "GitHub", "gitlab" => "GitLab.com", "google_oauth2" => "Google", "azure_oauth2" => "Azure AD (Obsolete)", "azure_activedirectory_v2" => "Azure AD v2", "atlassian_oauth2" => "Atlassian" }
+
+        def self.authentication: (untyped user, untyped provider) -> (nil | untyped)
+
+        def self.providers: () -> untyped
+
+        def self.enabled?: (untyped name) -> (true | untyped)
+
+        def self.ldap_provider?: (untyped name) -> untyped
+
+        def self.sync_profile_from_provider?: (untyped provider) -> (true | untyped)
+
+        def self.config_for: (untyped name) -> untyped
+
+        def self.label_for: (untyped name) -> untyped
+
+        def self.icon_for: (untyped name) -> untyped
+
+        def self.merge_provider_args_with_defaults!: (untyped provider) -> (nil | untyped)
+      end
+    end
+  end
+end

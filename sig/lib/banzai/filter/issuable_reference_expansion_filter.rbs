@@ -1,0 +1,54 @@
+module Banzai
+  module Filter
+    # HTML filter that appends extra information to issuable links.
+    # Runs as a post-process filter as issuable might change while
+    # Markdown is in the cache.
+    #
+    # This filter supports cross-project references.
+    class IssuableReferenceExpansionFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      include Gitlab::Utils::StrongMemoize
+
+      NUMBER_OF_SUMMARY_ASSIGNEES: 2
+
+      VISIBLE_STATES: ::Array["closed" | "merged"]
+
+      EXTENDED_FORMAT_XPATH: untyped
+
+      def call: () -> untyped
+
+      private
+
+      # Example: Issue Title (#123 - closed)
+      def expand_reference_with_title_and_state: (untyped node, untyped issuable) -> untyped
+
+      # rubocop:disable Style/AsciiComments
+      # Example: Issue Title (#123 - closed) assignee name 1, assignee name 2+ • v15.9 • On track
+      def expand_reference_with_summary: (untyped node, untyped issuable) -> untyped
+
+      # Example: #123 (closed)
+      def expand_reference_with_state: (untyped node, untyped issuable) -> untyped
+
+      def assignees_text: (untyped issuable) -> (untyped | ::String)
+
+      def milestone_text: (untyped milestone) -> untyped
+
+      def health_status_text: (untyped health_status) -> untyped
+
+      def issuable_state_text: (untyped issuable) -> untyped
+
+      def moved_issue?: (untyped issuable) -> untyped
+
+      def should_expand?: (untyped node, untyped issuable) -> (nil | untyped)
+
+      def current_user: () -> untyped
+
+      def project: () -> untyped
+
+      def group: () -> untyped
+
+      def expand_emoji: (untyped string) -> untyped
+    end
+  end
+end

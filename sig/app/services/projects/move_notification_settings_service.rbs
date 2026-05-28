@@ -1,0 +1,19 @@
+module Projects
+  class MoveNotificationSettingsService < BaseMoveRelationsService
+    def execute: (untyped source_project, ?remove_remaining_elements: bool) -> (nil | untyped)
+
+    private
+
+    def move_notification_settings: () -> untyped
+
+    # Remove remaining notification settings from source_project
+    def remove_remaining_notification_settings: () -> untyped
+
+    # Get users of current notification_settings
+    def users_in_target_project: () -> untyped
+
+    # Look for notification_settings in source_project that are not in the target project
+    # rubocop: disable CodeReuse/ActiveRecord
+    def non_existent_notifications: () -> untyped
+  end
+end

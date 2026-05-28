@@ -1,0 +1,29 @@
+module FormHelper
+  def form_errors: (untyped model, ?type: ::String, ?truncate: untyped, ?custom_message: untyped, ?custom_headline: untyped?) -> (nil | untyped)
+
+  def dropdown_max_select: (untyped data) -> untyped
+
+  def assignees_dropdown_options: (untyped issuable_type) -> untyped
+
+  def reviewers_dropdown_options: (untyped issuable_type, ?untyped? iid, ?untyped? target_branch) -> untyped
+
+  # Overwritten
+  def reviewers_dropdown_options_for_suggested_reviewers: () -> ::Hash[untyped, untyped]
+
+  # Overwritten
+  def issue_supports_multiple_assignees?: () -> false
+
+  # Overwritten
+  def merge_request_supports_multiple_assignees?: () -> false
+
+  # Overwritten
+  def merge_request_supports_multiple_reviewers?: () -> false
+
+  private
+
+  def append_help_page_link: (untyped message, untyped options) -> untyped
+
+  def multiple_assignees_dropdown_options: (untyped options) -> untyped
+
+  def multiple_reviewers_dropdown_options: (untyped options) -> untyped
+end

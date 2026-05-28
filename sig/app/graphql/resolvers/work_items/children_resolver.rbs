@@ -1,0 +1,12 @@
+module Resolvers
+  module WorkItems
+    # rubocop:disable Graphql/ResolverType -- the type is inherited from the parent class
+    class ChildrenResolver < HierarchyResolver
+      prepend ::WorkItems::LookAheadPreloads
+
+      def resolve_with_lookahead: (?state: untyped?) -> untyped
+
+      def unconditional_includes: () -> untyped
+    end
+  end
+end

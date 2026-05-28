@@ -1,0 +1,13 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class BatchedBackgroundMigrationFailedJobsMetric < DatabaseMetric
+          def value: () -> untyped
+
+          def to_sql: () -> untyped
+        end
+      end
+    end
+  end
+end

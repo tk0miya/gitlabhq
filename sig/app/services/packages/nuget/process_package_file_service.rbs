@@ -1,0 +1,25 @@
+module Packages
+  module Nuget
+    class ProcessPackageFileService
+      @package_file: untyped
+
+      @user_or_deploy_token: untyped
+
+      ExtractionError: untyped
+
+      def initialize: (untyped package_file, ?untyped? user_or_deploy_token) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_file: untyped
+
+      attr_reader user_or_deploy_token: untyped
+
+      def valid_package_file?: () -> untyped
+
+      def with_zip_file: () { (?) -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Build
+      class Rules::Rule::Clause::If < Rules::Rule::Clause
+        @expression: untyped
+
+        def initialize: (untyped expression) -> void
+
+        def satisfied_by?: (untyped _pipeline, untyped context) -> untyped
+      end
+    end
+  end
+end

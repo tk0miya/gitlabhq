@@ -1,0 +1,59 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      class Logger
+        @started_at: untyped
+
+        @project: untyped
+
+        @destination: untyped
+
+        @log_conditions: untyped
+
+        @observations: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        def self.current_monotonic_time: () -> untyped
+
+        def initialize: (project: untyped, ?destination: untyped) ?{ (untyped) -> untyped } -> void
+
+        def log_when: () { (?) -> untyped } -> untyped
+
+        def instrument: (untyped operation, ?once: bool) ?{ () -> untyped } -> untyped
+
+        def instrument_once_with_sql: (untyped operation) { (?) -> untyped } -> untyped
+
+        def observe: (untyped operation, untyped value, ?once: bool) -> (nil | untyped)
+
+        def commit: (pipeline: untyped, caller: untyped) -> (nil | untyped)
+
+        def observations_hash: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader destination: untyped
+
+        attr_reader started_at: untyped
+
+        attr_reader log_conditions: untyped
+
+        def age: () -> untyped
+
+        def log?: () -> (false | true | untyped)
+
+        def enabled?: () -> untyped
+
+        def observations: () -> untyped
+
+        def observe_sql_counters: (untyped operation, untyped start_db_counters, untyped end_db_counters, ?once: bool) -> untyped
+
+        def current_db_counter_payload: () -> untyped
+
+        def taggable_statuses: (untyped pipeline) -> untyped
+      end
+    end
+  end
+end

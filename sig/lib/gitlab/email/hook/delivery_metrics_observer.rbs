@@ -1,0 +1,17 @@
+module Gitlab
+  module Email
+    module Hook
+      class DeliveryMetricsObserver
+        extend Gitlab::Utils::StrongMemoize
+
+        def self.delivering_email: (untyped _message) -> untyped
+
+        def self.delivered_email: (untyped _message) -> untyped
+
+        def self.delivery_attempts_counter: () -> untyped
+
+        def self.delivered_emails_counter: () -> untyped
+      end
+    end
+  end
+end

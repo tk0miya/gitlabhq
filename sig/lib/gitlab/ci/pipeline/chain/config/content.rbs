@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Config
+          class Content < Chain::Base
+            include Chain::Helpers
+
+            include ::Gitlab::Utils::StrongMemoize
+
+            def perform!: () -> untyped
+
+            def break?: () -> untyped
+
+            private
+
+            def pipeline_config: () -> untyped
+
+            def pipeline_config_params: () -> { project: untyped, sha: untyped, custom_content: untyped, pipeline_source: untyped, pipeline_source_bridge: untyped, triggered_for_branch: untyped, ref: untyped, source_branch: untyped, pipeline_policy_context: untyped, inputs: untyped }
+          end
+        end
+      end
+    end
+  end
+end

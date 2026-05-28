@@ -1,0 +1,19 @@
+module Gitlab
+  module Auth
+    module Atlassian
+      class AuthHash < Gitlab::Auth::OAuth::AuthHash
+        def token: () -> untyped
+
+        def refresh_token: () -> untyped
+
+        def expires?: () -> untyped
+
+        def expires_at: () -> untyped
+
+        private
+
+        def credentials: () -> untyped
+      end
+    end
+  end
+end

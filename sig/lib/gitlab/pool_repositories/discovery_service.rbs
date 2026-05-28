@@ -1,0 +1,18 @@
+module Gitlab
+  module PoolRepositories
+    class DiscoveryService
+      @logger: untyped
+
+      @verbose: untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord -- Pre-loading pool disk paths for discovery
+      @pool_disk_paths_cache: untyped
+
+      def initialize: (untyped logger, untyped verbose) -> void
+
+      def pool_disk_path_exists?: (untyped disk_path) -> untyped
+
+      def scan_pool_metadata: (untyped storage_name) -> untyped
+    end
+  end
+end

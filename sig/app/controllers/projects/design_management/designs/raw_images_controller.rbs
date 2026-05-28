@@ -1,0 +1,20 @@
+# Returns full-size design images
+module Projects
+  module DesignManagement
+    module Designs
+      class RawImagesController < Projects::DesignManagement::DesignsController
+        @design_repository: untyped
+
+        include SendsBlob
+
+        def show: () -> untyped
+
+        private
+
+        def design_repository: () -> untyped
+
+        def ref: () -> untyped
+      end
+    end
+  end
+end

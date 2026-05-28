@@ -1,0 +1,26 @@
+# Controller for viewing a file's raw
+class Projects::RawController < Projects::ApplicationController
+  @blob: untyped
+
+  include ExtractsPath
+
+  include SendsBlob
+
+  include StaticObjectExternalStorage
+
+  include HandlesGitalyErrors
+
+  def show: () -> untyped
+
+  private
+
+  # Override to render plain text instead of HTML template
+  # since RawController serves raw file content, not HTML pages
+  def handle_gitaly_error: (untyped exception) -> untyped
+
+  def ref: () -> untyped
+
+  def check_show_blob_path_rate_limit!: () -> untyped
+
+  def check_show_unauthenticated_rate_limit!: () -> (nil | untyped)
+end

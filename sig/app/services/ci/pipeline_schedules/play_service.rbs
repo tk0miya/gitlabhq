@@ -1,0 +1,13 @@
+module Ci
+  module PipelineSchedules
+    class PlayService < BaseService
+      include Services::ReturnServiceResponses
+
+      def execute: (untyped schedule) -> untyped
+
+      private
+
+      def check_access!: (untyped schedule) -> (untyped | nil)
+    end
+  end
+end

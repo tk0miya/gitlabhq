@@ -1,0 +1,27 @@
+module Ci
+  class RetryJobService < ::BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::InternalEventsTracking
+
+    def execute: (untyped job, ?variables: untyped, ?inputs: ::Hash[untyped, untyped]) -> untyped
+
+    def clone!: (untyped job, ?variables: untyped, ?inputs: ::Hash[untyped, untyped], ?enqueue_if_actionable: bool, ?start_pipeline: bool) -> untyped
+
+    private
+
+    def ensure_project_id!: (untyped variables) -> untyped
+
+    def check_assignable_runners!: (untyped job) -> nil
+
+    def retry_job: (untyped job, ?variables: untyped, ?inputs: ::Hash[untyped, untyped]) -> untyped
+
+    def process_job_inputs: (untyped job, untyped inputs) -> untyped
+
+    def check_access!: (untyped job, ?variables: untyped) -> untyped
+
+    def start_pipeline: (untyped job, untyped new_job) -> untyped
+
+    def track_retry_with_new_input_values: (untyped filtered_inputs) -> (nil | untyped)
+  end
+end

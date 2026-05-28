@@ -1,0 +1,13 @@
+module BitbucketServer
+  module RetryWithDelay
+    extend ActiveSupport::Concern
+
+    MAXIMUM_DELAY: 20
+
+    def retry_with_delay: () { (?) -> untyped } -> untyped
+
+    private
+
+    def run_retry_with_delay: () { () -> untyped } -> untyped
+  end
+end

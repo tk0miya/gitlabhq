@@ -1,0 +1,19 @@
+module Ci
+  class FinishedPipelineChSyncEvent < Ci::ApplicationRecord
+    include EachBatch
+
+    include FromUnion
+
+    include PartitionedTable
+
+    PARTITION_DURATION: untyped
+
+    PARTITION_CLEANUP_THRESHOLD: untyped
+
+    def self.detach_partition?: (untyped partition) -> (true | false)
+
+    def self.any_older_partitions_exist?: (untyped partition, untyped duration) -> untyped
+
+    def self.any_newer_partitions_exist?: (untyped partition, untyped duration) -> untyped
+  end
+end

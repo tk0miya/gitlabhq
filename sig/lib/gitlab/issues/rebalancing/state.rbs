@@ -1,0 +1,85 @@
+module Gitlab
+  module Issues
+    module Rebalancing
+      class State
+        @root_namespace: untyped
+
+        @rebalanced_container_type: untyped
+
+        @rebalanced_container_id: untyped
+
+        @issue_count: untyped
+
+        REDIS_KEY_PREFIX: "gitlab:issues-position-rebalances"
+
+        CONCURRENT_RUNNING_REBALANCES_KEY: ::String
+
+        RECENTLY_FINISHED_REBALANCE_PREFIX: ::String
+
+        REDIS_EXPIRY_TIME: untyped
+
+        MAX_NUMBER_OF_CONCURRENT_REBALANCES: 5
+
+        NAMESPACE: 1
+
+        PROJECT: 2
+
+        def initialize: (untyped namespace) -> void
+
+        def track_new_running_rebalance: () -> untyped
+
+        def concurrent_running_rebalances_count: () -> untyped
+
+        def rebalance_in_progress?: () -> untyped
+
+        def can_start_rebalance?: () -> untyped
+
+        def cache_issue_ids: (untyped issue_ids) -> untyped
+
+        def get_cached_issue_ids: (untyped index, untyped limit) -> untyped
+
+        def cache_current_index: (untyped index) -> untyped
+
+        def get_current_index: () -> untyped
+
+        def cache_current_namespace_id: (untyped namespace_id) -> untyped
+
+        def get_current_namespace_id: () -> untyped
+
+        def issue_count: () -> untyped
+
+        def remove_current_namespace_id_cache: () -> untyped
+
+        def refresh_keys_expiration: () -> untyped
+
+        def cleanup_cache: () -> untyped
+
+        def self.rebalance_recently_finished?: (untyped namespace) -> untyped
+
+        def self.fetch_rebalancing_groups_and_projects: () -> ::Array[untyped]
+
+        private
+
+        def self.current_rebalancing_containers: () -> untyped
+
+        attr_accessor root_namespace: untyped
+
+        attr_accessor rebalanced_container_type: untyped
+
+        attr_accessor rebalanced_container_id: untyped
+
+        def concurrent_rebalance_within_limit?: () -> untyped
+
+        def issue_ids_key: () -> ::String
+
+        def current_index_key: () -> ::String
+
+        def current_project_key: () -> ::String
+
+        def self.recently_finished_key: (untyped container_type, untyped container_id) -> ::String
+
+        def with_redis: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

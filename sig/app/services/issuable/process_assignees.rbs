@@ -1,0 +1,31 @@
+module Issuable
+  class ProcessAssignees
+    @assignee_ids: untyped
+
+    @add_assignee_ids: untyped
+
+    @remove_assignee_ids: untyped
+
+    @existing_assignee_ids: untyped
+
+    @extra_assignee_ids: untyped
+
+    def initialize: (assignee_ids: untyped, add_assignee_ids: untyped, remove_assignee_ids: untyped, ?existing_assignee_ids: untyped?, ?extra_assignee_ids: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_accessor assignee_ids: untyped
+
+    attr_accessor add_assignee_ids: untyped
+
+    attr_accessor remove_assignee_ids: untyped
+
+    attr_accessor existing_assignee_ids: untyped
+
+    attr_accessor extra_assignee_ids: untyped
+
+    def new_assignee_ids: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Issues
+  module LookAheadPreloads
+    extend ActiveSupport::Concern
+
+    private
+
+    def unconditional_includes: () -> ::Array[{ project: ::Array[:project_feature | :group] } | :author]
+
+    def preloads: () -> { reference: { namespace: ::Array[{ parent: :route } | :route] }, alert_management_alert: ::Array[:alert_management_alert], alert_management_alerts: ::Array[:alert_management_alerts], assignees: ::Array[:assignees], participants: untyped, timelogs: ::Array[:timelogs], customer_relations_contacts: { customer_relations_contacts: ::Array[:group] }, escalation_status: ::Array[:incident_management_issuable_escalation_status] }
+  end
+end

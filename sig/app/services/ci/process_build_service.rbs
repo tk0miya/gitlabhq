@@ -1,0 +1,13 @@
+module Ci
+  class ProcessBuildService < BaseService
+    def execute: (untyped processable, untyped current_status) -> (true | false)
+
+    private
+
+    def process: (untyped processable) -> untyped
+
+    def enqueue: (untyped processable) -> untyped
+
+    def valid_statuses_for_processable: (untyped processable) -> untyped
+  end
+end

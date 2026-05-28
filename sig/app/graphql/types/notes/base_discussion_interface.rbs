@@ -1,0 +1,14 @@
+module Types
+  module Notes
+    module BaseDiscussionInterface
+      include Types::BaseInterface
+
+      DiscussionID: untyped
+
+      # DiscussionID.coerce_result is suitable here, but will always mark this
+      # as being a 'Discussion'. Using `GlobalId.build` guarantees that we get
+      # the correct class, and that it matches `id`.
+      def reply_id: () -> untyped
+    end
+  end
+end

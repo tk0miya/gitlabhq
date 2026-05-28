@@ -1,0 +1,29 @@
+class Projects::ImportsController < Projects::ApplicationController
+  include ContinueParams
+
+  include ImportUrlParams
+
+  def new: () -> nil
+
+  def create: () -> untyped
+
+  def show: () -> untyped
+
+  private
+
+  def finished_notice: () -> untyped
+
+  def require_no_repo: () -> (untyped | nil)
+
+  # Project creation by template uses a different permission model to regular imports
+  # https://gitlab.com/gitlab-org/gitlab/-/issues/414046#note_1945586449.
+  def require_namespace_project_creation_permission: () -> (untyped | nil)
+
+  def redirect_if_progress: () -> (untyped | nil)
+
+  def redirect_if_no_import: () -> (untyped | nil)
+
+  def import_params_attributes: () -> ::Array[untyped]
+
+  def import_params: () -> untyped
+end

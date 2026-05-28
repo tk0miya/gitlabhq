@@ -1,0 +1,47 @@
+class Projects::DeployKeysController < Projects::ApplicationController
+  @key: untyped
+
+  @deploy_key: untyped
+
+  @deploy_keys_project: untyped
+
+  include RepositorySettingsRedirect
+
+  def index: () -> untyped
+
+  def enabled_keys: () -> untyped
+
+  def available_project_keys: () -> untyped
+
+  def available_public_keys: () -> untyped
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def edit: () -> nil
+
+  def update: () -> untyped
+
+  def enable: () -> untyped
+
+  def disable: () -> untyped
+
+  def deploy_key: () -> untyped
+
+  def deploy_keys_project: () -> untyped
+
+  def create_params: () -> untyped
+
+  def update_params: () -> untyped
+
+  def authorize_update_deploy_key!: () -> (untyped | nil)
+
+  private
+
+  def redirect_to_repository: () -> untyped
+
+  def find_keys: (filter: untyped) -> untyped
+
+  def serialize: (untyped keys) -> untyped
+end

@@ -1,0 +1,13 @@
+module Mutations
+  module ContainerRepositories
+    class Destroy < ::Mutations::ContainerRepositories::DestroyBase
+      def resolve: (id: untyped) -> ({ container_repository: untyped, errors: ::Array["Deleting the protected repository path is forbidden"] } | { container_repository: untyped, errors: ::Array[untyped] })
+
+      private
+
+      def audit_event: (untyped repository) -> nil
+
+      def protected_for_delete?: (untyped container_repository) -> (false | untyped)
+    end
+  end
+end

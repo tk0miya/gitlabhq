@@ -1,0 +1,9 @@
+module TodosDestroyer
+  class DestroyedIssuableWorker
+    include ApplicationWorker
+
+    include TodosDestroyerQueue
+
+    def perform: (untyped target_id, untyped target_type) -> untyped
+  end
+end

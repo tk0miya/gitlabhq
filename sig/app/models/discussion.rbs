@@ -1,0 +1,103 @@
+# A non-diff discussion on an issue, merge request, commit, or snippet, consisting of `DiscussionNote` notes.
+#
+# A discussion of this type can be resolvable.
+class Discussion
+  @notes: untyped
+
+  @context_noteable: untyped
+
+  @last_note: untyped
+
+  include GlobalID::Identification
+
+  include ResolvableDiscussion
+
+  # Bump this if we need to refresh the cached versions of discussions
+  CACHE_VERSION: 1
+
+  attr_reader context_noteable: untyped
+
+  attr_accessor notes: untyped
+
+  def declarative_policy_delegate: () -> untyped
+
+  def project_id: () -> untyped
+
+  def self.build: (untyped notes, ?untyped? context_noteable, ?inverse_relations: bool) -> untyped
+
+  def self.build_collection: (untyped notes, ?untyped? context_noteable) -> untyped
+
+  def self.build_discussions: (untyped discussion_ids, ?untyped? context_noteable, ?preload_note_diff_file: bool) -> untyped
+
+  def self.lazy_find: (untyped discussion_id) -> untyped
+
+  # Returns an alphanumeric discussion ID based on `build_discussion_id`
+  def self.discussion_id: (untyped note) -> untyped
+
+  # Returns an array of discussion ID components
+  def self.build_discussion_id: (untyped note) -> untyped
+
+  def self.base_discussion_id: (untyped note) -> ::Array[:discussion | untyped]
+
+  # When notes on a commit are displayed in context of a merge request that contains that commit,
+  # these notes are to be displayed as if they were part of one discussion, even though they were actually
+  # individual notes on the commit with different discussion IDs, so that it's clear that these are not
+  # notes on the merge request itself.
+  #
+  # To turn a list of notes into a list of discussions, they are grouped by discussion ID, so to
+  # get these out-of-context notes to end up in the same discussion, we need to get them to return the same
+  # `discussion_id` when this grouping happens. To enable this, `Note#discussion_id` calls out
+  # to the `override_discussion_id` method on the appropriate `Discussion` subclass, as determined by
+  # the `discussion_class` method on `Note` or a subclass of `Note`.
+  #
+  # If no override is necessary, return `nil`.
+  # For the case described above, see `OutOfContextDiscussion.override_discussion_id`.
+  def self.override_discussion_id: (untyped note) -> nil
+
+  def self.note_class: () -> untyped
+
+  def self.model_class: () -> untyped
+
+  def initialize: (untyped notes, ?untyped? context_noteable, ?inverse_relations: bool) -> void
+
+  def on_image?: () -> false
+
+  def ==: (untyped other) -> untyped
+
+  def last_updated_at: () -> untyped
+
+  def last_updated_by: () -> untyped
+
+  def updated?: () -> untyped
+
+  def id: () -> untyped
+
+  def reply_id: () -> untyped
+
+  alias to_param id
+
+  def diff_discussion?: () -> false
+
+  def individual_note?: () -> false
+
+  def can_convert_to_discussion?: () -> false
+
+  def last_note: () -> untyped
+
+  def collapsed?: () -> untyped
+
+  def expanded?: () -> untyped
+
+  def reply_attributes: () -> untyped
+
+  def cache_key: () -> untyped
+
+  # Consolidate discussions GID. There is no need to have different GID for different class names as the discussion_id
+  # hash is already unique per discussion. This also fixes the issue where same discussion may return different GIDs
+  # depending on number of notes it has.
+  def to_global_id: (?::Hash[untyped, untyped] options) -> untyped
+
+  def discussion_class: () -> untyped
+
+  def noteable_collection_name: () -> untyped
+end

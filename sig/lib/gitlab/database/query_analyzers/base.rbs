@@ -1,0 +1,53 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      class Base
+        self.@context_key: untyped
+
+        self.@suppress_key: untyped
+
+        self.@analyzer_key: untyped
+
+        # `Exception` to ensure that is not easily rescued when running in test env
+        QueryAnalyzerError: untyped
+
+        def self.suppressed?: () -> untyped
+
+        # Cached queries are not analyzed by default, even if they'd require tracking.
+        # Override `skip_cached?` in your analyzer to analyze cached queries.
+        def self.skip_cached?: (untyped parsed) -> untyped
+
+        def self.requires_tracking?: (untyped parsed) -> false
+
+        def self.suppress=: (untyped value) -> untyped
+
+        attr_writer self.suppress_in_rspec: untyped
+
+        # During database decomposition, db migrations using tables that will be decomposed
+        # will begin to contravene their configuration for intended gitlab_schema and database connection.
+        # As these migrations already exist, ideally they should be finalized and removed prior to decomposition.
+        # In this situations, it's necessary to suppress warnings related to their incorrect connection and schema
+        # to progress our CI pipelines.
+        def self.suppress_schema_issues_for_decomposed_tables: () { () -> untyped } -> untyped
+
+        def self.with_suppressed: (?bool value) { () -> untyped } -> untyped
+
+        def self.begin!: () -> untyped
+
+        def self.end!: () -> untyped
+
+        def self.context: () -> untyped
+
+        def self.enabled?: () -> untyped
+
+        def self.analyze: (untyped parsed) -> untyped
+
+        def self.context_key: () -> untyped
+
+        def self.suppress_key: () -> untyped
+
+        def self.analyzer_key: () -> untyped
+      end
+    end
+  end
+end

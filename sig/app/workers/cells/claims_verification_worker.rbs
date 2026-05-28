@@ -1,0 +1,29 @@
+module Cells
+  class ClaimsVerificationWorker
+    @model_name: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    LEASE_TIMEOUT: untyped
+
+    MAX_RUNTIME: untyped
+
+    REDIS_LAST_PROCESSED_ID_TTL: untyped
+
+    def perform: (untyped model_name) -> untyped
+
+    private
+
+    def lease_key: () -> ::String
+
+    def last_processed_id: () -> untyped
+
+    def save_last_processed_id: (untyped id) -> untyped
+
+    def redis_key: () -> ::String
+
+    def enabled?: (untyped model) -> untyped
+  end
+end

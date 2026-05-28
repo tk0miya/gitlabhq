@@ -1,0 +1,13 @@
+module Resolvers
+  class BoardListResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    include BoardItemFilterable
+
+    def resolve: (?id: untyped?, ?issue_filters: ::Hash[untyped, untyped]) -> untyped
+
+    private
+
+    def find_list: (id: untyped) -> untyped
+  end
+end

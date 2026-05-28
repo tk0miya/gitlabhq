@@ -1,0 +1,99 @@
+module GroupsHelper
+  def can_change_group_visibility_level?: (untyped group) -> untyped
+
+  def can_update_default_branch_protection?: (untyped group) -> untyped
+
+  def can_change_share_with_group_lock?: (untyped group) -> untyped
+
+  def can_change_prevent_sharing_groups_outside_hierarchy?: (untyped group) -> untyped
+
+  def can_disable_group_emails?: (untyped group) -> untyped
+
+  def can_set_group_diff_preview_in_email?: (untyped group) -> (false | untyped)
+
+  def can_admin_group_member?: (untyped group) -> untyped
+
+  def can_invite_group_member?: (untyped group) -> untyped
+
+  def show_prevent_inviting_groups_outside_hierarchy_setting?: (untyped group) -> untyped
+
+  def group_icon_url: (untyped group, ?::Hash[untyped, untyped] options) -> untyped
+
+  def push_group_breadcrumbs: (untyped group) -> untyped
+
+  def projects_lfs_status: (untyped group) -> untyped
+
+  def group_lfs_status: (untyped group) -> untyped
+
+  def share_with_group_lock_help_text: (untyped group) -> untyped
+
+  def link_to_group: (untyped group) -> untyped
+
+  def prevent_sharing_groups_outside_hierarchy_help_text: (untyped group) -> untyped
+
+  def render_setting_to_allow_project_access_token_creation?: (untyped group) -> untyped
+
+  def show_thanks_for_purchase_alert?: (untyped quantity) -> untyped
+
+  def group_project_list_sort_by: () -> untyped
+
+  def subgroup_creation_data: (untyped group) -> { parent_group_url: untyped, parent_group_name: untyped, import_existing_group_path: untyped }
+
+  def group_name_and_path_app_data: () -> { base_path: untyped, mattermost_enabled: untyped }
+
+  def groups_show_app_data: (untyped group) -> untyped
+
+  def group_readme_app_data: (untyped group_readme) -> { web_path: untyped, name: untyped }
+
+  def show_group_readme?: (untyped group) -> (false | untyped)
+
+  def group_settings_readme_app_data: (untyped group) -> { group_readme_path: untyped, readme_project_path: untyped, group_path: untyped, group_id: untyped }
+
+  def group_archive_settings_app_data: (untyped group) -> { resource_type: "group", resource_id: untyped, resource_path: untyped, marked_for_deletion: untyped }
+
+  def group_unarchive_settings_app_data: (untyped group) -> { resource_type: "group", resource_id: untyped, resource_path: untyped, ancestors_archived: untyped }
+
+  def enabled_git_access_protocol_options_for_group: () -> untyped
+
+  def new_custom_emoji_path: (untyped group) -> (nil | untyped)
+
+  def groups_list_with_filtered_search_app_data: (untyped endpoint) -> untyped
+
+  def group_more_action_data: (untyped group) -> { group: untyped, can_request_access: untyped, can_withdraw_access_request: untyped, dashboard_path: untyped }
+
+  def group_merge_requests: (untyped group) -> untyped
+
+  def step_up_auth_provider_options_for_select: () -> untyped
+
+  private
+
+  def can_request_access: (untyped user, untyped group, untyped request) -> untyped
+
+  def can_withdraw_access_request: (untyped user, untyped request) -> untyped
+
+  def group_title_link: (untyped group, ?hidable: bool, ?show_avatar: bool) -> untyped
+
+  def ancestor_group: (untyped group) -> untyped
+
+  def remove_the_share_with_group_lock_from_ancestor: (untyped group) -> untyped
+
+  def oldest_consecutively_locked_ancestor: (untyped group) -> untyped
+
+  # Ancestors sorted by hierarchy depth in bottom-top order.
+  def sorted_ancestors: (untyped group) -> untyped
+
+  def default_help: () -> untyped
+
+  def ancestor_locked_but_you_can_override: (untyped group) -> untyped
+
+  def ancestor_locked_so_ask_the_owner: (untyped group) -> untyped
+
+  def ancestor_locked_and_has_been_overridden: (untyped group) -> untyped
+
+  def group_url_error_message: () -> untyped
+
+  # Maps `jobs_to_be_done` values to option texts
+  def localized_jobs_to_be_done_choices: () -> untyped
+
+  def available_step_up_auth_providers_for_namespace: () -> untyped
+end

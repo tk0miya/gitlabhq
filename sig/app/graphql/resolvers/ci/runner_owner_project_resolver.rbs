@@ -1,0 +1,21 @@
+module Resolvers
+  module Ci
+    class RunnerOwnerProjectResolver < BaseResolver
+      include LooksAhead
+
+      alias runner object
+
+      def resolve_with_lookahead: (**untyped _args) -> untyped
+
+      private
+
+      def node_selection: (?untyped selection) -> untyped
+
+      def unconditional_includes: () -> ::Array[:project_feature]
+
+      def preloads: () -> { full_path: ::Array[:route | { namespace: ::Array[:route] }], web_url: ::Array[:route | { namespace: ::Array[:route] }] }
+
+      def resolve_owner: () -> (nil | untyped)
+    end
+  end
+end

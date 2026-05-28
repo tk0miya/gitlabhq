@@ -1,0 +1,97 @@
+module MergeRequests
+  class UpdateService < MergeRequests::BaseService
+    @target_branch_was_deleted: untyped
+
+    @trigger_work_item_updated: untyped
+
+    @assignees_service: untyped
+
+    @add_time_spent_service: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    extend ::Gitlab::Utils::Override
+
+    def initialize: (project: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: (untyped merge_request) -> untyped
+
+    def handle_changes: (untyped merge_request, untyped options) -> untyped
+
+    def handle_task_changes: (untyped merge_request) -> untyped
+
+    def after_update: (untyped merge_request, untyped old_associations) -> untyped
+
+    private
+
+    attr_reader target_branch_was_deleted: untyped
+
+    def trigger_updated_work_item_on_closing_issues: (untyped merge_request, untyped old_closing_issues_ids) -> (nil | untyped)
+
+    def associations_before_update: (untyped merge_request) -> untyped
+
+    def change_state: (untyped merge_request, untyped state_event) -> (nil | untyped)
+
+    def trigger_update_subscriptions: (untyped merge_request, untyped old_associations) -> (nil | untyped)
+
+    def general_fallback: (untyped merge_request) -> untyped
+
+    def handle_title_and_desc_edits: (untyped merge_request, untyped changed_fields) -> (nil | untyped)
+
+    def should_publish_update_event?: (untyped merge_request, untyped changed_fields) -> untyped
+
+    def track_title_and_desc_edits: (untyped changed_fields) -> (nil | untyped)
+
+    def track_discussion_lock_toggle: (untyped merge_request, untyped changed_fields) -> (nil | untyped)
+
+    def track_time_estimate_and_spend_edits: (untyped merge_request, untyped old_timelogs, untyped changed_fields) -> untyped
+
+    def track_labels_change: (untyped merge_request, untyped old_labels) -> (nil | untyped)
+
+    def notify_if_labels_added: (untyped merge_request, untyped old_labels) -> (nil | untyped)
+
+    def notify_if_mentions_added: (untyped merge_request, untyped old_mentioned_users) -> (nil | untyped)
+
+    def resolve_todos: (untyped merge_request, untyped old_labels, untyped old_assignees, untyped old_reviewers) -> (nil | untyped)
+
+    def handle_target_branch_change: (untyped merge_request, untyped changes) -> (nil | untyped)
+
+    def handle_draft_status_change: (untyped merge_request, untyped changed_fields) -> (nil | untyped)
+
+    def publish_draft_change_event: (untyped merge_request, new_draft_status: untyped) -> untyped
+
+    def notify_draft_status_changed: (untyped merge_request) -> untyped
+
+    def create_branch_change_note: (untyped issuable, untyped branch_type, untyped event_type, untyped old_branch, untyped new_branch) -> untyped
+
+    def before_update: (untyped merge_request, ?skip_spam_check: bool) -> (untyped | nil)
+
+    def handle_quick_actions: (untyped merge_request) -> untyped
+
+    def rebase_from_quick_action: (untyped merge_request) -> untyped
+
+    def merge_from_quick_action: (untyped merge_request) -> untyped
+
+    def quick_action_options: () -> { merge_request_diff_head_sha: untyped, scope_validator: untyped }
+
+    def update_merge_request_with_specialized_service: (untyped merge_request) -> (nil | untyped)
+
+    def attempt_specialized_update_services: (untyped merge_request, untyped attribute) -> untyped
+
+    def assignees_service: () -> untyped
+
+    def add_time_spent_service: () -> untyped
+
+    def new_user_ids: (untyped merge_request, untyped user_ids, untyped attribute) -> (::Array[untyped] | untyped)
+
+    def link_composite_identity: (untyped user) -> untyped
+
+    def resolve_todos_for: (untyped merge_request) -> untyped
+
+    def filter_sentinel_values: (untyped param) -> untyped
+
+    def trigger_merge_request_status_updated: (untyped merge_request) -> untyped
+
+    def delete_approvals_on_target_branch_change: (untyped _merge_request) -> nil
+  end
+end

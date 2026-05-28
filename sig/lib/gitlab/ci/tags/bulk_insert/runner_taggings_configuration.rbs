@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    module Tags
+      class BulkInsert
+        class RunnerTaggingsConfiguration
+          @runner: untyped
+
+          include ::Gitlab::Utils::StrongMemoize
+
+          def self.applies_to?: (untyped record) -> untyped
+
+          def self.build_from: (untyped runner) -> untyped
+
+          def initialize: (untyped runner) -> void
+
+          def join_model: () -> untyped
+
+          def unique_by: () -> ::Array[:tag_id | :runner_id | :runner_type]
+
+          def attributes_map: (untyped runner) -> { runner_id: untyped, runner_type: untyped, organization_id: untyped }
+
+          def uses_taggings?: () -> true
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class ExportedRelationsMerger
+        @export_job: untyped
+
+        @shared: untyped
+
+        include Gitlab::ImportExport::CommandLineUtil
+
+        def initialize: (export_job: untyped, shared: untyped) -> void
+
+        def save: () -> untyped
+
+        private
+
+        attr_reader shared: untyped
+
+        attr_reader export_job: untyped
+      end
+    end
+  end
+end

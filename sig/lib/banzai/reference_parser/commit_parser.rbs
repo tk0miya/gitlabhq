@@ -1,0 +1,17 @@
+module Banzai
+  module ReferenceParser
+    class CommitParser < BaseParser
+      COMMITS_LIMIT: 1000
+
+      def referenced_by: (untyped nodes, ?::Hash[untyped, untyped] options) -> untyped
+
+      def commit_ids_per_project: (untyped nodes) -> untyped
+
+      def find_commits: (untyped project, untyped ids) -> (::Array[untyped] | untyped)
+
+      private
+
+      def can_read_reference?: (untyped user, untyped ref_project, untyped node) -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module BlobViewer
+  class License < Base
+    include Auxiliary
+
+    include Static
+
+    def license: () -> untyped
+
+    def render_error: () -> (nil | :unknown_license)
+  end
+end

@@ -1,0 +1,5 @@
+class GroupDeployToken < ApplicationRecord
+  def has_access_to?: (untyped requested_project) -> (false | untyped)
+
+  def has_access_to_group?: (untyped requested_group) -> (true | untyped)
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ActiveRecord
+        class AggregationResult < Gitlab::Database::Aggregation::AggregationResult
+          private
+
+          def load_data: () -> untyped
+
+          def load_count: () -> untyped
+        end
+      end
+    end
+  end
+end

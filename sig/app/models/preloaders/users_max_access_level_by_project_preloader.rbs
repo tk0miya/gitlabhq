@@ -1,0 +1,19 @@
+module Preloaders
+  # This class preloads the max access level (role) for the users within the given projects and
+  # stores the values in requests store via the ProjectTeam class.
+  class UsersMaxAccessLevelByProjectPreloader
+    @project_users: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (project_users: untyped) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def access_levels: () -> untyped
+
+    def preload_users_namespace_bans: (untyped _users) -> nil
+  end
+end

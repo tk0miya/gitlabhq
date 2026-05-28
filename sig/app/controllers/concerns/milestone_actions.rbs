@@ -1,0 +1,18 @@
+module MilestoneActions
+  extend ActiveSupport::Concern
+
+  def issues: () -> untyped
+
+  def merge_requests: () -> untyped
+
+  def participants: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def labels: () -> untyped
+
+  private
+
+  def tabs_json: (untyped partial, ?::Hash[untyped, untyped] data) -> { html: untyped }
+
+  def milestone_redirect_path: () -> untyped
+end

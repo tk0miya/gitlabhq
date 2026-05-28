@@ -1,0 +1,19 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillImportedIssueSearchData < BatchedMigrationJob
+      @logger: untyped
+
+      SUB_BATCH_SIZE: 1000
+
+      def perform: () -> untyped
+
+      private
+
+      def update_search_data: (untyped relation) -> untyped
+
+      def update_search_data_individually: (untyped relation) -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

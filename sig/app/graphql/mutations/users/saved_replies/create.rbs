@@ -1,0 +1,9 @@
+module Mutations
+  module Users
+    module SavedReplies
+      class Create < ::Mutations::SavedReplies::Create
+        def resolve: (name: untyped, content: untyped) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+# rubocop:disable Gitlab/BoundedContexts -- disabling this to match current structure of other sidebar menu items (.rubocop_todo/gitlab/bounded_contexts.yml)
+module Sidebars
+  module YourWork
+    module Menus
+      class ImportHistoryMenu < ::Sidebars::Menu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "import"
+
+        def render?: () -> untyped
+
+        def active_routes: () -> { controller: ::Array["import/bulk_imports" | "import/history"], path: "import/github#details" }
+      end
+    end
+  end
+end

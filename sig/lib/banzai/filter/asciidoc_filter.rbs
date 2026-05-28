@@ -1,0 +1,33 @@
+module Banzai
+  module Filter
+    class AsciidocFilter < HTML::Pipeline::TextFilter
+      prepend Concerns::TimeoutFilterHandler
+
+      # This value ensures a safe depth limit on the number of included files when using include
+      # directives in Asciidoc. By considering the exponential growth effect that comes with
+      # depth, a lower number results in a controlled number of included files.
+      MAX_INCLUDE_DEPTH: 3
+
+      RENDER_TIMEOUT: untyped
+
+      DEFAULT_ADOC_ATTRS: { "showtitle" => true, "sectanchors" => true, "idprefix" => untyped, "idseparator" => "-", "env" => "gitlab", "env-gitlab" => "", "source-highlighter" => "gitlab-html-pipeline", "icons" => "font", "outfilesuffix" => ".adoc", "max-include-depth" => untyped, "kroki-plantuml-include!" => "", "kroki-fetch-diagram!" => "" }
+
+      def call: () -> untyped
+
+      private
+
+      def path_attrs: (untyped path) -> (::Hash[untyped, untyped] | { "docname" => untyped })
+
+      # Public: Converts the provided Asciidoc markup into HTML.
+      #
+      # input         - the source text in Asciidoc format
+      # context       - :commit, :project, :ref, :requested_path
+      #
+      def render: (untyped input, untyped context) -> untyped
+
+      def render_timeout: () -> untyped
+
+      def returned_timeout_value: () -> untyped
+    end
+  end
+end

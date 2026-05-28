@@ -1,0 +1,211 @@
+class Wiki
+  @container: untyped
+
+  @user: untyped
+
+  @repository: untyped
+
+  @error_message: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include HasRepository
+
+  include ::Repositories::CanHousekeepRepository
+
+  include Gitlab::Utils::StrongMemoize
+
+  include GlobalID::Identification
+
+  include Gitlab::Git::WrapsGitalyErrors
+
+  extend ActiveModel::Naming
+
+  MARKUPS: { markdown: { name: "Markdown", default_extension: :md, extension_regex: untyped, created_by_user: true }, rdoc: { name: "RDoc", default_extension: :rdoc, extension_regex: untyped, created_by_user: true }, asciidoc: { name: "AsciiDoc", default_extension: :asciidoc, extension_regex: untyped, created_by_user: true }, org: { name: "Org", default_extension: :org, extension_regex: untyped, created_by_user: true }, textile: { name: "Textile", default_extension: :textile, extension_regex: untyped }, creole: { name: "Creole", default_extension: :creole, extension_regex: untyped }, rest: { name: "reStructuredText", default_extension: :rst, extension_regex: untyped }, mediawiki: { name: "MediaWiki", default_extension: :mediawiki, extension_regex: untyped }, pod: { name: "Pod", default_extension: :pod, extension_regex: untyped }, plaintext: { name: "Plain Text", default_extension: :txt, extension_regex: untyped } }
+
+  VALID_USER_MARKUPS: untyped
+
+  ALLOWED_EXTENSIONS_REGEX: untyped
+
+  CouldNotCreateWikiError: untyped
+
+  HOMEPAGE: "home"
+
+  SIDEBAR: "_sidebar"
+
+  TEMPLATES_DIR: "templates"
+
+  REDIRECTS_YML: ".gitlab/redirects.yml"
+
+  TITLE_ORDER: "title"
+
+  CREATED_AT_ORDER: "created_at"
+
+  DIRECTION_DESC: "desc"
+
+  DIRECTION_ASC: "asc"
+
+  REDIRECTS_YML_SIZE_LIMIT: untyped
+
+  attr_reader container: untyped
+
+  attr_reader user: untyped
+
+  # Returns a string describing what went wrong after
+  # an operation fails.
+  attr_reader error_message: untyped
+
+  attr_accessor self.container_class: untyped
+
+  def self.for_container: (untyped container, ?untyped? user) -> untyped
+
+  # This is needed to support repository lookup through Gitlab::GlRepository::Identifier
+  def self.find_by_id: (untyped container_id) -> untyped
+
+  def self.sluggified_full_path: (untyped title, untyped extension) -> untyped
+
+  def self.sluggified_title: (untyped title) -> untyped
+
+  def self.canonicalize_filename: (untyped filename) -> untyped
+
+  def self.cname: (untyped name, ?::String char_white_sub, ?::String char_other_sub) -> untyped
+
+  def self.preview_slug: (untyped title, untyped format) -> untyped
+
+  def initialize: (untyped container, ?untyped? user) -> void
+
+  def ==: (untyped other) -> untyped
+
+  # This is needed in:
+  # - Storage::Hashed
+  # - Gitlab::Repositories::RepoType#identifier_for_container
+  #
+  # We also need an `#id` to support `build_stubbed` in tests, where the
+  # value doesn't matter.
+  #
+  # NOTE: Wikis don't have a DB record, so this ID can be the same
+  # for two wikis in different containers and should not be expected to
+  # be unique. Use `to_global_id` instead if you need a unique ID.
+  def id: () -> untyped
+
+  def path: () -> untyped
+
+  def create_wiki_repository: () -> untyped
+
+  def has_home_page?: () -> untyped
+
+  def empty?: () -> untyped
+
+  def exists?: () -> untyped
+
+  # Lists wiki pages of the repository.
+  #
+  # limit - max number of pages returned by the method.
+  # sort - criterion by which the pages are sorted.
+  # direction - order of the sorted pages.
+  # load_content - option, which specifies whether the content inside the page
+  #                will be loaded.
+  #
+  # Returns an Array of GitLab WikiPage instances or an
+  # empty Array if this Wiki has no pages.
+  def list_pages: (?direction: untyped, ?load_content: bool, ?size_limit: untyped, ?limit: ::Integer, ?offset: ::Integer) -> untyped
+
+  # Finds a page within the repository based on a title
+  # or slug.
+  #
+  # title - The human readable or parameterized title of
+  #         the page.
+  #
+  # Returns an initialized WikiPage instance or nil
+  def find_page: (untyped title, ?untyped? version, ?load_content: bool) -> (nil | untyped)
+
+  def find_sidebar: (?untyped? version) -> untyped
+
+  def find_file: (untyped name, ?untyped version, ?load_content: bool) -> (nil | untyped)
+
+  def create_page: (untyped title, untyped content, ?::Symbol format, ?untyped? message) -> untyped
+
+  def update_page: (untyped page, content: untyped, ?title: untyped?, ?format: ::Symbol, ?message: untyped?) -> untyped
+
+  def delete_page: (untyped page, ?untyped? message) -> (nil | untyped)
+
+  def page_title_and_dir: (untyped title) -> (nil | ::Array[untyped])
+
+  def hook_attrs: () -> { web_url: untyped, git_ssh_url: untyped, git_http_url: untyped, path_with_namespace: untyped, default_branch: untyped }
+
+  def repository: () -> untyped
+
+  def repository_storage: () -> untyped
+
+  def hashed_storage?: () -> untyped
+
+  def full_path: () -> untyped
+
+  # @deprecated use full_path when you need it for an URL route or disk_path when you want to point to the filesystem
+  alias path_with_namespace full_path
+
+  def default_branch: () -> untyped
+
+  def wiki_base_path: () -> untyped
+
+  # Callbacks for synchronous processing after wiki changes.
+  # These will be executed after any change made through GitLab itself (web UI and API),
+  # but not for Git pushes.
+  def after_wiki_activity: () -> nil
+
+  # Callbacks for background processing after wiki changes.
+  # These will be executed after any change to the wiki repository.
+  def after_post_receive: () -> nil
+
+  def git_garbage_collect_worker_klass: () -> untyped
+
+  def cleanup: () -> untyped
+
+  private
+
+  def capture_git_error: (untyped action, ?response_on_error: bool) { (?) -> untyped } -> untyped
+
+  def track_error: (untyped error, untyped action) -> untyped
+
+  def update_redirection_actions: (untyped new_path, ?untyped? old_path, **untyped options) -> (::Array[untyped] | untyped)
+
+  def multi_commit_options: (untyped action, ?untyped? message, ?untyped? title) -> { branch_name: untyped, message: untyped, author_email: untyped, author_name: untyped }
+
+  def build_commit_message: (untyped action, untyped message, untyped title) -> untyped
+
+  def default_message: (untyped action, untyped title) -> ::String
+
+  def with_valid_format: (untyped format) { (untyped) -> untyped } -> (false | untyped)
+
+  def file_exists_by_regex?: (untyped title) -> (false | untyped)
+
+  def duplicated_page_error: (untyped file) -> false
+
+  def sluggified_full_path: (untyped title, untyped extension) -> untyped
+
+  def sluggified_title: (untyped title) -> untyped
+
+  def canonicalize_filename: (untyped filename) -> untyped
+
+  def find_matched_file: (untyped title, untyped version) -> (nil | untyped)
+
+  def find_file_by_title: (untyped title, untyped version) -> untyped
+
+  def find_page_format: (untyped path) -> untyped
+
+  def check_page_historical: (untyped path, untyped commit) -> untyped
+
+  def file_extension_regexp: () -> untyped
+
+  def strip_extension: (untyped path) -> untyped
+
+  def list_page_paths: (?limit: ::Integer, ?offset: ::Integer) -> (::Array[untyped] | untyped)
+
+  # After migrating to normal repository RPCs, it's very expensive to sort the
+  # pages by created_at. We have to either ListLastCommitsForTree RPC call or
+  # N+1 LastCommitForPath. Either are efficient for a large repository.
+  # Therefore, we decide to sort the title only.
+  def sort_pages!: (untyped pages, untyped direction) -> untyped
+
+  def fetch_pages_content!: (untyped pages, ?size_limit: untyped) -> untyped
+end

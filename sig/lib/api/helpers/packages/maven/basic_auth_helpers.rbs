@@ -1,0 +1,15 @@
+module API
+  module Helpers
+    module Packages
+      module Maven
+        module BasicAuthHelpers
+          include ::API::Helpers::Packages::BasicAuthHelpers
+
+          extend ::Gitlab::Utils::Override
+
+          def find_user_from_job_token: () -> untyped
+        end
+      end
+    end
+  end
+end

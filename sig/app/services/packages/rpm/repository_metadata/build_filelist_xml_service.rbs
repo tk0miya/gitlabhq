@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+module Packages
+  module Rpm
+    module RepositoryMetadata
+      class BuildFilelistXmlService < BuildXmlBaseService
+        ROOT_TAG: "filelists"
+
+        ROOT_ATTRIBUTES: { xmlns: "http://linux.duke.edu/metadata/filelists", packages: "0" }
+
+        def execute: () -> untyped
+
+        private
+
+        def build_file_nodes: (untyped xml) -> untyped
+
+        def dir?: (untyped path) -> untyped
+      end
+    end
+  end
+end

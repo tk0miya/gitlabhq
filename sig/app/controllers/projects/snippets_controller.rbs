@@ -1,0 +1,29 @@
+class Projects::SnippetsController < Projects::Snippets::ApplicationController
+  @snippet_counts: untyped
+
+  @snippets: untyped
+
+  @noteable_meta_data: untyped
+
+  @snippet: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include SnippetsActions
+
+  include ToggleAwardEmoji
+
+  include SpammableActions::AkismetMarkAsSpamAction
+
+  def index: () -> (nil | untyped)
+
+  def new: () -> untyped
+
+  alias awardable snippet
+
+  alias spammable snippet
+
+  def spammable_path: () -> untyped
+
+  def snippet_find_params: () -> untyped
+end

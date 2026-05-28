@@ -1,0 +1,81 @@
+module MarkupHelper
+  include ActionView::Helpers::TextHelper
+
+  include ActionView::Context
+
+  # Use this in places where you would normally use link_to(gfm(...), ...).
+  def link_to_markdown: (untyped body, untyped url, ?::Hash[untyped, untyped] html_options) -> ("" | untyped)
+
+  def link_to_markdown_field: (untyped object, untyped field, untyped url, ?::Hash[untyped, untyped] html_options) -> untyped
+
+  # It solves a problem occurring with nested links (i.e.
+  # "<a>outer text <a>gfm ref</a> more outer text</a>"). This will not be
+  # interpreted as intended. Browsers will parse something like
+  # "<a>outer text </a><a>gfm ref</a> more outer text" (notice the last part is
+  # not linked any more). link_to_html corrects that. It wraps all parts to
+  # explicitly produce the correct linking behavior (i.e.
+  # "<a>outer text </a><a>gfm ref</a><a> more outer text</a>").
+  def link_to_html: (untyped redacted, untyped url, ?::Hash[untyped, untyped] html_options) -> untyped
+
+  # Return the first line of +text+, up to +max_chars+, after parsing the line
+  # as Markdown.  HTML tags in the parsed output are not counted toward the
+  # +max_chars+ limit.  If the length limit falls within a tag's contents, then
+  # the tag contents are truncated without removing the closing tag.
+  def first_line_in_markdown: (untyped object, untyped attribute, ?untyped? max_chars, **untyped options) -> (nil | untyped)
+
+  def markdown: (untyped text, ?::Hash[untyped, untyped] context, ?::Hash[untyped, untyped] postprocess) -> ("" | untyped)
+
+  def markdown_field: (untyped object, untyped field, ?::Hash[untyped, untyped] context) -> ("" | untyped)
+
+  def markup: (untyped file_name, untyped text, ?::Hash[untyped, untyped] context) -> untyped
+
+  def render_wiki_content: (untyped wiki_page, ?::Hash[untyped, untyped] context) -> ("" | untyped)
+
+  # Returns the text necessary to reference `entity` across projects
+  #
+  # project - Project to reference
+  # entity  - Object that responds to `to_reference`
+  #
+  # Examples:
+  #
+  #   cross_project_reference(project, project.issues.first)
+  #   # => 'namespace1/project1#123'
+  #
+  #   cross_project_reference(project, project.merge_requests.first)
+  #   # => 'namespace1/project1!345'
+  #
+  # Returns a String
+  def cross_project_reference: (untyped project, untyped entity) -> (untyped | "")
+
+  private
+
+  def render_wiki_content_context: (untyped wiki, untyped wiki_page, untyped context) -> untyped
+
+  def render_wiki_content_context_container: (untyped wiki) -> { project: untyped }
+
+  # Sanitize and style user references links
+  #
+  # @param String text the string to be sanitized
+  #
+  # 1. Remove empty <a> tags which are caused by the <img> tags being stripped
+  #   (as our markdown wraps images in links)
+  # 2. Strip all link tags, except user references, leaving just the link text
+  # 3. Add a highlight class for current user's references
+  #
+  # @return sanitized HTML string
+  def render_links: (untyped text) -> untyped
+
+  def markdown_toolbar_button: (?::Hash[untyped, untyped] options) -> untyped
+
+  def render_markdown_field: (untyped object, untyped field, ?::Hash[untyped, untyped] context) -> untyped
+
+  def markdown_field_render_context: (untyped object, untyped field, ?::Hash[untyped, untyped] base_context) -> untyped
+
+  def prepare_for_rendering: (untyped html, ?::Hash[untyped, untyped] context) -> ("" | untyped)
+
+  def postprocess_context: () -> { current_user: untyped, commit: untyped, wiki: untyped, ref: untyped, requested_path: untyped }
+
+  def prepare_asciidoc_context: (untyped file_name, untyped context) -> (nil | untyped)
+
+  extend ::MarkupHelper
+end

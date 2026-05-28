@@ -1,0 +1,11 @@
+module Users
+  class AuthorizedBuildService < BuildService
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def validate_access!: () -> nil
+
+    def signup_params: () -> untyped
+  end
+end

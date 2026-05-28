@@ -1,0 +1,7 @@
+class GroupExportWorker
+  include ApplicationWorker
+
+  include ExceptionBacktrace
+
+  def perform: (untyped current_user_id, untyped group_id, ?::Hash[untyped, untyped] params) -> untyped
+end

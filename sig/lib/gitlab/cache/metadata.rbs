@@ -1,0 +1,33 @@
+module Gitlab
+  module Cache
+    # Value object for cache metadata
+    class Metadata
+      @cache_identifier: untyped
+
+      @feature_category: untyped
+
+      @backing_resource: untyped
+
+      VALID_BACKING_RESOURCES: ::Array[:cpu | :database | :gitaly | :memory | :unknown]
+
+      # @param cache_identifier [String] defines the location of the cache definition
+      #   Example: "ProtectedBranches::CacheService#fetch"
+      # @param feature_category [Symbol] name of the feature category (from config/feature_categories.yml)
+      # @param backing_resource [Symbol] most affected resource by cache generation (full list: VALID_BACKING_RESOURCES)
+      # @return [Gitlab::Cache::Metadata]
+      def initialize: (?cache_identifier: untyped?, ?feature_category: untyped, ?backing_resource: untyped) -> void
+
+      attr_reader cache_identifier: untyped
+
+      attr_reader feature_category: untyped
+
+      attr_reader backing_resource: untyped
+
+      private
+
+      def fetch_feature_category!: (untyped feature_category) -> untyped
+
+      def fetch_backing_resource!: (untyped resource) -> untyped
+    end
+  end
+end

@@ -1,0 +1,52 @@
+module Import
+  module BulkImports
+    class UpdateSourceUsersService
+      @bulk_import: untyped
+
+      @namespace: untyped
+
+      @graphql_client: untyped
+
+      @query: untyped
+
+      @single_user_query: untyped
+
+      @logger: untyped
+
+      # Default API max page size
+      BATCH_SIZE: untyped
+
+      def initialize: (bulk_import: untyped, namespace: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader bulk_import: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader force: untyped
+
+      def graphql_client: () -> untyped
+
+      def source_users_with_missing_information: () -> untyped
+
+      def find_source_user: (untyped source_user_identifier) -> untyped
+
+      def user_global_ids: (untyped batch) -> untyped
+
+      def fetch_users_data: () -> untyped
+
+      def fetch_blocked_users: (untyped missing_id) -> untyped
+
+      def update_source_user: (untyped user_data) -> (nil | untyped)
+
+      def query: () -> untyped
+
+      def single_user_query: () -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

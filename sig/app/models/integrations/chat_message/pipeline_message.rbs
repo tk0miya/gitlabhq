@@ -1,0 +1,124 @@
+module Integrations
+  module ChatMessage
+    class PipelineMessage < BaseMessage
+      @user: untyped
+
+      @user_name: untyped
+
+      @ref_type: untyped
+
+      @ref: untyped
+
+      @status: untyped
+
+      @detailed_status: untyped
+
+      @duration: untyped
+
+      @finished_at: untyped
+
+      @pipeline_id: untyped
+
+      # Get list of jobs that have actually failed (after exhausting all retries)
+      @failed_jobs: untyped
+
+      @failed_stages: untyped
+
+      @project: untyped
+
+      @commit: untyped
+
+      @committer: untyped
+
+      @pipeline: untyped
+
+      MAX_VISIBLE_JOBS: 10
+
+      attr_reader user: untyped
+
+      attr_reader ref_type: untyped
+
+      attr_reader ref: untyped
+
+      attr_reader status: untyped
+
+      attr_reader detailed_status: untyped
+
+      attr_reader duration: untyped
+
+      attr_reader finished_at: untyped
+
+      attr_reader pipeline_id: untyped
+
+      attr_reader failed_stages: untyped
+
+      attr_reader failed_jobs: untyped
+
+      attr_reader project: untyped
+
+      attr_reader commit: untyped
+
+      attr_reader committer: untyped
+
+      attr_reader pipeline: untyped
+
+      def initialize: (untyped data) -> void
+
+      def pretext: () -> ""
+
+      def attachments: () -> (untyped | ::Array[{ fallback: untyped, color: untyped, author_name: untyped, author_icon: untyped, author_link: untyped, title: untyped, title_link: untyped, fields: untyped, footer: untyped, footer_icon: untyped, ts: untyped }])
+
+      def activity: () -> { title: untyped, subtitle: untyped, text: untyped, image: untyped }
+
+      def attachment_color: () -> untyped
+
+      private
+
+      def actually_failed_jobs: (untyped builds) -> untyped
+
+      def failed_stages_field: () -> { title: untyped, value: untyped, short: true }
+
+      def failed_jobs_field: () -> { title: untyped, value: untyped, short: true }
+
+      def yaml_error_field: () -> { title: untyped, value: untyped, short: false }
+
+      def pipeline_name_field: () -> { title: untyped, value: untyped, short: false }
+
+      def attachments_fields: () -> untyped
+
+      def message: () -> untyped
+
+      def humanized_status: () -> untyped
+
+      def ref_url: () -> ::String
+
+      def ref_link: () -> untyped
+
+      def project_url: () -> untyped
+
+      def project_link: () -> untyped
+
+      def pipeline_failed_jobs_url: () -> ::String
+
+      def pipeline_url: () -> (untyped | ::String)
+
+      def pipeline_link: () -> untyped
+
+      def job_url: (untyped job) -> ::String
+
+      def job_link: (untyped job) -> untyped
+
+      def failed_jobs_links: () -> untyped
+
+      def stage_link: (untyped stage) -> untyped
+
+      def failed_stages_links: () -> untyped
+
+      def commit_url: () -> untyped
+
+      def commit_link: () -> untyped
+
+      def author_url: () -> (nil | untyped)
+    end
+  end
+end

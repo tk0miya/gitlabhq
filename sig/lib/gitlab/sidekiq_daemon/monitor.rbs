@@ -1,0 +1,61 @@
+module Gitlab
+  module SidekiqDaemon
+    class Monitor < Daemon
+      @jobs: untyped
+
+      @jobs_mutex: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      extend ::Gitlab::Utils::Override
+
+      NOTIFICATION_CHANNEL: "sidekiq:cancel:notifications"
+
+      CANCEL_DEADLINE: untyped
+
+      RECONNECT_TIME: untyped
+
+      # We use exception derived from `Exception`
+      # to consider this as an very low-level exception
+      # that should not be caught by application
+      CancelledError: untyped
+
+      def initialize: () -> void
+
+      def thread_name: () -> "job_monitor"
+
+      def within_job: (untyped worker_class, untyped jid, untyped queue) { () -> untyped } -> untyped
+
+      def self.cancel_job: (untyped jid) -> untyped
+
+      def jobs: () -> untyped
+
+      private
+
+      def run_thread: () -> (nil | untyped)
+
+      def stop_working: () -> (untyped | nil)
+
+      def process_messages: () -> untyped
+
+      def process_message: (untyped message) -> (nil | untyped)
+
+      def safe_parse: (untyped message) -> untyped
+
+      def process_job_cancel: (untyped jid) -> (nil | untyped)
+
+      # This method needs to be thread-safe
+      # This is why it passes thread in block,
+      # to ensure that we do process this thread
+      def find_thread_unsafe: (untyped jid) -> untyped
+
+      def find_thread_with_lock: (untyped jid) { (untyped) -> untyped } -> (nil | untyped)
+
+      def cancelled?: (untyped jid) -> untyped
+
+      def self.cancel_job_key: (untyped jid) -> ::String
+
+      def notification_channel_enabled?: () -> untyped
+    end
+  end
+end

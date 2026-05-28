@@ -1,0 +1,19 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class Notifications < Base
+        def after_save_commit: () -> (nil | untyped)
+
+        def post_move_cleanup: () -> (nil | untyped)
+
+        private
+
+        def notify_participants: () -> (nil | untyped)
+
+        def new_work_item_subscriptions: (untyped subscriptions_batch) -> untyped
+
+        def new_work_item_sent_notifications: (untyped sent_notifications_batch) -> untyped
+      end
+    end
+  end
+end

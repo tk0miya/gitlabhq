@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module Migrations
+      module DynamicHelpers
+        DYNAMIC_SCHEMA: untyped
+
+        def move_table_to_dynamic_schema: (untyped table_name) -> untyped
+
+        def move_table_from_dynamic_schema: (untyped table_name, partition_values: untyped, parent_table_name: untyped) -> untyped
+
+        private
+
+        def remove_dynamic_partitions: (untyped table_name, partition_values: untyped, parent_table_name: untyped) -> untyped
+      end
+    end
+  end
+end

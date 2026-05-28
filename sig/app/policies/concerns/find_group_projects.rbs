@@ -1,0 +1,5 @@
+module FindGroupProjects
+  extend ActiveSupport::Concern
+
+  def group_projects_for: (user: untyped, group: untyped, ?min_access_level: untyped?, ?exclude_shared: bool) -> untyped
+end

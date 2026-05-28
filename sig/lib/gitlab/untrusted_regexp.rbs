@@ -1,0 +1,64 @@
+module Gitlab
+  # An untrusted regular expression is any regexp containing patterns sourced
+  # from user input.
+  #
+  # Ruby's built-in regular expression library allows patterns which complete in
+  # exponential time, permitting denial-of-service attacks.
+  #
+  # Not all regular expression features are available in untrusted regexes, and
+  # there is a strict limit on total execution time. See the RE2 documentation
+  # at https://github.com/google/re2/wiki/Syntax for more details.
+  #
+  # This class doesn't change any instance variables, which allows it to be frozen
+  # and setup in constants.
+  class UntrustedRegexp
+    @regexp: untyped
+
+    @scan_regexp: untyped
+
+    # recreate Ruby's \R metacharacter
+    # https://ruby-doc.org/3.2.2/Regexp.html#class-Regexp-label-Character+Classes
+    BACKSLASH_R: "(\\n|\\v|\\f|\\r\\n|\\r|\\x{0085}|\\x{2028}|\\x{2029})"
+
+    def initialize: (untyped pattern, ?multiline: bool) -> void
+
+    def replace_all: (untyped text, untyped rewrite) -> untyped
+
+    # There is no built-in replace with block support (like `gsub`).  We can accomplish
+    # the same thing by parsing and rebuilding the string with the substitutions.
+    def replace_gsub: (untyped text, ?limit: ::Integer) ?{ (untyped) -> untyped } -> untyped
+
+    def scan: (untyped text) -> untyped
+
+    def match: (untyped text) -> untyped
+
+    def match?: (untyped text) -> (false | untyped)
+
+    def replace: (untyped text, untyped rewrite) -> untyped
+
+    # #scan returns an array of the groups captured, rather than MatchData.
+    # Use this to give the capture group name and grab the proper value
+    def extract_named_group: (untyped name, untyped match) -> (nil | untyped)
+
+    def ==: (untyped other) -> untyped
+
+    # Handles regular expressions with the preferred RE2 library where possible
+    # via UntustedRegex. Falls back to Ruby's built-in regular expression library
+    # when the syntax would be invalid in RE2.
+    #
+    # One difference between these is `(?m)` multi-line mode. Ruby regex enables
+    # this by default, but also handles `^` and `$` differently.
+    # See: https://www.regular-expressions.info/modifiers.html
+    def self.with_fallback: (untyped pattern, ?multiline: bool) -> untyped
+
+    private
+
+    attr_reader regexp: untyped
+
+    attr_reader scan_regexp: untyped
+
+    # RE2 scan operates differently to Ruby scan when there are no capture
+    # groups, so work around it
+    def initialize_scan_regexp: () -> untyped
+  end
+end

@@ -1,0 +1,6 @@
+# Tracks which boards in a specific group a user has visited
+class BoardGroupRecentVisit < ApplicationRecord
+  include BoardRecentVisit
+
+  def self.board_parent_relation: () -> :group
+end

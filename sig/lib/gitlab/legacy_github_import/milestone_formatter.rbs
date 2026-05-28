@@ -1,0 +1,23 @@
+module Gitlab
+  module LegacyGithubImport
+    class MilestoneFormatter < BaseFormatter
+      include Import::UsernameMentionRewriter
+
+      def attributes: () -> { iid: untyped, project: untyped, title: untyped, description: untyped, due_date: untyped, state: untyped, created_at: untyped, updated_at: untyped }
+
+      def project_association: () -> :milestones
+
+      def find_condition: () -> { iid: untyped }
+
+      def number: () -> untyped
+
+      def contributing_user_formatters: () -> ::Hash[untyped, untyped]
+
+      def description: () -> untyped
+
+      private
+
+      def state: () -> ("closed" | "active")
+    end
+  end
+end

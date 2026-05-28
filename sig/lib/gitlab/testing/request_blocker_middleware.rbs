@@ -1,0 +1,44 @@
+# This is inspired by http://www.salsify.com/blog/engineering/tearing-capybara-ajax-tests
+# Rack middleware that keeps track of the number of active requests and can block new requests.
+module Gitlab
+  module Testing
+    class RequestBlockerMiddleware
+      @@num_active_requests: untyped
+
+      @@block_requests: untyped
+
+      @@slow_requests: untyped
+
+      @app: untyped
+
+      # Returns the number of requests the server is currently processing.
+      def self.num_active_requests: () -> untyped
+
+      # Prevents the server from accepting new requests. Any new requests will return an HTTP
+      # 503 status.
+      def self.block_requests!: () -> untyped
+
+      # Slows down incoming requests (useful for race conditions).
+      def self.slow_requests!: () -> untyped
+
+      # Allows the server to accept requests again.
+      def self.allow_requests!: () -> untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def block_requests?: () -> untyped
+
+      def slow_requests?: () -> untyped
+
+      def block_request: (untyped env) -> ::Array[503 | ::Hash[untyped, untyped] | ::Array[untyped]]
+
+      def increment_active_requests: () -> untyped
+
+      def decrement_active_requests: () -> untyped
+    end
+  end
+end

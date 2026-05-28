@@ -1,0 +1,55 @@
+module Gitlab
+  # JobWaiter can be used to wait for a number of Sidekiq jobs to complete.
+  #
+  # Its use requires the cooperation of the sidekiq jobs themselves. Set up the
+  # waiter, then start the jobs, passing them its `key`. Their `perform` methods
+  # should look like:
+  #
+  #     def perform(args, notify_key)
+  #       # do work
+  #     ensure
+  #       ::Gitlab::JobWaiter.notify(notify_key, jid)
+  #     end
+  #
+  # The JobWaiter blocks popping items from a Redis array. All the sidekiq jobs
+  # push to that array when done. Once the waiter has popped `count` items, it
+  # knows all the jobs are done.
+  class JobWaiter
+    @key: untyped
+
+    @jobs_remaining: untyped
+
+    @finished: untyped
+
+    KEY_PREFIX: "gitlab:job_waiter"
+
+    # This TTL needs to be long enough to allow whichever Sidekiq job calls
+    # JobWaiter#wait to reach BLPOP.
+    DEFAULT_TTL: untyped
+
+    def self.notify: (untyped key, untyped jid, ?ttl: untyped) -> untyped
+
+    def self.key?: (untyped key) -> untyped
+
+    def self.generate_key: () -> ::String
+
+    def self.delete_key: (untyped key) -> (untyped | nil)
+
+    attr_reader key: untyped
+
+    attr_reader finished: untyped
+
+    attr_accessor jobs_remaining: untyped
+
+    # jobs_remaining - the number of jobs left to wait for
+    # key - The key of this waiter.
+    def initialize: (?::Integer jobs_remaining, ?::String key) -> void
+
+    # Waits for all the jobs to be completed.
+    #
+    # timeout - The maximum amount of seconds to block the caller for. This
+    #           ensures we don't indefinitely block a caller in case a job takes
+    #           long to process, or is never processed.
+    def wait: (?::Integer timeout) -> untyped
+  end
+end

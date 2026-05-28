@@ -1,0 +1,67 @@
+module Gitlab
+  module Cleanup
+    class OrphanJobArtifactFiles
+      @dry_run: untyped
+
+      @niceness: untyped
+
+      @logger: untyped
+
+      @total_found: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ABSOLUTE_ARTIFACT_DIR: untyped
+
+      LOST_AND_FOUND: untyped
+
+      BATCH_SIZE: 500
+
+      DEFAULT_NICENESS: "best-effort"
+
+      VALID_NICENESS_LEVELS: ::Array["none" | "realtime" | "best-effort" | "idle"]
+
+      attr_accessor batch: untyped
+
+      attr_accessor total_found: untyped
+
+      attr_accessor total_cleaned: untyped
+
+      attr_reader dry_run: untyped
+
+      attr_reader niceness: untyped
+
+      attr_reader logger: untyped
+
+      def initialize: (?dry_run: bool, ?niceness: untyped?, ?logger: untyped?) -> void
+
+      def run!: () -> untyped
+
+      private
+
+      def new_batch!: () -> untyped
+
+      def clean_batch!: () -> untyped
+
+      def update_stats!: (untyped batch) -> untyped
+
+      def limit_reached?: () -> (false | untyped)
+
+      def batch_size: () -> (untyped | nil)
+
+      def find_artifacts: () { (untyped) -> untyped } -> untyped
+
+      def find_command: () -> untyped
+
+      def absolute_artifact_dir: () -> untyped
+
+      def ionice: () -> untyped
+
+      def log_info: (untyped msg, ?::Hash[untyped, untyped] params) -> untyped
+
+      def log_error: (untyped msg, ?::Hash[untyped, untyped] params) -> untyped
+
+      def limit: () -> untyped
+    end
+  end
+end

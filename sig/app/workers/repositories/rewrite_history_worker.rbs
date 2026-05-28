@@ -1,0 +1,13 @@
+module Repositories
+  class RewriteHistoryWorker
+    @notification_service: untyped
+
+    include ApplicationWorker
+
+    def perform: (?::Hash[untyped, untyped] args) -> (nil | untyped)
+
+    private
+
+    def notification_service: () -> untyped
+  end
+end

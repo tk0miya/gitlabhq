@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class Pattern < Lexeme::Value
+            @cached_regexp: untyped
+
+            PATTERN: ::Regexp
+
+            def initialize: (untyped regexp) -> void
+
+            def evaluate: (?::Hash[untyped, untyped] variables) -> untyped
+
+            def inspect: () -> ::String
+
+            def self.pattern: () -> untyped
+
+            def self.build: (untyped string) -> untyped
+
+            def self.build_and_evaluate: (untyped data, ?::Hash[untyped, untyped] variables) -> untyped
+
+            private
+
+            def cached_regexp: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

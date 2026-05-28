@@ -1,0 +1,31 @@
+module Import
+  module UserMapping
+    class AssignmentFromCsvWorker
+      @current_user: untyped
+
+      @group: untyped
+
+      include ApplicationWorker
+
+      def perform: (untyped current_user_id, untyped group_id, untyped upload_id) -> (nil | untyped)
+
+      def perform_failure: (untyped current_user_id, untyped group_id, untyped upload_id) -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader group: untyped
+
+      def send_results_email: (untyped results) -> untyped
+
+      def send_failure_email: () -> untyped
+
+      def clear_upload: (untyped upload) -> (untyped | nil)
+
+      def log_failure: (untyped message) -> untyped
+
+      def log_upload_missing: (untyped group) -> untyped
+    end
+  end
+end

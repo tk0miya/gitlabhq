@@ -1,0 +1,18 @@
+class Projects::DeploymentsController < Projects::ApplicationController
+  # A deployment belongs to both a project and an environment so either
+  # association could be used to fetch this record. However, because the
+  # IID is defined at the project level, looking up via project is a more
+  # efficient query as it can use the unique index on (project_id, iid).
+  @deployment: untyped
+
+  @environment: untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def index: () -> untyped
+
+  def show: () -> untyped
+
+  private
+
+  def environment: () -> untyped
+end

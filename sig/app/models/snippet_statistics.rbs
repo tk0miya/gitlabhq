@@ -1,0 +1,29 @@
+class SnippetStatistics < ApplicationRecord
+  include AfterCommitQueue
+
+  include UpdateProjectStatistics
+
+  def update_commit_count: () -> untyped
+
+  def update_repository_size: () -> untyped
+
+  def update_file_count: () -> untyped
+
+  def refresh!: () -> (nil | untyped)
+
+  private
+
+  alias original_update_project_statistics_after_save? update_project_statistics_after_save?
+
+  def update_project_statistics_after_save?: () -> untyped
+
+  alias original_update_project_statistics_after_destroy? update_project_statistics_after_destroy?
+
+  def update_project_statistics_after_destroy?: () -> untyped
+
+  def update_author_root_storage_statistics?: () -> untyped
+
+  def update_author_root_storage_statistics: () -> untyped
+
+  def project_snippet?: () -> untyped
+end

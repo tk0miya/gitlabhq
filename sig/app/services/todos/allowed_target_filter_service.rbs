@@ -1,0 +1,29 @@
+module Todos
+  class AllowedTargetFilterService
+    @todos: untyped
+
+    @current_user: untyped
+
+    @project_can_read_by_id: untyped
+
+    @projects: untyped
+
+    @projects_by_id: untyped
+
+    include Gitlab::Allowable
+
+    def initialize: (untyped todos, untyped current_user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def projects: () -> untyped
+
+    def projects_by_id: () -> untyped
+
+    def can_read_target_project?: (untyped todo) -> (true | untyped)
+
+    def can_read_project?: (untyped project_id) -> untyped
+  end
+end

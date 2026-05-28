@@ -1,0 +1,11 @@
+module Deployments
+  class LinkMergeRequestWorker
+    include ApplicationWorker
+
+    def perform: (untyped deployment_id) -> (untyped | nil)
+
+    private
+
+    def after_perform: (untyped _deployment) -> nil
+  end
+end

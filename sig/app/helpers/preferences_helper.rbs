@@ -1,0 +1,76 @@
+# Helper methods for per-User preferences
+module PreferencesHelper
+  @user_application_theme: untyped
+
+  @user_color_mode: untyped
+
+  def layout_choices: () -> ::Array[::Array[untyped | :fixed] | ::Array[untyped | :fluid]]
+
+  def dashboard_value: () -> untyped
+
+  # Returns an Array usable by a select field for more user-friendly option text
+  def dashboard_choices: () -> untyped
+
+  # Maps `dashboard` values to more user-friendly option text for current user
+  def localized_dashboard_choices_for_user: () -> untyped
+
+  # Maps `dashboard` values to more user-friendly option text
+  def localized_dashboard_choices: () -> untyped
+
+  def project_view_choices: () -> ::Array[::Array[untyped | :files] | ::Array[untyped | :activity] | ::Array[untyped | :readme] | ::Array[untyped | :wiki]]
+
+  def first_day_of_week_choices: () -> ::Array[::Array[untyped | 0] | ::Array[untyped | 1] | ::Array[untyped | 6]]
+
+  def time_display_format_choices: () -> untyped
+
+  def first_day_of_week_choices_with_default: () -> untyped
+
+  def user_application_theme: () -> untyped
+
+  def user_application_color_mode: () -> untyped
+
+  def user_application_light_mode?: () -> untyped
+
+  def user_application_dark_mode?: () -> untyped
+
+  def user_application_system_mode?: () -> untyped
+
+  def user_theme_primary_color: (?bool dark) -> untyped
+
+  def user_color_scheme: () -> untyped
+
+  def user_light_color_scheme: () -> untyped
+
+  def user_dark_color_scheme: () -> untyped
+
+  def user_tab_width: () -> untyped
+
+  def user_diffs_colors: () -> untyped
+
+  def custom_diff_color_classes: () -> (nil | untyped)
+
+  def language_choices: () -> untyped
+
+  def default_preferred_language_choices: () -> untyped
+
+  def integration_views: () -> untyped
+
+  private
+
+  def extensions_marketplace_view: () -> (nil | untyped)
+
+  def build_extensions_marketplace_view: (title: untyped, message: untyped) -> { name: "extensions_marketplace", message: untyped, title: untyped, message_url: untyped, help_link: untyped }
+
+  def gitpod_url_placeholder: () -> untyped
+
+  # Ensure that anyone adding new options updates `localized_dashboard_choices` too
+  def validate_dashboard_choices!: (untyped user_dashboards) -> (untyped | nil)
+
+  # List of dashboard choice to be excluded from CE.
+  # EE would override this.
+  def excluded_dashboard_choices: () -> ::Array["operations"]
+
+  def default_first_day_of_week: () -> untyped
+
+  def selectable_locales_with_translation_level: (untyped minimum_level) -> untyped
+end

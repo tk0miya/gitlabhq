@@ -1,0 +1,22 @@
+module Types
+  module Projects
+    # This interface sets [authorize: :read_project] (field-level authorization via
+    # ProjectBaseField) for all defined fields to ensure implementing types don't
+    # expose inherited fields without proper authorization.
+    #
+    # Implementing types can opt-out from this field-level auth and use
+    # type-level auth by re-defining the field without the authorize argument.
+    # For example, ProjectType uses :read_project type-level auth and redefines all
+    # fields in this interface to opt-out while ProjectMinimalAccessType uses
+    # :read_project_metadata type-level auth to expose a set of defined fields and
+    # leaves inherited fields it does not want to expose to use field-level auth
+    # using :read_project.
+    module ProjectInterface
+      include BaseInterface
+
+      def self.resolve_type: (untyped _object, untyped _context) -> untyped
+
+      def avatar_url: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,49 @@
+module Issuable
+  class BulkUpdateService
+    @parent: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Allowable
+
+    attr_accessor parent: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor params: untyped
+
+    def initialize: (untyped parent, ?untyped? user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: (untyped type) -> untyped
+
+    private
+
+    def ids_from_params: (untyped issuable_ids) -> untyped
+
+    def set_update_params: (untyped type) -> untyped
+
+    def permitted_attrs: (untyped type) -> untyped
+
+    def update_issuables: (untyped type, untyped ids) -> untyped
+
+    # overridden in EE
+    def update_class: (untyped type) -> untyped
+
+    def find_issuables: (untyped parent, untyped model_class, untyped ids) -> untyped
+
+    # Duplicates params and its top-level values
+    # We cannot use deep_dup because ActiveRecord objects will result
+    # to new records with no id assigned
+    def dup_params: () -> untyped
+
+    def response_success: (?message: untyped?, ?payload: untyped?) -> untyped
+
+    def response_error: (untyped message, untyped http_status) -> untyped
+
+    def requires_count_cache_reset?: (untyped type) -> untyped
+
+    def schedule_group_issues_count_reset: (untyped updated_issuables) -> (nil | untyped)
+  end
+end

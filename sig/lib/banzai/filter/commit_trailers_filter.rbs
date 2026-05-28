@@ -1,0 +1,59 @@
+module Banzai
+  module Filter
+    # HTML filter that replaces users' names and emails in commit trailers
+    # with links to their GitLab accounts or mailto links to their mentioned
+    # emails.
+    #
+    # Commit trailers are special labels in the form of `*-by:` and fall on a
+    # single line, ex:
+    #
+    #   Reported-By: John S. Doe <john.doe@foo.bar>
+    #
+    # More info about this can be found here:
+    # * https://git.wiki.kernel.org/index.php/CommitMessageConventions
+    class CommitTrailersFilter < HTML::Pipeline::Filter
+      include ActionView::Helpers::TagHelper
+
+      include AvatarsHelper
+
+      prepend Concerns::PipelineTimingCheck
+
+      def call: () -> untyped
+
+      private
+
+      # Replace trailer lines with links to GitLab users or mailto links to
+      # non GitLab users.
+      #
+      # text - String text to replace trailers in.
+      #
+      # Returns a String with all trailer lines replaced with links to GitLab
+      # users and mailto links to non GitLab users. All links have `data-trailer`
+      # and `data-user` attributes attached.
+      #
+      # The code intentionally avoids using Regex for security and performance
+      # reasons: https://gitlab.com/gitlab-org/gitlab/-/issues/363734
+      def trailer_filter: (untyped text) -> untyped
+
+      # Find a GitLab user using the supplied email and generate
+      # a valid link to them, otherwise, generate a mailto link.
+      #
+      # name - String name used in the commit message for the user
+      # email - String email used in the commit message for the user
+      # trailer - String trailer used in the commit message
+      #
+      # Returns a String with a link to the user.
+      def link_to_user_or_email: (untyped name, untyped email, untyped trailer) -> untyped
+
+      def urls: () -> untyped
+
+      def link_to_user: (untyped user, name: untyped, email: untyped, trailer: untyped) -> untyped
+
+      def link_wrapper: (?data: ::Hash[untyped, untyped]) -> untyped
+
+      def link_tag: (untyped url, ?title: ::String, ?content: ::String, ?data: ::Hash[untyped, untyped]) -> untyped
+
+      def data_attributes_from_hash: (?::Hash[untyped, untyped] data) -> untyped
+    end
+  end
+end

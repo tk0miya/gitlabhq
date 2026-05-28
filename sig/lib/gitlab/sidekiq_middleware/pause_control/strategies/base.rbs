@@ -1,0 +1,27 @@
+module Gitlab
+  module SidekiqMiddleware
+    module PauseControl
+      module Strategies
+        class Base
+          extend ::Gitlab::Utils::Override
+
+          def self.should_pause?: () -> untyped
+
+          def schedule: (untyped job) { () -> untyped } -> (nil | untyped)
+
+          def perform: (untyped job) { () -> untyped } -> (nil | untyped)
+
+          def should_pause?: () -> untyped
+
+          private
+
+          def pause_job!: (untyped job) -> untyped
+
+          def strategy_name: () -> untyped
+
+          def current_context: () -> untyped
+        end
+      end
+    end
+  end
+end

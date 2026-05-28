@@ -1,0 +1,16 @@
+# Returns hashes of attributes suitable for passing to `.insert_all` or `update_all`
+module Integrations
+  module Propagation
+    module BulkOperationHashes
+      private
+
+      def integration_hash: (untyped operation) -> untyped
+
+      def data_fields_hash: (untyped operation) -> untyped
+
+      def update_timestamps: (untyped operation) -> untyped
+
+      def bulk_insert_new: (untyped model, untyped items_to_insert) -> untyped
+    end
+  end
+end

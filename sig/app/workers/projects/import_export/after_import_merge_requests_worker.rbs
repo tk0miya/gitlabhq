@@ -1,0 +1,9 @@
+module Projects
+  module ImportExport
+    class AfterImportMergeRequestsWorker
+      include ApplicationWorker
+
+      def perform: (untyped project_id) -> (nil | untyped)
+    end
+  end
+end

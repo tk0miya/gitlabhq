@@ -1,0 +1,31 @@
+module Gitlab
+  module Graphql
+    module Subscriptions
+      class ActionCableWithLoadBalancing < ::GraphQL::Subscriptions::ActionCableSubscriptions
+        extend ::Gitlab::Utils::Override
+
+        include Gitlab::Database::LoadBalancing::WalTrackingSender
+
+        include Gitlab::Database::LoadBalancing::WalTrackingReceiver
+
+        KEY_PAYLOAD: "gql_payload"
+
+        KEY_WAL_LOCATIONS: "wal_locations"
+
+        def execute_all: (untyped event, untyped object) -> untyped
+
+        def execute_update: (untyped subscription_id, untyped event, untyped object) -> untyped
+
+        private
+
+        def wrapped_payload?: (untyped object) -> untyped
+
+        def use_primary?: (untyped wal_locations) -> untyped
+
+        # We stringify keys since otherwise the graphql-ruby serializer will inject additional metadata
+        # to keep track of which keys used to be symbols.
+        def current_wal_locations: () -> untyped
+      end
+    end
+  end
+end

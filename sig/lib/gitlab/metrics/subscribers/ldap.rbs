@@ -1,0 +1,48 @@
+module Gitlab
+  module Metrics
+    module Subscribers
+      class Ldap < ActiveSupport::Subscriber
+        COUNTER: :net_ldap_count
+
+        DURATION: :net_ldap_duration_s
+
+        # Assembled from methods that are instrumented inside Net::LDAP
+        OBSERVABLE_EVENTS: ::Array[:open | :bind | :add | :modify | :modify_password | :rename | :delete | :search]
+
+        # @return [Integer] the total number of LDAP requests
+        def self.count: () -> untyped
+
+        # @return [Float] the total duration spent on LDAP requests
+        def self.duration: () -> untyped
+
+        # Used in Gitlab::InstrumentationHelper to merge the LDAP stats
+        # into the log output
+        #
+        # @return [Hash<Integer, Float>] a hash of the stored statistics
+        def self.payload: () -> { net_ldap_count: untyped, net_ldap_duration_s: untyped }
+
+        # Called when an event is triggered in ActiveSupport::Notifications
+        #
+        # This method is aliased to the various events triggered by the
+        # Net::LDAP library, as the method will be called by those names
+        # when triggered.
+        #
+        # It stores statistics in the request for output to logs, and also
+        # resubmits the event data into Prometheus for monitoring purposes.
+        def observe_event: (untyped event) -> untyped
+
+        private
+
+        def current_transaction: () -> untyped
+
+        # Track these events as statistics for the current requests, for logging purposes
+        def add_to_request_store: (untyped event) -> (nil | untyped)
+
+        # Converts the observed events into Prometheus metrics
+        def expose_metrics: (untyped event) -> (nil | untyped)
+
+        def convert_to_seconds: (untyped duration_f) -> untyped
+      end
+    end
+  end
+end

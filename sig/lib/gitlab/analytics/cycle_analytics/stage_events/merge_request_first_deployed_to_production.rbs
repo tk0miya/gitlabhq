@@ -1,0 +1,20 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageEvents
+        class MergeRequestFirstDeployedToProduction < MetricsBasedStageEvent
+          def self.name: () -> untyped
+
+          def self.identifier: () -> :merge_request_first_deployed_to_production
+
+          def object_type: () -> untyped
+
+          def column_list: () -> ::Array[untyped]
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def apply_query_customization: (untyped query) -> untyped
+        end
+      end
+    end
+  end
+end

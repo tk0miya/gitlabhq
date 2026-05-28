@@ -1,0 +1,19 @@
+module Mutations
+  module WorkItems
+    class BulkUpdate < BaseMutation
+      include ::Gitlab::Utils::StrongMemoize
+
+      MAX_WORK_ITEMS: 100
+
+      def ready?: (**untyped args) -> untyped
+
+      def resolve: (ids: untyped, full_path: untyped, **untyped attributes) -> untyped
+
+      private
+
+      def resource_parent!: (untyped full_path) -> untyped
+
+      def find_parent_by_full_path: (untyped full_path, ?untyped model) -> untyped
+    end
+  end
+end

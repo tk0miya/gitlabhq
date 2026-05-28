@@ -1,0 +1,21 @@
+class Ci::CommitWithPipeline < SimpleDelegator
+  @latest_pipelines: untyped
+
+  include Presentable
+
+  def initialize: (untyped commit) -> void
+
+  def pipelines: () -> untyped
+
+  def last_pipeline: () -> untyped
+
+  def lazy_latest_pipeline: () -> untyped
+
+  def latest_pipeline: (?untyped? ref) -> untyped
+
+  def latest_pipeline_for_project: (untyped ref, untyped pipeline_project) -> untyped
+
+  def set_latest_pipeline_for_ref: (untyped ref, untyped pipeline) -> untyped
+
+  def status: (?untyped? ref) -> untyped
+end

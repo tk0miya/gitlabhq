@@ -1,0 +1,15 @@
+module Types
+  class CommitReferencesType < BaseObject
+    def self.field_for_tipping_refs: (untyped field_name, untyped field_description) -> untyped
+
+    def self.field_for_containing_refs: (untyped field_name, untyped field_description) -> untyped
+
+    def tipping_tags: (limit: untyped) -> { names: untyped }
+
+    def tipping_branches: (limit: untyped) -> { names: untyped }
+
+    def containing_tags: (limit: untyped, exclude_tipped: untyped) -> { names: untyped }
+
+    def containing_branches: (limit: untyped, exclude_tipped: untyped) -> { names: untyped }
+  end
+end

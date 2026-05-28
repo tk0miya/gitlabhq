@@ -1,0 +1,11 @@
+module Types
+  module Ci
+    class JobAnalyticsStatisticsType < BaseObject
+      def count: (?status: untyped?) -> untyped
+
+      def duration_statistics: () -> untyped
+
+      def rate: (?status: untyped?) -> (::Float | untyped)
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module BitbucketServer
+  class Client
+    @connection: untyped
+
+    attr_reader connection: untyped
+
+    def initialize: (?::Hash[untyped, untyped] options) -> void
+
+    def pull_requests: (untyped project_key, untyped repo, ?page_offset: ::Integer, ?limit: untyped?) -> untyped
+
+    def last_pull_request: (untyped project_key, untyped repo) -> untyped
+
+    def activities: (untyped project_key, untyped repo, untyped pull_request_id, ?page_offset: ::Integer, ?limit: untyped?) -> untyped
+
+    def repo: (untyped project, untyped repo_name) -> untyped
+
+    def repos: (?page_offset: ::Integer, ?limit: untyped?, ?filter: untyped?) -> untyped
+
+    def users: (untyped project_key, ?page_offset: ::Integer, ?limit: untyped?) -> untyped
+
+    def create_branch: (untyped project_key, untyped repo, untyped branch_name, untyped sha) -> untyped
+
+    def delete_branch: (untyped project_key, untyped repo, untyped branch_name, untyped sha) -> untyped
+
+    private
+
+    def get_collection: (untyped path, untyped type, ?page_offset: ::Integer, ?limit: untyped?) -> untyped
+  end
+end

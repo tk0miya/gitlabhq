@@ -1,0 +1,38 @@
+module Gitlab
+  module Email
+    # Contains common methods which must be present in all email classes
+    module Common
+      UNSUBSCRIBE_SUFFIX: "-unsubscribe"
+
+      UNSUBSCRIBE_SUFFIX_LEGACY: "+unsubscribe"
+
+      WILDCARD_PLACEHOLDER: "%{key}"
+
+      # This can be overridden for a custom config
+      def config: () -> untyped
+
+      def incoming_email_config: () -> untyped
+
+      def enabled?: () -> untyped
+
+      def supports_wildcard?: () -> untyped
+
+      def supports_issue_creation?: () -> untyped
+
+      alias supports_work_item_creation? supports_issue_creation?
+
+      def reply_address: (untyped key) -> untyped
+
+      # example: incoming+1234567890abcdef1234567890abcdef-unsubscribe@incoming.gitlab.com
+      def unsubscribe_address: (untyped key) -> untyped
+
+      def key_from_address: (untyped address, ?wildcard_address: untyped?) -> untyped
+
+      def key_from_fallback_message_id: (untyped mail_id) -> untyped
+
+      def scan_fallback_references: (untyped references) -> untyped
+
+      def encrypted_secrets: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Integrations
+  module Base
+    module Harbor
+      @client: untyped
+
+      extend ActiveSupport::Concern
+
+      # These are the similar limits, defined in the Harbor project
+      # https://github.com/goharbor/harbor/blob/caaad5279812298a0947d11052d7772a65dcb859/src/pkg/project/manager.go#L59-61
+      MAX_PROJECT_NAME_LENGTH: 255
+
+      PROJECT_NAME_REGEXP: ::Regexp
+
+      def hostname: () -> untyped
+
+      def test: (*untyped _args) -> untyped
+
+      def ci_variables: () -> (::Array[untyped] | ::Array[{ key: "HARBOR_URL", value: untyped } | { key: "HARBOR_HOST", value: untyped } | { key: "HARBOR_OCI", value: untyped } | { key: "HARBOR_PROJECT", value: untyped } | { key: "HARBOR_USERNAME", value: untyped } | { key: "HARBOR_PASSWORD", value: untyped, public: false, masked: true }])
+
+      private
+
+      def client: () -> untyped
+    end
+  end
+end

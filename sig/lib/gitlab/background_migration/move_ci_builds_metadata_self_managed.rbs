@@ -1,0 +1,7 @@
+# rubocop:disable Migration/BatchedMigrationBaseClass -- it is a subclass of Gitlab::BackgroundMigration::BatchedMigrationJob
+module Gitlab
+  module BackgroundMigration
+    class MoveCiBuildsMetadataSelfManaged < MoveCiBuildsMetadata
+    end
+  end
+end

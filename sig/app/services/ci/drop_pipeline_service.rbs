@@ -1,0 +1,15 @@
+module Ci
+  class DropPipelineService
+    # execute service asynchronously for each cancelable pipeline
+    def execute_async_for_all: (untyped pipelines, untyped failure_reason, untyped context_user, ?worker_class: untyped) -> untyped
+
+    def execute: (untyped pipeline, untyped failure_reason, ?retries: ::Integer) -> untyped
+
+    private
+
+    def preload_associations_for_drop: (untyped commit_status_batch) -> untyped
+
+    # overridden in EE
+    def preloaded_relations: () -> ::Array[:project | :pipeline | :metadata | :job_definition | :deployment | :taggings]
+  end
+end

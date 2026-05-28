@@ -1,0 +1,11 @@
+module BulkImports
+  module Groups
+    module Pipelines
+      class GroupPipeline
+        include Pipeline
+
+        include HexdigestCacheStrategy
+      end
+    end
+  end
+end

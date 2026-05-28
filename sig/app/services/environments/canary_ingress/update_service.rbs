@@ -1,0 +1,18 @@
+module Environments
+  module CanaryIngress
+    class UpdateService < ::BaseService
+      def execute_async: (untyped environment) -> untyped
+
+      # This method actually executes the PATCH request to Kubernetes,
+      # that is used by internal processes i.e. sidekiq worker.
+      # You should always use `execute_async` to properly validate user's requests.
+      def execute: (untyped environment) -> untyped
+
+      private
+
+      def validate: (untyped environment) -> untyped
+
+      def patch_data: () -> { metadata: { annotations: ::Hash[untyped, untyped] } }
+    end
+  end
+end

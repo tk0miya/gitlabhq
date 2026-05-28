@@ -1,0 +1,28 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class RedisHLLMetric < BaseMetric
+          # Usage example
+          #
+          # In metric YAML defintion
+          # instrumentation_class: RedisHLLMetric
+          #   events:
+          #     - g_analytics_valuestream
+          # end
+          def initialize: (untyped metric_definition) -> void
+
+          def value: () -> untyped
+
+          private
+
+          def event_names: () -> untyped
+
+          def property_name: () -> (nil | untyped)
+
+          def time_constraints: () -> untyped
+        end
+      end
+    end
+  end
+end

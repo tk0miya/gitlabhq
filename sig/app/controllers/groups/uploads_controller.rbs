@@ -1,0 +1,18 @@
+class Groups::UploadsController < Groups::ApplicationController
+  include UploadsActions
+
+  include WorkhorseRequest
+
+  private
+
+  # Starting with this version, #show is handled by Banzai::UploadsController#show
+  def disallow_new_uploads!: () -> (untyped | nil)
+
+  def upload_model_class: () -> untyped
+
+  def uploader_class: () -> untyped
+
+  def find_model: () -> untyped
+
+  def authorize_upload_file!: () -> (untyped | nil)
+end

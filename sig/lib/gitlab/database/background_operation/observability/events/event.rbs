@@ -1,0 +1,35 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      module Observability
+        module Events
+          # It organizes the BBO events into a single place
+          class Event
+            @record: untyped
+
+            @attributes: untyped
+
+            def initialize: (untyped record, **untyped attributes) -> void
+
+            def log: () -> untyped
+
+            def payload: () -> untyped
+
+            private
+
+            attr_reader record: untyped
+
+            attr_reader attributes: untyped
+
+            # Shared payload for all records:
+            # BackgroundOperation::Worker,
+            # BackgroundOperation::WorkerCellLocal,
+            # BackgroundOperation::Job,
+            # BackgroundOperation::JobCellLocal
+            def shared_payload: () -> { id: untyped, partition: untyped, record_type: untyped, min_cursor: untyped, max_cursor: untyped, created_at: untyped, started_at: untyped, finished_at: untyped }
+          end
+        end
+      end
+    end
+  end
+end

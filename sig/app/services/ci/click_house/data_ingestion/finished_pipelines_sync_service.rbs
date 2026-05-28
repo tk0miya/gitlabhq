@@ -1,0 +1,89 @@
+module Ci
+  module ClickHouse
+    module DataIngestion
+      class FinishedPipelinesSyncService
+        @runtime_limiter: untyped
+
+        @worker_index: untyped
+
+        @total_workers: untyped
+
+        @logger: untyped
+
+        # Read PIPELINES_BATCH_COUNT batches of PIPELINES_BATCH_SIZE until the timeout in MAX_RUNTIME is reached
+        # We can expect a single worker to process around 2M pipelines/hour with a single worker,
+        # and a bit over 5M pipelines/hour with three workers (measured in prod).
+        @reached_end_of_table: untyped
+
+        @processed_record_ids: untyped
+
+        include Gitlab::ExclusiveLeaseHelpers
+
+        include Gitlab::Utils::StrongMemoize
+
+        # the job is scheduled every 3 minutes and we will allow maximum 6 minutes runtime
+        # we must allow a minimum of 2 minutes + 15 seconds PG timeout + 1 minute for the various
+        # CH Gitlab::HTTP timeouts
+        MAX_TTL: untyped
+
+        MAX_RUNTIME: untyped
+
+        PIPELINES_BATCH_SIZE: 500
+
+        PIPELINES_BATCH_COUNT: 10
+
+        PIPELINE_ID_PARTITIONS: 100
+
+        PIPELINE_FIELD_NAMES: ::Array[:id | :duration | :status | :source | :ref]
+
+        PIPELINE_EPOCH_FIELD_NAMES: ::Array[:committed_at | :created_at | :started_at | :finished_at]
+
+        PIPELINE_COMPUTED_FIELD_NAMES: ::Array[:path | :is_default_branch]
+
+        PIPELINE_META_FIELD_NAMES: ::Array[:name]
+
+        CSV_MAPPING: ::Hash[untyped, untyped]
+
+        INSERT_FINISHED_PIPELINES_QUERY: untyped
+
+        def self.enabled?: () -> untyped
+
+        def initialize: (?worker_index: ::Integer, ?total_workers: ::Integer, ?logger: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader logger: untyped
+
+        def continue?: () -> untyped
+
+        def service_payload: () -> { worker_index: untyped, total_workers: untyped }
+
+        def insert_new_finished_pipelines: () -> { records_inserted: untyped, reached_end_of_table: untyped }
+
+        def use_simplified_query_for_ch_pipeline_ingestion?: () -> untyped
+
+        def csv_batches: () -> untyped
+
+        def yield_pipelines: (untyped events_batch, untyped records_yielder) -> untyped
+
+        def fixup_pipeline_attrs: (untyped pipeline_attrs, untyped pipeline_ids_to_project_namespace_ids, untyped project_namespace_ids_to_paths, untyped default_branches_by_namespace_id) -> untyped
+
+        def check_pipeline_errors: (untyped pipeline_attrs) -> untyped
+
+        def pipeline_attrs_error: (untyped pipeline_attrs) -> ("Missing namespace traversal path" | nil)
+
+        def log_pipeline_problem: (untyped pipeline_id, untyped reason) -> untyped
+
+        def to_traversal_path: (untyped traversal_ids) -> (::String | "/")
+
+        def finished_pipeline_projections: () -> untyped
+
+        def scope: () -> untyped
+
+        def keyset_iterator_scope: () -> untyped
+      end
+    end
+  end
+end

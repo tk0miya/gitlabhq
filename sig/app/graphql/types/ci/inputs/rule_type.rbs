@@ -1,0 +1,12 @@
+module Types
+  module Ci
+    module Inputs
+      # rubocop:disable Graphql/AuthorizeTypes -- authorized by parent Ci::Inputs::SpecType
+      class RuleType < BaseObject
+        @condition_tree: untyped
+
+        def condition_tree: () -> untyped
+      end
+    end
+  end
+end

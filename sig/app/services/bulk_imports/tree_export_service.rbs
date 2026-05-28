@@ -1,0 +1,51 @@
+module BulkImports
+  class TreeExportService
+    @portable: untyped
+
+    @export_path: untyped
+
+    @relation: untyped
+
+    @config: untyped
+
+    @user: untyped
+
+    @offline_export_id: untyped
+
+    @serializer: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    # @param export [BulkImports::Export] the export record providing portable, relation, and offline_export_id
+    # @param export_path [String] directory path where the exported file will be written
+    # @param user [User] the user performing the export
+    def initialize: (untyped export, untyped export_path, untyped user) -> void
+
+    def execute: () -> untyped
+
+    def export_batch: (untyped ids) -> untyped
+
+    def exported_filename: () -> ::String
+
+    private
+
+    attr_reader export_path: untyped
+
+    attr_reader portable: untyped
+
+    attr_reader relation: untyped
+
+    attr_reader config: untyped
+
+    attr_reader user: untyped
+
+    attr_reader offline_export_id: untyped
+
+    # rubocop: disable CodeReuse/Serializer
+    def serializer: () -> untyped
+
+    def extension: () -> ("json" | "ndjson")
+
+    def relation_definition: () -> untyped
+  end
+end

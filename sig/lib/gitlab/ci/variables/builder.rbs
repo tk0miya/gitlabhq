@@ -1,0 +1,94 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Builder
+        @pipeline: untyped
+
+        @pipeline_variables_builder: untyped
+
+        @instance_variables_builder: untyped
+
+        @project_variables_builder: untyped
+
+        @group_variables_builder: untyped
+
+        @release_variables_builder: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped pipeline) -> void
+
+        # When adding new variables, consider either adding or commenting out them in the following methods:
+        # - unprotected_scoped_variables
+        # - scoped_variables_for_pipeline_seed
+        def scoped_variables: (untyped job, environment: untyped, dependencies: untyped) -> untyped
+
+        def unprotected_scoped_variables: (untyped job, expose_project_variables: untyped, expose_group_variables: untyped, environment: untyped, dependencies: untyped) -> untyped
+
+        def scoped_variables_for_pipeline_seed: (untyped job_attr, environment: untyped, kubernetes_namespace: untyped, user: untyped, trigger: untyped) -> untyped
+
+        def config_variables: () -> untyped
+
+        def kubernetes_variables: (environment: untyped, token: untyped, kubernetes_namespace: untyped) -> untyped
+
+        def deployment_variables: (untyped environment, untyped kubernetes_namespace) -> untyped
+
+        def kubeconfig_variables: (untyped environment, untyped kubernetes_namespace, untyped token, untyped kubeconfig_yaml) -> untyped
+
+        def user_variables: (untyped user) -> untyped
+
+        def secret_instance_variables: (?only: untyped?) -> untyped
+
+        def secret_group_variables: (environment: untyped, ?include_protected_vars: untyped, ?only: untyped?) -> untyped
+
+        def secret_project_variables: (environment: untyped, ?include_protected_vars: untyped, ?only: untyped?) -> untyped
+
+        def release_variables: () -> untyped
+
+        private
+
+        attr_reader pipeline: untyped
+
+        attr_reader pipeline_variables_builder: untyped
+
+        attr_reader instance_variables_builder: untyped
+
+        attr_reader project_variables_builder: untyped
+
+        attr_reader group_variables_builder: untyped
+
+        attr_reader release_variables_builder: untyped
+
+        def predefined_variables: (untyped job, untyped environment) -> untyped
+
+        def predefined_variables_from_job_attr: (untyped job_attr, untyped environment, untyped trigger) -> untyped
+
+        def pipeline_schedule_variables: () -> untyped
+
+        def kubernetes_variables_from_attr: (environment: untyped, kubernetes_namespace: untyped) -> untyped
+
+        def kubernetes_variables_from_job: (environment: untyped, job: untyped) -> untyped
+
+        def user_defined_variables: (options: untyped, environment: untyped, ?job_variables: untyped?, ?expose_group_variables: untyped, ?expose_project_variables: untyped) -> untyped
+
+        def job_name_slug: (untyped job_name) -> untyped
+
+        def ci_node_total_value: (untyped job_options) -> untyped
+
+        def protected_ref?: () -> untyped
+
+        def release: () -> (nil | untyped)
+
+        def environment_action_from_job_options: (untyped options) -> untyped
+
+        # We use the `environment` parameter instead of `options[:environment]` because `environment` is expanded.
+        def environment_tier_from_job_options: (untyped options, untyped environment) -> untyped
+
+        # We use the `environment` parameter instead of `options[:environment]` because `environment` is expanded.
+        def environment_url_from_job_options: (untyped options, untyped environment) -> untyped
+
+        def persisted_environment: (untyped environment) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module WorkItems
+  class ProcessProjectTransferEventsWorker
+    include Gitlab::EventStore::Subscriber
+
+    def self.handles_event?: (untyped event) -> untyped
+
+    def handle_event: (untyped event) -> (nil | untyped)
+  end
+end

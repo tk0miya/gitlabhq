@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class ComponentUsage < Chain::Base
+          include Gitlab::Utils::StrongMemoize
+
+          def perform!: () -> (nil | untyped)
+
+          def break?: () -> false
+
+          private
+
+          def enqueue_tracking_job: () -> untyped
+
+          def included_components: () -> untyped
+        end
+      end
+    end
+  end
+end

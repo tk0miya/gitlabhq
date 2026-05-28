@@ -1,0 +1,42 @@
+module Banzai
+  module Filter
+    module Concerns
+      module TextReplacer
+        extend ActiveSupport::Concern
+
+        # REFERENCE_PLACEHOLDER is used for replacement HTML to be inserted during
+        # reference matching.  The random string helps ensure it's pretty close to unique.
+        # Since it's a transitory value (it's never persisted anywhere) we can initialize once,
+        # and it doesn't matter if it changes on a restart.
+        REFERENCE_PLACEHOLDER: ::String
+
+        REFERENCE_PLACEHOLDER_PATTERN: ::Regexp
+
+        # A helper to make it easier to substitute HTML into matched text correctly.
+        #
+        # Pass in the replacement Enumerator of choice, on *plain text* input.
+        # This will often look like this:
+        #
+        #   Gitlab::Utils::Gsub.gsub_with_limit(text, pattern, limit: Banzai::Filter::FILTER_ITEM_LIMIT)
+        #
+        # Or the simpler:
+        #
+        #   text.gsub(pattern)
+        #
+        # In both cases, the subject we're performing replacements on is text, not HTML.
+        #
+        # This function will yield MatchData from the underlying enumerator -- $~ if it's available,
+        # otherwise the yield from the enumerator itself is asserted to be MatchData or RE2::MatchData.
+        # The given block should return HTML (!) to substitute in place, or nil if no replacement
+        # is to be made.
+        #
+        # The function returns HTML, safely substituting the block results in, while escaping all
+        # other text.  The supplied block MUST escape any input text returned within it, if any.
+        #
+        # If no replacements were made --- that is, the enumerator didn't yield anything, or the block
+        # given to this function only returned nil --- nil is returned.
+        def replace_references_in_text_with_html: (untyped enumerator) { (untyped) -> untyped } -> (nil | untyped)
+      end
+    end
+  end
+end

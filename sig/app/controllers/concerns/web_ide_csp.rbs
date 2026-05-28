@@ -1,0 +1,8 @@
+module WebIdeCSP
+  extend ActiveSupport::Concern
+
+  # We want to include frames from `/assets/webpack` of the request's host to
+  # support URL flexibility with the Web IDE.
+  # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/118875
+  def include_web_ide_csp: () -> (nil | untyped)
+end

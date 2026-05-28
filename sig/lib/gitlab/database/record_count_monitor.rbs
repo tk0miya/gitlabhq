@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    class RecordCountMonitor
+      self.@subscribed: untyped
+
+      THRESHOLD: 1000
+
+      def self.subscribe: () -> (nil | untyped)
+
+      def self.warn_large_result_set: (untyped payload) -> untyped
+    end
+  end
+end

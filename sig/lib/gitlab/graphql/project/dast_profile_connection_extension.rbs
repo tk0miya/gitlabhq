@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+module Gitlab
+  module Graphql
+    module Project
+      class DastProfileConnectionExtension < GraphQL::Schema::FieldExtension
+        def after_resolve: (value: untyped, object: untyped, context: untyped, **untyped rest) -> untyped
+
+        def preload_authorizations: (untyped dast_profiles) -> (nil | untyped)
+      end
+    end
+  end
+end

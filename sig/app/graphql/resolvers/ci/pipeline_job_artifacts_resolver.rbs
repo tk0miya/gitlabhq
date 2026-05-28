@@ -1,0 +1,13 @@
+module Resolvers
+  module Ci
+    class PipelineJobArtifactsResolver < BaseResolver
+      alias pipeline object
+
+      def resolve: () -> untyped
+
+      private
+
+      def find_job_artifacts: () -> untyped
+    end
+  end
+end

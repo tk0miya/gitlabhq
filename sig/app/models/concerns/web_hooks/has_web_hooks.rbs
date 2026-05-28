@@ -1,0 +1,21 @@
+module WebHooks
+  module HasWebHooks
+    WEB_HOOK_CACHE_EXPIRY: untyped
+
+    def any_hook_failed?: () -> untyped
+
+    def web_hook_failure_redis_key: () -> ::String
+
+    def last_failure_redis_key: () -> ::String
+
+    def get_web_hook_failure: () -> untyped
+
+    def fetch_web_hook_failure: () -> untyped
+
+    def cache_web_hook_failure: (?untyped state) -> untyped
+
+    def last_webhook_failure: () -> untyped
+
+    def update_last_webhook_failure: (untyped hook) -> (untyped | nil | untyped)
+  end
+end

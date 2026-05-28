@@ -1,0 +1,31 @@
+module Tasks
+  module Gitlab
+    module Permissions
+      module Routes
+        class CleanupTodoTask
+          @todo_entries: untyped
+
+          TODO_FILE: untyped
+
+          def run: () -> (nil | untyped)
+
+          def stale_entries: () -> (::Array[untyped] | untyped)
+
+          private
+
+          def todo_entries: () -> untyped
+
+          def build_route_map: () -> untyped
+
+          def stale?: (untyped entry, untyped route_map) -> untyped
+
+          def route_id: (untyped route) -> ::String
+
+          def has_authorization?: (untyped authorization) -> (false | untyped)
+
+          def rewrite_todo_file: (untyped stale) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+class SnippetBlobPresenter < BlobPresenter
+  include GitlabRoutingHelper
+
+  def rich_data: () -> (nil | untyped)
+
+  def raw_path: () -> untyped
+
+  def raw_url: () -> untyped
+
+  def raw_directory: () -> untyped
+
+  def raw_plain_data: () -> (untyped | nil)
+
+  private
+
+  def snippet: () -> untyped
+
+  def gitattr_language: () -> nil
+
+  def render_rich_partial: () -> untyped
+
+  def renderer: () -> untyped
+
+  def snippet_blob_raw_route: (?only_path: bool) -> untyped
+end

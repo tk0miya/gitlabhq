@@ -1,0 +1,31 @@
+module Rouge
+  module Formatters
+    class HTMLGitlab < Rouge::Formatters::HTML
+      @tag: untyped
+
+      @line_number: untyped
+
+      @fix_attributes: untyped
+
+      @ellipsis_indexes: untyped
+
+      @ellipsis_svg: untyped
+
+      # Creates a new <tt>Rouge::Formatter::HTMLGitlab</tt> instance.
+      #
+      # [+tag+]          The tag (language) of the lexer used to generate the formatted tokens
+      # [+line_number+]  The line number used to populate line IDs
+      def initialize: (?::Hash[untyped, untyped] options) -> void
+
+      def stream: (untyped tokens) { (untyped) -> untyped } -> untyped
+
+      private
+
+      def ellipsis: () -> ::String
+
+      def replace_space_characters: (untyped text) -> untyped
+
+      def highlight_unicode_control_characters: (untyped text) -> untyped
+    end
+  end
+end

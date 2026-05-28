@@ -1,0 +1,61 @@
+module Types
+  module Ci
+    # rubocop: disable Graphql/AuthorizeTypes
+    # The permission is presented through different types that access JobType
+    class JobType < BaseObject
+      def can_play_job?: () -> untyped
+
+      def kind: () -> untyped
+
+      def retryable: () -> untyped
+
+      def pipeline: () -> untyped
+
+      def downstream_pipeline: () -> (untyped | nil)
+
+      def tags: () -> (untyped | nil)
+
+      def artifacts: () -> (untyped | nil)
+
+      def source: () -> (untyped | nil)
+
+      def trace: () -> (untyped | nil)
+
+      def previous_stage_jobs_or_needs: () -> untyped
+
+      def previous_stage_jobs: () -> untyped
+
+      def stage: () -> untyped
+
+      def runner: () -> untyped
+
+      def runner_manager: () -> untyped
+
+      # This class is a secret union!
+      # TODO: turn this into an actual union, so that fields can be referenced safely!
+      def id: () -> (nil | untyped)
+
+      def commit_path: () -> untyped
+
+      def ref_path: () -> untyped
+
+      def web_path: () -> (untyped | nil)
+
+      def retry_path: () -> (nil | untyped)
+
+      def play_path: () -> untyped
+
+      def browse_artifacts_path: () -> untyped
+
+      def coverage: () -> untyped
+
+      def manual_variables: () -> untyped
+
+      def exit_code: () -> (untyped | nil)
+
+      def inputs_spec: () -> (::Array[untyped] | untyped)
+
+      def inputs: () -> (nil | untyped)
+    end
+  end
+end

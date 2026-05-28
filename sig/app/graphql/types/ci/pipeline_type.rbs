@@ -1,0 +1,44 @@
+module Types
+  module Ci
+    class PipelineType < BaseObject
+      def self.authorization_scopes: () -> untyped
+
+      def commit: () -> untyped
+
+      def error_messages: () -> untyped
+
+      def detailed_status: () -> untyped
+
+      def user: () -> untyped
+
+      def commit_path: () -> untyped
+
+      def warning_messages: () -> untyped
+
+      def job: (?id: untyped?, ?name: untyped?) -> untyped
+
+      def sha: (?format: untyped) -> untyped
+
+      def has_manual_actions?: () -> untyped
+
+      def has_scheduled_actions?: () -> untyped
+
+      def failed_jobs_count: () -> untyped
+
+      def retryable: () -> (false | untyped)
+
+      def stuck: () -> untyped
+
+      # This duplicates the logic in Ci::Pipeline#type (app/models/ci/pipeline.rb) for
+      # performance reasons, avoiding N+1 queries by using pre-loaded GraphQL data.
+      def type: () -> ("merge_train" | "merged_result" | "merge_request" | "tag" | "branch")
+
+      alias pipeline object
+
+      private
+
+      # rubocop: disable CodeReuse/ActiveRecord -- batch loading across multiple pipelines for performance
+      def pending_builds_grouped_by_pipeline: (untyped items) -> untyped
+    end
+  end
+end

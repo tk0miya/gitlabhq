@@ -1,0 +1,25 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      class CursorPager < Gitlab::Pagination::Base
+        @cursor_based_request_context: untyped
+
+        @paginator: untyped
+
+        attr_reader cursor_based_request_context: untyped
+
+        attr_reader paginator: untyped
+
+        def initialize: (untyped cursor_based_request_context) -> void
+
+        def paginate: (untyped relation, ?::Hash[untyped, untyped] _params) -> untyped
+
+        def finalize: (?untyped _records) -> untyped
+
+        private
+
+        def apply_headers: () -> (nil | untyped)
+      end
+    end
+  end
+end

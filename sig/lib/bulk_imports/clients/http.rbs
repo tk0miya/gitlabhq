@@ -1,0 +1,75 @@
+module BulkImports
+  module Clients
+    class HTTP
+      @url: untyped
+
+      @token: untyped
+
+      @page: untyped
+
+      @per_page: untyped
+
+      @api_version: untyped
+
+      @compatible_instance_version: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      API_VERSION: "v4"
+
+      DEFAULT_PAGE: 1
+
+      DEFAULT_PER_PAGE: 30
+
+      PAT_ENDPOINT_MIN_VERSION: "15.5.0"
+
+      SIDEKIQ_REQUEST_TIMEOUT: 60
+
+      def initialize: (url: untyped, token: untyped, ?page: untyped, ?per_page: untyped, ?api_version: untyped) -> void
+
+      def get: (untyped resource, ?::Hash[untyped, untyped] query) -> untyped
+
+      def post: (untyped resource, ?::Hash[untyped, untyped] body) -> untyped
+
+      def head: (untyped resource) -> untyped
+
+      def stream: (untyped resource) { (?) -> untyped } -> untyped
+
+      def each_page: (untyped method, untyped resource, ?::Hash[untyped, untyped] query) ?{ (untyped) -> untyped } -> untyped
+
+      def resource_url: (untyped resource) -> untyped
+
+      def instance_version: () -> untyped
+
+      def instance_enterprise: () -> untyped
+
+      def compatible_for_project_migration?: () -> untyped
+
+      def options: () -> { headers: { "Content-Type" => "application/json" }, query: { private_token: untyped } }
+
+      def validate_import_scopes!: () -> (true | untyped)
+
+      def validate_instance_version!: () -> (true | untyped)
+
+      private
+
+      def metadata: () -> untyped
+
+      # rubocop:disable GitlabSecurity/PublicSend
+      def request: (untyped method, untyped resource, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+      def request_options: (untyped options) -> untyped
+
+      def default_options: () -> untyped
+
+      def request_query: () -> { page: untyped, per_page: untyped, private_token: untyped }
+
+      def request_timeout: () -> ({ timeout: untyped } | nil)
+
+      # @raise [BulkImports::NetworkError] when unsuccessful
+      def with_error_handling: () { () -> untyped } -> untyped
+
+      def api_url: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module RapidDiffs
+  class MergeRequestCreationPresenter < BasePresenter
+    @project: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    def initialize: (untyped subject, project: untyped, diff_view: untyped, diff_options: untyped, ?current_user: untyped?, ?request_params: untyped?) -> void
+
+    def diffs_stats_endpoint: () -> untyped
+
+    def diff_files_endpoint: () -> untyped
+
+    def diff_file_endpoint: () -> untyped
+
+    def reload_stream_url: (?offset: untyped?, ?diff_view: untyped?) -> untyped
+
+    def offset: () -> nil
+  end
+end

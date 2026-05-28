@@ -1,0 +1,13 @@
+module Mutations
+  module Notes
+    module Update
+      class Note < Mutations::Notes::Update::Base
+        def self.authorization_scopes: () -> untyped
+
+        private
+
+        def pre_update_checks!: (untyped _note, untyped _args) -> nil
+      end
+    end
+  end
+end

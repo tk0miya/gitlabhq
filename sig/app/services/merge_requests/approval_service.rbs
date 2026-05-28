@@ -1,0 +1,13 @@
+module MergeRequests
+  class ApprovalService < MergeRequests::BaseService
+    def execute: (untyped merge_request) -> (nil | untyped)
+
+    private
+
+    def eligible_for_approval?: (untyped merge_request) -> untyped
+
+    def save_approval: (untyped approval) -> untyped
+
+    def reset_approvals_cache: (untyped merge_request) -> untyped
+  end
+end

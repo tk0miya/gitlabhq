@@ -1,0 +1,64 @@
+class Projects::ProjectMembersController < Projects::ApplicationController
+  @sort: untyped
+
+  @include_relations: untyped
+
+  @group_member_links: untyped
+
+  @invited_members: untyped
+
+  @requesters: untyped
+
+  @project_members: untyped
+
+  @members: untyped
+
+  include MembershipActions
+
+  include Members::InviteModalActions
+
+  include MembersPresentation
+
+  include SortingHelper
+
+  def index: () -> untyped
+
+  # MembershipActions concern
+  alias membershipable project
+
+  private
+
+  def members: () -> untyped
+
+  def invited_members: () -> untyped
+
+  def non_invited_members: () -> untyped
+
+  def group_member_links: () -> untyped
+
+  def project_group_links: () -> untyped
+
+  def group_group_links: () -> untyped
+
+  def filter_params: () -> untyped
+
+  def group_filter_params: () -> untyped
+
+  def membershipable_members: () -> untyped
+
+  def plain_source_type: () -> "project"
+
+  def source_type: () -> untyped
+
+  def source: () -> untyped
+
+  def members_page_url: () -> untyped
+
+  def root_params_key: () -> :project_member
+
+  def members_and_requesters: () -> untyped
+
+  def requesters: () -> untyped
+
+  def search_groups: () -> untyped
+end

@@ -1,0 +1,46 @@
+# Finder for retrieving contacts scoped to a group
+#
+# Arguments:
+#   current_user - user performing the action. Must have the correct permission level for the group.
+#   params:
+#     group: Group, required
+#     search: String, optional
+#     state: CustomerRelations::ContactStateEnum, optional
+#     ids: int[], optional
+module Crm
+  class ContactsFinder
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Allowable
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    def self.counts_by_state: (untyped current_user, ?::Hash[untyped, untyped] params) -> untyped
+
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def sort_contacts: (untyped contacts) -> untyped
+
+    def by_search: (untyped contacts) -> untyped
+
+    def by_state: (untyped contacts) -> untyped
+
+    def by_ids: (untyped contacts) -> untyped
+
+    def search?: () -> untyped
+
+    def state?: () -> untyped
+
+    def ids?: () -> untyped
+  end
+end

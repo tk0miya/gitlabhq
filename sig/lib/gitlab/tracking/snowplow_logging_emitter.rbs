@@ -1,0 +1,15 @@
+module Gitlab
+  module Tracking
+    class SnowplowLoggingEmitter < SnowplowTracker::AsyncEmitter
+      @event_logger: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      def send_requests: (untyped events) -> untyped
+
+      private
+
+      def event_logger: () -> untyped
+    end
+  end
+end

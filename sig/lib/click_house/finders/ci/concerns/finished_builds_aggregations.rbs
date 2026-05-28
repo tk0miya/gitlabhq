@@ -1,0 +1,64 @@
+module ClickHouse
+  module Finders
+    module Ci
+      module Concerns
+        module FinishedBuildsAggregations
+          extend ActiveSupport::Concern
+
+          ALLOWED_TO_GROUP: ::Array[:name | :stage_name]
+
+          ALLOWED_TO_SELECT: ::Array[:name | :stage_name]
+
+          ALLOWED_AGGREGATIONS: ::Array[:mean_duration | :p50_duration | :p75_duration | :p90_duration | :p95_duration | :p99_duration | :rate_of_success | :rate_of_failed | :rate_of_canceled | :rate_of_skipped | :count_success | :count_failed | :count_canceled | :count_skipped | :total_count]
+
+          ALLOWED_TO_ORDER: untyped
+
+          STATUS: ::Array["success" | "failed" | "canceled" | "skipped"]
+
+          ALLOWED_PERCENTILES: ::Array[50 | 75 | 90 | 95 | 99]
+
+          ERROR_MESSAGES: { select: ::String, aggregate: ::String, group: ::String, order: ::String }
+
+          ALLOWED_COLUMNS_BY_OPERATION: { select: untyped, aggregate: untyped, group: untyped, order: untyped }
+
+          def select_aggregations: (*untyped aggregations) -> untyped
+
+          def mean_duration: () -> untyped
+
+          def total_count: () -> untyped
+
+          def order_by: (untyped field, ?::Symbol direction) -> untyped
+
+          def group_by: (*untyped fields) -> untyped
+
+          def filter_by_pipeline_attrs: (project: untyped, ?from_time: untyped?, ?to_time: untyped?, ?source: untyped?, ?ref: untyped?) -> untyped
+
+          private
+
+          def validate_columns!: (untyped fields, untyped operation) -> (nil | untyped)
+
+          def rate_of_status: (untyped status) -> untyped
+
+          # success / failed rates are computed against (success + failed) so canceled
+          # and skipped don't dilute them. canceled / skipped use the total count.
+          # Empty denominators yield NaN -> JSON null -> '-' in the UI.
+          def build_rate_aggregate: (untyped status) -> untyped
+
+          def count_of_status: (untyped status) -> untyped
+
+          def build_count_aggregate: (untyped status) -> untyped
+
+          def duration_of_percentile: (untyped percentile) -> untyped
+
+          def aggregate?: (untyped field) -> untyped
+
+          def round: (untyped node, ?::Integer precision) -> untyped
+
+          def ms_to_s: (untyped node) -> untyped
+
+          def format_datetime64: (untyped time) -> untyped
+        end
+      end
+    end
+  end
+end

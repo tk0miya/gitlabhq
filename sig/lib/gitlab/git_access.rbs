@@ -1,0 +1,247 @@
+module Gitlab
+  class GitAccess
+    @actor: untyped
+
+    @container: untyped
+
+    @protocol: untyped
+
+    @authentication_abilities: untyped
+
+    @repository_path: untyped
+
+    @redirected_path: untyped
+
+    @auth_result_type: untyped
+
+    @push_options: untyped
+
+    @gitaly_context: untyped
+
+    @personal_access_token: untyped
+
+    @changes: untyped
+
+    @cmd: untyped
+
+    @logger: untyped
+
+    @changes_list: untyped
+
+    @user_access: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    ForbiddenError: untyped
+
+    NotFoundError: untyped
+
+    TimeoutError: untyped
+
+    # Use the magic string '_any' to indicate we do not know what the
+    # changes are. This is also what gitlab-shell does.
+    ANY: "_any"
+
+    ERROR_MESSAGES: { upload: "You are not allowed to upload code for this project.", download: "You are not allowed to download code from this project.", auth_upload: "You are not allowed to upload code.", auth_download: "You are not allowed to download code.", deploy_key_upload: "This deploy key does not have write access to this project.", no_repo: "A repository for this project does not exist yet.", project_not_found: "The project you were looking for could not be found or you don't have permission to view it.", auth_by_job_token_forbidden: "Insufficient permissions to pull from the repository of project #%{target_project_id}.", auth_by_job_token_project_not_in_allowlist: "Authentication by CI/CD job token not allowed from %{source_project_path} to project #%{target_project_id}.", command_not_allowed: "The command you're trying to execute is not allowed.", upload_pack_disabled_over_http: "Pulling over HTTP is not allowed.", receive_pack_disabled_over_http: "Pushing over HTTP is not allowed.", read_only: "The repository is temporarily read-only. Please try again later.", archived: "You can't push code to an archived project.", cannot_push_to_read_only: "You can't push code to a read-only GitLab instance.", push_code: "You are not allowed to push code to this project." }
+
+    INTERNAL_TIMEOUT: untyped
+
+    LOG_HEADER: "Push operation timed out\n\nTiming information for debugging purposes:\n"
+
+    DOWNLOAD_COMMANDS: ::Array["git-upload-pack" | "git-upload-archive"]
+
+    PUSH_COMMANDS: ::Array["git-receive-pack"]
+
+    ALL_COMMANDS: untyped
+
+    attr_reader actor: untyped
+
+    attr_reader protocol: untyped
+
+    attr_reader authentication_abilities: untyped
+
+    attr_reader repository_path: untyped
+
+    attr_reader redirected_path: untyped
+
+    attr_reader auth_result_type: untyped
+
+    attr_reader cmd: untyped
+
+    attr_reader changes: untyped
+
+    attr_reader push_options: untyped
+
+    attr_reader gitaly_context: untyped
+
+    attr_reader personal_access_token: untyped
+
+    attr_accessor container: untyped
+
+    def self.error_message: (untyped key) -> untyped
+
+    def initialize: (untyped actor, untyped container, untyped protocol, authentication_abilities: untyped, ?repository_path: untyped?, ?redirected_path: untyped?, ?auth_result_type: untyped?, ?push_options: untyped?, ?gitaly_context: untyped?, ?personal_access_token: untyped?) -> void
+
+    def check: (untyped cmd, untyped changes) -> untyped
+
+    def logger: () -> untyped
+
+    def guest_can_download?: () -> untyped
+
+    def deploy_key_can_download_code?: () -> untyped
+
+    # @return [Symbol] the name of a Declarative Policy ability to check
+    def download_ability: () -> untyped
+
+    # @return [Symbol] the name of a Declarative Policy ability to check
+    def push_ability: () -> untyped
+
+    def request_from_ci_build?: () -> (false | untyped)
+
+    def protocol_allowed?: () -> untyped
+
+    private
+
+    # when accessing via the CI_JOB_TOKEN
+    def build_can_download_code?: () -> untyped
+
+    def build_can_push?: () -> untyped
+
+    def build_can_download?: () -> untyped
+
+    def deploy_token_can_download?: () -> untyped
+
+    # When overriding this method, be careful using super
+    # as deploy_token_can_download? and build_can_download?
+    # do not consider the download_ability in the inheriting class
+    # for deploy tokens and builds
+    def can_download?: () -> untyped
+
+    def check_container!: () -> untyped
+
+    def check_project!: () -> untyped
+
+    def check_custom_ssh_action!: () -> nil
+
+    def check_for_console_messages: () -> untyped
+
+    def console_messages: () -> ::Array[untyped]
+
+    def check_valid_actor!: () -> (untyped | untyped | nil | nil)
+
+    def check_protocol!: () -> (nil | untyped)
+
+    def check_active_user!: () -> (nil | untyped)
+
+    def check_authentication_abilities!: () -> untyped
+
+    def check_legacy_authentication_abilities!: () -> untyped
+
+    def check_granular_pat_permissions!: () -> (nil | untyped)
+
+    def permission_for_command: () -> untyped
+
+    # For granular PATs, permissions are validated earlier via check_granular_pat_permissions!
+    # so we can skip the authentication_abilities check.
+    def has_authentication_ability?: (untyped ability) -> untyped
+
+    def check_project_accessibility!: () -> (nil | untyped)
+
+    def not_found_message: () -> untyped
+
+    def add_container_moved_message!: () -> (nil | untyped)
+
+    def check_command_disabled!: () -> (untyped | untyped | nil)
+
+    def check_upload_pack_disabled!: () -> (untyped | nil)
+
+    def check_receive_pack_disabled!: () -> (untyped | nil)
+
+    def check_command_existence!: () -> (untyped | nil)
+
+    def check_db_accessibility!: () -> (nil | untyped)
+
+    def check_repository_existence!: () -> (untyped | nil)
+
+    def no_repo_message: () -> untyped
+
+    def check_download_access!: () -> (nil | untyped)
+
+    def download_forbidden_message: () -> untyped
+
+    def project?: () -> untyped
+
+    def project: () -> (untyped | nil)
+
+    def check_push_access!: () -> untyped
+
+    def user_can_download?: () -> untyped
+
+    def user_can_push?: () -> untyped
+
+    def check_change_access!: () -> untyped
+
+    def check_access!: () -> untyped
+
+    def deploy_key: () -> (untyped | nil)
+
+    def deploy_key?: () -> untyped
+
+    def deploy_token: () -> (untyped | nil)
+
+    def deploy_token?: () -> untyped
+
+    def ci?: () -> untyped
+
+    def key?: () -> untyped
+
+    def can_read_project?: () -> untyped
+
+    def http?: () -> untyped
+
+    def ssh?: () -> untyped
+
+    def upload_pack?: () -> untyped
+
+    def receive_pack?: () -> untyped
+
+    def upload_pack_disabled_over_http?: () -> untyped
+
+    def receive_pack_disabled_over_http?: () -> untyped
+
+    def error_message: (untyped key) -> untyped
+
+    def success_result: () -> untyped
+
+    def changes_list: () -> untyped
+
+    def user: () -> untyped
+
+    def user_access: () -> untyped
+
+    def push_to_read_only_message: () -> untyped
+
+    def repository: () -> untyped
+
+    def check_size_before_push!: () -> (untyped | nil)
+
+    def check_push_size!: () -> (nil | untyped)
+
+    def check_quarantine_size?: () -> untyped
+
+    def check_repository_disk_size: () -> untyped
+
+    def check_changes_size: () -> untyped
+
+    def check_size_against_limit: (untyped size) -> (untyped | nil)
+
+    def check_size_limit?: () -> untyped
+
+    def size_checker: () -> untyped
+
+    # overridden in EE
+    def check_additional_conditions!: () -> nil
+
+    def repository_access_level: () -> untyped
+  end
+end

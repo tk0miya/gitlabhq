@@ -1,0 +1,66 @@
+module MergeRequests
+  # CreateRefService creates or overwrites a ref under "refs/merge-requests/"
+  # with a commit for the merged result.
+  class CreateRefService
+    @current_user: untyped
+
+    @merge_request: untyped
+
+    @source_sha: untyped
+
+    @target_ref: untyped
+
+    @first_parent_ref: untyped
+
+    @first_parent_sha: untyped
+
+    @merge_params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    CreateRefError: untyped
+
+    def initialize: (current_user: untyped, merge_request: untyped, target_ref: untyped, first_parent_ref: untyped, ?source_sha: untyped?, ?merge_params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def store_generated_ref_commits_if_needed: (untyped final_commit_sha) -> (nil | untyped)
+
+    # Default CE implementation - can be overridden in EE
+    def should_store_generated_ref_commits?: () -> false
+
+    attr_reader current_user: untyped
+
+    attr_reader merge_request: untyped
+
+    attr_reader target_ref: untyped
+
+    attr_reader first_parent_ref: untyped
+
+    attr_reader first_parent_sha: untyped
+
+    attr_reader source_sha: untyped
+
+    attr_reader merge_params: untyped
+
+    def store_generated_ref_commits: (untyped final_commit_sha) -> untyped
+
+    def commits_between_refs: (untyped final_commit_sha, ?limit: untyped?) -> (::Array[untyped] | untyped)
+
+    def commit_shas_between_refs: (untyped final_commit_sha, ?limit: untyped?) -> untyped
+
+    def maybe_squash!: (commit_sha: untyped, **untyped rest) -> untyped
+
+    def maybe_rebase!: (commit_sha: untyped, expected_old_oid: untyped, ?squash_commit_sha: untyped?, **untyped rest) -> untyped
+
+    def maybe_merge!: (commit_sha: untyped, expected_old_oid: untyped, **untyped rest) -> untyped
+
+    def safe_gitaly_operation: () { () -> untyped } -> untyped
+
+    def squash_commit_message: () -> untyped
+
+    def merge_commit_message: () -> untyped
+  end
+end

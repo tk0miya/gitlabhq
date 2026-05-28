@@ -1,0 +1,23 @@
+module Types
+  module Ci
+    class StageType < BaseObject
+      def detailed_status: () -> untyped
+
+      # Issues one query per pipeline
+      def groups: (lookahead: untyped) -> untyped
+
+      def jobs: () -> untyped
+
+      private
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def jobs_for_pipeline: (untyped pipeline, untyped stage_ids, untyped include_needs) -> untyped
+
+      def preload_deployment_associations: (untyped jobs) -> nil
+
+      def process_groups_batch: (untyped keys, untyped loader) -> untyped
+
+      def include_needs?: (untyped keys) -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class Scheduled < Status::Extended
+          def illustration: () -> { image: "illustrations/empty-state/empty-job-scheduled-md.svg", size: "", title: untyped, content: untyped }
+
+          def status_tooltip: () -> untyped
+
+          def self.matches?: (untyped build, untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

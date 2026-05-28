@@ -1,0 +1,15 @@
+module Gitlab
+  module Auth
+    class UserAccessDeniedReason
+      @user: untyped
+
+      def initialize: (untyped user) -> void
+
+      def rejection_message: () -> untyped
+
+      private
+
+      def rejection_type: () -> (:internal | :blocked_pending_approval | :terms_not_accepted | :deactivated | :unconfirmed | :blocked | :password_expired | :blocked)
+    end
+  end
+end

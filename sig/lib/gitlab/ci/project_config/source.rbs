@@ -1,0 +1,66 @@
+module Gitlab
+  module Ci
+    class ProjectConfig
+      class Source
+        @project: untyped
+
+        @sha: untyped
+
+        @custom_content: untyped
+
+        @pipeline_source: untyped
+
+        @pipeline_source_bridge: untyped
+
+        @triggered_for_branch: untyped
+
+        @ref: untyped
+
+        @inputs: untyped
+
+        @ci_config_path: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (project: untyped, sha: untyped, ?custom_content: untyped?, ?pipeline_source: untyped?, ?pipeline_source_bridge: untyped?, ?triggered_for_branch: bool, ?ref: untyped?, ?inputs: ::Hash[untyped, untyped]) -> void
+
+        def exists?: () -> untyped
+
+        def content: () -> untyped
+
+        # Indicates if we are prepending the content with an "internal" `include`
+        def internal_include_prepended?: () -> false
+
+        def source: () -> untyped
+
+        def url: () -> nil
+
+        def inputs_for_pipeline_creation: () -> (::Hash[untyped, untyped] | untyped)
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader sha: untyped
+
+        attr_reader custom_content: untyped
+
+        attr_reader pipeline_source: untyped
+
+        attr_reader pipeline_source_bridge: untyped
+
+        attr_reader triggered_for_branch: untyped
+
+        attr_reader ref: untyped
+
+        attr_reader inputs: untyped
+
+        def ci_config_path: () -> untyped
+
+        def ci_yaml_include: (untyped config) -> untyped
+
+        def include_inputs: () -> untyped
+      end
+    end
+  end
+end

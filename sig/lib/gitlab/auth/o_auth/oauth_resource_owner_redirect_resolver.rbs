@@ -1,0 +1,21 @@
+module Gitlab
+  module Auth
+    module OAuth
+      class OauthResourceOwnerRedirectResolver
+        @request: untyped
+
+        @session: untyped
+
+        include ::Gitlab::Routing
+
+        attr_reader request: untyped
+
+        attr_reader session: untyped
+
+        def initialize: (untyped request, untyped session) -> void
+
+        def resolve_redirect_url: () -> untyped
+      end
+    end
+  end
+end

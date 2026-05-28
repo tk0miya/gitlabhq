@@ -1,0 +1,11 @@
+module Mutations
+  module ContainerRegistry
+    module Protection
+      module TagRule
+        class Delete < ::Mutations::BaseMutation
+          def resolve: (id: untyped, **untyped _kwargs) -> { container_protection_tag_rule: untyped, errors: untyped }
+        end
+      end
+    end
+  end
+end

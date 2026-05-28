@@ -1,0 +1,19 @@
+module ContainerRegistry
+  module Protection
+    module Concerns
+      module TagRule
+        extend ActiveSupport::Concern
+
+        private
+
+        def protected_patterns_for_delete: (project: untyped, ?current_user: untyped?) -> (nil | untyped)
+
+        def protected_for_delete?: (project: untyped, current_user: untyped) -> (false | untyped)
+
+        def user_can_admin_all_resources?: (untyped user, untyped _project) -> untyped
+
+        def fetch_eligible_tag_rules_for_project: (untyped tag_rules, untyped _project, untyped _user) -> untyped
+      end
+    end
+  end
+end

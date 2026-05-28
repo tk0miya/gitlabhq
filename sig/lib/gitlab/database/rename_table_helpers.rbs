@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module RenameTableHelpers
+      def rename_table_safely: (untyped old_table_name, untyped new_table_name) -> untyped
+
+      def undo_rename_table_safely: (untyped old_table_name, untyped new_table_name) -> untyped
+
+      def finalize_table_rename: (untyped old_table_name, untyped new_table_name) -> untyped
+
+      def undo_finalize_table_rename: (untyped old_table_name, untyped new_table_name) -> untyped
+    end
+  end
+end

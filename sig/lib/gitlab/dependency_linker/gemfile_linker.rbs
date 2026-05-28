@@ -1,0 +1,21 @@
+module Gitlab
+  module DependencyLinker
+    class GemfileLinker < MethodLinker
+      GITHUB_REGEX: ::Regexp
+
+      GIT_REGEX: ::Regexp
+
+      private
+
+      def link_dependencies: () -> untyped
+
+      def link_urls: () -> untyped
+
+      def link_packages: () -> (nil | untyped)
+
+      def package_url: (untyped name) -> ::String
+
+      def parse_packages: () -> untyped
+    end
+  end
+end

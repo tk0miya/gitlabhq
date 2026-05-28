@@ -1,0 +1,5 @@
+module PackageMetadata
+  class IngestedAdvisoryEvent < ::Gitlab::EventStore::Event
+    def schema: () -> { "type" => "object", "properties" => { "advisory_id" => { "type" => "integer" } }, "required" => ::Array["advisory_id"] }
+  end
+end

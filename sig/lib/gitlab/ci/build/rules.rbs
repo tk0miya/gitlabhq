@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Build
+      class Rules
+        @rule_list: untyped
+
+        @default_when: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        Result: untyped
+
+        def initialize: (untyped rule_hashes, default_when: untyped) -> void
+
+        def evaluate: (untyped pipeline, untyped context) -> untyped
+
+        private
+
+        def match_rule: (untyped pipeline, untyped context) -> untyped
+      end
+    end
+  end
+end

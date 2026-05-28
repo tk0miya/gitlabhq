@@ -1,0 +1,9 @@
+module Ci
+  class CreateDownstreamPipelineWorker
+    include ::ApplicationWorker
+
+    include ::PipelineQueue
+
+    def perform: (untyped bridge_id) -> untyped
+  end
+end

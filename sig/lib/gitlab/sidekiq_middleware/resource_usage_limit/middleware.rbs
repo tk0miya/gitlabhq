@@ -1,0 +1,27 @@
+module Gitlab
+  module SidekiqMiddleware
+    module ResourceUsageLimit
+      class Middleware
+        @worker: untyped
+
+        @job: untyped
+
+        @worker_name: untyped
+
+        include ::Gitlab::SidekiqMiddleware::WorkerContext
+
+        def initialize: (untyped worker, untyped job) -> void
+
+        def perform: () { () -> untyped } -> untyped
+
+        attr_reader worker_name: untyped
+
+        private
+
+        def track_resource_usage: () -> (nil | untyped)
+
+        def name_from_class: (untyped worker_class, untyped job) -> untyped
+      end
+    end
+  end
+end

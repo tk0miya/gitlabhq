@@ -1,0 +1,9 @@
+module Packages
+  module Maven
+    class Package < Packages::Package
+      def self.only_maven_packages_with_path: (untyped path, ?use_cte: bool) -> untyped
+
+      def sync_maven_metadata: (untyped user) -> (nil | untyped)
+    end
+  end
+end

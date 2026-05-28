@@ -1,0 +1,28 @@
+module Gitlab
+  module BackgroundMigration
+    # Background migration that updates the value of one or more
+    # columns using the value of other columns in the same table.
+    #
+    # - The {start_id, end_id} arguments are at the start so that it can be used
+    #   with `queue_batched_background_migration`
+    # - Uses sub-batching so that we can keep each update's execution time at
+    #   low 100s ms, while being able to update more records per 2 minutes
+    #   that we allow background migration jobs to be scheduled one after the other
+    # - We skip the NULL checks as they may result in not using an index scan
+    # - The table that is migrated does _not_ need `id` as the primary key
+    #   We use the provided primary_key column to perform the update.
+    class CopyColumnUsingBackgroundMigrationJob < BatchedMigrationJob
+      @all_column_names: untyped
+
+      def perform: () -> (nil | untyped)
+
+      private
+
+      def build_assignment_clauses: (untyped copy_from, untyped copy_to) -> untyped
+
+      def column_exist?: (untyped name) -> untyped
+
+      def all_column_names: () -> untyped
+    end
+  end
+end

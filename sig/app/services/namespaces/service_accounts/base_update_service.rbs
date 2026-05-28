@@ -1,0 +1,33 @@
+module Namespaces
+  module ServiceAccounts
+    class BaseUpdateService < ::Users::ServiceAccounts::UpdateService
+      @resource_id: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      attr_reader resource_id: untyped
+
+      def initialize: (untyped current_user, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def extract_resource_id: (untyped _params) -> untyped
+
+      def resource: () -> untyped
+
+      def user_provisioned_resource_id: () -> untyped
+
+      def can_update_service_account?: () -> (false | untyped)
+
+      def user_provisioned_resource: () -> untyped
+
+      def error_messages: () -> untyped
+
+      def invalid_resource_id_message: () -> untyped
+
+      def resource_not_found_message: () -> untyped
+    end
+  end
+end

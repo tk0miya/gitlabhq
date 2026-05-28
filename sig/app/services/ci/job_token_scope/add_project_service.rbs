@@ -1,0 +1,15 @@
+module Ci
+  module JobTokenScope
+    class AddProjectService < ::BaseService
+      include EditScopeValidations
+
+      include ScopeEventTracking
+
+      def execute: (untyped target_project, ?default_permissions: bool, ?policies: untyped, ?direction: ::Symbol) -> untyped
+
+      private
+
+      def allowlist: (untyped direction) -> untyped
+    end
+  end
+end

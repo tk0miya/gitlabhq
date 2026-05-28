@@ -1,0 +1,11 @@
+module Groups
+  class FeatureSetting < ApplicationRecord
+    include Featurable
+
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def resource_member?: (untyped user, untyped feature) -> untyped
+  end
+end

@@ -1,0 +1,66 @@
+module Gitlab
+  module Database
+    module Migrations
+      module ForeignKeyHelpers
+        include TimeoutHelpers
+
+        include LockRetriesHelpers
+
+        include Gitlab::Database::PartitionHelpers
+
+        # Adds a foreign key with only minimal locking on the tables involved.
+        #
+        # This method only requires minimal locking
+        #
+        # source - The source table containing the foreign key.
+        # target - The target table the key points to.
+        # column - The name of the column to create the foreign key on.
+        # target_column - The name of the referenced column, defaults to "id".
+        # on_delete - The action to perform when associated data is removed,
+        #             defaults to "CASCADE".
+        # on_update - The action to perform when associated data is updated,
+        #             defaults to nil. This is useful for multi column FKs if
+        #             it's desirable to update one of the columns.
+        # name - The name of the foreign key.
+        # validate - Flag that controls whether the new foreign key will be validated after creation.
+        #            If the flag is not set, the constraint will only be enforced for new data.
+        # reverse_lock_order - Flag that controls whether we should attempt to acquire locks in the reverse
+        #                      order of the ALTER TABLE. This can be useful in situations where the foreign
+        #                      key creation could deadlock with another process.
+        #
+        def add_concurrent_foreign_key: (untyped source, untyped target, column: untyped, **untyped options) -> (nil | untyped)
+
+        def validate_foreign_key: (untyped source, untyped column, ?name: untyped?) -> untyped
+
+        def foreign_key_exists?: (untyped source, ?untyped? target, **untyped options) -> untyped
+
+        def remove_foreign_key_if_exists: (untyped source, ?untyped? target, **untyped kwargs) -> (nil | untyped)
+
+        def remove_foreign_key_without_error: (*untyped args, **untyped kwargs) -> untyped
+
+        # Returns the name for a concurrent foreign key.
+        #
+        # PostgreSQL constraint names have a limit of 63 bytes. The logic used
+        # here is based on Rails' foreign_key_name() method, which unfortunately
+        # is private so we can't rely on it directly.
+        #
+        # prefix:
+        # - The default prefix is `fk_` for backward compatibility with the existing
+        # concurrent foreign key helpers.
+        # - For standard rails foreign keys the prefix is `fk_rails_`
+        #
+        def concurrent_foreign_key_name: (untyped table, untyped column, ?prefix: ::String) -> ::String
+
+        private
+
+        def multiple_columns: (untyped columns, ?separator: ::String) -> untyped
+
+        def on_update_statement: (untyped on_update) -> ("" | "ON UPDATE SET NULL" | ::String)
+
+        def on_delete_statement: (untyped on_delete) -> ("" | "ON DELETE SET NULL" | ::String)
+
+        def execute_add_concurrent_foreign_key: (untyped source, untyped target, untyped options) -> untyped
+      end
+    end
+  end
+end

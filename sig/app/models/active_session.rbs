@@ -1,0 +1,108 @@
+# Backing store for GitLab session data.
+#
+# The raw session information is stored by the Rails session store
+# (config/initializers/session_store.rb). These entries are accessible by the
+# rack_key_name class method and constitute the base of the session data
+# entries. All other entries in the session store can be traced back to these
+# entries.
+#
+# After a user logs in (config/initializers/warden.rb) a further entry is made
+# in Redis. This entry holds a record of the user's logged in session. These
+# are accessible with the key_name(user_id, session_id) class method. These
+# entries will expire. Lookups to these entries are lazilly cleaned on future
+# user access.
+#
+# There is a reference to all sessions that belong to a specific user. A
+# user may login through multiple browsers/devices and thus record multiple
+# login sessions. These are accessible through the lookup_key_name(user_id)
+# class method.
+#
+class ActiveSession
+  @created_at: untyped
+
+  @updated_at: untyped
+
+  include ActiveModel::Model
+
+  SESSION_BATCH_SIZE: 200
+
+  ALLOWED_NUMBER_OF_ACTIVE_SESSIONS: 100
+
+  ATTR_ACCESSOR_LIST: ::Array[:ip_address | :browser | :os | :device_name | :device_type | :is_impersonated | :session_id | :session_private_id | :admin_mode | :step_up_authenticated]
+
+  ATTR_READER_LIST: ::Array[:created_at | :updated_at]
+
+  def created_at=: (untyped time) -> untyped
+
+  def updated_at=: (untyped time) -> untyped
+
+  def current?: (untyped rack_session) -> (false | untyped)
+
+  def eql?: (untyped other) -> untyped
+
+  alias == eql?
+
+  def id: () -> untyped
+
+  def ids: () -> untyped
+
+  def human_device_type: () -> untyped
+
+  def self.set: (untyped user, untyped request) -> untyped
+
+  def self.list: (untyped user) -> untyped
+
+  def self.cleanup: (untyped user) -> untyped
+
+  def self.destroy_sessions: (untyped redis, untyped user, untyped session_ids) -> (nil | untyped)
+
+  def self.destroy_session: (untyped user, untyped session_id) -> (nil | untyped)
+
+  def self.destroy_all_but_current: (untyped user, untyped current_rack_session) -> untyped
+
+  def self.not_impersonated: (untyped user) -> untyped
+
+  def self.rack_key_name: (untyped session_id) -> ::String
+
+  def self.key_name: (untyped user_id, ?::String session_id) -> ::String
+
+  # Deprecated
+  def self.key_name_v1: (untyped user_id, ?::String session_id) -> ::String
+
+  def self.lookup_key_name: (untyped user_id) -> ::String
+
+  def self.list_sessions: (untyped user) -> untyped
+
+  # Lists the relevant session IDs for the user.
+  #
+  # Returns an array of strings
+  def self.session_ids_for_user: (untyped user_id) -> untyped
+
+  # Lists the session Hash objects for the given session IDs.
+  #
+  # session_ids - An array of strings
+  #
+  # Returns an array of ActiveSession objects
+  def self.sessions_from_ids: (untyped session_ids) -> (::Array[untyped] | untyped)
+
+  def dump: () -> ::String
+
+  # raw_session - Raw bytes from Redis
+  #
+  # Returns an instance of this class
+  def self.load_raw_session: (untyped raw_session) -> (nil | untyped)
+
+  def self.rack_session_keys: (untyped rack_session_ids) -> untyped
+
+  def self.raw_active_session_entries: (untyped redis, untyped session_ids, untyped user_id) -> (::Hash[untyped, untyped] | untyped)
+
+  def self.active_session_entries: (untyped session_ids, untyped user_id, untyped redis) -> (::Array[untyped] | untyped)
+
+  def self.clean_up_old_sessions: (untyped redis, untyped user) -> (nil | untyped)
+
+  # Cleans up the lookup set by removing any session IDs that are no longer present.
+  #
+  # Returns an array of marshalled ActiveModel objects that are still active.
+  # Records removed keys in the optional `removed` argument array.
+  def self.cleaned_up_lookup_entries: (untyped redis, untyped user, ?untyped removed) -> untyped
+end

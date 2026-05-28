@@ -1,0 +1,305 @@
+# rubocop:disable CodeReuse/ActiveRecord -- This module is generating ActiveRecord relations therefore using AR methods is necessary
+module UnnestedInFilters
+  class Rewriter
+    @relation: untyped
+
+    @in_filters: untyped
+
+    @model_column_names: untyped
+
+    @where_clause_ast: untyped
+
+    @filter_attributes: untyped
+
+    @order_attributes: untyped
+
+    @value_tables: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    class ValueTable
+      @model: untyped
+
+      @attribute: untyped
+
+      @values: untyped
+
+      def initialize: (untyped model, untyped attribute, untyped values) -> void
+
+      def to_sql: () -> ::String
+
+      def as_predicate: () -> ::String
+
+      private
+
+      attr_reader model: untyped
+
+      attr_reader attribute: untyped
+
+      attr_reader values: untyped
+
+      def table_name: () -> untyped
+
+      def column_name: () -> untyped
+
+      def serialized_values: () -> ::String
+
+      def serialized_arel_value: () -> untyped
+
+      def serialized_array_values: () -> untyped
+
+      def array_type: () -> untyped
+
+      def sql_type: () -> untyped
+
+      def column: () -> untyped
+
+      def unprepared_statement_collector: () -> untyped
+    end
+
+    # A naive query planner implementation.
+    # Checks if a database-level index can be utilized by given filtering and ordering predicates.
+    #
+    # Supported index conditions:
+    #     - All columns queried are present in the index or partial predicate
+    #     - Unqueried index columns are at the end of the index
+    #     - Partial indices if the partial index predicate contains only one column.
+    #     - Only the `=` operator present in partial index predicate.
+    #
+    # Examples:
+    #
+    # ------------------------------------------------------------------------------
+    # Queried             | Index                                      | Supported?
+    # (col_1, col_2)      | (col_1, col_2)                             | Y
+    # (col_1)             | (col_1, col_2)                             | Y
+    # (col_2)             | (col_1, col_2)                             | N
+    # (col_1, col_3)      | (col_1, col_2, col_3)                      | N
+    # (col_1, col_2)      | (col_1) where col_2 = "1"                  | Y
+    # (col_1, col_2)      | (col_1) where col_2 <= 1                   | N
+    # (col_1, col_2)      | (col_1) where col_2 IS NULL                | N
+    # (col_1, col_2)      | (col_1) where col_2 = "1" AND COL_1 = "2"  | N
+    #
+    class IndexCoverage
+      @index: untyped
+
+      @where_hash: untyped
+
+      @order_attributes: untyped
+
+      @filter_attributes: untyped
+
+      @index_filter: untyped
+
+      PARTIAL_INDEX_REGEX: ::Regexp
+
+      def initialize: (untyped index, untyped where_hash, untyped order_attributes) -> void
+
+      def covers?: () -> untyped
+
+      private
+
+      attr_reader index: untyped
+
+      attr_reader where_hash: untyped
+
+      attr_reader order_attributes: untyped
+
+      def filter_attributes_covered?: () -> untyped
+
+      def can_be_used_for_sorting?: () -> untyped
+
+      # All order attributes exist in the query in the same order as they are queried.
+      def sorts_in_same_order_as_index?: () -> untyped
+
+      # All order attributes exist in the query in the same order as they are queried.
+      # We rely on sort order to be the same here to assume that anything following the last sort
+      # should not be filtered on.
+      def no_filtering_after_sort_columns?: () -> (true | untyped)
+
+      # We assume there are <= attributes than columns because filter_attributes_covered has already passed.
+      # So we check the count of unqueried columns, take that number from the end of the index,
+      # and compare to ensure that any unqueried columns are only at the end of the index.
+      # This also helps ensure there are no gaps in the used columns of the index.
+      def unused_columns_at_end_of_index?: () -> untyped
+
+      def partial?: () -> untyped
+
+      def full_index_coverage?: () -> untyped
+
+      def partial_index_coverage?: () -> (false | untyped)
+
+      def full_index_coverage_with_partial_column?: () -> untyped
+
+      def combined_attributes: () -> untyped
+
+      def filter_attributes: () -> untyped
+
+      def partial_filter_matches?: () -> untyped
+
+      def partial_filter: () -> untyped
+
+      def partial_column: () -> untyped
+
+      def partial_value: () -> untyped
+
+      def index_filter: () -> untyped
+    end
+
+    def initialize: (untyped relation) -> void
+
+    # Rewrites the given ActiveRecord::Relation object to
+    # utilize the DB indices efficiently.
+    #
+    # Currently Postgres will produce inefficient query plans which use a `filter_predicate`
+    # instead of a `access_predicate` to filter by IN clause contents. This behaviour does a table
+    # read of the data for filtering, disregarding the structure of the index and losing any benefit
+    # from any sorting applied to the index as it will have to resort the table read data.
+    #
+    # Rewriting the query using the `unnest` command induces Postgres into using the
+    # appropriate index search behaviour for each column in the index by generating a
+    # cartesian product between the individual items of the IN filter items and queried table.
+    # This means each read column will maintain the sort order provided by the index,
+    # avoiding a memory sort node in the final query plan.
+    #
+    # This will not work if queried columns are not all present in the index, or if unqueried
+    # columns exist in the index that are not at the end, as this makes that part of the index
+    # useless to Postgres and will result in a table scan anyways from that point.
+    #
+    #
+    # Example usage;
+    #
+    #   relation = Vulnerabilities::Read.where(state: [1, 4])
+    #   relation = relation.order(severity: :desc, vulnerability_id: :desc)
+    #
+    #   rewriter = UnnestedInFilters::Rewriter.new(relation)
+    #   optimized_relation = rewriter.rewrite
+    #
+    # In the above example. the `relation` object would produce the following SQL query;
+    #
+    #   SELECT
+    #     "vulnerability_reads".*
+    #   FROM
+    #     "vulnerability_reads"
+    #   WHERE
+    #     "vulnerability_reads"."state" IN (1, 4)
+    #   ORDER BY
+    #     "vulnerability_reads"."severity" DESC,
+    #     "vulnerability_reads"."vulnerability_id" DESC
+    #   LIMIT 20;
+    #
+    # And the `optimized_relation` object would would produce the following query to
+    # utilize the index on (state, severity, vulnerability_id);
+    #
+    #   SELECT
+    #     "vulnerability_reads".*
+    #   FROM
+    #     unnest('{1, 4}'::smallint[]) AS "states" ("state"),
+    #     LATERAL (
+    #       SELECT
+    #         "vulnerability_reads".*
+    #       FROM
+    #         "vulnerability_reads"
+    #       WHERE
+    #         (vulnerability_reads."state" = "states"."state")
+    #       ORDER BY
+    #         "vulnerability_reads"."severity" DESC,
+    #         "vulnerability_reads"."vulnerability_id" DESC
+    #       LIMIT 20) AS vulnerability_reads
+    #   ORDER BY
+    #     "vulnerability_reads"."severity" DESC,
+    #     "vulnerability_reads"."vulnerability_id" DESC
+    #   LIMIT 20
+    #
+    # If one of the columns being used for filtering or ordering is the primary key,
+    # then the query will be further optimized to use an index-only scan for initial filtering
+    # before selecting all columns using the primary key.
+    #
+    # Using the prior query as an example, where `vulnerability_id` is the primary key,
+    # This will be rewritten to:
+    #
+    #   SELECT
+    #     "vulnerability_reads".*
+    #   FROM
+    #     "vulnerability_reads"
+    #   WHERE
+    #     "vulnerability_reads"."vulnerability_id"
+    #   IN (
+    #     SELECT
+    #       "vulnerability_reads"."vulnerability_id"
+    #     FROM
+    #       unnest('{1, 4}'::smallint[]) AS "states" ("state"),
+    #       LATERAL (
+    #         SELECT
+    #           "vulnerability_reads"."vulnerability_id"
+    #         FROM
+    #           "vulnerability_reads"
+    #         WHERE
+    #           (vulnerability_reads."state" = "states"."state")
+    #         ORDER BY
+    #           "vulnerability_reads"."severity" DESC,
+    #           "vulnerability_reads"."vulnerability_id" DESC
+    #           LIMIT 20
+    #         ) AS vulnerability_reads
+    #      )
+    #   ORDER BY
+    #     "vulnerability_reads"."severity" DESC,
+    #     "vulnerability_reads"."vulnerability_id" DESC
+    #   LIMIT 20
+    def rewrite: () -> untyped
+
+    def rewrite?: () -> untyped
+
+    private
+
+    attr_reader relation: untyped
+
+    def log_rewrite: () -> untyped
+
+    def filter_query: () -> untyped
+
+    def index_only_filter_query: () -> untyped
+
+    def add_relation_defaults: (untyped new_relation) -> untyped
+
+    def from: () -> untyped
+
+    def lateral: () -> ::String
+
+    def join_relation: () -> untyped
+
+    def unscoped_relation: () -> untyped
+
+    def in_filters: () -> untyped
+
+    def model_column_names: () -> untyped
+
+    # Actively filter any nodes that don't belong to the primary queried table to prevent sql type resolution issues
+    # Context: https://gitlab.com/gitlab-org/gitlab/-/issues/370271#note_1151019824
+    def arel_in_nodes: () -> untyped
+
+    # `ActiveRecord::WhereClause#ast` is returning a single node when there is only one
+    # predicate but returning an `Arel::Nodes::And` node if there are more than one predicates.
+    # This is why we are checking the returned object responds to `children` or not.
+    def where_clause_arel_nodes: () -> (::Array[untyped] | untyped)
+
+    def where_clause_ast: () -> untyped
+
+    def in_predicate?: (untyped arel_node) -> untyped
+
+    def has_index_coverage?: () -> untyped
+
+    def primary_key_present?: () -> untyped
+
+    def combined_attributes: () -> untyped
+
+    def filter_attributes: () -> untyped
+
+    def order_attributes: () -> untyped
+
+    def extract_column_name: (untyped order_value) -> untyped
+
+    def indices: () -> untyped
+
+    def value_tables: () -> untyped
+  end
+end

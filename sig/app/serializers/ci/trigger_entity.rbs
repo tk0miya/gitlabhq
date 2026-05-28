@@ -1,0 +1,13 @@
+module Ci
+  class TriggerEntity < Grape::Entity
+    include Gitlab::Routing
+
+    include Gitlab::Allowable
+
+    private
+
+    def can_manage_trigger?: (untyped trigger) -> untyped
+
+    def can_admin_trigger?: (untyped trigger) -> untyped
+  end
+end

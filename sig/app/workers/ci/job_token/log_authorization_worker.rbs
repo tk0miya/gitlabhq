@@ -1,0 +1,9 @@
+module Ci
+  module JobToken
+    class LogAuthorizationWorker
+      include ApplicationWorker
+
+      def perform: (untyped accessed_project_id, untyped origin_project_id, ?untyped policies) -> untyped
+    end
+  end
+end

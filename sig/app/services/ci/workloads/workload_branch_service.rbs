@@ -1,0 +1,21 @@
+module Ci
+  module Workloads
+    class WorkloadBranchService
+      @project: untyped
+
+      @current_user: untyped
+
+      @source_branch: untyped
+
+      def initialize: (project: untyped, source_branch: untyped, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def create_internal_refs: (untyped source_ref, untyped workload_ref) -> untyped
+
+      def default_branch: () -> untyped
+    end
+  end
+end

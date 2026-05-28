@@ -1,0 +1,39 @@
+module Authz
+  module Concerns
+    module YamlPermission
+      @definition: untyped
+
+      @source_file: untyped
+
+      extend ActiveSupport::Concern
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader definition: untyped
+
+      attr_reader source_file: untyped
+
+      def initialize: (untyped definition, untyped source_file) -> void
+
+      def name: () -> untyped
+
+      def description: () -> untyped
+
+      def action: () -> untyped
+
+      def resource: () -> (nil | untyped)
+
+      def resource_name: () -> untyped
+
+      def resource_description: () -> untyped
+
+      def feature_category: () -> untyped
+
+      def boundaries: () -> untyped
+
+      private
+
+      def resource_definition: () -> untyped
+    end
+  end
+end

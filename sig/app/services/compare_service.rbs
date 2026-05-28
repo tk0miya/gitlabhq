@@ -1,0 +1,15 @@
+# Compare 2 refs for one repo or between repositories
+# and return Compare object that responds to commits and diffs
+class CompareService
+  @start_project: untyped
+
+  @start_ref_name: untyped
+
+  attr_reader start_project: untyped
+
+  attr_reader start_ref_name: untyped
+
+  def initialize: (untyped new_start_project, untyped new_start_ref_name) -> void
+
+  def execute: (untyped target_project, untyped target_ref, ?base_sha: untyped?, ?straight: bool) -> (nil | untyped)
+end

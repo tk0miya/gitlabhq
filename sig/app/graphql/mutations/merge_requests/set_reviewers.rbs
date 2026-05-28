@@ -1,0 +1,13 @@
+module Mutations
+  module MergeRequests
+    class SetReviewers < Base
+      def resolve: (project_path: untyped, iid: untyped, reviewer_usernames: untyped, operation_mode: untyped) -> ::Hash[untyped | :errors, untyped]
+
+      private
+
+      def reviewer_ids: (untyped resource, untyped usernames, untyped mode) -> untyped
+
+      def user_ids: (untyped users) -> untyped
+    end
+  end
+end

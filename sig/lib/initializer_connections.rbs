@@ -1,0 +1,8 @@
+module InitializerConnections
+  # Warns about any SQL queries made within the block by printing them to STDOUT.
+  #
+  # Routes and initializers should not issue database calls,
+  # See also https://github.com/rails/rails/issues/44875
+  #
+  def self.warn_if_database_connection: () { () -> untyped } -> untyped
+end

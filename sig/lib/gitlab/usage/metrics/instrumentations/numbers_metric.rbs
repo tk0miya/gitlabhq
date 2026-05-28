@@ -1,0 +1,31 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class NumbersMetric < BaseMetric
+          self.@metric_data: untyped
+
+          self.@metric_operation: untyped
+
+          UnimplementedOperationError: untyped
+
+          IMPLEMENTED_OPERATIONS: ::Array[:add]
+
+          def self.data: () ?{ (?) -> untyped } -> untyped
+
+          def self.operation: (untyped symbol) -> untyped
+
+          attr_reader self.metric_operation: untyped
+
+          attr_reader self.metric_data: untyped
+
+          def value: () -> untyped
+
+          private
+
+          def data: () -> untyped
+        end
+      end
+    end
+  end
+end

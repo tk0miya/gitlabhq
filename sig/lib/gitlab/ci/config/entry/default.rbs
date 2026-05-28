@@ -1,0 +1,24 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # This class represents a default entry
+        # Entry containing default values for all jobs
+        # defined in configuration file.
+        #
+        class Default < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Inheritable
+
+          ALLOWED_KEYS: ::Array[:before_script | :after_script | :hooks | :cache | :image | :services | :interruptible | :timeout | :retry | :tags | :artifacts | :id_tokens]
+
+          private
+
+          def overwrite_entry: (untyped deps, untyped key, untyped current_entry) -> untyped
+        end
+      end
+    end
+  end
+end

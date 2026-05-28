@@ -1,0 +1,47 @@
+module Snippets
+  class UpdateService < Snippets::BaseService
+    @perform_spam_check: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    COMMITTABLE_ATTRIBUTES: ::Array["file_name" | "content"]
+
+    FAILED_TO_UPDATE_ERROR: :failed_to_update_error
+
+    UpdateError: untyped
+
+    def initialize: (project: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped], ?perform_spam_check: bool) -> void
+
+    def execute: (untyped snippet) -> untyped
+
+    private
+
+    attr_reader perform_spam_check: untyped
+
+    def visibility_changed?: (untyped snippet) -> untyped
+
+    def update_snippet_attributes: (untyped snippet) -> untyped
+
+    def save_and_commit: (untyped snippet) -> untyped
+
+    def create_repository_for: (untyped snippet) -> untyped
+
+    # If the user provides `snippet_actions` and the repository
+    # does not exist, we need to commit first the snippet info stored
+    # in the database.  Mostly because the content inside `snippet_actions`
+    # would assume that the file is already in the repository.
+    def create_first_commit_using_db_data: (untyped snippet) -> (nil | untyped)
+
+    def create_commit: (untyped snippet) -> untyped
+
+    # Because we are removing repositories we don't want to remove
+    # any existing repository with data. Therefore, we cannot
+    # rely on cached methods for that check in order to avoid losing
+    # data.
+    def repository_empty?: (untyped snippet) -> untyped
+
+    def committable_attributes?: () -> untyped
+
+    def build_actions_from_params: (untyped snippet) -> ::Array[{ previous_path: untyped, file_path: untyped, content: untyped }]
+  end
+end

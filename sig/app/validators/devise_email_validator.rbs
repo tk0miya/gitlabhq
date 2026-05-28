@@ -1,0 +1,28 @@
+# DeviseEmailValidator
+#
+# Custom validator for email formats. It asserts that there are no
+# @ symbols or whitespaces in either the localpart or the domain, and that
+# there is a single @ symbol separating the localpart and the domain.
+#
+# The available options are:
+# - regexp: Email regular expression used to validate email formats as instance of Regexp class.
+#           If provided value has different type then a new Rexexp class instance is created using the value.
+#           Default: +Devise.email_regexp+
+#
+# Example:
+#   class User < ActiveRecord::Base
+#     validates :personal_email, devise_email: true
+#
+#     validates :public_email, devise_email: { regexp: Devise.email_regexp }
+#   end
+class DeviseEmailValidator < ActiveModel::EachValidator
+  DEFAULT_OPTIONS: { regexp: untyped, encoded_word_regexp: ::Regexp }
+
+  def initialize: (untyped options) -> void
+
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+  private
+
+  def valid_email?: (untyped value) -> untyped
+end

@@ -1,0 +1,12 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      # Methods that are commonly used between analyzers
+      class QueryAnalyzerHelpers
+        VIEW_NODES: ::Array[:view_stmt | :create_table_as_stmt]
+
+        def self.dml_from_create_view?: (untyped parsed) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module LimitedCapacity
+  class JobTracker
+    @namespace: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    LUA_REGISTER_SCRIPT: "local set_key, element, max_elements = KEYS[1], ARGV[1], ARGV[2]\n\nif redis.call(\"scard\", set_key) < tonumber(max_elements) then\n  redis.call(\"sadd\", set_key, element)\n  return true\nend\n\nreturn false\n"
+
+    def initialize: (untyped namespace) -> void
+
+    def register: (untyped jid, untyped max_jids) -> untyped
+
+    def remove: (untyped jid) -> untyped
+
+    def clean_up: () -> (nil | untyped)
+
+    def count: () -> untyped
+
+    def running_jids: () -> untyped
+
+    private
+
+    attr_reader namespace: untyped
+
+    def counter_key: () -> ::String
+
+    def remove_job_keys: (untyped redis, untyped keys) -> (untyped | nil)
+
+    def with_redis: () { (?) -> untyped } -> untyped
+  end
+end

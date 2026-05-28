@@ -1,0 +1,76 @@
+module Packages
+  module Npm
+    class CreatePackageService < ::Packages::CreatePackageService
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      INSTALL_SCRIPT_KEYS: ::Array["preinstall" | "install" | "postinstall"]
+
+      PACKAGE_JSON_NOT_ALLOWED_FIELDS: ::Array["readme" | "readmeFilename" | "licenseText" | "contributors" | "exports"]
+
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      ERROR_REASON_INVALID_PARAMETER: :invalid_parameter
+
+      ERROR_REASON_PACKAGE_EXISTS: :package_already_exists
+
+      ERROR_REASON_PACKAGE_LEASE_TAKEN: :package_lease_taken
+
+      def execute: () -> untyped
+
+      private
+
+      def error: (untyped message, untyped reason) -> untyped
+
+      def create_npm_package!: () -> ::Array[untyped]
+
+      def create_npm_metadatum!: (untyped package) -> untyped
+
+      def current_package_exists?: () -> untyped
+
+      def name: () -> untyped
+
+      def version: () -> untyped
+
+      def version_data: () -> untyped
+
+      def package_json: () -> untyped
+
+      def dist_tag: () -> untyped
+
+      def package_file_name: () -> ::String
+
+      def attachment: () -> untyped
+
+      # TODO (technical debt): Extract the package size calculation to its own component and unit test it separately.
+      def calculated_package_file_size: () -> untyped
+
+      def file_params: () -> { file: untyped, size: untyped, file_sha1: untyped, file_name: untyped, build: untyped }
+
+      def package_dependencies: () -> untyped
+
+      def file_size_exceeded?: () -> untyped
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+
+      def field_sizes: () -> untyped
+
+      def filtered_field_sizes: () -> untyped
+
+      def largest_fields: () -> untyped
+
+      def field_sizes_for_error_tracking: () -> untyped
+
+      def update_temp_package: () -> ::Array[untyped]
+
+      def use_temp_package?: () -> untyped
+
+      def temp_package: () -> untyped
+    end
+  end
+end

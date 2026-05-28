@@ -1,0 +1,23 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      class LfsObjectImporter
+        @project: untyped
+
+        @lfs_download_object: untyped
+
+        include Loggable
+
+        def initialize: (untyped project, untyped lfs_attributes) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader lfs_download_object: untyped
+      end
+    end
+  end
+end

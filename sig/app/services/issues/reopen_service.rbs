@@ -1,0 +1,23 @@
+module Issues
+  class ReopenService < Issues::BaseService
+    def execute: (untyped issue, ?skip_authorization: bool, ?status: untyped?) -> untyped
+
+    private
+
+    # overridden in EE
+    def after_reopen: (untyped issue, untyped _status) -> untyped
+
+    # overridden in EE
+    def reopen_issue: (untyped issue) -> untyped
+
+    def can_reopen?: (untyped issue, ?skip_authorization: bool) -> untyped
+
+    def perform_incident_management_actions: (untyped issue) -> (nil | untyped)
+
+    def create_note: (untyped issue, ?untyped state) -> untyped
+
+    def create_timeline_event: (untyped issue) -> untyped
+
+    def track_work_item_reopen: (untyped work_item) -> untyped
+  end
+end

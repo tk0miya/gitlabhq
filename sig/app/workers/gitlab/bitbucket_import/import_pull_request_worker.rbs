@@ -1,0 +1,9 @@
+module Gitlab
+  module BitbucketImport
+    class ImportPullRequestWorker
+      include ObjectImporter
+
+      def importer_class: () -> untyped
+    end
+  end
+end

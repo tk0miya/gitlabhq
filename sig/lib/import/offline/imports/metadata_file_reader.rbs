@@ -1,0 +1,43 @@
+module Import
+  module Offline
+    module Imports
+      class MetadataFileReader
+        @configuration: untyped
+
+        @tmpdir_path: untyped
+
+        COMPRESSED_METADATA_FILENAME: "metadata.json.gz"
+
+        METADATA_FILENAME: "metadata.json"
+
+        TMPDIR_SEGMENT: "offline_imports"
+
+        # TODO: set to the exact release version once the Offline Transfer feature ships.
+        # https://gitlab.com/gitlab-org/gitlab/-/work_items/598364
+        MIN_SUPPORTED_VERSION: untyped
+
+        MetadataParseError: untyped
+
+        UnsupportedVersionError: untyped
+
+        def initialize: (untyped configuration) -> void
+
+        def read: () -> untyped
+
+        private
+
+        attr_reader configuration: untyped
+
+        def download_from_object_storage: () -> untyped
+
+        def decompress_metadata_file: () -> untyped
+
+        def tmpdir_path: () -> untyped
+
+        def validate_source_version!: (untyped instance_version) -> (nil | untyped)
+
+        def parsed_metadata: () -> untyped
+      end
+    end
+  end
+end

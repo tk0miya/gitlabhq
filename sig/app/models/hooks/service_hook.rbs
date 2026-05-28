@@ -1,0 +1,7 @@
+class ServiceHook < WebHook
+  include Presentable
+
+  extend ::Gitlab::Utils::Override
+
+  def execute: (untyped data, ?::String hook_name, ?idempotency_key: untyped?) -> untyped
+end

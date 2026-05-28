@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Build
+      module Prerequisite
+        class Factory
+          @build: untyped
+
+          attr_reader build: untyped
+
+          def self.prerequisites: () -> ::Array[untyped]
+
+          def initialize: (untyped build) -> void
+
+          def unmet: () -> untyped
+
+          private
+
+          def build_prerequisites: () -> untyped
+        end
+      end
+    end
+  end
+end

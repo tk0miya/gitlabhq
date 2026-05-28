@@ -1,0 +1,15 @@
+module Mutations
+  module Snippets
+    class MarkAsSpam < Base
+      def resolve: (id: untyped) -> { errors: untyped }
+
+      private
+
+      def mark_as_spam: (untyped snippet) -> untyped
+
+      def authorized_resource?: (untyped snippet) -> untyped
+
+      def ability_name: () -> "admin"
+    end
+  end
+end

@@ -1,0 +1,46 @@
+# Projects::InvitedGroupsFinder
+#
+# Used to get the list of invited groups in the given project
+# Arguments:
+#   group
+#   current_user
+#   params:
+#     relation: string - groups by relation (direct or inherited)
+#     search: string
+#     min_access_level: integer
+#
+module Namespaces
+  module Projects
+    class InvitedGroupsFinder
+      @project: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      include Namespaces::GroupsFilter
+
+      include Gitlab::Allowable
+
+      def initialize: (untyped project, ?untyped? current_user, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def include_relations: () -> untyped
+
+      def group_links: (untyped include_relations) -> untyped
+
+      def direct: () -> untyped
+
+      def inherited: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,20 @@
+module Resolvers
+  class MergeRequestPipelinesResolver < BaseResolver
+    # The GraphQL type here gets defined in this include
+    include ::ResolvesPipelines
+
+    include ::CachingArrayResolver
+
+    alias merge_request object
+
+    def resolve: (**untyped args) -> (nil | untyped)
+
+    def query_for: (untyped input) -> untyped
+
+    def model_class: () -> untyped
+
+    def query_input: (**untyped args) -> ::Array[untyped]
+
+    def project: () -> untyped
+  end
+end

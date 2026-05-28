@@ -1,0 +1,36 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      class Average
+        @stage: untyped
+
+        @query: untyped
+
+        @params: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        include StageQueryHelpers
+
+        def initialize: (stage: untyped, query: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        def seconds: () -> (untyped | nil)
+
+        def days: () -> (untyped | nil)
+
+        private
+
+        attr_reader stage: untyped
+
+        attr_reader params: untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def select_average: () -> untyped
+
+        def average: () -> untyped
+
+        def average_in_seconds: () -> untyped
+      end
+    end
+  end
+end

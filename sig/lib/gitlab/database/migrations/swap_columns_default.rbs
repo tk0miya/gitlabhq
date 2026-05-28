@@ -1,0 +1,27 @@
+module Gitlab
+  module Database
+    module Migrations
+      class SwapColumnsDefault
+        @migration_context: untyped
+
+        @table: untyped
+
+        @column_name1: untyped
+
+        @column_name2: untyped
+
+        def initialize: (migration_context: untyped, table: untyped, column1: untyped, column2: untyped) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        def change_sequence_owner_if: (untyped sequence_name, untyped column_name) -> (nil | untyped)
+
+        def find_default_by: (untyped name) -> untyped
+
+        def extract_sequence_name_from: (untyped expression) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,62 @@
+module Emails
+  module Imports
+    @errors: untyped
+
+    @project: untyped
+
+    @namespace: untyped
+
+    @hostname: untyped
+
+    @user_mapping_available: untyped
+
+    @is_group_owner: untyped
+
+    @is_project_creator: untyped
+
+    @bulk_import: untyped
+
+    @group: untyped
+
+    @success_count: untyped
+
+    @failed_count: untyped
+
+    @skipped_count: untyped
+
+    @has_errors: untyped
+
+    @title: untyped
+
+    @source_user: untyped
+
+    @reassign_to_user: untyped
+
+    @offline_export: untyped
+
+    @configuration: untyped
+
+    # We don't need to check if admin bypass is fully enabled, only if this was sent due to admin or group bypass
+    @admin_bypass_enabled: untyped
+
+    def github_gists_import_errors_email: (untyped user_id, untyped errors) -> untyped
+
+    def project_import_complete: (untyped project_id, untyped user_id, untyped user_mapping_enabled, untyped safe_import_url) -> untyped
+
+    def bulk_import_complete: (untyped user_id, untyped bulk_import_id) -> untyped
+
+    def bulk_import_csv_user_mapping: (untyped user_id, untyped group_id, success_count: untyped, ?failed_count: ::Integer, ?skipped_count: ::Integer, ?failures_csv_data: untyped?) -> untyped
+
+    def csv_placeholder_reassignment_failed: (untyped user_id, untyped group_id) -> untyped
+
+    def import_source_user_reassign: (untyped source_user_id) -> untyped
+
+    def import_source_user_rejected: (untyped source_user_id) -> untyped
+
+    def offline_export_complete: (untyped user_id, untyped offline_export_id) -> untyped
+
+    def offline_export_failed: (untyped user_id, untyped offline_export_id) -> untyped
+
+    def import_source_user_complete: (untyped source_user_id) -> untyped
+  end
+end

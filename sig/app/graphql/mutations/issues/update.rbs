@@ -1,0 +1,21 @@
+module Mutations
+  module Issues
+    class Update < Base
+      include CommonMutationArguments
+
+      include ValidateTimeEstimate
+
+      def resolve: (project_path: untyped, iid: untyped, **untyped args) -> { issue: untyped, errors: untyped }
+
+      def ready?: (?label_ids: untyped, ?add_label_ids: untyped, ?remove_label_ids: untyped, ?time_estimate: untyped?, **untyped args) -> untyped
+
+      private
+
+      def parse_arguments: (untyped args) -> untyped
+
+      def parse_milestone_id: (untyped id) -> untyped
+
+      def parse_label_ids: (untyped ids) -> untyped
+    end
+  end
+end

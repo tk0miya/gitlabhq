@@ -1,0 +1,63 @@
+module Backup
+  module Targets
+    # Backup and restores repositories by querying the database
+    class Repositories < Target
+      @strategy: untyped
+
+      @storages: untyped
+
+      @paths: untyped
+
+      @skip_paths: untyped
+
+      @logger: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      # @param [IO] progress IO interface to output progress
+      # @param [Object] :strategy Fetches backups from gitaly
+      # @param [Array<String>] :storages Filter by specified storage names. Empty means all storages.
+      # @param [Array<String>] :paths Filter by specified project paths. Empty means all projects, groups, and snippets.
+      # @param [Array<String>] :skip_paths Skip specified project paths. Empty means all projects, groups, and snippets.
+      def initialize: (untyped progress, strategy: untyped, options: untyped, ?storages: untyped, ?paths: untyped, ?skip_paths: untyped) -> void
+
+      def dump: (untyped destination_path, untyped backup_id) -> untyped
+
+      def restore: (untyped destination_path, untyped backup_id) -> untyped
+
+      def asynchronous?: () -> false
+
+      private
+
+      attr_reader strategy: untyped
+
+      attr_reader storages: untyped
+
+      attr_reader paths: untyped
+
+      attr_reader skip_paths: untyped
+
+      attr_reader logger: untyped
+
+      def remove_all_repositories: () -> (nil | untyped)
+
+      def enqueue_consecutive: () -> untyped
+
+      def enqueue_consecutive_projects: () -> untyped
+
+      def enqueue_consecutive_snippets: () -> untyped
+
+      def enqueue_project: (untyped project) -> (nil | untyped)
+
+      def enqueue_snippet: (untyped snippet) -> untyped
+
+      def project_relation: () -> untyped
+
+      def snippet_relation: () -> untyped
+
+      def skipped_path_relation: () -> untyped
+
+      def restore_object_pools: () -> untyped
+    end
+  end
+end

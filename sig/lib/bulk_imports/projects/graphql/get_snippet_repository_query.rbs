@@ -1,0 +1,17 @@
+module BulkImports
+  module Projects
+    module Graphql
+      class GetSnippetRepositoryQuery
+        include Queryable
+
+        def to_s: () -> "          query($full_path: ID!) {\n            project(fullPath: $full_path) {\n              snippets {\n                page_info: pageInfo {\n                  next_page: endCursor\n                  has_next_page: hasNextPage\n                }\n                nodes {\n                  title\n                  createdAt\n                  httpUrlToRepo\n                }\n              }\n            }\n          }\n"
+
+        def variables: () -> { full_path: untyped, cursor: untyped, per_page: untyped }
+
+        def base_path: () -> ::Array["data" | "project" | "snippets"]
+
+        def data_path: () -> untyped
+      end
+    end
+  end
+end

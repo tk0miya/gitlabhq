@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    module Build
+      module Context
+        class Base
+          @pipeline: untyped
+
+          @logger: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          attr_reader pipeline: untyped
+
+          attr_reader logger: untyped
+
+          def initialize: (untyped pipeline, logger: untyped) -> void
+
+          def variables: () -> untyped
+
+          def variables_hash: () -> untyped
+
+          def variables_hash_expanded: () -> untyped
+
+          def variables_sorted_and_expanded: () -> untyped
+
+          def project: () -> untyped
+
+          def sha: () -> untyped
+
+          def pipeline_attributes: () -> { pipeline: untyped, partition_id: untyped, project: untyped, user: untyped, ref: untyped, tag: untyped, protected: untyped }
+        end
+      end
+    end
+  end
+end

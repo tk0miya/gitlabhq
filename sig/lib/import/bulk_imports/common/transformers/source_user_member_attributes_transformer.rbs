@@ -1,0 +1,17 @@
+module Import
+  module BulkImports
+    module Common
+      module Transformers
+        class SourceUserMemberAttributesTransformer
+          def transform: (untyped context, untyped data) -> (untyped | nil)
+
+          private
+
+          def valid_access_level?: (untyped access_level) -> untyped
+
+          def find_or_create_source_user: (untyped context, untyped data) -> untyped
+        end
+      end
+    end
+  end
+end

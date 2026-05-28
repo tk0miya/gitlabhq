@@ -1,0 +1,39 @@
+module Observability
+  class AccessRequestService < ::BaseService
+    @group: untyped
+
+    @current_user: untyped
+
+    include ::Services::ReturnServiceResponses
+
+    DEPLOYER_PROJECT_ID: 71877027
+
+    def initialize: (untyped group, untyped current_user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader group: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def authorized?: () -> untyped
+
+    def build_issue_params: () -> { title: untyped, description: untyped, confidential: true }
+
+    def issue_title: () -> ::String
+
+    def existing_issue?: (untyped project) -> untyped
+
+    def issue_description: () -> ::String
+
+    def project_for_observability_access_requests: () -> untyped
+
+    def create_temporary_group_o11y_setting: (untyped group) -> (nil | untyped)
+
+    def settings_params: () -> { o11y_service_name: untyped, o11y_service_user_email: ::String, o11y_service_password: untyped, o11y_service_post_message_encryption_key: untyped }
+  end
+end

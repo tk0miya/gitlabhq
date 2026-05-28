@@ -1,0 +1,25 @@
+module Sidebars
+  module Projects
+    module Menus
+      class ExternalIssueTrackerMenu < ::Sidebars::Menu
+        @external_issue_tracker: untyped
+
+        def link: () -> untyped
+
+        def extra_container_html_options: () -> { target: "_blank", rel: "noopener noreferrer", class: "shortcuts-external_tracker" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "external-link"
+
+        def render?: () -> untyped
+
+        def serialize_as_menu_item_args: () -> untyped
+
+        private
+
+        def external_issue_tracker: () -> untyped
+      end
+    end
+  end
+end

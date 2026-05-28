@@ -1,0 +1,75 @@
+module Tasks
+  module Gitlab
+    module Permissions
+      module Routes
+        class ValidateTask < ::Tasks::Gitlab::Permissions::BaseValidateTask
+          @violations: untyped
+
+          @source_locations: untyped
+
+          @todo_entries: untyped
+
+          @spec_permission_scanner: untyped
+
+          TODO_FILE: untyped
+
+          VALID_SKIP_REASONS: untyped
+
+          def initialize: () -> void
+
+          private
+
+          attr_reader violations: untyped
+
+          def validate!: () -> untyped
+
+          def routes: () -> untyped
+
+          def collect_routes: (untyped endpoints) -> untyped
+
+          def validate_route: (untyped route) -> untyped
+
+          def validate_authorization: (untyped route, untyped authorization) -> untyped
+
+          def has_authorization?: (untyped authorization) -> (false | untyped)
+
+          def load_todo_entries: () -> untyped
+
+          def route_id: (untyped route) -> ::String
+
+          def extract_boundary_types: (untyped authorization) -> (untyped | ::Array[untyped])
+
+          def base_error: (untyped route) -> untyped
+
+          def validate_permission_defined: (untyped route, untyped permission) -> (nil | untyped)
+
+          def validate_boundary_defined: (untyped route, untyped permission, untyped boundary_types) -> (nil | untyped)
+
+          def validate_skip_reason: (untyped route, untyped authorization) -> (nil | untyped)
+
+          def validate_assignable_permission: (untyped route, untyped permission, untyped boundary_types) -> (nil | untyped)
+
+          def register_test_coverage: (untyped route, untyped permission) -> (nil | untyped)
+
+          def spec_permission_scanner: () -> untyped
+
+          def format_all_errors: () -> untyped
+
+          def format_route_errors: (untyped kind) -> ("" | ::String)
+
+          def format_invalid_skip_reason_errors: () -> ("" | ::String)
+
+          def format_boundary_mismatch_errors: () -> ("" | ::String)
+
+          def format_insufficient_test_errors: () -> ("" | ::String)
+
+          def error_messages: () -> { undefined_permission: untyped, missing_boundary: untyped, missing_assignable: untyped, boundary_mismatch: untyped, missing_authorization: untyped, invalid_skip_reason: untyped, insufficient_tests: untyped }
+
+          def print_success_message: () -> untyped
+
+          def json_schema_file: () -> nil
+        end
+      end
+    end
+  end
+end

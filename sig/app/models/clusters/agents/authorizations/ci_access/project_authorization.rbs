@@ -1,0 +1,13 @@
+module Clusters
+  module Agents
+    module Authorizations
+      module CiAccess
+        class ProjectAuthorization < ApplicationRecord
+          include ConfigScopes
+
+          def config_project: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,55 @@
+module Packages
+  module Go
+    class ModuleVersion
+      @mod: untyped
+
+      @type: untyped
+
+      @commit: untyped
+
+      @name: untyped
+
+      @semver: untyped
+
+      @ref: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include Gitlab::Golang
+
+      VALID_TYPES: ::Array[:ref | :commit | :pseudo]
+
+      attr_reader mod: untyped
+
+      attr_reader type: untyped
+
+      attr_reader ref: untyped
+
+      attr_reader commit: untyped
+
+      def initialize: (untyped mod, untyped type, untyped commit, ?name: untyped?, ?semver: untyped?, ?ref: untyped?) -> void
+
+      def name: () -> untyped
+
+      def full_name: () -> ::String
+
+      def gomod: () -> untyped
+
+      def archive: () -> untyped
+
+      def files: () -> untyped
+
+      def excluded: () -> untyped
+
+      def valid?: () -> (true | untyped)
+
+      private
+
+      def blob_at: (untyped path) -> (nil | untyped)
+
+      def blobs: () -> untyped
+
+      def ls_tree: () -> untyped
+    end
+  end
+end

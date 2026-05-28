@@ -1,0 +1,47 @@
+module Gitlab
+  module Graphql
+    module CallsGitaly
+      # Check if any `calls_gitaly: true` declarations need to be added
+      #
+      # See BaseField: this extension is not applied if the field does not
+      # need it (i.e. it has a constant complexity or knows that it calls
+      # gitaly)
+      class FieldExtension < ::GraphQL::Schema::FieldExtension
+        include Laziness
+
+        def resolve: (object: untyped, arguments: untyped, **untyped rest) { (untyped, untyped, untyped) -> untyped } -> untyped
+
+        def after_resolve: (value: untyped, memo: untyped, **untyped rest) -> untyped
+
+        private
+
+        # Resolutions are not nested nicely (due to laziness), so we have to
+        # know not just how many calls were made before resolution started, but
+        # also how many were accounted for by fields with the correct settings
+        # in between.
+        #
+        # e.g. the following is not just plausible, but common:
+        #
+        #   enter A.user (lazy)
+        #   enter A.x
+        #   leave A.x
+        #   enter A.calls_gitaly
+        #   leave A.calls_gitaly (accounts for 1 call)
+        #   leave A.user
+        #
+        # In this circumstance we need to mark the calls made by A.calls_gitaly
+        # as accounted for, even though they were made after we yielded
+        # in A.user
+        def value_with_count: (untyped value, untyped) -> ::Array[untyped]
+
+        def current_gitaly_call_count: () -> untyped
+
+        def calls_gitaly_check: (untyped calls) -> (nil | untyped)
+
+        def accounted_for: (?untyped? count) -> (0 | untyped)
+
+        def field_name: () -> ::String
+      end
+    end
+  end
+end

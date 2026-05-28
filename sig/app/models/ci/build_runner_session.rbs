@@ -1,0 +1,21 @@
+module Ci
+  # The purpose of this class is to store Build related runner session.
+  # Data will be removed after transitioning from running to any state.
+  class BuildRunnerSession < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    TERMINAL_SUBPROTOCOL: "terminal.gitlab.com"
+
+    DEFAULT_SERVICE_NAME: "build"
+
+    DEFAULT_PORT_NAME: "default_port"
+
+    def terminal_specification: () -> (::Hash[untyped, untyped] | untyped)
+
+    def service_specification: (?service: untyped?, ?path: untyped?, ?port: untyped?, ?subprotocols: untyped?) -> (::Hash[untyped, untyped] | untyped)
+
+    private
+
+    def channel_specification: (untyped parsed_url, untyped subprotocol) -> (::Hash[untyped, untyped] | { subprotocols: untyped, url: untyped, headers: untyped, ca_pem: untyped })
+  end
+end

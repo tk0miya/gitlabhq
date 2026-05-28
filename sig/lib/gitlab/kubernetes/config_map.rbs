@@ -1,0 +1,25 @@
+module Gitlab
+  module Kubernetes
+    class ConfigMap
+      @name: untyped
+
+      @files: untyped
+
+      def initialize: (untyped name, untyped files) -> void
+
+      def generate: () -> untyped
+
+      def config_map_name: () -> ::String
+
+      private
+
+      attr_reader name: untyped
+
+      attr_reader files: untyped
+
+      def metadata: () -> { name: untyped, namespace: untyped, labels: { name: untyped } }
+
+      def namespace: () -> untyped
+    end
+  end
+end

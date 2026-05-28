@@ -1,0 +1,33 @@
+module Gitlab
+  module MarkdownCache
+    module Redis
+      class Store
+        @subject: untyped
+
+        @loaded: untyped
+
+        @fields: untyped
+
+        EXPIRES_IN: untyped
+
+        def self.bulk_read: (untyped subjects) -> untyped
+
+        def initialize: (untyped subject) -> void
+
+        def save: (untyped updates) -> untyped
+
+        def read: (?untyped? pipeline) -> untyped
+
+        def loaded?: () -> untyped
+
+        private
+
+        def fields: () -> untyped
+
+        def markdown_cache_key: () -> ::String
+
+        def with_redis: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

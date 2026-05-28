@@ -1,0 +1,14 @@
+module MergeRequests
+  class AddTodoWhenBuildFailsService < MergeRequests::BaseService
+    # Adds a todo to the parent merge_request when a CI build fails
+    #
+    def execute: (untyped commit_status) -> (nil | untyped)
+
+    # Closes any pending build failed todos for the parent MRs when a
+    # build is retried
+    #
+    def close: (untyped commit_status) -> untyped
+
+    def close_all: (untyped pipeline) -> untyped
+  end
+end

@@ -1,0 +1,175 @@
+module ApplicationSettingImplementation
+  @latest_terms: untyped
+
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  STRING_LIST_SEPARATOR: ::Regexp
+
+  # Setting a key restriction to `-1` means that all keys of this type are
+  # forbidden.
+  FORBIDDEN_KEY_VALUE: untyped
+
+  VALID_RUNNER_REGISTRAR_TYPES: ::Array["project" | "group"]
+
+  DEFAULT_PROTECTED_PATHS: ::Array["/users/password" | "/users/sign_in" | "/api/v3/session.json" | "/api/v3/session" | "/api/v4/session.json" | "/api/v4/session" | "/users" | "/users/confirmation" | "/unsubscribes/" | "/import/github/personal_access_token" | "/admin/session"]
+
+  DEFAULT_PROTECTED_PATHS_FOR_GET_REQUEST: ::Array["/users/sign_in_path"]
+
+  DEFAULT_MINIMUM_PASSWORD_LENGTH: 8
+
+  DEFAULT_NUMBER_OF_DAYS_BEFORE_REMOVAL: 30
+
+  def home_page_url_column_exists?: () -> untyped
+
+  def help_page_support_url_column_exists?: () -> untyped
+
+  def disabled_oauth_sign_in_sources=: (untyped sources) -> untyped
+
+  def domain_allowlist_raw: () -> untyped
+
+  def domain_denylist_raw: () -> untyped
+
+  def domain_allowlist_raw=: (untyped values) -> untyped
+
+  def domain_denylist_raw=: (untyped values) -> untyped
+
+  def domain_denylist_file=: (untyped file) -> untyped
+
+  def outbound_local_requests_allowlist_raw: () -> untyped
+
+  def outbound_local_requests_allowlist_raw=: (untyped values) -> untyped
+
+  def add_to_outbound_local_requests_whitelist: (untyped values_array) -> untyped
+
+  # This method separates out the strings stored in the
+  # application_setting.outbound_local_requests_whitelist array into 2 arrays;
+  # an array of IPAddr objects (`[IPAddr.new('127.0.0.1')]`), and an array of
+  # domain strings (`['www.example.com']`).
+  def outbound_local_requests_allowlist_arrays: () -> untyped
+
+  def protected_paths_raw: () -> untyped
+
+  def protected_paths_raw=: (untyped values) -> untyped
+
+  def protected_paths_for_get_request_raw: () -> untyped
+
+  def protected_paths_for_get_request_raw=: (untyped values) -> untyped
+
+  def notes_create_limit_allowlist_raw: () -> untyped
+
+  def notes_create_limit_allowlist_raw=: (untyped values) -> untyped
+
+  def users_get_by_id_limit_allowlist_raw: () -> untyped
+
+  def users_get_by_id_limit_allowlist_raw=: (untyped values) -> untyped
+
+  def search_rate_limit_allowlist_raw: () -> untyped
+
+  def search_rate_limit_allowlist_raw=: (untyped values) -> untyped
+
+  def coerce_iframe_rendering_allowlist: () -> untyped
+
+  def iframe_rendering_allowlist_raw: () -> untyped
+
+  def iframe_rendering_allowlist_raw=: (untyped values) -> untyped
+
+  def asset_proxy_whitelist=: (untyped values) -> untyped
+
+  alias asset_proxy_allowlist= asset_proxy_whitelist=
+
+  def asset_proxy_allowlist: () -> untyped
+
+  def commit_email_hostname: () -> untyped
+
+  def default_project_visibility=: (untyped level) -> untyped
+
+  def default_snippet_visibility=: (untyped level) -> untyped
+
+  def default_group_visibility=: (untyped level) -> untyped
+
+  def restricted_visibility_levels=: (untyped levels) -> untyped
+
+  def static_objects_external_storage_auth_token=: (untyped token) -> untyped
+
+  def performance_bar_allowed_group: () -> untyped
+
+  # Return true if the Performance Bar is enabled for a given group
+  def performance_bar_enabled: () -> untyped
+
+  def normalized_repository_storage_weights: () -> untyped
+
+  # Choose one of the available repository storage options based on a normalized weighted probability.
+  def pick_repository_storage: () -> untyped
+
+  def runners_registration_token: () -> (nil | untyped)
+
+  def health_check_access_token: () -> untyped
+
+  def error_tracking_access_token: () -> untyped
+
+  def usage_ping_can_be_configured?: () -> untyped
+
+  def usage_ping_features_enabled: () -> (false | untyped | true)
+
+  alias usage_ping_features_enabled? usage_ping_features_enabled
+
+  def usage_ping_enabled: () -> untyped
+
+  alias usage_ping_enabled? usage_ping_enabled
+
+  def usage_ping_generation_enabled: () -> untyped
+
+  alias usage_ping_generation_enabled? usage_ping_generation_enabled
+
+  def allowed_key_types: () -> untyped
+
+  def key_restriction_for: (untyped type) -> untyped
+
+  def allow_signup?: () -> untyped
+
+  def password_authentication_enabled?: () -> untyped
+
+  def user_default_internal_regex_enabled?: () -> untyped
+
+  def user_default_internal_regex_instance: () -> untyped
+
+  def latest_terms: () -> untyped
+
+  def reset_memoized_terms: () -> untyped
+
+  def archive_builds_older_than: () -> (untyped | nil)
+
+  def static_objects_external_storage_enabled?: () -> untyped
+
+  def ensure_key_restrictions!: () -> (nil | untyped)
+
+  def repository_storages_with_default_weight: () -> untyped
+
+  private
+
+  def set_max_key_restriction!: (untyped key_type) -> (nil | untyped)
+
+  def separate_allowlists: (untyped string_array) -> untyped
+
+  def parse_addr_and_port: (untyped str) -> ::Array[untyped]
+
+  def array_to_string: (untyped arr) -> untyped
+
+  def strings_to_array: (untyped values) -> (::Array[untyped] | untyped)
+
+  def ensure_uuid!: () -> (nil | untyped)
+
+  def coerce_repository_storages_weighted: () -> untyped
+
+  def check_repository_storages_weighted: () -> untyped
+
+  def check_valid_runner_registrars: () -> (nil | untyped)
+
+  def valid_runner_registrar_combinations: () -> untyped
+
+  def terms_exist: () -> (nil | untyped)
+
+  def expire_performance_bar_allowed_user_ids_cache: () -> untyped
+end

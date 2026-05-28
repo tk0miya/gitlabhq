@@ -1,0 +1,7 @@
+module Subscriptions
+  class WorkItemUpdated < BaseSubscription
+    include Gitlab::Graphql::Laziness
+
+    def authorized?: (work_item_id: untyped) -> untyped
+  end
+end

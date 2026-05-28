@@ -1,0 +1,15 @@
+module Gitlab
+  module MarkdownCache
+    module ExternalStorage
+      module Extension
+        extend ActiveSupport::Concern
+
+        def write_markdown_field: (untyped field_name, untyped value) -> untyped
+
+        def markdown_field_changed?: (untyped field_name) -> untyped
+
+        def save_markdown: (untyped updates) -> untyped
+      end
+    end
+  end
+end

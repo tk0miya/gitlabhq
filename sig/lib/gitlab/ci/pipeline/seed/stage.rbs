@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Seed
+        class Stage < Seed::Base
+          @context: untyped
+
+          @pipeline: untyped
+
+          @attributes: untyped
+
+          @previous_stages: untyped
+
+          @builds: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped context, untyped attributes, untyped previous_stages) -> void
+
+          def attributes: () -> { name: untyped, position: untyped, pipeline: untyped, project: untyped, partition_id: untyped }
+
+          def seeds: () -> untyped
+
+          def errors: () -> untyped
+
+          def seeds_names: () -> untyped
+
+          def included?: () -> untyped
+
+          def to_resource: () -> untyped
+        end
+      end
+    end
+  end
+end

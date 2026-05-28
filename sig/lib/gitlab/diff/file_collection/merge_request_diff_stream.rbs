@@ -1,0 +1,18 @@
+module Gitlab
+  module Diff
+    module FileCollection
+      class MergeRequestDiffStream < MergeRequestDiffBase
+        @paginated_collection: untyped
+
+        include PaginatedDiffs
+
+        def initialize: (untyped merge_request_diff, diff_options: untyped) -> void
+
+        private
+
+        # rubocop: disable CodeReuse/ActiveRecord -- No need to abstract
+        def load_paginated_collection: (untyped offset) -> untyped
+      end
+    end
+  end
+end

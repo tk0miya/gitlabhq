@@ -1,0 +1,27 @@
+class ContainerRepositoriesFinder
+  @user: untyped
+
+  @subject: untyped
+
+  @params: untyped
+
+  VALID_SUBJECTS: ::Array[untyped]
+
+  def initialize: (user: untyped, subject: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+  def execute: () -> (nil | untyped)
+
+  private
+
+  def valid_subject_type?: () -> untyped
+
+  def project_repositories: () -> untyped
+
+  def group_repositories: () -> untyped
+
+  def filter_by_image_name: (untyped repositories) -> untyped
+
+  def sort: (untyped repositories) -> untyped
+
+  def authorized?: () -> untyped
+end

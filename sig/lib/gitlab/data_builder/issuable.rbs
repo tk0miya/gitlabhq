@@ -1,0 +1,29 @@
+module Gitlab
+  module DataBuilder
+    class Issuable
+      @issuable: untyped
+
+      CHANGES_KEYS: ::Array[:previous | :current]
+
+      attr_reader issuable: untyped
+
+      def initialize: (untyped issuable) -> void
+
+      def build: (?user: untyped?, ?changes: ::Hash[untyped, untyped], ?action: untyped?, ?actioned_at: untyped?) -> untyped
+
+      def safe_keys: () -> untyped
+
+      private
+
+      def object_kind: () -> ("issue" | untyped)
+
+      def event_type: () -> (::String | untyped)
+
+      def issuable_builder: () -> untyped
+
+      def final_changes: (untyped changes_hash) -> untyped
+
+      def extract_re_requested_reviewer_id: (untyped changes) -> (nil | untyped)
+    end
+  end
+end

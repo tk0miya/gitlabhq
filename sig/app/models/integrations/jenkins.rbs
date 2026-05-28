@@ -1,0 +1,27 @@
+module Integrations
+  class Jenkins < Integration
+    include Base::Ci
+
+    include HasWebHook
+
+    prepend EnableSslVerification
+
+    def execute: (untyped data) -> (nil | untyped)
+
+    def test: (untyped data) -> ({ success: false, result: untyped } | { success: true, result: untyped })
+
+    def hook_url: () -> untyped
+
+    def url_variables: () -> ::Hash[untyped, untyped]
+
+    def self.supported_events: () -> ::Array["push" | "merge_request" | "tag_push"]
+
+    def self.title: () -> "Jenkins"
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "jenkins"
+  end
+end

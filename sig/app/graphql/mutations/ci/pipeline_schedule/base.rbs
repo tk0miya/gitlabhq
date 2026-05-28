@@ -1,0 +1,13 @@
+module Mutations
+  module Ci
+    module PipelineSchedule
+      class Base < BaseMutation
+        PipelineScheduleID: untyped
+
+        private
+
+        def find_object: (id: untyped) -> untyped
+      end
+    end
+  end
+end

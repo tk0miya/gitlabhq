@@ -1,0 +1,15 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillClustersShardingKey < BatchedMigrationJob
+      PROJECT_TYPE: 3
+
+      GROUP_TYPE: 2
+
+      INSTANCE_TYPE: 1
+
+      DEFAULT_ORGANIZATION_ID: 1
+
+      def perform: () -> untyped
+    end
+  end
+end

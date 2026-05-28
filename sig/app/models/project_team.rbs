@@ -1,0 +1,132 @@
+class ProjectTeam
+  @project: untyped
+
+  @members: untyped
+
+  @guests: untyped
+
+  @planners: untyped
+
+  @reporters: untyped
+
+  @developers: untyped
+
+  @maintainers: untyped
+
+  @owners: untyped
+
+  attr_accessor project: untyped
+
+  def initialize: (untyped project) -> void
+
+  def add_guest: (untyped user, ?current_user: untyped?) -> untyped
+
+  def add_planner: (untyped user, ?current_user: untyped?) -> untyped
+
+  def add_reporter: (untyped user, ?current_user: untyped?) -> untyped
+
+  def add_security_manager: (untyped user, ?current_user: untyped?) -> (nil | untyped)
+
+  def add_developer: (untyped user, ?current_user: untyped?) -> untyped
+
+  def add_maintainer: (untyped user, ?current_user: untyped?) -> untyped
+
+  def add_owner: (untyped user, ?current_user: untyped?) -> untyped
+
+  def add_role: (untyped user, untyped role, ?current_user: untyped?) -> untyped
+
+  def find_member: (untyped user_id) -> untyped
+
+  def add_members: (untyped users, untyped access_level, ?current_user: untyped?, ?expires_at: untyped?) -> untyped
+
+  # NOTE: `immediately_sync_authorizations` can be expensive to run in the foreground. This should only be used in rare
+  # cases where asynchronous authorization does not work (e.g. user is created and used immediately in the same
+  # request).
+  def add_member: (untyped user, untyped access_level, ?current_user: untyped?, ?expires_at: untyped?, ?immediately_sync_authorizations: bool, ?skip_authorization: bool) -> untyped
+
+  # Remove all users from project team
+  def truncate: () -> untyped
+
+  def members: () -> untyped
+
+  alias users members
+
+  def guests: () -> untyped
+
+  def planners: () -> untyped
+
+  def reporters: () -> untyped
+
+  def developers: () -> untyped
+
+  def maintainers: () -> untyped
+
+  def owners: () -> untyped
+
+  def owner?: (untyped user) -> untyped
+
+  def import: (untyped source_project, untyped current_user) -> untyped
+
+  def guest?: (untyped user) -> untyped
+
+  def planner?: (untyped user) -> untyped
+
+  def reporter?: (untyped user) -> untyped
+
+  def developer?: (untyped user) -> untyped
+
+  def maintainer?: (untyped user) -> untyped
+
+  # Checks if `user` is authorized for this project, with at least the
+  # `min_access_level` (if given).
+  def member?: (untyped user, ?untyped min_access_level) -> (false | untyped)
+
+  # Only for direct and not invited members
+  def has_user?: (untyped user) -> (false | untyped)
+
+  def human_max_access: (untyped user_id) -> untyped
+
+  # Determine the maximum access level for a group of users in bulk.
+  #
+  # Returns a Hash mapping user ID -> maximum access level.
+  def max_member_access_for_user_ids: (untyped user_ids) -> untyped
+
+  def write_member_access_for_user_id: (untyped user_id, untyped project_access_level) -> untyped
+
+  def purge_member_access_cache_for_user_id: (untyped user_id) -> untyped
+
+  def max_member_access: (untyped user_id) -> untyped
+
+  # Return the highest access level for a user
+  #
+  # A special case is handled here when the user is a GitLab admin
+  # or organization owner which implies it has "OWNER" access everywhere,
+  # but should not officially appear as a member of a project unless
+  # specifically added to it
+  #
+  # @param user [User]
+  # @param only_concrete_membership [Bool] whether require admin concrete membership status
+  def max_member_access_for_user: (untyped user, ?only_concrete_membership: bool) -> untyped
+
+  def contribution_check_for_user_ids: (untyped user_ids) -> untyped
+
+  def contributor?: (untyped user_id) -> (false | untyped)
+
+  private
+
+  # Check if the user owns the project via a personal namespace.
+  # Compares namespace.owner_id directly instead of using project.owner,
+  # which triggers additional queries (loading the group association and
+  # namespace owner). Skips the check entirely for group-owned projects
+  # when the group association is already loaded, since the project is not
+  # in a personal namespace
+  def personal_namespace_owner?: (untyped user) -> (false | untyped)
+
+  def fetch_members: (?untyped? level) -> untyped
+
+  def group: () -> untyped
+
+  def member_user_ids: () -> untyped
+
+  def source_members_for_import: (untyped source_project) -> untyped
+end

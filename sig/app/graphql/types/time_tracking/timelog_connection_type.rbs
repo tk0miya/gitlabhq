@@ -1,0 +1,8 @@
+module Types
+  module TimeTracking
+    # rubocop: disable Graphql/AuthorizeTypes
+    class TimelogConnectionType < CountableConnectionType
+      def total_spent_time: () -> untyped
+    end
+  end
+end

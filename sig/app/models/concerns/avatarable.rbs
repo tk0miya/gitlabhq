@@ -1,0 +1,44 @@
+module Avatarable
+  extend ActiveSupport::Concern
+
+  USER_AVATAR_SIZES: ::Array[16 | 20 | 23 | 24 | 26 | 32 | 36 | 38 | 40 | 48 | 60 | 64 | 90 | 96 | 120 | 160]
+
+  PROJECT_AVATAR_SIZES: ::Array[15 | 40 | 48 | 64 | 88]
+
+  GROUP_AVATAR_SIZES: ::Array[15 | 37 | 38 | 39 | 40 | 64 | 96]
+
+  COMBINED_AVATAR_SIZES: untyped
+
+  COMBINED_AVATAR_SIZES_RETINA: untyped
+
+  ALLOWED_IMAGE_SCALER_WIDTHS: untyped
+
+  # This value must not be bigger than then: https://gitlab.com/gitlab-org/gitlab/-/blob/master/workhorse/config.toml.example#L20
+  #
+  # https://docs.gitlab.com/ee/development/image_scaling.html
+  MAXIMUM_FILE_SIZE: untyped
+
+  module ShadowMethods
+    def avatar_url: (**untyped args) -> untyped
+
+    def retrieve_upload: (untyped identifier, untyped paths) -> untyped
+  end
+
+  def avatar_type: () -> (untyped | nil)
+
+  def avatar_path: (?only_path: bool, ?size: untyped?) -> untyped
+
+  def uncached_avatar_path: (?only_path: bool, ?size: untyped?) -> (nil | untyped)
+
+  # Path that is persisted in the tracking Upload model. Used to fetch the
+  # upload from the model.
+  def upload_paths: (untyped identifier) -> untyped
+
+  private
+
+  def retrieve_upload_from_batch: (untyped identifier) -> untyped
+
+  def add_avatar_to_batch: () -> (nil | untyped)
+
+  def avatar_mounter: () -> untyped
+end

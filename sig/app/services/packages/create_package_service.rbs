@@ -1,0 +1,21 @@
+module Packages
+  class CreatePackageService < BaseService
+    ERROR_RESPONSE_PACKAGE_PROTECTED: untyped
+
+    def find_or_create_package!: (untyped packages_class, ?name: untyped, ?version: untyped) -> untyped
+
+    def create_package!: (untyped packages_class, ?::Hash[untyped, untyped] attrs) -> untyped
+
+    def can_create_package?: () -> untyped
+
+    def package_protected?: (package_name: untyped, package_type: untyped) -> untyped
+
+    private
+
+    def package_attrs: (untyped attrs) -> untyped
+
+    def package_creator: () -> (untyped | nil)
+
+    def add_build_info: (untyped package) -> (untyped | nil)
+  end
+end

@@ -1,0 +1,17 @@
+module Projects
+  class AfterImportWorker
+    @project: untyped
+
+    include ApplicationWorker
+
+    RESERVED_REF_PREFIXES: untyped
+
+    def perform: (untyped project_id) -> untyped
+
+    private
+
+    def import_failure_service: () -> untyped
+
+    def repository: () -> untyped
+  end
+end

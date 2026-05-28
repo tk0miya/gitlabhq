@@ -1,0 +1,7 @@
+class MergeRequestUserEntity < ::API::Entities::UserBasic
+  include UserStatusTooltip
+
+  include RequestAwareEntity
+
+  def self.satisfies: (*untyped methods) -> untyped
+end

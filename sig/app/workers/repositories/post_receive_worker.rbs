@@ -1,0 +1,53 @@
+module Repositories
+  class PostReceiveWorker
+    @project: untyped
+
+    @gl_repository: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::Experiment::Dsl
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    def perform: (untyped gl_repository, untyped identifier, untyped changes, ?::Hash[untyped, untyped] push_options, ?::Hash[untyped, untyped] params) -> (false | nil | untyped)
+
+    private
+
+    def identify_user: (untyped post_received) -> untyped
+
+    def process_project_changes: (untyped post_received, untyped project, untyped user) -> untyped
+
+    def process_wiki_changes: (untyped post_received, untyped wiki, untyped user) -> untyped
+
+    def process_snippet_changes: (untyped post_received, untyped snippet) -> untyped
+
+    def process_design_management_repository_changes: (untyped post_received, untyped design_management_repository) -> untyped
+
+    def geo_log_update_event: (untyped container) -> nil
+
+    # Expire the repository status, branch, and tag cache once per push.
+    def expire_caches: (untyped post_received, untyped repository) -> untyped
+
+    def expire_branch_cache: (untyped repository) -> untyped
+
+    def expire_tag_cache: (untyped repository) -> untyped
+
+    def lease_key: (untyped ref_type) -> ::String
+
+    def with_lock: (untyped ref_type) { () -> untyped } -> untyped
+
+    # Schedule an update for the repository size and commit count if necessary.
+    def enqueue_project_cache_update: (untyped post_received, untyped project) -> untyped
+
+    def process_ref_changes: (untyped project, untyped user, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+    def update_remote_mirrors: (untyped post_received, untyped project) -> (nil | untyped)
+
+    def after_project_changes_hooks: (untyped project, untyped user, untyped refs, untyped changes) -> untyped
+
+    def log: (untyped message) -> untyped
+
+    def cache_ttl: () -> untyped
+  end
+end

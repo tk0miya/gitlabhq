@@ -1,0 +1,14 @@
+# rubocop:disable Gitlab/BoundedContexts -- This has to be named this way.
+module Sidebars
+  module Groups
+    module SuperSidebarMenus
+      class ObservabilityMenu < ::Sidebars::Menu
+        def title: () -> untyped
+
+        def sprite_icon: () -> "eye"
+
+        def configure_menu_items: () -> untyped
+      end
+    end
+  end
+end

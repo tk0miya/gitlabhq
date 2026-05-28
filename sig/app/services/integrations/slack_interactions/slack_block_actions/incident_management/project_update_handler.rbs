@@ -1,0 +1,55 @@
+module Integrations
+  module SlackInteractions
+    module SlackBlockActions
+      module IncidentManagement
+        class ProjectUpdateHandler
+          @view: untyped
+
+          @action: untyped
+
+          @team_id: untyped
+
+          @user_id: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped params, untyped action) -> void
+
+          def execute: () -> (nil | untyped)
+
+          private
+
+          def allowed?: () -> (false | untyped)
+
+          def current_user: () -> untyped
+
+          def slack_installation: () -> untyped
+
+          def post_updated_modal: () -> untyped
+
+          def update_modal: () -> untyped
+
+          def update_incident_template: () -> untyped
+
+          def new_project: () -> untyped
+
+          def old_project: () -> untyped
+
+          def project_unchanged?: () -> untyped
+
+          def read_template_content: () -> untyped
+
+          def cleanup: (untyped view) -> untyped
+
+          attr_accessor view: untyped
+
+          attr_accessor action: untyped
+
+          attr_accessor team_id: untyped
+
+          attr_accessor user_id: untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Atlassian
+  module JiraConnect
+    module Serializers
+      class EnvironmentEntity < Grape::Entity
+        private
+
+        alias environment object
+
+        def display_name: () -> ::String
+
+        def type: () -> ("unmapped" | untyped)
+      end
+    end
+  end
+end

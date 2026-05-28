@@ -1,0 +1,45 @@
+module Gitlab
+  module PDF
+    class Header
+      @pdf: untyped
+
+      @page: untyped
+
+      @height: untyped
+
+      @halfway_point: untyped
+
+      @exportable: untyped
+
+      include Prawn::View
+
+      HEADER_HEIGHT: 50
+
+      LOGO_SIZE: 21
+
+      LOGO_VPOSITION: 6
+
+      GITLAB_TEXT_X_OFFSET: 25
+
+      GITLAB_TEXT_WIDTH: 100
+
+      GITLAB_TEXT_HEIGHT: 30
+
+      GITLAB_TEXT_FONT_SIZE: 24
+
+      METADATA_FONT_SIZE: 8
+
+      METADATA_COLOR: "888888"
+
+      GRADIENT_BAR_HEIGHT: 10
+
+      GRADIENT_BAR_Y_OFFSET: 45
+
+      def self.render: (untyped pdf, untyped exportable, ?page: ::Integer, ?height: untyped) -> untyped
+
+      def initialize: (untyped pdf, untyped page, untyped height, untyped exportable) -> void
+
+      def render: () -> untyped
+    end
+  end
+end

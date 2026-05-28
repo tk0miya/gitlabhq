@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      class SidekiqClientMiddleware
+        include Gitlab::Utils::StrongMemoize
+
+        include WalTrackingSender
+
+        def call: (untyped worker_class, untyped job, untyped _queue, untyped _redis_pool) { () -> untyped } -> untyped
+
+        private
+
+        def load_balancing_enabled?: (untyped worker_class) -> untyped
+
+        def set_data_consistency_locations!: (untyped job) -> untyped
+      end
+    end
+  end
+end

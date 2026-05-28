@@ -1,0 +1,17 @@
+module JiraConnectInstallations
+  class DestroyService
+    @installation: untyped
+
+    @jira_connect_base_path: untyped
+
+    @jira_connect_uninstalled_event_path: untyped
+
+    def self.execute: (untyped installation, untyped jira_connect_base_path, untyped jira_connect_uninstalled_event_path) -> untyped
+
+    def initialize: (untyped installation, untyped jira_connect_base_path, untyped jira_connect_uninstalled_event_path) -> void
+
+    def execute: () -> (true | false)
+
+    def deactivate_jira_cloud_app_integrations: (untyped subscriptions_namespace_ids) -> untyped
+  end
+end

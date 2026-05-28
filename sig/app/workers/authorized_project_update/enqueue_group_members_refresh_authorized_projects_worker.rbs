@@ -1,0 +1,7 @@
+module AuthorizedProjectUpdate
+  class EnqueueGroupMembersRefreshAuthorizedProjectsWorker
+    include ApplicationWorker
+
+    def perform: (untyped group_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+  end
+end

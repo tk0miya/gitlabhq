@@ -1,0 +1,170 @@
+class ProjectPresenter < Gitlab::View::Presenter::Delegated
+  include ActionView::Helpers::NumberHelper
+
+  include GitlabRoutingHelper
+
+  include StorageHelper
+
+  include TreeHelper
+
+  include Ci::PipelineEditorHelper
+
+  include IconsHelper
+
+  include BlobHelper
+
+  include ChecksCollaboration
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Gitlab::Experiment::Dsl
+
+  include SafeFormatHelper
+
+  include Projects::PagesHelper
+
+  AnchorData: untyped
+
+  MAX_TOPICS_TO_SHOW: 3
+
+  def statistic_icon: (?::String icon_name, ?::String variant) -> untyped
+
+  def statistics_anchors: () -> untyped
+
+  def statistics_buttons: () -> untyped
+
+  def empty_repo_statistics_anchors: () -> ::Array[untyped]
+
+  def empty_repo_statistics_buttons: () -> untyped
+
+  def default_view: () -> untyped
+
+  def readme_path: () -> untyped
+
+  def changelog_path: () -> untyped
+
+  def license_path: () -> untyped
+
+  def contribution_guide_path: () -> (untyped | nil)
+
+  def add_license_path: () -> untyped
+
+  def add_license_ide_path: () -> untyped
+
+  def add_changelog_path: () -> untyped
+
+  def add_changelog_ide_path: () -> untyped
+
+  def add_contribution_guide_path: () -> untyped
+
+  def add_contribution_guide_ide_path: () -> untyped
+
+  def add_readme_path: () -> untyped
+
+  def add_readme_ide_path: () -> untyped
+
+  def license_short_name: () -> untyped
+
+  def can_current_user_push_code?: () -> untyped
+
+  def can_current_user_push_to_branch?: (untyped branch) -> (false | untyped)
+
+  def can_current_user_push_to_default_branch?: () -> untyped
+
+  def storage_anchor_data: () -> (nil | untyped)
+
+  def releases_anchor_data: () -> (nil | untyped)
+
+  def environments_anchor_data: () -> (nil | untyped)
+
+  def commits_anchor_data: () -> untyped
+
+  def branches_anchor_data: () -> untyped
+
+  def terraform_states_anchor_data: () -> (untyped | nil)
+
+  def tags_anchor_data: () -> untyped
+
+  def upload_anchor_data: () -> untyped
+
+  def new_file_anchor_data: () -> (untyped | nil)
+
+  def readme_anchor_data: () -> (untyped | untyped | nil)
+
+  def changelog_anchor_data: () -> (untyped | untyped | nil)
+
+  def license_anchor_data: () -> untyped
+
+  def contribution_guide_anchor_data: () -> (untyped | untyped | nil)
+
+  def autodevops_anchor_data: () -> (nil | untyped)
+
+  def container_registry_disabled_icon: () -> untyped
+
+  def container_registry_disabled?: () -> untyped
+
+  def kubernetes_cluster_anchor_data: () -> (untyped | nil)
+
+  def gitlab_ci_anchor_data: () -> (nil | untyped)
+
+  def wiki_anchor_data: () -> (nil | untyped)
+
+  def topics_to_show: () -> untyped
+
+  def topics_not_shown: () -> untyped
+
+  def count_of_extra_topics_not_shown: () -> (untyped | 0)
+
+  def has_extra_topics?: () -> untyped
+
+  def has_review_app?: () -> untyped
+
+  def can_setup_review_app?: () -> untyped
+
+  def all_clusters_empty?: () -> untyped
+
+  def pages_anchor_data: () -> (nil | untyped)
+
+  def observability_anchor_data: () -> (nil | untyped)
+
+  private
+
+  def integrations_anchor_data: () -> (nil | untyped)
+
+  def cicd_enabled?: () -> untyped
+
+  def cicd_missing?: () -> untyped
+
+  def can_instantiate_cluster?: () -> untyped
+
+  def filename_path: (untyped filepath) -> (nil | untyped)
+
+  def anonymous_project_view: () -> ("files" | "wiki" | "activity")
+
+  def add_special_file_path: (file_name: untyped, ?commit_message: untyped?, ?branch_name: untyped?, ?additional_params: ::Hash[untyped, untyped]) -> untyped
+
+  def project_topic_list: () -> untyped
+
+  def can_read_terraform_state?: () -> untyped
+
+  # Avoid including ActionView::Helpers::UrlHelper
+  def content_tag: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def can_create_wiki?: () -> untyped
+
+  def can_read_wiki?: () -> untyped
+
+  def project_wiki_path: () -> untyped
+
+  def project_wiki_index_path: () -> untyped
+
+  def project_create_wiki_path: () -> ::String
+
+  def storage_anchor_text: () -> untyped
+
+  def observability_settings: () -> untyped
+
+  def can_read_observability?: () -> untyped
+
+  def observability_feature_enabled?: () -> untyped
+end

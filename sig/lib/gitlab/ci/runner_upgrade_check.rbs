@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    class RunnerUpgradeCheck
+      @gitlab_version: untyped
+
+      @releases_store: untyped
+
+      def initialize: (untyped gitlab_version, ?untyped? runner_releases_store) -> void
+
+      def check_runner_upgrade_suggestion: (untyped runner_version) -> untyped
+
+      private
+
+      def runner_releases_store: () -> untyped
+
+      def add_suggestion: (untyped suggestions, untyped runner_version, untyped version, untyped status) -> (false | true)
+
+      def check_runner_upgrade_suggestions: (untyped runner_version) -> (::Hash[untyped, :invalid_version] | ::Hash[untyped, :error] | untyped)
+
+      def add_recommended_runner_release_update: (untyped runner_version, untyped suggestions) -> (true | untyped)
+
+      def add_available_runner_release: (untyped runner_version, untyped suggestions) -> untyped
+
+      def add_recommendation_if_outside_backport_window: (untyped runner_version, untyped suggestions) -> (false | untyped)
+    end
+  end
+end

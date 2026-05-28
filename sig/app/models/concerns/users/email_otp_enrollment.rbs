@@ -1,0 +1,29 @@
+module Users
+  module EmailOtpEnrollment
+    extend ActiveSupport::Concern
+
+    # These two methods allow us to treat email OTP enrollment as a
+    # boolean, while still preserving the enrollment date itself.
+    def email_otp_required_as_boolean: () -> untyped
+
+    def email_otp_required_as_boolean=: (untyped value) -> untyped
+
+    def can_modify_email_otp_enrollment?: () -> untyped
+
+    def email_otp_enrollment_restriction: () -> (:feature_disabled | :uses_external_authenticator | ::Symbol | :future_enforcement | :email_otp_required | nil)
+
+    def must_require_email_otp?: () -> untyped
+
+    # Ensures email_otp_required_after is in a valid state based on
+    # the restrictions applied to the user (instance settings, group
+    # policies, etc).
+    #
+    # Sets the value directly on user_detail because delegated attributes
+    # don't propagate dirty state to the parent User model, which would
+    # prevent changes from being saved.
+    #
+    # @param save [Boolean] whether to persist changes if
+    #   email_otp_required_after is modified (default: false)
+    def set_email_otp_required_after_based_on_restrictions: (?save: bool) -> (nil | untyped)
+  end
+end

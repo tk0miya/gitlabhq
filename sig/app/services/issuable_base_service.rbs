@@ -1,0 +1,152 @@
+class IssuableBaseService < ::BaseContainerService
+  @callbacks: untyped
+
+  private
+
+  def available_callbacks: () -> ::Array[untyped]
+
+  def initialize_callbacks!: (untyped issuable) -> untyped
+
+  def remove_callback_params: () -> untyped
+
+  # Helper method, that is being used when we initialize the callbacks,
+  # to dynamically determine if a callback class can be executed without params
+  def execute_without_params: (untyped callback_class) -> (false | untyped)
+
+  # Method to determine if this is a create service for a WorkItem or Issue
+  def create_service?: () -> untyped
+
+  def self.constructor_container_arg: (untyped value) -> { container: untyped }
+
+  attr_accessor params: untyped
+
+  def initialize: (container: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+  def can_admin_issuable?: (untyped issuable) -> untyped
+
+  def can_set_issuable_metadata?: (untyped issuable) -> untyped
+
+  def can_set_confidentiality?: (untyped issuable) -> untyped
+
+  def filter_params: (untyped issuable) -> untyped
+
+  def filter_assignees: (untyped issuable) -> untyped
+
+  def filter_assignees_using_checks: (untyped issuable, untyped id_key) -> (nil | untyped)
+
+  def user_can_read?: (untyped issuable, untyped user) -> untyped
+
+  def link_composite_identity: (untyped user) -> untyped
+
+  def filter_severity: (untyped issuable) -> (nil | untyped)
+
+  def filter_escalation_status: (untyped issuable) -> (nil | untyped)
+
+  def process_assignee_ids: (untyped attributes, ?existing_assignee_ids: untyped?, ?extra_assignee_ids: untyped) -> untyped
+
+  def handle_quick_actions: (untyped issuable) -> untyped
+
+  # Notes: When the description has been edited, then we need to sanitize and compare with
+  # the original description, removing any extra quick actions.
+  # If the description has not been edited, then just remove any quick actions
+  # in the current description.
+  def merge_quick_actions_into_params!: (untyped issuable, params: untyped, ?only: untyped?) -> untyped
+
+  def quick_action_options: () -> { scope_validator: untyped }
+
+  def create: (untyped issuable, ?skip_system_notes: bool) -> untyped
+
+  def set_issuable_author: (untyped issuable) -> untyped
+
+  def set_crm_contacts: (untyped issuable, untyped add_crm_contact_emails, ?untyped remove_crm_contact_emails) -> (nil | untyped)
+
+  def before_create: (untyped issuable) -> nil
+
+  def after_create: (untyped issuable) -> nil
+
+  def before_update: (untyped issuable, ?skip_spam_check: bool) -> nil
+
+  def after_update: (untyped issuable, untyped old_associations) -> untyped
+
+  def execute_triggers: (untyped _issuable, ?::Hash[untyped, untyped] _old_associations) -> nil
+
+  def execute_flow_triggers: (untyped _issuable, untyped _users, untyped _event_type) -> nil
+
+  def handle_description_updated: (untyped issuable) -> (nil | untyped)
+
+  def update: (untyped issuable) -> untyped
+
+  # Overridden in child class
+  def trigger_update_subscriptions: (untyped issuable, untyped old_associations) -> nil
+
+  def transaction_update: (untyped issuable, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def transaction_create: (untyped issuable) -> untyped
+
+  def run_after_create_callbacks: (untyped _issuable) -> untyped
+
+  def update_task: (untyped issuable) -> untyped
+
+  def transaction_update_task: (untyped issuable) -> untyped
+
+  # Handle the `update_task` event sent from UI.  Attempts to update a specific
+  # line in the markdown and cached html, bypassing any unnecessary updates or checks.
+  def update_task_event: (untyped issuable) -> (nil | untyped)
+
+  def change_additional_attributes: (untyped issuable) -> untyped
+
+  def change_state: (untyped issuable, untyped state_event) -> untyped
+
+  def change_subscription: (untyped issuable) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def change_todo: (untyped issuable) -> untyped
+
+  def assign_requested_crm_contacts: (untyped issuable) -> untyped
+
+  def assign_requested_assignees: (untyped issuable) -> (nil | untyped)
+
+  # Arrays of ids are used, but we should really use sets of ids, so
+  # let's have an helper to properly check if some ids are changing
+  def ids_changing?: (untyped old_array, untyped new_array) -> untyped
+
+  def toggle_award: (untyped issuable) -> untyped
+
+  def create_system_notes: (untyped issuable, **untyped options) -> untyped
+
+  def associations_before_update: (untyped issuable) -> untyped
+
+  def handle_move_between_ids: (untyped issuable_position) -> (nil | untyped)
+
+  def has_changes?: (untyped issuable, ?old_labels: untyped, ?old_assignees: untyped, ?old_reviewers: untyped) -> untyped
+
+  def has_label_changes?: (untyped issuable, untyped old_labels) -> (false | untyped)
+
+  def invalidate_cache_counts: (untyped issuable, ?users: untyped) -> untyped
+
+  # override if needed
+  def handle_label_changes: (untyped issuable, untyped old_labels) -> (false | true)
+
+  # override if needed
+  def handle_changes: (untyped issuable, untyped options) -> nil
+
+  # override if needed
+  def handle_task_changes: (untyped issuable) -> nil
+
+  # override if needed
+  def execute_hooks: (untyped issuable, ?::String action, ?::Hash[untyped, untyped] params) -> nil
+
+  def update_project_counter_caches?: (untyped issuable) -> untyped
+
+  def parent: () -> untyped
+
+  def update_timestamp?: (untyped issuable) -> untyped
+
+  def allowed_create_params: (untyped params) -> untyped
+
+  def allowed_update_params: (untyped params) -> untyped
+
+  def update_issuable_sla: (untyped issuable) -> (nil | untyped)
+
+  def filter_contact_params: (untyped issuable) -> (nil | untyped)
+end

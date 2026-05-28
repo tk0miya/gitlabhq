@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module Build
+      module Context
+        class Build < Base
+          @attributes: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          attr_reader attributes: untyped
+
+          def initialize: (untyped pipeline, ?::Hash[untyped, untyped] attributes, logger: untyped) -> void
+
+          def variables: () -> untyped
+
+          def build_variables: () -> untyped
+
+          private
+
+          # Copied from `app/models/concerns/ci/deployable.rb#expanded_environment_name`
+          # See: https://gitlab.com/gitlab-org/gitlab/-/issues/479126
+          def seed_environment: () -> (nil | untyped)
+
+          # Copied from `app/models/concerns/ci/deployable.rb#expanded_kubernetes_namespace`
+          # See: https://gitlab.com/gitlab-org/gitlab/-/issues/479126
+          def seed_kubernetes_namespace: () -> (nil | untyped)
+
+          def simple_variables: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module RelativePositioning
+    class StartingFrom < RelativePositioning::Range
+      @lhs: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped lhs) -> void
+
+      def rhs: () -> untyped
+    end
+  end
+end

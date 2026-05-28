@@ -1,0 +1,102 @@
+class SearchController < ApplicationController
+  @project: untyped
+
+  @group: untyped
+
+  @search_service_presenter: untyped
+
+  @scope: untyped
+
+  @search_type: untyped
+
+  @search_term: untyped
+
+  @sort: untyped
+
+  @search_level: untyped
+
+  @global_search_duration_s: untyped
+
+  @ref: untyped
+
+  @filter: untyped
+
+  @timeout: untyped
+
+  include ControllerWithCrossProjectAccessCheck
+
+  include SafeFormatHelper
+
+  include SearchHelper
+
+  include ProductAnalyticsTracking
+
+  include Gitlab::InternalEventsTracking
+
+  include SearchRateLimitable
+
+  RESCUE_FROM_TIMEOUT_ACTIONS: ::Array[:count | :show | :autocomplete | :aggregations]
+
+  def self.search_rate_limited_endpoints: () -> ::Array[:show | :count | :autocomplete]
+
+  def show: () -> (nil | untyped)
+
+  def count: () -> untyped
+
+  def settings: () -> untyped
+
+  def autocomplete: () -> untyped
+
+  def opensearch: () -> nil
+
+  private
+
+  def record_search_apdex: () -> untyped
+
+  def record_search_error: () -> untyped
+
+  def authenticate?: () -> (false | true)
+
+  def multi_match?: (search_type: untyped, scope: untyped) -> false
+
+  def haml_search_results: () -> untyped
+
+  # overridden in EE
+  def default_sort: () -> "created_desc"
+
+  def search_term_valid?: () -> (false | true)
+
+  def search_type_valid?: () -> (false | true)
+
+  def check_single_commit_result?: () -> (false | true)
+
+  def increment_search_counters: () -> (nil | untyped)
+
+  def append_info_to_payload: (untyped payload) -> untyped
+
+  def payload_metadata: () -> untyped
+
+  def abuse_payload_metadata: () -> (::Hash[untyped, untyped] | { "abuse.confidence" => untyped, "abuse.messages" => untyped })
+
+  def search_payload_metadata: () -> untyped
+
+  def autocomplete_payload_metadata: () -> untyped
+
+  def check_scope_global_search_enabled: () -> (nil | untyped)
+
+  def render_timeout: (untyped exception) -> untyped
+
+  def tracking_namespace_source: () -> untyped
+
+  def tracking_project_source: () -> untyped
+
+  def search_type: () -> untyped
+
+  def search_params: () -> untyped
+
+  def autocomplete_params: () -> untyped
+
+  def settings_for_project: (untyped project_id) -> (::Array[untyped] | untyped)
+
+  def settings_for_group: (untyped group_id) -> (::Array[untyped] | untyped)
+end

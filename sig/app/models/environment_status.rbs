@@ -1,0 +1,43 @@
+class EnvironmentStatus
+  @project: untyped
+
+  @environment: untyped
+
+  @merge_request: untyped
+
+  @sha: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader project: untyped
+
+  attr_reader environment: untyped
+
+  attr_reader merge_request: untyped
+
+  attr_reader sha: untyped
+
+  def self.for_merge_request: (untyped mr, untyped user) -> untyped
+
+  def self.after_merge_request: (untyped mr, untyped user) -> (::Array[untyped] | untyped)
+
+  def self.for_deployed_merge_request: (untyped mr, untyped user) -> untyped
+
+  def initialize: (untyped project, untyped environment, untyped merge_request, untyped sha) -> void
+
+  def deployment: () -> untyped
+
+  def changes: () -> untyped
+
+  def changed_files: () -> untyped
+
+  def has_route_map?: () -> untyped
+
+  private
+
+  PAGE_EXTENSIONS: ::Regexp
+
+  def build_change: (untyped file) -> (nil | { path: untyped, external_url: untyped })
+
+  def self.build_environments_status: (untyped mr, untyped user, untyped pipeline) -> (::Array[untyped] | untyped)
+end

@@ -1,0 +1,54 @@
+module Issues
+  class ConvertToTicketService < ::BaseContainerService
+    # We need a work item here and not an issue object
+    @target: untyped
+
+    @email: untyped
+
+    @original_author: untyped
+
+    @support_bot: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (target: untyped, current_user: untyped, email: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader target: untyped
+
+    attr_reader email: untyped
+
+    attr_reader original_author: untyped
+
+    def update_target: () -> (nil | untyped)
+
+    def add_note: () -> untyped
+
+    def ticket?: () -> untyped
+
+    def valid_email?: () -> (false | true | untyped)
+
+    def email_participant_exists?: () -> untyped
+
+    def target_confidentiality: () -> (true | untyped)
+
+    def work_item_type: () -> untyped
+
+    def error: (untyped message) -> untyped
+
+    def support_bot: () -> untyped
+
+    def error_service_desk_disabled: () -> untyped
+
+    def error_underprivileged: () -> untyped
+
+    def error_already_ticket: () -> untyped
+
+    def error_invalid_email: () -> untyped
+
+    def success_message: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module Auth
+    module Otp
+      module Strategies
+        class Devise < Base
+          def validate: (untyped otp_code) -> untyped
+        end
+      end
+    end
+  end
+end

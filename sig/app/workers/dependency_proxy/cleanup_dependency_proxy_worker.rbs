@@ -1,0 +1,15 @@
+module DependencyProxy
+  class CleanupDependencyProxyWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+
+    private
+
+    def enqueue_blob_cleanup_job: () -> untyped
+
+    def enqueue_manifest_cleanup_job: () -> untyped
+  end
+end

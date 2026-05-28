@@ -1,0 +1,25 @@
+module Clusters
+  module Agents
+    module Authorizations
+      module UserAccess
+        class GroupAuthorization < ApplicationRecord
+          include Scopes
+
+          def config_project: () -> untyped
+
+          def self.upsert_configs: (untyped configs) -> untyped
+
+          def self.delete_unlisted: (untyped group_ids) -> untyped
+
+          def self.all_groups_with_membership_cte: () -> untyped
+
+          def self.all_groups_with_membership: () -> untyped
+
+          def self.groups_with_direct_membership_cte: (untyped user) -> untyped
+
+          def self.groups_with_direct_membership_for: (untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

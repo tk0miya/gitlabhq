@@ -1,0 +1,152 @@
+module WorkItems
+  module TypesFramework
+    module SystemDefined
+      class Type
+        include ActiveRecord::FixedItemsModel::Model
+
+        include GlobalID::Identification
+
+        include Gitlab::Utils::StrongMemoize
+
+        BASE_TYPES: ::Array[untyped]
+
+        def self.fixed_items: () -> untyped
+
+        # Helper method for the transition from the old `WorkItems::Type`
+        # to the new `WorkItems::TypesFramework::SystemDefined::Type`
+        #
+        # TODO: Remove this once the transition is complete.
+        # See https://gitlab.com/gitlab-org/gitlab/-/work_items/581926
+        def self.base_types: () -> untyped
+
+        def self.by_type: (untyped type) -> untyped
+
+        def self.find_by_type: (untyped type) -> untyped
+
+        def self.find_by_id: (untyped id) -> untyped
+
+        alias self.default_by_type self.find_by_type
+
+        def self.find_by_name: (untyped name) -> untyped
+
+        def self.default_issue_type: () -> untyped
+
+        def self.order_by_name_asc: () -> untyped
+
+        def self.by_ids_ordered_by_name: (untyped ids) -> untyped
+
+        def self.with_widget_definition: (untyped widget_type) -> untyped
+
+        private
+
+        def self.name_sorting_asc: (untyped items) -> untyped
+
+        public
+
+        # Use legacy format
+        def to_global_id: (?::Hash[untyped, untyped] _options) -> untyped
+
+        alias to_gid to_global_id
+
+        # The id used to persist a reference to this type (e.g. in join tables
+        # like work_item_type_custom_fields). For system-defined types this is
+        # simply the type id. Custom types override this to return the
+        # converted_from_system_defined_type_identifier when applicable, which
+        # keeps persisted references consistent with how work items store
+        # work_item_type_id.
+        def persistable_id: () -> untyped
+
+        # The system-defined type id to use for cross-cutting lookups that
+        # only know about system-defined ids (e.g. HierarchyRestriction).
+        # Custom types override this to return their delegation_source id.
+        def system_defined_type_id: () -> untyped
+
+        def widget_definitions: () -> untyped
+
+        def widgets: (untyped _resource_parent) -> untyped
+
+        def widget_classes: (untyped resource_parent) -> untyped
+
+        def unavailable_widgets_on_conversion: (untyped target_type, untyped resource_parent) -> untyped
+
+        # TODO: remove the supports_assignee? and supports_time_tracking? and replace it with this method
+        def supports_widget?: (untyped resource_parent, untyped widget_class) -> untyped
+
+        # TODO: Move to something generic like .supports_widget?(widget_type)
+        def supports_assignee?: (untyped resource_parent) -> untyped
+
+        def supports_time_tracking?: (untyped resource_parent) -> untyped
+
+        def allowed_child_types_by_name: (?resource_parent: untyped?) -> untyped
+
+        def allowed_parent_types_by_name: (?resource_parent: untyped?) -> untyped
+
+        def supported_conversion_types: (untyped resource_parent, untyped user) -> untyped
+
+        def allowed_child_types: (?authorize: bool, ?resource_parent: untyped?) -> untyped
+
+        def allowed_parent_types: (?authorize: bool, ?resource_parent: untyped?) -> untyped
+
+        def descendant_types: (?resource_parent: untyped?) -> untyped
+
+        def configuration_class: () -> untyped
+
+        def license_name: () -> untyped
+
+        def licensed?: () -> untyped
+
+        def supports_roadmap_view?: () -> untyped
+
+        def use_legacy_view?: () -> untyped
+
+        def can_promote_to_objective?: () -> untyped
+
+        def show_project_selector?: () -> untyped
+
+        def supports_move_action?: () -> untyped
+
+        def service_desk?: () -> untyped
+
+        def incident_management?: () -> untyped
+
+        def configurable?: () -> untyped
+
+        def creatable?: () -> untyped
+
+        def visible_in_settings?: () -> untyped
+
+        def archived?: () -> untyped
+
+        def only_for_group?: () -> untyped
+
+        def enabled?: () -> true
+
+        def can_be_conversion_target?: () -> untyped
+
+        def allowed_child_types_config: () -> untyped
+
+        def filterable_list_view?: () -> untyped
+
+        def filterable_board_view?: () -> untyped
+
+        def disabled_workflow_type?: () -> untyped
+
+        def okr?: () -> untyped
+
+        private
+
+        def licenses_for_parent: () -> untyped
+
+        def licenses_for_child: () -> untyped
+
+        # resource_parent is used in EE
+        def supported_conversion_base_types: (untyped _resource_parent, untyped _user) -> untyped
+
+        # overridden in EE to check for EE-specific restrictions
+        def authorized_types: (untyped types, untyped _resource_parent, untyped _relation) -> untyped
+
+        def types_provider: (untyped resource_parent) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Mutations
+  module Groups
+    module CustomAttributes
+      class Delete < BaseMutation
+        include Mutations::ResolvesGroup
+
+        def resolve: (group_path: untyped, key: untyped) -> ({ custom_attribute: nil, errors: ::Array[untyped] } | { custom_attribute: untyped, errors: ::Array[untyped] })
+
+        private
+
+        def find_object: (full_path: untyped) -> untyped
+      end
+    end
+  end
+end

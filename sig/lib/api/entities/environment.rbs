@@ -1,0 +1,11 @@
+module API
+  module Entities
+    class Environment < Entities::EnvironmentBasic
+      include RequestAwareEntity
+
+      private
+
+      def can_read_cluster_agent?: () -> (nil | untyped)
+    end
+  end
+end

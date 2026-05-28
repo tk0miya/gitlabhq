@@ -1,0 +1,31 @@
+# Inspired in great part by Discourse's Email::Receiver
+module Gitlab
+  module Email
+    class ReplyParser
+      @message: untyped
+
+      @trim_reply: untyped
+
+      @append_reply: untyped
+
+      @allow_only_quotes: untyped
+
+      attr_accessor message: untyped
+
+      attr_accessor allow_only_quotes: untyped
+
+      def initialize: (untyped message, ?trim_reply: bool, ?append_reply: bool, ?allow_only_quotes: bool) -> void
+
+      def execute: () -> ("" | untyped | ::Array[untyped])
+
+      private
+
+      def select_body: (untyped message) -> ("" | untyped)
+
+      # Force encoding to UTF-8 on a Mail::Message or Mail::Part
+      def fix_charset: (untyped object) -> untyped
+
+      def force_utf8: (untyped str) -> untyped
+    end
+  end
+end

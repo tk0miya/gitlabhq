@@ -1,0 +1,40 @@
+module Gitlab
+  module Database
+    module PartitioningMigrationHelpers
+      # Helper class to copy data between two tables via upserts
+      class BulkCopy
+        @source_table: untyped
+
+        @destination_table: untyped
+
+        @source_column: untyped
+
+        @connection: untyped
+
+        @column_listing: untyped
+
+        DELIMITER: ", "
+
+        attr_reader source_table: untyped
+
+        attr_reader destination_table: untyped
+
+        attr_reader source_column: untyped
+
+        attr_reader connection: untyped
+
+        def initialize: (untyped source_table, untyped destination_table, untyped source_column, connection: untyped) -> void
+
+        def copy_between: (untyped start_id, untyped stop_id) -> untyped
+
+        def copy_relation: (untyped relation) -> untyped
+
+        private
+
+        def column_listing: () -> untyped
+
+        def conflict_targets: () -> untyped
+      end
+    end
+  end
+end

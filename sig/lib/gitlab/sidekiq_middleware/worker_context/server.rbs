@@ -1,0 +1,11 @@
+module Gitlab
+  module SidekiqMiddleware
+    module WorkerContext
+      class Server
+        include Gitlab::SidekiqMiddleware::WorkerContext
+
+        def call: (untyped worker, untyped job, untyped _queue) { () -> untyped } -> untyped
+      end
+    end
+  end
+end

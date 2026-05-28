@@ -1,0 +1,19 @@
+module Ci
+  module RunnersHelper
+    include IconsHelper
+
+    def runner_short_name: (untyped runner) -> ::String
+
+    def admin_runners_app_data: () -> untyped
+
+    def admin_runners_fleet_dashboard_data: () -> { admin_runners_path: untyped, new_runner_path: untyped, clickhouse_ci_analytics_available: untyped, can_admin_runners: untyped }
+
+    def group_shared_runners_settings_data: (untyped group) -> untyped
+
+    def group_runners_data_attributes: (untyped group) -> { group_id: untyped, group_full_path: untyped, runner_install_help_page: "https://docs.gitlab.com/runner/install/", online_contact_timeout_secs: untyped, stale_timeout_secs: untyped }
+
+    def project_runners_settings_data: (untyped project) -> untyped
+
+    def toggle_shared_runners_settings_data: (untyped project) -> untyped
+  end
+end

@@ -1,0 +1,52 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces label references with links.
+      class LabelReferenceFilter < AbstractReferenceFilter
+        def parent_records: (untyped parent, untyped ids) -> untyped
+
+        def find_object: (untyped parent_object, untyped id) -> untyped
+
+        # Transform a symbol extracted from the text to a meaningful value
+        #
+        # This method has the contract that if a string `ref` refers to a
+        # record `record`, then `parse_symbol(ref) == record_identifier(record)`.
+        #
+        # This contract is slightly broken here, as we only have either the label_id
+        # or the label_name, but not both.  But below, we have both pieces of information.
+        # But it's accounted for in `find_object`
+        def parse_symbol: (untyped symbol, untyped match_data) -> { label_id: untyped, label_name: untyped, absolute_path: untyped }
+
+        # We assume that most classes are identifying records by ID.
+        #
+        # This method has the contract that if a string `ref` refers to a
+        # record `record`, then `class.parse_symbol(ref) == record_identifier(record)`.
+        # See note in `parse_symbol` above
+        def record_identifier: (untyped record) -> { label_id: untyped, label_name: untyped }
+
+        def references_in: (untyped text, ?untyped pattern) { (untyped, untyped, untyped, untyped, untyped) -> untyped } -> untyped
+
+        def find_labels: (untyped parent, ?absolute_path: bool) -> untyped
+
+        def label_finder_params: (untyped parent, untyped absolute_path) -> untyped
+
+        def url_for_object: (untyped label, untyped parent) -> (nil | untyped)
+
+        def object_link_content_html: (untyped object, untyped matches) -> untyped
+
+        def wrap_link: (untyped link, untyped label) -> untyped
+
+        def full_path_ref?: (untyped matches) -> untyped
+
+        def reference_class: (untyped type, ?tooltip: bool) -> untyped
+
+        # Returns a String containing text.
+        def object_link_title: (untyped object, untyped matches) -> untyped
+
+        def parent: () -> untyped
+
+        def requires_unescaping?: () -> true
+      end
+    end
+  end
+end

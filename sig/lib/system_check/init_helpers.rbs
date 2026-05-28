@@ -1,0 +1,6 @@
+module SystemCheck
+  module InitHelpers
+    # Return the Wants= of a unit, empty if the unit doesn't exist
+    def systemd_get_wants: (untyped unitname) -> (::Array[untyped] | untyped)
+  end
+end

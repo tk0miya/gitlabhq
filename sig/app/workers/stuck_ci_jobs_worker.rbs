@@ -1,0 +1,20 @@
+class StuckCiJobsWorker
+  include ApplicationWorker
+
+  include ExclusiveLeaseGuard
+
+  # rubocop:disable Scalability/CronWorkerContext
+  # This is an instance-wide cleanup query, so there's no meaningful
+  # scope to consider this in the context of.
+  include CronjobQueue
+
+  MINUTES_BETWEEN_RUNS: 60
+
+  def perform: () -> untyped
+
+  private
+
+  def perform_staggered_work: () -> untyped
+
+  def lease_timeout: () -> untyped
+end

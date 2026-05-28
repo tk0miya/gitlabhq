@@ -1,0 +1,19 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      class Access < Presenters::Base
+        def access_denied: (untyped project) -> untyped
+
+        def generic_access_denied: () -> untyped
+
+        def deactivated: () -> untyped
+
+        def not_found: () -> untyped
+
+        def authorize: () -> untyped
+
+        def confirm: (untyped url) -> untyped
+      end
+    end
+  end
+end

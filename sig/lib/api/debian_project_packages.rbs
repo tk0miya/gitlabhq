@@ -1,0 +1,9 @@
+module API
+  class DebianProjectPackages < ::API::Base
+    PACKAGE_FILE_REQUIREMENTS: { id: untyped, distribution: untyped, letter: untyped, package_name: untyped, package_version: untyped, file_name: untyped }
+
+    FILE_NAME_REQUIREMENTS: { file_name: untyped }
+
+    def self.resource_type: () -> :project
+  end
+end

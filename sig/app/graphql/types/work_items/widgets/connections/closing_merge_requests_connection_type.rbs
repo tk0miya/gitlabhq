@@ -1,0 +1,11 @@
+module Types
+  module WorkItems
+    module Widgets
+      module Connections
+        # rubocop: disable Graphql/AuthorizeTypes -- counts are looking up authorized data already
+        class ClosingMergeRequestsConnectionType < GraphQL::Types::Relay::BaseConnection
+        end
+      end
+    end
+  end
+end

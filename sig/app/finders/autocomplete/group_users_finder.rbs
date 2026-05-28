@@ -1,0 +1,45 @@
+# This finder returns all users that are related to a given group because:
+# 1. They are members of the group, its sub-groups, or its ancestor groups
+# 2. They are members of a group that is invited to the group, its sub-groups, or its ancestors
+# 3. They are members of a project that belongs to the group
+# 4. They are members of a group that is invited to the group's descendant projects
+#
+# These users are not necessarily members of the given group and may not have access to the group
+# so this should not be used for access control
+module Autocomplete
+  class GroupUsersFinder
+    @group: untyped
+
+    @current_user: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader group: untyped
+
+    attr_reader current_user: untyped
+
+    def initialize: (group: untyped, current_user: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def member_relations: () -> ::Array[untyped]
+
+    def members_from_group_hierarchy: () -> untyped
+
+    def members_from_hierarchy_group_shares: () -> untyped
+
+    def members_from_descendant_projects: () -> untyped
+
+    def members_from_descendant_project_shares: () -> untyped
+
+    def group_hierarchy_cte: () -> untyped
+
+    def group_hierarchy_ids: () -> untyped
+
+    def descendant_projects_cte: () -> untyped
+
+    def descendant_project_ids: () -> untyped
+  end
+end

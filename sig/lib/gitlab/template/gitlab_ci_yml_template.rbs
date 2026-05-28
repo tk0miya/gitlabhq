@@ -1,0 +1,29 @@
+module Gitlab
+  module Template
+    class GitlabCiYmlTemplate < BaseTemplate
+      BASE_EXCLUDED_PATTERNS: ::Array[::Regexp]
+
+      BASE_DIR: "lib/gitlab/ci/templates"
+
+      def description: () -> "# This file is a template, and might need editing before it works on your project."
+
+      extend ::Gitlab::Utils::Override
+
+      extend Gitlab::Utils::StrongMemoize
+
+      def self.extension: () -> ".gitlab-ci.yml"
+
+      def self.categories: () -> { "General" => "", "Pages" => "Pages", "Verify" => "Verify", "Auto deploy" => "autodeploy" }
+
+      def self.include_categories_for_file: () -> ::Hash[::String, { "Security" => "Security" }]
+
+      def self.excluded_patterns: () -> untyped
+
+      def self.additional_excluded_patterns: () -> ::Array[::Regexp]
+
+      def self.base_dir: () -> untyped
+
+      def self.finder: (?untyped? project) -> untyped
+    end
+  end
+end

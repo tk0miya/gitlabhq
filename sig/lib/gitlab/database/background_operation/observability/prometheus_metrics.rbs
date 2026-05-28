@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      module Observability
+        class PrometheusMetrics
+          extend Gitlab::Utils::StrongMemoize
+
+          QUERY_TIMING_BUCKETS: ::Array[::Float | 1 | 5]
+
+          def self.metrics: () -> untyped
+
+          def track: (untyped job) -> untyped
+
+          private
+
+          def track_timing_metrics: (untyped base_labels, untyped metrics) -> (nil | untyped)
+
+          def metric_for: (untyped name) -> untyped
+        end
+      end
+    end
+  end
+end

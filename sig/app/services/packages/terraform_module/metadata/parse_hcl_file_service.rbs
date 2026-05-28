@@ -1,0 +1,111 @@
+module Packages
+  module TerraformModule
+    module Metadata
+      class ParseHclFileService
+        @file: untyped
+
+        @resources: untyped
+
+        @modules: untyped
+
+        @providers: untyped
+
+        @variables: untyped
+
+        @outputs: untyped
+
+        @block_data: untyped
+
+        @current_block: untyped
+
+        @current_argument: untyped
+
+        @heredoc_tag: untyped
+
+        COMMENT_NOTATIONS: ::Array["//" | "#"]
+
+        RESOURCE_REGEX: ::Regexp
+
+        QUOTED_STRING_BOUNDARIES_REGEX: ::Regexp
+
+        TO_KEEP_ARGUMENTS: { variable: ::Array["name" | "type" | "description" | "default"], output: ::Array["name" | "description"] }
+
+        DEPENDENCY_REGEXES: { source: ::Regexp, version: ::Regexp }
+
+        ARGUMENTS: { variable: ::Array["default =" | "type =" | "description =" | "validation {" | "sensitive =" | "nullable ="], output: ::Array["description =" | "value ="] }
+
+        HEREDOC_PREFIX_REGEX: ::Regexp
+
+        PROVIDER_REGEXES: { v012: ::Regexp, v013: ::Regexp }
+
+        def initialize: (untyped file) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader file: untyped
+
+        attr_reader resources: untyped
+
+        attr_reader modules: untyped
+
+        attr_reader providers: untyped
+
+        attr_reader variables: untyped
+
+        attr_reader outputs: untyped
+
+        attr_accessor block_data: untyped
+
+        attr_accessor current_block: untyped
+
+        attr_accessor current_argument: untyped
+
+        attr_accessor heredoc_tag: untyped
+
+        def skip_line?: (untyped line) -> untyped
+
+        def process_line: (untyped line) -> untyped
+
+        def determine_block_type: (untyped line) -> untyped
+
+        def start_new_block: (untyped block_type, untyped line) -> untyped
+
+        def process_block_content: (untyped line) -> untyped
+
+        def block_end?: (untyped line) -> untyped
+
+        def finalize_current_block: () -> (nil | untyped)
+
+        def clean_block_data: () -> untyped
+
+        def store_block_data: () -> untyped
+
+        def reset_block_state: () -> untyped
+
+        def process_block_arguments: (untyped line) -> untyped
+
+        def process_module_arguments: (untyped line) -> untyped
+
+        def process_variable_or_output_arguments: (untyped line) -> untyped
+
+        def process_argument_declaration: (untyped line, untyped args) -> untyped
+
+        def process_heredoc: () -> untyped
+
+        def append_argument_value: (untyped line) -> (nil | untyped)
+
+        def process_terraform_arguments: (untyped line) -> (untyped | untyped | nil)
+
+        def process_provider_arguments: (untyped line) -> (untyped | untyped | untyped | untyped | nil)
+
+        def finalize_provider_block: () -> untyped
+
+        def argument_declared?: (untyped line, untyped args) -> untyped
+
+        def extract_argument: (untyped line, untyped args) -> ::Array[untyped]
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module API
+  module Entities
+    class WikiAttachment < Grape::Entity
+      include Gitlab::FileMarkdownLinkBuilder
+
+      def filename: () -> untyped
+
+      def secure_url: () -> untyped
+    end
+  end
+end

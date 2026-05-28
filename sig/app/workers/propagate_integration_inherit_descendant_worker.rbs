@@ -1,0 +1,6 @@
+class PropagateIntegrationInheritDescendantWorker
+  include ApplicationWorker
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def perform: (untyped integration_id, untyped min_id, untyped max_id) -> (nil | untyped)
+end

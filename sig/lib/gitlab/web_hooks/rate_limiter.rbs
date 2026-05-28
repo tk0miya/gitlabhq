@@ -1,0 +1,45 @@
+module Gitlab
+  module WebHooks
+    class RateLimiter
+      @hook: untyped
+
+      @parent: untyped
+
+      @root_namespace: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      LIMIT_NAME: :web_hook_calls
+
+      NO_LIMIT: 0
+
+      # SystemHooks (instance admin hooks) and ServiceHooks (integration hooks)
+      # are not rate-limited.
+      EXCLUDED_HOOK_TYPES: ::Array["SystemHook" | "ServiceHook"]
+
+      def initialize: (untyped hook) -> void
+
+      # Increments the rate-limit counter.
+      # Returns true if the hook should be rate-limited.
+      def rate_limit!: () -> (false | untyped)
+
+      # Returns true if the hook is currently over its rate-limit.
+      # It does not increment the rate-limit counter.
+      def rate_limited?: () -> (false | untyped)
+
+      def limit: () -> untyped
+
+      private
+
+      attr_reader hook: untyped
+
+      attr_reader parent: untyped
+
+      def no_limit?: () -> untyped
+
+      def root_namespace: () -> untyped
+
+      def limit_name: () -> untyped
+    end
+  end
+end

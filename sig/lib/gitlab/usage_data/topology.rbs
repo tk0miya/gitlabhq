@@ -1,0 +1,87 @@
+module Gitlab
+  class UsageData
+    class Topology
+      @failures: untyped
+
+      @instances: untyped
+
+      include Gitlab::Utils::UsageData
+
+      JOB_TO_SERVICE_NAME: { "gitlab-rails" => "web", "gitlab-sidekiq" => "sidekiq", "gitlab-workhorse" => "workhorse", "redis" => "redis", "postgres" => "postgres", "gitaly" => "gitaly", "prometheus" => "prometheus", "node" => "node-exporter", "registry" => "registry" }
+
+      # If these errors occur, all subsequent queries are likely to fail for the same error
+      TIMEOUT_ERRORS: ::Array[untyped]
+
+      CollectionFailure: untyped
+
+      def topology_usage_data: () -> { topology: untyped }
+
+      private
+
+      def topology_fetch_all_data: () -> untyped
+
+      def topology_app_requests_per_hour: (untyped client) -> (nil | untyped)
+
+      def topology_query_apdex_weekly_average: (untyped client) -> (nil | untyped)
+
+      def topology_node_data: (untyped client) -> untyped
+
+      def topology_node_memory: (untyped client) -> untyped
+
+      def topology_node_memory_utilization: (untyped client) -> untyped
+
+      def topology_node_cpus: (untyped client) -> untyped
+
+      def topology_node_cpu_utilization: (untyped client) -> untyped
+
+      def topology_node_uname_info: (untyped client) -> untyped
+
+      def topology_all_service_memory: (untyped client) -> { rss: untyped, uss: untyped, pss: untyped }
+
+      def topology_service_memory_rss: (untyped client) -> untyped
+
+      def topology_service_memory_uss: (untyped client) -> untyped
+
+      def topology_service_memory_pss: (untyped client) -> untyped
+
+      def topology_all_service_process_count: (untyped client) -> untyped
+
+      def topology_all_service_server_types: (untyped client) -> untyped
+
+      def query_safely: (untyped query, untyped query_name, fallback: untyped) { (untyped) -> untyped } -> untyped
+
+      def timeout_error_exists?: () -> untyped
+
+      def topology_node_services: (untyped instance, untyped all_process_counts, untyped all_process_memory, untyped all_server_types) -> untyped
+
+      def topology_instance_service_process_count: (untyped instance, untyped all_instance_data) -> untyped
+
+      # Given a hash mapping memory set types to Prometheus response data, returns a hash
+      # mapping instance/node names to services and their respective memory use in bytes
+      def topology_instance_service_memory: (untyped instance, untyped instance_data_by_type) -> untyped
+
+      def topology_instance_service_server_types: (untyped instance, untyped all_instance_data) -> untyped
+
+      def topology_data_for_instance: (untyped instance, untyped all_instance_data) -> untyped
+
+      def normalize_instance_label: (untyped instance) -> untyped
+
+      def normalize_localhost_address: (untyped instance) -> untyped
+
+      def drop_port_number: (untyped instance) -> untyped
+
+      def normalize_and_track_instance: (untyped instance) -> untyped
+
+      def aggregate_one_week: (untyped query, ?aggregation: ::Symbol) -> ::String
+
+      def aggregate_by_instance: (untyped client, untyped query, ?transform_value: ::Symbol) -> untyped
+
+      # Will retain a composite key that values are mapped to
+      def aggregate_by_labels: (untyped client, untyped query, ?transform_value: ::Symbol) -> untyped
+
+      # Given query result vector, map instance to a hash of target labels key/value.
+      # @return [Hash] mapping instance to a hash of target labels key/value, or the empty hash if input empty vector
+      def map_instance_labels: (untyped query_result_vector, untyped target_labels) -> untyped
+    end
+  end
+end

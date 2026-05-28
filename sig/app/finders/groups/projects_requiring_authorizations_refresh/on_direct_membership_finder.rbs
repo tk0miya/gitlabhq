@@ -1,0 +1,11 @@
+module Groups
+  module ProjectsRequiringAuthorizationsRefresh
+    class OnDirectMembershipFinder < Base
+      def execute: () -> untyped
+
+      private
+
+      def ids_of_projects_in_hierarchy_and_project_shares_of_shared_groups: (untyped group, ?batch_size: ::Integer) -> untyped
+    end
+  end
+end

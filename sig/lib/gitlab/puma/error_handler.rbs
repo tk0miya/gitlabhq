@@ -1,0 +1,19 @@
+module Gitlab
+  module Puma
+    class ErrorHandler
+      @is_production: untyped
+
+      PROD_ERROR_MESSAGE: "An error has occurred and reported in the system's low-level error handler."
+
+      DEV_ERROR_MESSAGE: "Server Error: An error has been caught by Puma's low-level error handler.\nRead the Puma section of the troubleshooting docs for next steps - https://gitlab-org.gitlab.io/gitlab-development-kit/troubleshooting/#puma.\n"
+
+      def initialize: (untyped is_production) -> void
+
+      def execute: (untyped ex, untyped env, untyped status_code) -> ::Array[untyped | ::Hash[untyped, untyped]]
+
+      private
+
+      def message: () -> untyped
+    end
+  end
+end

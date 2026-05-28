@@ -1,0 +1,31 @@
+module WorkItems
+  module Callbacks
+    class CrmContacts < Base
+      @group: untyped
+
+      @operation_mode_attribute: untyped
+
+      OPERATION_MODES: { "APPEND" => :add_ids, "REMOVE" => :remove_ids, "REPLACE" => :replace_ids }
+
+      def after_save: () -> untyped
+
+      private
+
+      def clear_contacts: () -> (nil | untyped)
+
+      def set_contacts: () -> (nil | untyped)
+
+      def call_service: (untyped params) -> untyped
+
+      def feature_enabled?: () -> untyped
+
+      def group: () -> untyped
+
+      def operation_mode_attribute: () -> untyped
+
+      def feature_disabled_message: () -> untyped
+
+      def unsupported_work_item_message: () -> untyped
+    end
+  end
+end

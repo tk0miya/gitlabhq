@@ -1,0 +1,77 @@
+class SearchService
+  @current_user: untyped
+
+  @params: untyped
+
+  @search_objects: untyped
+
+  @level: untyped
+
+  @logger: untyped
+
+  @search_service: untyped
+
+  include Gitlab::Allowable
+
+  include Gitlab::Utils::StrongMemoize
+
+  DEFAULT_PER_PAGE: untyped
+
+  MAX_PER_PAGE: 200
+
+  def self.supported_search_types: () -> ::Array["basic"]
+
+  attr_reader params: untyped
+
+  def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+  def project: () -> (nil | untyped)
+
+  def group: () -> (nil | untyped)
+
+  def search_type_errors: () -> nil
+
+  def global_search?: () -> untyped
+
+  def search_type: () -> "basic"
+
+  def show_snippets?: () -> untyped
+
+  def search_results: () -> untyped
+
+  def search_objects: (?untyped? preload_method) -> untyped
+
+  def search_highlight: () -> untyped
+
+  def search_aggregations: () -> untyped
+
+  def search_counts: () -> untyped
+
+  def abuse_detected?: () -> untyped
+
+  def abuse_messages: () -> (::Array[untyped] | untyped)
+
+  def level: () -> untyped
+
+  def global_search_enabled_for_scope?: () -> (false | untyped)
+
+  private
+
+  def pipe_abuse_detector: () -> untyped
+
+  def page: () -> untyped
+
+  def per_page: () -> untyped
+
+  def visible_result?: (untyped object) -> (true | untyped)
+
+  def redact_unauthorized_results: (untyped results_collection) -> untyped
+
+  def log_redacted_search_results: (untyped filtered_results) -> untyped
+
+  def logger: () -> untyped
+
+  def search_service: () -> untyped
+
+  attr_reader current_user: untyped
+end

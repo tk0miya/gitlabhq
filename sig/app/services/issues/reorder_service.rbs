@@ -1,0 +1,13 @@
+module Issues
+  class ReorderService < Issues::BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    def execute: (untyped issue) -> (false | untyped)
+
+    private
+
+    def update: (untyped issue, untyped attrs) -> untyped
+
+    def move_between_ids: () -> untyped
+  end
+end

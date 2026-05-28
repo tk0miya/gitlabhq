@@ -1,0 +1,45 @@
+module Clusters
+  module Agents
+    module ManagedResources
+      class DeleteService
+        @managed_resource: untyped
+
+        @attempt_count: untyped
+
+        @kas_client: untyped
+
+        @logger: untyped
+
+        CORE_GROUP: "core"
+
+        POLLING_SCHEDULE: ::Array[untyped]
+
+        def initialize: (untyped managed_resource, ?attempt_count: untyped?) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        attr_reader managed_resource: untyped
+
+        attr_reader attempt_count: untyped
+
+        def tracked_objects: (untyped in_progress_objects) -> untyped
+
+        def requeue!: () -> untyped
+
+        def update_status!: (untyped status) -> untyped
+
+        def kas_client: () -> untyped
+
+        def format_error: (untyped error) -> ::String
+
+        def log_error: (details: untyped) -> untyped
+
+        def logger: () -> untyped
+
+        def track_event: (untyped managed_resource, untyped response) -> untyped
+      end
+    end
+  end
+end

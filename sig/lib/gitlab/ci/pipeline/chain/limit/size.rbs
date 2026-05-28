@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Limit
+          class Size < Chain::Base
+            @limit: untyped
+
+            include ::Gitlab::Ci::Pipeline::Chain::Helpers
+
+            def initialize: (*untyped) -> void
+
+            def perform!: () -> (untyped | untyped | nil)
+
+            def break?: () -> untyped
+
+            private
+
+            attr_reader limit: untyped
+
+            def log_attrs: () -> { jobs_count: untyped, pipeline_source: untyped, plan: untyped, project_id: untyped, project_full_path: untyped }
+          end
+        end
+      end
+    end
+  end
+end

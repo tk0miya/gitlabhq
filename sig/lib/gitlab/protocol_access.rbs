@@ -1,0 +1,11 @@
+module Gitlab
+  module ProtocolAccess
+    def self.allowed?: (untyped protocol, ?project: untyped?) -> (true | false)
+
+    private
+
+    def self.instance_allowed?: (untyped protocol) -> (true | untyped)
+
+    def self.namespace_allowed?: (untyped protocol, ?namespace: untyped?) -> (true | untyped)
+  end
+end

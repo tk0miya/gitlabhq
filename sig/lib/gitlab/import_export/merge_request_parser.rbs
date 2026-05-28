@@ -1,0 +1,32 @@
+module Gitlab
+  module ImportExport
+    class MergeRequestParser
+      @project: untyped
+
+      @diff_head_sha: untyped
+
+      @merge_request: untyped
+
+      @relation_hash: untyped
+
+      FORKED_PROJECT_ID: nil
+
+      def initialize: (untyped project, untyped diff_head_sha, untyped merge_request, untyped relation_hash) -> void
+
+      def parse!: () -> untyped
+
+      # When the exported MR was in a fork, the source branch does not exist in
+      # the imported bundle - although the commits usually do - so it must be
+      # created manually. Ignore failures so we get the merge request itself if
+      # the commits are missing.
+      def create_source_branch: () -> untyped
+
+      # Ignore failures during target branch creation so we still create the merge request itself.
+      def create_target_branch: () -> untyped
+
+      def branch_exists?: (untyped branch_name) -> untyped
+
+      def fork_merge_request?: () -> untyped
+    end
+  end
+end

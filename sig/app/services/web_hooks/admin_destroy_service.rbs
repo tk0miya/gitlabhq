@@ -1,0 +1,15 @@
+module WebHooks
+  # A variant of the destroy service that can only be used by an administrator
+  # from a rake task.
+  class AdminDestroyService < WebHooks::DestroyService
+    @rake_task: untyped
+
+    attr_reader rake_task: untyped
+
+    def initialize: (rake_task: untyped) -> void
+
+    def authorized?: (untyped web_hook) -> untyped
+
+    def log_message: (untyped hook) -> ::String
+  end
+end

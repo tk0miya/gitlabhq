@@ -1,0 +1,40 @@
+module Gitlab
+  module Graphql
+    module Authz
+      # Determines whether granular token authorization should be skipped for a field
+      class SkipRules
+        @field: untyped
+
+        @owner: untyped
+
+        include TypeUnwrapper
+
+        def initialize: (untyped field) -> void
+
+        def should_skip?: () -> (false | untyped)
+
+        private
+
+        # Mutation response fields (e.g., `createIssue.issue`)
+        # Authorization happens on the mutation field itself, not the response wrapper
+        def mutation_response_field?: () -> untyped
+
+        # Edge wrapper fields (e.g., `node`, `cursor`)
+        # Types::BaseEdge sets field_class to Types::BaseField, so the
+        # extension fires on edge fields. The `node` field picks up
+        # directives via return-type lookup, but boundary extraction
+        # fails because the auto-generated edge class is anonymous.
+        # Authorization happens on the actual data type's fields instead.
+        def edge_wrapper_field?: () -> untyped
+
+        # Permission metadata fields (e.g., `issue.userPermissions`)
+        # These return permission information, not actual data
+        def permission_metadata_field?: () -> untyped
+
+        def owner_is_permission_type?: () -> untyped
+
+        def return_type_is_permission_type?: () -> (false | untyped)
+      end
+    end
+  end
+end

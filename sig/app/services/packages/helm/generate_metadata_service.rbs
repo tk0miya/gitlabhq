@@ -1,0 +1,45 @@
+module Packages
+  module Helm
+    class GenerateMetadataService
+      @project_id_param: untyped
+
+      @channel: untyped
+
+      @packages: untyped
+
+      include API::Helpers::RelatedResourcesHelpers
+
+      API_VERSION: "v1"
+
+      CHANNEL: "channel"
+
+      INDEX_YAML_SUFFIX: ::String
+
+      EMPTY_HASH: ::Hash[untyped, untyped]
+
+      PACKAGES_BATCH_SIZE: 300
+
+      def initialize: (untyped project_id_param, untyped channel, untyped packages) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project_id_param: untyped
+
+      attr_reader channel: untyped
+
+      attr_reader packages: untyped
+
+      def api_version: () -> untyped
+
+      def entries: () -> untyped
+
+      def generated: () -> untyped
+
+      def server_info: () -> { "contextPath" => untyped }
+
+      def most_recent_package_files: (untyped packages) -> untyped
+    end
+  end
+end

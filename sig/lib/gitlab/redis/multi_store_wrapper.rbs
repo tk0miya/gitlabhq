@@ -1,0 +1,18 @@
+module Gitlab
+  module Redis
+    class MultiStoreWrapper < Wrapper
+      self.@multistore_pool: untyped
+
+      # overrides Wrapper's pool to use the multistore connection pool
+      def self.with: () { (untyped) -> untyped } -> untyped
+
+      alias self.then self.with
+
+      def self.multistore_pool: () -> untyped
+
+      def self.pool_name: () -> untyped
+
+      def self.multistore: () -> untyped
+    end
+  end
+end

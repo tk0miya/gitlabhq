@@ -1,0 +1,33 @@
+module Authn
+  module DataRetention
+    class AuthenticationEventArchiveWorker
+      @connection: untyped
+
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      MAX_RUNTIME: untyped
+
+      REQUEUE_DELAY: untyped
+
+      ITERATION_DELAY: ::Float
+
+      BATCH_SIZE: 10000
+
+      SUB_BATCH_SIZE: 1000
+
+      def perform: (?untyped? cursor) -> (nil | untyped)
+
+      private
+
+      def delete_old_events: (untyped events) -> (0 | untyped)
+
+      def connection: () -> untyped
+
+      def log_deleted: (untyped count) -> (nil | untyped)
+
+      def retention_period_cutoff: () -> untyped
+    end
+  end
+end

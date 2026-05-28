@@ -1,0 +1,43 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      module WorkspaceOperations
+        module BmStates
+          CREATION_REQUESTED: "CreationRequested"
+
+          STARTING: "Starting"
+
+          RESTART_REQUESTED: "RestartRequested"
+
+          RUNNING: "Running"
+
+          STOPPING: "Stopping"
+
+          STOPPED: "Stopped"
+
+          TERMINATING: "Terminating"
+
+          TERMINATED: "Terminated"
+
+          FAILED: "Failed"
+
+          ERROR: "Error"
+
+          UNKNOWN: "Unknown"
+
+          VALID_DESIRED_STATES: ::Array[untyped]
+
+          VALID_ACTUAL_STATES: ::Array[untyped]
+
+          # @param [String] state
+          # @return [TrueClass, FalseClass]
+          def valid_desired_state?: (untyped state) -> untyped
+
+          # @param [String] state
+          # @return [TrueClass, FalseClass]
+          def valid_actual_state?: (untyped state) -> untyped
+        end
+      end
+    end
+  end
+end

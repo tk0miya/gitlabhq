@@ -1,0 +1,26 @@
+module Gitlab
+  module Graphql
+    # include DeprecationsBase at the end of the target module
+    module DeprecationsBase
+      NameDeprecation: untyped
+
+      def self.included: (untyped klass) -> untyped
+
+      module ClassMethods
+        def deprecated?: (untyped old_name) -> untyped
+
+        def deprecation_for: (untyped old_name) -> untyped
+
+        def deprecation_by: (untyped new_name) -> untyped
+
+        # Returns the new `graphql_name` (Type#graphql_name) of a deprecated GID,
+        # or the `graphql_name` argument given if no deprecation applies.
+        def apply_to_graphql_name: (untyped graphql_name) -> untyped
+
+        private
+
+        def map_graphql_name: (untyped name) -> untyped
+      end
+    end
+  end
+end

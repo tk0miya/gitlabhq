@@ -1,0 +1,129 @@
+module SearchHelper
+  @search_service: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  # params which should persist when a new tab is selected
+  SEARCH_GENERIC_PARAMS: ::Array[:search | :scope | :project_id | :group_id | :repository_ref | :snippets | :sort | :force_search_results | :type]
+
+  def search_autocomplete_opts: (untyped term, ?filter: untyped?, ?scope: untyped?) -> (::Array[untyped] | untyped)
+
+  def resource_results: (untyped term, ?scope: untyped?) -> (::Array[untyped] | untyped)
+
+  def scope_specific_results: (untyped term, untyped scope) -> untyped
+
+  def generic_results: (untyped term) -> untyped
+
+  def recent_items_autocomplete: (untyped term) -> untyped
+
+  def search_entries_info: (untyped collection, untyped scope, untyped term) -> (nil | untyped)
+
+  def search_entries_scope_label: (untyped scope, untyped count) -> untyped
+
+  def search_entries_info_template: (untyped collection) -> untyped
+
+  def search_entries_empty_message: (untyped scope, untyped term, untyped group, untyped project) -> untyped
+
+  def repository_ref: (untyped project) -> untyped
+
+  def search_service: () -> untyped
+
+  def search_sort_options: () -> untyped
+
+  def search_group: () -> untyped
+
+  def search_has_group?: () -> untyped
+
+  def search_has_project?: () -> untyped
+
+  def header_search_context: () -> untyped
+
+  def search_scope: () -> (nil | untyped)
+
+  def should_show_zoekt_results?: (untyped _scope, untyped _search_type) -> false
+
+  def blob_data_oversize_message: () -> untyped
+
+  def search_navigation_json: () -> untyped
+
+  def work_item_types_for_filter: () -> untyped
+
+  private
+
+  def filter_work_item_types: (untyped types, untyped container) -> untyped
+
+  def epics_enabled_for?: (untyped container) -> untyped
+
+  def work_items_autocomplete_enabled?: () -> untyped
+
+  def combined_generic_results: () -> untyped
+
+  def formatted_count: (untyped scope) -> ("0" | untyped)
+
+  # Autocomplete results for various settings pages
+  def default_autocomplete: () -> ::Array[{ category: "Settings", label: untyped, url: untyped }]
+
+  # Autocomplete results for settings pages, for admins
+  def default_autocomplete_admin: () -> (::Array[untyped] | ::Array[{ category: "Jump to", label: untyped, url: untyped }])
+
+  # Autocomplete results for internal help pages
+  def help_autocomplete: () -> ::Array[{ category: "Help", label: untyped, url: untyped }]
+
+  # Autocomplete results for the current project, if it's defined
+  def project_autocomplete: () -> (untyped | ::Array[untyped])
+
+  # Autocomplete results for the current user's groups
+  def groups_autocomplete: (untyped term, ?::Integer limit) -> untyped
+
+  def issue_autocomplete: (untyped term) -> (::Array[untyped] | ::Array[{ category: "In this project", id: untyped, label: untyped, url: untyped, avatar_url: untyped }])
+
+  # Autocomplete results for the current user's projects
+  def projects_autocomplete: (untyped term, ?::Integer limit) -> untyped
+
+  def users_autocomplete: (untyped term, ?::Integer limit) -> (::Array[untyped] | untyped)
+
+  def recent_merge_requests_autocomplete: (untyped term) -> (::Array[untyped] | untyped)
+
+  def recent_issues_autocomplete: (untyped term) -> (::Array[untyped] | untyped)
+
+  def recent_work_items_autocomplete: (untyped term) -> (::Array[untyped] | untyped)
+
+  def recent_wiki_pages_autocomplete: (untyped term) -> untyped
+
+  def search_result_sanitize: (untyped str) -> untyped
+
+  def active_nav?: (untyped active_scope, untyped active_type, untyped type) -> (untyped | false)
+
+  def search_filter_link_json: (untyped scope, untyped label, untyped data, untyped search, untyped type) -> untyped
+
+  def nav_options: () -> { show_snippets: untyped }
+
+  def parse_navigation: (untyped navigation) -> untyped
+
+  def search_filter_input_options: (untyped type, ?untyped placeholder) -> untyped
+
+  def search_history_storage_prefix: () -> (untyped | untyped | "dashboard")
+
+  def search_md_sanitize: (untyped source) -> untyped
+
+  def simple_search_highlight_and_truncate: (untyped text, untyped phrase, ?::Hash[untyped, untyped] options) -> (untyped | nil)
+
+  # Sanitize a HTML field for search display. Most tags are stripped out and the
+  # maximum length is set to 200 characters.
+  def search_truncate: (untyped source) -> untyped
+
+  def search_sanitize: (untyped html) -> untyped
+
+  # _search_highlight is used in EE override
+  def highlight_and_truncate_issuable: (untyped issuable, untyped search_term, untyped _search_highlight) -> untyped
+
+  def issuable_state_to_badge_class: (untyped issuable) -> (:info | :danger | :success | :info | :success)
+
+  def issuable_state_text: (untyped issuable) -> untyped
+
+  def issuable_visible_target_branch: (untyped issuable) -> (nil | untyped)
+
+  def wiki_blob_link: (untyped wiki_blob) -> untyped
+
+  def search_using_search_service: (untyped user, untyped scope, untyped term, untyped limit, ?::Hash[untyped, untyped] additional_params) -> untyped
+end

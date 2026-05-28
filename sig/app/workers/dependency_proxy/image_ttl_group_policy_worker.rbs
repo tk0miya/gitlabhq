@@ -1,0 +1,15 @@
+module DependencyProxy
+  class ImageTtlGroupPolicyWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    include DependencyProxy::Expireable
+
+    def perform: () -> untyped
+
+    private
+
+    def log_counts: () -> untyped
+  end
+end

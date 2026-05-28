@@ -1,0 +1,7 @@
+module Banzai
+  module RequestStoreReferenceCache
+    def cached_call: (untyped request_store_key, untyped cache_key, ?path: untyped) { () -> untyped } -> untyped
+
+    def get_or_set_cache: (untyped cache, untyped key) { () -> untyped } -> untyped
+  end
+end

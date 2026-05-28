@@ -1,0 +1,71 @@
+module LooseForeignKeys
+  class BatchCleanerService
+    @parent_table: untyped
+
+    @loose_foreign_key_definitions: untyped
+
+    @deleted_parent_records: untyped
+
+    @modification_tracker: untyped
+
+    @connection: untyped
+
+    @logger: untyped
+
+    @record_store: untyped
+
+    @deleted_records_counter: untyped
+
+    @deleted_records_rescheduled_count: untyped
+
+    @deleted_records_incremented_count: untyped
+
+    @dictionary_entries: untyped
+
+    CLEANUP_ATTEMPTS_BEFORE_RESCHEDULE: 3
+
+    CONSUME_AFTER_RESCHEDULE: untyped
+
+    def initialize: (parent_table: untyped, loose_foreign_key_definitions: untyped, deleted_parent_records: untyped, connection: untyped, ?logger: untyped, ?modification_tracker: untyped, ?record_store: untyped) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader parent_table: untyped
+
+    attr_reader loose_foreign_key_definitions: untyped
+
+    attr_reader deleted_parent_records: untyped
+
+    attr_reader modification_tracker: untyped
+
+    attr_reader deleted_records_counter: untyped
+
+    attr_reader deleted_records_rescheduled_count: untyped
+
+    attr_reader deleted_records_incremented_count: untyped
+
+    attr_reader connection: untyped
+
+    attr_reader logger: untyped
+
+    attr_reader record_store: untyped
+
+    def dictionary_entries: () -> untyped
+
+    def child_table_feature_category: (untyped table) -> untyped
+
+    def feature_category_override_enabled?: () -> untyped
+
+    def feature_category_override_exception: (untyped exception, untyped loose_foreign_key_definition) -> (nil | untyped)
+
+    def handle_over_limit: () -> untyped
+
+    def record_result: (untyped cleaner, untyped result) -> (untyped | untyped | false)
+
+    def run_cleaner_service: (untyped loose_foreign_key_definition, with_skip_locked: untyped) -> untyped
+
+    def db_config_name: () -> untyped
+  end
+end

@@ -1,0 +1,15 @@
+module Projects
+  class MoveForksService < BaseMoveRelationsService
+    def execute: (untyped source_project, ?remove_remaining_elements: bool) -> (nil | untyped)
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def move_fork_network_members: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_root_project: () -> untyped
+
+    def refresh_forks_count: () -> untyped
+  end
+end

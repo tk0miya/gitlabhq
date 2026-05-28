@@ -1,0 +1,27 @@
+module Admin
+  module BroadcastMessagesHelper
+    include Gitlab::Utils::StrongMemoize
+
+    def current_broadcast_banner_messages: () -> untyped
+
+    def current_broadcast_notification_message: () -> untyped
+
+    def broadcast_message: (untyped message, ?::Hash[untyped, untyped] opts) -> (nil | untyped)
+
+    def broadcast_message_status: (untyped broadcast_message) -> ("Active" | "Expired" | "Pending")
+
+    def render_broadcast_message: (untyped broadcast_message) -> untyped
+
+    def target_access_level_options: () -> untyped
+
+    def target_access_levels_display: (untyped access_levels) -> untyped
+
+    def admin_broadcast_messages_data: (untyped broadcast_messages) -> untyped
+
+    def broadcast_message_data: (untyped broadcast_message) -> { id: untyped, message: untyped, broadcast_type: untyped, theme: untyped, dismissable: untyped, target_access_levels: untyped, messages_path: untyped, preview_path: untyped, target_path: untyped, starts_at: untyped, ends_at: untyped, target_access_level_options: untyped, show_in_cli: untyped }
+
+    private
+
+    def current_user_access_level_for_project_or_group: () -> (nil | untyped)
+  end
+end

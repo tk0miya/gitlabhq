@@ -1,0 +1,35 @@
+module Timelogs
+  class TimelogsFinder
+    @parent: untyped
+
+    @params: untyped
+
+    attr_reader parent: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped parent, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def by_time: (untyped timelogs) -> untyped
+
+    def by_user: (untyped timelogs) -> untyped
+
+    def by_group: (untyped timelogs) -> untyped
+
+    def by_project: (untyped timelogs) -> untyped
+
+    def by_summary: (untyped timelogs) -> untyped
+
+    def apply_sorting: (untyped timelogs) -> untyped
+
+    def validate_time_difference!: () -> (nil | untyped)
+
+    def end_time_before_start_time?: () -> untyped
+
+    def times_provided?: () -> untyped
+  end
+end

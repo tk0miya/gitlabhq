@@ -1,0 +1,11 @@
+module AlertManagement
+  class MetricImage < ApplicationRecord
+    include MetricImageUploading
+
+    def uploads_sharding_key: () -> { project_id: untyped }
+
+    private
+
+    def local_path: () -> untyped
+  end
+end

@@ -1,0 +1,41 @@
+module Gitlab
+  module Email
+    module Handler
+      class BaseHandler
+        @mail: untyped
+
+        @mail_key: untyped
+
+        attr_reader mail: untyped
+
+        attr_reader mail_key: untyped
+
+        HANDLER_ACTION_BASE_REGEX: ::Regexp
+
+        def initialize: (untyped mail, untyped mail_key) -> void
+
+        def can_handle?: () -> untyped
+
+        def execute: () -> untyped
+
+        def metrics_params: () -> { handler: untyped }
+
+        # Each handler should use it's own metric event.  Otherwise there
+        # is a possibility that within the same Sidekiq process, that same
+        # event with different metrics_params will cause Prometheus to
+        # throw an error
+        def metrics_event: () -> untyped
+
+        private
+
+        def reopen_issue_on_external_participant_note: (noteable: untyped, author: untyped, project: untyped, support_bot: untyped) -> (nil | untyped)
+
+        def build_reopen_message: (untyped noteable) -> untyped
+
+        def assignees_references: (untyped noteable) -> (nil | untyped)
+
+        def from_address: () -> untyped
+      end
+    end
+  end
+end

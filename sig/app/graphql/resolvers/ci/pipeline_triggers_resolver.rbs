@@ -1,0 +1,15 @@
+module Resolvers
+  module Ci
+    class PipelineTriggersResolver < BaseResolver
+      include LooksAhead
+
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve_with_lookahead: () -> untyped
+
+      private
+
+      def unconditional_includes: () -> ::Array[:pipelines]
+    end
+  end
+end

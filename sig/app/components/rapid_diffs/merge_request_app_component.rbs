@@ -1,0 +1,13 @@
+module RapidDiffs
+  class MergeRequestAppComponent < ViewComponent::Base
+    @presenter: untyped
+
+    attr_reader presenter: untyped
+
+    def initialize: (untyped presenter) -> void
+
+    private
+
+    def extra_app_data: () -> { mr_path: untyped, project_path: untyped, code_review_enabled: untyped, user_permissions: untyped, discussions_endpoint: untyped, noteable_type: untyped, preview_markdown_endpoint: untyped, register_path: untyped, sign_in_path: untyped, report_abuse_path: untyped, markdown_docs_path: untyped, suggestions_help_path: untyped, default_suggestion_commit_message: untyped, new_comment_template_paths: untyped, versions: untyped, coverage_endpoint: untyped }
+  end
+end

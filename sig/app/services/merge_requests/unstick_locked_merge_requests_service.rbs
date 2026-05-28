@@ -1,0 +1,38 @@
+module MergeRequests
+  class UnstickLockedMergeRequestsService
+    include BaseServiceUtility
+
+    def execute: () -> untyped
+
+    private
+
+    # This method is overridden in EE to extend its functionality like preloading
+    # associations.
+    def merge_requests_batch: (untyped ids) -> untyped
+
+    def attempt_to_unstick_mrs_with_merge_jid: (untyped merge_requests) -> (nil | untyped)
+
+    def attempt_to_unstick_mrs_without_merge_jid: (untyped merge_requests) -> (nil | untyped)
+
+    # Check if MR is still in the process of merging so we don't interrupt the process.
+    # MergeRequest::MergeService will acquire a lease when merging and keep it for
+    # 15 minutes so we can check if the lease still exists and we can consider
+    # the MR as still merging.
+    def should_unstick?: (untyped merge_request) -> untyped
+
+    # Accepts an array of `{ id:, merge_jid: }` hashes so callers can supply
+    # the merge_jid (which may have been cleared in-memory by the time we'd
+    # otherwise re-read it) without forcing us to re-query the relation.
+    def mark_merge_requests_as_merged: (untyped merge_request_entries) -> (nil | untyped)
+
+    # Do not reopen merge requests using direct queries.
+    # We rely on state machine callbacks to update head_pipeline_id
+    def unlock_merge_requests: (untyped merge_requests) -> untyped
+
+    def remove_from_locked_set: (untyped merge_requests) -> (nil | untyped)
+
+    def log_info: (**untyped payload) -> untyped
+
+    def log_error: (**untyped payload) -> untyped
+  end
+end

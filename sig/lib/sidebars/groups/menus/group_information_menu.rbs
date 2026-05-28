@@ -1,0 +1,27 @@
+module Sidebars
+  module Groups
+    module Menus
+      class GroupInformationMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> ("subgroup" | "group")
+
+        def active_routes: () -> { path: "groups#subgroups" }
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def activity_menu_item: () -> untyped
+
+        def labels_menu_item: () -> untyped
+
+        def members_menu_item: () -> untyped
+
+        def achievements_menu_item: () -> untyped
+      end
+    end
+  end
+end

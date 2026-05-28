@@ -1,0 +1,25 @@
+module Backup
+  module Tasks
+    class Repositories < Task
+      @server_side_callable: untyped
+
+      @target: untyped
+
+      attr_reader server_side_callable: untyped
+
+      def self.id: () -> "repositories"
+
+      def initialize: (progress: untyped, options: untyped, server_side_callable: untyped) -> void
+
+      def human_name: () -> untyped
+
+      def destination_path: () -> "repositories"
+
+      def destination_optional: () -> true
+
+      private
+
+      def target: () -> untyped
+    end
+  end
+end

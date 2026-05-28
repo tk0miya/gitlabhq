@@ -1,0 +1,39 @@
+module Gitlab
+  module Memory
+    # A background thread that monitors Ruby memory and calls
+    # into a handler when the Ruby process violates defined limits
+    # for an extended period of time.
+    class Watchdog
+      @configuration: untyped
+
+      @alive: untyped
+
+      @stop_reason: untyped
+
+      def initialize: () -> void
+
+      #
+      # Configuration for Watchdog, see Gitlab::Memory::Watchdog::Configurator
+      # for examples.
+      def configure: () { (untyped) -> untyped } -> untyped
+
+      def call: () -> untyped
+
+      def stop: () -> untyped
+
+      private
+
+      attr_reader configuration: untyped
+
+      def monitor: () -> (nil | untyped)
+
+      def strike_exceeded_callback: (untyped monitor_name, untyped monitor_payload) -> untyped
+
+      def handler: () -> untyped
+
+      def log_labels: (?::Hash[untyped, untyped] extra) -> untyped
+
+      def stop_working: (reason: untyped) -> (nil | untyped)
+    end
+  end
+end

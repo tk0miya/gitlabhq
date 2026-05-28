@@ -1,0 +1,54 @@
+module Users
+  module ServiceAccounts
+    class CreateService < BaseService
+      @current_user: untyped
+
+      @params: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_accessor current_user: untyped
+
+      attr_accessor params: untyped
+
+      def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def username_and_email_generator: () -> untyped
+
+      def username_prefix: () -> untyped
+
+      def can_create_service_account?: () -> untyped
+
+      def create_user: () -> untyped
+
+      def default_user_params: () -> { name: untyped, email: untyped, username: untyped, user_type: :service_account, external: true, skip_confirmation: untyped, organization_id: untyped, avatar: untyped, composite_identity_enforced: untyped, private_profile: untyped, skip_ai_prefix_validation: untyped }
+
+      def error_messages: () -> { no_permission: untyped, no_seats: untyped }
+
+      def email: () -> untyped
+
+      def username: () -> untyped
+
+      def name: () -> untyped
+
+      def private_profile: () -> untyped
+
+      # Skip confirmation only for auto-generated email address.
+      # Custom addresses should go through confirmation if
+      # enabled for the instance.
+      def skip_confirmation: () -> (true | untyped)
+
+      def auto_generated_email_address?: () -> untyped
+
+      def error: (untyped message, untyped reason) -> untyped
+
+      # Delegates to Authn::ServiceAccounts, which enforces LIMIT_FOR_FREE
+      # in CE and bypasses the limit for paid licenses in EE.
+      def creation_allowed?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module Ci
+    module Variables
+      module Downstream
+        class RawVariableGenerator < Base
+          def for: (untyped item) -> ::Array[{ key: untyped, value: untyped, raw: true }]
+        end
+      end
+    end
+  end
+end

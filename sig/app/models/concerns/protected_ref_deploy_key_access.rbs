@@ -1,0 +1,28 @@
+module ProtectedRefDeployKeyAccess
+  extend ActiveSupport::Concern
+
+  def type: () -> (:deploy_key | untyped)
+
+  private
+
+  def humanize_deploy_key: () -> untyped
+
+  def deploy_key?: () -> untyped
+
+  def validate_deploy_key_owner_project_membership: () -> (nil | untyped)
+
+  def validate_deploy_key_project_access: () -> (nil | untyped)
+
+  # current_project is only available when evaluating a group-level protected
+  # branch. We only allow role based access levels at the group-level so we can
+  # ignore it here.
+  def deploy_key_access_allowed?: (untyped current_user, untyped _current_project) -> untyped
+
+  def deploy_key_owned_by?: (untyped current_user) -> untyped
+
+  def valid_deploy_key_status?: () -> untyped
+
+  def deploy_key_owner_project_member?: () -> untyped
+
+  def deploy_key_has_write_access_to_project?: () -> untyped
+end

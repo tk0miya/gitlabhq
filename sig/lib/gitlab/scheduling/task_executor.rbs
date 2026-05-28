@@ -1,0 +1,17 @@
+module Gitlab
+  module Scheduling
+    module TaskExecutor
+      def execute_config_task: (untyped task_name, untyped config) -> untyped
+
+      def execute_every: (untyped period) { (?) -> untyped } -> untyped
+
+      def cache_key: () -> untyped
+
+      def cache_period: () -> nil
+
+      def cache_key_for_period: (untyped period) -> untyped
+
+      def dispatch_event: (untyped dispatch_config) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,10 @@
+module Resolvers
+  class CommitPipelinesResolver < BaseResolver
+    # The GraphQL type here gets defined in this include
+    include ::ResolvesPipelines
+
+    alias commit object
+
+    def resolve: (**untyped args) -> untyped
+  end
+end

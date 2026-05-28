@@ -1,0 +1,57 @@
+module ResourceAccessTokens
+  class CreateService < BaseService
+    @resource_type: untyped
+
+    @resource: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped current_user, untyped resource, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader resource_type: untyped
+
+    attr_reader resource: untyped
+
+    def reached_access_token_limit?: () -> false
+
+    def validate_expires_at_field: (untyped params) -> (false | true | untyped)
+
+    def username_and_email_generator: () -> untyped
+
+    def has_permission_to_create?: () -> untyped
+
+    def create_user: () -> untyped
+
+    def delete_failed_user: (untyped user) -> untyped
+
+    def default_user_params: () -> { name: untyped, email: untyped, username: untyped, user_type: :project_bot, skip_confirmation: true, organization_id: untyped, bot_namespace: untyped }
+
+    def create_personal_access_token: (untyped user) -> untyped
+
+    def personal_access_token_params: () -> { name: untyped, impersonation: false, scopes: untyped, expires_at: untyped, description: untyped, creation_source: untyped }
+
+    def default_scopes: () -> untyped
+
+    def create_membership: (untyped resource, untyped user, untyped access_level) -> untyped
+
+    def pat_expiration: () -> (untyped | nil)
+
+    def bot_namespace: () -> untyped
+
+    def log_event: (untyped token) -> untyped
+
+    def error: (untyped message) -> untyped
+
+    def success: (untyped access_token) -> untyped
+
+    def valid_access_level?: (untyped access_level) -> untyped
+  end
+end

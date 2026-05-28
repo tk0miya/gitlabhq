@@ -1,0 +1,11 @@
+module Mutations
+  module Ci
+    module PipelineTrigger
+      class Create < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, description: untyped, ?expires_at: untyped?) -> { pipeline_trigger: untyped, errors: untyped }
+      end
+    end
+  end
+end

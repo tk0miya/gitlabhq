@@ -1,0 +1,57 @@
+module Gitlab
+  module BitbucketImport
+    module Importers
+      class PullRequestImporter
+        @project: untyped
+
+        @formatter: untyped
+
+        @user_finder: untyped
+
+        @mentions_converter: untyped
+
+        @object: untyped
+
+        @author_id: untyped
+
+        include Loggable
+
+        include ErrorTracking
+
+        def initialize: (untyped project, untyped hash) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader object: untyped
+
+        attr_reader project: untyped
+
+        attr_reader formatter: untyped
+
+        attr_reader user_finder: untyped
+
+        attr_reader mentions_converter: untyped
+
+        def skip: () -> (false | true)
+
+        def description: () -> untyped
+
+        def author_line: () -> ("" | untyped)
+
+        def find_user_id: () -> untyped
+
+        def author_id: () -> untyped
+
+        def create_merge_request_metrics: (untyped merge_request) -> (nil | untyped)
+
+        def closed_by_id: () -> untyped
+
+        def reviewers: () -> (::Array[untyped] | untyped)
+
+        def source_branch_sha: () -> untyped
+      end
+    end
+  end
+end

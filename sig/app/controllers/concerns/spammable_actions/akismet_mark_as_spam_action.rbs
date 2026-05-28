@@ -1,0 +1,13 @@
+module SpammableActions::AkismetMarkAsSpamAction
+  extend ActiveSupport::Concern
+
+  def mark_as_spam: () -> untyped
+
+  private
+
+  def authorize_submit_spammable!: () -> (untyped | nil)
+
+  def spammable: () -> untyped
+
+  def spammable_path: () -> untyped
+end

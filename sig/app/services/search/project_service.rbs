@@ -1,0 +1,31 @@
+module Search
+  class ProjectService
+    @current_user: untyped
+
+    @project: untyped
+
+    @params: untyped
+
+    include Search::Filter
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_accessor project: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor params: untyped
+
+    def initialize: (untyped user, untyped project, untyped params) -> void
+
+    def execute: () -> untyped
+
+    def allowed_scopes: () -> untyped
+
+    def scope: () -> untyped
+
+    private
+
+    def searched_container: () -> untyped
+  end
+end

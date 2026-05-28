@@ -1,0 +1,190 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class Finding
+          @confidence: untyped
+
+          @identifiers: untyped
+
+          @flags: untyped
+
+          @links: untyped
+
+          @location: untyped
+
+          @evidence: untyped
+
+          @metadata_version: untyped
+
+          @name: untyped
+
+          @original_data: untyped
+
+          @report_type: untyped
+
+          @scanner: untyped
+
+          @scan: untyped
+
+          @severity: untyped
+
+          @remediations: untyped
+
+          @details: untyped
+
+          @signatures: untyped
+
+          @project_id: untyped
+
+          @vulnerability_finding_signatures_enabled: untyped
+
+          @found_by_pipeline: untyped
+
+          @cvss: untyped
+
+          @project_tracked_context: untyped
+
+          @uuid: untyped
+
+          @context_unaware_uuid: untyped
+
+          @old_location: untyped
+
+          @keys: untyped
+
+          @raw_metadata: untyped
+
+          @location_fingerprints: untyped
+
+          include ::VulnerabilityFindingHelpers
+
+          include Gitlab::Utils::StrongMemoize
+
+          REQUIRED_KEYS: ::Array[:identifiers | :location | :metadata_version | :name | :original_data | :report_type | :scanner | :scan]
+
+          attr_reader confidence: untyped
+
+          attr_reader identifiers: untyped
+
+          attr_reader flags: untyped
+
+          attr_reader links: untyped
+
+          attr_reader location: untyped
+
+          attr_reader evidence: untyped
+
+          attr_reader metadata_version: untyped
+
+          attr_reader name: untyped
+
+          attr_reader old_location: untyped
+
+          attr_reader report_type: untyped
+
+          attr_reader scanner: untyped
+
+          attr_reader scan: untyped
+
+          attr_reader severity: untyped
+
+          attr_accessor uuid: untyped
+
+          attr_accessor context_unaware_uuid: untyped
+
+          attr_accessor overridden_uuid: untyped
+
+          attr_reader remediations: untyped
+
+          attr_reader details: untyped
+
+          attr_reader signatures: untyped
+
+          attr_reader project_id: untyped
+
+          attr_reader original_data: untyped
+
+          attr_reader found_by_pipeline: untyped
+
+          attr_reader cvss: untyped
+
+          attr_reader project_tracked_context: untyped
+
+          def initialize: (**untyped args) -> void
+
+          def to_hash: () -> untyped
+
+          def primary_identifier: () -> untyped
+
+          def update_location: (untyped new_location) -> untyped
+
+          def unsafe?: (untyped severity_levels, untyped report_types) -> untyped
+
+          def eql?: (untyped other) -> (false | untyped)
+
+          def hash: () -> untyped
+
+          def valid?: () -> untyped
+
+          def keys: () -> untyped
+
+          def primary_identifier_fingerprint: () -> untyped
+
+          def <=>: (untyped other) -> untyped
+
+          def scanner_order_to: (untyped other) -> (1 | -1 | untyped)
+
+          def has_signatures?: () -> untyped
+
+          def false_positive?: () -> untyped
+
+          def remediation_byte_offsets: () -> untyped
+
+          def raw_metadata: () -> untyped
+
+          def description: () -> untyped
+
+          def solution: () -> untyped
+
+          def location_data: () -> untyped
+
+          def assets: () -> untyped
+
+          def raw_source_code_extract: () -> untyped
+
+          # Returns either the max priority signature hex
+          # or the location fingerprint
+          def location_fingerprint: () -> untyped
+
+          def owasp_top_10: () -> untyped
+
+          def has_vulnerability_resolution?: () -> untyped
+
+          def policy_comparison_uuid: () -> untyped
+
+          private
+
+          def generate_uuid: () -> (nil | untyped)
+
+          def generate_context_unaware_uuid: () -> (nil | untyped)
+
+          def any_uuid_params_invalid?: () -> untyped
+
+          def location_fingerprints: () -> untyped
+
+          # Returns the signature hexes in reverse priority order
+          def signature_hexes: () -> (::Array[untyped] | untyped)
+
+          def extract_owasp_top_10: () -> untyped
+
+          def map_owasp_external_id: (untyped external_id) -> untyped
+
+          def valid_owasp_external_id?: (untyped external_id) -> (false | untyped)
+
+          def extract_vulnerability_resolution: () -> (false | untyped)
+        end
+      end
+    end
+  end
+end

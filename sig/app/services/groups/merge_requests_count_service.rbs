@@ -1,0 +1,12 @@
+module Groups
+  # Service class for counting and caching the number of open merge requests of a group.
+  class MergeRequestsCountService < Groups::CountService
+    private
+
+    def cache_key_name: () -> "open_merge_requests_count"
+
+    def relation_for_count: () -> untyped
+
+    def issuable_key: () -> "open_merge_requests"
+  end
+end

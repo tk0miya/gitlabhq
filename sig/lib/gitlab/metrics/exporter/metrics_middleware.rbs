@@ -1,0 +1,17 @@
+module Gitlab
+  module Metrics
+    module Exporter
+      class MetricsMiddleware
+        @app: untyped
+
+        @requests_total: untyped
+
+        @request_durations: untyped
+
+        def initialize: (untyped app, untyped pid) -> void
+
+        def call: (untyped env) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Packages
+  module Debian
+    class GenerateDistributionWorker
+      @container_type: untyped
+
+      @distribution_id: untyped
+
+      include ApplicationWorker
+
+      include Gitlab::Utils::StrongMemoize
+
+      def perform: (untyped container_type, untyped distribution_id) -> (nil | untyped)
+
+      private
+
+      def container_class: () -> untyped
+
+      def distribution: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,87 @@
+module Import
+  module Offline
+    module Exports
+      class CreateService
+        @current_user: untyped
+
+        @portable_params: untyped
+
+        @storage_config: untyped
+
+        @organization_id: untyped
+
+        @invalid_paths: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        # @param current_user [User] current user object
+        # @param portable_params [Array<Hash>] list of portables to export.
+        #   Each portable hash must have at least its full path. More export options for each portable may
+        #   be added later. See https://gitlab.com/gitlab-org/gitlab/-/issues/583383 and
+        #   https://gitlab.com/gitlab-org/gitlab/-/issues/583385. E.g.:
+        #   { full_path: 'gitlab-org/gitlab' }
+        # @param storage_config [Hash] contains object storage configuation settings:
+        #   provider [Symbol], bucket [String], and credentials [Hash (content varies by provider)]. E.g.:
+        #   {
+        #     provider: :aws,
+        #     bucket: 'import-objects',
+        #     credentials: {
+        #       aws_access_key_id: 'AwsUserAccessKey',
+        #       aws_secret_access_key: 'aws/secret+access/key',
+        #       region: 'us-east-1',
+        #       path_style: false
+        #     }
+        #   }
+        def initialize: (untyped current_user, untyped portable_params, untyped storage_config, untyped organization_id) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader current_user: untyped
+
+        attr_reader portable_params: untyped
+
+        attr_reader storage_config: untyped
+
+        attr_reader invalid_paths: untyped
+
+        attr_reader organization_id: untyped
+
+        def user_can_export_all_portables?: () -> untyped
+
+        def portable_params_valid?: () -> (false | true)
+
+        def validate_object_storage!: () -> untyped
+
+        def validate_endpoint_url!: () -> (nil | untyped)
+
+        def create_self_relation_exports!: () -> untyped
+
+        def offline_export: () -> untyped
+
+        def client: () -> untyped
+
+        def user_can_admin_portable?: (untyped portable) -> untyped
+
+        def groups: () -> untyped
+
+        def projects: () -> untyped
+
+        def portables: () -> untyped
+
+        def portable_full_paths: () -> untyped
+
+        def source_hostname: () -> untyped
+
+        def feature_flag_disabled_error: () -> untyped
+
+        def invalid_params_error: () -> untyped
+
+        def insufficient_permissions_error: () -> untyped
+
+        def service_error: (untyped message) -> untyped
+      end
+    end
+  end
+end

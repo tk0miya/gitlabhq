@@ -1,0 +1,9 @@
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class UrgencyLogger < ::GrapeLogging::Loggers::Base
+        def parameters: (untyped request, untyped _) -> (::Hash[untyped, untyped] | { request_urgency: untyped, target_duration_s: untyped })
+      end
+    end
+  end
+end

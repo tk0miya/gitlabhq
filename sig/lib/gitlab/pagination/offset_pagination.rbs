@@ -1,0 +1,39 @@
+module Gitlab
+  module Pagination
+    class OffsetPagination < Base
+      @request_context: untyped
+
+      attr_reader request_context: untyped
+
+      def initialize: (untyped request_context) -> void
+
+      def paginate: (untyped relation, ?exclude_total_headers: bool, ?skip_default_order: bool, ?without_count: bool, ?skip_pagination_check: bool) -> untyped
+
+      private
+
+      def paginate_with_limit_optimization: (untyped relation, without_count: untyped, ?skip_pagination_check: bool) -> untyped
+
+      def needs_pagination?: (untyped relation) -> (true | false)
+
+      def add_default_order: (untyped relation, ?skip_default_order: bool) -> untyped
+
+      def add_pagination_headers: (untyped paginated_data, untyped exclude_total_headers, untyped without_count) -> untyped
+
+      def data_without_counts?: (untyped paginated_data) -> untyped
+
+      def paginatable_array_exceeds_count?: (untyped paginated_data) -> untyped
+
+      def total_count: (untyped paginated_data) -> (untyped | nil)
+
+      def total_pages: (untyped paginated_data) -> (nil | untyped)
+
+      def exceeeds_count?: (untyped paginated_data) -> untyped
+
+      def page: () -> untyped
+
+      def per_page: () -> untyped
+
+      def to_integer: (untyped value) -> untyped
+    end
+  end
+end

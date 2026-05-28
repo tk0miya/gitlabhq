@@ -1,0 +1,27 @@
+module Jira
+  module Requests
+    module Projects
+      class ListService < Base
+        @query: untyped
+
+        extend ::Gitlab::Utils::Override
+
+        def initialize: (untyped jira_integration, ?::Hash[untyped, untyped] params) -> void
+
+        private
+
+        attr_reader query: untyped
+
+        def url: () -> ::String
+
+        def build_service_response: (untyped response) -> untyped
+
+        def map_projects: (untyped response) -> untyped
+
+        def match_query?: (untyped jira_project) -> untyped
+
+        def empty_payload: () -> { projects: ::Array[untyped], is_last: true }
+      end
+    end
+  end
+end

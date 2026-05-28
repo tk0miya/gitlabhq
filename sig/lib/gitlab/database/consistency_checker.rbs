@@ -1,0 +1,69 @@
+module Gitlab
+  module Database
+    class ConsistencyChecker
+      @source_model: untyped
+
+      @target_model: untyped
+
+      @source_columns: untyped
+
+      @target_columns: untyped
+
+      @source_sort_column: untyped
+
+      @target_sort_column: untyped
+
+      @result: untyped
+
+      @start_time: untyped
+
+      @min_id: untyped
+
+      @max_id: untyped
+
+      @metrics_counter: untyped
+
+      BATCH_SIZE: 500
+
+      MAX_BATCHES: 20
+
+      MAX_RUNTIME: untyped
+
+      def initialize: (source_model: untyped, target_model: untyped, source_columns: untyped, target_columns: untyped) -> void
+
+      def execute: (start_id: untyped) -> untyped
+
+      private
+
+      attr_reader source_model: untyped
+
+      attr_reader target_model: untyped
+
+      attr_reader source_columns: untyped
+
+      attr_reader target_columns: untyped
+
+      attr_reader source_sort_column: untyped
+
+      attr_reader target_sort_column: untyped
+
+      attr_reader start_time: untyped
+
+      attr_reader result: untyped
+
+      def build_result: (next_start_id: untyped) -> untyped
+
+      def over_time_limit?: () -> untyped
+
+      # This where comparing the items happen, and building the diff log
+      # It returns the number of matching elements
+      def append_mismatches_details: (untyped source_data, untyped target_data) -> untyped
+
+      def min_id: () -> untyped
+
+      def max_id: () -> untyped
+
+      def metrics_counter: () -> untyped
+    end
+  end
+end

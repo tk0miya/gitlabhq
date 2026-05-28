@@ -1,0 +1,43 @@
+module Authn
+  module IamService
+    class JwksClient
+      JwksFetchFailedError: untyped
+
+      ConfigurationError: untyped
+
+      KeyNotFoundError: untyped
+
+      JWKS_PATH: "/.well-known/jwks.json"
+
+      MIN_CACHE_TTL: untyped
+
+      MAX_CACHE_TTL: untyped
+
+      DEFAULT_CACHE_TTL: untyped
+
+      RACE_CONDITION_TTL: untyped
+
+      HTTP_TIMEOUT_SECONDS: 5
+
+      def verification_key_for: (untyped kid) -> untyped
+
+      def keyset: () -> untyped
+
+      private
+
+      def service_url: () -> untyped
+
+      def fetch_keyset: () -> untyped
+
+      def parse_keyset: (untyped response) -> untyped
+
+      def extract_verification_key: (untyped kid) -> untyped
+
+      def endpoint: () -> untyped
+
+      def cache_key: () -> ::String
+
+      def cache_ttl: (untyped response) -> untyped
+    end
+  end
+end

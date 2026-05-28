@@ -1,0 +1,57 @@
+module Gitlab
+  module Tracking
+    module Destinations
+      class Snowplow
+        @destination_configuration: untyped
+
+        @event_eligibility_checker: untyped
+
+        @tracker: untyped
+
+        @emitter: untyped
+
+        include Gitlab::Tracking::Helpers::SnowplowEventMetricLogger
+
+        SNOWPLOW_NAMESPACE: "gl"
+
+        DEDICATED_APP_ID: "gitlab_dedicated"
+
+        SELF_MANAGED_APP_ID: "gitlab_sm"
+
+        attr_reader destination_configuration: untyped
+
+        def initialize: (?untyped destination_configuration) -> void
+
+        def event: (untyped category, untyped action, ?label: untyped?, ?property: untyped?, ?value: untyped?, ?context: untyped?) -> (nil | untyped)
+
+        def emit_event_payload: (untyped payload) -> untyped
+
+        def frontend_client_options: () -> untyped
+
+        def app_id: () -> untyped
+
+        private
+
+        def snowplow_options: () -> { namespace: untyped, hostname: untyped, cookieDomain: untyped, appId: untyped, formTracking: true, linkClickTracking: true }
+
+        def product_usage_events_options: () -> { namespace: untyped, hostname: untyped, postPath: untyped, forceSecureTracker: untyped, appId: untyped }
+
+        def product_usage_event_app_id: () -> untyped
+
+        def disable_product_usage_event_logging?: () -> untyped
+
+        def cookie_domain: () -> untyped
+
+        def tracker: () -> untyped
+
+        def emitter: () -> untyped
+
+        def emitter_class: () -> untyped
+
+        def emitter_options: () -> untyped
+
+        def increment_total_events_counter: () -> untyped
+      end
+    end
+  end
+end

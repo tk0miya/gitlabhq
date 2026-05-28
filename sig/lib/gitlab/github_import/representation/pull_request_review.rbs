@@ -1,0 +1,27 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      class PullRequestReview
+        @attributes: untyped
+
+        include Representable
+
+        # Builds a PullRequestReview from a GitHub API response.
+        #
+        # review - An instance of `Hash` containing the note details.
+        def self.from_api_response: (untyped review, ?::Hash[untyped, untyped] additional_data) -> untyped
+
+        # Builds a new note using a Hash that was built from a JSON payload.
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        # attributes - A Hash containing the raw note details. The keys of this
+        #              Hash must be Symbols.
+        def initialize: (untyped attributes) -> void
+
+        def approval?: () -> untyped
+
+        def github_identifiers: () -> { merge_request_iid: untyped, review_id: untyped }
+      end
+    end
+  end
+end

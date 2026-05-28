@@ -1,0 +1,34 @@
+module Ci
+  module Queue
+    class PendingBuildsStrategy
+      @runner: untyped
+
+      attr_reader runner: untyped
+
+      def initialize: (untyped runner) -> void
+
+      # rubocop:disable CodeReuse/ActiveRecord
+      def builds_for_shared_runner: () -> untyped
+
+      def builds_for_group_runner: () -> untyped
+
+      def builds_matching_tag_ids: (untyped relation, untyped ids) -> untyped
+
+      def builds_with_any_tags: (untyped relation) -> untyped
+
+      def order: (untyped relation) -> untyped
+
+      def new_builds: () -> untyped
+
+      def build_and_partition_ids: (untyped relation) -> untyped
+
+      private
+
+      def builds_available_for_shared_runners: () -> untyped
+
+      def builds_ordered_for_shared_runners: (untyped relation) -> untyped
+
+      def running_builds_for_shared_runners_cte: () -> untyped
+    end
+  end
+end

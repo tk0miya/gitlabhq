@@ -1,0 +1,39 @@
+module Security
+  module CiConfiguration
+    class SastBuildAction < BaseBuildAction
+      @variables: untyped
+
+      @default_sast_values: untyped
+
+      @default_values_overwritten: untyped
+
+      @stage: untyped
+
+      def initialize: (untyped auto_devops_enabled, untyped params, untyped existing_gitlab_ci_content, ?untyped ci_config_path) -> void
+
+      private
+
+      def variables: (untyped params) -> untyped
+
+      def default_sast_values: (untyped params) -> untyped
+
+      def collect_values: (untyped config, untyped key) -> untyped
+
+      def collect_analyzer_values: (untyped config, untyped key) -> untyped
+
+      def analyzer_variables_for: (untyped config, untyped key) -> untyped
+
+      def update_existing_content!: () -> untyped
+
+      def set_variables: (untyped variables, ?::Hash[untyped, untyped] hash_to_update) -> untyped
+
+      def set_sast_block: () -> untyped
+
+      def template: () -> ("Auto-DevOps.gitlab-ci.yml" | "Security/SAST.gitlab-ci.yml")
+
+      def global_variables: () -> ::Array["SECURE_ANALYZERS_PREFIX"]
+
+      def sast_variables: () -> ::Array["SAST_EXCLUDED_PATHS" | "SEARCH_MAX_DEPTH" | "SAST_EXCLUDED_ANALYZERS" | "SAST_BRAKEMAN_LEVEL" | "SAST_BANDIT_EXCLUDED_PATHS" | "SAST_FLAWFINDER_LEVEL" | "SAST_GOSEC_LEVEL"]
+    end
+  end
+end

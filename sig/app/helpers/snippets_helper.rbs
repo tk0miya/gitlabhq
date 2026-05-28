@@ -1,0 +1,24 @@
+module SnippetsHelper
+  def snippets_upload_path: (untyped snippet, untyped user) -> (nil | untyped)
+
+  # Return the path of a snippets index for a user or for a project
+  #
+  # @returns String, path to snippet index
+  def subject_snippets_path: (?untyped? subject, ?untyped? opts) -> untyped
+
+  def snippet_badge: (untyped snippet) -> (nil | untyped)
+
+  def snippet_badge_attributes: (untyped snippet) -> (::Array["lock" | untyped] | nil)
+
+  def snippet_report_abuse_path: (untyped snippet) -> (nil | untyped)
+
+  def embedded_raw_snippet_button: (untyped snippet, untyped blob) -> (nil | untyped)
+
+  def embedded_snippet_download_button: (untyped snippet, untyped blob) -> untyped
+
+  def embedded_copy_snippet_button: (untyped blob) -> (nil | untyped)
+
+  def snippet_file_count: (untyped snippet) -> (nil | untyped)
+
+  def project_snippets_award_api_path: (untyped snippet) -> untyped
+end

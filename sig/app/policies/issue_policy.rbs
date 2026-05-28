@@ -1,0 +1,9 @@
+class IssuePolicy < IssuablePolicy
+  # In FOSS there is no license.
+  # This method is overridden in EE
+  def epics_license_available?: () -> false
+
+  # Not available in FOSS.
+  # This method is Overridden in EE
+  def project_work_item_epics_available?: () -> false
+end

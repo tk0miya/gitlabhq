@@ -1,0 +1,104 @@
+module Ci
+  # This class responsible for assigning
+  # proper pending build to runner on runner API request
+  class RegisterJobService
+    @runner: untyped
+
+    @runner_manager: untyped
+
+    @metrics: untyped
+
+    @logger: untyped
+
+    @replica_caught_up: untyped
+
+    include ::Gitlab::Ci::Artifacts::Logger
+
+    attr_reader runner: untyped
+
+    attr_reader runner_manager: untyped
+
+    attr_reader metrics: untyped
+
+    TEMPORARY_LOCK_TIMEOUT: untyped
+
+    Result: untyped
+
+    class ResultFactory
+      # Returns a successful result with a build assigned to the runner.
+      # This stops the queue processing loop and returns the build to the runner.
+      def self.success: (untyped build, untyped build_json, untyped build_presented) -> untyped
+
+      # Returns a conflict result without a build.
+      # When returned from process_build:
+      # - Continues the queue processing loop to try the next build
+      # - Marks the queue as invalid (valid: false) if there was a conflict
+      # - If all builds are exhausted, returns HTTP 409 Conflict to the runner
+      def self.conflict: (valid: untyped) -> untyped
+
+      # Returns an invalid result (conflict with valid: false).
+      # Use this when a build cannot be assigned due to a conflict (e.g., StaleObjectError,
+      # InvalidTransition) to signal that the runner should retry the request.
+      # The loop continues to try other builds, but if all builds fail, returns HTTP 409.
+      def self.invalid: () -> untyped
+    end
+
+    #
+    # The queue depth limit number has been determined by observing 95
+    # percentile of effective queue depth on gitlab.com. This is only likely to
+    # affect 5% of the worst case scenarios.
+    MAX_QUEUE_DEPTH: 45
+
+    def initialize: (untyped runner, untyped runner_manager) -> void
+
+    def execute: (?::Hash[untyped, untyped] params) -> untyped
+
+    private
+
+    def process_queue_with_instrumentation: (untyped params) -> untyped
+
+    def process_queue: (untyped params) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def each_build: (untyped params) { (untyped, untyped) -> untyped } -> untyped
+
+    def retrieve_queue: (untyped queue_query_proc) -> untyped
+
+    def process_build: (untyped build, untyped params, queue_size: untyped, queue_depth: untyped) -> untyped
+
+    def refresh_build: (untyped build) -> untyped
+
+    def max_queue_depth: () -> untyped
+
+    def remove_from_queue!: (untyped build) -> (nil | untyped)
+
+    def runner_matched?: (untyped build) -> untyped
+
+    def present_build_with_instrumentation!: (untyped build, queue_size: untyped, queue_depth: untyped) -> untyped
+
+    # Force variables evaluation to occur now
+    def present_build!: (untyped build, queue_size: untyped, queue_depth: untyped) -> untyped
+
+    def log_build_dependencies_size: (untyped presented_build) -> (nil | untyped)
+
+    def assign_runner_with_instrumentation!: (untyped build, untyped params) -> untyped
+
+    def assign_runner!: (untyped build, untyped params) -> untyped
+
+    def acquire_temporary_lock: (untyped build_id) -> (true | untyped)
+
+    def scheduler_failure!: (untyped build) -> untyped
+
+    def track_success: (untyped result, untyped depth) -> untyped
+
+    def track_conflict: (untyped depth, untyped valid) -> untyped
+
+    def track_exception_for_build: (untyped ex, untyped build) -> untyped
+
+    def build_tracking_data: (untyped build) -> { build_id: untyped, build_name: untyped, build_stage: untyped, pipeline_id: untyped, project_id: untyped }
+
+    def resume_environment_available_to_runner?: (untyped build) -> (true | untyped)
+
+    def pre_assign_runner_checks: () -> { missing_dependency_failure: untyped, runner_unsupported: untyped, archived_failure: untyped, project_deleted: untyped, builds_disabled: untyped, user_blocked: untyped }
+  end
+end

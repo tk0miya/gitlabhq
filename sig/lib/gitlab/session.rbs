@@ -1,0 +1,11 @@
+module Gitlab
+  class Session
+    STORE_KEY: :session_storage
+
+    def self.with_session: (untyped session) { () -> untyped } -> untyped
+
+    def self.current: () -> untyped
+
+    def self.current=: (untyped value) -> untyped
+  end
+end

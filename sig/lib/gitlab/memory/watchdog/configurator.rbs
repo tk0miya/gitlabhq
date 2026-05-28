@@ -1,0 +1,38 @@
+module Gitlab
+  module Memory
+    class Watchdog
+      class Configurator
+        DEFAULT_PUMA_WORKER_RSS_LIMIT_MB: 1500
+
+        DEFAULT_SLEEP_INTERVAL_S: 60
+
+        DEFAULT_SIDEKIQ_SLEEP_INTERVAL_S: 3
+
+        MIN_SIDEKIQ_SLEEP_INTERVAL_S: 2
+
+        DEFAULT_MAX_STRIKES: 5
+
+        # This disables the heap fragmentation check since it doesn't work with Variable Width Allocation:
+        # https://gitlab.com/gitlab-org/gitlab/-/issues/407327
+        DEFAULT_MAX_HEAP_FRAG: 1
+
+        DEFAULT_MAX_MEM_GROWTH: ::Float
+
+        # grace_time / sleep_interval = max_strikes allowed for Sidekiq process to violate defined limits.
+        DEFAULT_SIDEKIQ_GRACE_TIME_S: 900
+
+        def self.configure_for_puma: () -> untyped
+
+        def self.configure_for_sidekiq: () -> untyped
+
+        private
+
+        def self.configure_monitors_for_puma: () -> untyped
+
+        def self.sidekiq_sleep_time: () -> untyped
+
+        def self.configure_monitors_for_sidekiq: () -> untyped
+      end
+    end
+  end
+end

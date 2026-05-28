@@ -1,0 +1,33 @@
+# RootController
+#
+# This controller exists solely to handle requests to `root_url`. When a user is
+# logged in and has customized their `dashboard` setting, they will be
+# redirected to their preferred location.
+#
+# For users who haven't customized the setting, we simply delegate to
+# `DashboardController#show`, which is the default.
+class RootController < Dashboard::ProjectsController
+  @homepage_app_data: untyped
+
+  include HomepageData
+
+  include ::Gitlab::InternalEventsTracking
+
+  CACHE_CONTROL_HEADER: "no-store"
+
+  DASHBOARD_PATHS: { "projects" => untyped, "stars" => untyped, "member_projects" => untyped, "your_activity" => untyped, "project_activity" => untyped, "starred_project_activity" => untyped, "followed_user_activity" => untyped, "groups" => untyped, "todos" => untyped, "issues" => untyped, "merge_requests" => untyped, "assigned_merge_requests" => untyped, "review_merge_requests" => untyped }
+
+  def index: () -> (nil | untyped)
+
+  private
+
+  def redirect_unlogged_user: () -> untyped
+
+  def root_redirect_enabled?: () -> untyped
+
+  def redirect_logged_user: () -> untyped
+
+  def dashboard_redirect_path: (untyped dashboard_type) -> untyped
+
+  def redirect_to_home_page_url?: () -> (false | untyped)
+end

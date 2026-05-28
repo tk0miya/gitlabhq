@@ -1,0 +1,24 @@
+module API
+  module Entities
+    class BasicProjectDetails < Entities::ProjectIdentity
+      extend ::API::ProjectsRelationBuilder
+
+      include Gitlab::Utils::StrongMemoize
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def self.preload_relation: (untyped projects_relation, ?::Hash[untyped, untyped] options) -> untyped
+
+      def self.execute_batch_counting: (untyped projects_relation) -> untyped
+
+      def self.postload_relation: (untyped projects_relation, ?::Hash[untyped, untyped] options) -> nil
+
+      private
+
+      alias project object
+
+      def topic_names: () -> untyped
+
+      def user_has_access_to_project_repository?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,68 @@
+# == AuthenticatesWithTwoFactor
+#
+# Controller concern to handle two-factor authentication
+module AuthenticatesWithTwoFactor
+  @user: untyped
+
+  extend ActiveSupport::Concern
+
+  include Authn::WebauthnInstrumentation
+
+  # Store the user's ID in the session for later retrieval and render the
+  # two factor code prompt
+  #
+  # The user must have been authenticated with a valid login and password
+  # before calling this method!
+  #
+  # user - User record
+  #
+  # Returns nil
+  def prompt_for_two_factor: (untyped user, ?status: ::Symbol) -> untyped
+
+  def prompt_for_passwordless_authentication_via_passkey: () -> untyped
+
+  def handle_locked_user: (untyped user) -> untyped
+
+  def locked_user_redirect: (untyped user) -> untyped
+
+  def handle_passwordless_flow: () -> untyped
+
+  def authenticate_with_two_factor: () -> untyped
+
+  private
+
+  def locked_user_redirect_alert: (untyped user) -> untyped
+
+  def clear_two_factor_attempt!: () -> untyped
+
+  def authenticate_with_two_factor_via_otp: (untyped user) -> untyped
+
+  def authenticate_with_two_factor_via_webauthn: (untyped user) -> untyped
+
+  def authenticate_with_passwordless_authentication_via_passkey: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def setup_webauthn_authentication: (untyped user) -> (untyped | nil)
+
+  def setup_passkey_authentication: () -> untyped
+
+  def handle_two_factor_success: (untyped user) -> untyped
+
+  def handle_two_factor_failure: (untyped user, untyped method, untyped message) -> untyped
+
+  def handle_passwordless_auth_with_passkey_success: (untyped user) -> untyped
+
+  def handle_passwordless_auth_with_passkey_failure: (untyped method, untyped message) -> untyped
+
+  def send_two_factor_otp_attempt_failed_email: (untyped user) -> untyped
+
+  def log_failed_two_factor: (untyped user, untyped method) -> nil
+
+  def handle_changed_user_password: (untyped _user) -> untyped
+
+  # If user has been updated since we validated the password,
+  # the password might have changed.
+  def user_password_changed?: (untyped user) -> (false | untyped)
+
+  def destroy_all_but_current_user_session!: (untyped user, untyped session) -> untyped
+end

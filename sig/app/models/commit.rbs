@@ -1,0 +1,309 @@
+class Commit
+  self.@reference_pattern: untyped
+
+  self.@link_reference_pattern: untyped
+
+  @raw: untyped
+
+  @container: untyped
+
+  @with_pipeline: untyped
+
+  @diff_line_count: untyped
+
+  @full_title: untyped
+
+  @committer: untyped
+
+  # Usage of `reject` is intentional. `compact` doesn't work here, because of BatchLoader specifics
+  @parents: untyped
+
+  @signature_type: untyped
+
+  @gpg_commit: untyped
+
+  # Memoize with per-user access check
+  @merged_merge_request_hash: untyped
+
+  @deltas: untyped
+
+  extend ActiveModel::Naming
+
+  extend Gitlab::Cache::RequestCache
+
+  extend Gitlab::Utils::Override
+
+  include ActiveModel::Conversion
+
+  include Noteable
+
+  include Participable
+
+  include Mentionable
+
+  include Referable
+
+  include StaticModel
+
+  include Presentable
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  include ActsAsPaginatedDiff
+
+  include CacheMarkdownField
+
+  include GlobalID::Identification
+
+  include ::Repositories::StreamableDiff
+
+  attr_reader container: untyped
+
+  MIN_SHA_LENGTH: untyped
+
+  MAX_SHA_LENGTH: untyped
+
+  COMMIT_SHA_PATTERN: untyped
+
+  WHOLE_WORD_COMMIT_SHA_PATTERN: ::Regexp
+
+  EXACT_COMMIT_SHA_PATTERN: ::Regexp
+
+  # Used by GFM to match and present link extensions on node texts and hrefs.
+  LINK_EXTENSION_PATTERN: ::Regexp
+
+  DEFAULT_MAX_DIFF_LINES_SETTING: 50000
+
+  DEFAULT_MAX_DIFF_FILES_SETTING: 1000
+
+  MAX_DIFF_LINES_SETTING_UPPER_BOUND: 100000
+
+  MAX_DIFF_FILES_SETTING_UPPER_BOUND: 3000
+
+  DIFF_SAFE_LIMIT_FACTOR: 10
+
+  CO_AUTHORED_TRAILER: "Co-authored-by"
+
+  def self.decorate: (untyped commits, untyped container) -> untyped
+
+  # Calculate number of lines to render for diffs
+  def self.diff_line_count: (untyped diffs) -> untyped
+
+  def self.order_by: (collection: untyped, order_by: untyped, sort: untyped) -> untyped
+
+  # Truncate sha to 8 characters
+  def self.truncate_sha: (untyped sha) -> untyped
+
+  def self.diff_max_files: () -> untyped
+
+  def self.diff_max_lines: () -> untyped
+
+  def self.max_diff_options: () -> { max_files: untyped, max_lines: untyped }
+
+  def self.diff_safe_max_files: () -> untyped
+
+  def self.diff_safe_max_lines: () -> untyped
+
+  def self.from_hash: (untyped hash, untyped container) -> untyped
+
+  def self.valid_hash?: (untyped key) -> untyped
+
+  def self.lazy: (untyped container, untyped oid) -> untyped
+
+  def self.parent_class: () -> untyped
+
+  def self.build_from_sidekiq_hash: (untyped project, untyped hash) -> untyped
+
+  def self.underscore: () -> "commit"
+
+  attr_accessor redacted_description_html: untyped
+
+  attr_accessor redacted_title_html: untyped
+
+  attr_accessor redacted_full_title_html: untyped
+
+  attr_accessor raw: untyped
+
+  def initialize: (untyped raw_commit, untyped container) -> void
+
+  def with_pipeline: () -> untyped
+
+  def id: () -> untyped
+
+  def project_id: () -> untyped
+
+  def ==: (untyped other) -> untyped
+
+  def self.reference_prefix: () -> "@"
+
+  def self.reference_valid?: (untyped reference) -> untyped
+
+  # Pattern used to extract commit references from text
+  #
+  # This pattern supports cross-project references.
+  def self.reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> untyped
+
+  def to_reference: (?untyped? from, ?full: bool) -> untyped
+
+  def reference_link_text: (?untyped? from, ?full: bool) -> untyped
+
+  def diff_line_count: () -> untyped
+
+  # Returns the commits title.
+  #
+  # Usually, the commit title is the first line of the commit message.
+  # In case this first line is longer than 100 characters, it is cut off
+  # after 80 characters + `...`
+  def title: () -> untyped
+
+  # Returns the full commits title
+  def full_title: () -> untyped
+
+  def author_full_text: () -> (nil | untyped)
+
+  # Returns full commit message if title is truncated (greater than 99 characters)
+  # otherwise returns commit message without first line
+  def description: () -> untyped
+
+  def description?: () -> untyped
+
+  def timestamp: () -> untyped
+
+  def hook_attrs: (?with_changed_files: bool) -> untyped
+
+  def lazy_author: () -> untyped
+
+  def author: () -> untyped
+
+  def committer: (?confirmed: bool) -> untyped
+
+  def parents: () -> untyped
+
+  def parent: () -> untyped
+
+  def notes: () -> untyped
+
+  def user_mentions: () -> untyped
+
+  def discussion_notes: () -> untyped
+
+  def notes_with_associations: () -> untyped
+
+  def method_missing: (untyped method, *untyped args) { (?) -> untyped } -> untyped
+
+  def respond_to_missing?: (untyped method, ?bool include_private) -> untyped
+
+  def short_id: () -> untyped
+
+  def diff_refs: () -> untyped
+
+  def diff_stats: () -> (nil | untyped)
+
+  def has_signature?: () -> untyped
+
+  def raw_signature_type: () -> untyped
+
+  def signature_type: () -> untyped
+
+  def signature: () -> untyped
+
+  def verified_committer: () -> (nil | untyped)
+
+  def gpg_commit: () -> untyped
+
+  def revert_branch_name: () -> ::String
+
+  def cherry_pick_branch_name: () -> untyped
+
+  def cherry_pick_description: (untyped user) -> untyped
+
+  def cherry_pick_message: (untyped user) -> ::String
+
+  def revert_description: (untyped user) -> ::String
+
+  def revert_message: (untyped user) -> ::String
+
+  def reverts_commit?: (untyped commit, untyped user) -> untyped
+
+  def merge_commit?: () -> untyped
+
+  def merged_merge_request: (untyped current_user) -> untyped
+
+  def has_been_reverted?: (untyped current_user, ?untyped? notes_association) -> untyped
+
+  def change_type_title: (untyped user) -> ("merge request" | "commit")
+
+  # Get the URI type of the given path
+  #
+  # Used to build URLs to files in the repository in GFM.
+  #
+  # path - String path to check
+  #
+  # Examples:
+  #
+  #   uri_type('doc/README.md') # => :blob
+  #   uri_type('doc/logo.png')  # => :raw
+  #   uri_type('doc/api')       # => :tree
+  #   uri_type('not/found')     # => nil
+  #
+  # Returns a symbol
+  def uri_type: (untyped path) -> (nil | untyped)
+
+  def raw_diffs: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def raw_deltas: () -> untyped
+
+  def diffs: (?::Hash[untyped, untyped] diff_options) -> untyped
+
+  def persisted?: () -> true
+
+  def to_ability_name: () -> untyped
+
+  def touch: () -> nil
+
+  def touch_later: () -> nil
+
+  # We are continuing to support `(fixup!|squash!)` here as it is the prefix
+  #   added by `git commit --fixup` which is used by some community members.
+  #   https://gitlab.com/gitlab-org/gitlab/-/issues/342937#note_892065311
+  #
+  DRAFT_REGEX: ::Regexp
+
+  def draft?: () -> untyped
+
+  alias work_in_progress? draft?
+
+  def merged_merge_request?: (untyped user) -> untyped
+
+  def cache_key: () -> ::String
+
+  def readable_by?: (untyped user) -> untyped
+
+  def user_mention_class: () -> untyped
+
+  def user_mention_identifier: () -> { commit_id: untyped, note_id: nil }
+
+  def tipping_branches: (?limit: ::Integer) -> untyped
+
+  def tipping_tags: (?limit: ::Integer) -> untyped
+
+  def branches_containing: (?limit: ::Integer, ?exclude_tipped: bool) -> untyped
+
+  def tags_containing: (?limit: ::Integer, ?exclude_tipped: bool) -> untyped
+
+  def has_encoded_file_paths?: () -> untyped
+
+  def first_diffs_slice: (untyped limit, ?::Hash[untyped, untyped] diff_options) -> untyped
+
+  private
+
+  def tipping_refs: (untyped ref_prefix, ?limit: ::Integer) -> untyped
+
+  def commit_reference: (untyped from, untyped referable_commit_id, ?full: bool) -> untyped
+
+  def repo_changes: () -> untyped
+
+  def merged_merge_request_no_cache: (untyped user) -> untyped
+end

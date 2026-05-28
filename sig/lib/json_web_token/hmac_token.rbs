@@ -1,0 +1,19 @@
+module JSONWebToken
+  class HMACToken < Token
+    @secret: untyped
+
+    LEEWAY: 60
+
+    JWT_ALGORITHM: "HS256"
+
+    def initialize: (untyped secret) -> void
+
+    def self.decode: (untyped token, untyped secret, ?leeway: untyped, ?verify_iat: bool) -> untyped
+
+    def encoded: () -> untyped
+
+    private
+
+    attr_reader secret: untyped
+  end
+end

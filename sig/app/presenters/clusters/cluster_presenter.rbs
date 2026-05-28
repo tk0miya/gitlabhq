@@ -1,0 +1,29 @@
+module Clusters
+  class ClusterPresenter < Gitlab::View::Presenter::Delegated
+    include ::Gitlab::Utils::StrongMemoize
+
+    def provider_label: () -> (untyped | untyped | nil)
+
+    def provider_management_url: () -> (::String | ::String | nil)
+
+    def can_read_cluster?: () -> untyped
+
+    def show_path: (?params: ::Hash[untyped, untyped]) -> untyped
+
+    def read_only_kubernetes_platform_fields?: () -> untyped
+
+    def agent_migration_for_display: () -> untyped
+
+    private
+
+    def image_path: (untyped path) -> untyped
+
+    # currently log explorer is only available in the scope of the project
+    # for group and instance level cluster selected project does not affects
+    # fetching logs from gitlab managed apps namespace, therefore any project
+    # available to user will be sufficient.
+    def logs_project: () -> untyped
+
+    def clusterable: () -> (untyped | untyped | nil)
+  end
+end

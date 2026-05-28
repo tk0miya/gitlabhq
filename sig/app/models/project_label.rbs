@@ -1,0 +1,17 @@
+class ProjectLabel < Label
+  MAX_NUMBER_OF_PRIORITIES: 1
+
+  alias subject project
+
+  def subject_foreign_key: () -> "project_id"
+
+  def to_reference: (?untyped? target_container, ?format: ::Symbol, ?full: bool) -> untyped
+
+  def preloaded_parent_container: () -> untyped
+
+  private
+
+  def title_must_not_exist_at_group_level: () -> (nil | untyped)
+
+  def permitted_numbers_of_priorities: () -> (untyped | nil)
+end

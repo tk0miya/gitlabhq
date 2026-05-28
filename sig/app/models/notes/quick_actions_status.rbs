@@ -1,0 +1,33 @@
+module Notes
+  class QuickActionsStatus
+    @command_names: untyped
+
+    @commands_only: untyped
+
+    @messages: untyped
+
+    @error_messages: untyped
+
+    attr_accessor messages: untyped
+
+    attr_accessor error_messages: untyped
+
+    attr_accessor commands_only: untyped
+
+    attr_accessor command_names: untyped
+
+    def initialize: (command_names: untyped, commands_only: untyped) -> void
+
+    def add_message: (untyped message) -> (untyped | nil)
+
+    def add_error: (untyped message) -> untyped
+
+    def commands_only?: () -> untyped
+
+    def success?: () -> untyped
+
+    def error?: () -> untyped
+
+    def to_h: () -> untyped
+  end
+end

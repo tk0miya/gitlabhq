@@ -1,0 +1,11 @@
+module Resolvers
+  module Integrations
+    class ExclusionsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (integration_name: untyped) -> untyped
+
+      def authorize!: () -> (untyped | nil)
+    end
+  end
+end

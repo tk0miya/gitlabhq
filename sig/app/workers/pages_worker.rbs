@@ -1,0 +1,7 @@
+class PagesWorker
+  include ApplicationWorker
+
+  def perform: (untyped action, *untyped arg) -> (untyped | nil)
+
+  def deploy: (untyped build_id) -> untyped
+end

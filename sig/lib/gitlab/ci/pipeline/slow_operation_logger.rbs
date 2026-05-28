@@ -1,0 +1,57 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      # SlowOperationLogger detects and logs slow operations.
+      # It captures DB, Gitaly, and Redis counter deltas and emits a structured
+      # log entry via Gitlab::AppJsonLogger when an operation exceeds
+      # SLOW_THRESHOLD_SECONDS (default: 5 seconds, configurable via
+      # CI_SLOW_OPERATION_THRESHOLD_SECONDS env var).
+      #
+      # Usage:
+      #   include Gitlab::Ci::Pipeline::SlowOperationLogger
+      #
+      #   def my_method
+      #     log_slow_operation(
+      #       operation_name: :my_operation,
+      #       context: { project_id: project.id, user_id: user&.id }
+      #     ) do
+      #       # the operation to monitor
+      #     end
+      #   end
+      #
+      # When adding slow operation logging to a new call site, consider guarding
+      # it behind a dedicated feature flag specific to that operation rather than
+      # using a single global flag. For example:
+      #
+      #   def my_method
+      #     if Feature.enabled?(:ci_slow_my_operation_logger, project, type: :ops)
+      #       log_slow_operation(
+      #         operation_name: :my_operation,
+      #         context: { project_id: project.id }
+      #       ) { perform_work }
+      #     else
+      #       perform_work
+      #     end
+      #   end
+      module SlowOperationLogger
+        extend ActiveSupport::Concern
+
+        SLOW_THRESHOLD_SECONDS: untyped
+
+        private
+
+        def log_slow_operation: (operation_name: untyped, ?context: ::Hash[untyped, untyped]) { () -> untyped } -> untyped
+
+        # Wrapper methods to ensure logging errors don't affect the main application flow.
+        # Since this is observability-only code, we silently rescue any errors.
+        def safe_capture_counters: () -> untyped
+
+        def safe_emit_log: (untyped operation_name, untyped duration, untyped start_counters, untyped end_counters, untyped context) -> untyped
+
+        def capture_instrumentation_counters: () -> ::Hash[untyped | :gitaly_calls | :gitaly_duration_s | :redis_calls | :redis_duration_s, untyped]
+
+        def emit_slow_operation_log: (operation_name: untyped, duration: untyped, start_counters: untyped, end_counters: untyped, context: untyped) -> untyped
+      end
+    end
+  end
+end

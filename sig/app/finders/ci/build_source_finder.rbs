@@ -1,0 +1,42 @@
+module Ci
+  class BuildSourceFinder
+    @relation: untyped
+
+    @sources: untyped
+
+    @project: untyped
+
+    @params: untyped
+
+    def initialize: (relation: untyped, sources: untyped, project: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader relation: untyped
+
+    attr_reader sources: untyped
+
+    attr_reader project: untyped
+
+    attr_reader params: untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- Need specialized queries for database optimizations
+    def filter_by_source: () -> untyped
+
+    def order: () -> untyped
+
+    def build_source_scope: () -> untyped
+
+    def ci_builds_query: () -> untyped
+
+    def scope: () -> untyped
+
+    def array_scope: () -> untyped
+
+    def array_mapping_scope: () -> untyped
+
+    def get_source_ids_from_names: (untyped source_names) -> untyped
+  end
+end

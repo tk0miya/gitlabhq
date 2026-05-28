@@ -1,0 +1,15 @@
+module Ci
+  module JobTokenScope
+    class AddGroupService < ::BaseService
+      include EditScopeValidations
+
+      include ScopeEventTracking
+
+      def execute: (untyped target_group, ?default_permissions: bool, ?policies: untyped) -> untyped
+
+      private
+
+      def allowlist: () -> untyped
+    end
+  end
+end

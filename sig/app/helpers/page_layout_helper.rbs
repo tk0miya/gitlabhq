@@ -1,0 +1,86 @@
+module PageLayoutHelper
+  @page_title: untyped
+
+  @breadcrumb_title: untyped
+
+  @page_description: untyped
+
+  @page_canonical_link: untyped
+
+  @page_card_attributes: untyped
+
+  @header_title: untyped
+
+  @header_title_url: untyped
+
+  @sidebar: untyped
+
+  @nav: untyped
+
+  @page_itemtype: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  def page_title: (*untyped titles) -> untyped
+
+  # Define or get a description for the current page
+  #
+  # description - String (default: nil)
+  #
+  # If this helper is called multiple times with an argument, only the last
+  # description will be returned when called without an argument. Descriptions
+  # have newlines replaced with spaces and all HTML tags are sanitized.
+  #
+  # Examples:
+  #
+  #   page_description # => "GitLab Community Edition"
+  #   page_description("Foo")
+  #   page_description # => "Foo"
+  #
+  #   page_description("<b>Bar</b>\nBaz")
+  #   page_description # => "Bar Baz"
+  #
+  # Returns an HTML-safe String.
+  def page_description: (?untyped? description) -> (untyped | untyped | nil)
+
+  def page_canonical_link: (?untyped? link) -> untyped
+
+  def favicon: () -> untyped
+
+  def page_image: () -> untyped
+
+  # Define or get attributes to be used as Twitter card metadata
+  #
+  # map - Hash of label => data pairs. Keys become labels, values become data
+  #
+  # Raises ArgumentError if given more than two attributes
+  def page_card_attributes: (?::Hash[untyped, untyped] map) -> untyped
+
+  def page_card_meta_tags: () -> untyped
+
+  def header_title: (?untyped? title, ?untyped? title_url) -> untyped
+
+  def sidebar: (?untyped? name) -> untyped
+
+  def nav: (?untyped? name) -> untyped
+
+  # This helper ensures there is always a default `Gitlab::SearchContext` available
+  # to all controller that use the application layout.
+  def search_context: () -> untyped
+
+  def fluid_layout: () -> untyped
+
+  def container_class: () -> untyped
+
+  def full_content_class: () -> ::String
+
+  def page_itemtype: (?untyped? itemtype) -> untyped
+
+  def user_status_properties: (untyped user) -> untyped
+
+  private
+
+  def generic_canonical_url: () -> untyped
+
+  def generate_generic_canonical_url?: () -> (false | untyped)
+end

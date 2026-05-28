@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    module Mailers
+      class UnconfirmMailer < ::Notify
+        @user: untyped
+
+        @verification_from_mail: untyped
+
+        def unconfirm_notification_email: (untyped user) -> untyped
+      end
+    end
+  end
+end

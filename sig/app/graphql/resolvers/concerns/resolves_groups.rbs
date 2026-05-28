@@ -1,0 +1,17 @@
+# Mixin for all resolver classes for type `Types::GroupType.connection_type`.
+module ResolvesGroups
+  extend ActiveSupport::Concern
+
+  include LooksAhead
+
+  PRELOADS: { archived: ::Array[:namespace_settings_with_ancestors_inherited_settings], container_repositories_count: ::Array[:container_repositories], description: ::Array[:namespace_details], description_html: ::Array[:namespace_details], custom_emoji: ::Array[:custom_emoji], full_path: ::Array[:route], path: ::Array[:route], web_url: ::Array[:route], dependency_proxy_blob_count: ::Array[:dependency_proxy_blobs], dependency_proxy_blobs: ::Array[:dependency_proxy_blobs], dependency_proxy_image_count: ::Array[:dependency_proxy_manifests], dependency_proxy_image_ttl_policy: ::Array[:dependency_proxy_image_ttl_policy], dependency_proxy_setting: ::Array[:dependency_proxy_setting], marked_for_deletion: ::Array[:deletion_schedule], marked_for_deletion_on: ::Array[:deletion_schedule], is_self_deletion_scheduled: ::Array[:deletion_schedule] }
+
+  def resolve_with_lookahead: (*untyped args, **untyped kwargs) -> untyped
+
+  private
+
+  # The resolver should implement this method.
+  def resolve_groups: (**untyped args) -> untyped
+
+  def preloads: () -> untyped
+end

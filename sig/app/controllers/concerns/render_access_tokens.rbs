@@ -1,0 +1,12 @@
+# Remove this file once we migrate the legacy UI to use initSharedAccessTokenApp.
+module RenderAccessTokens
+  extend ActiveSupport::Concern
+
+  def active_access_tokens: () -> ::Array[untyped]
+
+  def inactive_access_tokens: () -> untyped
+
+  def add_pagination_headers: (untyped relation) -> untyped
+
+  def page: () -> untyped
+end

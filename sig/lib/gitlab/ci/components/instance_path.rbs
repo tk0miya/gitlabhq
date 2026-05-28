@@ -1,0 +1,90 @@
+module Gitlab
+  module Ci
+    module Components
+      class InstancePath
+        @full_path: untyped
+
+        @reference: untyped
+
+        @logger: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        include ::Gitlab::LoopHelpers
+
+        attr_reader reference: untyped
+
+        attr_reader logger: untyped
+
+        SHORTHAND_SEMVER_PATTERN: ::Regexp
+
+        LATEST: "~latest"
+
+        def self.match?: (untyped address) -> untyped
+
+        def self.fqdn_prefix: () -> ::String
+
+        def initialize: (address: untyped, ?logger: untyped?) -> void
+
+        def fetch_content!: (current_user: untyped) -> (nil | untyped)
+
+        def project: () -> untyped
+
+        def sha: () -> (nil | untyped)
+
+        def matched_version: () -> untyped
+
+        def component_name: () -> untyped
+
+        def invalid_usage_for_latest?: () -> untyped
+
+        def invalid_usage_for_partial_semver?: () -> untyped
+
+        private
+
+        def fetch_component_content: () -> untyped
+
+        def content_fetcher: () -> untyped
+
+        def try_cached_template_path: (untyped template_path) -> (nil | untyped)
+
+        def fetch_from_gitaly: () -> untyped
+
+        def simple_template_path: () -> untyped
+
+        def complex_template_path: () -> untyped
+
+        def component_cache_key_for: (untyped sha, untyped path) -> ::String
+
+        def cache_enabled?: () -> untyped
+
+        def access_allowed?: (untyped current_user) -> untyped
+
+        def cache_key: (*untyped parts) -> untyped
+
+        def find_catalog_version: () -> untyped
+
+        def fetch_catalog_version: () -> untyped
+
+        def catalog_resource_version_latest: () -> untyped
+
+        def catalog_resource_version_by_short_semver: () -> untyped
+
+        def sha_by_released_tag: () -> untyped
+
+        def sha_by_ref: () -> untyped
+
+        def instance_path: () -> untyped
+
+        def project_full_path: () -> untyped
+
+        # Given a path like "my-org/sub-group/the-project/the-component"
+        # we expect that the last `/` is the separator between the project full path and the
+        # component name.
+        def extract_project_path: (untyped path) -> (nil | untyped)
+
+        def instrument: (untyped operation) { () -> untyped } -> untyped
+      end
+    end
+  end
+end

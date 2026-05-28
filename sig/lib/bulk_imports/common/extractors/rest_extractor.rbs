@@ -1,0 +1,23 @@
+module BulkImports
+  module Common
+    module Extractors
+      class RestExtractor
+        @query: untyped
+
+        @http_client: untyped
+
+        def initialize: (?::Hash[untyped, untyped] options) -> void
+
+        def extract: (untyped context) -> untyped
+
+        private
+
+        attr_reader query: untyped
+
+        def http_client: (untyped configuration) -> untyped
+
+        def page_info: (untyped headers) -> { "has_next_page" => untyped, "next_page" => untyped }
+      end
+    end
+  end
+end

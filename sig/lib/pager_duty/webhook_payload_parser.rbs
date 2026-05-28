@@ -1,0 +1,29 @@
+module PagerDuty
+  class WebhookPayloadParser
+    @payload: untyped
+
+    SCHEMA_PATH: untyped
+
+    def initialize: (untyped payload) -> void
+
+    def self.call: (untyped payload) -> untyped
+
+    def call: () -> untyped
+
+    private
+
+    attr_reader payload: untyped
+
+    def parse_message: (untyped message) -> (::Hash[untyped, untyped] | { "event" => untyped, "incident" => untyped })
+
+    def parse_incident: (untyped incident) -> (::Hash[untyped, untyped] | { "url" => untyped, "incident_number" => untyped, "title" => untyped, "status" => untyped, "created_at" => untyped, "urgency" => untyped, "incident_key" => untyped, "assignees" => untyped, "impacted_service" => untyped })
+
+    def parse_assignees: (untyped incident) -> (::Array[untyped] | untyped)
+
+    def parse_impacted_service: (untyped incident) -> (::Hash[untyped, untyped] | { "summary" => untyped, "url" => untyped })
+
+    def reject_empty: (untyped entities) -> untyped
+
+    def valid_message?: (untyped message) -> untyped
+  end
+end

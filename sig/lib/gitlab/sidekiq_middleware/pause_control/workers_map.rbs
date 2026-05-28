@@ -1,0 +1,15 @@
+module Gitlab
+  module SidekiqMiddleware
+    module PauseControl
+      class WorkersMap
+        self.@workers: untyped
+
+        attr_reader self.workers: untyped
+
+        def self.set_strategy_for: (strategy: untyped, worker: untyped) -> untyped
+
+        def self.strategy_for: (worker: untyped) -> (nil | untyped)
+      end
+    end
+  end
+end

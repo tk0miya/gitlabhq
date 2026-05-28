@@ -1,0 +1,26 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        # Filters by an aggregated metric value. Applied as a HAVING clause on
+        # the outer (post-aggregation) query. The referenced metric must be
+        # part of the same request.
+        class MetricFilterDefinition < FilterDefinition
+          def metric?: () -> true
+
+          def apply_inner: (untyped query_builder, untyped _filter_config) -> untyped
+
+          def apply_outer: (untyped _query_builder, untyped _filter_config, untyped _metric_column) -> untyped
+
+          def validate_definition!: (untyped engine_class) -> (nil | untyped)
+
+          def validate_part: (untyped part) -> untyped
+
+          private
+
+          def validate_metric_requested: (untyped part) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

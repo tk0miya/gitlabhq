@@ -1,0 +1,16 @@
+module Projects
+  class MoveDeployKeysProjectsService < BaseMoveRelationsService
+    def execute: (untyped source_project, ?remove_remaining_elements: bool) -> (nil | untyped)
+
+    private
+
+    def ensure_sha256_fingerprints: () -> untyped
+
+    def move_deploy_keys_projects: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def non_existent_deploy_keys_projects: () -> untyped
+
+    def remove_remaining_deploy_keys_projects: () -> untyped
+  end
+end

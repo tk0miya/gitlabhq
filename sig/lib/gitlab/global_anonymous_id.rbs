@@ -1,0 +1,13 @@
+module Gitlab
+  module GlobalAnonymousId
+    UNKNOWN_ID: "unknown"
+
+    # Generates a globally unique user_id. This allows us to anonymously identify even self-managed users and instances
+    # that make requests into GitLab infrastructure.
+    def self.user_id: (untyped user) -> untyped
+
+    def self.instance_uuid: () -> untyped
+
+    def self.instance_id: () -> untyped
+  end
+end

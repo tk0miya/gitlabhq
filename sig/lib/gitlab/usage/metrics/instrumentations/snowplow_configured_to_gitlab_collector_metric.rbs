@@ -1,0 +1,13 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class SnowplowConfiguredToGitlabCollectorMetric < GenericMetric
+          GITLAB_SNOWPLOW_COLLECTOR_HOSTNAME: "snowplowprd.trx.gitlab.net"
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

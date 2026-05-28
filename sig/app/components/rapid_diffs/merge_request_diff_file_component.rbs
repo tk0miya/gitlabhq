@@ -1,0 +1,31 @@
+module RapidDiffs
+  class MergeRequestDiffFileComponent < ViewComponent::Base
+    @diff_file: untyped
+
+    @merge_request: untyped
+
+    @parallel_view: untyped
+
+    @plain_view: untyped
+
+    attr_reader diff_file: untyped
+
+    def initialize: (diff_file: untyped, merge_request: untyped, ?parallel_view: bool, ?plain_view: bool) -> void
+
+    def extra_file_data: () -> { code_review_id: untyped, blob_raw_path: untyped }
+
+    def blob_raw_path: () -> untyped
+
+    def extra_options: () -> (::Hash[untyped, untyped] | { data: { code_review_id: untyped } })
+
+    def show_viewed_toggle?: () -> untyped
+
+    def viewed_checkbox_id: () -> ::String
+
+    def additional_menu_items: () -> untyped
+
+    def edit_in_sfe: () -> (nil | { text: untyped, href: untyped, position: 2 })
+
+    def human_readable_conflict: (untyped conflict_type) -> untyped
+  end
+end

@@ -1,0 +1,10 @@
+class ErrorTracking::ErrorEvent < ApplicationRecord
+  @stacktrace: untyped
+
+  def stacktrace: () -> untyped
+
+  # For compatibility with sentry integration
+  def to_sentry_error_event: () -> untyped
+
+  def release: () -> untyped
+end

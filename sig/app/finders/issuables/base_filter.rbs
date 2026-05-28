@@ -1,0 +1,29 @@
+module Issuables
+  class BaseFilter
+    @params: untyped
+
+    @parent: untyped
+
+    @current_user: untyped
+
+    FILTER_NONE: "none"
+
+    FILTER_ANY: "any"
+
+    def initialize: (params: untyped, ?parent: untyped?, ?current_user: untyped?) -> void
+
+    def filter: () -> untyped
+
+    private
+
+    attr_reader params: untyped
+
+    attr_reader parent: untyped
+
+    attr_reader current_user: untyped
+
+    def or_params: () -> untyped
+
+    def not_params: () -> untyped
+  end
+end

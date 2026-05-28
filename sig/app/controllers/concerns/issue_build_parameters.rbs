@@ -1,0 +1,21 @@
+module IssueBuildParameters
+  extend ActiveSupport::Concern
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  def build_params: () -> untyped
+
+  # Overridden in EE
+  def issue_params: () -> untyped
+
+  private
+
+  # Overridden on EE
+  def issue_attributes: () -> ::Array[:title | :assignee_id | :position | :description | :confidential | :milestone_id | :due_date | :state_event | :task_num | :lock_version | :discussion_locked | :issue_type | { label_ids: ::Array[untyped], assignee_ids: ::Array[untyped], update_task: ::Array[:index | :checked | :line_number | :line_source | :line_sourcepos], sentry_issue_attributes: ::Array[:sentry_issue_identifier] }]
+
+  def allowed_issue_type?: (untyped issue_type) -> untyped
+
+  def vulnerability: () -> (untyped | nil)
+
+  def vulnerability_id: () -> (untyped | nil)
+end

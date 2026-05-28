@@ -1,0 +1,27 @@
+module MergeRequests
+  module Mergeability
+    class CheckCiStatusService < CheckBaseService
+      include Gitlab::Utils::StrongMemoize
+
+      def execute: () -> untyped
+
+      def skip?: () -> untyped
+
+      def cacheable?: () -> false
+
+      private
+
+      def mergeable_ci_state?: () -> (true | false | untyped)
+
+      def pipeline_pending?: () -> untyped
+
+      def pipeline_must_succeed?: () -> untyped
+
+      def auto_merge_strategy_requires_ci?: () -> untyped
+
+      def can_skip_diff_head_pipeline?: () -> untyped
+
+      def head_pipeline: () -> untyped
+    end
+  end
+end

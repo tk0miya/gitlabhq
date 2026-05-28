@@ -1,0 +1,33 @@
+module Gitlab
+  module Middleware
+    class PathTraversalCheck
+      @app: untyped
+
+      PATH_TRAVERSAL_MESSAGE: "Potential path traversal attempt detected. Feedback issue: https://gitlab.com/gitlab-org/gitlab/-/issues/520714."
+
+      # Query param names known to have string parts detected as path traversal even though
+      # they are valid genuine requests
+      EXCLUDED_QUERY_PARAM_NAMES: ::Array["search" | "search_title" | "search_query" | "term" | "name" | "filter" | "filter_projects" | "note" | "body" | "commit_message" | "content" | "description"]
+
+      NESTED_PARAMETERS_MAX_LEVEL: 5
+
+      REJECT_RESPONSE: ::Array[untyped | { "Content-Type" => "text/plain" } | ::Array[untyped]]
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def path_traversal_attempt?: (untyped request, untyped log_params) -> untyped
+
+      def exclude_query_parameters: (untyped request) -> (nil | untyped)
+
+      def cleanup_query_parameters!: (untyped params, ?level: ::Integer) -> untyped
+
+      def log: (untyped payload) -> untyped
+
+      def with_duration_metric: () { (untyped) -> untyped } -> untyped
+    end
+  end
+end

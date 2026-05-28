@@ -1,0 +1,13 @@
+module Mutations
+  module MergeRequests
+    class Create < BaseMutation
+      include FindsProject
+
+      def resolve: (project_path: untyped, **untyped attributes) -> { merge_request: untyped, errors: untyped }
+
+      private
+
+      def parse_arguments: (untyped args) -> untyped
+    end
+  end
+end

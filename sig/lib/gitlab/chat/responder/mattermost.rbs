@@ -1,0 +1,43 @@
+module Gitlab
+  module Chat
+    module Responder
+      class Mattermost < Responder::Base
+        SUCCESS_COLOR: "#00c100"
+
+        FAILURE_COLOR: "#e40303"
+
+        # Slack breaks messages apart if they're around 4 KB in size. We use a
+        # slightly smaller limit here to account for user mentions.
+        MESSAGE_SIZE_LIMIT: untyped
+
+        # Sends a response back to Mattermost
+        #
+        # body - The message payload to send back to Mattermost, as a Hash.
+        def send_response: (untyped body) -> untyped
+
+        # Sends the output for a build that completed successfully.
+        #
+        # output - The output produced by the chat command.
+        def success: (untyped output) -> (nil | untyped)
+
+        # Sends the output for a build that failed.
+        def failure: () -> untyped
+
+        # Returns the output to send back after a command has been scheduled.
+        def scheduled_output: () -> { response_type: :ephemeral, text: ::String }
+
+        private
+
+        def success_message: (untyped output) -> untyped
+
+        def limit_output: (untyped output) -> (untyped | "The output is too large to be sent back directly!")
+
+        def strip_ansi_colorcodes: (untyped output) -> untyped
+
+        def user_ref: () -> ::String
+
+        def build_ref: () -> ::String
+      end
+    end
+  end
+end

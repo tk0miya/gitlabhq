@@ -1,0 +1,17 @@
+module Gitlab
+  module BackgroundMigration
+    # This class is used to update the delayed_project_removal column
+    # for user namespaces of the namespace_settings table.
+    class UpdateDelayedProjectRemovalToNullForUserNamespaces < Gitlab::BackgroundMigration::BatchedMigrationJob
+      # Migration only version of `namespace_settings` table
+      class NamespaceSetting < ::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      private
+
+      def set_delayed_project_removal_to_null_for_user_namespace: (untyped relation) -> untyped
+    end
+  end
+end

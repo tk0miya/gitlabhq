@@ -1,0 +1,21 @@
+module Integrations
+  module Base
+    module Irker
+      extend ActiveSupport::Concern
+
+      def execute: (untyped data) -> (nil | untyped)
+
+      def settings: () -> { "server_host" => untyped, "server_port" => untyped }
+
+      private
+
+      def get_channels: () -> true
+
+      def map_recipients: () -> untyped
+
+      def format_channel: (untyped recipient) -> untyped
+
+      def consider_uri: (untyped uri) -> (nil | untyped)
+    end
+  end
+end

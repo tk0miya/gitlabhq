@@ -1,0 +1,11 @@
+module Mutations
+  module Ml
+    module Models
+      class Delete < Base
+        include FindsProject
+
+        def resolve: (**untyped args) -> ({ errors: ::Array["Model not found"] } | { model: untyped, errors: untyped })
+      end
+    end
+  end
+end

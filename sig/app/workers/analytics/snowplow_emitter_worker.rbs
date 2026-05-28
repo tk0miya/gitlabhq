@@ -1,0 +1,7 @@
+module Analytics
+  class SnowplowEmitterWorker
+    include ApplicationWorker
+
+    def perform: (untyped event_batch, untyped endpoint, untyped options) -> untyped
+  end
+end

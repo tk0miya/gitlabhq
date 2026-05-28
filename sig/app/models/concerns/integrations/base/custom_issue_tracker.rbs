@@ -1,0 +1,11 @@
+module Integrations
+  module Base
+    module CustomIssueTracker
+      extend ActiveSupport::Concern
+
+      include Base::IssueTracker
+
+      include HasIssueTrackerFields
+    end
+  end
+end

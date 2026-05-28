@@ -1,0 +1,41 @@
+module Gitlab
+  module BitbucketImport
+    module Importers
+      class IssueNotesImporter
+        @project: untyped
+
+        @formatter: untyped
+
+        @user_finder: untyped
+
+        @ref_converter: untyped
+
+        @mentions_converter: untyped
+
+        @object: untyped
+
+        include ParallelScheduling
+
+        def initialize: (untyped project, untyped hash) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader object: untyped
+
+        attr_reader project: untyped
+
+        attr_reader formatter: untyped
+
+        attr_reader user_finder: untyped
+
+        attr_reader ref_converter: untyped
+
+        attr_reader mentions_converter: untyped
+
+        def comment_note: (untyped comment) -> untyped
+      end
+    end
+  end
+end

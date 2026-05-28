@@ -1,0 +1,13 @@
+module Types
+  module Packages
+    class PackageDependencyLinkType < BaseObject
+      # NOTE: This method must be kept in sync with the union
+      # type: `Types::Packages::DependencyLinkMetadata`.
+      #
+      # `Types::Packages::DependencyLinkMetadata.resolve_type(metadata, ctx)` must never raise.
+      def metadata: () -> (nil | untyped)
+
+      def dependency: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Gitlab
+  module Usage
+    class Metric
+      self.@all: untyped
+
+      @definition: untyped
+
+      @instrumentation_object: untyped
+
+      attr_reader definition: untyped
+
+      def initialize: (untyped definition) -> void
+
+      def self.all: () -> untyped
+
+      def with_value: () -> untyped
+
+      def with_instrumentation: () -> untyped
+
+      private
+
+      def with_availability: (untyped value_proc) -> (::Hash[untyped, untyped] | untyped)
+
+      def unflatten_key_path: (untyped value) -> untyped
+
+      def instrumentation_object: () -> untyped
+    end
+  end
+end

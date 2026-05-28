@@ -1,0 +1,38 @@
+module Gitlab
+  module GitalyClient
+    # This module is responsible for collecting feature flag actors in Gitaly Client. Unlike normal feature flags used
+    # in Gitlab development, feature flags passed to Gitaly are pre-evaluated at Rails side before being passed to
+    # Gitaly. As a result, we need to collect all possible actors for the evaluation before issue any RPC. At this
+    # layer, the only parameter we have is raw repository. We need to infer other actors from the repository. Adding
+    # extra SQL queries before any RPC are not good for the performance. We applied some quirky optimizations here to
+    # avoid issuing SQL queries. However, in some less common code paths, a couple of queries are expected.
+    module WithFeatureFlagActors
+      include Gitlab::Utils::StrongMemoize
+
+      attr_accessor repository_actor: untyped
+
+      # gitaly_client_call performs Gitaly calls including collected feature flag actors. The actors are retrieved
+      # from repository actor and memoized. The service must set `self.repository_actor = a_repository` beforehand.
+      def gitaly_client_call: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      # gitaly_feature_flag_actors returns a hash of actors implied from input repository.
+      def gitaly_feature_flag_actors: (untyped repository) -> { repository: untyped, user: untyped, project: untyped, group: untyped }
+
+      # Use actor here means the user who originally perform the action. It is collected from ApplicationContext. As
+      # this information is widely propagated in all entry points, User actor should be available everywhere, even in
+      # background jobs.
+      def user_actor: () -> untyped
+
+      # TODO: replace this project actor by Repo actor
+      def project_actor: () -> untyped
+
+      def group_actor: () -> untyped
+
+      private
+
+      def repository_container: () -> untyped
+
+      def find_repository_container: (untyped repository) -> (nil | untyped)
+    end
+  end
+end

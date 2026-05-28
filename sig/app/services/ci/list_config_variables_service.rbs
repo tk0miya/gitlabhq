@@ -1,0 +1,24 @@
+module Ci
+  class ListConfigVariablesService < ::BaseService
+    include ReactiveCaching
+
+    def self.from_cache: (untyped id) -> untyped
+
+    def execute: (untyped ref) -> untyped
+
+    def calculate_reactive_cache: (untyped sha, untyped ref) -> untyped
+
+    # Required for ReactiveCaching, it is also used in `reactive_cache_worker_finder`
+    def id: () -> ::String
+
+    private
+
+    def execute_yaml_processor: (untyped sha, untyped ref, untyped config) -> untyped
+
+    # Overridden in EE
+    def valid_config_result: (untyped result) -> untyped
+
+    # Overridden in EE
+    def empty_config_result: () -> ::Hash[untyped, untyped]
+  end
+end

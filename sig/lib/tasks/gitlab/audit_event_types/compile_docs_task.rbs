@@ -1,0 +1,24 @@
+# This proc is assigned to a top-level constant so that its lexical nesting is
+# empty, ensuring constants like Gitlab::Audit::Type::Definition resolve
+# correctly when the captured binding is used inside ERB templates.
+AUDIT_EVENT_TYPES_BINDING_FACTORY: untyped
+
+module Tasks
+  module Gitlab
+    module AuditEventTypes
+      class CompileDocsTask
+        @event_types_dir: untyped
+
+        @audit_event_types_doc_file: untyped
+
+        @event_type_erb_template: untyped
+
+        def self.template_binding: () -> untyped
+
+        def initialize: (untyped docs_dir, untyped docs_path, untyped template_erb_path) -> void
+
+        def run: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,120 @@
+module Ci
+  class JobArtifact < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include AfterCommitQueue
+
+    include UpdateProjectStatistics
+
+    include UsageStatistics
+
+    include Sortable
+
+    include Artifactable
+
+    include Lockable
+
+    include FileStoreMounter
+
+    include ObjectStorable
+
+    include EachBatch
+
+    include Gitlab::Utils::StrongMemoize
+
+    STORE_COLUMN: :file_store
+
+    PLAN_LIMIT_PREFIX: "ci_max_artifact_size_"
+
+    MAX_EXPOSED_AS_LENGTH: 100
+
+    EXPOSED_PATH_REGEX: ::Regexp
+
+    InvalidArtifactError: untyped
+
+    def self.partition_groups: () -> untyped
+
+    def self.of_report_type: (untyped report_type) -> untyped
+
+    def self.file_types_for_report: (untyped report_type) -> untyped
+
+    def self.associated_file_types_for: (untyped file_type) -> (nil | ::Array[untyped])
+
+    def self.erasable_file_types: () -> untyped
+
+    def self.total_size: () -> untyped
+
+    def self.artifacts_size_for: (untyped project) -> untyped
+
+    def self.pluck_job_id: () -> untyped
+
+    #
+    # FastDestroyAll concerns
+    # rubocop: disable CodeReuse/ServiceClass
+    def self.begin_fast_destroy: () -> untyped
+
+    #
+    # FastDestroyAll concerns
+    def self.finalize_fast_destroy: (untyped service) -> untyped
+
+    def self.archived_trace_exists_for?: (untyped job_id) -> untyped
+
+    def self.max_artifact_size: (type: untyped, project: untyped) -> untyped
+
+    def validate_file_format!: () -> (untyped | nil)
+
+    def local_store?: () -> untyped
+
+    def hashed_path?: () -> (true | untyped)
+
+    def expired?: () -> untyped
+
+    def expire_in: () -> (untyped | nil)
+
+    def expire_in=: (untyped value) -> untyped
+
+    def stored?: () -> untyped
+
+    def to_deleted_object_attrs: (?untyped? pick_up_at) -> { file_store: untyped, store_dir: untyped, file: untyped, pick_up_at: untyped, project_id: untyped }
+
+    def store_after_commit?: () -> untyped
+
+    def public_access?: () -> untyped
+
+    def none_access?: () -> untyped
+
+    def maintainer_access?: () -> untyped
+
+    def each_blob: () { (?) -> untyped } -> untyped
+
+    private
+
+    def resolve_file_path_for_deletion: () -> (::Array[untyped] | ::Array[nil] | untyped)
+
+    def object_storage_inaccessible?: () -> untyped
+
+    def extract_path_from_uploader: () -> untyped
+
+    def set_pick_up_at: (untyped pick_up_at) -> untyped
+
+    def store_file_in_transaction!: () -> untyped
+
+    def store_file_after_transaction!: () -> untyped
+
+    # method overridden in EE
+    def file_stored_after_transaction_hooks: () -> nil
+
+    # method overridden in EE
+    def file_stored_in_transaction_hooks: () -> nil
+
+    def set_size: () -> untyped
+
+    def project_destroyed?: () -> untyped
+
+    def log_create: () -> untyped
+
+    def log_destroy: () -> untyped
+
+    def validate_exposed_paths: () -> (nil | untyped)
+  end
+end

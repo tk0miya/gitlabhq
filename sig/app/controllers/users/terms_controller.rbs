@@ -1,0 +1,31 @@
+module Users
+  class TermsController < ApplicationController
+    @redirect: untyped
+
+    @viewed_term: untyped
+
+    @term: untyped
+
+    include InternalRedirect
+
+    include OneTrustCSP
+
+    def index: () -> untyped
+
+    def accept: () -> untyped
+
+    def decline: () -> untyped
+
+    private
+
+    def viewed_term: () -> untyped
+
+    def terms: () -> (untyped | nil)
+
+    def redirect_path: () -> untyped
+
+    def excluded_redirect_paths: () -> ::Array[untyped]
+
+    def safe_params: () -> untyped
+  end
+end

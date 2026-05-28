@@ -1,0 +1,17 @@
+module Preloaders
+  class ProjectPolicyPreloader
+    @projects: untyped
+
+    @current_user: untyped
+
+    def initialize: (untyped projects, untyped current_user) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader projects: untyped
+
+    attr_reader current_user: untyped
+  end
+end

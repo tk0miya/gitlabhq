@@ -1,0 +1,13 @@
+class LabelLink < ApplicationRecord
+  include BulkInsertSafe
+
+  include Importable
+
+  include FromUnion
+
+  include EachBatch
+
+  private
+
+  def ensure_namespace_id: () -> untyped
+end

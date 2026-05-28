@@ -1,0 +1,173 @@
+module Integrations
+  module Base
+    module Integration
+      @updated_properties: untyped
+
+      extend ActiveSupport::Concern
+
+      extend Gitlab::Utils::Override
+
+      UnknownType: untyped
+
+      INTEGRATION_NAMES: ::Array["asana" | "assembla" | "bamboo" | "bugzilla" | "buildkite" | "campfire" | "clickup" | "confluence" | "custom_issue_tracker" | "datadog" | "diffblue_cover" | "discord" | "drone_ci" | "emails_on_push" | "ewm" | "external_wiki" | "gitlab_slack_application" | "hangouts_chat" | "harbor" | "irker" | "jira" | "linear" | "matrix" | "mattermost" | "mattermost_slash_commands" | "microsoft_teams" | "packagist" | "phorge" | "pipelines_email" | "pivotaltracker" | "pumble" | "pushover" | "redmine" | "slack" | "squash_tm" | "teamcity" | "telegram" | "unify_circuit" | "webex_teams" | "youtrack" | "zentao"]
+
+      # Integrations that can only be enabled on the instance-level
+      INSTANCE_LEVEL_ONLY_INTEGRATION_NAMES: ::Array["beyond_identity"]
+
+      # Integrations that can only be enabled on the project-level
+      PROJECT_LEVEL_ONLY_INTEGRATION_NAMES: ::Array["apple_app_store" | "google_play" | "jenkins"]
+
+      # Integrations that cannot be enabled on the instance-level
+      PROJECT_AND_GROUP_LEVEL_ONLY_INTEGRATION_NAMES: ::Array["jira_cloud_app"]
+
+      # Fake integrations to help with local development.
+      DEV_INTEGRATION_NAMES: ::Array["mock_ci" | "mock_monitoring"]
+
+      # Base classes which aren't actual integrations.
+      BASE_CLASSES: ::Array[untyped]
+
+      INTEGRATION_POPULARITY_RANKING: ::Array["Integrations::JiraCloudApp" | "Integrations::Jira" | "Integrations::GitlabSlackApplication" | "Integrations::Discord" | "Integrations::Slack" | "Integrations::Github" | "Integrations::MicrosoftTeams" | "Integrations::Jenkins" | "Integrations::Telegram" | "Integrations::PipelinesEmail" | "Integrations::EmailsOnPush" | "Integrations::Confluence" | "Integrations::GoogleCloudPlatform::WorkloadIdentityFederation" | "Integrations::HangoutsChat" | "Integrations::Datadog" | "Integrations::Youtrack" | "Integrations::GoogleCloudPlatform::ArtifactRegistry" | "Integrations::Clickup" | "Integrations::Prometheus" | "Integrations::ExternalWiki" | "Integrations::Linear" | "Integrations::Asana" | "Integrations::Mattermost" | "Integrations::CustomIssueTracker" | "Integrations::AppleAppStore" | "Integrations::Packagist" | "Integrations::Harbor" | "Integrations::GooglePlay" | "Integrations::Redmine" | "Integrations::Buildkite"]
+
+      BASE_ATTRIBUTES: ::Array["id" | "instance" | "project_id" | "group_id" | "created_at" | "updated_at" | "encrypted_properties" | "encrypted_properties_iv" | "properties" | "organization_id"]
+
+      JSONB_COLUMNS: ::Array["filter"]
+
+      SECTION_TYPE_CONFIGURATION: "configuration"
+
+      SECTION_TYPE_CONNECTION: "connection"
+
+      SECTION_TYPE_TRIGGER: "trigger"
+
+      SNOWPLOW_EVENT_ACTION: "perform_integrations_action"
+
+      SNOWPLOW_EVENT_LABEL: "redis_hll_counters.ecosystem.ecosystem_total_unique_counts_monthly"
+
+      ENCRYPTED_PROPERTIES_MAX_SIZE: untyped
+
+      def fields: () -> untyped
+
+      def organization_id_from_parent: () -> untyped
+
+      # Hook for integrations to configure associations after duplication.
+      # Override in subclasses when associations need the parent context.
+      def after_build_from_integration: (untyped new_integration) -> nil
+
+      def dup: () -> untyped
+
+      def inheritable?: () -> untyped
+
+      def activated?: () -> untyped
+
+      def operating?: () -> untyped
+
+      def manual_activation?: () -> true
+
+      def editable?: () -> true
+
+      def activate_disabled_reason: () -> nil
+
+      def category: () -> untyped
+
+      def initialize_properties: () -> (untyped | nil)
+
+      def title: () -> untyped
+
+      def description: () -> untyped
+
+      def help: () -> untyped
+
+      def to_param: () -> untyped
+
+      def attribution_notice: () -> untyped
+
+      def sections: () -> ::Array[untyped]
+
+      def secret_fields: () -> untyped
+
+      # Expose a list of fields in the JSON endpoint.
+      #
+      # This list is used in `Integration#as_json(only: json_fields)`.
+      def json_fields: () -> ::Array["active"]
+
+      def attributes: () -> untyped
+
+      def filter: () -> untyped
+
+      def filter=: (untyped value) -> untyped
+
+      # Returns a hash of attributes (columns => values) used for inserting into the database.
+      def to_database_hash: () -> untyped
+
+      def reencrypt_properties: () -> { "encrypted_properties" => untyped, "encrypted_properties_iv" => untyped }
+
+      def event_channel_names: () -> ::Array[untyped]
+
+      def event_names: () -> untyped
+
+      def api_field_names: () -> untyped
+
+      def form_fields: () -> untyped
+
+      def configurable_events: () -> untyped
+
+      def supported_events: () -> untyped
+
+      def default_test_event: () -> untyped
+
+      def execute: (untyped data) -> nil
+
+      def test: (untyped data) -> { success: untyped, result: untyped }
+
+      # Disable test for instance-level and group-level integrations.
+      # https://gitlab.com/gitlab-org/gitlab/-/issues/213138
+      def testable?: () -> untyped
+
+      def project_level?: () -> untyped
+
+      def group_level?: () -> untyped
+
+      def instance_level?: () -> untyped
+
+      def parent: () -> untyped
+
+      # Returns a hash of the properties that have been assigned a new value since last save,
+      # indicating their original values (attr => original value).
+      # ActiveRecord does not provide a mechanism to track changes in serialized keys,
+      # so we need a specific implementation for integration properties.
+      # This allows to track changes to properties set with the accessor methods,
+      # but not direct manipulation of properties hash.
+      def updated_properties: () -> untyped
+
+      def reset_updated_properties: () -> untyped
+
+      def async_execute: (untyped data) -> (nil | untyped)
+
+      # override if needed
+      def supports_data_fields?: () -> false
+
+      def chat?: () -> untyped
+
+      def ci?: () -> untyped
+
+      def deactivate!: () -> untyped
+
+      def activate!: () -> untyped
+
+      def toggle!: () -> untyped
+
+      def validate_encrypted_properties_size_limit: () -> untyped
+
+      private
+
+      def normalize_filter_value: (untyped value) -> untyped
+
+      def cleaned_caller_backtrace: () -> untyped
+
+      def normalize_filter: () -> (nil | untyped)
+
+      def normalized_jsonb_value: (untyped column_name) -> untyped
+
+      def validate_recipients?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,127 @@
+# `SafeParser` provides a thin wrapper around `Oj::Safe` that enforces limits on
+# JSON parsing and converts low-level parsing errors into user-facing,
+# human-readable error messages.
+#
+# The parser validates incoming JSON payloads against a configurable set of
+# limits (such as maximum depth, array size, hash size, total element count,
+# and payload size). If a payload violates one of these limits, the underlying
+# Oj::Safe error is mapped to a more descriptive message before being raised.
+#
+#
+# Thread Safety
+# -------------
+#
+# The underlying `Oj::Safe` parser instance is not thread-safe. To prevent
+# concurrent access from multiple threads, each `SafeParser` instance records
+# the owner thread and enforces thread affinity. Any attempt to use the parser
+# from a different thread raises `ConcurrencyError`.
+#
+# This is a defensive guardrail to avoid undefined behavior in the native
+# extension. `SafeParser` instances should therefore be treated as
+# single-thread-owned objects.
+#
+#
+# Configuration
+# -------------
+#
+# Only a predefined set of parsing limits is allowed. Unknown configuration
+# keys will raise UnknownConfigurationError during initialization.
+#
+# Available configuration options are;
+#
+# - `max_hash_size`: Maximum number of key/value pairs allowed in a JSON object.
+# - `max_array_size`: Maximum number of items allowed in a JSON array.
+# - `max_depth`: Maximum nesting depth allowed.
+# - `max_total_elements`: Maximum total number of parsed elements.
+# - `max_json_size_bytes`: Maximum size of the input JSON string in bytes.
+#
+#
+# Usage
+# -----
+#
+# parser = Gitlab::Json::SafeParser.new(max_array_size: 1)
+#
+# parser.parse('[1]') # => [1]
+# parser.parse('[1, 2]') # => JSON::ParserError: Array parameter too large
+#
+#
+# Error Handling
+# --------------
+#
+# Encoding errors and Oj::Safe validation errors are converted into
+# `JSON::ParserError` errors with human-readable messages to provide
+# consistent error reporting to callers.
+#
+module Gitlab
+  module Json
+    class SafeParser
+      self.@valid_option_keys: untyped
+
+      @parse_limits: untyped
+
+      @oj_safe: untyped
+
+      @owner_thread: untyped
+
+      class UnknownConfigurationError < RuntimeError
+        def initialize: (untyped configuration_keys) -> void
+      end
+
+      class ConcurrencyError < RuntimeError
+        def initialize: () -> void
+      end
+
+      PayloadSizeError: untyped
+
+      ERRORS: ::Hash[untyped, "Parameters nested too deeply" | "Array parameter too large" | "Hash parameter too large" | "Too many total parameters" | "JSON body too large"]
+
+      def self.humanize_error: (untyped error) -> untyped
+
+      def self.valid_option_keys: () -> untyped
+
+      # Returns a thread-local `SafeParser` instance for the given options.
+      #
+      # Options are merged with `PARSE_LIMITS`, and the resulting effective limits are
+      # used as the cache key. Calls from the same thread with the same limits reuse
+      # the same parser instance.
+      #
+      # A different thread always gets a different instance because `Oj::Parser.safe`
+      # is not thread-safe.
+      def self.instance: (**untyped options) -> untyped
+
+      private
+
+      def self.instance_for: (untyped options) -> untyped
+
+      public
+
+      def initialize: (**untyped options) -> void
+
+      def parse: (untyped payload) -> untyped
+
+      private
+
+      attr_reader oj_safe: untyped
+
+      attr_reader parse_limits: untyped
+
+      attr_reader owner_thread: untyped
+
+      # Ensures this parser instance is used only by the thread that created it.
+      #
+      # `Oj::Parser.safe` is not thread-safe and keeps parsing state in native heap memory,
+      # so cross-thread access can lead to undefined behavior.
+      #
+      # Raises `ConcurrencyError` when called from a different thread.
+      def validate_thread!: () -> (untyped | nil)
+
+      def same_thread?: () -> untyped
+
+      def validate_payload_size!: (untyped payload) -> (nil | untyped)
+
+      def raise_human_readable_error!: (untyped error) -> untyped
+
+      def validate_options!: () -> (nil | untyped)
+    end
+  end
+end

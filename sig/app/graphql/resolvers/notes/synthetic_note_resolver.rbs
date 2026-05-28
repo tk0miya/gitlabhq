@@ -1,0 +1,9 @@
+module Resolvers
+  module Notes
+    class SyntheticNoteResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (noteable_id: untyped, sha: untyped) -> untyped
+    end
+  end
+end

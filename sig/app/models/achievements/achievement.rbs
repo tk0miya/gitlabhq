@@ -1,0 +1,11 @@
+module Achievements
+  class Achievement < ApplicationRecord
+    include Avatarable
+
+    include StripAttribute
+
+    def unique_users: () -> untyped
+
+    def uploads_sharding_key: () -> { namespace_id: untyped }
+  end
+end

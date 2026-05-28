@@ -1,0 +1,7 @@
+module SshKeys
+  class UpdateLastUsedAtWorker
+    include ApplicationWorker
+
+    def perform: (untyped key_id) -> (nil | untyped)
+  end
+end

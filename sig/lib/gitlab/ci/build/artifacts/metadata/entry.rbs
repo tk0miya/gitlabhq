@@ -1,0 +1,76 @@
+module Gitlab
+  module Ci
+    module Build
+      module Artifacts
+        class Metadata
+          #
+          # Class that represents an entry (path and metadata) to a file or
+          # directory in GitLab CI Build Artifacts binary file / archive
+          #
+          # This is IO-operations safe class, that does similar job to
+          # Ruby's Pathname but without the risk of accessing filesystem.
+          #
+          # This class is working only with UTF-8 encoded paths.
+          #
+          class Entry
+            @entries: untyped
+
+            @path: untyped
+
+            @blob: untyped
+
+            @children: untyped
+
+            attr_reader entries: untyped
+
+            attr_writer name: untyped
+
+            def initialize: (untyped path, untyped entries) -> void
+
+            def directory?: () -> untyped
+
+            def file?: () -> untyped
+
+            def blob: () -> (nil | untyped)
+
+            def has_parent?: () -> untyped
+
+            def parent: () -> (nil | untyped)
+
+            def basename: () -> untyped
+
+            def name: () -> untyped
+
+            def children: () -> (::Array[untyped] | untyped)
+
+            def directories: (?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+            def files: () -> (::Array[untyped] | untyped)
+
+            def metadata: () -> untyped
+
+            def nodes: () -> untyped
+
+            def blank_node?: () -> untyped
+
+            def exists?: () -> untyped
+
+            def total_size: () -> untyped
+
+            def path: () -> untyped
+
+            def to_s: () -> untyped
+
+            def ==: (untyped other) -> untyped
+
+            def inspect: () -> ::String
+
+            private
+
+            def select_entries: () { (untyped) -> untyped } -> untyped
+          end
+        end
+      end
+    end
+  end
+end

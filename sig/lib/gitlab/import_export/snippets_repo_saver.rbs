@@ -1,0 +1,23 @@
+module Gitlab
+  module ImportExport
+    class SnippetsRepoSaver
+      @project: untyped
+
+      @shared: untyped
+
+      @current_user: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      include DurationMeasuring
+
+      def initialize: (current_user: untyped, project: untyped, shared: untyped) -> void
+
+      def save: () -> untyped
+
+      private
+
+      def create_snippets_repo_directory: () -> untyped
+    end
+  end
+end

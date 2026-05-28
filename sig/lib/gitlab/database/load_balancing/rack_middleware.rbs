@@ -1,0 +1,38 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # Rack middleware to handle sticking when serving Rails requests. Grape
+      # API calls are handled separately as different API endpoints need to
+      # stick based on different objects.
+      class RackMiddleware
+        @app: untyped
+
+        STICK_OBJECT: "load_balancing.stick_object"
+
+        def initialize: (untyped app) -> void
+
+        def call: (untyped env) -> untyped
+
+        # Determine if we need to stick based on currently available user data.
+        #
+        # Typically this code will only be reachable for Rails requests as
+        # Grape data is not yet available at this point.
+        def find_caught_up_replica: (untyped env) -> untyped
+
+        def grab_user_id_enabled?: () -> untyped
+
+        # Determine if we need to stick after handling a request.
+        def stick_if_necessary: (untyped env) -> untyped
+
+        def clear: () -> untyped
+
+        # Determines the sticking namespace and identifier based on the Rack
+        # environment.
+        #
+        # For Rails requests this uses warden, but Grape and others have to
+        # manually set the right environment variable.
+        def sticking_namespaces: (untyped env) -> untyped
+      end
+    end
+  end
+end

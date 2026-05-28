@@ -1,0 +1,10 @@
+# This service is responsible of managing the retrieval of the lfs objects,
+# and call the service LfsDownloadService, which performs the download
+# for each of the retrieved lfs objects
+module Projects
+  module LfsPointers
+    class LfsImportService < BaseService
+      def execute: () -> untyped
+    end
+  end
+end

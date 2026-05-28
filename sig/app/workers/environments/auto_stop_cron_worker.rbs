@@ -1,0 +1,9 @@
+module Environments
+  class AutoStopCronWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module JiraImport
+    class LabelsImporter < BaseImporter
+      @job_waiter: untyped
+
+      @base_path: untyped
+
+      attr_reader job_waiter: untyped
+
+      MAX_LABELS: 500
+
+      def initialize: (untyped project) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def cache_import_label: (untyped project) -> untyped
+
+      def import_jira_labels: () -> untyped
+
+      def base_path: () -> untyped
+
+      def process_jira_page: (untyped start_at) -> untyped
+    end
+  end
+end

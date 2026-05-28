@@ -1,0 +1,25 @@
+module Packages
+  class Event
+    UNIQUE_EVENTS_ALLOWED: ::Array[:push_package | :delete_package | :pull_package | :pull_symbol_package | :push_symbol_package]
+
+    EVENT_SCOPES: untyped
+
+    EVENT_PREFIX: "i_package"
+
+    EVENT_TYPES: ::Array[:push_package | :delete_package | :pull_package | :search_package | :list_package | :list_repositories | :delete_repository | :delete_tag | :delete_tag_bulk | :list_tags | :create_tag | :cli_metadata | :pull_symbol_package | :push_symbol_package | :pull_manifest | :pull_manifest_from_cache | :pull_blob | :pull_blob_from_cache]
+
+    ORIGINATOR_TYPES: ::Array[:user | :deploy_token | :guest]
+
+    # Event scopes whose legacy HLL counters (e.g. i_package_<scope>_user) have
+    # been removed and are no longer registered as known events. Tracking these
+    # would raise UnknownEvent in HLLRedisCounter.
+    REMOVED_UNIQUE_EVENT_SCOPES: ::Array["cargo" | "golang" | "tag" | "container"]
+
+    # Remove some of the events, for now, so we don't hammer Redis too hard.
+    # See: https://gitlab.com/gitlab-org/gitlab/-/issues/280770
+    def self.event_allowed?: (untyped event_type) -> (true | false)
+
+    # counter names for unique user tracking (for MAU)
+    def self.unique_counters_for: (untyped event_scope, untyped event_type, untyped originator_type) -> (::Array[untyped] | ::Array[::String])
+  end
+end

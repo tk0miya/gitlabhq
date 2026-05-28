@@ -1,0 +1,31 @@
+class Projects::ErrorTrackingController < Projects::ErrorTracking::BaseController
+  @issue_id: untyped
+
+  def index: () -> untyped
+
+  def details: () -> untyped
+
+  def update: () -> (nil | untyped)
+
+  private
+
+  def render_index_json: () -> (nil | untyped)
+
+  def render_issue_detail_json: () -> (nil | untyped)
+
+  def render_errors: (untyped result) -> (untyped | nil)
+
+  def list_issues_params: () -> untyped
+
+  def issue_update_params: () -> untyped
+
+  def issue_details_params: () -> untyped
+
+  def set_issue_id: () -> untyped
+
+  def serialize_errors: (untyped errors) -> untyped
+
+  def serialize_detailed_error: (untyped error) -> untyped
+
+  def check_error_tracking_feature_flag: () -> (nil | untyped)
+end

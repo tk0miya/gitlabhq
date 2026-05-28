@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    # Backfills the subscription_add_on_uid column in subscription_add_on_purchases
+    # from the name (enum integer) column in subscription_add_ons.
+    # This populates the fixed model ID so that add_on_purchases can reference
+    # add-ons by a consistent identifier across all database instances.
+    class BackfillSubscriptionAddOnPurchasesAddOnUid < BatchedMigrationJob
+      def perform: () -> untyped
+    end
+  end
+end

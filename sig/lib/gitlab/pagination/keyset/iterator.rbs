@@ -1,0 +1,32 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      class Iterator
+        @scope: untyped
+
+        @cursor: untyped
+
+        @order: untyped
+
+        @use_union_optimization: untyped
+
+        @in_operator_optimization_options: untyped
+
+        def initialize: (scope: untyped, ?cursor: ::Hash[untyped, untyped], ?use_union_optimization: bool, ?in_operator_optimization_options: untyped?) -> void
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def each_batch: (?of: ::Integer, ?load_batch: bool) { (untyped) -> untyped } -> untyped
+
+        private
+
+        attr_reader scope: untyped
+
+        attr_reader cursor: untyped
+
+        attr_reader order: untyped
+
+        def keyset_options: () -> { use_union_optimization: untyped, in_operator_optimization_options: untyped }
+      end
+    end
+  end
+end

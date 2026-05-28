@@ -1,0 +1,13 @@
+module Repositories
+  module Tags
+    class SshSignature < ApplicationRecord
+      include ShaAttribute
+
+      include SignatureType
+
+      include BulkInsertSafe
+
+      def type: () -> :ssh
+    end
+  end
+end

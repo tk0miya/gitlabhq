@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class Pattern
+            class RegularExpression
+              @value: untyped
+
+              include Gitlab::Utils::StrongMemoize
+
+              attr_reader value: untyped
+
+              def initialize: (untyped value) -> void
+
+              def expression: () -> untyped
+
+              def valid?: () -> untyped
+            end
+          end
+        end
+      end
+    end
+  end
+end

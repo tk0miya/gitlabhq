@@ -1,0 +1,62 @@
+module BulkImports
+  class ProcessService
+    @bulk_import: untyped
+
+    @entities: untyped
+
+    @logger: untyped
+
+    PERFORM_DELAY: untyped
+
+    DEFAULT_BATCH_SIZE: 5
+
+    attr_reader bulk_import: untyped
+
+    def initialize: (untyped bulk_import) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def process_bulk_import: () -> untyped
+
+    def entities: () -> untyped
+
+    def created_entities: () -> untyped
+
+    def all_entities_processed?: () -> untyped
+
+    def all_entities_failed?: () -> untyped
+
+    def placeholder_references_loaded?: () -> (true | false)
+
+    # A new BulkImportWorker job is enqueued to either
+    #   - Process the new BulkImports::Entity created during import (e.g. for the subgroups)
+    #   - Or to mark the `bulk_import` as finished
+    def re_enqueue: () -> untyped
+
+    def started_entities: () -> untyped
+
+    def touch_created_entities: () -> (nil | untyped)
+
+    def max_batch_size_exceeded?: () -> untyped
+
+    def importer_user_mapping_enabled?: () -> untyped
+
+    def next_batch_size: () -> untyped
+
+    def create_tracker: (untyped entity) -> untyped
+
+    def skip_pipeline?: (untyped pipeline, untyped entity) -> (false | true)
+
+    def source_version_out_of_range?: (untyped minimum_version, untyped maximum_version, untyped non_patch_source_version) -> untyped
+
+    def cache_source_ghost_user: () -> (nil | untyped)
+
+    def import_entity: (untyped entity_id) -> untyped
+
+    def log_skipped_pipeline: (untyped pipeline, untyped entity, untyped minimum_version, untyped maximum_version) -> untyped
+
+    def logger: () -> untyped
+  end
+end

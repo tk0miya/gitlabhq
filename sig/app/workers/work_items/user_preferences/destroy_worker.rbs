@@ -1,0 +1,9 @@
+module WorkItems
+  module UserPreferences
+    class DestroyWorker
+      include Gitlab::EventStore::Subscriber
+
+      def handle_event: (untyped event) -> untyped
+    end
+  end
+end

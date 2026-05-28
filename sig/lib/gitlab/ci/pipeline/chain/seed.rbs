@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class Seed < Chain::Base
+          include Chain::Helpers
+
+          include Gitlab::Utils::StrongMemoize
+
+          def perform!: () -> untyped
+
+          def break?: () -> untyped
+
+          private
+
+          def pipeline_seed: () -> untyped
+
+          def context: () -> untyped
+
+          def root_variables: () -> untyped
+        end
+      end
+    end
+  end
+end

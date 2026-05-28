@@ -1,0 +1,16 @@
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      # In the CI variables APIs, the POST or PUT parameters will always be
+      # literally 'key' and 'value'. Rails' default filters_parameters will
+      # always incorrectly mask the value of param 'key' when it should mask the
+      # value of the param 'value'.
+      # See: https://gitlab.com/gitlab-org/gitlab/-/issues/353857
+      class FilterParameters < ::GrapeLogging::Loggers::FilterParameters
+        private
+
+        def safe_parameters: (untyped request) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module ServiceDesk
+  module CustomEmailVerifications
+    class BaseService < ::BaseProjectService
+      @settings: untyped
+
+      include ::ServiceDesk::CustomEmails::Logger
+
+      attr_reader settings: untyped
+
+      def initialize: (project: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+      private
+
+      def notify_project_owners_and_user_with_email: (?email_method_name: untyped?, ?user: untyped?) -> untyped
+
+      def notify_project_owners_and_user_about_result: (?user: untyped?) -> untyped
+
+      def error_response: (untyped message) -> untyped
+
+      def error_not_verified: (untyped error_identifier) -> untyped
+
+      def log_category: () -> "custom_email_verification"
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Build
+      module Prerequisite
+        class Base
+          @build: untyped
+
+          include Utils::StrongMemoize
+
+          attr_reader build: untyped
+
+          def initialize: (untyped build) -> void
+
+          def unmet?: () -> untyped
+
+          def complete!: () -> untyped
+        end
+      end
+    end
+  end
+end

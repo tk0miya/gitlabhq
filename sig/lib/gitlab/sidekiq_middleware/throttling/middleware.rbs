@@ -1,0 +1,55 @@
+module Gitlab
+  module SidekiqMiddleware
+    module Throttling
+      class Middleware
+        @worker_class: untyped
+
+        @worker_name: untyped
+
+        @tracker: untyped
+
+        @throttling_counter: untyped
+
+        include ExclusiveLeaseGuard
+
+        LEASE_TIMEOUT: 5
+
+        def initialize: (untyped worker) -> void
+
+        def perform: () { () -> untyped } -> untyped
+
+        private
+
+        attr_reader worker_class: untyped
+
+        attr_reader worker_name: untyped
+
+        attr_reader decisions: untyped
+
+        attr_reader tracker: untyped
+
+        def lease_key: () -> ::String
+
+        def lease_timeout: () -> untyped
+
+        def lease_release?: () -> false
+
+        def lease_taken_log_level: () -> :info
+
+        def throttling_decision: () -> untyped
+
+        def throttle!: (untyped strategy) -> (nil | untyped)
+
+        def current_limit: () -> untyped
+
+        def set_current_limit!: (limit: untyped) -> untyped
+
+        def concurrency_limit_service: () -> untyped
+
+        def already_throttled?: () -> untyped
+
+        def throttling_counter: () -> untyped
+      end
+    end
+  end
+end

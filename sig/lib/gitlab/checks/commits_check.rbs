@@ -1,0 +1,17 @@
+module Gitlab
+  module Checks
+    class CommitsCheck < ::Gitlab::Checks::BaseSingleChecker
+      INVALID_AUTHOR_FOR_SIGNED_COMMITS: "For signed Web commits, the commit must be equal to the author"
+
+      LOG_MESSAGE: "Checking if commits authors are valid..."
+
+      def validate!: () -> (nil | untyped)
+
+      private
+
+      def should_run_validations?: () -> (nil | untyped)
+
+      def check_signed_commit_authorship!: (untyped commit) -> (nil | untyped)
+    end
+  end
+end

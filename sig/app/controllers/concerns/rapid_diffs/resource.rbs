@@ -1,0 +1,29 @@
+module RapidDiffs
+  module Resource
+    extend ActiveSupport::Concern
+
+    def diff_files_metadata: () -> untyped
+
+    def diffs_stats: () -> untyped
+
+    def diff_file: () -> untyped
+
+    private
+
+    attr_reader environment: untyped
+
+    def diff_file_component: (untyped base_args) -> untyped
+
+    def find_diff_file: (untyped extra_options, untyped old_path, untyped new_path) -> untyped
+
+    # When overridden this method should return a path to view diffs in an email-friendly format.
+    def email_format_path: () -> nil
+
+    # When overridden this method should return a path to view the complete diffs in the UI.
+    def complete_diff_path: () -> nil
+
+    def blob_too_large?: (untyped blob) -> (false | untyped)
+
+    def diff_file_params: () -> untyped
+  end
+end

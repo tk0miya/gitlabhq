@@ -1,0 +1,24 @@
+class EnvironmentSerializer < BaseSerializer
+  include WithPagination
+
+  Item: untyped
+
+  def within_folders: () -> untyped
+
+  def itemized?: () -> untyped
+
+  def represent: (untyped resource, ?::Hash[untyped, untyped] opts) -> untyped
+
+  private
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def itemize: (untyped resource) -> untyped
+
+  def batch_load: (untyped resource) -> untyped
+
+  def environment_associations: () -> { project: untyped }
+
+  def deployment_associations: () -> { user: ::Array[untyped], deployment_cluster: { cluster: ::Array[untyped] }, project: { route: ::Array[untyped], namespace: :route }, deployable: { user: ::Array[untyped], metadata: ::Array[untyped], job_environment: ::Array[untyped], job_definition: ::Array[untyped], supply_chain_attestation: ::Array[untyped], pipeline: { manual_actions: ::Array[:metadata | :job_definition | :deployment | :supply_chain_attestation], scheduled_actions: ::Array[:metadata | :job_definition | :supply_chain_attestation], latest_successful_jobs: ::Array[:supply_chain_attestation] }, project: untyped } }
+
+  def project_associations: () -> { project_feature: ::Array[untyped], route: ::Array[untyped], namespace: :route }
+end

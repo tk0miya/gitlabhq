@@ -1,0 +1,31 @@
+module Integrations
+  class Field
+    @name: untyped
+
+    @integration_class: untyped
+
+    @attributes: untyped
+
+    BOOLEAN_ATTRIBUTES: ::Array[:required | :api_only | :is_secret | :exposes_secrets]
+
+    ATTRIBUTES: untyped
+
+    TYPES: ::Array[:text | :textarea | :password | :checkbox | :number | :string_array | :select]
+
+    attr_reader name: untyped
+
+    attr_reader integration_class: untyped
+
+    def initialize: (name: untyped, integration_class: untyped, ?type: ::Symbol, ?is_secret: bool, ?api_only: bool, **untyped attributes) -> void
+
+    def []: (untyped key) -> untyped
+
+    def secret?: () -> untyped
+
+    def api_type: () -> untyped
+
+    private
+
+    attr_reader attributes: untyped
+  end
+end

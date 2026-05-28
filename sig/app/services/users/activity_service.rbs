@@ -1,0 +1,25 @@
+module Users
+  class ActivityService
+    @user: untyped
+
+    @namespace: untyped
+
+    @project: untyped
+
+    LEASE_TIMEOUT: untyped
+
+    def initialize: (author: untyped, ?namespace: untyped?, ?project: untyped?) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader namespace: untyped
+
+    attr_reader project: untyped
+
+    def record_activity: () -> (nil | untyped)
+  end
+end

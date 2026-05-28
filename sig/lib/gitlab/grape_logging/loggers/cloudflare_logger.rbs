@@ -1,0 +1,11 @@
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class CloudflareLogger < ::GrapeLogging::Loggers::Base
+        include ::Gitlab::Logging::CloudflareHelper
+
+        def parameters: (untyped request, untyped _response) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,50 @@
+module Packages
+  module Nuget
+    class CreateOrUpdatePackageService < Packages::CreatePackageService
+      include ::Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      # used by ExclusiveLeaseGuard
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      DUPLICATE_ERROR: untyped
+
+      LEASE_TAKEN_ERROR: untyped
+
+      UNAUTHORIZED_ERROR: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def existing_package: () -> untyped
+
+      def process_package: () -> untyped
+
+      def create_package_file: () -> untyped
+
+      def sync_metadatum: () -> untyped
+
+      def update_tags: () -> untyped
+
+      def create_build_infos: () -> untyped
+
+      def create_dependencies: () -> (nil | untyped)
+
+      def target_package: () -> untyped
+
+      def create_new_package: () -> untyped
+
+      def package_filename: () -> ::String
+
+      def metadata: () -> untyped
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+    end
+  end
+end

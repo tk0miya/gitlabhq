@@ -1,0 +1,11 @@
+module Mutations
+  module Users
+    module GroupCallouts
+      class Create < ::Mutations::BaseMutation
+        include Gitlab::Graphql::Authorize::AuthorizeResource
+
+        def resolve: (feature_name: untyped, group_id: untyped) -> { user_group_callout: untyped, errors: untyped }
+      end
+    end
+  end
+end

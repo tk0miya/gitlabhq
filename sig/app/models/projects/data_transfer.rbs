@@ -1,0 +1,9 @@
+# Tracks egress of various services per project
+# This class ensures that we keep 1 record per project per month.
+module Projects
+  class DataTransfer < ApplicationRecord
+    include CounterAttribute
+
+    def self.beginning_of_month: (?untyped time) -> untyped
+  end
+end

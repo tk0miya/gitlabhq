@@ -1,0 +1,55 @@
+module Gitlab
+  module Pagination
+    class OffsetHeaderBuilder
+      @request_context: untyped
+
+      @per_page: untyped
+
+      @page: untyped
+
+      @next_page: untyped
+
+      @prev_page: untyped
+
+      @total: untyped
+
+      @total_pages: untyped
+
+      @params: untyped
+
+      @base_request_uri: untyped
+
+      attr_reader request_context: untyped
+
+      attr_reader per_page: untyped
+
+      attr_reader page: untyped
+
+      attr_reader next_page: untyped
+
+      attr_reader prev_page: untyped
+
+      attr_reader total: untyped
+
+      attr_reader total_pages: untyped
+
+      def initialize: (request_context: untyped, per_page: untyped, page: untyped, next_page: untyped, ?prev_page: untyped?, ?total: untyped?, ?total_pages: untyped?, ?params: untyped?) -> void
+
+      def execute: (?exclude_total_headers: bool, ?data_without_counts: bool) -> (nil | untyped)
+
+      private
+
+      def pagination_links: (untyped data_without_counts) -> untyped
+
+      def base_request_uri: () -> untyped
+
+      def build_page_url: (query_params: untyped) -> untyped
+
+      def page_href: (?::Hash[untyped, untyped] next_page_params) -> untyped
+
+      def params: () -> untyped
+
+      def header: (untyped name, untyped value) -> untyped
+    end
+  end
+end

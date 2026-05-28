@@ -1,0 +1,15 @@
+module Sidebars
+  module Projects
+    class SuperSidebarPanel < ::Sidebars::Projects::Panel
+      @menus: untyped
+
+      include ::Sidebars::Concerns::SuperSidebarPanel
+
+      extend ::Gitlab::Utils::Override
+
+      def configure_menus: () -> untyped
+
+      def super_sidebar_context_header: () -> untyped
+    end
+  end
+end

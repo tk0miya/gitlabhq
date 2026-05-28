@@ -1,0 +1,33 @@
+module BulkImports
+  class UploadsExportService
+    @portable: untyped
+
+    @export_path: untyped
+
+    @exported_objects_count: untyped
+
+    @avatar_path: untyped
+
+    include Gitlab::ImportExport::CommandLineUtil
+
+    BATCH_SIZE: 100
+
+    AVATAR_PATH: "avatar"
+
+    attr_reader exported_objects_count: untyped
+
+    def initialize: (untyped portable, untyped export_path) -> void
+
+    def execute: (?::Hash[untyped, untyped] options) -> untyped
+
+    private
+
+    attr_reader portable: untyped
+
+    attr_reader export_path: untyped
+
+    def export_subdir_path: (untyped upload) -> untyped
+
+    def avatar_path: () -> untyped
+  end
+end

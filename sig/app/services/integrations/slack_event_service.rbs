@@ -1,0 +1,37 @@
+# Performs the initial handling of event payloads sent from Slack to GitLab.
+# See `API::Integrations::Slack::Events` which calls this service.
+module Integrations
+  class SlackEventService
+    @slack_event: untyped
+
+    @params: untyped
+
+    URL_VERIFICATION_EVENT: "url_verification"
+
+    UnknownEventError: untyped
+
+    def initialize: (untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    # The `url_verification` slack_event response must be returned to Slack in-request,
+    # so for this event we call the service directly instead of through a worker.
+    #
+    # All other events must be handled asynchronously in order to return a 2xx response
+    # immediately to Slack in the request. See https://api.slack.com/apis/connections/events-api.
+    def route_in_request?: () -> untyped
+
+    def routable_event?: () -> untyped
+
+    def route_to_event_worker?: () -> untyped
+
+    # Returns a payload for the service response.
+    def route_event: () -> (untyped | ::Hash[untyped, untyped])
+
+    attr_reader slack_event: untyped
+
+    attr_reader params: untyped
+  end
+end

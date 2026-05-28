@@ -1,0 +1,9 @@
+module Types
+  module DesignManagement
+    class DesignCollectionCopyStateEnum < BaseEnum
+      DESCRIPTION_VARIANTS: { in_progress: "is being copied", error: "encountered an error during a copy", ready: "has no copy in progress" }
+
+      def self.description_variant: (untyped copy_state) -> untyped
+    end
+  end
+end

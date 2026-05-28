@@ -1,0 +1,28 @@
+module Ci
+  # This class loops through all builds with exposed artifacts and returns
+  # basic information about exposed artifacts for given jobs for the frontend
+  # to display them as custom links in the merge request.
+  #
+  # This service must be used with care.
+  # Looking for exposed artifacts is very slow and should be done asynchronously.
+  class FindExposedArtifactsService < ::BaseService
+    include Gitlab::Routing
+
+    MAX_EXPOSED_ARTIFACTS: 10
+
+    def for_pipeline: (untyped pipeline, ?limit: untyped) -> untyped
+
+    def for_job: (untyped job) -> (nil | { text: untyped, url: untyped, job_path: untyped, job_name: untyped })
+
+    private
+
+    # we don't need to fetch all artifacts entries for a job because
+    # it could contain many. We only need to know whether it has 1 or more
+    # artifacts, so fetching the first 2 would be sufficient.
+    def first_2_metadata_entries_for_artifacts_exposed_paths: (untyped job) -> (::Array[untyped] | untyped)
+
+    def path_for_entries: (untyped entries, untyped job) -> (nil | untyped)
+
+    def single_artifact?: (untyped entries) -> untyped
+  end
+end

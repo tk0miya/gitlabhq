@@ -1,0 +1,63 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      class DiffNote
+        @attributes: untyped
+
+        @note_formatter: untyped
+
+        @file_lines: untyped
+
+        include Representable
+
+        NOTEABLE_ID_REGEX: ::Regexp
+
+        # Builds a diff note from a GitHub API response.
+        #
+        # note - An instance of `Hash` containing the note details.
+        def self.from_api_response: (untyped note, ?::Hash[untyped, untyped] additional_data) -> untyped
+
+        # Builds a new note using a Hash that was built from a JSON payload.
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        attr_accessor merge_request: untyped
+
+        # attributes - A Hash containing the raw note details. The keys of this
+        #              Hash must be Symbols.
+        def initialize: (untyped attributes) -> void
+
+        def diff_hunk: () -> untyped
+
+        def noteable_type: () -> untyped
+
+        def contains_suggestion?: () -> untyped
+
+        def note: () -> untyped
+
+        def line_code: () -> untyped
+
+        # Returns a Hash that can be used to populate `notes.st_diff`, removing
+        # the need for requesting Git data for every diff note.
+        # Used when importing with LegacyDiffNote
+        def diff_hash: () -> { diff: untyped, new_path: untyped, old_path: untyped, a_mode: "100644", b_mode: "100644", new_file: false }
+
+        # Used when importing with DiffNote
+        def diff_position: () -> untyped
+
+        def github_identifiers: () -> { note_id: untyped, noteable_iid: untyped, noteable_type: untyped }
+
+        private
+
+        def generate_default_diff_hunk: () -> ::String
+
+        def fetch_file_line_content: (untyped line_number) -> ("context not found" | untyped)
+
+        def diff_line_params: () -> ({ new_line: untyped, old_line: nil } | { new_line: nil, old_line: untyped })
+
+        def addition?: () -> untyped
+
+        def on_file?: () -> untyped
+      end
+    end
+  end
+end

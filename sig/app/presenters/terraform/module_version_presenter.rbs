@@ -1,0 +1,29 @@
+module Terraform
+  class ModuleVersionPresenter < Gitlab::View::Presenter::Simple
+    @package: untyped
+
+    @system: untyped
+
+    attr_accessor package: untyped
+
+    attr_accessor system: untyped
+
+    def initialize: (untyped package, untyped system) -> void
+
+    def name: () -> untyped
+
+    def provider: () -> untyped
+
+    def providers: () -> ::Array[untyped]
+
+    def root: () -> { "dependencies" => ::Array[untyped] }
+
+    def source: () -> untyped
+
+    def submodules: () -> ::Array[untyped]
+
+    def version: () -> untyped
+
+    def versions: () -> ::Array[untyped]
+  end
+end

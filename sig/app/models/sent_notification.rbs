@@ -1,0 +1,58 @@
+class SentNotification < ApplicationRecord
+  include PartitionedTable
+
+  include EachBatch
+
+  INVALID_NOTEABLE: untyped
+
+  REPLY_KEY_BYTE_SIZE: 16
+
+  INTEGER_CONVERT_BASE: 36
+
+  BASE36_REGEX: ::Regexp
+
+  NAMESPACE_REGEX: ::Regexp
+
+  # Email reply key is in the form: <base36-partition-id>-<base36-reply-key>-<base36-namespace-id>
+  PARTITIONED_REPLY_KEY_REGEX: ::Regexp
+
+  LEGACY_REPLY_KEY_REGEX: ::Regexp
+
+  FULL_REPLY_KEY_REGEX: ::Regexp
+
+  PARTITION_DURATION: untyped
+
+  RETENTION_PERIOD: untyped
+
+  def self.reply_key: () -> untyped
+
+  def self.for: (untyped reply_key) -> (nil | untyped)
+
+  def self.record: (untyped noteable, untyped recipient_id, ?::Hash[untyped, untyped] attrs) -> untyped
+
+  def self.record_note: (untyped note, untyped recipient_id, ?::Hash[untyped, untyped] attrs) -> untyped
+
+  def unsubscribable?: () -> untyped
+
+  def for_commit?: () -> untyped
+
+  def for_snippet?: () -> untyped
+
+  def noteable: () -> untyped
+
+  def to_param: () -> untyped
+
+  def create_reply: (untyped message, ?untyped? external_author, ?dryrun: bool) -> untyped
+
+  def partitioned_reply_key: () -> (untyped | ::String)
+
+  private
+
+  def ensure_sharding_key: () -> untyped
+
+  def namespace_id_from_noteable: () -> untyped
+
+  def reply_params: () -> { noteable_type: untyped, noteable_id: untyped, commit_id: untyped, in_reply_to_discussion_id: untyped }
+
+  def note_valid: () -> (nil | untyped)
+end

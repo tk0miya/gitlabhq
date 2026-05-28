@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        module Functions
+          class PosixEscape < Base
+            def self.function_expression_pattern: () -> ::Regexp
+
+            def self.name: () -> "posix_escape"
+
+            def execute: (untyped input_value) -> (nil | untyped)
+          end
+        end
+      end
+    end
+  end
+end

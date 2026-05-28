@@ -1,0 +1,17 @@
+module Packages
+  module Generic
+    class CreatePackageFileService < BaseService
+      MAX_RETRIES: 1
+
+      def execute: () -> untyped
+
+      private
+
+      def find_or_create_package: () -> untyped
+
+      def create_package_file: (untyped package) -> untyped
+
+      def target_file_is_duplicate?: (untyped package) -> untyped
+    end
+  end
+end

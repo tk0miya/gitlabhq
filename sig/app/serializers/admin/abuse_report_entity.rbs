@@ -1,0 +1,9 @@
+module Admin
+  class AbuseReportEntity < Grape::Entity
+    include RequestAwareEntity
+
+    private
+
+    def count: () -> (untyped | 1)
+  end
+end

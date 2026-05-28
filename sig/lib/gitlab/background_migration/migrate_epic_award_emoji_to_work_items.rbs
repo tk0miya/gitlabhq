@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateEpicAwardEmojiToWorkItems < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def delete_duplicate_epic_award_emoji: (untyped sub_batch) -> untyped
+
+      def migrate_epic_award_emoji: (untyped sub_batch) -> untyped
+    end
+  end
+end

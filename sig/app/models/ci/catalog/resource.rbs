@@ -1,0 +1,47 @@
+module Ci
+  module Catalog
+    # This class represents a CI/CD Catalog resource.
+    # A Catalog resource is normally associated to a project.
+    # This model connects to the `main` database because of its
+    # dependency on the Project model and its need to join with that table
+    # in order to generate the CI/CD catalog.
+    class Resource < ::ApplicationRecord
+      include PgFullTextSearchable
+
+      include Gitlab::VisibilityLevel
+
+      include Sortable
+
+      include EachBatch
+
+      def self.public_or_visible_to_user: (untyped user) -> untyped
+
+      def self.visible_to_user: (untyped user) -> untyped
+
+      def self.visible_to_user_with_access_level: (untyped user, untyped min_access_level) -> untyped
+
+      # Used by Ci::ProcessSyncEventsService
+      def self.sync!: (untyped event) -> untyped
+
+      def archived: () -> untyped
+
+      def to_param: () -> untyped
+
+      def publish!: () -> untyped
+
+      def sync_with_project!: () -> untyped
+
+      # Triggered in Ci::Catalog::Resources::Version and Release model callbacks
+      def update_latest_released_at!: () -> untyped
+
+      def visibility_level_field: () -> :visibility_level
+
+      private
+
+      # These denormalized columns are first synced when a new catalog resource is created.
+      # A PG trigger adds a SyncEvent when the associated project updates any of these columns.
+      # A worker processes the SyncEvents with Ci::ProcessSyncEventsService.
+      def sync_with_project: () -> untyped
+    end
+  end
+end

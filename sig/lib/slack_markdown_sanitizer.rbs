@@ -1,0 +1,9 @@
+module SlackMarkdownSanitizer
+  # Markup characters which are used for links in HTML, Markdown,
+  # and Slack "mrkdwn" syntax (`<http://example.com|Label>`).
+  UNSAFE_MARKUP_CHARACTERS: "<>[]|"
+
+  def self.sanitize: (untyped string) -> untyped
+
+  def self.sanitize_slack_link: (untyped string) -> untyped
+end

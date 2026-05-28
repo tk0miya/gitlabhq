@@ -1,0 +1,25 @@
+# This module introduces the logic to show the "pill" element
+# next to the menu item, indicating the a count.
+module Sidebars
+  module Concerns
+    module HasPill
+      include ActionView::Helpers::NumberHelper
+
+      def has_pill?: () -> false
+
+      # In this method we will need to provide the query
+      # to retrieve the elements count
+      def pill_count: () -> nil
+
+      # The GraphQL field name from `SidebarType` that will be used
+      # as the pill count for this menu item.
+      # This is used when the count is expensive and we want to fetch it separately
+      # from GraphQL.
+      def pill_count_field: () -> nil
+
+      def pill_html_options: () -> ::Hash[untyped, untyped]
+
+      def format_cached_count: (untyped threshold, untyped count) -> untyped
+    end
+  end
+end

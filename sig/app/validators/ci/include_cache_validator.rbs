@@ -1,0 +1,25 @@
+module Ci
+  # Ci::IncludeCacheValidator
+  #
+  # Validates cache configuration for CI includes
+  #
+  # Example:
+  #
+  #   class MyConfig
+  #     validates :cache, 'ci/include_cache': true
+  #   end
+  #
+  class IncludeCacheValidator < ActiveModel::EachValidator
+    MIN_DURATION: 60
+
+    def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+    private
+
+    def validate_remote_include: (untyped record, untyped attribute) -> (nil | untyped)
+
+    def validate_cache_value: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+    def validate_duration: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+  end
+end

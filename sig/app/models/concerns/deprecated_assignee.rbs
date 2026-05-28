@@ -1,0 +1,41 @@
+# This module handles backward compatibility for import/export of merge requests after
+# multiple assignees feature was introduced. Also, it handles the scenarios where
+# the #26496 background migration hasn't finished yet.
+# Ideally, most of this code should be removed at #59457.
+module DeprecatedAssignee
+  extend ActiveSupport::Concern
+
+  def assignee_ids=: (untyped ids) -> untyped
+
+  def assignees=: (untyped users) -> untyped
+
+  def assignee_id=: (untyped id) -> untyped
+
+  def assignee=: (untyped user) -> untyped
+
+  def assignee: () -> untyped
+
+  def assignee_id: () -> untyped
+
+  def assignee_ids: () -> untyped
+
+  def assignees: () -> untyped
+
+  private
+
+  # This will make the background migration process quicker (#26496) as it'll have less
+  # assignee_id rows to look through.
+  def nullify_deprecated_assignee: () -> (nil | untyped)
+
+  # This code should be removed in the clean-up phase of the
+  # background migration (#59457).
+  def pending_assignees_population?: () -> untyped
+
+  # If there's an assignee_id and no relation, it means the background
+  # migration at #26496 didn't reach this merge request yet.
+  # This code should be removed in the clean-up phase of the
+  # background migration (#59457).
+  def update_assignees_relation: () -> (untyped | nil)
+
+  def deprecated_assignee_id: () -> untyped
+end

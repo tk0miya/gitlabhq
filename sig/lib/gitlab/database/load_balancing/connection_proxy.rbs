@@ -1,0 +1,61 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # Redirecting of ActiveRecord connections.
+      #
+      # The ConnectionProxy class redirects ActiveRecord connection requests to
+      # the right load balancer pool, depending on the type of query.
+      class ConnectionProxy
+        @load_balancer: untyped
+
+        WriteInsideReadOnlyTransactionError: untyped
+
+        READ_ONLY_TRANSACTION_KEY: :load_balacing_read_only_transaction
+
+        attr_reader load_balancer: untyped
+
+        # These methods perform writes after which we need to stick to the
+        # primary.
+        STICKY_WRITES: ::Array[:delete | :delete_all | :insert | :update | :update_all | :exec_insert_all]
+
+        NON_STICKY_READS: ::Array[:sanitize_limit | :select | :select_one | :select_rows | :quote_column_name]
+
+        # hosts - The hosts to use for load balancing.
+        def initialize: (untyped load_balancer) -> void
+
+        def select_all: (untyped arel, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def schema_cache: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def transaction: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def respond_to_missing?: (untyped name, ?bool include_private) -> untyped
+
+        # Delegates all unknown messages to a read-write connection.
+        def method_missing: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        # Performs a read using the load balancer.
+        #
+        # name - The name of the method to call on a connection object.
+        def read_using_load_balancer: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        # Performs a write using the load balancer.
+        #
+        # name - The name of the method to call on a connection object.
+        # sticky - If set to true the session will stick to the master after
+        #          the write.
+        def write_using_load_balancer: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        private
+
+        def current_session: () -> untyped
+
+        def track_read_only_transaction!: () -> untyped
+
+        def untrack_read_only_transaction!: () -> untyped
+
+        def read_only_transaction?: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module API
+  class Glql < ::API::Base
+    include ::API::Concerns::AiWorkflowsAccess
+
+    include APIGuard
+
+    MAXIMUM_QUERY_LIMIT: 100
+  end
+end

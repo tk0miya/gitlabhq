@@ -1,0 +1,48 @@
+module Banzai
+  module Filter
+    # HTML Filter to convert use of `lang` attribute into a common format,
+    # data-canonical-lang, as the `lang` attribute is really meant for accessibility
+    # and not for specifying code highlight language.
+    # See https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang#accessibility
+    # This also provides one place to transform the language specification format, whether it
+    # sits on the `pre` or `code`, or in a `class` or `lang` attribute
+    class CodeLanguageFilter < HTML::Pipeline::Filter
+      include Concerns::OutputSafety
+
+      prepend Concerns::PipelineTimingCheck
+
+      LANG_PARAMS_DELIMITER: ":"
+
+      CSS: "pre > code:only-child"
+
+      XPATH: untyped
+
+      BARE_PRE_CSS: "pre[lang]:not(:has(code))"
+
+      BARE_PRE_XPATH: untyped
+
+      def call: () -> untyped
+
+      def transform_node: (untyped code_node) -> (nil | untyped)
+
+      private
+
+      # Some markup languages (e.g., org-ruby) produce <pre lang="ruby">code</pre>
+      # without a <code> wrapper. Wrap these so pre > code:only-child can match.
+      def wrap_bare_pre_content: () -> untyped
+
+      def extract_language_with_priority: (untyped code_node, untyped pre_node) -> untyped
+
+      def cleanup_all_language_attributes: (untyped code_node, untyped pre_node) -> untyped
+
+      def set_final_language_attributes: (untyped pre_node, untyped lang, untyped lang_params) -> untyped
+
+      # Parses language parameters from a language string.
+      # Examples:
+      #   "ruby" -> ["ruby", nil]
+      #   "ruby:red" -> ["ruby", "red"]
+      #   "suggestion:+1-10 more" -> ["suggestion", "+1-10 more"]
+      def parse_language_params: (untyped language_string) -> (::Array[nil] | ::Array[untyped])
+    end
+  end
+end

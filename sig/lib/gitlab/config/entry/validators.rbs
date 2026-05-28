@@ -1,0 +1,225 @@
+module Gitlab
+  module Config
+    module Entry
+      module Validators
+        class AllowedKeysValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class DisallowedKeysValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class RequiredKeysValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class OnlyOneOfKeysValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class MutuallyExclusiveKeysValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class AllowedValuesValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class AllowedArrayValuesValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+        end
+
+        class ArrayOfStringsValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class ArrayOfHashesValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+          private
+
+          def validate_array_of_hashes: (untyped value) -> untyped
+        end
+
+        class NestedArrayOfHashesOrArraysValidator < ArrayOfHashesValidator
+          include NestedArrayHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+
+          private
+
+          def validate_hash: (untyped value) -> untyped
+        end
+
+        class ArrayOrStringValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class BooleanValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class DurationValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+          def contains_variable?: (untyped value) -> untyped
+        end
+
+        class HashOrStringValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class HashOrIntegerValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class HashOrBooleanValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class KeyValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+
+          private
+
+          def validate_path: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class ArrayOfIntegersOrIntegerValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+          private
+
+          def validate_array_of_integers: (untyped values) -> untyped
+        end
+
+        class RegexpValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+          private
+
+          def matches_syntax?: (untyped value) -> untyped
+
+          def validate_regexp: (untyped value) -> untyped
+        end
+
+        class ArrayOfStringsOrRegexpsValidator < RegexpValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+          private
+
+          def validation_message: () -> "should be an array of strings or regular expressions using re2 syntax"
+
+          def validate_array_of_strings_or_regexps: (untyped values) -> untyped
+
+          def validate_string_or_regexp: (untyped value) -> (false | untyped | true)
+        end
+
+        class ArrayOfStringsOrStringValidator < RegexpValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+          private
+
+          def validate_array_of_strings_or_string: (untyped values) -> untyped
+        end
+
+        class StringOrNestedArrayOfStringsValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          include NestedArrayHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class NestedArrayOfStringsValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          include NestedArrayHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class TypeValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+        end
+
+        class VariablesValidator < ActiveModel::EachValidator
+          include LegacyValidationHelpers
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+
+          def validate_key_values: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+          def validate_key_array_values: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class AlphanumericValidator < ActiveModel::EachValidator
+          def self.validate: (untyped value) -> untyped
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class ScalarValidator < ActiveModel::EachValidator
+          def self.validate: (untyped value) -> untyped
+
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class ExpressionValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+        end
+
+        class PortNamePresentAndUniqueValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+        end
+
+        class PortUniqueValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+          private
+
+          def ports: (untyped current_data) -> untyped
+
+          def transform_ports: (untyped raw_ports) -> untyped
+        end
+
+        class JobPortUniqueValidator < PortUniqueValidator
+          private
+
+          def ports: (untyped current_data) -> (nil | untyped)
+
+          def image_ports: (untyped current_data) -> (::Array[untyped] | untyped)
+
+          def services_ports: (untyped current_data) -> untyped
+        end
+
+        class ServicesWithPortsAliasUniqueValidator < ActiveModel::EachValidator
+          def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+          private
+
+          def aliases: (untyped value) -> untyped
+
+          def aliases_unique?: (untyped aliases) -> untyped
+        end
+      end
+    end
+  end
+end

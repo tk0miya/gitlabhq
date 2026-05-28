@@ -1,0 +1,93 @@
+module Gitlab
+  module WikiPages
+    class FrontMatterParser
+      @wiki_content: untyped
+
+      @block: untyped
+
+      # We limit the maximum length of text we are prepared to parse as YAML, to
+      # avoid exploitations and attempts to consume memory and CPU. We allow for:
+      #  - a title line
+      #  - a "slugs:" line
+      #  - and up to 50 slugs
+      #
+      # This limit does not take comments into account.
+      MAX_SLUGS: 50
+
+      SLUG_LINE_LENGTH: untyped
+
+      MAX_FRONT_MATTER_LENGTH: untyped
+
+      ParseError: untyped
+
+      class Result
+        @content: untyped
+
+        @front_matter: untyped
+
+        @reason: untyped
+
+        @error: untyped
+
+        attr_reader front_matter: untyped
+
+        attr_reader content: untyped
+
+        attr_reader reason: untyped
+
+        attr_reader error: untyped
+
+        def initialize: (content: untyped, ?front_matter: ::Hash[untyped, untyped], ?reason: untyped?, ?error: untyped?) -> void
+      end
+
+      # @param [String] wiki_content
+      def initialize: (untyped wiki_content) -> void
+
+      def parse: () -> untyped
+
+      class Block
+        @lang: untyped
+
+        @text: untyped
+
+        @data: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (?untyped? delim, ?::String lang, ?untyped? text) -> void
+
+        def data: () -> untyped
+
+        def valid?: () -> untyped
+
+        def error: () -> untyped
+
+        private
+
+        attr_reader lang: untyped
+
+        attr_reader text: untyped
+
+        def no_match?: () -> (:no_match | nil)
+
+        def not_yaml?: () -> (:not_yaml | nil)
+
+        def too_long?: () -> (:too_long | nil)
+
+        def not_mapping?: () -> (:not_mapping | nil)
+      end
+
+      private
+
+      attr_reader wiki_content: untyped
+
+      def empty_result: (?untyped? reason, ?untyped? error) -> untyped
+
+      def block: () -> untyped
+
+      def parse_front_matter_block: () -> untyped
+
+      def strip_front_matter_block: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Grafana
+  class Client
+    @api_url: untyped
+
+    @token: untyped
+
+    Error: untyped
+
+    # @param api_url [String] Base URL of the Grafana instance
+    # @param token [String] Admin-level API token for instance
+    def initialize: (api_url: untyped, token: untyped) -> void
+
+    # @param uid [String] Unique identifier for a Grafana dashboard
+    def get_dashboard: (uid: untyped) -> untyped
+
+    # @param name [String] Unique identifier for a Grafana datasource
+    def get_datasource: (name: untyped) -> untyped
+
+    # @param datasource_id [String] Grafana ID for the datasource
+    # @param proxy_path [String] Path to proxy - ex) 'api/v1/query_range'
+    def proxy_datasource: (datasource_id: untyped, proxy_path: untyped, ?query: ::Hash[untyped, untyped]) -> untyped
+
+    private
+
+    def http_get: (untyped url, ?::Hash[untyped, untyped] params) -> untyped
+
+    def request_params: () -> { headers: { "Authorization" => ::String, "Accept" => "application/json", "Content-Type" => "application/json" }, follow_redirects: false }
+
+    def handle_request_exceptions: () { () -> untyped } -> untyped
+
+    def handle_response: (untyped response) -> untyped
+
+    def raise_error: (untyped message) -> untyped
+  end
+end

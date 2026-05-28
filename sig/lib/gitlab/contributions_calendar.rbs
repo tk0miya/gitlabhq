@@ -1,0 +1,54 @@
+module Gitlab
+  class ContributionsCalendar
+    @contributor: untyped
+
+    @contributor_time_instance: untyped
+
+    @current_user: untyped
+
+    @groups: untyped
+
+    @projects: untyped
+
+    # re-running the contributed projects query in each union is expensive, so
+    # use IN(project_ids...) instead. It's the intersection of two users so
+    # the list will be (relatively) short
+    @contributed_project_ids: untyped
+
+    include TimeZoneHelper
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    attr_reader contributor: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader groups: untyped
+
+    attr_reader projects: untyped
+
+    def initialize: (untyped contributor, ?untyped? current_user) -> void
+
+    def activity_dates: () -> (::Hash[untyped, untyped] | untyped)
+
+    def events_by_date: (untyped date) -> untyped
+
+    private
+
+    def contributions_between: (untyped start_time, untyped end_time) -> untyped
+
+    def collect_events_between: (untyped start_time, untyped end_time) -> ::Array[untyped]
+
+    def can_read_cross_project?: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- no need to move this to ActiveRecord model
+    def project_events_created_between: (untyped start_time, untyped end_time, features: untyped) -> untyped
+
+    def authed_projects: (untyped feature) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- no need to move this to ActiveRecord model
+    def contributed_project_ids: () -> untyped
+
+    def contribution_events: (untyped start_time, untyped end_time) -> untyped
+  end
+end

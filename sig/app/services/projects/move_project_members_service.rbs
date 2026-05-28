@@ -1,0 +1,21 @@
+# NOTE: This service cannot be used directly because it is part of a
+# a bigger process. Instead, use the service MoveAccessService which moves
+# project memberships, project group links, authorizations and refreshes
+# the authorizations if necessary
+module Projects
+  class MoveProjectMembersService < BaseMoveRelationsService
+    def execute: (untyped source_project, ?remove_remaining_elements: bool) -> (nil | untyped)
+
+    private
+
+    def move_project_members: () -> untyped
+
+    def remove_remaining_members: () -> untyped
+
+    def project_members_in_target_project: () -> untyped
+
+    # Look for members in source_project that are not in the target project
+    # rubocop: disable CodeReuse/ActiveRecord
+    def non_existent_members: () -> untyped
+  end
+end

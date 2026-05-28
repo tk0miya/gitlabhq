@@ -1,0 +1,139 @@
+# Controller for a specific Commit
+#
+# Not to be confused with CommitsController, plural.
+class Projects::CommitController < Projects::ApplicationController
+  @pipelines: untyped
+
+  # Capture total count before pagination to ensure accurate count regardless of current page
+  @pipelines_count: untyped
+
+  @merge_requests: untyped
+
+  @branch_name: untyped
+
+  @rapid_diffs_presenter: untyped
+
+  @noteable: untyped
+
+  @diffs: untyped
+
+  @note: untyped
+
+  @new_diff_note_attrs: untyped
+
+  @grouped_diff_discussions: untyped
+
+  @discussions: untyped
+
+  @merge_request: untyped
+
+  @notes: untyped
+
+  @last_pipeline: untyped
+
+  @last_pipeline_stages: untyped
+
+  @start_branch: untyped
+
+  @commit_params: untyped
+
+  @environment: untyped
+
+  include RendersNotes
+
+  include CreatesCommit
+
+  include DiffForPath
+
+  include DiffHelper
+
+  include SourcegraphDecorator
+
+  include RapidDiffs::Resource
+
+  include RapidDiffs::DiscussionActions
+
+  include HandlesGitalyErrors
+
+  BRANCH_SEARCH_LIMIT: 1000
+
+  COMMIT_DIFFS_PER_PAGE: 20
+
+  def show: () -> untyped
+
+  def discussions: () -> untyped
+
+  def create_discussions: () -> untyped
+
+  def diff_for_path: () -> untyped
+
+  def diff_files: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def pipelines: () -> untyped
+
+  def merge_requests: () -> untyped
+
+  def revert: () -> untyped
+
+  def cherry_pick: () -> untyped
+
+  private
+
+  def rapid_diffs_presenter: () -> (nil | untyped)
+
+  def rapid_diffs_enabled?: () -> untyped
+
+  def rapid_diffs_force_disabled?: () -> untyped
+
+  def noteable: () -> untyped
+
+  def noteable_params: () -> { noteable_type: "Commit", commit_id: untyped }
+
+  def grouped_discussions: () -> untyped
+
+  def timeline_discussions: () -> untyped
+
+  def create_note_params: () -> untyped
+
+  def enrich_note_params: (untyped create_params, untyped in_reply_to_discussion_id) -> untyped
+
+  def enrich_position_data: (untyped position_data) -> untyped
+
+  def pagination_params: () -> untyped
+
+  def commit_params_safe: () -> untyped
+
+  def commit_diff_options: () -> untyped
+
+  def create_new_branch?: () -> untyped
+
+  def successful_change_path: (untyped target_project) -> untyped
+
+  def failed_change_path: () -> untyped
+
+  def referenced_merge_request_url: () -> (untyped | nil)
+
+  def commit: () -> untyped
+
+  def verify_commit: () -> (untyped | nil)
+
+  def define_commit_vars: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def define_note_vars: () -> untyped
+
+  def define_commit_box_vars: () -> (nil | untyped)
+
+  def assign_change_commit_vars: () -> untyped
+
+  def find_cherry_pick_target_project: () -> untyped
+
+  def rate_limit_for_expanded_diff_files: () -> (nil | untyped)
+
+  def complete_diff_path: () -> untyped
+
+  def email_format_path: () -> untyped
+
+  def define_environment: () -> untyped
+end

@@ -1,0 +1,69 @@
+module Groups
+  module ImportExport
+    class ExportService
+      @group: untyped
+
+      @current_user: untyped
+
+      @exported_by_admin: untyped
+
+      @params: untyped
+
+      @shared: untyped
+
+      @logger: untyped
+
+      @notification_service: untyped
+
+      def initialize: (group: untyped, user: untyped, exported_by_admin: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def async_execute: () -> untyped
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader group: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader exported_by_admin: untyped
+
+      attr_reader params: untyped
+
+      attr_accessor shared: untyped
+
+      def validate_user_permissions: () -> (untyped | nil)
+
+      def remove_existing_export!: () -> untyped
+
+      def save!: () -> untyped
+
+      def save_exporters: () -> untyped
+
+      def savers: () -> ::Array[untyped]
+
+      def tree_exporter: () -> untyped
+
+      def version_saver: () -> untyped
+
+      def max_iids_saver: () -> untyped
+
+      def file_saver: () -> untyped
+
+      def remove_archive_tmp_dir: () -> (untyped | nil)
+
+      def notify_error!: () -> untyped
+
+      def log_info: (untyped message) -> untyped
+
+      def audit_export: () -> (nil | untyped)
+
+      def notify_success: () -> untyped
+
+      def notify_error: () -> untyped
+
+      def notification_service: () -> untyped
+    end
+  end
+end

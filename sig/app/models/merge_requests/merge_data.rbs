@@ -1,0 +1,15 @@
+module MergeRequests
+  class MergeData < ApplicationRecord
+    include PartitionedTable
+
+    include ShaAttribute
+
+    include Transitionable
+
+    MERGE_STATUSES: { unchecked: 0, preparing: 1, checking: 2, can_be_merged: 3, cannot_be_merged: 4, cannot_be_merged_recheck: 5, cannot_be_merged_rechecking: 6 }
+
+    # Returns current merge_status except it returns `cannot_be_merged_rechecking` as `checking`
+    # to avoid exposing unnecessary internal state
+    def public_merge_status: () -> ("checking" | untyped)
+  end
+end

@@ -1,0 +1,18 @@
+module WebIde
+  module Settings
+    # This module contains all messages for the Web IDE Settings sub-domain, both errors and domain events.
+    # Note that we intentionally have not DRY'd up the declaration of the subclasses with loops and
+    # metaprogramming, because we want the types to be easily indexable and navigable within IDEs.
+    module Messages
+      SettingsCurrentSettingsReadFailed: untyped
+
+      SettingsEnvironmentVariableOverrideFailed: untyped
+
+      SettingsVscodeExtensionMarketplaceValidationFailed: untyped
+
+      SettingsVscodeExtensionMarketplaceMetadataValidationFailed: untyped
+
+      SettingsGetSuccessful: untyped
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module BulkImports
+  class GetImportableDataService
+    @params: untyped
+
+    @query_params: untyped
+
+    @credentials: untyped
+
+    @client: untyped
+
+    def initialize: (untyped params, untyped query_params, untyped credentials) -> void
+
+    def execute: () -> { version_validation: untyped, response: untyped }
+
+    private
+
+    def importables: () -> untyped
+
+    def version_validation: () -> { features: { project_migration: { available: untyped, min_version: untyped }, source_instance_version: untyped } }
+
+    def client: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module UserStatusTooltip
+  extend ActiveSupport::Concern
+
+  include ActionView::Helpers::TagHelper
+
+  include ActionView::Context
+
+  include EmojiHelper
+
+  include ::UsersHelper
+end

@@ -1,0 +1,50 @@
+module Gitlab
+  module Issuable
+    module Clone
+      class CopyResourceEventsService
+        @current_user: untyped
+
+        @original_entity: untyped
+
+        @new_entity: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader original_entity: untyped
+
+        attr_reader new_entity: untyped
+
+        def initialize: (untyped current_user, untyped original_entity, untyped new_entity) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def namespace_id_for_new_entity: (untyped new_entity) -> untyped
+
+        def copy_resource_label_events: () -> untyped
+
+        def copy_resource_milestone_events: () -> (nil | untyped)
+
+        def copy_resource_state_events: () -> (nil | untyped)
+
+        # Overridden on EE::Gitlab::Issuable::Clone::CopyResourceEventsService
+        # These values should never be copied to the new entity. This service should always set a new appropriate
+        # value that references the new target.
+        def blocked_resource_event_attributes: () -> ::Array["id" | "issue_id" | "merge_request_id"]
+
+        def event_attributes_with_milestone: (untyped event, untyped milestone_id) -> untyped
+
+        def copy_events: (untyped table_name, untyped events_to_copy) { (untyped) -> untyped } -> untyped
+
+        def entity_key: () -> untyped
+
+        def milestone_events_supported?: () -> untyped
+
+        def state_events_supported?: () -> untyped
+
+        def both_respond_to?: (untyped method) -> untyped
+      end
+    end
+  end
+end

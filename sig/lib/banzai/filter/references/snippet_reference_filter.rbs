@@ -1,0 +1,17 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces snippet references with links. References to
+      # snippets that do not exist are ignored.
+      #
+      # This filter supports cross-project references.
+      class SnippetReferenceFilter < AbstractReferenceFilter
+        def parent_records: (untyped project, untyped ids) -> untyped
+
+        def find_object: (untyped project, untyped id) -> untyped
+
+        def url_for_object: (untyped snippet, untyped project) -> untyped
+      end
+    end
+  end
+end

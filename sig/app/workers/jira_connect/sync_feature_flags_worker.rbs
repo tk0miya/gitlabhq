@@ -1,0 +1,7 @@
+module JiraConnect
+  class SyncFeatureFlagsWorker
+    include ApplicationWorker
+
+    def perform: (untyped feature_flag_id, untyped sequence_id) -> (nil | untyped)
+  end
+end

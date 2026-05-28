@@ -1,0 +1,11 @@
+module WorkItems
+  module Widgets
+    class EmailParticipants < Base
+      alias email_participants issue_email_participants
+
+      def self.quick_action_commands: () -> ::Array[:add_email | :remove_email]
+
+      def self.quick_action_params: () -> ::Array[:emails]
+    end
+  end
+end

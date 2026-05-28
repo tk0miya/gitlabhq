@@ -1,0 +1,23 @@
+module TestHooks
+  class BaseService
+    @hook: untyped
+
+    @current_user: untyped
+
+    @trigger: untyped
+
+    include BaseServiceUtility
+
+    attr_accessor hook: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor trigger: untyped
+
+    def initialize: (untyped hook, untyped current_user, untyped trigger) -> void
+
+    def execute: () -> untyped
+
+    def error: (untyped message) -> untyped
+  end
+end

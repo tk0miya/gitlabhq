@@ -1,0 +1,7 @@
+module IncidentManagement
+  module UsageData
+    include Gitlab::Utils::UsageData
+
+    def track_incident_action: (untyped current_user, untyped target, untyped action) -> (nil | untyped)
+  end
+end

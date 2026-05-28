@@ -1,0 +1,19 @@
+class Packages::Dependency < ApplicationRecord
+  include EachBatch
+
+  NAME_VERSION_PATTERN_TUPLE_MATCHING: "(name, version_pattern) = (?, ?)"
+
+  MAX_STRING_LENGTH: 255
+
+  MAX_CHUNKED_QUERIES_COUNT: 10
+
+  def self.ids_for_package_project_id_names_and_version_patterns: (untyped project_id, ?::Hash[untyped, untyped] names_and_version_patterns, ?::Integer chunk_size, ?::Integer max_rows_limit) -> untyped
+
+  def self.for_package_project_id_names_and_version_patterns: (untyped project_id, ?::Hash[untyped, untyped] names_and_version_patterns, ?::Integer chunk_size, ?::Integer max_rows_limit) -> untyped
+
+  def self.pluck_ids_and_names: () -> untyped
+
+  def self.orphaned: () -> untyped
+
+  def orphaned?: () -> untyped
+end

@@ -1,0 +1,29 @@
+# Display package version data according to PyPI
+# Simple API: https://warehouse.pypa.io/api-reference/legacy/#simple-project-api
+module Packages
+  module Pypi
+    class SimplePresenterBase
+      @packages: untyped
+
+      @project_or_group: untyped
+
+      include API::Helpers::RelatedResourcesHelpers
+
+      def initialize: (untyped packages, untyped project_or_group) -> void
+
+      def body: () -> untyped
+
+      private
+
+      def package_link: (untyped url, untyped required_python, untyped name) -> ::String
+
+      def escape: (untyped str) -> untyped
+
+      def project?: () -> untyped
+
+      def group?: () -> untyped
+
+      def available_packages: () -> untyped
+    end
+  end
+end

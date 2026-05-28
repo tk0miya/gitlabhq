@@ -1,0 +1,21 @@
+module Gitlab
+  module BackgroundMigration
+    module BatchingStrategies
+      # This strategy provides an efficient way to iterate over columns with non-distinct values.
+      # A common use case would be iterating over a foreign key columns, for example issues.project_id
+      class LooseIndexScanBatchingStrategy < BaseStrategy
+        include Gitlab::Database::DynamicModelHelpers
+
+        # Finds and returns the next batch in the table.
+        #
+        # table_name - The table to batch over
+        # column_name - The column to batch over
+        # batch_min_value - The minimum value which the next batch will start at
+        # batch_size - The size of the next batch
+        # job_arguments - The migration job arguments
+        # job_class - The migration job class
+        def next_batch: (untyped table_name, untyped column_name, batch_min_value: untyped, batch_size: untyped, job_arguments: untyped, ?job_class: untyped?) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Import
+  module GitlabProjects
+    module FileAcquisitionStrategies
+      class FileUpload
+        @params: untyped
+
+        @project_params: untyped
+
+        @file: untyped
+
+        include ActiveModel::Validations
+
+        def initialize: (params: untyped, ?current_user: untyped?) -> void
+
+        def project_params: () -> untyped
+
+        def file: () -> untyped
+
+        private
+
+        def uploaded_file: () -> (nil | untyped)
+      end
+    end
+  end
+end

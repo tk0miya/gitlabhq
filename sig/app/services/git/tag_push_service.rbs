@@ -1,0 +1,15 @@
+module Git
+  class TagPushService < ::BaseService
+    include ChangeParams
+
+    def execute: () -> (nil | true)
+
+    private
+
+    def destroy_releases: () -> (nil | untyped)
+
+    def unlock_artifacts: () -> (nil | untyped)
+
+    def removing_tag?: () -> untyped
+  end
+end

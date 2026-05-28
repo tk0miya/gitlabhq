@@ -1,0 +1,62 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      class RequestParams
+        include ActiveModel::Model
+
+        include ActiveModel::Validations
+
+        include ActiveModel::Attributes
+
+        include Gitlab::Utils::StrongMemoize
+
+        MAX_RANGE_DAYS: untyped
+
+        DEFAULT_DATE_RANGE: untyped
+
+        NEGATABLE_PARAMS: ::Array[:assignee_username | :author_username | :epic_id | :iteration_id | :label_name | :milestone_title | :my_reaction_emoji | :weight]
+
+        LICENSED_PARAMS: ::Array[:weight | :epic_id | :my_reaction_emoji | :iteration_id]
+
+        STRONG_PARAMS_DEFINITION: untyped
+
+        FINDER_PARAM_NAMES: ::Array[:assignee_username | :author_username | :milestone_title | :label_name]
+
+        attr_writer project_ids: untyped
+
+        def initialize: (?::Hash[untyped, untyped] params) -> void
+
+        def to_data_collector_params: () -> untyped
+
+        def to_data_attributes: () -> untyped
+
+        def project_ids: () -> untyped
+
+        def resource_paths: () -> untyped
+
+        private
+
+        def foss_project_level_params: () -> (::Hash[untyped, untyped] | { project_id: untyped, group_path: untyped, request_path: untyped, full_path: untyped })
+
+        # FOSS version doesn't use the aggregated VSA backend
+        def use_aggregated_backend?: () -> false
+
+        def namespace_attributes: () -> (::Hash[untyped, untyped] | { name: untyped, type: untyped, path: untyped, rest_api_request_path: untyped })
+
+        def value_stream_data_attributes: () -> { id: untyped, name: untyped, is_custom: untyped }
+
+        def stage_data_attributes: () -> (nil | { id: untyped, title: untyped })
+
+        def validate_created_before: () -> (nil | untyped)
+
+        def validate_date_range: () -> (nil | untyped)
+
+        def default_created_after: () -> untyped
+
+        def stage: () -> (nil | untyped)
+
+        def project: () -> untyped
+      end
+    end
+  end
+end

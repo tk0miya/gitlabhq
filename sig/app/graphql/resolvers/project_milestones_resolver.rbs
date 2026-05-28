@@ -1,0 +1,9 @@
+module Resolvers
+  class ProjectMilestonesResolver < MilestonesResolver
+    include ::API::Concerns::Milestones::GroupProjectParams
+
+    private
+
+    def parent_id_parameters: (untyped args) -> untyped
+  end
+end

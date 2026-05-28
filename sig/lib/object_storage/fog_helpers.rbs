@@ -1,0 +1,21 @@
+module ObjectStorage
+  module FogHelpers
+    include ::Gitlab::Utils::StrongMemoize
+
+    def available?: () -> untyped
+
+    private
+
+    def delete_object: (untyped key) -> untyped
+
+    def storage_location_identifier: () -> untyped
+
+    def object_store: () -> untyped
+
+    def bucket_name: () -> untyped
+
+    def object_key: (untyped key) -> untyped
+
+    def connection: () -> (nil | untyped)
+  end
+end

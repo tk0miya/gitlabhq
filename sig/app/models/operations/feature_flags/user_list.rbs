@@ -1,0 +1,17 @@
+module Operations
+  module FeatureFlags
+    class UserList < ApplicationRecord
+      include AtomicInternalId
+
+      include IidRoutes
+
+      include ::Gitlab::SQL::Pattern
+
+      def self.belongs_to?: (untyped project_id, untyped user_list_ids) -> untyped
+
+      private
+
+      def ensure_no_associated_strategies: () -> (untyped | nil)
+    end
+  end
+end

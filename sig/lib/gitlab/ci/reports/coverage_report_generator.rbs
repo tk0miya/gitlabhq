@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Reports
+      class CoverageReportGenerator
+        @pipeline: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped pipeline) -> void
+
+        def report: () -> untyped
+
+        private
+
+        def report_builds: () -> untyped
+
+        def merge_request_file_paths: () -> untyped
+      end
+    end
+  end
+end

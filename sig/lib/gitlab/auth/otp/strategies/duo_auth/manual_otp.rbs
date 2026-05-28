@@ -1,0 +1,23 @@
+module Gitlab
+  module Auth
+    module Otp
+      module Strategies
+        module DuoAuth
+          class ManualOtp < Base
+            include Gitlab::Utils::StrongMemoize
+
+            def validate: (untyped otp_code) -> untyped
+
+            private
+
+            def duo_client: () -> untyped
+
+            def parse_response: (untyped response) -> untyped
+
+            def approve_or_deny: (untyped parsed_response) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

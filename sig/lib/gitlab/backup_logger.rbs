@@ -1,0 +1,21 @@
+module Gitlab
+  class BackupLogger
+    @progress: untyped
+
+    @json_logger: untyped
+
+    attr_reader progress: untyped
+
+    attr_reader json_logger: untyped
+
+    def initialize: (untyped progress) -> void
+
+    def warn: (untyped message) -> untyped
+
+    def info: (untyped message) -> untyped
+
+    def error: (untyped message) -> untyped
+
+    def flush: () -> untyped
+  end
+end

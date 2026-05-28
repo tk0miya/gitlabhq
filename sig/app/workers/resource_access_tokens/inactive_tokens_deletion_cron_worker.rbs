@@ -1,0 +1,23 @@
+module ResourceAccessTokens
+  class InactiveTokensDeletionCronWorker
+    @admin_bots: untyped
+
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    include Gitlab::Utils::StrongMemoize
+
+    BATCH_SIZE: 1000
+
+    MAX_RUNTIME: untyped
+
+    def perform: (?untyped? cursor) -> (nil | untyped)
+
+    private
+
+    def initiate_deletion_for: (untyped users) -> (nil | untyped)
+
+    def admin_bot_id_for_organization_id: (untyped organization_id) -> untyped
+  end
+end

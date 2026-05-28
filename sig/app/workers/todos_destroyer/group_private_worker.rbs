@@ -1,0 +1,9 @@
+module TodosDestroyer
+  class GroupPrivateWorker
+    include ApplicationWorker
+
+    include TodosDestroyerQueue
+
+    def perform: (untyped group_id) -> untyped
+  end
+end

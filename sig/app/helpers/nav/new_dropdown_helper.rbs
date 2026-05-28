@@ -1,0 +1,18 @@
+module Nav
+  module NewDropdownHelper
+    def new_dropdown_view_model: (group: untyped, project: untyped) -> (nil | untyped)
+
+    private
+
+    def group_menu_section: (untyped group) -> { title: untyped, menu_items: untyped }
+
+    def project_menu_section: (untyped project) -> { title: untyped, menu_items: untyped }
+
+    def general_menu_section: () -> { title: untyped, menu_items: untyped }
+
+    def invite_members_menu_item: (partial: untyped) -> untyped
+
+    # Overridden in EE
+    def create_group_wiki_menu_item: (untyped group) -> nil
+  end
+end

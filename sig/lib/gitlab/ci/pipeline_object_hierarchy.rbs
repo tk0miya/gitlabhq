@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    class PipelineObjectHierarchy < ::Gitlab::ObjectHierarchy
+      private
+
+      def middle_table: () -> untyped
+
+      def from_tables: (untyped cte) -> ::Array[untyped]
+
+      def parent_id_column: (untyped _cte) -> untyped
+
+      def ancestor_conditions: (untyped cte) -> untyped
+
+      def descendant_conditions: (untyped cte) -> untyped
+
+      def project_condition: () -> untyped
+
+      def objects_id_columns: () -> ::Array[untyped]
+    end
+  end
+end

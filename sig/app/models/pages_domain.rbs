@@ -1,0 +1,101 @@
+class PagesDomain < ApplicationRecord
+  @certificate_text: untyped
+
+  @x509: untyped
+
+  @pkey: untyped
+
+  include Presentable
+
+  include FromUnion
+
+  include AfterCommitQueue
+
+  include Gitlab::EncryptedAttribute
+
+  VERIFICATION_KEY: "gitlab-pages-verification-code"
+
+  VERIFICATION_THRESHOLD: untyped
+
+  SSL_RENEWAL_THRESHOLD: untyped
+
+  MAX_CERTIFICATE_KEY_LENGTH: 8192
+
+  X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN: 19
+
+  def self.find_by_domain_case_insensitive: (untyped domain) -> untyped
+
+  def self.ids_for_project: (untyped project_id) -> untyped
+
+  def verified?: () -> untyped
+
+  def unverified?: () -> untyped
+
+  def enabled?: () -> untyped
+
+  def https?: () -> untyped
+
+  def to_param: () -> untyped
+
+  def url: () -> (nil | untyped)
+
+  def has_matching_key?: () -> (false | untyped)
+
+  def has_valid_intermediates?: () -> untyped
+
+  def untrusted_ca_certs_bundle: () -> untyped
+
+  def expired?: () -> (false | untyped)
+
+  def expiration: () -> untyped
+
+  def subject: () -> (nil | untyped)
+
+  def certificate_text: () -> untyped
+
+  # Verification codes may be TXT records for domain or verification_domain, to
+  # support the use of CNAME records on domain.
+  def verification_domain: () -> (nil | ::String)
+
+  def keyed_verification_code: () -> (nil | ::String)
+
+  def verification_record: () -> ::String
+
+  def certificate=: (untyped certificate) -> untyped
+
+  def user_provided_key: () -> (untyped | nil)
+
+  def user_provided_key=: (untyped key) -> untyped
+
+  def user_provided_certificate: () -> (untyped | nil)
+
+  def user_provided_certificate=: (untyped certificate) -> untyped
+
+  def gitlab_provided_certificate=: (untyped certificate) -> untyped
+
+  def gitlab_provided_key=: (untyped key) -> untyped
+
+  def clear_auto_ssl_failure: () -> untyped
+
+  def validate_custom_domain_count_per_project: () -> (nil | untyped)
+
+  def pages_deployed?: () -> untyped
+
+  private
+
+  def max_certificate_key_length: () -> (nil | untyped)
+
+  def set_verification_code: () -> (nil | untyped)
+
+  def validate_matching_key: () -> (untyped | nil)
+
+  def validate_intermediates: () -> (untyped | nil)
+
+  def validate_pages_domain: () -> (nil | untyped)
+
+  def x509: () -> untyped
+
+  def pkey: () -> untyped
+
+  def certificate_should_be_present?: () -> untyped
+end

@@ -1,0 +1,57 @@
+module Ci
+  module Catalog
+    module Resources
+      module Versions
+        # This service is called from the Versions::CreateService and
+        # responsible for building components for a release version.
+        class BuildComponentsService
+          @release: untyped
+
+          @version: untyped
+
+          @components_data: untyped
+
+          @project: untyped
+
+          @components_project: untyped
+
+          @errors: untyped
+
+          MAX_COMPONENTS: untyped
+
+          def initialize: (untyped release, untyped version, untyped components_data) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader release: untyped
+
+          attr_reader version: untyped
+
+          attr_reader project: untyped
+
+          attr_reader components_project: untyped
+
+          attr_reader components_data: untyped
+
+          attr_reader errors: untyped
+
+          def build_components_from_passed_data: () -> (nil | untyped)
+
+          def build_components_from_fetched_data: () -> (nil | untyped)
+
+          def build_components_from_paths: (untyped component_paths) -> untyped
+
+          def extract_metadata: (untyped blob) -> { name: untyped, spec: untyped, component_type: "template" }
+
+          def check_number_of_components: (untyped size) -> (nil | untyped)
+
+          def build_catalog_resource_component: (untyped metadata) -> untyped
+
+          def error: (untyped message) -> untyped
+        end
+      end
+    end
+  end
+end

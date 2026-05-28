@@ -1,0 +1,13 @@
+module API
+  module Helpers
+    module Packages
+      module Conan
+        module ApiErrorFormatter
+          # Conan's response_to_str() natively parses the "errors" array format,
+          # producing clean user-facing messages instead of raw JSON dumps.
+          def render_structured_api_error!: (untyped hash, untyped status) -> untyped
+        end
+      end
+    end
+  end
+end

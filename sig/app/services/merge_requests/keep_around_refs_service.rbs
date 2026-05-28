@@ -1,0 +1,19 @@
+module MergeRequests
+  class KeepAroundRefsService
+    @project_ids: untyped
+
+    @shas: untyped
+
+    @source: untyped
+
+    include BaseServiceUtility
+
+    def initialize: (project_ids: untyped, shas: untyped, source: untyped) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def repositories: () -> untyped
+  end
+end

@@ -1,0 +1,15 @@
+module API
+  module Entities
+    class MergeRequestChanges < MergeRequest
+      @diffs: untyped
+
+      private
+
+      def overflow?: () -> (false | untyped)
+
+      def diff_collection: (untyped compare) -> untyped
+
+      def expose_raw_diffs?: () -> untyped
+    end
+  end
+end

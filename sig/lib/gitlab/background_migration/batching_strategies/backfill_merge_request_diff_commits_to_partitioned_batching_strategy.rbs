@@ -1,0 +1,18 @@
+module Gitlab
+  module BackgroundMigration
+    module BatchingStrategies
+      # Batching strategy for BackfillMergeRequestDiffCommitsToPartitioned.
+      #
+      # On GitLab.com the BBM records use view names (merge_request_diff_commits_views_N) as
+      # their table_name for parallelism tracking, but PostgreSQL cannot collapse row-style
+      # (multi-column) index conditions through a view, causing full scans that are slower.
+      # We override next_batch to ignore table_name and query merge_request_diff_commits directly;
+      # the cursor bounds on each BBM record isolate the range for each parallel worker.
+      class BackfillMergeRequestDiffCommitsToPartitionedBatchingStrategy < PrimaryKeyBatchingStrategy
+        SOURCE_TABLE: "merge_request_diff_commits"
+
+        def next_batch: (untyped _table_name, untyped column_name, batch_min_value: untyped, batch_size: untyped, job_arguments: untyped, ?job_class: untyped?) -> untyped
+      end
+    end
+  end
+end

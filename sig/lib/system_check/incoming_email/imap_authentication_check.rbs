@@ -1,0 +1,25 @@
+module SystemCheck
+  module IncomingEmail
+    class ImapAuthenticationCheck < SystemCheck::BaseCheck
+      @error: untyped
+
+      @config: untyped
+
+      @mail_room_config_path: untyped
+
+      def check?: () -> (untyped | false)
+
+      def show_error: () -> untyped
+
+      private
+
+      def try_connect_imap: () -> untyped
+
+      def config: () -> untyped
+
+      def mail_room_config_path: () -> untyped
+
+      def load_config: () -> untyped
+    end
+  end
+end

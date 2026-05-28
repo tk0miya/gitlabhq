@@ -1,0 +1,15 @@
+module API
+  module Helpers
+    module ProtectedBranchesHelpers
+      extend ActiveSupport::Concern
+
+      extend Grape::API::Helpers
+
+      def authorize_create_protected_branch!: () -> untyped
+
+      def authorize_update_protected_branch!: (untyped protected_branch) -> untyped
+
+      def authorize_destroy_protected_branch!: (untyped protected_branch) -> untyped
+    end
+  end
+end

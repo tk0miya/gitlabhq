@@ -1,0 +1,19 @@
+module Gitlab
+  class HashedPath
+    @paths: untyped
+
+    @root_hash: untyped
+
+    @disk_hash: untyped
+
+    def initialize: (*untyped paths, root_hash: untyped) -> void
+
+    def to_s: () -> untyped
+
+    alias to_str to_s
+
+    private
+
+    def disk_hash: () -> untyped
+  end
+end

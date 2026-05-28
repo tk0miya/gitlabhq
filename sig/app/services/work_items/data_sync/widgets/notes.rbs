@@ -1,0 +1,13 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class Notes < Base
+        ALLOWED_PARAMS: ::Array[:clone_with_notes]
+
+        def after_create: () -> (nil | untyped)
+
+        def post_move_cleanup: () -> untyped
+      end
+    end
+  end
+end

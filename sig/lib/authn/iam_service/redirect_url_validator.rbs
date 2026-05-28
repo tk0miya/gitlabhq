@@ -1,0 +1,9 @@
+module Authn
+  module IamService
+    module RedirectUrlValidator
+      def self?.valid?: (untyped url) -> untyped
+
+      def self?.allowed_schemes: () -> (::Array["http" | "https"] | ::Array["https"])
+    end
+  end
+end

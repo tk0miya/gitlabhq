@@ -1,0 +1,21 @@
+module ErrorTracking
+  class StacktraceBuilder
+    @stacktrace: untyped
+
+    attr_reader stacktrace: untyped
+
+    def initialize: (untyped payload) -> void
+
+    private
+
+    def build_stacktrace: (untyped payload) -> (::Array[untyped] | untyped)
+
+    def raw_stacktrace_from_payload: (untyped payload) -> untyped
+
+    def raw_stacktrace_from: (untyped entry) -> (nil | untyped)
+
+    def build_stacktrace_context: (untyped entry) -> untyped
+
+    def lines_with_position: (untyped lines, untyped position) -> (::Array[untyped] | untyped)
+  end
+end

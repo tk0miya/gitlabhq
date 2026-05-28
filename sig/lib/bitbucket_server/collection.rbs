@@ -1,0 +1,15 @@
+module BitbucketServer
+  class Collection < Enumerator
+    @paginator: untyped
+
+    attr_reader paginator: untyped
+
+    def initialize: (untyped paginator) -> void
+
+    def current_page: () -> (1 | untyped)
+
+    def prev_page: () -> (nil | untyped)
+
+    def next_page: () -> (nil | untyped)
+  end
+end

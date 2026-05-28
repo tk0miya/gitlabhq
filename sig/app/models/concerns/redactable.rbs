@@ -1,0 +1,16 @@
+# This module searches and redacts sensitive information in
+# redactable fields. Currently only unsubscribe link is redacted.
+# Add following lines into your model:
+#
+#     include Redactable
+#     redact_field :foo
+#
+module Redactable
+  extend ActiveSupport::Concern
+
+  UNSUBSCRIBE_PATTERN: ::Regexp
+
+  private
+
+  def redact_field!: (untyped field) -> (nil | untyped)
+end

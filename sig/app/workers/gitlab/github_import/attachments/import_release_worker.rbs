@@ -1,0 +1,17 @@
+module Gitlab
+  module GithubImport
+    module Attachments
+      class ImportReleaseWorker
+        include ObjectImporter
+
+        def representation_class: () -> untyped
+
+        def importer_class: () -> untyped
+
+        def object_type: () -> :release_attachment
+
+        def increment_object_counter?: (untyped _object) -> false
+      end
+    end
+  end
+end

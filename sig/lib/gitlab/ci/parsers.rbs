@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Parsers
+      ParserNotFoundError: untyped
+
+      def self.parsers: () -> { junit: untyped, cobertura: untyped, terraform: untyped, accessibility: untyped, jacoco: untyped, codequality: untyped, sast: untyped, secret_detection: untyped }
+
+      def self.fabricate!: (untyped file_type, *untyped args, **untyped kwargs) -> untyped
+
+      def self.instrument!: () -> untyped
+    end
+  end
+end

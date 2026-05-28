@@ -1,0 +1,11 @@
+module Gitlab
+  module SidekiqMiddleware
+    module WorkerContext
+      private
+
+      def wrap_in_optional_context: (untyped context_or_nil) { () -> untyped } -> untyped
+
+      def find_worker: (untyped worker_class, untyped job) -> untyped
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Ci
+  module JobToken
+    class Authorization < Ci::ApplicationRecord
+      extend Gitlab::InternalEventsTracking
+
+      include EachBatch
+
+      REQUEST_CACHE_KEY: :job_token_authorizations
+
+      CAPTURE_DELAY: untyped
+
+      AUTHORIZATION_ROW_LIMIT: 1000
+
+      # Record in SafeRequestStore a cross-project access attempt
+      def self.capture: (origin_project: untyped, accessed_project: untyped) -> untyped
+
+      def self.capture_job_token_policies: (untyped policies) -> untyped
+
+      # Schedule logging of captured authorizations in a background worker.
+      # We add a 5 minutes delay with deduplication logic so that we log the same authorization
+      # at most every 5 minutes. Otherwise, in high traffic projects we could be logging
+      # authorizations very frequently.
+      def self.log_captures_async: () -> (nil | untyped)
+
+      def self.log_captures!: (accessed_project_id: untyped, origin_project_id: untyped, ?policies: untyped) -> untyped
+
+      def self.add_to_request_store_hash: (untyped hash) -> untyped
+
+      def self.captured_authorizations: () -> untyped
+    end
+  end
+end

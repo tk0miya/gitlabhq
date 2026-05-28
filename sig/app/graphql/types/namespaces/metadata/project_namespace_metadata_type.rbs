@@ -1,0 +1,25 @@
+module Types
+  module Namespaces
+    module Metadata
+      class ProjectNamespaceMetadataType < BaseObject
+        @project: untyped
+
+        @group: untyped
+
+        def default_branch: () -> untyped
+
+        def issue_repositioning_disabled?: () -> untyped
+
+        def show_new_work_item?: () -> (false | true | untyped)
+
+        def group_id: () -> untyped
+
+        private
+
+        def project: () -> untyped
+
+        def group: () -> untyped
+      end
+    end
+  end
+end

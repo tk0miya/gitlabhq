@@ -1,0 +1,23 @@
+module IssueEmailParticipants
+  class CreateService < BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    MAX_NUMBER_OF_RECORDS: 10
+
+    def execute: () -> untyped
+
+    private
+
+    def deduplicate_and_limit_emails: () -> untyped
+
+    def add_participants: (untyped emails_to_add) -> untyped
+
+    def existing_emails: () -> untyped
+
+    def log_above_limit_count: (untyped above_limit_count) -> untyped
+
+    def system_note_text: () -> untyped
+
+    def error_no_participants_added: () -> untyped
+  end
+end

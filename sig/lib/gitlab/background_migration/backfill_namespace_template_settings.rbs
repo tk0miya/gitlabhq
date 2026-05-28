@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillNamespaceTemplateSettings < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def upsert_namespace_template_settings: (untyped sub_batch) -> untyped
+    end
+  end
+end

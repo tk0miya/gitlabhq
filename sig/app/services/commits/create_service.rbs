@@ -1,0 +1,53 @@
+module Commits
+  class CreateService < ::BaseService
+    @start_project: untyped
+
+    @start_branch: untyped
+
+    @start_sha: untyped
+
+    @branch_name: untyped
+
+    @force: untyped
+
+    @dry_run: untyped
+
+    @revert: untyped
+
+    ValidationError: untyped
+
+    class ChangeError < StandardError
+      @error_code: untyped
+
+      attr_reader error_code: untyped
+
+      def initialize: (untyped message, ?untyped? error_code) -> void
+    end
+
+    def initialize: (*untyped args) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def create_commit!: () -> untyped
+
+    def raise_error: (untyped message) -> untyped
+
+    def different_branch?: () -> untyped
+
+    def force?: () -> untyped
+
+    def validate!: () -> untyped
+
+    def validate_permissions!: () -> untyped
+
+    def validate_start_sha!: () -> (nil | untyped)
+
+    def validate_on_branch!: () -> (nil | untyped)
+
+    def validate_branch_existence!: () -> (untyped | nil)
+
+    def validate_new_branch_name!: () -> untyped
+  end
+end

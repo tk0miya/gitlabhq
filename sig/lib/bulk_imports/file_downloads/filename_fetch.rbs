@@ -1,0 +1,24 @@
+module BulkImports
+  module FileDownloads
+    module FilenameFetch
+      @remote_filename: untyped
+
+      REMOTE_FILENAME_PATTERN: ::Regexp
+
+      FILENAME_SIZE_LIMIT: 255
+
+      def raise_error: (untyped message) -> untyped
+
+      private
+
+      # Fetch the remote filename information from the request content-disposition header
+      # - Raises if the filename does not exist
+      # - If the filename is longer then 255 chars truncate it
+      #   to be a total of 255 chars (with the extension)
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables
+      def remote_filename: () -> untyped
+
+      def ensure_filename_size: (untyped filename) -> (untyped | ::String)
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Cells
+  class ScheduleClaimsVerificationWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    SCHEDULE_DELAY: untyped
+
+    def perform: () -> (nil | untyped)
+
+    private
+
+    def models_with_claims: () -> untyped
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    # Checks which `ignored_columns` definitions can be safely removed by
+    # scanning the current schema for all `ApplicationRecord` descendants.
+    class ObsoleteIgnoredColumns
+      @base: untyped
+
+      def initialize: (?untyped base) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def ignored_columns_safe_to_remove_for: (untyped klass) -> untyped
+
+      def ignored_and_not_present: (untyped klass) -> (::Array[untyped] | untyped)
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Packages
+  module TerraformModule
+    class CreatePackageService < ::Packages::CreatePackageService
+      include Gitlab::Utils::StrongMemoize
+
+      EMPTY_VERSION_ERROR: untyped
+
+      NAMESPACE_DUPLICATION_ERROR: untyped
+
+      PROJECT_DUPLICATION_ERROR: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def create_terraform_module_package!: () -> ::Array[untyped]
+
+      def duplicates_not_allowed?: () -> untyped
+
+      def current_package_exists_elsewhere?: () -> untyped
+
+      def current_package_version_exists?: () -> untyped
+
+      def name: () -> ::String
+
+      def package_protected?: () -> (false | untyped)
+
+      def file_name: () -> ::String
+
+      def file_params: () -> { file: untyped, size: untyped, file_sha256: untyped, file_name: untyped, build: untyped }
+
+      def package_settings_with_duplicates_allowed: () -> untyped
+    end
+  end
+end

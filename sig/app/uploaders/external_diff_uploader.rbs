@@ -1,0 +1,13 @@
+class ExternalDiffUploader < GitlabUploader
+  include ObjectStorage::Concern
+
+  alias upload model
+
+  def filename: () -> ::String
+
+  def store_dir: () -> untyped
+
+  private
+
+  def dynamic_segment: () -> untyped
+end

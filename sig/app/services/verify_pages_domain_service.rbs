@@ -1,0 +1,42 @@
+class VerifyPagesDomainService
+  @domain: untyped
+
+  # The maximum number of seconds to be spent on each DNS lookup
+  RESOLVER_TIMEOUT_SECONDS: 15
+
+  # How long verification lasts for
+  VERIFICATION_PERIOD: untyped
+
+  REMOVAL_DELAY: untyped
+
+  attr_reader domain: untyped
+
+  def initialize: (untyped domain) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def verify_domain!: () -> untyped
+
+  def after_successful_verification: () -> nil
+
+  def unverify_domain!: () -> untyped
+
+  def disable_domain!: () -> untyped
+
+  # A domain is only expired until `disable!` has been called
+  def expired?: () -> untyped
+
+  def dns_record_present?: () -> untyped
+
+  def check: (untyped domain_name, untyped resolver) -> untyped
+
+  def txt_records: (untyped domain_name, untyped resolver) -> untyped
+
+  def parse: (untyped records) -> untyped
+
+  def verification_enabled?: () -> untyped
+
+  def notify: (untyped type) -> (nil | untyped)
+end

@@ -1,0 +1,37 @@
+module Gitlab
+  module Metrics
+    module Subscribers
+      # Class for tracking the total time spent in Rails cache calls
+      # http://guides.rubyonrails.org/active_support_instrumentation.html
+      class RailsCache < ActiveSupport::Subscriber
+        @metric_cache_operation_duration_seconds: untyped
+
+        def cache_read_multi: (untyped event) -> (nil | untyped)
+
+        def cache_read: (untyped event) -> (nil | untyped)
+
+        def cache_write: (untyped event) -> untyped
+
+        def cache_delete: (untyped event) -> untyped
+
+        def cache_exist?: (untyped event) -> untyped
+
+        def cache_fetch_hit: (untyped event) -> (nil | untyped)
+
+        def cache_generate: (untyped event) -> (nil | untyped)
+
+        def observe: (untyped key, untyped event) -> (nil | untyped)
+
+        private
+
+        def track_cache_miss: (untyped event) -> untyped
+
+        def extract_store_name: (untyped event) -> untyped
+
+        def current_transaction: () -> untyped
+
+        def metric_cache_operation_duration_seconds: () -> untyped
+      end
+    end
+  end
+end

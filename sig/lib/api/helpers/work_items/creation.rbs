@@ -1,0 +1,19 @@
+module API
+  module Helpers
+    module WorkItems
+      module Creation
+        def execute_work_item_creation: (untyped resource_parent) -> untyped
+
+        def render_work_item_creation: (untyped result) -> untyped
+
+        private
+
+        def resolve_work_item_type: (untyped resource_parent) -> untyped
+
+        def build_create_work_item_params: (untyped work_item_type) -> untyped
+
+        def extract_feature_params: (untyped work_item_type, untyped resource_parent) -> (::Hash[untyped, untyped] | untyped)
+      end
+    end
+  end
+end

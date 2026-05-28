@@ -1,0 +1,28 @@
+module Gitlab
+  module Database
+    module Migrations
+      class SwapColumns
+        @migration_context: untyped
+
+        @table: untyped
+
+        @column_name1: untyped
+
+        @column_name2: untyped
+
+        def initialize: (migration_context: untyped, table: untyped, column1: untyped, column2: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        # Rails' `rename_column` will rename related indexes
+        # using a format e.g. `index_{TABLE_NAME}_on_{KEY1}_and_{KEY2}`
+        # This will break the migration if the formated index name is longer than 63 chars, e.g.
+        # `index_ci_pipeline_variables_on_pipeline_id_convert_to_bigint_and_key`
+        # Therefore, we need to duplicate what Rails has done here without the part renaming related indexes
+        def rename_column: (untyped table_name, untyped column_name, untyped column2_name) -> untyped
+      end
+    end
+  end
+end

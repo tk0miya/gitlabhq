@@ -1,0 +1,15 @@
+module Ci
+  class UnitTest < Ci::ApplicationRecord
+    MAX_NAME_SIZE: 255
+
+    MAX_SUITE_NAME_SIZE: 255
+
+    def self.find_or_create_by_batch: (untyped project, untyped unit_test_attrs) -> untyped
+
+    private
+
+    def self.build_insert_attrs: (untyped project, untyped unit_test_attrs) -> untyped
+
+    def self.gather_keys: (untyped unit_test_attrs) -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module EtagCaching
+    module Router
+      class Graphql
+        self.@graphql_api_path: untyped
+
+        extend EtagCaching::Router::Helpers
+
+        GRAPHQL_ETAG_RESOURCE_HEADER: "X-GITLAB-GRAPHQL-RESOURCE-ETAG"
+
+        ROUTES: untyped
+
+        def self.match: (untyped request) -> (nil | untyped)
+
+        def self.cache_key: (untyped request) -> untyped
+
+        def self.graphql_api_path: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Spam
+  module Concerns
+    # This concern is shared by the controller and GraphQL layer to handle
+    # addition of spam/CAPTCHA related fields in the response.
+    module HasSpamActionResponseFields
+      extend ActiveSupport::Concern
+
+      # spam_action_response_fields(spammable) -> hash
+      #
+      # Takes a Spammable as an argument and returns response fields necessary to display a CAPTCHA on
+      # the client.
+      def spam_action_response_fields: (untyped spammable) -> { spam: untyped, needs_captcha_response: untyped, spam_log_id: untyped, captcha_site_key: untyped }
+    end
+  end
+end

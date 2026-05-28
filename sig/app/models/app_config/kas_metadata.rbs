@@ -1,0 +1,23 @@
+module AppConfig
+  class KasMetadata
+    @enabled: untyped
+
+    @version: untyped
+
+    @external_url: untyped
+
+    @external_k8s_proxy_url: untyped
+
+    attr_reader enabled: untyped
+
+    attr_reader version: untyped
+
+    attr_reader external_url: untyped
+
+    attr_reader external_k8s_proxy_url: untyped
+
+    def self.declarative_policy_class: () -> "AppConfig::InstanceMetadataPolicy"
+
+    def initialize: () -> void
+  end
+end

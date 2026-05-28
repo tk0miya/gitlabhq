@@ -1,0 +1,33 @@
+module Gitlab
+  class CrossProjectAccess
+    class CheckInfo
+      @actions: untyped
+
+      @positive_condition: untyped
+
+      @negative_condition: untyped
+
+      @skip: untyped
+
+      attr_accessor actions: untyped
+
+      attr_accessor positive_condition: untyped
+
+      attr_accessor negative_condition: untyped
+
+      attr_accessor skip: untyped
+
+      def initialize: (untyped actions, untyped positive_condition, untyped negative_condition, untyped skip) -> void
+
+      def should_skip?: (untyped object) -> untyped
+
+      def should_run?: (untyped object) -> untyped
+
+      def positive_condition_is_false?: (untyped object) -> untyped
+
+      def negative_condition_is_true?: (untyped object) -> untyped
+
+      def current_action: (untyped object) -> (untyped | nil)
+    end
+  end
+end

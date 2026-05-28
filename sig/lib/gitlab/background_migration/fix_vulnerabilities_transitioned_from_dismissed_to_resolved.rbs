@@ -1,0 +1,52 @@
+module Gitlab
+  module BackgroundMigration
+    class FixVulnerabilitiesTransitionedFromDismissedToResolved < BatchedMigrationJob
+      # The earliest that records could have appeared on .com was when the feature flag was enabled
+      # on 2024-12-05: https://gitlab.com/gitlab-org/gitlab/-/issues/505711
+      #
+      # In self-managed, it could have appeared beginning in the 17.7 release on 2024-12-19.
+      FIRST_APPEARANCE_DATE: untyped
+
+      COMMENT: "Status changed to dismissed. Reverts a bug that incorrectly set this vulnerability to resolved.For details, see [issue 523433](https://gitlab.com/gitlab-org/gitlab/-/issues/523433)"
+
+      class Vulnerability < ::SecApplicationRecord
+      end
+
+      class StateTransition < ::SecApplicationRecord
+        def created_before_issue_first_appeared?: () -> untyped
+
+        def transitioned_from_dismissed_to_resolved?: () -> untyped
+      end
+
+      class Project < ApplicationRecord
+      end
+
+      class User < ApplicationRecord
+        def security_policy_bot?: () -> untyped
+      end
+
+      class Note < ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      def scoped_vulnerability_reads: (untyped vulnerability_reads) -> untyped
+
+      def affected_vulnerability_data: (untyped vulnerability_reads) -> untyped
+
+      def affected_transition: (untyped vulnerability) -> untyped
+
+      def original_dismissal: (untyped vulnerability, untyped bug_transition) -> untyped
+
+      def transition_states: (untyped data, untyped timestamp) -> untyped
+
+      def state_transition_attributes: (untyped data, untyped timestamp) -> untyped
+
+      def insert_notes: (untyped data, untyped timestamp) -> untyped
+
+      def note_attributes: (untyped data, untyped timestamp) -> untyped
+
+      def connection: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,47 @@
+module Projects
+  module ImportExport
+    class RelationImportWorker
+      @current_user: untyped
+
+      @tracker: untyped
+
+      @project: untyped
+
+      @tmpdir: untyped
+
+      @relation_reader: untyped
+
+      include ApplicationWorker
+
+      include Sidekiq::InterruptionsExhausted
+
+      attr_reader tracker: untyped
+
+      attr_reader project: untyped
+
+      attr_reader current_user: untyped
+
+      def perform: (untyped tracker_id, untyped user_id) -> untyped
+
+      def perform_failure: (untyped tracker_id, untyped exception) -> untyped
+
+      private
+
+      def extract_import_file: () -> untyped
+
+      def remove_extracted_import: () -> untyped
+
+      def tmpdir: () -> untyped
+
+      def process_import: () -> untyped
+
+      def relation_reader: () -> untyped
+
+      def members_mapper: () -> untyped
+
+      def perform_post_import_tasks: () -> untyped
+
+      def log_failure: (untyped exception) -> untyped
+    end
+  end
+end

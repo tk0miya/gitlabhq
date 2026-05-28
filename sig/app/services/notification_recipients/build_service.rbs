@@ -1,0 +1,22 @@
+#
+# Used by NotificationService to determine who should receive notification
+#
+module NotificationRecipients
+  module BuildService
+    def self.notifiable_users: (untyped users, *untyped args) -> untyped
+
+    def self.notifiable?: (untyped user, *untyped args) -> untyped
+
+    def self.build_recipients: (untyped target, untyped current_user, **untyped args) -> untyped
+
+    def self.build_new_note_recipients: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def self.build_merge_request_unmergeable_recipients: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def self.build_project_maintainers_recipients: (untyped target, **untyped args) -> untyped
+
+    def self.build_new_review_recipients: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def self.build_requested_review_recipients: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+  end
+end

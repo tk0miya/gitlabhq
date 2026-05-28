@@ -1,0 +1,104 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      class Paginator
+        @keyset_scope: untyped
+
+        @order: untyped
+
+        @per_page: untyped
+
+        @cursor_converter: untyped
+
+        @direction_key: untyped
+
+        @has_another_page: untyped
+
+        @at_last_page: untyped
+
+        @at_first_page: untyped
+
+        @cursor_attributes: untyped
+
+        @keyset_order_options: untyped
+
+        @records: untyped
+
+        @direction: untyped
+
+        include Enumerable
+
+        module Base64CursorConverter
+          def self.dump: (untyped cursor_attributes) -> untyped
+
+          def self.parse: (untyped cursor) -> untyped
+        end
+
+        FORWARD_DIRECTION: "n"
+
+        BACKWARD_DIRECTION: "p"
+
+        # scope                  - ActiveRecord::Relation object with order by clause
+        # cursor                 - Encoded cursor attributes as String. Empty value will requests the first page.
+        # per_page               - Number of items per page.
+        # cursor_converter       - Object that serializes and de-serializes the cursor attributes. Implements dump and parse methods.
+        # direction_key          - Symbol that will be the hash key of the direction within the cursor. (default: _kd => keyset direction)
+        def initialize: (scope: untyped, ?cursor: untyped?, ?per_page: ::Integer, ?cursor_converter: untyped, ?direction_key: ::Symbol, ?keyset_order_options: ::Hash[untyped, untyped]) -> void
+
+        def records: () -> untyped
+
+        def to_sql: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord -- This is a reusable module.
+        # Defining these scopes on the model would encourage duplication.
+        def keyset_relation: () -> untyped
+
+        # This and has_previous_page? methods are direction aware. In case we paginate backwards,
+        # has_next_page? will mean that we have a previous page.
+        def has_next_page?: () -> untyped
+
+        def has_previous_page?: () -> untyped
+
+        def cursor_for_next_page: () -> (untyped | nil)
+
+        def cursor_for_previous_page: () -> (untyped | nil)
+
+        def cursor_for_first_page: () -> untyped
+
+        def cursor_for_last_page: () -> untyped
+
+        private
+
+        attr_reader keyset_scope: untyped
+
+        attr_reader order: untyped
+
+        attr_reader per_page: untyped
+
+        attr_reader cursor_converter: untyped
+
+        attr_reader direction_key: untyped
+
+        attr_reader cursor_attributes: untyped
+
+        attr_reader keyset_order_options: untyped
+
+        def at_last_page?: () -> untyped
+
+        def at_first_page?: () -> untyped
+
+        def per_page_plus_one: () -> untyped
+
+        def decode_cursor_attributes: (untyped cursor) -> (::Hash[untyped, untyped] | untyped)
+
+        def set_pagination_helper_flags!: () -> untyped
+
+        def paginate_backward?: () -> untyped
+
+        def paginate_forward?: () -> untyped
+
+        def build_scope: (untyped scope) -> untyped
+      end
+    end
+  end
+end

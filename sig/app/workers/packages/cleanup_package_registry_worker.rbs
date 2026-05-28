@@ -1,0 +1,23 @@
+module Packages
+  class CleanupPackageRegistryWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+
+    private
+
+    def enqueue_package_file_cleanup_job: () -> untyped
+
+    def enqueue_cleanup_policy_jobs: () -> untyped
+
+    def enqueue_cleanup_stale_npm_metadata_cache_job: () -> untyped
+
+    def enqueue_cleanup_stale_helm_metadata_cache_job: () -> untyped
+
+    def enqueue_cleanup_stale_nuget_symbols_job: () -> untyped
+
+    def log_counts: () -> untyped
+  end
+end

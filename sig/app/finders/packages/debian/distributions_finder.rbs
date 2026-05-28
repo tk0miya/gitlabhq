@@ -1,0 +1,27 @@
+module Packages
+  module Debian
+    class DistributionsFinder
+      @container: untyped
+
+      @params: untyped
+
+      def initialize: (untyped container, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader container: untyped
+
+      attr_reader params: untyped
+
+      def relation: () -> untyped
+
+      def by_codename: (untyped collection) -> untyped
+
+      def by_suite: (untyped collection) -> untyped
+
+      def by_codename_or_suite: (untyped collection) -> untyped
+    end
+  end
+end

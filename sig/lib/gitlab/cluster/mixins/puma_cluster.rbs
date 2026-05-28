@@ -1,0 +1,13 @@
+module Gitlab
+  module Cluster
+    module Mixins
+      module PumaCluster
+        def self.prepended: (untyped base) -> (untyped | nil)
+
+        # This looks at internal status of `Puma::Cluster`
+        # https://github.com/puma/puma/blob/v3.12.1/lib/puma/cluster.rb#L333
+        def stop_workers: () -> untyped
+      end
+    end
+  end
+end

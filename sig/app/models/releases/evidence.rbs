@@ -1,0 +1,18 @@
+module Releases
+  class Evidence < ApplicationRecord
+    @milestones: untyped
+
+    include ShaAttribute
+
+    include Presentable
+
+    def milestones: () -> untyped
+
+    #
+    # Return `summary` without sensitive information.
+    #
+    # Removing issues from summary in order to prevent leaking confidential ones.
+    # See more https://gitlab.com/gitlab-org/gitlab/issues/121930
+    def summary: () -> untyped
+  end
+end

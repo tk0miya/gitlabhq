@@ -1,0 +1,38 @@
+module Gitlab
+  module Ci
+    module Matching
+      # Parses an environment_key produced by the runner's AutoscalerResumeKey.
+      # Format: "<runner_id>/<system_id>/<executor-specific-data>"
+      # NOTE: system_id is url-encoded by the runner
+      class EnvironmentKey
+        @environment_key: untyped
+
+        @parsed_parts: untyped
+
+        MAX_ENVIRONMENT_KEY_LENGTH: 512
+
+        def initialize: (untyped environment_key) -> void
+
+        # Returns true if the given runner and runner_manager own this suspended environment.
+        # NOTE: This is a JOB ROUTING hint only, not an authorization gate.
+        # The environment_key is stored in ci_builds.options[:suspend_options] and is not
+        # cryptographically verified. Do NOT use this method to grant
+        # capabilities, credentials, or access to resources.
+        #
+        # system_id is mandatory in the positional format. A key without a system_id
+        # segment (fewer than 3 slash-delimited parts) will never match.
+        def matches_runner?: (untyped runner, ?runner_manager: untyped?) -> (false | untyped)
+
+        def runner_id: () -> (nil | untyped)
+
+        def system_id: () -> (nil | untyped)
+
+        private
+
+        def parsed_parts: () -> untyped
+
+        def parse_parts: () -> (nil | untyped)
+      end
+    end
+  end
+end

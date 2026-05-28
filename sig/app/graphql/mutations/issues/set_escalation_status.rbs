@@ -1,0 +1,13 @@
+module Mutations
+  module Issues
+    class SetEscalationStatus < Base
+      def resolve: (project_path: untyped, iid: untyped, status: untyped) -> { issue: untyped, errors: untyped }
+
+      private
+
+      def authorize_escalation_status!: (untyped project) -> (nil | untyped)
+
+      def check_feature_availability!: (untyped issue) -> (nil | untyped)
+    end
+  end
+end

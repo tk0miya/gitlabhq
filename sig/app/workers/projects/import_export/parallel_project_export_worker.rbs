@@ -1,0 +1,19 @@
+module Projects
+  module ImportExport
+    class ParallelProjectExportWorker
+      include ApplicationWorker
+
+      include ExceptionBacktrace
+
+      include Sidekiq::InterruptionsExhausted
+
+      def self.perform_failure: (untyped job, untyped message, untyped exception) -> (nil | untyped)
+
+      def perform: (untyped project_export_job_id, untyped user_id, ?::Hash[untyped, untyped] after_export_strategy) -> untyped
+
+      private
+
+      def build!: (untyped after_export_strategy) -> untyped
+    end
+  end
+end

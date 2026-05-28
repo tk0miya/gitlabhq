@@ -1,0 +1,29 @@
+class Badge < ApplicationRecord
+  include FromUnion
+
+  # This structure sets the placeholders that the urls
+  # can have. This hash also sets which action to ask when
+  # the placeholder is found.
+  PLACEHOLDERS: { "project_path" => :full_path, "project_title" => :title, "project_name" => :path, "project_id" => :id, "project_namespace" => untyped, "group_name" => untyped, "gitlab_server" => untyped, "gitlab_pages_domain" => untyped, "default_branch" => :default_branch, "commit_sha" => untyped, "latest_tag" => untyped }
+
+  # This regex is built dynamically using the keys from the PLACEHOLDER struct.
+  # So, we can easily add new placeholder just by modifying the PLACEHOLDER hash.
+  # This regex will build the new PLACEHOLDER_REGEX with the new information
+  PLACEHOLDERS_REGEX: ::Regexp
+
+  def rendered_link_url: (?untyped? project) -> untyped
+
+  def rendered_image_url: (?untyped? project) -> untyped
+
+  private
+
+  def set_sharding_key_preference: () -> (nil | untyped)
+
+  def build_rendered_url: (untyped url, ?untyped? project) -> untyped
+
+  # The action param represents the :symbol or Proc to call in order
+  # to retrieve the return value from the project.
+  # This method checks if it is a Proc and use the call method, and if it is
+  # a symbol just send the action
+  def replace_placeholder_action: (untyped action, untyped project) -> (nil | untyped)
+end

@@ -1,0 +1,47 @@
+module PackagesHelper
+  include ::API::Helpers::RelatedResourcesHelpers
+
+  def nuget_package_registry_url: (untyped project_id) -> untyped
+
+  def package_registry_instance_url: (untyped registry_type) -> untyped
+
+  def package_registry_group_url: (untyped group_id, ?::Symbol registry_type) -> untyped
+
+  def package_registry_project_url: (untyped project_id, ?::Symbol registry_type) -> untyped
+
+  def terraform_module_presenter: (untyped package) -> untyped
+
+  def pypi_registry_url: (untyped project) -> untyped
+
+  def composer_registry_url: (untyped group_id) -> untyped
+
+  def composer_config_repository_name: (untyped group_id) -> ::String
+
+  def track_package_event: (untyped event_name, untyped scope, **untyped args) -> untyped
+
+  def show_cleanup_policy_link: (untyped project) -> untyped
+
+  def show_container_registry_settings: (untyped project) -> untyped
+
+  def show_package_registry_settings: (untyped project) -> untyped
+
+  def show_group_package_registry_settings: (untyped group) -> untyped
+
+  def can_delete_packages?: (untyped project) -> untyped
+
+  def can_delete_group_packages?: (untyped group) -> untyped
+
+  def group_packages_template_data: (untyped group) -> untyped
+
+  def project_packages_template_data: (untyped project) -> untyped
+
+  def cleanup_settings_data: (untyped project) -> { project_id: untyped, project_path: untyped, cadence_options: untyped, keep_n_options: untyped, older_than_options: untyped, is_admin: untyped, admin_settings_path: untyped, project_settings_path: untyped, enable_historic_entries: untyped, help_page_path: untyped, show_cleanup_policy_link: untyped, tags_regex_help_page_path: untyped }
+
+  def settings_data: (untyped project) -> untyped
+
+  def packages_and_registries_group_settings_template_data: (untyped group) -> { group_path: untyped, group_dependency_proxy_path: untyped }
+
+  private
+
+  def packages_template_data: () -> { empty_list_illustration: untyped, group_list_url: "", npm_instance_url: untyped, project_list_url: "" }
+end

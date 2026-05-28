@@ -1,0 +1,13 @@
+module Mutations
+  module Boards
+    module Lists
+      class Destroy < ::Mutations::BaseMutation
+        def resolve: (list: untyped) -> { list: untyped, errors: untyped }
+
+        private
+
+        def can_admin_list?: (untyped list) -> (false | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Ci
+  class RetryPipelineService < ::BaseService
+    def execute: (untyped pipeline) -> untyped
+
+    def check_access: (untyped pipeline) -> untyped
+
+    private
+
+    def builds_relation: (untyped pipeline) -> untyped
+
+    def can_be_retried?: (untyped job) -> untyped
+
+    def start_pipeline: (untyped pipeline) -> untyped
+  end
+end

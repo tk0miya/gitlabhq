@@ -1,0 +1,33 @@
+module Integrations
+  class PropagateService
+    @integration: untyped
+
+    BATCH_SIZE: 10000
+
+    def initialize: (untyped integration) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader integration: untyped
+
+    def propagate_instance_level_integration: () -> untyped
+
+    def create_integration_for_projects_without_integration: () -> untyped
+
+    def update_inherited_integrations: () -> untyped
+
+    def update_descendant_integrations: () -> untyped
+
+    def update_inherited_descendant_integrations: () -> untyped
+
+    def create_integration_for_groups_without_integration: () -> untyped
+
+    def propagate_integration_to_descendant_groups: () -> untyped
+
+    def propagate_integration_to_descendant_projects: () -> (nil | untyped | untyped)
+
+    def propagate_integrations: (untyped relation, untyped worker_class) -> untyped
+  end
+end

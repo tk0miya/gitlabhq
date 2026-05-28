@@ -1,0 +1,14 @@
+module Gitlab
+  class FIPS
+    Technology: untyped
+
+    SSH_KEY_TECHNOLOGIES: ::Array[untyped]
+
+    OPENSSL_DIGESTS: ::Array[:SHA1 | :SHA256 | :SHA384 | :SHA512]
+
+    # Returns whether we should be running in FIPS mode or not
+    #
+    # @return [Boolean]
+    def self.enabled?: () -> untyped
+  end
+end

@@ -1,0 +1,38 @@
+# handles note/reply creation emails with these formats:
+#   incoming+1234567890abcdef1234567890abcdef@incoming.gitlab.com
+# Quoted material is _not_ stripped but appended as a `details` section
+module Gitlab
+  module Email
+    module Handler
+      class CreateNoteHandler < BaseHandler
+        @sent_notification: untyped
+
+        include ReplyProcessing
+
+        HANDLER_REGEX: ::Regexp
+
+        def can_handle?: () -> untyped
+
+        def execute: () -> (nil | untyped)
+
+        def metrics_event: () -> :receive_email_create_note
+
+        private
+
+        def author: () -> untyped
+
+        def sent_notification: () -> untyped
+
+        def create_note: () -> untyped
+
+        def note_message: () -> untyped
+
+        def validate_from_address!: () -> (nil | untyped)
+
+        def external_author: () -> (nil | untyped)
+
+        def support_bot: () -> (nil | untyped)
+      end
+    end
+  end
+end

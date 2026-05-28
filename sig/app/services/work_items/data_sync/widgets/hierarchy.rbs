@@ -1,0 +1,30 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class Hierarchy < Base
+        ALLOWED_PARAMS: ::Array[:parent_work_item_id]
+
+        def self.cleanup_source_work_item_data?: (untyped _work_item) -> true
+
+        # overridden in EE
+        def after_save_commit: () -> (nil | untyped)
+
+        def post_move_cleanup: () -> (nil | untyped)
+
+        private
+
+        def handle_parent: () -> (nil | untyped)
+
+        def handle_children: () -> untyped
+
+        def relink_children_to_target_work_item: () -> untyped
+
+        def new_work_item_child_link: (untyped child_links_batch) -> untyped
+
+        def move_children: () -> untyped
+
+        def remove_parent_link_from_work_item: () -> (nil | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+# Marker class to enable us to choose the correct
+# connection type during resolution
+module Gitlab
+  module Graphql
+    module Pagination
+      class OffsetPaginatedRelation < SimpleDelegator
+        def preload: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def includes: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

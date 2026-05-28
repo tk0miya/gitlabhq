@@ -1,0 +1,15 @@
+# This module should be included to support CAPTCHA check for REST API actions via Grape.
+#
+# If the request is directly handled by a controller action, then the corresponding module which
+# supports HTML or JSON formats should be used instead.
+module SpammableActions::CaptchaCheck::RestApiActionsSupport
+  extend ActiveSupport::Concern
+
+  include SpammableActions::CaptchaCheck::Common
+
+  include Spam::Concerns::HasSpamActionResponseFields
+
+  private
+
+  def with_captcha_check_rest_api: (spammable: untyped) { (?) -> untyped } -> untyped
+end

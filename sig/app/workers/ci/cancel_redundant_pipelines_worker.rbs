@@ -1,0 +1,8 @@
+module Ci
+  class CancelRedundantPipelinesWorker
+    include ApplicationWorker
+
+    # rubocop: disable CodeReuse/ActiveRecord -- we already use partition pruning
+    def perform: (untyped pipeline_id, ?::Hash[untyped, untyped] options) -> untyped
+  end
+end

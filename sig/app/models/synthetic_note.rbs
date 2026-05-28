@@ -1,0 +1,21 @@
+class SyntheticNote < Note
+  @note: untyped
+
+  attr_accessor resource_parent: untyped
+
+  attr_accessor event: untyped
+
+  def self.note_attributes: (untyped action, untyped event, untyped resource, untyped resource_parent) -> untyped
+
+  def project: () -> (untyped | nil)
+
+  def group: () -> (untyped | nil)
+
+  def note: () -> untyped
+
+  def note_html: () -> untyped
+
+  private
+
+  def note_text: (?html: bool) -> untyped
+end

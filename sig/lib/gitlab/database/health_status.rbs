@@ -1,0 +1,11 @@
+module Gitlab
+  module Database
+    module HealthStatus
+      DEFAULT_INIDICATORS: ::Array[untyped]
+
+      def self.evaluate: (untyped context, ?untyped indicators) -> untyped
+
+      def self.log_signal: (untyped signal, untyped context) -> untyped
+    end
+  end
+end

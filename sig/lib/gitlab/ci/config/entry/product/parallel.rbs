@@ -1,0 +1,34 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a parallel job config.
+        #
+        module Product
+          class Parallel < ::Gitlab::Config::Entry::Simplifiable
+            PARALLEL_LIMIT: 200
+
+            class ParallelBuilds < ::Gitlab::Config::Entry::Node
+              include ::Gitlab::Config::Entry::Validatable
+
+              def value: () -> { number: untyped }
+            end
+
+            class MatrixBuilds < ::Gitlab::Config::Entry::Node
+              include ::Gitlab::Config::Entry::Attributable
+
+              include ::Gitlab::Config::Entry::Configurable
+
+              PERMITTED_KEYS: ::Array[:matrix]
+            end
+
+            class UnknownStrategy < ::Gitlab::Config::Entry::Node
+              def errors: () -> ::Array[::String]
+            end
+          end
+        end
+      end
+    end
+  end
+end

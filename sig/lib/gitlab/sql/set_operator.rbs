@@ -1,0 +1,45 @@
+module Gitlab
+  module SQL
+    # Class for building SQL set operator statements (UNION, INTERSECT, and
+    # EXCEPT).
+    #
+    # ORDER BYs are dropped from the relations as the final sort order is not
+    # guaranteed any way.
+    #
+    # remove_order: false option can be used in special cases where the
+    # ORDER BY is necessary for the query.
+    #
+    # Example usage:
+    #
+    #     union = Gitlab::SQL::Union.new([user.personal_projects, user.projects])
+    #     sql   = union.to_sql
+    #
+    #     Project.where("id IN (#{sql})")
+    class SetOperator
+      @relations: untyped
+
+      @remove_duplicates: untyped
+
+      @remove_order: untyped
+
+      def self.operator_keyword: () -> untyped
+
+      def initialize: (untyped relations, ?remove_duplicates: bool, ?remove_order: bool) -> void
+
+      def to_sql: () -> untyped
+
+      # UNION [ALL] | INTERSECT [ALL] | EXCEPT [ALL]
+      def operator_keyword_fragment: () -> (untyped | ::String)
+
+      private
+
+      attr_reader relations: untyped
+
+      attr_reader remove_duplicates: untyped
+
+      attr_reader remove_order: untyped
+
+      def verify_select_values!: (untyped relations) -> (nil | untyped)
+    end
+  end
+end

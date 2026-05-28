@@ -1,0 +1,27 @@
+module WorkItems
+  class UpdateNamespaceTraversalIdsService
+    @namespace: untyped
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    BATCH_SIZE: 100
+
+    LEASE_TTL: untyped
+
+    LEASE_TRY_AFTER: untyped
+
+    def self.execute: (untyped namespace) -> untyped
+
+    def initialize: (untyped namespace) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader namespace: untyped
+
+    def update_work_items: () -> untyped
+
+    def lease_key: () -> ::String
+  end
+end

@@ -1,0 +1,17 @@
+module Groups
+  class AcceptingProjectTransfersFinder
+    @current_user: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    def manageable_groups_originating_from_group_shares: () -> untyped
+
+    def groups_that_user_has_owner_or_maintainer_access_via_direct_membership: () -> untyped
+  end
+end

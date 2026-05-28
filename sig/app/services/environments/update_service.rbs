@@ -1,0 +1,11 @@
+module Environments
+  class UpdateService < BaseService
+    ALLOWED_ATTRIBUTES: ::Array[:description | :external_url | :tier | :cluster_agent | :kubernetes_namespace | :flux_resource_path | :auto_stop_setting]
+
+    def execute: (untyped environment) -> untyped
+
+    private
+
+    def unauthorized_cluster_agent?: () -> (false | untyped)
+  end
+end

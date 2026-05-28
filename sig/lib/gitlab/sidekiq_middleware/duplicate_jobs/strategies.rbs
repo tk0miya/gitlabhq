@@ -1,0 +1,13 @@
+module Gitlab
+  module SidekiqMiddleware
+    module DuplicateJobs
+      module Strategies
+        UnknownStrategyError: untyped
+
+        STRATEGIES: { until_executing: untyped, until_executed: untyped, none: untyped }
+
+        def self.for: (untyped name) -> untyped
+      end
+    end
+  end
+end

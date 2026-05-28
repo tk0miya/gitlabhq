@@ -1,0 +1,84 @@
+# Given a position, calculates which Blob lines should be extracted, treated and
+# injected in the current diff file lines in order to present a "unfolded" diff.
+module Gitlab
+  module Diff
+    class LinesUnfolder
+      @diff_file: untyped
+
+      @blob: untyped
+
+      @position: untyped
+
+      @generate_top_match_line: untyped
+
+      @generate_bottom_match_line: untyped
+
+      # These methods update `@generate_top_match_line` and
+      # `@generate_bottom_match_line`.
+      @from_blob_line: untyped
+
+      @to_blob_line: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      UNFOLD_CONTEXT_SIZE: 3
+
+      def initialize: (untyped diff_file, untyped position) -> void
+
+      # Returns merged diff lines with required blob lines with correct
+      # positions.
+      def unfolded_diff_lines: () -> untyped
+
+      # Returns the extracted lines from the old blob which should be merged
+      # with the current diff lines.
+      def blob_lines: () -> untyped
+
+      def unfold_required?: () -> untyped
+
+      private
+
+      attr_reader from_blob_line: untyped
+
+      attr_reader to_blob_line: untyped
+
+      def merged_diff_with_blob_lines: () -> untyped
+
+      # Returns 'unchanged' blob lines with recalculated `old_pos` and
+      # `new_pos` and the recalculated new match line (needed if we for instance
+      # we unfolded once, but there are still folded lines).
+      def blob_lines_with_matches: () -> untyped
+
+      def reindex: (untyped lines) -> untyped
+
+      def top_blob_match_line: () -> untyped
+
+      def bottom_blob_match_line: () -> untyped
+
+      def build_match_line: (untyped old_pos, untyped new_pos) -> untyped
+
+      # Returns the first line position that should be extracted
+      # from `blob_lines`.
+      def calculate_from_blob_line!: () -> (nil | untyped)
+
+      # Returns the last line position that should be extracted
+      # from `blob_lines`.
+      def calculate_to_blob_line!: () -> (nil | untyped)
+
+      def offset: () -> untyped
+
+      def line_before_unfold_position: () -> (nil | untyped)
+
+      def line_after_unfold_position: () -> (nil | untyped)
+
+      def bottom?: () -> untyped
+
+      # Returns the line which needed to be expanded in order to send a comment
+      # in `@position`.
+      def unfold_line: () -> untyped
+
+      def comment_position: () -> untyped
+
+      def last_line: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Git
+  class WikiPushService < ::BaseService
+    @wiki: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    @event_service: untyped
+
+    @default_branch_changes: untyped
+
+    # Maximum number of change events we will process on any single push
+    MAX_CHANGES: 100
+
+    attr_reader wiki: untyped
+
+    def initialize: (untyped wiki, untyped current_user, untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def process_changes: () -> untyped
+
+    def push_changes: () -> untyped
+
+    def raw_changes: (untyped change) -> untyped
+
+    def create_event_for: (untyped change) -> untyped
+
+    def event_service: () -> untyped
+
+    def on_default_branch?: (untyped change) -> untyped
+
+    # See: [Gitlab::GitPostReceive#changes]
+    def changes: () -> untyped
+
+    def default_branch_changes: () -> untyped
+
+    def perform_housekeeping: () -> untyped
+  end
+end

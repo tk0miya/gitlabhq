@@ -1,0 +1,15 @@
+module ResolvesPipelines
+  extend ActiveSupport::Concern
+
+  MAX_PIPELINE_IDS: 20
+
+  REF_TYPE_SCOPE_MAP: { "heads" => "branches", "tags" => "tags" }
+
+  def resolve_pipelines: (untyped project, ?::Hash[untyped, untyped] params) -> untyped
+
+  private
+
+  def extract_scope_from_params!: (untyped params) -> untyped
+
+  def parse_pipeline_ids: (untyped ids) -> untyped
+end

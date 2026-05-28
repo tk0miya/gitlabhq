@@ -1,0 +1,22 @@
+module Clusters
+  module AgentTokens
+    class TrackUsageService
+      @token: untyped
+
+      # The `UPDATE_USED_COLUMN_EVERY` defines how often the token DB entry can be updated
+      UPDATE_USED_COLUMN_EVERY: untyped
+
+      def initialize: (untyped token) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader token: untyped
+
+      def can_update_track_values?: () -> untyped
+
+      def log_activity_event!: (untyped recorded_at) -> untyped
+    end
+  end
+end

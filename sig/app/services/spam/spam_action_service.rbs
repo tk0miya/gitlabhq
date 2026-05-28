@@ -1,0 +1,62 @@
+module Spam
+  class SpamActionService
+    @target: untyped
+
+    @user: untyped
+
+    @action: untyped
+
+    @extra_features: untyped
+
+    @spam_log: untyped
+
+    @notable_type: untyped
+
+    include SpamConstants
+
+    def initialize: (spammable: untyped, user: untyped, action: untyped, ?extra_features: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader action: untyped
+
+    attr_reader target: untyped
+
+    attr_reader spam_log: untyped
+
+    attr_reader extra_features: untyped
+
+    def spam_params: () -> untyped
+
+    def execute_with_captcha_support: () -> untyped
+
+    def execute_spam_check: () -> untyped
+
+    #
+    # In order to be proceed to the spam check process, the target must be
+    # a dirty instance, which means it should be already assigned with the new
+    # attribute values.
+    def ensure_target_is_dirty: () -> untyped
+
+    def allowlisted?: (untyped user) -> untyped
+
+    #
+    # Performs the spam check using the spam verdict service, and modifies the target model
+    # accordingly based on the result.
+    def perform_spam_service_check: () -> untyped
+
+    def create_spam_log: () -> untyped
+
+    def create_spam_abuse_event: (untyped result) -> untyped
+
+    def ban_user: () -> untyped
+
+    def spam_verdict_service: () -> untyped
+
+    def noteable_type: () -> untyped
+  end
+end

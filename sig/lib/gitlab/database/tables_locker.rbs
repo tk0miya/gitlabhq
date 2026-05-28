@@ -1,0 +1,43 @@
+module Gitlab
+  module Database
+    class TablesLocker
+      @logger: untyped
+
+      @dry_run: untyped
+
+      @result: untyped
+
+      @include_partitions: untyped
+
+      @scope_to_database: untyped
+
+      GITLAB_SCHEMAS_TO_IGNORE: ::Array[:gitlab_embedding | :gitlab_geo | :gitlab_jh]
+
+      def initialize: (?logger: untyped?, ?dry_run: bool, ?include_partitions: bool, ?options: ::Hash[untyped, untyped]) -> void
+
+      def unlock_writes: () -> untyped
+
+      # It locks the tables on the database where they don't belong. Also it unlocks the tables
+      # on the database where they belong
+      def lock_writes: () -> untyped
+
+      private
+
+      def skip_connection?: (untyped database_name) -> (false | true)
+
+      def validate_scopes: () -> (nil | untyped)
+
+      # Unlocks the writes on the table and its partitions
+      def unlock_writes_on_table: (untyped table_name, untyped connection, untyped database_name) -> (nil | untyped)
+
+      # It locks the writes on the table and its partitions
+      def lock_writes_on_table: (untyped table_name, untyped connection, untyped database_name) -> (nil | untyped)
+
+      def tables_to_lock: (untyped connection) { (untyped, untyped) -> untyped } -> (nil | untyped)
+
+      def table_attached_partitions: (untyped table_name, untyped connection) { (?) -> untyped } -> untyped
+
+      def lock_writes_manager: (untyped table_name, untyped connection, untyped database_name) -> untyped
+    end
+  end
+end

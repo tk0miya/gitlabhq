@@ -1,0 +1,37 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Rules
+          class Rule
+            class Exists < ::Gitlab::Config::Entry::Simplifiable
+              MAX_PATHS: 50
+
+              class SimpleExists < ::Gitlab::Config::Entry::Node
+                include ::Gitlab::Config::Entry::Validatable
+
+                def value: () -> { paths: untyped }
+              end
+
+              class ComplexExists < ::Gitlab::Config::Entry::Node
+                include ::Gitlab::Config::Entry::Validatable
+
+                include ::Gitlab::Config::Entry::Attributable
+
+                ALLOWED_KEYS: ::Array[:paths | :project | :ref]
+
+                REQUIRED_KEYS: ::Array[:paths]
+
+                def value: () -> untyped
+              end
+
+              class UnknownStrategy < ::Gitlab::Config::Entry::Node
+                def errors: () -> ::Array[::String]
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

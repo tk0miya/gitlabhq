@@ -1,0 +1,21 @@
+module BulkImports
+  module Projects
+    module Graphql
+      module Queryable
+        @context: untyped
+
+        attr_reader context: untyped
+
+        def initialize: (context: untyped) -> void
+
+        def variables: () -> { full_path: untyped }
+
+        def base_path: () -> ::Array["data" | "project"]
+
+        def data_path: () -> untyped
+
+        def page_info_path: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module ResourceEvents
+  class SyntheticStateNotesBuilderService < BaseSyntheticNotesBuilderService
+    private
+
+    def synthetic_notes: () -> untyped
+
+    def state_change_events: () -> (::Array[untyped] | untyped)
+
+    def table_name: () -> "resource_state_events"
+  end
+end

@@ -1,0 +1,130 @@
+module Gitlab
+  module Database
+    module Migrations
+      # BatchedBackgroundMigrations are a new approach to scheduling and executing background migrations, which uses
+      # persistent state in the database to track each migration. This avoids having to batch over an entire table and
+      # schedule a large number of sidekiq jobs upfront. It also provides for more flexibility as the migration runs,
+      # as it can be paused and restarted, and have configuration values like the batch size updated dynamically as the
+      # migration runs.
+      #
+      # For now, these migrations are not considered ready for general use, for more information see the tracking epic:
+      # https://gitlab.com/groups/gitlab-org/-/epics/6751
+      module BatchedBackgroundMigrationHelpers
+        include Gitlab::Database::DynamicModelHelpers
+
+        NonExistentMigrationError: untyped
+
+        BATCH_SIZE: 1000
+
+        SUB_BATCH_SIZE: 100
+
+        BATCH_CLASS_NAME: "PrimaryKeyBatchingStrategy"
+
+        BATCH_MIN_VALUE: 1
+
+        BATCH_MIN_DELAY: untyped
+
+        MIGRATION_NOT_FOUND_MESSAGE: "Could not find batched background migration for the given configuration: %<configuration>s"
+
+        MINIMUM_PAUSE_MS: 100
+
+        ENFORCE_EARLY_FINALIZATION_FROM_VERSION: "20240905124117"
+
+        EARLY_FINALIZATION_ERROR: untyped
+
+        # Creates a batched background migration for the given table. A batched migration runs one job
+        # at a time, computing the bounds of the next batch based on the current migration settings and the previous
+        # batch bounds. Each job's execution status is tracked in the database as the migration runs. The given job
+        # class must be present in the Gitlab::BackgroundMigration module, and the batch class (if specified) must be
+        # present in the Gitlab::BackgroundMigration::BatchingStrategies module.
+        #
+        # If a migration with same job_class_name, table_name, column_name, and job_arguments already exists, this helper
+        # will log a warning and not create a new one.
+        #
+        # job_class_name - The background migration job class as a string
+        # batch_table_name - The name of the table the migration will batch over
+        # batch_column_name - The name of the column the migration will batch over
+        # job_arguments - Extra arguments to pass to the job instance when the migration runs
+        # job_interval - The pause interval between each job's execution, minimum of 2 minutes, defaults to BATCH_MIN_DELAY
+        # batch_min_value - The value in the column the batching will begin at
+        # batch_max_value - The value in the column the batching will end at, defaults to `SELECT MAX(batch_column)`
+        # batch_class_name - The name of the class that will be called to find the range of each next batch
+        # batch_size - The maximum number of rows per job
+        # sub_batch_size - The maximum number of rows processed per "iteration" within the job
+        #
+        # *Returns the created BatchedMigration record*
+        #
+        # Example:
+        #
+        #     queue_batched_background_migration(
+        #       'CopyColumnUsingBackgroundMigrationJob',
+        #       :events,
+        #       :id,
+        #       other_job_arguments: ['column1', 'column2'])
+        #
+        # Where the background migration exists:
+        #
+        #     class Gitlab::BackgroundMigration::CopyColumnUsingBackgroundMigrationJob
+        #       def perform(start_id, end_id, batch_table, batch_column, sub_batch_size, *other_args)
+        #         # do something
+        #       end
+        #     end
+        def queue_batched_background_migration: (untyped job_class_name, untyped batch_table_name, untyped batch_column_name, *untyped job_arguments, ?job_interval: untyped, ?batch_min_value: untyped, ?batch_max_value: untyped?, ?batch_class_name: untyped, ?batch_size: untyped, ?pause_ms: untyped, ?max_batch_size: untyped?, ?sub_batch_size: untyped, ?gitlab_schema: untyped?, ?min_cursor: untyped?, ?max_cursor: untyped?) -> (nil | untyped)
+
+        def finalize_batched_background_migration: (job_class_name: untyped, table_name: untyped, column_name: untyped, job_arguments: untyped) -> untyped
+
+        # Deletes batched background migration for the given configuration.
+        #
+        # job_class_name - The background migration job class as a string
+        # table_name - The name of the table the migration iterates over
+        # column_name - The name of the column the migration will batch over
+        # job_arguments - Migration arguments
+        #
+        # Example:
+        #
+        #     delete_batched_background_migration(
+        #       'CopyColumnUsingBackgroundMigrationJob',
+        #       :events,
+        #       :id,
+        #       ['column1', 'column2'])
+        def delete_batched_background_migration: (untyped job_class_name, untyped table_name, untyped column_name, untyped job_arguments) -> untyped
+
+        def gitlab_schema_from_context: () -> (untyped | :gitlab_main)
+
+        def ensure_batched_background_migration_is_finished: (job_class_name: untyped, table_name: untyped, column_name: untyped, job_arguments: untyped, ?finalize: bool, ?skip_early_finalization_validation: bool) -> (untyped | nil)
+
+        private
+
+        # Below `BatchedMigration` attributes were introduced after the
+        # initial `batched_background_migrations` table was created, so any
+        # migrations that ran relying on initial table schema would not know
+        # about columns introduced later on because this model is not
+        # isolated in migrations, which is why we need to check for existence
+        # of these columns first.
+        def assign_attributes_safely: (untyped migration, untyped max_batch_size, untyped batch_table_name, untyped gitlab_schema, untyped queued_migration_version) -> untyped
+
+        def prevent_early_finalization!: (untyped queued_migration_version, untyped version) -> (nil | untyped)
+
+        def migration_already_exists?: (untyped gitlab_schema, untyped job_class_name, untyped batch_table_name, untyped batch_column_name, untyped job_arguments) -> (true | false)
+
+        def normalize_job_interval: (untyped job_interval) -> untyped
+
+        def cursor_based_migration?: (untyped migration) -> untyped
+
+        def setup_cursor_based_migration!: (untyped migration, untyped batch_table_name, untyped job_arguments, untyped min_cursor, untyped max_cursor) -> untyped
+
+        def resolve_cursor_bounds: (untyped min_cursor, untyped max_cursor, untyped batch_table_name, untyped cursor_columns) -> (::Array[untyped] | untyped)
+
+        def setup_legacy_migration!: (untyped migration, untyped batch_table_name, untyped batch_min_value, untyped batch_max_value, untyped job_arguments) -> untyped
+
+        def determine_cursor_bounds: (untyped table_name, untyped cursor_columns) -> ::Array[untyped]
+
+        def determine_batch_max_value: (untyped batch_max_value, untyped batch_table_name, untyped batch_column_name, untyped batch_min_value) -> untyped
+
+        def table_empty?: (untyped batch_table_name) -> untyped
+
+        def validate_job_arguments!: (untyped migration, untyped original_job_arguments) -> (nil | untyped)
+      end
+    end
+  end
+end

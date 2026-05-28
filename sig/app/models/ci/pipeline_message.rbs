@@ -1,0 +1,11 @@
+module Ci
+  class PipelineMessage < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    MAX_CONTENT_LENGTH: 10000
+
+    private
+
+    def truncate_long_content: () -> (nil | untyped)
+  end
+end

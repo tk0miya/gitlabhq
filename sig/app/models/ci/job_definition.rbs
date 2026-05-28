@@ -1,0 +1,41 @@
+module Ci
+  # The purpose of this class is to store immutable duplicate Processable related
+  # data that can be disposed after all the pipelines that use it are archived.
+  # Data that should be persisted forever, should be stored with Ci::Build model.
+  class JobDefinition < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include BulkInsertSafe
+
+    # IMPORTANT: append new attributes at the end of this list. Do not change the order!
+    # Order is important for the checksum calculation.
+    # We have two constants at the moment because we'll only stop writing to the `p_ci_builds_metadata` table via
+    # the `stop_writing_builds_metadata` feature flag. The `tag_list` and `run_steps` will be implemented in the future.
+    CONFIG_ATTRIBUTES_FROM_METADATA: ::Array[:options | :yaml_variables | :id_tokens | :secrets | :interruptible]
+
+    CONFIG_ATTRIBUTES: untyped
+
+    NORMALIZED_DATA_COLUMNS: ::Array[:interruptible]
+
+    def self.fabricate: (config: untyped, project_id: untyped, partition_id: untyped) -> untyped
+
+    def self.sanitize_config: (untyped config) -> untyped
+
+    def self.generate_checksum: (untyped config) -> untyped
+
+    def self.apply_normalized_defaults!: (untyped config) -> untyped
+
+    def self.extract_and_parse_tags: (untyped config) -> (::Hash[untyped, untyped] | { tag_list: untyped })
+
+    # We need to re-parse the tags because there are a few
+    # records in the 106-107 partitions that were not properly
+    # parsed during the pipeline creation.
+    def tag_list: () -> untyped
+
+    # Hash containing all job attributes: config + normalized_data.
+    # Used in spec helpers, to merge with `job_attributes` instead of `config`.
+    def job_attributes: () -> untyped
+
+    def readonly?: () -> untyped
+  end
+end

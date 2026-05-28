@@ -1,0 +1,59 @@
+module Import
+  class GithubService < Import::BaseService
+    @repo: untyped
+
+    @project_name: untyped
+
+    @target_namespace: untyped
+
+    @url: untyped
+
+    include ActiveSupport::NumberHelper
+
+    include SafeFormatHelper
+
+    attr_accessor client: untyped
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    def execute: (untyped access_params, untyped provider) -> untyped
+
+    def rate_limited?: () -> untyped
+
+    def create_project: (untyped access_params, untyped provider) -> untyped
+
+    def repo: () -> untyped
+
+    def project_name: () -> untyped
+
+    def target_namespace: () -> untyped
+
+    def extra_project_attrs: () -> ::Hash[untyped, untyped]
+
+    def url: () -> untyped
+
+    def allow_local_requests?: () -> untyped
+
+    def blocked_url?: () -> untyped
+
+    private
+
+    def validate_access_token: () -> (untyped | nil)
+
+    def repository_access_error_message: () -> untyped
+
+    def collaborators_access_error_message: () -> untyped
+
+    def validate_context: () -> (untyped | untyped | untyped | nil)
+
+    def target_namespace_path: () -> untyped
+
+    def log_error: (untyped exception) -> untyped
+
+    def log_and_return_error: (untyped message, untyped translated_message, untyped http_status) -> untyped
+
+    def store_import_settings: (untyped project) -> untyped
+  end
+end

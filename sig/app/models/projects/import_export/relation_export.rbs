@@ -1,0 +1,27 @@
+module Projects
+  module ImportExport
+    class RelationExport < ApplicationRecord
+      DESIGN_REPOSITORY_RELATION: "design_repository"
+
+      LFS_OBJECTS_RELATION: "lfs_objects"
+
+      REPOSITORY_RELATION: "repository"
+
+      ROOT_RELATION: "project"
+
+      SNIPPETS_REPOSITORY_RELATION: "snippets_repository"
+
+      UPLOADS_RELATION: "uploads"
+
+      WIKI_REPOSITORY_RELATION: "wiki_repository"
+
+      EXTRA_RELATION_LIST: ::Array[untyped]
+
+      STATUS: { queued: 0, started: 1, finished: 2, failed: 3 }
+
+      def self.relation_names_list: () -> untyped
+
+      def mark_as_failed: (untyped export_error) -> untyped
+    end
+  end
+end

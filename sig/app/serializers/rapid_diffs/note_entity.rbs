@@ -1,0 +1,11 @@
+module RapidDiffs
+  class NoteEntity < ProjectNoteEntity
+    include RequestAwareEntity
+
+    private
+
+    def current_user: () -> untyped
+
+    def note_presenter: (untyped note) -> untyped
+  end
+end

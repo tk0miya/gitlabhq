@@ -1,0 +1,11 @@
+module IssueLinks
+  class ListService < IssuableLinks::ListService
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def child_issuables: () -> untyped
+
+    def serializer: () -> untyped
+  end
+end

@@ -1,0 +1,26 @@
+module Resolvers
+  module AlertManagement
+    class AlertResolver < BaseResolver
+      include LooksAhead
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      def preloads: () -> { assignees: ::Array[:assignees], notes: ::Array[:ordered_notes | { ordered_notes: ::Array[:system_note_metadata | :project | :noteable] }], issue: ::Array[:issue] }
+
+      private
+
+      def alert_is_disabled?: () -> untyped
+
+      def project: () -> untyped
+
+      # This error is raised when the alert feature is disabled via feature flag.
+      # Not yet a deprecated field, as the FF is disabled by default (see issue#537182).
+      # If the FF is enabled in the future, we may need to consider deprecating this field.
+      def error_message: () -> "Field 'alertManagementAlerts' doesn't exist on type 'Project'."
+
+      def filtering_not_present?: (untyped args) -> untyped
+
+      def alerts_authorized?: (untyped current_user) -> untyped
+    end
+  end
+end

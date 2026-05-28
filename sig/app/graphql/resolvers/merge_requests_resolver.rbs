@@ -1,0 +1,31 @@
+module Resolvers
+  class MergeRequestsResolver < BaseResolver
+    include ResolvesMergeRequests
+
+    include SearchArguments
+
+    extend ::Gitlab::Graphql::NegatableArguments
+
+    alias project object
+
+    def self.accept_assignee: () -> untyped
+
+    def self.accept_author: () -> untyped
+
+    def self.accept_reviewer: () -> untyped
+
+    def self.single: () -> untyped
+
+    def no_results_possible?: (untyped args) -> untyped
+
+    def some_argument_is_empty?: (untyped args) -> untyped
+
+    private
+
+    def prepare_finder_params: (untyped args) -> untyped
+
+    def prepare_assignee_username_params: (untyped args) -> untyped
+
+    def rewrite_param_name: (untyped params, untyped old_name, untyped new_name) -> (untyped | nil)
+  end
+end

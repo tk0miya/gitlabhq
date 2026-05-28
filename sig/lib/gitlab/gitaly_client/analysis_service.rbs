@@ -1,0 +1,19 @@
+module Gitlab
+  module GitalyClient
+    class AnalysisService
+      @repository: untyped
+
+      @gitaly_repo: untyped
+
+      @storage: untyped
+
+      include Gitlab::EncodingHelper
+
+      include WithFeatureFlagActors
+
+      def initialize: (untyped repository) -> void
+
+      def check_blobs_generated: (untyped base, untyped head, untyped changed_paths) -> (::Array[untyped] | untyped)
+    end
+  end
+end

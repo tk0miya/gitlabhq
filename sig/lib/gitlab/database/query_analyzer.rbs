@@ -1,0 +1,79 @@
+module Gitlab
+  module Database
+    # The purpose of this class is to implement a various query analyzers based on `pg_query`
+    # And process them all via `Gitlab::Database::QueryAnalyzers::*`
+    #
+    # Sometimes this might cause errors in specs.
+    # This is best to be disable with `describe '...', query_analyzers: false do`
+    class QueryAnalyzer
+      @all_analyzers: untyped
+
+      @subscriber: untyped
+
+      include ::Singleton
+
+      class Parsed
+        @raw: untyped
+
+        @connection: untyped
+
+        @event_name: untyped
+
+        @cached: untyped
+
+        @error: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader raw: untyped
+
+        attr_reader connection: untyped
+
+        attr_reader event_name: untyped
+
+        attr_reader error: untyped
+
+        def initialize: (untyped raw, untyped connection, untyped event_name, untyped cached) -> void
+
+        # Returns true if the query was using the ActiveRecord Query Cache
+        def cached?: () -> untyped
+
+        def sql: () -> untyped
+
+        def pg: () -> untyped
+
+        private
+
+        def try_parse: () { () -> untyped } -> untyped
+
+        def normalize_event_name: (untyped event_name) -> untyped
+      end
+
+      attr_reader all_analyzers: untyped
+
+      def initialize: () -> void
+
+      # @info most common event names are:
+      #       Model Load, Model Create, Model Update, Model Pluck, Model Destroy, Model Insert, Model Delete All
+      #       Model Exists?, nil, TRANSACTION, SCHEMA
+      def hook!: () -> untyped
+
+      def within: (?untyped analyzers) { () -> untyped } -> untyped
+
+      # Enable query analyzers (only the ones that were not yet enabled)
+      # Returns a list of newly enabled analyzers
+      def begin!: (untyped analyzers) -> untyped
+
+      # Disable enabled query analyzers (only the ones that were enabled previously)
+      def end!: (untyped analyzers) -> untyped
+
+      private
+
+      def enabled_analyzers: () -> untyped
+
+      def process_sql: (untyped sql, untyped connection, untyped event_name, ?bool cached) -> (nil | untyped)
+
+      def with_ignored_recursive_calls: () { () -> untyped } -> (nil | untyped)
+    end
+  end
+end

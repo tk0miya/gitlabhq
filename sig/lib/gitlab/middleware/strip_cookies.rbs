@@ -1,0 +1,23 @@
+module Gitlab
+  module Middleware
+    class StripCookies
+      @app: untyped
+
+      @paths: untyped
+
+      attr_reader app: untyped
+
+      attr_reader paths: untyped
+
+      # Initializes the middleware.
+      #
+      # @param app [Rack application] The Rack application.
+      # @param options [Hash] The options to customize the middleware behavior.
+      # @option options [Array<Regexp>] :paths The regular expressions to match
+      #   against the path when cookies should be deleted.
+      def initialize: (untyped app, ?::Hash[untyped, untyped] options) -> void
+
+      def call: (untyped env) -> ::Array[untyped]
+    end
+  end
+end

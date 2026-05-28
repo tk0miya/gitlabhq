@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    module Aggregation
+      class DefinitionsCollector
+        @collection: untyped
+
+        @mapping: untyped
+
+        @transients: untyped
+
+        def initialize: (untyped mapping, ?transients: ::Hash[untyped, untyped]) -> void
+
+        def collect: () { (?) -> untyped } -> untyped
+
+        private
+
+        def sql: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def transient: (untyped name) -> untyped
+
+        def gid_formatter: () -> untyped
+
+        def method_missing: (untyped method_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def respond_to_missing?: (untyped method_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

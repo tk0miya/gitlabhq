@@ -1,0 +1,69 @@
+module MergeRequests
+  # StackFinder discovers merge request stacks: chains of merge requests where
+  # each merge request targets the source branch of the merge request above it.
+  #
+  # Example stack:
+  #   merge_request_1: source_branch=feature-1, target_branch=main
+  #   merge_request_2: source_branch=feature-2, target_branch=feature-1
+  #   merge_request_3: source_branch=feature-3, target_branch=feature-2
+  #
+  # Given any merge request in the stack, #execute returns
+  # [merge_request_1, merge_request_2, merge_request_3] ordered from top
+  # (closest to the default branch) to bottom.
+  #
+  # Only open merge requests are traversed. The input merge request is always
+  # included. Authorization is the caller's responsibility.
+  #
+  # Branch chaining is a tree, not a line: if two MRs share the same
+  # target_branch, both could be considered part of a stack. This finder
+  # follows a single deterministic path - when multiple MRs branch from the
+  # same target, the one with the lowest id (oldest) is followed; sibling
+  # forks are not surfaced.
+  class StackFinder
+    @current_user: untyped
+
+    @merge_request: untyped
+
+    @project: untyped
+
+    MAX_STACK_SIZE: 10
+
+    # Two unidirectional recursive CTEs.
+    #
+    # A single bidirectional CTE causes exponential path explosion: each worktable
+    # row spawns up to 2 new rows (one parent, one child), so row count doubles per
+    # level. Splitting into two linear CTEs keeps total rows at most 2 x MAX_STACK_SIZE.
+    #
+    # The up_chain lateral uses the composite (target_project_id, source_branch) index.
+    # The down_chain lateral uses a BitmapAnd on (target_branch) + (target_project_id,
+    # state_id), which is safe because source_branch values are unique feature branch
+    # names - never common names like 'main' that would produce many global index hits.
+    #
+    # The upward chain stops when it reaches the default branch - without this, common
+    # branch names cause false matches that chain through unrelated merge requests.
+    STACK_CTE_SQL: "WITH RECURSIVE\nup_chain(id, source_branch, target_branch, visited) AS (\n  SELECT id, source_branch, target_branch, ARRAY[id]\n  FROM merge_requests\n  WHERE id = :merge_request_id\n    AND state_id = 1\n\n  UNION ALL\n\n  SELECT p.id, p.source_branch, p.target_branch, up_chain.visited || p.id\n  FROM up_chain\n  CROSS JOIN LATERAL (\n    -- oldest id wins when multiple MRs share the same source branch\n    SELECT id, source_branch, target_branch\n    FROM merge_requests\n    WHERE target_project_id = :project_id\n      AND state_id = 1\n      AND source_branch = up_chain.target_branch\n      AND NOT (id = ANY(up_chain.visited))\n    ORDER BY id\n    LIMIT 1\n  ) p\n  WHERE array_length(up_chain.visited, 1) < :max_size\n    AND up_chain.target_branch != :default_branch\n),\ndown_chain(id, source_branch, target_branch, visited) AS (\n  SELECT id, source_branch, target_branch, ARRAY[id]\n  FROM merge_requests\n  WHERE id = :merge_request_id\n    AND state_id = 1\n\n  UNION ALL\n\n  SELECT c.id, c.source_branch, c.target_branch, down_chain.visited || c.id\n  FROM down_chain\n  CROSS JOIN LATERAL (\n    -- oldest id wins when multiple MRs target the same branch\n    SELECT id, source_branch, target_branch\n    FROM merge_requests\n    WHERE target_project_id = :project_id\n      AND state_id = 1\n      AND target_branch = down_chain.source_branch\n      AND NOT (id = ANY(down_chain.visited))\n    ORDER BY id\n    LIMIT 1\n  ) c\n  WHERE array_length(down_chain.visited, 1) < :max_size\n)\nSELECT merge_requests.*\nFROM merge_requests\nINNER JOIN (\n  SELECT id FROM up_chain\n  UNION\n  SELECT id FROM down_chain\n) stack_ids ON stack_ids.id = merge_requests.id\n"
+
+    def initialize: (untyped current_user, untyped merge_request) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader merge_request: untyped
+
+    attr_reader project: untyped
+
+    def adjacent_merge_request_exists?: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- find_by_sql required for recursive CTE
+    def stack_rows: () -> untyped
+
+    # Orders the loaded merge request records by following the branch chain from
+    # the root. The root is the merge request whose target_branch is not the
+    # source_branch of any other merge request in the set (i.e. nothing in the
+    # stack points to it as a child).
+    def sort_by_chain: (untyped rows) -> untyped
+  end
+end

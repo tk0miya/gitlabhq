@@ -1,0 +1,9 @@
+module Mutations
+  module WorkItems
+    class CreateFromTask < BaseMutation
+      include Mutations::SpamProtection
+
+      def resolve: (id: untyped, work_item_data: untyped) -> untyped
+    end
+  end
+end

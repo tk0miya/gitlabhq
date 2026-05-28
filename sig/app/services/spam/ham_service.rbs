@@ -1,0 +1,21 @@
+module Spam
+  class HamService
+    @spam_log: untyped
+
+    @user: untyped
+
+    @options: untyped
+
+    include AkismetMethods
+
+    attr_accessor spam_log: untyped
+
+    attr_accessor options: untyped
+
+    def initialize: (untyped spam_log) -> void
+
+    def execute: () -> (untyped | false)
+
+    alias target spam_log
+  end
+end

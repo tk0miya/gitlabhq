@@ -1,0 +1,48 @@
+module Import
+  class PlaceholderUserLimit
+    @root_namespace: untyped
+
+    @count: untyped
+
+    @plan: untyped
+
+    UNLIMITED: 0
+
+    LIMIT_TIER_1: :import_placeholder_user_limit_tier_1
+
+    EXCEEDANCE_CACHE_TTL: untyped
+
+    LIMIT_CACHE_TTL: untyped
+
+    def initialize: (namespace: untyped) -> void
+
+    def exceeded?: () -> (false | untyped)
+
+    def limit: () -> untyped
+
+    def count: () -> untyped
+
+    private
+
+    attr_reader root_namespace: untyped
+
+    def calculate_has_exceeded: () -> (false | untyped)
+
+    def calculate_limit: () -> untyped
+
+    def unlimited?: () -> untyped
+
+    # Overridden in EE to return limit names based on licensed seats
+    def limit_name: () -> untyped
+
+    def plan: () -> untyped
+
+    def cache: () -> untyped
+
+    def cache_key: () -> ::String
+
+    def limit_cache_key: () -> ::String
+
+    def log_limit_exceeded: () -> untyped
+  end
+end

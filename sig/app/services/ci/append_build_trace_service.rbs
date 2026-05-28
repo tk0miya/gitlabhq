@@ -1,0 +1,31 @@
+module Ci
+  class AppendBuildTraceService
+    @build: untyped
+
+    @params: untyped
+
+    Result: untyped
+
+    TraceRangeError: untyped
+
+    attr_reader build: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped build, untyped params) -> void
+
+    def execute: (untyped body_data) -> untyped
+
+    private
+
+    def first_debug_chunk?: (untyped body_start) -> untyped
+
+    def stream_range: () -> untyped
+
+    def debug_trace: () -> untyped
+
+    def log_range_error: (untyped stream_size, untyped body_end) -> untyped
+
+    def trace_size_exceeded?: (untyped size) -> untyped
+  end
+end

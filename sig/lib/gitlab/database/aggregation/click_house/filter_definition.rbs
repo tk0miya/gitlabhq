@@ -1,0 +1,33 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class FilterDefinition < PartDefinition
+          @merge_column: untyped
+
+          @max_size: untyped
+
+          attr_reader max_size: untyped
+
+          def initialize: (untyped name, untyped type, ?untyped? expression, **untyped kwargs) -> void
+
+          def apply_inner: (untyped query_builder, untyped filter_config) -> untyped
+
+          def metric?: () -> false
+
+          def validate_part: (untyped part) -> untyped
+
+          private
+
+          def merge_column?: () -> untyped
+
+          def column: (untyped query_builder) -> untyped
+
+          def apply: (untyped _query_builder, untyped _filter_config) -> untyped
+
+          def validate_max_size: (untyped part) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

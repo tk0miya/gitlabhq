@@ -1,0 +1,17 @@
+module Banzai
+  module Filter
+    class AsciiDocPostProcessingFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      CSS_MATH: "[data-math-style]"
+
+      XPATH_MATH: untyped
+
+      CSS_MERM: "[data-mermaid-style]"
+
+      XPATH_MERM: untyped
+
+      def call: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,10 @@
+module Banzai
+  module ReferenceParser
+    class MentionedUserParser < BaseParser
+      def references_relation: () -> untyped
+
+      # any user can be mentioned by username
+      def can_read_reference?: (untyped user, untyped ref_attr, untyped node) -> true
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module IncidentManagement
+  module LinkAlerts
+    class DestroyService < BaseService
+      @incident: untyped
+
+      @current_user: untyped
+
+      @alert: untyped
+
+      # @param incident [Issue] an incident to unlink alert from
+      # @param current_user [User]
+      # @param alert [AlertManagement::Alert] an alert to unlink from the incident
+      def initialize: (untyped incident, untyped current_user, untyped alert) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader alert: untyped
+    end
+  end
+end

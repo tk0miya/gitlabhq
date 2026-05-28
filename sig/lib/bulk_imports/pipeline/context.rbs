@@ -1,0 +1,65 @@
+module BulkImports
+  module Pipeline
+    class Context
+      @tracker: untyped
+
+      @extra: untyped
+
+      @entity: untyped
+
+      @portable: untyped
+
+      @import_export_config: untyped
+
+      @group: untyped
+
+      @bulk_import: untyped
+
+      @bulk_import_id: untyped
+
+      @current_user: untyped
+
+      @configuration: untyped
+
+      @source_ghost_user_id: untyped
+
+      @source_user_mapper: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_accessor extra: untyped
+
+      attr_reader tracker: untyped
+
+      def initialize: (untyped tracker, ?::Hash[untyped, untyped] extra) -> void
+
+      def entity: () -> untyped
+
+      def portable: () -> untyped
+
+      def import_export_config: () -> untyped
+
+      def group: () -> untyped
+
+      def bulk_import: () -> untyped
+
+      def bulk_import_id: () -> untyped
+
+      def current_user: () -> untyped
+
+      def configuration: () -> untyped
+
+      def offline?: () -> untyped
+
+      def offline_configuration: () -> untyped
+
+      def source_ghost_user_id: () -> untyped
+
+      def source_user_mapper: () -> untyped
+
+      def importer_user_mapping_enabled?: () -> untyped
+
+      def override_file_size_limit?: () -> untyped
+    end
+  end
+end

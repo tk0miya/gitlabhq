@@ -1,0 +1,52 @@
+module Import
+  class SourceUser < ApplicationRecord
+    include Gitlab::SQL::Pattern
+
+    include EachBatch
+
+    SORT_ORDERS: { source_name_asc: { order_by: "source_name", sort: "asc" }, source_name_desc: { order_by: "source_name", sort: "desc" }, status_asc: { order_by: "status", sort: "asc" }, status_desc: { order_by: "status", sort: "desc" }, id_asc: { order_by: "id", sort: "asc" }, id_desc: { order_by: "id", sort: "desc" } }
+
+    STATUSES: { pending_reassignment: 0, awaiting_approval: 1, reassignment_in_progress: 2, rejected: 3, failed: 4, completed: 5, keep_as_placeholder: 6 }
+
+    ACCEPTED_STATUSES: ::Array[:reassignment_in_progress | :completed | :failed]
+
+    REASSIGNABLE_STATUSES: ::Array[:pending_reassignment | :rejected]
+
+    CANCELABLE_STATUSES: ::Array[:awaiting_approval | :rejected]
+
+    def self.find_source_user: (source_user_identifier: untyped, namespace: untyped, source_hostname: untyped, import_type: untyped) -> (nil | untyped)
+
+    def self.find_by_namespace_and_token: (namespace_id: untyped, reassignment_token: untyped) -> untyped
+
+    def self.search: (untyped query) -> untyped
+
+    def self.sort_by_attribute: (untyped method) -> untyped
+
+    def self.namespace_placeholder_user_count: (untyped namespace, limit: untyped) -> untyped
+
+    def self.source_users_with_missing_information: (namespace: untyped, source_hostname: untyped, import_type: untyped) -> untyped
+
+    def mapped_user: () -> untyped
+
+    def mapped_user_id: () -> untyped
+
+    def accepted_status?: () -> untyped
+
+    def reassignable_status?: () -> untyped
+
+    def cancelable_status?: () -> untyped
+
+    def validate_source_hostname: () -> (nil | untyped)
+
+    def reassignment_error=: (untyped message) -> untyped
+
+    private
+
+    # Overridden in EE
+    def bypass_placeholder_confirmation_allowed?: () -> untyped
+
+    def admin_bypass_placeholder_confirmation_allowed?: () -> untyped
+
+    def project_bot_reassignment?: () -> untyped
+  end
+end

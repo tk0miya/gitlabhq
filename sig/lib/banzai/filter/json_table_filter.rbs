@@ -1,0 +1,64 @@
+module Banzai
+  module Filter
+    # Prepares a `json:table` if it's been tagged as supporting markdown
+    #
+    # If the `markdown` option is not specfied or a boolean true, then we do
+    # nothing and allow the frontend to sanitize it and display it.
+    #
+    # If `"markdown": true` is included in the table, we:
+    #
+    # - Parse and normalise the input
+    # - Build the table, running Markdown-specific fields through MarkdownFilter
+    # - Add the table options as `data-` attributes for the frontend
+    #
+    # Note that this filter is run _before_ SanitizationFilter, which means
+    # the resulting HTML will be sanitised as if it were directly input by the user.
+    # As a corollary, data-table-{fields,filter,markdown} aren't trustable by the
+    # frontend.
+    class JsonTableFilter < HTML::Pipeline::Filter
+      include Concerns::OutputSafety
+
+      CSS: "[data-canonical-lang=\"json\"][data-lang-params~=\"table\"] > code:only-child"
+
+      XPATH: untyped
+
+      def call: () -> untyped
+
+      private
+
+      def process_json_table: (untyped code_node) -> (nil | untyped)
+
+      def render_thead: (untyped fields) -> untyped
+
+      def render_tbody: (untyped fields, untyped items, untyped markdown_context) -> untyped
+
+      class Input
+        def self.parse: (untyped source) -> (nil | untyped)
+
+        attr_reader fields: untyped
+
+        attr_reader items: untyped
+
+        attr_reader markdown: untyped
+
+        attr_reader filter: untyped
+
+        attr_reader caption: untyped
+
+        def initialize: (untyped data) -> void
+
+        private
+
+        attr_writer fields: untyped
+
+        attr_writer items: untyped
+
+        attr_writer markdown: untyped
+
+        attr_writer filter: untyped
+
+        attr_writer caption: untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Environments
+  class StopJobFailedWorker
+    include ApplicationWorker
+
+    def perform: (untyped job_id, ?::Hash[untyped, untyped] _params) -> untyped
+
+    private
+
+    def revert_environment: (untyped job) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,96 @@
+# == VerifiesWithEmail
+#
+# Controller concern to handle verification by email
+module VerifiesWithEmail
+  @redirect_url: untyped
+
+  extend ActiveSupport::Concern
+
+  include ActionView::Helpers::DateHelper
+
+  include VerifiesWithEmailHelper
+
+  VERIFICATION_REASON_UNTRUSTED_IP: "sign in from untrusted IP address"
+
+  VERIFICATION_REASON_NEW_TOKEN_NEEDED: "new unlock token needed"
+
+  VERIFICATION_REASON_EMAIL_OTP: "email_otp"
+
+  VERIFICATION_REASON_LOCK_RESEND: "resend lock verification code"
+
+  VERIFICATION_REASON_EMAIL_OTP_RESEND: "resend email_otp code"
+
+  def verify_with_email: () -> (nil | untyped)
+
+  def resend_verification_code: () -> (nil | untyped)
+
+  def successful_verification: () -> untyped
+
+  def skip_verification_for_now: () -> untyped
+
+  def skip_verification_confirmation: () -> untyped
+
+  def fallback_to_email_otp: () -> untyped
+
+  private
+
+  def skip_verify_with_email?: () -> untyped
+
+  def find_verification_user: () -> (nil | untyped)
+
+  def lock_and_send_verification_instructions: (untyped user, ?secondary_email: untyped?, ?reason: untyped?) -> untyped
+
+  def send_verification_instructions_email: (untyped user, untyped token, untyped secondary_email, untyped reason) -> untyped
+
+  def send_otp_with_email: (untyped user, ?secondary_email: untyped?, ?reason: untyped) -> untyped
+
+  # As this is a prepended controller action, we only want to block
+  # log in if the VerifiesWithEmail is required
+  def requires_verify_email?: (untyped user) -> untyped
+
+  def send_notification_to_primary_email: (untyped primary_email, untyped secondary_email) -> untyped
+
+  def verify_email: (untyped user) -> (true | untyped)
+
+  # Checks whether email-based OTP is required for the current sign-in
+  # attempt.
+  #
+  # Availability is gated by `User#email_otp_available?`.
+  # Per-user enrollment is tracked by `email_otp_required_after`.
+  def require_email_based_otp?: (untyped user) -> (false | untyped)
+
+  def verify_token: (untyped user, untyped token) -> untyped
+
+  def render_sign_in_rate_limited: () -> untyped
+
+  def render_send_rate_limited: () -> untyped
+
+  def rate_limit_interval: (untyped rate_limit) -> untyped
+
+  def send_rate_limited?: (untyped user) -> untyped
+
+  def handle_verification_failure: (untyped user, untyped reason, untyped message) -> untyped
+
+  def handle_verification_success: (untyped user, untyped verification_result, ?::String log_message) -> untyped
+
+  def permitted_to_view_skip_verification_confirmation?: () -> untyped
+
+  def prompt_for_email_verification: (untyped user) -> untyped
+
+  def verification_params: () -> untyped
+
+  def email_params: () -> untyped
+
+  # This method must return nil if email is not confirmed and belonging
+  # to user
+  def fetch_confirmed_user_secondary_email: (untyped user, untyped email) -> untyped
+
+  def log_verification: (untyped user, untyped event, ?untyped? reason) -> untyped
+
+  # NOTE: This predicate gates the entire `verify_email` subsystem
+  # (locked accounts, untrusted IPs, and email OTP)
+  # TODO: decouple these gates - see https://gitlab.com/gitlab-org/gitlab/-/work_items/600091
+  def require_email_verification_enabled?: (untyped user) -> untyped
+
+  def token_expired?: (untyped user, untyped attr) -> untyped
+end

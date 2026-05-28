@@ -1,0 +1,29 @@
+module Ci
+  class BuildCancelService
+    @build: untyped
+
+    @user: untyped
+
+    @force: untyped
+
+    def initialize: (untyped build, untyped user, ?bool force) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader build: untyped
+
+    attr_reader user: untyped
+
+    attr_reader force: untyped
+
+    def allowed?: () -> untyped
+
+    def allowed_to_force?: () -> untyped
+
+    def forbidden: () -> untyped
+
+    def unprocessable_entity: () -> untyped
+  end
+end

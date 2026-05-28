@@ -1,0 +1,17 @@
+class IssuableExportCsvWorker
+  include ApplicationWorker
+
+  def perform: (untyped type, untyped current_user_id, untyped project_id, untyped params) -> untyped
+
+  private
+
+  def export_service: (untyped type, untyped user, untyped project, untyped params) -> untyped
+
+  def issuable_classes_for: (untyped type) -> untyped
+
+  def parse_params: (untyped params, untyped project_id, untyped _type) -> untyped
+
+  def type_error_message: (untyped type) -> ::String
+
+  def allowed_types: () -> ::Array[":issue" | ":merge_request" | ":work_item"]
+end

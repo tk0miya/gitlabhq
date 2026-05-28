@@ -1,0 +1,16 @@
+module Projects
+  module ImportExport
+    class CreateRelationExportsWorker
+      include ApplicationWorker
+
+      include ExceptionBacktrace
+
+      # This delay is an arbitrary number to finish the export quicker in case all relations
+      # are exported before the first execution of the WaitRelationExportsWorker worker.
+      INITIAL_DELAY: untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def perform: (untyped user_id, untyped project_id, ?::Hash[untyped, untyped] after_export_strategy, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+    end
+  end
+end

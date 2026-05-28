@@ -1,0 +1,25 @@
+module Ml
+  class ModelVersion < ApplicationRecord
+    include Presentable
+
+    include Sortable
+
+    include SemanticVersionable
+
+    include CacheMarkdownField
+
+    def add_metadata: (untyped metadata_key_value) -> (nil | untyped)
+
+    def self.by_project_id_and_id: (untyped project_id, untyped id) -> untyped
+
+    def self.by_project_id_name_and_version: (untyped project_id, untyped name, untyped version) -> untyped
+
+    def version=: (untyped value) -> untyped
+
+    private
+
+    def valid_model?: () -> (nil | untyped)
+
+    def valid_package?: () -> (nil | untyped)
+  end
+end

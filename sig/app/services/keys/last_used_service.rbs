@@ -1,0 +1,18 @@
+module Keys
+  class LastUsedService
+    @key: untyped
+
+    TIMEOUT: untyped
+
+    attr_reader key: untyped
+
+    # key - The Key for which to update the last used timestamp.
+    def initialize: (untyped key) -> void
+
+    def execute: () -> (nil | untyped)
+
+    def execute_async: () -> (nil | untyped)
+
+    def update?: () -> (false | untyped)
+  end
+end

@@ -1,0 +1,60 @@
+module Backup
+  module Targets
+    class Files < Target
+      @storage_path: untyped
+
+      @excludes: untyped
+
+      @storage_realpath: untyped
+
+      @backup_files_realpath: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      include Backup::Helper
+
+      DEFAULT_EXCLUDE: ::Array["lost+found"]
+
+      # Use the content from stdin instead of an actual filepath (used by tar as input or output)
+      USE_STDIN: "-"
+
+      attr_reader excludes: untyped
+
+      # @param [IO] progress
+      # @param [String] storage_path
+      # @param [::Backup::Options] options
+      # @param [Array] excludes
+      def initialize: (untyped progress, untyped storage_path, options: untyped, ?excludes: untyped) -> void
+
+      def dump: (untyped backup_tarball, untyped _) -> untyped
+
+      def restore: (untyped backup_tarball, untyped _) -> untyped
+
+      def backup_existing_files_dir: (untyped backup_tarball) -> untyped
+
+      def noncritical_warning?: (untyped warning) -> untyped
+
+      def pipeline_succeeded?: (tar_status: untyped, compress_status: untyped, output: untyped) -> (false | untyped)
+
+      def tar_ignore_non_success?: (untyped exitstatus, untyped output) -> (true | false)
+
+      def exclude_dirs_rsync: () -> untyped
+
+      def raise_custom_error: (untyped backup_tarball) -> untyped
+
+      def asynchronous?: () -> false
+
+      private
+
+      def storage_realpath: () -> untyped
+
+      def backup_files_realpath: () -> untyped
+
+      def backup_basepath: () -> untyped
+
+      def access_denied_error: (untyped path) -> untyped
+
+      def resource_busy_error: (untyped path) -> untyped
+    end
+  end
+end

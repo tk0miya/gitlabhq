@@ -1,0 +1,30 @@
+module Terraform
+  class StateUploader < GitlabUploader
+    include ObjectStorage::Concern
+
+    alias lockbox_encrypt encrypt
+
+    # On Cloud Native GitLab, /srv/gitlab/public/uploads/tmp is a shared mount.
+    # Use a subpath from that directory to ensure the gitlab-workhorse and webservice
+    # containers can both access this directory.
+    def self.workhorse_local_upload_path: () -> untyped
+
+    # Override Lockbox's encrypt to respect per-file encryption flag
+    def encrypt: (untyped file) -> (nil | untyped)
+
+    # Override Lockbox's read to respect per-file encryption flag
+    def read: () -> (nil | untyped)
+
+    def filename: () -> ::String
+
+    def store_dir: () -> untyped
+
+    def key: () -> untyped
+
+    def self.direct_upload_enabled?: () -> false
+
+    def self.proxy_download_enabled?: () -> true
+
+    def self.default_store: () -> untyped
+  end
+end

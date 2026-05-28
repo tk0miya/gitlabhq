@@ -1,0 +1,15 @@
+module Database
+  class MonitorLockedTablesWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    INITIAL_DATABASE_RESULT: { tables_need_lock: ::Array[untyped], tables_need_lock_count: 0, tables_need_unlock: ::Array[untyped], tables_need_unlock_count: 0 }
+
+    def perform: () -> (nil | untyped)
+
+    private
+
+    def handle_lock_writes_result: (untyped results, untyped result) -> untyped
+  end
+end

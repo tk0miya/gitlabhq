@@ -1,0 +1,31 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      # This cop detects multiple table locks across different statements in a single migration.
+      # This scenario has caused incidents in the past due to deadlocks
+      # (for example https://app.incident.io/gitlab/incidents/202).
+      module RequireDisableDdlTransactionForMultipleLocks
+        extend ActiveSupport::Concern
+
+        LOCK_ACQUIRING_COMMANDS: ::Array["ALTER" | "CREATE" | "DROP" | "TRUNCATE" | "LOCK" | "UPDATE" | "DELETE" | "INSERT"]
+
+        # Reference: https://www.postgresql.org/docs/current/explicit-locking.html
+        LOCK_TYPES: { high_severity: ::Array["AccessExclusiveLock" | "ExclusiveLock"], low_severity: ::Array["RowShareLock" | "AccessShareLock"] }
+
+        def exec_migration: (untyped connection, untyped direction) -> untyped
+
+        private
+
+        def should_skip_check?: () -> (true | untyped)
+
+        def should_skip_sql_statement?: (untyped sql) -> untyped
+
+        def likely_to_acquire_locks?: (untyped sql) -> untyped
+
+        def check_current_locks: (untyped connection) -> untyped
+
+        def verify_single_table_per_statement: (untyped statement_tracking) -> (nil | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+class TestCaseEntity < Grape::Entity
+  include API::Helpers::RelatedResourcesHelpers
+
+  private
+
+  alias test_case object
+
+  def can_read_screenshots?: () -> untyped
+end

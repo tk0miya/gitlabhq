@@ -1,0 +1,29 @@
+module WorkItems
+  module TypesFramework
+    module SystemDefined
+      module Definitions
+        module Ticket
+          def self.widgets: () -> ::Array["ai_session" | "assignees" | "award_emoji" | "crm_contacts" | "current_user_todos" | "description" | "designs" | "development" | "email_participants" | "health_status" | "hierarchy" | "iteration" | "labels" | "linked_items" | "milestone" | "notes" | "notifications" | "participants" | "start_and_due_date" | "time_tracking" | "weight"]
+
+          def self.widget_options: () -> ::Hash[untyped, untyped]
+
+          def self.configuration: () -> { id: 9, name: "Ticket", base_type: "ticket", icon_name: "work-item-ticket" }
+
+          def self.allowed_child_types: () -> ::Array[{ type: :task, maximum_depth: 1 }]
+
+          def self.use_legacy_view?: () -> true
+
+          def self.service_desk?: () -> true
+
+          def self.configurable?: () -> false
+
+          def self.creatable?: () -> false
+
+          def self.can_be_conversion_target?: () -> false
+
+          def self.filterable_board_view?: () -> true
+        end
+      end
+    end
+  end
+end

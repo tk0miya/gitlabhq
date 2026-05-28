@@ -1,0 +1,25 @@
+module Resolvers
+  class PackagePipelinesResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    alias package object
+
+    # this resolver can be called for 100 packages max and we want to limit the
+    # number of build infos returned for _each_ package when using the new finder.
+    MAX_PAGE_SIZE: 20
+
+    # This returns a promise for a connection of promises for pipelines:
+    # Lazy[Connection[Lazy[Pipeline]]] structure
+    def resolve: (lookahead: untyped, ?first: untyped?, ?last: untyped?, ?after: untyped?, ?before: untyped?) -> untyped
+
+    private
+
+    def lazy_load_pipeline: (untyped id) -> untyped
+
+    def default_value_for: (first: untyped, last: untyped, after: untyped, before: untyped) -> untyped
+
+    def decode_cursor: (untyped encoded) -> untyped
+
+    def id_from_cursor: (untyped cursor) -> untyped
+  end
+end

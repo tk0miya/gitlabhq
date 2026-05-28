@@ -1,0 +1,21 @@
+module Authn
+  module Tokens
+    class ClusterAgentToken
+      @revocable: untyped
+
+      @source: untyped
+
+      def self.prefix?: (untyped plaintext) -> untyped
+
+      attr_reader revocable: untyped
+
+      attr_reader source: untyped
+
+      def initialize: (untyped plaintext, untyped source) -> void
+
+      def present_with: () -> untyped
+
+      def revoke!: (untyped current_user) -> untyped
+    end
+  end
+end

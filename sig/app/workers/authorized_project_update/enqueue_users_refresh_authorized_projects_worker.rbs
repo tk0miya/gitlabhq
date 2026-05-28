@@ -1,0 +1,7 @@
+module AuthorizedProjectUpdate
+  class EnqueueUsersRefreshAuthorizedProjectsWorker
+    include ApplicationWorker
+
+    def perform: (untyped user_ids) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module Encryption
+    class KeyProviderWrapper
+      @key_provider: untyped
+
+      attr_reader key_provider: untyped
+
+      def initialize: (untyped key_provider) -> void
+
+      def decryption_keys: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,45 @@
+class ApplicationMailer < ActionMailer::Base
+  # Ignore transient SMTP connection errors in our SLIs.
+  # These are transient and are fixed by a retry.
+  SMTPConnectionError: untyped
+
+  attr_accessor current_user: untyped
+
+  def can?: () -> untyped
+
+  private
+
+  # Formats arguments into a String suitable for use as an email subject
+  #
+  # extra - Extra Strings to be inserted into the subject
+  #
+  # Examples
+  #
+  #   >> subject('Lorem ipsum')
+  #   => "Lorem ipsum"
+  #
+  #   # Automatically inserts Project name when @project is set
+  #   >> @project = Project.last
+  #   => #<Project id: 1, name: "Ruby on Rails", path: "ruby_on_rails", ...>
+  #   >> subject('Lorem ipsum')
+  #   => "Ruby on Rails | Lorem ipsum "
+  #
+  #   # Accepts multiple arguments
+  #   >> subject('Lorem ipsum', 'Dolor sit amet')
+  #   => "Lorem ipsum | Dolor sit amet"
+  def subject: (*untyped extra) -> untyped
+
+  def render_with_default_locale: () { (?) -> untyped } -> untyped
+
+  def default_sender_address: () -> untyped
+
+  def default_reply_to_address: () -> untyped
+
+  def encode_display_name: (untyped name) -> untyped
+
+  def mail_with_locale: (?::Hash[untyped, untyped] headers) { (?) -> untyped } -> untyped
+
+  def recipient_locale: (?::Hash[untyped, untyped] headers) -> untyped
+
+  def preferred_language_by_email: (untyped email) -> untyped
+end

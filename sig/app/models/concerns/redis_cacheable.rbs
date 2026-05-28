@@ -1,0 +1,23 @@
+module RedisCacheable
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  CACHED_ATTRIBUTES_EXPIRY_TIME: untyped
+
+  def cached_attribute: (untyped attribute) -> untyped
+
+  def cache_attributes: (untyped values) -> untyped
+
+  def merge_cache_attributes: (untyped values) -> (nil | untyped)
+
+  private
+
+  def cache_attribute_key: () -> ::String
+
+  def cached_attributes: () -> untyped
+
+  def with_redis: () { (?) -> untyped } -> untyped
+
+  def cast_value_from_cache: (untyped attribute, untyped value) -> untyped
+end

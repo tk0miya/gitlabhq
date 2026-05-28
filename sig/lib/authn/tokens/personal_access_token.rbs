@@ -1,0 +1,37 @@
+module Authn
+  module Tokens
+    class PersonalAccessToken
+      @revocable: untyped
+
+      @source: untyped
+
+      @current_user: untyped
+
+      def self.prefix?: (untyped plaintext) -> untyped
+
+      attr_reader revocable: untyped
+
+      attr_reader source: untyped
+
+      def initialize: (untyped plaintext, untyped source) -> void
+
+      def present_with: () -> untyped
+
+      def revoke!: (untyped current_user) -> untyped
+
+      def resource_name: () -> (untyped | nil | ::String)
+
+      private
+
+      attr_reader current_user: untyped
+
+      def service_by_type: () -> untyped
+
+      def personal_access_token_service: () -> untyped
+
+      def resource_access_token_service: () -> untyped
+
+      def resource: () -> untyped
+    end
+  end
+end

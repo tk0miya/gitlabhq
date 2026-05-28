@@ -1,0 +1,36 @@
+module Types
+  class BaseObject < GraphQL::Schema::Object
+    self.@authorize_args: untyped
+
+    self.@accepts: untyped
+
+    self.@authorization: untyped
+
+    include Gitlab::Graphql::VersionFilter::FutureFieldFallback
+
+    include Gitlab::Graphql::Authz::AuthorizeGranularToken
+
+    prepend Gitlab::Graphql::Present
+
+    prepend Gitlab::Graphql::ExposePermissions
+
+    prepend Gitlab::Graphql::MarkdownField
+
+    def self.authorize: (*untyped args) -> untyped
+
+    def self.accepts: (*untyped types) -> untyped
+
+    # All graphql fields exposing an id, should expose a global id.
+    def id: () -> untyped
+
+    def self.authorization_scopes: () -> ::Array[:api | :read_api]
+
+    def self.authorization: () -> untyped
+
+    def self.authorized?: (untyped object, untyped context) -> untyped
+
+    def current_user: () -> untyped
+
+    def self.assignable?: (untyped object) -> (true | untyped)
+  end
+end

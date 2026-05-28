@@ -1,0 +1,78 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        #
+        # Performs CI config file interpolation, and surfaces all possible interpolation errors.
+        #
+        class Interpolator
+          @config: untyped
+
+          @args: untyped
+
+          @yaml_context: untyped
+
+          @external_context: untyped
+
+          @errors: untyped
+
+          @interpolated: untyped
+
+          @result: untyped
+
+          @entry: untyped
+
+          @content: untyped
+
+          @spec: untyped
+
+          @inputs: untyped
+
+          @context: untyped
+
+          @template: untyped
+
+          attr_reader config: untyped
+
+          attr_reader args: untyped
+
+          attr_reader yaml_context: untyped
+
+          attr_reader external_context: untyped
+
+          attr_reader errors: untyped
+
+          def initialize: (untyped config, untyped args, untyped yaml_context, untyped external_context) -> void
+
+          def valid?: () -> untyped
+
+          def to_hash: () -> untyped
+
+          def error_message: () -> untyped
+
+          def interpolate!: () -> (untyped | nil)
+
+          def interpolated?: () -> untyped
+
+          private
+
+          def inputs_without_header?: () -> untyped
+
+          def header: () -> untyped
+
+          def content: () -> untyped
+
+          def spec: () -> untyped
+
+          def inputs: () -> untyped
+
+          def context: () -> untyped
+
+          def template: () -> untyped
+
+          def component_data: () -> untyped
+        end
+      end
+    end
+  end
+end

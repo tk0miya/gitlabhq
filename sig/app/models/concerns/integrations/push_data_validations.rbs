@@ -1,0 +1,22 @@
+# This concern is used by registered integrations such as Integrations::TeamCity and
+# Integrations::DroneCi and adds methods to perform validations on the received
+# data.
+module Integrations
+  module PushDataValidations
+    extend ActiveSupport::Concern
+
+    def merge_request_valid?: (untyped data) -> untyped
+
+    def push_valid?: (untyped data) -> untyped
+
+    def tag_push_valid?: (untyped data) -> untyped
+
+    private
+
+    def branch_removed?: (untyped data) -> untyped
+
+    def opened_merge_requests?: (untyped data) -> untyped
+
+    def merge_request_unchecked?: (untyped data) -> untyped
+  end
+end

@@ -1,0 +1,54 @@
+module Issues
+  class RelativePositionRebalancingService
+    @root_namespace: untyped
+
+    @caching: untyped
+
+    @start_position: untyped
+
+    UPDATE_BATCH_SIZE: 100
+
+    PREFETCH_ISSUES_BATCH_SIZE: 10000
+
+    SMALLEST_BATCH_SIZE: 5
+
+    RETRIES_LIMIT: 3
+
+    TooManyConcurrentRebalances: untyped
+
+    def initialize: (untyped namespace) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader root_namespace: untyped
+
+    attr_reader caching: untyped
+
+    def block_issue_repositioning!: () -> untyped
+
+    def unblock_issue_repositioning!: () -> untyped
+
+    def get_issue_ids: (untyped index, untyped limit) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def preload_issue_ids: () -> untyped
+
+    def assign_indexes: (untyped ids, untyped start_index) -> untyped
+
+    def update_positions_with_retry: (untyped pairs_with_index, untyped query_name) -> untyped
+
+    def update_positions: (untyped pairs_with_position, untyped query_name) -> untyped
+
+    def run_update_query: (untyped values, untyped query_name) -> untyped
+
+    def gaps: () -> untyped
+
+    def gap_size: () -> untyped
+
+    def start_position: () -> untyped
+
+    def with_retry: (untyped initial_batch_size, untyped exit_batch_size) { (untyped) -> untyped } -> untyped
+  end
+end

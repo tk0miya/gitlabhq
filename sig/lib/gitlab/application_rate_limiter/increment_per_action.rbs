@@ -1,0 +1,9 @@
+module Gitlab
+  module ApplicationRateLimiter
+    class IncrementPerAction < BaseStrategy
+      def increment: (untyped cache_key, untyped expiry) -> untyped
+
+      def read: (untyped cache_key) -> untyped
+    end
+  end
+end

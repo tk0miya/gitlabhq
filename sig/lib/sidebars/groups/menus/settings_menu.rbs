@@ -1,0 +1,41 @@
+module Sidebars
+  module Groups
+    module Menus
+      class SettingsMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> (nil | untyped)
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "settings"
+
+        def pick_into_super_sidebar?: () -> true
+
+        def separated?: () -> true
+
+        private
+
+        def general_menu_item: () -> untyped
+
+        def integrations_menu_item: () -> untyped
+
+        def access_tokens_menu_item: () -> untyped
+
+        def repository_menu_item: () -> untyped
+
+        def ci_cd_menu_item: () -> untyped
+
+        def applications_menu_item: () -> untyped
+
+        def usage_quotas_menu_item: () -> untyped
+
+        def service_accounts_menu_item: () -> untyped
+
+        def service_accounts_available?: () -> untyped
+
+        def packages_and_registries_menu_item: () -> untyped
+
+        def packages_and_registries_controllers: () -> ::Array[:packages_and_registries]
+      end
+    end
+  end
+end

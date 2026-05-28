@@ -1,0 +1,17 @@
+module Gitlab
+  module Repositories
+    class LargeMultipartParser < Rack::Multipart::Parser
+      @retained_size: untyped
+
+      # Replicates Rack::Multipart.extract_multipart from Rack 2.2.23:
+      # https://github.com/rack/rack/blob/f2af0c8f869193fa7bb7d20b619b3003418e1055/lib/rack/multipart.rb#L39
+      # Overriding parse_multipart ensures our subclass is instantiated during
+      # parsing so that update_retained_size enforces our higher size limit.
+      def self.parse_multipart: (untyped env, ?untyped params) -> untyped
+
+      private
+
+      def update_retained_size: (untyped size) -> (nil | untyped)
+    end
+  end
+end

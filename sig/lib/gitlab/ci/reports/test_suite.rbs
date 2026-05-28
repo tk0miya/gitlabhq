@@ -1,0 +1,47 @@
+module Gitlab
+  module Ci
+    module Reports
+      class TestSuite
+        @name: untyped
+
+        @test_cases: untyped
+
+        @total_time: untyped
+
+        @suite_error: untyped
+
+        attr_accessor name: untyped
+
+        attr_accessor test_cases: untyped
+
+        attr_accessor total_time: untyped
+
+        attr_reader suite_error: untyped
+
+        def initialize: (?untyped? name) -> void
+
+        def add_test_case: (untyped test_case) -> untyped
+
+        def each_test_case: () { (untyped) -> untyped } -> untyped
+
+        def total_count: () -> (0 | untyped)
+
+        def total_status: () -> untyped
+
+        def with_attachment!: () -> untyped
+
+        def set_suite_error: (untyped msg) -> untyped
+
+        def +: (untyped other) -> untyped
+
+        def sorted: () -> self
+
+        private
+
+        def sort_by_status: () -> untyped
+
+        def sort_by_execution_time_desc: () -> untyped
+      end
+    end
+  end
+end

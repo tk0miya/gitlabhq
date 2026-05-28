@@ -1,0 +1,51 @@
+module Gitlab
+  module Database
+    module Migrations
+      class Version
+        @timestamp: untyped
+
+        @milestone: untyped
+
+        @type_value: untyped
+
+        InvalidTypeError: untyped
+
+        include Comparable
+
+        TYPE_VALUES: { regular: 0, post: 1 }
+
+        attr_reader timestamp: untyped
+
+        attr_reader milestone: untyped
+
+        attr_reader type_value: untyped
+
+        def initialize: (untyped timestamp, untyped milestone, untyped type) -> void
+
+        def type: () -> untyped
+
+        def type=: (untyped value) -> untyped
+
+        def milestone=: (untyped milestone_str) -> untyped
+
+        def regular?: () -> untyped
+
+        def post_deployment?: () -> untyped
+
+        def <=>: (untyped other) -> (0 | 1 | untyped)
+
+        def to_s: () -> untyped
+
+        def to_i: () -> untyped
+
+        def coerce: (untyped _) -> ::Array[-1 | untyped]
+
+        def eql?: (untyped other) -> untyped
+
+        def ==: (untyped other) -> untyped
+
+        def hash: () -> untyped
+      end
+    end
+  end
+end

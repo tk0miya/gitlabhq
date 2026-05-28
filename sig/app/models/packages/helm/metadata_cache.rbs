@@ -1,0 +1,21 @@
+module Packages
+  module Helm
+    class MetadataCache < ApplicationRecord
+      include FileStoreMounter
+
+      include ObjectStorable
+
+      include Packages::Downloadable
+
+      include Packages::Destructible
+
+      STORE_COLUMN: :file_store
+
+      def self.find_or_build: (project_id: untyped, channel: untyped) -> untyped
+
+      private
+
+      def set_object_storage_key: () -> (nil | untyped)
+    end
+  end
+end

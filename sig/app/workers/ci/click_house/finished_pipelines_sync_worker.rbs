@@ -1,0 +1,11 @@
+module Ci
+  module ClickHouse
+    class FinishedPipelinesSyncWorker
+      include ApplicationWorker
+
+      include ClickHouseWorker
+
+      def perform: (?::Integer worker_index, ?::Integer total_workers) -> untyped
+    end
+  end
+end

@@ -1,0 +1,26 @@
+module Ci
+  module Runners
+    class ReconcileExistingRunnerVersionsService
+      @runner_upgrade_check: untyped
+
+      VERSION_BATCH_SIZE: 100
+
+      def execute: () -> untyped
+
+      private
+
+      def upgrade_check: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def insert_runner_versions: () -> { versions_from_runners: untyped, new_record_count: untyped }
+
+      def cleanup_runner_versions: (untyped versions_from_runners) -> untyped
+
+      def outdated_runner_versions: () -> untyped
+
+      def update_status_on_outdated_runner_versions: (untyped versions_from_runners) -> untyped
+
+      def runner_version_with_updated_status: (untyped runner_version) -> untyped
+    end
+  end
+end

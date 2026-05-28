@@ -1,0 +1,28 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      class Sorting
+        @stage: untyped
+
+        @query: untyped
+
+        @params: untyped
+
+        include StageQueryHelpers
+
+        def initialize: (stage: untyped, query: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def apply: (untyped sort, untyped direction) -> untyped
+
+        private
+
+        attr_reader stage: untyped
+
+        attr_reader query: untyped
+
+        attr_reader params: untyped
+      end
+    end
+  end
+end

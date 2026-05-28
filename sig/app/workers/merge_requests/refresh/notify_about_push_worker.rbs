@@ -1,0 +1,10 @@
+# rubocop:disable Scalability/IdempotentWorker -- Sends an email
+module MergeRequests
+  module Refresh
+    class NotifyAboutPushWorker
+      include ApplicationWorker
+
+      def perform: (untyped merge_request_id, untyped user_id, untyped new_commits_data, untyped total_new_commits_count, untyped existing_commits_data, untyped total_existing_commits_count) -> (nil | untyped)
+    end
+  end
+end

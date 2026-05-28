@@ -1,0 +1,36 @@
+module Gitlab
+  module GitalyClient
+    class DiffService
+      @gitaly_repo: untyped
+
+      @storage: untyped
+
+      include WithFeatureFlagActors
+
+      WHITESPACE_CHANGES: { unspecified: untyped, ignore_spaces: untyped, ignore_all_spaces: untyped }
+
+      DIFF_MODES: { unspecified: untyped, word: untyped }
+
+      def initialize: (untyped repository) -> void
+
+      # Requests diffs between blob pairs via Gitaly's DiffBlobs RPC using blob_pairs field.
+      #
+      # @param blob_pairs [Array<Gitaly::DiffBlobsRequest::BlobPair>] Array of blob ID pairs to diff
+      # @param diff_mode [Symbol] Diff output mode (:unspecified, :word)
+      # @param whitespace_changes [Symbol] Whitespace handling (:unspecified, :ignore_spaces, :ignore_all_spaces)
+      # @param patch_bytes_limit [Integer] Maximum patch size in bytes (0 = unlimited)
+      # @return [GitalyClient::DiffBlobsStitcher] Streamed diff responses from Gitaly
+      def diff_blobs: (untyped blob_pairs, ?diff_mode: untyped, ?whitespace_changes: untyped, ?patch_bytes_limit: ::Integer) -> untyped
+
+      # Requests diffs between blob pairs via Gitaly's DiffBlobs RPC using raw_info field.
+      # More efficient for large batches of files compared to blob_pairs approach.
+      #
+      # @param raw_info [Array<Gitaly::ChangedPaths>] Array of changed path information
+      # @param diff_mode [Symbol] Diff output mode (:unspecified, :word)
+      # @param whitespace_changes [Symbol] Whitespace handling (:unspecified, :ignore_spaces, :ignore_all_spaces)
+      # @param patch_bytes_limit [Integer] Maximum patch size in bytes (0 = unlimited)
+      # @return [GitalyClient::DiffBlobsStitcher] Streamed diff responses from Gitaly
+      def diff_blobs_with_raw_info: (untyped raw_info, ?diff_mode: untyped, ?whitespace_changes: untyped, ?patch_bytes_limit: ::Integer) -> untyped
+    end
+  end
+end

@@ -1,0 +1,102 @@
+module Projects
+  class DestroyService < BaseService
+    include Gitlab::ShellAdapter
+
+    include ContainerRegistry::Protection::Concerns::TagRule
+
+    DestroyError: untyped
+
+    BATCH_SIZE: 100
+
+    def async_execute: () -> untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def mark_deletion_in_progress: () -> untyped
+
+    def cancel_deletion: () -> untyped
+
+    def all_pipelines: () -> untyped
+
+    def validate_active_repositories_move!: () -> untyped
+
+    def trash_project_repositories!: () -> untyped
+
+    def trash_relation_repositories!: () -> (untyped | nil)
+
+    def remove_snippets: () -> untyped
+
+    def destroy_events!: () -> (untyped | nil)
+
+    def remove_events: () -> untyped
+
+    def remove_repository: (untyped repository) -> (true | untyped)
+
+    def attempt_rollback: (untyped project, untyped message) -> (nil | untyped)
+
+    def attempt_destroy: (untyped project) -> untyped
+
+    def execute_hooks: (untyped project) -> untyped
+
+    def destroy_project_related_records: (untyped project) -> untyped
+
+    def log_destroy_event: () -> untyped
+
+    # Removing merge_request_diff_files records may cause timeouts, so they
+    #   can be deleted in batches.
+    #
+    # Note: MergeRequestDiffCommit records are now handled by the loose foreign key worker
+    #   after removing FK fk_rails_316aaceda3.
+    #
+    # rubocop: disable CodeReuse/ActiveRecord
+    def destroy_mr_diff_relations!: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def destroy_merge_request_diffs!: () -> untyped
+
+    def destroy_ci_records!: () -> untyped
+
+    # This method will delete all orphaned CI Job artifacts for the project, which are job artifacts
+    # whose jobs do not exist anymore. The reason these artifacts might still exist is because of
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/508672.
+    # TODO: remove this method after we have a working & valid FK.
+    def destroy_orphaned_ci_job_artifacts!: () -> (nil | untyped)
+
+    def delete_commit_statuses: () -> untyped
+
+    def destroy_deployments!: () -> untyped
+
+    def delete_environments: () -> untyped
+
+    def delete_lfs_objects_projects: () -> untyped
+
+    def destroy_web_hooks!: () -> untyped
+
+    # The project can have multiple project bots with personal access tokens generated.
+    # We need to remove them when a project is deleted
+    # rubocop: disable CodeReuse/ActiveRecord
+    def destroy_project_bots!: () -> untyped
+
+    def destroy_bulk_import_uploads!: () -> untyped
+
+    def destroy_relation_export_uploads!: () -> untyped
+
+    def remove_registry_tags: () -> (true | false | untyped)
+
+    #
+    # This method makes sure that we correctly remove registry tags
+    # for legacy image repository (when repository path equals project path).
+    #
+    def remove_legacy_registry_tags: () -> (true | untyped)
+
+    def destroy_repository: (untyped project, untyped repository) -> untyped
+
+    def raise_error: (untyped message) -> untyped
+
+    def flush_caches: (untyped project) -> untyped
+
+    def publish_project_deleted_event_for: (untyped project) -> untyped
+  end
+end

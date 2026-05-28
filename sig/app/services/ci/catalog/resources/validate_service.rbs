@@ -1,0 +1,35 @@
+module Ci
+  module Catalog
+    module Resources
+      class ValidateService
+        @project: untyped
+
+        @ref: untyped
+
+        @errors: untyped
+
+        MINIMUM_AMOUNT_OF_COMPONENTS: 1
+
+        def initialize: (untyped project, untyped ref) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader ref: untyped
+
+        attr_reader errors: untyped
+
+        def verify_presence_project_readme: () -> (nil | untyped)
+
+        def verify_presence_project_description: () -> (nil | untyped)
+
+        def scan_directory_for_components: () -> (nil | untyped)
+
+        def project_has_readme?: () -> untyped
+      end
+    end
+  end
+end

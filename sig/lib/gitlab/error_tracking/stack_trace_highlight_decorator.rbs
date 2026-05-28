@@ -1,0 +1,21 @@
+# This should be in the ErrorTracking namespace. For more details, see:
+# https://gitlab.com/gitlab-org/gitlab/-/issues/323342
+module Gitlab
+  module ErrorTracking
+    module StackTraceHighlightDecorator
+      extend ::Gitlab::ErrorTracking::StackTraceHighlightDecorator
+
+      def decorate: (untyped error_event) -> untyped
+
+      private
+
+      def highlight_stack_trace: (untyped stack_trace) -> untyped
+
+      def highlight_stack_trace_entry: (untyped entry) -> untyped
+
+      def highlight_entry_context: (untyped filename, untyped context) -> untyped
+
+      def guess_language_by_filename: (untyped filename) -> untyped
+    end
+  end
+end

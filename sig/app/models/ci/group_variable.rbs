@@ -1,0 +1,25 @@
+module Ci
+  class GroupVariable < Ci::ApplicationRecord
+    include Ci::HasVariable
+
+    include Ci::Maskable
+
+    include Ci::RawVariable
+
+    include Ci::HidableVariable
+
+    include Limitable
+
+    include Presentable
+
+    prepend HasEnvironmentScope
+
+    def self.sort_by_attribute: (untyped method) -> untyped
+
+    def audit_details: () -> untyped
+
+    def group_name: () -> untyped
+
+    def group_ci_cd_settings_path: () -> untyped
+  end
+end

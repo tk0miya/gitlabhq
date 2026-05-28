@@ -1,0 +1,13 @@
+module Authn
+  module TokenField
+    class Insecure < Base
+      def find_token_authenticatable: (untyped token, ?bool unscoped, ?uniqueness_check: bool) -> (untyped | nil)
+
+      def get_token: (untyped token_owner_record) -> untyped
+
+      def set_token: (untyped token_owner_record, untyped token) -> (untyped | nil)
+
+      def token_set?: (untyped token_owner_record) -> untyped
+    end
+  end
+end

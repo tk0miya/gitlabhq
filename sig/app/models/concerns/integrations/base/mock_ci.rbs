@@ -1,0 +1,9 @@
+module Integrations
+  module Base
+    module MockCi
+      extend ActiveSupport::Concern
+
+      ALLOWED_STATES: ::Array["failed" | "canceled" | "running" | "pending" | "success" | "success-with-warnings" | "skipped" | "not_found"]
+    end
+  end
+end

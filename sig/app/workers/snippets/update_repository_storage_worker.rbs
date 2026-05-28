@@ -1,0 +1,13 @@
+module Snippets
+  class UpdateRepositoryStorageWorker
+    extend ::Gitlab::Utils::Override
+
+    include ::UpdateRepositoryStorageWorker
+
+    private
+
+    def find_repository_storage_move: (untyped repository_storage_move_id) -> untyped
+
+    def update_repository_storage: (untyped repository_storage_move) -> untyped
+  end
+end

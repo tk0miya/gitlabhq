@@ -1,0 +1,43 @@
+module ErrorTracking
+  class SentryClient
+    module Issue
+      BadRequestError: untyped
+
+      SENTRY_API_SORT_VALUE_MAP: { "frequency" => "freq", "first_seen" => "new", "last_seen" => nil }
+
+      def list_issues: (**untyped keyword_args) -> untyped
+
+      def issue_details: (issue_id: untyped) -> untyped
+
+      def update_issue: (issue_id: untyped, params: untyped) -> untyped
+
+      private
+
+      def get_issues: (**untyped keyword_args) -> { issues: untyped, pagination: untyped }
+
+      def list_issue_sentry_query: (issue_status: untyped, limit: untyped, ?sort: untyped?, ?search_term: ::String, ?cursor: untyped?) -> untyped
+
+      def get_issue: (issue_id: untyped) -> untyped
+
+      def parse_gitlab_issue: (untyped issue) -> untyped
+
+      def parse_issue_annotations: (untyped issue) -> untyped
+
+      def parse_plugin_issue: (untyped issue) -> (nil | untyped)
+
+      def issue_url: (untyped id) -> untyped
+
+      def project_url: () -> untyped
+
+      def parse_sentry_url: (untyped api_url) -> untyped
+
+      def map_to_errors: (untyped issues) -> untyped
+
+      def map_to_error: (untyped issue) -> untyped
+
+      def map_to_detailed_error: (untyped issue) -> untyped
+
+      def extract_tags: (untyped issue) -> { level: untyped, logger: untyped }
+    end
+  end
+end

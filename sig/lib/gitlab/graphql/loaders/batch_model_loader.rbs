@@ -1,0 +1,28 @@
+module Gitlab
+  module Graphql
+    module Loaders
+      class BatchModelLoader
+        @model_class: untyped
+
+        @model_id: untyped
+
+        @preloads: untyped
+
+        @default_value: untyped
+
+        attr_reader model_class: untyped
+
+        attr_reader model_id: untyped
+
+        attr_reader preloads: untyped
+
+        attr_reader default_value: untyped
+
+        def initialize: (untyped model_class, untyped model_id, ?untyped? preloads, ?default_value: untyped?) -> void
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def find: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Import
+    class RefreshImportJidWorker
+      include ApplicationWorker
+
+      # The interval to schedule new instances of this job at.
+      INTERVAL: untyped
+
+      RESCHEDULE_CUTOFF: untyped
+
+      def self.perform_in_the_future: (*untyped args) -> untyped
+
+      # project_id - The ID of the project that is being imported.
+      # check_job_id - The ID of the job for which to check the status.
+      # params - to avoid multiple releases if parameters change
+      def perform: (untyped project_id, untyped check_job_id, ?::Hash[untyped, untyped] _params) -> (nil | untyped)
+    end
+  end
+end

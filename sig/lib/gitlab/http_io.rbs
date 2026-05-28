@@ -1,0 +1,85 @@
+#
+# This class is compatible with IO class (https://ruby-doc.org/core-2.3.1/IO.html)
+# source: https://gitlab.com/snippets/1685610
+module Gitlab
+  class HttpIO
+    @uri: untyped
+
+    @size: untyped
+
+    @tell: untyped
+
+    @chunk: untyped
+
+    @chunk_range: untyped
+
+    BUFFER_SIZE: untyped
+
+    InvalidURLError: untyped
+
+    FailedToGetChunkError: untyped
+
+    attr_reader uri: untyped
+
+    attr_reader size: untyped
+
+    attr_reader tell: untyped
+
+    attr_reader chunk: untyped
+
+    attr_reader chunk_range: untyped
+
+    alias pos tell
+
+    def initialize: (untyped url, untyped size) -> void
+
+    def close: () -> nil
+
+    def binmode: () -> nil
+
+    def binmode?: () -> true
+
+    def path: () -> nil
+
+    def url: () -> untyped
+
+    def seek: (untyped pos, ?untyped where) -> untyped
+
+    def eof?: () -> untyped
+
+    def each_line: () { (untyped) -> untyped } -> untyped
+
+    # https://www.rubydoc.info/stdlib/core/IO:read says:
+    # When this method is called at end of file, it returns nil or "",
+    # depending on length: read, read(nil), and read(0) return "",
+    # read(positive_integer) returns nil.
+    def read: (?untyped? length, ?untyped? outbuf) -> untyped
+
+    def readline: () -> untyped
+
+    def write: (untyped data) -> untyped
+
+    def truncate: (untyped offset) -> untyped
+
+    def flush: () -> untyped
+
+    def present?: () -> true
+
+    private
+
+    #
+    # The below methods are not implemented in IO class
+    #
+    def in_range?: () -> untyped
+
+    def get_chunk: () -> untyped
+
+    def request: () -> untyped
+
+    def chunk_offset: () -> untyped
+
+    def chunk_start: () -> untyped
+
+    def chunk_end: () -> untyped
+  end
+end

@@ -1,0 +1,27 @@
+module Clusters
+  class AgentsFinder
+    @object: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include FinderMethods
+
+    def initialize: (untyped object, untyped current_user, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader object: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def filter_clusters: (untyped agents) -> untyped
+
+    def can_read_cluster_agents?: () -> untyped
+  end
+end

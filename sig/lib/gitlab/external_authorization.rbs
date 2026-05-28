@@ -1,0 +1,15 @@
+module Gitlab
+  module ExternalAuthorization
+    extend ExternalAuthorization::Config
+
+    RequestFailed: untyped
+
+    def self.access_allowed?: (untyped user, untyped label, ?untyped? project_path) -> (true | false | untyped)
+
+    def self.rejection_reason: (untyped user, untyped label) -> (nil | untyped)
+
+    def self.access_for_user_to_label: (untyped user, untyped label, untyped project_path) -> untyped
+
+    def self.load_access: (untyped user, untyped label, untyped project_path) -> untyped
+  end
+end

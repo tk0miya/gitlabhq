@@ -1,0 +1,11 @@
+module DiffViewer
+  class Image < Base
+    include Rich
+
+    include ClientSide
+
+    def self.switcher_title: () -> untyped
+
+    def self.can_render?: (untyped diff_file, ?verify_binary: bool) -> (false | untyped)
+  end
+end

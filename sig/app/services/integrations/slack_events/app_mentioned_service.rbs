@@ -1,0 +1,60 @@
+module Integrations
+  module SlackEvents
+    class AppMentionedService
+      @params: untyped
+
+      @slack_event: untyped
+
+      @slack_workspace_id: untyped
+
+      @slack_user_id: untyped
+
+      @channel_id: untyped
+
+      @message_ts: untyped
+
+      @thread_ts: untyped
+
+      @slack_api: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader params: untyped
+
+      attr_reader slack_event: untyped
+
+      attr_reader slack_workspace_id: untyped
+
+      attr_reader slack_user_id: untyped
+
+      attr_reader channel_id: untyped
+
+      attr_reader message_ts: untyped
+
+      attr_reader thread_ts: untyped
+
+      def valid_event?: () -> untyped
+
+      def slack_installation: () -> untyped
+
+      def slack_api: () -> untyped
+
+      def slack_gitlab_user_connection: () -> untyped
+
+      # Override in EE to trigger a Duo flow.
+      def trigger_duo_flow: (untyped _gitlab_user) -> nil
+
+      def ensure_user_linked: () -> untyped
+
+      def authorize_params: () -> { team_id: untyped, team_domain: untyped, user_id: untyped, user_name: untyped }
+
+      def team_domain: () -> untyped
+    end
+  end
+end

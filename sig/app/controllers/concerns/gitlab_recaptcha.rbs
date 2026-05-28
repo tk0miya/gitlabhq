@@ -1,0 +1,11 @@
+module GitlabRecaptcha
+  extend ActiveSupport::Concern
+
+  include Recaptcha::Adapters::ControllerMethods
+
+  include RecaptchaHelper
+
+  def load_recaptcha: () -> untyped
+
+  def check_recaptcha: () -> (nil | untyped)
+end

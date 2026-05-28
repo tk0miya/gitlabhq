@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module LooseForeignKeys
+      self.@definitions_by_table: untyped
+
+      self.@definitions: untyped
+
+      self.@loose_foreign_keys_yaml: untyped
+
+      self.@loose_foreign_keys_yaml_path: untyped
+
+      ALLOWED_WORKER_CLASSES: ::Array["LooseForeignKeys::CleanupWorker" | "LooseForeignKeys::CiPipelinesBuildsCleanupCronWorker" | "LooseForeignKeys::MergeRequestDiffCommitCleanupWorker"]
+
+      def self.definitions_by_table: () -> untyped
+
+      def self.definitions: () -> untyped
+
+      def self.build_definition: (untyped child_table_name, untyped config) -> untyped
+
+      def self.loose_foreign_keys_yaml: () -> untyped
+
+      def self.loose_foreign_keys_yaml_path: () -> untyped
+    end
+  end
+end

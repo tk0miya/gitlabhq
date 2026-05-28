@@ -1,0 +1,56 @@
+module Gitlab
+  module Metrics
+    module Samplers
+      class BaseSampler < Daemon
+        @interval: untyped
+
+        @interval_steps: untyped
+
+        @logger: untyped
+
+        @warmup: untyped
+
+        @last_step: untyped
+
+        @running: untyped
+
+        attr_reader interval: untyped
+
+        # interval - The sampling interval in seconds.
+        # warmup   - When true, takes a single sample eagerly before entering the sampling loop.
+        #            This can be useful to ensure that all metrics files exist after `start` returns,
+        #            since prometheus-client-mmap creates them lazily upon first access.
+        def initialize: (?interval: untyped?, ?logger: untyped, ?warmup: bool, **untyped options) -> void
+
+        def safe_sample: () -> untyped
+
+        def sample: () -> untyped
+
+        # Returns the sleep interval with a random adjustment.
+        #
+        # The random adjustment is put in place to ensure we:
+        #
+        # 1. Don't generate samples at the exact same interval every time (thus
+        #    potentially missing anything that happens in between samples).
+        # 2. Don't sample data at the same interval two times in a row.
+        def sleep_interval: () -> untyped
+
+        private
+
+        attr_reader running: untyped
+
+        def sampler_class: () -> untyped
+
+        def interval_env_key: () -> ::String
+
+        def start_working: () -> true
+
+        def run_thread: () -> untyped
+
+        def wrap_sampler: () { () -> untyped } -> untyped
+
+        def stop_working: () -> untyped
+      end
+    end
+  end
+end

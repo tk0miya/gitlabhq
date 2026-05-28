@@ -1,0 +1,35 @@
+module Import
+  module UserMapping
+    class ReassignmentCsvValidator
+      @raw_csv: untyped
+
+      @errors: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include SafeFormatHelper
+
+      REQUIRED_HEADERS: ::Array[:source_host | :import_type | :source_user_identifier | :gitlab_username | :gitlab_public_email]
+
+      attr_reader errors: untyped
+
+      def initialize: (untyped raw_csv) -> void
+
+      def valid?: () -> untyped
+
+      def formatted_errors: () -> (nil | untyped)
+
+      def csv_data: () -> untyped
+
+      private
+
+      attr_reader raw_csv: untyped
+
+      def validate!: () -> untyped
+
+      def check_headers: () -> (nil | untyped)
+
+      def check_duplicates: () -> untyped
+    end
+  end
+end

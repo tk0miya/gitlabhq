@@ -1,0 +1,7 @@
+module Packages
+  class PackageCreatedEvent < ::Gitlab::EventStore::Event
+    def schema: () -> { "type" => "object", "properties" => { "project_id" => { "type" => "integer" }, "name" => { "type" => "string" }, "version" => { "type" => ::Array["string" | "null"] }, "package_type" => { "type" => "string", "enum" => untyped }, "id" => { "type" => "integer" } }, "required" => ::Array["project_id" | "id" | "name" | "package_type"] }
+
+    def ml_model?: () -> untyped
+  end
+end

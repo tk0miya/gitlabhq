@@ -1,0 +1,25 @@
+module Resolvers
+  class BlameResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    alias blob object
+
+    def ready?: (**untyped args) -> untyped
+
+    def resolve: (from_line: untyped, to_line: untyped, ignore_revs: untyped) -> untyped
+
+    private
+
+    def authorize!: () -> untyped
+
+    def read_code?: () -> untyped
+
+    def validate_line_params!: (untyped args) -> (nil | untyped)
+
+    def raise_greater_than_one: () -> untyped
+
+    def project: () -> untyped
+
+    def ignore_revisions_ref: () -> ::String
+  end
+end

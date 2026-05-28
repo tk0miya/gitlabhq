@@ -1,0 +1,25 @@
+module Boards
+  module Issues
+    class MoveService < Boards::BaseItemMoveService
+      @execute_multiple_empty_result: untyped
+
+      @board: untyped
+
+      def execute_multiple: (untyped issues) -> (untyped | { count: untyped, success: untyped, issues: untyped })
+
+      private
+
+      def present_issue_entity: (untyped issue) -> untyped
+
+      def execute_multiple_empty_result: () -> untyped
+
+      def move_below: (untyped id) -> untyped
+
+      def board: () -> untyped
+
+      def update: (untyped issue, untyped issue_modification_params) -> untyped
+
+      def moving_to_list_items_relation: () -> untyped
+    end
+  end
+end

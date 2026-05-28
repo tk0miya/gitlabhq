@@ -1,0 +1,19 @@
+module Mcp
+  module Tools
+    module WorkItems
+      class GetSavedViewTool < BaseTool
+        def self.build_query: () -> "query GetNamespaceSavedView($fullPath: ID!, $id: WorkItemsSavedViewsSavedViewID!) {\n  namespace(fullPath: $fullPath) {\n    id\n    savedViews(id: $id) {\n      nodes {\n        id\n        name\n        description\n        filters\n        sort\n      }\n    }\n  }\n}\n"
+
+        def build_variables: () -> untyped
+
+        def build_variables_0_1_0: () -> untyped
+
+        private
+
+        def process_result: (untyped result) -> untyped
+
+        def extract_saved_view: (untyped structured_content) -> untyped
+      end
+    end
+  end
+end

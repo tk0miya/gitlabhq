@@ -1,0 +1,42 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module LooseForeignKeyHelpers
+        include Gitlab::Database::SchemaHelpers
+
+        POSTGRES_IDENTIFIER_LIMIT: 63
+
+        INSERT_FUNCTION_NAME: "insert_into_loose_foreign_keys_deleted_records"
+
+        INSERT_FUNCTION_NAME_OVERRIDE_TABLE: "insert_into_loose_foreign_keys_deleted_records_override_table"
+
+        INSERT_FUNCTION_NAME_CUSTOM_COLUMN: "insert_into_loose_foreign_keys_deleted_records_with"
+
+        # This adds a LFK standard trigger to tables, where the loose_foreign_keys_deleted_records
+        # record is referencing the table. This should be used for non-partitioned tables.
+        def track_record_deletions: (untyped table_name) -> untyped
+
+        # This is used to track deletions on partitioned tables and their partitions.
+        # parent_table is the table name that is insert into loose_foreign_keys_deleted_records table
+        # it defaults to the table_name, and that's for when we track deletions on partitioned (parent) tables.
+        def track_record_deletions_override_table_name: (untyped table_identifier, ?untyped? parent_table) -> untyped
+
+        # This method also works on tables that are not in the default schema, but
+        # the full table identifier has to be passed in this case.
+        def untrack_record_deletions: (untyped table, ?trigger_name: untyped?) -> untyped
+
+        def has_loose_foreign_key?: (untyped table) -> untyped
+
+        def track_record_deletions_with_custom_column: (untyped table, column: untyped, ?parent_table: untyped?, ?function_name: untyped?, ?trigger_name: untyped?) -> untyped
+
+        private
+
+        def record_deletion_trigger_name: (untyped table) -> ::String
+
+        def validate_column_uniqueness!: (untyped table, untyped column) -> (nil | untyped)
+
+        def validate_identifier_length!: (untyped name) -> (nil | untyped)
+      end
+    end
+  end
+end

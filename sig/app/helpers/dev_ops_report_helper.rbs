@@ -1,0 +1,15 @@
+module DevOpsReportHelper
+  def devops_score_metrics: (untyped metric) -> (::Hash[untyped, untyped] | { averageScore: untyped, cards: untyped, createdAt: untyped })
+
+  private
+
+  def format_score: (untyped score) -> untyped
+
+  def score_level: (untyped score) -> ({ label: untyped, variant: "neutral" } | { label: untyped, variant: "neutral" } | { label: untyped, variant: "success" })
+
+  def average_score_level: (untyped score) -> ({ label: untyped, variant: "danger", icon: "status-failed" } | { label: untyped, variant: "warning", icon: "status-alert" } | { label: untyped, variant: "success", icon: "status_success_solid" })
+
+  def average_score_data: (untyped metric) -> { value: untyped, scoreLevel: untyped }
+
+  def devops_score_card_data: (untyped metric) -> untyped
+end

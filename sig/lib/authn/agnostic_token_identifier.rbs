@@ -1,0 +1,17 @@
+module Authn
+  class AgnosticTokenIdentifier
+    NotFoundError: untyped
+
+    UnsupportedTokenError: untyped
+
+    TOKEN_TYPES: ::Array[untyped]
+
+    def self.token_for: (untyped plaintext, untyped source) -> untyped
+
+    def self.token?: (untyped plaintext) -> untyped
+
+    def self.token_type: (untyped plaintext) -> untyped
+
+    def self.name: (untyped plaintext) -> (nil | untyped)
+  end
+end

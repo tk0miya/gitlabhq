@@ -1,0 +1,28 @@
+module Packages
+  module Cargo
+    class ExtractMetadataContentService
+      @cargo_file_content: untyped
+
+      LENGTH_BYTE_SIZE: 4
+
+      MAX_CRATE_BYTE_SIZE: untyped
+
+      def initialize: (untyped cargo_file_content) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      # Reference: https://doc.rust-lang.org/cargo/reference/registry-web-api.html#publish
+      def extract_metadata: () -> { index_content: untyped, crate_data: untyped }
+
+      def read_exact: (untyped length, untyped label) -> untyped
+
+      def read_length: (untyped label) -> untyped
+
+      def read_json: (length: untyped) -> untyped
+
+      def read_content: (length: untyped) -> untyped
+    end
+  end
+end

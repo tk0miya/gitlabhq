@@ -1,0 +1,31 @@
+module Authz
+  class GranularScope < ApplicationRecord
+    COPYABLE_ATTRIBUTES: ::Array["organization_id" | "namespace_id" | "permissions" | "access"]
+
+    module Access
+      PERSONAL_PROJECTS: :personal_projects
+
+      ALL_MEMBERSHIPS: :all_memberships
+
+      SELECTED_MEMBERSHIPS: :selected_memberships
+
+      USER: :user
+
+      INSTANCE: :instance
+
+      LEVELS: ::Hash[untyped, 0 | 1 | 2 | 3 | 4]
+    end
+
+    def self.permitted_for_boundary?: (untyped boundary, untyped permissions) -> untyped
+
+    def self.token_permissions: (untyped boundary) -> untyped
+
+    def expanded_permissions: () -> untyped
+
+    def build_copy: () -> untyped
+
+    private
+
+    def organization_match: () -> (nil | untyped)
+  end
+end

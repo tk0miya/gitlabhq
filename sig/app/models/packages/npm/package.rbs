@@ -1,0 +1,16 @@
+module Packages
+  module Npm
+    class Package < Packages::Package
+      def sync_npm_metadata_cache: () -> untyped
+
+      private
+
+      def npm_package_already_taken: () -> (nil | untyped)
+
+      # https://docs.gitlab.com/ee/user/packages/npm_registry/#package-naming-convention
+      def follows_npm_naming_convention?: () -> (false | untyped)
+
+      def package_exists_in_hierarchy?: () -> (false | untyped)
+    end
+  end
+end

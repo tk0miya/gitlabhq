@@ -1,0 +1,15 @@
+module LooseForeignKeys
+  class CiPipelinesBuildsCleanupCronWorker
+    include ApplicationWorker
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+
+    private
+
+    def initialize_modification_tracker: () -> ::Array[untyped]
+  end
+end

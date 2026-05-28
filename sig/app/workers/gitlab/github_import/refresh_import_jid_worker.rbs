@@ -1,0 +1,11 @@
+module Gitlab
+  module GithubImport
+    class RefreshImportJidWorker
+      include ApplicationWorker
+
+      include GithubImport::Queue
+
+      def self.perform_in_the_future: (*untyped args) -> untyped
+    end
+  end
+end

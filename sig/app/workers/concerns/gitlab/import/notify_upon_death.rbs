@@ -1,0 +1,15 @@
+# NotifyUponDeath can be included into a worker class if it should
+# notify any JobWaiter instances upon being moved to the Sidekiq dead queue.
+#
+# Note that this will only notify the waiter upon graceful termination, a
+# SIGKILL will still result in the waiter _not_ being notified.
+#
+# Workers including this module must have jobs passed where the last
+# argument is the key to notify, as a String.
+module Gitlab
+  module Import
+    module NotifyUponDeath
+      extend ActiveSupport::Concern
+    end
+  end
+end

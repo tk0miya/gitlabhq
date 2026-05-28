@@ -1,0 +1,11 @@
+module Gitlab
+  module ErrorTracking
+    module Processor
+      module SanitizeErrorMessageProcessor
+        extend Gitlab::ErrorTracking::Processor::Concerns::ProcessesExceptions
+
+        def self.call: (untyped event) -> untyped
+      end
+    end
+  end
+end

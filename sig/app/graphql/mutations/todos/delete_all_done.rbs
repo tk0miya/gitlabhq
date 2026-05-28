@@ -1,0 +1,11 @@
+module Mutations
+  module Todos
+    class DeleteAllDone < ::Mutations::BaseMutation
+      def resolve: (?updated_before: untyped?) -> { message: untyped, errors: ::Array[untyped] }
+
+      private
+
+      def verify_rate_limit!: () -> (nil | untyped)
+    end
+  end
+end

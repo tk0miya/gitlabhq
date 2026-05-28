@@ -1,0 +1,16 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillDesignManagementRepositoriesProjectNamespaceId < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      # Sets the namespace_id on design_management_repositories to the corresponding project's project_namespace_id
+      def update_design_management_repositories_namespace_id!: (untyped sub_batch_ids) -> untyped
+
+      # Sets the namespace_id on design_management_repository_states to the corresponding
+      # design_management_repositories's namespace_id
+      def update_design_management_repository_states_namespace_id!: (untyped sub_batch_ids) -> untyped
+    end
+  end
+end

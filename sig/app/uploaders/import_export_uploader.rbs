@@ -1,0 +1,19 @@
+class ImportExportUploader < AttachmentUploader
+  EXTENSION_ALLOWLIST: ::Array["tar.gz" | "gz"]
+
+  def self.workhorse_local_upload_path: () -> untyped
+
+  def extension_whitelist: () -> untyped
+
+  def move_to_cache: () -> (untyped | false)
+
+  def work_dir: () -> untyped
+
+  def cache_dir: () -> untyped
+
+  def mounted_as: () -> untyped
+
+  private
+
+  def dynamic_segment: () -> untyped
+end

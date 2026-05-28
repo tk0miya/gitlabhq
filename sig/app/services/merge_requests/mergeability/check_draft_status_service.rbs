@@ -1,0 +1,11 @@
+module MergeRequests
+  module Mergeability
+    class CheckDraftStatusService < CheckBaseService
+      def execute: () -> untyped
+
+      def skip?: () -> untyped
+
+      def cacheable?: () -> false
+    end
+  end
+end

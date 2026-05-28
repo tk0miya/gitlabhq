@@ -1,0 +1,11 @@
+module Mutations
+  module Ci
+    module Runner
+      class Delete < BaseMutation
+        RunnerID: untyped
+
+        def resolve: (id: untyped, **untyped runner_attrs) -> { errors: untyped }
+      end
+    end
+  end
+end

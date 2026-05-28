@@ -1,0 +1,21 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      module PullRequestNotes
+        class BaseNoteDiffImporter < BaseImporter
+          PARENT_COMMENT_CONTEXT_LENGTH: 80
+
+          def build_position: (untyped merge_request, untyped pr_comment) -> untyped
+
+          def create_diff_note: (untyped merge_request, untyped comment, untyped position, ?untyped? discussion_id) -> untyped
+
+          def pull_request_comment_attributes: (untyped comment) -> { project: untyped, note: untyped, author_id: untyped, created_at: untyped, updated_at: untyped }
+
+          def author: (untyped comment) -> untyped
+
+          def create_basic_fallback_note: (untyped merge_request, untyped comment, untyped position) -> untyped
+        end
+      end
+    end
+  end
+end

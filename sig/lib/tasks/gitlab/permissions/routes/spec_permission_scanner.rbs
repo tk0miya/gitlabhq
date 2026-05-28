@@ -1,0 +1,117 @@
+module Tasks
+  module Gitlab
+    module Permissions
+      module Routes
+        # Scans spec files for `it_behaves_like 'authorizing granular token permissions'`
+        # to determine which permissions have test coverage.
+        class SpecPermissionScanner
+          @root_path: untyped
+
+          @route_counts: untyped
+
+          @route_details: untyped
+
+          @seen_route_permissions: untyped
+
+          @spec_files: untyped
+
+          @file_lines_cache: untyped
+
+          @test_counts: untyped
+
+          @dynamic_patterns: untyped
+
+          @scanned: untyped
+
+          @shared_example_maps: untyped
+
+          @todo_entries: untyped
+
+          # Matches permission symbols after `it_behaves_like 'authorizing granular token permissions'`
+          # Also matches wrapper shared examples like 'granular token permissions authorizable'
+          # Handles: :symbol, [:sym1, :sym2], %i[sym1 sym2], and dynamic variables (ignored)
+          PERMISSION_TEST_LINE_PATTERN: ::Regexp
+
+          TODO_FILE: untyped
+
+          EACH_LOOP_LOOKBACK_LINES: 15
+
+          SPEC_DIRS: ::Array["spec/requests/api" | "ee/spec/requests/api" | "ee/spec/requests/ee/api" | "spec/support/shared_examples/requests/api" | "ee/spec/support/shared_examples/requests/api"]
+
+          SHARED_EXAMPLES_PATTERN: ::Regexp
+
+          def initialize: (?untyped root_path) -> void
+
+          # Registers a route for test coverage tracking.
+          # Call once per route+permission combination.
+          # route_id: "GET /projects/:id/notes"
+          # permission: :read_note
+          # route_info: { method:, path:, source:, spec_file: }
+          def add_route: (route_id: untyped, permission: untyped, route_info: untyped) -> (nil | untyped)
+
+          # Returns permissions with fewer tests than routes.
+          # Each entry: { permission:, route_count:, test_count:, routes: [...] }
+          def insufficient_test_coverage: () -> untyped
+
+          # Returns how many times this permission appears in test files.
+          # Checks both concrete permission names and dynamic regex patterns.
+          def test_count: (untyped permission) -> untyped
+
+          # Returns true if this permission is listed in the TODO file.
+          def in_todo?: (untyped permission) -> untyped
+
+          # Derives the suggested spec file path from an API source file path.
+          # Used in error messages as a hint -- the scanner checks all spec dirs globally,
+          # not just this path.
+          # e.g. lib/api/notes.rb        -> spec/requests/api/notes_spec.rb
+          #      ee/lib/api/epics.rb     -> ee/spec/requests/api/epics_spec.rb
+          #      ee/lib/ee/api/groups.rb -> ee/spec/requests/api/groups_spec.rb
+          def derive_spec_path: (untyped source_file) -> untyped
+
+          private
+
+          def spec_files: () -> untyped
+
+          def file_lines: (untyped file) -> untyped
+
+          # Scans all spec files once and populates @test_counts and @dynamic_patterns.
+          def ensure_scanned!: () -> (nil | untyped)
+
+          # Counts how many times each shared_examples block is included across all spec files.
+          # Accounts for .each loops wrapping it_behaves_like calls.
+          # Returns { "example name" => count }.
+          def build_shared_example_inclusions: () -> untyped
+
+          # Checks if a line is inside an .each block by walking backwards to find
+          # %w[...].each, %i[...].each, or [...].each patterns. Returns the array size
+          # as multiplier, or 1 if not inside an each loop.
+          # Handles arrays spanning multiple lines.
+          def each_loop_multiplier: (untyped lines, untyped line_idx) -> untyped
+
+          def scan_file: (untyped file, untyped inclusions) -> untyped
+
+          def extract_permission_args: (untyped args) -> untyped
+
+          # Converts :"read_#{var}_discussion" into /\Aread_\w+_discussion\z/
+          def build_dynamic_pattern: (untyped args) -> untyped
+
+          # Determines how many times a permission test on a given line will run.
+          # If the line is inside a shared_examples block, returns how many times
+          # that block is included across all spec files. Otherwise returns 1.
+          def multiplier_for_line: (untyped file, untyped line_idx, untyped inclusions) -> (1 | untyped)
+
+          # Pre-computes a map of line_index => enclosing shared_examples name.
+          # Uses indentation to determine block boundaries: lines indented deeper
+          # than the shared_examples declaration are inside the block.
+          def shared_example_map: (untyped file) -> untyped
+
+          def build_shared_example_map: (untyped lines) -> untyped
+
+          def todo_entries: () -> untyped
+
+          def load_todo_entries: () -> untyped
+        end
+      end
+    end
+  end
+end

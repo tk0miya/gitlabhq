@@ -1,0 +1,61 @@
+module Packages
+  module TerraformModule
+    module Metadata
+      class ExtractFilesService
+        @archive_file: untyped
+
+        @metadata: untyped
+
+        MAX_FILE_SIZE: untyped
+
+        MAX_PROCESSED_FILES_COUNT: 400
+
+        README_FILES: ::Array["README.md" | "README"]
+
+        SUBMODULES_REGEX: ::Regexp
+
+        EXAMPLES_REGEX: ::Regexp
+
+        ExtractionError: untyped
+
+        def initialize: (untyped archive_file) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader archive_file: untyped
+
+        attr_reader metadata: untyped
+
+        def parse_file: () -> untyped
+
+        def process_archive: () { (untyped) -> untyped } -> untyped
+
+        def process_tar_entry: (untyped tmp_file, untyped entry) -> (nil | untyped)
+
+        def process_zip_entry: (untyped tmp_file, untyped entry) -> untyped
+
+        def module_type_from_path: (untyped path) -> (nil | untyped)
+
+        def root?: (untyped path) -> untyped
+
+        def submodule?: (untyped path) -> untyped
+
+        def example?: (untyped path) -> untyped
+
+        def match_directory_pattern?: (untyped path, untyped regex, untyped suffix) -> untyped
+
+        def parse_and_merge_metadata: (untyped file, untyped entry_name, untyped module_type) -> untyped
+
+        def deep_merge_metadata: (untyped parsed_content) -> (nil | untyped)
+
+        def aggregate_metadata_into_root: () -> untyped
+
+        def aggregate_submodules_and_examples: (untyped data, ?clear_data: bool) -> (nil | untyped)
+
+        def ensure_root_metadata_exists: () -> untyped
+      end
+    end
+  end
+end

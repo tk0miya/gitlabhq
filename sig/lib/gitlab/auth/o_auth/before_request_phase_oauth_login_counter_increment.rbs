@@ -1,0 +1,13 @@
+module Gitlab
+  module Auth
+    module OAuth
+      module BeforeRequestPhaseOauthLoginCounterIncrement
+        def self.counter: () -> untyped
+
+        def self.call: (untyped env) -> (nil | untyped)
+
+        def self.current_provider_name_from: (untyped env) -> untyped
+      end
+    end
+  end
+end

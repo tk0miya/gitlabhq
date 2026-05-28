@@ -1,0 +1,33 @@
+module Authn
+  module Tokens
+    class DeployToken
+      @revocable: untyped
+
+      @source: untyped
+
+      @current_user: untyped
+
+      def self.prefix?: (untyped plaintext) -> untyped
+
+      attr_reader revocable: untyped
+
+      attr_reader source: untyped
+
+      def initialize: (untyped plaintext, untyped source) -> void
+
+      def present_with: () -> untyped
+
+      def revoke!: (untyped current_user) -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      def service_by_type: () -> untyped
+
+      def project_revoke_service: () -> untyped
+
+      def group_revoke_service: () -> untyped
+    end
+  end
+end

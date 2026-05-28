@@ -1,0 +1,29 @@
+module Peek
+  module Views
+    class Memory < View
+      @thread_memory: untyped
+
+      MEM_TOTAL_LABEL: "Total"
+
+      MEM_OBJECTS_LABEL: "Objects allocated"
+
+      MEM_MALLOCS_LABEL: "Allocator calls"
+
+      MEM_BYTES_LABEL: "Large allocations"
+
+      def initialize: (?::Hash[untyped, untyped] options) -> void
+
+      def results: () -> (untyped | { calls: untyped, summary: ::Hash[untyped, untyped], details: ::Array[{ item_header: untyped, item_content: "Total memory use of this request. This includes both occupancy of existing heap slots as well as newly allocated memory due to large objects. Not adjusted for freed memory. Lower is better." } | { item_header: untyped, item_content: "Total number of objects allocated by the Ruby VM during this request. Not adjusted for objects that were freed again. Lower is better." } | { item_header: untyped, item_content: "Total number of times Ruby had to call `malloc`, the C memory allocator. This is necessary for objects that are too large to fit into a 40 Byte slot in Ruby's managed heap. Lower is better." } | { item_header: untyped, item_content: "Memory allocated for objects that did not fit into a heap slot. Not adjusted for memory that was freed again. Lower is better." }] })
+
+      private
+
+      attr_reader thread_memory: untyped
+
+      def setup_subscribers: () -> untyped
+
+      def byte_string: (untyped bytes) -> untyped
+
+      def number_string: (untyped num) -> untyped
+    end
+  end
+end

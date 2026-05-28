@@ -1,0 +1,21 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        # Usage example
+        #
+        # In metric YAML definition:
+        #
+        # instrumentation_class: TotalCountMetric
+        # options:
+        #   event: commit_pushed
+        #
+        class TotalCountMetric < BaseMetric
+          include Gitlab::UsageDataCounters::RedisCounter
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

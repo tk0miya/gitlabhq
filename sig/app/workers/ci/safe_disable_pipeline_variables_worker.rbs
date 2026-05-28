@@ -1,0 +1,11 @@
+module Ci
+  class SafeDisablePipelineVariablesWorker
+    include ApplicationWorker
+
+    attr_accessor group_id: untyped
+
+    attr_accessor current_user_id: untyped
+
+    def perform: (untyped current_user_id, untyped group_id) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,15 @@
+module API
+  class MlModelPackages < ::API::Base
+    include APIGuard
+
+    include ::API::Helpers::Authentication
+
+    ML_MODEL_PACKAGES_REQUIREMENTS: { model_name: untyped, file_name: untyped }
+
+    FAILURES: ::Array[{ code: 401, message: "Unauthorized" } | { code: 403, message: "Forbidden" } | { code: 404, message: "Not Found" }]
+
+    ALLOWED_STATUSES: ::Array["default" | "hidden"]
+
+    CANDIDATE_PREFIX: "candidate:"
+  end
+end

@@ -1,0 +1,25 @@
+module FeatureFlags
+  class HookService
+    @feature_flag: untyped
+
+    @current_user: untyped
+
+    @project: untyped
+
+    HOOK_NAME: :feature_flag_hooks
+
+    def initialize: (untyped feature_flag, untyped current_user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader feature_flag: untyped
+
+    attr_reader current_user: untyped
+
+    def project: () -> untyped
+
+    def hook_data: () -> untyped
+  end
+end

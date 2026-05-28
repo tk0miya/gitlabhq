@@ -1,0 +1,19 @@
+module Members
+  class ApproveAccessRequestService < Members::BaseService
+    include Members::MembershipLockValidation
+
+    def execute: (untyped access_requester, ?skip_authorization: bool, ?skip_log_audit_event: bool) -> untyped
+
+    private
+
+    def handle_request_acceptance: (untyped access_requester) -> untyped
+
+    def after_execute: (member: untyped, skip_log_audit_event: untyped) -> untyped
+
+    def validate_access!: (untyped access_requester) -> (untyped | nil)
+
+    def limit_to_guest_if_billable_promotion_restricted: (untyped access_requester) -> nil
+
+    def can_approve_access_requester?: (untyped access_requester) -> untyped
+  end
+end

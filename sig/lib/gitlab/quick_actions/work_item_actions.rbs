@@ -1,0 +1,80 @@
+module Gitlab
+  module QuickActions
+    module WorkItemActions
+      extend ActiveSupport::Concern
+
+      include Gitlab::QuickActions::Dsl
+
+      private
+
+      def update_type: (untyped type_name, untyped command) -> untyped
+
+      # Resolves a work item type by user-entered name, supporting both system-defined
+      # and custom types. The `params` hint advertises a quoted form (`"Type name"`) so
+      # multi-word custom type names are passed through as a single argument; we strip
+      # those surrounding quotes here and titleize the result so that inputs like
+      # `"bug report"` or `bug report` both normalize to `Bug Report` for matching.
+      #
+      # Uses `filtered_types` (not `all` / `find_by_name`) so license- and feature-flag-
+      # gated types are excluded from resolution. Without this filter, `/type Objective`
+      # could resolve on a project with the `okrs_mvc` flag disabled, `/type Epic` could
+      # resolve without an `:epics` license, etc., letting users bypass UI-level gating.
+      # Match exact name first against the titleized input, then fall back to a
+      # case-insensitive match to tolerate types whose stored name does not match
+      # `titleize` output (e.g. acronyms like `API`).
+      def find_work_item_type_by_name: (untyped type_name) -> (nil | untyped)
+
+      def validate_type: (untyped type) -> (untyped | nil)
+
+      def extract_work_items: (untyped params) -> (nil | untyped)
+
+      def validate_promote_to: (untyped type) -> (untyped | nil)
+
+      def current_type: () -> untyped
+
+      def supports_promotion?: () -> untyped
+
+      def promotion_allowed?: () -> untyped
+
+      def type_change_allowed?: () -> true
+
+      def supports_promote_to?: (untyped type_name) -> untyped
+
+      def promote_to_map: () -> untyped
+
+      def error_msg: (untyped reason, ?action: ::String, ?error_message: untyped?) -> untyped
+
+      def success_msg: () -> { type: untyped, promote_to: untyped, set_parent: untyped, remove_parent: untyped, add_child: untyped, remove_child: untyped }
+
+      def work_item_parent: () -> untyped
+
+      def supports_children?: () -> untyped
+
+      def has_children?: () -> untyped
+
+      def can_admin_link?: () -> untyped
+
+      def can_admin_set_relation?: () -> untyped
+
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables -- @updates is already defined and part of
+      # Gitlab::QuickActions::Dsl implementation
+      def apply_type_commands: (untyped new_type, untyped command) -> untyped
+
+      # overridden in EE
+      def handle_set_epic: (untyped _) -> nil
+
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables -- @updates is already defined and part of
+      # Gitlab::QuickActions::Dsl implementation
+      def handle_set_parent: (untyped parent_param) -> untyped
+
+      # overridden in EE
+      def show_epic_alias?: () -> nil
+
+      def set_parent_validation_message: (untyped parent, untyped child) -> (untyped | nil)
+
+      def fetch_child_work_item: (untyped child) -> (untyped | untyped | nil)
+
+      def hierarchy_relationship_allowed?: (untyped parent, untyped child_work_item) -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+class JiraConnect::SubscriptionsController < JiraConnect::ApplicationController
+  @subscriptions: untyped
+
+  ALLOWED_IFRAME_ANCESTORS: ::Array[:self | "https://*.atlassian.net" | "https://*.jira.com"]
+
+  def index: () -> untyped
+
+  def destroy: () -> untyped
+
+  private
+
+  def allow_self_managed_content_security_policy: () -> (nil | untyped)
+
+  def destroy_service: () -> untyped
+
+  def allow_rendering_in_iframe: () -> untyped
+
+  def allowed_instance_connect_src: () -> ::Array[untyped]
+end

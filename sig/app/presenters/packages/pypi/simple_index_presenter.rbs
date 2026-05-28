@@ -1,0 +1,15 @@
+# Display package repository index according to PyPI
+# Simple API: https://peps.python.org/pep-0503/
+module Packages
+  module Pypi
+    class SimpleIndexPresenter < SimplePresenterBase
+      private
+
+      def links: () -> untyped
+
+      def build_pypi_package_path: (untyped package) -> untyped
+
+      def body_name: () -> untyped
+    end
+  end
+end

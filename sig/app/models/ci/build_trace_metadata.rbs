@@ -1,0 +1,31 @@
+module Ci
+  class BuildTraceMetadata < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    MAX_ATTEMPTS: 5
+
+    def self.find_or_upsert_for!: (untyped build_id, untyped partition_id, untyped project_id) -> untyped
+
+    # The job is retried around 5 times during the 7 days retention period for
+    # trace chunks as defined in `Ci::BuildTraceChunks::RedisBase::CHUNK_REDIS_TTL`
+    def can_attempt_archival_now?: () -> (false | true | untyped)
+
+    def archival_attempts_available?: () -> untyped
+
+    def increment_archival_attempts!: () -> untyped
+
+    def track_archival!: (untyped trace_artifact_id, untyped checksum) -> untyped
+
+    def archival_attempts_message: () -> ("The job can not be archived right now." | "The job is out of archival attempts.")
+
+    def remote_checksum_valid?: () -> untyped
+
+    def successfully_archived?: () -> (false | untyped)
+
+    private
+
+    def backoff: () -> untyped
+
+    def set_project_id: () -> untyped
+  end
+end

@@ -1,0 +1,19 @@
+module IncidentManagement
+  class CloseIncidentWorker
+    @alert_bots: untyped
+
+    include ApplicationWorker
+
+    def perform: (untyped issue_id) -> (nil | untyped)
+
+    private
+
+    def user: (untyped incident) -> untyped
+
+    def alert_bot_for_organization_id: (untyped organization_id) -> untyped
+
+    def close_incident: (untyped incident) -> untyped
+
+    def add_system_note: (untyped incident) -> (nil | untyped)
+  end
+end

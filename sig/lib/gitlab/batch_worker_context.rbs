@@ -1,0 +1,27 @@
+module Gitlab
+  class BatchWorkerContext
+    @objects: untyped
+
+    @arguments_proc: untyped
+
+    @context_proc: untyped
+
+    @context_by_arguments: untyped
+
+    def initialize: (untyped objects, arguments_proc: untyped, context_proc: untyped) -> void
+
+    def arguments: () -> untyped
+
+    def context_for: (untyped arguments) -> untyped
+
+    private
+
+    attr_reader objects: untyped
+
+    attr_reader arguments_proc: untyped
+
+    attr_reader context_proc: untyped
+
+    def context_by_arguments: () -> untyped
+  end
+end

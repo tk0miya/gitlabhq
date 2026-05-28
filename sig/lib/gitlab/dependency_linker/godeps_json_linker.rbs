@@ -1,0 +1,11 @@
+module Gitlab
+  module DependencyLinker
+    class GodepsJsonLinker < JsonLinker
+      NESTED_REPO_REGEX: ::Regexp
+
+      private
+
+      def link_dependencies: () -> untyped
+    end
+  end
+end

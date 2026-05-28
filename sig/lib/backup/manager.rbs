@@ -1,0 +1,112 @@
+module Backup
+  class Manager
+    @progress: untyped
+
+    @backup_tasks: untyped
+
+    @options: untyped
+
+    @metadata: untyped
+
+    @logger: untyped
+
+    @remote_storage: untyped
+
+    @backup_file_list: untyped
+
+    @tar_file: untyped
+
+    include ::Gitlab::TaskHelpers
+
+    FILE_NAME_SUFFIX: "_gitlab_backup.tar"
+
+    MANIFEST_NAME: "backup_information.yml"
+
+    # Use the content from stdin instead of an actual filepath (used by tar as input or output)
+    USE_STDIN: "-"
+
+    attr_reader remote_storage: untyped
+
+    attr_reader options: untyped
+
+    attr_reader logger: untyped
+
+    attr_reader progress: untyped
+
+    def initialize: (untyped progress, ?backup_tasks: untyped?) -> void
+
+    # @return [Boolean] whether all tasks succeeded
+    def create: () -> untyped
+
+    # @param [Gitlab::Backup::Tasks::Task] task
+    # @return [Boolean] whether the task succeeded
+    def run_create_task: (untyped task) -> untyped
+
+    def restore: () -> untyped
+
+    # Verify whether a backup is compatible with current GitLab's version
+    def verify!: () -> untyped
+
+    # @param [Gitlab::Backup::Tasks::Task] task
+    def run_restore_task: (untyped task) -> untyped
+
+    # Finds a task by id
+    #
+    # @param [String] task_id
+    # @return [Backup::Tasks::Task]
+    def find_task: (untyped task_id) -> untyped
+
+    private
+
+    # @return [Hash<String, Backup::Tasks::Task>]
+    def backup_tasks: () -> untyped
+
+    def run_all_create_tasks: () -> untyped
+
+    def run_all_restore_tasks: () -> untyped
+
+    def run_unpack: (untyped backup_id) -> untyped
+
+    def read_backup_information: () -> untyped
+
+    def write_backup_information: () -> untyped
+
+    def build_backup_information: () -> (nil | untyped)
+
+    def update_backup_information: () -> untyped
+
+    def backup_information: () -> untyped
+
+    def pack: () -> untyped
+
+    def upload: () -> untyped
+
+    def cleanup: () -> untyped
+
+    def remove_backup_path: (untyped path) -> (nil | untyped)
+
+    def remove_tmp: () -> untyped
+
+    def remove_old: () -> (nil | untyped)
+
+    def tar_version: () -> untyped
+
+    def backup_file?: (untyped file) -> untyped
+
+    def manifest_filepath: () -> untyped
+
+    def backup_path: () -> untyped
+
+    def backup_file_list: () -> untyped
+
+    def backup_contents: () -> untyped
+
+    def tar_file: () -> untyped
+
+    def full_backup_id: () -> untyped
+
+    def backup_id: () -> (untyped | untyped | ::String)
+
+    def check_preconditions: () -> untyped
+  end
+end

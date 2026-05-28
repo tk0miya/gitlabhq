@@ -1,0 +1,27 @@
+module Banzai
+  module Querying
+    # Searches a Nokogiri document using a CSS query, optionally optimizing it
+    # whenever possible.
+    #
+    # document          - A document/element to search.
+    # query             - The CSS query to use.
+    # reference_options - A hash with nodes filter options
+    #
+    # Returns an array of Nokogiri::XML::Element objects if location is specified
+    # in reference_options. Otherwise it would a Nokogiri::XML::NodeSet.
+    def self?.css: (untyped document, untyped query, ?::Hash[untyped, untyped] reference_options) -> untyped
+
+    def self?.restrict_to_p_nodes_at_root: (untyped xpath) -> untyped
+
+    def self?.filter_nodes: (untyped nodes, untyped reference_options) -> untyped
+
+    def self?.filter_nodes_at_beginning?: (untyped reference_options) -> untyped
+
+    # Selects child nodes if they are present in the beginning among other siblings.
+    #
+    # nodes - A Nokogiri::XML::NodeSet.
+    #
+    # Returns an array of Nokogiri::XML::Element objects.
+    def self?.filter_nodes_at_beginning: (untyped nodes) -> untyped
+  end
+end

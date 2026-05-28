@@ -1,0 +1,23 @@
+class CleanupContainerRepositoryWorker
+  @current_user: untyped
+
+  @container_repository: untyped
+
+  @params: untyped
+
+  include ApplicationWorker
+
+  include CronjobChildWorker
+
+  attr_reader container_repository: untyped
+
+  attr_reader current_user: untyped
+
+  def perform: (untyped current_user_id, untyped container_repository_id, untyped params) -> (nil | untyped)
+
+  private
+
+  def valid?: () -> untyped
+
+  def project: () -> untyped
+end

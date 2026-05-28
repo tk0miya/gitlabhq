@@ -1,0 +1,43 @@
+module Packages
+  module Conan
+    class MetadataExtractionService
+      @package_file: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ExtractionError: untyped
+
+      SECTION_HEADER_REGEX: ::Regexp
+
+      RECIPE_HASH_SECTION: "recipe_hash"
+
+      ALLOWED_SECTIONS: ::Array["requires" | "recipe_hash" | "options" | "settings"]
+
+      def initialize: (untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_file: untyped
+
+      def parse_conaninfo_content: () -> untyped
+
+      def parse_file_contents: (untyped file) -> untyped
+
+      def validate_recipe_hash_section: (untyped section, untyped data) -> (nil | untyped)
+
+      def process_section_line: (untyped section, untyped line, untyped data) -> untyped
+
+      def process_key_value_line: (untyped line, untyped data) -> untyped
+
+      def process_array_line: (untyped line, untyped data) -> untyped
+
+      def allowed_section?: (untyped section) -> untyped
+
+      def section_name_from: (untyped line) -> untyped
+
+      def package_reference: () -> untyped
+    end
+  end
+end

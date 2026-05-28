@@ -1,0 +1,36 @@
+class Gitlab::Ci::Build::AutoRetry
+  @build: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  DEFAULT_RETRIES: { scheduler_failure: 2 }
+
+  RETRY_OVERRIDES: { ci_quota_exceeded: 0, no_matching_runner: 0, missing_dependency_failure: 0, forward_deployment_failure: 0, environment_creation_failure: 0 }
+
+  def initialize: (untyped build) -> void
+
+  def allowed?: () -> (false | untyped)
+
+  private
+
+  def within_max_retry_limit?: () -> untyped
+
+  def max_allowed_retries: () -> untyped
+
+  def options_retry_max: () -> (untyped | nil)
+
+  def options_retry_when: () -> untyped
+
+  def options_retry_exit_codes: () -> untyped
+
+  def retry_on_reason_or_always?: () -> untyped
+
+  def retry_on_exit_code?: () -> (false | untyped)
+
+  # The format of the retry option changed in GitLab 11.5: Before it was
+  # integer only, after it is a hash. New builds are created with the new
+  # format, but builds created before GitLab 11.5 and saved in database still
+  # have the old integer only format. This method returns the retry option
+  # normalized as a hash in 11.5+ format.
+  def options_retry: () -> untyped
+end

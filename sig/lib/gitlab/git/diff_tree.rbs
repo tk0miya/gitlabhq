@@ -1,0 +1,17 @@
+module Gitlab
+  module Git
+    # Represents a tree-ish object for git diff-tree command
+    # See: https://git-scm.com/docs/git-diff-tree
+    class DiffTree
+      @left_tree_id: untyped
+
+      @right_tree_id: untyped
+
+      attr_reader left_tree_id: untyped
+
+      attr_reader right_tree_id: untyped
+
+      def initialize: (untyped left_tree_id, untyped right_tree_id) -> void
+    end
+  end
+end

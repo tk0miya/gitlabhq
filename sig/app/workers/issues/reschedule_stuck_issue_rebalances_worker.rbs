@@ -1,0 +1,9 @@
+module Issues
+  class RescheduleStuckIssueRebalancesWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> (nil | untyped)
+  end
+end

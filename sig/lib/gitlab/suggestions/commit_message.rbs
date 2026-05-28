@@ -1,0 +1,32 @@
+module Gitlab
+  module Suggestions
+    class CommitMessage
+      @user: untyped
+
+      @suggestion_set: untyped
+
+      @custom_message: untyped
+
+      DEFAULT_SUGGESTION_COMMIT_MESSAGE: "Apply %{suggestions_count} suggestion(s) to %{files_count} file(s)\n\n%{co_authored_by}"
+
+      def initialize: (untyped user, untyped suggestion_set, ?untyped? custom_message) -> void
+
+      def message: () -> untyped
+
+      def self.format_paths: (untyped paths) -> untyped
+
+      private
+
+      attr_reader user: untyped
+
+      attr_reader suggestion_set: untyped
+
+      PLACEHOLDERS: { "branch_name" => untyped, "files_count" => untyped, "file_paths" => untyped, "project_name" => untyped, "project_path" => untyped, "user_full_name" => untyped, "username" => untyped, "suggestions_count" => untyped, "co_authored_by" => untyped }
+
+      # This regex is built dynamically using the keys from the PLACEHOLDER struct.
+      # So, we can easily add new placeholder just by modifying the PLACEHOLDER hash.
+      # This regex will build the new PLACEHOLDER_REGEX with the new information
+      PLACEHOLDERS_REGEX: untyped
+    end
+  end
+end

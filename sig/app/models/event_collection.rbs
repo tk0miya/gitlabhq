@@ -1,0 +1,57 @@
+# A collection of events to display in an event list.
+#
+# An EventCollection is meant to be used for displaying events to a user (e.g.
+# in a controller), it's not suitable for building queries that are used for
+# building other queries.
+class EventCollection
+  @projects: untyped
+
+  @limit: untyped
+
+  @offset: untyped
+
+  @filter: untyped
+
+  @groups: untyped
+
+  @preserve_projects_order: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader filter: untyped
+
+  # To prevent users from putting too much pressure on the database by cycling
+  # through thousands of events we put a limit on the number of pages.
+  MAX_PAGE: 10
+
+  # projects - An ActiveRecord::Relation object that returns the projects for
+  #            which to retrieve events.
+  # filter - An EventFilter instance to use for filtering events.
+  # preserve_projects_order - If true, retains the :order clause for projects.
+  def initialize: (untyped projects, ?limit: ::Integer, ?offset: ::Integer, ?filter: untyped?, ?groups: untyped?, ?preserve_projects_order: bool) -> void
+
+  # Returns an Array containing the events.
+  def to_a: () -> (::Array[untyped] | untyped)
+
+  def all_project_events: () -> untyped
+
+  private
+
+  def project_events: () -> untyped
+
+  def group_events: () -> untyped
+
+  def project_and_group_events: () -> untyped
+
+  def in_operator_optimized_relation: (untyped parent_column, untyped parents, untyped parent_model) -> untyped
+
+  def paginate_events: (untyped events) -> untyped
+
+  def base_relation: () -> untyped
+
+  def current_page: () -> untyped
+
+  def projects: () -> untyped
+
+  def groups: () -> untyped
+end

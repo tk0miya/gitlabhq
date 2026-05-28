@@ -1,0 +1,29 @@
+module Database
+  class BatchedBackgroundMigrationsFinder
+    @params: untyped
+
+    @migrations: untyped
+
+    RETURNED_MIGRATIONS: 20
+
+    def initialize: (params: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader params: untyped
+
+    def migrations: () -> untyped
+
+    def filter_by_job_class_name: () -> (nil | untyped)
+
+    def batched_migration_class: () -> untyped
+
+    def schema: () -> untyped
+
+    def base_model: () -> untyped
+
+    def database_name: () -> untyped
+  end
+end

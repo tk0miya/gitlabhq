@@ -1,0 +1,20 @@
+module Groups
+  module Registry
+    class RepositoriesController < Groups::ApplicationController
+      include PackagesHelper
+
+      include ::Registry::ConnectionErrorsHandler
+
+      def index: () -> untyped
+
+      # The show action renders index to allow frontend routing to work on page refresh
+      def show: () -> untyped
+
+      private
+
+      def verify_container_registry_enabled!: () -> (untyped | nil)
+
+      def authorize_read_container_image!: () -> (untyped | nil)
+    end
+  end
+end

@@ -1,0 +1,41 @@
+module Packages
+  module TerraformModule
+    module Metadata
+      class ProcessFileService
+        @file: untyped
+
+        @path: untyped
+
+        @module_type: untyped
+
+        README_FILES: ::Array["README.md" | "README"]
+
+        def initialize: (untyped file, untyped path, untyped module_type) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader file: untyped
+
+        attr_reader path: untyped
+
+        attr_reader module_type: untyped
+
+        def file_name: () -> untyped
+
+        def module_name: () -> untyped
+
+        def dirname: () -> untyped
+
+        def parse_readme: () -> untyped
+
+        def parse_tf_file: () -> untyped
+
+        def merge_module_type_hashes: (untyped parsed_hcl) -> untyped
+
+        def build_module_type_hash: (untyped key, untyped content) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+class List < ApplicationRecord
+  include Boards::Listable
+
+  include Importable
+
+  alias preferences list_user_preferences
+
+  def preferences_for: (untyped user) -> untyped
+
+  def as_json: (?::Hash[untyped, untyped] options) -> untyped
+
+  private
+
+  def ensure_group_or_project: () -> untyped
+end

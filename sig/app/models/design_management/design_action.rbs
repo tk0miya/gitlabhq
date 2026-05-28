@@ -1,0 +1,43 @@
+module DesignManagement
+  # Parameter object which is a tuple of the database record and the
+  # last gitaly call made to change it. This serves to perform the
+  # logical mapping from git action to database representation.
+  class DesignAction
+    @design: untyped
+
+    @action: untyped
+
+    @content: untyped
+
+    include ActiveModel::Validations
+
+    EVENT_FOR_GITALY_ACTION: { create: untyped, update: untyped, delete: untyped }
+
+    attr_reader design: untyped
+
+    attr_reader action: untyped
+
+    attr_reader content: untyped
+
+    # Parameters:
+    # - design [DesignManagement::Design]: the design that was changed
+    # - action [Symbol]: the action that gitaly performed
+    def initialize: (untyped design, untyped action, ?untyped? content) -> void
+
+    def row_attrs: (untyped version) -> { design_id: untyped, version_id: untyped, event: untyped }
+
+    def gitaly_action: () -> untyped
+
+    # This action has been performed - do any post-creation actions
+    # such as clearing method caches.
+    def performed: () -> untyped
+
+    private
+
+    def needs_content?: () -> untyped
+
+    def forbids_content?: () -> untyped
+
+    def event: () -> untyped
+  end
+end

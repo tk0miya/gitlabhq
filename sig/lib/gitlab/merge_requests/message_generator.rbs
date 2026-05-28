@@ -1,0 +1,43 @@
+module Gitlab
+  module MergeRequests
+    class MessageGenerator
+      @merge_request: untyped
+
+      @current_user: untyped
+
+      def initialize: (merge_request: untyped, current_user: untyped) -> void
+
+      def merge_commit_message: () -> (nil | untyped)
+
+      def squash_commit_message: () -> (nil | untyped)
+
+      def new_mr_description: () -> (nil | untyped)
+
+      def new_mr_title: (untyped template, ?issue: untyped?) -> (nil | untyped)
+
+      def self.humanize_branch_name: (untyped branch_name) -> untyped
+
+      private
+
+      attr_reader merge_request: untyped
+
+      attr_reader current_user: untyped
+
+      PLACEHOLDERS: { "source_branch" => untyped, "target_branch" => untyped, "title" => untyped, "issues" => untyped, "description" => untyped, "reference" => untyped, "local_reference" => untyped, "source_project_id" => untyped, "first_commit" => untyped, "first_commit_title" => untyped, "first_multiline_commit" => untyped, "first_multiline_commit_description" => untyped, "url" => untyped, "reviewed_by" => untyped, "approved_by" => untyped, "merged_by" => untyped, "co_authored_by" => untyped, "merge_request_author" => untyped, "title_from_branch" => untyped, "all_commits" => untyped, "issue_id" => untyped, "issue_title" => untyped }
+
+      # A new merge request that is in the process of being created and hasn't
+      # been persisted to the database.
+      #
+      # Limit the placeholders to a subset of the available ones where the
+      # placeholders wouldn't make sense in context. Disallowed placeholders
+      # will be replaced with an empty string.
+      ALLOWED_NEW_MR_PLACEHOLDERS: ::Array["source_branch" | "target_branch" | "first_commit" | "first_multiline_commit" | "first_multiline_commit_description" | "co_authored_by" | "all_commits"]
+
+      ALLOWED_NEW_MR_TITLE_PLACEHOLDERS: ::Array["source_branch" | "target_branch" | "title_from_branch" | "first_commit_title" | "issue_id" | "issue_title"]
+
+      PLACEHOLDERS_COMBINED_REGEX: ::Regexp
+
+      def replace_placeholders: (untyped message, ?allowed_placeholders: untyped, ?squash: bool, ?keep_carriage_return: bool, ?issue: untyped?) -> untyped
+    end
+  end
+end

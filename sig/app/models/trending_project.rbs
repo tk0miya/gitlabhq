@@ -1,0 +1,11 @@
+class TrendingProject < ApplicationRecord
+  # The number of months to include in the trending calculation.
+  MONTHS_TO_INCLUDE: 1
+
+  # The maximum number of projects to include in the trending set.
+  PROJECTS_LIMIT: 100
+
+  # Populates the trending projects table with the current list of trending
+  # projects.
+  def self.refresh!: () -> untyped
+end

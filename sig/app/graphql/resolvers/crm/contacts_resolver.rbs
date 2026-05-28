@@ -1,0 +1,17 @@
+module Resolvers
+  module Crm
+    class ContactsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      include ResolvesIds
+
+      def resolve: (**untyped args) -> untyped
+
+      def group: () -> untyped
+
+      private
+
+      def needs_offset?: (untyped args) -> untyped
+    end
+  end
+end

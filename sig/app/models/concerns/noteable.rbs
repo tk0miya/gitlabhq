@@ -1,0 +1,100 @@
+module Noteable
+  @human_class_name: untyped
+
+  @discussions: untyped
+
+  @resolvable_discussions: untyped
+
+  @discussions_to_be_resolved: untyped
+
+  extend ActiveSupport::Concern
+
+  # This object is used to gather noteable meta data for list displays
+  # avoiding n+1 queries and improving performance.
+  NoteableMeta: untyped
+
+  MAX_NOTES_LIMIT: 5000
+
+  # The timestamp of the note (e.g. the :created_at or :updated_at attribute if provided via
+  # API call)
+  def system_note_timestamp: () -> untyped
+
+  attr_writer system_note_timestamp: untyped
+
+  def base_class_name: () -> untyped
+
+  # Convert this Noteable class name to a format usable by notifications.
+  #
+  # Examples:
+  #
+  #   noteable.class           # => MergeRequest
+  #   noteable.human_class_name # => "merge request"
+  def human_class_name: () -> untyped
+
+  def supports_resolvable_notes?: () -> untyped
+
+  def supports_discussions?: () -> untyped
+
+  def supports_replying_to_individual_notes?: () -> untyped
+
+  def supports_creating_notes_by_email?: () -> untyped
+
+  def supports_suggestion?: () -> false
+
+  def discussions_rendered_on_frontend?: () -> false
+
+  def preloads_discussion_diff_highlighting?: () -> false
+
+  def has_any_diff_note_positions?: () -> untyped
+
+  def discussion_notes: () -> untyped
+
+  def discussions: () -> untyped
+
+  def discussion_ids_relation: () -> untyped
+
+  # This does not consider OutOfContextDiscussions in MRs
+  # where notes from commits are overridden so that they have
+  # the same discussion_id
+  def discussion_root_note_ids: (notes_filter: untyped, ?sort: ::Symbol) -> untyped
+
+  def capped_notes_count: (untyped max) -> untyped
+
+  def grouped_diff_discussions: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def resolvable_discussions: () -> untyped
+
+  def discussions_resolvable?: () -> untyped
+
+  def discussions_resolved?: () -> untyped
+
+  def discussions_to_be_resolved: () -> untyped
+
+  def discussions_can_be_resolved_by?: (untyped user) -> untyped
+
+  def lockable?: () -> untyped
+
+  def real_time_notes_enabled?: () -> false
+
+  def broadcast_notes_changed: () -> (nil | untyped)
+
+  def after_note_created: (untyped _note) -> nil
+
+  def after_note_destroyed: (untyped _note) -> nil
+
+  # Email address that an authorized user can send/forward an email to be added directly
+  # to an issue or merge request.
+  # example: incoming+h5bp-html5-boilerplate-8-1234567890abcdef123456789-issue-34@localhost.com
+  def creatable_note_email_address: (untyped author) -> (nil | untyped)
+
+  def noteable_target_type_name: () -> untyped
+
+  def commenters: (?user: untyped?) -> untyped
+
+  private
+
+  # Synthetic system notes don't have discussion IDs because these are generated dynamically
+  # in Ruby. These are always root notes anyway so we don't need to group by discussion ID.
+  def synthetic_note_ids_relations: () -> untyped
+end

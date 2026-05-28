@@ -1,0 +1,29 @@
+module Ci
+  module PipelineSchedules
+    class VariablesBaseSaveService
+      include Gitlab::Utils::StrongMemoize
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader user: untyped
+
+      attr_reader params: untyped
+
+      attr_reader variable: untyped
+
+      attr_reader pipeline_schedule: untyped
+
+      def allowed_to_update_pipeline_schedule?: () -> untyped
+
+      def forbidden_to_update_pipeline_schedule: () -> untyped
+
+      def allowed_to_save_variables?: () -> untyped
+
+      def forbidden_to_save_variables: () -> untyped
+    end
+  end
+end

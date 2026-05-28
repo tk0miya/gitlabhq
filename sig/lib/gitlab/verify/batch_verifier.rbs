@@ -1,0 +1,56 @@
+module Gitlab
+  module Verify
+    class BatchVerifier
+      @batch_size: untyped
+
+      @start: untyped
+
+      @finish: untyped
+
+      attr_reader batch_size: untyped
+
+      attr_reader start: untyped
+
+      attr_reader finish: untyped
+
+      def initialize: (batch_size: untyped, ?start: untyped?, ?finish: untyped?) -> void
+
+      # Yields a Range of IDs and a Hash of failed verifications (object => error)
+      def run_batches: () { (untyped, untyped) -> untyped } -> untyped
+
+      def name: () -> untyped
+
+      def describe: (untyped _object) -> untyped
+
+      private
+
+      def run_batch_for: (untyped batch) -> untyped
+
+      def verify: (untyped object) -> untyped
+
+      def verify_local: (untyped object) -> untyped
+
+      # We don't calculate checksum for remote objects, so just check existence
+      def verify_remote: (untyped object) -> untyped
+
+      def success: () -> nil
+
+      def failure: (untyped object, untyped message) -> ::Array[untyped]
+
+      # This should return an ActiveRecord::Relation suitable for calling #in_batches on
+      def all_relation: () -> untyped
+
+      # Should return true if the object is stored locally
+      def local?: (untyped _object) -> untyped
+
+      # The checksum we expect the object to have
+      def expected_checksum: (untyped _object) -> untyped
+
+      # The freshly-recalculated checksum of the object
+      def actual_checksum: (untyped _object) -> untyped
+
+      # Be sure to perform a hard check of the remote object (don't just check DB value)
+      def remote_object_exists?: (untyped object) -> untyped
+    end
+  end
+end

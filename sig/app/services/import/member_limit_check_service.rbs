@@ -1,0 +1,18 @@
+module Import
+  class MemberLimitCheckService
+    @importable: untyped
+
+    def initialize: (untyped importable) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader importable: untyped
+
+    # Overridden in EE
+    def validate_membership_status: () -> untyped
+
+    def valid_importable?: () -> untyped
+  end
+end

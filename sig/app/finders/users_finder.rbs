@@ -1,0 +1,89 @@
+# UsersFinder
+#
+# Used to filter users by set of params
+#
+# Arguments:
+#   current_user - which user use
+#   params:
+#     username: string
+#     extern_uid: string
+#     provider: string
+#     search: string
+#     active: boolean
+#     admins: boolean
+#     blocked: boolean
+#     humans: boolean
+#     external: boolean
+#     non_external: boolean
+#     without_active: boolean
+#     without_humans: boolean
+#     without_projects: boolean
+#     sort: string
+#     id: integer
+#     non_internal: boolean
+#
+class UsersFinder
+  @current_user: untyped
+
+  @params: untyped
+
+  include CreatedAtFilter
+
+  include CustomAttributesFilter
+
+  attr_accessor current_user: untyped
+
+  attr_accessor params: untyped
+
+  def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def base_scope: () -> untyped
+
+  def by_username: (untyped users) -> untyped
+
+  def by_public_email: (untyped users) -> untyped
+
+  def by_id: (untyped users) -> untyped
+
+  def by_admins: (untyped users) -> untyped
+
+  def by_humans: (untyped users) -> untyped
+
+  def by_without_humans: (untyped users) -> untyped
+
+  def by_search: (untyped users) -> untyped
+
+  def by_blocked: (untyped users) -> untyped
+
+  def by_active: (untyped users) -> untyped
+
+  def by_without_active: (untyped users) -> untyped
+
+  def by_external_identity: (untyped users) -> untyped
+
+  def by_external: (untyped users) -> untyped
+
+  def by_non_external: (untyped users) -> untyped
+
+  def by_2fa: (untyped users) -> untyped
+
+  def by_without_projects: (untyped users) -> untyped
+
+  def by_non_internal: (untyped users) -> untyped
+
+  def by_without_project_bots: (untyped users) -> untyped
+
+  def by_member_source_ids: (untyped users) -> untyped
+
+  def by_user_types: (untyped users) -> untyped
+
+  def by_organization: (untyped users) -> untyped
+
+  def order: (untyped users) -> untyped
+
+  def user_can_read_group?: (untyped group) -> untyped
+end

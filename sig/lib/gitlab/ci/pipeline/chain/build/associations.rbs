@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class Build
+          class Associations < Chain::Base
+            include Gitlab::Allowable
+
+            include Chain::Helpers
+
+            include ::Gitlab::Utils::StrongMemoize
+
+            def perform!: () -> untyped
+
+            def break?: () -> untyped
+
+            private
+
+            def assign_pipeline_variables: () -> untyped
+
+            def assign_source_pipeline: () -> (nil | untyped)
+
+            def variables_attributes: () -> untyped
+
+            def apply_permissions: (untyped variables) -> untyped
+
+            def validate_uniqueness: (untyped variables) -> untyped
+
+            def duplicate_variables_message: (untyped keys) -> ::String
+          end
+        end
+      end
+    end
+  end
+end

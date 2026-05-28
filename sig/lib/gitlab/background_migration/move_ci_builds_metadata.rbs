@@ -1,0 +1,315 @@
+# rubocop:disable Database/AvoidScopeTo -- uses partition pruning, doesn't need a specialized index
+# rubocop:disable Metrics/ClassLength -- TODO refactor?
+#
+# ==============================================================================
+#
+# This migration copies data from existing CI build tables into a more
+# normalized structure to improve database storage efficiency. There is no data
+# removal happening here, that will happen in a later iteration after we confirm
+# that the migration completed successfully.
+# See this blueprint for more details:
+# https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/ci_data_decay/reduce_data_growth_rate/
+# See https://gitlab.com/gitlab-org/gitlab/-/merge_requests/214376
+# for user configuration options.
+#
+# Migration Overview:
+# -------------------
+#
+# 1. Job configuration data gets copied to `p_ci_job_definitions`
+#    From `p_ci_builds_metadata` we copy:
+#    - config_options
+#    - config_variables
+#    - id_tokens
+#    - secrets
+#    - interruptible
+#
+#    From `p_ci_builds` we copy (fallback for really old data, jobs created > 6 years ago):
+#    - options
+#    - yaml_variables
+#
+# 2. Job `tags` also get copied to `p_ci_job_definitions`
+#    We get the tag ids from the `p_ci_build_tags` and construct the `tag_list`
+#    from `tags` and include it in the job definition.
+#
+# 3. Execution steps get copied to `p_ci_job_definitions`
+#    From `p_ci_build_execution_configs` we move the `run_steps` to the definitions table.
+#
+# 4. Jobs - definition relationship is stored in `p_ci_job_definition_instances`
+#    In the current setup we have one `p_ci_builds_metadata` for each `p_ci_builds`,
+#    but now a job definition has many jobs and we're storing this relation in
+#    a new table called `p_ci_job_definition_instances`.
+#
+# 5. Job user data is kept in `p_ci_builds`
+#    Data that was kept in `p_ci_builds_metadata` but is supposed to be long lived,
+#    i.e. shown in the UI for the users, is moved to the `p_ci_builds` table.
+#    These are the columns that are copied over:
+#    - scoped_user_id (extracted from the config_options)
+#    - timeout
+#    - timeout_source
+#    - exit_code
+#    - debug_trace_enabled
+#
+# 6. Job artifact configuration gets moved to `p_ci_job_artifacts`
+#    From `p_ci_builds_metadata` we extract this data from `config_options`:
+#    - exposed_as
+#    - exposed_paths
+#
+# 7. Environment settings are moved to `job_environments`:
+#    We used to store them `p_ci_builds_metadata` but we now have new tables for these too:
+#    - expanded_environment_name
+#    - environment options
+#
+# ==============================================================================
+#
+module Gitlab
+  module BackgroundMigration
+    class MoveCiBuildsMetadata < BatchedMigrationJob
+      @definition_model: untyped
+
+      @definition_instance_model: untyped
+
+      @job_taggings_model: untyped
+
+      @job_model: untyped
+
+      @metadata_model: untyped
+
+      @job_artifact_model: untyped
+
+      # Each job definition is unique by these attributes.
+      DEFS_UNIQ_ATTRS: ::Array[:project_id | :partition_id | :checksum]
+
+      DEFS_BATCH_SIZE: 100
+
+      def self.job_arguments_count: () -> 2
+
+      class SanitizedYamlCoder
+        def self.load: (untyped value) -> untyped
+      end
+
+      # We know that there are installations with years of data that they might not want to migrate
+      # so we provide a few switches here to skip old data.
+      # The background migrations are executed in Sidekiq, so these should be set as ENV variables
+      # on nodes that execute the Sidekiq jobs and Sidekiq must be restarted after they are changed.
+      # There should be a line in `log/application_json.log` showing what values are used.
+      class EnvConfig
+        @migration_cutoff: untyped
+
+        @processing_data_cutoff: untyped
+
+        attr_reader migration_cutoff: untyped
+
+        attr_reader processing_data_cutoff: untyped
+
+        def initialize: () -> void
+
+        private
+
+        def fetch_env_timestamp: (untyped key) -> (nil | untyped)
+
+        # https://docs.gitlab.com/administration/settings/continuous_integration/#archive-pipelines
+        def processing_data_cutoff_from_db: () -> untyped
+      end
+
+      # The migration iterates over an entire `p_ci_builds` partition and with this class
+      # we're applying the user defined cutoff policies so that only the relevant data
+      # is copied.
+      class JobsFilter
+        @migration: untyped
+
+        @jobs_batch: untyped
+
+        @config: untyped
+
+        @jobs_cache: untyped
+
+        @job_ids_filter: untyped
+
+        @jobs_for_definitions: untyped
+
+        attr_reader migration: untyped
+
+        attr_reader jobs_batch: untyped
+
+        def initialize: (untyped migration, untyped jobs_batch, untyped config) -> void
+
+        def job_ids_filter: () -> untyped
+
+        def jobs_for_definitions: () -> untyped
+
+        def jobs_for_environments: () -> untyped
+
+        private
+
+        # This is a cache to reduce the number of queries since we need to load this data
+        # to create definitions, update jobs, and update artifacts.
+        # If the users have the same cutoff for processing data and all data, we can remove a query
+        # per batch with this cache.
+        def load_jobs_created_after: (untyped timestamp) -> untyped
+
+        def jobs_without_definitions_created_after: (untyped timestamp) -> untyped
+
+        # New jobs get created in the new format, so we assume that all the jobs that
+        # already are assigned to a job definition don't need to be migrated.
+        def jobs_without_definitions: () -> untyped
+
+        def scoped_definition_instances: () -> untyped
+      end
+
+      # Not all data resides in the builds_metadata table, so we need to query
+      # other tables too. Since we can't use application code here, we're building
+      # a similar abstraction to the ActiveRecord preloader to load connected data.
+      # It returns a new jobs collection with tags, execution steps, and the metadata record.
+      class JobsPreloader
+        @migration: untyped
+
+        @jobs: untyped
+
+        @filters: untyped
+
+        @metadata_records: untyped
+
+        @tag_records: untyped
+
+        @run_steps_records: untyped
+
+        attr_reader jobs: untyped
+
+        def initialize: (untyped migration, untyped jobs) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def filters: () -> untyped
+
+        def metadata_records: () -> untyped
+
+        def tag_records: () -> untyped
+
+        def run_steps_records: () -> untyped
+
+        def run_steps_join_sql: () -> untyped
+      end
+
+      # We're extending the job object to store the connected data in memory.
+      class JobPresenter < SimpleDelegator
+        @job: untyped
+
+        @metadata: untyped
+
+        @tag_list: untyped
+
+        @run_steps: untyped
+
+        attr_reader metadata: untyped
+
+        attr_reader tag_list: untyped
+
+        attr_reader run_steps: untyped
+
+        attr_accessor job_definition: untyped
+
+        def initialize: (untyped job, metadata: untyped, tag_list: untyped, run_steps: untyped) -> void
+
+        def definition_config: () -> untyped
+
+        private
+
+        # These attributes are stored only in the metadata record, but not all job records
+        # might have one since we started creating them ~ 6 years ago.
+        def metadata_only_attrs: () -> untyped
+
+        # We must ensure that the variables use the correct format since they were stored as
+        # serialized YAML and that could store Symbols.
+        def parsed_variables: () -> untyped
+      end
+
+      # This is the main migration point for the definitions.
+      # For each jobs it builds a new definition object in memory and passes them
+      # to the `BulkJobDefinitionsCreator` to transform them in persisted objects.
+      # We use `global_identifier` to correlate between the in memory objects and
+      # the database objects because each definition is unique by
+      # `project_id, partition_id, checksum` attributes, not only by `checksum`.
+      # After the definitions are persisted we also bulk inset the glue records
+      # in their separate table.
+      class JobsDefinitionsAssigner
+        @migration: untyped
+
+        @jobs: untyped
+
+        attr_reader jobs: untyped
+
+        def initialize: (untyped migration, untyped jobs) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def bulk_persist_definitions: (untyped defs) -> untyped
+
+        def job_definition_instance_attrs_for: (untyped job, untyped job_definition) -> { job_id: untyped, partition_id: untyped, job_definition_id: untyped, project_id: untyped }
+      end
+
+      # This class is handed an array of not persisted job definitions and returns
+      # an unique array of persisted definitions containing only the required
+      # attributes for the migration.
+      class BulkJobDefinitionsCreator
+        @migration: untyped
+
+        @job_definitions: untyped
+
+        attr_reader job_definitions: untyped
+
+        def initialize: (untyped migration, untyped definitions) -> void
+
+        def execute: () -> (::Array[untyped] | untyped)
+
+        private
+
+        def fetch_records_for: (untyped definitions) -> untyped
+
+        def insert_missing: (untyped definitions) -> untyped
+      end
+
+      def perform: () -> untyped
+
+      def setup_definitions: (untyped available_jobs) -> untyped
+
+      # This copies the data from `p_ci_builds_metadata` to `p_ci_builds` without
+      # overriding it if it already exists in the destination table.
+      # This is usually showed in the job's log page.
+      def update_jobs: (untyped metadata_filters) -> (nil | untyped)
+
+      # This copies the data from `p_ci_builds_metadata` to `p_ci_job_artifacts` without overriding it.
+      # This data is shown in in the MR widget as exposed artifacts.
+      def update_job_artifacts: (untyped metadata_filters) -> (nil | untyped)
+
+      # Dynamic ActiveRecord models to interact with the database tables.
+      def definition_model: () -> untyped
+
+      def definition_instance_model: () -> untyped
+
+      def job_taggings_model: () -> untyped
+
+      def job_model: () -> untyped
+
+      def metadata_model: () -> untyped
+
+      def job_artifact_model: () -> untyped
+
+      def ci_model: (untyped table_name, ?primary_key: ::Symbol) -> untyped
+
+      # We used to store the job environments data in the `p_ci_builds_metadata` table,
+      # but now this is kept in a new table in the `main` database.
+      #
+      def copy_environments: (untyped jobs_batch) -> (nil | untyped)
+
+      def fetch_environment_attributes: (untyped relation) -> untyped
+
+      def extract_environment_attributes: (untyped metadata) -> untyped
+
+      def bulk_insert_job_environments: (untyped attributes) -> untyped
+    end
+  end
+end

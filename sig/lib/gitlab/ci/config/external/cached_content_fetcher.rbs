@@ -1,0 +1,41 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        # Service class for batched fetching of CI config file content with Redis caching.
+        #
+        # Handles the pattern of:
+        # 1. Checking Redis cache for requested paths
+        # 2. Batching uncached items into a single Gitaly call
+        # 3. Writing fetched content back to cache
+        #
+        # Used by both project includes and component includes for efficient content fetching.
+        class CachedContentFetcher
+          @project: untyped
+
+          @cache_enabled: untyped
+
+          CACHE_EXPIRY: untyped
+
+          def initialize: (project: untyped, cache_enabled: untyped) -> void
+
+          def read_cache: (untyped cache_key) -> (nil | untyped)
+
+          def fetch_batch: (untyped items) -> (::Hash[untyped, untyped] | untyped)
+
+          private
+
+          attr_reader project: untyped
+
+          attr_reader cache_enabled: untyped
+
+          def check_cache: (untyped items) -> untyped
+
+          def fetch_from_gitaly: (untyped items) -> untyped
+
+          def repository_cache: () -> untyped
+        end
+      end
+    end
+  end
+end

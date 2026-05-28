@@ -1,0 +1,22 @@
+module JiraConnect
+  class RetryRequestWorker
+    include ApplicationWorker
+
+    INITIAL_ATTEMPTS: 3
+
+    # Delays indexed by retry number (0 = first retry, 1 = second, etc).
+    # The index is clamped to a valid position, so any retry beyond the
+    # listed entries uses the last delay.
+    RETRY_DELAYS: ::Array[untyped]
+
+    def perform: (untyped proxy_url, untyped jwt, ?untyped attempts, ?untyped total_attempts) -> untyped
+
+    private
+
+    def retryable_response_code?: (untyped code) -> untyped
+
+    def schedule_retry: (untyped proxy_url, untyped jwt, untyped remaining_attempts, untyped total_attempts) -> untyped
+
+    def log_dropped_request: (untyped proxy_url, untyped reason) -> untyped
+  end
+end

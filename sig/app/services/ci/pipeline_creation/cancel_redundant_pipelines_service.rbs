@@ -1,0 +1,64 @@
+module Ci
+  module PipelineCreation
+    class CancelRedundantPipelinesService
+      @pipeline: untyped
+
+      @project: untyped
+
+      @skipped_for_old_age: untyped
+
+      @conservatively_cancelled: untyped
+
+      @aggressively_cancelled: untyped
+
+      @configured_to_not_cancel: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      BATCH_SIZE: 25
+
+      PAGE_SIZE: 500
+
+      MAX_CANCELLATIONS_PER_PIPELINE: 3000
+
+      PK_BATCH_SIZE: 1000
+
+      def initialize: (untyped pipeline) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader pipeline: untyped
+
+      attr_reader project: untyped
+
+      def cancelable_status_pipeline_pks: () -> untyped
+
+      def ref_head_sha: () -> untyped
+
+      def cancelable_pipelines: () -> untyped
+
+      def should_skip?: (untyped cancelable) -> (true | false)
+
+      def cancelable_source?: (untyped cancelable) -> (false | true)
+
+      def configured_cancellation_for: (untyped cancelable) -> untyped
+
+      def conservative_cancelable_pipeline_pks: () -> untyped
+
+      def cancel_pipeline: (untyped cancelable_pipeline, safe_cancellation: untyped) -> untyped
+
+      def log_cancelable_pipeline_outcomes: () -> untyped
+
+      def pipelines_created_after: () -> untyped
+
+      # Finding the pipelines to cancel is an expensive task that is not well
+      # covered by indexes for all project use-cases and sometimes it might
+      # harm other services. See https://gitlab.com/gitlab-com/gl-infra/production/-/issues/14758
+      # This feature flag is in place to disable this feature for rogue projects.
+      #
+      def service_disabled?: () -> untyped
+    end
+  end
+end

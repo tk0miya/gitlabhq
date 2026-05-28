@@ -1,0 +1,41 @@
+module Gitlab
+  class UsageMetricGenerator < Rails::Generators::Base
+    CE_DIR: "lib/gitlab/usage/metrics/instrumentations"
+
+    EE_DIR: "ee/lib/gitlab/usage/metrics/instrumentations"
+
+    SPEC_CE_DIR: "spec/lib/gitlab/usage/metrics/instrumentations"
+
+    SPEC_EE_DIR: "ee/spec/lib/gitlab/usage/metrics/instrumentations"
+
+    ALLOWED_SUPERCLASSES: { generic: "Generic", database: "Database", redis: "Redis", numbers: "Numbers" }
+
+    ALLOWED_DATABASE_OPERATIONS: ::Array["count" | "distinct_count" | "estimate_batch_distinct_count" | "sum" | "average"]
+
+    ALLOWED_NUMBERS_OPERATIONS: ::Array["add"]
+
+    ALLOWED_OPERATIONS: untyped
+
+    def create_class_files: () -> untyped
+
+    private
+
+    def validate!: () -> untyped
+
+    def ee?: () -> untyped
+
+    def type: () -> untyped
+
+    def operation: () -> untyped
+
+    def file_path: () -> untyped
+
+    def spec_file_path: () -> untyped
+
+    def file_name: () -> ::String
+
+    def spec_file_name: () -> ::String
+
+    def metric_superclass: () -> untyped
+  end
+end

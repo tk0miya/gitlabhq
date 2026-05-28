@@ -1,0 +1,45 @@
+module Projects
+  module ContainerRepository
+    class CleanupTagsBaseService < BaseContainerRepositoryService
+      private
+
+      include ContainerRegistry::Protection::Concerns::TagRule
+
+      def filter_out_latest!: (untyped tags) -> (nil | untyped)
+
+      def filter_by_name!: (untyped tags) -> untyped
+
+      def filter_out_protected!: (untyped tags) -> (nil | untyped)
+
+      # Should return [tags_to_delete, tags_to_keep]
+      def partition_by_keep_n: (untyped tags) -> (::Array[untyped | ::Array[untyped]] | untyped)
+
+      # Should return [tags_to_delete, tags_to_keep]
+      def partition_by_older_than: (untyped tags) -> (::Array[untyped | ::Array[untyped]] | untyped)
+
+      def order_by_date_desc: (untyped tags) -> untyped
+
+      def delete_tags: (untyped tags) -> untyped
+
+      def older_than: () -> untyped
+
+      def name_regex_delete: () -> untyped
+
+      def name_regex: () -> untyped
+
+      def name_regex_keep: () -> untyped
+
+      def container_expiration_policy: () -> untyped
+
+      def keep_n: () -> untyped
+
+      def keep_latest: () -> untyped
+
+      def project: () -> untyped
+
+      def keep_n_as_integer: () -> untyped
+
+      def older_than_in_seconds: () -> untyped
+    end
+  end
+end

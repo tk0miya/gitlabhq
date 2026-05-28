@@ -1,0 +1,21 @@
+module Feature
+  class Kas
+    PREFIX: "kas_"
+
+    def self.enabled_for_any?: (untyped feature_flag, *untyped actors) -> untyped
+
+    def self.server_feature_flags_for_grpc_request: (?user: untyped?, ?project: untyped?, ?group: untyped?) -> untyped
+
+    def self.server_feature_flags_for_http_response: (?user: untyped?, ?project: untyped?, ?group: untyped?) -> untyped
+
+    def self.user_actor: (?untyped? user) -> untyped
+
+    def self.project_actor: (untyped container) -> (nil | untyped)
+
+    def self.group_actor: (untyped container) -> (nil | untyped)
+
+    private
+
+    def self.server_feature_flags: (untyped key_transform, ?user: untyped?, ?project: untyped?, ?group: untyped?) -> (::Hash[untyped, untyped] | untyped)
+  end
+end

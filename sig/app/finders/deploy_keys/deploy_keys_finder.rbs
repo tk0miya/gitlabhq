@@ -1,0 +1,33 @@
+module DeployKeys
+  class DeployKeysFinder
+    @project: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_reader project: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped project, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def enabled_keys: () -> untyped
+
+    def available_project_keys: () -> untyped
+
+    def available_public_keys: () -> untyped
+
+    def empty: () -> untyped
+
+    def can_admin_project?: () -> untyped
+
+    def search_keys: (untyped keys) -> untyped
+  end
+end

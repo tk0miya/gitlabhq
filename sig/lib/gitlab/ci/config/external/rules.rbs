@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        class Rules
+          @rule_list: untyped
+
+          InvalidIncludeRulesError: untyped
+
+          def initialize: (untyped rule_hashes) -> void
+
+          def evaluate: (untyped context) -> untyped
+
+          private
+
+          def match_rule: (untyped context) -> untyped
+
+          Result: untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+class GroupClusterablePresenter < ClusterablePresenter
+  extend ::Gitlab::Utils::Override
+
+  def cluster_status_cluster_path: (untyped cluster, ?::Hash[untyped, untyped] params) -> untyped
+
+  def clear_cluster_cache_path: (untyped cluster) -> untyped
+
+  def create_cluster_migration_path: (untyped cluster) -> untyped
+
+  def update_cluster_migration_path: (untyped cluster) -> untyped
+
+  def cluster_path: (untyped cluster, ?::Hash[untyped, untyped] params) -> untyped
+
+  def empty_state_help_text: () -> untyped
+
+  def sidebar_text: () -> untyped
+
+  def learn_more_link: () -> untyped
+end

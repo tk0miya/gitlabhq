@@ -1,0 +1,353 @@
+# NotificationService class
+#
+# Used for notifying users with emails about different events
+#
+# Ex.
+#   NotificationService.new.new_issue(issue, current_user)
+#
+# When calculating the recipients of a notification is expensive (for instance,
+# in the new issue case), `#async` will make that calculation happen in Sidekiq
+# instead:
+#
+#   NotificationService.new.async.new_issue(issue, current_user)
+#
+class NotificationService
+  self.@permitted_actions: untyped
+
+  @async: untyped
+
+  # These should not be called by the MailScheduler::NotificationServiceWorker -
+  # what would it even mean?
+  EXCLUDED_ACTIONS: ::Array[:async]
+
+  def self.permitted_actions: () -> untyped
+
+  class Async
+    @parent: untyped
+
+    attr_reader parent: untyped
+
+    def initialize: (untyped parent) -> void
+
+    def method_missing: (untyped meth, *untyped args) -> untyped
+  end
+
+  def async: () -> untyped
+
+  def enabled_two_factor: (untyped user, untyped type, ?::Hash[untyped, untyped] options) -> (nil | untyped)
+
+  def disabled_two_factor: (untyped user, ?::Symbol type, ?::Hash[untyped, untyped] options) -> (nil | untyped)
+
+  # Always notify user about ssh key added
+  # only if ssh key is not deploy key
+  #
+  # This is security email so it will be sent
+  # even if user disabled notifications. However,
+  # it won't be sent to internal users like the
+  # ghost user or the EE support bot.
+  def new_key: (untyped key) -> (untyped | nil)
+
+  # Always notify the user about gpg key added
+  #
+  # This is a security email so it will be sent even if the user disabled
+  # notifications
+  def new_gpg_key: (untyped gpg_key) -> (untyped | nil)
+
+  def bot_resource_access_token_about_to_expire: (untyped bot_user, untyped token_name, ?::Hash[untyped, untyped] params) -> untyped
+
+  # Notify the owner of the account when a new personal access token is created
+  def access_token_created: (untyped user, untyped token_name) -> (nil | untyped)
+
+  # Notify the owner of the personal access token, when it is about to expire
+  # And mark the token with about_to_expire_delivered
+  def access_token_about_to_expire: (untyped user, untyped token_names, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+  # Notify the user when at least one of their personal access tokens has expired today
+  def access_token_expired: (untyped user, ?untyped token_names) -> (nil | untyped)
+
+  # Notify the user when one of their personal access tokens is revoked
+  def access_token_revoked: (untyped user, untyped token_name, ?untyped? source) -> (nil | untyped)
+
+  # Notify the user when one of their personal access tokens is rotated
+  def access_token_rotated: (untyped user, untyped token_name) -> (nil | untyped)
+
+  # Notify the owner of the deploy token, when it is about to expire
+  def deploy_token_about_to_expire: (untyped user, untyped token_name, untyped project, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+  # Notify the user when at least one of their ssh key has expired today
+  def ssh_key_expired: (untyped user, untyped fingerprints) -> (nil | untyped)
+
+  # Notify the user when at least one of their ssh key is expiring soon
+  def ssh_key_expiring_soon: (untyped user, untyped fingerprints) -> (nil | untyped)
+
+  # Notify a user when a previously unknown IP or device is used to
+  # sign in to their account
+  def unknown_sign_in: (untyped user, untyped ip, untyped time, untyped request_info) -> (nil | untyped)
+
+  # Notify a user when a wrong 2FA OTP has been entered to
+  # try to sign in to their account
+  def two_factor_otp_attempt_failed: (untyped user, untyped ip) -> (nil | untyped)
+
+  # Notify a user when a new email address is added to the their account
+  def new_email_address_added: (untyped user, untyped email) -> (nil | untyped)
+
+  # When create an issue we should send an email to:
+  #
+  #  * issue assignee if their notification level is not Disabled
+  #  * project team members with notification level higher then Participating
+  #  * watchers of the issue's labels
+  #  * users with custom level checked with "new issue"
+  #
+  def new_issue: (untyped issue, untyped current_user) -> untyped
+
+  # When issue text is updated, we should send an email to:
+  #
+  #  * newly mentioned project team members with notification level higher than Participating
+  #
+  def new_mentions_in_issue: (untyped issue, untyped new_mentioned_users, untyped current_user) -> untyped
+
+  # When we close an issue we should send an email to:
+  #
+  #  * issue author if their notification level is not Disabled
+  #  * issue assignee if their notification level is not Disabled
+  #  * project team members with notification level higher then Participating
+  #  * users with custom level checked with "close issue"
+  #
+  def close_issue: (untyped issue, untyped current_user, ?::Hash[untyped, untyped] params) -> untyped
+
+  # When we reassign an issue we should send an email to:
+  #
+  #  * issue old assignees if their notification level is not Disabled
+  #  * issue new assignees if their notification level is not Disabled
+  #  * users with custom level checked with "reassign issue"
+  #
+  def reassigned_issue: (untyped issue, untyped current_user, ?untyped previous_assignees) -> untyped
+
+  # When we add labels to an issue we should send an email to:
+  #
+  #  * watchers of the issue's labels
+  #
+  def relabeled_issue: (untyped issue, untyped added_labels, untyped current_user) -> untyped
+
+  # When create a merge request we should send an email to:
+  #
+  #  * mr author
+  #  * mr assignees if their notification level is not Disabled
+  #  * project team members with notification level higher then Participating
+  #  * watchers of the mr's labels
+  #  * users with custom level checked with "new merge request"
+  #
+  # In EE, approvers of the merge request are also included
+  def new_merge_request: (untyped merge_request, untyped current_user) -> untyped
+
+  NEW_COMMIT_EMAIL_DISPLAY_LIMIT: 20
+
+  # Sends push notification emails using pre-computed commit data.
+  # This method is designed for async workers that need to avoid large Sidekiq payloads.
+  #
+  # @param merge_request [MergeRequest] The merge request to notify about
+  # @param current_user [User] The user who pushed
+  # @param new_commits_data [Array<Hash>] Array of hashes with :short_id and :title keys
+  #   (max NEW_COMMIT_EMAIL_DISPLAY_LIMIT items, already truncated by caller)
+  # @param total_new_commits_count [Integer] Total count of new commits (may be > new_commits_data.size)
+  # @param existing_commits_data [Array<Hash>] Array of hashes with :short_id and :title keys
+  #   (should contain only first and last commit if total > 2)
+  # @param total_existing_commits_count [Integer] Total count of existing commits
+  def push_to_merge_request_with_data: (untyped merge_request, untyped current_user, ?new_commits_data: untyped, ?total_new_commits_count: ::Integer, ?existing_commits_data: untyped, ?total_existing_commits_count: ::Integer) -> untyped
+
+  def change_in_merge_request_draft_status: (untyped merge_request, untyped current_user) -> untyped
+
+  # When a merge request is found to be unmergeable, we should send an email to:
+  #
+  #  * mr author
+  #  * mr merge user if set
+  #
+  def merge_request_unmergeable: (untyped merge_request) -> untyped
+
+  # When merge request text is updated, we should send an email to:
+  #
+  #  * newly mentioned project team members with notification level higher than Participating
+  #
+  def new_mentions_in_merge_request: (untyped merge_request, untyped new_mentioned_users, untyped current_user) -> untyped
+
+  # When we reassign a merge_request we should send an email to:
+  #
+  #  * merge_request old assignees if their notification level is not Disabled
+  #  * merge_request new assignees if their notification level is not Disabled
+  #  * users with custom level checked with "reassign merge request"
+  #
+  def reassigned_merge_request: (untyped merge_request, untyped current_user, ?untyped previous_assignees) -> untyped
+
+  # When we change reviewer in a merge_request we should send an email to:
+  #
+  #  * merge_request old reviewers if their notification level is not Disabled
+  #  * merge_request new reviewers if their notification level is not Disabled
+  #  * users with custom level checked with "change reviewer merge request"
+  #
+  def changed_reviewer_of_merge_request: (untyped merge_request, untyped current_user, ?untyped previous_reviewers) -> untyped
+
+  def review_requested_of_merge_request: (untyped merge_request, untyped current_user, untyped reviewer) -> untyped
+
+  # When we add labels to a merge request we should send an email to:
+  #
+  #  * watchers of the mr's labels
+  #
+  def relabeled_merge_request: (untyped merge_request, untyped added_labels, untyped current_user) -> untyped
+
+  def close_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def reopen_issue: (untyped issue, untyped current_user) -> untyped
+
+  def merge_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def reopen_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def resolve_all_discussions: (untyped merge_request, untyped current_user) -> untyped
+
+  # Notify new user with email after creation
+  def new_user: (untyped user, ?untyped? token) -> (true | untyped)
+
+  # Notify users on new note in system
+  def new_note: (untyped note) -> (true | untyped)
+
+  # Notify users when note is edited to add a mention of them
+  def new_mentions_in_note: (untyped note, untyped new_mentioned_users, untyped current_user) -> (true | false | untyped)
+
+  # Notify users when a new release is created
+  def send_new_release_notifications: (untyped release) -> (false | untyped)
+
+  def new_instance_access_request: (untyped user) -> (true | untyped)
+
+  def user_admin_rejection: (untyped name, untyped email) -> untyped
+
+  def user_deactivated: (untyped name, untyped email) -> untyped
+
+  def group_was_transferred: (untyped group, untyped old_path_with_namespace) -> (nil | untyped)
+
+  def project_was_moved: (untyped project, untyped old_path_with_namespace) -> untyped
+
+  def issue_moved: (untyped issue, untyped new_issue, untyped current_user) -> untyped
+
+  def issue_cloned: (untyped issue, untyped new_issue, untyped current_user) -> untyped
+
+  def project_exported: (untyped project, untyped current_user) -> (true | untyped)
+
+  def project_not_exported: (untyped project, untyped current_user, untyped errors) -> (true | untyped)
+
+  def email_template_name: (untyped status) -> ::String
+
+  def pipeline_finished: (untyped pipeline, ?ref_status: untyped?, ?recipients: untyped?) -> (nil | untyped)
+
+  def pipeline_schedule_owner_unavailable: (untyped schedule) -> untyped
+
+  def autodevops_disabled: (untyped pipeline, untyped recipients) -> (nil | untyped)
+
+  def pages_domain_verification_succeeded: (untyped domain) -> untyped
+
+  def pages_domain_verification_failed: (untyped domain) -> untyped
+
+  def pages_domain_enabled: (untyped domain) -> untyped
+
+  def pages_domain_disabled: (untyped domain) -> untyped
+
+  def pages_domain_auto_ssl_failed: (untyped domain) -> untyped
+
+  def issue_due: (untyped issue) -> untyped
+
+  def repository_cleanup_success: (untyped project, untyped user) -> (nil | untyped)
+
+  def repository_cleanup_failure: (untyped project, untyped user, untyped error) -> (nil | untyped)
+
+  def repository_rewrite_history_success: (untyped project, untyped user) -> (nil | untyped)
+
+  def repository_rewrite_history_failure: (untyped project, untyped user, untyped error) -> (nil | untyped)
+
+  def remote_mirror_update_failed: (untyped remote_mirror) -> untyped
+
+  def prometheus_alerts_fired: (untyped project, untyped alerts) -> (nil | untyped)
+
+  def group_was_exported: (untyped group, untyped current_user) -> (true | untyped)
+
+  def group_was_not_exported: (untyped group, untyped current_user, untyped errors) -> (true | untyped)
+
+  # Notify users on new review in system
+  def new_review: (untyped review) -> untyped
+
+  def merge_when_pipeline_succeeds: (untyped merge_request, untyped current_user) -> untyped
+
+  def approve_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def unapprove_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def inactive_project_deletion_warning: (untyped project, untyped deletion_date) -> untyped
+
+  def removed_milestone: (untyped target, untyped current_user) -> untyped
+
+  def changed_milestone: (untyped target, untyped milestone, untyped current_user) -> untyped
+
+  def new_achievement_email: (untyped user, untyped achievement, untyped user_achievement) -> untyped
+
+  def project_scheduled_for_deletion: (untyped project) -> (nil | untyped)
+
+  def group_scheduled_for_deletion: (untyped group) -> (nil | untyped)
+
+  def new_resource_email: (untyped target, untyped current_user, untyped method) -> (false | untyped)
+
+  def new_mentions_in_resource_email: (untyped target, untyped new_mentioned_users, untyped current_user, untyped method) -> (false | untyped)
+
+  def close_resource_email: (untyped target, untyped current_user, untyped method, ?skip_current_user: bool, ?closed_via: untyped?) -> untyped
+
+  def relabeled_resource_email: (untyped target, untyped labels, untyped current_user, untyped method) -> untyped
+
+  def reopen_resource_email: (untyped target, untyped current_user, untyped method, untyped status) -> untyped
+
+  def merge_request_unmergeable_email: (untyped merge_request) -> untyped
+
+  def mailer: () -> untyped
+
+  private
+
+  def send_new_note_notifications: (untyped note) -> untyped
+
+  def send_new_mentions_in_note_notifications: (untyped note, untyped new_mentioned_users) -> untyped
+
+  def send_note_notifications: (untyped note, untyped recipients) -> untyped
+
+  def send_service_desk_notification: (untyped note) -> (nil | untyped)
+
+  def owners_without_invites: (untyped project) -> untyped
+
+  def log_info: (untyped message_text, untyped user) -> untyped
+
+  def approve_mr_email: (untyped merge_request, untyped project, untyped current_user) -> untyped
+
+  def unapprove_mr_email: (untyped merge_request, untyped project, untyped current_user) -> untyped
+
+  def pipeline_notification_status: (untyped ref_status, untyped pipeline) -> ("failed" | untyped)
+
+  def pipeline_notification_recipients: (untyped pipeline, untyped status) -> untyped
+
+  def owners_and_maintainers_without_invites: (untyped project) -> untyped
+
+  def group_transferred_recipients: (untyped group) -> untyped
+
+  def project_moved_recipients: (untyped project) -> untyped
+
+  def project_maintainers_recipients: (untyped target, action: untyped) -> untyped
+
+  def bot_resource_access_token_about_to_expire_recipients: (untyped bot_user) { (untyped) -> untyped } -> untyped
+
+  def inherited_rat_members_relation: (untyped resource, untyped bot_user) -> untyped
+
+  def send_bot_rat_expiry_to_inherited?: (untyped group_or_project) -> untyped
+
+  def notifiable?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def notifiable_users: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def warn_skipping_notifications: (untyped user, untyped object) -> untyped
+
+  def new_review_deliver_options: (untyped review) -> ::Hash[untyped, untyped]
+
+  def review_request_deliver_options: (untyped project) -> ::Hash[untyped, untyped]
+end

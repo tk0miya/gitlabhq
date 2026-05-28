@@ -1,0 +1,23 @@
+module Ci
+  class DeleteObjectsWorker
+    @remaining_work_count: untyped
+
+    @service: untyped
+
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include LimitedCapacity::Worker
+
+    def perform_work: (*untyped args) -> untyped
+
+    def remaining_work_count: (*untyped args) -> untyped
+
+    def max_running_jobs: () -> 50
+
+    private
+
+    def service: () -> untyped
+  end
+end

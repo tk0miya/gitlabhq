@@ -1,0 +1,32 @@
+class CustomerRelations::Organization < ApplicationRecord
+  include Gitlab::SQL::Pattern
+
+  include Sortable
+
+  include StripAttribute
+
+  # Searches for organizations with a matching name or description.
+  #
+  # This method uses ILIKE on PostgreSQL
+  #
+  # query - The search query as a String
+  #
+  # Returns an ActiveRecord::Relation.
+  def self.search: (untyped query) -> untyped
+
+  def self.search_by_state: (untyped state) -> untyped
+
+  def self.sort_by_field: (untyped field, untyped direction) -> untyped
+
+  def self.sort_by_name: () -> untyped
+
+  def self.find_by_name: (untyped group_id, untyped name) -> untyped
+
+  def self.counts_by_state: () -> untyped
+
+  private
+
+  def self.default_state_counts: () -> untyped
+
+  def validate_crm_group: () -> (nil | untyped)
+end

@@ -1,0 +1,73 @@
+module Gitlab
+  module EncodingHelper
+    extend ::Gitlab::EncodingHelper
+
+    # This threshold is carefully tweaked to prevent usage of encodings detected
+    # by CharlockHolmes with low confidence. If CharlockHolmes confidence is low,
+    # we're better off sticking with utf8 encoding.
+    # Reason: git diff can return strings with invalid utf8 byte sequences if it
+    # truncates a diff in the middle of a multibyte character. In this case
+    # CharlockHolmes will try to guess the encoding and will likely suggest an
+    # obscure encoding with low confidence.
+    # There is a lot more info with this merge request:
+    # https://gitlab.com/gitlab-org/gitlab_git/merge_requests/77#note_4754193
+    ENCODING_CONFIDENCE_THRESHOLD: 50
+
+    UNICODE_REPLACEMENT_CHARACTER: ::String
+
+    BOM_UTF8: ::String
+
+    def encode!: (untyped message) -> untyped
+
+    def detect_encoding: (untyped data, ?limit: untyped) -> (nil | untyped)
+
+    def detect_binary?: (untyped data, ?untyped? detect) -> untyped
+
+    # EncodingDetector checks the first 1024 * 1024 bytes for NUL byte, libgit2 checks
+    # only the first 8000 (https://github.com/libgit2/libgit2/blob/2ed855a9e8f9af211e7274021c2264e600c0f86b/src/filter.h#L15),
+    # which is what we use below to keep a consistent behavior.
+    def detect_libgit2_binary?: (untyped data) -> untyped
+
+    # This is like encode_utf8 except we skip autodetection of the encoding. We
+    # assume the data must be interpreted as UTF-8.
+    def encode_utf8_no_detect: (untyped message) -> untyped
+
+    def encode_utf8_with_replacement_character: (untyped data) -> untyped
+
+    # This method escapes unsupported UTF-8 characters instead of deleting them
+    def encode_utf8_with_escaping!: (untyped message) -> untyped
+
+    def encode_utf8: (untyped message, ?replace: ::String) -> untyped
+
+    def encode_binary: (untyped str) -> ("" | untyped)
+
+    def binary_io: (untyped str_or_io) -> untyped
+
+    ESCAPED_CHARS: { "a" => "\a", "b" => "\b", "e" => "\e", "f" => "\f", "n" => "\n", "r" => "\r", "t" => "\t", "v" => "\v", "\"" => "\"" }
+
+    # rubocop:disable Style/AsciiComments
+    # `unquote_path` decode filepaths that are returned by some git commands.
+    # The path may be returned in double-quotes if it contains special characters,
+    # that are encoded in octal. Also, some characters (see `ESCAPED_CHARS`) are escaped.
+    # eg. "\311\240\304\253\305\247\305\200\310\247\306\200" (quotes included) is decoded as ɠīŧŀȧƀ
+    #
+    # Based on `unquote_c_style` from git source
+    # https://github.com/git/git/blob/v2.35.1/quote.c#L399
+    # rubocop:enable Style/AsciiComments
+    def unquote_path: (untyped filename) -> untyped
+
+    def strip_bom: (untyped message) -> untyped
+
+    def force_encode_utf8: (untyped message) -> untyped
+
+    private
+
+    # Escapes \x80 - \xFF characters not supported by UTF-8
+    def escape_chars: (untyped char) -> (untyped | ::String)
+
+    # Escapes characters to unicode
+    def escape_unicode: (untyped char) -> ::String
+
+    def clean: (untyped message, ?replace: ::String) -> untyped
+  end
+end

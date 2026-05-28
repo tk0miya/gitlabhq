@@ -1,0 +1,15 @@
+module Database
+  module BatchedBackgroundMigration
+    class CiDatabaseWorker
+      self.@tracking_database: untyped
+
+      @execution_worker_class: untyped
+
+      include SingleDatabaseWorker
+
+      def self.tracking_database: () -> untyped
+
+      def execution_worker_class: () -> untyped
+    end
+  end
+end

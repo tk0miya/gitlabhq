@@ -1,0 +1,13 @@
+module SupplyChain
+  class Attestation < ::ApplicationRecord
+    include AtomicInternalId
+
+    include FileStoreMounter
+
+    include ObjectStorable
+
+    STORE_COLUMN: :file_store
+
+    def self.find_provenance: (project: untyped, subject_digest: untyped) -> untyped
+  end
+end

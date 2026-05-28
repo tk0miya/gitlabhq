@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Quota
+        class Deployments < ::Gitlab::Ci::Limit
+          @namespace: untyped
+
+          @pipeline: untyped
+
+          @command: untyped
+
+          include ::Gitlab::Utils::StrongMemoize
+
+          include ActionView::Helpers::TextHelper
+
+          def initialize: (untyped namespace, untyped pipeline, untyped command) -> void
+
+          def enabled?: () -> untyped
+
+          def exceeded?: () -> (false | untyped)
+
+          def message: () -> (nil | ::String)
+
+          private
+
+          def pipeline_deployment_count: () -> untyped
+
+          def limit: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Ml
+  class CandidatesCsvPresenter
+    @candidates: untyped
+
+    CANDIDATE_ASSOCIATIONS: ::Array[:latest_metrics | :params | :experiment]
+
+    # This file size limit is mainly to avoid the generation to hog resources from the server. The value is arbitrary
+    # can be update once we have better insight into usage.
+    TARGET_FILESIZE: untyped
+
+    def initialize: (untyped candidates) -> void
+
+    def present: () -> untyped
+
+    private
+
+    def headers: () -> ::Hash[:project_id | :experiment_iid | :candidate_iid | :name | :external_id | :start_time | :end_time | untyped, "project_id" | untyped | "internal_id" | "name" | "eid" | "start_time" | "end_time"]
+
+    def columns_names: () { (?) -> untyped } -> untyped
+  end
+end

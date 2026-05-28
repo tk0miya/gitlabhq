@@ -1,0 +1,24 @@
+module Gitlab
+  module PDF
+    module Security
+      class TotalRiskScore < BaseSvgChart
+        # the SVG provided by the frontend uses CSS variables, but
+        # prawn-svg does not support CSS variables. We will gsub in
+        # hardcoded colors for the CSS variables we care about.
+        CSS_TRANSLATIONS: ::Array[::Array["var(--gl-chart-axis-line-color)" | "#dddddd"] | ::Array["var(--gl-text-color-default)" | "#333333"] | ::Array["var(--gl-chart-axis-text-color)" | "#666666"] | ::Array["var(--risk-score-color-low)" | "#16a34a"] | ::Array["var(--risk-score-color-medium)" | "#f97316"] | ::Array["var(--risk-score-color-high)" | "#ea580c"] | ::Array["var(--risk-score-color-critical)" | "#b91c1c"] | ::Array["var(--risk-score-gauge-text-low)" | "#16a34a"] | ::Array["var(--risk-score-gauge-text-medium)" | "#f97316"] | ::Array["var(--risk-score-gauge-text-high)" | "#ea580c"] | ::Array["var(--risk-score-gauge-text-critical)" | "#b91c1c"]]
+
+        TOTAL_HEIGHT: 250
+
+        private
+
+        def total_height: () -> untyped
+
+        def title_text: () -> untyped
+
+        def description_text: () -> untyped
+
+        def css_translations: () -> untyped
+      end
+    end
+  end
+end

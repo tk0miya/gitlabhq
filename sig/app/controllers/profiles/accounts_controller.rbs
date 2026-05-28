@@ -1,0 +1,17 @@
+class Profiles::AccountsController < Profiles::ApplicationController
+  include AuthHelper
+
+  include AuthenticatesWithTwoFactor
+
+  def show: () -> untyped
+
+  def unlink: () -> untyped
+
+  def generate_support_pin: () -> untyped
+
+  private
+
+  def show_view_variables: () -> ::Hash[untyped, untyped]
+
+  def find_identity: (untyped provider) -> untyped
+end

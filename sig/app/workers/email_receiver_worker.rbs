@@ -1,0 +1,31 @@
+class EmailReceiverWorker
+  @raw: untyped
+
+  @receiver: untyped
+
+  include ApplicationWorker
+
+  attr_accessor raw: untyped
+
+  def perform: (untyped raw) -> (nil | untyped)
+
+  def should_perform?: () -> untyped
+
+  private
+
+  def execute_receiver: () -> untyped
+
+  def receiver: () -> untyped
+
+  def logger: () -> untyped
+
+  def log_success: () -> untyped
+
+  def log_error: (untyped error) -> untyped
+
+  def build_message: (untyped message, ?::Hash[untyped, untyped] params) -> untyped
+
+  def mail_metadata: () -> untyped
+
+  def handle_failure: (untyped error) -> (nil | untyped)
+end

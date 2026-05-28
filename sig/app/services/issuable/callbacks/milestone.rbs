@@ -1,0 +1,23 @@
+module Issuable
+  module Callbacks
+    class Milestone < Base
+      @old_milestone: untyped
+
+      ALLOWED_PARAMS: ::Array[:milestone | :milestone_id | :skip_milestone_email]
+
+      def after_initialize: () -> (nil | untyped)
+
+      def after_update_commit: () -> (nil | untyped)
+
+      def after_save_commit: () -> (nil | untyped)
+
+      private
+
+      def invalidate_milestone_counters: () -> untyped
+
+      def update_usage_data_counters: () -> (nil | untyped)
+
+      def send_milestone_change_notification: () -> (nil | untyped)
+    end
+  end
+end

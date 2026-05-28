@@ -1,0 +1,31 @@
+module Projects
+  class GitDeduplicationService < BaseService
+    @project: untyped
+
+    include ExclusiveLeaseGuard
+
+    LEASE_TIMEOUT: 86400
+
+    attr_reader project: untyped
+
+    def initialize: (untyped project) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def disconnect_git_alternates: () -> untyped
+
+    def pool_can_fetch_from_source?: () -> untyped
+
+    def same_storage_as_pool?: (untyped repository) -> untyped
+
+    def fetch_from_source: () -> untyped
+
+    def source_project?: () -> (nil | untyped)
+
+    def lease_timeout: () -> untyped
+
+    def lease_key: () -> ::String
+  end
+end

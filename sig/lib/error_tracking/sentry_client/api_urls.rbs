@@ -1,0 +1,23 @@
+module ErrorTracking
+  class SentryClient
+    class ApiUrls
+      @uri: untyped
+
+      def initialize: (untyped url_base) -> void
+
+      def issues_url: () -> untyped
+
+      def issue_url: (untyped issue_id) -> untyped
+
+      def projects_url: () -> untyped
+
+      def issue_latest_event_url: (untyped issue_id) -> untyped
+
+      private
+
+      def with_path: (untyped new_path) -> untyped
+
+      def escape: (untyped param) -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Tracking
+    class AiContext
+      @payload: untyped
+
+      SCHEMA_URL: "iglu:com.gitlab/ai_context/jsonschema/1-0-0"
+
+      def initialize: (untyped properties) -> void
+
+      def to_context: () -> untyped
+
+      def to_h: () -> { session_id: untyped, workflow_id: untyped, flow_type: untyped, agent_name: untyped, agent_type: untyped, input_tokens: untyped, output_tokens: untyped, total_tokens: untyped, ephemeral_5m_input_tokens: untyped, ephemeral_1h_input_tokens: untyped, cache_read: untyped, model_engine: untyped, model_name: untyped, model_provider: untyped, flow_version: untyped, flow_registry_version: untyped }
+
+      private
+
+      attr_reader payload: untyped
+    end
+  end
+end

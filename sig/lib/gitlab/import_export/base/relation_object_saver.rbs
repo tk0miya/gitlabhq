@@ -1,0 +1,123 @@
+# RelationObjectSaver allows for an alternative approach to persisting
+# objects during Project/Group Import which persists object's
+# nested collection subrelations separately, in batches.
+#
+# Instead of the regular `relation_object.save!` that opens one db
+# transaction for the object itself and all of its subrelations we
+# separate collection subrelations from the object and save them
+# in batches in smaller more frequent db transactions.
+module Gitlab
+  module ImportExport
+    module Base
+      class RelationObjectSaver
+        @relation_object: untyped
+
+        @relation_key: untyped
+
+        @relation_definition: untyped
+
+        @importable: untyped
+
+        @invalid_subrelations: untyped
+
+        @failed_subrelations: untyped
+
+        @exceptions_rescued: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        BATCH_SIZE: 100
+
+        # Default retry count for handling ActiveRecord::QueryCanceled
+        MAX_RETRY_COUNT: 3
+
+        # Factor to reduce batch size by when retrying after a timeout
+        BATCH_SIZE_REDUCTION_FACTOR: 4
+
+        MAX_EXCEPTION_RESCUE_COUNT: 20
+
+        attr_reader invalid_subrelations: untyped
+
+        attr_reader failed_subrelations: untyped
+
+        # @param relation_object [Object] Object of a project/group, e.g. an issue
+        # @param relation_key [String] Name of the object association to group/project, e.g. :issues
+        # @param relation_definition [Hash] Object subrelations as defined in import_export.yml
+        # @param importable [Project|Group] Project or group where relation object is getting saved to
+        #
+        # @example
+        #   Gitlab::ImportExport::Base::RelationObjectSaver.new(
+        #     relation_key: 'merge_requests',
+        #     relation_object: #<MergeRequest id: root/mrs!1, notes: [#<Note id: nil, note: 'test', ...>, #<Note id: nil, noteL 'another note'>]>,
+        #     relation_definition: {"metrics"=>{}, "award_emoji"=>{}, "notes"=>{"author"=>{}, ... }}
+        #     importable: @importable
+        #   ).execute
+        def initialize: (relation_object: untyped, relation_key: untyped, relation_definition: untyped, importable: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader relation_object: untyped
+
+        attr_reader relation_key: untyped
+
+        attr_reader relation_definition: untyped
+
+        attr_reader importable: untyped
+
+        attr_reader collection_subrelations: untyped
+
+        # Processes all collection subrelations in configurable batches.
+        #
+        # Iterates through each collection subrelation that was extracted during
+        # the move_subrelations step and processes them in batches of BATCH_SIZE
+        # to prevent database timeouts.
+        #
+        # @example Processing a collection of 300 notes
+        #   # Initial state: { "notes" => [note1, note2, ..., note300] }
+        #   # Will create 3 batches of 100 records each:
+        #   # - Batch 1: notes[1-100]
+        #   # - Batch 2: notes[101-200]
+        #   # - Batch 3: notes[201-300]
+        #
+        # rubocop:disable GitlabSecurity/PublicSend
+        def save_subrelations: () -> untyped
+
+        # Saves a batch of records for a specific relation with retry logic.
+        #
+        # This method partitions the batch into valid and invalid records, processes
+        # them accordingly, and implements retry logic for database timeouts.
+        #
+        # @example Processing a batch of records with potential timeout
+        #   save_batch_with_retry("notes", batch_of_notes, 0)
+        #   # If successful, all notes will be saved
+        #   # If timeout occurs, will call process_with_smaller_batch_size
+        def save_batch_with_retry: (untyped relation_name, untyped batch, ?::Integer retry_count) -> untyped
+
+        def save_valid_records: (untyped relation_name, untyped valid_records) -> untyped
+
+        def save_potentially_invalid_records: (untyped relation_name, untyped invalid_records) -> untyped
+
+        # Handles database timeouts by retrying with smaller batch sizes.
+        #
+        # When a batch processing operation times out (ActiveRecord::QueryCanceled),
+        # this method reduces the batch size by BATCH_SIZE_REDUCTION_FACTOR and retries
+        # with smaller batches until reaching MAX_RETRY_COUNT.
+        #
+        # @example Handling a timeout with a batch of 100 records
+        #   # Initial batch of 100 causes timeout (retry_count = 0)
+        #   # - New batch size = ceiling(100/4) = 25
+        #   # - Creates 4 smaller batches of 25 each
+        #   # - Retry count incremented to 1
+        def process_with_smaller_batch_size: (untyped relation_name, untyped batch, untyped retry_count, untyped exception) -> (nil | untyped)
+
+        def handle_max_retries_exceeded: (untyped batch, untyped exception) -> untyped
+
+        def track_exception: (untyped batch, untyped exception, untyped relation_name, untyped retry_count) -> untyped
+
+        def move_subrelations: () -> untyped
+      end
+    end
+  end
+end

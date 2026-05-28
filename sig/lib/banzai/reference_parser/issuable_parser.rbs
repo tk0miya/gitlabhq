@@ -1,0 +1,11 @@
+module Banzai
+  module ReferenceParser
+    class IssuableParser < BaseParser
+      def nodes_visible_to_user: (untyped user, untyped nodes) -> untyped
+
+      def referenced_by: (untyped nodes, ?::Hash[untyped, untyped] options) -> untyped
+
+      def can_read_reference?: (untyped user, untyped issuable) -> untyped
+    end
+  end
+end

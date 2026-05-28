@@ -1,0 +1,18 @@
+module Ci
+  class PipelineFinishedWorker
+    include ApplicationWorker
+
+    include PipelineQueue
+
+    def perform: (untyped pipeline_id) -> (nil | untyped)
+
+    private
+
+    # Processes a single CI pipeline that has finished.
+    #
+    # @param [Ci::Pipeline] pipeline The pipeline to process.
+    def process_pipeline: (untyped pipeline) -> (nil | untyped)
+
+    def finished_pipeline_sync_event?: (untyped pipeline) -> untyped
+  end
+end

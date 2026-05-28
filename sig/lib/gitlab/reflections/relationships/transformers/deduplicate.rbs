@@ -1,0 +1,23 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      module Transformers
+        # Removes duplicate relationships based on their signature
+        class Deduplicate
+          @relationships: untyped
+
+          def self.call: (untyped relationships) -> untyped
+
+          def initialize: (untyped relationships) -> void
+
+          def transform: () -> untyped
+
+          private
+
+          # Create a signature that uniquely identifies a relationship
+          def relationship_signature: (untyped rel) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Integrations
+  module Base
+    module Telegram
+      extend ActiveSupport::Concern
+
+      include HasAvatar
+
+      include Base::ChatNotification
+
+      TELEGRAM_HOSTNAME: "%{hostname}/bot%{token}/sendMessage"
+    end
+  end
+end

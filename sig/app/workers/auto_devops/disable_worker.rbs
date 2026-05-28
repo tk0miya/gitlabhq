@@ -1,0 +1,17 @@
+module AutoDevops
+  class DisableWorker
+    include ApplicationWorker
+
+    include AutoDevopsQueue
+
+    def perform: (untyped pipeline_id) -> (nil | untyped)
+
+    private
+
+    def disable_service: (untyped project) -> untyped
+
+    def send_notification_email: (untyped pipeline, untyped project) -> (nil | untyped)
+
+    def email_receivers_for: (untyped pipeline, untyped project) -> untyped
+  end
+end

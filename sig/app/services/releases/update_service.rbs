@@ -1,0 +1,15 @@
+module Releases
+  class UpdateService < Releases::BaseService
+    def execute: () -> untyped
+
+    private
+
+    def validate: () -> (untyped | nil)
+
+    def allowed?: () -> untyped
+
+    def empty_params?: () -> untyped
+
+    def milestones_updated?: (untyped previous_milestones) -> (false | untyped)
+  end
+end

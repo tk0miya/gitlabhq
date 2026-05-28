@@ -1,0 +1,27 @@
+module Gitlab
+  class JWTToken < JSONWebToken::HMACToken
+    HMAC_ALGORITHM: "SHA256"
+
+    HMAC_KEY: "gitlab-jwt"
+
+    HMAC_EXPIRES_IN: untyped
+
+    def self.decode: (untyped jwt) -> untyped
+
+    def self.secret: () -> untyped
+
+    def initialize: () -> void
+
+    def ==: (untyped other) -> untyped
+
+    def issued_at=: (untyped value) -> untyped
+
+    def not_before=: (untyped value) -> untyped
+
+    def expire_time=: (untyped value) -> untyped
+
+    private
+
+    def convert_time: (untyped value) -> untyped
+  end
+end

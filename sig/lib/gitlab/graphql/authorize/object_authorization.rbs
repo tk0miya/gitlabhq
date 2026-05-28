@@ -1,0 +1,31 @@
+module Gitlab
+  module Graphql
+    module Authorize
+      class ObjectAuthorization
+        @abilities: untyped
+
+        @permitted_scopes: untyped
+
+        include ::Gitlab::Allowable
+
+        attr_reader abilities: untyped
+
+        attr_reader permitted_scopes: untyped
+
+        def initialize: (untyped abilities, ?::Array[untyped] scopes) -> void
+
+        def none?: () -> untyped
+
+        def any?: () -> untyped
+
+        def ok?: (untyped object, untyped current_user, scope_validator: untyped, ?skip_abilities: untyped?) -> untyped
+
+        private
+
+        def abilities_ok?: (untyped object, untyped current_user, ?skip_abilities: untyped?) -> (true | untyped)
+
+        def scopes_ok?: (untyped validator) -> (true | untyped)
+      end
+    end
+  end
+end

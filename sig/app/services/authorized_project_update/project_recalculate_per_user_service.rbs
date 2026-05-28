@@ -1,0 +1,17 @@
+module AuthorizedProjectUpdate
+  class ProjectRecalculatePerUserService < ProjectRecalculateService
+    @project: untyped
+
+    @user: untyped
+
+    def initialize: (untyped project, untyped user) -> void
+
+    private
+
+    attr_reader user: untyped
+
+    def apply_scopes: (untyped project_authorizations) -> untyped
+
+    def effective_access_levels: () -> untyped
+  end
+end

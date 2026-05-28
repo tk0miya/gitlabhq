@@ -1,0 +1,39 @@
+module Integrations
+  module Propagation
+    class BulkUpdateService
+      @integration: untyped
+
+      @batch: untyped
+
+      @batch_ids: untyped
+
+      include BulkOperationHashes
+
+      def initialize: (untyped integration, untyped batch) -> void
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def execute: () -> untyped
+
+      private
+
+      attr_reader integration: untyped
+
+      attr_reader batch: untyped
+
+      # service_id or integration_id
+      def data_fields_foreign_key: () -> untyped
+
+      def batch_ids: () -> untyped
+
+      def bulk_upsert_slack_integrations: () -> untyped
+
+      def bulk_update_slack_integrations: () -> (nil | untyped)
+
+      def bulk_insert_slack_integrations: () -> (::Array[untyped] | untyped)
+
+      def bulk_insert_slack_integration_scopes: (untyped inserted_slack_ids) -> (nil | untyped)
+
+      def bulk_delete_slack_integrations: () -> untyped
+    end
+  end
+end

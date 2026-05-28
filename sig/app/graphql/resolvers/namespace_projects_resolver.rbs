@@ -1,0 +1,19 @@
+module Resolvers
+  class NamespaceProjectsResolver < BaseResolver
+    prepend ::Projects::LookAheadPreloads
+
+    def resolve_with_lookahead: (untyped args) -> untyped
+
+    def self.resolver_complexity: (untyped args, child_complexity: untyped) -> untyped
+
+    private
+
+    def find_projects: (untyped args) -> untyped
+
+    def namespace: () -> untyped
+
+    def finder_params: (untyped args) -> { include_subgroups: untyped, include_sibling_projects: untyped, include_archived: untyped, not_aimed_for_deletion: untyped, sort: untyped, search: untyped, ids: untyped, with_issues_enabled: untyped, with_merge_requests_enabled: untyped, with_namespace_domain_pages: untyped, archived_only: untyped }
+
+    def parse_gids: (untyped gids) -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module Auth
+    module Jwt
+      class IdentityLinker < ::Gitlab::Auth::OAuth::IdentityLinker
+        extend ::Gitlab::Utils::Override
+
+        def authorization_required?: () -> (true | nil)
+      end
+    end
+  end
+end

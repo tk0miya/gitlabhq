@@ -1,0 +1,20 @@
+module Gitlab
+  module Database
+    # This retry method behaves similar to WithLockRetries
+    # except it does not wrap itself into a transaction scope.
+    #
+    # In our context, this is only useful if directly connected to
+    # PostgreSQL. When going through pgbouncer, this method **won't work**
+    # as it relies on using `SET` outside transactions (and hence can be
+    # multiplexed across different connections).
+    class WithLockRetriesOutsideTransaction < WithLockRetries
+      private
+
+      def run_block_with_lock_timeout: () -> untyped
+
+      def run_block_without_lock_timeout: () -> untyped
+
+      def disable_lock_timeout: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,12 @@
+module Gitlab
+  module Asciidoc
+    # Mermaid BlockProcessor
+    class MermaidBlockProcessor < ::Asciidoctor::Extensions::BlockProcessor
+      def process: (untyped parent, untyped reader, untyped attrs) -> untyped
+
+      private
+
+      def create_mermaid_source_block: (untyped parent, untyped content, untyped attrs) -> untyped
+    end
+  end
+end

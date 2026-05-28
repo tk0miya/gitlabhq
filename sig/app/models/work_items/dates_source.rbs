@@ -1,0 +1,23 @@
+module WorkItems
+  class DatesSource < ApplicationRecord
+    include FromUnion
+
+    # ElasticSearch is limited to use dates within this range
+    MAX_DATE_LIMIT: untyped
+
+    MIN_DATE_LIMIT: untyped
+
+    private
+
+    # Validate for new records or when any date field has changed
+    def validate_dates?: () -> untyped
+
+    def any_dates_changed?: () -> untyped
+
+    def set_namespace: () -> (nil | untyped)
+
+    def set_fixed_start_date: () -> untyped
+
+    def set_fixed_due_date: () -> untyped
+  end
+end

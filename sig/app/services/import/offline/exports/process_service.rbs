@@ -1,0 +1,37 @@
+module Import
+  module Offline
+    module Exports
+      class ProcessService
+        @offline_export: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        PERFORM_DELAY: untyped
+
+        def initialize: (untyped offline_export) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        attr_reader offline_export: untyped
+
+        def process_offline_export: () -> untyped
+
+        def create_descendant_self_relations: () -> (nil | untyped)
+
+        def all_relation_exports_finished?: () -> untyped
+
+        def all_relation_exports_failed?: () -> untyped
+
+        def relation_exports: () -> untyped
+
+        def self_relation_exports: () -> untyped
+
+        def max_concurrent_exports_exceeded?: () -> untyped
+
+        def re_enqueue: () -> untyped
+      end
+    end
+  end
+end

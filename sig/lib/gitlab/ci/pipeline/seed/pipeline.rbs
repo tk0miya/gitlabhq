@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Seed
+        class Pipeline
+          @context: untyped
+
+          @stages_attributes: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped context, untyped stages_attributes) -> void
+
+          def errors: () -> untyped
+
+          def stages: () -> untyped
+
+          def size: () -> untyped
+
+          def deployments_count: () -> untyped
+
+          def root_variables: () -> untyped
+
+          private
+
+          def stage_seeds: () -> untyped
+        end
+      end
+    end
+  end
+end

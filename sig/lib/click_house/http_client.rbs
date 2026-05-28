@@ -1,0 +1,7 @@
+module ClickHouse
+  module HttpClient
+    DEFAULT_OPTIONS: { multipart: true, allow_local_requests: true, silent_mode_enabled: false, read_timeout: untyped }
+
+    def self.build_post_proc: (**untyped additional_options) -> untyped
+  end
+end

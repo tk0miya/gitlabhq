@@ -1,0 +1,45 @@
+module Ci
+  class RegisterJobService
+    class Logger
+      @started_at: untyped
+
+      @runner: untyped
+
+      @destination: untyped
+
+      @observations: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      MAX_DURATION: untyped
+
+      def self.current_monotonic_time: () -> untyped
+
+      def initialize: (runner: untyped, ?destination: untyped) ?{ (untyped) -> untyped } -> void
+
+      def instrument: (untyped operation, ?once: bool) ?{ () -> untyped } -> untyped
+
+      def commit: () -> (nil | untyped)
+
+      private
+
+      attr_reader runner: untyped
+
+      attr_reader destination: untyped
+
+      attr_reader started_at: untyped
+
+      def observe: (untyped operation, untyped value, ?once: bool) -> (nil | untyped)
+
+      def observations_hash: () -> untyped
+
+      def age: () -> untyped
+
+      def log?: () -> (false | untyped)
+
+      def enabled?: () -> untyped
+
+      def observations: () -> untyped
+    end
+  end
+end

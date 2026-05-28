@@ -1,0 +1,21 @@
+module Packages
+  module ErrorHandling
+    extend ActiveSupport::Concern
+
+    DEFAULT_STATUS_MESSAGE: "Unexpected error"
+
+    CONTROLLED_ERRORS: ::Array[untyped]
+
+    def process_package_file_error: (package_file: untyped, exception: untyped, ?extra_log_payload: ::Hash[untyped, untyped]) -> untyped
+
+    def process_package_error_service_response: (package_file: untyped, message: untyped) -> untyped
+
+    private
+
+    def controlled_error?: (untyped exception) -> untyped
+
+    def build_status_message: (untyped exception) -> untyped
+
+    def truncated_status_message: (untyped message) -> untyped
+  end
+end

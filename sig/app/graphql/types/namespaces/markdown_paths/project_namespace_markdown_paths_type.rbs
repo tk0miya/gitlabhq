@@ -1,0 +1,17 @@
+module Types
+  module Namespaces
+    module MarkdownPaths
+      class ProjectNamespaceMarkdownPathsType < BaseObject
+        @project: untyped
+
+        def uploads_path: () -> untyped
+
+        def markdown_preview_path: (?iid: untyped?) -> untyped
+
+        def autocomplete_sources_path: (?iid: untyped?, ?work_item_type_id: untyped?) -> { members: untyped, issues: untyped, mergeRequests: untyped, labels: untyped, milestones: untyped, commands: untyped, snippets: untyped, contacts: untyped, wikis: untyped }
+
+        def project: () -> untyped
+      end
+    end
+  end
+end

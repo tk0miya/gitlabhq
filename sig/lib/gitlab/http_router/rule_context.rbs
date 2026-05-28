@@ -1,0 +1,28 @@
+module Gitlab
+  module HttpRouter
+    module RuleContext
+      extend ActiveSupport::Concern
+
+      include Gitlab::Utils::StrongMemoize
+
+      ALLOWED_ROUTER_RULE_ACTIONS: ::Array["classify" | "proxy"]
+
+      # We do not expect a type for `proxy` rules
+      ROUTER_RULE_ACTIONS_WITHOUT_TYPE: ::Array["proxy"]
+
+      ALLOWED_ROUTER_RULE_TYPES: ::Array["FIRST_CELL" | "SESSION_PREFIX" | "CELL_ID"]
+
+      private
+
+      def http_router_rule_context: () -> { http_router_rule_action: untyped, http_router_rule_type: untyped }
+
+      def sanitized_http_router_rule_action: () -> untyped
+
+      def sanitized_http_router_rule_type: () -> untyped
+
+      def sanitize_value: (untyped value, untyped allowed_values) -> (nil | untyped)
+
+      def sanitize_router_rule_type: (untyped value, untyped sanitized_http_router_rule_action, untyped allowed_values) -> (nil | untyped)
+    end
+  end
+end

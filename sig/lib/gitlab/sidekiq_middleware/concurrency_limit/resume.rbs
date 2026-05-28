@@ -1,0 +1,15 @@
+module Gitlab
+  module SidekiqMiddleware
+    module ConcurrencyLimit
+      class Resume
+        EmptyJobMetadataError: untyped
+
+        # This middleware updates the job payload with stored context and additional information needed by the
+        # SidekiqMiddleware::ConcurrencyLimit::Middleware to resume the job.
+        def call: (untyped worker_class_or_name, untyped job, untyped _queue, untyped _redis_pool) { () -> untyped } -> untyped
+
+        def metadata_key: (untyped worker_name) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,40 @@
+class GroupChildEntity < Grape::Entity
+  @membership: untyped
+
+  include ActionView::Helpers::NumberHelper
+
+  include RequestAwareEntity
+
+  include MarkupHelper
+
+  include Namespaces::DeletableHelper
+
+  private
+
+  def access_group_counts?: (untyped group) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def membership: () -> (nil | untyped)
+
+  def project?: () -> untyped
+
+  def type: () -> untyped
+
+  def markdown_description: () -> untyped
+
+  def can_edit?: () -> untyped
+
+  def can_archive?: () -> untyped
+
+  def can_transfer?: () -> untyped
+
+  def can_remove?: () -> untyped
+
+  def can_leave?: () -> (false | untyped)
+
+  def cross_project_ability_allowed?: (untyped ability) -> (false | untyped)
+
+  def marked_for_deletion_on: () -> untyped
+
+  def permanent_deletion_date: () -> untyped
+end

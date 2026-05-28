@@ -1,0 +1,75 @@
+# This service does its best to toggle a task item in GLFM based on the given source position,
+# settings its state to toggle_as_checked.  A parallel method in the frontend is found in
+# app/assets/javascripts/behaviors/markdown/utils.js.
+#
+# If the sourcepos range precisely identifies a valid task list symbol in the source, it is replaced
+# exactly. This was added in our Markdown parser recently: https://github.com/kivikakk/comrak/pull/705.
+#
+# If not (such as for all cached Markdown renders), we assume it's the list item's sourcepos, and replace
+# the first task item-looking sequence we find in the line.
+#
+# Note that, above and beyond what the frontend version does, we also update the rendered HTML.
+# To maintain parity with what a full re-render would do, we take special care to update checkbox
+# sourcepos (used to precisely identify updates within a line, crucial for task items in tables),
+# particularly when Unicode whitespace is involved.
+class TaskListToggleService
+  @markdown: untyped
+
+  @markdown_html: untyped
+
+  @line_source: untyped
+
+  @line_sourcepos: untyped
+
+  @toggle_as_checked: untyped
+
+  @sourcepos_adjust: untyped
+
+  @updated_markdown: untyped
+
+  @updated_markdown_html: untyped
+
+  @sourcepos: untyped
+
+  attr_reader updated_markdown: untyped
+
+  attr_reader updated_markdown_html: untyped
+
+  def initialize: (untyped markdown, untyped markdown_html, line_source: untyped, line_sourcepos: untyped, toggle_as_checked: untyped) -> void
+
+  def execute: () -> (false | untyped)
+
+  private
+
+  attr_reader markdown: untyped
+
+  attr_reader markdown_html: untyped
+
+  attr_reader line_source: untyped
+
+  attr_reader line_sourcepos: untyped
+
+  attr_reader toggle_as_checked: untyped
+
+  attr_reader sourcepos_adjust: untyped
+
+  def toggle_markdown: () -> (nil | true)
+
+  def toggle_markdown_precise: (untyped line) -> (nil | untyped)
+
+  def toggle_markdown_html: () -> (nil | true)
+
+  def get_html_checkbox: (untyped html) -> untyped
+
+  def get_html_checkbox_precise: (untyped html) -> (nil | untyped)
+
+  def get_html_checkbox_imprecise: (untyped html) -> untyped
+
+  def sourcepos_maybe_precise?: () -> untyped
+
+  def sourcepos: () -> untyped
+
+  def self.adjust_sourcepos: (untyped sourcepos, **untyped adjust) -> untyped
+
+  def self.render_sourcepos: (untyped sourcepos) -> ::String
+end

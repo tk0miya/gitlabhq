@@ -1,0 +1,9 @@
+module Resolvers
+  module Ci
+    class TemplateResolver < BaseResolver
+      alias project object
+
+      def resolve: (?name: untyped?) -> untyped
+    end
+  end
+end

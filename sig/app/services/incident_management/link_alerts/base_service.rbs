@@ -1,0 +1,17 @@
+module IncidentManagement
+  module LinkAlerts
+    class BaseService < ::BaseProjectService
+      private
+
+      attr_reader incident: untyped
+
+      def allowed?: () -> untyped
+
+      def success: () -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def error_no_permissions: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class Not < Lexeme::UnaryOperator
+            PATTERN: ::Regexp
+
+            def self.build: (untyped _value, untyped ahead) -> untyped
+
+            def self.precedence: () -> 1
+
+            def evaluate: (?::Hash[untyped, untyped] variables) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

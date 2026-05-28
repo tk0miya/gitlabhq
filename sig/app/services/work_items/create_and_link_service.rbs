@@ -1,0 +1,27 @@
+module WorkItems
+  # Create and link operations are not run inside a transaction in this class
+  # because CreateFromTaskService also creates a transaction.
+  # This class should always be run inside a transaction as we could end up with
+  # new work items that were never associated with other work items as expected.
+  class CreateAndLinkService
+    @project: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    @link_params: untyped
+
+    @perform_spam_check: untyped
+
+    def initialize: (project: untyped, ?perform_spam_check: bool, ?current_user: untyped?, ?params: ::Hash[untyped, untyped], ?link_params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def confidential_parent: () -> untyped
+
+    def payload: (untyped work_item) -> { work_item: untyped }
+  end
+end

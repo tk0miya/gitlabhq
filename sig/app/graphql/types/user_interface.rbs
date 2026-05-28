@@ -1,0 +1,9 @@
+module Types
+  module UserInterface
+    include Types::BaseInterface
+
+    def redacted_name: () -> untyped
+
+    def resolve_user_namespace: () -> (untyped | nil)
+  end
+end

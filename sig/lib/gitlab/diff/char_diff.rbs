@@ -1,0 +1,27 @@
+module Gitlab
+  module Diff
+    class CharDiff
+      @old_string: untyped
+
+      @new_string: untyped
+
+      @changes: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped old_string, untyped new_string) -> void
+
+      def generate_diff: () -> untyped
+
+      def changed_ranges: (?offset: ::Integer) -> ::Array[untyped]
+
+      def to_html: () -> untyped
+
+      private
+
+      def diff_match_patch: () -> untyped
+
+      def html_class_names: (untyped operation) -> untyped
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Organizations
+  class UpdateService < ::Organizations::BaseService
+    @organization: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_reader organization: untyped
+
+    def initialize: (untyped organization, current_user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def allowed?: () -> untyped
+
+    def error_no_permissions: () -> untyped
+
+    def error_updating: () -> untyped
+  end
+end

@@ -1,0 +1,24 @@
+module Gitlab
+  class FeatureCategories
+    self.@default: untyped
+
+    @categories: untyped
+
+    FEATURE_CATEGORY_DEFAULT: "unknown"
+
+    attr_reader categories: untyped
+
+    def self.default: () -> untyped
+
+    def self.load_from_yaml: () -> untyped
+
+    def initialize: (untyped categories) -> void
+
+    # If valid, returns a feature category from the given request.
+    def from_request: (untyped request) -> (nil | untyped)
+
+    def get!: (untyped feature_category) -> untyped
+
+    def valid?: (untyped category) -> untyped
+  end
+end

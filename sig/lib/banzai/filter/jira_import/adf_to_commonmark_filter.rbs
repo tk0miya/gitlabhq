@@ -1,0 +1,14 @@
+module Banzai
+  module Filter
+    module JiraImport
+      # Uses Kramdown to convert from the Atlassian Document Format (json)
+      # into CommonMark
+      # @see https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/
+      class AdfToCommonmarkFilter < HTML::Pipeline::TextFilter
+        def initialize: (untyped text, ?untyped? context, ?untyped? result) -> void
+
+        def call: () -> untyped
+      end
+    end
+  end
+end

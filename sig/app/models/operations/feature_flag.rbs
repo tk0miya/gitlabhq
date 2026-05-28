@@ -1,0 +1,37 @@
+module Operations
+  class FeatureFlag < ApplicationRecord
+    self.@reference_pattern: untyped
+
+    self.@link_reference_pattern: untyped
+
+    include AfterCommitQueue
+
+    include AtomicInternalId
+
+    include IidRoutes
+
+    include Limitable
+
+    include Referable
+
+    def self.preload_relations: () -> untyped
+
+    def self.preload_project: () -> untyped
+
+    def self.for_unleash_client: (untyped project, untyped environment) -> untyped
+
+    def self.reference_prefix: () -> "[feature_flag:"
+
+    def self.reference_pattern: () -> untyped
+
+    def self.link_reference_pattern: () -> untyped
+
+    def self.reference_postfix: () -> "]"
+
+    def to_reference: (?untyped? from, ?full: bool) -> untyped
+
+    def path: () -> untyped
+
+    def hook_attrs: () -> { id: untyped, name: untyped, description: untyped, active: untyped }
+  end
+end

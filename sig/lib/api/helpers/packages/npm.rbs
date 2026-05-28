@@ -1,0 +1,23 @@
+module API
+  module Helpers
+    module Packages
+      module Npm
+        include Gitlab::Utils::StrongMemoize
+
+        include ::API::Helpers::PackagesHelpers
+
+        extend ::Gitlab::Utils::Override
+
+        NPM_ENDPOINT_REQUIREMENTS: { package_name: untyped }
+
+        def project_or_nil: () -> (nil | untyped)
+
+        def enqueue_sync_npm_metadata_cache_worker: (untyped project, untyped package_name) -> untyped
+
+        private
+
+        def not_found!: (?untyped? resource) -> untyped
+      end
+    end
+  end
+end

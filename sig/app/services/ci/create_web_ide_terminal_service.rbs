@@ -1,0 +1,41 @@
+module Ci
+  class CreateWebIdeTerminalService < ::BaseService
+    @terminal: untyped
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    TerminalCreationError: untyped
+
+    TERMINAL_NAME: "terminal"
+
+    attr_reader terminal: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def create_pipeline!: () -> untyped
+
+    def build_pipeline: () -> untyped
+
+    def terminal_stage_seed: (untyped pipeline) -> untyped
+
+    def terminal_build_seed: () -> untyped
+
+    def load_terminal_config!: () -> untyped
+
+    def validate_params!: () -> untyped
+
+    def check_access!: () -> untyped
+
+    def pipeline_created_counter: () -> untyped
+
+    def terminal_active?: () -> untyped
+
+    def ref: () -> untyped
+
+    def branch_exists?: () -> untyped
+
+    def sha: () -> untyped
+  end
+end

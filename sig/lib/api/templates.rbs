@@ -1,0 +1,7 @@
+module API
+  class Templates < ::API::Base
+    include PaginationParams
+
+    GLOBAL_TEMPLATE_TYPES: { gitignores: { gitlab_version: ::Float, feature_category: :source_code_management, file_type: ".gitignore" }, gitlab_ci_ymls: { gitlab_version: ::Float, feature_category: :pipeline_composition, file_type: "GitLab CI/CD YAML" }, dockerfiles: { gitlab_version: ::Float, feature_category: :source_code_management, file_type: "Dockerfile" } }
+  end
+end

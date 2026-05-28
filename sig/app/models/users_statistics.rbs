@@ -1,0 +1,21 @@
+class UsersStatistics < ApplicationRecord
+  def active: () -> untyped
+
+  def total: () -> untyped
+
+  def self.latest: () -> untyped
+
+  def self.create_current_stats!: () -> untyped
+
+  private
+
+  def self.highest_role_stats: () -> { without_groups_and_projects: untyped, with_highest_role_guest: untyped, with_highest_role_planner: untyped, with_highest_role_reporter: untyped, with_highest_role_security_manager: untyped, with_highest_role_developer: untyped, with_highest_role_maintainer: untyped, with_highest_role_owner: untyped, bots: untyped, blocked: untyped }
+
+  def self.without_groups_and_projects_stats: () -> untyped
+
+  def self.bot_stats: () -> untyped
+
+  def self.blocked_stats: () -> untyped
+
+  def self.batch_count_for_access_level: (untyped access_level) -> untyped
+end

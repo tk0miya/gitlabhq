@@ -1,0 +1,14 @@
+module Types
+  module WorkItems
+    module WidgetDefinitions
+      # rubocop:disable Graphql/AuthorizeTypes -- Authorization too granular, parent type is authorized
+      class AssigneesType < BaseObject
+        def can_invite_members: () -> untyped
+
+        private
+
+        def resource_parent: () -> untyped
+      end
+    end
+  end
+end

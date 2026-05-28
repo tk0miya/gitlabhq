@@ -1,0 +1,181 @@
+class ApplicationController < BaseActionController
+  @workhorse_excluded_content_types: untyped
+
+  @current_context: untyped
+
+  include Gitlab::GonHelper
+
+  include Gitlab::NoCacheHeaders
+
+  include GitlabRoutingHelper
+
+  include PageLayoutHelper
+
+  include SafeParamsHelper
+
+  include WorkhorseHelper
+
+  include EnforcesTwoFactorAuthentication
+
+  include WithPerformanceBar
+
+  include Gitlab::SearchContext::ControllerConcern
+
+  include PreferredLanguageSwitcher
+
+  include SessionlessAuthentication
+
+  include SessionsHelper
+
+  include ConfirmEmailWarning
+
+  include InitializesCurrentUserMode
+
+  include Impersonation
+
+  include Gitlab::Logging::CloudflareHelper
+
+  include Gitlab::Utils::StrongMemoize
+
+  include ::Gitlab::EndpointAttributes
+
+  include FlocOptOut
+
+  include CheckRateLimit
+
+  include RequestPayloadLogger
+
+  include StrongPaginationParams
+
+  include Gitlab::HttpRouter::RuleContext
+
+  include Gitlab::HttpRouter::RuleMetrics
+
+  include CookiesHelper
+
+  def redirect_back_or_default: (?default: untyped, ?options: ::Hash[untyped, untyped]) -> untyped
+
+  def not_found: () -> untyped
+
+  def route_not_found: () -> untyped
+
+  def handle_unverified_request: () -> untyped
+
+  def render: (*untyped args) -> untyped
+
+  def feature_category: () -> untyped
+
+  def urgency: () -> untyped
+
+  def workhorse_excluded_content_types: () -> untyped
+
+  #
+  # Controllers such as GitHttpController may use alternative methods
+  # (e.g. tokens) to authenticate the user, whereas Devise sets current_user.
+  #
+  def auth_user: () -> untyped
+
+  def log_exception: (untyped exception) -> untyped
+
+  def after_sign_in_path_for: (untyped resource) -> untyped
+
+  def after_sign_out_path_for: (untyped _resource) -> untyped
+
+  def can?: (untyped user, untyped action, ?::Symbol subject) -> untyped
+
+  def access_denied!: (?untyped? message, ?untyped? status) -> untyped
+
+  def git_not_found!: () -> untyped
+
+  def render_403: () -> untyped
+
+  def render_404: () -> untyped
+
+  def render_503: (?untyped? message) -> untyped
+
+  def render_409: (?untyped? message) -> untyped
+
+  def respond_422: () -> untyped
+
+  def no_cache_headers: () -> untyped
+
+  def stream_headers: () -> untyped
+
+  def default_headers: () -> untyped
+
+  def stream_csv_headers: (untyped csv_filename) -> untyped
+
+  def check_password_expiration: () -> (nil | untyped)
+
+  def active_user_check: () -> (nil | untyped)
+
+  def ldap_security_check: () -> (nil | untyped | nil)
+
+  # JSON for infinite scroll via Pager object
+  def pager_json: (untyped partial, untyped count, ?::Hash[untyped, untyped] locals) -> untyped
+
+  def view_to_html_string: (untyped partial, ?::Hash[untyped, untyped] locals) -> untyped
+
+  def configure_permitted_parameters: () -> untyped
+
+  def hexdigest: (untyped string) -> untyped
+
+  def require_email: () -> (untyped | nil)
+
+  def enforce_terms!: () -> (nil | untyped)
+
+  def import_sources_enabled?: () -> untyped
+
+  def bitbucket_server_import_enabled?: () -> untyped
+
+  def github_import_enabled?: () -> untyped
+
+  def gitea_import_enabled?: () -> untyped
+
+  def github_import_configured?: () -> untyped
+
+  def bitbucket_import_enabled?: () -> untyped
+
+  def bitbucket_import_configured?: () -> untyped
+
+  def fogbugz_import_enabled?: () -> untyped
+
+  def git_import_enabled?: () -> untyped
+
+  def gitlab_project_import_enabled?: () -> untyped
+
+  def manifest_import_enabled?: () -> untyped
+
+  def set_current_context: () { () -> untyped } -> untyped
+
+  def set_current_ip_address: () { (?) -> untyped } -> untyped
+
+  def set_locale: () { (?) -> untyped } -> untyped
+
+  def set_session_storage: () { () -> untyped } -> untyped
+
+  def set_page_title_header: () -> untyped
+
+  def set_current_admin: () { () -> untyped } -> untyped
+
+  def html_request?: () -> untyped
+
+  def json_request?: () -> untyped
+
+  def should_enforce_terms?: () -> (false | untyped)
+
+  def public_visibility_restricted?: () -> untyped
+
+  def set_usage_stats_consent_flag: () -> (nil | untyped)
+
+  def disable_usage_stats: () -> untyped
+
+  def allow_gitaly_ref_name_caching: () { () -> untyped } -> untyped
+
+  # Avoid loading the auth_user again after the request. Otherwise calling
+  # `auth_user` again would also trigger the Warden callbacks again
+  def context_user: () -> (untyped | nil)
+
+  # Used by `set_current_organization` in BaseActionController
+  def organization_params: () -> untyped
+end

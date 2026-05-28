@@ -1,0 +1,119 @@
+module Gitlab
+  module Database
+    module Migrations
+      module ConstraintsHelpers
+        include LockRetriesHelpers
+
+        include TimeoutHelpers
+
+        # https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
+        MAX_IDENTIFIER_NAME_LENGTH: 63
+
+        def self.check_constraint_exists?: (untyped table, untyped constraint_name, connection: untyped) -> untyped
+
+        # Returns the name for a check constraint
+        #
+        # type:
+        # - Any value, as long as it is unique
+        # - Constraint names are unique per table in Postgres, and, additionally,
+        #   we can have multiple check constraints over a column
+        #   So we use the (table, column, type) triplet as a unique name
+        # - e.g. we use 'max_length' when adding checks for text limits
+        #        or 'not_null' when adding a NOT NULL constraint
+        #
+        def check_constraint_name: (untyped table, untyped column, untyped type) -> ::String
+
+        def check_constraint_exists?: (untyped table, untyped constraint_name) -> untyped
+
+        # Adds a check constraint to a table
+        #
+        # This method is the generic helper for adding any check constraint
+        # More specialized helpers may use it (e.g. add_text_limit or add_not_null)
+        #
+        # This method only requires minimal locking:
+        # - The constraint is added using NOT VALID
+        #   This allows us to add the check constraint without validating it
+        # - The check will be enforced for new data (inserts) coming in
+        # - If `validate: true` the constraint is also validated
+        #   Otherwise, validate_check_constraint() can be used at a later stage
+        # - Check comments on add_concurrent_foreign_key for more info
+        #
+        # table  - The table the constraint will be added to
+        # check  - The check clause to add
+        #          e.g. 'char_length(name) <= 5' or 'store IS NOT NULL'
+        # constraint_name - The name of the check constraint (otherwise auto-generated)
+        #                   Should be unique per table (not per column)
+        # validate - Whether to validate the constraint in this call
+        #
+        def add_check_constraint: (untyped table, untyped check, untyped constraint_name, ?validate: bool) -> untyped
+
+        def validate_check_constraint: (untyped table, untyped constraint_name) -> untyped
+
+        def remove_check_constraint: (untyped table, untyped constraint_name) -> untyped
+
+        # Copies all check constraints for the old column to the new column.
+        #
+        # table - The table containing the columns.
+        # old - The old column.
+        # new - The new column.
+        # schema - The schema the table is defined for
+        #          If it is not provided, then the current_schema is used
+        def copy_check_constraints: (untyped table, untyped old, untyped new, ?schema: untyped?) -> untyped
+
+        # Migration Helpers for adding limit to text columns
+        def add_text_limit: (untyped table, untyped column, untyped limit, ?constraint_name: untyped?, ?validate: bool) -> untyped
+
+        def validate_text_limit: (untyped table, untyped column, ?constraint_name: untyped?) -> untyped
+
+        def remove_text_limit: (untyped table, untyped column, ?constraint_name: untyped?) -> untyped
+
+        def check_text_limit_exists?: (untyped table, untyped column, ?constraint_name: untyped?) -> untyped
+
+        # Migration Helpers for managing not null constraints
+        def add_not_null_constraint: (untyped table, untyped column, ?constraint_name: untyped?, ?validate: bool) -> untyped
+
+        def validate_not_null_constraint: (untyped table, untyped column, ?constraint_name: untyped?) -> untyped
+
+        def remove_not_null_constraint: (untyped table, untyped column, ?constraint_name: untyped?) -> untyped
+
+        def check_not_null_constraint_exists?: (untyped table, untyped column, ?constraint_name: untyped?) -> untyped
+
+        def add_multi_column_not_null_constraint: (untyped table, *untyped columns, ?limit: ::Integer, ?operator: ::String, ?constraint_name: untyped?, ?validate: bool) -> untyped
+
+        def validate_multi_column_not_null_constraint: (untyped table, *untyped columns, ?constraint_name: untyped?) -> untyped
+
+        def remove_multi_column_not_null_constraint: (untyped table, *untyped columns, ?constraint_name: untyped?) -> untyped
+
+        def rename_constraint: (untyped table_name, untyped old_name, untyped new_name) -> untyped
+
+        def drop_constraint: (untyped table_name, untyped constraint_name, ?cascade: bool) -> untyped
+
+        def switch_constraint_names: (untyped table_name, untyped constraint_a, untyped constraint_b) -> untyped
+
+        def validate_check_constraint_name!: (untyped constraint_name) -> (nil | untyped)
+
+        def text_limit_name: (untyped table, untyped column, ?name: untyped?) -> untyped
+
+        private
+
+        def column_is_nullable?: (untyped table, untyped column) -> untyped
+
+        def validate_not_in_transaction!: (untyped method_name, ?untyped? modifier) -> (nil | untyped)
+
+        # Returns an ActiveRecord::Result containing the check constraints
+        # defined for the given column.
+        #
+        # If the schema is not provided, then the current_schema is used
+        def check_constraints_for: (untyped table, untyped column, ?schema: untyped?) -> untyped
+
+        def cascade_statement: (untyped cascade) -> ("CASCADE" | "")
+
+        def not_null_constraint_name: (untyped table, untyped column, ?name: untyped?) -> untyped
+
+        def multi_column_not_null_constraint_name: (untyped table, untyped columns, ?name: untyped?) -> untyped
+
+        def missing_schema_object_message: (untyped table, untyped type, untyped name) -> ::String
+      end
+    end
+  end
+end

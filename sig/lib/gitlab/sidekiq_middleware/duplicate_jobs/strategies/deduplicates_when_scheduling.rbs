@@ -1,0 +1,39 @@
+module Gitlab
+  module SidekiqMiddleware
+    module DuplicateJobs
+      module Strategies
+        class DeduplicatesWhenScheduling < Base
+          @duplicate_job: untyped
+
+          extend ::Gitlab::Utils::Override
+
+          include ::Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped duplicate_job) -> void
+
+          def schedule: (untyped job) { () -> untyped } -> (false | untyped)
+
+          def perform: (untyped job) -> untyped
+
+          private
+
+          def deduplicate?: (untyped job) -> (false | true)
+
+          def update_job_wal_location!: (untyped job) -> (untyped | nil)
+
+          def deduplicatable_job?: () -> (false | untyped)
+
+          # we do not deduplicate deferred perform_in/perform_at.
+          # note that the schedule enq will push the jobs out of the zset with `deferred: true`
+          def scheduled_deferred_job?: () -> untyped
+
+          def concurrency_limit_resumed?: () -> untyped
+
+          def check!: () -> untyped
+
+          def expiry: () -> untyped
+        end
+      end
+    end
+  end
+end

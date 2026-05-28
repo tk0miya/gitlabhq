@@ -1,0 +1,34 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents an only/except trigger policy for the job.
+        #
+        class Policy < ::Gitlab::Config::Entry::Simplifiable
+          DEFAULT_ONLY: { refs: ::Array["branches" | "tags"] }
+
+          class RefsPolicy < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            def value: () -> { refs: untyped }
+          end
+
+          class ComplexPolicy < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            include ::Gitlab::Config::Entry::Attributable
+
+            ALLOWED_KEYS: ::Array[:refs | :kubernetes | :variables | :changes]
+          end
+
+          class UnknownStrategy < ::Gitlab::Config::Entry::Node
+            def errors: () -> ::Array[::String]
+          end
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

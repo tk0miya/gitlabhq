@@ -1,0 +1,31 @@
+module Packages
+  module Conan
+    class UpsertRecipeRevisionService
+      @package: untyped
+
+      @revision: untyped
+
+      @status: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      UNIQUENESS_COLUMNS: ::Array[:package_id | :revision]
+
+      def initialize: (untyped package, untyped revision, untyped status) -> void
+
+      def execute!: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader revision: untyped
+
+      attr_reader status: untyped
+
+      def recipe_revision: () -> untyped
+
+      def upsert_recipe_revision: () -> untyped
+    end
+  end
+end

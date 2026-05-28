@@ -1,0 +1,25 @@
+class Route < ApplicationRecord
+  include CaseSensitivity
+
+  include Gitlab::SQL::Pattern
+
+  include EachBatch
+
+  include AfterCommitQueue
+
+  include Cells::Claimable
+
+  def rename_descendants: () -> (nil | untyped)
+
+  def delete_conflicting_redirects: () -> (nil | untyped)
+
+  def conflicting_redirects: () -> untyped
+
+  def create_redirect: (untyped path) -> untyped
+
+  private
+
+  def create_redirect_for_old_path: () -> (untyped | nil)
+
+  def unique_attributes: () -> ::Array[:path]
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module CycleAnalytics
+    module GroupProjectsProvider
+      @group: untyped
+
+      @project: untyped
+
+      def projects: () -> (untyped | ::Array[untyped])
+
+      def group: () -> untyped
+
+      def project: () -> untyped
+
+      private
+
+      def projects_for_group: () -> untyped
+    end
+  end
+end

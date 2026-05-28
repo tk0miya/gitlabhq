@@ -1,0 +1,13 @@
+module Ci
+  module PipelineSchedules
+    class DeactivateSchedulesWorker
+      include Gitlab::EventStore::Subscriber
+
+      def handle_event: (untyped event) -> (nil | untyped)
+
+      private
+
+      def deactivate_invalid_schedules: (untyped project_ids, untyped user_ids) -> untyped
+    end
+  end
+end

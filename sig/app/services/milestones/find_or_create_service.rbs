@@ -1,0 +1,30 @@
+module Milestones
+  class FindOrCreateService
+    @project: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    @new_milestone: untyped
+
+    attr_accessor project: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor params: untyped
+
+    def initialize: (untyped project, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_milestone: () -> untyped
+
+    def create_milestone: () -> (nil | untyped)
+
+    def new_milestone: () -> untyped
+  end
+end

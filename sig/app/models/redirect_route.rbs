@@ -1,0 +1,9 @@
+class RedirectRoute < ApplicationRecord
+  include CaseSensitivity
+
+  include Cells::Claimable
+
+  private
+
+  def unique_attributes: () -> ::Array[:path]
+end

@@ -1,0 +1,17 @@
+module Analytics
+  module CycleAnalytics
+    class EventEntity < Grape::Entity
+      private
+
+      def type: () -> ("label" | "simple")
+
+      def can_be_start_event?: () -> untyped
+
+      def allowed_end_events: () -> untyped
+
+      def pairing_rules: () -> untyped
+
+      def stage_events: () -> untyped
+    end
+  end
+end

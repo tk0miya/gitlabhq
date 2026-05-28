@@ -1,0 +1,36 @@
+module Gitlab
+  # This class is used by the `gitlab:usage_data:dump_sql` rake tasks to output SQL instead of running it.
+  # See https://gitlab.com/gitlab-org/gitlab/-/merge_requests/41091
+  class UsageDataQueries < UsageData
+    def self.with_metadata: () { () -> untyped } -> untyped
+
+    def self.add_metric: (untyped metric, ?time_frame: ::String, ?options: ::Hash[untyped, untyped]) -> untyped
+
+    def self.count: (untyped relation, ?untyped? column, *untyped args, **untyped kwargs) -> untyped
+
+    def self.distinct_count: (untyped relation, ?untyped? column, *untyped args, **untyped kwargs) -> untyped
+
+    def self.sum: (untyped relation, untyped column, *untyped args, **untyped kwargs) -> untyped
+
+    def self.histogram: (untyped relation, untyped column, buckets: untyped, ?bucket_size: untyped) -> untyped
+
+    # For estimated distinct count use exact query instead of hll
+    # buckets query, because it can't be used to obtain estimations without
+    # supplementary ruby code present in Gitlab::Database::PostgresHll::BatchDistinctCounter
+    def self.estimate_batch_distinct_count: (untyped relation, ?untyped? column, *untyped args, **untyped kwargs) -> untyped
+
+    def self.add: (*untyped args) -> untyped
+
+    def self.maximum_id: (untyped model, ?untyped? column) -> nil
+
+    def self.minimum_id: (untyped model, ?untyped? column) -> nil
+
+    def self.alt_usage_data: (?untyped? value, ?fallback: untyped) ?{ (?) -> untyped } -> ({ alt_usage_data_block: "non-SQL usage data block" } | { alt_usage_data_value: untyped })
+
+    def self.redis_usage_data: (?untyped? counter) ?{ (?) -> untyped } -> ({ redis_usage_data_block: "non-SQL usage data block" } | { redis_usage_data_counter: untyped } | nil)
+
+    def self.topology_usage_data: () -> { duration_s: 0, failures: ::Array[untyped] }
+
+    def self.stage_manage_events: (untyped time_period) -> untyped
+  end
+end

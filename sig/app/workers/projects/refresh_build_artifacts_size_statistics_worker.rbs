@@ -1,0 +1,21 @@
+module Projects
+  class RefreshBuildArtifactsSizeStatisticsWorker
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include LimitedCapacity::Worker
+
+    MAX_RUNNING_LOW: 1
+
+    MAX_RUNNING_MEDIUM: 3
+
+    MAX_RUNNING_HIGH: 5
+
+    def perform_work: (*untyped args) -> (nil | untyped)
+
+    def remaining_work_count: (*untyped args) -> (1 | 0)
+
+    def max_running_jobs: () -> (untyped | untyped | untyped | 0)
+  end
+end

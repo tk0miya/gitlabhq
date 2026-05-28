@@ -1,0 +1,28 @@
+module WebIde
+  #
+  # Base GitLab WebIde Configuration facade
+  #
+  class Config
+    @config: untyped
+
+    @global: untyped
+
+    ConfigError: untyped
+
+    def initialize: (untyped config, ?::Hash[untyped, untyped] opts) -> void
+
+    def valid?: () -> untyped
+
+    def errors: () -> untyped
+
+    def to_hash: () -> untyped
+
+    def terminal_value: () -> untyped
+
+    def schemas_value: () -> untyped
+
+    private
+
+    def build_config: (untyped config, ?::Hash[untyped, untyped] _opts) -> untyped
+  end
+end

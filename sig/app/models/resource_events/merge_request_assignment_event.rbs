@@ -1,0 +1,5 @@
+module ResourceEvents
+  class MergeRequestAssignmentEvent < ApplicationRecord
+    def self.issuable_id_column: () -> :merge_request_id
+  end
+end

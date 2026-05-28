@@ -1,0 +1,49 @@
+module Ci
+  module Runners
+    class CreateRunnerService
+      @user: untyped
+
+      @scope: untyped
+
+      @params: untyped
+
+      @strategy: untyped
+
+      include Gitlab::InternalEventsTracking
+
+      RUNNER_CLASS_MAPPING: { "instance_type" => untyped, "group_type" => untyped, "project_type" => untyped }
+
+      def initialize: (user: untyped, params: untyped) -> void
+
+      def execute: () -> untyped
+
+      def normalize_params: () -> untyped
+
+      private
+
+      attr_reader user: untyped
+
+      attr_reader scope: untyped
+
+      attr_reader params: untyped
+
+      attr_reader strategy: untyped
+
+      # Overridden in EE to normalize token expiration params (e.g. rename keys)
+      def normalize_token_expiration_params: () -> nil
+
+      # Overridden in EE to validate token expiration params
+      def validate_token_expiration_params: (untyped _runner) -> nil
+
+      def create_runner: (untyped runner, untyped should_mark_hosted) -> untyped
+
+      # CE implementation - no-op
+      def create_hosted_runner!: (untyped runner, untyped should_mark_hosted) -> nil
+
+      # Overridden in EE to add token expiration tracking properties
+      def extra_tracking_properties: (untyped _runner) -> ::Hash[untyped, untyped]
+
+      def track_runner_events: (untyped runner) -> (nil | untyped)
+    end
+  end
+end

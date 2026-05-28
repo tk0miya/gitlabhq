@@ -1,0 +1,63 @@
+module Gitlab
+  module Database
+    module Decomposition
+      MigrateError: untyped
+
+      class Migrate
+        @backup_base_location: untyped
+
+        @backup_location: untyped
+
+        @main_config: untyped
+
+        @ci_config: untyped
+
+        TABLE_SIZE_QUERY: "          select sum(pg_table_size(concat(table_schema,'.',table_name))) as total\n          from information_schema.tables\n          where table_catalog = :table_catalog and table_type = 'BASE TABLE'\n"
+
+        TABLE_COUNT_QUERY: "          select count(*) as total\n          from information_schema.tables\n          where table_catalog = :table_catalog and table_type = 'BASE TABLE'\n          and table_schema not in ('information_schema', 'pg_catalog')\n"
+
+        DISKSPACE_HEADROOM_FACTOR: ::Float
+
+        attr_reader backup_location: untyped
+
+        def initialize: (?backup_base_location: untyped?) -> void
+
+        def process!: () -> (nil | untyped)
+
+        private
+
+        def valid_backup_location?: () -> untyped
+
+        def main_table_sizes: () -> untyped
+
+        def diskspace_free: () -> untyped
+
+        def required_diskspace_available?: () -> true
+
+        def single_database_setup?: () -> true
+
+        def ci_database_connect_ok?: () -> true
+
+        def ci_database_empty?: () -> true
+
+        def background_migrations_done?: () -> true
+
+        def can_migrate?: () -> untyped
+
+        def with_transient_pg_env: (untyped extended_env) { () -> untyped } -> untyped
+
+        def import_dump_to_ci_db: () -> untyped
+
+        def dump_main_db: () -> untyped
+
+        def main_config: () -> untyped
+
+        def ci_config: () -> untyped
+
+        def main_database_name: () -> untyped
+
+        def ci_database_name: () -> ::String
+      end
+    end
+  end
+end

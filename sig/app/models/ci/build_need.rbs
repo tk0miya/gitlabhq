@@ -1,0 +1,14 @@
+module Ci
+  class BuildNeed < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include BulkInsertSafe
+
+    MAX_JOB_NAME_LENGTH: 255
+
+    # TODO: This is temporary code to assist the backfilling of records for this epic: https://gitlab.com/groups/gitlab-org/-/epics/12323
+    # To be removed in 17.7: https://gitlab.com/gitlab-org/gitlab/-/issues/488163
+    #
+    def set_project_id: () -> untyped
+  end
+end

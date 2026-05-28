@@ -1,0 +1,11 @@
+module WorkItems
+  class UpdateNamespaceTraversalIdsWorker
+    include ApplicationWorker
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    RETRY_IN_IF_LOCKED: untyped
+
+    def perform: (untyped namespace_id) -> untyped
+  end
+end

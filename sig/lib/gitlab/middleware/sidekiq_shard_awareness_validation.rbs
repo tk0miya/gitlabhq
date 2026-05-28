@@ -1,0 +1,17 @@
+module Gitlab
+  module Middleware
+    class SidekiqShardAwarenessValidation
+      @app: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      SIDEKIQ_WEB_UI_PATH: ::Regexp
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      def relative_url: () -> untyped
+    end
+  end
+end

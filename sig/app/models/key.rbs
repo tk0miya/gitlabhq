@@ -1,0 +1,73 @@
+class Key < ApplicationRecord
+  @public_key: untyped
+
+  include AfterCommitQueue
+
+  include Sortable
+
+  include ShaAttribute
+
+  include Expirable
+
+  include FromUnion
+
+  include Todoable
+
+  include CreatedAtFilterable
+
+  include Cells::Claimable
+
+  def self.regular_keys: () -> untyped
+
+  def self.regular_key_types: () -> ::Array[nil | "Key"]
+
+  def key=: (untyped value) -> untyped
+
+  def publishable_key: () -> untyped
+
+  # projects that has this key
+  def projects: () -> untyped
+
+  def shell_id: () -> ::String
+
+  # EE overrides this
+  def can_delete?: () -> true
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def update_last_used_at: () -> untyped
+
+  def add_to_authorized_keys: () -> (nil | untyped)
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def post_create_hook: () -> untyped
+
+  def remove_from_authorized_keys: () -> (nil | untyped)
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def refresh_user_cache: () -> (nil | untyped)
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def post_destroy_hook: () -> untyped
+
+  def public_key: () -> untyped
+
+  def ensure_sha256_fingerprint!: () -> (nil | untyped)
+
+  def signing?: () -> untyped
+
+  def readable_by?: (untyped user) -> untyped
+
+  def to_reference: () -> untyped
+
+  def regular_key?: () -> untyped
+
+  private
+
+  def generate_fingerprint: () -> (nil | untyped)
+
+  def banned_key: () -> (nil | untyped)
+
+  def expiration: () -> (untyped | nil)
+
+  def unique_attributes: () -> ::Array[:key]
+end

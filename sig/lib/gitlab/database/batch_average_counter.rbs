@@ -1,0 +1,43 @@
+module Gitlab
+  module Database
+    class BatchAverageCounter
+      @relation: untyped
+
+      @column: untyped
+
+      COLUMN_FALLBACK: 0
+
+      DEFAULT_BATCH_SIZE: 1000
+
+      FALLBACK: -1
+
+      MAX_ALLOWED_LOOPS: 10000
+
+      OFFSET_BY_ONE: 1
+
+      SLEEP_TIME_IN_SECONDS: ::Float
+
+      attr_reader relation: untyped
+
+      attr_reader column: untyped
+
+      def initialize: (untyped relation, untyped column) -> void
+
+      def count: (?batch_size: untyped?) -> untyped
+
+      private
+
+      def column_start: () -> untyped
+
+      def column_finish: () -> untyped
+
+      def build_relation_batch: (untyped start, untyped finish) -> untyped
+
+      def log_canceled_batch_fetch: (untyped batch_start, untyped query, untyped error) -> untyped
+
+      def transaction_open?: () -> untyped
+
+      def wrap_column: (untyped relation, untyped column) -> untyped
+    end
+  end
+end

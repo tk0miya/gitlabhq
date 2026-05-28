@@ -1,0 +1,18 @@
+module CommitSignature
+  extend ActiveSupport::Concern
+
+  def commit: () -> untyped
+
+  def signed_by_user: () -> untyped
+
+  def verified_committer?: () -> untyped
+
+  # If commit is persisted as verified, check that commit email is still correct.
+  def verification_status: () -> (untyped | "unverified_author_email")
+
+  private
+
+  def verified_email?: (untyped email) -> (false | true | untyped)
+
+  def emails_for_verification: () -> untyped
+end

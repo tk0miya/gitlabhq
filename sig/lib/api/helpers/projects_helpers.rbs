@@ -1,0 +1,17 @@
+module API
+  module Helpers
+    module ProjectsHelpers
+      extend ActiveSupport::Concern
+
+      extend Grape::API::Helpers
+
+      STATISTICS_SORT_PARAMS: ::Array["storage_size" | "repository_size" | "wiki_size" | "packages_size"]
+
+      def self.update_params_at_least_one_of: () -> ::Array[:allow_merge_on_skipped_pipeline | :analytics_access_level | :autoclose_referenced_issues | :auto_devops_enabled | :auto_devops_deploy_strategy | :auto_cancel_pending_pipelines | :build_git_strategy | :build_timeout | :builds_access_level | :ci_config_path | :ci_default_git_depth | :ci_allow_fork_pipelines_to_run_in_parent_project | :ci_id_token_sub_claim_components | :ci_forward_deployment_enabled | :ci_forward_deployment_rollback_allowed | :ci_separated_caches | :container_registry_access_level | :container_expiration_policy_attributes | :default_branch | :description | :emails_disabled | :emails_enabled | :forking_access_level | :issues_access_level | :lfs_enabled | :merge_pipelines_enabled | :merge_requests_access_level | :merge_requests_template | :merge_trains_enabled | :merge_method | :name | :only_allow_merge_if_all_discussions_are_resolved | :only_allow_merge_if_pipeline_succeeds | :package_registry_access_level | :pages_access_level | :path | :printing_merge_request_link_enabled | :public_builds | :public_jobs | :remove_source_branch_after_merge | :repository_access_level | :request_access_enabled | :resolve_outdated_diff_discussions | :restrict_user_defined_variables | :show_diff_preview_in_email | :security_and_compliance_access_level | :squash_option | :shared_runners_enabled | :group_runners_enabled | :resource_group_default_process_mode | :snippets_access_level | :tag_list | :topics | :visibility | :wiki_access_level | :avatar | :suggestion_commit_message | :merge_commit_template | :squash_commit_template | :issue_branch_template | :repository_storage | :packages_enabled | :service_desk_enabled | :keep_latest_artifact | :mr_default_target_self | :mr_default_title_template | :enforce_auth_checks_on_uploads | :releases_access_level | :environments_access_level | :feature_flags_access_level | :infrastructure_access_level | :monitor_access_level | :model_experiments_access_level | :model_registry_access_level | :warn_about_potentially_unwanted_characters | :ci_pipeline_variables_minimum_override_role | :ci_push_repository_for_job_token_allowed | :ci_delete_pipelines_in_seconds | :max_artifacts_size | :protect_merge_request_pipelines | :ci_display_pipeline_variables | :issues_enabled | :jobs_enabled | :merge_requests_enabled | :wiki_enabled | :snippets_enabled | :container_registry_enabled]
+
+      def filter_attributes_using_license!: (untyped attrs) -> nil
+
+      def validate_git_import_url!: (untyped import_url) -> (nil | untyped)
+    end
+  end
+end

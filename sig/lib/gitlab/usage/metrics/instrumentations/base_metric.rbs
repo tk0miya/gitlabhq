@@ -1,0 +1,41 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class BaseMetric
+          self.@metric_available: untyped
+
+          @metric_definition: untyped
+
+          @time_frame: untyped
+
+          @options: untyped
+
+          @events: untyped
+
+          include Gitlab::Utils::UsageData
+
+          include Gitlab::Usage::TimeFrame
+
+          attr_reader metric_definition: untyped
+
+          attr_reader time_frame: untyped
+
+          attr_reader options: untyped
+
+          attr_reader events: untyped
+
+          def self.available?: () ?{ (?) -> untyped } -> (untyped | true)
+
+          attr_reader self.metric_available: untyped
+
+          def initialize: (untyped attributes) -> void
+
+          def instrumentation: () -> untyped
+
+          def available?: () -> untyped
+        end
+      end
+    end
+  end
+end

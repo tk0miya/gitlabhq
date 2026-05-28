@@ -1,0 +1,35 @@
+module Gitlab
+  module Git
+    class RemoteMirror
+      @repository: untyped
+
+      @remote_url: untyped
+
+      @only_branches_matching: untyped
+
+      @ssh_key: untyped
+
+      @known_hosts: untyped
+
+      @keep_divergent_refs: untyped
+
+      include Gitlab::Git::WrapsGitalyErrors
+
+      attr_reader repository: untyped
+
+      attr_reader remote_url: untyped
+
+      attr_reader only_branches_matching: untyped
+
+      attr_reader ssh_key: untyped
+
+      attr_reader known_hosts: untyped
+
+      attr_reader keep_divergent_refs: untyped
+
+      def initialize: (untyped repository, untyped remote_url, ?only_branches_matching: untyped, ?ssh_key: untyped?, ?known_hosts: untyped?, ?keep_divergent_refs: bool) -> void
+
+      def update: () -> untyped
+    end
+  end
+end

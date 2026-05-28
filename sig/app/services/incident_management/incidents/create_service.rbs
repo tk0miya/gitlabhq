@@ -1,0 +1,31 @@
+module IncidentManagement
+  module Incidents
+    class CreateService < ::BaseProjectService
+      @title: untyped
+
+      @description: untyped
+
+      @severity: untyped
+
+      @alert: untyped
+
+      def initialize: (untyped project, untyped current_user, title: untyped, description: untyped, ?severity: untyped, ?alert: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader title: untyped
+
+      attr_reader description: untyped
+
+      attr_reader severity: untyped
+
+      attr_reader alert: untyped
+
+      def incident_work_item_type: () -> untyped
+
+      def error: (untyped message, ?untyped? issue) -> untyped
+    end
+  end
+end

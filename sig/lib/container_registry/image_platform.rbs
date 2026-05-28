@@ -1,0 +1,27 @@
+module ContainerRegistry
+  class ImagePlatform
+    @parent: untyped
+
+    @architecture: untyped
+
+    @os: untyped
+
+    @os_version: untyped
+
+    @variant: untyped
+
+    attr_reader parent: untyped
+
+    attr_reader architecture: untyped
+
+    attr_reader os: untyped
+
+    attr_reader os_version: untyped
+
+    attr_reader variant: untyped
+
+    def self.from_hash: (untyped parent, untyped platform_hash) -> (nil | untyped)
+
+    def initialize: (untyped parent, ?architecture: untyped?, ?os: untyped?, ?os_version: untyped?, ?variant: untyped?) -> void
+  end
+end

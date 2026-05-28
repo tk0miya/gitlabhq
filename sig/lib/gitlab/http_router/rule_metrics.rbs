@@ -1,0 +1,19 @@
+module Gitlab
+  module HttpRouter
+    module RuleMetrics
+      extend ActiveSupport::Concern
+
+      include HttpRouter::RuleContext
+
+      include Gitlab::Utils::StrongMemoize
+
+      def increment_http_router_metrics: () -> untyped
+
+      private
+
+      def increment_http_router_rule_counter: (untyped http_router_rule_action, untyped http_router_rule_type) -> (nil | untyped)
+
+      def http_router_rule_counter: () -> untyped
+    end
+  end
+end

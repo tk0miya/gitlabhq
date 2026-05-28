@@ -1,0 +1,31 @@
+module Preloaders
+  # This class preloads the max access level (role) for the user within the given groups and
+  # stores the values in requests store.
+  class UserMaxAccessLevelInGroupsPreloader
+    @groups: untyped
+
+    @user: untyped
+
+    def initialize: (untyped groups, untyped user) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def preload_with_traversal_ids: () -> untyped
+
+    def all_memberships: () -> ::Array[untyped]
+
+    def direct_memberships: () -> untyped
+
+    def memberships_from_group_shares: () -> untyped
+
+    def alter_direct_memberships_to_make_it_act_like_memberships_in_shared_groups: () -> untyped
+
+    def direct_memberships_in_groups_that_have_been_shared_with_other_groups: () -> untyped
+
+    def smallest_value_arel: (untyped args, untyped column_alias) -> untyped
+
+    def traversal_join_sql: () -> untyped
+  end
+end

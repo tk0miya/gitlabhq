@@ -1,0 +1,137 @@
+class WebHookService
+  @hook: untyped
+
+  @data: untyped
+
+  @hook_name: untyped
+
+  @uniqueness_token: untyped
+
+  @idempotency_key: untyped
+
+  @force: untyped
+
+  @request_options: untyped
+
+  @parsed_url: untyped
+
+  @headers: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  class InternalErrorResponse
+    @headers: untyped
+
+    @body: untyped
+
+    @code: untyped
+
+    ERROR_MESSAGE: "internal error"
+
+    attr_reader body: untyped
+
+    attr_reader headers: untyped
+
+    attr_reader code: untyped
+
+    def success?: () -> false
+
+    def redirection?: () -> false
+
+    def internal_server_error?: () -> true
+
+    def initialize: () -> void
+  end
+
+  CustomWebHookTemplateError: untyped
+
+  REQUEST_BODY_SIZE_LIMIT: untyped
+
+  # Response body is for UI display only. It does not make much sense to save
+  # whatever the receivers throw back at us
+  RESPONSE_BODY_SIZE_LIMIT: untyped
+
+  # The headers are for debugging purpose. They are displayed on the UI only.
+  RESPONSE_HEADERS_COUNT_LIMIT: 50
+
+  RESPONSE_HEADERS_SIZE_LIMIT: untyped
+
+  CUSTOM_TEMPLATE_INTERPOLATION_REGEX: untyped
+
+  attr_accessor hook: untyped
+
+  attr_accessor data: untyped
+
+  attr_accessor hook_name: untyped
+
+  attr_accessor request_options: untyped
+
+  attr_reader uniqueness_token: untyped
+
+  attr_reader idempotency_key: untyped
+
+  def self.hook_to_event: (untyped hook_name, ?untyped? hook) -> untyped
+
+  def initialize: (untyped hook, untyped data, untyped hook_name, ?untyped? uniqueness_token, ?idempotency_key: untyped?, ?force: bool) -> void
+
+  def disabled?: () -> untyped
+
+  def execute: () -> untyped
+
+  def async_execute: () -> untyped
+
+  private
+
+  def parsed_url: () -> untyped
+
+  def generate_idempotency_key: () -> untyped
+
+  def make_request: (untyped url, ?bool basic_auth) -> untyped
+
+  def make_request_with_auth: () -> untyped
+
+  def log_execution: (response: untyped, execution_duration: untyped, ?error_message: untyped?, ?request_data: untyped) -> untyped
+
+  def queue_log_execution_with_retry: (untyped log_data, untyped category) -> untyped
+
+  def response_category: (untyped response) -> (:ok | :error)
+
+  def build_headers: () -> untyped
+
+  def build_signature: (untyped timestamp, untyped message_id) -> ::String
+
+  def build_custom_headers: (?values_redacted: bool) -> (::Hash[untyped, untyped] | untyped)
+
+  # Make response headers more stylish
+  # Net::HTTPHeader has downcased hash with arrays: { 'content-type' => ['text/html; charset=utf-8'] }
+  # This method format response to capitalized hash with strings: { 'Content-Type' => 'text/html; charset=utf-8' }
+  def safe_response_headers: (untyped response) -> untyped
+
+  def safe_response_body: (untyped response) -> ("" | untyped)
+
+  # Increments rate-limit counter.
+  # Returns true if hook should be rate-limited.
+  def rate_limit!: () -> untyped
+
+  def recursion_blocked?: () -> untyped
+
+  def log_rate_limited: () -> untyped
+
+  def log_recursion_blocked: () -> untyped
+
+  def log_silent_mode_enabled: () -> untyped
+
+  def log_auth_error: (untyped message, ?::Hash[untyped, untyped] params) -> untyped
+
+  def string_size_limit: (untyped str, untyped limit) -> untyped
+
+  def enforce_utf8: (untyped str) -> untyped
+
+  def request_payload: () -> untyped
+
+  def encoded_request_body: () -> untyped
+
+  def render_custom_template: (untyped template, untyped params) -> untyped
+
+  def raise_custom_webhook_template_error!: (untyped message) -> untyped
+end

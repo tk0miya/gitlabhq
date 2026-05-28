@@ -1,0 +1,19 @@
+module Limitable
+  extend ActiveSupport::Concern
+
+  GLOBAL_SCOPE: :limitable_global_scope
+
+  def exceeds_limits?: () -> untyped
+
+  private
+
+  def validate_plan_limit_not_exceeded: () -> untyped
+
+  def fetch_plan_limit_data: () -> untyped
+
+  def scoped_plan_limits: () -> (nil | ::Array[untyped])
+
+  def global_plan_limits: () -> ::Array[untyped]
+
+  def check_plan_limit_not_exceeded: (untyped limits, untyped relation) -> (nil | untyped)
+end

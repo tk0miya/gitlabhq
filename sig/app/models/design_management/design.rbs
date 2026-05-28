@@ -1,0 +1,105 @@
+module DesignManagement
+  class Design < ApplicationRecord
+    self.@link_reference_pattern: untyped
+
+    @full_path: untyped
+
+    include AtomicInternalId
+
+    include Importable
+
+    include Import::HasImportSource
+
+    include Noteable
+
+    include Gitlab::FileTypeDetection
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Referable
+
+    include Mentionable
+
+    include WhereComposite
+
+    include RelativePositioning
+
+    include Todoable
+
+    include Participable
+
+    include CacheMarkdownField
+
+    include Subscribable
+
+    include EachBatch
+
+    def self.relative_positioning_query_base: (untyped design) -> untyped
+
+    def self.relative_positioning_parent_column: () -> :issue_id
+
+    def status: () -> (:new | :deleted | :current)
+
+    def deleted?: () -> untyped
+
+    # A design is visible_in? a version if:
+    #   * it was created before that version
+    #   * the most recent action before the version was not a deletion
+    def visible_in?: (untyped version) -> untyped
+
+    def most_recent_action: () -> untyped
+
+    # A reference for a design is the issue reference, indexed by the filename
+    # with an optional infix when full.
+    #
+    # e.g.
+    #   #123[homescreen.png]
+    #   other-project#72[sidebar.jpg]
+    #   #38/designs[transition.gif]
+    #   #12["filename with [] in it.jpg"]
+    def to_reference: (?untyped? from, ?full: bool) -> ::String
+
+    def self.reference_pattern: () -> nil
+
+    def self.link_reference_pattern: () -> untyped
+
+    def self.build_full_path: (untyped issue, untyped design) -> untyped
+
+    def self.to_ability_name: () -> "design"
+
+    def new_design?: () -> untyped
+
+    def full_path: () -> untyped
+
+    def diff_refs: () -> untyped
+
+    def clear_version_cache: () -> untyped
+
+    def repository: () -> untyped
+
+    def user_notes_count: () -> untyped
+
+    def after_note_changed: (untyped note) -> (untyped | nil)
+
+    alias after_note_created after_note_changed
+
+    alias after_note_destroyed after_note_changed
+
+    # Part of the interface of objects we can create events about
+    def resource_parent: () -> untyped
+
+    def notes_with_associations: () -> untyped
+
+    private
+
+    def head_version: () -> untyped
+
+    def allow_dangerous_images?: () -> untyped
+
+    def valid_file_extensions: () -> untyped
+
+    def validate_file_is_image: () -> (untyped | nil)
+
+    def user_notes_count_service: () -> untyped
+  end
+end

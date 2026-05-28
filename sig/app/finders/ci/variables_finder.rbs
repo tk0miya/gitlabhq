@@ -1,0 +1,21 @@
+module Ci
+  class VariablesFinder
+    @resource: untyped
+
+    @params: untyped
+
+    def initialize: (untyped resource, untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader resource: untyped
+
+    attr_reader params: untyped
+
+    def by_key: (untyped variables) -> untyped
+
+    def by_environment_scope: (untyped variables) -> untyped
+  end
+end

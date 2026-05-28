@@ -1,0 +1,11 @@
+module Gitlab
+  module ConfigChecker
+    module ExternalDatabaseChecker
+      extend ::Gitlab::ConfigChecker::ExternalDatabaseChecker
+
+      PG_REQUIREMENTS_LINK: "<a href=\"https://docs.gitlab.com/ee/install/requirements.html#database\">database requirements</a>"
+
+      def check: () -> untyped
+    end
+  end
+end

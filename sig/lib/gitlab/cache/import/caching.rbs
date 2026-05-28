@@ -1,0 +1,165 @@
+module Gitlab
+  module Cache
+    module Import
+      module Caching
+        # The default timeout of the cache keys.
+        TIMEOUT: untyped
+
+        LONGER_TIMEOUT: untyped
+
+        SHORTER_TIMEOUT: untyped
+
+        WRITE_IF_GREATER_SCRIPT: untyped
+
+        # Reads a cache key.
+        #
+        # If the key exists and has a non-empty value its TTL is refreshed
+        # automatically.
+        #
+        # raw_key - The cache key to read.
+        # timeout - The new timeout of the key if the key is to be refreshed.
+        def self.read: (untyped raw_key, ?timeout: untyped) -> untyped
+
+        # Reads an integer from the cache, or returns nil if no value was found.
+        #
+        # See Caching.read for more information.
+        def self.read_integer: (untyped raw_key, ?timeout: untyped) -> untyped
+
+        # Sets a cache key to the given value.
+        #
+        # raw_key - The cache key to write.
+        # value - The value to set.
+        # timeout - The time after which the cache key should expire.
+        def self.write: (untyped raw_key, untyped value, ?timeout: untyped) -> untyped
+
+        # Increment the integer value of a key by one.
+        # Sets the value to zero if missing before incrementing
+        #
+        # raw_key - The cache key to increment.
+        # timeout - The time after which the cache key should expire.
+        # @return - the incremented value
+        def self.increment: (untyped raw_key, ?timeout: untyped) -> untyped
+
+        # Increment the integer value of a key by the given value.
+        # Sets the value to zero if missing before incrementing
+        #
+        # raw_key - The cache key to increment.
+        # value - The value to increment the key
+        # timeout - The time after which the cache key should expire.
+        # @return - the incremented value
+        def self.increment_by: (untyped raw_key, untyped value, ?timeout: untyped) -> untyped
+
+        # Adds a value to a set.
+        #
+        # raw_key - The key of the set to add the value to.
+        # value - The value to add to the set.
+        # timeout - The new timeout of the key.
+        def self.set_add: (untyped raw_key, untyped value, ?timeout: untyped) -> untyped
+
+        # Returns true if the given value is present in the set.
+        #
+        # raw_key - The key of the set to check.
+        # value - The value to check for.
+        def self.set_includes?: (untyped raw_key, untyped value) -> untyped
+
+        # Returns the number of values in the set.
+        #
+        # raw_key - The key of the set to check.
+        def self.set_count: (untyped raw_key) -> untyped
+
+        # Returns the values of the given set.
+        #
+        # raw_key - The key of the set to check.
+        def self.values_from_set: (untyped raw_key) -> untyped
+
+        # Returns a limited number of random values from the set.
+        #
+        # raw_key - The key of the set to check.
+        # limit - Number of values to return (default: 1).
+        def self.limited_values_from_set: (untyped raw_key, ?limit: ::Integer) -> untyped
+
+        # Removes the given values from the set.
+        #
+        # raw_key - The key of the set to check.
+        # values - Array of values to remove from set.
+        def self.set_remove: (untyped raw_key, ?untyped values) -> untyped
+
+        # Sets multiple keys to given values.
+        #
+        # mapping - A Hash mapping the cache keys to their values.
+        # key_prefix - prefix inserted before each key
+        # timeout - The time after which the cache key should expire.
+        def self.write_multiple: (untyped mapping, ?key_prefix: untyped?, ?timeout: untyped) -> untyped
+
+        # Sets the expiration time of a key.
+        #
+        # raw_key - The key for which to change the timeout.
+        # timeout - The new timeout.
+        def self.expire: (untyped raw_key, untyped timeout) -> untyped
+
+        # Sets a key to the given integer but only if the existing value is
+        # smaller than the given value.
+        #
+        # This method uses a Lua script to ensure the read and write are atomic.
+        #
+        # raw_key - The key to set.
+        # value - The new value for the key.
+        # timeout - The key timeout in seconds.
+        #
+        # Returns true when the key was overwritten, false otherwise.
+        def self.write_if_greater: (untyped raw_key, untyped value, ?timeout: untyped) -> untyped
+
+        # Adds a value to a hash.
+        #
+        # raw_key - The key of the hash to add to.
+        # field - The field to add to the hash.
+        # value - The field value to add to the hash.
+        # timeout - The new timeout of the key.
+        def self.hash_add: (untyped raw_key, untyped field, untyped value, ?timeout: untyped) -> untyped
+
+        # Returns the values of the given hash.
+        #
+        # raw_key - The key of the hash to check.
+        def self.values_from_hash: (untyped raw_key) -> untyped
+
+        # Returns a single value of the given hash.
+        #
+        # raw_key - The key of the hash to check.
+        # field - The field to get from the hash.
+        def self.value_from_hash: (untyped raw_key, untyped field, ?timeout: untyped) -> untyped
+
+        # Increments value of a field in a hash
+        #
+        # raw_key - The key of the hash to add to.
+        # field - The field to increment.
+        # value - The field value to add to the hash.
+        # timeout - The new timeout of the key.
+        def self.hash_increment: (untyped raw_key, untyped field, untyped value, ?timeout: untyped) -> (nil | untyped)
+
+        # Adds a value to a list.
+        #
+        # raw_key - The key of the list to add to.
+        # value - The field value to add to the list.
+        # timeout - The new timeout of the key.
+        # limit - The maximum number of members in the list. Older members will be trimmed to this limit.
+        def self.list_add: (untyped raw_key, untyped value, ?timeout: untyped, ?limit: untyped?) -> untyped
+
+        # Returns the values of the given list.
+        #
+        # raw_key - The key of the list.
+        def self.values_from_list: (untyped raw_key) -> untyped
+
+        # Deletes a key
+        #
+        # raw_key - Key name
+        def self.del: (untyped raw_key) -> untyped
+
+        def self.cache_key_for: (untyped raw_key) -> ::String
+
+        def self.with_redis: () { (?) -> untyped } -> untyped
+
+        def self.validate_redis_value!: (untyped value) -> (nil | untyped)
+      end
+    end
+  end
+end

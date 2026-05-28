@@ -1,0 +1,52 @@
+module Gitlab
+  module Gpg
+    extend ::Gitlab::Gpg
+
+    CleanupError: untyped
+
+    BG_CLEANUP_RUNTIME_S: 10
+
+    FG_CLEANUP_RUNTIME_S: 1
+
+    MUTEX: untyped
+
+    module CurrentKeyChain
+      extend ::Gitlab::Gpg::CurrentKeyChain
+
+      def add: (untyped key) -> untyped
+
+      def fingerprints_from_key: (untyped key) -> (::Array[untyped] | untyped)
+    end
+
+    def fingerprints_from_key: (untyped key) -> untyped
+
+    def primary_keyids_from_key: (untyped key) -> untyped
+
+    def subkeys_from_key: (untyped key) -> untyped
+
+    def user_infos_from_key: (untyped key) -> untyped
+
+    # Allows thread safe switching of temporary keychain files
+    #
+    # 1. The current thread may use nesting of temporary keychain
+    # 2. Another thread needs to wait for the lock to be released
+    def using_tmp_keychain: () { (?) -> untyped } -> untyped
+
+    # 1. Returns the custom home directory if one has been set by calling
+    #    `GPGME::Engine.home_dir=`
+    # 2. Returns the default home directory otherwise
+    def current_home_dir: () -> untyped
+
+    private
+
+    def optimistic_using_tmp_keychain: () { () -> untyped } -> untyped
+
+    def cleanup_tmp_dir: (untyped tmp_dir) -> untyped
+
+    def cleanup_time: () -> untyped
+
+    def tmp_keychains_created: () -> untyped
+
+    def tmp_keychains_removed: () -> untyped
+  end
+end

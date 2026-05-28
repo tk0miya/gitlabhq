@@ -1,0 +1,15 @@
+module AuthorizedProjectUpdate
+  class ProjectRecalculateWorker
+    include ApplicationWorker
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    def perform: (untyped project_id) -> (nil | untyped)
+
+    def recalculate: (untyped service) -> untyped
+
+    private
+
+    def lock_key: (untyped project) -> ::String
+  end
+end

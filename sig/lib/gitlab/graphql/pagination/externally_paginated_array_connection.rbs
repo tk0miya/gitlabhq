@@ -1,0 +1,26 @@
+# Make a customized connection type
+module Gitlab
+  module Graphql
+    module Pagination
+      class ExternallyPaginatedArrayConnection < GraphQL::Pagination::ArrayConnection
+        @nodes: untyped
+
+        include ::Gitlab::Graphql::ConnectionCollectionMethods
+
+        prepend ::Gitlab::Graphql::ConnectionRedaction
+
+        def next_page?: () -> untyped
+
+        def previous_page?: () -> untyped
+
+        alias has_next_page next_page?
+
+        alias has_previous_page previous_page?
+
+        private
+
+        def load_nodes: () -> untyped
+      end
+    end
+  end
+end

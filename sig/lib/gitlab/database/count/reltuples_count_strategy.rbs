@@ -1,0 +1,53 @@
+module Gitlab
+  module Database
+    module Count
+      # This strategy counts based on PostgreSQL's statistics in pg_stat_user_tables.
+      #
+      # Specifically, it relies on the column reltuples in said table. An additional
+      # check is performed to make sure statistics were updated within the last hour.
+      #
+      # Otherwise, this strategy skips tables with outdated statistics.
+      #
+      # There are no guarantees with respect to the accuracy of this strategy. Runtime
+      # however is guaranteed to be "fast", because it only looks up statistics.
+      class ReltuplesCountStrategy
+        @models: untyped
+
+        @table_to_model_mapping: untyped
+
+        attr_reader models: untyped
+
+        def initialize: (untyped models) -> void
+
+        # Returns a hash of the table names that have recently updated tuples.
+        #
+        # @returns [Hash] Table name to count mapping (e.g. { 'projects' => 5, 'users' => 100 })
+        def count: () -> untyped
+
+        private
+
+        # Models using single-type inheritance (STI) don't work with
+        # reltuple count estimates. We just have to ignore them and
+        # use another strategy to compute them.
+        def non_sti_models: (untyped models) -> untyped
+
+        def non_sti_table_names: (untyped models) -> untyped
+
+        def sti_model?: (untyped model) -> untyped
+
+        def table_to_model_mapping: () -> untyped
+
+        def table_to_model: (untyped table_name) -> untyped
+
+        def size_estimates: (?check_statistics: bool) -> untyped
+
+        # Generates the PostgreSQL query to return the tuples for tables
+        # that have been vacuumed or analyzed in the last hour.
+        #
+        # @param [Array] table names
+        # @returns [Hash] Table name to count mapping (e.g. { 'projects' => 5, 'users' => 100 })
+        def get_statistics: (untyped table_names, ?check_statistics: bool) -> untyped
+      end
+    end
+  end
+end

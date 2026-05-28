@@ -1,0 +1,7 @@
+module API
+  class CargoProjectPackages < ::API::Base
+    include ::API::Helpers::Authentication
+
+    DOWNLOAD_REQUIREMENTS: { package_name: untyped, package_version: untyped }
+  end
+end

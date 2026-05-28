@@ -1,0 +1,11 @@
+module Gitlab
+  module QuickActions
+    class SubstitutionDefinition < CommandDefinition
+      # noop?=>true means these won't get extracted or removed by Gitlab::QuickActions::Extractor#extract_commands
+      # QuickActions::InterpretService#perform_substitutions handles them separately
+      def noop?: () -> true
+
+      def perform_substitution: (untyped context, untyped content) -> (nil | untyped)
+    end
+  end
+end

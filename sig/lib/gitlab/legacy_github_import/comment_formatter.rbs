@@ -1,0 +1,43 @@
+module Gitlab
+  module LegacyGithubImport
+    class CommentFormatter < BaseFormatter
+      @author: untyped
+
+      include Import::UsernameMentionRewriter
+
+      attr_writer author_id: untyped
+
+      attr_accessor gitlab_issuable: untyped
+
+      def attributes: () -> { project: untyped, note: untyped, commit_id: untyped, line_code: untyped, author_id: untyped, type: untyped, created_at: untyped, updated_at: untyped, imported_from: untyped }
+
+      def project_association: () -> :notes
+
+      def create_record: () -> untyped
+
+      def contributing_user_formatters: () -> { author_id: untyped }
+
+      private
+
+      def author: () -> untyped
+
+      def author_id: () -> untyped
+
+      def body: () -> untyped
+
+      def line_code: () -> (nil | untyped)
+
+      def generate_line_code: (untyped line) -> untyped
+
+      def on_diff?: () -> untyped
+
+      def diff_hunk: () -> untyped
+
+      def file_path: () -> untyped
+
+      def note: () -> untyped
+
+      def type: () -> ("LegacyDiffNote" | nil)
+    end
+  end
+end

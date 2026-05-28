@@ -1,0 +1,28 @@
+# The policies defined in GroupPolicy is used in GraphQL requests
+# With a GraphQL request, the user is always a human User
+#
+# With JWT requests, we can be dealing with any of the following:
+# - a PrAT for a human
+# - a PrAT for a service account
+# - a GrAT
+# - a Group DeployToken
+#
+# We use this custom policy class for JWT requests
+#
+# TODO: Split this into multiple policies, one per supported user type
+# https://gitlab.com/gitlab-org/gitlab/-/issues/463501
+module Packages
+  module Policies
+    module DependencyProxy
+      class GroupPolicy < ::GroupPolicy
+        @access_level: untyped
+
+        def access_level: (?for_any_session: bool) -> untyped
+
+        def lookup_access_level!: (untyped _) -> untyped
+
+        def deploy_token_user?: () -> untyped
+      end
+    end
+  end
+end

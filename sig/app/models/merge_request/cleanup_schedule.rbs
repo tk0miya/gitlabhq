@@ -1,0 +1,10 @@
+class MergeRequest::CleanupSchedule < ApplicationRecord
+  STATUSES: { unstarted: 0, running: 1, completed: 2, failed: 3 }
+
+  # NOTE: Limit the number of stuck schedule jobs to retry just in case it becomes too big.
+  STUCK_RETRY_LIMIT: 5
+
+  def self.start_next: () -> untyped
+
+  def self.stuck_retry!: () -> untyped
+end

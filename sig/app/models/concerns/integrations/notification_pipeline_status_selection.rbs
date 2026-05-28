@@ -1,0 +1,13 @@
+module Integrations
+  module NotificationPipelineStatusSelection
+    extend ActiveSupport::Concern
+
+    private
+
+    def notify_for_pipeline?: (untyped data) -> untyped
+
+    def notify_for_failed_pipeline?: (untyped data) -> (true | untyped)
+
+    def notify_for_successful_pipeline?: (untyped data) -> (false | true | untyped)
+  end
+end

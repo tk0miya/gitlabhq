@@ -1,0 +1,11 @@
+module Mutations
+  module AlertManagement
+    module HttpIntegration
+      class Create < HttpIntegrationBase
+        include FindsProject
+
+        def resolve: (untyped args) -> untyped
+      end
+    end
+  end
+end

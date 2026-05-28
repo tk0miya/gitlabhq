@@ -1,0 +1,7 @@
+module Resolvers
+  class DeploymentResolver < BaseResolver
+    alias project object
+
+    def resolve: (iid: untyped) -> (nil | untyped)
+  end
+end

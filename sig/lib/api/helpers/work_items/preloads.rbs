@@ -1,0 +1,49 @@
+module API
+  module Helpers
+    module WorkItems
+      module Preloads
+        WORK_ITEM_REFERENCE_PRELOADS: ::Array[:author | { project: { namespace: :route } } | { namespace: { parent: :route } }]
+
+        FEATURE_PRELOADS: { description: ::Array[:last_edited_by], assignees: ::Array[:assignees], labels: ::Array[:labels], milestone: ::Array[:milestone], start_and_due_date: ::Array[:dates_source], time_tracking: ::Array[{ timelogs: :user }], error_tracking: ::Array[:sentry_issue], hierarchy: ::Array[{ work_item_parent: untyped }] }
+
+        PROJECT_FEATURE_PRELOADS: { milestone: ::Array[{ milestone: :project }] }
+
+        GROUP_FEATURE_PRELOADS: { milestone: ::Array[{ milestone: :group }] }
+
+        FIELD_PRELOADS: { author: ::Array[:author], duplicated_to_work_item_url: ::Array[:duplicated_to], moved_to_work_item_url: ::Array[:moved_to], promoted_to_epic_url: ::Array[:work_item_transition], web_url: ::Array[:author], web_path: ::Array[:author], namespace: ::Array[{ namespace: :route }] }
+
+        PROJECT_FIELD_PRELOADS: { create_note_email: ::Array[:project], reference: ::Array[{ namespace: :route } | { project: :namespace }], web_url: ::Array[{ namespace: :route } | { project: :namespace }], web_path: ::Array[{ namespace: :route } | { project: :namespace }], user_permissions: ::Array[:project], features: ::Array[:project] }
+
+        GROUP_FIELD_PRELOADS: { reference: ::Array[{ namespace: :route }], web_url: ::Array[{ namespace: :route }], web_path: ::Array[{ namespace: :route }], user_permissions: ::Array[:namespace], features: ::Array[{ namespace: :route }] }
+
+        def preload_associations_for: (untyped field_keys, untyped feature_keys, untyped resource_parent) -> untyped
+
+        def preload_hierarchy_authorization: (untyped work_items, untyped feature_keys) -> (nil | untyped)
+
+        def build_work_items_relation: (untyped resource_parent, ?preloads: untyped) -> untyped
+
+        def find_work_item_by_iid: (untyped resource_parent, untyped iid) -> untyped
+
+        def count_preloads_for: (untyped work_items, untyped field_keys, untyped feature_keys) -> untyped
+
+        def build_children_relation: (untyped parent_work_item, ?state: untyped?, ?preloads: untyped) -> untyped
+
+        def build_linked_items_relation: (untyped work_item, ?state: untyped?, ?link_type: untyped?, ?preloads: untyped) -> untyped
+
+        # Preloads the project / group membership associated with the work items so the :read_project and :read_group
+        # policy checks don't N+1 on membership lookups
+        def preload_work_item_policies: (untyped work_items) -> (nil | untyped)
+
+        private
+
+        def preload_user_discussions_counts: (untyped work_items) -> (::Hash[untyped, untyped] | untyped)
+
+        def preload_award_emoji_counts: (untyped work_items) -> (::Hash[untyped, untyped] | untyped)
+
+        def work_items_parent_params: (untyped resource_parent) -> ({ project_id: untyped } | { group_id: untyped })
+
+        def work_items_finder_params: (untyped resource_parent) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,77 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class Engine < Gitlab::Database::Aggregation::Engine
+          self.@table_name: untyped
+
+          self.@table_primary_key: untyped
+
+          self.@versioning_config: untyped
+
+          extend ::Gitlab::Utils::Override
+
+          INNER_QUERY_NAME: "ch_aggregation_inner_query"
+
+          DEDUP_QUERY_NAME: "ch_aggregation_dedup_query"
+
+          COLUMN_PREFIX: "aeq_"
+
+          SCHEMA_CACHE_DATABASE: :main
+
+          attr_reader self.table_name: untyped
+
+          attr_reader self.versioning_config: untyped
+
+          attr_reader self.table_primary_key: untyped
+
+          def self.table_name=: (untyped name) -> untyped
+
+          def self.versioned_by: (untyped column, ?deleted_marker: untyped?) -> untyped
+
+          def self.table_primary_key=: (*untyped columns) -> untyped
+
+          def self.table_columns: () -> untyped
+
+          def self.dimensions_mapping: () -> { column: untyped, date_bucket: untyped }
+
+          def self.metrics_mapping: () -> { count: untyped, mean: untyped, rate: untyped, quantile: untyped, sum: untyped, retained_count: untyped, lagged_count: untyped }
+
+          def self.filters_mapping: () -> { exact_match: untyped, range: untyped, metric_exact_match: untyped, metric_range: untyped }
+
+          private
+
+          def self.schema_cache_table: () -> untyped
+
+          def self.apply_replacing_merge_tree_versioning: (untyped table) -> (nil | untyped)
+
+          def execute_query_plan: (untyped plan) -> untyped
+
+          def build_base_query: (untyped plan) -> untyped
+
+          def apply_inner_filters: (untyped query, untyped plan) -> untyped
+
+          def apply_outer_filters: (untyped query, untyped plan) -> untyped
+
+          def build_dedup_subquery: () -> untyped
+
+          def build_select_list_and_aliases: (untyped plan, ?untyped effective_context) -> ::Array[untyped]
+
+          def build_part_selections: (untyped part, ?untyped effective_context) -> ::Array[::Array[untyped]]
+
+          def column_alias: (untyped plan_part) -> ::String
+
+          def has_window_metrics?: (untyped plan) -> untyped
+
+          def wrap_with_window_query: (untyped plan, untyped base_query, untyped outer_projection_aliases) -> untyped
+
+          def build_layer_projections: (untyped outer_projection_aliases, untyped window_metric_by_alias) { (untyped, untyped) -> untyped } -> untyped
+
+          def window_sql_for: (untyped metric_part, untyped plan) -> untyped
+
+          def dimension_alias_for: (untyped over_dimension, untyped plan) -> untyped
+        end
+      end
+    end
+  end
+end

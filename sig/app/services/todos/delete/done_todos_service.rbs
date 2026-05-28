@@ -1,0 +1,11 @@
+module Todos
+  module Delete
+    class DoneTodosService < ::Todos::Destroy::BaseService
+      extend ::Gitlab::Utils::Override
+
+      MAX_UPDATE_AMOUNT: 100
+
+      def execute: (untyped todos) -> untyped
+    end
+  end
+end

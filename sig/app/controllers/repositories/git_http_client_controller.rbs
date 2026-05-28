@@ -1,0 +1,63 @@
+module Repositories
+  class GitHttpClientController < ::Repositories::ApplicationController
+    @authentication_result: untyped
+
+    @repository_path: untyped
+
+    @container: untyped
+
+    @project: untyped
+
+    @repo_type: untyped
+
+    @redirected_path: untyped
+
+    include ActionController::HttpAuthentication::Basic
+
+    include KerberosHelper
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader authentication_result: untyped
+
+    attr_reader redirected_path: untyped
+
+    def authenticated_user: () -> untyped
+
+    private
+
+    def user: () -> untyped
+
+    def download_request?: () -> untyped
+
+    def upload_request?: () -> untyped
+
+    def authenticate_user: () -> untyped
+
+    def render_access_denied: () -> untyped
+
+    def basic_auth_provided?: () -> untyped
+
+    def send_challenges: () -> untyped
+
+    def container: () -> untyped
+
+    def project: () -> untyped
+
+    def repository_path: () -> untyped
+
+    def parse_repo_path: () -> untyped
+
+    def repository: () -> untyped
+
+    def repo_type: () -> untyped
+
+    def handle_basic_authentication: (untyped login, untyped password) -> untyped
+
+    def ci?: () -> untyped
+
+    def http_download_allowed?: () -> untyped
+
+    def bypass_admin_mode!: () { () -> untyped } -> untyped
+  end
+end

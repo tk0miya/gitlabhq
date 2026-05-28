@@ -1,0 +1,23 @@
+class SnippetPresenter < Gitlab::View::Presenter::Delegated
+  def raw_url: () -> untyped
+
+  def ssh_url_to_repo: () -> (untyped | nil)
+
+  def http_url_to_repo: () -> (untyped | nil)
+
+  def can_read_snippet?: () -> untyped
+
+  def can_update_snippet?: () -> untyped
+
+  def can_admin_snippet?: () -> untyped
+
+  def can_report_as_spam?: () -> untyped
+
+  def blob: () -> untyped
+
+  private
+
+  def can_access_resource?: (untyped ability_prefix) -> untyped
+
+  def ability_name: (untyped ability_prefix) -> ::Symbol
+end

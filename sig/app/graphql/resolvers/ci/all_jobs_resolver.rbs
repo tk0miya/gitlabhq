@@ -1,0 +1,24 @@
+module Resolvers
+  module Ci
+    class AllJobsResolver < BaseResolver
+      include LooksAhead
+
+      COMPATIBLE_RUNNER_ERROR_MESSAGE: "compatibleRunnerId can only be used when the `statuses` argument is set to \"PENDING\""
+
+      def ready?: (**untyped args) -> untyped
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def params_data: (untyped args) -> { scope: untyped, runner_type: untyped, match_compatible_runner_only: untyped }
+
+      def runner_args: (untyped args) -> (::Hash[untyped, untyped] | { runner: untyped })
+
+      def preloads: () -> ::Hash[:previous_stage_jobs_or_needs | :artifacts | :pipeline | :kind | :retryable | :project | :commit_path | :ref_path | :browse_artifacts_path | :play_path | :web_path | :tags | :trace | :source | ::Array[:trace | :html_summary], ::Array[:needs | :pipeline] | ::Array[:job_artifacts] | ::Array[:user] | ::Array[:metadata | :job_definition | :error_job_messages] | ::Array[{ project: ::Array[:route | { namespace: ::Array[:route] }] }] | ::Array[:pipeline | { project: { namespace: ::Array[:route] } }] | ::Array[{ project: { namespace: ::Array[:route] } }] | ::Array[:tags] | ::Array[{ project: ::Array[:namespace] } | :job_artifacts_trace] | ::Array[:job_source] | ::Array[:trace_chunks]]
+
+      # Overridden in EE
+      def unconditional_includes: () -> ::Array[untyped]
+    end
+  end
+end

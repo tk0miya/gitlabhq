@@ -1,0 +1,11 @@
+module Mutations
+  module Todos
+    class RestoreMany < BaseMany
+      private
+
+      def process_todos: (untyped todos) -> untyped
+
+      def todo_state_to_find: () -> :done
+    end
+  end
+end

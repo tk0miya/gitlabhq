@@ -1,0 +1,157 @@
+class ProjectsController < Projects::ApplicationController
+  @namespace: untyped
+
+  @parent_group: untyped
+
+  @current_user_group: untyped
+
+  @project: untyped
+
+  @badge_api_endpoint: untyped
+
+  # Refresh the repo in case anything changed
+  @repository: untyped
+
+  @id: untyped
+
+  @path: untyped
+
+  @ref_type: untyped
+
+  @wiki: untyped
+
+  @wiki_home: untyped
+
+  @issues: untyped
+
+  @issuable_meta_data: untyped
+
+  @events: untyped
+
+  include API::Helpers::RelatedResourcesHelpers
+
+  include IssuableCollections
+
+  include PreviewMarkdown
+
+  include SendFileUpload
+
+  include RecordUserLastActivity
+
+  include ImportUrlParams
+
+  include FiltersEvents
+
+  include SourcegraphDecorator
+
+  REFS_LIMIT: 100
+
+  def index: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def new: () -> untyped
+
+  def edit: () -> untyped
+
+  def create: () -> untyped
+
+  def update: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def transfer: () -> untyped
+
+  def remove_fork: () -> untyped
+
+  def activity: () -> untyped
+
+  def show: () -> (nil | untyped)
+
+  def destroy: () -> untyped
+
+  def restore: () -> untyped
+
+  def new_issuable_address: () -> untyped
+
+  def archive: () -> untyped
+
+  def unarchive: () -> untyped
+
+  def housekeeping: () -> untyped
+
+  def export: () -> untyped
+
+  def download_export: () -> untyped
+
+  def remove_export: () -> untyped
+
+  def generate_new_export: () -> untyped
+
+  def toggle_star: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def refs: () -> untyped
+
+  def unfoldered_environment_names: () -> untyped
+
+  private
+
+  def enqueue_async_transfer: (untyped namespace) -> (nil | untyped)
+
+  def execute_sync_transfer: (untyped namespace) -> untyped
+
+  def destroy_immediately: () -> untyped
+
+  def refs_params: () -> untyped
+
+  # Render project landing depending of which features are available
+  # So if page is not available in the list it renders the next page
+  #
+  # pages list order: repository readme, wiki home, issues list, customize workflow
+  def render_landing_page: () -> untyped
+
+  def finder_type: () -> untyped
+
+  def determine_layout: () -> ("dashboard" | "project_settings" | "project")
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def load_events: () -> untyped
+
+  def project_params: (?attributes: untyped) -> untyped
+
+  def project_feature_attributes: () -> ::Array[:builds_access_level | :issues_access_level | :forking_access_level | :merge_requests_access_level | :repository_access_level | :snippets_access_level | :wiki_access_level | :package_registry_access_level | :pages_access_level | :metrics_dashboard_access_level | :analytics_access_level | :security_and_compliance_access_level | :container_registry_access_level | :releases_access_level | :environments_access_level | :feature_flags_access_level | :monitor_access_level | :infrastructure_access_level | :model_experiments_access_level | :model_registry_access_level]
+
+  def project_setting_attributes: () -> untyped
+
+  def project_params_attributes: () -> ::Array[:allow_merge_on_skipped_pipeline | :avatar | :build_allow_git_fetch | :build_timeout_human_readable | :resolve_outdated_diff_discussions | :container_registry_enabled | :description | :external_authorization_classification_label | :import_url | :issues_tracker | :issues_tracker_id | :last_activity_at | :lfs_enabled | :name | :only_allow_merge_if_all_discussions_are_resolved | :only_allow_merge_if_pipeline_succeeds | :allow_merge_without_pipeline | :path | :printing_merge_request_link_enabled | :public_builds | :remove_source_branch_after_merge | :request_access_enabled | :runners_token | :tag_list | :topics | :visibility_level | :template_name | :template_project_id | :merge_method | :initialize_with_sast | :initialize_with_secret_detection | :initialize_with_readme | :ci_separated_caches | :suggestion_commit_message | :packages_enabled | :service_desk_enabled | :merge_commit_template_or_default | :squash_commit_template_or_default | { project_setting_attributes: untyped, project_feature_attributes: untyped }]
+
+  def project_params_create_attributes: () -> ::Array[:namespace_id]
+
+  def custom_import_params: () -> ::Hash[untyped, untyped]
+
+  def object_format_params: () -> (::Hash[untyped, untyped] | { repository_object_format: untyped })
+
+  def active_new_project_tab: () -> ("import" | "blank")
+
+  def repo_exists?: () -> untyped
+
+  def repository_root: () -> untyped
+
+  def build_canonical_path: (untyped project) -> untyped
+
+  def verify_git_import_enabled: () -> (untyped | nil)
+
+  def project_export_enabled: () -> (untyped | nil)
+
+  # Redirect from localhost/group/project.git to localhost/group/project
+  def redirect_git_extension: () -> (nil | untyped)
+
+  def disable_query_limiting: () -> untyped
+
+  def present_project: () -> untyped
+
+  def check_export_rate_limit!: () -> untyped
+
+  def render_edit: () -> untyped
+
+  def enforce_step_up_auth_for_namespace_on_create: () -> untyped
+end

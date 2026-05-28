@@ -1,0 +1,47 @@
+module Gitlab
+  module BackgroundMigration
+    # rubocop: disable Migration/BatchedMigrationBaseClass -- This is indirectly deriving from the correct base class
+    # rubocop:disable Metrics/ClassLength -- Necessary for migration
+    class BackfillMergeRequestDiffCommitsToPartitioned < BackfillPartitionedTable
+      def perform: () -> untyped
+
+      private
+
+      # rubocop:disable Gitlab/AvoidGitlabInstanceChecks -- override only applies to migration ran for .com_except_jh?
+      def sub_batch_relation: (**untyped) -> untyped
+
+      def backfill_batch: (untyped relation) -> untyped
+
+      # Wraps the sub-batch relation with an explicit LIMIT so the planner knows the upper bound.
+      def sub_batch_cte: (untyped relation) -> ::String
+
+      # Joins to merge_request_diff_commits to get full row data (sub_batch may only contain cursor
+      # columns when iterating via a view), then joins merge_request_diffs to get project_id and
+      # merge_request_id. The INNER JOINs intentionally drop commits whose parent rows no longer
+      # exist - these are orphaned rows mid-deletion and do not need to be present in the
+      # partitioned table.
+      def diff_commits_cte: () -> ::String
+
+      # Excludes commits from merge requests in the excluded_merge_requests table.
+      # Also excludes rows where columns required by merge_request_commits_metadata are NULL
+      # in the source table - these are legacy rows that cannot be migrated.
+      def filtered_diff_commits_cte: () -> ::String
+
+      # Identifies unique (project_id, sha) pairs that need metadata records created.
+      # Filters to rows missing merge_request_commits_metadata_id.
+      # Duplicate (project_id, sha) rows originate from the same commit being copied across diffs,
+      # so all columns are identical and picking any row is safe.
+      def metadata_keys_cte: () -> ::String
+
+      # Inserts metadata records for unique (project_id, sha) pairs.
+      # DO UPDATE SET sha = EXCLUDED.sha is a no-op that forces RETURNING to include
+      # both newly inserted and pre-existing conflicting rows, avoiding a separate lookup CTE.
+      def inserted_metadata_cte: () -> "inserted_metadata AS (\n  INSERT INTO merge_request_commits_metadata (\n    project_id,\n    sha,\n    commit_author_id,\n    committer_id,\n    authored_date,\n    committed_date,\n    message\n  )\n  SELECT\n    project_id,\n    sha,\n    commit_author_id,\n    committer_id,\n    authored_date,\n    committed_date,\n    message\n  FROM metadata_keys\n  ON CONFLICT (project_id, sha) DO UPDATE SET sha = EXCLUDED.sha\n  RETURNING id, project_id, sha\n)\n"
+
+      # Inserts commit records into the partitioned table.
+      # COALESCE picks the existing metadata_id from filtered_diff_commits if already backfilled,
+      # or falls back to the id returned from inserted_metadata.
+      def insert_into_partitioned_table: () -> ::String
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillOrganizationIdLdapKeys < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def backfill_organization_id: (untyped keys_batch, untyped default_organization_id) -> untyped
+
+      def backfill_ldap_keys_with_user: (untyped ldap_keys) -> untyped
+
+      def backfill_orphaned_ldap_keys: (untyped ldap_keys, untyped default_organization_id) -> untyped
+
+      def backfill_remaining_ldap_keys: (untyped ldap_keys, untyped default_organization_id) -> untyped
+    end
+  end
+end

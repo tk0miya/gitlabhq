@@ -1,0 +1,19 @@
+module Mutations
+  module Ci
+    module Runner
+      class Create < BaseMutation
+        include Mutations::Ci::Runner::CommonMutationArguments
+
+        def ready?: (**untyped args) -> untyped
+
+        def resolve: (**untyped args) -> untyped
+
+        private
+
+        def find_object: (**untyped args) -> untyped
+
+        def parse_gid: (runner_type: untyped, **untyped args) -> untyped
+      end
+    end
+  end
+end

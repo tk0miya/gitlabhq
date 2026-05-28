@@ -1,0 +1,7 @@
+module Mutations
+  module MergeRequests
+    class SetMilestone < Base
+      def resolve: (project_path: untyped, iid: untyped, ?milestone: untyped?) -> { merge_request: untyped, errors: untyped }
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Members
+  class UpdateService < Members::BaseService
+    @source: untyped
+
+    def initialize: (*untyped args) -> void
+
+    # @param members [Member, Array<Member>]
+    # returns the updated member(s)
+    def execute: (untyped members, ?permission: ::Symbol) -> untyped
+
+    private
+
+    attr_reader source: untyped
+
+    def validate_source_type!: () -> (untyped | nil)
+
+    def update_members: (untyped members, untyped permission) -> untyped
+
+    def update_member: (untyped member, untyped permission) -> (nil | untyped)
+
+    def post_update: (untyped member, untyped permission, untyped old_values_map) -> untyped
+
+    def prepare_response: (untyped members) -> untyped
+
+    def has_update_permissions?: (untyped member, untyped permission) -> untyped
+
+    def role_too_high?: (untyped member) -> (false | untyped)
+
+    def downgrading_to_guest?: () -> untyped
+
+    def upgrading_to_owner?: () -> untyped
+
+    def downgrading_from_owner?: (untyped member) -> untyped
+
+    def prevent_upgrade_to_owner?: (untyped member) -> untyped
+
+    def prevent_downgrade_from_owner?: (untyped member) -> untyped
+
+    def build_old_values_map: (untyped member) -> { human_access: untyped, expires_at: untyped }
+
+    def publish_event: (untyped members) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,44 @@
+module Gitlab
+  module BackgroundMigration
+    # rubocop:disable Metrics/ClassLength -- Background migration requires multiple resolution strategies for different noteable types
+    class BackfillMissingNamespaceIdOnNotes < BatchedMigrationJob
+      @notes_columns: untyped
+
+      def perform: () -> untyped
+
+      private
+
+      def build_common_ctes: (untyped sub_batch) -> ::String
+
+      def fetch_noteable_types_in_batch: (untyped ctes) -> untyped
+
+      def process_noteables_with_ctes: (untyped ctes, untyped noteable_types) -> untyped
+
+      def direct_namespace_updates: () -> ::Array[::Array["Issue" | "issues" | "namespace_id"] | ::Array["Epic" | "epics" | "group_id"]]
+
+      def project_based_updates: () -> ::Array[::Array["MergeRequest" | "merge_requests" | "target_project_id"] | ::Array["AlertManagement::Alert" | "alert_management_alerts" | "project_id"]]
+
+      def execute_cte_update: (untyped ctes, untyped noteable_type, untyped join_clause, untyped namespace_field) -> untyped
+
+      # rubocop:disable Metrics/MethodLength -- Complex SQL queries are more readable as a single method
+      def process_wiki_notes_with_ctes: (untyped ctes) -> (nil | untyped)
+
+      def process_snippet_notes_with_ctes: (untyped ctes) -> untyped
+
+      def process_vulnerability_notes_with_ctes: (untyped ctes) -> (nil | untyped)
+
+      def fetch_vulnerability_projects: (untyped vuln_ids) -> untyped
+
+      def fetch_project_namespaces: (untyped project_ids) -> (::Hash[untyped, untyped] | untyped)
+
+      def update_vulnerability_notes_batch: (untyped ctes, untyped vuln_to_project, untyped project_to_namespace) -> (nil | untyped)
+
+      # rubocop:disable Metrics/MethodLength -- Complex SQL queries with CTEs are more readable as a single method
+      def archive_orphaned_notes_with_ctes: (untyped ctes) -> untyped
+
+      def log_orphaned_notes_with_ctes: (untyped ctes) -> untyped
+
+      def notes_columns_for_archive: () -> untyped
+    end
+  end
+end

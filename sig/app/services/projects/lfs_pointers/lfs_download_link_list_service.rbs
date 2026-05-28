@@ -1,0 +1,52 @@
+# This service yields operation on each download link from a remote source based on the
+# oids provided
+module Projects
+  module LfsPointers
+    class LfsDownloadLinkListService < BaseService
+      @remote_uri: untyped
+
+      DOWNLOAD_ACTION: "download"
+
+      # This could be different per server, but it seems like a reasonable value to start with.
+      # https://github.com/git-lfs/git-lfs/issues/419
+      REQUEST_BATCH_SIZE: 100
+
+      DownloadLinksError: untyped
+
+      DownloadLinkNotFound: untyped
+
+      DownloadLinksRequestEntityTooLargeError: untyped
+
+      DownloadLinksRequestTooManyRequestsError: untyped
+
+      attr_reader remote_uri: untyped
+
+      def initialize: (untyped project, ?remote_uri: untyped?) -> void
+
+      # - oids: hash of oids to query. The structure is { lfs_file_oid => lfs_file_size }
+      # Yields operation for each link batch-by-batch
+      def each_link: (untyped oids) { (?) -> untyped } -> (nil | untyped)
+
+      private
+
+      def download_links_in_batches: (untyped oids, ?untyped batch_size) { (?) -> untyped } -> untyped
+
+      def download_links_for: (untyped oids) -> untyped
+
+      def parse_response_links: (untyped objects_response) -> untyped
+
+      def request_body: (untyped oids) -> untyped
+
+      def headers: () -> { "Accept" => untyped, "Content-Type" => untyped }
+
+      def add_credentials: (untyped link) -> untyped
+
+      # The download link can be a local url or an object storage url
+      # If the download link has the some host as the import url then
+      # we add the same credentials because we may need them
+      def should_add_credentials?: (untyped link_uri) -> untyped
+
+      def url_credentials?: () -> untyped
+    end
+  end
+end

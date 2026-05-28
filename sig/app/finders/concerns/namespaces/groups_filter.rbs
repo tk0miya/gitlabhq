@@ -1,0 +1,29 @@
+module Namespaces
+  module GroupsFilter
+    include Gitlab::Utils::StrongMemoize
+
+    private
+
+    def by_ids: (untyped items) -> untyped
+
+    def top_level_only: (untyped groups) -> untyped
+
+    def by_search: (untyped groups) -> untyped
+
+    def skip_groups: (untyped groups) -> untyped
+
+    def min_access_level?: () -> untyped
+
+    def can_sort_by_similarity?: () -> untyped
+
+    def sort: (untyped groups) -> untyped
+
+    def visibility_levels: () -> (nil | untyped)
+
+    def by_visibility: (untyped groups) -> untyped
+
+    def by_min_access_level: (untyped groups) -> untyped
+
+    def apply_filters: (untyped groups) -> untyped
+  end
+end

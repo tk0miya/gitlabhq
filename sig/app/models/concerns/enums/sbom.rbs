@@ -1,0 +1,67 @@
+module Enums
+  class Sbom
+    # if PURL is empty or nil then mark it as not_provided,
+    # otherwise mark it as unsupported
+    self.@_purl_types: untyped
+
+    COMPONENT_TYPES: untyped
+
+    PURL_TYPES: untyped
+
+    # INTERNAL_PURL_TYPES are purl types that are used by GitLab internally for
+    # features. These types are not officially recognized, or even proposed, nor
+    # should they. For example, 'unknown' is the PURL type used to describe components
+    # for which we have no knowledge, and `'not_provided' is used for components`
+    # for which did not provide a PURL type. Outside of GitLab these are not usable,
+    # and should not be surfaced to customers outside of very specific contexts.
+    # A concrete example is the dependency list where customers would like to see
+    # components that have no PURL type, or have a PURL type that's not handled.
+    # In other contexts like in the Package Metadata Database admin configuration
+    # page, these don't make sense, so it's best to exclude (customers can't sync data
+    # for 'unknown' or 'not_provided' packages).
+    INTERNAL_PURL_TYPES: ::Array["unknown" | "not_provided"]
+
+    UNKNOWN: :unknown
+
+    IN_USE: :in_use
+
+    NOT_FOUND: :not_found
+
+    REACHABILITY_TYPES: untyped
+
+    DEPENDENCY_SCANNING_PURL_TYPES: ::Array["composer" | "conan" | "gem" | "golang" | "maven" | "npm" | "nuget" | "pypi" | "cargo" | "swift" | "conda" | "pub"]
+
+    CONTAINER_SCANNING_PURL_TYPES: ::Array["apk" | "rpm" | "deb" | "cbl-mariner" | "wolfi"]
+
+    # Package types supported by Trivy are sourced from
+    # https://github.com/aquasecurity/trivy/blob/8e6a7ff670c64106d4dea6972ac3f6228f9c6269/pkg/fanal/analyzer/const.go
+    PACKAGE_MANAGERS_FROM_TRIVY_PKG_TYPE: untyped
+
+    def self.component_types: () -> untyped
+
+    def self.dependency_scanning_purl_type?: (untyped purl_type) -> untyped
+
+    def self.container_scanning_purl_type?: (untyped purl_type) -> untyped
+
+    def self.purl_types: () -> untyped
+
+    def self.purl_types_numerical: () -> untyped
+
+    def self.reachability_types: () -> untyped
+
+    def self.package_manager_from_trivy_pkg_type: (untyped pkg_type) -> untyped
+
+    # We do not use the namespaced names for OS component types even
+    # if the PURL specification declares otherwise, since this will
+    # preserve the name format established by the container-scanning
+    # analyzers. For example, a namespaced name for an Alpine cURL component
+    # might look like `apk/curl` when found by an SBOM generator. If found
+    # by a container-scanning analyzer, this same component would be reported
+    # as `curl`. The differences in naming would impact dependency and
+    # vulnerability deduplication, and if left as is would create dependency
+    # lists and vulnerability reports that are inaccurate.
+    #
+    # For full details, see https://gitlab.com/gitlab-org/gitlab/-/issues/442847
+    def self.use_namespaced_name?: (untyped purl_type) -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Users
+  class RegistrationsBuildService < BuildService
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def signup_params: () -> untyped
+
+    def assign_skip_confirmation_from_settings?: () -> untyped
+  end
+end

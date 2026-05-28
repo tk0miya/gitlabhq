@@ -1,0 +1,23 @@
+class RefMatcher
+  @ref_name_or_pattern: untyped
+
+  @wildcard_regex: untyped
+
+  def initialize: (untyped ref_name_or_pattern) -> void
+
+  # Returns all branches/tags (among the given list of refs [`Gitlab::Git::Branch`] or their names [`String`])
+  # that match the current protected ref.
+  def matching: (untyped refs) -> untyped
+
+  # Checks if the protected ref matches the given ref name.
+  def matches?: (untyped ref_name) -> (false | untyped)
+
+  # Checks if this protected ref contains a wildcard
+  def wildcard?: () -> untyped
+
+  def exact_match?: (untyped ref_name) -> untyped
+
+  def wildcard_match?: (untyped ref_name) -> (false | untyped)
+
+  def wildcard_regex: () -> untyped
+end

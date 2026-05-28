@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Represents Imageable concern shared by Image and Service.
+        module Imageable
+          extend ActiveSupport::Concern
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          include ::Gitlab::Config::Entry::Configurable
+
+          EXECUTOR_OPTS_KEYS: ::Array[:docker | :kubernetes]
+
+          IMAGEABLE_ALLOWED_KEYS: untyped
+
+          def name: () -> untyped
+
+          def entrypoint: () -> untyped
+
+          def with_image_ports?: () -> untyped
+
+          def skip_config_hash_validation?: () -> true
+
+          def executor_opts: () -> (nil | untyped)
+
+          def value: () -> ({ name: untyped } | untyped | ::Hash[untyped, untyped])
+        end
+      end
+    end
+  end
+end

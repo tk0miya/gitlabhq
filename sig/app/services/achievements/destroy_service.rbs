@@ -1,0 +1,23 @@
+module Achievements
+  class DestroyService
+    @current_user: untyped
+
+    @achievement: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader achievement: untyped
+
+    def initialize: (untyped current_user, untyped achievement) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def allowed?: () -> untyped
+
+    def error_no_permissions: () -> untyped
+
+    def error: (untyped message) -> untyped
+  end
+end

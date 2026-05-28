@@ -1,0 +1,27 @@
+module Terraform
+  module States
+    class TriggerDestroyService
+      @state: untyped
+
+      @current_user: untyped
+
+      def initialize: (untyped state, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader state: untyped
+
+      attr_reader current_user: untyped
+
+      def can_destroy_state?: () -> untyped
+
+      def unauthorized_response: () -> untyped
+
+      def state_locked_response: () -> untyped
+
+      def error_response: (untyped message) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Resolvers
+  module Ci
+    class RunnerJobsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      include LooksAhead
+
+      alias runner object
+
+      def resolve_with_lookahead: (?statuses: untyped?) -> untyped
+
+      private
+
+      def preloads: () -> ::Hash[:previous_stage_jobs_or_needs | :artifacts | :pipeline | :project | :detailed_status | :commit_path | :ref_path | :browse_artifacts_path | :play_path | :web_path | :short_sha | :tags | :trace | ::Array[:trace | :html_summary], ::Array[:needs | :pipeline] | ::Array[:job_artifacts] | ::Array[:user] | ::Array[{ project: ::Array[:route | { namespace: ::Array[:route] } | :project_feature] }] | ::Array[:metadata | :job_definition | :error_job_messages | { pipeline: ::Array[:merge_request] } | { project: ::Array[:route | { namespace: :route }] }] | ::Array[:pipeline | { project: { namespace: ::Array[:route] } }] | ::Array[{ project: ::Array[:route | { namespace: ::Array[:route] }] }] | ::Array[{ project: { namespace: ::Array[:route] } }] | ::Array[:pipeline] | ::Array[:tags] | ::Array[{ project: ::Array[:namespace] } | :job_artifacts_trace] | ::Array[:trace_chunks]]
+    end
+  end
+end

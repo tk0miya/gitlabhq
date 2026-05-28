@@ -1,0 +1,57 @@
+module Gitlab
+  module Checks
+    class ChangesAccess
+      @changes: untyped
+
+      @user_access: untyped
+
+      @project: untyped
+
+      @protocol: untyped
+
+      @logger: untyped
+
+      @push_options: untyped
+
+      @gitaly_context: untyped
+
+      @single_changes_accesses: untyped
+
+      @changes_access_logger: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ATTRIBUTES: ::Array[:user_access | :project | :protocol | :changes | :logger | :push_options | :gitaly_context]
+
+      def initialize: (untyped changes, user_access: untyped, project: untyped, protocol: untyped, logger: untyped, push_options: untyped, gitaly_context: untyped) -> void
+
+      def validate!: () -> untyped
+
+      # All commits which have been newly introduced via any of the given
+      # changes. This set may also contain commits which are not referenced by
+      # any of the new revisions.
+      def commits: () -> untyped
+
+      # All commits which have been newly introduced via the given revision.
+      def commits_for: (untyped oldrev, untyped newrev) -> untyped
+
+      def single_change_accesses: () -> untyped
+
+      def single_access_checks!: () -> untyped
+
+      def bulk_access_checks!: () -> untyped
+
+      def blank_rev?: (untyped rev) -> untyped
+
+      # refs/notes/commits contains commits added via `git-notes`. We currently
+      # have no features that check notes so we can skip them. To future-proof
+      # we are skipping anything that isn't a branch or tag ref as those are
+      # the only refs that can contain commits.
+      def commitish_ref?: (untyped ref) -> untyped
+
+      private
+
+      def changes_access_logger: () -> untyped
+    end
+  end
+end

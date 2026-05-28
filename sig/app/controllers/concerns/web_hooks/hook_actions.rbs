@@ -1,0 +1,33 @@
+module WebHooks
+  module HookActions
+    @hook_logs: untyped
+
+    extend ActiveSupport::Concern
+
+    include HookExecutionNotice
+
+    def index: () -> untyped
+
+    def create: () -> untyped
+
+    def update: () -> untyped
+
+    def destroy: () -> untyped
+
+    def edit: () -> (untyped | nil)
+
+    private
+
+    def filter_valid_headers: (untyped headers) -> (::Hash[untyped, untyped] | untyped)
+
+    def hook_params: () -> untyped
+
+    def hook_param_names: () -> ::Array[:enable_ssl_verification | :name | :description | :token | :url | :push_events_branch_filter | :branch_filter_strategy | :custom_webhook_template | :signing_token]
+
+    def destroy_hook: (untyped hook) -> untyped
+
+    def hook_logs: () -> untyped
+
+    def hook_value_from_param_or_db: (untyped key, untyped value) -> untyped
+  end
+end

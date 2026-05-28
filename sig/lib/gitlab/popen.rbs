@@ -1,0 +1,21 @@
+module Gitlab
+  module Popen
+    extend ::Gitlab::Popen
+
+    Result: untyped
+
+    # Returns [stdout + stderr, status]
+    # status is either the exit code or the signal that killed the process
+    def popen: (untyped cmd, ?untyped? path, ?::Hash[untyped, untyped] vars) { (?) -> untyped } -> ::Array[::String | untyped]
+
+    def popen_with_streaming: (untyped cmd, ?untyped? path, ?::Hash[untyped, untyped] vars) ?{ (?) -> untyped } -> untyped
+
+    def popen_with_detail: (untyped cmd, ?untyped? path, ?::Hash[untyped, untyped] vars) ?{ (untyped) -> untyped } -> untyped
+
+    private
+
+    def prepare_popen_command: (untyped cmd, untyped path, untyped vars) -> ::Array[untyped]
+
+    def read_stream_in_thread: (untyped stream, untyped stream_type, untyped mutex) { (untyped, untyped) -> untyped } -> untyped
+  end
+end

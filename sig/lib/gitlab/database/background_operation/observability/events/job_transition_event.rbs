@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      module Observability
+        module Events
+          # Event responsible for logging any job state transition event
+          # E.g: from => running, to => failed, with => StandardError: timeout
+          class JobTransitionEvent < Event
+            LOG_EVENT: "background_operation_job_transition_event"
+
+            def payload: () -> { message: untyped, previous_state: untyped, new_state: untyped, worker_id: untyped, worker_partition: untyped, job_class_name: untyped, batch_class_name: untyped, table_name: untyped, column_name: untyped, attempts: untyped, exception_class: untyped, exception_message: untyped }
+          end
+        end
+      end
+    end
+  end
+end

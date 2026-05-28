@@ -1,0 +1,31 @@
+module Repositories
+  class LfsLocksApiController < ::Repositories::GitHttpClientController
+    @result: untyped
+
+    include LfsRequest
+
+    def create: () -> untyped
+
+    def unlock: () -> untyped
+
+    def index: () -> untyped
+
+    def verify: () -> untyped
+
+    private
+
+    def render_json: (untyped data, ?bool process) -> untyped
+
+    def build_payload: (untyped data, untyped process) -> untyped
+
+    def error_payload: (untyped message, ?::Hash[untyped, untyped] custom_attrs) -> untyped
+
+    def split_by_owner: (untyped locks) -> untyped
+
+    def download_request?: () -> untyped
+
+    def upload_request?: () -> untyped
+
+    def lfs_params: () -> untyped
+  end
+end

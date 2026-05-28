@@ -1,0 +1,12 @@
+module Admin
+  module BackgroundMigrationsHelper
+    def batched_migration_status_badge_variant: (untyped migration) -> untyped
+
+    # The extra logic here is needed because total_tuple_count is just
+    # an estimate and completed_rows also does not account for last jobs
+    # whose batch size is likely larger than the actual number of rows processed
+    def batched_migration_progress: (untyped migration, untyped completed_rows) -> (100 | 0 | nil | untyped)
+
+    def batched_migration_progress_with_estimate: (untyped migration, untyped completed_rows) -> (nil | untyped)
+  end
+end

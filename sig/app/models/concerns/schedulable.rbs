@@ -1,0 +1,10 @@
+module Schedulable
+  extend ActiveSupport::Concern
+
+  def schedule_next_run!: () -> untyped
+
+  # override this method to change the behavior
+  def allow_next_run_at_update?: () -> true
+
+  def set_next_run_at: () -> untyped
+end

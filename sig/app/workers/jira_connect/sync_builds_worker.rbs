@@ -1,0 +1,7 @@
+module JiraConnect
+  class SyncBuildsWorker
+    include ApplicationWorker
+
+    def perform: (untyped pipeline_id, untyped sequence_id) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module Faker
+    module Internet
+      extend ::Gitlab::Faker::Internet
+
+      MAX_TRIES: 10
+
+      def unique_username: () -> untyped
+    end
+  end
+end

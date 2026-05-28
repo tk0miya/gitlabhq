@@ -1,0 +1,91 @@
+module Gitlab
+  # Helper methods to interact with Prometheus network services & resources
+  class PrometheusClient
+    @api_url: untyped
+
+    @options: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    Error: untyped
+
+    ConnectionError: untyped
+
+    UnexpectedResponseError: untyped
+
+    QueryError: untyped
+
+    HEALTHY_RESPONSE: "Prometheus is Healthy.\n"
+
+    # Target number of data points for `query_range`.
+    # Please don't exceed the limit of 11000 data points
+    # See https://github.com/prometheus/prometheus/blob/91306bdf24f5395e2601773316945a478b4b263d/web/api/v1/api.go#L347
+    QUERY_RANGE_DATA_POINTS: 600
+
+    # Minimal value of the `step` parameter for `query_range` in seconds.
+    QUERY_RANGE_MIN_STEP: 60
+
+    # Key translation between RestClient and Gitlab::HTTP (HTTParty)
+    RESTCLIENT_GITLAB_HTTP_KEYMAP: { ssl_cert_store: :cert_store }
+
+    private
+
+    attr_reader api_url: untyped
+
+    attr_reader options: untyped
+
+    public
+
+    def initialize: (untyped api_url, ?::Hash[untyped, untyped] options) -> void
+
+    def ping: () -> untyped
+
+    def healthy?: () -> untyped
+
+    def ready?: () -> untyped
+
+    def proxy: (untyped type, untyped args) -> untyped
+
+    def query: (untyped query, ?time: untyped) -> untyped
+
+    def query_range: (untyped query, ?start_time: untyped, ?end_time: untyped) -> untyped
+
+    # Queries Prometheus with the given aggregate query and groups the results by mapping
+    # metric labels to their respective values.
+    #
+    # @return [Hash] mapping labels to their aggregate numeric values, or the empty hash if no results were found
+    def aggregate: (untyped aggregate_query, ?time: untyped, ?transform_value: ::Symbol) ?{ (untyped) -> untyped } -> untyped
+
+    def label_values: (?::String name) -> untyped
+
+    def series: (*untyped matches, ?start_time: untyped, ?end_time: untyped) -> untyped
+
+    def self.compute_step: (untyped start_time, untyped end_time) -> untyped
+
+    def health_url: () -> ::String
+
+    def ready_url: () -> ::String
+
+    private
+
+    def api_path: (untyped type) -> untyped
+
+    def json_api_get: (untyped type, ?::Hash[untyped, untyped] args) -> untyped
+
+    def gitlab_http_key: (untyped key) -> untyped
+
+    def mapped_options: () -> untyped
+
+    def http_options: () -> untyped
+
+    def get: (untyped path, untyped args) -> untyped
+
+    def handle_management_api_response: (untyped response) -> untyped
+
+    def handle_querying_api_response: (untyped response) -> untyped
+
+    def get_result: (untyped expected_type) { () -> untyped } -> untyped
+
+    def parse_json: (untyped response_body) -> untyped
+  end
+end

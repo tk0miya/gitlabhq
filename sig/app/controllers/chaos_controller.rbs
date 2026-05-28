@@ -1,0 +1,35 @@
+class ChaosController < BaseActionController
+  def leakmem: () -> untyped
+
+  def cpu_spin: () -> untyped
+
+  def db_spin: () -> untyped
+
+  def sleep: () -> untyped
+
+  def kill: () -> untyped
+
+  def quit: () -> untyped
+
+  def gc: () -> untyped
+
+  private
+
+  def do_chaos: (untyped method, untyped worker, *untyped args) -> untyped
+
+  def validate_chaos_secret: () -> (nil | untyped)
+
+  def chaos_secret_configured: () -> untyped
+
+  def chaos_secret_request: () -> untyped
+
+  def interval_s: () -> untyped
+
+  def duration_s: () -> untyped
+
+  def memory_mb: () -> untyped
+
+  def async: () -> untyped
+
+  def development_or_test?: () -> untyped
+end

@@ -1,0 +1,43 @@
+class GpgKey < ApplicationRecord
+  @user_infos: untyped
+
+  KEY_PREFIX: "-----BEGIN PGP PUBLIC KEY BLOCK-----"
+
+  KEY_SUFFIX: "-----END PGP PUBLIC KEY BLOCK-----"
+
+  include ShaAttribute
+
+  include Cells::Claimable
+
+  def primary_keyid: () -> untyped
+
+  alias keyid primary_keyid
+
+  def fingerprint: () -> untyped
+
+  def key=: (untyped value) -> untyped
+
+  def user_infos: () -> untyped
+
+  def verified_user_infos: () -> untyped
+
+  def emails_with_verified_status: () -> untyped
+
+  def verified?: () -> untyped
+
+  def verified_and_belongs_to_email?: (untyped email) -> untyped
+
+  def update_invalid_gpg_signatures: () -> untyped
+
+  def revoke: () -> untyped
+
+  private
+
+  def extract_fingerprint: () -> untyped
+
+  def extract_primary_keyid: () -> untyped
+
+  def generate_subkeys: () -> untyped
+
+  def unique_attributes: () -> ::Array[:fingerprint]
+end

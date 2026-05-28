@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    module Migrations
+      module PreparedAsyncDmlOperationsTesting
+        # This is a wrapper for Gitlab::Database::AsyncIndexes::IndexCreator, used to control the STATEMENT_TIMEOUT
+        # and creating async indexes synchronously
+        class IndexCreator < Gitlab::Database::AsyncIndexes::IndexCreator
+          TIMEOUT: untyped
+
+          TIMEOUT_EXCEPTIONS: ::Array[untyped]
+
+          def perform: () -> untyped
+
+          private
+
+          def execute_action: () -> untyped
+        end
+      end
+    end
+  end
+end

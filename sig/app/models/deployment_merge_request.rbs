@@ -1,0 +1,11 @@
+class DeploymentMergeRequest < ApplicationRecord
+  def self.join_deployments_for_merge_requests: () -> untyped
+
+  def self.by_deployment_id: (untyped id) -> untyped
+
+  def self.deployed_to: (untyped name) -> untyped
+
+  def self.deployed_after: (untyped time) -> untyped
+
+  def self.deployed_before: (untyped time) -> untyped
+end

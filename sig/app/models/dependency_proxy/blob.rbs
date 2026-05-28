@@ -1,0 +1,23 @@
+class DependencyProxy::Blob < ApplicationRecord
+  include FileStoreMounter
+
+  include ObjectStorable
+
+  include TtlExpirable
+
+  include Packages::Destructible
+
+  include EachBatch
+
+  include UpdateNamespaceStatistics
+
+  alias namespace group
+
+  STORE_COLUMN: :file_store
+
+  MAX_FILE_SIZE: untyped
+
+  def self.total_size: () -> untyped
+
+  def self.find_or_build: (untyped file_name) -> untyped
+end

@@ -1,0 +1,26 @@
+module Gitlab
+  class JsonLogger < ::Labkit::Logging::JsonLogger
+    def self.file_name_noext: () -> untyped
+
+    def self.file_name: () -> untyped
+
+    def self.debug: (untyped message) -> untyped
+
+    def self.error: (untyped message) -> untyped
+
+    def self.warn: (untyped message) -> untyped
+
+    def self.info: (untyped message) -> untyped
+
+    def self.build: () -> untyped
+
+    def self.cache_key: () -> untyped
+
+    def self.full_log_path: () -> untyped
+
+    private
+
+    # Override Labkit's default impl, which uses the default Ruby platform json module.
+    def dump_json: (untyped data) -> untyped
+  end
+end

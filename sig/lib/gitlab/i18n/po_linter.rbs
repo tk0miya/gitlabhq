@@ -1,0 +1,98 @@
+module Gitlab
+  module I18n
+    class PoLinter
+      @po_path: untyped
+
+      @locale: untyped
+
+      @errors: untyped
+
+      @metadata_entry: untyped
+
+      @translation_entries: untyped
+
+      @numbers_covering_all_plurals: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader po_path: untyped
+
+      attr_reader translation_entries: untyped
+
+      attr_reader metadata_entry: untyped
+
+      attr_reader locale: untyped
+
+      VARIABLE_REGEX: ::Regexp
+
+      def initialize: (po_path: untyped, ?locale: untyped) -> void
+
+      def errors: () -> untyped
+
+      def validate_po: () -> ({ "PO-syntax errors" => ::Array[untyped] } | untyped)
+
+      def parse_po: () -> untyped
+
+      def validate_entries: () -> untyped
+
+      def validate_entry: (untyped entry) -> untyped
+
+      def validate_spaces: (untyped errors, untyped entry) -> untyped
+
+      def validate_namespace: (untyped errors, untyped entry) -> (untyped | nil)
+
+      def validate_unescaped_chars: (untyped errors, untyped entry) -> untyped
+
+      def validate_html: (untyped errors, untyped entry) -> untyped
+
+      def validate_number_of_plurals: (untyped errors, untyped entry) -> (nil | untyped)
+
+      def validate_newlines: (untyped errors, untyped entry) -> untyped
+
+      def validate_variables: (untyped errors, untyped entry) -> untyped
+
+      def validate_variables_in_message: (untyped errors, untyped message_id, untyped message_translation) -> untyped
+
+      # rubocop: disable Style/AsciiComments -- Need for clarity
+      # Don't allow mixing named and positional variables in singular
+      # and plural forms for languages such as Japanese. For example:
+      #
+      # msgid "GlobalSearch|Showing 1 code result for %{term}"
+      # msgid_plural "GlobalSearch|Showing %{resultsTotal} code results for %{term}"
+      # msgstr[0] "%{term}の%{resultsTotal}個のコード結果を表示しています" variables
+      #
+      # Here we see that both `term` and `resultsTotal` are needed in
+      # the final translation. If we mix named and positional variables
+      # in the singular and plural forms, it could be ambiguous as to which
+      # variables belong where.
+      # rubocop: enable Style/AsciiComments
+      def validate_single_and_plural_variables: (untyped errors, untyped entry) -> untyped
+
+      def validate_translation: (untyped errors, untyped entry) -> untyped
+
+      def translate_singular: (untyped entry) -> untyped
+
+      def translate_plural: (untyped entry) -> untyped
+
+      def numbers_covering_all_plurals: () -> untyped
+
+      def calculate_numbers_covering_all_plurals: () -> untyped
+
+      def index_for_pluralization: (untyped counter) -> untyped
+
+      def fill_in_variables: (untyped variables) -> (::Array[untyped] | untyped)
+
+      def random_number: () -> untyped
+
+      def random_string: () -> untyped
+
+      def validate_unnamed_variables: (untyped errors, untyped variables) -> untyped
+
+      def validate_variable_usage: (untyped errors, untyped translation, untyped required_variables) -> (nil | untyped)
+
+      def unnamed_variable?: (untyped variable_name) -> untyped
+
+      def validate_flags: (untyped errors, untyped entry) -> (untyped | nil)
+    end
+  end
+end

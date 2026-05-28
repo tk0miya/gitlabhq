@@ -1,0 +1,11 @@
+module WorkItems
+  class PrepareImportCsvService < Import::PrepareService
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def worker: () -> untyped
+
+    def success_message: () -> untyped
+  end
+end

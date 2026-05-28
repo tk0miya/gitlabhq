@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class Equals < Lexeme::LogicalOperator
+            PATTERN: ::Regexp
+
+            def evaluate: (?::Hash[untyped, untyped] variables) -> untyped
+
+            def self.build: (untyped _value, untyped behind, untyped ahead) -> untyped
+
+            def self.precedence: () -> 10
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,119 @@
+class WorkItem < Issue
+  self.@reference_pattern: untyped
+
+  self.@link_reference_pattern: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Gitlab::InternalEventsTracking
+
+  include Import::HasImportSource
+
+  MAX_OPEN_WORK_ITEMS_COUNT: 10000
+
+  COMMON_QUICK_ACTIONS_COMMANDS: ::Array[:title | :reopen | :close | :tableflip | :shrug | :type | :promote_to | :checkin_reminder | :subscribe | :unsubscribe | :confidential | :award | :react | :move | :clone | :copy_metadata | :duplicate | :promote_to_incident | :board_move | :convert_to_ticket | :zoom | :remove_zoom]
+
+  def self.find_by_namespace_and_iid!: (untyped namespace, untyped iid) -> untyped
+
+  def self.assignee_association_name: () -> "issue"
+
+  def self.test_reports_join_column: () -> "issues.id"
+
+  def self.namespace_reference_pattern: () -> untyped
+
+  def self.alternative_reference_prefix_with_postfix: () -> "[work_item:"
+
+  def self.reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> untyped
+
+  def self.work_item_children_keyset_order_config: () -> untyped
+
+  def self.work_item_children_keyset_order: (untyped _work_item) -> untyped
+
+  def self.linked_items_keyset_order: () -> untyped
+
+  def self.linked_items_for: (untyped target_ids, ?preload: untyped?, ?link_type: untyped?) -> untyped
+
+  def self.related_link_class: () -> untyped
+
+  def self.sync_callback_class: (untyped association_name) -> untyped
+
+  def self.non_widgets: () -> ::Array[:pending_escalations]
+
+  def self.ordered_linked_items: (untyped select_query, ?ids: untyped, ?link_type: untyped?, ?preload: untyped?) -> untyped
+
+  def self.find_on_namespaces: (ids: untyped, resource_parent: untyped) -> untyped
+
+  # Returns descendant work item IDs for base work items and all their descendants.
+  # This is a generic method for traversing work item hierarchy.
+  def self.descendant_ids_for: (untyped work_item_ids, ?work_item_type: untyped?) -> (::Array[untyped] | untyped)
+
+  def create_dates_source_from_current_dates: () -> untyped
+
+  def date_source_attributes_from_current_dates: () -> { due_date: untyped, start_date: untyped, start_date_is_fixed: untyped, due_date_is_fixed: untyped, start_date_fixed: untyped, due_date_fixed: untyped }
+
+  def noteable_target_type_name: () -> "issue"
+
+  def custom_notification_target_name: () -> "work_item"
+
+  # Todo: remove method after target_type cleanup
+  # See https://gitlab.com/gitlab-org/gitlab/-/issues/416009
+  def todoable_target_type_name: () -> ::Array["Issue" | "WorkItem"]
+
+  def widgets: (?except_types: untyped, ?only_types: untyped?) -> untyped
+
+  # Returns widget object if available
+  # type parameter can be a symbol, for example, `:description`.
+  def get_widget: (untyped type) -> untyped
+
+  def widget_definitions: () -> untyped
+
+  def ancestors: () -> untyped
+
+  def ancestors_with_order: (?hierarchy_order: ::Symbol) -> untyped
+
+  def descendants: () -> untyped
+
+  def same_type_base_and_ancestors: () -> untyped
+
+  def same_type_descendants_depth: () -> untyped
+
+  def supported_quick_action_commands: () -> untyped
+
+  # Widgets have a set of quick action params that they must process.
+  # Map them to widget_params so they can be picked up by widget services.
+  def transform_quick_action_params: (untyped command_params) -> { common: untyped, widgets: untyped }
+
+  def linked_work_items: (?untyped? current_user, ?authorize: bool, ?preload: untyped?, ?link_type: untyped?) -> (::Array[untyped] | untyped)
+
+  def linked_items_count: () -> untyped
+
+  def supports_time_tracking?: () -> untyped
+
+  def supports_parent?: () -> (false | untyped)
+
+  def due_date: () -> untyped
+
+  def start_date: () -> untyped
+
+  def max_depth_reached?: (untyped child_type) -> (false | untyped)
+
+  private
+
+  def parent_link_confidentiality: () -> untyped
+
+  def record_create_action: () -> untyped
+
+  def hierarchy: (?::Hash[untyped, untyped] options) -> untyped
+
+  def allowed_work_item_type_change: () -> (nil | untyped)
+
+  def validate_parent_restrictions: (untyped parent_link) -> (nil | untyped)
+
+  def validate_child_restrictions: (untyped child_links) -> (nil | untyped)
+
+  def validate_depth: (untyped parent_link, untyped child_links) -> (nil | untyped)
+
+  def hierarchy_supports_parent?: () -> untyped
+end

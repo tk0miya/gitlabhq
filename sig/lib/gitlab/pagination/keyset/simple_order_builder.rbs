@@ -1,0 +1,94 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      # This class transforms the `order()` values from an Activerecord scope into a
+      # Gitlab::Pagination::Keyset::Order instance so the query later can be  used in
+      # keyset pagination.
+      #
+      # Return values:
+      # [transformed_scope, true] # true indicates that the new scope was successfully built
+      # [original_scope, false] # false indicates that the order values are not supported in this class
+      class SimpleOrderBuilder
+        @scope: untyped
+
+        # We need to run 'compact' because 'nil' is not removed from order_values
+        # in some cases due to the use of 'default_scope'.
+        @order_values: untyped
+
+        @order_value_names: untyped
+
+        @model_class: untyped
+
+        @arel_table: untyped
+
+        # Support cases where a single logical primary key has been specified, but also cases where there is a true
+        # composite primary key
+        @primary_keys: untyped
+
+        def self.build: (untyped scope) -> untyped
+
+        def initialize: (scope: untyped) -> void
+
+        def build_order: () -> untyped
+
+        def build: () -> untyped
+
+        private
+
+        attr_reader scope: untyped
+
+        attr_reader order_values: untyped
+
+        attr_reader model_class: untyped
+
+        attr_reader arel_table: untyped
+
+        attr_reader primary_keys: untyped
+
+        attr_reader order_value_names: untyped
+
+        def table_column?: (untyped name) -> untyped
+
+        def primary_keys?: (untyped attributes) -> untyped
+
+        def lower_named_function?: (untyped attribute) -> untyped
+
+        def arel_nulls?: (untyped order_value) -> (nil | untyped)
+
+        def supported_column?: (untyped order_value) -> (true | nil | untyped)
+
+        def nullability: (untyped order_value, untyped attribute_name) -> untyped
+
+        def primary_key_descending_order: () -> untyped
+
+        def primary_key_order: () -> untyped
+
+        def primary_key_order_from_prefix: () -> untyped
+
+        def columns_with_tie_breaker_order: (untyped order_values, ?untyped tie_breaker_column_order) -> untyped
+
+        def column: (untyped order_value) -> untyped
+
+        def nulls_order_column: (untyped order_value) -> untyped
+
+        def lower_named_function_column: (untyped order_value) -> untyped
+
+        def ordered_by_primary_key?: () -> (nil | untyped)
+
+        def ordered_by_primary_key_prefix?: () -> untyped
+
+        def ordered_by_other_columns?: () -> (nil | untyped)
+
+        def ordered_by_other_columns_with_tie_breaker?: () -> (nil | untyped)
+
+        def has_tie_breaker?: () -> untyped
+
+        def supported_columns?: (untyped order_values) -> untyped
+
+        def default_tie_breaker_column_order: () -> untyped
+
+        def extract_order_value_names: () -> untyped
+      end
+    end
+  end
+end

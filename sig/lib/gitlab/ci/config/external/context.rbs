@@ -1,0 +1,142 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        class Context
+          @project: untyped
+
+          @pipeline: untyped
+
+          @sha: untyped
+
+          @user: untyped
+
+          @parent_pipeline: untyped
+
+          @variables: untyped
+
+          @pipeline_config: untyped
+
+          @pipeline_policy_context: untyped
+
+          @component_data: untyped
+
+          @parent_file: untyped
+
+          @expandset: untyped
+
+          @parallel_requests: untyped
+
+          @execution_deadline: untyped
+
+          @logger: untyped
+
+          @max_includes: untyped
+
+          @max_total_yaml_size_bytes: untyped
+
+          @total_file_size_in_bytes: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          TimeoutError: untyped
+
+          HTTPTimeoutError: untyped
+
+          attr_reader project: untyped
+
+          attr_reader sha: untyped
+
+          attr_reader user: untyped
+
+          attr_reader parent_pipeline: untyped
+
+          attr_reader variables: untyped
+
+          attr_reader pipeline_config: untyped
+
+          attr_reader parallel_requests: untyped
+
+          attr_reader pipeline: untyped
+
+          attr_reader expandset: untyped
+
+          attr_reader execution_deadline: untyped
+
+          attr_reader logger: untyped
+
+          attr_reader max_includes: untyped
+
+          attr_reader max_total_yaml_size_bytes: untyped
+
+          attr_reader pipeline_policy_context: untyped
+
+          attr_reader component_data: untyped
+
+          attr_reader parent_file: untyped
+
+          attr_accessor total_file_size_in_bytes: untyped
+
+          # We try to keep the number of parallel HTTP requests to a minimum to avoid overloading IO.
+          MAX_PARALLEL_REMOTE_REQUESTS: 4
+
+          # rubocop:disable Metrics/ParameterLists -- all arguments needed
+          def initialize: (?project: untyped?, ?pipeline: untyped?, ?sha: untyped?, ?user: untyped?, ?parent_pipeline: untyped?, ?variables: untyped?, ?pipeline_config: untyped?, ?logger: untyped?, ?pipeline_policy_context: untyped?, ?component_data: untyped?, ?parent_file: untyped?) ?{ (untyped) -> untyped } -> void
+
+          def top_level_worktree_paths: () -> untyped
+
+          def all_worktree_paths: () -> untyped
+
+          def variables_hash: () -> untyped
+
+          def variables_hash_expanded: () -> untyped
+
+          def variables_sorted_and_expanded: () -> untyped
+
+          def mutate: (?::Hash[untyped, untyped] attrs) -> untyped
+
+          def set_deadline: (untyped timeout_seconds) -> untyped
+
+          def check_execution_time!: () -> (untyped | nil)
+
+          def execute_remote_parallel_request: (untyped lazy_response) -> untyped
+
+          def sentry_payload: () -> { user: untyped, project: untyped, include_type_counts: untyped }
+
+          def mask_variables_from: (untyped string) -> untyped
+
+          def includes: () -> untyped
+
+          # Some Ci::ProjectConfig sources prepend the config content with an "internal" `include`, which becomes
+          # the first included file. When running a pipeline, we pass pipeline_config into the context of the first
+          # included file, which we use in this method to determine if the file is an "internal" one.
+          def internal_include?: () -> untyped
+
+          attr_writer pipeline: untyped
+
+          attr_writer expandset: untyped
+
+          attr_writer execution_deadline: untyped
+
+          attr_writer logger: untyped
+
+          attr_writer max_includes: untyped
+
+          attr_writer max_total_yaml_size_bytes: untyped
+
+          attr_writer parallel_requests: untyped
+
+          attr_writer component_data: untyped
+
+          private
+
+          def current_monotonic_time: () -> untyped
+
+          def expandset_include_type_counts: () -> untyped
+
+          def execution_expired?: () -> (false | untyped)
+        end
+      end
+    end
+  end
+end

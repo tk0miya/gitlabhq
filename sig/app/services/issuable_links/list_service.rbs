@@ -1,0 +1,25 @@
+module IssuableLinks
+  class ListService
+    @issuable: untyped
+
+    @current_user: untyped
+
+    include Gitlab::Routing
+
+    attr_reader issuable: untyped
+
+    attr_reader current_user: untyped
+
+    def initialize: (untyped issuable, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def serializer_options: () -> ::Hash[untyped, untyped]
+
+    def serializer: () -> untyped
+
+    def preload_for_collection: () -> ::Array[{ project: :namespace } | :assignees]
+  end
+end

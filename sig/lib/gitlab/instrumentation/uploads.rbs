@@ -1,0 +1,17 @@
+module Gitlab
+  module Instrumentation
+    class Uploads
+      UPLOAD_DURATION: :uploaded_file_upload_duration_s
+
+      UPLOADED_FILE_SIZE: :uploaded_file_size_bytes
+
+      def self.track: (untyped uploaded_file) -> (untyped | nil)
+
+      def self.get_upload_duration: () -> untyped
+
+      def self.get_uploaded_file_size: () -> untyped
+
+      def self.payload: () -> untyped
+    end
+  end
+end

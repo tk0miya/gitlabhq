@@ -1,0 +1,10 @@
+class GroupFinder
+  @current_user: untyped
+
+  include Gitlab::Allowable
+
+  def initialize: (untyped current_user) -> void
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def execute: (*untyped params) -> untyped
+end

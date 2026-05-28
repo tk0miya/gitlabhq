@@ -1,0 +1,21 @@
+module Groups
+  module GroupLinks
+    class UpdateService < ::Groups::GroupLinks::BaseService
+      @group_link: untyped
+
+      @group_link_params: untyped
+
+      def initialize: (untyped group_link, ?untyped? user) -> void
+
+      def execute: (untyped group_link_params) -> untyped
+
+      private
+
+      attr_accessor group_link: untyped
+
+      attr_accessor group_link_params: untyped
+
+      def requires_authorization_refresh?: (untyped params) -> untyped
+    end
+  end
+end

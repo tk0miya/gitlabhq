@@ -1,0 +1,41 @@
+module Gitlab
+  class MultiCollectionPaginator
+    @per_page: untyped
+
+    @first_collection: untyped
+
+    @second_collection: untyped
+
+    @total_count: untyped
+
+    @first_collection_pages: untyped
+
+    @second_collection_pages: untyped
+
+    @first_collection_page_count: untyped
+
+    @first_collection_last_page_size: untyped
+
+    attr_reader first_collection: untyped
+
+    attr_reader second_collection: untyped
+
+    attr_reader per_page: untyped
+
+    def initialize: (*untyped collections, ?per_page: untyped?) -> void
+
+    def paginate: (untyped page) -> untyped
+
+    def total_count: () -> untyped
+
+    def paginated_first_collection: (untyped page) -> untyped
+
+    def paginated_second_collection: (untyped page) -> untyped
+
+    private
+
+    def first_collection_page_count: () -> untyped
+
+    def first_collection_last_page_size: () -> untyped
+  end
+end

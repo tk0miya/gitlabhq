@@ -1,0 +1,11 @@
+module Mutations
+  module Ci
+    module JobTokenScope
+      class RemoveGroup < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, target_group_path: untyped) -> untyped
+      end
+    end
+  end
+end

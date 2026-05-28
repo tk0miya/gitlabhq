@@ -1,0 +1,36 @@
+class ProjectPolicy < BasePolicy
+  @team_access_level: untyped
+
+  include ::Ci::JobAbilities
+
+  include ::Authz::RolePermissions
+
+  include ::Authn::SubgroupProvisionedServiceAccountRestriction
+
+  private
+
+  def team_member?: () -> (false | untyped)
+
+  def project_group_member?: () -> (false | untyped)
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def project_group_requester?: () -> (false | untyped)
+
+  def team_access_level: () -> (-1 | untyped)
+
+  alias access_level team_access_level
+
+  def lookup_access_level!: () -> untyped
+
+  def access_allowed_to?: (untyped feature) -> (false | untyped)
+
+  def resource_access_token_feature_available?: () -> true
+
+  def resource_access_token_create_feature_available?: () -> true
+
+  def resource_access_token_creation_allowed?: () -> (true | untyped)
+
+  def cross_project_push_allowed_for_job_token?: () -> untyped
+
+  def project: () -> untyped
+end

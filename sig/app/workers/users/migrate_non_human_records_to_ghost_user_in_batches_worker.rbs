@@ -1,0 +1,11 @@
+module Users
+  class MigrateNonHumanRecordsToGhostUserInBatchesWorker
+    include ApplicationWorker
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    include CronjobQueue
+
+    def perform: () -> (nil | untyped)
+  end
+end

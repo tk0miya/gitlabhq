@@ -1,0 +1,9 @@
+module Import
+  module BulkImports
+    class RemoveExportUploadWorker
+      include ApplicationWorker
+
+      def perform: (untyped upload_id) -> (nil | untyped)
+    end
+  end
+end

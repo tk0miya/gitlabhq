@@ -1,0 +1,15 @@
+module Namespaces
+  module Stateful
+    module TransitionCallbacks
+      include ::Gitlab::TenantContainerLifecycle::Stateful::TransitionCallbacks
+
+      private
+
+      def set_transfer_schedule_data: (untyped transition) -> untyped
+
+      def set_transfer_data: (untyped transition) -> untyped
+
+      def clear_transfer_data: (untyped _transition) -> untyped
+    end
+  end
+end

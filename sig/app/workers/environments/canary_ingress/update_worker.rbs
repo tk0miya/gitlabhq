@@ -1,0 +1,9 @@
+module Environments
+  module CanaryIngress
+    class UpdateWorker
+      include ApplicationWorker
+
+      def perform: (untyped environment_id, untyped params) -> untyped
+    end
+  end
+end

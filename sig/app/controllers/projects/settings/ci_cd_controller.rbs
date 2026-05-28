@@ -1,0 +1,69 @@
+module Projects
+  module Settings
+    class CiCdController < Projects::ApplicationController
+      @entity: untyped
+
+      @variable_limit: untyped
+
+      @triggers_json: untyped
+
+      @variable: untyped
+
+      @variables: untyped
+
+      @triggers: untyped
+
+      @trigger: untyped
+
+      @ref: untyped
+
+      @badges: untyped
+
+      @auto_devops: untyped
+
+      include RunnerSetupScripts
+
+      def show: () -> untyped
+
+      def update: () -> untyped
+
+      def reset_cache: () -> untyped
+
+      def reset_registration_token: () -> untyped
+
+      def runner_setup_scripts: () -> untyped
+
+      def export_job_token_authorizations: () -> untyped
+
+      private
+
+      def audit_project_cicd_settings_access: () -> untyped
+
+      def authorize_reset_cache!: () -> (nil | untyped)
+
+      def authorize_show_cicd_settings!: () -> (nil | untyped)
+
+      def authorize_update_cicd_settings!: () -> (nil | untyped)
+
+      def highlight_badge: (untyped name, untyped content, ?untyped? language) -> untyped
+
+      def update_params: () -> untyped
+
+      def permitted_project_params: () -> untyped
+
+      def permitted_project_ci_cd_settings_params: () -> untyped
+
+      def run_autodevops_pipeline: (untyped service) -> (nil | untyped)
+
+      def define_variables: () -> untyped
+
+      def define_ci_variables: () -> untyped
+
+      def define_triggers_variables: () -> untyped
+
+      def define_badges_variables: () -> untyped
+
+      def define_auto_devops_variables: () -> untyped
+    end
+  end
+end

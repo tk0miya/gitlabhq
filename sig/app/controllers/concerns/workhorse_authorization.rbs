@@ -1,0 +1,17 @@
+module WorkhorseAuthorization
+  extend ActiveSupport::Concern
+
+  include WorkhorseRequest
+
+  def authorize: () -> untyped
+
+  private
+
+  def file_is_valid?: (untyped file) -> (false | untyped)
+
+  def uploader_class: () -> untyped
+
+  def maximum_size: () -> untyped
+
+  def file_extension_allowlist: () -> untyped
+end

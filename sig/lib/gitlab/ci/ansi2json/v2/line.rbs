@@ -1,0 +1,80 @@
+module Gitlab
+  module Ci
+    module Ansi2json
+      module V2
+        class Line
+          @offset: untyped
+
+          @style: untyped
+
+          @sections: untyped
+
+          @timestamps: untyped
+
+          @segments: untyped
+
+          @current_text: untyped
+
+          @section_header: untyped
+
+          @section_footer: untyped
+
+          @section_duration: untyped
+
+          @section_options: untyped
+
+          @at_line_start: untyped
+
+          include EncodingHelper
+
+          attr_reader offset: untyped
+
+          attr_reader timestamps: untyped
+
+          attr_reader sections: untyped
+
+          attr_reader style: untyped
+
+          def initialize: (offset: untyped, style: untyped, ?sections: untyped, ?timestamps: untyped) -> void
+
+          # @segments and @current_text get transferred into the previous
+          # line's emitted Hash on to_h, so we always allocate fresh ones here
+          # rather than mutating shared state.
+          def reset!: (offset: untyped, style: untyped, ?sections: untyped, ?timestamps: untyped) -> untyped
+
+          def <<: (untyped data) -> untyped
+
+          # State#update_style flushes the current segment before calling
+          # this, so we don't flush again here.
+          def update_style: (untyped commands) -> untyped
+
+          def flush_current_segment!: () -> (nil | untyped)
+
+          def clear!: () -> untyped
+
+          def empty?: () -> untyped
+
+          def at_line_start?: () -> untyped
+
+          def timestamp: () -> untyped
+
+          def add_timestamp: (untyped value) -> (untyped | nil)
+
+          def add_section: (untyped section) -> untyped
+
+          def set_section_options: (untyped options) -> untyped
+
+          def set_as_section_header: () -> untyped
+
+          def set_as_section_footer: () -> untyped
+
+          def set_section_duration: (untyped duration_in_seconds) -> untyped
+
+          # Key insertion order is significant: it must match v1::Line#to_h
+          # exactly so the produced hashes compare equal under shared examples.
+          def to_h: () -> untyped
+        end
+      end
+    end
+  end
+end

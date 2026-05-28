@@ -1,0 +1,11 @@
+module Mutations
+  module Issues
+    class UnlinkAlert < Base
+      def resolve: (project_path: untyped, iid: untyped, alert_id: untyped) -> { issue: untyped, errors: untyped }
+
+      private
+
+      def find_alert_by_gid: (untyped alert_id) -> untyped
+    end
+  end
+end

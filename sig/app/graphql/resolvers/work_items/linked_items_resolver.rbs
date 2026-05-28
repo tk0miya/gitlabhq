@@ -1,0 +1,21 @@
+module Resolvers
+  module WorkItems
+    class LinkedItemsResolver < BaseResolver
+      prepend ::WorkItems::LookAheadPreloads
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def work_item: () -> untyped
+
+      def node_selection: (?untyped selection) -> untyped
+
+      def bulk_load_linked_items: (untyped link_type) -> untyped
+
+      def linked_items_grouped_by_source: (untyped linked_items, untyped item_ids) -> untyped
+
+      def can_read_linked_item?: (untyped item) -> (true | untyped)
+    end
+  end
+end

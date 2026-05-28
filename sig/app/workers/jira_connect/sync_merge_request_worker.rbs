@@ -1,0 +1,7 @@
+module JiraConnect
+  class SyncMergeRequestWorker
+    include ApplicationWorker
+
+    def perform: (untyped merge_request_id, untyped update_sequence_id) -> (nil | untyped)
+  end
+end

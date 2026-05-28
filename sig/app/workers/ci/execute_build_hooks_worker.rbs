@@ -1,0 +1,7 @@
+module Ci
+  class ExecuteBuildHooksWorker
+    include ApplicationWorker
+
+    def perform: (untyped project_id, untyped build_data) -> (nil | untyped)
+  end
+end

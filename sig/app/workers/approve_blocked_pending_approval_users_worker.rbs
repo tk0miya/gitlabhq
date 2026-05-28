@@ -1,0 +1,5 @@
+class ApproveBlockedPendingApprovalUsersWorker
+  include ApplicationWorker
+
+  def perform: (untyped current_user_id) -> (nil | untyped)
+end

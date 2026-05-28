@@ -1,0 +1,19 @@
+module Banzai
+  module ReferenceParser
+    class MergeRequestParser < IssuableParser
+      @merge_requests_for_nodes: untyped
+
+      @projects_for_nodes: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def nodes_visible_to_user: (untyped user, untyped nodes) -> untyped
+
+      def records_for_nodes: (untyped nodes) -> untyped
+
+      def can_read_reference?: (untyped user, untyped object) -> untyped
+
+      def projects_for_nodes: (untyped nodes) -> untyped
+    end
+  end
+end

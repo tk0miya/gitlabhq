@@ -1,0 +1,34 @@
+module Search
+  class GlobalService
+    @current_user: untyped
+
+    @params: untyped
+
+    include Search::Filter
+
+    include Gitlab::Utils::StrongMemoize
+
+    DEFAULT_SCOPE: "projects"
+
+    attr_accessor current_user: untyped
+
+    attr_accessor params: untyped
+
+    def initialize: (untyped user, untyped params) -> void
+
+    def execute: () -> untyped
+
+    def projects: () -> untyped
+
+    def allowed_scopes: () -> untyped
+
+    def scope: () -> untyped
+
+    private
+
+    def default_search_scope: () -> untyped
+
+    # Global search doesn't have a container
+    def searched_container: () -> nil
+  end
+end

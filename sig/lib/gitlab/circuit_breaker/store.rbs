@@ -1,0 +1,21 @@
+module Gitlab
+  module CircuitBreaker
+    class Store
+      def key?: (untyped key) -> untyped
+
+      def store: (untyped key, untyped value, ?::Hash[untyped, untyped] opts) -> untyped
+
+      def increment: (untyped key, ?::Integer amount, ?::Hash[untyped, untyped] opts) -> untyped
+
+      def load: (untyped key, ?::Hash[untyped, untyped] _opts) -> untyped
+
+      def values_at: (*untyped keys, **untyped _opts) -> untyped
+
+      def delete: (untyped key) -> untyped
+
+      private
+
+      def with: () { (?) -> untyped } -> untyped
+    end
+  end
+end

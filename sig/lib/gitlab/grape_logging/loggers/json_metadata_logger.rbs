@@ -1,0 +1,9 @@
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class JsonMetadataLogger < ::GrapeLogging::Loggers::Base
+        def parameters: (untyped request, untyped _) -> (::Hash[untyped, untyped] | untyped)
+      end
+    end
+  end
+end

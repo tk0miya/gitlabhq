@@ -1,0 +1,15 @@
+module Gitlab
+  module JiraImport
+    module ImportWorker
+      extend ActiveSupport::Concern
+
+      def perform: (untyped project_id) -> (nil | untyped)
+
+      private
+
+      def import: (untyped project) -> untyped
+
+      def can_import?: (untyped project) -> (false | untyped)
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module API
+  module Helpers
+    module CommonHelpers
+      def convert_parameters_from_legacy_format: (untyped params) -> untyped
+
+      # Grape v1.3.3 no longer automatically coerces an Array
+      # type to an empty array if the value is nil.
+      def coerce_nil_params_to_array!: () -> untyped
+
+      def params_with_array_types: () -> untyped
+
+      def endpoint_id: () -> untyped
+    end
+  end
+end

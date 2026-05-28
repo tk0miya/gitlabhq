@@ -1,0 +1,69 @@
+# Inspired in great part by Discourse's Email::Receiver
+module Gitlab
+  module Email
+    class Receiver
+      @raw: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      RECEIVED_HEADER_REGEX: ::Regexp
+
+      # Errors that are purely from users and not anything we can control
+      USER_ERRORS: ::Array[untyped]
+
+      def initialize: (untyped raw) -> void
+
+      def execute: () -> untyped
+
+      def mail_metadata: () -> { mail_uid: untyped, from_address: untyped, to_address: untyped, mail_key: untyped, references: untyped, delivered_to: untyped, x_delivered_to: untyped, envelope_to: untyped, x_envelope_to: untyped, x_original_to: untyped, x_forwarded_to: untyped, cc_address: untyped, received_recipients: untyped, meta: { client_id: ::String, project: untyped } }
+
+      def mail: () -> untyped
+
+      private
+
+      def handler: () -> untyped
+
+      def mail_key: () -> untyped
+
+      def find_most_concrete_key_from: (untyped items) -> untyped
+
+      def find_first_key_from: (untyped items) ?{ (untyped) -> untyped } -> (untyped | nil)
+
+      def key_from_additional_headers: () -> untyped
+
+      def ensure_references_array: (untyped references) -> untyped
+
+      def find_key_from_references: () -> untyped
+
+      def from: () -> untyped
+
+      def to: () -> untyped
+
+      def cc: () -> untyped
+
+      def delivered_to: () -> untyped
+
+      def envelope_to: () -> untyped
+
+      def x_envelope_to: () -> untyped
+
+      def received: () -> untyped
+
+      def x_original_to: () -> untyped
+
+      def x_forwarded_to: () -> untyped
+
+      def x_delivered_to: () -> untyped
+
+      def recipients_from_received_headers: () -> untyped
+
+      def ignore_auto_reply!: () -> (nil | untyped)
+
+      def auto_submitted?: () -> untyped
+
+      def auto_replied?: () -> untyped
+
+      def email_class: () -> untyped
+    end
+  end
+end

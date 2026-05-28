@@ -1,0 +1,27 @@
+module CloudSeed
+  module GoogleCloud
+    class GeneratePipelineService < ::CloudSeed::GoogleCloud::BaseService
+      @default_branch_gitlab_ci_yml: untyped
+
+      ACTION_DEPLOY_TO_CLOUD_RUN: "DEPLOY_TO_CLOUD_RUN"
+
+      ACTION_DEPLOY_TO_CLOUD_STORAGE: "DEPLOY_TO_CLOUD_STORAGE"
+
+      ACTION_VISION_AI_PIPELINE: "VISION_AI_PIPELINE"
+
+      def execute: () -> untyped
+
+      private
+
+      def action: () -> untyped
+
+      def generate_commit_attributes: () -> untyped
+
+      def default_branch_gitlab_ci_yml: () -> untyped
+
+      def pipeline_content: (untyped include_path) -> untyped
+
+      def append_remote_include: (untyped gitlab_ci_yml, untyped include_url) -> untyped
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Ml
+  module ExperimentTracking
+    class ExperimentRepository
+      @project: untyped
+
+      @user: untyped
+
+      attr_accessor project: untyped
+
+      attr_accessor user: untyped
+
+      def initialize: (untyped project, ?untyped? user) -> void
+
+      def by_iid_or_name: (?iid: untyped?, ?name: untyped?) -> untyped
+
+      def all: () -> untyped
+
+      def create!: (untyped name, ?untyped? tags) -> untyped
+
+      def add_tag!: (untyped experiment, untyped key, untyped value) -> (nil | untyped)
+
+      private
+
+      def timestamps: () -> { created_at: untyped, updated_at: untyped }
+
+      def add_tags: (untyped experiment, untyped tag_definitions) -> (nil | untyped)
+    end
+  end
+end

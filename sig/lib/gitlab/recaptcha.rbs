@@ -1,0 +1,11 @@
+module Gitlab
+  module Recaptcha
+    extend Gitlab::Utils::StrongMemoize
+
+    def self.load_configurations!: () -> (true | nil)
+
+    def self.enabled?: () -> untyped
+
+    def self.enabled_on_login?: () -> untyped
+  end
+end

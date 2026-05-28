@@ -1,0 +1,17 @@
+module Packages
+  module Npm
+    class ProcessTemporaryPackageFileWorker
+      include ApplicationWorker
+
+      include ::Packages::ErrorHandling
+
+      GLOBAL_ID_LOCATE_OPTIONS: { only: ::Array[untyped] }
+
+      def perform: (untyped user_gid, untyped package_file_id, untyped deprecate) -> untyped
+
+      private
+
+      def safe_locate: (untyped gid) -> untyped
+    end
+  end
+end

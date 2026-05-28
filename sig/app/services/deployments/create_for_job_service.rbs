@@ -1,0 +1,18 @@
+module Deployments
+  # This class creates a deployment record for a pipeline job.
+  class CreateForJobService
+    include Gitlab::InternalEventsTracking
+
+    DeploymentCreationError: untyped
+
+    def execute: (untyped job) -> untyped
+
+    private
+
+    def to_resource: (untyped job, untyped environment) -> (untyped | nil)
+
+    def attributes: (untyped job, untyped environment) -> { project: untyped, environment: untyped, deployable: untyped, user: untyped, ref: untyped, tag: untyped, sha: untyped, on_stop: untyped }
+
+    def track_cluster_deployment: (untyped job, untyped cluster) -> untyped
+  end
+end

@@ -1,0 +1,63 @@
+module Ci
+  class JobsFinder
+    @current_user: untyped
+
+    @pipeline: untyped
+
+    @project: untyped
+
+    @runner: untyped
+
+    @params: untyped
+
+    @type: untyped
+
+    include Gitlab::Allowable
+
+    def initialize: (current_user: untyped, ?pipeline: untyped?, ?project: untyped?, ?runner: untyped?, ?params: ::Hash[untyped, untyped], ?type: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader pipeline: untyped
+
+    attr_reader project: untyped
+
+    attr_reader runner: untyped
+
+    attr_reader params: untyped
+
+    attr_reader type: untyped
+
+    def init_collection: () -> untyped
+
+    def all_jobs: () -> untyped
+
+    def runner_jobs: () -> (nil | untyped)
+
+    def project_jobs: () -> (nil | untyped)
+
+    def pipeline_jobs: () -> (nil | untyped)
+
+    # Overridden in EE
+    def filter_builds: (untyped builds) -> untyped
+
+    def filter_by_scope: (untyped builds) -> untyped
+
+    def filter_by_runner_types: (untyped builds) -> untyped
+
+    # Overridden in EE
+    def use_runner_type_filter?: () -> untyped
+
+    def filter_by_with_artifacts: (untyped builds) -> untyped
+
+    def filter_by_statuses!: (untyped builds) -> untyped
+
+    def jobs_by_type: (untyped relation, untyped type) -> untyped
+
+    def filter_by_pipeline_iid: (untyped builds) -> untyped
+  end
+end

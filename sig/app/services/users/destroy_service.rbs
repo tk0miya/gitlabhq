@@ -1,0 +1,31 @@
+module Users
+  class DestroyService
+    @current_user: untyped
+
+    @scheduled_records_gauge: untyped
+
+    @lag_gauge: untyped
+
+    DestroyError: untyped
+
+    attr_accessor current_user: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped user, ?::Hash[untyped, untyped] options) ?{ (untyped) -> untyped } -> untyped
+
+    private
+
+    attr_reader scheduled_records_gauge: untyped
+
+    attr_reader lag_gauge: untyped
+
+    def create_ghost_user: (untyped user, untyped options) -> untyped
+
+    def update_metrics: () -> untyped
+
+    def update_scheduled_records_gauge: () -> untyped
+
+    def update_lag_gauge: () -> untyped
+  end
+end

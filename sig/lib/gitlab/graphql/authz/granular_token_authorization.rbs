@@ -1,0 +1,33 @@
+module Gitlab
+  module Graphql
+    module Authz
+      # Field extension for granular token authorization
+      class GranularTokenAuthorization < GraphQL::Schema::FieldExtension
+        include ::Gitlab::Graphql::Authorize::AuthorizeResource
+
+        BOUNDARY_TYPE_EVALUATION_ORDER: ::Array["project" | "group" | "user" | "instance"]
+
+        def resolve: (object: untyped, arguments: untyped, context: untyped, **untyped rest) { (untyped, untyped, untyped) -> untyped } -> untyped
+
+        private
+
+        def authorize_field: (untyped object, untyped arguments, untyped context) -> (nil | untyped)
+
+        def authorization_enabled?: (untyped context) -> untyped
+
+        def authorize_with_cache!: (untyped context, untyped boundary, untyped permissions) -> (nil | untyped)
+
+        # When multiple directives exist (multi-boundary), select the one whose boundary_type
+        # matches the actual extracted boundary. Returns nil if none match, which causes
+        # authorize_with_cache! to be called with nil boundary/permissions, denying access.
+        def find_matching_directive: (untyped directives, untyped object, untyped arguments, untyped context) -> (untyped | nil)
+
+        def boundary_matches_type?: (untyped boundary, untyped boundary_type_str) -> (true | untyped)
+
+        def boundary: (untyped object, untyped arguments, untyped context, untyped directive) -> (nil | untyped)
+
+        def permissions: (untyped directive) -> (nil | untyped)
+      end
+    end
+  end
+end

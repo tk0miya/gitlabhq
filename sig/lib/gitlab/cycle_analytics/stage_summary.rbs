@@ -1,0 +1,33 @@
+module Gitlab
+  module CycleAnalytics
+    class StageSummary
+      @project: untyped
+
+      @options: untyped
+
+      @current_user: untyped
+
+      @deployments_summary: untyped
+
+      def initialize: (untyped project, options: untyped, current_user: untyped) -> void
+
+      def data: () -> untyped
+
+      private
+
+      def issue_stats: () -> untyped
+
+      def commit_stats: () -> untyped
+
+      def deployments_summary: () -> untyped
+
+      def deploy_stats: () -> untyped
+
+      def deployment_frequency_stats: () -> untyped
+
+      def user_has_sufficient_access?: () -> untyped
+
+      def serialize: (untyped summary_object, ?with_unit: bool) -> untyped
+    end
+  end
+end

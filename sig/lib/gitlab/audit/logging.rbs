@@ -1,0 +1,17 @@
+module Gitlab
+  module Audit
+    module Logging
+      ENTITY_TYPE_TO_CLASS: { "User" => untyped, "Project" => untyped, "Group" => untyped, "Gitlab::Audit::InstanceScope" => untyped }
+
+      def log_to_new_tables: (untyped events, untyped audit_operation) -> untyped
+
+      private
+
+      def log_events: (untyped entity_type, untyped entity_events) -> untyped
+
+      def build_event_attributes: (untyped event) -> untyped
+
+      def additional_attributes: (untyped event) -> untyped
+    end
+  end
+end

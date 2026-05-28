@@ -1,0 +1,46 @@
+class Projects::LabelsController < Projects::ApplicationController
+  @label: untyped
+
+  @available_labels: untyped
+
+  @sort: untyped
+
+  include ToggleSubscriptionAction
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def edit: () -> nil
+
+  def update: () -> untyped
+
+  def generate: () -> untyped
+
+  def destroy: () -> untyped
+
+  def remove_priority: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def set_priorities: () -> untyped
+
+  def promote: () -> untyped
+
+  def flash_notice_for: (untyped label, untyped group) -> untyped
+
+  def label_params: () -> untyped
+
+  def label: () -> untyped
+
+  def subscribable_resource: () -> untyped
+
+  def find_labels: () -> untyped
+
+  def sort: () -> untyped
+
+  def authorize_admin_labels!: () -> (untyped | nil)
+
+  def authorize_admin_group_labels!: () -> (untyped | nil)
+end

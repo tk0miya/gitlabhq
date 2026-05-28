@@ -1,0 +1,17 @@
+module Admin
+  module IdentitiesHelper
+    def label_for_identity_provider: (untyped identity) -> ::String
+
+    def provider_id_cell_testid: (untyped identity) -> "provider_id_blank"
+
+    def provider_id: (untyped identity) -> "-"
+
+    def saml_group_cell_testid: (untyped identity) -> "saml_group_blank"
+
+    def saml_group_link: (untyped identity) -> "-"
+
+    def identity_cells_to_render?: (untyped identities, untyped _user) -> untyped
+
+    def scim_identities_collection: (untyped _user) -> ::Array[untyped]
+  end
+end

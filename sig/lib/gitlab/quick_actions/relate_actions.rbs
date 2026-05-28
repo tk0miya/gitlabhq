@@ -1,0 +1,16 @@
+module Gitlab
+  module QuickActions
+    module RelateActions
+      @dependency_service: untyped
+
+      extend ActiveSupport::Concern
+
+      include ::Gitlab::QuickActions::Dsl
+
+      private
+
+      # Overridden in EE.
+      def dependency_service: () -> untyped
+    end
+  end
+end

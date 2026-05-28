@@ -1,0 +1,29 @@
+module Gitlab
+  module Metrics
+    module SidekiqSlis
+      EXECUTION_URGENCY_DURATIONS: { "high" => 10, "low" => 300, "throttled" => 300 }
+
+      QUEUEING_URGENCY_DURATIONS: { "high" => 10, "low" => 60, "throttled" => untyped }
+
+      # workers without urgency attribute have "low" urgency by default in
+      # WorkerAttributes.get_urgency, just mirroring it here
+      DEFAULT_EXECUTION_URGENCY_DURATION: untyped
+
+      DEFAULT_QUEUEING_URGENCY_DURATION: untyped
+
+      def self.initialize_execution_slis!: (untyped possible_labels) -> untyped
+
+      def self.initialize_queueing_slis!: (untyped possible_labels) -> untyped
+
+      def self.record_execution_apdex: (untyped labels, untyped job_completion_duration) -> untyped
+
+      def self.record_execution_error: (untyped labels, untyped error) -> untyped
+
+      def self.record_queueing_apdex: (untyped labels, untyped queue_duration) -> untyped
+
+      def self.execution_duration_for_urgency: (untyped urgency) -> untyped
+
+      def self.queueing_duration_for_urgency: (untyped urgency) -> untyped
+    end
+  end
+end

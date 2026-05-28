@@ -1,0 +1,25 @@
+module Gitlab
+  module BitbucketImport
+    module Importers
+      class IssuesNotesImporter
+        include ParallelScheduling
+
+        MAX_IID_CACHE_KEY: "bitbucket-importer/max-iid/%{project_id}/issues"
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        def sidekiq_class: () -> untyped
+
+        def id_for_already_enqueued_cache: (untyped object) -> untyped
+
+        def source_issues: () -> untyped
+
+        def collection_method: () -> :issues_notes
+      end
+    end
+  end
+end

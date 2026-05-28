@@ -1,0 +1,15 @@
+module RendersCommits
+  @total_commit_count: untyped
+
+  @hidden_commit_count: untyped
+
+  def limited_commits: (untyped commits, untyped commits_count) -> (::Array[untyped] | ::Array[untyped | 0])
+
+  # This is used as a helper method in a controller.
+  # rubocop: disable Gitlab/ModuleWithInstanceVariables
+  def set_commits_for_rendering: (untyped commits, ?commits_count: untyped?) -> untyped
+
+  def prepare_commits_for_rendering: (untyped commits) -> untyped
+
+  def valid_ref?: (untyped ref_name) -> (true | untyped)
+end

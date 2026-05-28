@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    class Config
+      module GitalyTimeout
+        TIMEOUT_KEY: "ci_config_gitaly_timeout"
+
+        def self.with_timeout: (untyped timeout) { () -> untyped } -> untyped
+
+        def self.current_timeout: () -> untyped
+      end
+    end
+  end
+end

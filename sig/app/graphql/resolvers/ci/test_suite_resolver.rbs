@@ -1,0 +1,15 @@
+module Resolvers
+  module Ci
+    class TestSuiteResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias pipeline object
+
+      def resolve: (build_ids: untyped) -> (nil | untyped)
+
+      private
+
+      def load_test_suite_data: (untyped builds) -> untyped
+    end
+  end
+end

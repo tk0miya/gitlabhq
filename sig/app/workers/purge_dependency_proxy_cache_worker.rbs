@@ -1,0 +1,17 @@
+class PurgeDependencyProxyCacheWorker
+  @current_user: untyped
+
+  @group: untyped
+
+  include ApplicationWorker
+
+  include DependencyProxy::Expireable
+
+  include Gitlab::Allowable
+
+  def perform: (untyped current_user_id, untyped group_id) -> (nil | untyped)
+
+  private
+
+  def valid?: () -> (nil | untyped)
+end

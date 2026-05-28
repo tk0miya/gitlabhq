@@ -1,0 +1,5 @@
+class RemoteMirrorNotificationWorker
+  include ApplicationWorker
+
+  def perform: (untyped remote_mirror_id) -> (nil | untyped)
+end

@@ -1,0 +1,17 @@
+module ShaAttribute
+  extend ActiveSupport::Concern
+
+  class ShaAttributeTypeMismatchError < StandardError
+    @column_name: untyped
+
+    @column_type: untyped
+
+    def initialize: (untyped column_name, untyped column_type) -> void
+
+    def message: () -> ::String
+  end
+
+  class Sha256AttributeTypeMismatchError < ShaAttributeTypeMismatchError
+    def message: () -> ::String
+  end
+end

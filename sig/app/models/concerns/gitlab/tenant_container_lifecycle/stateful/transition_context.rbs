@@ -1,0 +1,15 @@
+module Gitlab
+  module TenantContainerLifecycle
+    module Stateful
+      # Utility methods for extracting data from state machine transitions.
+      # Shared between Namespaces::Stateful and Organizations::Stateful.
+      module TransitionContext
+        private
+
+        def transition_args: (untyped transition) -> untyped
+
+        def transition_user: (untyped transition) -> untyped
+      end
+    end
+  end
+end

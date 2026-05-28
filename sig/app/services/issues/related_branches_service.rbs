@@ -1,0 +1,19 @@
+# This service fetches all branches containing the current issue's ID, except for
+# those with a merge request open referencing the current issue.
+module Issues
+  class RelatedBranchesService < Issues::BaseService
+    def execute: (untyped issue) -> (::Array[untyped] | untyped)
+
+    private
+
+    def branch_data: (untyped branch) -> { name: untyped, pipeline_status: untyped, compare_path: untyped }
+
+    def pipeline_status: (untyped branch) -> untyped
+
+    def branches_with_merge_request_for: (untyped issue) -> untyped
+
+    def branches_with_iid_of: (untyped issue) -> (::Array[untyped] | untyped)
+
+    def branch_path: (untyped branch) -> untyped
+  end
+end

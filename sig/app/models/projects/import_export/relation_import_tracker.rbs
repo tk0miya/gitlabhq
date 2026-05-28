@@ -1,0 +1,13 @@
+module Projects
+  module ImportExport
+    class RelationImportTracker < ApplicationRecord
+      STALE_TIMEOUT: untyped
+
+      def stale?: () -> (false | untyped)
+
+      private
+
+      def cannot_be_created_for_importing_project: () -> (nil | untyped)
+    end
+  end
+end

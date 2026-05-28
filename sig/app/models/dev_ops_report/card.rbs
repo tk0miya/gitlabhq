@@ -1,0 +1,23 @@
+module DevOpsReport
+  class Card
+    attr_accessor metric: untyped
+
+    attr_accessor title: untyped
+
+    attr_accessor description: untyped
+
+    attr_accessor feature: untyped
+
+    attr_accessor blog: untyped
+
+    attr_accessor docs: untyped
+
+    def initialize: (metric: untyped, title: untyped, description: untyped, feature: untyped, blog: untyped, ?docs: untyped?) -> void
+
+    def instance_score: () -> untyped
+
+    def leader_score: () -> untyped
+
+    def percentage_score: () -> untyped
+  end
+end

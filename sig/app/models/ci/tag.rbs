@@ -1,0 +1,13 @@
+module Ci
+  class Tag < Ci::ApplicationRecord
+    include Gitlab::SQL::Pattern
+
+    def self.find_or_create_with_like_by_name: (untyped name) -> untyped
+
+    def self.find_or_create_all_with_like_by_name: (*untyped list) -> (::Array[untyped] | untyped)
+
+    def ==: (untyped other) -> untyped
+
+    def to_s: () -> untyped
+  end
+end

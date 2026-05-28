@@ -1,0 +1,9 @@
+module Users
+  class BatchStatusCleanerService
+    BATCH_SIZE: 100
+
+    # Cleanup BATCH_SIZE user_statuses records
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.execute: (?batch_size: untyped) -> { deleted_rows: untyped }
+  end
+end

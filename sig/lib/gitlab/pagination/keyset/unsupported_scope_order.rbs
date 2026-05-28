@@ -1,0 +1,11 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      class UnsupportedScopeOrder < StandardError
+        DEFAULT_ERROR_MESSAGE: "The order on the scope does not support keyset pagination. You might need to define a custom Order object.\n\nSee https://docs.gitlab.com/ee/development/database/keyset_pagination.html#complex-order-configuration\n\nOr the Gitlab::Pagination::Keyset::Order class for examples\n"
+
+        def message: () -> untyped
+      end
+    end
+  end
+end

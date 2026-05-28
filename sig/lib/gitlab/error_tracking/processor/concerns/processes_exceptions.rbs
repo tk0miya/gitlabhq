@@ -1,0 +1,17 @@
+module Gitlab
+  module ErrorTracking
+    module Processor
+      module Concerns
+        module ProcessesExceptions
+          private
+
+          def extract_exceptions_from: (untyped event) -> untyped
+
+          def set_exception_message: (untyped exception, untyped message) -> untyped
+
+          def valid_exception?: (untyped exception) -> untyped
+        end
+      end
+    end
+  end
+end

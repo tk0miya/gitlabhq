@@ -1,0 +1,114 @@
+module MergeRequests
+  class BaseService < ::IssuableBaseService
+    @source_project: untyped
+
+    @target_project: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    include MergeRequests::AssignsMergeParams
+
+    include MergeRequests::ErrorLogger
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (project: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+    def create_note: (untyped merge_request, ?untyped state) -> untyped
+
+    def hook_data: (untyped merge_request, untyped action, ?old_rev: untyped?, ?old_associations: ::Hash[untyped, untyped], ?system: bool, ?system_action: untyped?) -> untyped
+
+    def execute_hooks: (untyped merge_request, ?::String action, ?old_rev: untyped?, ?old_associations: ::Hash[untyped, untyped], ?system: bool, ?system_action: untyped?) -> (nil | untyped)
+
+    def execute_external_hooks: (untyped merge_request, untyped merge_data) -> nil
+
+    def execute_group_mention_hooks: (untyped merge_request, untyped merge_data) -> (nil | untyped)
+
+    def handle_changes: (untyped merge_request, untyped options) -> untyped
+
+    def handle_assignees_change: (untyped merge_request, untyped old_assignees) -> untyped
+
+    def handle_reviewers_change: (untyped merge_request, untyped old_reviewers) -> untyped
+
+    def cleanup_environments: (untyped merge_request) -> untyped
+
+    def cancel_review_app_jobs!: (untyped merge_request) -> untyped
+
+    def source_project: () -> untyped
+
+    def target_project: () -> untyped
+
+    # Don't try to print expensive instance variables.
+    def inspect: () -> ::String
+
+    def merge_request_activity_counter: () -> untyped
+
+    def deactivate_pages_deployments: (untyped merge_request) -> untyped
+
+    private
+
+    def self.constructor_container_arg: (untyped value) -> { project: untyped }
+
+    def refresh_pipelines_on_merge_requests: (untyped merge_request, ?allow_duplicate: bool) -> untyped
+
+    def enqueue_jira_connect_messages_for: (untyped merge_request) -> (nil | untyped)
+
+    def create: (untyped merge_request) -> untyped
+
+    def update: (untyped merge_request) -> untyped
+
+    def handle_quick_actions: (untyped merge_request) -> untyped
+
+    def handle_draft_event: (untyped merge_request) -> (untyped | nil)
+
+    def request_duo_code_review: (untyped merge_request) -> nil
+
+    def filter_params: (untyped merge_request) -> untyped
+
+    def filter_reviewer: (untyped merge_request) -> (nil | untyped)
+
+    def set_reviewers_approved: (untyped merge_request, untyped new_reviewers) -> untyped
+
+    def merge_request_metrics_service: (untyped merge_request) -> untyped
+
+    def create_assignee_note: (untyped merge_request, untyped old_assignees) -> untyped
+
+    def create_reviewer_note: (untyped merge_request, untyped old_reviewers) -> untyped
+
+    def create_pipeline_for: (untyped merge_request, untyped user, ?async: bool, ?allow_duplicate: bool) -> untyped
+
+    def abort_auto_merge: (untyped merge_request, untyped reason) -> untyped
+
+    # Returns all origin and fork merge requests from `@project` satisfying passed arguments.
+    # rubocop: disable CodeReuse/ActiveRecord
+    def merge_requests_for: (untyped source_branch, ?mr_states: ::Array[untyped]) -> untyped
+
+    def pipeline_merge_requests: (untyped pipeline) { (untyped) -> untyped } -> untyped
+
+    def trigger_merge_request_reviewers_updated: (untyped merge_request) -> untyped
+
+    def trigger_merge_request_merge_status_updated: (untyped merge_request) -> untyped
+
+    def trigger_merge_request_approval_state_updated: (untyped merge_request) -> untyped
+
+    def trigger_user_merge_request_updated: (untyped merge_request) -> untyped
+
+    def publish_assigned_reviewers_event: (untyped merge_request, untyped new_reviewers) -> (nil | untyped)
+
+    def set_first_reviewer_assigned_at_metrics: (untyped merge_request) -> (nil | untyped)
+
+    def remove_approval: (untyped merge_request, untyped user) -> untyped
+
+    def update_reviewer_state: (untyped merge_request, untyped user, untyped state) -> untyped
+
+    def abort_auto_merge_with_todo: (untyped merge_request, untyped reason) -> (nil | untyped)
+
+    def invalidate_all_users_cache_count: (untyped merge_request) -> untyped
+
+    def change_state: (untyped merge_request, untyped state_event) -> untyped
+
+    def reopen_service: () -> untyped
+
+    def close_service: () -> untyped
+  end
+end

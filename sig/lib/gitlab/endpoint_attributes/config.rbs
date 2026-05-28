@@ -1,0 +1,31 @@
+module Gitlab
+  module EndpointAttributes
+    class Config
+      @default_attributes: untyped
+
+      @action_attributes: untyped
+
+      RequestUrgency: untyped
+
+      REQUEST_URGENCIES: untyped
+
+      SUPPORTED_ATTRIBUTES: ::Array[:feature_category | :urgency]
+
+      def initialize: () -> void
+
+      def defined_actions: () -> untyped
+
+      def set: (untyped actions, untyped attributes) -> nil
+
+      def attribute_for_action: (untyped action, untyped attribute_name) -> untyped
+
+      private
+
+      def sanitize_attributes!: (untyped attributes) -> untyped
+
+      def set_attributes_for_actions: (untyped actions, untyped attributes) -> untyped
+
+      def conflicted_attributes: (untyped attributes, untyped existing_attributes) -> untyped
+    end
+  end
+end

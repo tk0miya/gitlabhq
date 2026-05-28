@@ -1,0 +1,11 @@
+module BulkImports
+  module Common
+    module Rest
+      module GetBadgesQuery
+        extend ::BulkImports::Common::Rest::GetBadgesQuery
+
+        def to_h: (untyped context) -> { resource: untyped, query: { page: untyped } }
+      end
+    end
+  end
+end

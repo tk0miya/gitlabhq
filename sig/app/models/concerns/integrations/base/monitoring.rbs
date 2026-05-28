@@ -1,0 +1,15 @@
+# Base module for monitoring services
+#
+# These services integrate with a deployment solution like Prometheus
+# to provide additional features for environments.
+module Integrations
+  module Base
+    module Monitoring
+      extend ActiveSupport::Concern
+
+      def can_query?: () -> untyped
+
+      def query: (untyped _, *untyped _) -> untyped
+    end
+  end
+end

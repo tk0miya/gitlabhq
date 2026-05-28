@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+module API
+  class NpmProjectPackages < ::API::Base
+    ERROR_REASON_TO_HTTP_STATUS_MAPPTING: ::Hash[untyped, 400 | 403]
+
+    def self.authorization_boundary_options: () -> { boundary_type: :project, boundary: untyped }
+  end
+end

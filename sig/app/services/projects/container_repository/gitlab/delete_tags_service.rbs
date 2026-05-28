@@ -1,0 +1,57 @@
+module Projects
+  module ContainerRepository
+    module Gitlab
+      class DeleteTagsService
+        @current_user: untyped
+
+        @container_repository: untyped
+
+        @project: untyped
+
+        @tag_names: untyped
+
+        @deleted_tags: untyped
+
+        include BaseServiceUtility
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        include ::Projects::ContainerRepository::Gitlab::Timeoutable
+
+        include ContainerRegistry::Protection::Concerns::TagRule
+
+        INVALID_TAGS_ERROR_MESSAGE: "invalid tag name(s)"
+
+        PROTECTED_TAGS_ERROR_MESSAGE: "cannot delete protected tag(s)"
+
+        # OCI Distribution Spec: https://github.com/opencontainers/distribution-spec/blob/main/spec.md#pulling-manifests
+        VALID_TAG_NAME_REGEX: ::Regexp
+
+        def initialize: (current_user: untyped, container_repository: untyped, tag_names: untyped) -> void
+
+        # Delete tags by name with a single DELETE request. This is only supported
+        # by the GitLab Container Registry fork. See
+        # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/23325 for details.
+        def execute: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader container_repository: untyped
+
+        attr_reader deleted_tags: untyped
+
+        attr_reader tag_names: untyped
+
+        def delete_tags: () -> untyped
+
+        def filter_out_invalid!: () -> untyped
+
+        def filter_out_protected!: () -> (nil | untyped)
+      end
+    end
+  end
+end

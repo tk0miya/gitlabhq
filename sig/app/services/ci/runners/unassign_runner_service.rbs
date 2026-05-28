@@ -1,0 +1,29 @@
+module Ci
+  module Runners
+    class UnassignRunnerService
+      @runner_project: untyped
+
+      @runner: untyped
+
+      @project: untyped
+
+      @user: untyped
+
+      # @param [Ci::RunnerProject] runner_project the runner/project association to destroy
+      # @param [User] user the user performing the operation
+      def initialize: (untyped runner_project, untyped user) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader runner: untyped
+
+      attr_reader project: untyped
+
+      attr_reader user: untyped
+
+      def authorize: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Impersonation
+  include Gitlab::Utils::StrongMemoize
+
+  SESSION_KEYS_TO_DELETE: ::Array["github_access_token" | "gitea_access_token" | "gitlab_access_token" | "bitbucket_token" | "bitbucket_refresh_token" | "bitbucket_server_personal_access_token" | "bulk_import_gitlab_access_token" | "fogbugz_token" | "cloud_platform_access_token"]
+
+  def current_user: () -> untyped
+
+  def check_impersonation_availability: () -> (nil | untyped)
+
+  def stop_impersonation: () -> untyped
+
+  def impersonation_in_progress?: () -> untyped
+
+  def log_impersonation_event: () -> untyped
+
+  def clear_access_token_session_keys!: () -> untyped
+
+  def impersonator: () -> (untyped | nil)
+end

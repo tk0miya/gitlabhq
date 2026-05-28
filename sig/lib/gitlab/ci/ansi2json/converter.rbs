@@ -1,0 +1,61 @@
+module Gitlab
+  module Ci
+    module Ansi2json
+      class Converter
+        @lines: untyped
+
+        @state: untyped
+
+        @has_timestamps: untyped
+
+        # Timestamp line prefix format:
+        # <timestamp> <stream number><stream type><full line type>
+        # - timestamp: UTC RFC3339 timestamp
+        # - stream number: 1 byte (2 hex chars) stream number
+        # - stream type: E/O (Err or Out)
+        # - full line type: `+` if line is continuation of previous line, ` ` otherwise
+        TIMESTAMP_HEADER_REGEX: untyped
+
+        TIMESTAMP_HEADER_DATETIME_LENGTH: untyped
+
+        TIMESTAMP_HEADER_LENGTH: untyped
+
+        def convert: (untyped stream, untyped new_state) -> untyped
+
+        private
+
+        def process_stream: (untyped stream) -> untyped
+
+        def process_stream_with_lookahead: (untyped stream) -> untyped
+
+        def handle_line: (untyped line, untyped next_line, untyped current_line_buffer) -> (nil | untyped)
+
+        def consume_line: (untyped line) -> untyped
+
+        def consume_token: (untyped scanner) -> untyped
+
+        def has_timestamp_prefix?: (untyped line) -> (nil | untyped)
+
+        def get_timestamp: (untyped scanner) -> (nil | untyped)
+
+        def scan_token: (untyped scanner, untyped match, ?consume: bool) -> untyped
+
+        def handle_sequence: (untyped scanner) -> (nil | untyped)
+
+        def handle_timestamp: (untyped timestamp) -> untyped
+
+        def handle_section: (untyped scanner) -> untyped
+
+        def handle_section_start: (untyped scanner, untyped section, untyped section_timestamp, untyped options) -> untyped
+
+        def handle_section_end: (untyped scanner, untyped section, untyped section_timestamp) -> (nil | untyped)
+
+        def flush_current_line: (?bool hard_flush) -> untyped
+
+        def sanitize_section_name: (untyped section) -> untyped
+
+        def parse_section_options: (untyped raw_options) -> (nil | untyped)
+      end
+    end
+  end
+end

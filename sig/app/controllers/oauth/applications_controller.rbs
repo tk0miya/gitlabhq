@@ -1,0 +1,44 @@
+class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
+  @application: untyped
+
+  @created: untyped
+
+  @applications: untyped
+
+  @applications_total_count: untyped
+
+  @authorized_tokens: untyped
+
+  include Gitlab::GonHelper
+
+  include PageLayoutHelper
+
+  include OauthApplications
+
+  include InitializesCurrentUserMode
+
+  include CurrentOrganization
+
+  def index: () -> untyped
+
+  def show: () -> nil
+
+  def create: () -> untyped
+
+  def renew: () -> untyped
+
+  private
+
+  def verify_user_oauth_applications_enabled: () -> (nil | untyped)
+
+  def set_index_vars: () -> untyped
+
+  # Override Doorkeeper to scope to the current user
+  def set_application: () -> untyped
+
+  def application_params: () -> untyped
+
+  def set_locale: () { (?) -> untyped } -> untyped
+
+  def organization_params: () -> untyped
+end

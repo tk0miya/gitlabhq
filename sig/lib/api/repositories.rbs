@@ -1,0 +1,9 @@
+module API
+  class Repositories < ::API::Base
+    include PaginationParams
+
+    include Helpers::Unidiff
+
+    include APIGuard
+  end
+end

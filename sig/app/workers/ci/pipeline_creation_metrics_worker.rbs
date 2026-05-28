@@ -1,0 +1,27 @@
+module Ci
+  class PipelineCreationMetricsWorker
+    include ApplicationWorker
+
+    include PipelineBackgroundQueue
+
+    include Gitlab::InternalEventsTracking
+
+    def perform: (untyped pipeline_id, ?untyped? inputs_count, ?untyped? template_names, ?untyped? keyword_usage) -> (nil | untyped)
+
+    private
+
+    def create_snowplow_event_for_pipeline_name: (untyped pipeline) -> (nil | untyped)
+
+    def track_inputs_usage: (untyped pipeline, untyped inputs_count) -> (nil | untyped)
+
+    def track_template_usage: (untyped pipeline, untyped template_names) -> (nil | untyped)
+
+    def track_keyword_usage_events: (untyped pipeline, untyped keyword_usage) -> (nil | untyped)
+
+    def track_build_creation: (untyped pipeline) -> untyped
+
+    def track_build_created_event: (untyped build) -> untyped
+
+    def track_id_tokens_usage_batch: (untyped builds_with_tokens) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,13 @@
+module Ci
+  module Inputs
+    class ArrayInput < BaseInput
+      extend ::Gitlab::Utils::Override
+
+      def self.type_name: () -> "array"
+
+      def validate_type: (untyped value, untyped default) -> (nil | untyped)
+
+      def validate_options: (untyped value, ?::Hash[untyped, untyped] all_params) -> (nil | untyped)
+    end
+  end
+end

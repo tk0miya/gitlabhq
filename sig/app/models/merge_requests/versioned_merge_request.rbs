@@ -1,0 +1,25 @@
+module MergeRequests
+  class VersionedMergeRequest < SimpleDelegator
+    @version_params: untyped
+
+    @resolved_version: untyped
+
+    extend Gitlab::Utils::DelegatorOverride
+
+    VERSION_KEYS: ::Array[:diff_id | :start_sha | :commit_id | :only_context_commits]
+
+    def self.from_diff_options: (untyped merge_request, untyped diff_options) -> untyped
+
+    def initialize: (untyped merge_request, ?version_params: ::Hash[untyped, untyped]) -> void
+
+    def class: () -> untyped
+
+    def diffs: (?::Hash[untyped, untyped] diff_options) -> untyped
+
+    def diff_stats: () -> untyped
+
+    private
+
+    def resolved_version: () -> untyped
+  end
+end

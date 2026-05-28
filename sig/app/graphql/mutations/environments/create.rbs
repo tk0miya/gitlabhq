@@ -1,0 +1,9 @@
+module Mutations
+  module Environments
+    class Create < ::Mutations::BaseMutation
+      include FindsProject
+
+      def resolve: (project_path: untyped, **untyped kwargs) -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Git
+  class TagHooksService < ::Git::BaseHooksService
+    private
+
+    alias removing_tag? removing_ref?
+
+    def hook_name: () -> :tag_push_hooks
+
+    def limited_commits: () -> untyped
+
+    def commits_count: () -> untyped
+
+    def event_message: () -> untyped
+
+    def tag: () -> untyped
+
+    def tag_commit: () -> untyped
+  end
+end

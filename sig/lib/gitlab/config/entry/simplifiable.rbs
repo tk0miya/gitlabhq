@@ -1,0 +1,25 @@
+module Gitlab
+  module Config
+    module Entry
+      class Simplifiable < SimpleDelegator
+        self.@strategies: untyped
+
+        @subject: untyped
+
+        EntryStrategy: untyped
+
+        attr_reader subject: untyped
+
+        def initialize: (untyped config, **untyped metadata) { (?) -> untyped } -> void
+
+        def self.strategy: (untyped name, **untyped opts) -> untyped
+
+        def self.strategies: () -> untyped
+
+        def self.entry_class: (untyped strategy) -> untyped
+
+        def self.default: () -> nil
+      end
+    end
+  end
+end

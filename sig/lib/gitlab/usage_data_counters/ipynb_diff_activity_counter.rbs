@@ -1,0 +1,23 @@
+module Gitlab
+  module UsageDataCounters
+    module IpynbDiffActivityCounter
+      NOTE_CREATED_IN_IPYNB_DIFF_ACTION: "i_code_review_create_note_in_ipynb_diff"
+
+      USER_CREATED_NOTE_IN_IPYNB_DIFF_ACTION: "i_code_review_user_create_note_in_ipynb_diff"
+
+      NOTE_CREATED_IN_IPYNB_DIFF_MR_ACTION: "i_code_review_create_note_in_ipynb_diff_mr"
+
+      USER_CREATED_NOTE_IN_IPYNB_DIFF_MR_ACTION: "i_code_review_user_create_note_in_ipynb_diff_mr"
+
+      NOTE_CREATED_IN_IPYNB_DIFF_COMMIT_ACTION: "i_code_review_create_note_in_ipynb_diff_commit"
+
+      USER_CREATED_NOTE_IN_IPYNB_DIFF_COMMIT_ACTION: "i_code_review_user_create_note_in_ipynb_diff_commit"
+
+      def self.note_created: (untyped note) -> (nil | untyped)
+
+      private
+
+      def self.track: (untyped action, untyped per_user_action, untyped note) -> untyped
+    end
+  end
+end

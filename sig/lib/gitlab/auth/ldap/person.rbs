@@ -1,0 +1,64 @@
+module Gitlab
+  module Auth
+    module Ldap
+      class Person
+        @entry: untyped
+
+        @provider: untyped
+
+        @config: untyped
+
+        # Active Directory-specific LDAP filter that checks if bit 2 of the
+        # userAccountControl attribute is set.
+        # Source: http://ctogonewild.com/2009/09/03/bitmask-searches-in-ldap/
+        AD_USER_DISABLED: untyped
+
+        InvalidEntryError: untyped
+
+        attr_accessor provider: untyped
+
+        def self.find_by_uid: (untyped uid, untyped adapter) -> untyped
+
+        def self.find_by_dn: (untyped dn, untyped adapter) -> untyped
+
+        def self.find_by_email: (untyped email, untyped adapter) -> untyped
+
+        def self.disabled_via_active_directory?: (untyped dn, untyped adapter) -> untyped
+
+        def self.ldap_attributes: (untyped config) -> untyped
+
+        def self.normalize_dn: (untyped dn) -> untyped
+
+        # Returns the UID in a normalized form.
+        #
+        # 1. Excess spaces are stripped
+        # 2. The string is downcased (for case-insensitivity)
+        def self.normalize_uid: (untyped uid) -> untyped
+
+        def initialize: (untyped entry, untyped provider) -> void
+
+        def name: () -> untyped
+
+        def uid: () -> untyped
+
+        def username: () -> untyped
+
+        def email: () -> untyped
+
+        def dn: () -> untyped
+
+        private
+
+        attr_reader entry: untyped
+
+        def config: () -> untyped
+
+        # Using the LDAP attributes configuration, find and return the first
+        # attribute with a value. For example, by default, when given 'email',
+        # this method looks for 'mail', 'email' and 'userPrincipalName' and
+        # returns the first with a value.
+        def attribute_value: (untyped attribute) -> (nil | untyped)
+      end
+    end
+  end
+end

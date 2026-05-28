@@ -1,0 +1,28 @@
+module Gitlab
+  module Slug
+    class Path
+      @input: untyped
+
+      LEADING_DASHES: ::Regexp
+
+      # Extract local email part if given an email. Will remove @ sign and everything following it.
+      EXTRACT_LOCAL_EMAIL_PART: ::Regexp
+
+      FORBIDDEN_CHARACTERS: ::Regexp
+
+      PATH_TRAILING_VIOLATIONS: ::Array[".git" | ".atom" | "."]
+
+      DEFAULT_SLUG: "blank"
+
+      def initialize: (untyped input) -> void
+
+      def generate: () -> untyped
+
+      alias to_s generate
+
+      private
+
+      attr_reader input: untyped
+    end
+  end
+end

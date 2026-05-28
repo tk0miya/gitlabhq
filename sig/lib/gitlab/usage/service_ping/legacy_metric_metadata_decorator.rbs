@@ -1,0 +1,17 @@
+module Gitlab
+  module Usage
+    module ServicePing
+      class LegacyMetricMetadataDecorator < SimpleDelegator
+        @duration: untyped
+
+        @error: untyped
+
+        attr_reader duration: untyped
+
+        attr_reader error: untyped
+
+        def initialize: (untyped value, untyped duration, ?error: untyped?) -> void
+      end
+    end
+  end
+end

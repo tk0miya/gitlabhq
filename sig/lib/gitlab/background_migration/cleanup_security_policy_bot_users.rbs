@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class CleanupSecurityPolicyBotUsers < BatchedMigrationJob
+      SECURITY_POLICY_BOT_TYPE: 10
+
+      PREMIUM_PLANS: ::Array["premium" | "silver" | "premium_trial"]
+
+      def perform: () -> untyped
+    end
+  end
+end

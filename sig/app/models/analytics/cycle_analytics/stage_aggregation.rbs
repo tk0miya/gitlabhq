@@ -1,0 +1,21 @@
+module Analytics
+  module CycleAnalytics
+    class StageAggregation < ApplicationRecord
+      include Analytics::CycleAnalytics::Parentable
+
+      STATS_SIZE_LIMIT: 10
+
+      def self.load_batch: (?::Integer batch_size) -> untyped
+
+      def cursor_for: (untyped model) -> untyped
+
+      def set_cursor: (untyped model, untyped cursor) -> untyped
+
+      def refresh_last_run: () -> untyped
+
+      def set_stats: (untyped runtime, untyped processed_records) -> untyped
+
+      def complete: () -> untyped
+    end
+  end
+end

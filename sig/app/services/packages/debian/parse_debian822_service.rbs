@@ -1,0 +1,25 @@
+module Packages
+  module Debian
+    # Parse String as Debian RFC822 control data format
+    # https://manpages.debian.org/unstable/dpkg-dev/deb822.5
+    class ParseDebian822Service
+      @input: untyped
+
+      InvalidDebian822Error: untyped
+
+      def initialize: (untyped input) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def comment_line?: (untyped line) -> untyped
+
+      def continuation_line?: (untyped line) -> untyped
+
+      def paragraph_separator?: (untyped line) -> untyped
+
+      def match_section_line: (untyped line) -> untyped
+    end
+  end
+end

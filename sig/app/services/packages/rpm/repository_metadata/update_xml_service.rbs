@@ -1,0 +1,40 @@
+# frozen_string_literal: true
+module Packages
+  module Rpm
+    module RepositoryMetadata
+      class UpdateXmlService
+        @builder_class: untyped
+
+        @xml: untyped
+
+        @data: untyped
+
+        @filename: untyped
+
+        BUILDERS: { other: untyped, primary: untyped, filelist: untyped }
+
+        def initialize: (filename: untyped, ?xml: untyped?, ?data: ::Hash[untyped, untyped]) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader xml: untyped
+
+        attr_reader data: untyped
+
+        attr_reader builder_class: untyped
+
+        attr_reader filename: untyped
+
+        def build_empty_structure: () -> untyped
+
+        def update_xml_document: () -> untyped
+
+        def update_package_count: () -> untyped
+
+        def remove_existing_packages: () -> untyped
+      end
+    end
+  end
+end

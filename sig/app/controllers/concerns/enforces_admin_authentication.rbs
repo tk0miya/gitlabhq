@@ -1,0 +1,21 @@
+# == EnforcesAdminAuthentication
+#
+# Controller concern to enforce that users are authenticated as admins
+#
+# Upon inclusion, adds `authenticate_admin!` as a before_action
+#
+module EnforcesAdminAuthentication
+  extend ActiveSupport::Concern
+
+  def authenticate_admin!: () -> (untyped | nil)
+
+  def storable_location?: () -> untyped
+
+  private
+
+  def authorize_ability!: (untyped ability) -> (untyped | nil)
+
+  def attempt_admin_mode: () -> untyped
+
+  def in_admin_mode?: () -> untyped
+end

@@ -1,0 +1,70 @@
+# A note on merge request or commit diffs
+#
+# A note of this type can be resolvable.
+class DiffNote < Note
+  @diff_line: untyped
+
+  include NoteOnDiff
+
+  include DiffPositionableNote
+
+  include Gitlab::Utils::StrongMemoize
+
+  def self.noteable_types: () -> ::Array["MergeRequest" | "Commit" | "DesignManagement::Design"]
+
+  NoteDiffFileCreationError: untyped
+
+  DIFF_LINE_NOT_FOUND_MESSAGE: "Failed to find diff line for: %{file_path}, old_line: %{old_line}, new_line: %{new_line}"
+
+  DIFF_FILE_NOT_FOUND_MESSAGE: "Failed to find diff file"
+
+  def discussion_class: (*untyped) -> untyped
+
+  def validate_diff_file_and_line: () -> (nil | untyped)
+
+  def requires_diff_file_validation_during_import?: () -> untyped
+
+  def create_diff_file: () -> (nil | untyped)
+
+  # Returns the diff file from `position`
+  def latest_diff_file: () -> untyped
+
+  # Returns the diff file from `original_position`
+  def diff_file: (?create_missing_diff_file: bool) -> untyped
+
+  def diff_line: () -> untyped
+
+  def original_line_code: () -> (nil | untyped)
+
+  def created_at_diff?: (untyped diff_refs) -> (false | true | untyped)
+
+  # Checks if the current `position` line in the diff
+  # exists and is suggestible (not a deletion).
+  #
+  # Avoid using in iterations as it requests Gitaly.
+  def supports_suggestion?: () -> (false | untyped)
+
+  def banzai_render_context: (untyped field) -> untyped
+
+  def multiline?: () -> untyped
+
+  def latest_diff_file_path: () -> untyped
+
+  def raw_truncated_diff_lines: () -> untyped
+
+  private
+
+  def enqueue_diff_file_creation_job: () -> (nil | untyped)
+
+  def should_create_diff_file?: () -> untyped
+
+  def fetch_diff_file: () -> untyped
+
+  def supported?: () -> untyped
+
+  def set_line_code: () -> untyped
+
+  def verify_supported: () -> (nil | untyped)
+
+  def positions_complete: () -> (nil | untyped)
+end

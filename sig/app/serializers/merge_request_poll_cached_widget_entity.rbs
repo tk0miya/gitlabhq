@@ -1,0 +1,9 @@
+class MergeRequestPollCachedWidgetEntity < IssuableEntity
+  @presenters: untyped
+
+  include MergeRequestMetricsHelper
+
+  private
+
+  def presenter: (untyped merge_request) -> untyped
+end

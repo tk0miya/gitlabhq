@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    class ProjectConfig
+      class ProjectSetting < Source
+        extend ::Gitlab::Utils::Override
+
+        def content: () -> untyped
+
+        def internal_include_prepended?: () -> true
+
+        def source: () -> (:remote_source | :external_project_source | :repository_source | nil)
+
+        def url: () -> (nil | untyped)
+
+        private
+
+        def file_in_repository?: () -> untyped
+
+        # Example: path/to/.gitlab-ci.yml@another-group/another-project
+        def external_project_path?: () -> untyped
+
+        # Example: path/to/.gitlab-ci.yml@another-group/another-project:refname
+        def extract_location_tokens: () -> untyped
+
+        def remote_config_path?: () -> untyped
+      end
+    end
+  end
+end

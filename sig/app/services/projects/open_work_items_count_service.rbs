@@ -1,0 +1,30 @@
+module Projects
+  # Service class for counting and caching the number of open work items of a project.
+  class OpenWorkItemsCountService < Projects::CountService
+    @user: untyped
+
+    PUBLIC_COUNT_KEY: "public_open_work_items_count"
+
+    TOTAL_COUNT_KEY: "total_open_work_items_count"
+
+    def initialize: (untyped project, ?untyped? user) -> void
+
+    def cache_key_name: () -> untyped
+
+    def public_only?: () -> untyped
+
+    def relation_for_count: () -> untyped
+
+    def public_count_cache_key: () -> untyped
+
+    def total_count_cache_key: () -> untyped
+
+    def delete_cache: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- query method is the accepted pattern in CountService subclasses
+    def self.query: (untyped projects, ?public_only: bool) -> untyped
+
+    # Override in EE to add type filters (e.g. exclude :requirement).
+    def self.base_query: () -> untyped
+  end
+end

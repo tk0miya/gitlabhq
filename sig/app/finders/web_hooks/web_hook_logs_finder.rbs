@@ -1,0 +1,31 @@
+module WebHooks
+  class WebHookLogsFinder
+    @hook: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_accessor hook: untyped
+
+    attr_accessor params: untyped
+
+    attr_accessor current_user: untyped
+
+    def initialize: (untyped hook, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def authorized?: () -> untyped
+
+    def by_status_code: (untyped logs) -> untyped
+
+    def string_filter_to_code: (untyped status_string) -> untyped
+
+    def by_created_at: (untyped logs) -> untyped
+
+    def by_id: (untyped logs) -> untyped
+  end
+end

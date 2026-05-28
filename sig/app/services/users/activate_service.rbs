@@ -1,0 +1,23 @@
+module Users
+  class ActivateService < BaseService
+    @current_user: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped user) -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    def allowed?: () -> untyped
+
+    def after_activate_hook: (untyped user) -> nil
+
+    def log_event: (untyped user) -> untyped
+
+    def success: (untyped message) -> untyped
+
+    def error: (untyped message, untyped reason) -> untyped
+  end
+end

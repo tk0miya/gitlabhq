@@ -1,0 +1,43 @@
+class Projects::NotesController < Projects::ApplicationController
+  @note: untyped
+
+  extend Gitlab::Utils::Override
+
+  include RendersNotes
+
+  include NotesActions
+
+  include NotesHelper
+
+  include ToggleAwardEmoji
+
+  def feature_category: () -> untyped
+
+  def feature_category_override_for_target_type: (untyped target_type) -> untyped
+
+  def resolve: () -> untyped
+
+  def unresolve: () -> untyped
+
+  def outdated_line_change: () -> untyped
+
+  private
+
+  def render_json_with_notes_serializer: () -> untyped
+
+  def note: () -> untyped
+
+  alias awardable note
+
+  def finder_params: () -> untyped
+
+  def authorize_admin_note!: () -> (untyped | nil)
+
+  def authorize_resolve_note!: () -> (untyped | nil)
+
+  def authorize_create_note!: () -> (nil | untyped)
+
+  def disable_query_limiting_index: () -> untyped
+
+  def disable_query_limiting: () -> untyped
+end

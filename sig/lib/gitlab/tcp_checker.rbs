@@ -1,0 +1,35 @@
+module Gitlab
+  class TcpChecker
+    @remote_host: untyped
+
+    @remote_port: untyped
+
+    @local_host: untyped
+
+    @local_port: untyped
+
+    @error: untyped
+
+    attr_reader remote_host: untyped
+
+    attr_reader remote_port: untyped
+
+    attr_reader local_host: untyped
+
+    attr_reader local_port: untyped
+
+    attr_reader error: untyped
+
+    def initialize: (untyped remote_host, untyped remote_port, ?untyped? local_host, ?untyped? local_port) -> void
+
+    def local: () -> untyped
+
+    def remote: () -> untyped
+
+    def check: (?timeout: ::Integer) -> untyped
+
+    private
+
+    def join_host_port: (untyped host, untyped port) -> ::String
+  end
+end

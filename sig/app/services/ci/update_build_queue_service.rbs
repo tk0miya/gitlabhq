@@ -1,0 +1,45 @@
+module Ci
+  class UpdateBuildQueueService
+    @metrics: untyped
+
+    InvalidQueueTransition: untyped
+
+    attr_reader metrics: untyped
+
+    def initialize: (?untyped metrics) -> void
+
+    #
+    # Add a build to the pending builds queue
+    #
+    def push: (untyped build, untyped transition) -> untyped
+
+    #
+    # Remove a build from the pending builds queue
+    #
+    def pop: (untyped build, untyped transition) -> untyped
+
+    #
+    # Force remove build from the queue, without checking a transition state
+    #
+    def remove!: (untyped build) -> untyped
+
+    #
+    # Add runner build tracking entry (used for queuing and for runner fleet dashboard).
+    #
+    def track: (untyped build, untyped transition) -> (nil | untyped)
+
+    #
+    # Remove a runtime build tracking entry for a runner build (used for queuing and for runner fleet dashboard).
+    #
+    def untrack: (untyped build, untyped transition) -> (nil | untyped)
+
+    #
+    # Unblock runner associated with given project / build
+    #
+    def tick: (untyped build) -> untyped
+
+    private
+
+    def tick_for: (untyped build, untyped runners) -> untyped
+  end
+end

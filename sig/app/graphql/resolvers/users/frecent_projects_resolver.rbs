@@ -1,0 +1,9 @@
+module Resolvers
+  module Users
+    class FrecentProjectsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: () -> (nil | untyped)
+    end
+  end
+end

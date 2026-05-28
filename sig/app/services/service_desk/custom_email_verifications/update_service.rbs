@@ -1,0 +1,37 @@
+module ServiceDesk
+  module CustomEmailVerifications
+    class UpdateService < BaseService
+      @verification: untyped
+
+      EMAIL_TOKEN_REGEXP: ::Regexp
+
+      def execute: () -> untyped
+
+      private
+
+      def mail: () -> untyped
+
+      def verification: () -> untyped
+
+      def already_failed_and_no_mail?: () -> untyped
+
+      def verify: () -> (:mail_not_received_within_timeframe | :incorrect_forwarding_target | :incorrect_from | :incorrect_token | nil)
+
+      def mail_not_received_within_timeframe?: () -> untyped
+
+      def forwarded_to_service_desk_alias_address?: () -> (false | untyped)
+
+      def incorrect_from?: () -> untyped
+
+      def incorrect_token?: () -> (true | untyped)
+
+      def addresses_from_headers: () -> untyped
+
+      def error_parameter_missing: () -> untyped
+
+      def error_already_finished: () -> untyped
+
+      def error_already_failed: () -> untyped
+    end
+  end
+end

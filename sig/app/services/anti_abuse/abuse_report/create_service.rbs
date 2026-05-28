@@ -1,0 +1,23 @@
+module AntiAbuse
+  module AbuseReport
+    class CreateService < ::BaseService
+      @params: untyped
+
+      @abuse_report: untyped
+
+      attr_reader abuse_report: untyped
+
+      def initialize: (untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def create_abuse_report: () -> untyped
+
+      def valid_reporter?: () -> (false | untyped)
+
+      def error: (untyped message) -> untyped
+    end
+  end
+end

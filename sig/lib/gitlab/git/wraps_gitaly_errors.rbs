@@ -1,0 +1,17 @@
+module Gitlab
+  module Git
+    module WrapsGitalyErrors
+      def wrapped_gitaly_errors: () { (untyped) -> untyped } -> untyped
+
+      private
+
+      # handle_error first tries to handle the error as a detailed error, if no mapping found,
+      # it falls back to handling it as a default error according to the error code.
+      def handle_error: (untyped exception) -> untyped
+
+      def handle_detailed_error: (untyped error, untyped exception) -> untyped
+
+      def handle_default_error: (untyped exception) -> untyped
+    end
+  end
+end

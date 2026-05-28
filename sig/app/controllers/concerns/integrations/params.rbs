@@ -1,0 +1,11 @@
+module Integrations
+  module Params
+    extend ActiveSupport::Concern
+
+    ALLOWED_PARAMS_CE: ::Array[:app_store_issuer_id | :app_store_key_id | :app_store_private_key | :app_store_private_key_file_name | :app_store_protected_refs | :active | :alert_events | :api_key | :api_token | :api_url | :archive_trace_events | :bamboo_url | :branches_to_be_notified | :labels_to_be_notified | :labels_to_be_notified_behavior | :build_key | :build_type | :ca_pem | :channel | :channels | :color | :colorize_messages | :comment_on_event_enabled | :comment_detail | :confidential_issues_events | :confluence_url | :datadog_site | :datadog_env | :datadog_service | :datadog_tags | :datadog_ci_visibility | :default_irc_uri | :device | :disable_diffs | :diffblue_access_token_name | :diffblue_access_token_secret | :diffblue_license_key | :drone_url | :enable_ssl_verification | :exclude_service_accounts | :external_wiki_url | :google_play_protected_refs | :group_confidential_mention_events | :group_mention_events | :hostname | :incident_events | :inherit_from_id | :issues_events | :issues_url | :jenkins_url | :jira_auth_type | :jira_issue_prefix | :jira_issue_regex | :jira_issue_transition_automatic | :jira_issue_transition_id | :jira_cloud_app_service_ids | :jira_cloud_app_enable_deployment_gating | :jira_cloud_app_deployment_gating_environments | :manual_configuration | :merge_requests_events | :mock_service_url | :namespace | :new_issue_url | :notify_child_pipelines | :notify_only_broken_pipelines | :notify_only_when_pipeline_status_changes | :package_name | :password | :priority | :project_key | :project_name | :project_url | :recipients | :restrict_to_branch | :room | :send_from_committer_email | :server | :server_host | :server_port | :service_account_key | :service_account_key_file_name | :sound | :subdomain | :teamcity_url | :thread | :token | :type | :url | :user_key | :username | :webhook | :workspace_url | :zentao_product_xid]
+
+    def integration_params: () -> untyped
+
+    def allowed_integration_params: () -> untyped
+  end
+end

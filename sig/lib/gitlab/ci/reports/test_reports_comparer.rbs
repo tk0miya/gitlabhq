@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Reports
+      class TestReportsComparer
+        @base_reports: untyped
+
+        @head_reports: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader base_reports: untyped
+
+        attr_reader head_reports: untyped
+
+        def initialize: (untyped base_reports, untyped head_reports) -> void
+
+        def suite_comparers: () -> untyped
+
+        def total_status: () -> untyped
+      end
+    end
+  end
+end

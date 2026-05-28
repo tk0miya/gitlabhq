@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module Aggregation
+      class Formatter
+        @engine: untyped
+
+        @plan: untyped
+
+        @formattable_parts: untyped
+
+        def initialize: (untyped engine, untyped plan) -> void
+
+        def format_data: (untyped data) -> untyped
+
+        private
+
+        def format_row: (untyped row) -> untyped
+
+        def detect_part: (untyped key) -> untyped
+
+        def formattable_parts: () -> untyped
+      end
+    end
+  end
+end

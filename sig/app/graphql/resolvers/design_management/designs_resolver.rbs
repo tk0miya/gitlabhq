@@ -1,0 +1,21 @@
+module Resolvers
+  module DesignManagement
+    class DesignsResolver < BaseResolver
+      DesignID: untyped
+
+      VersionID: untyped
+
+      def self.single: () -> untyped
+
+      def resolve: (?ids: untyped?, ?filenames: untyped?, ?at_version: untyped?) -> untyped
+
+      private
+
+      def version: (untyped at_version) -> (nil | untyped)
+
+      def design_ids: (untyped gids) -> (nil | untyped)
+
+      def issue: () -> untyped
+    end
+  end
+end

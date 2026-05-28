@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    module Status
+      module Processable
+        class WaitingForResource < Status::Extended
+          @current_processable: untyped
+
+          #
+          # TODO: image is shared with 'pending'
+          # until we get a dedicated one
+          #
+          def illustration: () -> { image: "illustrations/empty-state/empty-job-pending-md.svg", size: "", title: untyped }
+
+          def has_action?: () -> untyped
+
+          def action_icon: () -> nil
+
+          def action_title: () -> nil
+
+          def action_button_title: () -> untyped
+
+          def action_path: () -> untyped
+
+          def action_method: () -> :get
+
+          def self.matches?: (untyped processable, untyped _) -> untyped
+
+          private
+
+          def current_processable: () -> untyped
+        end
+      end
+    end
+  end
+end

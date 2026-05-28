@@ -1,0 +1,7 @@
+module Repositories
+  class ProtectedBranchCreatedEvent < ::Gitlab::EventStore::Event
+    PARENT_TYPES: { group: "group", project: "project" }
+
+    def schema: () -> { "type" => "object", "properties" => { "protected_branch_id" => { "type" => "integer" }, "parent_id" => { "type" => "integer" }, "parent_type" => { "type" => "string", "enum" => untyped } }, "required" => ::Array["protected_branch_id" | "parent_id" | "parent_type"] }
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Verify
+    class JobArtifacts < BatchVerifier
+      def name: () -> "Job artifacts"
+
+      def describe: (untyped object) -> ::String
+
+      private
+
+      def all_relation: () -> untyped
+
+      def local?: (untyped artifact) -> untyped
+
+      def expected_checksum: (untyped artifact) -> untyped
+
+      def actual_checksum: (untyped artifact) -> untyped
+
+      def remote_object_exists?: (untyped artifact) -> untyped
+    end
+  end
+end

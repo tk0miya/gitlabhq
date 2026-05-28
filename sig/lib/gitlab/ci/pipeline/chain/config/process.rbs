@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Config
+          class Process < Chain::Base
+            include Chain::Helpers
+
+            def perform!: () -> untyped
+
+            def break?: () -> untyped
+
+            private
+
+            def yaml_processor_opts: () -> { project: untyped, pipeline: untyped, sha: untyped, source: untyped, user: untyped, parent_pipeline: untyped, pipeline_config: untyped, logger: untyped, inputs: untyped }
+
+            def add_warnings_to_pipeline: (untyped warnings) -> (nil | untyped)
+          end
+        end
+      end
+    end
+  end
+end

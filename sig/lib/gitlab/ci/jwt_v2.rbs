@@ -1,0 +1,50 @@
+module Gitlab
+  module Ci
+    class JwtV2 < Jwt
+      @aud: untyped
+
+      @sub: untyped
+
+      @target_audience: untyped
+
+      # CI_JOB_JWT_V2 variable is deprecated
+      include Gitlab::Utils::StrongMemoize
+
+      GITLAB_HOSTED_RUNNER: "gitlab-hosted"
+
+      SELF_HOSTED_RUNNER: "self-hosted"
+
+      ADDITIONAL_SUBJECT_CLAIMS: ::Array[:project_path | :ref_type | :ref | :ref_protected | :environment_protected | :deployment_tier]
+
+      def self.for_build: (untyped build, aud: untyped, ?sub_components: ::Array[untyped], ?target_audience: untyped?) -> untyped
+
+      def initialize: (untyped build, ttl: untyped, aud: untyped, sub_components: untyped, target_audience: untyped) -> void
+
+      private
+
+      attr_reader aud: untyped
+
+      attr_reader sub: untyped
+
+      attr_reader target_audience: untyped
+
+      def default_payload: () -> untyped
+
+      def subject_value: (untyped sub_components) -> untyped
+
+      def sub_claims: () -> untyped
+
+      def predefined_claims: () -> untyped
+
+      def ci_claims: () -> untyped
+
+      def user_identities: () -> (nil | untyped)
+
+      def project_config: () -> untyped
+
+      def runner_environment: () -> (nil | untyped)
+
+      def issuer_url: () -> untyped
+    end
+  end
+end

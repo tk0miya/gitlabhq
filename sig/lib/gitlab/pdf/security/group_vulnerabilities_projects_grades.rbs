@@ -1,0 +1,62 @@
+module Gitlab
+  module PDF
+    module Security
+      class GroupVulnerabilitiesProjectsGrades
+        @pdf: untyped
+
+        @grades: untyped
+
+        @expanded_grade: untyped
+
+        @gitlab_host_url: untyped
+
+        @width: untyped
+
+        @height: untyped
+
+        @y: untyped
+
+        @project_text_positions: untyped
+
+        include Prawn::View
+
+        DEFAULT_COUNTS: "0 projects"
+
+        GRADES_DISPLAY_INFO: { a: { color: "#16a34a", severities: ::Array[untyped] }, b: { color: "#f97316", severities: ::Array["low"] }, c: { color: "#ea580c", severities: ::Array["medium"] }, d: { color: "#b91c1c", severities: ::Array["high" | "unknown"] }, f: { color: "#991b1b", severities: ::Array["critical"] } }
+
+        SVG_STYLES: ::String
+
+        def self.render: (untyped pdf, ?data: ::Hash[untyped, untyped]) -> untyped
+
+        def initialize: (untyped pdf, untyped data) -> void
+
+        def render: () -> (:noop | untyped)
+
+        private
+
+        def build_base_svg: () -> untyped
+
+        def svg_background_layers: () -> ::String
+
+        def svg_headers: (title_y: untyped, description_y: untyped) -> ::String
+
+        def expanded_grade_svg: (untyped grade, untyped current_svg_y, untyped drawer_height) -> ::String
+
+        def severity_counts_svg: (untyped projects, untyped letter_grade) -> untyped
+
+        def collapsed_grade_svg: (untyped grade, untyped current_svg_y) -> ::String
+
+        def render_project_names: () -> untyped
+
+        def process_raw: (untyped data) -> (nil | untyped)
+
+        # TODO: Once the below issue is resolved, we can likely delete
+        # this sorting as the projects should arrive to us sorted:
+        # https://gitlab.com/gitlab-org/gitlab/-/issues/545479
+        def sort_projects: (untyped projects) -> untyped
+
+        def severity_css: (untyped letter_grade) -> ::String
+      end
+    end
+  end
+end

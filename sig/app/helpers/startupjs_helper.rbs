@@ -1,0 +1,9 @@
+module StartupjsHelper
+  @graphql_startup_calls: untyped
+
+  def page_startup_graphql_calls: () -> untyped
+
+  def page_startup_graphql_headers: () -> { "X-CSRF-Token" => untyped, "x-gitlab-feature-category" => untyped }
+
+  def add_page_startup_graphql_call: (untyped query, ?::Hash[untyped, untyped] variables) -> (nil | untyped)
+end

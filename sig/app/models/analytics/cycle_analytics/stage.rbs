@@ -1,0 +1,27 @@
+module Analytics
+  module CycleAnalytics
+    class Stage < ApplicationRecord
+      MAX_STAGES_PER_VALUE_STREAM: 15
+
+      include Analytics::CycleAnalytics::Stageable
+
+      include Analytics::CycleAnalytics::Parentable
+
+      alias parent namespace
+
+      alias parent= namespace=
+
+      def to_global_id: () -> untyped
+
+      def self.distinct_stages_within_hierarchy: (untyped namespace) -> untyped
+
+      private
+
+      def max_stages_count: () -> (nil | untyped)
+
+      def validate_default_stage_name: () -> (nil | untyped)
+
+      def ensure_aggregation_record_presence!: () -> untyped
+    end
+  end
+end

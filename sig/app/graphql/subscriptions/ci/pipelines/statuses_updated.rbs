@@ -1,0 +1,13 @@
+module Subscriptions
+  module Ci
+    module Pipelines
+      class StatusesUpdated < ::Subscriptions::BaseSubscription
+        include Gitlab::Graphql::Laziness
+
+        def authorized?: (project_id: untyped) -> untyped
+
+        def update: (project_id: untyped) -> untyped
+      end
+    end
+  end
+end

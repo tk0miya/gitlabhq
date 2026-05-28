@@ -1,0 +1,7 @@
+class LinkedProjectIssueEntity < LinkedIssueEntity
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  def can_admin_issue_link?: (untyped issue) -> untyped
+end

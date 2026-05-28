@@ -1,0 +1,8 @@
+class ApplicationSetting
+  class TermPolicy < BasePolicy
+    include Gitlab::Utils::StrongMemoize
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def agreement: () -> untyped
+  end
+end

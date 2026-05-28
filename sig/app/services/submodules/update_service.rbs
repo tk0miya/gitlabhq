@@ -1,0 +1,21 @@
+module Submodules
+  class UpdateService < Commits::CreateService
+    @start_branch: untyped
+
+    @commit_sha: untyped
+
+    @submodule: untyped
+
+    @commit_message: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (*untyped args) -> void
+
+    def validate!: () -> untyped
+
+    def execute: () -> untyped
+
+    def create_commit!: () -> untyped
+  end
+end

@@ -1,0 +1,6 @@
+# CronTimezoneValidator
+#
+# Custom validator for CronTimezone.
+class CronFreezePeriodTimezoneValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+end

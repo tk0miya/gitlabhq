@@ -1,0 +1,22 @@
+module Resolvers
+  module Issues
+    # rubocop:disable Graphql/ResolverType
+    class BaseResolver < Resolvers::BaseResolver
+      include SearchArguments
+
+      def self.accept_release_tag: () -> untyped
+
+      def ready?: (**untyped args) -> untyped
+
+      private
+
+      def prepare_finder_params: (untyped args) -> untyped
+
+      def prepare_release_tag_params: (untyped args) -> (nil | untyped)
+
+      def prepare_assignee_username_params: (untyped args) -> untyped
+
+      def rewrite_param_name: (untyped params, untyped old_name, untyped new_name) -> (untyped | nil)
+    end
+  end
+end

@@ -1,0 +1,7 @@
+module Ci
+  class PipelineChatData < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include Ci::NamespacedModelName
+  end
+end

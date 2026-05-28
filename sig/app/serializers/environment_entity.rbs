@@ -1,0 +1,23 @@
+class EnvironmentEntity < Grape::Entity
+  include RequestAwareEntity
+
+  UNNECESSARY_ENTRIES_FOR_UPCOMING_DEPLOYMENT: ::Array[:manual_actions | :scheduled_actions | :playable_job | :cluster]
+
+  private
+
+  alias environment object
+
+  def current_user: () -> untyped
+
+  def can_access_terminal?: () -> untyped
+
+  def can_update_environment?: () -> untyped
+
+  def can_read_deploy_board?: () -> untyped
+
+  def cluster_platform_kubernetes?: () -> untyped
+
+  def deployment_platform: () -> untyped
+
+  def cluster: () -> untyped
+end

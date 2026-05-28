@@ -1,0 +1,37 @@
+module Gitlab
+  module Ci
+    module Build
+      class Rules::Rule::Clause::Changes < Rules::Rule::Clause
+        @globs: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        # The maximum number of patterned glob comparisons that will be
+        # performed before the rule assumes that it has a match
+        CHANGES_MAX_PATTERN_COMPARISONS: 50000
+
+        def initialize: (untyped globs) -> void
+
+        def satisfied_by?: (untyped pipeline, untyped context) -> (true | false | untyped)
+
+        private
+
+        def changes_match?: (untyped paths, untyped globs, untyped context, untyped key) -> (true | untyped)
+
+        def comparison_key: (untyped pipeline, untyped globs, untyped comparison_sha) -> ::Array[untyped | "#satisfied_by?"]
+
+        def match?: (untyped globs, untyped paths) -> untyped
+
+        def expand_globs: (untyped context) -> untyped
+
+        def paths: () -> untyped
+
+        def find_modified_paths: (untyped pipeline, untyped compare_to_sha) -> (nil | untyped)
+
+        def find_compare_to_sha: (untyped pipeline, untyped context) -> (nil | untyped)
+
+        def expand_value_nested: (untyped value, untyped context) -> untyped
+      end
+    end
+  end
+end

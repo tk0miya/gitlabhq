@@ -1,0 +1,11 @@
+module BlobViewer
+  class Readme < Base
+    include Auxiliary
+
+    include Static
+
+    def visible_to?: (untyped current_user, untyped _ref) -> untyped
+
+    def render_error: () -> (nil | :no_wiki)
+  end
+end

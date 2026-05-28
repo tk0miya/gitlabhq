@@ -1,0 +1,23 @@
+module Resolvers
+  class BoardListsResolver < BaseResolver
+    include BoardItemFilterable
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    include LooksAhead
+
+    alias board object
+
+    def self.complexity_multiplier: (untyped args) -> ::Float
+
+    def resolve_with_lookahead: (?id: untyped?, ?issue_filters: ::Hash[untyped, untyped]) -> untyped
+
+    private
+
+    def board_lists: (untyped id) -> untyped
+
+    def load_preferences?: () -> untyped
+
+    def extract_list_id: (untyped gid) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,34 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces personal snippet references with links.
+      #
+      # Handles both URL references (e.g. https://gitlab.com/-/snippets/123)
+      # and bare text references ($123) for personal snippets.
+      #
+      # This filter runs after SnippetReferenceFilter in the pipeline, so bare
+      # $N references that were already resolved as project snippets will have
+      # been replaced with <a> tags and won't be matched here. Only unresolved
+      # bare references are picked up as personal snippet candidates.
+      class PersonalSnippetReferenceFilter < AbstractReferenceFilter
+        @snippets_by_id: untyped
+
+        def call: () -> untyped
+
+        def object_sym: () -> :snippet
+
+        # See AbstractReferenceFilter#object_link_filter, which this overrides.
+        # We can't use ReferenceCache since that depends on objects having
+        # parents (personal snippets don't), so we instead inquire in our own
+        # cache built in preload_snippets.
+        def object_link_filter: (untyped text, untyped pattern, ?link_content_html: untyped?, ?link_reference: bool) -> untyped
+
+        def url_for_object: (untyped snippet, ?untyped? _parent) -> untyped
+
+        private
+
+        def preload_snippets: () -> untyped
+      end
+    end
+  end
+end

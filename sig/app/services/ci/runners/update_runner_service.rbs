@@ -1,0 +1,23 @@
+module Ci
+  module Runners
+    class UpdateRunnerService
+      @current_user: untyped
+
+      @runner: untyped
+
+      include Gitlab::InternalEventsTracking
+
+      attr_reader current_user: untyped
+
+      attr_reader runner: untyped
+
+      def initialize: (untyped current_user, untyped runner) -> void
+
+      def execute: (untyped params) -> untyped
+
+      private
+
+      def track_runner_event: (untyped params) -> (nil | untyped)
+    end
+  end
+end

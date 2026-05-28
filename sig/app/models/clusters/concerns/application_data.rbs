@@ -1,0 +1,25 @@
+module Clusters
+  module Concerns
+    module ApplicationData
+      @files: untyped
+
+      @helm_cert: untyped
+
+      def repository: () -> nil
+
+      def values: () -> untyped
+
+      def files: () -> untyped
+
+      private
+
+      def certificate_files: () -> { :"ca.pem" => untyped, :"cert.pem" => untyped, :"key.pem" => untyped }
+
+      def ca_cert: () -> untyped
+
+      def helm_cert: () -> untyped
+
+      def chart_values_file: () -> ::String
+    end
+  end
+end

@@ -1,0 +1,63 @@
+module Ci
+  class BuildDependencies
+    @processable: untyped
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    attr_reader processable: untyped
+
+    def initialize: (untyped processable) -> void
+
+    def all: () -> untyped
+
+    def invalid: () -> untyped
+
+    def valid?: () -> untyped
+
+    private
+
+    # Dependencies can only be of Ci::Build type because only builds
+    # can create artifacts
+    def model_class: () -> untyped
+
+    # Dependencies local to the given pipeline
+    def local: () -> untyped
+
+    def find_dependencies: (untyped processable, untyped deps) -> untyped
+
+    # Dependencies from the same parent-pipeline hierarchy excluding
+    # the current job's pipeline
+    def cross_pipeline: () -> untyped
+
+    # Dependencies that are defined by project and ref
+    def cross_project: () -> ::Array[untyped]
+
+    def fetch_dependencies_in_hierarchy: () -> (::Array[untyped] | untyped)
+
+    def jobs_in_pipeline_hierarchy: (untyped deps_specifications) -> untyped
+
+    def expand_variables_and_validate: (untyped specifications) -> untyped
+
+    def valid_cross_pipeline?: () -> untyped
+
+    def valid_local?: () -> untyped
+
+    def valid_cross_project?: () -> true
+
+    def project: () -> untyped
+
+    def no_local_dependencies_specified?: () -> untyped
+
+    def from_previous_stages: (untyped scope) -> untyped
+
+    def from_needs: (untyped scope) -> untyped
+
+    def from_dependencies: (untyped scope) -> untyped
+
+    def processable_variables: () -> untyped
+
+    def specified_cross_pipeline_dependencies: () -> untyped
+
+    def specified_cross_dependencies: () -> untyped
+  end
+end

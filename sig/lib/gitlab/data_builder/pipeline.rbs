@@ -1,0 +1,33 @@
+module Gitlab
+  module DataBuilder
+    # Some callers want to include retried builds, so we wrap the payload hash
+    # in a SimpleDelegator with additional methods.
+    class Pipeline < SimpleDelegator
+      @pipeline: untyped
+
+      def self.build: (untyped pipeline) -> untyped
+
+      def initialize: (untyped pipeline) -> void
+
+      def with_retried_builds: () -> untyped
+
+      private
+
+      def preload_builds: (untyped pipeline, untyped association) -> untyped
+
+      def hook_attrs: (untyped pipeline) -> { id: untyped, iid: untyped, name: untyped, ref: untyped, ref_status_name: untyped, tag: untyped, sha: untyped, before_sha: untyped, source: untyped, status: untyped, detailed_status: untyped, stages: untyped, created_at: untyped, finished_at: untyped, duration: untyped, queued_duration: untyped, protected_ref: untyped, variables: untyped, url: untyped }
+
+      def source_pipeline_attrs: (untyped source_pipeline) -> { project: { id: untyped, web_url: untyped, path_with_namespace: untyped }, job_id: untyped, pipeline_id: untyped }
+
+      def merge_request_attrs: (untyped merge_request) -> { id: untyped, iid: untyped, title: untyped, source_branch: untyped, source_project_id: untyped, target_branch: untyped, target_project_id: untyped, state: untyped, merge_status: untyped, detailed_merge_status: untyped, url: untyped }
+
+      def build_hook_attrs: (untyped build) -> { id: untyped, stage: untyped, name: untyped, status: untyped, created_at: untyped, started_at: untyped, finished_at: untyped, duration: untyped, queued_duration: untyped, failure_reason: untyped, when: untyped, manual: untyped, allow_failure: untyped, user: untyped, runner: untyped, artifacts_file: { filename: untyped, size: untyped }, environment: untyped }
+
+      def runner_hook_attrs: (untyped runner) -> { id: untyped, description: untyped, runner_type: untyped, active: untyped, is_shared: untyped, tags: untyped }
+
+      def environment_hook_attrs: (untyped build) -> (nil | { name: untyped, action: untyped, deployment_tier: untyped })
+
+      def detailed_merge_status: (untyped merge_request) -> untyped
+    end
+  end
+end

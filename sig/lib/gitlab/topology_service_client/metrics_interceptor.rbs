@@ -1,0 +1,45 @@
+module Gitlab
+  module TopologyServiceClient
+    # gRPC client interceptor for recording OpenTelemetry metrics
+    # Records call duration, request/response sizes, and status codes
+    class MetricsInterceptor < GRPC::ClientInterceptor
+      @metrics: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      def initialize: (cell_id: untyped, topology_service_address: untyped) -> void
+
+      def request_response: (?request: untyped?, ?call: untyped?, ?method: untyped?, ?metadata: untyped?) { () -> untyped } -> untyped
+
+      def client_streamer: (?requests: untyped?, ?call: untyped?, ?method: untyped?, ?metadata: untyped?) { (untyped) -> untyped } -> untyped
+
+      def server_streamer: (?request: untyped?, ?call: untyped?, ?method: untyped?, ?metadata: untyped?) { () -> untyped } -> untyped
+
+      def bidi_streamer: (?requests: untyped?, ?call: untyped?, ?method: untyped?, ?metadata: untyped?) { (untyped) -> untyped } -> untyped
+
+      private
+
+      attr_reader metrics: untyped
+
+      # Extract service name and method name from gRPC method string
+      # gRPC method format: "/ServiceName/MethodName"
+      def extract_service_and_method: (untyped method) -> (::Array["unknown"] | ::Array[untyped])
+
+      # Estimate message size using Protobuf serialization
+      def estimate_message_size: (untyped message) -> untyped
+
+      # Classify error type from exception
+      def classify_error: (untyped error) -> ("timeout" | untyped)
+
+      # Wrapper method to handle RPC execution with automatic metric recording
+      # Handles both success and error cases, recording appropriate metrics
+      def with_metrics_recording: (service: untyped, method: untyped, ?request_size: ::Integer) { () -> untyped } -> untyped
+
+      # Record all metrics for the RPC call
+      def record_metrics: (service: untyped, method: untyped, start_time: untyped, status_code: untyped, ?request_size: ::Integer, ?response_size: ::Integer, ?error_type: untyped?) -> (nil | untyped)
+
+      # Get monotonic time for accurate duration measurement
+      def monotonic_time: () -> untyped
+    end
+  end
+end

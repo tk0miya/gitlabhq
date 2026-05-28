@@ -1,0 +1,41 @@
+class ReleaseHighlight
+  self.@file_paths: untyped
+
+  CACHE_DURATION: untyped
+
+  FREE_PACKAGE: "Free"
+
+  PREMIUM_PACKAGE: "Premium"
+
+  ULTIMATE_PACKAGE: "Ultimate"
+
+  def self.paginated: (?page: ::Integer) -> untyped
+
+  def self.paginated_query: (page: untyped) -> untyped
+
+  def self.load_items: (page: untyped) -> untyped
+
+  def self.whats_new_path: () -> untyped
+
+  def self.file_paths: () -> untyped
+
+  def self.relative_file_paths: () -> untyped
+
+  def self.release_date_reached?: (untyped path) -> untyped
+
+  def self.cache_key: (untyped key) -> untyped
+
+  def self.next_page: (?current_page: ::Integer) -> untyped
+
+  def self.most_recent_item_count: () -> untyped
+
+  def self.most_recent_version_digest: () -> untyped
+
+  QueryResult: untyped
+
+  def self.current_package: () -> untyped
+
+  def self.include_item?: (untyped item) -> (false | true | untyped)
+
+  def self.next_page?: (untyped result) -> (false | untyped)
+end

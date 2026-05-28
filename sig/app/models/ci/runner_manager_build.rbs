@@ -1,0 +1,11 @@
+module Ci
+  class RunnerManagerBuild < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    def self.pluck_build_id_and_runner_manager_id: () -> untyped
+
+    private
+
+    def ensure_project_id: () -> untyped
+  end
+end

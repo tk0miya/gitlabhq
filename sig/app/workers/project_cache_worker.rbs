@@ -1,0 +1,28 @@
+# Worker for updating any project specific caches.
+class ProjectCacheWorker
+  include ApplicationWorker
+
+  LEASE_TIMEOUT: untyped
+
+  # project_id - The ID of the project for which to flush the cache.
+  # files - An Array containing extra types of files to refresh such as
+  #         `:readme` to flush the README and `:changelog` to flush the
+  #         CHANGELOG.
+  # statistics - An Array containing columns from ProjectStatistics to
+  #              refresh, if empty all columns will be refreshed
+  # refresh_statistics - A boolean that determines whether project statistics should
+  #                     be updated.
+  def perform: (untyped project_id, ?untyped files, ?untyped statistics, ?bool refresh_statistics) -> (nil | untyped)
+
+  # NOTE: triggering both an immediate update and one in 15 minutes if we
+  # successfully obtain the lease. That way, we only need to wait for the
+  # statistics to become accurate if they were already updated once in the
+  # last 15 minutes.
+  def update_statistics: (untyped project, ?untyped statistics) -> (nil | untyped)
+
+  private
+
+  def try_obtain_lease_for: (untyped project_id, untyped statistics) -> untyped
+
+  def project_cache_worker_key: (untyped project_id, untyped statistics) -> untyped
+end

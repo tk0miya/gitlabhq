@@ -1,0 +1,25 @@
+module Gitlab
+  module BitbucketImport
+    module Importers
+      class PullRequestsNotesImporter
+        include ParallelScheduling
+
+        MAX_IID_CACHE_KEY: "bitbucket-importer/max-iid/%{project_id}/merge_requests"
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def id_for_already_enqueued_cache: (untyped object) -> untyped
+
+        def source_merge_requests: () -> untyped
+
+        def collection_method: () -> :merge_requests_notes
+      end
+    end
+  end
+end

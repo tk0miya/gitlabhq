@@ -1,0 +1,114 @@
+module Ci
+  class Bridge < Ci::Processable
+    include Ci::Contextable
+
+    include Ci::Deployable
+
+    include Importable
+
+    include AfterCommitQueue
+
+    include Ci::HasRef
+
+    InvalidTransitionError: untyped
+
+    FORWARD_DEFAULTS: { yaml_variables: true, pipeline_variables: false }
+
+    def self.with_preloads: () -> untyped
+
+    def self.clone_accessors: () -> ::Array[:pipeline | :project | :ref | :tag | :name | :allow_failure | :stage_idx | :when | :environment | :description | :needs_attributes | :scheduling_type | :ci_stage | :partition_id | :resource_group]
+
+    def retryable?: () -> (false | untyped)
+
+    def has_downstream_pipeline?: () -> untyped
+
+    def downstream_pipeline_params: () -> (untyped | ::Hash[untyped, untyped])
+
+    def downstream_project: () -> untyped
+
+    def downstream_project_path: () -> untyped
+
+    def parent_pipeline: () -> (untyped | nil)
+
+    def triggers_downstream_pipeline?: () -> untyped
+
+    def triggers_child_pipeline?: () -> untyped
+
+    def triggers_cross_project_pipeline?: () -> untyped
+
+    def tags: () -> ::Array[:bridge]
+
+    def detailed_status: (untyped current_user) -> untyped
+
+    def schedulable?: () -> false
+
+    def playable?: () -> untyped
+
+    def action?: () -> untyped
+
+    def can_auto_cancel_pipeline_on_job_failure?: () -> true
+
+    # rubocop: disable CodeReuse/ServiceClass
+    # We don't need it but we are taking `job_variables_attributes` and `_inputs`
+    # parameters to make it consistent with `Ci::Build#play` method.
+    def play: (untyped current_user, ?untyped? job_variables_attributes, ?::Hash[untyped, untyped] _inputs) -> untyped
+
+    def job_artifacts: () -> untyped
+
+    def artifacts_expire_at: () -> nil
+
+    def runner: () -> nil
+
+    def tag_list: () -> untyped
+
+    def artifacts?: () -> false
+
+    def runnable?: () -> false
+
+    def any_unmet_prerequisites?: () -> false
+
+    def execute_hooks: () -> untyped
+
+    def to_partial_path: () -> "projects/generic_commit_statuses/generic_commit_status"
+
+    def yaml_for_downstream: () -> untyped
+
+    def target_ref: () -> (nil | untyped)
+
+    def has_strategy?: () -> untyped
+
+    def mirrored?: () -> untyped
+
+    def dependent?: () -> untyped
+
+    def target_revision_ref: () -> untyped
+
+    def downstream_variables: () -> untyped
+
+    def variables: () -> untyped
+
+    def pipeline_variables: () -> untyped
+
+    def pipeline_schedule_variables: () -> (::Array[untyped] | untyped)
+
+    def forward_yaml_variables?: () -> untyped
+
+    def forward_pipeline_variables?: () -> untyped
+
+    def inherit_status_from_downstream: (untyped pipeline) -> untyped
+
+    private
+
+    def inherit_mirrored_status_from_downstream!: (untyped pipeline) -> untyped
+
+    def inherit_dependent_status_from_downstream!: (untyped pipeline) -> untyped
+
+    def expose_protected_group_variables?: () -> (true | false)
+
+    def expose_protected_project_variables?: () -> (true | false)
+
+    def cross_project_params: () -> { project: untyped, source: :pipeline, target_revision: { ref: untyped, variables_attributes: untyped }, execute_params: untyped }
+
+    def child_params: () -> { project: untyped, source: :parent_pipeline, target_revision: { ref: untyped, checkout_sha: untyped, before: untyped, source_sha: untyped, target_sha: untyped, variables_attributes: untyped }, execute_params: { ignore_skip_ci: true, bridge: self, merge_request: untyped } }
+  end
+end

@@ -1,0 +1,67 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces external issue tracker references with links.
+      # References are ignored if the project doesn't use an external issue
+      # tracker.
+      #
+      # This filter does not support cross-project references.
+      class ExternalIssueReferenceFilter < ReferenceFilter
+        def self.external_issues_cached: (untyped project, untyped attribute) -> untyped
+
+        def self.default_issues_tracker?: (untyped project) -> untyped
+
+        # Public: Find `JIRA-123` issue references in text
+        #
+        #   references_in(text, pattern) do |match_text, issue|
+        #     "<a href=...>##{issue}</a>"
+        #   end
+        #
+        # text - String text to search.
+        #
+        # Yields the String text match and the String issue reference.
+        #
+        # Returns a HTML String replaced with the return of the block.
+        #
+        # See ReferenceFilter#references_in for a detailed discussion.
+        def references_in: (untyped text, ?untyped pattern) { (untyped, untyped) -> untyped } -> untyped
+
+        def call: () -> untyped
+
+        private
+
+        # Replace `JIRA-123` issue references in text with links to the referenced
+        # issue's details page.
+        #
+        # text - String text to replace references in.
+        # link_content_html - Original HTML content of the link being replaced.
+        #
+        # Returns a HTML String with `JIRA-123` references replaced with links. All
+        # links have `gfm` and `gfm-issue` class names attached for styling.
+        #
+        # Returns nil if no replacements are made.
+        def object_link_filter: (untyped text, untyped pattern, ?link_content_html: untyped?, ?link_reference: bool) -> untyped
+
+        def object_reference_pattern: () -> untyped
+
+        def issue_title: () -> ::String
+
+        # Called from PostProcessPipeline to add hrefs to anchors created above.
+        #
+        # We might be operating on cached HTML which already has hrefs;
+        # replace them anyway, as they could be out of date.
+        class LinkResolutionFilter < HTML::Pipeline::Filter
+          @query: untyped
+
+          def call: () -> untyped
+
+          def query: () -> untyped
+
+          def project: () -> untyped
+
+          def url_for_issue: (untyped issue_id) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillMissingNamespaceDetails < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def insert_namespace_details: (untyped sub_batch) -> untyped
+    end
+  end
+end

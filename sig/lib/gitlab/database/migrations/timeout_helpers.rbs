@@ -1,0 +1,26 @@
+module Gitlab
+  module Database
+    module Migrations
+      module TimeoutHelpers
+        # Long-running migrations may take more than the timeout allowed by
+        # the database. Disable the session's statement timeout to ensure
+        # migrations don't get killed prematurely.
+        #
+        # There are two possible ways to disable the statement timeout:
+        #
+        # - Per transaction (this is the preferred and default mode)
+        # - Per connection (requires a cleanup after the execution)
+        #
+        # When using a per connection disable statement, code must be inside
+        # a block so we can automatically execute `RESET statement_timeout` after block finishes
+        # otherwise the statement will still be disabled until connection is dropped
+        # or `RESET statement_timeout` is executed
+        def disable_statement_timeout: () ?{ () -> untyped } -> untyped
+
+        private
+
+        def statement_timeout_disabled?: () -> untyped
+      end
+    end
+  end
+end

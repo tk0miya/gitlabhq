@@ -1,0 +1,22 @@
+# rubocop:disable Gitlab/BoundedContexts -- Existing module
+module AutoMerge
+  class MergeWhenChecksPassService < AutoMerge::BaseService
+    extend Gitlab::Utils::Override
+
+    def execute: (untyped merge_request) -> untyped
+
+    def process: (untyped merge_request) -> (nil | untyped)
+
+    def cancel: (untyped merge_request) -> untyped
+
+    def abort: (untyped merge_request, untyped reason) -> untyped
+
+    def availability_details: (untyped merge_request) -> untyped
+
+    private
+
+    def add_system_note: (untyped merge_request) -> (nil | untyped)
+
+    def notify: (untyped merge_request) -> (nil | untyped)
+  end
+end

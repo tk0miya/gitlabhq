@@ -1,0 +1,10 @@
+module Resolvers
+  class MergeRequestsCountResolver < BaseResolver
+    def resolve: () -> untyped
+
+    # We call this resolver from `IssueType` where object is an `Issue` instance, and we also call this resolver
+    # from `Widgets::DevelopmentType`, in which case the object is a connection type, so
+    # we need to get its respective work item.
+    def object: () -> untyped
+  end
+end

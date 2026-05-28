@@ -1,0 +1,24 @@
+module MergeRequests
+  class CreatePipelineWorker
+    include ApplicationWorker
+
+    include PipelineQueue
+
+    PipelineCreationRetryError: untyped
+
+    def perform: (untyped project_id, untyped user_id, untyped merge_request_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+    private
+
+    def complete_pipeline_creation_request: (untyped result, untyped pipeline_creation_request, untyped merge_request) -> untyped
+
+    def after_perform: (untyped merge_request) -> untyped
+
+    # Publish AFTER `update_head_pipeline` has run in `perform`, so
+    # `merge_request.diff_head_pipeline` reflects whether a pipeline was
+    # persisted for the current diff head. Subscribers (e.g.
+    # ProcessAutoMergeFromEventWorker) use the `pipeline_id` field to
+    # distinguish "no pipeline created" from "pipeline created".
+    def publish_pipeline_creation_completed_event: (untyped merge_request) -> (nil | untyped)
+  end
+end

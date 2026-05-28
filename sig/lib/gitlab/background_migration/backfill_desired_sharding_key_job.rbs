@@ -1,0 +1,12 @@
+module Gitlab
+  module BackgroundMigration
+    # rubocop: disable BackgroundMigration/FeatureCategory -- Feature category to be specified by inheriting class
+    class BackfillDesiredShardingKeyJob < BatchedMigrationJob
+      def perform: () -> untyped
+
+      def backfill_via_table_primary_key: () -> "id"
+
+      def construct_query: (sub_batch: untyped) -> ::String
+    end
+  end
+end

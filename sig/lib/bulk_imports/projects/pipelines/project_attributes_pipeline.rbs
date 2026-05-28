@@ -1,0 +1,21 @@
+module BulkImports
+  module Projects
+    module Pipelines
+      class ProjectAttributesPipeline
+        @config: untyped
+
+        include Pipeline
+
+        def transform: (untyped _context, untyped data) -> untyped
+
+        def load: (untyped _context, untyped data) -> untyped
+
+        def after_run: (untyped _context) -> untyped
+
+        private
+
+        def config: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Types
+  module Terraform
+    class StateVersionType < BaseObject
+      include ::API::Helpers::RelatedResourcesHelpers
+
+      def created_by_user: () -> untyped
+
+      def download_path: () -> untyped
+
+      def job: () -> untyped
+    end
+  end
+end

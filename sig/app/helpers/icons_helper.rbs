@@ -1,0 +1,74 @@
+module IconsHelper
+  @sprite_icon_path: untyped
+
+  @illustrations_path: untyped
+
+  @known_sprites: untyped
+
+  @known_file_icon_sprites: untyped
+
+  @rendered_icons: untyped
+
+  extend ::IconsHelper
+
+  DEFAULT_ICON_SIZE: 16
+
+  VARIANT_CLASSES: { current: "gl-fill-current", default: "gl-fill-icon-default", subtle: "gl-fill-icon-subtle", strong: "gl-fill-icon-strong", disabled: "gl-fill-icon-disabled", link: "gl-fill-icon-link", info: "gl-fill-icon-info", warning: "gl-fill-icon-warning", danger: "gl-fill-icon-danger", success: "gl-fill-icon-success" }
+
+  def custom_icon: (untyped icon_name, ?size: untyped) -> untyped
+
+  def sprite_icon_path: () -> untyped
+
+  def sprite_file_icons_path: () -> untyped
+
+  def illustrations_path: () -> untyped
+
+  def sprite_icon: (untyped icon_name, ?size: untyped, ?css_class: untyped?, ?file_icon: bool, ?aria_label: untyped?, ?variant: untyped?, ?color: untyped?) -> untyped
+
+  # Creates a GitLab UI loading icon/spinner.
+  #
+  # Examples:
+  #   # Default
+  #   gl_loading_icon
+  #
+  #   # Sizes
+  #   gl_loading_icon(size: 'md')
+  #   gl_loading_icon(size: 'lg')
+  #   gl_loading_icon(size: 'xl')
+  #
+  #   # Colors
+  #   gl_loading_icon(color: 'light')
+  #
+  #   # Block/Inline
+  #   gl_loading_icon(inline: true)
+  #
+  #   # Custom classes
+  #   gl_loading_icon(css_class: "foo-bar")
+  #
+  # See also https://gitlab-org.gitlab.io/gitlab-ui/?path=/story/base-loading-icon--default
+  def gl_loading_icon: (?inline: bool, ?color: ::String, ?size: ::String, ?css_class: untyped?, ?data: untyped?) -> untyped
+
+  def external_snippet_icon: (untyped name) -> untyped
+
+  def audit_icon: (untyped name, ?css_class: untyped?) -> untyped
+
+  def boolean_to_icon: (untyped value) -> untyped
+
+  def visibility_level_icon: (untyped level, ?options: ::Hash[untyped, untyped]) -> untyped
+
+  def file_type_icon_class: (untyped type, untyped mode, untyped name) -> ("folder" | "archive" | "share" | untyped)
+
+  private
+
+  def unknown_icon_sprite: (untyped icon_name) -> untyped
+
+  def unknown_file_icon_sprite: (untyped icon_name) -> untyped
+
+  def known_sprites: () -> (nil | untyped)
+
+  def known_file_icon_sprites: () -> (nil | untyped)
+
+  def parse_sprite_definition: (untyped sprite_definition) -> untyped
+
+  def memoized_icon: (untyped key) { () -> untyped } -> untyped
+end

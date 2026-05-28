@@ -1,0 +1,35 @@
+module GoogleApi
+  class Auth
+    @access_token: untyped
+
+    @redirect_uri: untyped
+
+    @state: untyped
+
+    @client: untyped
+
+    attr_reader access_token: untyped
+
+    attr_reader redirect_uri: untyped
+
+    attr_reader state: untyped
+
+    ConfigMissingError: untyped
+
+    def initialize: (untyped access_token, untyped redirect_uri, ?state: untyped?) -> void
+
+    def authorize_url: () -> untyped
+
+    def get_token: (untyped code) -> ::Array[untyped]
+
+    def scope: () -> untyped
+
+    private
+
+    def config: () -> untyped
+
+    def client_options: () -> untyped
+
+    def client: () -> untyped
+  end
+end

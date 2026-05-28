@@ -1,0 +1,9 @@
+module Gitlab
+  module Auth
+    module Database
+      class Authentication < Gitlab::Auth::OAuth::Authentication
+        def login: (untyped login, untyped password) -> (false | untyped)
+      end
+    end
+  end
+end

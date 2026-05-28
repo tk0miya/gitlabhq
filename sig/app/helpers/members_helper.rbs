@@ -1,0 +1,13 @@
+module MembersHelper
+  include SafeFormatHelper
+
+  def remove_member_message: (untyped member, ?user: untyped?) -> ::String
+
+  def member_path: (untyped member) -> untyped
+
+  private
+
+  def source_text: (untyped member) -> (untyped | "group and any subresources")
+
+  def members_pagination_data: (untyped members, ?::Hash[untyped, untyped] pagination) -> { current_page: untyped, per_page: untyped, total_items: untyped, param_name: untyped, params: untyped }
+end

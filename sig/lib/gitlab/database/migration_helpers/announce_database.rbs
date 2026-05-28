@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module AnnounceDatabase
+        @db_config_name: untyped
+
+        extend ActiveSupport::Concern
+
+        def write: (?::String text) -> untyped
+
+        def db_config_name: () -> untyped
+      end
+    end
+  end
+end

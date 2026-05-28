@@ -1,0 +1,37 @@
+module Experimental
+  class O11yServiceSettingsController < ApplicationController
+    @o11y_service_settings: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include StrongPaginationParams
+
+    MAX_PER_PAGE: 100
+
+    def index: () -> untyped
+
+    def new: () -> untyped
+
+    def create: () -> (nil | untyped)
+
+    def edit: () -> untyped
+
+    def update: () -> untyped
+
+    def destroy: () -> untyped
+
+    private
+
+    def authorize_experimental_access!: () -> (untyped | nil)
+
+    def find_o11y_service_setting: () -> untyped
+
+    def o11y_service_settings_params: () -> untyped
+
+    def o11y_service_settings_update_params: () -> untyped
+
+    def search_params: () -> untyped
+
+    def per_page_param: () -> untyped
+  end
+end

@@ -1,0 +1,45 @@
+module Ci
+  class DailyBuildGroupReportResultsFinder
+    @params: untyped
+
+    @current_user: untyped
+
+    include Gitlab::Allowable
+
+    MAX_ITEMS: 1000
+
+    REPORT_WINDOW: untyped
+
+    DATE_FORMAT_ALLOWED: "%Y-%m-%d"
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    def initialize: (?params: ::Hash[untyped, untyped], ?current_user: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def query_allowed?: () -> untyped
+
+    def filter_report_results: (untyped collection) -> untyped
+
+    def by_coverage: (untyped items) -> untyped
+
+    def by_ref_path: (untyped items) -> untyped
+
+    def by_dates: (untyped items) -> untyped
+
+    def sort: (untyped items) -> untyped
+
+    def limit_by: (untyped items) -> untyped
+
+    def limit: () -> untyped
+
+    def start_date: () -> untyped
+
+    def end_date: () -> untyped
+  end
+end

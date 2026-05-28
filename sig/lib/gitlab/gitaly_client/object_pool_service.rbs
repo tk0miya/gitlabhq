@@ -1,0 +1,25 @@
+module Gitlab
+  module GitalyClient
+    class ObjectPoolService
+      @object_pool: untyped
+
+      @storage: untyped
+
+      include WithFeatureFlagActors
+
+      attr_reader object_pool: untyped
+
+      attr_reader storage: untyped
+
+      def initialize: (untyped object_pool) -> void
+
+      def create: (untyped repository) -> untyped
+
+      def delete: () -> untyped
+
+      def link_repository: (untyped repository) -> untyped
+
+      def fetch: (untyped repository) -> untyped
+    end
+  end
+end

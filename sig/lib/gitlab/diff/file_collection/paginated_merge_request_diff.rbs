@@ -1,0 +1,24 @@
+module Gitlab
+  module Diff
+    module FileCollection
+      # Builds a traditional paginated diff file collection using Kaminari
+      # `per` and `per_page` which is different from how `MergeRequestDiffBatch`
+      # works (e.g. supports gradual loading).
+      class PaginatedMergeRequestDiff < MergeRequestDiffBase
+        @paginated_collection: untyped
+
+        include PaginatedDiffs
+
+        DEFAULT_PAGE: 1
+
+        DEFAULT_PER_PAGE: 30
+
+        def initialize: (untyped merge_request_diff, untyped page, untyped per_page, ?untyped? diff_options) -> void
+
+        private
+
+        def load_paginated_collection: (untyped page, untyped per_page) -> untyped
+      end
+    end
+  end
+end

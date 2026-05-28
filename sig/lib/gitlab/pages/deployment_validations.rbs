@@ -1,0 +1,58 @@
+module Gitlab
+  module Pages
+    class DeploymentValidations
+      @project: untyped
+
+      @build: untyped
+
+      include ActiveModel::Validations
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      PUBLIC_DIR: "public"
+
+      def initialize: (untyped project, untyped build) -> void
+
+      def latest_build?: () -> untyped
+
+      def entries_count: () -> untyped
+
+      private
+
+      attr_reader build: untyped
+
+      attr_reader project: untyped
+
+      def validate_state: () -> untyped
+
+      def validate_max_size: () -> (nil | untyped)
+
+      def publish_path: () -> untyped
+
+      # Calculate page size after extract
+      def total_size: () -> untyped
+
+      def max_size: () -> untyped
+
+      def validate_max_entries: () -> (nil | untyped)
+
+      def validate_public_folder: () -> (nil | untyped)
+
+      # If a newer pipeline already build a PagesDeployment
+      def validate_outdated_sha: () -> (nil | untyped)
+
+      def validate_pages_publish_options: () -> (nil | untyped)
+
+      def latest_sha: () -> untyped
+
+      def latest_pipeline_id: () -> untyped
+
+      # overridden in EE
+      def max_size_from_settings: () -> untyped
+
+      def path_prefix: () -> untyped
+
+      def sha: () -> untyped
+    end
+  end
+end

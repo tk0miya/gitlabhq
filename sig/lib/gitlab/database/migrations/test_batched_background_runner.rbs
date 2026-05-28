@@ -1,0 +1,40 @@
+module Gitlab
+  module Database
+    module Migrations
+      class TestBatchedBackgroundRunner < BaseBackgroundRunner
+        @connection: untyped
+
+        @from_id: untyped
+
+        include Gitlab::Database::DynamicModelHelpers
+
+        MIGRATION_DETAILS_FILE_NAME: "details.json"
+
+        def initialize: (result_dir: untyped, connection: untyped, from_id: untyped) -> void
+
+        # rubocop:disable Metrics/AbcSize -- This method is temporarily more complex while it deals with both cursor
+        # and non-cursor migrations. The complexity will significantly decrease when non-cursor migration support is
+        # removed.
+        def jobs_by_migration_name: () -> untyped
+
+        def run_job: (untyped job) -> untyped
+
+        def print_job_progress: (untyped batch_name, untyped job) -> untyped
+
+        def uniform_fractions: () -> untyped
+
+        private
+
+        attr_reader from_id: untyped
+
+        def set_shared_model_connection: () { (?) -> untyped } -> untyped
+
+        def job_meta: (untyped job) -> untyped
+
+        def export_migration_details: (untyped migration_name, untyped attributes) -> untyped
+
+        def observers: () -> untyped
+      end
+    end
+  end
+end

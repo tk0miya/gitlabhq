@@ -1,0 +1,13 @@
+module Mutations
+  module AwardEmojis
+    class Base < BaseMutation
+      NOT_EMOJI_AWARDABLE: "You cannot add emoji reactions to this resource."
+
+      private
+
+      def authorize!: (untyped object) -> (nil | untyped)
+
+      def cannot_read_merge_request?: (untyped object) -> untyped
+    end
+  end
+end

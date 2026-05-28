@@ -1,0 +1,68 @@
+module Import
+  class ExportStatus
+    @pipeline_tracker: untyped
+
+    @relation: untyped
+
+    @entity: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    CACHE_KEY: "bulk_imports/export_status/%{entity_id}/%{relation}"
+
+    # @param pipeline_tracker [BulkImports::Tracker] the current pipeline tracker for the import
+    # @param relation [String] the relation being exported
+    # @return [Import::Offline::ExportStatus, BulkImports::ExportStatus] the appropriate export status instance
+    def self.for_context: (untyped pipeline_tracker, untyped relation) -> untyped
+
+    # @param pipeline_tracker [BulkImports::Tracker] the pipeline tracker for the import
+    # @param relation [String] the relation being exported
+    def initialize: (untyped pipeline_tracker, untyped relation) -> void
+
+    # @return [Boolean] whether the export is currently in progress
+    def in_progress?: () -> untyped
+
+    # @return [Boolean] whether the export has failed
+    def failed?: () -> untyped
+
+    # @return [Boolean] whether the export is waiting to start
+    def waiting_on_export?: () -> untyped
+
+    # @return [String, nil] the error message if the export failed
+    def error: () -> untyped
+
+    # @return [Boolean] whether the export is split into batches
+    def batched?: () -> untyped
+
+    # @return [Integer] the total number of batches
+    def batches_count: () -> untyped
+
+    # @return [Array<Integer>] all batch numbers for the export
+    def all_batch_numbers: () -> untyped
+
+    # @param _batch_number [Integer] the batch number to check
+    # @return [Boolean] whether the given batch has failed
+    def batch_failed?: (untyped _batch_number) -> untyped
+
+    # @param _batch_number [Integer] the batch number to check
+    # @return [String, nil] the error message for the given batch
+    def batch_error: (untyped _batch_number) -> untyped
+
+    # @return [Integer] the total number of objects to export
+    def total_objects_count: () -> untyped
+
+    private
+
+    attr_reader entity: untyped
+
+    attr_reader relation: untyped
+
+    attr_reader pipeline_tracker: untyped
+
+    def status_from_cache: () -> untyped
+
+    def cache_status: (untyped status) -> untyped
+
+    def cache_key: (?untyped cache_key_template) -> untyped
+  end
+end

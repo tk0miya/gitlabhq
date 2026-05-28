@@ -1,0 +1,27 @@
+module Gitlab
+  class MultiDestinationLogger < ::Logger
+    def close: () -> untyped
+
+    def self.debug: (untyped message) -> untyped
+
+    def self.error: (untyped message) -> untyped
+
+    def self.warn: (untyped message) -> untyped
+
+    def self.info: (untyped message) -> untyped
+
+    def self.add: (*untyped args) { (?) -> untyped } -> untyped
+
+    def self.read_latest: () -> untyped
+
+    def self.file_name: () -> untyped
+
+    def self.full_log_path: () -> untyped
+
+    def self.file_name_noext: () -> untyped
+
+    def self.loggers: () -> untyped
+
+    def self.primary_logger: () -> untyped
+  end
+end

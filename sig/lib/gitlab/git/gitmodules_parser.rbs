@@ -1,0 +1,35 @@
+module Gitlab
+  module Git
+    class GitmodulesParser
+      @content: untyped
+
+      def initialize: (untyped content) -> void
+
+      # Parses the contents of a .gitmodules file and returns a hash of
+      # submodule information, indexed by path.
+      def parse: () -> untyped
+
+      private
+
+      class State
+        @result: untyped
+
+        @current_submodule: untyped
+
+        def initialize: () -> void
+
+        def start_section: (untyped section) -> untyped
+
+        def set_attribute: (untyped attr, untyped value) -> untyped
+
+        def section_started?: () -> untyped
+
+        def submodules_by_name: () -> untyped
+      end
+
+      def get_submodules_by_name: () -> untyped
+
+      def reindex_by_path: (untyped submodules_by_name) -> untyped
+    end
+  end
+end

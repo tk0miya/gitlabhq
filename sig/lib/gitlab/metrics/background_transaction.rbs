@@ -1,0 +1,33 @@
+module Gitlab
+  module Metrics
+    # Exclusive transaction-type metrics for background jobs (Sidekiq). One
+    # instance of this class is created for each job going through the Sidekiq
+    # metric middleware. Any metrics dispatched with this instance include
+    # metadata such as endpoint_id, queue, and feature category.
+    class BackgroundTransaction < Transaction
+      @labels: untyped
+
+      THREAD_KEY: :_gitlab_metrics_background_transaction
+
+      BASE_LABEL_KEYS: ::Array[:queue | :endpoint_id | :feature_category]
+
+      def self.current: () -> untyped
+
+      def self.prometheus_metric: (untyped name, untyped type) { (?) -> untyped } -> untyped
+
+      def run: () { () -> untyped } -> untyped
+
+      def labels: () -> untyped
+
+      private
+
+      def current_context: () -> untyped
+
+      def feature_category: () -> untyped
+
+      def endpoint_id: () -> untyped
+
+      def queue: () -> (nil | untyped)
+    end
+  end
+end

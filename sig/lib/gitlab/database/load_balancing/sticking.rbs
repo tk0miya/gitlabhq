@@ -1,0 +1,76 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # Module used for handling sticking connections to a primary, if
+      # necessary.
+      class Sticking
+        @load_balancer: untyped
+
+        # The number of seconds after which a session should stop reading from
+        # the primary.
+        EXPIRATION: 30
+
+        ATOMIC_UNSTICK_SCRIPT: "local key = KEYS[1]\nlocal expected_location = ARGV[1]\nlocal current_location = redis.call('GET', key)\n\nif current_location == expected_location then\n  redis.call('DEL', key)\n  return 1\nelse\n  return 0\nend\n"
+
+        ATOMIC_STICK_SCRIPT: "-- Converts a PostgreSQL LSN string (e.g., \"0/16B3A78\") to an integer for comparison\n-- We keep them separate to avoid precision loss with 64-bit integers in Lua's doubles\nlocal function lsn_to_int(lsn)\n  -- Extract the high and low hex parts from the LSN format \"high/low\"\n  local high, low = string.match(lsn, \"(%x+)/(%x+)\")\n  if not high or not low then\n    return nil, nil\n  end\n  -- Convert hex to int: high part shifted left by 32 bits (4294967296 = 2^32) plus low part\n  return tonumber(high, 16), tonumber(low, 16)\nend\n\n--  Compares two LSNs by their high/low parts. Returns true if first LSN is greater.\nlocal function lsn_greater_than(high1, low1, high2, low2)\n  if high1 ~= high2 then\n    return high1 > high2\n  end\n  return low1 > low2\nend\n\nlocal key = KEYS[1]\nlocal new_lsn_str = ARGV[1]\nlocal ttl = tonumber(ARGV[2])\n\nlocal new_high, new_low = lsn_to_int(new_lsn_str)\n\nassert(new_high, \"ERR ARGV[1] must be a valid LSN (e.g. 0/16B3A78)\")\nassert(ttl and ttl > 0, \"ERR ARGV[2] (TTL) must be a positive integer\")\n\nlocal current_lsn_str = redis.call(\"get\", key)\nlocal current_high, current_low =  nil, nil\nif current_lsn_str then\n  current_high, current_low = lsn_to_int(current_lsn_str)\nend\n\nif not current_high or lsn_greater_than(new_high, new_low, current_high, current_low) then\n  redis.call(\"set\", key, new_lsn_str, \"ex\", ttl)\n  return 1\nelse\n  redis.call(\"expire\", key, ttl)\n  return 0\nend\n"
+
+        attr_reader load_balancer: untyped
+
+        def initialize: (untyped load_balancer) -> void
+
+        # Returns true if any caught up replica is found. This does not mean all replicas are caught up but the found
+        # caught up replica will be stored in the SafeRequestStore available as LoadBalancer#host for future queries.
+        # With use_primary_on_empty_location: true we will assume you need the primary if we can't find a matching
+        # location for the namespace, id pair. You should only use use_primary_on_empty_location in rare cases because
+        # we unstick once we find all replicas are caught up one time so it can be wasteful on the primary.
+        # If hash_id is true then we only store a hash of id in Redis. This is useful for sensitive data like API
+        # tokens.
+        def find_caught_up_replica: (untyped namespace, untyped id, ?use_primary_on_failure: bool, ?use_primary_on_empty_location: bool, ?hash_id: bool) -> untyped
+
+        # Starts sticking to the primary for the given namespace and id, using
+        # the latest WAL pointer from the primary.
+        # If hash_id is true then we only store a hash of id in Redis. This is useful for sensitive data like API
+        # tokens.
+        def stick: (untyped namespace, untyped id, ?hash_id: bool) -> untyped
+
+        def bulk_stick: (untyped namespace, untyped ids, ?hash_id: bool) -> untyped
+
+        private
+
+        # Sometimes we use sensitive data like API tokens as sticking keys. We do not want or need to store those in
+        # Redis so we just use a hash instead.
+        def id_as_hash: (untyped id) -> untyped
+
+        def with_primary_write_location: () { (untyped) -> untyped } -> (nil | untyped)
+
+        def unstick: (untyped namespace, untyped id) -> untyped
+
+        # Atomically unstick only if the sticking point hasn't changed since we read it.
+        # This prevents a race condition where a concurrent request sets a new sticking point
+        # after we've verified all replicas are caught up but before we unstick.
+        #
+        # Returns 1 if unstick was performed, 0 if the value changed (indicating a new write).
+        def unstick_if_caught_up: (untyped namespace, untyped id, untyped expected_location) -> untyped
+
+        def set_write_location_for: (untyped namespace, untyped id, untyped location) -> untyped
+
+        def atomic_sticking_enabled?: () -> untyped
+
+        # Atomically updates the stick LSN if the new value is higher, ensuring
+        # clients always stick to the most recent write position. This prevents race conditions
+        # that can cause LSN values to regress leading to stale reads from the replicas.
+        #
+        # Returns 1 if the LSN was updated, 0 if the value remains unchanged (just refresh the TTL)
+        def set_atomic_write_location_for: (untyped namespace, untyped id, untyped location) -> untyped
+
+        def last_write_location_for: (untyped namespace, untyped id) -> untyped
+
+        def redis_key_for: (untyped namespace, untyped id) -> ::String
+
+        def with_redis: () { (?) -> untyped } -> untyped
+
+        def use_primary!: () -> untyped
+      end
+    end
+  end
+end

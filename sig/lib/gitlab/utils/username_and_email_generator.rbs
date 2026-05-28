@@ -1,0 +1,31 @@
+module Gitlab
+  module Utils
+    class UsernameAndEmailGenerator
+      @username_prefix: untyped
+
+      @email_domain: untyped
+
+      @random_segment: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (username_prefix: untyped, ?email_domain: untyped, ?random_segment: untyped) -> void
+
+      def username: () -> untyped
+
+      def email: () -> untyped
+
+      private
+
+      attr_reader random_segment: untyped
+
+      attr_reader username_prefix: untyped
+
+      def username_pattern: () -> ::String
+
+      def email_for: (untyped name) -> ::String
+
+      def uniquify: () -> untyped
+    end
+  end
+end

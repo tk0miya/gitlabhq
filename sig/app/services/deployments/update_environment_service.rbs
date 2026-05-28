@@ -1,0 +1,59 @@
+module Deployments
+  class UpdateEnvironmentService
+    @deployment: untyped
+
+    @deployable: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader deployment: untyped
+
+    attr_reader deployable: untyped
+
+    EnvironmentUpdateFailure: untyped
+
+    def initialize: (untyped deployment) -> void
+
+    def execute: () -> untyped
+
+    def update_environment: (untyped deployment) -> untyped
+
+    private
+
+    def environment_options: () -> untyped
+
+    def expanded_environment_url: () -> (nil | untyped)
+
+    def expanded_cluster_agent_path: () -> (nil | untyped)
+
+    def environment_url: () -> untyped
+
+    def action: () -> untyped
+
+    def cluster_agent_path: () -> untyped
+
+    def kubernetes_namespace: () -> untyped
+
+    def flux_resource_path: () -> untyped
+
+    def dashboard_options: () -> untyped
+
+    def renew_external_url: () -> (untyped | nil)
+
+    def renew_auto_stop_in: () -> (nil | untyped)
+
+    def renew_deployment_tier: () -> (nil | untyped)
+
+    def renew_cluster_agent: () -> (nil | untyped)
+
+    def user_access_authorizations_for_project: () -> untyped
+
+    def renew_kubernetes_namespace: () -> (nil | untyped)
+
+    def renew_flux_resource_path: () -> (nil | untyped)
+
+    def requested_agent_authorized?: () -> untyped
+
+    def matching_authorization: () -> (false | untyped)
+  end
+end

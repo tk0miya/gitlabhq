@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        module Functions
+          class Truncate < Base
+            def self.function_expression_pattern: () -> ::Regexp
+
+            def self.name: () -> "truncate"
+
+            def execute: (untyped input_value) -> (untyped | nil)
+
+            private
+
+            def offset: () -> untyped
+
+            def length: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

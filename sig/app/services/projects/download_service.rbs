@@ -1,0 +1,21 @@
+module Projects
+  class DownloadService < BaseService
+    @project: untyped
+
+    @url: untyped
+
+    ALLOWLIST: ::Array[::Regexp]
+
+    def initialize: (untyped project, untyped url) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def valid_url?: (untyped url) -> untyped
+
+    def http?: (untyped url) -> untyped
+
+    def valid_domain?: (untyped url) -> untyped
+  end
+end

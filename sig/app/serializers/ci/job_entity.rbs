@@ -1,0 +1,41 @@
+module Ci
+  class JobEntity < Grape::Entity
+    @job_presenter: untyped
+
+    include RequestAwareEntity
+
+    private
+
+    alias job object
+
+    def cancelable?: () -> untyped
+
+    def authorized_to_force_cancel?: () -> untyped
+
+    def force_cancelable?: () -> untyped
+
+    def retryable?: () -> untyped
+
+    def playable?: () -> untyped
+
+    def scheduled?: () -> untyped
+
+    def detailed_status: () -> untyped
+
+    def path_to: (untyped route, untyped job, ?::Hash[untyped, untyped] params) -> untyped
+
+    def job_path: (untyped job) -> untyped
+
+    def failed?: () -> untyped
+
+    def callout_message: () -> untyped
+
+    def recoverable: () -> untyped
+
+    def job_presenter: () -> untyped
+
+    def has_attestation?: () -> untyped
+
+    def supply_chain_attestation_status: () -> untyped
+  end
+end

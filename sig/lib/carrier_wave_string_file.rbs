@@ -1,0 +1,5 @@
+class CarrierWaveStringFile < StringIO
+  def original_filename: () -> ""
+
+  def self.new_file: (file_content: untyped, filename: untyped, ?content_type: ::String) -> { "tempfile" => untyped, "filename" => untyped, "content_type" => untyped }
+end

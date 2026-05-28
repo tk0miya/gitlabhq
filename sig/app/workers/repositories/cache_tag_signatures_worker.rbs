@@ -1,0 +1,11 @@
+module Repositories
+  class CacheTagSignaturesWorker
+    include ApplicationWorker
+
+    READ_TIMEOUT: untyped
+
+    ALLOWED_CLASS_STRINGS_TO_CLASS: { :"Gitlab::Gpg::Tag" => untyped, :"Gitlab::Ssh::Tag" => untyped }
+
+    def perform: (untyped project_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+  end
+end

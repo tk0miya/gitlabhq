@@ -1,0 +1,15 @@
+module Sidebars
+  module Admin
+    class BaseMenu < ::Sidebars::Menu
+      def render?: () -> (false | untyped)
+
+      def build_menu_item: (**untyped args) ?{ () -> untyped } -> untyped
+
+      def nil_item: (untyped id) -> untyped
+
+      private
+
+      def render_with_abilities: () -> ::Array[:admin_all_resources]
+    end
+  end
+end

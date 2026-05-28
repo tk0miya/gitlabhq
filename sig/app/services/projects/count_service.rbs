@@ -1,0 +1,24 @@
+module Projects
+  # Base class for the various service classes that count project data (e.g.
+  # issues or forks).
+  class CountService < BaseCountService
+    @project: untyped
+
+    # The version of the cache format. This should be bumped whenever the
+    # underlying logic changes. This removes the need for explicitly flushing
+    # all caches.
+    VERSION: 1
+
+    attr_reader project: untyped
+
+    def initialize: (untyped project) -> void
+
+    def relation_for_count: () -> untyped
+
+    def cache_key_name: () -> untyped
+
+    def cache_key: (?untyped? key) -> ::Array["projects" | "count_service" | untyped]
+
+    def self.query: (untyped project_ids) -> untyped
+  end
+end

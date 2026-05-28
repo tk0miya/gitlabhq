@@ -1,0 +1,25 @@
+module Import
+  class BaseService < ::BaseService
+    @client: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    def initialize: (untyped client, untyped user, untyped params) -> void
+
+    def authorized?: () -> untyped
+
+    private
+
+    def find_or_create_namespace: (untyped namespace, untyped owner) -> untyped
+
+    def project_save_error: (untyped project) -> untyped
+
+    def success: (untyped project, ?warning: untyped?) -> untyped
+
+    def track_access_level: (untyped import_type) -> untyped
+
+    def user_role: () -> ("Owner" | untyped)
+  end
+end

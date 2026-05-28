@@ -1,0 +1,21 @@
+class ResourceStateEvent < ResourceEvent
+  include MergeRequestResourceEvent
+
+  include Importable
+
+  include Import::HasImportSource
+
+  include FromUnion
+
+  def self.issuable_attrs: () -> ::Array[:issue | :merge_request]
+
+  def issuable: () -> untyped
+
+  def for_issue?: () -> untyped
+
+  def synthetic_note_class: () -> untyped
+
+  private
+
+  def ensure_namespace_id: () -> untyped
+end

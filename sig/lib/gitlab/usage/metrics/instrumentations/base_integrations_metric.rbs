@@ -1,0 +1,20 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class BaseIntegrationsMetric < DatabaseMetric
+          def self.integrations_name: (untyped options) -> untyped
+
+          def initialize: (untyped metric_definition) -> void
+
+          def available?: () -> untyped
+
+          private
+
+          # Overridden in EE
+          def allowed_types: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+class SuggestionEntity < API::Entities::Suggestion
+  include RequestAwareEntity
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  def current_user: () -> untyped
+
+  def can_apply?: (untyped suggestion) -> untyped
+end

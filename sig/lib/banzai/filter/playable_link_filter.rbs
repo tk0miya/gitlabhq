@@ -1,0 +1,28 @@
+module Banzai
+  module Filter
+    # Find every image that isn't already wrapped in an `a` tag, and that has
+    # a `src` attribute ending with an audio or video extension, add a new audio or video node and
+    # a "Download" link in the case the media cannot be played.
+    class PlayableLinkFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      XPATH: "descendant-or-self::img[not(ancestor::a)]"
+
+      def call: () -> untyped
+
+      private
+
+      def media_type: () -> untyped
+
+      def safe_media_ext: () -> untyped
+
+      def extra_element_attrs: (untyped element) -> ::Hash[untyped, untyped]
+
+      def has_allowed_media?: (untyped element) -> (nil | untyped)
+
+      def media_element: (untyped doc, untyped element) -> untyped
+
+      def media_node: (untyped doc, untyped element) -> untyped
+    end
+  end
+end

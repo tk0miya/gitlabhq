@@ -1,0 +1,9 @@
+module ObjectPool
+  class ScheduleJoinWorker
+    include ApplicationWorker
+
+    include ObjectPoolQueue
+
+    def perform: (untyped pool_id) -> (nil | untyped)
+  end
+end

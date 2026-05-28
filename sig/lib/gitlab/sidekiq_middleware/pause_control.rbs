@@ -1,0 +1,13 @@
+module Gitlab
+  module SidekiqMiddleware
+    module PauseControl
+      DEFAULT_STRATEGY: :none
+
+      UnknownStrategyError: untyped
+
+      STRATEGIES: { click_house_migration: untyped, zoekt: untyped, none: untyped, advanced_search: untyped, active_context: untyped, deprecated: untyped }
+
+      def self.for: (untyped name) -> untyped
+    end
+  end
+end

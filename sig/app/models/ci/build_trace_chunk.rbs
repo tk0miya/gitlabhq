@@ -1,0 +1,139 @@
+module Ci
+  class BuildTraceChunk < Ci::ApplicationRecord
+    @data: untyped
+
+    @size: untyped
+
+    @metrics: untyped
+
+    include Ci::Partitionable
+
+    include ::Comparable
+
+    include ::FastDestroyAll
+
+    include ::Checksummable
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    CHUNK_SIZE: untyped
+
+    WRITE_LOCK_RETRY: 10
+
+    WRITE_LOCK_SLEEP: untyped
+
+    WRITE_LOCK_TTL: untyped
+
+    FailedToPersistDataError: untyped
+
+    DATA_STORES: { redis: 1, database: 2, fog: 3, redis_trace_chunks: 4 }
+
+    STORE_TYPES: untyped
+
+    LIVE_STORES: ::Array[:redis | :redis_trace_chunks]
+
+    def self.all_stores: () -> untyped
+
+    def self.persistable_store: () -> (:fog | :database)
+
+    def self.get_store_class: (untyped store) -> untyped
+
+    #
+    # FastDestroyAll concerns
+    def self.begin_fast_destroy: () -> untyped
+
+    #
+    # FastDestroyAll concerns
+    def self.finalize_fast_destroy: (untyped keys) -> untyped
+
+    #
+    # Sometime we need to ensure that the first read goes to a primary
+    # database, what is especially important in EE. This method does not
+    # change the behavior in CE.
+    #
+    def self.with_read_consistency: () { (?) -> untyped } -> untyped
+
+    #
+    # Sometimes we do not want to read raw data. This method makes it easier
+    # to find attributes that are just metadata excluding raw data.
+    #
+    def self.metadata_attributes: () -> untyped
+
+    def data: () -> untyped
+
+    def crc32: () -> untyped
+
+    def truncate: (?::Integer offset) -> (nil | untyped)
+
+    def append: (untyped new_data, untyped offset) -> untyped
+
+    def size: () -> untyped
+
+    def start_offset: () -> untyped
+
+    def end_offset: () -> untyped
+
+    def range: () -> ::Range[untyped]
+
+    def schedule_to_persist!: () -> (nil | untyped)
+
+    #
+    # It is possible that we run into two concurrent migrations. It might
+    # happen that a chunk gets migrated after being loaded by another worker
+    # but before the worker acquires a lock to perform the migration.
+    #
+    # We are using Redis locking to ensure that we perform this operation
+    # inside an exclusive lock, but this does not prevent us from running into
+    # race conditions related to updating a model representation in the
+    # database. Optimistic locking is another mechanism that help here.
+    #
+    # We are using optimistic locking combined with Redis locking to ensure
+    # that a chunk gets migrated properly.
+    #
+    # We are using until_executed deduplication strategy for workers,
+    # which should prevent duplicated workers running in parallel for the same build trace,
+    # and causing an exception related to an exclusive lock not being
+    # acquired
+    #
+    def persist_data!: () -> untyped
+
+    #
+    # Build trace chunk is final (the last one that we do not expect to ever
+    # become full) when a runner submitted a build pending state and there is
+    # no chunk with higher index in the database.
+    #
+    def final?: () -> untyped
+
+    def flushed?: () -> untyped
+
+    def live?: () -> untyped
+
+    def <=>: (untyped other) -> (nil | untyped)
+
+    def get_data: () -> untyped
+
+    def unsafe_persist_data!: (?untyped new_store) -> (nil | untyped)
+
+    def unsafe_set_data!: (untyped value) -> untyped
+
+    def unsafe_append_data!: (untyped value, untyped offset) -> untyped
+
+    def full?: () -> untyped
+
+    private
+
+    def pending_state?: () -> untyped
+
+    def current_store: () -> untyped
+
+    def chunks_max_index: () -> untyped
+
+    def lock_key: () -> ::String
+
+    def lock_params: () -> { ttl: untyped, retries: untyped, sleep_sec: untyped }
+
+    def metrics: () -> untyped
+
+    def set_project_id: () -> untyped
+  end
+end

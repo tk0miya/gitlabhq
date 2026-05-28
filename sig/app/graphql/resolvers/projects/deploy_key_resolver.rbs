@@ -1,0 +1,11 @@
+module Resolvers
+  module Projects
+    class DeployKeyResolver < BaseResolver
+      include LooksAhead
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      def preloads: () -> { user: ::Array[:user] }
+    end
+  end
+end

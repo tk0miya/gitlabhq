@@ -1,0 +1,21 @@
+module PreferredLanguageSwitcher
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  include PreferredLanguageSwitcherHelper
+
+  private
+
+  def init_preferred_language: () -> (nil | untyped)
+
+  def preferred_language: () -> untyped
+
+  def selectable_language: (untyped language_options) -> untyped
+
+  def ordered_selectable_locales_codes: () -> untyped
+
+  def browser_languages: () -> (::Array[untyped] | untyped)
+
+  def language_from_params: () -> ::Array[untyped]
+end

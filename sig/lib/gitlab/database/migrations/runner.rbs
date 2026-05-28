@@ -1,0 +1,58 @@
+module Gitlab
+  module Database
+    module Migrations
+      class Runner
+        @direction: untyped
+
+        @migrations: untyped
+
+        @result_dir: untyped
+
+        @database: untyped
+
+        BASE_RESULT_DIR: untyped
+
+        METADATA_FILENAME: "metadata.json"
+
+        SCHEMA_VERSION: 4
+
+        POST_MIGRATION_MATCHER: ::Regexp
+
+        def self.up: (database: untyped) -> untyped
+
+        def self.down: (database: untyped) -> untyped
+
+        def self.batched_background_migrations: (for_database: untyped) -> untyped
+
+        def self.migration_context: () -> untyped
+
+        # rubocop:disable Database/MultipleDatabases
+        def self.within_context_for_database: (untyped database) { () -> untyped } -> untyped
+
+        def self.batched_migrations_last_id: (untyped for_database) -> untyped
+
+        private
+
+        def self.migrations_for_up: (untyped database) -> untyped
+
+        def self.migration_file_names_this_branch: () -> untyped
+
+        def self.migrations_for_down: (untyped database) -> untyped
+
+        def self.background_migrations_dir: (untyped db) -> untyped
+
+        public
+
+        attr_reader direction: untyped
+
+        attr_reader result_dir: untyped
+
+        attr_reader migrations: untyped
+
+        def initialize: (direction: untyped, database: untyped, migrations: untyped) -> void
+
+        def run: () -> untyped
+      end
+    end
+  end
+end

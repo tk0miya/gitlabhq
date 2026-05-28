@@ -1,0 +1,41 @@
+module JiraImport
+  class StartImportService
+    @user: untyped
+
+    @project: untyped
+
+    @jira_project_key: untyped
+
+    @users_mapping: untyped
+
+    attr_reader user: untyped
+
+    attr_reader project: untyped
+
+    attr_reader jira_project_key: untyped
+
+    attr_reader users_mapping: untyped
+
+    def initialize: (untyped user, untyped project, untyped jira_project_key, untyped users_mapping) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def store_users_mapping: () -> (nil | untyped)
+
+    def create_and_schedule_import: () -> untyped
+
+    def build_jira_import: () -> untyped
+
+    def create_import_label: (untyped project) -> untyped
+
+    def build_label_attrs: (untyped project) -> { title: untyped, description: untyped, color: untyped }
+
+    def validate: () -> untyped
+
+    def build_error_response: (untyped message) -> untyped
+
+    def import_in_progress?: () -> untyped
+  end
+end

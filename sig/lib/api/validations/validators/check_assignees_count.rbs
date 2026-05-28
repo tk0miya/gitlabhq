@@ -1,0 +1,15 @@
+module API
+  module Validations
+    module Validators
+      class CheckAssigneesCount < Grape::Validations::Validators::Base
+        def self.coerce: () -> untyped
+
+        def validate_param!: (untyped attr_name, untyped params) -> (nil | untyped)
+
+        private
+
+        def param_allowed?: (untyped attr_name, untyped params) -> untyped
+      end
+    end
+  end
+end

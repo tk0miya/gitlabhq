@@ -1,0 +1,9 @@
+module Resolvers
+  class MergeRequestResolver
+    include ResolvesMergeRequests
+
+    alias project object
+
+    def no_results_possible?: (untyped args) -> untyped
+  end
+end

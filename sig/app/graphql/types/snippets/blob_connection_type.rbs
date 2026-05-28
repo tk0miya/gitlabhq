@@ -1,0 +1,8 @@
+module Types
+  module Snippets
+    # rubocop: disable Graphql/AuthorizeTypes
+    class BlobConnectionType < GraphQL::Types::Relay::BaseConnection
+      def unretrievable_blobs?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Uploads
+  class Local < Base
+    @storage_dir: untyped
+
+    def keys: (untyped relation) -> untyped
+
+    def delete_keys: (untyped keys) -> untyped
+
+    private
+
+    def delete_file: (untyped path) -> (nil | untyped)
+
+    def exists?: (untyped path) -> untyped
+
+    def in_uploads?: (untyped path) -> untyped
+
+    def delete_dir!: (untyped path) -> untyped
+
+    def storage_dir: () -> untyped
+  end
+end

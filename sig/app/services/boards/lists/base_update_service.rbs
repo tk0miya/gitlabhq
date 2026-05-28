@@ -1,0 +1,31 @@
+module Boards
+  module Lists
+    class BaseUpdateService < Boards::BaseService
+      extend ::Gitlab::Utils::Override
+
+      def execute: (untyped list) -> untyped
+
+      private
+
+      def error: (untyped message, ?::Hash[untyped, untyped] pass_back) -> untyped
+
+      def success: (?::Hash[untyped, untyped] pass_back) -> untyped
+
+      def execute_by_params: (untyped list) -> untyped
+
+      def update_preferences: (untyped list) -> (nil | untyped)
+
+      def update_position: (untyped list) -> (nil | untyped)
+
+      def preferences: () -> { collapsed: untyped }
+
+      def preferences?: () -> untyped
+
+      def position?: () -> untyped
+
+      def can_read?: (untyped list) -> untyped
+
+      def can_admin?: (untyped list) -> untyped
+    end
+  end
+end

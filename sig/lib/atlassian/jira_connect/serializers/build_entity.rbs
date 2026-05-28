@@ -1,0 +1,38 @@
+module Atlassian
+  module JiraConnect
+    module Serializers
+      # A Jira 'build' represents what we call a 'pipeline'
+      class BuildEntity < Grape::Entity
+        @issue_keys: untyped
+
+        include Gitlab::Routing
+
+        def issue_keys: () -> untyped
+
+        private
+
+        alias pipeline object
+
+        def url: () -> untyped
+
+        # translate to Jira status
+        def state: () -> untyped
+
+        def pipeline_id: () -> untyped
+
+        def schema_version: () -> "1.0"
+
+        def test_info: () -> { totalNumber: untyped, numberPassed: untyped, numberFailed: untyped, numberSkipped: untyped }
+
+        def references: () -> ::Array[{ commit: { id: untyped, repositoryUri: untyped }, ref: { name: untyped, uri: untyped } }]
+
+        def update_sequence_id: () -> untyped
+
+        def pipeline_commit_issue_keys: () -> untyped
+
+        # Extract Jira issue keys from either the source branch/ref, merge request title or merge request description.
+        def pipeline_mrs_issue_keys: () -> untyped
+      end
+    end
+  end
+end

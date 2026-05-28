@@ -1,0 +1,37 @@
+module Banzai
+  module Filter
+    # Proxies images/assets through another server.  Reduces mixed content warnings
+    # as well as hiding the customer's IP address when requesting images.
+    # Copies the original img `src` to `data-canonical-src` and replaces the
+    # `src` with a new url to the proxy server.
+    #
+    # See https://docs.gitlab.com/security/asset_proxy/ for more information.
+    #
+    # Based on https://github.com/gjtorikian/html-pipeline/blob/v2.14.3/lib/html/pipeline/camo_filter.rb
+    class AssetProxyFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      include Concerns::AssetProxying
+
+      def initialize: (untyped text, ?untyped? context, ?untyped? result) -> void
+
+      def call: () -> untyped
+
+      def validate: () -> untyped
+
+      def self.transform_context: (untyped context) -> untyped
+
+      # called during an initializer. Caching the values in Gitlab.config significantly increased
+      # performance, rather than querying Gitlab::CurrentSettings.current_application_settings
+      # over and over.  However, this does mean that the Rails servers need to get restarted
+      # whenever the application settings are changed
+      def self.initialize_settings: () -> untyped
+
+      def self.host_regexp_for_allowlist: (untyped allowlist) -> (nil | untyped)
+
+      def self.csp_for_allowlist: (untyped allowlist, asset_proxy_url: untyped) -> untyped
+
+      def self.determine_allowlist: (untyped application_settings) -> untyped
+    end
+  end
+end

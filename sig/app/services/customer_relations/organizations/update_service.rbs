@@ -1,0 +1,15 @@
+module CustomerRelations
+  module Organizations
+    class UpdateService < BaseService
+      def execute: (untyped organization) -> untyped
+
+      private
+
+      def handle_active_param: () -> (nil | untyped)
+
+      def error_no_permissions: () -> untyped
+
+      def error_updating: (untyped organization) -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Banzai
+  module Filter
+    class TruncateVisibleFilter < HTML::Pipeline::Filter
+      @truncated: untyped
+
+      MATCH_CODE: "pre > code > .line"
+
+      def call: () -> untyped
+
+      private
+
+      attr_reader truncated: untyped
+
+      def truncate_content: (untyped content_length, untyped max_chars, untyped node) -> (nil | untyped)
+
+      # Handle line breaks within a node
+      def handle_line_breaks: (untyped node) -> (nil | untyped)
+
+      # If `node` is the first block element, and the
+      # text hasn't already been truncated, then append "..." to the node contents
+      # and return true.  Otherwise return false.
+      def truncate_if_block: (untyped node) -> (nil | untyped)
+    end
+  end
+end

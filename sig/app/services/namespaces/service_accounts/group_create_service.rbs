@@ -1,0 +1,17 @@
+module Namespaces
+  module ServiceAccounts
+    class GroupCreateService < BaseCreateService
+      extend ::Gitlab::Utils::Override
+
+      private
+
+      def resource: () -> untyped
+
+      def resource_type: () -> "group"
+
+      def provisioning_params: () -> { group_id: untyped, provisioned_by_group_id: untyped }
+
+      def skip_owner_check?: () -> untyped
+    end
+  end
+end

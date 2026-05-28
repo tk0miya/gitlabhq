@@ -1,0 +1,25 @@
+module Gitlab
+  class SubmoduleLinks
+    @repository: untyped
+
+    @cache_store: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    Urls: untyped
+
+    def initialize: (untyped repository) -> void
+
+    def for: (untyped submodule, untyped sha, ?untyped? diff_file) -> untyped
+
+    private
+
+    attr_reader repository: untyped
+
+    def submodule_urls_for: (untyped sha) -> untyped
+
+    def submodule_url_for: (untyped sha, untyped path) -> untyped
+
+    def old_submodule_id: (untyped submodule_url, untyped diff_file) -> (nil | untyped)
+  end
+end

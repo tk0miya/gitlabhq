@@ -1,0 +1,11 @@
+class TagsFinder < GitRefsFinder
+  def self.batch_load_tag_signature_data: (untyped tags) -> untyped
+
+  def execute: (?gitaly_pagination: bool) -> untyped
+
+  def total: () -> untyped
+
+  private
+
+  def page_token: () -> (::String | nil)
+end

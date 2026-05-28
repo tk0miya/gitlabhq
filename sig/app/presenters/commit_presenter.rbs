@@ -1,0 +1,11 @@
+class CommitPresenter < Gitlab::View::Presenter::Delegated
+  def detailed_status_for: (untyped ref) -> (nil | untyped)
+
+  def status_for: (?untyped? ref) -> (nil | untyped)
+
+  def any_pipelines?: () -> (false | untyped)
+
+  def tags_for_display: () -> untyped
+
+  def signature_html: () -> (nil | untyped)
+end

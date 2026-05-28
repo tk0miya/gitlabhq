@@ -1,0 +1,18 @@
+module Mutations
+  module Discussions
+    class ToggleResolve < BaseMutation
+      def resolve: (id: untyped, resolve: untyped) -> { discussion: untyped, errors: untyped }
+
+      private
+
+      # `Discussion` permissions are checked through `Discussion#can_resolve?`,
+      # so we use this method of checking permissions rather than by defining
+      # an `authorize` permission and calling `authorized_find!`.
+      def authorized_find_discussion!: (id: untyped) -> untyped
+
+      def resolve!: (untyped discussion) -> untyped
+
+      def unresolve!: (untyped discussion) -> untyped
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module ExternalAuthorization
+    class Client
+      @user: untyped
+
+      @label: untyped
+
+      @body: untyped
+
+      include ExternalAuthorization::Config
+
+      REQUEST_HEADERS: { "Content-Type" => "application/json", "Accept" => "application/json" }
+
+      def initialize: (untyped user, untyped label) -> void
+
+      def request_access: () -> untyped
+
+      private
+
+      def allow_local_requests?: () -> untyped
+
+      def post_params: () -> untyped
+
+      def body: () -> untyped
+    end
+  end
+end

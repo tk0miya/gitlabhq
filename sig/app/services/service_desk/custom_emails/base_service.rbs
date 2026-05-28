@@ -1,0 +1,21 @@
+module ServiceDesk
+  module CustomEmails
+    class BaseService < ::BaseProjectService
+      include Logger
+
+      private
+
+      def legitimate_user?: () -> untyped
+
+      def setting?: () -> untyped
+
+      def credential?: () -> untyped
+
+      def verification?: () -> untyped
+
+      def error_user_not_authorized: () -> untyped
+
+      def error_response: (untyped message) -> untyped
+    end
+  end
+end

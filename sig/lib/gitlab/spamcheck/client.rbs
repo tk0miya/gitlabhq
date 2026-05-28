@@ -1,0 +1,45 @@
+module Gitlab
+  module Spamcheck
+    Error: untyped
+
+    class Client
+      @endpoint_url: untyped
+
+      @creds: untyped
+
+      @grpc_client: untyped
+
+      include ::Spam::SpamConstants
+
+      DEFAULT_TIMEOUT_SECS: 2
+
+      ACTION_MAPPING: { create: untyped, update: untyped }
+
+      URL_SCHEME_REGEX: ::Regexp
+
+      def initialize: () -> void
+
+      def spam?: (spammable: untyped, user: untyped, ?context: ::Hash[untyped, untyped], ?extra_features: ::Hash[untyped, untyped]) -> untyped
+
+      private
+
+      def get_spammable_mappings: (untyped spammable) -> untyped
+
+      def build_protobuf: (spammable: untyped, user: untyped, context: untyped, extra_features: untyped) -> ::Array[untyped]
+
+      def build_user_protobuf: (untyped user) -> untyped
+
+      def build_email: (untyped email, untyped verified) -> untyped
+
+      def build_project_protobuf: (untyped issue) -> untyped
+
+      def convert_to_pb_timestamp: (untyped ar_timestamp) -> untyped
+
+      def client_creds: (untyped url) -> (untyped | :this_channel_is_insecure)
+
+      def grpc_client: () -> untyped
+
+      def interceptors: () -> ::Array[untyped]
+    end
+  end
+end

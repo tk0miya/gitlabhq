@@ -1,0 +1,37 @@
+module Organizations
+  class OrganizationsController < ApplicationController
+    @events: untyped
+
+    include PreviewMarkdown
+
+    include FiltersEvents
+
+    DEFAULT_RESOURCE_LIMIT: 1000
+
+    DEFAULT_ACTIVITY_EVENT_LIMIT: 20
+
+    def index: () -> nil
+
+    def new: () -> untyped
+
+    def show: () -> nil
+
+    def activity: () -> untyped
+
+    def groups_and_projects: () -> nil
+
+    def users: () -> untyped
+
+    private
+
+    def activity_query_limit: () -> untyped
+
+    def projects: () -> untyped
+
+    def groups: () -> untyped
+
+    def load_events: () -> untyped
+
+    def safe_params: () -> untyped
+  end
+end

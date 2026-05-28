@@ -1,0 +1,20 @@
+module Gitlab
+  module DataBuilder
+    module Build
+      extend ::Gitlab::DataBuilder::Build
+
+      # rubocop:disable Metrics/AbcSize -- build webhook payload
+      def build: (untyped build) -> untyped
+
+      private
+
+      def build_author_url: (untyped commit, untyped pipeline) -> untyped
+
+      def build_runner: (untyped runner) -> (nil | { id: untyped, description: untyped, runner_type: untyped, active: untyped, is_shared: untyped, tags: untyped })
+
+      def build_environment: (untyped build) -> (nil | { name: untyped, action: untyped })
+
+      def source_pipeline_attrs: (untyped source_pipeline) -> { project: { id: untyped, web_url: untyped, path_with_namespace: untyped }, job_id: untyped, pipeline_id: untyped }
+    end
+  end
+end

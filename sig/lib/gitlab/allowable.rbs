@@ -1,0 +1,9 @@
+module Gitlab
+  module Allowable
+    def can?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def can_all?: (untyped user, untyped abilities, ?::Symbol subject, **untyped opts) -> untyped
+
+    def can_any?: (untyped user, untyped abilities, ?::Symbol subject, **untyped opts) -> untyped
+  end
+end

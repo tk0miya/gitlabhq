@@ -1,0 +1,38 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      module PullRequestNotes
+        # Base class for importing pull request notes during project import from Bitbucket Server
+        class BaseImporter
+          @project: untyped
+
+          @user_finder: untyped
+
+          @formatter: untyped
+
+          @merge_request: untyped
+
+          include Loggable
+
+          include ::Gitlab::Import::UsernameMentionRewriter
+
+          include ::Import::PlaceholderReferences::Pusher
+
+          # @param project [Project]
+          # @param merge_request [MergeRequest]
+          def initialize: (untyped project, untyped merge_request) -> void
+
+          def execute: (untyped _args) -> untyped
+
+          private
+
+          attr_reader project: untyped
+
+          attr_reader user_finder: untyped
+
+          attr_reader merge_request: untyped
+        end
+      end
+    end
+  end
+end

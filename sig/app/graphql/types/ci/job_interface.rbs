@@ -1,0 +1,26 @@
+module Types
+  module Ci
+    # This inteface sets [authorize: :read_build] (field-level authorization via
+    # JobInterfaceBaseField) for all defined fields to ensure implementing types
+    # don't expose inherited fields without proper authorization.
+    #
+    # Implementing types can opt-out from this field-level auth and use
+    # type-level auth by re-defining the field without the authorize argument.
+    # For example, JobMinimalAccessType uses :read_build_metadata type-level
+    # auth to expose a set of defined fields and leaves inherited fields it does
+    # not want to expose to use field-level auth using :read_build.
+    module JobInterface
+      include BaseInterface
+
+      def detailed_status: () -> untyped
+
+      def manual_job: () -> untyped
+
+      def ref_name: () -> untyped
+
+      def triggered: () -> untyped
+
+      def self.resolve_type: (untyped _object, untyped _context) -> untyped
+    end
+  end
+end

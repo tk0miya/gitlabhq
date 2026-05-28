@@ -1,0 +1,11 @@
+module TestHooks
+  class SystemService < TestHooks::BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    private
+
+    def data: () -> untyped
+
+    def merge_requests_events_data: () -> ({ error: untyped } | untyped)
+  end
+end

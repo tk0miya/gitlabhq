@@ -1,0 +1,15 @@
+module Sidebars
+  module UserProfile
+    module Menus
+      class SnippetsMenu < ::Sidebars::UserProfile::BaseMenu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "snippet"
+
+        def active_routes: () -> { path: "users#snippets" }
+      end
+    end
+  end
+end

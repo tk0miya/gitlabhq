@@ -1,0 +1,9 @@
+module Ci
+  class JobArtifactReport < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    MAX_VALIDATION_ERROR_LENGTH: 255
+
+    def validation_error=: (untyped value) -> untyped
+  end
+end

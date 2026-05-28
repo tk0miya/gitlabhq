@@ -1,0 +1,29 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      class HeaderBuilder
+        @request_context: untyped
+
+        @base_request_uri: untyped
+
+        attr_reader request_context: untyped
+
+        def initialize: (untyped request_context) -> void
+
+        def add_next_page_header: (untyped query_params) -> untyped
+
+        def add_prev_and_next_cursor_headers: (untyped previous_cursor, untyped next_cursor) -> untyped
+
+        private
+
+        def next_page_link: (untyped href) -> ::String
+
+        def page_href: (untyped query_params) -> untyped
+
+        def base_request_uri: () -> untyped
+
+        def updated_params: (untyped query_params) -> untyped
+      end
+    end
+  end
+end

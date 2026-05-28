@@ -1,0 +1,25 @@
+module WebHooks
+  module HookLogActions
+    @hook_log: untyped
+
+    @hide_search_settings: untyped
+
+    extend ActiveSupport::Concern
+
+    include HookExecutionNotice
+
+    def show: () -> untyped
+
+    def retry: () -> untyped
+
+    private
+
+    def hook_log: () -> untyped
+
+    def execute_hook: () -> untyped
+
+    def hide_search_settings: () -> untyped
+
+    def check_resend_rate_limit!: () -> untyped
+  end
+end

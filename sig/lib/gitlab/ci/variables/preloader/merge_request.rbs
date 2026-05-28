@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Variables
+      module Preloader
+        class MergeRequest
+          @merge_request: untyped
+
+          def initialize: (untyped merge_request) -> void
+
+          def preload: () -> untyped
+
+          private
+
+          def preloads: () -> ::Array[untyped]
+        end
+      end
+    end
+  end
+end

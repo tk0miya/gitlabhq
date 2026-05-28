@@ -1,0 +1,59 @@
+module Ci
+  class BuildRunnerPresenter < SimpleDelegator
+    @queue_size: untyped
+
+    @queue_depth: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    RUNNER_REMOTE_TAG_PREFIX: "refs/tags/"
+
+    RUNNER_REMOTE_BRANCH_PREFIX: "refs/remotes/origin/"
+
+    attr_reader queue_size: untyped
+
+    attr_reader queue_depth: untyped
+
+    def set_queue_metrics: (size: untyped, depth: untyped) -> untyped
+
+    def artifacts: () -> (nil | untyped)
+
+    def ref_type: () -> ("tag" | "branch")
+
+    def git_depth: () -> untyped
+
+    def repo_object_format: () -> untyped
+
+    def runner_inputs: () -> (::Array[untyped] | untyped)
+
+    def runner_variables: () -> untyped
+
+    def refspecs: () -> untyped
+
+    def all_dependencies: () -> untyped
+
+    def project_jobs_running_on_instance_runners_count: () -> ("+Inf" | untyped | ::String)
+
+    def suspend_options: () -> (nil | untyped)
+
+    private
+
+    def create_archive: (untyped artifacts) -> (nil | untyped)
+
+    def create_reports: (untyped reports, expire_in: untyped) -> (nil | untyped)
+
+    BuildArtifact: untyped
+
+    def refspec_for_branch: (?::String ref) -> ::String
+
+    def refspec_for_tag: (?::String ref) -> ::String
+
+    def refspec_for_persistent_ref: () -> ::String
+
+    def git_depth_value: () -> untyped
+
+    def instance_id: () -> untyped
+
+    def instance_uuid: () -> untyped
+  end
+end

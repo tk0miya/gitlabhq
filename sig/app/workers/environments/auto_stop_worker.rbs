@@ -1,0 +1,7 @@
+module Environments
+  class AutoStopWorker
+    include ApplicationWorker
+
+    def perform: (untyped environment_id, ?::Hash[untyped, untyped] params) -> untyped
+  end
+end

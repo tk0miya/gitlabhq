@@ -1,0 +1,22 @@
+module Gitlab
+  module Ci
+    module Badge
+      module Custom
+        #
+        # Class that describes pipeline badge metadata
+        #
+        class Metadata < Badge::Metadata
+          @project: untyped
+
+          def initialize: (untyped badge) -> void
+
+          def title: () -> "custom"
+
+          def image_url: () -> untyped
+
+          def link_url: () -> untyped
+        end
+      end
+    end
+  end
+end

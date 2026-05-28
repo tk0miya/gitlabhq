@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    class PostgresTableSize < SharedModel
+      @database_entries: untyped
+
+      SMALL: untyped
+
+      MEDIUM: untyped
+
+      LARGE: untyped
+
+      ALERT: untyped
+
+      CLASSIFICATION: { small: ::Range[::Integer], medium: ::Range[untyped], large: ::Range[untyped], over_limit: ::Range[nil] }
+
+      def self.by_table_name: (untyped table_name) -> untyped
+
+      def size_classification: () -> untyped
+
+      def feature_categories: () -> untyped
+
+      def alert_report_hash: () -> { identifier: untyped, schema_name: untyped, table_name: untyped, total_size: untyped, table_size: untyped, index_size: untyped, toast_size: untyped, size_in_bytes: untyped, classification: untyped, feature_categories: untyped }
+
+      private
+
+      def database_entries: () -> untyped
+    end
+  end
+end

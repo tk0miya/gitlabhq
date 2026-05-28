@@ -1,0 +1,32 @@
+module Ci
+  module Runners
+    class BulkPauseRunnersService
+      @runners: untyped
+
+      @current_user: untyped
+
+      @paused: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader runners: untyped
+
+      RUNNER_LIMIT: 50
+
+      # @param runners [Array<Ci::Runner>] the runners to pause or unpause
+      # @param current_user [User] the user performing the operation
+      # @param paused [Boolean] action of pausing or unpausing
+      def initialize: (runners: untyped, current_user: untyped, paused: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def pause_runners: (untyped paused) -> untyped
+
+      def compute_authorized_runners: () -> ::Array[untyped]
+
+      def error_messages: (untyped runner_count, untyped authorized_runners_ids, untyped unauthorized_runners_ids) -> untyped
+    end
+  end
+end

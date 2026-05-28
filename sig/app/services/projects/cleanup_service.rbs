@@ -1,0 +1,41 @@
+module Projects
+  # The CleanupService removes data from the project repository following a
+  # BFG rewrite: https://rtyley.github.io/bfg-repo-cleaner/
+  #
+  # Before executing this service, all refs rewritten by BFG should have been
+  # pushed to the repository
+  class CleanupService < BaseService
+    @repository_cleaner: untyped
+
+    NoUploadError: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def self.enqueue: (untyped project, untyped current_user, untyped bfg_object_map) -> untyped
+
+    def self.cleanup_after: (untyped project) -> untyped
+
+    # Attempt to clean up the project following the push. Warning: this is
+    # destructive!
+    #
+    # path is the path of an upload of a BFG object map file. It contains a line
+    # per rewritten object, with the old and new SHAs space-separated. It can be
+    # used to update or remove content that references the objects that BFG has
+    # altered
+    def execute: () -> untyped
+
+    private
+
+    def apply_bfg_object_map!: () -> untyped
+
+    def cleanup_diffs: (untyped response) -> untyped
+
+    def extract_old_commit_shas: (untyped batch) -> untyped
+
+    def cleanup_merge_request_diffs: (untyped old_commit_shas) -> untyped
+
+    def cleanup_note_diff_files: (untyped old_commit_shas) -> untyped
+
+    def repository_cleaner: () -> untyped
+  end
+end

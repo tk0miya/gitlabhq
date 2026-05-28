@@ -1,0 +1,20 @@
+# This service manages the group deletion process:
+# - Permanently deletes the group if user has sufficient permissions.
+# - Restores the group if user lacks necessary permissions.
+# Note: This service should only be called from a Sidekiq context otherwise,
+# `Gitlab::Auth::CurrentUserMode.optionally_run_in_admin_mode` will raise an error.
+module Namespaces
+  module Groups
+    class AdjournedDeletionService < ::BaseGroupService
+      def execute: () -> untyped
+
+      private
+
+      def can_current_user_remove_group?: () -> (false | untyped)
+
+      def delete_group: () -> untyped
+
+      def restore_group: () -> untyped
+    end
+  end
+end

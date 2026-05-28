@@ -1,0 +1,36 @@
+module BaseServiceUtility
+  extend ActiveSupport::Concern
+
+  include Gitlab::Allowable
+
+  def notification_service: () -> untyped
+
+  def event_service: () -> untyped
+
+  def todo_service: () -> untyped
+
+  def system_hook_service: () -> untyped
+
+  def log_info: (untyped message) -> untyped
+
+  def log_error: (untyped message) -> untyped
+
+  # Add an error to the specified model for restricted visibility levels
+  def deny_visibility_level: (untyped model, ?untyped? denied_visibility_level) -> untyped
+
+  def visibility_level: () -> untyped
+
+  private
+
+  # Return a Hash with an `error` status
+  #
+  # message     - Error message to include in the Hash
+  # http_status - Optional HTTP status code override (default: nil)
+  # pass_back   - Additional attributes to be included in the resulting Hash
+  def error: (untyped message, ?untyped? http_status, ?status: ::Symbol, ?pass_back: ::Hash[untyped, untyped]) -> untyped
+
+  # Return a Hash with a `success` status
+  #
+  # pass_back - Additional attributes to be included in the resulting Hash
+  def success: (?::Hash[untyped, untyped] pass_back) -> untyped
+end

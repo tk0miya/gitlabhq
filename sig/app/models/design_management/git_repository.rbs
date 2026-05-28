@@ -1,0 +1,29 @@
+module DesignManagement
+  class GitRepository < ::Repository
+    @info_attributes: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    # We define static git attributes for the design repository as this
+    # repository is entirely GitLab-managed rather than user-facing.
+    #
+    # Enable all uploaded files to be stored in LFS.
+    MANAGED_GIT_ATTRIBUTES: ::String
+
+    # Override of a method called on Repository instances but sent via
+    # method_missing to Gitlab::Git::Repository where it is defined
+    def info_attributes: () -> untyped
+
+    # Override of a method called on Repository instances but sent via
+    # method_missing to Gitlab::Git::Repository where it is defined
+    def attributes: (untyped path) -> untyped
+
+    # Override of a method called on Repository instances but sent via
+    # method_missing to Gitlab::Git::Repository where it is defined
+    def gitattribute: (untyped path, untyped name) -> untyped
+
+    # Override of a method called on Repository instances but sent via
+    # method_missing to Gitlab::Git::Repository where it is defined
+    def attributes_at: (?untyped? _ref) -> untyped
+  end
+end

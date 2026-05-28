@@ -1,0 +1,36 @@
+module Gitlab
+  module View
+    module Presenter
+      CannotOverrideMethodError: untyped
+
+      module Base
+        extend ActiveSupport::Concern
+
+        include Gitlab::Routing
+
+        include Gitlab::Allowable
+
+        # Presenters should always access the subject through an explicit getter defined with
+        # `presents ..., as:`, the `__subject__` method is only intended for internal use.
+        def __subject__: () -> untyped
+
+        def can?: (untyped user, untyped action, ?untyped? overridden_subject) -> untyped
+
+        # delegate all #can? queries to the subject
+        def declarative_policy_delegate: () -> untyped
+
+        def present: (**untyped attributes) -> self
+
+        def url_builder: () -> untyped
+
+        def is_a?: (untyped type) -> untyped
+
+        def web_url: () -> untyped
+
+        def web_path: () -> untyped
+
+        def path_with_line_numbers: (untyped path, untyped start_line, untyped end_line) -> untyped
+      end
+    end
+  end
+end

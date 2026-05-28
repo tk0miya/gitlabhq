@@ -1,0 +1,11 @@
+class IssueEmailParticipant < ApplicationRecord
+  include BulkInsertSafe
+
+  include Presentable
+
+  include CaseSensitivity
+
+  include EachBatch
+
+  def validate_email_format: () -> (untyped | nil)
+end

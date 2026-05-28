@@ -1,0 +1,17 @@
+module API
+  module Helpers
+    module PackagesManagerClientsHelpers
+      extend Grape::API::Helpers
+
+      include ::API::Helpers::PackagesHelpers
+
+      def find_job_from_http_basic_auth: () -> (nil | untyped)
+
+      def find_deploy_token_from_http_basic_auth: () -> (nil | untyped)
+
+      private
+
+      def decode_token: () -> untyped
+    end
+  end
+end

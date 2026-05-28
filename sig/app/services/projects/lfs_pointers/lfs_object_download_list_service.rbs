@@ -1,0 +1,52 @@
+# This service discovers the Lfs files that are linked in repository,
+# but not downloaded yet and yields the operation
+# on each Lfs file link (url) to remote repository.
+module Projects
+  module LfsPointers
+    class LfsObjectDownloadListService < BaseService
+      @lfs_pointers_in_repository: untyped
+
+      @import_uri: untyped
+
+      @default_endpoint_uri: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      HEAD_REV: "HEAD"
+
+      LFS_ENDPOINT_PATTERN: ::Regexp
+
+      LFS_BATCH_API_ENDPOINT: "/info/lfs/objects/batch"
+
+      LfsObjectDownloadListError: untyped
+
+      def each_list_item: () { (?) -> untyped } -> untyped
+
+      private
+
+      def context_valid?: () -> (false | true)
+
+      def external_lfs_endpoint?: () -> untyped
+
+      def disable_lfs!: () -> (untyped | nil)
+
+      # Retrieves all lfs pointers in the repository
+      def lfs_pointers_in_repository: () -> untyped
+
+      def existing_lfs_objects: () -> untyped
+
+      def existing_lfs_objects_hash: () -> untyped
+
+      def missing_lfs_files: () -> untyped
+
+      def lfsconfig_endpoint_uri: () -> untyped
+
+      def import_uri: () -> untyped
+
+      def current_endpoint_uri: () -> untyped
+
+      # The import url must end with '.git' here we ensure it is
+      def default_endpoint_uri: () -> untyped
+    end
+  end
+end

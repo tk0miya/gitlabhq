@@ -1,0 +1,81 @@
+module Gitaly
+  class Server
+    @storage: untyped
+
+    @storage_status: untyped
+
+    @disk_statistics_storage_status: untyped
+
+    @server_signature: untyped
+
+    @info: untyped
+
+    @disk_statistics: untyped
+
+    SHA_VERSION_REGEX: ::Regexp
+
+    DEFAULT_REPLICATION_FACTOR: 1
+
+    ServerSignature: untyped
+
+    def self.all: () -> untyped
+
+    def self.count: () -> untyped
+
+    def self.filesystems: () -> untyped
+
+    def self.gitaly_clusters: () -> untyped
+
+    attr_reader storage: untyped
+
+    def initialize: (untyped storage) -> void
+
+    def server_version: () -> untyped
+
+    def git_binary_version: () -> untyped
+
+    def expected_version?: () -> untyped
+
+    alias up_to_date? expected_version?
+
+    def read_writeable?: () -> untyped
+
+    def readable?: () -> untyped
+
+    def writeable?: () -> untyped
+
+    def filesystem_type: () -> untyped
+
+    def server_signature_public_key: () -> untyped
+
+    def server_signature_error?: () -> untyped
+
+    def disk_used: () -> untyped
+
+    def disk_available: () -> untyped
+
+    # Simple convenience method for when obtaining both used and available
+    # statistics at once is preferred.
+    def disk_stats: () -> untyped
+
+    def address: () -> untyped
+
+    def replication_factor: () -> untyped
+
+    private
+
+    def storage_status: () -> untyped
+
+    def disk_statistics_storage_status: () -> untyped
+
+    def matches_sha?: () -> (false | untyped)
+
+    def server_signature: () -> untyped
+
+    def info: () -> untyped
+
+    def disk_statistics: () -> untyped
+
+    def wrapper_gitaly_rpc_errors: () { () -> untyped } -> untyped
+  end
+end

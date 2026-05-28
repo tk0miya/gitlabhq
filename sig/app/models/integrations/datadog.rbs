@@ -1,0 +1,68 @@
+module Integrations
+  class Datadog < Integration
+    include HasWebHook
+
+    include HasAvatar
+
+    DEFAULT_DOMAIN: "datadoghq.com"
+
+    URL_TEMPLATE: "https://webhook-intake.%{datadog_domain}/api/v2/webhook"
+
+    URL_API_KEYS_DOCS: ::String
+
+    CI_LOGS_DOCS: ::String
+
+    CI_VISIBILITY_PRICING: ::String
+
+    SITES_DOCS: ::String
+
+    SUPPORTED_EVENTS: ::Array["pipeline" | "build" | "archive_trace" | "push" | "merge_request" | "note" | "tag_push" | "subgroup" | "project"]
+
+    TAG_KEY_VALUE_RE: ::Regexp
+
+    # The config is divided in two sections:
+    # - General account configuration, which allows setting up a Datadog site and API key
+    # - CI Visibility configuration, which is specific to job & pipeline events
+    def sections: () -> ::Array[{ type: untyped, title: untyped, description: untyped }]
+
+    def initialize_properties: () -> untyped
+
+    def update_pipeline_events: () -> (untyped | nil)
+
+    def self.supported_events: () -> untyped
+
+    def self.default_test_event: () -> "push"
+
+    def configurable_events: () -> ::Array[untyped]
+
+    def self.title: () -> "Datadog"
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "datadog"
+
+    def hook_url: () -> untyped
+
+    def url_variables: () -> { "api_key" => untyped }
+
+    def execute: (untyped data) -> (nil | untyped)
+
+    def test: (untyped data) -> { success: untyped, result: untyped }
+
+    private
+
+    def datadog_domain: () -> untyped
+
+    def hook_data: (untyped data, untyped object_kind) -> untyped
+
+    def strip_properties: () -> untyped
+
+    def datadog_tags_are_valid: () -> (nil | untyped)
+
+    def datadog_tags_query_param: () -> (nil | untyped)
+
+    def logs_requires_ci_vis: () -> (untyped | nil)
+  end
+end

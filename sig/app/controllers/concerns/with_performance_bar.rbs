@@ -1,0 +1,13 @@
+module WithPerformanceBar
+  extend ActiveSupport::Concern
+
+  private
+
+  def set_peek_enabled_for_current_request: () -> untyped
+
+  # Needed for Peek's routing to work;
+  # Peek::ResultsController#restrict_non_access calls this method.
+  def peek_enabled?: () -> untyped
+
+  def cookie_or_default_value: () -> untyped
+end

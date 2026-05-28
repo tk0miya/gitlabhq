@@ -1,0 +1,18 @@
+module Mutations
+  module WorkItems
+    module LinkedItems
+      class Base < BaseMutation
+        # Limit maximum number of items that can be linked at a time to avoid overloading the DB
+        MAX_WORK_ITEMS: 10
+
+        def ready?: (**untyped args) -> untyped
+
+        def resolve: (**untyped args) -> { work_item: untyped, errors: untyped, message: untyped }
+
+        private
+
+        def update_links: (untyped work_item, untyped params) -> untyped
+      end
+    end
+  end
+end

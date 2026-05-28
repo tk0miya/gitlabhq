@@ -1,0 +1,76 @@
+module Integrations
+  module ChatMessage
+    class BaseMessage
+      @markdown: untyped
+
+      @project_name: untyped
+
+      @project_url: untyped
+
+      @user_full_name: untyped
+
+      @user_name: untyped
+
+      @user_avatar: untyped
+
+      RELATIVE_LINK_REGEX: untyped
+
+      attr_reader markdown: untyped
+
+      attr_reader user_full_name: untyped
+
+      attr_reader user_name: untyped
+
+      attr_reader user_avatar: untyped
+
+      attr_reader project_name: untyped
+
+      attr_reader project_url: untyped
+
+      def initialize: (untyped params) -> void
+
+      def user_combined_name: () -> (::String | untyped)
+
+      def summary: () -> untyped
+
+      def pretext: () -> untyped
+
+      def fallback: () -> untyped
+
+      # NOTE: Make sure to call `#strip_markup` on any untrusted user input that's added to the
+      # `title`, `subtitle`, `text`, `fallback`, or `author_name` fields.
+      def attachments: () -> untyped
+
+      # NOTE: Make sure to call `#strip_markup` on any untrusted user input that's added to the
+      # `title`, `subtitle`, `text`, `fallback`, or `author_name` fields.
+      def activity: () -> untyped
+
+      private
+
+      # NOTE: Make sure to call `#strip_markup` on any untrusted user input that's added to the string.
+      def message: () -> untyped
+
+      def format: (untyped string) -> untyped
+
+      def format_relative_links: (untyped string) -> untyped
+
+      # Remove unsafe markup from user input, which can be used to hijack links in our own markup,
+      # or insert new ones.
+      #
+      # This currently removes Markdown and Slack "mrkdwn" links (keeping the link label),
+      # and all HTML markup (keeping the text nodes).
+      # We can't just escape the markup characters, because each chat app handles this differently.
+      #
+      # See:
+      # - https://api.slack.com/reference/surfaces/formatting#escaping
+      # - https://gitlab.com/gitlab-org/slack-notifier#escaping
+      def strip_markup: (untyped string) -> untyped
+
+      def attachment_color: () -> "#345"
+
+      def link: (untyped text, untyped url) -> ::String
+
+      def pretty_duration: (untyped seconds) -> untyped
+    end
+  end
+end

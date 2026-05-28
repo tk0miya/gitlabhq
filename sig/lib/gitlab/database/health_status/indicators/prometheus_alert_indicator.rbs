@@ -1,0 +1,64 @@
+module Gitlab
+  module Database
+    module HealthStatus
+      module Indicators
+        class PrometheusAlertIndicator
+          @connection: untyped
+
+          @prometheus_alert_db_indicators_settings: untyped
+
+          @prometheus_client: untyped
+
+          @mimir_client: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          ALERT_CONDITIONS: { above: :above, below: :below }
+
+          def initialize: (untyped context) -> void
+
+          def evaluate: () -> untyped
+
+          private
+
+          attr_reader connection: untyped
+
+          def indicator_name: () -> untyped
+
+          # By default SLIs are expected to be above SLOs, but there can be cases
+          # where we want it to be below SLO (eg: WAL rate). For such indicators
+          # the sub-class should override this default alert_condition.
+          def alert_condition: () -> untyped
+
+          def enabled?: () -> untyped
+
+          def slo_key: () -> untyped
+
+          def sli_key: () -> untyped
+
+          def fetch_connection_error_message: () -> ("Prometheus Settings not configured" | "Prometheus client is not ready" | ::String | untyped)
+
+          def prometheus_alert_db_indicators_settings: () -> untyped
+
+          def client: () -> untyped
+
+          def prometheus_client: () -> untyped
+
+          def mimir_client: () -> untyped
+
+          def sli_query: () -> untyped
+
+          def gitlab_sec_sli_query: () -> untyped
+
+          def slo: () -> untyped
+
+          def gitlab_sec_slo_query: () -> untyped
+
+          def fetch_sli: (untyped query) -> untyped
+
+          def unknown_signal: (untyped reason) -> untyped
+        end
+      end
+    end
+  end
+end

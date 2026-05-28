@@ -1,0 +1,21 @@
+module Packages
+  module Rubygems
+    class CreateDependenciesService
+      @package: untyped
+
+      @gemspec: untyped
+
+      def initialize: (untyped package, untyped gemspec) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader gemspec: untyped
+
+      def dependencies: () -> { "dependencies" => untyped }
+    end
+  end
+end

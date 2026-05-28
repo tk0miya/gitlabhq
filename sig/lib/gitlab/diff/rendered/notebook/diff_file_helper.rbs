@@ -1,0 +1,60 @@
+module Gitlab
+  module Diff
+    module Rendered
+      module Notebook
+        module DiffFileHelper
+          EMBEDDED_IMAGE_PATTERN: "    ![](data:image"
+
+          def strip_diff_frontmatter: (untyped diff_content) -> (untyped | nil)
+
+          # line_positions_at_source_diff: given the transformed lines,
+          # what are the correct values for old_pos and new_pos?
+          #
+          # Example:
+          #
+          # Original
+          # from | to
+          # A    | A
+          # B    | D
+          # C    | E
+          # F    | F
+          #
+          # Original Diff
+          #   A A
+          # - B
+          # - C
+          # +   D
+          # +   E
+          #   F F
+          #
+          # Transformed
+          # from | to
+          # A    | A
+          # C    | D
+          # B    | J
+          # L    | E
+          # K    | K
+          # F    | F
+          #
+          # Transformed diff | transf old, new | OG old_pos, new_pos |
+          #  A A             | 1, 1            | 1, 1                |
+          # -C               | 2, 2            | 3, 2                |
+          # -B               | 3, 2            | 2, 2                |
+          # -L               | 4, 2            | 0, 0                |
+          # +  D             | 5, 2            | 4, 2                |
+          # +  J             | 5, 3            | 0, 0                |
+          # +  E             | 5, 4            | 4, 3                |
+          #  K K             | 5, 5            | 0, 0                |
+          #  F F             | 6, 6            | 4, 4                |
+          def line_positions_at_source_diff: (untyped lines, untyped blocks) -> untyped
+
+          def lines_in_source_diff: (untyped source_diff_lines, untyped is_deleted_file, untyped is_added_file) -> { from: untyped, to: untyped }
+
+          def source_line_from_block: (untyped transformed_line, untyped transformed_blocks) -> (0 | untyped)
+
+          def image_as_rich_text: (untyped line_text) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

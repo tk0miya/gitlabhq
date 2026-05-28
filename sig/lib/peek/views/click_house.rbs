@@ -1,0 +1,21 @@
+module Peek
+  module Views
+    class ClickHouse < DetailedView
+      self.@thresholds: untyped
+
+      DEFAULT_THRESHOLDS: { calls: 5, duration: 1000, individual_call: 1000 }
+
+      THRESHOLDS: { production: { calls: 5, duration: 1000, individual_call: 1000 } }
+
+      def key: () -> "ch"
+
+      def self.thresholds: () -> untyped
+
+      private
+
+      def setup_subscribers: () -> untyped
+
+      def generate_detail: (untyped start, untyped finish, untyped data) -> { start: untyped, duration: untyped, sql: untyped, backtrace: untyped, database: ::String, statistics: ::String }
+    end
+  end
+end

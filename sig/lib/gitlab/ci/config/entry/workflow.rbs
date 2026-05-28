@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Workflow < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Validatable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          ALLOWED_KEYS: ::Array[:rules | :name | :auto_cancel]
+
+          def has_rules?: () -> untyped
+        end
+      end
+    end
+  end
+end

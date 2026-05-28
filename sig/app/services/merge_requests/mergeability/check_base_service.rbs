@@ -1,0 +1,42 @@
+module MergeRequests
+  module Mergeability
+    class CheckBaseService
+      @merge_request: untyped
+
+      @params: untyped
+
+      attr_reader merge_request: untyped
+
+      attr_reader params: untyped
+
+      def self.set_identifier: (untyped value) -> untyped
+
+      def self.set_description: (untyped value) -> untyped
+
+      def initialize: (merge_request: untyped, params: untyped) -> void
+
+      def skip?: () -> untyped
+
+      # When this method is true, we need to implement a cache_key
+      def cacheable?: () -> untyped
+
+      def cache_key: () -> untyped
+
+      def cache_ttl: () -> untyped
+
+      private
+
+      def success: (**untyped args) -> untyped
+
+      def checking: (**untyped args) -> untyped
+
+      def failure: (**untyped args) -> untyped
+
+      def inactive: (**untyped args) -> untyped
+
+      def warning: (**untyped args) -> untyped
+
+      def default_payload: (untyped args) -> untyped
+    end
+  end
+end

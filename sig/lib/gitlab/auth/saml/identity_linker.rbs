@@ -1,0 +1,19 @@
+module Gitlab
+  module Auth
+    module Saml
+      class IdentityLinker < OmniauthIdentityLinkerBase
+        extend ::Gitlab::Utils::Override
+
+        UnverifiedRequest: untyped
+
+        def link: () -> untyped
+
+        def raise_unless_request_is_gitlab_initiated!: () -> (untyped | nil)
+
+        def valid_gitlab_initiated_request?: () -> untyped
+
+        def saml_response: () -> untyped
+      end
+    end
+  end
+end

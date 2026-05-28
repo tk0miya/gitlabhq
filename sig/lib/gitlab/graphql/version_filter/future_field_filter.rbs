@@ -1,0 +1,19 @@
+module Gitlab
+  module Graphql
+    module VersionFilter
+      class FutureFieldFilter < GraphQL::Language::Visitor
+        @contain_future_fields: untyped
+
+        attr_reader contain_future_fields: untyped
+
+        def initialize: (*untyped, **untyped) ?{ (?) -> untyped } -> void
+
+        private
+
+        def future_field?: (untyped node) -> (false | untyped)
+
+        def introduced_version: (untyped node) -> (nil | untyped)
+      end
+    end
+  end
+end

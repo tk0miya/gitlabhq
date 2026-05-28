@@ -1,0 +1,25 @@
+module Groups
+  class AcceptingProjectCreationsFinder
+    @current_user: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    def owner_maintainer_groups_originating_from_group_shares: () -> untyped
+
+    def groups_that_user_has_owner_or_maintainer_access_via_direct_membership: () -> untyped
+
+    def developer_groups_originating_from_group_shares: () -> ::Array[untyped]
+
+    def groups_that_user_has_developer_access_and_above_via_direct_membership: () -> untyped
+
+    def groups_that_user_has_developer_access_via_direct_membership: () -> untyped
+
+    def project_creations_levels_allowing_developers_to_create_projects: () -> untyped
+  end
+end

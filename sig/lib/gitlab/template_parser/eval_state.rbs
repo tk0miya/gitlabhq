@@ -1,0 +1,14 @@
+module Gitlab
+  module TemplateParser
+    # A class for tracking state when evaluating a template
+    class EvalState
+      @loops: untyped
+
+      MAX_LOOPS: 4
+
+      def initialize: () -> void
+
+      def enter_loop: () { () -> untyped } -> untyped
+    end
+  end
+end

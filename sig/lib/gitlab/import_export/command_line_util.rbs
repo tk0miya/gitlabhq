@@ -1,0 +1,59 @@
+module Gitlab
+  module ImportExport
+    module CommandLineUtil
+      UNTAR_MASK: "u+rwX,go+rX,go-w"
+
+      DEFAULT_DIR_MODE: 448
+
+      CLEAN_DIR_IGNORE_FILE_NAMES: ::Array["." | ".."]
+
+      CommandLineUtilError: untyped
+
+      FileOversizedError: untyped
+
+      HardLinkError: untyped
+
+      def tar_czf: (archive: untyped, dir: untyped) -> untyped
+
+      def untar_zxf: (archive: untyped, dir: untyped) -> untyped
+
+      def tar_cf: (archive: untyped, dir: untyped) -> untyped
+
+      def untar_xf: (archive: untyped, dir: untyped) -> untyped
+
+      def gzip: (dir: untyped, filename: untyped) -> untyped
+
+      def gunzip: (dir: untyped, filename: untyped) -> untyped
+
+      def gzip_with_options: (dir: untyped, filename: untyped, ?options: untyped?) -> untyped
+
+      def mkdir_p: (untyped path) -> untyped
+
+      private
+
+      def download_or_copy_upload: (untyped uploader, untyped upload_path, ?size_limit: ::Integer) -> untyped
+
+      def download: (untyped url, untyped upload_path, ?size_limit: ::Integer) -> untyped
+
+      def tar_with_options: (archive: untyped, dir: untyped, options: untyped) -> untyped
+
+      def untar_with_options: (archive: untyped, dir: untyped, options: untyped) -> untyped
+
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables
+      def execute_cmd: (untyped cmd) -> (true | untyped)
+
+      def copy_files: (untyped source, untyped destination) -> true
+
+      # Scans and cleans the directory tree.
+      # Symlinks are considered legal but are removed.
+      # Files sharing hard links are considered illegal and the directory will be removed
+      # and a `HardLinkError` exception will be raised.
+      #
+      # @raise [HardLinkError] if there multiple hard links to the same file detected.
+      # @return [Boolean] true
+      def clean_extraction_dir!: (untyped dir) -> untyped
+
+      def cmd_error_message: (untyped output, untyped status) -> untyped
+    end
+  end
+end

@@ -1,0 +1,53 @@
+module Snippets
+  class BaseService < ::BaseProjectService
+    @uploaded_assets: untyped
+
+    @snippet_actions: untyped
+
+    UPDATE_COMMIT_MSG: "Update snippet"
+
+    INITIAL_COMMIT_MSG: "Initial commit"
+
+    INVALID_PARAMS_ERROR: :invalid_params_error
+
+    INVALID_PARAMS_MESSAGES: { cannot_be_used_together: "and snippet files cannot be used together", invalid_data: "have invalid data" }
+
+    SNIPPET_ACCESS_ERROR: :snippet_access_error
+
+    CreateRepositoryError: untyped
+
+    attr_reader uploaded_assets: untyped
+
+    attr_reader snippet_actions: untyped
+
+    def initialize: (?project: untyped?, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+    private
+
+    def visibility_allowed?: (untyped visibility_level) -> untyped
+
+    def forbidden_visibility_error: (untyped snippet) -> untyped
+
+    def valid_params?: () -> (true | untyped)
+
+    def invalid_params_error: (untyped snippet) -> untyped
+
+    def snippet_error_response: (untyped snippet, untyped reason) -> untyped
+
+    def add_snippet_repository_error: (snippet: untyped, error: untyped) -> untyped
+
+    def repository_error_message: (untyped error) -> untyped
+
+    def file_paths_to_commit: () -> untyped
+
+    def files_to_commit: (untyped snippet) -> untyped
+
+    def build_actions_from_params: (untyped snippet) -> untyped
+
+    def restricted_files_actions: () -> nil
+
+    def commit_attrs: (untyped snippet, untyped msg) -> { branch_name: untyped, message: untyped }
+
+    def delete_repository: (untyped snippet) -> untyped
+  end
+end

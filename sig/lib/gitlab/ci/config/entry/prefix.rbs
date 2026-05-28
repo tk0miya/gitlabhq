@@ -1,0 +1,14 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a key prefix.
+        #
+        class Prefix < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Validatable
+        end
+      end
+    end
+  end
+end

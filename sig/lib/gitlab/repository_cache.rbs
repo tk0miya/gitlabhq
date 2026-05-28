@@ -1,0 +1,34 @@
+# Interface to the Redis-backed cache store
+module Gitlab
+  class RepositoryCache
+    @repository: untyped
+
+    @namespace: untyped
+
+    @backend: untyped
+
+    attr_reader repository: untyped
+
+    attr_reader namespace: untyped
+
+    attr_reader backend: untyped
+
+    def initialize: (untyped repository, ?extra_namespace: untyped?, ?backend: untyped) -> void
+
+    def cache_key: (untyped type) -> ::String
+
+    def expire: (untyped key) -> untyped
+
+    def fetch: (untyped key) { (?) -> untyped } -> untyped
+
+    def exist?: (untyped key) -> untyped
+
+    def read: (untyped key) -> untyped
+
+    def write: (untyped key, untyped value, *untyped args) -> untyped
+
+    def fetch_without_caching_false: (untyped key) { () -> untyped } -> untyped
+
+    def self.store: () -> untyped
+  end
+end

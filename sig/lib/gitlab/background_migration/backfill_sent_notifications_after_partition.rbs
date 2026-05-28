@@ -1,0 +1,25 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillSentNotificationsAfterPartition < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def update_issue_records: (untyped sub_batch) -> untyped
+
+      def update_merge_request_records: (untyped sub_batch) -> untyped
+
+      def update_commit_records: (untyped sub_batch) -> untyped
+
+      def update_epic_records: (untyped sub_batch) -> untyped
+
+      def update_project_snippet_records: (untyped sub_batch) -> untyped
+
+      def update_design_records: (untyped sub_batch) -> untyped
+
+      def update_wiki_records: (untyped sub_batch) -> untyped
+
+      def query_prefix: (untyped sub_batch, untyped noteable_type) -> ::String
+    end
+  end
+end

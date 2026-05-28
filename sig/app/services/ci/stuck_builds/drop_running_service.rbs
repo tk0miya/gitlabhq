@@ -1,0 +1,15 @@
+module Ci
+  module StuckBuilds
+    class DropRunningService
+      include DropHelpers
+
+      BUILD_RUNNING_OUTDATED_TIMEOUT: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def running_stuck_builds: (untyped partition) -> untyped
+    end
+  end
+end

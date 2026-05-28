@@ -1,0 +1,226 @@
+# TodoService class
+#
+# Used for creating/updating todos after certain user actions
+#
+# Ex.
+#   TodoService.new.new_issue(issue, current_user)
+#
+class TodoService
+  include Gitlab::Utils::UsageData
+
+  BATCH_SIZE: 100
+
+  RESOLVE_ON_MR_FINALIZED_ACTIONS: ::Array[untyped]
+
+  # When create an issue we should:
+  #
+  #  * create a todo for assignee if issue is assigned
+  #  * create a todo for each mentioned user on issue
+  #
+  def new_issue: (untyped issue, untyped current_user) -> untyped
+
+  # When update an issue we should:
+  #
+  #  * mark all pending todos related to the issue for the current user as done
+  #
+  def update_issue: (untyped issue, untyped current_user, ?untyped skip_users) -> untyped
+
+  # When close an issue we should:
+  #
+  #  * mark all pending todos related to the target for the current user as done
+  #
+  def close_issue: (untyped issue, untyped current_user) -> untyped
+
+  # When we destroy a todo target we should:
+  #
+  #  * refresh the todos count cache for all users with todos on the target
+  #
+  # This needs to yield back to the caller to destroy the target, because it
+  # collects the todo users before the todos themselves are deleted, then
+  # updates the todo counts for those users.
+  #
+  def destroy_target: (untyped target) { (untyped) -> untyped } -> untyped
+
+  # When we reassign an assignable object (issuable, alert) we should:
+  #
+  #  * create a pending todo for new assignee if object is assigned
+  #
+  def reassigned_assignable: (untyped issuable, untyped current_user, ?untyped old_assignees) -> untyped
+
+  # When we reassign an reviewable object (merge request) we should:
+  #
+  #  * create a pending todo for new reviewer if object is assigned
+  #
+  def reassigned_reviewable: (untyped issuable, untyped current_user, ?untyped old_reviewers) -> untyped
+
+  # When create a merge request we should:
+  #
+  #  * creates a pending todo for assignee if merge request is assigned
+  #  * create a todo for each mentioned user on merge request
+  #
+  def new_merge_request: (untyped merge_request, untyped current_user) -> untyped
+
+  # When update a merge request we should:
+  #
+  #  * create a todo for each mentioned user on merge request
+  #
+  def update_merge_request: (untyped merge_request, untyped current_user, ?untyped skip_users) -> untyped
+
+  # When close a merge request we should:
+  #
+  #  * mark all pending todos related to the target for the current user as done
+  #  * mark pending todos for all users with specific actions as done
+  #
+  def close_merge_request: (untyped merge_request, untyped current_user) -> untyped
+
+  # When merge a merge request we should:
+  #
+  #  * mark all pending todos related to the target for the current user as done
+  #  * mark pending todos for all users with specific actions as done
+  #
+  def merge_merge_request: (untyped merge_request, untyped current_user) -> untyped
+
+  # When a build fails on the HEAD of a merge request we should:
+  #
+  #  * create a todo for each merge participant
+  #
+  def merge_request_build_failed: (untyped merge_request) -> untyped
+
+  # When a new commit is pushed to a merge request we should:
+  #
+  #  * mark all pending todos related to the merge request for that user as done
+  #
+  def merge_request_push: (untyped merge_request, untyped current_user) -> untyped
+
+  # When a build is retried to a merge request we should:
+  #
+  #  * mark all pending todos related to the merge request as done for each merge participant
+  #
+  def merge_request_build_retried: (untyped merge_request) -> untyped
+
+  # When a merge request could not be merged due to its unmergeable state we should:
+  #
+  #  * create a todo for each merge participant
+  #
+  def merge_request_became_unmergeable: (untyped merge_request) -> untyped
+
+  # When create a note we should:
+  #
+  #  * mark all pending todos related to the noteable for the note author as done
+  #  * create a todo for each mentioned user on note
+  #
+  def new_note: (untyped note, untyped current_user) -> untyped
+
+  # When update a note we should:
+  #
+  #  * mark all pending todos related to the noteable for the current user as done
+  #  * create a todo for each new user mentioned on note
+  #
+  def update_note: (untyped note, untyped current_user, ?untyped skip_users) -> untyped
+
+  # When an emoji is awarded we should:
+  #
+  #  * mark all pending todos related to the awardable for the current user as done
+  #
+  def new_award_emoji: (untyped awardable, untyped current_user) -> untyped
+
+  # When a SSH key is expiring soon we should:
+  #
+  # * create a todo for the user owning that SSH key
+  #
+  def ssh_key_expiring_soon: (untyped ssh_keys) -> untyped
+
+  # When a SSH key expired we should:
+  #
+  # * resolve any corresponding "expiring soon" todo
+  # * create a todo for the user owning that SSH key
+  #
+  def ssh_key_expired: (untyped ssh_keys) -> untyped
+
+  # When a merge request receives a review
+  #
+  #   * Mark all outstanding todos on this MR for the current user as done
+  #
+  def new_review: (untyped merge_request, untyped current_user) -> untyped
+
+  # When user marks a target as todo
+  def mark_todo: (untyped target, untyped current_user) -> untyped
+
+  def todo_exist?: (untyped issuable, untyped current_user) -> untyped
+
+  # Resolves all todos related to target for the current_user
+  def resolve_todos_for_target: (untyped target, untyped current_user) -> untyped
+
+  def resolve_todos: (untyped todos, untyped current_user, ?resolution: ::Symbol, ?resolved_by_action: ::Symbol) -> untyped
+
+  def resolve_todo: (untyped todo, untyped current_user, ?resolution: ::Symbol, ?resolved_by_action: ::Symbol) -> (nil | untyped)
+
+  def resolve_access_request_todos: (untyped member) -> (nil | untyped)
+
+  def restore_todos: (untyped todos, untyped current_user) -> untyped
+
+  def restore_todo: (untyped todo, untyped current_user) -> (nil | untyped)
+
+  def create_request_review_todo: (untyped target, untyped author, untyped reviewers) -> untyped
+
+  def create_member_access_request_todos: (untyped member) -> (true | untyped)
+
+  def create_review_submitted_todo: (untyped target, untyped review_author) -> untyped
+
+  private
+
+  # Resolves all todos related to target for all users
+  def resolve_todos_with_attributes_for_target: (untyped target, untyped attributes, ?resolution: ::Symbol, ?resolved_by_action: ::Symbol) -> untyped
+
+  def resolve_merge_train_removed_todos: (untyped merge_request) -> untyped
+
+  def create_todos: (untyped users, untyped attributes, untyped namespace, untyped project) -> (nil | untyped)
+
+  def excluded_user_ids: (untyped users, untyped attributes) -> (::Array[untyped] | untyped)
+
+  def bulk_insert_todos: (untyped users, untyped attributes) ?{ (?) -> untyped } -> untyped
+
+  def new_issuable: (untyped issuable, untyped author) -> untyped
+
+  def update_issuable: (untyped issuable, untyped author, ?untyped skip_users) -> (nil | untyped)
+
+  def toggling_tasks?: (untyped issuable) -> untyped
+
+  def handle_note: (untyped note, untyped author, ?untyped skip_users) -> (nil | untyped)
+
+  def create_assignment_todo: (untyped target, untyped author, ?untyped old_assignees) -> (nil | untyped)
+
+  def create_reviewer_todo: (untyped target, untyped author, ?untyped old_reviewers) -> (nil | untyped)
+
+  def create_mention_todos: (untyped parent, untyped target, untyped author, ?untyped? note, ?untyped skip_users) -> untyped
+
+  def create_build_failed_todo: (untyped merge_request, untyped todo_author) -> untyped
+
+  def create_unmergeable_todo: (untyped merge_request, untyped todo_author) -> untyped
+
+  def create_ssh_key_todos: (untyped ssh_keys, untyped action) -> untyped
+
+  def attributes_for_target: (untyped target) -> untyped
+
+  def attributes_for_todo: (untyped project, untyped target, untyped author, untyped action, ?untyped? note) -> untyped
+
+  def filter_todo_users: (untyped users, untyped parent, untyped target) -> untyped
+
+  def filter_mentioned_users: (untyped parent, untyped target, untyped author, ?untyped skip_users) -> untyped
+
+  def filter_directly_addressed_users: (untyped parent, untyped target, untyped author, ?untyped skip_users) -> untyped
+
+  def reject_users_without_access: (untyped users, untyped parent, untyped target) -> untyped
+
+  def select_users: (untyped users, untyped ability, untyped subject) -> untyped
+
+  def pending_todos: (untyped users, ?::Hash[untyped, untyped] criteria) -> untyped
+
+  def track_todo_creation: (untyped user, untyped issue_type, untyped namespace, untyped project) -> (nil | untyped)
+
+  def attributes_for_access_request_todos: (untyped source, untyped author, untyped action, ?untyped? note) -> untyped
+
+  def target_namespace: (untyped target) -> untyped
+
+  def work_item_activity_counter: () -> untyped
+end

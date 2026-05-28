@@ -1,0 +1,21 @@
+module Ci
+  module PipelineSchedules
+    class CreateService < BaseSaveService
+      @schedule: untyped
+
+      @user: untyped
+
+      @project: untyped
+
+      @params: untyped
+
+      AUTHORIZE: :create_pipeline_schedule
+
+      def initialize: (untyped project, untyped user, untyped params) -> void
+
+      private
+
+      def authorize_message: () -> untyped
+    end
+  end
+end

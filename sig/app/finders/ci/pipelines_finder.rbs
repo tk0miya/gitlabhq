@@ -1,0 +1,77 @@
+module Ci
+  class PipelinesFinder
+    @project: untyped
+
+    @current_user: untyped
+
+    @pipelines: untyped
+
+    @params: untyped
+
+    include UpdatedAtFilter
+
+    include CreatedAtFilter
+
+    include PipelineRefFilterIncludingReservedRefNames
+
+    attr_reader project: untyped
+
+    attr_reader pipelines: untyped
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    ALLOWED_INDEXED_COLUMNS: ::Array["id" | "status" | "ref" | "updated_at" | "user_id"]
+
+    ALLOWED_SCOPES: { RUNNING: "running", PENDING: "pending", FINISHED: "finished", BRANCHES: "branches", TAGS: "tags" }
+
+    def initialize: (untyped project, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def pipeline_for_ref_subquery: (untyped items) -> untyped
+
+    def refs_values: (untyped refs) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def from_derived_table: (untyped derived_pipelines_table, untyped refs_values_table) -> untyped
+
+    def branches: () -> untyped
+
+    def tags: () -> untyped
+
+    def prefiltered_pipelines: () -> untyped
+
+    def by_ids: (untyped items) -> untyped
+
+    def by_iids: (untyped items) -> untyped
+
+    def by_pipeline_schedules: (untyped items) -> untyped
+
+    def by_scope: (untyped items) -> untyped
+
+    def pipelines_for_refs: (untyped items, untyped refs) -> untyped
+
+    def by_status: (untyped items) -> untyped
+
+    def by_source: (untyped items) -> untyped
+
+    def by_ref: (untyped items) -> untyped
+
+    def by_sha: (untyped items) -> untyped
+
+    def by_username: (untyped items) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def by_yaml_errors: (untyped items) -> untyped
+
+    def by_name: (untyped items) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def sort_items: (untyped items) -> untyped
+  end
+end

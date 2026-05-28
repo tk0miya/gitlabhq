@@ -1,0 +1,42 @@
+module Cells
+  module Claimable
+    extend ActiveSupport::Concern
+
+    include Gitlab::Utils::StrongMemoize
+
+    CLAIMS_BUCKET_TYPE: untyped
+
+    CLAIMS_SUBJECT_TYPE: untyped
+
+    CLAIMS_SOURCE_TYPE: untyped
+
+    MissingPrimaryKeyError: untyped
+
+    BULK_CLAIMS_BATCH_SIZE: 500
+
+    # Builds a JSON-serializable Hash for passing through Sidekiq args.
+    def build_destroy_metadata_for_worker: (untyped attribute_name) -> (nil | { "bucket_type" => untyped, "bucket_value" => untyped, "subject_type" => untyped, "subject_id" => untyped, "source_type" => untyped, "primary_key" => untyped })
+
+    def handle_grpc_error: (untyped error) -> untyped
+
+    # Returns an array of metadata for all claim attributes
+    def cells_claims_metadata: () -> untyped
+
+    # Returns the claim metadata for a specific attribute, or nil if not claimable
+    def cells_claims_metadata_for_attribute: (untyped attr_name) -> (nil | untyped)
+
+    private
+
+    def cells_claims_attribute_claimable?: (untyped config) -> (true | untyped)
+
+    def cells_claims_save_changes: () -> (nil | untyped)
+
+    def cells_claims_destroy_changes: () -> (nil | untyped)
+
+    def cells_claims_metadata_for: (untyped type, untyped value) -> untyped
+
+    def cells_claims_default_metadata: () -> { subject: { type: untyped, id: untyped }, source: { type: untyped, rails_primary_key_id: untyped }, record: self }
+
+    def cells_claims_subject_key: () -> untyped
+  end
+end

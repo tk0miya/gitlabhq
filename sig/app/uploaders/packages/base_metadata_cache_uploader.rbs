@@ -1,0 +1,17 @@
+module Packages
+  class BaseMetadataCacheUploader < GitlabUploader
+    include ObjectStorage::Concern
+
+    include Packages::GcsSignedUrlMetadata
+
+    alias upload model
+
+    def filename: () -> untyped
+
+    def store_dir: () -> untyped
+
+    private
+
+    def dynamic_segment: () -> untyped
+  end
+end

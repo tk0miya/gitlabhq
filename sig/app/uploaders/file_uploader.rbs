@@ -1,0 +1,112 @@
+# This class breaks the actual CarrierWave concept.
+# Every uploader should use a base_dir that is model agnostic so we can build
+# back URLs from base_dir-relative paths saved in the `Upload` model.
+#
+# As the `.base_dir` is model dependent and **not** saved in the upload model (see #upload_path)
+# there is no way to build back the correct file path without the model, which defies
+# CarrierWave way of storing files.
+#
+class FileUploader < GitlabUploader
+  @model: untyped
+
+  @secret: untyped
+
+  @upload: untyped
+
+  @identifier: untyped
+
+  @uploaded_by_user_id: untyped
+
+  include UploaderHelper
+
+  include RecordsUploads::Concern
+
+  include ObjectStorage::Concern
+
+  prepend ObjectStorage::Extension::RecordsUploads
+
+  # This pattern is vulnerable to malicious inputs, so use Gitlab::UntrustedRegexp
+  # to place bounds on execution time
+  MARKDOWN_PATTERN: untyped
+
+  DYNAMIC_PATH_PATTERN: ::Regexp
+
+  VALID_SECRET_PATTERN: ::Regexp
+
+  InvalidSecret: untyped
+
+  def self.root: () -> untyped
+
+  def self.absolute_path: (untyped upload) -> untyped
+
+  def self.relative_path: (untyped upload) -> untyped
+
+  def self.base_dir: (untyped model, ?untyped store) -> untyped
+
+  # used in migrations and import/exports
+  def self.absolute_base_dir: (untyped model) -> untyped
+
+  # Returns the part of `store_dir` that can change based on the model's current
+  # path
+  #
+  # This is used to build Upload paths dynamically based on the model's current
+  # namespace and path, allowing us to ignore renames or transfers.
+  #
+  # model - Object that responds to `full_path` and `disk_path`
+  #
+  # Returns a String without a trailing slash
+  def self.model_path_segment: (untyped model) -> untyped
+
+  def self.generate_secret: () -> untyped
+
+  def self.extract_dynamic_path: (untyped path) -> untyped
+
+  def upload_paths: (untyped identifier) -> ::Array[untyped]
+
+  attr_accessor model: untyped
+
+  def initialize: (untyped model, ?untyped? mounted_as, **untyped uploader_context) -> void
+
+  def initialize_copy: (untyped from) -> untyped
+
+  # enforce the usage of Hashed storage when storing to
+  # remote store as the FileMover doesn't support OS
+  def base_dir: (?untyped? store) -> untyped
+
+  # we don't need to know the actual path, an uploader instance should be
+  # able to yield the file content on demand, so we should build the digest
+  def absolute_path: () -> untyped
+
+  def upload_path: () -> untyped
+
+  def local_storage_path: (untyped file_identifier) -> untyped
+
+  def remote_storage_path: (untyped file_identifier) -> untyped
+
+  def store_dirs: () -> ::Hash[untyped, untyped]
+
+  def to_h: () -> { alt: untyped, url: untyped, markdown: untyped }
+
+  def upload=: (untyped value) -> (nil | untyped)
+
+  def secret: () -> untyped
+
+  # return a new uploader with a file copy on another container
+  def self.copy_to: (untyped uploader, untyped to_container) -> untyped
+
+  def copy_file: (untyped file) -> untyped
+
+  private
+
+  def apply_context!: (untyped uploader_context) -> untyped
+
+  def build_upload: () -> untyped
+
+  def prune_store_dir: () -> untyped
+
+  def identifier: () -> untyped
+
+  def dynamic_segment: () -> untyped
+
+  def secure_url: () -> untyped
+end

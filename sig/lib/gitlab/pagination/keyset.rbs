@@ -1,0 +1,11 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      SUPPORTED_TYPES: ::Array["Project"]
+
+      def self.available_for_type?: (untyped relation) -> untyped
+
+      def self.available?: (untyped request_context, untyped relation) -> (false | true)
+    end
+  end
+end

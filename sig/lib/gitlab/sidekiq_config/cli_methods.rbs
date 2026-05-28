@@ -1,0 +1,32 @@
+# These methods are called by `sidekiq-cluster`, which runs outside of
+# the bundler/Rails context, so we cannot use any gem or Rails methods.
+module Gitlab
+  module SidekiqConfig
+    module CliMethods
+      @worker_metadatas: untyped
+
+      # The methods in this module are used as module methods
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables
+      extend ::Gitlab::SidekiqConfig::CliMethods
+
+      # The file names are misleading. Those files contain the metadata of the
+      # workers. They should be renamed to all_workers instead.
+      # https://gitlab.com/gitlab-com/gl-infra/scalability/-/issues/1018
+      QUEUE_CONFIG_PATHS: untyped
+
+      def worker_metadatas: (?untyped rails_path) -> untyped
+
+      def worker_queues: (?untyped rails_path) -> untyped
+
+      def expand_queues: (untyped queues, ?untyped all_queues) -> (::Array[untyped] | untyped)
+
+      def query_queues: (untyped query_string, untyped worker_metadatas) -> untyped
+
+      def clear_memoization!: () -> (untyped | nil)
+
+      private
+
+      def worker_names: (untyped workers) -> untyped
+    end
+  end
+end

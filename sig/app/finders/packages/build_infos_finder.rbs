@@ -1,0 +1,33 @@
+module Packages
+  class BuildInfosFinder
+    @package_ids: untyped
+
+    @params: untyped
+
+    MAX_PAGE_SIZE: 100
+
+    def initialize: (untyped package_ids, untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def lateral_query: () -> untyped
+
+    def max_rows_per_package_id: () -> untyped
+
+    def apply_cursor: (untyped build_infos) -> untyped
+
+    def first: () -> untyped
+
+    def last: () -> untyped
+
+    def max_page_size: () -> untyped
+
+    def before: () -> untyped
+
+    def after: () -> untyped
+
+    def support_next_page: () -> untyped
+  end
+end

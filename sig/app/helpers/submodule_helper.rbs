@@ -1,0 +1,34 @@
+module SubmoduleHelper
+  extend ::SubmoduleHelper
+
+  VALID_SUBMODULE_PROTOCOLS: ::Array["http" | "https" | "git" | "ssh"]
+
+  # links to files listing for submodule if submodule is a project on this server
+  def submodule_links: (untyped submodule_item, ?untyped? ref, ?untyped repository, ?untyped? diff_file) -> untyped
+
+  def submodule_links_for_url: (untyped submodule_item_id, untyped url, untyped repository, ?untyped? old_submodule_item_id) -> (::Array[nil] | ::Array[untyped | nil] | untyped)
+
+  def extract_namespace_project: (untyped url) -> (::Array[nil] | ::Array[untyped])
+
+  def gist_github_dot_com_url?: (untyped url) -> untyped
+
+  def github_dot_com_url?: (untyped url) -> untyped
+
+  def gitlab_dot_com_url?: (untyped url) -> untyped
+
+  def self_url?: (untyped url, untyped namespace, untyped project) -> (true | untyped)
+
+  def relative_self_url?: (untyped url) -> untyped
+
+  def gitlab_com_tree_links: (untyped namespace, untyped project, untyped commit, untyped old_commit) -> ::Array[untyped]
+
+  def gist_github_com_tree_links: (untyped namespace, untyped project, untyped commit) -> ::Array[untyped | nil]
+
+  def github_com_tree_links: (untyped namespace, untyped project, untyped commit, untyped old_commit) -> ::Array[untyped]
+
+  def relative_self_links: (untyped relative_path, untyped commit, untyped old_commit, untyped project) -> (::Array[nil] | untyped)
+
+  def sanitize_submodule_url: (untyped url) -> untyped
+
+  def url_helpers: () -> untyped
+end

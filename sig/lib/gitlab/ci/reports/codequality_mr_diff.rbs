@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Reports
+      class CodequalityMrDiff
+        @new_errors: untyped
+
+        @files: untyped
+
+        attr_reader files: untyped
+
+        def initialize: (untyped new_errors) -> void
+
+        private
+
+        def build_report!: () -> untyped
+
+        def build_mr_diff_payload: (untyped codequality_files, untyped degradation) -> untyped
+      end
+    end
+  end
+end

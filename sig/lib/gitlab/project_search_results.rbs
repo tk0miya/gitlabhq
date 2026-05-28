@@ -1,0 +1,90 @@
+module Gitlab
+  class ProjectSearchResults < SearchResults
+    @project: untyped
+
+    @repository_ref: untyped
+
+    @organization_id: untyped
+
+    @limited_blobs_count: untyped
+
+    @limited_notes_count: untyped
+
+    @wiki_blobs_count: untyped
+
+    @commits_count: untyped
+
+    @blobs: untyped
+
+    @wiki_blobs: untyped
+
+    @notes: untyped
+
+    @commits: untyped
+
+    @repository_project_ref: untyped
+
+    @repository_wiki_ref: untyped
+
+    attr_reader project: untyped
+
+    attr_reader repository_ref: untyped
+
+    attr_reader organization_id: untyped
+
+    def initialize: (untyped current_user, untyped query, project: untyped, ?repository_ref: untyped?, ?order_by: untyped?, ?sort: untyped?, ?filters: ::Hash[untyped, untyped], ?organization_id: untyped?) -> void
+
+    def objects: (untyped scope, ?page: untyped?, ?per_page: untyped, ?preload_method: untyped?) -> untyped
+
+    def formatted_count: (untyped scope) -> untyped
+
+    def users: () -> untyped
+
+    def limited_blobs_count: () -> untyped
+
+    alias blobs_count limited_blobs_count
+
+    def limited_notes_count: () -> untyped
+
+    def wiki_blobs_count: () -> untyped
+
+    def commits_count: () -> untyped
+
+    private
+
+    def paginated_commits: (untyped page, untyped per_page) -> untyped
+
+    def paginated_blobs: (untyped blobs, untyped page, untyped per_page) -> untyped
+
+    def paginated_wiki_blobs: (untyped blobs, untyped page, untyped per_page) -> untyped
+
+    def limit_up_to_page: (untyped page, untyped per_page) -> untyped
+
+    def blobs: (?limit: untyped) -> (::Array[untyped] | untyped)
+
+    def wiki_blobs: (?limit: untyped) -> (::Array[untyped] | untyped)
+
+    def notes: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def notes_finder: (untyped type) -> untyped
+
+    def commits: (limit: untyped) -> untyped
+
+    def find_commits: (untyped query, limit: untyped) -> (::Array[untyped] | untyped)
+
+    def find_commits_by_message: (untyped query, limit: untyped) -> untyped
+
+    def find_commit_by_sha: (untyped query) -> untyped
+
+    def project_ids_relation: () -> untyped
+
+    def filter_milestones_by_project: (untyped milestones) -> untyped
+
+    def repository_project_ref: () -> untyped
+
+    def repository_wiki_ref: () -> untyped
+
+    def issuable_params: () -> untyped
+  end
+end

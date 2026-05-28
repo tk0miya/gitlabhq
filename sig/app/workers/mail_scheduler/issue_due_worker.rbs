@@ -1,0 +1,10 @@
+module MailScheduler
+  class IssueDueWorker
+    include ApplicationWorker
+
+    include MailSchedulerQueue
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def perform: (untyped project_id) -> untyped
+  end
+end

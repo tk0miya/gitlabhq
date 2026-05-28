@@ -1,0 +1,26 @@
+module Projects
+  class ParticipantsService < BaseService
+    @noteable: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Users::ParticipableService
+
+    def execute: (untyped noteable) -> untyped
+
+    def project_members: () -> untyped
+
+    def project_members_relation: () -> untyped
+
+    private
+
+    def participation_object: () -> untyped
+
+    def organization: () -> untyped
+
+    # for users that have an OrganizationUserDetail for the current organization, use this instead
+    # of the User model for rendering username, display_name, and other details
+    # details should be pre-loaded to avoid N+1 queries
+    def organization_user_details_for_participants: (untyped participants) -> untyped
+  end
+end

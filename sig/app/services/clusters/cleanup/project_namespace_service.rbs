@@ -1,0 +1,15 @@
+module Clusters
+  module Cleanup
+    class ProjectNamespaceService < ::Clusters::Cleanup::BaseService
+      KUBERNETES_NAMESPACE_BATCH_SIZE: 100
+
+      def execute: () -> untyped
+
+      private
+
+      def delete_project_namespaces_in_batches: () -> untyped
+
+      def kubeclient_delete_namespace: (untyped kubernetes_namespace) -> untyped
+    end
+  end
+end

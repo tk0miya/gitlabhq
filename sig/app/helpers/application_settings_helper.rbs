@@ -1,0 +1,95 @@
+module ApplicationSettingsHelper
+  extend ::ApplicationSettingsHelper
+
+  def user_oauth_applications?: () -> untyped
+
+  def allowed_protocols_present?: () -> untyped
+
+  def enabled_protocol: () -> untyped
+
+  def kroki_available_formats: () -> untyped
+
+  def storage_weights: () -> untyped
+
+  def all_protocols_enabled?: () -> untyped
+
+  # The instance-level MCP toggle only applies to self-managed. On GitLab.com,
+  # MCP availability is controlled by the top-level group setting instead.
+  def mcp_server_setting_available?: () -> untyped
+
+  def ssh_enabled?: () -> untyped
+
+  def http_enabled?: () -> untyped
+
+  def anti_spam_service_enabled?: () -> untyped
+
+  def enabled_protocol_button: (untyped container, untyped protocol) -> untyped
+
+  def global_search_settings_checkboxes: (untyped form) -> ::Array[untyped]
+
+  def default_search_scope_options_for_select: () -> untyped
+
+  def restricted_level_checkboxes: (untyped form) -> untyped
+
+  def import_sources_checkboxes: (untyped form) -> untyped
+
+  def oauth_providers_checkboxes: (untyped form) -> untyped
+
+  def key_restriction_options_for_select: (untyped type) -> untyped
+
+  def repository_storages_options_json: () -> untyped
+
+  def external_authorization_description: () -> untyped
+
+  def external_authorization_allow_token_help_text: () -> untyped
+
+  def external_authorization_timeout_help_text: () -> untyped
+
+  def external_authorization_url_help_text: () -> untyped
+
+  def external_authorization_client_certificate_help_text: () -> untyped
+
+  def external_authorization_client_key_help_text: () -> untyped
+
+  def external_authorization_client_pass_help_text: () -> untyped
+
+  def external_authorization_client_url_help_text: () -> untyped
+
+  def sidekiq_job_limiter_mode_help_text: () -> untyped
+
+  def sidekiq_job_limiter_modes_for_select: () -> untyped
+
+  def visible_attributes: () -> untyped
+
+  def runner_token_expiration_interval_attributes: () -> { instance_runner_token_expiration_interval: untyped, group_runner_token_expiration_interval: untyped, project_runner_token_expiration_interval: untyped }
+
+  def external_authorization_service_attributes: () -> ::Array[:external_auth_client_cert | :external_auth_client_key | :external_auth_client_key_pass | :external_authorization_service_default_label | :external_authorization_service_enabled | :external_authorization_service_timeout | :external_authorization_service_url | :allow_deploy_tokens_and_keys_with_external_authn]
+
+  # ok to remove in REST API v5
+  def deprecated_attributes: () -> ::Array[:admin_notification_email | :asset_proxy_whitelist]
+
+  def expanded_by_default?: () -> untyped
+
+  def integration_expanded?: (untyped substring) -> untyped
+
+  def instance_clusters_enabled?: () -> untyped
+
+  def valid_runner_registrars: () -> untyped
+
+  def signup_enabled?: () -> untyped
+
+  def pending_user_count: () -> untyped
+
+  def registration_features_can_be_prompted?: () -> untyped
+
+  def signup_form_data: () -> { host: untyped, settings_path: untyped, signup_enabled: untyped, require_admin_approval_after_user_signup: untyped, email_confirmation_setting: untyped, minimum_password_length: untyped, minimum_password_length_min: untyped, minimum_password_length_max: untyped, minimum_password_length_help_link: untyped, domain_allowlist_raw: untyped, new_user_signups_cap: untyped, domain_denylist_enabled: untyped, denylist_type_raw_selected: untyped, domain_denylist_raw: untyped, email_restrictions_enabled: untyped, supported_syntax_link_url: "https://github.com/google/re2/wiki/Syntax", email_restrictions: untyped, after_sign_up_text: untyped, pending_user_count: untyped }
+
+  def vscode_extension_marketplace_settings_view: () -> { title: untyped, description: untyped, view_model: { presets: untyped, initialSettings: untyped } }
+
+  def vscode_extension_marketplace_settings_description: () -> untyped
+
+  def deletion_protection_data: () -> { deletion_adjourned_period: untyped }
+
+  # Overridden in EE
+  def custom_admin_roles_available?: () -> false
+end

@@ -1,0 +1,49 @@
+module Clusters
+  module Agents
+    module Authorizations
+      module CiAccess
+        class RefreshService
+          @agent: untyped
+
+          @config: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          AUTHORIZED_ENTITY_LIMIT: 500
+
+          def initialize: (untyped agent, config: untyped) -> void
+
+          def execute: () -> true
+
+          private
+
+          attr_reader agent: untyped
+
+          attr_reader config: untyped
+
+          def refresh_projects!: () -> untyped
+
+          def refresh_groups!: () -> untyped
+
+          def refresh_organization!: () -> (nil | untyped)
+
+          def allowed_project_configurations: () -> untyped
+
+          def allowed_group_configurations: () -> untyped
+
+          def organization_configuration: () -> untyped
+
+          def extract_config_entries: (entity: untyped) -> untyped
+
+          def allowed_projects: () -> untyped
+
+          def allowed_groups: () -> untyped
+
+          def group_root_ancestor?: () -> untyped
+
+          def organization_agents_enabled?: () -> untyped
+        end
+      end
+    end
+  end
+end

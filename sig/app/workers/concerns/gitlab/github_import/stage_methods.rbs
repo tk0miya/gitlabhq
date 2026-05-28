@@ -1,0 +1,24 @@
+module Gitlab
+  module GithubImport
+    module StageMethods
+      extend ActiveSupport::Concern
+
+      include ::Import::ResumableImportJob
+
+      # project_id - The ID of the GitLab project to import the data into.
+      def perform: (untyped project_id) -> untyped
+
+      private
+
+      # client - An instance of Gitlab::GithubImport::Client.
+      # project - An instance of Project.
+      def try_import: (untyped client, untyped project) -> untyped
+
+      def info: (untyped project_id, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def log_attributes: (untyped project_id, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def import_settings: (untyped project) -> untyped
+    end
+  end
+end

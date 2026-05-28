@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class ScannedResource
+          @request_method: untyped
+
+          @request_uri: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          attr_reader request_method: untyped
+
+          attr_reader request_uri: untyped
+
+          def initialize: (untyped uri, untyped request_method) -> void
+        end
+      end
+    end
+  end
+end

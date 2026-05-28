@@ -1,0 +1,25 @@
+module Gitlab
+  module ImportExport
+    class ImportFailureService
+      @importable: untyped
+
+      @association: untyped
+
+      @importable_column_name: untyped
+
+      RETRIABLE_EXCEPTIONS: ::Array[untyped]
+
+      attr_reader importable: untyped
+
+      def initialize: (untyped importable) -> void
+
+      def with_retry: (action: untyped, ?relation_key: untyped?, ?relation_index: untyped?) { () -> untyped } -> untyped
+
+      def log_import_failure: (source: untyped, exception: untyped, ?relation_key: untyped?, ?relation_index: untyped?, ?retry_count: ::Integer, ?external_identifiers: ::Hash[untyped, untyped]) -> untyped
+
+      private
+
+      def importable_column_name: () -> untyped
+    end
+  end
+end

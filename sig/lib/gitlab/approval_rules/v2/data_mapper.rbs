@@ -1,0 +1,25 @@
+module Gitlab
+  module ApprovalRules
+    module V2
+      class DataMapper
+        @v1_rule: untyped
+
+        def initialize: (untyped v1_rule) -> void
+
+        def migrate: () -> (nil | untyped)
+
+        private
+
+        attr_reader v1_rule: untyped
+
+        def merge_request_level_rule?: () -> untyped
+
+        def create_v2_rule: () -> untyped
+
+        def create_merge_request_association: (untyped v2_rule) -> untyped
+
+        def migrate_user_associations: (untyped v2_rule) -> untyped
+      end
+    end
+  end
+end

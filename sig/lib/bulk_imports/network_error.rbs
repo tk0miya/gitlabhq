@@ -1,0 +1,43 @@
+module BulkImports
+  class NetworkError < Error
+    @response: untyped
+
+    TRACKER_COUNTER_KEY: "bulk_imports/%{entity_id}/%{stage}/%{tracker_id}/network_error/%{error}"
+
+    ENTITY_COUNTER_KEY: "bulk_imports/%{entity_id}/network_error/%{error}"
+
+    NO_SPACE_LEFT_EXCEPTION: untyped
+
+    DECOMPRESSION_FAILURE_EXCEPTION: untyped
+
+    EXCEPTIONS_RETRY_DELAY: ::Hash[untyped, 120 | 60]
+
+    RETRIABLE_EXCEPTIONS: untyped
+
+    RETRIABLE_HTTP_CODES: ::Array[429 | 500 | 502 | 503 | 504]
+
+    DEFAULT_RETRY_DELAY_SECONDS: 30
+
+    MAX_RETRIABLE_COUNT: 10
+
+    attr_reader response: untyped
+
+    def initialize: (?untyped? message, ?response: untyped?) -> void
+
+    def retriable?: (untyped object) -> (untyped | false)
+
+    def retry_delay: () -> untyped
+
+    private
+
+    def retriable_exception?: () -> untyped
+
+    def retriable_http_code?: () -> untyped
+
+    def increment: (untyped object) -> untyped
+
+    def tracker_cache_key: (untyped tracker) -> untyped
+
+    def entity_cache_key: (untyped entity) -> untyped
+  end
+end

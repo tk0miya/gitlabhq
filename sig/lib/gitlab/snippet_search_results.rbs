@@ -1,0 +1,30 @@
+module Gitlab
+  class SnippetSearchResults < SearchResults
+    @organization_id: untyped
+
+    @limited_snippet_titles_count: untyped
+
+    include SnippetsHelper
+
+    attr_reader organization_id: untyped
+
+    def initialize: (untyped current_user, untyped query, ?organization_id: untyped?) -> void
+
+    def objects: (untyped scope, ?page: untyped?, ?per_page: untyped, ?preload_method: untyped?) -> untyped
+
+    def formatted_count: (untyped scope) -> untyped
+
+    def limited_snippet_titles_count: () -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def snippets: () -> untyped
+
+    def snippet_titles: () -> untyped
+
+    def paginated_objects: (untyped relation, untyped page, untyped per_page) -> untyped
+
+    def finder_params: () -> { organization_id: untyped }
+  end
+end

@@ -1,0 +1,9 @@
+module Integrations
+  module JiraConnect
+    class RemoveBranchWorker
+      include ApplicationWorker
+
+      def perform: (untyped project_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+    end
+  end
+end

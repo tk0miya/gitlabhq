@@ -1,0 +1,101 @@
+module Tasks
+  module Gitlab
+    module Permissions
+      module Assignable
+        class ValidateTask < ::Tasks::Gitlab::Permissions::BaseValidateTask
+          @violations: untyped
+
+          @resources: untyped
+
+          @categories: untyped
+
+          PERMISSION_DIR: untyped
+
+          PERMISSION_NAME_REGEX: untyped
+
+          DISALLOWED_ACTIONS: untyped
+
+          BOUNDARIES: untyped
+
+          # Raw permissions consumed by gPATs through paths the validator cannot statically detect.
+          # Today this is `Gitlab::GitAccess#check_granular_pat_permissions!`, which calls
+          # `Authz::Tokens::AuthorizeGranularScopesService` directly for git protocol commands.
+          GRANULAR_TOKEN_NON_API_CONSUMERS: untyped
+
+          def initialize: () -> void
+
+          private
+
+          attr_reader violations: untyped
+
+          attr_reader resources: untyped
+
+          attr_reader categories: untyped
+
+          def validate!: () -> untyped
+
+          def validate_granular_access_token_consumers: () -> untyped
+
+          def granular_access_token_raw_permissions: () -> untyped
+
+          def rest_granular_raw_permissions: () -> untyped
+
+          def rest_endpoint_routes: (untyped endpoints) -> untyped
+
+          def graphql_granular_raw_permissions: () -> untyped
+
+          def graphql_granular_directives: () -> untyped
+
+          def validate_permission: (untyped permission) -> (nil | untyped)
+
+          def permission_source_paths: (untyped permission_name) -> ::Array[untyped]
+
+          def validate_boundary_in_name: (untyped permission) -> (nil | untyped)
+
+          def validate_file: (untyped permission) -> (nil | untyped)
+
+          # Ensure resource and action based on the path matches name field value
+          def validate_name_path: (untyped permission) -> (nil | untyped)
+
+          def validate_names: () -> untyped
+
+          def validate_raw_permissions: () -> untyped
+
+          def validate_resources: () -> untyped
+
+          def validate_categories: () -> untyped
+
+          def validate_empty_resource_directories: () -> untyped
+
+          def validate_empty_category_directories: () -> untyped
+
+          def expected_file_path_data: (untyped permission) -> { expected: untyped, actual_path: untyped, pattern: untyped }
+
+          def format_all_errors: () -> untyped
+
+          def format_granular_access_token_unused_errors: () -> ("" | ::String)
+
+          def metadata_path: (untyped identifier) -> ::String
+
+          def format_boundary_in_name_errors: () -> ("" | ::String)
+
+          def format_duplicate_name_errors: () -> ("" | ::String)
+
+          def format_duplicate_raw_permission_errors: () -> ("" | ::String)
+
+          def format_name_path_mismatch_errors: () -> ("" | ::String)
+
+          def assignable_source_path: (untyped name) -> untyped
+
+          def assignable_source_paths_by_name: (untyped name) -> untyped
+
+          def error_messages: () -> { schema: ::String, name: ::String, action: ::String, boundary_in_name: ::String, duplicate_name: ::String, duplicate_raw_permission: ::String, file: ::String, name_path_mismatch: ::String, resource_metadata_schema: ::String, category_metadata_schema: ::String, empty_resource_directory: ::String, empty_category_directory: ::String, granular_access_token_unused: ::String }
+
+          def print_success_message: () -> untyped
+
+          def json_schema_file: () -> untyped
+        end
+      end
+    end
+  end
+end

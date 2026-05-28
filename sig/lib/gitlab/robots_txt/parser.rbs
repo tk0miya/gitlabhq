@@ -1,0 +1,44 @@
+module Gitlab
+  module RobotsTxt
+    class Parser
+      @raw_content: untyped
+
+      @disallow_rules: untyped
+
+      @allow_rules: untyped
+
+      DISALLOW_REGEX: ::Regexp
+
+      ALLOW_REGEX: ::Regexp
+
+      attr_reader disallow_rules: untyped
+
+      attr_reader allow_rules: untyped
+
+      def initialize: (untyped content) -> void
+
+      def disallowed?: (untyped path) -> (false | untyped)
+
+      private
+
+      # This parser is very basic as it only knows about `Disallow:`
+      # and `Allow:` lines, and simply ignores all other lines.
+      #
+      # Patterns ending in `$`, and `*` for 0 or more characters are recognized.
+      #
+      # It is case insensitive and `Allow` rules takes precedence
+      # over `Disallow`.
+      def parse_raw_content!: () -> ::Array[untyped]
+
+      def disallow_rule?: (untyped line) -> untyped
+
+      def get_disallow_pattern: (untyped line) -> untyped
+
+      def allow_rule?: (untyped line) -> untyped
+
+      def get_allow_pattern: (untyped line) -> untyped
+
+      def get_pattern: (untyped line, untyped rule_regex) -> untyped
+    end
+  end
+end

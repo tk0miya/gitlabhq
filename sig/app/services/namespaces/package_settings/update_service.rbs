@@ -1,0 +1,21 @@
+module Namespaces
+  module PackageSettings
+    class UpdateService < BaseContainerService
+      include Gitlab::Utils::StrongMemoize
+
+      ALLOWED_ATTRIBUTES: ::Array[:maven_duplicates_allowed | :maven_duplicate_exception_regex | :generic_duplicates_allowed | :generic_duplicate_exception_regex | :maven_package_requests_forwarding | :nuget_duplicates_allowed | :nuget_duplicate_exception_regex | :terraform_module_duplicates_allowed | :terraform_module_duplicate_exception_regex | :npm_package_requests_forwarding | :pypi_package_requests_forwarding | :lock_maven_package_requests_forwarding | :lock_npm_package_requests_forwarding | :lock_pypi_package_requests_forwarding | :nuget_symbol_server_enabled]
+
+      def execute: () -> untyped
+
+      private
+
+      def package_settings: () -> untyped
+
+      def allowed?: () -> untyped
+
+      def package_settings_params: () -> untyped
+
+      def allowed_attributes: () -> untyped
+    end
+  end
+end

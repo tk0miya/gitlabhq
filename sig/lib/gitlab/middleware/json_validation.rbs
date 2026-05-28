@@ -1,0 +1,87 @@
+module Gitlab
+  module Middleware
+    # JsonValidation middleware provides JSON request validation with configurable limits.
+    #
+    # Features:
+    # - Global validation limits for all JSON requests
+    # - Route-specific limits that override global defaults for matching paths
+    # - Multiple validation modes: :enforced, :logging, :disabled
+    # - Configurable limits for depth, array size, hash size, total elements, and body size
+    class JsonValidation
+      @app: untyped
+
+      @default_limits: untyped
+
+      @route_config_map: untyped
+
+      RACK_ENV_METADATA_KEY: "gitlab.json.validation.metadata"
+
+      COLLECT_EVENTS_PATH: ::Regexp
+
+      TERRAFORM_STATE_PATH: ::Regexp
+
+      NPM_INSTANCE_PACKAGES_PATH: ::Regexp
+
+      NPM_GROUP_PACKAGES_PATH: ::Regexp
+
+      NPM_PROJECT_PACKAGES_PATH: ::Regexp
+
+      INTERNAL_API_PATH: ::Regexp
+
+      DUO_WORKFLOW_PATH: ::Regexp
+
+      USAGE_DATA_TRACK_EVENTS_PATH: ::Regexp
+
+      PROTECTED_BRANCHES_PATH: ::Regexp
+
+      PROTECTED_TAGS_PATH: ::Regexp
+
+      DEFAULT_LIMITS: { max_depth: untyped, max_array_size: untyped, max_hash_size: untyped, max_total_elements: untyped, max_json_size_bytes: untyped, mode: untyped }
+
+      ROUTE_CONFIGS: ::Array[{ regex: untyped, methods: ::Array[:post], limits: untyped } | { regex: untyped, methods: ::Array[:post], limits: { max_depth: 64, max_array_size: 50000, max_hash_size: 50000, max_total_elements: 250000, max_json_size_bytes: untyped, mode: :logging } } | { regex: untyped, methods: ::Array[:post], limits: { max_depth: 32, max_array_size: 50000, max_hash_size: 50000, max_total_elements: 250000, max_json_size_bytes: untyped, mode: :enforced } } | { regex: untyped, methods: ::Array[:post], limits: { max_depth: 32, max_array_size: 50000, max_hash_size: 50000, max_total_elements: 0, max_json_size_bytes: untyped, mode: :enforced } } | { regex: untyped, methods: ::Array[:post], limits: { max_depth: 32, max_array_size: 5000, max_hash_size: 5000, max_total_elements: 100000, max_json_size_bytes: untyped, mode: :enforced } } | { regex: untyped, methods: ::Array[:post], limits: { max_depth: 32, max_array_size: 50000, max_hash_size: 50000, max_total_elements: 100000, max_json_size_bytes: untyped, mode: :enforced } } | { regex: untyped, methods: ::Array[:post | :patch], limits: { max_depth: 32, max_array_size: 50000, max_hash_size: 50000, max_total_elements: 100000, max_json_size_bytes: untyped, mode: :enforced } }]
+
+      def initialize: (untyped app, ?::Hash[untyped, untyped] options) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def global_logging?: () -> untyped
+
+      def global_disabled?: () -> untyped
+
+      def global_validation_mode: () -> untyped
+
+      def allow_if_validated: (untyped env, untyped request, untyped limits) -> untyped
+
+      def relative_url: () -> untyped
+
+      def build_route_config_map: (?untyped? custom_route_limits) -> untyped
+
+      def limits_for_request: (untyped request) -> untyped
+
+      def log_exceeded: (untyped ex, untyped request, untyped limits) -> untyped
+
+      def disabled_mode?: (untyped limits) -> untyped
+
+      def logging_mode?: (untyped limits) -> untyped
+
+      def json_request?: (untyped request) -> untyped
+
+      # JSON Validation using Oj streaming
+      def validate_json_request!: (untyped env, untyped request, untyped limits) -> untyped
+
+      def log_malformed_json: (untyped exception) -> untyped
+
+      def store_metadata: (untyped env, untyped handler) -> (nil | untyped)
+
+      def error_response: (untyped error, untyped status, ?message: untyped?) -> ::Array[untyped | { "Content-Type" => "application/json" } | ::Array[untyped]]
+
+      def internal_endpoint?: (untyped request) -> untyped
+
+      def duo_endpoint?: (untyped request) -> untyped
+
+      def strip_get_request_body: (untyped request) -> untyped
+    end
+  end
+end

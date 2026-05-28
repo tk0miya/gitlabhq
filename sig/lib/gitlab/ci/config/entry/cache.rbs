@@ -1,0 +1,32 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Cache < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Validatable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          ALLOWED_KEYS: ::Array[:key | :untracked | :paths | :when | :policy | :unprotect | :fallback_keys]
+
+          ALLOWED_POLICY: ::Regexp
+
+          DEFAULT_POLICY: "pull-push"
+
+          ALLOWED_WHEN: ::Array["on_success" | "on_failure" | "always"]
+
+          DEFAULT_WHEN: "on_success"
+
+          DEFAULT_FALLBACK_KEYS: ::Array[untyped]
+
+          def value: () -> untyped
+
+          class UnknownStrategy < ::Gitlab::Config::Entry::Node
+          end
+        end
+      end
+    end
+  end
+end

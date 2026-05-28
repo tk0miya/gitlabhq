@@ -1,0 +1,52 @@
+module DesignManagement
+  # This service generates smaller image versions for `DesignManagement::Design`
+  # records within a given `DesignManagement::Version`.
+  class GenerateImageVersionsService < DesignService
+    @version: untyped
+
+    @raw_files_by_path: untyped
+
+    @blobs: untyped
+
+    # We limit processing to only designs with file sizes that don't
+    # exceed `MAX_DESIGN_SIZE`.
+    #
+    # Note, we may be able to remove checking this limit, if when we come to
+    # implement a file size limit for designs, there are no designs that
+    # exceed 40MB on GitLab.com
+    #
+    # See https://gitlab.com/gitlab-org/gitlab/-/merge_requests/22860#note_281780387
+    MAX_DESIGN_SIZE: untyped
+
+    def initialize: (untyped version) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader version: untyped
+
+    def generate_image: (untyped action) -> untyped
+
+    # Returns the `CarrierWave::SanitizedFile` of the original design file
+    def get_raw_file: (untyped action) -> untyped
+
+    # Returns the `Carrierwave:SanitizedFile` instances for all of the original
+    # design files, mapping to { design.filename => `Carrierwave::SanitizedFile` }.
+    #
+    # As design files are stored in Git LFS, the only way to retrieve their original
+    # files is to first fetch the LFS pointer file data from the Git design repository.
+    # The LFS pointer file data contains an "OID" that lets us retrieve `LfsObject`
+    # records, which have an Uploader (`LfsObjectUploader`) for the original design file.
+    def raw_files_by_path: () -> untyped
+
+    # Returns the `Blob`s that correspond to the design files in the repository.
+    #
+    # All design `Blob`s are LFS Pointer files, and are therefore small amounts
+    # of data to load.
+    #
+    # `Blob`s whose size are above a certain threshold: `MAX_DESIGN_SIZE`
+    # are filtered out.
+    def blobs_by_oid: () -> untyped
+  end
+end

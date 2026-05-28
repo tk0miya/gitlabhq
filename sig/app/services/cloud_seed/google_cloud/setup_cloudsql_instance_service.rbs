@@ -1,0 +1,41 @@
+module CloudSeed
+  module GoogleCloud
+    class SetupCloudsqlInstanceService < ::CloudSeed::GoogleCloud::BaseService
+      @password: untyped
+
+      INSTANCE_STATE_RUNNABLE: "RUNNABLE"
+
+      OPERATION_STATE_DONE: "DONE"
+
+      DEFAULT_DATABASE_NAME: "main_db"
+
+      DEFAULT_DATABASE_USER: "main_user"
+
+      def execute: () -> untyped
+
+      private
+
+      def instance_name: () -> untyped
+
+      def database_version: () -> untyped
+
+      def database_name: () -> untyped
+
+      def username: () -> untyped
+
+      def password: () -> untyped
+
+      def save_ci_var: (untyped key, untyped value, ?bool is_masked) -> untyped
+
+      def save_instance_ci_vars: (untyped cloudsql_instance) -> untyped
+
+      def save_database_ci_vars: () -> untyped
+
+      def save_user_ci_vars: (untyped user_exists) -> untyped
+
+      def execute_database_setup: (untyped database_exists) -> untyped
+
+      def execute_user_setup: (untyped existing_user) -> untyped
+    end
+  end
+end

@@ -1,0 +1,56 @@
+# WorkItem model inherits from Issue model. It's planned to be its extension
+# with widgets support. Because WorkItems are internally Issues, WorkItemsFinder
+# can be almost identical to IssuesFinder, except it should return instances of
+# WorkItems instead of Issues
+# Arguments:
+#   klass - actual WorkItems class
+#   current_user - currently logged in user, if any
+#   params:
+#     work_item_parent_ids: integer[] (list of work item ids)
+#     ids: integer[] (list of work item ids)
+#
+module WorkItems
+  class WorkItemsFinder < IssuesFinder
+    extend ::Gitlab::Utils::Override
+
+    include TimeFrameFilter
+
+    def klass: () -> untyped
+
+    def params_class: () -> untyped
+
+    private
+
+    def filter_items: (untyped items) -> untyped
+
+    def by_parent: (untyped items) -> untyped
+
+    def by_widgets: (untyped items) -> untyped
+
+    def by_ids: (untyped items) -> untyped
+
+    def widget_filter_for: (untyped widget_class) -> untyped
+
+    def by_work_item_parent_ids: (untyped items) -> untyped
+
+    def by_negated_work_item_parent_ids: (untyped items) -> untyped
+
+    def by_parent_wildcard_id: (untyped items) -> untyped
+
+    def accessible_projects: () -> (nil | untyped)
+
+    def with_namespace_cte: () -> false
+
+    def include_subgroups_or_descendants?: () -> untyped
+
+    def include_group_work_items?: () -> false
+
+    def ancestor_group: () -> untyped
+
+    def include_descendants?: () -> untyped
+
+    def include_ancestors?: () -> untyped
+
+    def exclude_projects?: () -> untyped
+  end
+end

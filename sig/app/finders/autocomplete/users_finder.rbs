@@ -1,0 +1,81 @@
+module Autocomplete
+  class UsersFinder
+    @current_user: untyped
+
+    @project: untyped
+
+    @group: untyped
+
+    @search: untyped
+
+    @author_id: untyped
+
+    @todo_filter: untyped
+
+    @todo_state_filter: untyped
+
+    @filter_by_current_user: untyped
+
+    @states: untyped
+
+    @push_code: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    # The number of users to display in the results is hardcoded to 20, and
+    # pagination is not supported. This ensures that performance remains
+    # consistent and removes the need for implementing keyset pagination to
+    # ensure good performance.
+    LIMIT: 20
+
+    attr_reader current_user: untyped
+
+    attr_reader project: untyped
+
+    attr_reader group: untyped
+
+    attr_reader search: untyped
+
+    attr_reader author_id: untyped
+
+    attr_reader todo_filter: untyped
+
+    attr_reader todo_state_filter: untyped
+
+    attr_reader filter_by_current_user: untyped
+
+    attr_reader states: untyped
+
+    attr_reader push_code: untyped
+
+    def initialize: (params: untyped, current_user: untyped, project: untyped, group: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def author: () -> untyped
+
+    # Returns the users based on the input parameters, as an Array.
+    #
+    # This method is separate so it is easier to extend in EE.
+    # rubocop: disable CodeReuse/ActiveRecord
+    def limited_users: () -> untyped
+
+    def prepend_current_user?: () -> untyped
+
+    def prepend_author?: () -> untyped
+
+    def project_users: () -> untyped
+
+    def find_users: () -> untyped
+
+    def filter_users_by_push_ability: (untyped items) -> untyped
+
+    def preload_associations: (untyped items) -> untyped
+
+    def associations_to_preload: () -> ::Array[:status]
+
+    def use_minimum_char_limit: () -> (nil | false)
+  end
+end

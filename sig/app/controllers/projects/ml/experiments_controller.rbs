@@ -1,0 +1,25 @@
+module Projects
+  module Ml
+    class ExperimentsController < ::Projects::ApplicationController
+      @experiment: untyped
+
+      include Projects::Ml::ExperimentsHelper
+
+      MAX_CANDIDATES_PER_PAGE: 30
+
+      def index: () -> nil
+
+      def show: () -> untyped
+
+      def destroy: () -> untyped
+
+      private
+
+      def check_read: () -> (untyped | nil)
+
+      def check_write: () -> (untyped | nil)
+
+      def set_experiment: () -> untyped
+    end
+  end
+end

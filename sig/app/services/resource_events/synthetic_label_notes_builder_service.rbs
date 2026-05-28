@@ -1,0 +1,11 @@
+module ResourceEvents
+  class SyntheticLabelNotesBuilderService < BaseSyntheticNotesBuilderService
+    private
+
+    def synthetic_notes: () -> untyped
+
+    def label_events_by_discussion_id: () -> (::Array[untyped] | untyped)
+
+    def table_name: () -> "resource_label_events"
+  end
+end

@@ -1,0 +1,33 @@
+module GroupTree
+  @sort: untyped
+
+  @groups: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def render_group_tree: (untyped groups) -> untyped
+
+  private
+
+  # rubocop: disable CodeReuse/ActiveRecord -- requires specialized queries
+  def subgroups: (untyped groups) -> untyped
+
+  def root_groups: (untyped groups) -> untyped
+
+  def filtered_groups: (untyped groups) -> untyped
+
+  def groups_with_ancestors: (untyped group_ids) -> untyped
+
+  def paginate: (untyped group) -> untyped
+
+  def per_page: () -> untyped
+
+  def inactive?: () -> untyped
+
+  def keyset_pagination?: () -> untyped
+
+  def search_descendants?: () -> untyped
+
+  def safe_params: () -> untyped
+end

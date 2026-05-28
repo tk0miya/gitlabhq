@@ -1,0 +1,25 @@
+module DraftNotes
+  class CreateService < DraftNotes::BaseService
+    @in_reply_to_discussion_id: untyped
+
+    @discussion: untyped
+
+    attr_accessor in_draft_mode: untyped
+
+    attr_accessor in_reply_to_discussion_id: untyped
+
+    def initialize: (untyped merge_request, untyped current_user, ?untyped? params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def after_execute: () -> (nil | untyped)
+
+    def base_error: (untyped text) -> untyped
+
+    def discussion: () -> untyped
+
+    def can_resolve_discussion?: () -> untyped
+  end
+end

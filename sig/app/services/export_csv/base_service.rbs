@@ -1,0 +1,39 @@
+module ExportCsv
+  class BaseService
+    @objects: untyped
+
+    @resource_parent: untyped
+
+    @fields: untyped
+
+    @csv_builder: untyped
+
+    # Target attachment size before base64 encoding
+    TARGET_FILESIZE: untyped
+
+    def initialize: (untyped relation, ?untyped? resource_parent, ?untyped fields) -> void
+
+    def csv_data: () -> untyped
+
+    def email: (untyped user) -> untyped
+
+    def invalid_fields: () -> untyped
+
+    private
+
+    attr_reader resource_parent: untyped
+
+    attr_reader objects: untyped
+
+    attr_reader fields: untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def csv_builder: () -> untyped
+
+    def associations_to_preload: () -> ::Array[untyped]
+
+    def header_to_value_hash: () -> untyped
+
+    def preload_associations_in_batches?: () -> false
+  end
+end

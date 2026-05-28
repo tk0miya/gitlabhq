@@ -1,0 +1,27 @@
+module Ci
+  module Builds
+    Timeout: untyped
+
+    class TimeoutCalculator
+      @build: untyped
+
+      def self.timeout_sources: () -> untyped
+
+      def initialize: (untyped build) -> void
+
+      def applicable_timeout: () -> untyped
+
+      private
+
+      attr_reader build: untyped
+
+      def job_timeout: () -> (nil | untyped)
+
+      def project_timeout: () -> (nil | untyped)
+
+      def runner_timeout: () -> (nil | untyped)
+
+      def fetch_source: (untyped source) -> untyped
+    end
+  end
+end

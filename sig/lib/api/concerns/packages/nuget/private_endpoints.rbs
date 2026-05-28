@@ -1,0 +1,24 @@
+#
+# NuGet Package Manager Client API
+#
+# These API endpoints are not consumed directly by users, so there is no documentation for the
+# individual endpoints. They are called by the NuGet package manager client when users run commands
+# like `nuget install` or `nuget push`. The usage of the GitLab NuGet registry is documented here:
+# https://docs.gitlab.com/ee/user/packages/nuget_repository/
+#
+# Technical debt: https://gitlab.com/gitlab-org/gitlab/issues/35798
+module API
+  module Concerns
+    module Packages
+      module Nuget
+        module PrivateEndpoints
+          extend ActiveSupport::Concern
+
+          POSITIVE_INTEGER_REGEX: ::Regexp
+
+          NON_NEGATIVE_INTEGER_REGEX: ::Regexp
+        end
+      end
+    end
+  end
+end

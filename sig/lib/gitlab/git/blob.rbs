@@ -1,0 +1,142 @@
+module Gitlab
+  module Git
+    class Blob
+      self.@gitlab_blob_truncated_true: untyped
+
+      self.@gitlab_blob_truncated_false: untyped
+
+      self.@gitlab_blob_size: untyped
+
+      # Retain the actual size before it is encoded
+      @loaded_size: untyped
+
+      @loaded_all_data: untyped
+
+      # Retain the data before it is encoded
+      @raw: untyped
+
+      # Recalculate binary status if we loaded all data
+      @binary: untyped
+
+      @data: untyped
+
+      include Gitlab::BlobHelper
+
+      include Gitlab::EncodingHelper
+
+      extend Gitlab::Git::WrapsGitalyErrors
+
+      # This number is the maximum amount of data that we want to display to
+      # the user. We load as much as we can for encoding detection and LFS
+      # pointer parsing. All other cases where we need full blob data should
+      # use load_all_data!.
+      MAX_DATA_DISPLAY_SIZE: untyped
+
+      # The number of blobs loaded in a single Gitaly call
+      # When a large number of blobs requested, we'd want to fetch them in
+      # multiple Gitaly calls
+      BATCH_SIZE: 250
+
+      # These limits are used as a heuristic to ignore files which can't be LFS
+      # pointers. The format of these is described in
+      # https://github.com/git-lfs/git-lfs/blob/master/docs/spec.md#the-pointer
+      LFS_POINTER_MIN_SIZE: untyped
+
+      LFS_POINTER_MAX_SIZE: untyped
+
+      attr_accessor size: untyped
+
+      attr_accessor mode: untyped
+
+      attr_accessor id: untyped
+
+      attr_accessor commit_id: untyped
+
+      attr_accessor loaded_size: untyped
+
+      attr_accessor binary: untyped
+
+      attr_writer name: untyped
+
+      attr_writer path: untyped
+
+      attr_writer data: untyped
+
+      attr_reader raw: untyped
+
+      def self.gitlab_blob_truncated_true: () -> untyped
+
+      def self.gitlab_blob_truncated_false: () -> untyped
+
+      def self.gitlab_blob_size: () -> untyped
+
+      def self.find: (untyped repository, untyped sha, untyped path, ?limit: untyped) -> untyped
+
+      def self.tree_entry: (untyped repository, untyped sha, untyped path, untyped limit) -> (nil | untyped)
+
+      def self.raw: (untyped repository, untyped sha, ?limit: untyped) -> untyped
+
+      # Returns an array of Blob instances, specified in blob_references as
+      # [[commit_sha, path], [commit_sha, path], ...]. If blob_size_limit < 0 then the
+      # full blob contents are returned. If blob_size_limit >= 0 then each blob will
+      # contain no more than limit bytes in its data attribute.
+      #
+      # Keep in mind that this method may allocate a lot of memory. It is up
+      # to the caller to limit the number of blobs and blob_size_limit.
+      #
+      def self.batch: (untyped repository, untyped blob_references, ?blob_size_limit: untyped) -> untyped
+
+      # Returns an array of Blob instances just with the metadata, that means
+      # the data attribute has no content.
+      def self.batch_metadata: (untyped repository, untyped blob_references) -> untyped
+
+      # Find LFS blobs given an array of sha ids
+      # Returns array of Gitlab::Git::Blob
+      # Does not guarantee blob data will be set
+      def self.batch_lfs_pointers: (untyped repository, untyped blob_ids) -> untyped
+
+      def self.binary?: (untyped data) -> untyped
+
+      def self.size_could_be_lfs?: (untyped size) -> untyped
+
+      def initialize: (untyped options) -> void
+
+      def binary_in_repo?: () -> untyped
+
+      def data: () -> untyped
+
+      # Load all blob data (not just the first MAX_DATA_DISPLAY_SIZE bytes) into
+      # memory as a Ruby string.
+      def load_all_data!: (untyped repository) -> (nil | untyped)
+
+      def name: () -> untyped
+
+      def path: () -> untyped
+
+      def truncated?: () -> (false | untyped)
+
+      # Valid LFS object pointer is a text file consisting of
+      # version
+      # oid
+      # size
+      # see https://github.com/github/git-lfs/blob/v1.1.0/docs/spec.md#the-pointer
+      def lfs_pointer?: () -> untyped
+
+      def lfs_oid: () -> (untyped | nil)
+
+      def lfs_size: () -> (untyped | nil)
+
+      def external_storage: () -> (nil | :lfs)
+
+      alias external_size lfs_size
+
+      private
+
+      def record_metric_blob_size: () -> (nil | untyped)
+
+      def record_metric_truncated: (untyped bool) -> untyped
+
+      def has_lfs_version_key?: () -> untyped
+    end
+  end
+end

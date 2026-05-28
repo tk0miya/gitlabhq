@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Builder
+        class Release
+          @release: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          attr_reader release: untyped
+
+          DESCRIPTION_LIMIT: 1024
+
+          def initialize: (untyped release) -> void
+
+          def variables: () -> untyped
+        end
+      end
+    end
+  end
+end

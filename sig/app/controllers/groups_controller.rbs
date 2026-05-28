@@ -1,0 +1,108 @@
+class GroupsController < Groups::ApplicationController
+  @parent_group: untyped
+
+  @group: untyped
+
+  @badge_api_endpoint: untyped
+
+  @events: untyped
+
+  @notification_setting: untyped
+
+  include API::Helpers::RelatedResourcesHelpers
+
+  include Groups::Params
+
+  include IssuableCollectionsAction
+
+  include ParamsBackwardCompatibility
+
+  include PreviewMarkdown
+
+  include RecordUserLastActivity
+
+  include SendFileUpload
+
+  include FiltersEvents
+
+  extend ::Gitlab::Utils::Override
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def show: () -> untyped
+
+  def details: () -> untyped
+
+  def activity: () -> untyped
+
+  def edit: () -> untyped
+
+  def update: () -> untyped
+
+  def edit_group_origin_location: () -> untyped
+
+  def destroy: () -> untyped
+
+  def restore: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def transfer: () -> untyped
+
+  def export: () -> untyped
+
+  def download_export: () -> untyped
+
+  def unfoldered_environment_names: () -> untyped
+
+  def issues: () -> untyped
+
+  def render_show_html: () -> untyped
+
+  def render_details_view_atom: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def authorize_create_group!: () -> untyped
+
+  def determine_layout: () -> ("dashboard" | "group_settings" | "group")
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def load_events: () -> untyped
+
+  def user_actions: () -> (untyped | nil)
+
+  def build_canonical_path: (untyped group) -> untyped
+
+  def check_export_rate_limit!: () -> untyped
+
+  private
+
+  def successful_creation_hooks: () -> nil
+
+  def groups: () -> (untyped | nil)
+
+  def resource_parent: () -> untyped
+
+  def has_project_list?: () -> untyped
+
+  def enqueue_async_transfer: (untyped parent_group) -> untyped
+
+  def execute_sync_transfer: (untyped parent_group) -> untyped
+
+  def destroy_immediately: () -> untyped
+
+  # Overridden in EE
+  def redirect_if_epic_params: () -> nil
+
+  def redirect_issues_to_work_items: () -> untyped
+
+  def work_items_redirect_params: () -> untyped
+
+  # Overridden in EE
+  def additional_work_items_params: () -> ::Hash[untyped, untyped]
+
+  def skip_step_up_auth_for_owner_on_edit_and_update?: () -> untyped
+end

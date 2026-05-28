@@ -1,0 +1,9 @@
+module TodosDestroyer
+  class EntityLeaveWorker
+    include ApplicationWorker
+
+    include TodosDestroyerQueue
+
+    def perform: (untyped user_id, untyped entity_id, untyped entity_type) -> untyped
+  end
+end

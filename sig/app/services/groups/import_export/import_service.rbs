@@ -1,0 +1,61 @@
+module Groups
+  module ImportExport
+    class ImportService
+      @group: untyped
+
+      @current_user: untyped
+
+      @user_role: untyped
+
+      @shared: untyped
+
+      @logger: untyped
+
+      @import_file: untyped
+
+      @tree_restorer: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader group: untyped
+
+      attr_reader shared: untyped
+
+      def initialize: (group: untyped, user: untyped) -> void
+
+      def async_execute: () -> untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def schedule_work_item_placement: () -> untyped
+
+      def user_role: () -> untyped
+
+      def preallocate_iids: () -> true
+
+      def flush_iid_records: () -> (nil | untyped)
+
+      def import_file: () -> untyped
+
+      def restorers: () -> ::Array[untyped]
+
+      def tree_restorer: () -> untyped
+
+      def remove_import_file: () -> (nil | untyped)
+
+      def valid_user_permissions?: () -> (true | false)
+
+      def valid_import_file?: () -> (true | false)
+
+      def notify_success: () -> untyped
+
+      def notify_error: () -> untyped
+
+      def notify_error!: () -> untyped
+
+      def remove_base_tmp_dir: () -> untyped
+    end
+  end
+end

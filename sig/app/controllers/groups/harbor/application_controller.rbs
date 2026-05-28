@@ -1,0 +1,11 @@
+module Groups
+  module Harbor
+    class ApplicationController < Groups::ApplicationController
+      include ::Harbor::Access
+
+      private
+
+      def authorize_read_harbor_registry!: () -> (untyped | nil)
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Banzai
+  class IssuableExtractor
+    @context: untyped
+
+    attr_reader context: untyped
+
+    ISSUE_REFERENCE_TYPE: "@data-reference-type=\"issue\""
+
+    WORK_ITEM_REFERENCE_TYPE: "@data-reference-type=\"work_item\""
+
+    MERGE_REQUEST_REFERENCE_TYPE: "@data-reference-type=\"merge_request\""
+
+    # context - An instance of Banzai::RenderContext.
+    def initialize: (untyped context) -> void
+
+    # Returns Hash in the form { node => issuable_instance }
+    def extract: (untyped documents) -> untyped
+
+    private
+
+    def issuables_for_nodes: (untyped nodes) -> untyped
+
+    def parsers: () -> ::Array[untyped]
+
+    def query: () -> ::String
+
+    def reference_types: () -> ::Array[untyped]
+  end
+end

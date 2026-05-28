@@ -1,0 +1,9 @@
+module Ci
+  class DropPipelineWorker
+    include ApplicationWorker
+
+    include PipelineQueue
+
+    def perform: (untyped pipeline_id, untyped failure_reason) -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  class AnonymousSession
+    @remote_ip: untyped
+
+    @session_lookup_name: untyped
+
+    def initialize: (untyped remote_ip) -> void
+
+    def count_session_ip: () -> untyped
+
+    def session_count: () -> untyped
+
+    def cleanup_session_per_ip_count: () -> untyped
+
+    private
+
+    attr_reader remote_ip: untyped
+
+    def session_lookup_name: () -> untyped
+  end
+end

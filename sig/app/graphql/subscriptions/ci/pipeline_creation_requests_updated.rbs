@@ -1,0 +1,9 @@
+module Subscriptions
+  module Ci
+    class PipelineCreationRequestsUpdated < ::Subscriptions::BaseSubscription
+      include Gitlab::Graphql::Laziness
+
+      def authorized?: (merge_request_id: untyped) -> untyped
+    end
+  end
+end

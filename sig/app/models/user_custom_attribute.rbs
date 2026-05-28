@@ -1,0 +1,53 @@
+class UserCustomAttribute < ApplicationRecord
+  BLOCKED_BY: "blocked_by"
+
+  UNBLOCKED_BY: "unblocked_by"
+
+  ARKOSE_RISK_BAND: "arkose_risk_band"
+
+  ARKOSE_SESSION: "arkose_session"
+
+  AUTO_BANNED_BY_ABUSE_REPORT_ID: "auto_banned_by_abuse_report_id"
+
+  AUTO_BANNED_BY_SPAM_LOG_ID: "auto_banned_by_spam_log_id"
+
+  TRUSTED_BY: "trusted_by"
+
+  AUTO_BANNED_BY: "auto_banned_by"
+
+  IDENTITY_VERIFICATION_PHONE_EXEMPT: "identity_verification_phone_exempt"
+
+  IDENTITY_VERIFICATION_EXEMPT: "identity_verification_exempt"
+
+  DELETED_OWN_ACCOUNT_AT: "deleted_own_account_at"
+
+  SKIPPED_ACCOUNT_DELETION_AT: "skipped_account_deletion_at"
+
+  DEEP_CLEAN_CI_USAGE_WHEN_BANNED: "deep_clean_ci_usage_when_banned"
+
+  TOP_LEVEL_GROUP_LIMIT_EXEMPT: "top_level_group_limit_exempt"
+
+  def self.declarative_policy_class: () -> "Users::CustomAttributePolicy"
+
+  def self.upsert_custom_attributes: (untyped custom_attributes) -> untyped
+
+  def self.sessions: () -> untyped
+
+  def self.set_banned_by_abuse_report: (untyped abuse_report) -> (nil | untyped)
+
+  def self.set_banned_by_spam_log: (untyped spam_log) -> (nil | untyped)
+
+  def self.set_auto_banned_by: (user: untyped, reason: untyped) -> untyped
+
+  def self.set_trusted_by: (user: untyped, trusted_by: untyped) -> (nil | untyped)
+
+  def self.set_deleted_own_account_at: (untyped user) -> (nil | untyped)
+
+  def self.set_skipped_account_deletion_at: (untyped user) -> (nil | untyped)
+
+  def self.upsert_custom_attribute: (user_id: untyped, key: untyped, value: untyped) -> (nil | untyped)
+
+  private
+
+  def self.blocked_users: () -> untyped
+end

@@ -1,0 +1,116 @@
+class BlobPresenter < Gitlab::View::Presenter::Delegated
+  @_trimmed_blob_data: untyped
+
+  @_blob_data: untyped
+
+  @_blob_language: untyped
+
+  @all_lines: untyped
+
+  include ApplicationHelper
+
+  include BlobHelper
+
+  include DiffHelper
+
+  include TreeHelper
+
+  include ChecksCollaboration
+
+  include Gitlab::EncodingHelper
+
+  def highlight_and_trim: (ellipsis_svg: untyped, trim_length: untyped, ?plain: untyped?) -> untyped
+
+  def highlight: (?to: untyped?, ?plain: untyped?, ?used_on: ::Symbol) -> untyped
+
+  def plain_data: () -> (nil | untyped)
+
+  def trimmed_blob_data: (untyped trim_length) -> untyped
+
+  def blob_data: (untyped to) -> untyped
+
+  def blob_language: () -> untyped
+
+  def raw_plain_data: () -> (untyped | nil)
+
+  def web_url: () -> untyped
+
+  def web_path: () -> untyped
+
+  def edit_blob_path: () -> untyped
+
+  def raw_path: () -> untyped
+
+  def replace_path: () -> untyped
+
+  def pipeline_editor_path: () -> (untyped | nil)
+
+  def gitpod_blob_url: () -> (nil | ::String)
+
+  def find_file_path: () -> untyped
+
+  def blame_path: () -> untyped
+
+  def base64_encoded_blob: () -> untyped
+
+  def history_path: () -> untyped
+
+  def permalink_path: () -> untyped
+
+  def environment_formatted_external_url: () -> (nil | untyped)
+
+  def environment_external_url_for_route_map: () -> (nil | untyped)
+
+  # Will be overridden in EE
+  def code_owners: () -> ::Array[untyped]
+
+  def fork_and_edit_path: () -> untyped
+
+  def ide_fork_and_edit_path: () -> untyped
+
+  def fork_and_view_path: () -> untyped
+
+  def can_modify_blob?: () -> untyped
+
+  def can_modify_blob_with_web_ide?: () -> untyped
+
+  def can_current_user_push_to_branch?: () -> (false | untyped)
+
+  def archived?: () -> untyped
+
+  def ide_edit_path: () -> untyped
+
+  def external_storage_url: () -> (nil | untyped)
+
+  def code_navigation_path: () -> untyped
+
+  def project_blob_path_root: () -> untyped
+
+  private
+
+  def path_params: () -> (::Array[untyped | { ref_type: untyped }] | ::Array[untyped])
+
+  def ref_type: () -> untyped
+
+  def url_helpers: () -> untyped
+
+  def environment: () -> untyped
+
+  def project: () -> untyped
+
+  def commit_id: () -> untyped
+
+  def ref_qualified_path: () -> untyped
+
+  def load_all_blob_data: () -> (untyped | nil)
+
+  def limited_trimmed_blob_data: (untyped trim_length) -> ::Array[untyped]
+
+  def limited_blob_data: (?to: untyped?) -> untyped
+
+  def all_lines: () -> untyped
+
+  def gitattr_language: () -> untyped
+
+  def detect_language: () -> (nil | untyped)
+end

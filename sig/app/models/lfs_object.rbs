@@ -1,0 +1,27 @@
+class LfsObject < ApplicationRecord
+  include AfterCommitQueue
+
+  include Checksummable
+
+  include EachBatch
+
+  include FileStoreMounter
+
+  include ObjectStorable
+
+  STORE_COLUMN: :file_store
+
+  BATCH_SIZE: 3000
+
+  def self.for_oid_and_size: (untyped oid, untyped size) -> untyped
+
+  def self.not_linked_to_project: (untyped project, ?repository_type: untyped?) -> untyped
+
+  def project_allowed_access?: (untyped project) -> untyped
+
+  def local_store?: () -> untyped
+
+  def self.unreferenced_in_batches: () { (untyped) -> untyped } -> untyped
+
+  def self.calculate_oid: (untyped path) -> untyped
+end

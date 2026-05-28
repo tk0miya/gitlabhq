@@ -1,0 +1,17 @@
+module Resolvers
+  module Ci
+    module Catalog
+      module Resources
+        class VersionsResolver < BaseResolver
+          alias catalog_resource object
+
+          def resolve: (?name: untyped?, ?search: untyped?) -> untyped
+
+          private
+
+          def fetch_catalog_resources_versions: () -> untyped
+        end
+      end
+    end
+  end
+end

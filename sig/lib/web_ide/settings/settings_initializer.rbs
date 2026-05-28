@@ -1,0 +1,12 @@
+module WebIde
+  module Settings
+    class SettingsInitializer
+      SETTINGS_DEPENDENCIES: { vscode_extension_marketplace_view_model: ::Array[:vscode_extension_marketplace_metadata | :vscode_extension_marketplace], vscode_extension_marketplace_metadata: ::Array[:vscode_extension_marketplace_home_url], vscode_extension_marketplace_home_url: ::Array[:vscode_extension_marketplace] }
+
+      # @param [Hash] context
+      # @return [Hash]
+      # @raise [RuntimeError]
+      def self.init: (untyped context) -> untyped
+    end
+  end
+end

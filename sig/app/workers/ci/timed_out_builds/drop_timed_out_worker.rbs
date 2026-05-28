@@ -1,0 +1,12 @@
+module Ci
+  module TimedOutBuilds
+    class DropTimedOutWorker
+      include ApplicationWorker
+
+      # rubocop:disable Scalability/CronWorkerContext -- This is an instance-wide cleanup query
+      include CronjobQueue
+
+      def perform: () -> untyped
+    end
+  end
+end

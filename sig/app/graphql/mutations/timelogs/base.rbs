@@ -1,0 +1,9 @@
+module Mutations
+  module Timelogs
+    class Base < Mutations::BaseMutation
+      private
+
+      def response: (untyped result) -> { timelog: untyped, errors: untyped }
+    end
+  end
+end

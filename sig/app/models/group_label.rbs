@@ -1,0 +1,7 @@
+class GroupLabel < Label
+  alias subject group
+
+  def subject_foreign_key: () -> "group_id"
+
+  def preloaded_parent_container: () -> untyped
+end

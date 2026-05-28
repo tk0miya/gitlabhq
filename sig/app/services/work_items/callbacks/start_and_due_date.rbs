@@ -1,0 +1,25 @@
+module WorkItems
+  module Callbacks
+    class StartAndDueDate < Base
+      include ::Gitlab::Utils::StrongMemoize
+
+      # Required for the Legacy Issues
+      ALLOWED_PARAMS: ::Array[:due_date | :start_date]
+
+      def before_update: () -> untyped
+
+      def before_create: () -> untyped
+
+      private
+
+      def assign_attributes: () -> (nil | untyped)
+
+      def dates_source_attributes: () -> untyped
+
+      # overridden in EE
+      def build_dates_source_attributes: () -> untyped
+
+      def empty_dates_source: () -> { due_date: nil, due_date_fixed: nil, due_date_is_fixed: true, start_date: nil, start_date_fixed: nil, start_date_is_fixed: true }
+    end
+  end
+end

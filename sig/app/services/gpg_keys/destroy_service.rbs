@@ -1,0 +1,15 @@
+module GpgKeys
+  class DestroyService < Keys::BaseService
+    BATCH_SIZE: 1000
+
+    def execute: (untyped key) -> untyped
+
+    private
+
+    # When a GPG key is deleted, the related signatures have their gpg_key_id column nullified
+    # However, when the number of signatures is large, then a timeout may happen
+    # The signatures are processed in batches before GPG key delete is attempted in order to
+    # avoid timeouts
+    def nullify_signatures: (untyped key) -> untyped
+  end
+end

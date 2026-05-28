@@ -1,0 +1,45 @@
+module Gitlab
+  module Tracking
+    module Destinations
+      class DestinationConfiguration
+        @uri: untyped
+
+        PRODUCT_USAGE_EVENT_COLLECT_ENDPOINT: "https://events.gitlab.net"
+
+        PRODUCT_USAGE_EVENT_COLLECT_ENDPOINT_STG: "https://events-stg.gitlab.net"
+
+        SNOWPLOW_MICRO_DEFAULT_URI: "http://localhost:9091"
+
+        def self.snowplow_configuration: () -> untyped
+
+        def self.snowplow_micro_configuration: () -> untyped
+
+        def self.non_production_environment?: () -> untyped
+
+        private
+
+        def self.snowplow_micro_uri: () -> untyped
+
+        def self.snowplow_uri: () -> untyped
+
+        def self.convert_if_bare_hostname: (untyped hostname) -> (untyped | ::String)
+
+        public
+
+        attr_reader uri: untyped
+
+        def initialize: (untyped collector_uri) -> void
+
+        def hostname: () -> (untyped | ::String)
+
+        def port: () -> untyped
+
+        def protocol: () -> untyped
+
+        private
+
+        def default_port?: () -> untyped
+      end
+    end
+  end
+end

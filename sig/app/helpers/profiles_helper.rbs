@@ -1,0 +1,41 @@
+module ProfilesHelper
+  include UsersHelper
+
+  def commit_email_select_options: (untyped user) -> untyped
+
+  def attribute_provider_label: (untyped attribute) -> untyped
+
+  def user_profile?: () -> untyped
+
+  def ssh_key_usage_types: () -> ::Hash[untyped, "auth_and_signing" | "auth" | "signing"]
+
+  # Overridden in EE::ProfilesHelper#ssh_key_expiration_tooltip
+  def ssh_key_expiration_tooltip: (untyped key) -> (untyped | nil)
+
+  # Overridden in EE::ProfilesHelper#ssh_key_expires_field_description
+  def ssh_key_expires_field_description: () -> untyped
+
+  # Overridden in EE::ProfilesHelper#ssh_key_expiration_policy_enabled?
+  def ssh_key_expiration_policy_enabled?: () -> false
+
+  # Overridden in EE::ProfilesHelper#prevent_delete_account?
+  def prevent_delete_account?: () -> false
+
+  def email_resend_confirmation_link: (untyped user) -> (nil | untyped)
+
+  def user_profile_data: (untyped user) -> ::Hash[:profile_path | :profile_avatar_path | :avatar_url | :has_avatar | :gravatar_enabled | :gravatar_link | :brand_profile_image_guidelines | :cropper_css_path | :user_path | :timezones | :user_timezone | :id | :name | :pronouns | :location | :pronunciation | :website_url | :job_title | :organization | :bio | :include_private_contributions | :achievements_enabled | :private_profile | untyped, untyped]
+
+  def delete_account_modal_data: () -> { action_url: untyped, confirm_with_password: untyped, username: untyped, delay_user_account_self_deletion: untyped }
+
+  def email_profile_data: (untyped user) -> { email: untyped, public_email: untyped, commit_email: untyped, public_email_options: untyped, commit_email_options: untyped, email_help_text: untyped, email_resend_confirmation_link: untyped, is_email_readonly: untyped, email_change_disabled: untyped, managing_group_name: untyped, needs_password_confirmation: untyped, password_automatically_set: untyped, allow_password_authentication_for_web: untyped, provider_label: untyped }
+
+  def sanitized_email_help_text: (untyped user) -> untyped
+
+  def email_otp_enrollment_restriction_readable_reason: (untyped user) -> (nil | untyped)
+
+  def email_otp_enrollment_restriction_confirm_data: (untyped user) -> { help_text: untyped, disabled: untyped, email_otp_required: untyped, path: untyped }
+
+  private
+
+  def needs_password_confirmation?: (untyped user) -> untyped
+end

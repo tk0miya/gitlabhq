@@ -1,0 +1,19 @@
+module Gitlab
+  module Instrumentation
+    module RedisHelper
+      APDEX_EXCLUDE: ::Array["brpop" | "blpop" | "brpoplpush" | "bzpopmin" | "bzpopmax" | "command" | "xread" | "xreadgroup"]
+
+      def instrument_call: (untyped commands, untyped instrumentation_class, ?bool pipelined) { () -> untyped } -> untyped
+
+      def measure_write_size: (untyped command, untyped instrumentation_class) -> untyped
+
+      def measure_read_size: (untyped result, untyped instrumentation_class) -> untyped
+
+      def exclude_from_apdex?: (untyped commands) -> untyped
+
+      private
+
+      def instrument_errors: (untyped instrumentation_class, untyped error) -> untyped
+    end
+  end
+end

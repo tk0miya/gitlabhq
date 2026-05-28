@@ -1,0 +1,27 @@
+module BulkImports
+  module Groups
+    module Loaders
+      class GroupLoader
+        TWO_FACTOR_KEY: "require_two_factor_authentication"
+
+        GroupCreationError: untyped
+
+        def load: (untyped context, untyped data) -> untyped
+
+        private
+
+        def organization_id: (untyped destination_namespace, untyped user) -> untyped
+
+        def destination: (untyped path) -> untyped
+
+        def user_can_create_group?: (untyped current_user, untyped data) -> untyped
+
+        def two_factor_requirements_met?: (untyped current_user, untyped data) -> (true | untyped)
+
+        def group_exists?: (untyped destination_namespace, untyped path) -> untyped
+
+        def user_namespace_destination?: (untyped destination_namespace) -> (false | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module LooseForeignKeys
+  class TurboModificationTracker < ModificationTracker
+    extend ::Gitlab::Utils::Override
+
+    def max_runtime: () -> untyped
+
+    def max_deletes: () -> 200000
+
+    def max_updates: () -> 150000
+  end
+end

@@ -1,0 +1,88 @@
+# Extending this module will give you the ability of defining
+# enum values in a declarative way.
+#
+#   module DismissalReasons
+#     extend DeclarativeEnum
+#
+#     key  :dismissal_reason
+#     name 'DismissalReasonOfVulnerability'
+#
+#     description <<~TEXT
+#       This enum holds the user selected dismissal reason
+#       when they are dismissing the vulnerabilities
+#     TEXT
+#
+#     define do
+#       acceptable_risk value: 0, description: N_('The vulnerability is known but is considered to be an acceptable business risk.')
+#       false_positive value: 1, description: N_('An error in reporting the presence of a vulnerability in a system when the vulnerability is not present.')
+#       used_in_tests value: 2, description: N_('The finding is not a vulnerability because it is part of a test or is test data.')
+#     end
+#
+# Then we can use this module to register enums for our Active Record models like so,
+#
+#   class VulnerabilityFeedback
+#     declarative_enum DismissalReasons
+#   end
+#
+# Also we can use this module to create GraphQL Enum types like so,
+#
+# module Types
+#   module Vulnerabilities
+#     class DismissalReasonEnum < BaseEnum
+#       declarative_enum DismissalReasons
+#     end
+#   end
+# end
+#
+# rubocop:disable Gitlab/ModuleWithInstanceVariables
+module DeclarativeEnum
+  @key: untyped
+
+  @name: untyped
+
+  @description: untyped
+
+  @definition: untyped
+
+  # This `prepended` hook will merge the enum definition
+  # of the prepended module into the base module to be
+  # used by `prepend_mod_with` helper method.
+  def prepended: (untyped base) -> untyped
+
+  def key: (?untyped? new_key) -> untyped
+
+  def name: (?untyped? new_name) -> untyped
+
+  def description: (?untyped? new_description) -> untyped
+
+  def values: () -> untyped
+
+  # Return list of dynamically translated descriptions.
+  #
+  # It is required to define descriptions with `N_(...)`.
+  #
+  # See https://github.com/grosser/fast_gettext#n_-and-nn_-make-dynamic-translations-available-to-the-parser
+  def translated_descriptions: () -> untyped
+
+  def define: () ?{ (?) -> untyped } -> untyped
+
+  # We can use this method later to apply some sanity checks
+  # but for now, returning a Hash without any check is enough.
+  def definition: () -> untyped
+
+  class Builder
+    @definition: untyped
+
+    @block: untyped
+
+    KeyCollisionError: untyped
+
+    def initialize: (untyped definition, untyped block) -> void
+
+    def build: () -> untyped
+
+    private
+
+    def method_missing: (untyped name, *untyped arguments, ?value: untyped?, ?description: untyped?) { (?) -> untyped } -> untyped
+  end
+end

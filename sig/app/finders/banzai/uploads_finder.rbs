@@ -1,0 +1,17 @@
+module Banzai
+  class UploadsFinder
+    @parent: untyped
+
+    include FinderMethods
+
+    def initialize: (parent: untyped) -> void
+
+    def execute: () -> untyped
+
+    def find_by_secret_and_filename: (untyped secret, untyped filename) -> untyped
+
+    private
+
+    def uploader_class: () -> untyped
+  end
+end

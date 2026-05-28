@@ -1,0 +1,10 @@
+module Banzai
+  module Filter
+    # Filter which extracts top-level paragraph sourcepos, so
+    # another processor can determine if it's a quick action. Paragraph source position
+    # is returned in `result[:quick_action_paragraphs]`.
+    class QuickActionFilter < HTML::Pipeline::Filter
+      def call: () -> untyped
+    end
+  end
+end

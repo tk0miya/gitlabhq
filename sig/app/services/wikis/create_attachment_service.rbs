@@ -1,0 +1,39 @@
+module Wikis
+  class CreateAttachmentService < Files::CreateService
+    @container: untyped
+
+    @file_name: untyped
+
+    @file_path: untyped
+
+    @commit_message: untyped
+
+    @branch_name: untyped
+
+    ATTACHMENT_PATH: "uploads"
+
+    MAX_FILENAME_LENGTH: 255
+
+    attr_reader container: untyped
+
+    def initialize: (container: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+    def create_commit!: () -> untyped
+
+    private
+
+    def clean_file_name: (untyped file_name) -> (nil | untyped)
+
+    def truncate_file_name: (untyped file_name) -> untyped
+
+    def validate!: () -> untyped
+
+    def validate_file_name!: () -> (untyped | nil)
+
+    def validate_permissions!: () -> (untyped | nil)
+
+    def create_transformed_commit: (untyped content) -> untyped
+
+    def commit_result: (untyped commit_id) -> { file_name: untyped, file_path: untyped, branch: untyped, commit: untyped }
+  end
+end

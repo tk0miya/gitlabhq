@@ -1,0 +1,21 @@
+module Members
+  class AcceptInviteService < Members::BaseService
+    @member: untyped
+
+    def initialize: (*untyped, **untyped) ?{ (?) -> untyped } -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader member: untyped
+
+    alias user current_user
+
+    def accept_invite!: () -> (nil | untyped)
+
+    def user_matches_invite?: () -> untyped
+
+    def publish_accepted_invite_event: () -> untyped
+  end
+end

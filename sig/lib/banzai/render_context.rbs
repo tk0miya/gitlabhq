@@ -1,0 +1,27 @@
+module Banzai
+  # Object storing the current user, project, and other details used when
+  # parsing Markdown references.
+  class RenderContext
+    @current_user: untyped
+
+    @projects: untyped
+
+    @options: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader options: untyped
+
+    # default_project - The default project to use for all documents, if any.
+    # current_user - The user viewing the document, if any.
+    def initialize: (?untyped? default_project, ?untyped? current_user, ?options: ::Hash[untyped, untyped]) -> void
+
+    # Associates an HTML document with a Project.
+    #
+    # document - The HTML document to map to a Project.
+    # object - The object that produced the HTML document.
+    def associate_document: (untyped document, untyped object) -> untyped
+
+    def project_for_node: (untyped node) -> untyped
+  end
+end

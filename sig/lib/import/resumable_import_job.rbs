@@ -1,0 +1,9 @@
+module Import
+  module ResumableImportJob
+    extend ActiveSupport::Concern
+
+    # Maximum number of retries after interruption for resumable import jobs
+    # This higher limit is safe for jobs that can resume exactly where they left off
+    MAX_RETRIES_AFTER_INTERRUPTION: 20
+  end
+end

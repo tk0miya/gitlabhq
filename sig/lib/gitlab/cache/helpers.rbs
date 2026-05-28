@@ -1,0 +1,74 @@
+module Gitlab
+  module Cache
+    module Helpers
+      @current_transaction: untyped
+
+      @caller_id: untyped
+
+      # @return [ActiveSupport::Duration]
+      DEFAULT_EXPIRY: untyped
+
+      # @return [ActiveSupport::Cache::Store]
+      def cache: () -> untyped
+
+      def render_cached: (untyped obj_or_collection, with: untyped, ?cache_context: untyped, ?expires_in: untyped, **untyped presenter_args) -> untyped
+
+      private
+
+      # Optionally uses a `Proc` to add context to a cache key
+      #
+      # @param object [Object] must respond to #cache_key
+      # @param context [Proc] a proc that will be called with the object as an argument, and which should return a
+      #                       string or array of strings to be combined into the cache key
+      # @return [String]
+      def contextual_cache_key: (untyped presenter, untyped object, untyped context) -> untyped
+
+      def presenter_class_name: (untyped presenter) -> untyped
+
+      # Used for fetching or rendering a single object
+      #
+      # @param object [Object] the object to render
+      # @param presenter [Grape::Entity]
+      # @param presenter_args [Hash] keyword arguments to be passed to the entity
+      # @param context [Proc]
+      # @param expires_in [ActiveSupport::Duration, Integer] an expiry time for the cache entry
+      # @return [String]
+      def cached_object: (untyped object, presenter: untyped, presenter_args: untyped, context: untyped, expires_in: untyped) -> untyped
+
+      # Used for fetching or rendering multiple objects
+      #
+      # @param objects [Enumerable<Object>] the objects to render
+      # @param presenter [Grape::Entity]
+      # @param presenter_args [Hash] keyword arguments to be passed to the entity
+      # @param context [Proc]
+      # @param expires_in [ActiveSupport::Duration, Integer] an expiry time for the cache entry
+      # @return [Array<String>]
+      def cached_collection: (untyped collection, presenter: untyped, presenter_args: untyped, context: untyped, expires_in: untyped) -> untyped
+
+      # An adapted version of ActiveSupport::Cache::Store#fetch_multi.
+      #
+      # The original method only provides the missing key to the block,
+      # not the missing object, so we have to create a map of cache keys
+      # to the objects to allow us to pass the object to the missing value
+      # block.
+      #
+      # The result is that this is functionally identical to `#fetch`.
+      def fetch_multi: (untyped presenter, *untyped objs, context: untyped, **untyped kwargs) { (untyped) -> untyped } -> untyped
+
+      # @param objects [Enumerable<Object>] objects which _must_ respond to `#cache_key`
+      # @param context [Proc] a proc that can be called to help generate each cache key
+      # @return [Hash]
+      def multi_key_map: (untyped presenter, untyped objects, context: untyped) -> untyped
+
+      def increment_cache_metric: (render_type: untyped, total_count: untyped, miss_count: untyped) -> (nil | untyped)
+
+      def time_action: (render_type: untyped) { () -> untyped } -> untyped
+
+      def real_duration_histogram: (untyped render_type) -> untyped
+
+      def current_transaction: () -> untyped
+
+      def caller_id: () -> untyped
+    end
+  end
+end

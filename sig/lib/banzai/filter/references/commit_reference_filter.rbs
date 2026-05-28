@@ -1,0 +1,33 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces commit references with links.
+      #
+      # This filter supports cross-project references.
+      class CommitReferenceFilter < AbstractReferenceFilter
+        @referenced_merge_request_commit_shas: untyped
+
+        def references_in: (untyped text, ?untyped pattern) { (untyped, untyped, untyped, untyped, untyped) -> untyped } -> untyped
+
+        def find_object: (untyped project, untyped id) -> (nil | untyped)
+
+        def referenced_merge_request_commit_shas: () -> (::Array[untyped] | untyped)
+
+        # The default behaviour is `#to_i` - we just pass the hash through.
+        def parse_symbol: (untyped sha_hash, untyped _match) -> untyped
+
+        def url_for_object: (untyped commit, untyped project) -> untyped
+
+        def object_link_content_html_extras: (untyped object, untyped matches) -> untyped
+
+        def parent_records: (untyped parent, untyped ids) -> (::Array[untyped] | untyped)
+
+        private
+
+        def noteable: () -> untyped
+
+        def only_path?: () -> untyped
+      end
+    end
+  end
+end

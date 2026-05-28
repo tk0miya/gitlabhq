@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Kubernetes < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Validatable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          include ::Gitlab::Config::Entry::Configurable
+
+          ALLOWED_KEYS: ::Array[:namespace | :agent | :flux_resource_path | :managed_resources | :dashboard]
+
+          def agent_required?: () -> untyped
+
+          def dashboard: () -> (::Hash[untyped, untyped] | untyped)
+
+          def managed_resources_enabled?: () -> (false | untyped)
+        end
+      end
+    end
+  end
+end

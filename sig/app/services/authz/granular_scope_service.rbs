@@ -1,0 +1,21 @@
+module Authz
+  class GranularScopeService
+    @personal_access_token: untyped
+
+    def initialize: (untyped personal_access_token) -> void
+
+    def add_granular_scopes: (untyped granular_scopes) -> untyped
+
+    private
+
+    attr_reader personal_access_token: untyped
+
+    def validate_unique_namespace: (untyped granular_scope) -> (nil | untyped)
+
+    def namespace_already_exists?: (untyped namespace_id) -> untyped
+
+    def check_persisted_scopes: (untyped namespace_id) -> untyped
+
+    def check_built_scopes: (untyped namespace_id) -> untyped
+  end
+end

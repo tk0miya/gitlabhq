@@ -1,0 +1,90 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class Report
+          @type: untyped
+
+          @pipeline: untyped
+
+          @created_at: untyped
+
+          @findings: untyped
+
+          @identifiers: untyped
+
+          @scanners: untyped
+
+          @scanned_resources: untyped
+
+          @errors: untyped
+
+          @warnings: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          attr_reader created_at: untyped
+
+          attr_reader type: untyped
+
+          attr_reader findings: untyped
+
+          attr_reader identifiers: untyped
+
+          attr_reader scanners: untyped
+
+          attr_accessor pipeline: untyped
+
+          attr_accessor scanned_resources: untyped
+
+          attr_accessor errors: untyped
+
+          attr_accessor analyzer: untyped
+
+          attr_accessor version: untyped
+
+          attr_accessor schema_validation_status: untyped
+
+          attr_accessor warnings: untyped
+
+          attr_accessor scan: untyped
+
+          attr_accessor scanner: untyped
+
+          attr_accessor scanner_external_id: untyped
+
+          def initialize: (untyped type, untyped pipeline, untyped created_at) -> void
+
+          def commit_sha: () -> untyped
+
+          def add_error: (untyped type, ?::String message) -> untyped
+
+          def add_warning: (untyped type, untyped message) -> untyped
+
+          def errored?: () -> untyped
+
+          def warnings?: () -> untyped
+
+          def add_identifier: (untyped identifier) -> untyped
+
+          def add_scanner: (untyped scanner) -> untyped
+
+          def add_finding: (untyped finding) -> untyped
+
+          def clone_as_blank: () -> untyped
+
+          def replace_with!: (untyped other) -> untyped
+
+          def merge!: (untyped other) -> untyped
+
+          def scanner_order_to: (untyped other) -> (1 | -1 | untyped)
+
+          def has_signatures?: () -> untyped
+
+          # Overridden in EE
+          def tracked_context: () -> nil
+        end
+      end
+    end
+  end
+end

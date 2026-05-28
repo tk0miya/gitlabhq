@@ -1,0 +1,7 @@
+class Import::GithubishProviderRepoEntity < Import::BaseProviderRepoEntity
+  include ImportHelper
+
+  private
+
+  def owner_name: (untyped provider_repo, untyped provider) -> (untyped | nil)
+end

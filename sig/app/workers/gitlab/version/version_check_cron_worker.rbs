@@ -1,0 +1,19 @@
+module Gitlab
+  module Version
+    class VersionCheckCronWorker
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      def perform: () -> untyped
+
+      private
+
+      def data: () -> { version: untyped }
+
+      def url: () -> ::String
+
+      def host: () -> "https://version.gitlab.com"
+    end
+  end
+end

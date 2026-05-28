@@ -1,0 +1,11 @@
+# rubocop: disable Sidekiq/EnforceDatabaseHealthSignalDeferral -- Causing request timeout on prometheus - investigating https://gitlab.com/gitlab-org/gitlab/-/issues/571999
+module MergeRequests
+  module Refresh
+    class WebHooksWorker
+      include ApplicationWorker
+
+      # NOTE: This worker will be deprecated once we switch to using events
+      def perform: (untyped project_id, untyped user_id, untyped oldrev, untyped newrev, untyped ref) -> (nil | untyped)
+    end
+  end
+end

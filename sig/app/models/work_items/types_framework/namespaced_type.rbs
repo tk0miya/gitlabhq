@@ -1,0 +1,71 @@
+module WorkItems
+  module TypesFramework
+    # NamespacedType is a wrapper around SystemDefined::Type and Custom::Type that adds
+    # namespace-specific configuration and state. This is the type that Provider returns
+    # for all type lookups.
+    #
+    # Configuration responsibilities:
+    # - Namespace-specific state (enabled, context flags) belongs here
+    # - Static type configuration belongs in SystemDefined::Type or Custom::Type
+    #
+    # We use a delegator rather than adding attributes directly to the type because
+    # SystemDefined::Type instances are singletons backed by FixedItemsModel - they
+    # share the same object_id across all callers. Mutating them would leak state
+    # between requests.
+    #
+    # The identity method overrides (class, is_a?, instance_of?) ensure that
+    # FixedItemsModel's equality check (`other.instance_of?(self.class)`) sees
+    # the wrapped type's class, keeping NamespacedType transparent to code that
+    # compares types by identity.
+    class NamespacedType < SimpleDelegator
+      @enabled: untyped
+
+      @is_a_group: untyped
+
+      @tasks_on_boards: untyped
+
+      @namespace: untyped
+
+      def initialize: (untyped type, ?enabled: bool, ?is_a_group: bool, ?tasks_on_boards: bool, ?namespace: untyped?) -> void
+
+      def class: () -> untyped
+
+      def is_a?: (untyped klass) -> untyped
+
+      alias kind_of? is_a?
+
+      def instance_of?: (untyped klass) -> untyped
+
+      def filterable_list_view?: () -> (false | untyped)
+
+      def filterable_board_view?: () -> (false | true | untyped)
+
+      def can_user_create_items?: () -> untyped
+
+      def enabled_by_default_for_new_namespaces?: () -> true
+
+      def enabled?: () -> untyped
+
+      attr_reader enabled: untyped
+
+      private
+
+      attr_writer enabled: untyped
+
+      attr_accessor is_a_group: untyped
+
+      attr_accessor tasks_on_boards: untyped
+
+      attr_accessor namespace: untyped
+
+      # Archived types are unavailable everywhere; disabled types are unavailable
+      # only at project level (a type disabled at the group may still be enabled
+      # in descendant projects, and group-level lists aggregate from descendants).
+      def available_for_filtering?: () -> (false | true)
+
+      def visible_in_context?: () -> untyped
+
+      def delegation_source: () -> untyped
+    end
+  end
+end

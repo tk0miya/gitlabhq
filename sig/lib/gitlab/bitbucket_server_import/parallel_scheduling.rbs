@@ -1,0 +1,95 @@
+module Gitlab
+  module BitbucketServerImport
+    module ParallelScheduling
+      @project: untyped
+
+      @page_counter: untyped
+
+      @already_processed_cache_key: untyped
+
+      @job_waiter_cache_key: untyped
+
+      @job_waiter_remaining_cache_key: untyped
+
+      # The enqueued job counter is used to calculate job delays and distribute
+      # them over time. When the stage worker restarts, the counter resets to
+      # prevent jobs from being queued too far into the future. Such logic may
+      # result in more jobs being executed when the stage worker resumes. An
+      # alternative solution would complicate the delay logic, so for simplicity
+      # we accept more jobs being executed.
+      @enqueued_job_counter: untyped
+
+      @client: untyped
+
+      @project_key: untyped
+
+      @repository_slug: untyped
+
+      @job_waiter: untyped
+
+      @job_started_at: untyped
+
+      include Loggable
+
+      attr_reader project: untyped
+
+      attr_reader page_counter: untyped
+
+      attr_reader already_processed_cache_key: untyped
+
+      attr_reader job_waiter_cache_key: untyped
+
+      attr_reader job_waiter_remaining_cache_key: untyped
+
+      attr_accessor enqueued_job_counter: untyped
+
+      # The base cache key to use for tracking already processed objects.
+      ALREADY_PROCESSED_CACHE_KEY: "bitbucket-server-importer/already-processed/%{project}/%{collection}"
+
+      # The base cache key to use for storing job waiter key
+      JOB_WAITER_CACHE_KEY: "bitbucket-server-importer/job-waiter/%{project}/%{collection}"
+
+      # The base cache key to use for storing job waiter remaining jobs
+      JOB_WAITER_REMAINING_CACHE_KEY: "bitbucket-server-importer/job-waiter-remaining/%{project}/%{collection}"
+
+      # project - An instance of `Project`.
+      def initialize: (untyped project) -> void
+
+      private
+
+      def client: () -> untyped
+
+      def project_key: () -> untyped
+
+      def repository_slug: () -> untyped
+
+      # Returns the ID to use for the cache used for checking if an object has
+      # already been processed or not.
+      #
+      # object - The object we may want to import.
+      def id_for_already_processed_cache: (untyped object) -> untyped
+
+      # The Sidekiq worker class used for scheduling the importing of objects in
+      # parallel.
+      def sidekiq_worker_class: () -> untyped
+
+      # The name of the method to call to retrieve the data to import.
+      def collection_method: () -> untyped
+
+      def job_waiter: () -> untyped
+
+      def already_processed?: (untyped object) -> untyped
+
+      # Marks the given object as "already processed".
+      def mark_as_processed: (untyped object) -> untyped
+
+      def calculate_job_delay: (untyped job_index) -> untyped
+
+      def job_started_at: () -> untyped
+
+      def concurrent_import_jobs_limit: () -> untyped
+
+      def track_import_failure!: (untyped project, exception: untyped, **untyped args) -> untyped
+    end
+  end
+end

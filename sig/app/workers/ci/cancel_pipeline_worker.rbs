@@ -1,0 +1,7 @@
+module Ci
+  class CancelPipelineWorker
+    include ApplicationWorker
+
+    def perform: (untyped pipeline_id, untyped auto_canceled_by_pipeline_id) -> untyped
+  end
+end

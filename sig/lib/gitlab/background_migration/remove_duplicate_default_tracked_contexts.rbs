@@ -1,0 +1,168 @@
+module Gitlab
+  module BackgroundMigration
+    class RemoveDuplicateDefaultTrackedContexts < BatchedMigrationJob
+      module Storage
+        class Hashed
+          @container: untyped
+
+          @disk_hash: untyped
+
+          attr_accessor container: untyped
+
+          REPOSITORY_PATH_PREFIX: "@hashed"
+
+          def initialize: (untyped container) -> void
+
+          def base_dir: () -> (::String | nil)
+
+          def disk_path: () -> (::String | nil)
+
+          private
+
+          def disk_hash: () -> (untyped | nil)
+        end
+
+        class LegacyProject
+          @project: untyped
+
+          attr_accessor project: untyped
+
+          def initialize: (untyped project) -> void
+
+          def disk_path: () -> untyped
+        end
+      end
+
+      module Routable
+        extend ActiveSupport::Concern
+
+        def full_path: () -> untyped
+
+        def build_full_path: () -> (::String | untyped)
+      end
+
+      class Route < ::ApplicationRecord
+      end
+
+      # This class depends on following classes
+      #   GlRepository class defined in `lib/gitlab/gl_repository.rb`
+      #   Repository class defined in `lib/gitlab/git/repository.rb`.
+      class Repository
+        @full_path: untyped
+
+        @shard: untyped
+
+        @disk_path: untyped
+
+        @container: untyped
+
+        @repo_type: untyped
+
+        @raw_repository: untyped
+
+        FORMAT_SHA256: "sha256"
+
+        def initialize: (untyped full_path, untyped container, shard: untyped, ?disk_path: untyped?, ?repo_type: untyped) -> void
+
+        def create_repository: (untyped default_branch) -> untyped
+
+        def root_ref: () -> untyped
+
+        def exists?: () -> (false | untyped)
+
+        def create_file_actions: (untyped path, untyped content) -> ::Array[{ action: :create, file_path: untyped, content: untyped }]
+
+        def create_file: (untyped user, untyped path, untyped content, **untyped options) -> untyped
+
+        def commit_files: (untyped user, **untyped options) -> untyped
+
+        private
+
+        attr_reader full_path: untyped
+
+        attr_reader shard: untyped
+
+        attr_reader disk_path: untyped
+
+        attr_reader container: untyped
+
+        attr_reader repo_type: untyped
+
+        def raw_repository: () -> (nil | untyped)
+
+        def initialize_raw_repository: () -> untyped
+      end
+
+      class Namespace < ::ApplicationRecord
+        include Routable
+      end
+
+      class Project < ::ApplicationRecord
+        @default_branch: untyped
+
+        @repository: untyped
+
+        @storage: untyped
+
+        include Routable
+
+        alias parent namespace
+
+        def default_branch: () -> untyped
+
+        def create_repository: (untyped default_branch) -> untyped
+
+        def repository: () -> untyped
+
+        private
+
+        def storage: () -> untyped
+
+        def hashed_repository_storage?: () -> untyped
+      end
+
+      class VulnerabilityOccurrence < ::SecApplicationRecord
+        include EachBatch
+      end
+
+      class VulnerabilityRead < ::SecApplicationRecord
+        include EachBatch
+      end
+
+      class SbomOccurrenceRefs < ::SecApplicationRecord
+        include EachBatch
+      end
+
+      class VulnerabilityStatistic < ::SecApplicationRecord
+      end
+
+      class VulnerabilityHistoricalStatistic < ::SecApplicationRecord
+      end
+
+      class SecurityProjectTrackedContext < ::SecApplicationRecord
+      end
+
+      LARGE_TABLES: ::Array[untyped]
+
+      SMALL_TABLES: ::Array[untyped]
+
+      BRANCH_CONTEXT_TYPE: 1
+
+      def perform: () -> untyped
+
+      private
+
+      def projects_with_multiple_contexts: (untyped sub_batch) -> untyped
+
+      def remove_invalid_contexts: (untyped invalid_context_ids) -> untyped
+
+      def invalid_context_ids: (untyped default_branches, untyped contexts) -> untyped
+
+      def update_associated_records: (untyped default_branches, untyped all_contexts) -> untyped
+
+      def delete_sbom_occurrences: (untyped project_id, untyped default_context) -> untyped
+
+      def update_tables: (untyped project_id, untyped default_context) -> untyped
+    end
+  end
+end

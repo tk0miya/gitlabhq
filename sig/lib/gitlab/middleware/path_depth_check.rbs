@@ -1,0 +1,26 @@
+module Gitlab
+  module Middleware
+    # Protect against ReDoS via deep URL paths.
+    #
+    # Limiting path depth in Gitlab::PathRegex.full_namespace_route_regex was considered
+    # and tested, but was insufficient because Rails routing evaluates multiple
+    # patterns before matching. Rejecting deep paths in middleware avoids the
+    # routing overhead entirely.
+    class PathDepthCheck
+      @app: untyped
+
+      # Namespace depth (20) + project (1) + route segments + file path depth + buffer
+      MAX_PATH_SEGMENTS: 50
+
+      REJECTION_RESPONSE: ::Array[414 | { "Content-Type" => "text/plain" } | ::Array["Request-URI Too Long: path exceeds maximum depth"]]
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def log_rejection: (untyped env, untyped path_segment_count) -> untyped
+    end
+  end
+end

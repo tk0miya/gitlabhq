@@ -1,0 +1,35 @@
+module BulkImports
+  module Common
+    module Graphql
+      class GetMembersQuery
+        @context: untyped
+
+        attr_reader context: untyped
+
+        def initialize: (context: untyped) -> void
+
+        def to_s: () -> ::String
+
+        def variables: () -> { full_path: untyped, cursor: untyped, per_page: untyped }
+
+        def data_path: () -> untyped
+
+        def page_info_path: () -> untyped
+
+        private
+
+        def base_path: () -> ::Array["data" | "portable" | "members"]
+
+        def members_type: () -> ("groupMembers" | "projectMembers")
+
+        def relations: () -> untyped
+
+        def source_version: () -> untyped
+
+        def group_relations: () -> untyped
+
+        def project_relations: () -> untyped
+      end
+    end
+  end
+end

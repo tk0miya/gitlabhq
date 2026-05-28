@@ -1,0 +1,35 @@
+module Gitlab
+  module SidekiqMiddleware
+    module Throttling
+      class RecoveryService
+        @worker_name: untyped
+
+        @worker_klass: untyped
+
+        def initialize: (untyped worker_name) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        attr_reader worker_name: untyped
+
+        attr_reader worker_klass: untyped
+
+        def recover!: () -> (nil | untyped)
+
+        def needs_throttle?: () -> untyped
+
+        def max_limit: () -> untyped
+
+        def recovery_strategy: () -> untyped
+
+        def current_limit: () -> untyped
+
+        def set_current_limit!: (limit: untyped) -> untyped
+
+        def concurrency_limit_service: () -> untyped
+      end
+    end
+  end
+end

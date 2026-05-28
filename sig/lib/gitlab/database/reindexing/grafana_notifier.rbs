@@ -1,0 +1,36 @@
+module Gitlab
+  module Database
+    module Reindexing
+      # This can be used to send annotations for reindexing to a Grafana API
+      class GrafanaNotifier
+        @api_key: untyped
+
+        @api_url: untyped
+
+        @additional_tag: untyped
+
+        def initialize: (?api_key: untyped?, ?api_url: untyped?, ?additional_tag: untyped?) -> void
+
+        def notify_start: (untyped action) -> (nil | untyped)
+
+        def notify_end: (untyped action) -> (nil | untyped)
+
+        private
+
+        def default_api_key: () -> untyped
+
+        def default_api_url: () -> untyped
+
+        def default_additional_tag: () -> untyped
+
+        def base_payload: (untyped action) -> { time: untyped, tags: untyped }
+
+        def annotate: (untyped payload) -> untyped
+
+        def log_error: (untyped err) -> untyped
+
+        def enabled?: () -> untyped
+      end
+    end
+  end
+end

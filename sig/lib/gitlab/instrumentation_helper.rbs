@@ -1,0 +1,93 @@
+module Gitlab
+  module InstrumentationHelper
+    extend ::Gitlab::InstrumentationHelper
+
+    DURATION_PRECISION: 6
+
+    def init_instrumentation_data: () -> untyped
+
+    def add_instrumentation_data: (untyped payload) -> untyped
+
+    def instrument_gitaly: (untyped payload) -> (nil | untyped)
+
+    def instrument_redis: (untyped payload) -> untyped
+
+    def instrument_elasticsearch: (untyped payload) -> (nil | untyped)
+
+    def instrument_zoekt: (untyped payload) -> (nil | untyped)
+
+    def instrument_external_http: (untyped payload) -> (nil | untyped)
+
+    def instrument_throttle: (untyped payload) -> untyped
+
+    def instrument_active_record: (untyped payload) -> untyped
+
+    def instrument_rack_attack: (untyped payload) -> (nil | untyped)
+
+    def instrument_cpu: (untyped payload) -> untyped
+
+    def instrument_pid: (untyped payload) -> untyped
+
+    def instrument_worker_id: (untyped payload) -> untyped
+
+    def instrument_thread_memory_allocations: (untyped payload) -> untyped
+
+    def instrument_load_balancing: (untyped payload) -> untyped
+
+    def instrument_uploads: (untyped payload) -> untyped
+
+    def instrument_rate_limiting_gates: (untyped payload) -> untyped
+
+    def instrument_global_search_api: (untyped payload) -> untyped
+
+    def instrument_ldap: (untyped payload) -> (nil | untyped)
+
+    def instrument_exclusive_lock: (untyped payload) -> (nil | untyped)
+
+    def instrument_middleware_path_traversal_check: (untyped payload) -> (nil | untyped)
+
+    def instrument_gvl: (untyped payload) -> (nil | untyped)
+
+    # Returns the total queuing duration for a Sidekiq job in seconds, as a float, if the
+    # `enqueued_at` field or `created_at` field is available.
+    # Includes buffering duration if a job was buffered by ConcurrencyLimit middleware.
+    #
+    # * If the job doesn't contain sufficient information, returns nil
+    # * If the job has a start time in the future, returns 0
+    # * If the job contains an invalid start time value, returns nil
+    # @param [Hash] job a Sidekiq job, represented as a hash
+    # @param [Boolean] with_buffering_duration whether to include buffering duration by ConcurrencyLimit
+    def self.queue_duration_for_job: (untyped job, ?with_buffering_duration: bool) -> (nil | untyped)
+
+    # Returns the time a Sidekiq job waiting from being buffered until enqueued again in seconds, as a float, if the
+    # `concurrency_limit_buffered_at` and `enqueued_at`/`created_at` field is available.
+    #
+    # * If the job doesn't contain sufficient information, returns nil
+    # * If the job has a start time in the future, returns 0
+    # * If the job contains an invalid start time value, returns nil
+    # @param [Hash] job a Sidekiq job, represented as a hash
+    def self.buffering_duration_for_job: (untyped job) -> (nil | untyped)
+
+    # Returns the time it took for a scheduled job to be enqueued in seconds, as a float,
+    # if the `scheduled_at` and `enqueued_at` fields are available.
+    #
+    # * If the job doesn't contain sufficient information, returns nil
+    # * If the job has a start time in the future, returns 0
+    # * If the job contains an invalid start time value, returns nil
+    # @param [Hash] job a Sidekiq job, represented as a hash
+    def self.enqueue_latency_for_scheduled_job: (untyped job) -> (nil | untyped)
+
+    def self.round_elapsed_time: (untyped start, ?untyped end_time) -> untyped
+
+    # Calculates the time in seconds, as a float, from
+    # the provided start time until now
+    #
+    # @param [Time] start
+    def self.elapsed_by_absolute_time: (untyped start, untyped end_time) -> untyped
+
+    # Convert a representation of a time into a `Time` value
+    #
+    # @param time_value String, Float time representation, or nil
+    def self.convert_to_time: (untyped time_value) -> untyped
+  end
+end

@@ -1,0 +1,14 @@
+module Mcp
+  module Tools
+    class GetServerVersionService < CustomService
+      extend ::Gitlab::Utils::Override
+
+      def authorize!: (untyped _params) -> true
+
+      # Version 0.1.0 implementation
+      def perform_0_1_0: (?::Hash[untyped, untyped] _arguments) -> untyped
+
+      def perform_default: (?::Hash[untyped, untyped] arguments) -> untyped
+    end
+  end
+end

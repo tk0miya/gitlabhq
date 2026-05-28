@@ -1,0 +1,21 @@
+module Issues
+  class ReferencedMergeRequestsService < Issues::BaseService
+    @issue_notes: untyped
+
+    def execute: (untyped issue) -> ::Array[untyped]
+
+    def referenced_merge_requests: (untyped issue) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def closed_by_merge_requests: (untyped issue) -> (::Array[untyped] | untyped)
+
+    private
+
+    def extract_merge_requests: (untyped issue, ?filter: untyped?) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def issue_notes: (untyped issue) -> untyped
+
+    def sort_by_iid: (untyped merge_requests) -> untyped
+  end
+end

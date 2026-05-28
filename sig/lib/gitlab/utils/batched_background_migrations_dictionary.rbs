@@ -1,0 +1,39 @@
+module Gitlab
+  module Utils
+    class BatchedBackgroundMigrationsDictionary
+      self.@entries: untyped
+
+      self.@checksum: untyped
+
+      @queued_migration_version: untyped
+
+      @entry: untyped
+
+      DICTIONARY_BASE_DIR: "db/docs/batched_background_migrations"
+
+      attr_reader queued_migration_version: untyped
+
+      def self.entries: () -> untyped
+
+      def self.entry: (untyped migration_job_name) -> (nil | untyped)
+
+      # Used by BackgroundMigration/DictionaryFile cop to invalidate its cache
+      # if the contents of `db/docs/batched_background_migrations` changes.
+      def self.checksum: (?skip_memoization: bool) -> untyped
+
+      def initialize: (untyped queued_migration_version) -> void
+
+      def finalized_by: () -> untyped
+
+      def introduced_by_url: () -> untyped
+
+      def milestone: () -> untyped
+
+      def migration_job_name: () -> untyped
+
+      private
+
+      def entry: () -> untyped
+    end
+  end
+end

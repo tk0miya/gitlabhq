@@ -1,0 +1,7 @@
+class IssueLink < ApplicationRecord
+  include LinkableItem
+
+  include EachBatch
+
+  def self.issuable_type: () -> :issue
+end

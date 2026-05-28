@@ -1,0 +1,17 @@
+class MetricImageUploader < GitlabUploader
+  include RecordsUploads::Concern
+
+  include ObjectStorage::Concern
+
+  prepend ObjectStorage::Extension::RecordsUploads
+
+  include UploaderHelper
+
+  def self.workhorse_local_upload_path: () -> untyped
+
+  private
+
+  def dynamic_segment: () -> untyped
+
+  def self.default_store: () -> untyped
+end

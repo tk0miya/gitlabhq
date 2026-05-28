@@ -1,0 +1,50 @@
+class Import::ManifestController < Import::BaseController
+  @errors: untyped
+
+  @importable_repos: untyped
+
+  @group: untyped
+
+  @manifest_import_status: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  MAX_MANIFEST_SIZE_IN_MB: 1
+
+  def new: () -> nil
+
+  # We need to re-expose controller's internal method 'status' as action.
+  # rubocop:disable Lint/UselessMethodDefinition
+  def status: () -> untyped
+
+  def upload: () -> (nil | untyped)
+
+  def create: () -> untyped
+
+  def importable_repos: () -> untyped
+
+  def incompatible_repos: () -> ::Array[untyped]
+
+  def provider_name: () -> :manifest
+
+  def provider_url: () -> nil
+
+  def extra_representation_opts: () -> { group_full_path: untyped }
+
+  private
+
+  def ensure_import_vars: () -> (untyped | nil)
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def group: () -> untyped
+
+  def manifest_import_metadata: () -> untyped
+
+  def find_jobs: () -> untyped
+
+  def verify_import_enabled: () -> (untyped | nil)
+
+  def disable_query_limiting: () -> untyped
+
+  def check_file_size: () -> (nil | untyped)
+end

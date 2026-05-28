@@ -1,0 +1,23 @@
+module Gitlab
+  module Diff
+    class PositionTracer
+      class LineStrategy < BaseStrategy
+        @ignore_whitespace_change: untyped
+
+        def trace: (untyped position) -> untyped
+
+        private
+
+        def trace_added_line: (untyped position) -> untyped
+
+        def trace_removed_line: (untyped position) -> untyped
+
+        def trace_unchanged_line: (untyped position) -> untyped
+
+        def new_position: (untyped diff_file, untyped old_line, untyped new_line, ?untyped? line_range) -> untyped
+
+        def valid_position?: (untyped position) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module WorkItems
+  class CopyTimelogsWorker
+    include ApplicationWorker
+
+    BATCH_SIZE: 100
+
+    def perform: (untyped from_issue_id, untyped to_issue_id) -> (nil | untyped)
+  end
+end

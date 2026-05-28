@@ -1,0 +1,14 @@
+module HandlesGitalyErrors
+  @gitaly_unavailable: untyped
+
+  extend ActiveSupport::Concern
+
+  GITALY_ERRORS: ::Array[untyped]
+
+  private
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables -- Allows us to pass gitaly availability to frontend
+  def handle_gitaly_error: (untyped exception) -> untyped
+
+  def gitaly_unavailable_message: () -> untyped
+end

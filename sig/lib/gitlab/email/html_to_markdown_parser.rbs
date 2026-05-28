@@ -1,0 +1,24 @@
+module Gitlab
+  module Email
+    class HtmlToMarkdownParser < Html2Text
+      extend Gitlab::Utils::Override
+
+      # List of tags to be converted by Markdown.
+      #
+      # All attributes are removed except for the defined ones.
+      #
+      #   <tag> => [<attribute to keep>, ...]
+      ALLOWED_TAG_ATTRIBUTES: { "em" => ::Array[untyped], "strong" => ::Array[untyped], "details" => ::Array[untyped], "img" => ::Array["alt" | "src"] }
+
+      # This redefinition can be removed once https://github.com/soundasleep/html2text_ruby/pull/30
+      # is merged and released.
+      def self.convert: (untyped html) -> untyped
+
+      private
+
+      def iterate_over: (untyped node) -> untyped
+
+      def remove_attributes: (untyped node, untyped allowed_attributes) -> untyped
+    end
+  end
+end

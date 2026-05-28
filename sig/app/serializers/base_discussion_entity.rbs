@@ -1,0 +1,12 @@
+class BaseDiscussionEntity < Grape::Entity
+  include RequestAwareEntity
+
+  include NotesHelper
+
+  private
+
+  def render_truncated_diff_lines?: () -> untyped
+
+  # overridden on EE
+  def truncated_discussion_path_for: (untyped discussion) -> untyped
+end

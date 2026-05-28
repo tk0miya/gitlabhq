@@ -1,0 +1,23 @@
+module Ci
+  class BuildUnscheduleService
+    @build: untyped
+
+    @user: untyped
+
+    def initialize: (untyped build, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader build: untyped
+
+    attr_reader user: untyped
+
+    def allowed?: () -> untyped
+
+    def forbidden: () -> untyped
+
+    def unprocessable_entity: () -> untyped
+  end
+end

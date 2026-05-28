@@ -1,0 +1,7 @@
+module API
+  module Internal
+    class Shellhorse < ::API::Base
+      COMMANDS_TO_AUDIT: ::Array["git-upload-pack" | "git-receive-pack"]
+    end
+  end
+end

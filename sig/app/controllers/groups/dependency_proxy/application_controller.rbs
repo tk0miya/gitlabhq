@@ -1,0 +1,18 @@
+module Groups
+  module DependencyProxy
+    class ApplicationController < ::ApplicationController
+      @personal_access_token: untyped
+
+      include ::JwtAuthenticatable
+
+      # This allows auth_user to be set in the base ApplicationController
+      alias authenticated_user actor
+
+      private
+
+      def valid_service_type?: (untyped service_type) -> untyped
+
+      def handle_personal_access_token: (untyped token) -> untyped
+    end
+  end
+end

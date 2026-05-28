@@ -1,0 +1,23 @@
+module Sidebars
+  module YourWork
+    module Menus
+      class IssuesMenu < ::Sidebars::Menu
+        include Gitlab::Utils::StrongMemoize
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "work-items"
+
+        def render?: () -> untyped
+
+        def active_routes: () -> { path: ::Array["dashboard#issues" | "dashboard#work_items"] }
+
+        def has_pill?: () -> true
+
+        def pill_count_field: () -> "assigned_issues"
+      end
+    end
+  end
+end

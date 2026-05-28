@@ -1,0 +1,15 @@
+# ArrayMembersValidator
+#
+# Custom validator that checks if validated
+# attribute contains non empty array, which every
+# element is an instances of :member_class
+#
+# Example:
+#
+#   class Config::Root < ActiveRecord::Base
+#     validates :nodes, member_class: Config::Node
+#   end
+#
+class ArrayMembersValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+end

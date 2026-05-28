@@ -1,0 +1,9 @@
+module Import
+  module BulkImports
+    class ConfigurationPurgeWorker
+      include ApplicationWorker
+
+      def perform: (untyped id) -> (nil | untyped)
+    end
+  end
+end

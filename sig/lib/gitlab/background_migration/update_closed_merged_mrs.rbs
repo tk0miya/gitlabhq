@@ -1,0 +1,15 @@
+module Gitlab
+  module BackgroundMigration
+    class UpdateClosedMergedMrs < BatchedMigrationJob
+      START_DATE: untyped
+
+      END_DATE: untyped
+
+      CLOSED: 2
+
+      MERGED: 3
+
+      def perform: () -> untyped
+    end
+  end
+end

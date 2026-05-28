@@ -1,0 +1,27 @@
+module Issues
+  module ResolveDiscussions
+    @merge_request_to_resolve_discussions_object: untyped
+
+    @merge_request_to_resolve_discussions_of_iid: untyped
+
+    @discussion_to_resolve_id: untyped
+
+    @discussions_to_resolve: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader merge_request_to_resolve_discussions_of_iid: untyped
+
+    attr_reader discussion_to_resolve_id: untyped
+
+    attr_reader merge_request_to_resolve_discussions_object: untyped
+
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables
+    def filter_resolve_discussion_params: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def merge_request_to_resolve_discussions_of: () -> untyped
+
+    def discussions_to_resolve: () -> (::Array[untyped] | untyped)
+  end
+end

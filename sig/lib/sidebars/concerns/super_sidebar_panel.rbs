@@ -1,0 +1,22 @@
+module Sidebars
+  module Concerns
+    # Contains helper methods aid conversion of a "normal" panel
+    # into a Super Sidebar Panel
+    module SuperSidebarPanel
+      # Picks menus from a list and adds them to the current menu list
+      # if they should be picked into the super sidebar
+      def pick_from_old_menus: (untyped old_menus) -> untyped
+
+      def transform_old_menus: (untyped current_menus, *untyped old_menus) -> untyped
+
+      private
+
+      # Finds a menu_items super sidebar parent and adds the item to that menu
+      # Handles:
+      #   - parent == nil, or parent not being part of the panel:
+      #       we assume that the menu item hasn't been categorized yet
+      #   - parent == ::Sidebars::NilMenuItem, the item explicitly is supposed to be removed
+      def add_menu_item_to_super_sidebar_parent: (untyped menus, untyped menu_item) -> (nil | untyped)
+    end
+  end
+end

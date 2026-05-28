@@ -1,0 +1,13 @@
+module Ci
+  module Catalog
+    module Resources
+      module Components
+        class LastUsage < ::ApplicationRecord
+          include EachBatch
+
+          def self.by_project_ids: (untyped project_ids) -> untyped
+        end
+      end
+    end
+  end
+end

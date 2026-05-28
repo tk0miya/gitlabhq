@@ -1,0 +1,9 @@
+module Ci
+  module Runners
+    class TransferOrganizationWorker
+      include ApplicationWorker
+
+      def perform: (untyped group_id, untyped old_organization_id, untyped new_organization_id) -> (nil | untyped)
+    end
+  end
+end

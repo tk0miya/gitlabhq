@@ -1,0 +1,99 @@
+module Mattermost
+  class NoSessionError < ::Mattermost::Error
+    def message: () -> "No session could be set up, is Mattermost configured with Single Sign On?"
+  end
+
+  ConnectionError: untyped
+
+  # This class' prime objective is to obtain a session token on a Mattermost
+  # instance with SSO configured where this GitLab instance is the provider.
+  #
+  # The process depends on OAuth, but skips a step in the authentication cycle.
+  # For example, usually a user would click the 'login in GitLab' button on
+  # Mattermost, which would yield a 302 status code and redirects you to GitLab
+  # to approve the use of your account on Mattermost. Which would trigger a
+  # callback so Mattermost knows this request is approved and gets the required
+  # data to create the user account etc.
+  #
+  # This class however skips the button click, and also the approval phase to
+  # speed up the process and keep it without manual action and get a session
+  # going.
+  class Session
+    @current_resource_owner: untyped
+
+    @base_uri: untyped
+
+    @pre_auth: untyped
+
+    @authorization: untyped
+
+    @strategy: untyped
+
+    @request: untyped
+
+    @token: untyped
+
+    @headers: untyped
+
+    @oauth_uri: untyped
+
+    @token_uri: untyped
+
+    include Doorkeeper::Helpers::Controller
+
+    LEASE_TIMEOUT: 60
+
+    Request: untyped
+
+    attr_accessor current_resource_owner: untyped
+
+    attr_accessor token: untyped
+
+    attr_accessor base_uri: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def with_session: () { (untyped) -> untyped } -> untyped
+
+    # Next methods are needed for Doorkeeper
+    def pre_auth: () -> untyped
+
+    def authorization: () -> untyped
+
+    def strategy: () -> untyped
+
+    def request: () -> untyped
+
+    def params: () -> untyped
+
+    def get: (untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+    def post: (untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+    def delete: (untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+    private
+
+    def build_options: (untyped options) -> untyped
+
+    def create: () -> untyped
+
+    def destroy: () -> untyped
+
+    def oauth_uri: () -> (untyped | nil)
+
+    def token_uri: () -> untyped
+
+    def request_token: () -> untyped
+
+    def with_lease: () { () -> untyped } -> untyped
+
+    def lease_key: () -> "mattermost:session"
+
+    def lease_try_obtain: () -> untyped
+
+    def handle_exceptions: () { () -> untyped } -> untyped
+
+    def parse_cookie: (untyped response) -> untyped
+  end
+end

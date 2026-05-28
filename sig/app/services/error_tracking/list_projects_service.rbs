@@ -1,0 +1,15 @@
+module ErrorTracking
+  class ListProjectsService < ErrorTracking::BaseService
+    private
+
+    def perform: () -> untyped
+
+    def parse_response: (untyped response) -> { projects: untyped }
+
+    def project_error_tracking_setting: () -> untyped
+
+    def token: (untyped setting) -> (nil | untyped)
+
+    def masked_token?: () -> untyped
+  end
+end

@@ -1,0 +1,18 @@
+module AntiAbuse
+  class SpamAbuseEventsWorker
+    @user: untyped
+
+    include ApplicationWorker
+
+    def perform: (untyped params) -> (nil | untyped)
+
+    private
+
+    attr_reader user: untyped
+
+    def report_user: (untyped params) -> untyped
+
+    # Associate the abuse report with an abuse event
+    def create_abuse_event: (untyped abuse_report_id, untyped params) -> untyped
+  end
+end

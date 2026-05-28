@@ -1,0 +1,23 @@
+module Projects
+  class OverwriteProjectService < BaseService
+    def execute: (untyped source_project) -> untyped
+
+    private
+
+    def track_service: (untyped start_time, untyped source_project, untyped exception) -> untyped
+
+    def move_relationships_between: (untyped source_project, untyped target_project) -> untyped
+
+    def schedule_source_project_deletion: (untyped source_project) -> untyped
+
+    def rename_project: (untyped target_project, untyped name, untyped path) -> untyped
+
+    def add_source_project_to_fork_network: (untyped source_project) -> (nil | untyped)
+
+    def remove_source_project_from_fork_network: (untyped source_project) -> (nil | untyped)
+
+    def tmp_source_project_name: (untyped source_project) -> ::Array[untyped]
+
+    def fork_network: () -> untyped
+  end
+end

@@ -1,0 +1,127 @@
+module Gitlab
+  module Ci
+    #
+    # Base GitLab CI Configuration facade
+    #
+    class Config
+      @logger: untyped
+
+      @source_ref_path: untyped
+
+      @project: untyped
+
+      @inject_edge_stages: untyped
+
+      @pipeline_policy_context: untyped
+
+      @context: untyped
+
+      @source: untyped
+
+      @normalized_jobs: untyped
+
+      @normalizer: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ConfigError: untyped
+
+      TIMEOUT_SECONDS: untyped
+
+      OVERRIDE_TIMEOUT_SECONDS: untyped
+
+      TIMEOUT_MESSAGE: "Request timed out when fetching configuration files."
+
+      GITALY_TIMEOUT_SECONDS: untyped
+
+      HTTP_OPEN_TIMEOUT_SECONDS: untyped
+
+      HTTP_READ_TIMEOUT_SECONDS: untyped
+
+      RESCUE_ERRORS: ::Array[untyped]
+
+      attr_reader root: untyped
+
+      attr_reader context: untyped
+
+      attr_reader source_ref_path: untyped
+
+      attr_reader source: untyped
+
+      attr_reader logger: untyped
+
+      attr_reader inject_edge_stages: untyped
+
+      attr_reader pipeline_policy_context: untyped
+
+      attr_reader spec: untyped
+
+      # rubocop: disable Metrics/ParameterLists
+      def initialize: (untyped config, ?project: untyped?, ?pipeline: untyped?, ?sha: untyped?, ?ref: untyped?, ?user: untyped?, ?parent_pipeline: untyped?, ?source: untyped?, ?pipeline_config: untyped?, ?logger: untyped?, ?inject_edge_stages: bool, ?pipeline_policy_context: untyped?, ?inputs: ::Hash[untyped, untyped]) -> void
+
+      def valid?: () -> untyped
+
+      def errors: () -> untyped
+
+      def warnings: () -> untyped
+
+      def to_hash: () -> untyped
+
+      #
+      # Temporary method that should be removed after refactoring
+      #
+      # rubocop:disable Gitlab/NoCodeCoverageComment -- This is an existing method and probably never called
+      # :nocov:
+      def variables: () -> untyped
+
+      def variables_with_data: () -> untyped
+
+      def variables_with_prefill_data: () -> untyped
+
+      def stages: () -> untyped
+
+      def jobs: () -> untyped
+
+      def workflow_rules: () -> untyped
+
+      def workflow_name: () -> untyped
+
+      def workflow_auto_cancel: () -> untyped
+
+      def normalized_jobs: () -> untyped
+
+      def normalizer_errors: () -> untyped
+
+      # Returns a mapping of original job names to their normalized (expanded) names
+      # for jobs that use parallel:matrix or parallel:N
+      def job_name_mappings: () -> untyped
+
+      def included_templates: () -> untyped
+
+      def included_components: () -> untyped
+
+      def metadata: () -> { includes: untyped, merged_yaml: untyped }
+
+      private
+
+      def expand_config: (untyped config, untyped inputs) -> untyped
+
+      def build_config: (untyped config, untyped inputs) -> untyped
+
+      def find_sha: (untyped project) -> untyped
+
+      def build_context: (project: untyped, pipeline: untyped, sha: untyped, user: untyped, parent_pipeline: untyped, pipeline_config: untyped, pipeline_policy_context: untyped) -> untyped
+
+      def build_variables: (pipeline: untyped) -> untyped
+
+      def normalizer: () -> untyped
+
+      def fetch_timeout: (untyped project) -> untyped
+
+      def track_and_raise_for_dev_exception: (untyped error) -> untyped
+
+      # Overridden in EE
+      def rescue_errors: () -> untyped
+    end
+  end
+end

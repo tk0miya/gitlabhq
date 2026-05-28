@@ -1,0 +1,25 @@
+module Gitlab
+  module Composer
+    class VersionIndex
+      @packages: untyped
+
+      include API::Helpers::RelatedResourcesHelpers
+
+      def initialize: (untyped packages) -> void
+
+      def as_json: (?untyped? _options) -> { "packages" => ::Hash[untyped, untyped] }
+
+      def sha: () -> untyped
+
+      private
+
+      def package_versions_map: () -> untyped
+
+      def package_metadata: (untyped package) -> untyped
+
+      def package_dist: (untyped package) -> { "type" => "zip", "url" => untyped, "reference" => untyped, "shasum" => "" }
+
+      def package_source: (untyped package) -> { "type" => "git", "url" => untyped, "reference" => untyped }
+    end
+  end
+end

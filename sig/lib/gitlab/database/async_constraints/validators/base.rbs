@@ -1,0 +1,43 @@
+module Gitlab
+  module Database
+    module AsyncConstraints
+      module Validators
+        class Base
+          @record: untyped
+
+          include AsyncDdlExclusiveLeaseGuard
+
+          extend ::Gitlab::Utils::Override
+
+          TIMEOUT_PER_ACTION: untyped
+
+          STATEMENT_TIMEOUT: untyped
+
+          def initialize: (untyped record) -> void
+
+          def perform: () -> untyped
+
+          private
+
+          attr_reader record: untyped
+
+          def constraint_exists?: () -> nil
+
+          def validate_constraint_with_error_handling: () -> untyped
+
+          def validate_constraint: () -> untyped
+
+          def set_statement_timeout: () { () -> untyped } -> untyped
+
+          def lease_timeout: () -> untyped
+
+          def log_info: (untyped message) -> untyped
+
+          def skip_log_message: () -> ::String
+
+          def logging_options: () -> { class: untyped, connection_name: untyped, constraint_name: untyped, constraint_type: untyped, table_name: untyped }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,82 @@
+class DeployToken < ApplicationRecord
+  include Expirable
+
+  include TokenAuthenticatable
+
+  include PolicyActor
+
+  include Gitlab::Utils::StrongMemoize
+
+  AVAILABLE_SCOPES: ::Array[:read_repository | :read_registry | :write_registry | :read_package_registry | :write_package_registry | :read_virtual_registry | :write_virtual_registry]
+
+  GITLAB_DEPLOY_TOKEN_NAME: "gitlab-deploy-token"
+
+  DEPLOY_TOKEN_PREFIX: "gldt-"
+
+  NOTIFICATION_INTERVALS: { seven_days: ::Range[::Integer], thirty_days: ::Range[::Integer], sixty_days: ::Range[::Integer] }
+
+  def self.gitlab_deploy_token: () -> untyped
+
+  def self.prefix_for_deploy_token: () -> untyped
+
+  def self.notification_interval: (untyped interval) -> untyped
+
+  def self.scope_for_notification_interval: (untyped interval, ?min_expires_at: untyped?, ?max_expires_at: untyped?) -> untyped
+
+  def self.ordered_for_keyset_pagination: () -> untyped
+
+  def self.update_notification_timestamps: (untyped token_ids, untyped interval, ?untyped timestamp) -> untyped
+
+  def valid_for_dependency_proxy?: () -> untyped
+
+  def revoke!: () -> untyped
+
+  def active?: () -> untyped
+
+  def deactivated?: () -> untyped
+
+  def bot?: () -> true
+
+  def scopes: () -> untyped
+
+  def username: () -> untyped
+
+  def has_access_to?: (untyped requested_project) -> (false | untyped)
+
+  def hook_attrs: () -> untyped
+
+  def has_access_to_group?: (untyped requested_group) -> (false | untyped)
+
+  # This is temporal. Currently we limit DeployToken
+  # to a single project or group, later we're going to
+  # extend that to be for multiple projects and namespaces.
+  def project: () -> untyped
+
+  def group: () -> untyped
+
+  def accessible_projects: () -> (untyped | untyped | nil)
+
+  def holder: () -> untyped
+
+  def impersonated?: () -> false
+
+  def expires_at: () -> untyped
+
+  def expires_at=: (untyped value) -> untyped
+
+  def prefix_for_deploy_token: () -> untyped
+
+  private
+
+  def expired?: () -> (false | untyped)
+
+  def ensure_at_least_one_scope: () -> (untyped | nil)
+
+  def default_username: () -> (::String | nil)
+
+  def no_groups: () -> (untyped | nil)
+
+  def no_projects: () -> (untyped | nil)
+
+  def has_scopes?: (untyped required_scopes) -> untyped
+end

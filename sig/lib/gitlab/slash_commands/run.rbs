@@ -1,0 +1,16 @@
+module Gitlab
+  module SlashCommands
+    # Slash command for triggering chatops jobs.
+    class Run < BaseCommand
+      def self.match: (untyped text) -> untyped
+
+      def self.help_message: () -> "run <command> <arguments>"
+
+      def self.available?: (untyped project) -> untyped
+
+      def self.allowed?: (untyped project, untyped user) -> untyped
+
+      def execute: (untyped match) -> untyped
+    end
+  end
+end

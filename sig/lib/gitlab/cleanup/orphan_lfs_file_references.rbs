@@ -1,0 +1,35 @@
+module Gitlab
+  module Cleanup
+    class OrphanLfsFileReferences
+      @project: untyped
+
+      @dry_run: untyped
+
+      @logger: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader project: untyped
+
+      attr_reader dry_run: untyped
+
+      attr_reader logger: untyped
+
+      DEFAULT_REMOVAL_LIMIT: 1000
+
+      def initialize: (untyped project, ?dry_run: bool, ?logger: untyped?) -> void
+
+      def run!: () -> (nil | untyped)
+
+      private
+
+      def remove_orphan_references: () -> untyped
+
+      def orphan_objects: () -> untyped
+
+      def log_info: (untyped msg) -> untyped
+
+      def limit: () -> untyped
+    end
+  end
+end

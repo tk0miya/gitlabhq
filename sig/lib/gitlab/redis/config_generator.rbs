@@ -1,0 +1,23 @@
+module Gitlab
+  module Redis
+    class ConfigGenerator
+      @component: untyped
+
+      CommandExecutionError: untyped
+
+      InvalidPathError: untyped
+
+      attr_reader component: untyped
+
+      def self.parse_client_tls_options: (untyped config) -> untyped
+
+      def initialize: (?::String component) -> void
+
+      def generate: (untyped original_config) -> untyped
+
+      private
+
+      def generate_yaml_from_command: (untyped command) -> untyped
+    end
+  end
+end

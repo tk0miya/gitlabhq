@@ -1,0 +1,23 @@
+module Banzai
+  module Filter
+    class BaseRelativeLinkFilter < HTML::Pipeline::Filter
+      include Gitlab::Utils::StrongMemoize
+
+      CSS: "a:not(.gfm), img:not(.gfm), video:not(.gfm), audio:not(.gfm)"
+
+      XPATH: untyped
+
+      def linkable_attributes: () -> untyped
+
+      def relative_url_root: () -> untyped
+
+      def project: () -> untyped
+
+      private
+
+      def unescape_and_scrub_uri: (untyped uri) -> untyped
+
+      def fetch_linkable_attributes: () -> untyped
+    end
+  end
+end

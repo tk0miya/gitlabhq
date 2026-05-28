@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        module Locations
+          class Base
+            include ::Gitlab::Utils::StrongMemoize
+
+            def ==: (untyped other) -> untyped
+
+            def fingerprint: () -> untyped
+
+            def as_json: (?untyped? options) -> untyped
+
+            def fingerprint_path: () -> untyped
+
+            private
+
+            def fingerprint_data: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

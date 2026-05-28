@@ -1,0 +1,48 @@
+module Snippets
+  class CreateService < Snippets::BaseService
+    @perform_spam_check: untyped
+
+    @snippet: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    FAILED_TO_CREATE_ERROR: :failed_to_create_error
+
+    def initialize: (project: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped], ?perform_spam_check: bool) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader snippet: untyped
+
+    attr_reader perform_spam_check: untyped
+
+    # If the snippet is a "project snippet", specifically set it to nil to override the default database value of 1.
+    # We only want organization_id on the PersonalSnippet subclass.
+    #
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/460827
+    def build_from_params: () -> untyped
+
+    def organization_id: () -> untyped
+
+    # If the snippet_actions param is present
+    # we need to fill content and file_name from
+    # the model
+    def create_params: () -> untyped
+
+    def save_and_commit: () -> untyped
+
+    def create_repository: () -> untyped
+
+    def create_commit: () -> untyped
+
+    def move_temporary_files: () -> (nil | untyped)
+
+    def build_actions_from_params: (untyped _snippet) -> ::Array[{ file_path: untyped, content: untyped }]
+
+    def restricted_files_actions: () -> :create
+
+    def commit_attrs: (untyped snippet, untyped msg) -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+module Subscriptions
+  class BaseSubscription < GraphQL::Schema::Subscription
+    include Gitlab::Graphql::VersionFilter::FutureFieldFallback
+
+    UNAUTHORIZED_ERROR_MESSAGE: "Unauthorized subscription"
+
+    def initialize: (object: untyped, context: untyped, field: untyped) -> void
+
+    # We override graphql-ruby's default `subscribe` since it returns
+    # :no_response instead, which leads to empty hashes rendered out
+    # to the caller which has caused problems in the client.
+    #
+    # Eventually, we should move to an approach where the caller receives
+    # a response here upon subscribing, but we don't need this currently
+    # because Vue components also perform an initial fetch query.
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/402614
+    def subscribe: (*untyped) -> nil
+
+    def authorized?: (*untyped) -> untyped
+
+    private
+
+    def authorize_object_or_gid!: (untyped ability_name, gid: untyped, ?object: untyped) -> (untyped | true)
+
+    def unauthorized!: () -> untyped
+
+    def current_user: () -> untyped
+  end
+end

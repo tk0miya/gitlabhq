@@ -1,0 +1,21 @@
+module Mutations
+  module Commits
+    class Create < BaseMutation
+      include FindsProject
+
+      include Gitlab::InternalEventsTracking
+
+      class UrlHelpers
+        include GitlabRoutingHelper
+
+        include Gitlab::Routing
+      end
+
+      def resolve: (project_path: untyped, branch: untyped, message: untyped, **untyped args) -> { content: untyped, commit: untyped, commit_pipeline_path: untyped, errors: untyped }
+
+      private
+
+      def track_ci_config_creation: (untyped project, untyped actions) -> (nil | untyped)
+    end
+  end
+end

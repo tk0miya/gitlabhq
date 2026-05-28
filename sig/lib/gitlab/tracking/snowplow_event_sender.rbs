@@ -1,0 +1,29 @@
+module Gitlab
+  module Tracking
+    class SnowplowEventSender
+      @options: untyped
+
+      @endpoint: untyped
+
+      @emitter: untyped
+
+      include Gitlab::Tracking::Helpers::SnowplowEventMetricLogger
+
+      attr_reader options: untyped
+
+      attr_reader endpoint: untyped
+
+      def initialize: (untyped options, untyped endpoint) -> void
+
+      def send_events: (untyped batch) -> untyped
+
+      private
+
+      def emitter: () -> untyped
+
+      def hostname: () -> untyped
+
+      def emitter_options: () -> untyped
+    end
+  end
+end

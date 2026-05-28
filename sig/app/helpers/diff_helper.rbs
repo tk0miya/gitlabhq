@@ -1,0 +1,86 @@
+module DiffHelper
+  @diff_view: untyped
+
+  def mark_inline_diffs: (untyped old_line, untyped new_line) -> ::Array[untyped]
+
+  def diffs_expanded?: () -> untyped
+
+  def diff_view: () -> untyped
+
+  def show_only_context_commits?: () -> untyped
+
+  def diff_options: () -> untyped
+
+  def with_custom_diff_options: () { (untyped) -> untyped } -> untyped
+
+  def diff_match_line: (untyped old_pos, untyped new_pos, ?text: ::String, ?view: ::Symbol, ?bottom: bool) -> untyped
+
+  def diff_nomappinginraw_line: (untyped line, untyped first_line_num_class, untyped second_line_num_class, untyped content_line_class) -> untyped
+
+  def diff_line_content: (untyped line) -> untyped
+
+  def diff_link_number: (untyped line_type, untyped match, untyped text) -> (" " | untyped)
+
+  def parallel_diff_discussions: (untyped left, untyped right, untyped diff_file) -> (nil | ::Array[untyped])
+
+  def inline_diff_btn: () -> untyped
+
+  def parallel_diff_btn: () -> untyped
+
+  def submodule_link: (untyped blob, untyped ref, ?untyped repository) -> untyped
+
+  def submodule_diff_compare_data: (untyped diff_file) -> (nil | { title: untyped, href: untyped, tooltip: untyped })
+
+  def submodule_diff_compare_link: (untyped diff_file) -> ("" | untyped)
+
+  def diff_file_blob_raw_url: (untyped diff_file, ?only_path: bool) -> untyped
+
+  def diff_file_old_blob_raw_url: (untyped diff_file, ?only_path: bool) -> (nil | untyped)
+
+  def diff_file_blob_raw_path: (untyped diff_file) -> untyped
+
+  def diff_file_old_blob_raw_path: (untyped diff_file) -> untyped
+
+  def diff_file_html_data: (untyped project, untyped diff_file_path, untyped diff_commit_id) -> { blob_diff_path: untyped, view: untyped }
+
+  def diff_file_stats_data: (untyped diff_file) -> { old_size: untyped, new_size: untyped, added_lines: untyped, removed_lines: untyped, viewer_name: untyped }
+
+  def editable_diff?: (untyped diff_file) -> untyped
+
+  def render_overflow_warning?: (untyped diffs_collection) -> untyped
+
+  def apply_diff_view_cookie!: () -> (nil | untyped)
+
+  def collapsed_diff_url: (untyped diff_file) -> untyped
+
+  # As the fork suggestion button is identical every time, we cache it for a full page load
+  def render_fork_suggestion: () -> (nil | untyped)
+
+  def conflicts: (?allow_tree_conflicts: bool) -> untyped
+
+  def conflicts_with_types: () -> untyped
+
+  def params_with_whitespace: () -> untyped
+
+  def file_heading_id: (untyped diff_file) -> ::String
+
+  def hide_whitespace?: () -> untyped
+
+  private
+
+  def cached_conflicts_with_types: () { () -> untyped } -> untyped
+
+  def diff_btn: (untyped title, untyped name, untyped selected) -> untyped
+
+  def commit_diff_whitespace_link: (untyped project, untyped commit, untyped options) -> untyped
+
+  def commit_diff_whitespace_url: (untyped project, untyped commit) -> untyped
+
+  def diff_compare_whitespace_link: (untyped project, untyped from, untyped to, untyped options) -> untyped
+
+  def toggle_whitespace_link: (untyped url, untyped options) -> untyped
+
+  def code_navigation_path: (untyped diffs) -> untyped
+
+  def log_overflow_limits: (diff_files: untyped, collection_overflow: untyped) -> untyped
+end

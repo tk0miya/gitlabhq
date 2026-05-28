@@ -1,0 +1,21 @@
+module Security
+  class JobsFinder
+    @job_types: untyped
+
+    @pipeline: untyped
+
+    attr_reader pipeline: untyped
+
+    def self.allowed_job_types: () -> untyped
+
+    def initialize: (pipeline: untyped, ?job_types: untyped) -> void
+
+    def execute: () -> (::Array[untyped] | untyped)
+
+    private
+
+    def find_jobs: () -> untyped
+
+    def valid_job_types?: (untyped job_types) -> untyped
+  end
+end

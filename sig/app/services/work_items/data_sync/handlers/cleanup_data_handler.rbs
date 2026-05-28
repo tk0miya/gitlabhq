@@ -1,0 +1,32 @@
+module WorkItems
+  module DataSync
+    module Handlers
+      class CleanupDataHandler
+        @work_item: untyped
+
+        @current_user: untyped
+
+        @params: untyped
+
+        attr_reader work_item: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader params: untyped
+
+        def initialize: (work_item: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def cleanup_work_item_widgets_data: () -> untyped
+
+        def cleanup_work_item_non_widgets_data: () -> untyped
+
+        # this will handle work item deletion
+        def cleanup_work_item: () -> nil
+      end
+    end
+  end
+end

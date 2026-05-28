@@ -1,0 +1,45 @@
+module Import
+  module Offline
+    module Imports
+      class ScheduleImportService
+        @bulk_import: untyped
+
+        @entities: untyped
+
+        @metadata: untyped
+
+        @logger: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        ValidationError: untyped
+
+        # @param [BulkImport] bulk_import
+        # @param [Array<Hash>] entities
+        def initialize: (untyped bulk_import, untyped entities) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader bulk_import: untyped
+
+        attr_reader entities: untyped
+
+        def update_bulk_import: () -> untyped
+
+        def create_entities: (untyped bulk_import) -> untyped
+
+        def track_access_level: (untyped entity_params) -> untyped
+
+        def validate_entity_mapping!: (untyped source_full_path) -> untyped
+
+        def metadata: () -> untyped
+
+        def configuration: () -> untyped
+
+        def logger: () -> untyped
+      end
+    end
+  end
+end

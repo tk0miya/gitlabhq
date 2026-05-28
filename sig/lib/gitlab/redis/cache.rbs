@@ -1,0 +1,19 @@
+module Gitlab
+  module Redis
+    class Cache < ::Gitlab::Redis::Wrapper
+      CACHE_NAMESPACE: "cache:gitlab"
+
+      # Configuration options for Rails.cache, not Gitlab::Redis::Cache
+      #
+      # Full list of options:
+      # https://api.rubyonrails.org/classes/ActiveSupport/Cache/RedisCacheStore.html#method-c-new
+      # pool argument event not documented in the link above is handled by RedisCacheStore see:
+      # https://github.com/rails/rails/blob/593893c901f87b4ed205751f72df41519b4d2da3/activesupport/lib/active_support/cache/redis_cache_store.rb#L165
+      # and
+      # https://github.com/rails/rails/blob/ad790cb2f6bc724a89e4266b505b3c57d5089dae/activesupport/lib/active_support/cache.rb#L206
+      def self.active_support_config: () -> { redis: untyped, pool: false, compress: untyped, namespace: untyped, expires_in: untyped }
+
+      def self.default_ttl_seconds: () -> untyped
+    end
+  end
+end

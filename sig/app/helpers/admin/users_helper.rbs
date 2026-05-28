@@ -1,0 +1,17 @@
+module Admin
+  module UsersHelper
+    def show_admin_new_user_organization_field?: () -> untyped
+
+    def show_admin_edit_user_organization_field?: (untyped user) -> untyped
+
+    def admin_new_user_organization_field_app_data: () -> untyped
+
+    def admin_edit_user_organization_field_app_data: (untyped user) -> untyped
+
+    def email_otp_status_text: (untyped user) -> (::String | "No")
+
+    private
+
+    def admin_user_organization_field_shared: (untyped initial_organization) -> { initial_organization: untyped }
+  end
+end

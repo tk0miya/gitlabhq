@@ -1,0 +1,19 @@
+module Users
+  class UnconfirmedSecondaryEmailsDeletionCronWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    BATCH_SIZE: 1000
+
+    BULK_CLAIMS_BATCH_SIZE: untyped
+
+    def perform: () -> untyped
+
+    private
+
+    def schedule_bulk_claims_destroy: (untyped destroy_metadata) -> (nil | untyped)
+
+    def created_cut_off: () -> untyped
+  end
+end

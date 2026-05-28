@@ -1,0 +1,23 @@
+module Gitlab
+  module EventStore
+    class Store
+      @subscriptions: untyped
+
+      attr_reader subscriptions: untyped
+
+      def initialize: () ?{ (untyped) -> untyped } -> void
+
+      def subscribe: (untyped worker, to: untyped, ?if: untyped?, ?delay: untyped?, ?group_size: untyped?) -> untyped
+
+      def publish: (untyped event) -> untyped
+
+      def publish_group: (untyped events) -> untyped
+
+      private
+
+      def lock!: () -> untyped
+
+      def validate_subscription!: (untyped subscriber, untyped event_class) -> untyped
+    end
+  end
+end

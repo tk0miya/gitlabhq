@@ -1,0 +1,22 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents caches configuration
+        #
+        class Caches < ::Gitlab::Config::Entry::ComposableArray
+          @key: untyped
+
+          include ::Gitlab::Config::Entry::Validatable
+
+          MULTIPLE_CACHE_LIMIT: 4
+
+          def initialize: (*untyped args) -> void
+
+          def composable_class: () -> untyped
+        end
+      end
+    end
+  end
+end

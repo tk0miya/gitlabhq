@@ -1,0 +1,27 @@
+module Projects
+  class BranchRule
+    @project: untyped
+
+    @protected_branch: untyped
+
+    include GlobalID::Identification
+
+    extend Forwardable
+
+    attr_reader project: untyped
+
+    attr_reader protected_branch: untyped
+
+    alias branch_protection protected_branch
+
+    def self.find: (untyped id) -> untyped
+
+    def initialize: (untyped project, untyped protected_branch) -> void
+
+    def protected?: () -> true
+
+    def matching_branches_count: () -> untyped
+
+    def squash_option: () -> nil
+  end
+end

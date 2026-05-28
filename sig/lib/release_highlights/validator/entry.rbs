@@ -1,0 +1,51 @@
+module ReleaseHighlights
+  class Validator::Entry
+    @entry: untyped
+
+    include ActiveModel::Validations
+
+    include ActiveModel::Validations::Callbacks
+
+    AVAILABLE_IN: ::Array["Free" | "Premium" | "Ultimate"]
+
+    HYPHENATED_ATTRIBUTES: ::Array[:self_managed | :gitlab_com]
+
+    attr_reader entry: untyped
+
+    attr_accessor available_in: untyped
+
+    attr_accessor description: untyped
+
+    attr_accessor gitlab_com: untyped
+
+    attr_accessor image_url: untyped
+
+    attr_accessor name: untyped
+
+    attr_accessor published_at: untyped
+
+    attr_accessor release: untyped
+
+    attr_accessor self_managed: untyped
+
+    attr_accessor stage: untyped
+
+    def initialize: (untyped entry) -> void
+
+    def validate_published_at: () -> (nil | untyped)
+
+    def validate_available_in: () -> untyped
+
+    def read_attribute_for_validation: (untyped key) -> untyped
+
+    private
+
+    def add_line_numbers_to_errors!: () -> untyped
+
+    def line_number_for: (untyped key) -> untyped
+
+    def value_for: (untyped key) -> (nil | untyped)
+
+    def find_node: (untyped key) -> untyped
+  end
+end

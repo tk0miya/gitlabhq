@@ -1,0 +1,25 @@
+module Sidebars
+  module Projects
+    module Menus
+      class SecurityComplianceMenu < ::Sidebars::Menu
+        include Gitlab::Utils::StrongMemoize
+
+        def configure_menu_items: () -> (false | true)
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "shield"
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def configuration_menu_item: () -> untyped
+
+        def render_configuration_menu_item?: () -> untyped
+
+        def configuration_menu_item_paths: () -> ::Array["projects/security/configuration#show"]
+      end
+    end
+  end
+end

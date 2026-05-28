@@ -1,0 +1,31 @@
+module Subscribable
+  extend ActiveSupport::Concern
+
+  def subscribed?: (untyped user, ?untyped? project, ?cache_enforced: bool) -> (false | untyped)
+
+  def lazy_subscription: (untyped user, ?untyped? project, ?cache_enforced: bool) -> (nil | untyped)
+
+  # Override this method to define custom logic to consider a subscribable as
+  # subscribed without an explicit subscription record.
+  def subscribed_without_subscriptions?: (untyped user, untyped project) -> false
+
+  def subscribers: (untyped project) -> untyped
+
+  def toggle_subscription: (untyped user, ?untyped? project) -> untyped
+
+  def subscribe: (untyped user, ?untyped? project) -> untyped
+
+  def unsubscribe: (untyped user, ?untyped? project) -> untyped
+
+  def set_subscription: (untyped user, untyped desired_state, ?untyped? project) -> untyped
+
+  private
+
+  def unsubscribe_from_other_levels: (untyped user, untyped project) -> untyped
+
+  def find_or_initialize_subscription: (untyped user, untyped project) -> untyped
+
+  def subscriptions_available: (untyped project) -> untyped
+
+  def subscribable_type: () -> ("Label" | "Issue" | untyped)
+end

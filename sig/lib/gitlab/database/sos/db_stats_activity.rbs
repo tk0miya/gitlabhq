@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module Sos
+      class DbStatsActivity < BaseDbStatsHandler
+        FINISHED: 3
+
+        FINALIZED: 6
+
+        QUERIES: { pg_show_all_settings: "SHOW ALL;\n", pg_role_db_setting: "SELECT * FROM pg_db_role_setting;\n", read_replica_count: "SELECT COUNT(*) as replica_count\nFROM\n  pg_stat_replication\nWHERE\n  state = 'streaming';\n", bbm_status: ::String, pg_constraints: "SELECT\n  c.relname AS table_name,\n  con.conname AS constraint_name,\n  pg_get_constraintdef(con.oid) AS constraint_definition\nFROM\n  pg_constraint con\nJOIN\n  pg_class c ON c.oid = con.conrelid\nWHERE\n  con.convalidated = false\nORDER BY\n  c.relname, con.conname;\n", collation_check: "SELECT collname AS collation_name,\n  collversion AS version,\n  pg_collation_actual_version(oid) AS actual_version\nFROM pg_collation\nWHERE collprovider = 'c';\n", pg_class_settings: "SELECT * FROM pg_class;\n" }
+
+        def run: () -> untyped
+      end
+    end
+  end
+end

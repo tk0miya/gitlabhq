@@ -1,0 +1,25 @@
+module Ci
+  class UpdatePendingBuildService
+    @model: untyped
+
+    @update_params: untyped
+
+    VALID_PARAMS: ::Array[:instance_runners_enabled | :namespace_id | :namespace_traversal_ids]
+
+    InvalidParamsError: untyped
+
+    InvalidModelError: untyped
+
+    def initialize: (untyped model, untyped update_params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def validations!: () -> untyped
+
+    def validate_model!: () -> true
+
+    def validate_params!: () -> true
+  end
+end

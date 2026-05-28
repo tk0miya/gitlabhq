@@ -1,0 +1,11 @@
+module Analytics
+  module CycleAnalytics
+    class ConfigurationEntity < Grape::Entity
+      include RequestAwareEntity
+
+      private
+
+      def events: () -> untyped
+    end
+  end
+end

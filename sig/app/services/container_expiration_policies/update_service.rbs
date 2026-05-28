@@ -1,0 +1,17 @@
+module ContainerExpirationPolicies
+  class UpdateService < BaseContainerService
+    include Gitlab::Utils::StrongMemoize
+
+    ALLOWED_ATTRIBUTES: ::Array[:enabled | :cadence | :older_than | :keep_n | :name_regex | :name_regex_keep]
+
+    def execute: () -> untyped
+
+    private
+
+    def container_expiration_policy: () -> untyped
+
+    def allowed?: () -> untyped
+
+    def container_expiration_policy_params: () -> untyped
+  end
+end

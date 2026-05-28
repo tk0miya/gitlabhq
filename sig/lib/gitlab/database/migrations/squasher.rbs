@@ -1,0 +1,35 @@
+module Gitlab
+  module Database
+    module Migrations
+      class Squasher
+        @migration_data: untyped
+
+        @file_slugs: untyped
+
+        RSPEC_FILENAME_REGEXP: ::Regexp
+
+        def initialize: (untyped git_output) -> void
+
+        def files_to_delete: () -> untyped
+
+        private
+
+        def schema_migrations: () -> untyped
+
+        def find_migration_specs: () -> untyped
+
+        def migration_files_from_git: (untyped body) -> untyped
+
+        def match_file_slug: (untyped filename) -> (nil | untyped)
+
+        def file_has_slug?: (untyped filename) -> (false | untyped)
+
+        def migration_specs: () -> untyped
+
+        def ee_migration_specs: () -> untyped
+
+        def batched_background_migration_files: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module IncidentManagement
+  module PagerDuty
+    class ProcessIncidentWorker
+      include ApplicationWorker
+
+      def perform: (untyped project_id, untyped incident_payload) -> (nil | untyped)
+
+      private
+
+      def find_project: (untyped project_id) -> untyped
+
+      def create_issue: (untyped project, untyped incident_payload) -> untyped
+
+      def log_error: (untyped result) -> untyped
+    end
+  end
+end

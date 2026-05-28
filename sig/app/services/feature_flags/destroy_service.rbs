@@ -1,0 +1,15 @@
+module FeatureFlags
+  class DestroyService < FeatureFlags::BaseService
+    def execute: (untyped feature_flag) -> untyped
+
+    private
+
+    def destroy_feature_flag: (untyped feature_flag) -> untyped
+
+    def audit_context: (untyped feature_flag) -> { name: "feature_flag_deleted", message: untyped, author: untyped, scope: untyped, target: untyped }
+
+    def audit_message: (untyped feature_flag) -> ::String
+
+    def can_destroy?: (untyped feature_flag) -> untyped
+  end
+end

@@ -1,0 +1,38 @@
+module Gitlab
+  module Seeders
+    module Ci
+      module Catalog
+        class ResourceSeeder
+          @group: untyped
+
+          @seed_count: untyped
+
+          @publish: untyped
+
+          @current_user: untyped
+
+          # Initializes the class
+          #
+          # @param [String] Path of the group to find
+          # @param [Integer] Number of resources to create
+          # @param[Boolean] If the created resources should be published or not, defaults to false
+          def initialize: (group_path: untyped, seed_count: untyped, publish: untyped) -> void
+
+          def seed: () -> untyped
+
+          private
+
+          def create_project: (untyped name, untyped index) -> untyped
+
+          def create_template_yml: (untyped project) -> untyped
+
+          def create_readme: (untyped project, untyped index) -> untyped
+
+          def create_catalog_resource: (untyped project) -> untyped
+
+          def seed_catalog_resource: (untyped index) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

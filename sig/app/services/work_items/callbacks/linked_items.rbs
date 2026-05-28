@@ -1,0 +1,11 @@
+module WorkItems
+  module Callbacks
+    class LinkedItems < Base
+      def after_save_commit: () -> (nil | untyped)
+
+      private
+
+      def execute_linked_items_service: (untyped item_ids, untyped link_type) -> untyped
+    end
+  end
+end

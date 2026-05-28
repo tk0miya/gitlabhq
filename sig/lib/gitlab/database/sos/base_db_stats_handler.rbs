@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module Sos
+      class BaseDbStatsHandler
+        @connection: untyped
+
+        @name: untyped
+
+        @output: untyped
+
+        attr_reader connection: untyped
+
+        attr_reader name: untyped
+
+        attr_reader output: untyped
+
+        def initialize: (untyped connection, untyped name, untyped output) -> void
+
+        def execute_query: (untyped query) -> untyped
+
+        def write_to_csv: (untyped query_name, untyped result, ?include_timestamp: bool) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Gitlab
+  module RepoPath
+    NotFoundError: untyped
+
+    # Returns an array containing:
+    # - The repository container
+    # - The related project (if available)
+    # - The repository type
+    # - The original container path (if redirected)
+    #
+    # @returns [HasRepository, Project, String, String]
+    def self.parse: (untyped path) -> (::Array[untyped] | ::Array[nil | untyped])
+
+    # Returns an array containing:
+    # - The repository container
+    # - The related project (if available)
+    #
+    # @returns [HasRepository, Project, String]
+    def self.find_container: (untyped type, untyped full_path) -> (::Array[nil] | untyped)
+
+    def self.find_project: (untyped project_path) -> untyped
+
+    def self.redirected?: (untyped container, untyped container_path) -> untyped
+
+    # Snippet_path can be either:
+    # - snippets/1
+    # - h5bp/html5-boilerplate/snippets/53
+    def self.find_snippet: (untyped snippet_path) -> (nil | untyped)
+
+    # Wiki path can be either:
+    # - namespace/project
+    # - group/subgroup/project
+    #
+    # And also in EE:
+    # - group
+    # - group/subgroup
+    def self.find_wiki: (untyped container_path) -> untyped
+
+    def self.find_design_management_repository: (untyped full_path) -> untyped
+
+    def self.extract_snippet_info: (untyped snippet_path) -> ::Array[untyped]
+  end
+end

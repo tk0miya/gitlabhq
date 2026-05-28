@@ -1,0 +1,13 @@
+module Mutations
+  module ReleaseAssetLinks
+    class Create < BaseMutation
+      include FindsProject
+
+      include SafeFormatHelper
+
+      include Types::ReleaseAssetLinkSharedInputArguments
+
+      def resolve: (project_path: untyped, tag: untyped, **untyped link_attrs) -> ({ link: nil, errors: ::Array[untyped] } | untyped)
+    end
+  end
+end

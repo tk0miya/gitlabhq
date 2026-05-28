@@ -1,0 +1,11 @@
+module DeployKeys
+  class BasicDeployKeyEntity < Grape::Entity
+    include RequestAwareEntity
+
+    private
+
+    def can_edit: () -> untyped
+
+    def can_read_owner?: (untyped opts) -> untyped
+  end
+end

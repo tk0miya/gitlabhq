@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Builder
+        class Group
+          @group: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped group) -> void
+
+          def secret_variables: (environment: untyped, ?protected_ref: bool, ?only: untyped?) -> (::Array[untyped] | untyped)
+
+          private
+
+          attr_reader group: untyped
+
+          def base_scope: () -> untyped
+
+          def list_of_ids: () -> untyped
+        end
+      end
+    end
+  end
+end

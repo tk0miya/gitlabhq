@@ -1,0 +1,33 @@
+# Mixin for resolving merge requests. All arguments must be in forms
+# that `MergeRequestsFinder` can handle, so you may need to use aliasing.
+module ResolvesMergeRequests
+  extend ActiveSupport::Concern
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  prepend ::MergeRequests::LookAheadPreloads
+
+  NON_STABLE_CURSOR_SORTS: ::Array[:priority_asc | :priority_desc | :popularity_asc | :popularity_desc | :label_priority_asc | :label_priority_desc | :milestone_due_asc | :milestone_due_desc]
+
+  def resolve_with_lookahead: (**untyped args) -> untyped
+
+  def ready?: (**untyped args) -> untyped
+
+  def early_return: () -> ::Array[false | untyped]
+
+  private
+
+  def prepare_finder_params: (untyped args) -> untyped
+
+  def mr_parent: () -> untyped
+
+  def rewrite_param_name: (untyped params, untyped old_name, untyped new_name) -> (untyped | nil)
+
+  def validate_blob_path!: (untyped args) -> (nil | untyped)
+
+  def validate_closed_range!: (untyped args) -> (nil | untyped)
+
+  def non_stable_cursor_sort?: (untyped sort) -> untyped
+
+  def resource_parent: () -> untyped
+end

@@ -1,0 +1,82 @@
+# This concern is created to handle repository actions.
+# It should be include inside any object capable
+# of directly having a repository, like project or snippet.
+#
+# It also includes `Referable`, therefore the method
+# `to_reference` should be overridden in case the object
+# needs any special behavior.
+module HasRepository
+  @default_branch: untyped
+
+  # Store the desired default branch for later application
+  # This is used during project import to restore the default branch
+  @desired_default_branch: untyped
+
+  extend ActiveSupport::Concern
+
+  include Referable
+
+  include Gitlab::ShellAdapter
+
+  include Gitlab::Utils::StrongMemoize
+
+  def valid_repo?: () -> untyped
+
+  def repo_exists?: () -> untyped
+
+  def repository_exists?: () -> untyped
+
+  def root_ref?: (untyped branch) -> untyped
+
+  def commit: (?::String ref) -> untyped
+
+  def branch_exists?: (untyped branch) -> untyped
+
+  def ref_exists?: (untyped ref) -> untyped
+
+  def commit_by: (oid: untyped) -> untyped
+
+  def commits_by: (oids: untyped) -> untyped
+
+  def repository: () -> untyped
+
+  def storage: () -> untyped
+
+  def full_path: () -> untyped
+
+  def lfs_enabled?: () -> false
+
+  def empty_repo?: () -> untyped
+
+  def default_branch: () -> untyped
+
+  def default_branch=: (untyped branch_name) -> (nil | untyped)
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables -- no alternative without disabling cop
+  def apply_desired_default_branch: () -> untyped
+
+  def default_branch_from_preferences: () -> untyped
+
+  def default_branch_from_group_preferences: () -> (nil | untyped)
+
+  def reload_default_branch: () -> untyped
+
+  def url_to_repo: () -> untyped
+
+  def ssh_url_to_repo: () -> untyped
+
+  def http_url_to_repo: () -> untyped
+
+  # Is overridden in EE::Project for Geo support
+  def lfs_http_url_to_repo: (?untyped? _operation) -> untyped
+
+  def web_url: (?only_path: untyped?) -> untyped
+
+  def repository_size_checker: () -> untyped
+
+  def after_repository_change_head: () -> untyped
+
+  def after_create_repository: () -> untyped
+
+  def after_change_head_branch_does_not_exist: (untyped branch) -> nil
+end

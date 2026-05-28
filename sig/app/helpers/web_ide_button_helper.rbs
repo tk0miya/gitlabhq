@@ -1,0 +1,33 @@
+module WebIdeButtonHelper
+  def project_fork: () -> untyped
+
+  def project_to_use: () -> untyped
+
+  def can_collaborate?: () -> untyped
+
+  def can_create_mr_from_fork?: () -> untyped
+
+  def show_web_ide_button?: () -> untyped
+
+  def show_edit_button?: (?::Hash[untyped, untyped] options) -> untyped
+
+  def show_gitpod_button?: () -> untyped
+
+  def show_pipeline_editor_button?: (untyped project, untyped path) -> untyped
+
+  def fork?: () -> untyped
+
+  def readable_blob?: (?::Hash[untyped, untyped] options) -> untyped
+
+  def needs_to_fork?: () -> untyped
+
+  def web_ide_url: () -> untyped
+
+  def edit_url: (?::Hash[untyped, untyped] options) -> (untyped | "")
+
+  def gitpod_url: () -> ("" | ::String)
+
+  def web_ide_button_data: (?::Hash[untyped, untyped] options) -> { project_path: untyped, ref: untyped, is_fork: untyped, needs_to_fork: untyped, gitpod_enabled: untyped, is_blob: untyped, show_edit_button: untyped, show_web_ide_button: untyped, show_gitpod_button: untyped, show_pipeline_editor_button: untyped, web_ide_url: untyped, edit_url: untyped, pipeline_editor_url: untyped, gitpod_url: untyped, user_preferences_gitpod_path: untyped, user_profile_enable_gitpod_path: untyped }
+
+  def fork_modal_options: (untyped project, untyped blob) -> { fork_path: untyped, fork_modal_id: untyped }
+end

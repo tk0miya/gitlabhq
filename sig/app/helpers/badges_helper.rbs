@@ -1,0 +1,32 @@
+module BadgesHelper
+  # Creates a GitLab UI badge.
+  #
+  # Examples:
+  #   # Plain text badge
+  #   gl_badge_tag("foo")
+  #
+  #   # Danger variant
+  #   gl_badge_tag("foo", variant: :danger)
+  #
+  #   # With icon
+  #   gl_badge_tag("foo", icon: "question-o")
+  #
+  #   # Icon-only
+  #   gl_badge_tag("foo", icon: "question-o", icon_only: true)
+  #
+  #   # Badge link
+  #   gl_badge_tag("foo", nil, href: some_path)
+  #
+  #   # Custom classes
+  #   gl_badge_tag("foo", nil, class: "foo-bar")
+  #
+  #   # Block content
+  #   gl_badge_tag({ variant: :danger }, { class: "foo-bar" }) do
+  #     "foo"
+  #   end
+  #
+  # For accessibility, ensure that the given text or block is non-empty.
+  #
+  # See also https://gitlab-org.gitlab.io/gitlab-ui/?path=/story/base-badge--default.
+  def gl_badge_tag: (*untyped args) ?{ (?) -> untyped } -> untyped
+end

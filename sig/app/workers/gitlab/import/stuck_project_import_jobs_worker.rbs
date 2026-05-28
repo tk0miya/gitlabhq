@@ -1,0 +1,13 @@
+module Gitlab
+  module Import
+    class StuckProjectImportJobsWorker
+      include Gitlab::Import::StuckImportJob
+
+      private
+
+      def track_metrics: (untyped with_jid_count, untyped without_jid_count) -> untyped
+
+      def enqueued_import_states: () -> untyped
+    end
+  end
+end

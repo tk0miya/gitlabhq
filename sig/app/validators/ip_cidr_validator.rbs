@@ -1,0 +1,7 @@
+class IpCidrValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+
+  private
+
+  def valid_cidr_format?: (untyped cidr) -> untyped
+end

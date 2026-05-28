@@ -1,0 +1,17 @@
+module Mailgun
+  class WebhooksController < ApplicationController
+    WEBHOOK_PROCESSORS: ::Array[untyped]
+
+    def process_webhook: () -> untyped
+
+    private
+
+    def ensure_feature_enabled!: () -> (untyped | nil)
+
+    def authenticate_signature!: () -> (untyped | nil)
+
+    def valid_signature?: () -> (false | untyped)
+
+    def render_406: () -> untyped
+  end
+end

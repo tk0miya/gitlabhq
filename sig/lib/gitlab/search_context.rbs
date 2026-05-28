@@ -1,0 +1,96 @@
+module Gitlab
+  # Holds the contextual data used by navbar search component to
+  # determine the search scope, whether to search for code, or if
+  # a search should target snippets.
+  #
+  # Use the SearchContext::Builder to create an instance of this class
+  class SearchContext
+    @ref: untyped
+
+    @project: untyped
+
+    @project_metadata: untyped
+
+    @group: untyped
+
+    @group_metadata: untyped
+
+    @snippets: untyped
+
+    @scope: untyped
+
+    @search_url: untyped
+
+    attr_accessor project: untyped
+
+    attr_accessor project_metadata: untyped
+
+    attr_accessor ref: untyped
+
+    attr_accessor group: untyped
+
+    attr_accessor group_metadata: untyped
+
+    attr_accessor snippets: untyped
+
+    attr_accessor scope: untyped
+
+    attr_accessor search_url: untyped
+
+    def initialize: () -> void
+
+    def for_project?: () -> untyped
+
+    def for_group?: () -> untyped
+
+    def for_snippets?: () -> untyped
+
+    def code_search?: () -> untyped
+
+    class Builder
+      @view_context: untyped
+
+      @snippets: untyped
+
+      @project: untyped
+
+      @group: untyped
+
+      @ref: untyped
+
+      def initialize: (untyped view_context) -> void
+
+      def with_snippet: (untyped snippet) -> self
+
+      def with_project: (untyped project) -> self
+
+      def with_group: (untyped group) -> self
+
+      def with_ref: (untyped ref) -> self
+
+      def build!: () -> untyped
+
+      private
+
+      attr_accessor view_context: untyped
+
+      def project_search_metadata: (untyped project) -> (::Hash[untyped, untyped] | { project_path: untyped, name: untyped, issues_path: untyped, mr_path: untyped, issues_disabled: untyped })
+
+      def group_search_metadata: (untyped group) -> (::Hash[untyped, untyped] | { group_path: untyped, name: untyped, issues_path: untyped, mr_path: untyped })
+
+      def search_url: () -> untyped
+
+      def search_scope: () -> ("issues" | "merge_requests" | "wiki_blobs" | "commits" | untyped | nil | nil)
+    end
+
+    module ControllerConcern
+      extend ActiveSupport::Concern
+
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables
+      #
+      # Introspect the current controller's assignments and
+      # and builds the proper SearchContext object for it.
+      def search_context: () -> untyped
+    end
+  end
+end

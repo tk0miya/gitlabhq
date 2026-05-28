@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillUserAgentDetailsOrganizationId < BatchedMigrationJob
+      ORGANIZATION_ID: 1
+
+      def perform: () -> untyped
+    end
+  end
+end

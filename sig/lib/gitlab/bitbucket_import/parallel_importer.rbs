@@ -1,0 +1,21 @@
+module Gitlab
+  module BitbucketImport
+    class ParallelImporter
+      @project: untyped
+
+      def self.async?: () -> true
+
+      def self.imports_repository?: () -> true
+
+      def self.track_start_import: (untyped project) -> untyped
+
+      def initialize: (untyped project) -> void
+
+      def execute: () -> true
+
+      private
+
+      attr_reader project: untyped
+    end
+  end
+end

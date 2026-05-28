@@ -1,0 +1,25 @@
+module Projects
+  class Topic < ApplicationRecord
+    include Avatarable
+
+    include CacheMarkdownField
+
+    include Gitlab::SQL::Pattern
+
+    SLUG_ALLOWED_REGEX: ::Regexp
+
+    def title_or_name: () -> untyped
+
+    def self.find_by_name_case_insensitive: (untyped name) -> untyped
+
+    def self.search: (untyped query) -> untyped
+
+    def self.update_non_private_projects_counter: (untyped ids_before, untyped ids_after, untyped project_visibility_level_before, untyped project_visibility_level_after) -> untyped
+
+    def uploads_sharding_key: () -> { organization_id: untyped }
+
+    private
+
+    def validate_name_format: () -> (nil | untyped)
+  end
+end

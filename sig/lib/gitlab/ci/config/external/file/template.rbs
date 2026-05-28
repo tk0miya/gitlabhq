@@ -1,0 +1,41 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        module File
+          class Template < Base
+            @location: untyped
+
+            attr_reader location: untyped
+
+            SUFFIX: ".gitlab-ci.yml"
+
+            HOST: "https://gitlab.com/gitlab-org/gitlab/-/raw/master"
+
+            def initialize: (untyped params, untyped context) -> void
+
+            def content: () -> untyped
+
+            def include_type: () -> :template
+
+            def metadata: () -> untyped
+
+            def validate_context!: () -> nil
+
+            def validate_location!: () -> untyped
+
+            private
+
+            def template_name: () -> (nil | untyped)
+
+            def template_name_valid?: () -> untyped
+
+            def fetch_template_content: () -> untyped
+
+            def masked_raw: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

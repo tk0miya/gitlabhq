@@ -1,0 +1,12 @@
+# Distinguish between a top level query and a subselect.
+#
+# Retrieve column values when the relation has already been loaded, otherwise reselect the relation.
+# Useful for preload query patterns where the typical Rails #preload does not fit. Such as:
+#
+# projects = Project.where(...)
+# projects.load
+# ...
+# options[members] = ProjectMember.where(...).where(source_id: projects.select(:id))
+module Subquery
+  extend ActiveSupport::Concern
+end

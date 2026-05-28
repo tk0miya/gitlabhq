@@ -1,0 +1,14 @@
+class Projects::Snippets::ApplicationController < Projects::ApplicationController
+  include FindSnippet
+
+  include SnippetAuthorizations
+
+  private
+
+  # This overrides the default snippet create authorization
+  # because ProjectSnippets are checked against the project rather
+  # than the user
+  def authorize_create_snippet!: () -> (untyped | nil)
+
+  def snippet_klass: () -> untyped
+end

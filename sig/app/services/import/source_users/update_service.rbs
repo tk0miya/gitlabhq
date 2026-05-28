@@ -1,0 +1,28 @@
+module Import
+  module SourceUsers
+    class UpdateService
+      @import_source_user: untyped
+
+      @params: untyped
+
+      def initialize: (untyped import_source_user, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader import_source_user: untyped
+
+      attr_reader params: untyped
+
+      def discard_non_blank_attributes: () -> untyped
+
+      def update_placeholder_user: (untyped user) -> untyped
+
+      # overridden in EE
+      def update_params: () -> untyped
+
+      def assign_attributes_to_source_user: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module Popen
+    class Runner
+      @results: untyped
+
+      attr_reader results: untyped
+
+      def initialize: () -> void
+
+      def run: (untyped commands) { (?) -> untyped } -> untyped
+
+      def all_success_and_clean?: () -> untyped
+
+      def all_success?: () -> untyped
+
+      def all_stderr_empty?: () -> untyped
+
+      def failed_results: () -> untyped
+
+      def warned_results: () -> untyped
+    end
+  end
+end

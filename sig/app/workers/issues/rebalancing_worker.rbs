@@ -1,0 +1,11 @@
+module Issues
+  class RebalancingWorker
+    include ApplicationWorker
+
+    def perform: (?untyped? ignore, ?untyped? project_id, ?untyped? root_namespace_id) -> untyped
+
+    private
+
+    def rebalance_target: (untyped project_id, untyped root_namespace_id) -> untyped
+  end
+end

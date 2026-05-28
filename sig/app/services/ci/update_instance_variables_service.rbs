@@ -1,0 +1,38 @@
+module Ci
+  class UpdateInstanceVariablesService
+    @current_user: untyped
+
+    @params: untyped
+
+    @existing_records_by_id: untyped
+
+    @records: untyped
+
+    UNASSIGNABLE_KEYS: ::Array["id" | "_destroy"]
+
+    def initialize: (untyped params, untyped current_user) -> void
+
+    def execute: () -> untyped
+
+    def errors: () -> untyped
+
+    private
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    def existing_records_by_id: () -> untyped
+
+    def instantiate_records: () -> untyped
+
+    def find_or_initialize_record: (untyped attributes) -> untyped
+
+    # overridden in EE
+    def audit_change: (untyped instance_variable) -> nil
+
+    def persist_records: () -> untyped
+
+    def has_destroy_flag?: (untyped hash) -> untyped
+  end
+end

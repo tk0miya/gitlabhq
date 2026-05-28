@@ -1,0 +1,53 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces milestone references with links.
+      class MilestoneReferenceFilter < AbstractReferenceFilter
+        def parent_records: (untyped parent, untyped ids) -> untyped
+
+        def find_object: (untyped parent_object, untyped id) -> untyped
+
+        # Transform a symbol extracted from the text to a meaningful value
+        #
+        # This method has the contract that if a string `ref` refers to a
+        # record `record`, then `parse_symbol(ref) == record_identifier(record)`.
+        #
+        # This contract is slightly broken here, as we only have either the milestone_iid
+        # or the milestone_name, but not both.  But below, we have both pieces of information.
+        # But it's accounted for in `find_object`
+        def parse_symbol: (untyped symbol, untyped match_data) -> untyped
+
+        # This method has the contract that if a string `ref` refers to a
+        # record `record`, then `class.parse_symbol(ref) == record_identifier(record)`.
+        # See note in `parse_symbol` above
+        def record_identifier: (untyped record) -> { milestone_iid: untyped, milestone_name: untyped }
+
+        def valid_context?: (untyped parent) -> untyped
+
+        def group_context?: (untyped parent) -> untyped
+
+        def project_context?: (untyped parent) -> untyped
+
+        def references_in: (untyped text, ?untyped pattern) { (untyped, untyped, untyped, untyped, untyped) -> untyped } -> untyped
+
+        def find_milestones: (untyped parent, ?bool find_by_iid, ?absolute_path: bool) -> untyped
+
+        def milestone_finder_params: (untyped parent, untyped find_by_iid, untyped absolute_path) -> untyped
+
+        def group_and_ancestors_ids: (untyped parent, untyped absolute_path) -> (untyped | nil | untyped | nil)
+
+        def url_for_object: (untyped milestone, untyped project) -> untyped
+
+        def object_link_content_html: (untyped object, untyped matches) -> untyped
+
+        def object_link_title: (untyped object, untyped matches) -> nil
+
+        def parent: () -> untyped
+
+        def requires_unescaping?: () -> true
+
+        def data_attributes_for: (untyped original, untyped parent, untyped object, **untyped _attrs) -> untyped
+      end
+    end
+  end
+end

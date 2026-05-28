@@ -1,0 +1,31 @@
+class MergeRequest::CommitsMetadata < ApplicationRecord
+  include PartitionedTable
+
+  include ShaAttribute
+
+  # Creates a new row, or returns an existing one if a row already exists.
+  def self.find_or_create: (?::Hash[untyped, untyped] metadata) -> untyped
+
+  # Finds many commits by project_id and array of SHAs in bulk.
+  # The return value is an array of ID and SHA pairs.
+  def self.bulk_find: (untyped project_id, untyped shas) -> untyped
+
+  # Finds or creates rows for the given project ID and commit rows.
+  #
+  # The `commit_rows` argument must be an array of hashes. Each hash should have the following keys:
+  #
+  # - :commit_author_id
+  # - :committer_id
+  # - :raw_sha
+  # - :authored_date
+  # - :committed_date
+  # - :message
+  #
+  # The return value is a hash that maps ID of each found or created commits metadata
+  # row to a SHA.
+  def self.bulk_find_or_create: (untyped project_id, untyped commit_rows) -> untyped
+
+  def self.oldest_merge_request_id_per_commit: (untyped project_id, untyped shas) -> (::Array[untyped] | untyped)
+
+  def self.oldest_merge_requests_commits_from_metadata: (untyped project_id, untyped shas) -> untyped
+end

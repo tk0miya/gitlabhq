@@ -1,0 +1,73 @@
+class MergeRequestDiffCommit < ApplicationRecord
+  @_project: untyped
+
+  include BulkInsertSafe
+
+  include ShaAttribute
+
+  include CachedCommit
+
+  include FromUnion
+
+  CouldNotCreateMetadataError: untyped
+
+  # A list of keys of which their values need to be trimmed before they can be
+  # inserted into the merge_request_diff_commit_users table.
+  TRIM_USER_KEYS: ::Array[:author_name | :author_email | :committer_name | :committer_email]
+
+  # A list of columns we should NOT write to the merge_request_diff_commits table
+  # when deduplication of commit data is confirmed to be stable.
+  DEDUPLICATED_COLUMNS: ::Array[:commit_author_id | :committer_id | :authored_date | :committed_date | :sha | :message]
+
+  BULK_INSERT_BATCH_SIZE: 1000
+
+  # Deprecated; use `bulk_insert!` from `BulkInsertSafe` mixin instead.
+  # cf. https://gitlab.com/gitlab-org/gitlab/issues/207989 for progress
+  def self.create_bulk: (untyped merge_request_diff_id, untyped commits, untyped project, ?skip_commit_data: bool) -> untyped
+
+  def self.prepare_commits_for_bulk_insert: (untyped commits, untyped organization_id) -> ::Array[untyped]
+
+  def self.oldest_merge_request_id_per_commit: (untyped project_id, untyped shas) -> untyped
+
+  def self.commit_shas_from_metadata: (project_id: untyped, limit: untyped, ?partition_enabled: bool) -> untyped
+
+  def self.partition_enabled?: (untyped project_id) -> untyped
+
+  def self.commit_rows_with_metadata: (untyped project_id, untyped merge_request_diff_id, untyped rows) -> untyped
+
+  def author_name: () -> untyped
+
+  def author_email: () -> untyped
+
+  def committer_name: () -> untyped
+
+  def committer_email: () -> untyped
+
+  def message: () -> untyped
+
+  def to_hash: () -> untyped
+
+  def project_id: () -> untyped
+
+  def authored_date: () -> untyped
+
+  def committed_date: () -> untyped
+
+  def sha: () -> untyped
+
+  def commit_author: () -> untyped
+
+  def committer: () -> untyped
+
+  private
+
+  def fetch_message: () -> ("" | untyped)
+
+  # As of %17.10, we still don't have `project_id` on merge_request_diff_commit
+  #   records. Until we do, we have to fetch it from merge_request_diff.
+  # Also, it's possible that `merge_request_diff` is `nil` when accessing this method from an object
+  # that has not been persisted.
+  def project: () -> untyped
+
+  def has_commit_metadata?: () -> untyped
+end

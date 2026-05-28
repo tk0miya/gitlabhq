@@ -1,0 +1,9 @@
+module Ci
+  class TestFailureHistoryWorker
+    include ApplicationWorker
+
+    include PipelineBackgroundQueue
+
+    def perform: (untyped pipeline_id) -> untyped
+  end
+end

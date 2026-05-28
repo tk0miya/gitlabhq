@@ -1,0 +1,19 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      module Handlers
+        # Handles has_and_belongs_to_many associations
+        # Examples:
+        #   has_and_belongs_to_many :tags
+        #   has_and_belongs_to_many :users, join_table: 'project_users'
+        class HabtmHandler < BaseHandler
+          def relationship_attributes: () -> untyped
+
+          private
+
+          def relationship_type: () -> "many_to_many"
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class ExceptionLogger < ::GrapeLogging::Loggers::Base
+        def parameters: (untyped request, untyped response_body) -> untyped
+
+        private
+
+        def format_body: (untyped response_body) -> untyped
+
+        def bad_request?: (untyped request) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+class ProtectedBranch::CacheKey
+  @entity: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  CACHE_ROOT_KEY: "cache:gitlab:protected_branch"
+
+  def initialize: (untyped entity) -> void
+
+  def to_s: () -> untyped
+
+  private
+
+  attr_reader entity: untyped
+
+  def entity_scope: () -> untyped
+end

@@ -1,0 +1,56 @@
+# Including the `UnnestedInFilters::Dsl` module to an ActiveRecord
+# model extends the interface of the following class instances to be
+# able to use the `use_unnested_filters` method;
+#
+#   - Model relation;
+#     `Model.where(...).use_unnested_filters`
+#   - All the association proxies
+#     `project.model_association.use_unnested_filters`
+#   - All the relation instances of the association
+#     `project.model_association.where(...).use_unnested_filters
+#
+# Note: The interface of the model itself won't be extended as we don't
+# have a use-case for now(`Model.use_unnested_filters` won't work).
+#
+# Example usage of the API;
+#
+#   relation = Vulnerabilities::Read.where(state: [1, 4])
+#                                   .use_unnested_filters
+#                                   .order(severity: :desc, vulnerability_id: :desc)
+#
+#   relation.to_a # => Will load records by using the optimized query
+#
+# See `UnnestedInFilters::Rewriter` for the details about the optimizations applied.
+#
+# rubocop:disable Gitlab/ModuleWithInstanceVariables
+module UnnestedInFilters
+  module Dsl
+    extend ActiveSupport::Concern
+
+    MODULES_TO_EXTEND: ::Array[untyped]
+
+    module Relation
+      @records: untyped
+
+      @loaded: untyped
+
+      @unnested_filter_rewriter: untyped
+
+      def use_unnested_filters: () -> untyped
+
+      def use_unnested_filters!: () -> self
+
+      def use_unnested_filters?: () -> untyped
+
+      def load: (*untyped) -> (untyped | self)
+
+      def exists?: (*untyped) -> untyped
+
+      private
+
+      def rewrite_query?: () -> untyped
+
+      def unnested_filter_rewriter: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,10 @@
+module Types
+  module Ci
+    module Config
+      # rubocop:disable Graphql/AuthorizeTypes -- Authorization handled in the CiLint mutation
+      class JobType < BaseObject
+        def restrict_when_to_run_jobs: () -> untyped
+      end
+    end
+  end
+end

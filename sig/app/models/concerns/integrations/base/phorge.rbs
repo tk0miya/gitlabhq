@@ -1,0 +1,15 @@
+module Integrations
+  module Base
+    module Phorge
+      extend ActiveSupport::Concern
+
+      include Base::IssueTracker
+
+      include HasIssueTrackerFields
+
+      include HasAvatar
+
+      PHORGE_FIELDS: ::Array["project_url" | "issues_url"]
+    end
+  end
+end

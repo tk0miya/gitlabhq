@@ -1,0 +1,22 @@
+module Gitlab
+  module Ci
+    #
+    # Abstract base class for CI/CD Quotas
+    #
+    class Limit
+      LimitExceededError: untyped
+
+      def initialize: (untyped _context, untyped _resource) -> void
+
+      def enabled?: () -> untyped
+
+      def exceeded?: () -> untyped
+
+      def message: () -> untyped
+
+      def log_error!: (?::Hash[untyped, untyped] extra_context) -> untyped
+
+      def limit_exceeded_error: () -> untyped
+    end
+  end
+end

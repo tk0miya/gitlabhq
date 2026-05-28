@@ -1,0 +1,46 @@
+module Banzai
+  module Filter
+    # Sanitize HTML produced by markup languages (Markdown, AsciiDoc...).
+    # Specific rules are implemented in dedicated filters:
+    #
+    # - Banzai::Filter::SanitizationFilter (Markdown)
+    # - Banzai::Filter::AsciiDocSanitizationFilter (AsciiDoc/Asciidoctor)
+    # - Banzai::Filter::BroadcastMessageSanitizationFilter (Markdown with styled links and line breaks)
+    #
+    # Extends HTML::Pipeline::SanitizationFilter with common rules.
+    class BaseSanitizationFilter < HTML::Pipeline::SanitizationFilter
+      prepend Concerns::TimeoutFilterHandler
+
+      include Gitlab::Utils::StrongMemoize
+
+      extend Gitlab::Utils::SanitizeNodeLink
+
+      UNSAFE_PROTOCOLS: ::Array["data" | "javascript" | "vbscript"]
+
+      def call: () -> untyped
+
+      # rubocop:disable Metrics/AbcSize -- Our allowlist is complicated.
+      def allowlist: () -> untyped
+
+      def customize_allowlist: (untyped allowlist) -> untyped
+
+      private
+
+      def render_timeout: () -> untyped
+
+      # If sanitization times out, we can not return partial un-sanitized results.
+      # It's ok to allow any following filters to run since this is safe HTML.
+      def returned_timeout_value: () -> untyped
+
+      def self.remove_rel: (untyped env) -> (nil | untyped)
+
+      # Replaces a nested <a> with its children, preserving the text content
+      # but removing the inner link. This is safe because nested <a> tags are
+      # not valid HTML to begin with; browsers would never render them nested,
+      # so we don't lose any meaningful structure.
+      def self.unwrap_nested_a: (untyped env) -> (nil | untyped)
+
+      def self.remove_namespaced_attributes: (untyped env) -> untyped
+    end
+  end
+end

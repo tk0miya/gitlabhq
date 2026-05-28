@@ -1,0 +1,17 @@
+module MergeRequests
+  class AssignIssuesService < BaseProjectService
+    @assignable_issues: untyped
+
+    @closes_issues: untyped
+
+    def assignable_issues: () -> untyped
+
+    def execute: () -> { count: untyped }
+
+    private
+
+    def merge_request: () -> untyped
+
+    def closes_issues: () -> untyped
+  end
+end

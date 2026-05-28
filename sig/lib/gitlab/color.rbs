@@ -1,0 +1,54 @@
+module Gitlab
+  class Color
+    @value: untyped
+
+    @rgb: untyped
+
+    PATTERN: ::Regexp
+
+    def initialize: (untyped value) -> void
+
+    module Constants
+      DARK: untyped
+
+      LIGHT: untyped
+
+      COLOR_NAME_TO_HEX: untyped
+    end
+
+    def self.of: (untyped color) -> untyped
+
+    # Generate a hex color based on hex-encoded value
+    def self.color_for: (untyped value) -> untyped
+
+    def to_s: () -> untyped
+
+    def as_json: (?untyped? _options) -> untyped
+
+    def eql: (untyped other) -> (false | untyped)
+
+    alias == eql
+
+    def valid?: () -> untyped
+
+    # Implementation should match
+    # https://gitlab.com/gitlab-org/gitlab-ui/-/blob/6245128c7256e3d8db164b92e9580c79d47e9183/src/utils/utils.js#L52-55
+    def to_srgb: (untyped value) -> untyped
+
+    # Implementation should match
+    # https://gitlab.com/gitlab-org/gitlab-ui/-/blob/6245128c7256e3d8db164b92e9580c79d47e9183/src/utils/utils.js#L57-64
+    def relative_luminance: (untyped rgb) -> untyped
+
+    # Implementation should match
+    # https://gitlab.com/gitlab-org/gitlab-ui/-/blob/6245128c7256e3d8db164b92e9580c79d47e9183/src/utils/utils.js#L66-91
+    def light?: () -> (false | untyped)
+
+    def luminosity: () -> (:light | :dark)
+
+    def contrast: () -> untyped
+
+    private
+
+    def rgb: () -> (::Array[untyped] | untyped)
+  end
+end

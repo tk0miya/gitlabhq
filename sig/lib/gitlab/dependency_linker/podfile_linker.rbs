@@ -1,0 +1,11 @@
+module Gitlab
+  module DependencyLinker
+    class PodfileLinker < GemfileLinker
+      include Cocoapods
+
+      private
+
+      def link_packages: () -> (nil | untyped)
+    end
+  end
+end

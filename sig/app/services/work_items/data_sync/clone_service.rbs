@@ -1,0 +1,21 @@
+module WorkItems
+  module DataSync
+    class CloneService < ::WorkItems::DataSync::BaseService
+      def self.transaction_callback: (untyped new_work_item, untyped work_item, untyped current_user) -> untyped
+
+      private
+
+      def self.clone_system_notes: (untyped current_user, untyped new_work_item, untyped work_item) -> untyped
+
+      def self.track_work_item_clone: (untyped work_item, untyped current_user) -> untyped
+
+      def verify_work_item_action_permission: () -> untyped
+
+      def data_sync_action: () -> untyped
+
+      def verify_can_clone_work_item: (untyped work_item, untyped target_namespace) -> untyped
+
+      def clone_work_item: () -> untyped
+    end
+  end
+end

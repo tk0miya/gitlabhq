@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class Quantile < MetricDefinition
+          include ParameterizedDefinition
+
+          DEFAULT_QUANTILE: ::Float
+
+          def initialize: (untyped name, ?::Symbol type, ?untyped? expression, **untyped kwargs) -> void
+
+          def identifier: () -> ::Symbol
+
+          def to_outer_arel: (untyped context) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,39 @@
+module Gitlab
+  module ProcessManagement
+    # Traps the given signals and yields the block whenever these signals are
+    # received.
+    #
+    # The block is passed the name of the signal.
+    #
+    # Example:
+    #
+    #     trap_signals(%i(HUP TERM)) do |signal|
+    #       ...
+    #     end
+    def self.trap_signals: (untyped signals) { (untyped) -> untyped } -> untyped
+
+    # Traps the given signals with the given command.
+    #
+    # Example:
+    #
+    #     modify_signals(%i(HUP TERM), 'DEFAULT')
+    def self.modify_signals: (untyped signals, untyped command) -> untyped
+
+    def self.signal: (untyped pid, untyped signal) -> untyped
+
+    def self.signal_processes: (untyped pids, untyped signal) -> untyped
+
+    # Returns true if all the processes are alive.
+    def self.all_alive?: (untyped pids) -> (false | true)
+
+    def self.any_alive?: (untyped pids) -> untyped
+
+    def self.pids_alive: (untyped pids) -> untyped
+
+    def self.process_alive?: (untyped pid) -> (false | untyped)
+
+    def self.process_died?: (untyped pid) -> untyped
+
+    def self.write_pid: (untyped path) -> untyped
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module CircuitBreaker
+    class Notifier
+      CircuitBreakerError: untyped
+
+      def notify: (untyped service_name, untyped event) -> (nil | untyped)
+
+      def notify_warning: (untyped _service_name, untyped _message) -> nil
+
+      def notify_run: (untyped _service_name) { () -> untyped } -> untyped
+    end
+  end
+end

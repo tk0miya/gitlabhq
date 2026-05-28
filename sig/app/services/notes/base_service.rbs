@@ -1,0 +1,9 @@
+module Notes
+  class BaseService < ::BaseService
+    include Gitlab::InternalEventsTracking
+
+    def clear_noteable_diffs_cache: (untyped note) -> (untyped | nil)
+
+    def increment_usage_counter: (untyped note) -> untyped
+  end
+end

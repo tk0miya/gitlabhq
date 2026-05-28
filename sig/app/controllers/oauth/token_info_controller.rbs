@@ -1,0 +1,5 @@
+class Oauth::TokenInfoController < Doorkeeper::TokenInfoController
+  include EnforcesTwoFactorAuthentication
+
+  def show: () -> untyped
+end

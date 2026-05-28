@@ -1,0 +1,13 @@
+module Gitlab
+  module DependencyLinker
+    class PodspecLinker < MethodLinker
+      include Cocoapods
+
+      STRING_REGEX: ::Regexp
+
+      private
+
+      def link_dependencies: () -> untyped
+    end
+  end
+end

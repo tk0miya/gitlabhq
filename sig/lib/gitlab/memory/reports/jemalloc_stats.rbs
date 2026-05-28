@@ -1,0 +1,13 @@
+module Gitlab
+  module Memory
+    module Reports
+      class JemallocStats
+        def name: () -> "jemalloc_stats"
+
+        def run: (untyped writer) -> (nil | untyped)
+
+        def active?: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,68 @@
+# This module takes care of updating cache columns for Markdown-containing
+# fields. Use like this in the body of your class:
+#
+#     include CacheMarkdownField
+#     cache_markdown_field :foo
+#     cache_markdown_field :bar
+#     cache_markdown_field :baz, pipeline: :single_line
+#     cache_markdown_field :baz, whitelisted: true
+#
+# Corresponding foo_html, bar_html and baz_html fields should exist.
+module CacheMarkdownField
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables -- acceptable use case
+  # See https://docs.gitlab.com/ee/development/module_with_instance_variables.html#acceptable-use
+  @latest_cached_markdown_version: untyped
+
+  extend ActiveSupport::Concern
+
+  # changes to these attributes cause the cache to be invalidates
+  INVALIDATED_BY: ::Array["author" | "project"]
+
+  def skip_project_check?: () -> false
+
+  def can_cache_field?: (untyped field) -> true
+
+  attr_accessor skip_markdown_cache_validation: untyped
+
+  alias skip_markdown_cache_validation? skip_markdown_cache_validation
+
+  # Returns the default Banzai render context for the cached markdown field.
+  def banzai_render_context: (untyped field) -> untyped
+
+  def rendered_field_content: (untyped markdown_field) -> (nil | untyped)
+
+  # Update every applicable column in a row if any one is invalidated, as we only store
+  # one version per row
+  def refresh_markdown_cache: () -> untyped
+
+  def refresh_markdown_cache!: () -> untyped
+
+  def cached_html_up_to_date?: (untyped markdown_field) -> (false | untyped)
+
+  def invalidated_markdown_cache?: () -> untyped
+
+  def attribute_invalidated?: (untyped attr) -> untyped
+
+  def cached_html_for: (untyped markdown_field) -> untyped
+
+  # Updates the markdown cache if necessary, then returns the field
+  # Unlike `cached_html_for` it returns `nil` if the field does not exist
+  def updated_cached_html_for: (untyped markdown_field) -> (nil | untyped)
+
+  def latest_cached_markdown_version: () -> untyped
+
+  def parent_user: () -> nil
+
+  def store_mentions!: () -> (nil | true)
+
+  # Overridden on objects that needs to filter
+  # mentioned users that cannot read them, for example,
+  # guest users that are referenced on a confidential note.
+  def mentioned_filtered_user_ids_for: (untyped refs) -> untyped
+
+  def mentionable_attributes_changed?: (?untyped changes) -> (false | untyped)
+
+  def store_mentions?: () -> true
+
+  def store_mentions_after_commit?: () -> false
+end

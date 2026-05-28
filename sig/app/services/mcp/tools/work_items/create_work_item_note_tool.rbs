@@ -1,0 +1,15 @@
+module Mcp
+  module Tools
+    module WorkItems
+      class CreateWorkItemNoteTool < BaseTool
+        def self.build_mutation: () -> "mutation CreateNote($input: CreateNoteInput!) {\n  createNote(input: $input) {\n    note {\n      id\n      body\n      internal\n      createdAt\n      updatedAt\n      author {\n        id\n        name\n        username\n        avatarUrl\n        webUrl\n      }\n      discussion {\n        id\n      }\n    }\n    errors\n  }\n}\n"
+
+        def build_variables: () -> { input: untyped }
+
+        private
+
+        def build_note_input: (untyped work_item_id) -> untyped
+      end
+    end
+  end
+end

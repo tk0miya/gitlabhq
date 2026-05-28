@@ -1,0 +1,69 @@
+module Gitlab
+  module Changelog
+    # Configuration settings used when generating changelogs.
+    class Config
+      @project: untyped
+
+      @date_format: untyped
+
+      @template: untyped
+
+      @categories: untyped
+
+      @tag_regex: untyped
+
+      # When rendering changelog entries, authors are not included.
+      AUTHORS_NONE: "none"
+
+      # The default path to the configuration file as stored in the project's Git
+      # repository.
+      DEFAULT_FILE_PATH: ".gitlab/changelog_config.yml"
+
+      # The default reference where changelog config is located
+      DEFAULT_CONFIG_FILE_REFERENCE: "HEAD"
+
+      # The default date format to use for formatting release dates.
+      DEFAULT_DATE_FORMAT: "%Y-%m-%d"
+
+      # The default template to use for generating release sections.
+      DEFAULT_TEMPLATE: untyped
+
+      # The regex to use for extracting the version from a Git tag.
+      #
+      # This regex is based on the official semantic versioning regex (as found
+      # on https://semver.org/), with the addition of allowing a "v" at the
+      # start of a tag name.
+      #
+      # We default to a strict regex as we simply don't know what kind of data
+      # users put in their tags. As such, using simpler patterns (e.g. just
+      # `\d+` for the major version) could lead to unexpected results.
+      #
+      # We use a String here as `Gitlab::UntrustedRegexp` is a mutable object.
+      DEFAULT_TAG_REGEX: "^v?(?P<major>0|[1-9]\\d*)\\.(?P<minor>0|[1-9]\\d*)\\.(?P<patch>0|[1-9]\\d*)(?:-(?P<pre>(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+(?P<meta>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+
+      attr_accessor date_format: untyped
+
+      attr_accessor categories: untyped
+
+      attr_accessor template: untyped
+
+      attr_accessor tag_regex: untyped
+
+      attr_accessor always_credit_user_ids: untyped
+
+      def self.from_git: (untyped project, ?untyped? user, ?untyped? path, ?untyped? config_file_ref) -> untyped
+
+      def self.from_hash: (untyped project, untyped hash, ?untyped? user) -> untyped
+
+      def initialize: (untyped project) -> void
+
+      def contributor?: (untyped user) -> untyped
+
+      def always_credit_author?: (untyped user) -> untyped
+
+      def category: (untyped name) -> untyped
+
+      def format_date: (untyped date) -> untyped
+    end
+  end
+end

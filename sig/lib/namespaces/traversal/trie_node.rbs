@@ -1,0 +1,40 @@
+module Namespaces
+  module Traversal
+    class TrieNode
+      @children: untyped
+
+      @end: untyped
+
+      attr_accessor children: untyped
+
+      attr_accessor end: untyped
+
+      def self.build: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def initialize: () -> void
+
+      def build: (untyped traversal_ids) -> self
+
+      # Bring back all branches in the trie that match the prefix
+      # If trie contains [9970, 123] and [9970, 456]
+      # prefix_search([9970]) returns [[9970, 123], [9970, 456]]
+      def prefix_search: (untyped traversal_ids) -> (::Array[untyped] | untyped)
+
+      # Check if traversal ID is already covered by a broader prefix or included in trie
+      # If trie contains [9970, 123] and [9970, 456]
+      # covered?([9970]) returns false
+      # covered?([9970, 123]) returns true
+      # covered?([9970, 123, 789]) returns true
+      def covered?: (untyped traversal_ids) -> (true | false | untyped)
+
+      def to_a: () -> untyped
+
+      private
+
+      # Insert traversal ID into the trie if it's not covered
+      def insert: (untyped traversal_ids) -> untyped
+
+      def collect_children: (untyped node, ?untyped traversal_ids) -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Import
+  module Offline
+    module Groups
+      module Pipelines
+        class GroupPipeline
+          include ::BulkImports::Pipeline
+
+          include ::BulkImports::Pipeline::HexdigestCacheStrategy
+
+          def after_run: (untyped _context) -> untyped
+        end
+      end
+    end
+  end
+end

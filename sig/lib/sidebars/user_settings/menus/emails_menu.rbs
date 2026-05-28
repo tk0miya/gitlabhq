@@ -1,0 +1,19 @@
+module Sidebars
+  module UserSettings
+    module Menus
+      class EmailsMenu < ::Sidebars::Menu
+        include ::Sidebars::Concerns::RenderIfLoggedIn
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "mail"
+
+        def active_routes: () -> { controller: :emails }
+
+        def extra_container_html_options: () -> { :"data-testid" => "profile_emails_link" }
+      end
+    end
+  end
+end

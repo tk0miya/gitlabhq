@@ -1,0 +1,7 @@
+module IncidentManagement
+  class TimelineEventTag < ApplicationRecord
+    PREDEFINED_TAGS: ::Array["Start time" | "End time" | "Impact detected" | "Response initiated" | "Impact mitigated" | "Cause identified"]
+
+    def self.pluck_names: () -> untyped
+  end
+end

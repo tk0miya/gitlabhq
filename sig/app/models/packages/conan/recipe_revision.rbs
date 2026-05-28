@@ -1,0 +1,9 @@
+module Packages
+  module Conan
+    class RecipeRevision < ApplicationRecord
+      include ShaAttribute
+
+      include PackageFileable
+    end
+  end
+end

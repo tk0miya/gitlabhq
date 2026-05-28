@@ -1,0 +1,15 @@
+module Groups
+  module Params
+    extend ActiveSupport::Concern
+
+    include DefaultBranchProtection
+
+    private
+
+    def group_params: () -> untyped
+
+    def group_params_attributes: () -> untyped
+
+    def group_feature_attributes: () -> ::Array[untyped]
+  end
+end

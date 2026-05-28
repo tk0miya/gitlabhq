@@ -1,0 +1,11 @@
+module Mutations
+  module WorkItems
+    class Subscribe < BaseMutation
+      def resolve: (untyped args) -> { work_item: untyped, errors: ::Array[untyped] }
+
+      private
+
+      def update_subscription: (untyped work_item, untyped subscribed_state) -> untyped
+    end
+  end
+end

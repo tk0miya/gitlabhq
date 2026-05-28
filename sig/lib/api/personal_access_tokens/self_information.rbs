@@ -1,0 +1,9 @@
+module API
+  class PersonalAccessTokens
+    class SelfInformation < ::API::Base
+      include APIGuard
+
+      include PaginationParams
+    end
+  end
+end

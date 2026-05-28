@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Ansi2json
+      module V2
+        # Subclass of v1::State that constructs V2::Line and reuses the same
+        # Line instance across input lines (the previous line's @segments and
+        # @current_text were transferred to its emitted hash on to_h, so
+        # resetting in place is safe). HMAC encoding, signature handling,
+        # section tracking, and style restoration are inherited unchanged:
+        # those are the contract shared with v1.
+        class State < ::Gitlab::Ci::Ansi2json::State
+          @current_line: untyped
+
+          def new_line!: (?timestamps: untyped, ?offset: untyped?, ?style: untyped?) -> untyped
+        end
+      end
+    end
+  end
+end

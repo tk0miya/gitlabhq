@@ -1,0 +1,96 @@
+module Projects
+  class CreateService < BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    @skip_wiki: untyped
+
+    @initialize_with_sast: untyped
+
+    @initialize_with_secret_detection: untyped
+
+    @initialize_with_readme: untyped
+
+    @import_data: untyped
+
+    @relations_block: untyped
+
+    @default_branch: untyped
+
+    @readme_template: untyped
+
+    @repository_object_format: untyped
+
+    @import_export_upload: untyped
+
+    @project: untyped
+
+    @parent_namespace: untyped
+
+    @project_visibility: untyped
+
+    include ValidatesClassificationLabel
+
+    ImportSourceDisabledError: untyped
+
+    README_FILE: "README.md"
+
+    def initialize: (untyped user, untyped params) -> void
+
+    def execute: () ?{ (untyped) -> untyped } -> untyped
+
+    def validate_create_permissions: () -> (nil | untyped)
+
+    def validate_import_permissions: () -> (nil | untyped)
+
+    def after_create_actions: () ?{ () -> untyped } -> untyped
+
+    def create_project_settings: () -> untyped
+
+    # Add an authorization for the current user authorizations inline
+    # (so they can access the project immediately after this request
+    # completes), and any other affected users in the background
+    def setup_authorizations: () -> untyped
+
+    def create_readme: () -> untyped
+
+    def create_sast_commit: () -> untyped
+
+    def create_secret_detection_commit: () -> untyped
+
+    def execute_hooks: () -> untyped
+
+    def repository_object_format: () -> untyped
+
+    def readme_content: () -> untyped
+
+    def skip_wiki?: () -> untyped
+
+    def save_project_and_import_data: () -> untyped
+
+    def fail: (error: untyped) -> untyped
+
+    def set_project_name_from_path: () -> (nil | untyped)
+
+    def extra_attributes_for_measurement: () -> { current_user: untyped, project_full_path: ::String }
+
+    private
+
+    def default_branch: () -> untyped
+
+    def validate_import_source_enabled!: () -> (nil | untyped)
+
+    def parent_namespace: () -> untyped
+
+    def create_from_template?: () -> untyped
+
+    def import_schedule: () -> (untyped | nil | untyped)
+
+    def project_visibility: () -> untyped
+
+    def build_topics: () -> untyped
+
+    def publish_event: () -> untyped
+  end
+end

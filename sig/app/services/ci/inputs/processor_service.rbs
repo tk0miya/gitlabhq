@@ -1,0 +1,23 @@
+module Ci
+  module Inputs
+    class ProcessorService
+      @job: untyped
+
+      @inputs: untyped
+
+      def initialize: (untyped job, untyped inputs) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader job: untyped
+
+      attr_reader inputs: untyped
+
+      def validate_inputs: () -> (nil | ::String | untyped)
+
+      def filter_inputs_with_defaults: () -> (::Hash[untyped, untyped] | untyped)
+    end
+  end
+end

@@ -1,0 +1,38 @@
+module Banzai
+  module Filter
+    # HTML filter that "fixes" links to pages/files in a wiki.
+    # Rewrite rules are documented in the `WikiPipeline` spec.
+    #
+    # Context options:
+    #   :wiki
+    class WikiLinkFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      include Gitlab::Utils::SanitizeNodeLink
+
+      CSS_A: "a:not(.gfm)"
+
+      XPATH_A: untyped
+
+      CSS_VA: "video, audio"
+
+      XPATH_VA: untyped
+
+      CSS_IMG: "img"
+
+      XPATH_IMG: untyped
+
+      def call: () -> untyped
+
+      def process_link: (untyped link_attr, untyped node) -> untyped
+
+      def wiki?: () -> untyped
+
+      def process_link_attr: (untyped html_attr, untyped node) -> untyped
+
+      def preserve_original_link: (untyped html_attr, untyped node) -> (nil | untyped)
+
+      def apply_rewrite_rules: (untyped link_string) -> untyped
+    end
+  end
+end

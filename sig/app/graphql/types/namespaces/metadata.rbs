@@ -1,0 +1,23 @@
+module Types
+  module Namespaces
+    module Metadata
+      include ::Types::BaseInterface
+
+      include ::IssuablesHelper
+
+      include ActionView::Helpers::NumberHelper
+
+      TYPE_MAPPINGS: ::Hash[untyped, untyped]
+
+      def self.type_mappings: () -> untyped
+
+      def self.resolve_type: (untyped object, untyped _context) -> untyped
+
+      def time_tracking_limit_to_hours?: () -> untyped
+
+      def initial_sort: () -> untyped
+
+      def max_attachment_size: () -> untyped
+    end
+  end
+end

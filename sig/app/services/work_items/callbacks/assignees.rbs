@@ -1,0 +1,17 @@
+module WorkItems
+  module Callbacks
+    class Assignees < Base
+      def before_create: () -> untyped
+
+      def before_update: () -> untyped
+
+      private
+
+      def set_assignee_ids: () -> (nil | untyped)
+
+      def filter_assignee_ids: (untyped assignee_ids) -> untyped
+
+      def link_composite_identity: (untyped user) -> untyped
+    end
+  end
+end

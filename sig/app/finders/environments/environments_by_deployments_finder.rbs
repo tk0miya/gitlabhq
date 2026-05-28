@@ -1,0 +1,32 @@
+module Environments
+  class EnvironmentsByDeploymentsFinder
+    @project: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_reader project: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped project, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def execute: () -> untyped
+
+    private
+
+    def find_one: (untyped environments) -> untyped
+
+    def find_all: (untyped environments) -> untyped
+
+    def valid_environment?: (untyped environment) -> (false | true)
+
+    def ref: () -> untyped
+
+    def sha: () -> untyped
+  end
+end

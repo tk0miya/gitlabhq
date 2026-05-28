@@ -1,0 +1,28 @@
+module Groups
+  class ObservabilityController < Groups::ApplicationController
+    @data: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def show: () -> untyped
+
+    private
+
+    # Returns the sub-path from the request, normalising single-segment (:id)
+    # and multi-segment (*sub_path) parameters to a plain string.
+    def observability_path: () -> untyped
+
+    def permitted_params: () -> untyped
+
+    def reject_path_traversal!: () -> untyped
+
+    def authorize_read_observability!: () -> untyped
+
+    # Filters the incoming query string according to the allowlist and size limit
+    # defined in the presenter.  Returns a plain Hash of permitted key/value pairs.
+    #
+    # We use request.query_parameters (bypassing strong params) intentionally: this
+    # is read-only forwarding to the iframe, not a model-mutating operation.
+    def filtered_query_params: () -> (::Hash[untyped, untyped] | untyped)
+  end
+end

@@ -1,0 +1,7 @@
+module Mutations
+  module Todos
+    class Snooze < ::Mutations::BaseMutation
+      def resolve: (id: untyped, snooze_until: untyped) -> { todo: untyped, errors: untyped }
+    end
+  end
+end

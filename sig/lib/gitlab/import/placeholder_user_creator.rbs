@@ -1,0 +1,40 @@
+module Gitlab
+  module Import
+    class PlaceholderUserCreator
+      @source_user: untyped
+
+      @generator: untyped
+
+      include ::Gitlab::InternalEventsTracking
+
+      PLACEHOLDER_EMAIL_REGEX: untyped
+
+      LEGACY_PLACEHOLDER_EMAIL_REGEX: untyped
+
+      def self.placeholder_email?: (untyped email) -> untyped
+
+      def initialize: (untyped source_user) -> void
+
+      def execute: () -> untyped
+
+      def placeholder_name: () -> ::String
+
+      private
+
+      attr_reader source_user: untyped
+
+      def username_and_email_generator: () -> untyped
+
+      def username_prefix: () -> ::String
+
+      # Some APIs don't expose users' usernames, so set a fallback if it's nil
+      def valid_username_segment: () -> untyped
+
+      def random_segment: () -> untyped
+
+      def log_placeholder_user_creation: (untyped user) -> untyped
+
+      def track_placeholder_user_creation: (untyped user) -> untyped
+    end
+  end
+end

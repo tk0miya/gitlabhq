@@ -1,0 +1,8 @@
+# Extra methods for uploader
+module UploaderHelper
+  include Gitlab::FileMarkdownLinkBuilder
+
+  private
+
+  def extension_match?: (untyped extensions) -> (false | untyped)
+end

@@ -1,0 +1,53 @@
+module Gitlab
+  module Ci
+    module Build
+      class Image
+        @name: untyped
+
+        @ports: untyped
+
+        @executor_opts: untyped
+
+        @alias: untyped
+
+        @command: untyped
+
+        @entrypoint: untyped
+
+        @variables: untyped
+
+        @pull_policy: untyped
+
+        attr_reader alias: untyped
+
+        attr_reader command: untyped
+
+        attr_reader entrypoint: untyped
+
+        attr_reader name: untyped
+
+        attr_reader ports: untyped
+
+        attr_reader variables: untyped
+
+        attr_reader executor_opts: untyped
+
+        attr_reader pull_policy: untyped
+
+        def self.from_image: (untyped job) -> (nil | untyped)
+
+        def self.from_services: (untyped job) -> untyped
+
+        def initialize: (untyped image) -> void
+
+        def valid?: () -> untyped
+
+        private
+
+        def build_ports: (untyped image) -> untyped
+
+        def build_variables: (untyped image) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Users
+  class SetStatusService
+    @current_user: untyped
+
+    @params: untyped
+
+    @target_user: untyped
+
+    include Gitlab::Allowable
+
+    attr_reader current_user: untyped
+
+    attr_reader target_user: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped current_user, untyped params) -> void
+
+    def execute: () -> (false | untyped)
+
+    private
+
+    def set_status: () -> untyped
+
+    def remove_status: () -> true
+
+    def user_status: () -> untyped
+
+    def status_cleared?: () -> untyped
+
+    def new_user_availability: () -> untyped
+
+    def bump_user: () -> untyped
+  end
+end

@@ -1,0 +1,30 @@
+module Gitlab
+  module Database
+    class TablesSortedByForeignKeys
+      @connection: untyped
+
+      @tables: untyped
+
+      @all_foreign_keys: untyped
+
+      include TSort
+
+      def initialize: (untyped connection, untyped tables) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def tsort_each_node: () { (?) -> untyped } -> untyped
+
+      def tsort_each_child: (untyped node) { (?) -> untyped } -> untyped
+
+      # it maps the tables to the tables that depend on it
+      def tables_dependencies: () -> untyped
+
+      def all_foreign_keys: () -> untyped
+
+      def foreign_keys_for: (untyped table) -> untyped
+    end
+  end
+end

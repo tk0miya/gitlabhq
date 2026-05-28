@@ -1,0 +1,19 @@
+module Sidebars
+  module UserSettings
+    module Menus
+      class AccountMenu < ::Sidebars::Menu
+        include ::Sidebars::Concerns::RenderIfLoggedIn
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "account"
+
+        def active_routes: () -> { controller: ::Array[:accounts | :two_factor_auths] }
+
+        def extra_container_html_options: () -> { :"data-testid" => "profile_account_link" }
+      end
+    end
+  end
+end

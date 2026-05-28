@@ -1,0 +1,29 @@
+module Authn
+  module IamService
+    class AcceptLoginChallengeService
+      @challenge: untyped
+
+      @user: untyped
+
+      @client: untyped
+
+      ACCEPT_PATH: "/oauth2/internal/auth/requests/login/accept"
+
+      def initialize: (challenge: untyped, user: untyped, ?client: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def request_body: () -> { id: untyped, subject: untyped, name: untyped, email: untyped }
+
+      def http_error: (untyped response) -> untyped
+
+      def missing_redirect_error: () -> untyped
+
+      def invalid_redirect_error: () -> untyped
+
+      def log_failure: (reason: untyped, ?http_status: untyped?) -> untyped
+    end
+  end
+end

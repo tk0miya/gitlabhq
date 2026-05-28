@@ -1,0 +1,17 @@
+# This worker regularly schedules projects with configured CI retention policies
+# to get their old pipelines removed.
+module Ci
+  class ScheduleOldPipelinesRemovalCronWorker
+    @cleanup_queue: untyped
+
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+
+    private
+
+    def cleanup_queue: () -> untyped
+  end
+end

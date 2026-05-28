@@ -1,0 +1,32 @@
+module Gitlab::Ci
+  module Badge
+    module Release
+      # Template object will be passed to badge.svg.erb template.
+      class Template < Badge::Template
+        @tag: untyped
+
+        @value_width: untyped
+
+        STATUS_COLOR: { latest: "#3076af", none: "#e05d44" }
+
+        KEY_WIDTH_DEFAULT: 90
+
+        VALUE_WIDTH_DEFAULT: 54
+
+        VALUE_WIDTH_MAXIMUM: 200
+
+        def initialize: (untyped badge) -> void
+
+        def key_text: () -> untyped
+
+        def key_width: () -> untyped
+
+        def value_text: () -> untyped
+
+        def value_width: () -> untyped
+
+        def value_color: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,71 @@
+module ErrorTracking
+  class SentryClient
+    @url: untyped
+
+    @token: untyped
+
+    @api_urls: untyped
+
+    include SentryClient::Event
+
+    include SentryClient::Projects
+
+    include SentryClient::Issue
+
+    include SentryClient::Repo
+
+    include SentryClient::IssueLink
+
+    Error: untyped
+
+    MissingKeysError: untyped
+
+    InvalidFieldValueError: untyped
+
+    ResponseInvalidSizeError: untyped
+
+    RESPONSE_SIZE_LIMIT: untyped
+
+    # The bytes size of a JSON payload is different from what DeepSize
+    # calculates which is Ruby's object size.
+    #
+    # This factor accounts for the difference.
+    #
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/393029#note_1289914133
+    RESPONSE_MEMORY_SIZE_LIMIT: untyped
+
+    attr_accessor url: untyped
+
+    attr_accessor token: untyped
+
+    def initialize: (untyped api_url, untyped token) -> void
+
+    private
+
+    def validate_size: (untyped response) -> (nil | untyped)
+
+    def api_urls: () -> untyped
+
+    def handle_mapping_exceptions: () { () -> untyped } -> untyped
+
+    def request_params: () -> { headers: { "Content-Type" => "application/json", "Authorization" => ::String }, follow_redirects: false }
+
+    def http_get: (untyped url, ?::Hash[untyped, untyped] params) -> untyped
+
+    def http_put: (untyped url, ?::Hash[untyped, untyped] params) -> untyped
+
+    def http_post: (untyped url, ?::Hash[untyped, untyped] params) -> untyped
+
+    def http_request: () { (?) -> untyped } -> untyped
+
+    def handle_request_exceptions: () { () -> untyped } -> untyped
+
+    def handle_response: (untyped response) -> { body: untyped, headers: untyped }
+
+    def raise_error: (untyped message) -> untyped
+
+    def ensure_numeric!: (untyped field, untyped value) -> untyped
+
+    def raise_invalid_field_value!: (untyped field, untyped message) -> untyped
+  end
+end

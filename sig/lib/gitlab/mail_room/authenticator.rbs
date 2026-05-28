@@ -1,0 +1,18 @@
+module Gitlab
+  module MailRoom
+    class Authenticator
+      include JwtAuthenticatable
+
+      SecretConfigurationError: untyped
+
+      # Only allow token generated within the last 5 minutes
+      EXPIRATION: untyped
+
+      def self.verify_api_request: (untyped request_headers, untyped mailbox_type) -> untyped
+
+      def self.secret: (untyped mailbox_type) -> untyped
+
+      def self.enabled_configs: () -> untyped
+    end
+  end
+end

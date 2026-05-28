@@ -1,0 +1,7 @@
+module JiraConnect
+  class SendUninstalledHookWorker
+    include ApplicationWorker
+
+    def perform: (untyped installation_id, untyped instance_url) -> untyped
+  end
+end

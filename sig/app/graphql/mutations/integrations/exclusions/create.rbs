@@ -1,0 +1,21 @@
+module Mutations
+  module Integrations
+    module Exclusions
+      class Create < BaseMutation
+        include ResolvesIds
+
+        MAX_PROJECT_IDS: untyped
+
+        MAX_GROUP_IDS: untyped
+
+        def resolve: (integration_name: untyped, ?project_ids: untyped, ?group_ids: untyped) -> { exclusions: untyped, errors: untyped }
+
+        private
+
+        def groups: (untyped group_ids) -> (::Array[untyped] | untyped)
+
+        def projects: (untyped project_ids) -> (::Array[untyped] | untyped)
+      end
+    end
+  end
+end

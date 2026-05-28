@@ -1,0 +1,19 @@
+module Ci
+  module Catalog
+    module Resources
+      # This class represents a CI/CD Catalog resource component.
+      # The data will be used as metadata of a component.
+      class Component < ::ApplicationRecord
+        # BulkInsertSafe must be included after the `has_many` declaration, otherwise it raises
+        # an error about the save callback that is auto generated for this association.
+        include BulkInsertSafe
+
+        def self.names_by_ids: (untyped component_ids) -> untyped
+
+        def self.versions_by_component_ids: (untyped component_ids) -> untyped
+
+        def include_path: () -> ::String
+      end
+    end
+  end
+end

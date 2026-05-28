@@ -1,0 +1,83 @@
+module API
+  module APIGuard
+    extend ActiveSupport::Concern
+
+    include Gitlab::Utils::StrongMemoize
+
+    # Helper Methods for Grape Endpoint
+    module HelperMethods
+      @scopes_registered_for_endpoint: untyped
+
+      include Gitlab::Auth::AuthFinders
+
+      def access_token: () -> untyped
+
+      def find_current_user!: () -> (nil | untyped)
+
+      def find_user_from_sources: () -> untyped
+
+      private
+
+      def group_manage_endpoint?: () -> untyped
+
+      def bypass_session_for_admin_mode?: (untyped user) -> (false | untyped)
+
+      # An array of scopes that were registered (using `allow_access_with_scope`)
+      # for the current endpoint class. It also returns scopes registered on
+      # `API::API`, since these are meant to apply to all API routes.
+      def scopes_registered_for_endpoint: () -> untyped
+
+      def api_access_allowed?: (untyped user) -> untyped
+
+      def api_access_denied_message: (untyped user) -> untyped
+
+      def check_dpop!: (untyped user) -> (nil | untyped)
+
+      def check_language_server_client!: (untyped user) -> (nil | untyped)
+
+      def user_allowed_or_deploy_token?: (untyped user) -> untyped
+
+      def user_from_warden: () -> (nil | untyped)
+
+      def two_factor_required_but_not_setup?: (untyped user) -> untyped
+    end
+
+    # Prior to Rack v2.1.x, returning a body of [nil] or [201] worked
+    # because the body was coerced to a string. However, this no longer
+    # works in Rack v2.1.0+. The Rack spec
+    # (https://github.com/rack/rack/blob/master/SPEC.rdoc#the-body-)
+    # says:
+    #
+    # The Body must respond to `each` and must only yield String values
+    #
+    # Because it's easy to return the wrong body type, this middleware
+    # will:
+    #
+    # 1. Inspect each element of the body if it is an Array.
+    # 2. Coerce each value to a string if necessary.
+    # 3. Flag a test and development error.
+    class ResponseCoercerMiddleware < ::Grape::Middleware::Base
+      def call: (untyped env) -> untyped
+    end
+
+    class AdminModeMiddleware < ::Grape::Middleware::Base
+      def after: () -> nil
+    end
+
+    class TrackAPIRequestFromRunnerMiddleware < ::Grape::Middleware::Base
+      def after: () -> nil
+
+      private
+
+      def current_project: () -> (nil | untyped)
+
+      def success?: () -> (nil | untyped)
+
+      def request_from_runner?: () -> (nil | untyped)
+
+      def token_type: () -> (nil | untyped)
+
+      def cross_project_request?: () -> (nil | untyped)
+    end
+  end
+end

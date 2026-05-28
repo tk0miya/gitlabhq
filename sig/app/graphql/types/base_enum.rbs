@@ -1,0 +1,45 @@
+# rubocop:disable Graphql/GraphqlNamePosition
+module Types
+  class BaseEnum < GraphQL::Schema::Enum
+    self.@enum_values: untyped
+
+    self.@authorization: untyped
+
+    self.@abilities: untyped
+
+    class CustomValue < GraphQL::Schema::EnumValue
+      include Gitlab::Graphql::Deprecations
+    end
+
+    # Registers enum definition by the given DeclarativeEnum module
+    #
+    # @param enum_mod [Module] The enum module to be used
+    # @param use_name [Boolean] Does not override the name if set `false`
+    # @param use_description [Boolean] Does not override the description if set `false`
+    #
+    # Example:
+    #
+    #   class MyEnum < BaseEnum
+    #     declarative_enum MyDeclarativeEnum
+    #   end
+    #
+    # Disabling descriptions rubocop for a false positive here
+    #
+    def self.declarative_enum: (untyped enum_mod, ?use_name: bool, ?use_description: bool) -> untyped
+
+    # Helper to define an enum member for each element of a Rails AR enum
+    def self.from_rails_enum: (untyped enum, description: untyped) -> untyped
+
+    def self.value: (*untyped args, **untyped kwargs) { (?) -> untyped } -> untyped
+
+    # Returns an indifferent access hash with the key being the downcased name of the attribute
+    # and the value being the Ruby value (either the explicit `value` passed or the same as the value attr).
+    def self.enum: () -> untyped
+
+    def self.authorization: () -> untyped
+
+    def self.authorize: (*untyped abilities) -> untyped
+
+    def self.authorized?: (untyped object, untyped context) -> untyped
+  end
+end

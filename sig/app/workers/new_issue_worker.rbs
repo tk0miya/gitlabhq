@@ -1,0 +1,16 @@
+class NewIssueWorker
+  @issuable_class: untyped
+
+  include ApplicationWorker
+
+  include NewIssuable
+
+  attr_reader issuable_class: untyped
+
+  # TODO: Add skip_notifications argument to the invocations of the worker in the next release (16.9)
+  def perform: (untyped issue_id, untyped user_id, ?::String issuable_class, ?bool skip_notifications) -> (nil | untyped)
+
+  private
+
+  def log_audit_event: () -> nil
+end

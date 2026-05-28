@@ -1,0 +1,41 @@
+module Gitlab
+  module SidekiqMiddleware
+    module Throttling
+      class RecoveryTask
+        @alive: untyped
+
+        include ExclusiveLeaseGuard
+
+        LEASE_TTL: untyped
+
+        MIN_SLEEP_INTERVAL: untyped
+
+        MAX_SLEEP_INTERVAL: untyped
+
+        def initialize: () -> void
+
+        def call: () -> untyped
+
+        def stop: () -> untyped
+
+        private
+
+        def lease_timeout: () -> untyped
+
+        def lease_key: () -> ::String
+
+        def lease_release?: () -> false
+
+        def lease_taken_log_level: () -> :info
+
+        def sleep_interval: () -> untyped
+
+        def current_queues: () -> untyped
+
+        def recover_workers: () -> untyped
+
+        def throttled_workers: () -> untyped
+      end
+    end
+  end
+end

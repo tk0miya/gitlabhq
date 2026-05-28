@@ -1,0 +1,21 @@
+class UserSyncedAttributesMetadata < ApplicationRecord
+  SYNCABLE_ATTRIBUTES: ::Array[:name | :email | :location | :organization | :job_title]
+
+  def read_only?: (untyped attribute) -> untyped
+
+  def read_only_attributes: () -> (::Array[untyped] | untyped)
+
+  def synced?: (untyped attribute) -> untyped
+
+  def set_attribute_synced: (untyped attribute, untyped value) -> untyped
+
+  def self.syncable_attributes: (?untyped? provider) -> untyped
+
+  private
+
+  def sync_profile_from_provider?: () -> untyped
+
+  def self.ldap_provider?: (untyped provider) -> untyped
+
+  def self.ldap_sync_name?: (untyped provider) -> (false | untyped)
+end

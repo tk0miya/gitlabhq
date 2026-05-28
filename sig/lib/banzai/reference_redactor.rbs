@@ -1,0 +1,48 @@
+module Banzai
+  # Class for removing Markdown references a certain user is not allowed to
+  # view.
+  class ReferenceRedactor
+    @context: untyped
+
+    attr_reader context: untyped
+
+    # context - An instance of `Banzai::RenderContext`.
+    def initialize: (untyped context) -> void
+
+    def user: () -> untyped
+
+    # Redacts the references in the given Array of documents.
+    #
+    # This method modifies the given documents in-place.
+    #
+    # documents - A list of HTML documents containing references to redact.
+    #
+    # Returns the documents passed as the first argument.
+    def redact: (untyped documents) -> untyped
+
+    # Redacts the given node documents
+    #
+    # data - An Array of a Hashes mapping an HTML document to nodes to redact.
+    def redact_document_nodes: (untyped all_document_nodes) -> untyped
+
+    # Return redacted content of given node as either the original link (<a> tag),
+    # the original content (text), or the inner HTML of the node.
+    #
+    def redacted_node_content: (untyped node) -> untyped
+
+    def redact_cross_project_references: (untyped documents) -> untyped
+
+    # Returns the nodes visible to the current user.
+    #
+    # nodes - The input nodes to check.
+    #
+    # Returns a new Array containing the visible nodes.
+    def nodes_visible_to_user: (untyped nodes) -> untyped
+
+    def document_nodes: (untyped documents) -> untyped
+
+    private
+
+    def can_read_cross_project?: () -> untyped
+  end
+end

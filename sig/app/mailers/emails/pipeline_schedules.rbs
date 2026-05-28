@@ -1,0 +1,11 @@
+module Emails
+  module PipelineSchedules
+    @schedule: untyped
+
+    def pipeline_schedule_owner_unavailable_email: (untyped schedule, untyped recipient) -> untyped
+
+    private
+
+    def assign_new_owner_subject: (untyped description) -> ::String
+  end
+end

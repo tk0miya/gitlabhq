@@ -1,0 +1,30 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class RelationTreeRestorer < ImportExport::Group::RelationTreeRestorer
+        # Relations which cannot be saved at project level (and have a group assigned)
+        GROUP_MODELS: ::Array[untyped]
+
+        def restore_single_relation: (untyped relation_key, ?extra_track_scope: ::Hash[untyped, untyped]) -> untyped
+
+        def relation_factory_params: (untyped relation_key, untyped relation_index, untyped data_hash) -> untyped
+
+        private
+
+        def relations: () -> untyped
+
+        def group_models: () -> untyped
+
+        def bulk_insert_enabled: () -> true
+
+        def modify_attributes: () -> untyped
+
+        def after_save_importable: () -> untyped
+
+        def update_archived_state!: () -> untyped
+
+        def relation_invalid_for_importable?: (untyped relation_object) -> untyped
+      end
+    end
+  end
+end

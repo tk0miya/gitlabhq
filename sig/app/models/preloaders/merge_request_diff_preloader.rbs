@@ -1,0 +1,15 @@
+module Preloaders
+  # This class preloads the `merge_request_diff` association for the given merge request models.
+  #
+  # Usage:
+  #   merge_requests = MergeRequest.where(...)
+  #   Preloaders::MergeRequestDiffPreloader.new(merge_requests).preload_all
+  #   merge_requests.first.merge_request_diff # won't fire any query
+  class MergeRequestDiffPreloader
+    @merge_requests: untyped
+
+    def initialize: (untyped merge_requests) -> void
+
+    def preload_all: () -> untyped
+  end
+end

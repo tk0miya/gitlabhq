@@ -1,0 +1,51 @@
+module Gitlab
+  module Ci
+    class RunnerReleases
+      @releases_by_minor: untyped
+
+      @backoff_expire_time: untyped
+
+      @backoff_count: untyped
+
+      @runner_releases_url: untyped
+
+      include Singleton
+
+      RELEASES_VALIDITY_PERIOD: untyped
+
+      INITIAL_BACKOFF: untyped
+
+      MAX_BACKOFF: untyped
+
+      BACKOFF_GROWTH_FACTOR: ::Float
+
+      def initialize: () -> void
+
+      def enabled?: () -> untyped
+
+      # Returns a sorted list of the publicly available GitLab Runner releases
+      #
+      def releases: () -> (nil | untyped)
+
+      # Returns a hash with the latest runner version per minor release
+      #
+      def releases_by_minor: () -> (nil | untyped)
+
+      def reset_backoff!: () -> untyped
+
+      private
+
+      def runner_releases_url: () -> untyped
+
+      def cache_key: () -> untyped
+
+      def backoff_active?: () -> (false | untyped)
+
+      def extract_releases: (untyped response) -> (nil | untyped)
+
+      def parse_runner_release: (untyped release) -> untyped
+
+      def next_backoff: () -> untyped
+    end
+  end
+end

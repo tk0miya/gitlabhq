@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class EnsureResourceGroups < Chain::Base
+          def perform!: () -> untyped
+
+          def break?: () -> false
+
+          private
+
+          def ensure_resource_group: (untyped processable) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module RequestPayloadLogger
+  extend ActiveSupport::Concern
+
+  include Gitlab::Logging::CloudflareHelper
+
+  include Gitlab::Logging::JsonMetadataHelper
+
+  def append_info_to_payload: (untyped payload) -> untyped
+end

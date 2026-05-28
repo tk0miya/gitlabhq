@@ -1,0 +1,20 @@
+module Gitlab
+  module GitalyClient
+    class DiffBlobsStitcher
+      @rpc_response: untyped
+
+      include Enumerable
+
+      def initialize: (untyped rpc_response) -> void
+
+      def each: () { (untyped) -> untyped } -> untyped
+
+      private
+
+      attr_reader rpc_response: untyped
+
+      # Avoid using #to_h because google-protobuf v4 omits default values
+      def diff_blob_hash: (untyped diff_blob_msg) -> untyped
+    end
+  end
+end

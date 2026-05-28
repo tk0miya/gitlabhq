@@ -1,0 +1,11 @@
+module API
+  module Conan
+    module V2
+      class ProjectPackages < ::API::Base
+        MAX_FILES_COUNT: untyped
+
+        def self.authorization_boundary_options: () -> { boundary_type: :project }
+      end
+    end
+  end
+end

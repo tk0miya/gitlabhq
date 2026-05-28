@@ -1,0 +1,63 @@
+module Ci
+  module BuildTraceChunks
+    class Fog
+      @fog_directory: untyped
+
+      @files: untyped
+
+      @object_store_config: untyped
+
+      def self.available?: () -> untyped
+
+      def self.object_store: () -> untyped
+
+      def available?: () -> untyped
+
+      def data: (untyped model) -> untyped
+
+      def set_data: (untyped model, untyped new_data) -> untyped
+
+      # This is the sequence that causes append_data to be called:
+      #
+      # 1. Runner sends a PUT /api/v4/jobs/:id to indicate the job is canceled or finished.
+      # 2. UpdateBuildStateService#accept_build_state! persists all live job logs to object storage (or filesystem).
+      # 3. UpdateBuildStateService#accept_build_state! returns a 202 to the runner.
+      # 4. The runner continues to send PATCH requests with job logs until all logs have been sent and received.
+      # 5. If the last PATCH request arrives after the job log has been persisted, we
+      #    retrieve the data from object storage to append the remaining lines.
+      def append_data: (untyped model, untyped new_data, untyped offset) -> untyped
+
+      def size: (untyped model) -> untyped
+
+      def delete_data: (untyped model) -> untyped
+
+      def keys: (untyped relation) -> (::Array[untyped] | untyped)
+
+      def delete_keys: (untyped keys) -> untyped
+
+      private
+
+      def append_strings: (untyped old_data, untyped new_data) -> untyped
+
+      def key: (untyped model) -> untyped
+
+      def create_attributes: (untyped model, untyped new_data) -> untyped
+
+      def key_raw: (untyped build_id, untyped chunk_index) -> ::String
+
+      def bucket_name: () -> (nil | untyped)
+
+      def connection: () -> (nil | untyped)
+
+      def fog_directory: () -> untyped
+
+      def files: () -> untyped
+
+      def object_store: () -> untyped
+
+      def object_store_raw_config: () -> untyped
+
+      def object_store_config: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,16 @@
+class X509Certificate < ApplicationRecord
+  include X509SerialNumberAttribute
+
+  include AfterCommitQueue
+
+  # rfc 5280 - 4.1.2.2  Serial number (20 octets is the maximum)
+  SERIAL_NUMBER_MAX: untyped
+
+  def self.safe_create!: (untyped attributes) -> untyped
+
+  def self.serial_numbers: (untyped issuer) -> untyped
+
+  def all_emails: () -> untyped
+
+  def mark_commit_signatures_unverified: () -> (untyped | nil)
+end

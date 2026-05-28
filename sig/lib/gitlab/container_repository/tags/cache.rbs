@@ -1,0 +1,23 @@
+module Gitlab
+  module ContainerRepository
+    module Tags
+      class Cache
+        @container_repository: untyped
+
+        @cached_tag_names: untyped
+
+        def initialize: (untyped container_repository) -> void
+
+        def populate: (untyped tags) -> (nil | untyped)
+
+        def insert: (untyped tags, untyped max_ttl_in_seconds) -> (nil | untyped)
+
+        private
+
+        def cache_key: (untyped tag) -> ::String
+
+        def with_redis: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

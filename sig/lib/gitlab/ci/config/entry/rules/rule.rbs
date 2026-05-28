@@ -1,0 +1,26 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        # A rule is a condition that is evaluated before a job is executed.
+        # Until we find a better solution in https://gitlab.com/gitlab-org/gitlab/-/issues/436473,
+        # these two metadata parameters need to be passed to `Entry::Rules`:
+        # - `allowed_when`: a list of allowed values for the `when` keyword.
+        # - `allowed_keys`: a list of allowed keys for each rule.
+        class Rules::Rule < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Validatable
+
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          def value: () -> untyped
+
+          def specifies_delay?: () -> untyped
+
+          def default: () -> nil
+        end
+      end
+    end
+  end
+end

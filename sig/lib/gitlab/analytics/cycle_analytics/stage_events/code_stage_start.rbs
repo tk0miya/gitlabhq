@@ -1,0 +1,28 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageEvents
+        class CodeStageStart < StageEvent
+          def self.name: () -> untyped
+
+          def self.identifier: () -> :code_stage_start
+
+          def object_type: () -> untyped
+
+          def column_list: () -> ::Array[untyped]
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def apply_query_customization: (untyped query) -> untyped
+
+          def issue_metrics_join: () -> untyped
+
+          def merge_requests_closing_issues_join: () -> untyped
+
+          def mr_metrics_join: () -> untyped
+
+          def include_in: (untyped query, **untyped) -> untyped
+        end
+      end
+    end
+  end
+end

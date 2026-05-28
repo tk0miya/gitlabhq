@@ -1,0 +1,7 @@
+module Snippets
+  class ScheduleBulkRepositoryShardMovesWorker
+    include ApplicationWorker
+
+    def perform: (untyped source_storage_name, ?untyped? destination_storage_name) -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+class WebIdeTerminal
+  @build: untyped
+
+  @project: untyped
+
+  include ::Gitlab::Routing
+
+  attr_reader build: untyped
+
+  attr_reader project: untyped
+
+  def initialize: (untyped build) -> void
+
+  def show_path: () -> untyped
+
+  def retry_path: () -> untyped
+
+  def cancel_path: () -> untyped
+
+  def terminal_path: () -> untyped
+
+  def proxy_websocket_path: () -> untyped
+
+  def services: () -> untyped
+
+  private
+
+  def web_ide_terminal_route_generator: (untyped action, ?::Hash[untyped, untyped] options) -> untyped
+end

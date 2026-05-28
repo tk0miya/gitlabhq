@@ -1,0 +1,20 @@
+# AnyFieldValidator
+#
+# Custom validator that checks if any of the provided
+# fields are present to ensure creation of a non-empty
+# record
+#
+# Example:
+#
+#   class MyModel < ApplicationRecord
+#     validates_with AnyFieldValidator, fields: %w[type name url]
+#   end
+class AnyFieldValidator < ActiveModel::Validator
+  def initialize: (*untyped args) -> void
+
+  def validate: (untyped record) -> (nil | untyped)
+
+  private
+
+  def one_of_required_fields: () -> untyped
+end

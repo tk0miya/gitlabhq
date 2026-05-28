@@ -1,0 +1,29 @@
+module Pajamas
+  class SpinnerComponent < Pajamas::Component
+    @color: untyped
+
+    @inline: untyped
+
+    @label: untyped
+
+    @size: untyped
+
+    @html_options: untyped
+
+    COLOR_OPTIONS: ::Array[:light | :dark]
+
+    SIZE_OPTIONS: ::Array[:sm | :md | :lg | :xl]
+
+    # @param [Symbol] color
+    # @param [Boolean] inline
+    # @param [String] label
+    # @param [Symbol] size
+    def initialize: (?color: ::Symbol, ?inline: bool, ?label: untyped, ?size: ::Symbol, **untyped html_options) -> void
+
+    private
+
+    def spinner_class: () -> ::Array["gl-spinner" | ::String]
+
+    def html_options: () -> untyped
+  end
+end

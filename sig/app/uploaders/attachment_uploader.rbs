@@ -1,0 +1,15 @@
+class AttachmentUploader < GitlabUploader
+  include RecordsUploads::Concern
+
+  include ObjectStorage::Concern
+
+  prepend ObjectStorage::Extension::RecordsUploads
+
+  include UploaderHelper
+
+  def mounted_as: () -> untyped
+
+  private
+
+  def dynamic_segment: () -> untyped
+end

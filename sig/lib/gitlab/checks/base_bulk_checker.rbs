@@ -1,0 +1,13 @@
+module Gitlab
+  module Checks
+    class BaseBulkChecker < BaseChecker
+      @changes_access: untyped
+
+      attr_reader changes_access: untyped
+
+      def initialize: (untyped changes_access) -> void
+
+      def validate!: () -> untyped
+    end
+  end
+end

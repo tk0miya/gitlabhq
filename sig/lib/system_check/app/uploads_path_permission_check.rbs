@@ -1,0 +1,17 @@
+module SystemCheck
+  module App
+    class UploadsPathPermissionCheck < SystemCheck::BaseCheck
+      def skip?: () -> untyped
+
+      def check?: () -> untyped
+
+      def show_error: () -> untyped
+
+      private
+
+      def rails_uploads_path: () -> untyped
+
+      def uploads_fullpath: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,80 @@
+module IssuableLinks
+  class CreateService < BaseService
+    @issuable: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    @errors: untyped
+
+    @new_links: untyped
+
+    @referenced_issuables: untyped
+
+    attr_reader issuable: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    attr_reader new_links: untyped
+
+    def initialize: (untyped issuable, untyped user, untyped params) -> void
+
+    def execute: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def relate_issuables: (untyped referenced_issuable) -> untyped
+
+    private
+
+    def render_conflict_error?: () -> untyped
+
+    def render_no_permission_error?: () -> untyped
+
+    def render_not_found_error?: () -> untyped
+
+    def create_links: () -> untyped
+
+    def link_issuables: (untyped target_issuables) -> untyped
+
+    def referenced_issuables: () -> untyped
+
+    def extract_references: () -> untyped
+
+    def references: (untyped extractor) -> untyped
+
+    def extractor_context: () -> ::Hash[untyped, untyped]
+
+    def issuables_already_assigned_message: () -> untyped
+
+    def issuables_no_permission_error_message: () -> untyped
+
+    def issuables_not_found_message: () -> untyped
+
+    def error_message: () -> untyped
+
+    def target_issuable_type: () -> "issue"
+
+    def create_notes: (untyped issuable_link) -> untyped
+
+    def linkable_issuables: (untyped objects) -> untyped
+
+    def readonly_issuables: (untyped _issuables) -> ::Array[untyped]
+
+    def previous_related_issuables: () -> untyped
+
+    def link_class: () -> untyped
+
+    def set_link_type: (untyped _link) -> nil
+
+    # Override on child classes to perform
+    # actions when the service is executed.
+    def track_event: () -> nil
+
+    # Override on child classes to
+    # perform actions for each object created.
+    def after_create_for: (untyped _link) -> nil
+  end
+end

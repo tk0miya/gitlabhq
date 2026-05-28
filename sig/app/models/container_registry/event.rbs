@@ -1,0 +1,74 @@
+module ContainerRegistry
+  class Event
+    @event: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::InternalEventsTracking
+
+    ALLOWED_ACTIONS: ::Array["push" | "delete"]
+
+    PUSH_ACTION: "push"
+
+    DELETE_ACTION: "delete"
+
+    EVENT_PREFIX: "i_container_registry"
+
+    ALLOWED_ACTOR_TYPES: ::Array["personal_access_token" | "build" | "gitlab_or_ldap" | "deploy_token"]
+
+    TRACKABLE_ACTOR_EVENTS: ::Array["push_tag" | "delete_tag" | "push_repository" | "delete_repository" | "create_repository"]
+
+    attr_reader event: untyped
+
+    def initialize: (untyped event) -> void
+
+    def supported?: () -> untyped
+
+    def handle!: () -> untyped
+
+    def track!: () -> (nil | untyped)
+
+    private
+
+    def tracked_target: () -> (:tag | :repository)
+
+    def target_tag?: () -> untyped
+
+    def target_digest?: () -> untyped
+
+    def target_repository?: () -> untyped
+
+    def action: () -> untyped
+
+    def action_push?: () -> untyped
+
+    def action_delete?: () -> untyped
+
+    def container_repository_exists?: () -> (nil | untyped)
+
+    def container_registry_path: () -> untyped
+
+    def project: () -> untyped
+
+    # counter name for unique user tracking (for MAU)
+    def usage_data_event_for: (untyped tracking_action) -> (nil | ::String)
+
+    def originator: () -> (nil | untyped)
+
+    def originator_suffix: () -> ("deploy_token" | "user")
+
+    def originator_type: () -> untyped
+
+    def origin_class: () -> untyped
+
+    def get_origin_id: (untyped originator_type) -> (nil | untyped)
+
+    def decode_user_info: (untyped encoded_user_jwt) -> untyped
+
+    def deploy_token?: (untyped originator_type) -> untyped
+
+    def manifest_delete_event?: () -> untyped
+
+    def update_project_statistics: () -> (nil | untyped)
+  end
+end

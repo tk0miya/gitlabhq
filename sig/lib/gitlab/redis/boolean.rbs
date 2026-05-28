@@ -1,0 +1,62 @@
+module Gitlab
+  module Redis
+    class Boolean
+      @value: untyped
+
+      LABEL: "_b"
+
+      DELIMITER: ":"
+
+      TRUE_STR: "1"
+
+      FALSE_STR: "0"
+
+      BooleanError: untyped
+
+      NotABooleanError: untyped
+
+      NotAnEncodedBooleanStringError: untyped
+
+      def initialize: (untyped value) -> void
+
+      # @return [String] the encoded boolean
+      def to_s: () -> untyped
+
+      # Turn a boolean into a string for storage in Redis
+      #
+      # @param value [Boolean] true or false
+      # @return [String] the encoded boolean
+      # @raise [NotABooleanError] if the value isn't true or false
+      def self.encode: (untyped value) -> untyped
+
+      # Decode a boolean string
+      #
+      # @param value [String] the stored boolean string
+      # @return [Boolean] true or false
+      # @raise [NotAnEncodedBooleanStringError] if the provided value isn't an encoded boolean
+      def self.decode: (untyped value) -> untyped
+
+      # Decode a boolean string, then test if it's true
+      #
+      # @param value [String] the stored boolean string
+      # @return [Boolean] is the value true?
+      # @raise [NotAnEncodedBooleanStringError] if the provided value isn't an encoded boolean
+      def self.true?: (untyped encoded_value) -> untyped
+
+      # Decode a boolean string, then test if it's false
+      #
+      # @param value [String] the stored boolean string
+      # @return [Boolean] is the value false?
+      # @raise [NotAnEncodedBooleanStringError] if the provided value isn't an encoded boolean
+      def self.false?: (untyped encoded_value) -> untyped
+
+      private
+
+      def self.bool?: (untyped value) -> untyped
+
+      def self.to_string: (untyped bool) -> untyped
+
+      def self.from_string: (untyped str) -> untyped
+    end
+  end
+end

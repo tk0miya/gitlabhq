@@ -1,0 +1,32 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class GenericMetric < BaseMetric
+          self.@metric_fallback: untyped
+
+          self.@metric_value: untyped
+
+          # Usage example
+          #
+          # class UuidMetric < GenericMetric
+          #   value do
+          #     Gitlab::CurrentSettings.uuid
+          #   end
+          # end
+          FALLBACK: -1
+
+          attr_reader self.metric_value: untyped
+
+          def self.fallback: (?untyped custom_fallback) -> untyped
+
+          def self.value: () { (?) -> untyped } -> untyped
+
+          def initialize: (untyped metric_definition) -> void
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

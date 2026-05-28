@@ -1,0 +1,15 @@
+module MicrosoftTeams
+  class Notifier
+    @webhook: untyped
+
+    @header: untyped
+
+    def initialize: (untyped webhook) -> void
+
+    def ping: (?::Hash[untyped, untyped] options) -> untyped
+
+    private
+
+    def body: (activity: untyped, ?title: untyped?, ?attachments: untyped?) -> untyped
+  end
+end

@@ -1,0 +1,6 @@
+class DeleteDiffFilesWorker
+  include ApplicationWorker
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def perform: (untyped merge_request_diff_id) -> (nil | untyped)
+end

@@ -1,0 +1,33 @@
+module Emails
+  module Reviews
+    @notes: untyped
+
+    @review: untyped
+
+    @recipient: untyped
+
+    @discussions: untyped
+
+    @include_diff_discussion_stylesheet: untyped
+
+    @author: untyped
+
+    @author_name: untyped
+
+    @project: untyped
+
+    @merge_request: untyped
+
+    @target_url: untyped
+
+    @sent_notification: untyped
+
+    def new_review_email: (untyped recipient_id, untyped review_id) -> (nil | untyped)
+
+    private
+
+    def review_thread_options: () -> { from: untyped, to: untyped, subject: untyped }
+
+    def setup_review_email: (untyped review_id, untyped recipient_id) -> untyped
+  end
+end

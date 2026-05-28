@@ -1,0 +1,31 @@
+module Types
+  module Ci
+    class RunnerType < BaseObject
+      JOB_COUNT_LIMIT: 1000
+
+      alias runner object
+
+      def maintenance_note_html_resolver: () -> untyped
+
+      def admin_url: () -> (untyped | nil)
+
+      def edit_admin_url: () -> (untyped | nil)
+
+      def ephemeral_register_url: () -> (nil | untyped)
+
+      def register_admin_url: () -> (nil | untyped)
+
+      def ephemeral_authentication_token: () -> (untyped | nil)
+
+      def project_count: () -> untyped
+
+      def job_execution_status: () -> untyped
+
+      private
+
+      def can_admin_all_runners?: () -> untyped
+
+      def can_read_all_runners?: () -> untyped
+    end
+  end
+end

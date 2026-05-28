@@ -1,0 +1,11 @@
+module Gitlab
+  module ClickHouse
+    DATABASES: ::Array[:main]
+
+    def self.configured?: () -> untyped
+
+    def self.enabled_for_analytics?: (?untyped? _group) -> untyped
+
+    def self.globally_enabled_for_analytics?: () -> untyped
+  end
+end

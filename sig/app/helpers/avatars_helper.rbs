@@ -1,0 +1,37 @@
+module AvatarsHelper
+  DEFAULT_AVATAR_PATH: "no_avatar.png"
+
+  # Takes both user and email and returns the avatar_icon by
+  # user (preferred) or email.
+  def avatar_icon_for: (?untyped? user, ?untyped? email, ?untyped? size, ?::Integer scale, ?only_path: bool) -> untyped
+
+  def avatar_icon_for_email: (?untyped? email, ?untyped? size, ?::Integer scale, ?only_path: bool, ?by_commit_email: bool) -> untyped
+
+  def avatar_icon_for_user: (?untyped? user, ?untyped? size, ?::Integer scale, ?only_path: bool, ?current_user: untyped?) -> untyped
+
+  def gravatar_icon: (?::String user_email, ?untyped? size, ?::Integer scale) -> untyped
+
+  def default_avatar: () -> untyped
+
+  def author_avatar: (untyped commit_or_event, ?::Hash[untyped, untyped] options) -> untyped
+
+  def user_avatar: (?::Hash[untyped, untyped] options) -> untyped
+
+  def user_avatar_without_link: (?::Hash[untyped, untyped] options) -> untyped
+
+  def avatar_without_link: (untyped resource, ?::Hash[untyped, untyped] options) -> untyped
+
+  private
+
+  def avatar_icon_by_user_email_or_gravatar: (untyped email, untyped size, untyped scale, only_path: untyped, ?by_commit_email: bool) -> untyped
+
+  def user_avatar_url_for: (?only_path: bool, **untyped options) -> untyped
+
+  def source_icon: (untyped source, ?::Hash[untyped, untyped] options) -> untyped
+
+  def source_identicon: (untyped source, ?::Hash[untyped, untyped] options) -> untyped
+
+  def blocked_or_unconfirmed?: (untyped user) -> untyped
+
+  def can_admin?: (untyped user) -> (false | untyped)
+end

@@ -1,0 +1,24 @@
+module WorkItems
+  # Finds namespaces whose oldest updated work_item carries a
+  # namespace_traversal_ids value that no longer matches the namespace's
+  # traversal_ids.
+  # We look at the oldest work_item within the namespace, because the
+  # namespace_traversal_ids get auto-fixed on work_item updates and with it the `updated_at`.
+  class DivergentTraversalIds
+    @namespace_ids: untyped
+
+    def self.among: (untyped namespace_ids) -> untyped
+
+    def initialize: (untyped namespace_ids) -> void
+
+    def among: () -> untyped
+
+    private
+
+    attr_reader namespace_ids: untyped
+
+    def divergent_namespace_ids: () -> (::Array[untyped] | untyped)
+
+    def oldest_work_item_diverges: () -> untyped
+  end
+end

@@ -1,0 +1,18 @@
+# Expands diff context around discussion positions that fall outside the
+# default git diff -U context.
+#
+# Usage:
+#   Gitlab::Diff::CollectionUnfolder.new(merge_request, current_user).unfold!(collection)
+module Gitlab
+  module Diff
+    class CollectionUnfolder
+      @merge_request: untyped
+
+      @current_user: untyped
+
+      def initialize: (untyped merge_request, untyped current_user) -> void
+
+      def unfold!: (untyped collection) -> (nil | untyped)
+    end
+  end
+end

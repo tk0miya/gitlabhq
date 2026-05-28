@@ -1,0 +1,7 @@
+module API
+  module Hooks
+    # rubocop: disable API/Base -- It is important that this re-usable module is not a Grape Instance, since it will be re-mounted.
+    class CustomHeaders < ::Grape::API
+    end
+  end
+end

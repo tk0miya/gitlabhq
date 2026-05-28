@@ -1,0 +1,57 @@
+module ClickHouse
+  module SchemaCache
+    class Column
+      @name: untyped
+
+      @type: untyped
+
+      @position: untyped
+
+      @default_kind: untyped
+
+      @default_expression: untyped
+
+      @comment: untyped
+
+      @compression_codec: untyped
+
+      @is_in_partition_key: untyped
+
+      @is_in_sorting_key: untyped
+
+      @is_in_primary_key: untyped
+
+      @is_in_sampling_key: untyped
+
+      DEFAULTS: { position: nil, default_kind: "", default_expression: "", comment: "", compression_codec: "", is_in_partition_key: false, is_in_sorting_key: false, is_in_primary_key: false, is_in_sampling_key: false }
+
+      attr_reader name: untyped
+
+      attr_reader type: untyped
+
+      attr_reader position: untyped
+
+      attr_reader default_kind: untyped
+
+      attr_reader default_expression: untyped
+
+      attr_reader comment: untyped
+
+      attr_reader compression_codec: untyped
+
+      attr_reader is_in_partition_key: untyped
+
+      attr_reader is_in_sorting_key: untyped
+
+      attr_reader is_in_primary_key: untyped
+
+      attr_reader is_in_sampling_key: untyped
+
+      def initialize: (name: untyped, type: untyped, **untyped kwargs) -> void
+
+      def nullable?: () -> untyped
+
+      def to_h: () -> untyped
+    end
+  end
+end

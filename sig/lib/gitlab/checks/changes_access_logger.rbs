@@ -1,0 +1,25 @@
+module Gitlab
+  module Checks
+    class ChangesAccessLogger
+      @project: untyped
+
+      @destination: untyped
+
+      @durations: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      def self.current_monotonic_time: () -> untyped
+
+      def initialize: (project: untyped, ?destination: untyped) -> void
+
+      def instrument: (untyped check_name) { () -> untyped } -> untyped
+
+      def commit: (status: untyped, ?error: untyped?) -> (nil | untyped)
+
+      private
+
+      def enabled?: () -> untyped
+    end
+  end
+end

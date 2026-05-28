@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        class Inputs
+          @spec_inputs: untyped
+
+          @params: untyped
+
+          @params_errors: untyped
+
+          def initialize: (untyped specs, untyped params) -> void
+
+          def errors: () -> untyped
+
+          def valid?: () -> untyped
+
+          def to_hash: () -> untyped
+
+          private
+
+          def validate_params!: () -> (nil | untyped)
+
+          def check_if_unknown_inputs_provided!: () -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

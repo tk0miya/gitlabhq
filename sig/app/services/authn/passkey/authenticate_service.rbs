@@ -1,0 +1,29 @@
+# Handles passwordless authentication with passkeys, specifically on the sign_in page.
+#
+module Authn
+  module Passkey
+    class AuthenticateService < BaseService
+      @device_response: untyped
+
+      @challenge: untyped
+
+      @user: untyped
+
+      include WebauthnErrors
+
+      include SafeFormatHelper
+
+      def initialize: (untyped device_response, untyped challenge) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def record_not_found_error_message: () -> untyped
+
+      def find_matching_credential_xid: (untyped possible_user_passkey_credential_xid) -> untyped
+
+      def find_matching_user_with_passkey: (untyped existing_credential_xid) -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Database
+  class ListMigrationsService < BaseMigrationService
+    @status: untyped
+
+    def initialize: (connection: untyped, ?status: ::String) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader status: untyped
+
+    def migrations: () -> untyped
+
+    def filtered_migrations: () -> untyped
+
+    def migration_to_hash: (untyped migration) -> { version: untyped, name: untyped, filename: untyped, status: untyped }
+  end
+end

@@ -1,0 +1,21 @@
+module Integrations
+  module Clients
+    class HTTP
+      def self.delete: (untyped path, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+      def self.head: (untyped path, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+      def self.get: (untyped path, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+      def self.post: (untyped path, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+      def self.put: (untyped path, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+      def self.try_get: (untyped path, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+      private
+
+      def self.default_max_bytes: () -> untyped
+    end
+  end
+end

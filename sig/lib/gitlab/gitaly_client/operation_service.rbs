@@ -1,0 +1,73 @@
+module Gitlab
+  module GitalyClient
+    class OperationService
+      @gitaly_repo: untyped
+
+      @repository: untyped
+
+      include Gitlab::EncodingHelper
+
+      include WithFeatureFlagActors
+
+      MAX_MSG_SIZE: untyped
+
+      CUSTOM_HOOK_FALLBACK_MESSAGE: "Prevented by server hooks"
+
+      def initialize: (untyped repository) -> void
+
+      def rm_tag: (untyped tag_name, untyped user) -> untyped
+
+      def add_tag: (untyped tag_name, untyped user, untyped target, untyped message) -> untyped
+
+      def user_create_branch: (untyped branch_name, untyped user, untyped start_point, ?skip_ci: bool) -> untyped
+
+      def user_update_branch: (untyped branch_name, untyped user, untyped newrev, untyped oldrev) -> untyped
+
+      def user_delete_branch: (untyped branch_name, untyped user, ?target_sha: untyped?) -> untyped
+
+      def user_merge_to_ref: (untyped user, source_sha: untyped, branch: untyped, target_ref: untyped, message: untyped, first_parent_ref: untyped, ?expected_old_oid: ::String, ?sign: bool) -> untyped
+
+      def user_merge_branch: (untyped user, source_sha: untyped, target_branch: untyped, message: untyped, ?target_sha: untyped?, ?sign: bool) { (untyped) -> untyped } -> untyped
+
+      def user_ff_branch: (untyped user, source_sha: untyped, target_branch: untyped, ?target_sha: untyped?) -> untyped
+
+      # rubocop:disable Metrics/ParameterLists
+      def user_cherry_pick: (user: untyped, commit: untyped, branch_name: untyped, message: untyped, start_branch_name: untyped, start_repository: untyped, ?author_name: untyped?, ?author_email: untyped?, ?dry_run: bool, ?target_sha: untyped?, ?sign: bool) -> untyped
+
+      def user_revert: (user: untyped, commit: untyped, branch_name: untyped, message: untyped, start_branch_name: untyped, start_repository: untyped, ?dry_run: bool, ?target_sha: untyped?, ?sign: bool) -> untyped
+
+      def rebase: (untyped user, untyped rebase_id, branch: untyped, branch_sha: untyped, remote_repository: untyped, remote_branch: untyped, ?push_options: untyped) { (untyped) -> untyped } -> untyped
+
+      def user_rebase_to_ref: (untyped user, source_sha: untyped, target_ref: untyped, first_parent_ref: untyped, ?expected_old_oid: ::String) -> untyped
+
+      def user_squash: (untyped user, start_sha: untyped, end_sha: untyped, author: untyped, message: untyped, ?time: untyped, ?sign: bool) -> untyped
+
+      def user_update_submodule: (user: untyped, submodule: untyped, commit_sha: untyped, branch: untyped, message: untyped) -> untyped
+
+      # rubocop:disable Metrics/ParameterLists
+      def user_commit_files: (untyped user, untyped branch_name, untyped commit_message, untyped actions, untyped author_email, untyped author_name, untyped start_branch_name, untyped start_repository, ?bool force, ?untyped? start_sha, ?bool sign, ?untyped? target_sha) -> untyped
+
+      # rubocop:enable Metrics/ParameterLists
+      def user_commit_patches: (untyped user, branch_name: untyped, patches: untyped, ?target_sha: untyped?) -> untyped
+
+      private
+
+      def gitaly_user: (untyped user) -> untyped
+
+      # consume_final_message consumes the final message that contains the status from the response
+      # stream and raises an exception if it wasn't the last one.
+      def consume_final_message: (untyped response_enum) -> untyped
+
+      # rubocop:disable Metrics/ParameterLists
+      def user_commit_files_request_header: (untyped user, untyped branch_name, untyped commit_message, untyped actions, untyped author_email, untyped author_name, untyped start_branch_name, untyped start_repository, untyped force, untyped start_sha, untyped sign, untyped target_sha) -> untyped
+
+      def user_commit_files_action_header: (untyped action) -> untyped
+
+      def custom_hook_error_message: (untyped custom_hook_error) -> untyped
+
+      def index_error_message: (untyped index_error) -> untyped
+
+      def handle_undetailed_bad_status_errors: (untyped error) -> (untyped | untyped | nil)
+    end
+  end
+end

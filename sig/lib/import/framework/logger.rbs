@@ -1,0 +1,9 @@
+module Import
+  module Framework
+    class Logger < ::Gitlab::JsonLogger
+      def self.file_name_noext: () -> "importer"
+
+      def default_attributes: () -> untyped
+    end
+  end
+end

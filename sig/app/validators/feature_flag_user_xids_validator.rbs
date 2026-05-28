@@ -1,0 +1,13 @@
+class FeatureFlagUserXidsValidator < ActiveModel::EachValidator
+  USERXID_MAX_LENGTH: 256
+
+  def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+
+  def self.validate_user_xids: (untyped record, untyped attribute, untyped user_xids, untyped error_message_attribute_name) -> (untyped | nil)
+
+  private
+
+  def self.valid_xids?: (untyped user_xids) -> untyped
+
+  def self.valid_xid?: (untyped user_xid) -> untyped
+end

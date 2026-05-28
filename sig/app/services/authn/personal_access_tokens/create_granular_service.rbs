@@ -1,0 +1,29 @@
+module Authn
+  module PersonalAccessTokens
+    class CreateGranularService < BaseService
+      @current_user: untyped
+
+      @organization: untyped
+
+      @params: untyped
+
+      @granular_scopes: untyped
+
+      include Gitlab::InternalEventsTracking
+
+      def initialize: (current_user: untyped, organization: untyped, granular_scopes: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader organization: untyped
+
+      attr_reader granular_scopes: untyped
+
+      def personal_access_token_params: () -> untyped
+
+      def track_event: (untyped token) -> untyped
+    end
+  end
+end

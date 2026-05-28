@@ -1,0 +1,30 @@
+module Namespaces
+  class EnableDescendantsCacheCronWorker
+    include ApplicationWorker
+
+    # rubocop:disable Scalability/CronWorkerContext -- This worker does not perform work scoped to a context
+    include CronjobQueue
+
+    GROUP_BATCH_SIZE: 5000
+
+    NAMESPACE_BATCH_SIZE: 500
+
+    PERSIST_SLICE_SIZE: 100
+
+    # Covers the top 3000 namespaces on .com
+    CACHE_THRESHOLD: 700
+
+    CURSOR_KEY: "enable_namespace_descendants_cron_worker"
+
+    MAX_RUNTIME: untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- Batching over groups.
+    def perform: () -> untyped
+
+    def persist: (untyped ids_to_cache) -> untyped
+
+    def get_last_id: () -> (nil | untyped)
+
+    def set_last_id: (untyped last_id) -> untyped
+  end
+end

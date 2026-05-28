@@ -1,0 +1,19 @@
+module MergeRequests
+  class CloseService < MergeRequests::BaseService
+    include RemovesRefs
+
+    def execute: (untyped merge_request, ?untyped? commit, ?skip_reset: bool) -> untyped
+
+    private
+
+    def use_primary: (untyped merge_request, untyped skip_reset) { (untyped) -> untyped } -> untyped
+
+    def create_event: (untyped merge_request) -> untyped
+
+    def expire_unapproved_key: (untyped merge_request) -> nil
+
+    def trigger_merge_request_merge_status_updated: (untyped merge_request) -> untyped
+
+    def authorized_to_close?: (untyped merge_request) -> untyped
+  end
+end

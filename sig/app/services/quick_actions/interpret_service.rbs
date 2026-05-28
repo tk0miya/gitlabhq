@@ -1,0 +1,109 @@
+module QuickActions
+  class InterpretService < BaseContainerService
+    @quick_action_target: untyped
+
+    @updates: untyped
+
+    @execution_message: untyped
+
+    @additional_properties: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::QuickActions::Dsl
+
+    include Gitlab::QuickActions::IssueActions
+
+    include Gitlab::QuickActions::IssuableActions
+
+    include Gitlab::QuickActions::IssueAndMergeRequestActions
+
+    include Gitlab::QuickActions::MergeRequestActions
+
+    include Gitlab::QuickActions::CommitActions
+
+    include Gitlab::QuickActions::RelateActions
+
+    include Gitlab::QuickActions::WorkItemActions
+
+    QuickActionsNotAllowedError: untyped
+
+    attr_reader quick_action_target: untyped
+
+    # Counts how many commands have been executed.
+    # Used to display relevant feedback on UI when a note
+    # with only commands has been processed.
+    attr_accessor commands_executed_count: untyped
+
+    # Takes an quick_action_target and returns an array of all the available commands
+    # represented with .to_h
+    def available_commands: (untyped quick_action_target) -> untyped
+
+    # IMPORTANT: unsafe! Use `execute_with_original_text` instead as it handles cleanup of any residual quick actions
+    # left in the original description.
+    #
+    # Takes a text and interprets the commands that are extracted from it.
+    # Returns the content without commands, a hash of changes to be applied to a record
+    # and a string containing the execution_message to show to the user.
+    def execute: (untyped content, untyped quick_action_target, ?only: untyped?) -> (::Array[untyped | ::Hash[untyped, untyped] | ""] | ::Array[untyped])
+
+    # Similar to `execute` except also tries to extract any quick actions from original_text,
+    # and if found removes them from the main list of quick actions.
+    def execute_with_original_text: (untyped new_text, untyped quick_action_target, ?only: untyped?, ?original_text: untyped?) -> ::Array[untyped]
+
+    # Takes a text and interprets the commands that are extracted from it.
+    # Returns the content without commands, and array of changes explained.
+    # `keep_actions: true` will keep the quick actions in the content.
+    def explain: (untyped content, untyped quick_action_target, ?keep_actions: bool) -> (::Array[untyped | ::Array[untyped]] | ::Array[untyped])
+
+    private
+
+    def failed_parse: (untyped message) -> untyped
+
+    def extractor: (?bool keep_actions) -> untyped
+
+    # Find users for commands like /assign
+    #
+    # eg. /assign me and @jane and jack
+    def extract_users: (untyped params) -> untyped
+
+    def extract_users_failed: (untyped err) -> untyped
+
+    def find_milestones: (untyped container, ?::Hash[untyped, untyped] params) -> (::Array[untyped] | untyped)
+
+    def parent: () -> untyped
+
+    def has_labels?: () -> untyped
+
+    def find_labels: (?untyped? labels_params) -> untyped
+
+    def find_labels_by_name_no_tilde: (untyped labels_params) -> untyped
+
+    def label_with_tilde?: (untyped labels_params) -> untyped
+
+    def extract_label_names: (untyped labels_params) -> untyped
+
+    def find_label_references: (untyped labels_param, ?::Symbol format) -> untyped
+
+    def labels_to_reference: (untyped labels, ?::Symbol format) -> untyped
+
+    def find_label_ids: (untyped labels_param) -> untyped
+
+    def explain_commands: (untyped commands) -> untyped
+
+    def execution_messages_for: (untyped commands) -> untyped
+
+    def map_commands: (untyped commands, untyped method) -> untyped
+
+    def command_names: (untyped commands) -> untyped
+
+    def extract_updates: (untyped commands) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def extract_references: (untyped arg, untyped type) -> (::Array[untyped] | untyped)
+
+    def usage_ping_tracking: (untyped quick_action_name, untyped arg) -> (nil | untyped)
+
+    def can?: (untyped ability, untyped object) -> untyped
+  end
+end

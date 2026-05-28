@@ -1,0 +1,13 @@
+module Gitlab
+  module PoolRepositories
+    class OrphanRecord
+      ORPHAN_REASONS: { pool_in_db_no_projects: "Pool exists in Rails DB but no projects reference it", pool_no_source_project: "Pool exists in Rails DB with no source_project_id set", pool_on_gitaly_missing_db: "Pool exists on Gitaly but missing from Rails DB", disk_path_mismatch: "Disk path mismatch between Rails DB and Gitaly", pool_in_obsolete_state: "Pool marked as obsolete in Rails DB" }
+
+      def self.from_pool: (untyped pool_repository, untyped reasons, ?untyped? gitaly_relative_path) -> { pool_id: untyped, disk_path: untyped, relative_path: untyped, source_project_id: untyped, state: untyped, reason_codes: untyped, reasons: untyped, member_projects_count: untyped, shard_name: untyped }
+
+      def self.from_gitaly: (untyped pool_disk_path, untyped storage_name) -> { pool_id: "N/A", disk_path: untyped, relative_path: ::String, source_project_id: nil, state: "unknown", reason_codes: "pool_on_gitaly_missing_db", reasons: untyped, member_projects_count: 0, shard_name: untyped }
+
+      def self.validate_reasons: (untyped reasons_array) -> (nil | untyped)
+    end
+  end
+end

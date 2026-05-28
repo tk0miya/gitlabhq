@@ -1,0 +1,13 @@
+module SupplyChain
+  class ArtifactProvenancePublisher < ProvenancePublisher
+    def self.should_publish?: (untyped build) -> untyped
+
+    def publish: () -> ::Array[untyped]
+
+    private
+
+    def attest_artifact: (untyped artifact_path, untyped hash) -> untyped
+
+    def hash: (untyped file_input_stream) -> untyped
+  end
+end

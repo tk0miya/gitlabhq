@@ -1,0 +1,11 @@
+module Ci
+  module HasRunnerStatus
+    extend ActiveSupport::Concern
+
+    def status: () -> (:stale | :never_contacted | :online | :offline)
+
+    def online?: () -> untyped
+
+    def stale?: () -> (false | untyped)
+  end
+end

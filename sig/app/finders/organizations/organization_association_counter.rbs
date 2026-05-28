@@ -1,0 +1,31 @@
+module Organizations
+  class OrganizationAssociationCounter
+    @organization: untyped
+
+    @current_user: untyped
+
+    include ActionView::Helpers::NumberHelper
+
+    include NumbersHelper
+
+    COUNTER_LIMIT: 1000
+
+    # @param organization [Organizations::Organization]
+    # @param current_user [User]
+    def initialize: (organization: untyped, current_user: untyped) -> void
+
+    def execute: () -> (::Hash[untyped, untyped] | untyped)
+
+    private
+
+    attr_reader organization: untyped
+
+    attr_reader current_user: untyped
+
+    def association_counts: () -> { groups: untyped, projects: untyped, users: untyped }
+
+    def authorized?: () -> untyped
+
+    def with_limited_counter: (untyped resource) -> untyped
+  end
+end

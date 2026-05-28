@@ -1,0 +1,17 @@
+module Mutations
+  module DesignManagement
+    class Move < ::Mutations::BaseMutation
+      DesignID: untyped
+
+      def resolve: (**untyped args) -> { design_collection: untyped, errors: untyped }
+
+      private
+
+      def parameters: (**untyped args) -> untyped
+
+      def find_design: (untyped id) -> untyped
+
+      def not_found: (untyped gid) -> untyped
+    end
+  end
+end

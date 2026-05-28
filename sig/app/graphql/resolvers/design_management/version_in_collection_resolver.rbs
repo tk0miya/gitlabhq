@@ -1,0 +1,19 @@
+module Resolvers
+  module DesignManagement
+    class VersionInCollectionResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias collection object
+
+      VersionID: untyped
+
+      def resolve: (?version_id: untyped?, ?sha: untyped?) -> untyped
+
+      def self.single: () -> self
+
+      private
+
+      def check_args: (untyped id, untyped sha) -> (nil | untyped)
+    end
+  end
+end

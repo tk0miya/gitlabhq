@@ -1,0 +1,14 @@
+module Ci
+  module ResourceGroups
+    # This worker is to assign a resource to a pipeline job from a resource group
+    # and enqueue the job to be executed by a runner.
+    # See https://docs.gitlab.com/ee/ci/yaml/#resource_group for more information.
+    class AssignResourceFromResourceGroupWorker
+      include ApplicationWorker
+
+      include PipelineQueue
+
+      def perform: (untyped resource_group_id) -> untyped
+    end
+  end
+end

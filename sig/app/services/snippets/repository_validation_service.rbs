@@ -1,0 +1,37 @@
+module Snippets
+  class RepositoryValidationService
+    @current_user: untyped
+
+    @snippet: untyped
+
+    @repository: untyped
+
+    INVALID_REPOSITORY: :invalid_snippet_repository
+
+    SNIPPET_NOT_FOUND: :snippet_not_found
+
+    attr_reader current_user: untyped
+
+    attr_reader snippet: untyped
+
+    attr_reader repository: untyped
+
+    RepositoryValidationError: untyped
+
+    def initialize: (untyped user, untyped snippet) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def check_branch_count!: () -> (nil | untyped)
+
+    def check_branch_name_default!: () -> (nil | untyped)
+
+    def check_tag_count!: () -> (nil | untyped)
+
+    def check_file_count!: () -> untyped
+
+    def check_size!: () -> (nil | untyped)
+  end
+end

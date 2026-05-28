@@ -1,0 +1,43 @@
+module Clusters
+  class Agent < ApplicationRecord
+    include FromUnion
+
+    include Gitlab::Utils::StrongMemoize
+
+    INACTIVE_AFTER: untyped
+
+    ACTIVITY_EVENT_LIMIT: 200
+
+    def has_access_to?: (untyped requested_project) -> untyped
+
+    def connected?: () -> untyped
+
+    def activity_event_deletion_cutoff: () -> untyped
+
+    def to_ability_name: () -> :cluster
+
+    def ci_access_authorized_for?: (untyped user) -> (false | untyped)
+
+    def user_access_authorized_for?: (untyped user) -> (false | untyped)
+
+    # As of today, all config values of associated authorization rows have the same value.
+    # See `UserAccess::RefreshService` for more information.
+    def user_access_config: () -> untyped
+
+    def user_access_authorizations: () -> untyped
+
+    def resource_management_enabled?: () -> false
+
+    private
+
+    def all_ci_access_authorized_projects_for: (untyped user) -> untyped
+
+    def all_ci_access_authorized_namespaces_for: (untyped user) -> untyped
+
+    def all_ci_access_authorized_namespaces_cte: () -> untyped
+
+    def all_ci_access_authorized_namespaces: () -> untyped
+
+    def root_namespace: () -> untyped
+  end
+end

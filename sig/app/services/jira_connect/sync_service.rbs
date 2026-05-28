@@ -1,0 +1,19 @@
+module JiraConnect
+  class SyncService
+    def initialize: (untyped project) -> void
+
+    # Parameters: see Atlassian::JiraConnect::Client#send_info
+    # Includes: update_sequence_id, commits, branches, merge_requests, pipelines
+    def execute: (**untyped args) -> untyped
+
+    private
+
+    attr_accessor project: untyped
+
+    def log_response: (untyped response) -> untyped
+
+    def logger: () -> untyped
+
+    def preload_reviewers_for_merge_requests: (untyped merge_requests) -> untyped
+  end
+end

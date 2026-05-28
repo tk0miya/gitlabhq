@@ -1,0 +1,17 @@
+module BulkImports
+  module Common
+    module Transformers
+      class MemberAttributesTransformer
+        def transform: (untyped context, untyped data) -> (untyped | nil | { user_id: untyped, access_level: untyped, created_at: untyped, updated_at: untyped, expires_at: untyped, created_by_id: untyped })
+
+        private
+
+        def find_user: (untyped email) -> (nil | untyped)
+
+        def valid_access_level?: (untyped access_level) -> untyped
+
+        def cache_source_user_data: (untyped data, untyped user, untyped context) -> (nil | untyped)
+      end
+    end
+  end
+end

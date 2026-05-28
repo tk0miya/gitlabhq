@@ -1,0 +1,15 @@
+class JiraConnect::BranchesController < JiraConnect::ApplicationController
+  @new_branch_data: untyped
+
+  def new: () -> untyped
+
+  # If the GitLab for Jira Cloud app was installed from the Jira marketplace and points to a self-managed instance,
+  # we route the user to the self-managed instance, otherwise we redirect to :new
+  def route: () -> (nil | untyped)
+
+  private
+
+  def initial_branch_name: () -> (nil | untyped)
+
+  def new_branch_data: () -> { initial_branch_name: untyped, success_state_svg_path: untyped }
+end

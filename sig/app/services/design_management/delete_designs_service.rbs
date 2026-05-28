@@ -1,0 +1,31 @@
+module DesignManagement
+  class DeleteDesignsService < DesignService
+    @designs: untyped
+
+    include RunsDesignActions
+
+    include OnSuccessCallbacks
+
+    include Gitlab::InternalEventsTracking
+
+    def initialize: (untyped project, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    def commit_message: () -> ::String
+
+    private
+
+    attr_reader designs: untyped
+
+    def delete_designs!: () -> untyped
+
+    def can_delete_designs?: () -> untyped
+
+    def build_actions: () -> untyped
+
+    def design_action: (untyped design) -> untyped
+
+    def formatted_file_list: () -> untyped
+  end
+end

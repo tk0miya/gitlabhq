@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Build
+      module Artifacts
+        module Adapters
+          class RawStream
+            @stream: untyped
+
+            attr_reader stream: untyped
+
+            InvalidStreamError: untyped
+
+            def initialize: (untyped stream) -> void
+
+            def each_blob: () { (untyped, untyped) -> untyped } -> untyped
+          end
+        end
+      end
+    end
+  end
+end

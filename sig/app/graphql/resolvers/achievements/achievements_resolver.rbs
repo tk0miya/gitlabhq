@@ -1,0 +1,15 @@
+module Resolvers
+  module Achievements
+    class AchievementsResolver < BaseResolver
+      include LooksAhead
+
+      alias namespace object
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def preloads: () -> { user_achievements: ::Array[{ user_achievements: ::Array[:user | :awarded_by_user | :revoked_by_user] }] }
+    end
+  end
+end

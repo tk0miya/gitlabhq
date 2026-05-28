@@ -1,0 +1,10 @@
+module Types
+  # rubocop: disable Graphql/AuthorizeTypes
+  class CountableConnectionType < GraphQL::Types::Relay::BaseConnection
+    include CountableConnectionHelper
+
+    COUNT_DESCRIPTION: "Total count of collection. Returns limit + 1 for counts greater than the limit."
+
+    def count: (?limit: untyped?) -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+module Import
+  module SourceUsers
+    class BaseService
+      include Gitlab::InternalEventsTracking
+
+      private
+
+      attr_reader import_source_user: untyped
+
+      attr_reader current_user: untyped
+
+      def error_invalid_permissions: () -> untyped
+
+      def error_invalid_status: () -> untyped
+
+      def send_user_reassign_email: () -> untyped
+
+      def track_reassignment_event: (untyped event_name, ?reassign_to_user: untyped) -> untyped
+    end
+  end
+end

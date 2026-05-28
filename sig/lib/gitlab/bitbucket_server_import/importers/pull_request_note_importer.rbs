@@ -1,0 +1,29 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      class PullRequestNoteImporter
+        @project: untyped
+
+        @object: untyped
+
+        include Loggable
+
+        def initialize: (untyped project, untyped hash) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        attr_reader object: untyped
+
+        attr_reader project: untyped
+
+        def import: () -> (nil | untyped)
+
+        def notes_importer_class: (untyped comment_type) -> untyped
+
+        def import_data_valid?: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,10 @@
+module Gitlab
+  module BackgroundMigration
+    # rubocop: disable Migration/BatchedMigrationBaseClass -- This is indirectly deriving from the correct base class
+    class BackfillMergeRequestFileDiffsPartitionedTable < BackfillPartitionedTable
+      extend ::Gitlab::Utils::Override
+
+      def perform: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module ContainerRegistry
+  class CleanupWorker
+    include ApplicationWorker
+
+    # we don't have any project, user or group context here
+    include CronjobQueue
+
+    STALE_DELETE_THRESHOLD: untyped
+
+    BATCH_SIZE: 200
+
+    def perform: () -> untyped
+
+    private
+
+    def reset_stale_deletes: () -> untyped
+
+    def enqueue_delete_container_repository_jobs: () -> untyped
+
+    def stale_delete_container_repositories: () -> untyped
+  end
+end

@@ -1,0 +1,16 @@
+module Types
+  module Ci
+    module JobTokenScope
+      # rubocop: disable Graphql/AuthorizeTypes -- Authorization is handled by parent class
+      class AllowlistEntryType < BaseObject
+        def source_project: () -> untyped
+
+        def target: () -> untyped
+
+        def direction: () -> untyped
+
+        def job_token_policies: () -> untyped
+      end
+    end
+  end
+end

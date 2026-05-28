@@ -1,0 +1,13 @@
+module MergeRequests
+  class PushedBranchesService < MergeRequests::BaseService
+    include ::Gitlab::Utils::StrongMemoize
+
+    # Skip moving this logic into models since it's too specific
+    # rubocop: disable CodeReuse/ActiveRecord
+    def execute: () -> (::Array[untyped] | untyped)
+
+    private
+
+    def branch_names: () -> untyped
+  end
+end

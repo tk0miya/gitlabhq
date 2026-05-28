@@ -1,0 +1,40 @@
+module Gitlab::Ci
+  module Badge
+    #
+    # Abstract template class for badges
+    #
+    class Template
+      @entity: untyped
+
+      @key_text: untyped
+
+      @key_width: untyped
+
+      MAX_KEY_TEXT_SIZE: 64
+
+      MAX_KEY_WIDTH: 512
+
+      DEFAULT_KEY_WIDTH: 62
+
+      def initialize: (untyped badge) -> void
+
+      def key_text: () -> untyped
+
+      def value_text: () -> untyped
+
+      def key_width: () -> untyped
+
+      def value_width: () -> untyped
+
+      def value_color: () -> untyped
+
+      def key_color: () -> "#555"
+
+      def key_text_anchor: () -> untyped
+
+      def value_text_anchor: () -> untyped
+
+      def width: () -> untyped
+    end
+  end
+end

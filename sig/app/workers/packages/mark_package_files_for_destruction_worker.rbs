@@ -1,0 +1,7 @@
+module Packages
+  class MarkPackageFilesForDestructionWorker
+    include ApplicationWorker
+
+    def perform: (untyped package_id) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,17 @@
+module Packages
+  module Rubygems
+    class DependencyResolverService < BaseService
+      include Gitlab::Utils::StrongMemoize
+
+      DEFAULT_PLATFORM: "ruby"
+
+      def execute: () -> untyped
+
+      private
+
+      def packages: () -> untyped
+
+      def gem_name: () -> untyped
+    end
+  end
+end

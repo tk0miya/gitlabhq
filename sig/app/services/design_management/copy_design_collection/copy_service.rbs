@@ -1,0 +1,121 @@
+# Service to copy a DesignCollection from one Issue to another.
+# Copies the DesignCollection's Designs, Versions, and Notes on Designs.
+module DesignManagement
+  module CopyDesignCollection
+    class CopyService < DesignService
+      @target_issue: untyped
+
+      @target_project: untyped
+
+      @target_repository: untyped
+
+      @target_design_collection: untyped
+
+      @temporary_branch: untyped
+
+      # The user who triggered the copy may not have permissions to push
+      # to the design repository.
+      @git_user: untyped
+
+      @designs: untyped
+
+      @versions: untyped
+
+      @sha_attribute: untyped
+
+      @shas: untyped
+
+      @event_enum_map: untyped
+
+      @blobs: untyped
+
+      @attributes_config: untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def initialize: (untyped project, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader designs: untyped
+
+      attr_reader event_enum_map: untyped
+
+      attr_reader git_user: untyped
+
+      attr_reader sha_attribute: untyped
+
+      attr_reader shas: untyped
+
+      attr_reader temporary_branch: untyped
+
+      attr_reader target_design_collection: untyped
+
+      attr_reader target_issue: untyped
+
+      attr_reader target_repository: untyped
+
+      attr_reader target_project: untyped
+
+      attr_reader versions: untyped
+
+      # Designs are being copied over to a target repository. Target repository's default branch can be different
+      # from source repository. E.g. we have some old projects where `master` is still the default branch, whereas
+      # newer projects have `main` as repository default branch.
+      #
+      # So we need to make sure we lookup the correct merge branch based on target repository
+      def target_branch: () -> untyped
+
+      alias merge_branch target_branch
+
+      def log_exception: (untyped exception) -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def user_can_copy?: () -> untyped
+
+      def with_temporary_branch: () { () -> untyped } -> untyped
+
+      # A project that does not have any designs will have a blank design
+      # repository. To create a temporary branch from default branch we need to
+      # create default branch first by adding a file to it.
+      def create_default_branch!: () -> untyped
+
+      def create_temporary_branch!: () -> untyped
+
+      def remove_temporary_branch!: () -> (nil | untyped)
+
+      # Merge the temporary branch containing the commits to default branch
+      # and update the state of the target_design_collection.
+      def finalize!: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def copy_commits!: () -> untyped
+
+      def copy_designs!: () -> untyped
+
+      def copy_versions!: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def copy_actions!: (untyped new_design_ids, untyped new_version_ids) -> untyped
+
+      def commit_message: (untyped version) -> ::String
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def copy_notes!: (untyped design_ids) -> untyped
+
+      def link_lfs_files!: () -> untyped
+
+      # Blob data is used to find the oids for LfsObjects and to copy to Git.
+      # Blobs are reasonably small in memory, as their data are LFS Pointer files.
+      #
+      # Returns all blobs for the designs as a Hash of `{ Blob#commit_id => { Design#filename => Blob } }`
+      def blobs: () -> untyped
+
+      def attributes_config: () -> untyped
+
+      def attributes_config_file: () -> untyped
+    end
+  end
+end

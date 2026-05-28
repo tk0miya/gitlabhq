@@ -1,0 +1,53 @@
+module Gitlab
+  module Ci
+    class Config
+      class Extendable
+        class Entry
+          @key: untyped
+
+          @context: untyped
+
+          @parent: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          InvalidExtensionError: untyped
+
+          CircularDependencyError: untyped
+
+          NestingTooDeepError: untyped
+
+          MAX_NESTING_LEVELS: 10
+
+          attr_reader key: untyped
+
+          def initialize: (untyped key, untyped context, ?untyped? parent) -> void
+
+          def extensible?: () -> untyped
+
+          def value: () -> untyped
+
+          def base_hashes!: () -> untyped
+
+          def extends_keys: () -> untyped
+
+          def ancestors: () -> untyped
+
+          def extend!: () -> untyped
+
+          private
+
+          def show_keys: (untyped keys) -> untyped
+
+          def nesting_too_deep?: () -> untyped
+
+          def circular_dependency?: () -> untyped
+
+          def unknown_extensions: () -> untyped
+
+          def invalid_bases: () -> untyped
+        end
+      end
+    end
+  end
+end

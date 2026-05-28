@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class AssignPartition < Chain::Base
+          include Chain::Helpers
+
+          def perform!: () -> untyped
+
+          def break?: () -> untyped
+
+          private
+
+          def find_partition_id: () -> untyped
+        end
+      end
+    end
+  end
+end

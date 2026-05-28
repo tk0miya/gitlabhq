@@ -1,0 +1,25 @@
+module Authn
+  module IamAuthService
+    ConfigurationError: untyped
+
+    IAM_AUTH_TOKEN_HEADER: "gitlab-iam-auth-token"
+
+    extend Gitlab::Utils::StrongMemoize
+
+    def self.enabled?: () -> untyped
+
+    def self.url: () -> ::String
+
+    def self.jwt_audience: () -> untyped
+
+    def self.jwt_issuer: () -> untyped
+
+    def self.grpc_address: () -> ::String
+
+    def self.secret: () -> untyped
+
+    private
+
+    def self.iam_config: () -> untyped
+  end
+end

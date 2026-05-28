@@ -1,0 +1,15 @@
+module DesignManagement
+  class Repository < ApplicationRecord
+    include ::Gitlab::Utils::StrongMemoize
+
+    include HasRepository
+
+    def repository: () -> untyped
+
+    def full_path: () -> untyped
+
+    def disk_path: () -> untyped
+
+    def repo_type: () -> untyped
+  end
+end

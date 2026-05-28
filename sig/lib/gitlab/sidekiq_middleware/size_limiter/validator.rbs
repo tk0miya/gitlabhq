@@ -1,0 +1,69 @@
+module Gitlab
+  module SidekiqMiddleware
+    module SizeLimiter
+      # Handle a Sidekiq job payload limit based on current configuration.
+      # This validator pulls the configuration from application settings:
+      # - limiter_mode: the current mode of the size
+      #   limiter. This must be either `track` or `compress`.
+      # - compression_threshold_bytes: the threshold before the input job
+      #   payload is compressed.
+      # - limit_bytes: the size limit in bytes.
+      #
+      # In track mode, if a job payload limit exceeds the size limit, an
+      # event is sent to Sentry and the job is scheduled like normal.
+      #
+      # In compress mode, if a job payload limit exceeds the threshold, it is
+      # then compressed. If the compressed payload still exceeds the limit, the
+      # job is discarded, and a ExceedLimitError exception is raised.
+      class Validator
+        @worker_class: untyped
+
+        @job: untyped
+
+        @mode: untyped
+
+        @compression_threshold: untyped
+
+        @size_limit: untyped
+
+        EXEMPT_WORKER_NAMES: untyped
+
+        JOB_STATUS_KEY: "size_limiter"
+
+        def self.validate!: (untyped worker_class, untyped job) -> (nil | untyped)
+
+        def self.validated?: (untyped job) -> untyped
+
+        DEFAULT_SIZE_LIMIT: 0
+
+        DEFAULT_COMPRESSION_THRESHOLD_BYTES: 100000
+
+        MODES: ::Array[untyped]
+
+        attr_reader mode: untyped
+
+        attr_reader size_limit: untyped
+
+        attr_reader compression_threshold: untyped
+
+        def initialize: (untyped worker_class, untyped job) -> void
+
+        def validate!: () -> (nil | untyped)
+
+        private
+
+        def exceed_limit_error: (untyped job_args) -> untyped
+
+        def compress_if_necessary: (untyped job_args) -> untyped
+
+        def allow_big_payload?: () -> untyped
+
+        def compress_mode?: () -> untyped
+
+        def track: (untyped exception) -> untyped
+
+        def backtrace: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+module Ci
+  module Partitionable
+    # Routes the first lazy load of a `belongs_to :pipeline` (or any
+    # `belongs_to` to `Ci::Pipeline`) through `Ci::Pipeline.find_by_id`,
+    # which `Ci::PartitionableFinder` overrides to prune `ci_pipelines`
+    # partitions.
+    # Usage:
+    #   class MergeTrains::Car < ApplicationRecord
+    #     include Ci::Partitionable::AssociationFinder
+    #
+    #     belongs_to :pipeline, class_name: 'Ci::Pipeline'
+    #     partitionable_belongs_to_loader :pipeline
+    #   end
+    module AssociationFinder
+      extend ActiveSupport::Concern
+    end
+  end
+end

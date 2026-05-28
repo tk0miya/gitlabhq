@@ -1,0 +1,43 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      class RequestContext
+        @request: untyped
+
+        @page: untyped
+
+        @params: untyped
+
+        attr_reader request: untyped
+
+        DEFAULT_SORT_DIRECTION: :desc
+
+        PRIMARY_KEY: :id
+
+        # A tie breaker is added as an additional order-by column
+        # to establish a well-defined order. We use the primary key
+        # column here.
+        TIE_BREAKER: ::Hash[untyped, untyped]
+
+        def initialize: (untyped request) -> void
+
+        # extracts Paging information from request parameters
+        def page: () -> untyped
+
+        def apply_headers: (untyped next_page) -> untyped
+
+        private
+
+        def order_by: () -> untyped
+
+        def params: () -> untyped
+
+        def lower_bounds_params: (untyped page) -> untyped
+
+        def filter_with_comparator: (untyped page, untyped column) -> untyped
+
+        def query_params_for: (untyped page) -> untyped
+      end
+    end
+  end
+end

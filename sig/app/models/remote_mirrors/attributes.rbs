@@ -1,0 +1,18 @@
+# Provides access to remote mirror attributes
+module RemoteMirrors
+  class Attributes
+    @attrs: untyped
+
+    ALLOWED_ATTRIBUTES: ::Array[:url | :enabled | :auth_method | :keep_divergent_refs | :only_protected_branches | :ssh_known_hosts | :user | :password]
+
+    def initialize: (untyped attrs) -> void
+
+    def allowed: () -> untyped
+
+    def keys: () -> untyped
+
+    private
+
+    attr_reader attrs: untyped
+  end
+end

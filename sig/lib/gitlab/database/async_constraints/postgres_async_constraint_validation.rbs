@@ -1,0 +1,24 @@
+module Gitlab
+  module Database
+    module AsyncConstraints
+      class PostgresAsyncConstraintValidation < SharedModel
+        include QueueErrorHandlingConcern
+
+        # schema_name + . + table_name
+        MAX_TABLE_NAME_LENGTH: untyped
+
+        MAX_IDENTIFIER_LENGTH: untyped
+
+        MAX_LAST_ERROR_LENGTH: 10000
+
+        def self.table_available?: () -> untyped
+
+        def self.constraint_type_exists?: () -> untyped
+
+        private
+
+        def ensure_correct_schema_and_table_name: () -> (nil | untyped)
+      end
+    end
+  end
+end

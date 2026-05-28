@@ -1,0 +1,77 @@
+module AlertManagement
+  class Alert < ApplicationRecord
+    self.@reference_pattern: untyped
+
+    self.@link_reference_pattern: untyped
+
+    include IidRoutes
+
+    include AtomicInternalId
+
+    include ShaAttribute
+
+    include Sortable
+
+    include Noteable
+
+    include Mentionable
+
+    include Todoable
+
+    include Gitlab::SQL::Pattern
+
+    include Presentable
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Referable
+
+    include ::IncidentManagement::Escalatable
+
+    TITLE_MAX_LENGTH: 200
+
+    DESCRIPTION_MAX_LENGTH: 1000
+
+    SERVICE_MAX_LENGTH: 100
+
+    TOOL_MAX_LENGTH: 100
+
+    HOSTS_MAX_LENGTH: 255
+
+    alias state status_name
+
+    def self.counts_by_status: () -> untyped
+
+    def self.sort_by_attribute: (untyped method) -> untyped
+
+    def self.find_unresolved_alert: (untyped project, untyped fingerprint) -> untyped
+
+    def self.reference_prefix: () -> "^alert#"
+
+    def self.reference_pattern: () -> untyped
+
+    def self.link_reference_pattern: () -> untyped
+
+    def self.reference_valid?: (untyped reference) -> untyped
+
+    def prometheus?: () -> untyped
+
+    def register_new_event!: () -> untyped
+
+    def to_reference: (?untyped? from, ?full: bool) -> ::String
+
+    def execute_integrations: () -> (nil | untyped)
+
+    # Representation of the alert's payload. Avoid accessing
+    # #payload attribute directly.
+    def parsed_payload: () -> untyped
+
+    def to_ability_name: () -> "alert_management_alert"
+
+    private
+
+    def hook_data: () -> untyped
+
+    def hosts_format: () -> (nil | untyped)
+  end
+end

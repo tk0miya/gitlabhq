@@ -1,0 +1,38 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents an environment.
+        #
+        class Environment < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          ALLOWED_KEYS: ::Array[:name | :url | :action | :on_stop | :auto_stop_in | :kubernetes | :deployment_tier]
+
+          def hash?: () -> untyped
+
+          def string?: () -> untyped
+
+          def name: () -> untyped
+
+          def url: () -> untyped
+
+          def action: () -> untyped
+
+          def on_stop: () -> untyped
+
+          def kubernetes: () -> untyped
+
+          def auto_stop_in: () -> untyped
+
+          def deployment_tier: () -> untyped
+
+          def value: () -> untyped
+
+          def skip_config_hash_validation?: () -> true
+        end
+      end
+    end
+  end
+end

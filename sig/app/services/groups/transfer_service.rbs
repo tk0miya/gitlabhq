@@ -1,0 +1,122 @@
+module Groups
+  class TransferService < Groups::BaseService
+    @error: untyped
+
+    @new_parent_group: untyped
+
+    # Used in post_update_hooks in EE. Must use pluck (and not select)
+    # here as after we perform the update below we won't be able to find
+    # these records again.
+    @updated_project_ids: untyped
+
+    TransferError: untyped
+
+    # Shorter lock retry timing for Sidekiq context (~2 minutes worst case).
+    # Default WithLockRetries config retries for ~40 minutes which is too long.
+    LOCK_RETRY_TIMING: ::Array[::Array[untyped]]
+
+    attr_reader error: untyped
+
+    attr_reader new_parent_group: untyped
+
+    def initialize: (untyped group, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    def log_group_transfer_success: (untyped group, untyped new_parent_group) -> untyped
+
+    def log_group_transfer_error: (untyped group, untyped new_parent_group, untyped error_message) -> untyped
+
+    def schedule_async_transfer: (untyped new_parent_group) -> untyped
+
+    def execute: (untyped new_parent_group) -> untyped
+
+    private
+
+    def log_transfer: (untyped group, untyped new_namespace, ?untyped? error_message) -> untyped
+
+    def proceed_to_transfer: () -> true
+
+    def transfer_labels: () -> untyped
+
+    # Overridden in EE
+    def transfer_status_data: (untyped old_root_ancestor_id) -> nil
+
+    def send_transfer_instructions: (untyped old_path) -> untyped
+
+    # Overridden in EE
+    def post_update_hooks: (untyped updated_project_ids, untyped old_root_ancestor_id) -> untyped
+
+    # Note: There is a small window where a worker could acquire the lease between
+    # the lease check and cancel_transfer!. This is acceptable because the worker's own
+    # cancel_stale_transfer_state handles this as a safety net.
+    def cancel_stale_transfer_state: () -> (nil | untyped)
+
+    # Overridden in EE
+    def ensure_allowed_transfer: () -> untyped
+
+    def no_permissions_to_migrate_crm?: () -> (false | true)
+
+    def group_with_namespaced_npm_packages?: () -> (false | untyped)
+
+    def different_root_ancestor?: () -> untyped
+
+    def group_is_already_root?: () -> untyped
+
+    def same_parent?: () -> untyped
+
+    def has_subscription?: () -> untyped
+
+    def transfer_to_subgroup?: () -> untyped
+
+    def valid_policies?: () -> (false | untyped)
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def namespace_with_same_path?: () -> untyped
+
+    def group_projects_contain_registry_images?: () -> untyped
+
+    def update_group_attributes: () -> untyped
+
+    # Overridden in EE
+    def remove_paid_features_for_projects: (untyped old_root_ancestor_id) -> nil
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_children_and_projects_visibility: () -> untyped
+
+    # Overridden in EE
+    def update_project_settings: (untyped updated_project_ids) -> nil
+
+    def update_two_factor_authentication: () -> (nil | untyped)
+
+    def refresh_descendant_groups: () -> (nil | untyped)
+
+    def namespace_parent_allows_two_factor_auth: () -> untyped
+
+    def ensure_ownership: () -> (nil | untyped)
+
+    # Overridden in EE
+    def add_owner_on_transferred_group: () -> untyped
+
+    def refresh_project_authorizations: () -> untyped
+
+    def raise_transfer_error: (untyped message) -> untyped
+
+    # Overridden in EE
+    def localized_error_messages: () -> { database_not_supported: untyped, namespace_with_same_path: untyped, group_is_already_root: untyped, same_parent_as_current: untyped, invalid_policies: untyped, group_contains_images: untyped, cannot_transfer_to_subgroup: untyped, group_contains_namespaced_npm_packages: untyped, no_permissions_to_migrate_crm: untyped }
+
+    def inherit_group_shared_runners_settings: () -> (nil | untyped)
+
+    def update_integrations: () -> untyped
+
+    def propagate_integrations: () -> untyped
+
+    def update_pending_builds: () -> untyped
+
+    def pending_builds_params: () -> untyped
+
+    def update_crm_objects: () -> (nil | untyped)
+
+    def publish_event: (untyped old_root_ancestor_id) -> untyped
+
+    def remove_namespace_commit_emails: (untyped was_root_group) -> (untyped | nil)
+  end
+end

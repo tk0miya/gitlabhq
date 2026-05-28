@@ -1,0 +1,71 @@
+module Authz
+  module Tokens
+    class AuthorizeGranularScopesService
+      @boundaries: untyped
+
+      @permissions: untyped
+
+      @token: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      InvalidInputError: untyped
+
+      BOUNDARY_TYPE_ORDER: { project: 0, group: 1, user: 2, instance: 3 }
+
+      def initialize: (boundaries: untyped, permissions: untyped, token: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader boundaries: untyped
+
+      attr_reader permissions: untyped
+
+      attr_reader token: untyped
+
+      def validate_inputs!: () -> untyped
+
+      def validate_boundaries!: () -> (nil | untyped)
+
+      def validate_permissions!: () -> (nil | untyped)
+
+      def should_check_authorization?: () -> untyped
+
+      def feature_enabled?: () -> untyped
+
+      def granular_token_required?: () -> (false | untyped)
+
+      def root_namespaces: () -> (::Array[untyped] | untyped)
+
+      def boundaries_by_priority: () -> untyped
+
+      def authorized?: () -> untyped
+
+      def hidden_boundary: () -> untyped
+
+      def resource_unresolved?: () -> untyped
+
+      def token_supports_granular_permissions?: () -> untyped
+
+      def missing_inputs: () -> untyped
+
+      def boundary_evaluations: () -> untyped
+
+      def disabled_error: () -> untyped
+
+      def missing_inputs_error: () -> untyped
+
+      def success: () -> untyped
+
+      def access_denied_error: () -> untyped
+
+      def resource_not_found_error: () -> untyped
+
+      def token_type: () -> untyped
+
+      def error: (untyped message) -> untyped
+    end
+  end
+end

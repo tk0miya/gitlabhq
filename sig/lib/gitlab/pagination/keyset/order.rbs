@@ -1,0 +1,153 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      # This class is a special ORDER BY clause which is compatible with ActiveRecord. It helps
+      # building keyset paginated queries.
+      #
+      # In ActiveRecord we use the `order()` method which will generate the `ORDER BY X` SQL clause
+      #
+      # Project.where(active: true).order(id: :asc)
+      #
+      # # Or
+      #
+      # Project.where(active: true).order(created_at: :asc, id: desc)
+      #
+      # Gitlab::Pagination::Keyset::Order class encapsulates more information about the order columns
+      # in order to implement keyset pagination in a generic way
+      #
+      # - Extract values from a record (usually the last item of the previous query)
+      # - Build query conditions based on the column configuration
+      #
+      # Example 1: Order by primary key
+      #
+      #   # Simple order definition for the primary key as an ActiveRecord scope
+      #   scope :id_asc_ordered, -> {
+      #     keyset_order = Gitlab::Pagination::Keyset::Order.build([
+      #       Gitlab::Pagination::Keyset::ColumnOrderDefinition.new(
+      #         attribute: :id,
+      #         order_expression: Project.arel_table[:id].asc
+      #       )
+      #     ])
+      #
+      #     reorder(keyset_order)
+      #   }
+      #
+      #   # ... Later in the application code:
+      #
+      #   # Compatible with ActiveRecord's `order()` method
+      #   page1 = Project.where(active: true).id_asc_ordered.limit(5)
+      #   keyset_order = Gitlab::Pagination::Keyset::Order.extract_keyset_order_object(page1)
+      #
+      #   last_record = page1.last
+      #   cursor_values = keyset_order.cursor_attributes_for_node(last_record) # { id: x }
+      #
+      #   page2 = keyset_order.apply_cursor_conditions(Project.where(active: true).id_asc_ordered, cursor_values).limit(5)
+      #
+      #   last_record = page2.last
+      #   cursor_values = keyset_order.cursor_attributes_for_node(last_record)
+      #
+      #   page3 = keyset_order.apply_cursor_conditions(Project.where(active: true).id_asc_ordered, cursor_values).limit(5)
+      #
+      # Example 2: Order by creation time and primary key (primary key is the tie breaker)
+      #
+      #   scope :created_at_ordered, -> {
+      #     keyset_order = Gitlab::Pagination::Keyset::Order.build([
+      #       Gitlab::Pagination::Keyset::ColumnOrderDefinition.new(
+      #         attribute_name: :created_at,
+      #         column_expression: Project.arel_table[:created_at],
+      #         order_expression: Project.arel_table[:created_at].asc,
+      #         nullable: :nulls_last # we might see NULL values (bottom)
+      #       ),
+      #       Gitlab::Pagination::Keyset::ColumnOrderDefinition.new(
+      #         attribute_name: :id,
+      #         order_expression: Project.arel_table[:id].asc
+      #       )
+      #     ])
+      #
+      #     reorder(keyset_order)
+      #   }
+      #
+      class Order < Arel::Nodes::SqlLiteral
+        @column_definitions: untyped
+
+        attr_reader column_definitions: untyped
+
+        def initialize: (column_definitions: untyped) -> void
+
+        # Tells whether the given ActiveRecord::Relation has keyset ordering
+        def self.keyset_aware?: (untyped scope) -> untyped
+
+        def self.extract_keyset_order_object: (untyped scope) -> untyped
+
+        def self.build: (untyped column_definitions) -> untyped
+
+        def cursor_attributes_for_node: (untyped node) -> untyped
+
+        def attribute_names: () -> untyped
+
+        # This methods builds the conditions for the keyset pagination
+        #
+        # Example:
+        #
+        # |created_at|id|
+        # |----------|--|
+        # |2020-01-01| 1|
+        # |      null| 2|
+        # |      null| 3|
+        # |2020-02-01| 4|
+        #
+        # Note: created_at is not distinct and nullable
+        # Order `ORDER BY created_at DESC, id DESC`
+        #
+        # We get the following cursor values from the previous page:
+        # { id: 4, created_at: '2020-02-01' }
+        #
+        # To get the next rows, we need to build the following conditions:
+        #
+        # (created_at = '2020-02-01' AND id < 4) OR (created_at < '2020-01-01')
+        #
+        # DESC ordering ensures that NULL values are on top so we don't need conditions for NULL values
+        #
+        # Another cursor example:
+        # { id: 3, created_at: nil }
+        #
+        # To get the next rows, we need to build the following conditions:
+        #
+        # (id < 3 AND created_at IS NULL) OR (created_at IS NOT NULL)
+        def build_where_values: (untyped values) -> (::Array[untyped] | untyped)
+
+        def where_values_with_or_query: (untyped values) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def apply_cursor_conditions: (untyped scope, ?::Hash[untyped, untyped] values, ?::Hash[untyped, untyped] options) -> untyped
+
+        def reversed_order: () -> untyped
+
+        alias to_sql to_s
+
+        private
+
+        def lower_named_function?: (untyped column_definition) -> untyped
+
+        def composite_row_comparison_possible?: () -> untyped
+
+        # composite row comparison works with NOT NULL columns and may use only one index scan given a proper index setup
+        # Example: (created_at, id) > ('2012-09-18 01:40:01+00', 15)
+        def use_composite_row_comparison: (untyped values) -> untyped
+
+        def build_quoted: (untyped value, untyped column_expression) -> untyped
+
+        # Adds extra columns to the SELECT clause
+        def apply_custom_projections: (untyped scope) -> untyped
+
+        def build_or_query: (untyped expressions) -> (::Array[untyped] | untyped)
+
+        def build_union_query: (untyped scope, untyped where_values) -> untyped
+
+        def to_sql_literal: (untyped column_definitions) -> untyped
+
+        def verify_incoming_values!: (untyped values) -> untyped
+      end
+    end
+  end
+end

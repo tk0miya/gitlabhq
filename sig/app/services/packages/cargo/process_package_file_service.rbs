@@ -1,0 +1,21 @@
+module Packages
+  module Cargo
+    class ProcessPackageFileService
+      @package_file: untyped
+
+      @user_or_deploy_token: untyped
+
+      ExtractionError: untyped
+
+      def initialize: (untyped package_file, untyped user_or_deploy_token) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def valid_package_file?: () -> untyped
+
+      def with_request_file: () { (untyped) -> untyped } -> untyped
+    end
+  end
+end

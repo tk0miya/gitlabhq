@@ -1,0 +1,13 @@
+module Resolvers
+  module Security
+    class ConfigurationResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (project_id: untyped) -> untyped
+
+      private
+
+      def authorized_resource?: (untyped project) -> untyped
+    end
+  end
+end

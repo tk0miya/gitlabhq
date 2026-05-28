@@ -1,0 +1,33 @@
+module Gitlab
+  module Config
+    module Entry
+      module LegacyValidationHelpers
+        private
+
+        def validate_duration: (untyped value, ?untyped? parser) -> untyped
+
+        def validate_duration_limit: (untyped value, untyped limit, ?untyped? parser) -> untyped
+
+        def validate_array_of_strings: (untyped values) -> untyped
+
+        def validate_array_of_strings_or_regexps: (untyped values) -> untyped
+
+        def validate_variables: (untyped variables) -> untyped
+
+        def validate_array_value_variables: (untyped variables) -> untyped
+
+        def validate_alphanumeric: (untyped value) -> untyped
+
+        def validate_integer: (untyped value) -> untyped
+
+        def validate_string: (untyped value) -> untyped
+
+        def validate_regexp: (untyped value) -> untyped
+
+        def validate_string_or_regexp: (untyped value) -> (true | false | untyped)
+
+        def validate_boolean: (untyped value) -> untyped
+      end
+    end
+  end
+end

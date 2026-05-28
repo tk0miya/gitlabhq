@@ -1,0 +1,40 @@
+module Ci
+  module Preloaders
+    # Preloads a Ci::Pipeline association on a collection of records using a
+    # partition-aware bulk lookup. After preload_all runs, accessing the
+    # association on any record does not trigger an SQL query.
+    #
+    # Usage:
+    #   merge_requests = MergeRequest.where(...).to_a
+    #   Ci::Preloaders::PipelinePreloader.new(
+    #     merge_requests,
+    #     association: :head_pipeline,
+    #     foreign_key: :head_pipeline_id
+    #   ).preload_all
+    #
+    #   merge_requests.first.head_pipeline # no query
+    class PipelinePreloader
+      @records: untyped
+
+      @association: untyped
+
+      @foreign_key: untyped
+
+      def initialize: (untyped records, association: untyped, foreign_key: untyped) -> void
+
+      def preload_all: () -> untyped
+
+      private
+
+      attr_reader records: untyped
+
+      attr_reader association: untyped
+
+      attr_reader foreign_key: untyped
+
+      def referenced_ids: () -> untyped
+
+      def assign_target: (untyped record, untyped target) -> untyped
+    end
+  end
+end

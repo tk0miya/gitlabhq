@@ -1,0 +1,13 @@
+module Gitlab
+  module SensitiveSerializableHash
+    extend ActiveSupport::Concern
+
+    include SensitiveAttributes
+
+    # Override serializable_hash to exclude sensitive attributes by default
+    #
+    # In general, prefer NOT to use serializable_hash / to_json / as_json in favor
+    # of serializers / entities instead which has an allowlist of attributes
+    def serializable_hash: (?untyped? options) -> untyped
+  end
+end

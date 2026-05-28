@@ -1,0 +1,50 @@
+# Class to parse manifest file and build a list of repositories for import
+#
+# <manifest>
+#   <remote review="https://android-review.googlesource.com/" />
+#   <project path="platform-common" name="platform" />
+#   <project path="platform/art" name="platform/art" />
+#   <project path="platform/device" name="platform/device" />
+# </manifest>
+#
+# 1. Project path must be uniq and can't be part of other project path.
+#    For example, you can't have projects with 'foo' and 'foo/bar' paths.
+# 2. Remote must be present with review attribute so GitLab knows
+#    where to fetch source code
+module Gitlab
+  module ManifestImport
+    class Manifest
+      @parsed_xml: untyped
+
+      @errors: untyped
+
+      @remote: untyped
+
+      @raw_projects: untyped
+
+      attr_reader parsed_xml: untyped
+
+      attr_reader errors: untyped
+
+      def initialize: (untyped file) -> void
+
+      def projects: () -> untyped
+
+      def valid?: () -> (false | untyped)
+
+      private
+
+      def validate_remote: () -> untyped
+
+      def validate_projects: () -> untyped
+
+      def validate_scheme: () -> untyped
+
+      def repository_url: (untyped name) -> untyped
+
+      def remote: () -> untyped
+
+      def raw_projects: () -> untyped
+    end
+  end
+end

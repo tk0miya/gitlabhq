@@ -1,0 +1,7 @@
+module Postgresql
+  class DetachedPartition < ::Gitlab::Database::SharedModel
+    def fully_qualified_table_name: () -> ::String
+
+    def table_schema: () -> untyped
+  end
+end

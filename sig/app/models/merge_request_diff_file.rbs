@@ -1,0 +1,27 @@
+class MergeRequestDiffFile < ApplicationRecord
+  include BulkInsertSafe
+
+  include Gitlab::EncodingHelper
+
+  include DiffFile
+
+  def utf8_diff: () -> untyped
+
+  def diff: () -> untyped
+
+  def new_path: () -> untyped
+
+  private
+
+  def update_project_id: () -> (nil | untyped)
+
+  def deduplicate_new_path: () -> (nil | untyped)
+
+  # This method is meant to be used during Project Export.
+  # It is identical to the behavior in #diff with the only
+  # difference of caching externally stored diffs on local disk in
+  # temp storage location in order to improve diff export performance.
+  def diff_export: () -> untyped
+
+  def log_exception: (untyped message, untyped exception) -> untyped
+end

@@ -1,0 +1,24 @@
+class ClusterAncestorsFinder
+  @clusterable: untyped
+
+  @current_user: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  def initialize: (untyped clusterable, untyped current_user) -> void
+
+  def execute: () -> (::Array[untyped] | untyped)
+
+  def has_ancestor_clusters?: () -> untyped
+
+  private
+
+  attr_reader clusterable: untyped
+
+  attr_reader current_user: untyped
+
+  def can_read_clusters?: () -> untyped
+
+  # This unfortunately returns an Array, not a Relation!
+  def ancestor_clusters: () -> untyped
+end

@@ -1,0 +1,11 @@
+module Integrations
+  class ActivityPubConstraint
+    def matches?: (untyped request) -> untyped
+
+    private
+
+    def mime_types: () -> ::Array["application/activity+json" | "application/ld+json; profile=\"https://www.w3.org/ns/activitystreams\""]
+
+    def header: (untyped request) -> untyped
+  end
+end

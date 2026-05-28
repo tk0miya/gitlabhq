@@ -1,0 +1,23 @@
+module Ci
+  module Preloaders
+    class RunnerPolicyPreloader
+      @runners: untyped
+
+      @current_user: untyped
+
+      attr_reader runners: untyped
+
+      attr_reader current_user: untyped
+
+      def initialize: (untyped runners, untyped current_user) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def projects: () -> untyped
+
+      def groups: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module IssuablesDescriptionTemplatesHelper
+  @template_types: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include GitlabRoutingHelper
+
+  def template_dropdown_tag: (untyped issuable) { (?) -> untyped } -> untyped
+
+  def issuable_templates: (untyped project, untyped issuable_type) -> untyped
+
+  def selected_template_name: (untyped template_names) -> (nil | untyped)
+
+  def default_template_name: (untyped template_names, untyped issuable) -> (nil | untyped)
+
+  def template_names: (untyped issuable) -> untyped
+
+  def available_service_desk_templates_for: (untyped project) -> untyped
+
+  def template_names_path: (untyped parent, untyped issuable) -> ("" | untyped)
+end

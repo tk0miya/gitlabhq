@@ -1,0 +1,27 @@
+module ObjectStorage
+  module CDN
+    class GoogleCDN
+      @options: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader options: untyped
+
+      def initialize: (untyped options) -> void
+
+      def use_cdn?: (untyped request_ip) -> (false | untyped)
+
+      def signed_url: (untyped path, ?expiry: untyped, ?params: ::Hash[untyped, untyped]) -> ::String
+
+      private
+
+      def config_valid?: () -> untyped
+
+      def key_name: () -> untyped
+
+      def decoded_key: () -> untyped
+
+      def cdn_url: () -> untyped
+    end
+  end
+end

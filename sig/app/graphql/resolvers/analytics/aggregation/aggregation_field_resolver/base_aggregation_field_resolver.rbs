@@ -1,0 +1,23 @@
+module Resolvers
+  module Analytics
+    module Aggregation
+      module AggregationFieldResolver
+        class BaseAggregationFieldResolver < BaseResolver
+          include LooksAhead
+
+          def resolve_with_lookahead: (**untyped arguments) -> untyped
+
+          private
+
+          def build_aggregation_request: (untyped scope_context, untyped arguments) -> untyped
+
+          def build_parts_from_selection: (untyped selections) -> untyped
+
+          def part_selections: (untyped selections) -> untyped
+
+          def build_order: (untyped order_by) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

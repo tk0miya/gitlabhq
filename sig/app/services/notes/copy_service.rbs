@@ -1,0 +1,43 @@
+# This service copies Notes from one Noteable to another.
+#
+# It expects the calling code to have performed the necessary authorization
+# checks in order to allow the copy to happen.
+module Notes
+  class CopyService
+    @current_user: untyped
+
+    @from_noteable: untyped
+
+    @to_noteable: untyped
+
+    @from_project: untyped
+
+    @new_discussion_ids: untyped
+
+    def initialize: (untyped current_user, untyped from_noteable, untyped to_noteable) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader from_noteable: untyped
+
+    attr_reader to_noteable: untyped
+
+    attr_reader from_project: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader new_discussion_ids: untyped
+
+    def copy_note: (untyped note) -> untyped
+
+    def params_from_note: (untyped note, untyped new_note) -> untyped
+
+    # Skip copying cached markdown HTML if text
+    # does not contain references or uploads.
+    def sanitized_note_params: (untyped note) -> untyped
+
+    def copy_award_emoji: (untyped from_note, untyped to_note) -> untyped
+  end
+end

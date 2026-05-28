@@ -1,0 +1,31 @@
+module Gitlab
+  module PoolRepositories
+    class StorageScanner
+      @logger: untyped
+
+      @verbose: untyped
+
+      @orphaned_pools: untyped
+
+      @discovery_service: untyped
+
+      @csv_writer: untyped
+
+      @seen_disk_paths: untyped
+
+      attr_reader orphaned_pools: untyped
+
+      def initialize: (untyped logger, untyped verbose, untyped discovery_service, untyped csv_writer) -> void
+
+      def scan_all_storages: () -> untyped
+
+      private
+
+      def scan_storage: (untyped storage_name) -> untyped
+
+      def check_pools_for_orphans: (untyped storage_name, untyped pool_metadata) -> untyped
+
+      def log_gitaly_orphan: (untyped pool_disk_path, untyped storage_name) -> (nil | untyped)
+    end
+  end
+end

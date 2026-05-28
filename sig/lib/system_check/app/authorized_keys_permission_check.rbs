@@ -1,0 +1,21 @@
+module SystemCheck
+  module App
+    class AuthorizedKeysPermissionCheck < SystemCheck::BaseCheck
+      @authorized_keys: untyped
+
+      def skip?: () -> untyped
+
+      def check?: () -> untyped
+
+      def repair!: () -> untyped
+
+      def show_error: () -> untyped
+
+      private
+
+      def authorized_keys_enabled?: () -> untyped
+
+      def authorized_keys: () -> untyped
+    end
+  end
+end

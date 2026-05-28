@@ -1,0 +1,23 @@
+module Integrations
+  module Base
+    module HangoutsChat
+      extend ActiveSupport::Concern
+
+      include Base::ChatNotification
+
+      # Enum value of the messageReplyOption query parameter indicates that messages should be created as replies to
+      # the specified threads if possible and start new threads otherwise
+      # https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages/create#messagereplyoption
+      REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD: "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD"
+
+      def default_channel_placeholder: () -> nil
+
+      # Returns an appropriate key for threading messages in google chat
+      def parse_thread_key: (untyped message) -> untyped
+
+      def parse_simple_text_message: (untyped message) -> untyped
+
+      def format_attachment_title: (untyped attachment) -> (untyped | ::String)
+    end
+  end
+end

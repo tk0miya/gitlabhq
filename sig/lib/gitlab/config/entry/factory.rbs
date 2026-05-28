@@ -1,0 +1,48 @@
+module Gitlab
+  module Config
+    module Entry
+      #
+      # Factory class responsible for fabricating entry objects.
+      #
+      class Factory
+        @entry_class: untyped
+
+        @metadata: untyped
+
+        @attributes: untyped
+
+        @value: untyped
+
+        InvalidFactory: untyped
+
+        attr_reader entry_class: untyped
+
+        def initialize: (untyped entry_class) -> void
+
+        def value: (untyped value) -> self
+
+        def metadata: (untyped metadata) -> self
+
+        def with: (untyped attributes) -> self
+
+        def deprecation: () -> untyped
+
+        def description: () -> untyped
+
+        def inherit: () -> untyped
+
+        def inheritable?: () -> untyped
+
+        def reserved?: () -> untyped
+
+        def create!: () -> untyped
+
+        private
+
+        def fabricate_unspecified: () -> untyped
+
+        def fabricate: (untyped entry_class, ?untyped? value) -> untyped
+      end
+    end
+  end
+end

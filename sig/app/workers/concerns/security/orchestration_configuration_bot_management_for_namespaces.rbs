@@ -1,0 +1,11 @@
+module Security
+  module OrchestrationConfigurationBotManagementForNamespaces
+    extend ActiveSupport::Concern
+
+    PROJECTS_BATCH_SYNC_DELAY: untyped
+
+    def perform: (untyped namespace_id, untyped current_user_id) -> (nil | untyped)
+
+    def after_perform: (untyped namespace, untyped current_user_id) -> nil
+  end
+end

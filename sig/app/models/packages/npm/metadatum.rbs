@@ -1,0 +1,11 @@
+class Packages::Npm::Metadatum < ApplicationRecord
+  MAX_PACKAGE_JSON_SIZE: 20000
+
+  MIN_PACKAGE_JSON_FIELD_SIZE_FOR_ERROR_TRACKING: 5000
+
+  NUM_FIELDS_FOR_ERROR_TRACKING: 5
+
+  private
+
+  def ensure_package_json_size: () -> (nil | untyped)
+end

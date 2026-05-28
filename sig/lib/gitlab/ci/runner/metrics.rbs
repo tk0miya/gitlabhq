@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Runner
+      class Metrics
+        extend Gitlab::Utils::StrongMemoize
+
+        def increment_runner_authentication_success_counter: (?runner_type: ::String) -> untyped
+
+        def increment_runner_authentication_failure_counter: () -> untyped
+
+        def self.runner_authentication_success_counter: () -> untyped
+
+        def self.runner_authentication_failure_counter: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,16 @@
+module FindSnippet
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  # rubocop:disable CodeReuse/ActiveRecord
+  def snippet: () -> untyped
+
+  def snippet_klass: () -> untyped
+
+  def snippet_id: () -> untyped
+
+  def snippet_find_params: () -> { id: untyped }
+end

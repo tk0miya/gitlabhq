@@ -1,0 +1,51 @@
+module API
+  module Helpers
+    module NotesHelpers
+      include ::RendersNotes
+
+      NoteableType: untyped
+
+      def self.noteable_types: () -> ::Array[untyped]
+
+      def update_note: (untyped noteable, untyped note_id, ?untyped? noteable_class) -> untyped
+
+      def resolve_note: (untyped noteable, untyped note_id, untyped resolved, ?untyped? noteable_class) -> untyped
+
+      def delete_note: (untyped noteable, untyped note_id) -> untyped
+
+      def get_note: (untyped noteable, untyped note_id, ?untyped? noteable_class) -> untyped
+
+      def noteable_read_ability_name: (untyped noteable) -> ::Symbol
+
+      def ability_name: (untyped noteable) -> untyped
+
+      def find_noteable: (untyped noteable_type, untyped noteable_id, ?untyped? parent_type) -> untyped
+
+      def finder_params_by_noteable_type_and_id: (untyped type, untyped id, untyped parent_type) -> untyped
+
+      def add_parent_to_finder_params: (untyped finder_params, untyped _noteable_type, untyped parent_type) -> untyped
+
+      def noteable_parent: (untyped noteable) -> untyped
+
+      def create_note: (untyped noteable, untyped opts) -> untyped
+
+      def process_note_creation_result: (untyped note) { () -> untyped } -> untyped
+
+      def present_note_collection: (untyped notes, untyped _noteable, untyped _noteable_class) -> untyped
+
+      def present_single_note: (untyped note, untyped _noteable, untyped _noteable_class) -> untyped
+
+      def resolve_discussion: (untyped noteable, untyped discussion_id, untyped resolved) -> untyped
+
+      def disable_query_limiting: () -> untyped
+
+      def self.job_token_policy_for: (untyped noteable_type, untyped http_method) -> (nil | ::Symbol)
+
+      def self.permission_name_for: (untyped noteable_type, untyped http_method) -> ::Symbol
+
+      private
+
+      def can_read_notes?: (untyped noteable) -> untyped
+    end
+  end
+end

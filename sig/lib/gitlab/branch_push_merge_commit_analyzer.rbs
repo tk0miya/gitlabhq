@@ -1,0 +1,88 @@
+module Gitlab
+  # Analyse a graph of commits from a push to a branch,
+  # for each commit, analyze that if it is the head of a merge request,
+  # then what should its merge_commit be, relative to the branch.
+  #
+  # A----->B----->C----->D   target branch
+  # |             ^
+  # |             |
+  # +-->E----->F--+          merged branch
+  #     |     ^
+  #     |     |
+  #     +->G--+
+  #
+  # (See merge-commit-analyze-after branch in gitlab-test)
+  #
+  # Assuming
+  # - A is already in remote
+  # - B~D are all in its own branch with its own merge request, targeting the target branch
+  #
+  # When D is finally pushed to the target branch,
+  # what are the merge commits for all the other merge requests?
+  #
+  # We can walk backwards from the HEAD commit D,
+  # and find status of its parents.
+  # First we determine if commit belongs to the target branch (i.e. A, B, C, D),
+  # and then determine its merge commit.
+  #
+  # +--------+-----------------+--------------+
+  # | Commit | Direct ancestor | Merge commit |
+  # +--------+-----------------+--------------+
+  # | D      | Y               | D            |
+  # +--------+-----------------+--------------+
+  # | C      | Y               | C            |
+  # +--------+-----------------+--------------+
+  # | F      |                 | C            |
+  # +--------+-----------------+--------------+
+  # | B      | Y               | B            |
+  # +--------+-----------------+--------------+
+  # | E      |                 | C            |
+  # +--------+-----------------+--------------+
+  # | G      |                 | C            |
+  # +--------+-----------------+--------------+
+  #
+  # By examining the result, it can be said that
+  #
+  # - If commit is direct ancestor of HEAD, its merge commit is itself.
+  # - Otherwise, the merge commit is the same as its child's merge commit.
+  #
+  class BranchPushMergeCommitAnalyzer
+    @commits: untyped
+
+    @id_to_commit: untyped
+
+    class CommitDecorator < SimpleDelegator
+      @merge_commit: untyped
+
+      attr_accessor merge_commit: untyped
+
+      attr_writer direct_ancestor: untyped
+
+      def direct_ancestor?: () -> untyped
+
+      # @param child_commit [CommitDecorator]
+      # @param first_parent [Boolean] whether `self` is the first parent of `child_commit`
+      def set_merge_commit: (child_commit: untyped) -> untyped
+    end
+
+    # @param commits [Array] list of commits, must be ordered from the child (tip) of the graph back to the ancestors
+    def initialize: (untyped commits, ?relevant_commit_ids: untyped?) -> void
+
+    def get_merge_commit: (untyped id) -> untyped
+
+    private
+
+    def analyze: () -> untyped
+
+    def analyze_parents: (untyped commit) -> untyped
+
+    # Mark all direct ancestors.
+    # If child commit is a direct ancestor, its first parent is also a direct ancestor.
+    # We assume direct ancestors matches the trail of the target branch over time,
+    # This assumption is correct most of the time, especially for gitlab managed merges,
+    # but there are exception cases which can't be solved.
+    def mark_all_direct_ancestors: (untyped commit) -> untyped
+
+    def get_commit: (untyped id) -> untyped
+  end
+end

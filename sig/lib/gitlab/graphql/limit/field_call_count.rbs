@@ -1,0 +1,19 @@
+module Gitlab
+  module Graphql
+    module Limit
+      class FieldCallCount < ::GraphQL::Schema::FieldExtension
+        def resolve: (object: untyped, arguments: untyped, context: untyped) { (untyped, untyped) -> untyped } -> untyped
+
+        private
+
+        def increment_call_count: (untyped context) -> untyped
+
+        def fetch_query_id: (untyped context) -> untyped
+
+        def limit: () -> untyped
+
+        def error_message: () -> ::String
+      end
+    end
+  end
+end

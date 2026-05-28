@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Collection
+        class Sort
+          @collection: untyped
+
+          include TSort
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped collection) -> void
+
+          def valid?: () -> untyped
+
+          # errors sorts an array of variables, ignoring unknown variable references,
+          # and returning an error string if a circular variable reference is found
+          def errors: () -> untyped
+
+          private
+
+          def tsort_each_node: () { (?) -> untyped } -> untyped
+
+          def tsort_each_child: (untyped var_item) { (?) -> untyped } -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

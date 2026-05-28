@@ -1,0 +1,76 @@
+class Import::BulkImportsController < ApplicationController
+  @bulk_import: untyped
+
+  @bulk_import_entity: untyped
+
+  @serializer: untyped
+
+  @filter: untyped
+
+  include ActionView::Helpers::SanitizeHelper
+
+  include SafeFormatHelper
+
+  POLLING_INTERVAL: 3000
+
+  def configure: () -> (nil | untyped)
+
+  def status: () -> untyped
+
+  def history: () -> nil
+
+  def failures: () -> untyped
+
+  def create: () -> untyped
+
+  def realtime_changes: () -> untyped
+
+  private
+
+  def bulk_import: () -> (nil | untyped)
+
+  def bulk_import_entity: () -> untyped
+
+  def pagination_headers: () -> ::Array["x-next-page" | "x-page" | "x-per-page" | "x-prev-page" | "x-total" | "x-total-pages"]
+
+  def serialized_data: (untyped data) -> untyped
+
+  def serializer: () -> untyped
+
+  # Default query string params used to fetch groups from GitLab source instance
+  #
+  # top_level_only: fetch only top level groups (subgroups are fetched during import itself)
+  # min_access_level: fetch only groups user has maintainer or above permissions
+  # search: optional search param to search user's groups by a keyword
+  def query_params: () -> untyped
+
+  def configure_params: () -> untyped
+
+  def validate_configure_params!: () -> untyped
+
+  def create_params: () -> untyped
+
+  def valid_create_params?: () -> untyped
+
+  def bulk_import_params: () -> ::Array[:source_type | :source_full_path | :destination_name | :destination_slug | :destination_namespace | :migrate_projects | :migrate_memberships]
+
+  def ensure_bulk_import_enabled: () -> (untyped | nil)
+
+  def access_token_key: () -> :bulk_import_gitlab_access_token
+
+  def url_key: () -> :bulk_import_gitlab_url
+
+  def verify_blocked_uri: () -> untyped
+
+  def bulk_import_connection_error: (untyped error) -> untyped
+
+  def clear_session_data: () -> untyped
+
+  def credentials: () -> { url: untyped, access_token: untyped }
+
+  def sanitized_filter_param: () -> untyped
+
+  def current_user_bulk_imports: () -> untyped
+
+  def throttled_request?: () -> untyped
+end

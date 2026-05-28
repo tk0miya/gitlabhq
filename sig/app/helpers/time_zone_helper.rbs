@@ -1,0 +1,23 @@
+module TimeZoneHelper
+  TIME_ZONE_FORMAT_ATTRS: { short: ::Array[:identifier | :name | :offset], abbr: ::Array[:identifier | :abbr], full: ::Array[:identifier | :name | :abbr | :offset | :formatted_offset] }
+
+  # format:
+  #   * :full - all available fields
+  #   * :short (default)
+  #
+  # Example:
+  #   timezone_data # :short by default
+  #   timezone_data(format: :full)
+  #
+  def timezone_data: (?format: ::Symbol) -> untyped
+
+  # The identifiers in `timezone_data` are not unique. Some cities (e.g. London and Edinburgh) have
+  # the same `identifier` value (e.g. "Europe/London").
+  # This method merges such entries into one, joining the city names.
+  # This unique list is better suited for selectboxes etc.
+  def timezone_data_with_unique_identifiers: (?format: ::Symbol) -> untyped
+
+  def local_timezone_instance: (untyped timezone) -> untyped
+
+  def local_time: (untyped timezone) -> (nil | untyped)
+end

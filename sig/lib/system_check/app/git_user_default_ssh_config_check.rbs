@@ -1,0 +1,29 @@
+module SystemCheck
+  module App
+    class GitUserDefaultSSHConfigCheck < SystemCheck::BaseCheck
+      @home_dir: untyped
+
+      @forbidden_files: untyped
+
+      # These files are allowed in the .ssh directory. The `config` file is not
+      # whitelisted as it may change the SSH client's behaviour dramatically.
+      ALLOWLIST: ::Array["authorized_keys" | "authorized_keys.lock" | "authorized_keys2" | "known_hosts"]
+
+      def skip?: () -> untyped
+
+      def check?: () -> untyped
+
+      def show_error: () -> untyped
+
+      private
+
+      def git_user: () -> untyped
+
+      def home_dir: () -> untyped
+
+      def ssh_dir: () -> (nil | untyped)
+
+      def forbidden_files: () -> untyped
+    end
+  end
+end

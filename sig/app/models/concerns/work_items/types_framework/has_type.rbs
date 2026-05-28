@@ -1,0 +1,21 @@
+module WorkItems
+  module TypesFramework
+    module HasType
+      include Gitlab::Utils::StrongMemoize
+
+      extend ActiveSupport::Concern
+
+      def work_item_type: () -> untyped
+
+      def exported_work_item_type: () -> ({ "name" => untyped } | { "base_type" => untyped })
+
+      def work_item_type=: (untyped value) -> untyped
+
+      private
+
+      def validate_work_item_type_id: () -> (nil | untyped)
+
+      def work_items_types_provider: () -> untyped
+    end
+  end
+end

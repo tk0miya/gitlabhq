@@ -1,0 +1,13 @@
+module Organizations
+  module Isolatable
+    extend ActiveSupport::Concern
+
+    def isolated?: () -> untyped
+
+    def not_isolated?: () -> untyped
+
+    def mark_as_isolated!: () -> untyped
+
+    def mark_as_not_isolated!: () -> untyped
+  end
+end

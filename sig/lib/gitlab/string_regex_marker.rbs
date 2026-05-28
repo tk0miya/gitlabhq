@@ -1,0 +1,9 @@
+module Gitlab
+  class StringRegexMarker < StringRangeMarker
+    def mark: (untyped regex, ?group: ::Integer) { (?) -> untyped } -> untyped
+
+    def mark_with_ranges: (untyped ranges) { (?) -> untyped } -> untyped
+
+    def ranges: (untyped regex, ?group: ::Integer) -> untyped
+  end
+end

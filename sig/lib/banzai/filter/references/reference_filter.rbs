@@ -1,0 +1,216 @@
+# Generated HTML is transformed back to GFM by app/assets/javascripts/behaviors/markdown/nodes/reference.js
+module Banzai
+  module Filter
+    module References
+      # Base class for GitLab Flavored Markdown reference filters.
+      #
+      # References within <pre>, <code>, <a>, and <style> elements are ignored.
+      #
+      # Context options:
+      #   :project (required) - Current project, ignored if reference is cross-project.
+      #   :only_path          - Generate path-only links.
+      class ReferenceFilter < HTML::Pipeline::Filter
+        @new_nodes: untyped
+
+        @nodes: untyped
+
+        @ignore_ancestor_query: untyped
+
+        @object_reference_pattern: untyped
+
+        @object_link_reference_pattern: untyped
+
+        @object_name: untyped
+
+        @object_sym: untyped
+
+        @query: untyped
+
+        include RequestStoreReferenceCache
+
+        include Concerns::OutputSafety
+
+        prepend Concerns::PipelineTimingCheck
+
+        include Concerns::HtmlWriter
+
+        include Concerns::TextReplacer
+
+        REFERENCE_TYPE_ATTRIBUTE: :reference_type
+
+        REFERENCE_TYPE_DATA_ATTRIBUTE_NAME: ::String
+
+        # Implement in child class
+        # Example: self.reference_type = :merge_request
+        attr_accessor self.reference_type: untyped
+
+        # Implement in child class
+        # Example: self.object_class = MergeRequest
+        attr_accessor self.object_class: untyped
+
+        def self.call: (untyped doc, ?untyped? context, ?untyped? result) -> untyped
+
+        def initialize: (untyped doc, ?untyped? context, ?untyped? result) -> void
+
+        def call_and_update_nodes: () -> untyped
+
+        def call: () -> untyped
+
+        # Public: Find references in text (like `!123` for merge requests).
+        #
+        # Simplified usage (see AbstractReferenceFilter#object_link_filter for a full example):
+        #
+        #   references_in(text) do |match_text, id, project_ref, namespace_ref, matches|
+        #     object = find_object(namespace_ref, project_ref, id)
+        #     if object
+        #       write_opening_tag("a", {
+        #         "href" => "...",
+        #         # ... other attributes ...
+        #       }) << CGI.escapeHTML(object.to_reference) << "</a>"
+        #     else
+        #       CGI.escapeHTML(match_text)
+        #     end
+        #   end
+        #
+        # text - String text to make replacements in.  This is the content of a DOM text
+        # node, and *cannot* be returned without modification.
+        #
+        # Yields each String text match as the first argument; the remaining arguments
+        # depend on the particular subclass of ReferenceFilter being used. The block
+        # must return HTML, and not text.
+        #
+        # Returns a HTML String replaced with replacements made, or nil if no replacements
+        # were made.
+        #
+        # Notes:
+        #
+        # * The input is text -- we expect to match e.g. &1 or %"Git 2.5" without having to
+        #   deal with HTML entities, as our object reference patterns are not compatible
+        #   with entities.
+        #
+        # * Likewise, any strings yielded to the block are text, but the block must return
+        #   HTML, whether it's a successful resolution or not.  Any text input used in the
+        #   block must be escaped for return.
+        #
+        # * The return value is HTML, as the whole point is to create links (and possibly other
+        #   elements).  Care must be taken that any input text is escaped before reaching
+        #   the output.  This must be respected in all subclasses of ReferenceFilter.
+        #
+        # See AbstractReferenceFilter#references_in for a reference implementation that safely
+        # handles user input.
+        def references_in: (untyped text, ?untyped pattern) -> untyped
+
+        # Iterates over all <a> and text() nodes in a document.
+        #
+        # Nodes are skipped whenever their ancestor is one of the nodes returned
+        # by `ignore_ancestor_query`. Link tags are not processed if they have a
+        # "gfm" class or the "href" attribute is empty.
+        def each_node: () ?{ (untyped) -> untyped } -> untyped
+
+        # Returns an Array containing all HTML nodes.
+        def nodes: () -> untyped
+
+        def nodes?: () -> untyped
+
+        def object_class: () -> untyped
+
+        def project: () -> untyped
+
+        def group: () -> untyped
+
+        def requires_unescaping?: () -> false
+
+        private
+
+        # Returns a Hash of attributes to attach to a reference link
+        #
+        # attributes - Hash, where the key becomes the data attribute name and the
+        #              value is the data attribute value
+        #
+        # Examples:
+        #
+        #   data_attribute(project: 1, issue: 2)
+        #   # => {"data-reference-type" => "SomeReferenceFilter", "data-container" => "body",
+        #         "data-placement" => "top", "data-project" => 1, "data-issue" => 2}
+        #
+        #   data_attribute(project: 3, merge_request: 4)
+        #   # => {"data-reference-type" => "SomeReferenceFilter", "data-container" => "body",
+        #         "data-placement" => "top", "data-project" => 3, "data-merge-request" => 4}
+        #
+        # Returns a Hash
+        def data_attribute: (?::Hash[untyped, untyped] attributes) -> untyped
+
+        def ignore_ancestor_query: () -> untyped
+
+        # Ensure that a :project key exists in context
+        #
+        # Note that while the key might exist, its value could be nil!
+        def validate: () -> (untyped | nil)
+
+        def user: () -> untyped
+
+        def skip_project_check?: () -> untyped
+
+        def reference_class: (untyped type, ?tooltip: bool) -> (untyped | ::String)
+
+        # Yields the link's URL, inner text, and inner HTML whenever the node is a valid <a> tag.
+        #
+        # We expect that the URL and inner *text* will be equal when the link was a result of
+        # an autolink in Markdown. For example:
+        #
+        # ```markdown
+        # <https://gitlab.com/x?y="z"&fox>
+        # ```
+        #
+        # produces the HTML:
+        #
+        # ```html
+        # <a href="https://gitlab.com/x?y=%22z%22&amp;fox">https://gitlab.com/x?y=&quot;z&quot;&amp;fox</a>
+        # ```
+        #
+        # The href DOM attribute, after percent-decoding, is 'https://gitlab.com/x?y="z"&fox'.
+        # The node's inner text is identical: 'https://gitlab.com/x?y="z"&fox'.
+        # The node's inner HTML is 'https://gitlab.com/x?y=&quot;z&quot;&amp;fox'.
+        def yield_valid_link: (untyped node) { (untyped, untyped, untyped) -> untyped } -> (nil | untyped)
+
+        # Replaces a node with HTML obtained by yielding node.text, iff node.text matches the given pattern.
+        # Doesn't replace anything if the block returns nil.
+        def replace_node_when_text_matches: (untyped node, untyped index, untyped pattern) { (untyped) -> untyped } -> (nil | untyped)
+
+        def text_node?: (untyped node) -> untyped
+
+        def element_node?: (untyped node) -> untyped
+
+        def object_reference_pattern: () -> untyped
+
+        def object_link_reference_pattern: () -> untyped
+
+        def object_name: () -> untyped
+
+        def object_sym: () -> untyped
+
+        def object_link_filter: (untyped text, untyped pattern, ?link_content_html: untyped?, ?link_reference: bool) -> untyped
+
+        def query: () -> untyped
+
+        def replace_node_with_html: (untyped node, untyped index, untyped html) -> (nil | untyped)
+
+        def only_path?: () -> untyped
+
+        def with_update_nodes: () { () -> untyped } -> untyped
+
+        # Once Filter completes replacing nodes, we update nodes with @new_nodes
+        def update_nodes!: () -> (nil | untyped)
+
+        # `original` is used to restore the original input in ReferenceRedactor when necessary.
+        # It always contains safe HTML --- if the original match was on a link, it is the
+        # inner HTML of the <a> tag (after sanitization, etc.).  If not, we escape the plain text
+        # match.
+        #
+        # `original_href` is used to store the original href in ReferenceRedactor when necessary,
+        # for cases when the reference is used as the href. Note that it is text, not safe HTML.
+        def data_attributes_for: (untyped match_text, untyped link_content_html, **untyped attrs) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Resolvers
+  class LabelsResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    def resolve: (**untyped args) -> untyped
+
+    private
+
+    def parent: () -> untyped
+
+    def parent_param: () -> ::Hash[::Symbol, untyped]
+  end
+end

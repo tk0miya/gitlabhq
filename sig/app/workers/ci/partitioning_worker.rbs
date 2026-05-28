@@ -1,0 +1,9 @@
+module Ci
+  class PartitioningWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> (nil | untyped)
+  end
+end

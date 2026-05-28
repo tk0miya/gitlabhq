@@ -1,0 +1,25 @@
+module Gitlab
+  module Counters
+    class FlushStaleCounterIncrements
+      @collection: untyped
+
+      @logger: untyped
+
+      @counter_attributes: untyped
+
+      def initialize: (untyped collection) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def filtered_counters: (untyped scope, untyped attribute) -> untyped
+
+      attr_reader collection: untyped
+
+      attr_reader logger: untyped
+
+      attr_reader counter_attributes: untyped
+    end
+  end
+end

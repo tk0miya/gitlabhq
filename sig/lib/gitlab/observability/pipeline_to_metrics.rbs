@@ -1,0 +1,57 @@
+module Gitlab
+  module Observability
+    class PipelineToMetrics
+      @integration: untyped
+
+      @pipeline_data: untyped
+
+      @pipeline: untyped
+
+      @builds: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      HISTOGRAM_BUCKETS: ::Array[1 | 5 | 10 | 30 | 60 | 300 | 600 | 1800 | 3600]
+
+      def initialize: (untyped integration, untyped pipeline_data) -> void
+
+      def convert: () -> (untyped | { resourceMetrics: ::Array[{ resource: untyped, scopeMetrics: ::Array[{ scope: untyped, metrics: untyped }] }] })
+
+      private
+
+      attr_reader integration: untyped
+
+      attr_reader pipeline_data: untyped
+
+      attr_reader pipeline: untyped
+
+      attr_reader builds: untyped
+
+      def empty_metrics_payload: () -> { resourceMetrics: ::Array[untyped] }
+
+      def build_resource: () -> { attributes: ::Array[{ key: "service.name", value: { stringValue: untyped } } | { key: "service.version", value: { stringValue: "1.0.0" } } | { key: "deployment.environment", value: { stringValue: untyped } } | { key: "gitlab.project.id", value: { intValue: untyped } } | { key: "gitlab.project.name", value: { stringValue: untyped } } | { key: "gitlab.pipeline.id", value: { intValue: untyped } } | { key: "gitlab.pipeline.ref", value: { stringValue: untyped } }] }
+
+      def build_scope: () -> { name: "gitlab-ci-metrics", version: "1.0.0" }
+
+      def build_metrics: () -> untyped
+
+      def build_pipeline_duration_metric: () -> { name: "pipeline.duration_seconds", description: "Duration of the pipeline execution in seconds", unit: "s", gauge: { dataPoints: ::Array[{ timeUnixNano: untyped, asDouble: untyped, attributes: ::Array[{ key: "pipeline.status", value: { stringValue: untyped } } | { key: "pipeline.ref", value: { stringValue: untyped } }] }] } }
+
+      def build_pipeline_status_counter: () -> { name: "pipeline.status_total", description: "Total number of pipeline status changes", unit: "1", sum: { isMonotonic: true, aggregationTemporality: "AGGREGATION_TEMPORALITY_DELTA", dataPoints: ::Array[{ timeUnixNano: untyped, asInt: 1, attributes: ::Array[{ key: "pipeline.status", value: { stringValue: untyped } } | { key: "pipeline.ref", value: { stringValue: untyped } }] }] } }
+
+      def build_job_count_gauge: () -> { name: "pipeline.jobs_total", description: "Total number of jobs in the pipeline", unit: "1", gauge: { dataPoints: ::Array[{ timeUnixNano: untyped, asInt: untyped, attributes: ::Array[{ key: "pipeline.status", value: { stringValue: untyped } } | { key: "pipeline.ref", value: { stringValue: untyped } }] }] } }
+
+      def build_job_duration_histogram: () -> (nil | { name: "job.duration_seconds", description: "Duration of job execution by stage in seconds", unit: "s", histogram: { dataPoints: untyped, aggregationTemporality: "AGGREGATION_TEMPORALITY_DELTA" } })
+
+      def build_queue_duration_metric: () -> { name: "pipeline.queue_duration_seconds", description: "Time spent in queue before pipeline execution", unit: "s", gauge: { dataPoints: ::Array[{ timeUnixNano: untyped, asDouble: untyped, attributes: ::Array[{ key: "pipeline.status", value: { stringValue: untyped } } | { key: "pipeline.ref", value: { stringValue: untyped } }] }] } }
+
+      def build_histogram_buckets: (untyped durations) -> untyped
+
+      def service_name: () -> untyped
+
+      def environment: () -> untyped
+
+      def current_time_nanoseconds: () -> untyped
+    end
+  end
+end

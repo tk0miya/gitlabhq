@@ -1,0 +1,9 @@
+class Projects::Analytics::CycleAnalytics::ValueStreamsController < Projects::ApplicationController
+  extend ::Gitlab::Utils::Override
+
+  include ::Analytics::CycleAnalytics::ValueStreamActions
+
+  private
+
+  def namespace: () -> untyped
+end

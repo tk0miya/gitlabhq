@@ -1,0 +1,20 @@
+module Gitlab
+  module CurrentSettings
+    def self.signup_disabled?: () -> untyped
+
+    def self.signup_limited?: () -> untyped
+
+    def self.current_application_settings: () -> untyped
+
+    def self.current_application_settings?: () -> untyped
+
+    def self.expire_current_application_settings: () -> untyped
+
+    # rubocop:disable GitlabSecurity/PublicSend -- Method calls are forwarded to one of the setting classes
+    def self.method_missing: (untyped name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def self.respond_to_missing?: (untyped name, ?bool include_private) -> untyped
+
+    def self.respond_to_organization_setting?: (untyped name, untyped include_private) -> (false | untyped)
+  end
+end

@@ -1,0 +1,21 @@
+module Ci
+  module Runners
+    class ResetRegistrationTokenService
+      @scope: untyped
+
+      @user: untyped
+
+      # @param [ApplicationSetting, Project, Group] scope: the scope of the reset operation
+      # @param [User] user: the user performing the operation
+      def initialize: (untyped scope, untyped user) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader scope: untyped
+
+      attr_reader user: untyped
+    end
+  end
+end

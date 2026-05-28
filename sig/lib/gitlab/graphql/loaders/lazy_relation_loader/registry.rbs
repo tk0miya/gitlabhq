@@ -1,0 +1,48 @@
+module Gitlab
+  module Graphql
+    module Loaders
+      class LazyRelationLoader
+        class Registry
+          @parents: untyped
+
+          @relation: untyped
+
+          @records: untyped
+
+          @loaded: untyped
+
+          PrematureQueryExecutionTriggered: untyped
+
+          # Following methods are Active Record kicker methods which fire SQL query.
+          # We can support some of them with TopNLoader but for now restricting their use
+          # as we don't have a use case.
+          PROHIBITED_METHODS: untyped
+
+          def initialize: (untyped relation) -> void
+
+          def register: (untyped object) -> untyped
+
+          def method_missing: (untyped method_name, *untyped, **untyped) ?{ (?) -> untyped } -> (self | untyped)
+
+          def respond_to_missing?: (untyped method_name, ?bool include_private) -> untyped
+
+          def load: () -> untyped
+
+          def for: (untyped object) -> untyped
+
+          private
+
+          attr_reader parents: untyped
+
+          attr_reader relation: untyped
+
+          attr_reader records: untyped
+
+          attr_reader loaded: untyped
+
+          def set_inverse_of: (untyped object, untyped records) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,57 @@
+class Projects::ForksController < Projects::ApplicationController
+  @sort: untyped
+
+  @total_forks_count: untyped
+
+  @public_forks_count: untyped
+
+  @private_forks_count: untyped
+
+  @internal_forks_count: untyped
+
+  @forks: untyped
+
+  @forked_project: untyped
+
+  @fork_response: untyped
+
+  @load_namespaces_with_associations: untyped
+
+  include ContinueParams
+
+  include RendersMemberAccess
+
+  include RendersProjectsList
+
+  include Gitlab::Utils::StrongMemoize
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  private
+
+  def can_fork_to?: (untyped _namespace) -> untyped
+
+  def load_forks: () -> untyped
+
+  def fork_service: () -> untyped
+
+  def fork_namespace: () -> untyped
+
+  def forks_params: () -> untyped
+
+  def fork_params: () -> untyped
+
+  def authorize_fork_namespace!: () -> (untyped | nil)
+
+  def disable_query_limiting: () -> untyped
+
+  def load_namespaces_with_associations: () -> untyped
+
+  def memberships_hash: () -> untyped
+
+  def forked_projects_by_namespace: (untyped namespaces) -> untyped
+end

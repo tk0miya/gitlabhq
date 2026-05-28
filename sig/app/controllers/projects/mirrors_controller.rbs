@@ -1,0 +1,41 @@
+class Projects::MirrorsController < Projects::ApplicationController
+  @remote_mirror: untyped
+
+  include RepositorySettingsRedirect
+
+  def show: () -> untyped
+
+  def update: () -> untyped
+
+  def update_now: () -> untyped
+
+  def ssh_host_keys: () -> untyped
+
+  private
+
+  def push_mirror_create_or_destroy?: () -> untyped
+
+  def push_mirror_create?: () -> untyped
+
+  def push_mirror_destroy?: () -> untyped
+
+  def push_mirror_attributes: () -> untyped
+
+  def execute_push_mirror_service: () -> (untyped | nil)
+
+  def safe_mirror_params: () -> untyped
+
+  def notice_message: () -> untyped
+
+  def push_mirror_to_destroy: () -> untyped
+
+  def remote_mirror: () -> untyped
+
+  def check_mirror_available!: () -> (untyped | nil)
+
+  def mirror_params_attributes: () -> ::Array[{ remote_mirrors_attributes: ::Array[:url | :id | :enabled | :only_protected_branches | :keep_divergent_refs | :auth_method | :user | :password | :ssh_known_hosts | :regenerate_ssh_private_key | :_destroy] }]
+
+  def mirror_params: () -> untyped
+
+  def alert_error: (untyped error) -> untyped
+end

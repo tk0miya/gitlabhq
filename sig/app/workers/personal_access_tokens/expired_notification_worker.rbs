@@ -1,0 +1,11 @@
+module PersonalAccessTokens
+  class ExpiredNotificationWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    MAX_TOKENS: 100
+
+    def perform: (*untyped args) -> untyped
+  end
+end

@@ -1,0 +1,234 @@
+# rubocop:disable Rails/ActiveRecordAliases
+class WikiPage
+  self.@reference_pattern: untyped
+
+  self.@namespace_reference_pattern: untyped
+
+  self.@link_reference_pattern: untyped
+
+  @wiki: untyped
+
+  @page: untyped
+
+  @attributes: untyped
+
+  @version: untyped
+
+  @path: untyped
+
+  @last_version: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Referable
+
+  PageChangedError: untyped
+
+  PageRenameError: untyped
+
+  FrontMatterTooLong: untyped
+
+  # Reserved wiki page slugs that conflict with wiki routes.
+  # These cannot be used as the first path component of a wiki page title.
+  # See config/routes/wiki.rb for the routes that define these reserved paths.
+  RESERVED_SLUGS: ::Array["pages" | "templates" | "new" | "git_access" | "-"]
+
+  include ActiveModel::Validations
+
+  include ActiveModel::Conversion
+
+  include StaticModel
+
+  extend ActiveModel::Naming
+
+  def self.primary_key: () -> "slug"
+
+  def self.model_name: () -> untyped
+
+  def eql?: (untyped other) -> (false | untyped)
+
+  alias == eql?
+
+  def self.unhyphenize: (untyped name) -> untyped
+
+  def self.extensible_reference_prefix: () -> "[wiki_page:"
+
+  def self.reference_prefix: () -> ":"
+
+  def self.reference_postfix: () -> "]"
+
+  def self.reference_pattern: () -> untyped
+
+  def self.namespace_reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> untyped
+
+  def to_reference: (?untyped? from, **untyped _params) -> untyped
+
+  def reference_link_text: (?untyped? _from) -> untyped
+
+  def to_key: () -> ::Array[:slug]
+
+  # The GitLab Wiki instance.
+  attr_reader wiki: untyped
+
+  # The raw Gitlab::Git::WikiPage instance.
+  attr_reader page: untyped
+
+  # The attributes Hash used for storing and validating
+  # new Page values before writing to the raw repository.
+  attr_accessor attributes: untyped
+
+  def hook_attrs: () -> untyped
+
+  # Construct a new WikiPage
+  #
+  # @param [Wiki] wiki
+  # @param [Gitlab::Git::WikiPage] page
+  def initialize: (untyped wiki, ?untyped? page) -> void
+
+  def find_or_create_meta: () -> untyped
+
+  # The escaped URL path of this page.
+  def slug: () -> untyped
+
+  alias id slug
+
+  alias to_param slug
+
+  def human_title: () -> (untyped | "Home")
+
+  # The formatted title of this page.
+  def title: () -> untyped
+
+  # Sets the title of this page.
+  def title=: (untyped new_title) -> untyped
+
+  def sluggified_title: () -> untyped
+
+  def front_matter_title: () -> untyped
+
+  def raw_content: () -> untyped
+
+  def raw_content=: (untyped content) -> (nil | untyped)
+
+  # The hierarchy of the directory this page is contained in.
+  def directory: () -> untyped
+
+  # The markup format for the page.
+  def format: () -> untyped
+
+  # The commit message for this page version.
+  def message: () -> untyped
+
+  # The GitLab Commit instance for this page.
+  def version: () -> (nil | untyped)
+
+  def path: () -> (nil | untyped)
+
+  # Returns a CommitCollection
+  #
+  # Queries the commits for current page's path, equivalent to
+  # `git log path/to/page`. Filters and options supported:
+  # https://gitlab.com/gitlab-org/gitaly/-/blob/master/proto/commit.proto#L322-344
+  def versions: (?::Hash[untyped, untyped] options) -> (::Array[untyped] | untyped)
+
+  def count_versions: () -> (::Array[untyped] | untyped)
+
+  def last_version: () -> (untyped | nil)
+
+  def last_commit_sha: () -> untyped
+
+  def template?: () -> untyped
+
+  # Returns boolean True or False if this instance
+  # is an old version of the page.
+  def historical?: () -> (false | untyped)
+
+  # Returns boolean True or False if this instance
+  # is the latest commit version of the page.
+  def latest?: () -> untyped
+
+  # Returns boolean True or False if this instance
+  # has been fully created on disk or not.
+  def persisted?: () -> untyped
+
+  # Creates a new Wiki Page.
+  #
+  # attr - Hash of attributes to set on the new page.
+  #       :title   - The title (optionally including dir) for the new page.
+  #       :content - The raw markup content.
+  #       :format  - Optional symbol representing the
+  #                  content format. Can be any type
+  #                  listed in the Wiki::VALID_USER_MARKUPS
+  #                  Hash.
+  #       :message - Optional commit message to set on
+  #                  the new page.
+  #
+  # Returns the String SHA1 of the newly created page
+  # or False if the save was unsuccessful.
+  def create: (?::Hash[untyped, untyped] attrs) -> untyped
+
+  # Updates an existing Wiki Page, creating a new version.
+  #
+  # attrs - Hash of attributes to be updated on the page.
+  #        :content         - The raw markup content to replace the existing.
+  #        :format          - Optional symbol representing the content format.
+  #                           See Wiki::VALID_USER_MARKUPS Hash for available formats.
+  #        :message         - Optional commit message to set on the new version.
+  #        :last_commit_sha - Optional last commit sha to validate the page unchanged.
+  #        :title           - The Title (optionally including dir) to replace existing title
+  #
+  # Returns the String SHA1 of the newly created page
+  # or False if the save was unsuccessful.
+  def update: (?::Hash[untyped, untyped] attrs) -> untyped
+
+  # Destroys the Wiki Page.
+  #
+  # Returns boolean True or False.
+  def delete: () -> (true | false)
+
+  # Relative path to the partial to be used when rendering collections
+  # of this object.
+  def to_partial_path: () -> "shared/wikis/wiki_page"
+
+  def sha: () -> untyped
+
+  def title_changed?: () -> untyped
+
+  def content_changed?: () -> untyped
+
+  # Updates the current @attributes hash by merging a hash of params
+  def update_attributes: (untyped attrs) -> untyped
+
+  def to_ability_name: () -> "wiki_page"
+
+  def version_commit_timestamp: () -> untyped
+
+  def diffs: (?::Hash[untyped, untyped] diff_options) -> untyped
+
+  private
+
+  def serialize_front_matter: (untyped hash) -> ("" | untyped)
+
+  def update_front_matter: (untyped attrs) -> (nil | untyped)
+
+  def parsed_content: () -> untyped
+
+  # Process and format the title based on the user input.
+  def process_title: (untyped title) -> (nil | untyped)
+
+  # This method squishes all the filename
+  # i.e: '   foo   /  bar  / page_name' => 'foo/bar/page_name'
+  def deep_title_squish: (untyped title) -> untyped
+
+  def set_attributes: () -> untyped
+
+  def save: () { () -> untyped } -> (false | true)
+
+  def validate_path_limits: () -> (nil | untyped)
+
+  def validate_content_size_limit: () -> (nil | untyped)
+
+  def validate_reserved_slug: () -> (nil | untyped)
+end

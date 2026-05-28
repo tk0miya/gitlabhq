@@ -1,0 +1,29 @@
+module Gitlab
+  module Checks
+    class DiffCheck < BaseSingleChecker
+      include Gitlab::Utils::StrongMemoize
+
+      LOG_MESSAGES: { validate_file_paths: "Validating diffs' file paths..." }
+
+      def validate!: () -> (nil | untyped)
+
+      private
+
+      def validate_lfs_file_locks?: () -> untyped
+
+      def should_run_validations?: () -> untyped
+
+      def validate_path: (untyped path) -> untyped
+
+      # Method overwritten in EE to inject custom validations
+      def validations_for_path: () -> ::Array[untyped]
+
+      def file_paths_validations: () -> ::Array[untyped]
+
+      def validate_file_paths: (untyped file_paths) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def lfs_file_locks_validation: () -> untyped
+    end
+  end
+end

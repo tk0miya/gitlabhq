@@ -1,0 +1,52 @@
+module PersonalAccessTokens
+  class ExpiringWorker
+    @runtime_limiter: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    include CronjobQueue
+
+    MAX_TOKENS: 100
+
+    MAX_RUNTIME: untyped
+
+    REQUEUE_DELAY: untyped
+
+    # For the worker is timing out with a bigger batch size
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/432518
+    BATCH_SIZE: 100
+
+    # allows easier stubbing in specs
+    def self.batch_size: () -> untyped
+
+    def perform: (*untyped args) -> untyped
+
+    private
+
+    attr_reader runtime_limiter: untyped
+
+    def notification_intervals: () -> untyped
+
+    def process_user_tokens: (?::Symbol interval) -> (nil | untyped)
+
+    # this code is quite messy, and should be refactored along with the split out
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/495766
+    #
+    # rubocop: disable CodeReuse/ActiveRecord -- We need to specify batch size to avoid timing out of worker
+    def process_project_bot_tokens: (?::Symbol interval) -> untyped
+
+    def fetch_bot_tokens: (untyped interval, ?untyped? min_expires_at, ?untyped exclude_user_ids) -> untyped
+
+    def deliver_bot_notifications: (untyped bot_user, untyped token_name, ?days_to_expire: ::Integer) -> untyped
+
+    def deliver_user_notifications: (untyped user, untyped token_names, ?days_to_expire: ::Integer) -> untyped
+
+    def log_exception: (untyped ex, untyped user) -> untyped
+
+    def execute_web_hooks: (untyped bot_user, untyped token, ?::Hash[untyped, untyped] data) -> (nil | untyped)
+
+    def notification_service: () -> untyped
+  end
+end

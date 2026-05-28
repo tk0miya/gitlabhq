@@ -1,0 +1,148 @@
+class RegistrationsController < Devise::RegistrationsController
+  @resource: untyped
+
+  @overall_start_time: untyped
+
+  @duration_statistics: untyped
+
+  @captcha_failed: untyped
+
+  @devise_mapping: untyped
+
+  @member_id: untyped
+
+  include Recaptcha::Adapters::ControllerMethods
+
+  include AcceptsPendingInvitations
+
+  include RecaptchaHelper
+
+  include InvisibleCaptchaOnSignup
+
+  include OneTrustCSP
+
+  include BizibleCSP
+
+  include PreferredLanguageSwitcher
+
+  include Gitlab::Tracking::Helpers::WeakPasswordErrorEvent
+
+  include SkipsAlreadySignedInMessage
+
+  include Gitlab::RackLoadBalancingHelpers
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  include Onboarding::Redirectable
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def destroy: () -> (nil | untyped)
+
+  def persist_accepted_terms_if_required: (untyped new_user) -> (nil | untyped)
+
+  def destroy_confirmation_valid?: () -> untyped
+
+  def destroy_confirmation_failure_message: () -> untyped
+
+  def build_resource: (?untyped? hash) -> untyped
+
+  # overridden by EE module
+  def after_successful_create_hook: (untyped user) -> untyped
+
+  def execute_system_hooks: (untyped user) -> untyped
+
+  def notify_new_instance_access_request: (untyped user) -> (nil | untyped)
+
+  def after_sign_up_path_for: (untyped user) -> untyped
+
+  def after_inactive_sign_up_path_for: (untyped resource) -> untyped
+
+  private
+
+  def registration_layout: () -> "devise"
+
+  def current_monotonic_time: () -> untyped
+
+  def format_duration: (untyped duration) -> untyped
+
+  def initialize_timer: () -> untyped
+
+  def duration_statistics: () -> untyped
+
+  def store_duration: (untyped operation_name, ?untyped? start) ?{ () -> untyped } -> untyped
+
+  def log_registration_metrics: () -> untyped
+
+  def onboarding_status_presenter: () -> untyped
+
+  # rubocop:disable Gitlab/NoCodeCoverageComment -- Fully tested in EE and tested in Foss through feature specs in spec/features/invites_spec.rb
+  # :nocov:
+  def onboarding_status_params: () -> ::Hash[untyped, untyped]
+
+  def allow_flash_content?: (untyped user) -> untyped
+
+  def track_successful_user_creation: (untyped user) -> untyped
+
+  def ensure_destroy_prerequisites_met: () -> (untyped | nil)
+
+  def user_created_message: (?confirmed: bool) -> ::String
+
+  def ensure_correct_params!: () -> (untyped | nil)
+
+  def check_captcha: () -> (nil | untyped)
+
+  def ensure_first_name_and_last_name_not_empty: () -> (nil | untyped)
+
+  def pending_approval?: () -> (false | untyped)
+
+  def sign_up_params_attributes: () -> ::Array[:username | :email | :name | :first_name | :last_name | :password]
+
+  def sign_up_params: () -> untyped
+
+  def resource_name: () -> :user
+
+  def resource: () -> untyped
+
+  def devise_mapping: () -> untyped
+
+  def skip_confirmation?: () -> untyped
+
+  def registered_with_invite_email?: () -> untyped
+
+  def load_recaptcha: () -> untyped
+
+  # overridden by EE module
+  def set_resource_fields: () -> (nil | untyped)
+
+  def set_blocked_pending_approval?: () -> untyped
+
+  def set_invite_params: () -> (untyped | nil)
+
+  def invite_email: () -> untyped
+
+  def user_invited?: () -> untyped
+
+  def member_id: () -> untyped
+
+  def after_pending_invitations_hook: () -> (nil | untyped)
+
+  def context_user: () -> untyped
+
+  def identity_verification_enabled?: () -> false
+
+  def identity_verification_redirect_path: () -> nil
+
+  def arkose_labs_enabled?: (user: untyped) -> false
+
+  def preregistration_tracking_label: () -> nil
+
+  # overridden by EE module
+  def track_error: (untyped new_user) -> untyped
+
+  def ensure_signup_enabled: () -> (nil | untyped)
+
+  def initial_organization: () -> untyped
+end

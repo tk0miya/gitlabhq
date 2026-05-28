@@ -1,0 +1,8 @@
+module Gitlab
+  module Redis
+    class TraceChunks < ::Gitlab::Redis::Wrapper
+      # The data we store on TraceChunks used to be stored on SharedState.
+      def self.config_fallback: () -> untyped
+    end
+  end
+end

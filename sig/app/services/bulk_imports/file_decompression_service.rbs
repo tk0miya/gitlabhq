@@ -1,0 +1,55 @@
+# File Decompression Service allows gzipped files decompression into tmp directory.
+#
+# @param tmpdir [String] Temp directory to store downloaded file to. Must be located under `Dir.tmpdir`.
+# @param filename [String] Name of the file to decompress.
+module BulkImports
+  class FileDecompressionService
+    @tmpdir: untyped
+
+    @filename: untyped
+
+    @filepath: untyped
+
+    @decompressed_filename: untyped
+
+    @decompressed_filepath: untyped
+
+    @context: untyped
+
+    @size_validator: untyped
+
+    include Gitlab::ImportExport::CommandLineUtil
+
+    ServiceError: untyped
+
+    def initialize: (tmpdir: untyped, filename: untyped, ?context: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader tmpdir: untyped
+
+    attr_reader filename: untyped
+
+    attr_reader filepath: untyped
+
+    attr_reader decompressed_filename: untyped
+
+    attr_reader decompressed_filepath: untyped
+
+    attr_reader context: untyped
+
+    def validate_filepath: () -> untyped
+
+    def validate_tmpdir: () -> untyped
+
+    def validate_decompressed_file_size: () -> (nil | untyped)
+
+    def validate_symlink: (untyped filepath) -> (untyped | nil)
+
+    def decompress_file: () -> untyped
+
+    def size_validator: () -> untyped
+  end
+end

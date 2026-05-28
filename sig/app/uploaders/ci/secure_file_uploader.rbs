@@ -1,0 +1,23 @@
+module Ci
+  class SecureFileUploader < GitlabUploader
+    @checksum: untyped
+
+    include ObjectStorage::Concern
+
+    def key: () -> untyped
+
+    def checksum: () -> untyped
+
+    def store_dir: () -> untyped
+
+    private
+
+    def dynamic_segment: () -> untyped
+
+    # direct upload is disabled since the file
+    # must always be encrypted
+    def self.direct_upload_enabled?: () -> false
+
+    def self.default_store: () -> untyped
+  end
+end

@@ -1,0 +1,31 @@
+class JiraConnect::EventsController < JiraConnect::ApplicationController
+  @transformed_params: untyped
+
+  @current_jira_installation: untyped
+
+  def installed: () -> untyped
+
+  def uninstalled: () -> untyped
+
+  private
+
+  def create_installation: () -> (true | false)
+
+  def update_installation: () -> (true | false)
+
+  def extract_errors: (untyped message) -> untyped
+
+  def log_lifecycle_failure: (action: untyped, errors: untyped) -> untyped
+
+  def create_params: () -> untyped
+
+  def update_params: () -> untyped
+
+  def transformed_params: () -> untyped
+
+  def verify_asymmetric_atlassian_jwt!: () -> untyped
+
+  def jwt_verification_claims: () -> { aud: untyped, iss: untyped, qsh: untyped }
+
+  def calculate_audiences: () -> untyped
+end

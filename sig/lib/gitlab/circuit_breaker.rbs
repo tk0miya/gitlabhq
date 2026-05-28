@@ -1,0 +1,22 @@
+# A configurable circuit breaker to protect the application from external service failures.
+# The circuit measures the amount of failures and if the threshold is exceeded, stops sending requests.
+module Gitlab
+  module CircuitBreaker
+    InternalServerError: untyped
+
+    DEFAULT_ERROR_THRESHOLD: 50
+
+    DEFAULT_VOLUME_THRESHOLD: 10
+
+    extend ::Gitlab::Utils::StrongMemoize
+
+    # @param [String] unique name for the circuit
+    # @param options [Hash] an options hash setting optional values per circuit
+    # @param exception [Boolean] when true, raises exceptions on circuit failures
+    def self.run_with_circuit: (untyped service_name, ?::Hash[untyped, untyped] options, ?exception: bool) { (?) -> untyped } -> untyped
+
+    private
+
+    def self.circuit: (untyped service_name, untyped options) -> untyped
+  end
+end

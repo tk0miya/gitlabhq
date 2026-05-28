@@ -1,0 +1,19 @@
+module Gitlab
+  module Git
+    class WikiPageVersion
+      @commit: untyped
+
+      @format: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader commit: untyped
+
+      attr_reader format: untyped
+
+      def initialize: (untyped commit, untyped format) -> void
+
+      def author: () -> untyped
+    end
+  end
+end

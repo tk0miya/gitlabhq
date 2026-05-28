@@ -1,0 +1,7 @@
+module Enums
+  class CommitSignature
+    VERIFICATION_STATUSES: { unverified: 0, verified: 1, same_user_different_email: 2, other_user: 3, unverified_key: 4, unknown_key: 5, multiple_signatures: 6, revoked_key: 7, verified_system: 8, unverified_author_email: 9, expired_key: 10 }
+
+    def self.verification_statuses: () -> untyped
+  end
+end

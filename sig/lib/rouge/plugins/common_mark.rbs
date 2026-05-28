@@ -1,0 +1,10 @@
+module Rouge
+  module Plugins
+    module CommonMark
+      def code_block: (untyped code, untyped language) -> untyped
+
+      # override this method for custom formatting behavior
+      def rouge_formatter: (untyped lexer) -> untyped
+    end
+  end
+end

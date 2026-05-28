@@ -1,0 +1,39 @@
+module Gitlab
+  module QuickActions
+    # This class takes spend command argument
+    # and separates date and time from spend command arguments if it present
+    # example:
+    # spend_command_time_and_date = "15m 2017-01-02"
+    # SpendTimeAndDateSeparator.new(spend_command_time_and_date).execute
+    # => [900, Mon, 02 Jan 2017]
+    # if date doesn't present return time with current date
+    # in other cases return nil
+    class SpendTimeAndDateSeparator
+      @spend_arg: untyped
+
+      @timezone: untyped
+
+      DATE_REGEX: ::Regexp
+
+      CATEGORY_REGEX: ::Regexp
+
+      def initialize: (untyped spend_command_arg, untyped timezone) -> void
+
+      def execute: () -> (nil | ::Array[untyped])
+
+      private
+
+      def time_spent: () -> untyped
+
+      def spent_at: () -> untyped
+
+      def date_present?: () -> untyped
+
+      def valid_date?: () -> untyped
+
+      def date_past_or_today?: (untyped date) -> untyped
+
+      def category: () -> (nil | untyped)
+    end
+  end
+end

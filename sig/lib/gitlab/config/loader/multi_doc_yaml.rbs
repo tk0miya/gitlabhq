@@ -1,0 +1,49 @@
+module Gitlab
+  module Config
+    module Loader
+      class MultiDocYaml
+        @config: untyped
+
+        @max_documents: untyped
+
+        @additional_permitted_classes: untyped
+
+        @reject_empty: untyped
+
+        @filename: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        MULTI_DOC_DIVIDER: ::Regexp
+
+        def initialize: (untyped config, max_documents: untyped, ?additional_permitted_classes: untyped, ?reject_empty: bool, ?filename: untyped?) -> void
+
+        def valid?: () -> untyped
+
+        def load_raw!: () -> untyped
+
+        def load!: () -> untyped
+
+        private
+
+        attr_reader config: untyped
+
+        attr_reader max_documents: untyped
+
+        attr_reader additional_permitted_classes: untyped
+
+        attr_reader reject_empty: untyped
+
+        attr_reader filename: untyped
+
+        # Valid YAML files can start with either a leading delimiter or no delimiter.
+        # To avoid counting a leading delimiter towards the document limit,
+        # this method splits the file by one more than the maximum number of permitted documents.
+        # It then discards the first document if it is blank.
+        def documents: () -> untyped
+
+        def max_documents_including_leading_delimiter: () -> untyped
+      end
+    end
+  end
+end

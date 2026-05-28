@@ -1,0 +1,30 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module Graphql
+        class AggregationConnection < GraphQL::Pagination::Connection
+          @nodes: untyped
+
+          @selection_range: untyped
+
+          # rubocop: disable Naming/PredicatePrefix -- these methods are part of the GraphQL pagination API
+          def has_next_page: () -> untyped
+
+          def has_previous_page: () -> untyped
+
+          def cursor_for: (untyped node) -> untyped
+
+          def nodes: () -> untyped
+
+          private
+
+          def load_nodes: () -> untyped
+
+          def decode_cursor: (untyped cursor) -> untyped
+
+          def selection_range: () -> untyped
+        end
+      end
+    end
+  end
+end

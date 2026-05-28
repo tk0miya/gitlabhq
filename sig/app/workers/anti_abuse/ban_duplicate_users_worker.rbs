@@ -1,0 +1,19 @@
+module AntiAbuse
+  class BanDuplicateUsersWorker
+    @banned_user: untyped
+
+    include ApplicationWorker
+
+    def perform: (untyped banned_user_id) -> (nil | untyped)
+
+    private
+
+    attr_reader banned_user: untyped
+
+    def ban_users_with_the_same_detumbled_email!: () -> (nil | untyped)
+
+    def ban_user!: (untyped user, untyped reason) -> untyped
+
+    def log_event: (untyped user, untyped reason) -> untyped
+  end
+end

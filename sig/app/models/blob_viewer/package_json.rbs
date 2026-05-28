@@ -1,0 +1,27 @@
+module BlobViewer
+  class PackageJson < DependencyManager
+    @package_name: untyped
+
+    include ServerSide
+
+    def manager_name: () -> ("yarn" | "npm")
+
+    def yarn?: () -> untyped
+
+    def manager_url: () -> ("https://yarnpkg.com/" | "https://www.npmjs.com/")
+
+    def package_name: () -> untyped
+
+    def package_type: () -> ("private package" | untyped)
+
+    def package_url: () -> untyped
+
+    private
+
+    def private?: () -> untyped
+
+    def homepage: () -> untyped
+
+    def npm_url: () -> ::String
+  end
+end

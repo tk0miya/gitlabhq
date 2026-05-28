@@ -1,0 +1,25 @@
+module Gitlab
+  module DependencyLinker
+    module Parser
+      class Gemfile < MethodLinker
+        @plain_text: untyped
+
+        GIT_REGEX: untyped
+
+        GITHUB_REGEX: untyped
+
+        def initialize: (untyped plain_text) -> void
+
+        # Returns a list of Gitlab::DependencyLinker::Package
+        #
+        # keyword - The package definition keyword, e.g. `:gem` for
+        # Gemfile parsing, `:pod` for Podfile.
+        def parse: (keyword: untyped) -> untyped
+
+        private
+
+        def fetch: (untyped line, untyped regex, ?group: ::Symbol) -> untyped
+      end
+    end
+  end
+end

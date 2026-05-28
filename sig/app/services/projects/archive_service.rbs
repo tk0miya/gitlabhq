@@ -1,0 +1,25 @@
+module Projects
+  class ArchiveService < ::BaseProjectService
+    include ::Projects::ArchiveEvents
+
+    NotAuthorizedError: untyped
+
+    AlreadyArchivedError: untyped
+
+    AncestorAlreadyArchivedError: untyped
+
+    ScheduledDeletionError: untyped
+
+    ArchivingFailedError: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def archive_project: () -> untyped
+
+    def collect_errors: () -> untyped
+
+    def after_archive: () -> untyped
+  end
+end

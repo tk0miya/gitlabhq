@@ -1,0 +1,23 @@
+module Admin
+  module UserActionsHelper
+    @actions: untyped
+
+    @user: untyped
+
+    def admin_actions: (untyped user) -> (::Array[untyped] | untyped)
+
+    private
+
+    def blocked_actions: () -> (untyped | untyped | untyped | nil | untyped)
+
+    def deactivate_actions: () -> (untyped | untyped | nil)
+
+    def unlock_actions: () -> (untyped | nil)
+
+    def delete_actions: () -> (nil | untyped)
+
+    def ban_actions: () -> (nil | untyped)
+
+    def trust_actions: () -> (nil | untyped)
+  end
+end

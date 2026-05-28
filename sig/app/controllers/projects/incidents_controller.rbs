@@ -1,0 +1,27 @@
+class Projects::IncidentsController < Projects::ApplicationController
+  @issue: untyped
+
+  @noteable: untyped
+
+  @note: untyped
+
+  include IssuableActions
+
+  include Gitlab::Utils::StrongMemoize
+
+  include IncidentManagementFeatureFlag
+
+  def index: () -> nil
+
+  private
+
+  def incident: () -> untyped
+
+  def load_incident: () -> untyped
+
+  alias issuable incident
+
+  def incident_finder: () -> untyped
+
+  def serializer: () -> untyped
+end

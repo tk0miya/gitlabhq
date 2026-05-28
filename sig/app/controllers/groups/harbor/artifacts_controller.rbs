@@ -1,0 +1,11 @@
+module Groups
+  module Harbor
+    class ArtifactsController < ::Groups::Harbor::ApplicationController
+      include ::Harbor::Artifact
+
+      private
+
+      def container: () -> untyped
+    end
+  end
+end

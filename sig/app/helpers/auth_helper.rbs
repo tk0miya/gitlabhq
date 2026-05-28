@@ -1,0 +1,112 @@
+module AuthHelper
+  @form_based_provider_with_highest_priority: untyped
+
+  PROVIDERS_WITH_ICONS: ::Array["alicloud" | "atlassian_oauth2" | "auth0" | "azure_activedirectory_v2" | "azure_oauth2" | "bitbucket" | "github" | "gitlab" | "google_oauth2" | "jwt" | "openid_connect" | "shibboleth" | "twitter"]
+
+  LDAP_PROVIDER: ::Regexp
+
+  POPULAR_PROVIDERS: ::Array["google_oauth2" | "github"]
+
+  SHA1_CHAR_PAIR_COUNT: 20
+
+  SHA256_CHAR_PAIR_COUNT: 32
+
+  def ldap_enabled?: () -> untyped
+
+  def ldap_sign_in_enabled?: () -> untyped
+
+  def omniauth_enabled?: () -> untyped
+
+  def enabled_button_based_providers_for_signup: () -> (untyped | untyped | ::Array[untyped])
+
+  def signup_button_based_providers_enabled?: () -> untyped
+
+  def provider_has_custom_icon?: (untyped name) -> untyped
+
+  def provider_has_builtin_icon?: (untyped name) -> untyped
+
+  def provider_has_icon?: (untyped name) -> untyped
+
+  def test_id_for_provider: (untyped provider) -> untyped
+
+  def auth_providers: () -> untyped
+
+  def label_for_provider: (untyped name) -> untyped
+
+  def icon_for_provider: (untyped name) -> untyped
+
+  def form_based_provider_priority: () -> ::Array["crowd" | ::Regexp]
+
+  def form_based_provider_with_highest_priority: () -> untyped
+
+  def form_based_auth_provider_has_active_class?: (untyped provider) -> untyped
+
+  def form_based_provider?: (untyped name) -> untyped
+
+  def form_based_providers: () -> untyped
+
+  def saml_providers: () -> untyped
+
+  def oidc_providers: () -> untyped
+
+  def any_form_based_providers_enabled?: () -> untyped
+
+  def form_enabled_for_sign_in?: (untyped provider) -> (true | untyped)
+
+  def crowd_enabled?: () -> untyped
+
+  def button_based_providers: () -> untyped
+
+  def display_providers_on_profile?: () -> untyped
+
+  def providers_for_base_controller: () -> untyped
+
+  def enabled_button_based_providers: () -> untyped
+
+  def popular_enabled_button_based_providers: () -> untyped
+
+  def button_based_providers_enabled?: () -> untyped
+
+  def step_up_auth_params: (untyped provider_name, untyped step_up_auth_scope) -> (::Hash[untyped, untyped] | untyped)
+
+  def step_up_auth_documentation_link: (untyped flow) -> (nil | untyped)
+
+  def provider_image_tag: (untyped provider, ?::Integer size) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def auth_active?: (untyped provider) -> untyped
+
+  def normalize_provider: (untyped provider) -> untyped
+
+  def unlink_provider_allowed?: (untyped provider) -> untyped
+
+  def link_provider_allowed?: (untyped provider) -> untyped
+
+  def allow_admin_mode_password_authentication_for_web?: () -> untyped
+
+  def auth_app_owner_text: (untyped application) -> untyped
+
+  def delete_otp_authenticator_data: (untyped password_required) -> { button_text: untyped, icon: "remove", messages: untyped, path: untyped, password_required: untyped }
+
+  def delete_passkey_data: (untyped password_required, untyped path, untyped passkey_count) -> { modal_title: untyped, button_text: untyped, icon: "remove", messages: untyped, path: untyped, password_required: untyped }
+
+  def delete_webauthn_device_data: (untyped password_required, untyped path) -> { button_text: untyped, icon: "remove", messages: untyped, path: untyped, password_required: untyped }
+
+  def disable_two_factor_authentication_data: (untyped password_required, untyped passkeys) -> { button_text: untyped, messages: untyped, modal_title: untyped, path: untyped, password_required: untyped }
+
+  def codes_two_factor_authentication_data: (untyped password_required) -> { button_text: untyped, messages: untyped, method: "post", path: untyped, password_required: untyped, size: "small", variant: "default" }
+
+  def certificate_fingerprint_algorithm: (untyped fingerprint) -> untyped
+
+  def current_password_required?: () -> untyped
+
+  def expires_at_for_service_access_tokens: (untyped enforce_expiration) -> (untyped | { min_date: untyped })
+
+  def admin_service_accounts_data: (?untyped user) -> { base_path: untyped, is_group: untyped, service_accounts: { enabled: untyped, path: untyped, edit_path: untyped, docs_path: untyped, delete_path: untyped }, access_token: ::Hash[untyped | :available_scopes | :create | :revoke | :rotate | :show, untyped | ::String] }
+
+  def groups_service_accounts_data: (untyped group, ?untyped user) -> { base_path: untyped, is_group: untyped, service_accounts: { enabled: untyped, path: untyped, edit_path: untyped, docs_path: untyped, delete_path: untyped }, access_token: ::Hash[untyped | :available_scopes | :create | :revoke | :rotate | :show, untyped] }
+
+  def projects_service_accounts_data: (untyped project, ?untyped user) -> { base_path: untyped, is_group: "false", service_accounts: { enabled: untyped, path: untyped, edit_path: untyped, docs_path: untyped, delete_path: untyped }, access_token: ::Hash[untyped | :available_scopes | :create | :revoke | :rotate | :show, untyped] }
+
+  extend ::AuthHelper
+end

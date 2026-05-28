@@ -1,0 +1,19 @@
+module ExpandVariables
+  VariableExpansionError: untyped
+
+  VARIABLES_REGEXP: ::Regexp
+
+  def self.expand: (untyped value, untyped variables, ?expand_file_refs: bool, ?fail_on_masked: bool) -> untyped
+
+  def self.expand_existing: (untyped value, untyped variables, ?expand_file_refs: bool, ?fail_on_masked: bool) -> untyped
+
+  def self.possible_var_reference?: (untyped value) -> (nil | untyped)
+
+  private
+
+  def self.replace_with: (untyped value, untyped variables) { (untyped, untyped) -> untyped } -> untyped
+
+  def self.match_or_blank_value: (untyped collection, untyped last_match, expand_file_refs: untyped, fail_on_masked: untyped) -> untyped
+
+  def self.match_or_original_value: (untyped collection, untyped last_match, expand_file_refs: untyped, fail_on_masked: untyped) -> untyped
+end

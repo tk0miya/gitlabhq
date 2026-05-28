@@ -1,0 +1,35 @@
+module Gitlab
+  module BackgroundMigration
+    # Removes orphaned routes, i.e. routes that reference a namespace or project that no longer exists.
+    # This was possible since we were using a polymorphic association source_id, source_type. However since now
+    # we have project namespaces we can use a FK on routes#namespace_id to avoid orphaned records in routes.
+    class CleanupOrphanedRoutes < Gitlab::BackgroundMigration::BatchedMigrationJob
+      include Gitlab::Database::DynamicModelHelpers
+
+      def perform: () -> untyped
+
+      private
+
+      def fix_missing_namespace_id_routes: () -> untyped
+
+      def cleanup_orphaned_routes: () -> untyped
+
+      def update_namespace_id: (untyped batch_column, untyped non_orphaned_namespace_routes, untyped sub_batch_size) -> untyped
+
+      def cleanup_relations: (untyped batch_column, untyped orphaned_namespace_routes, untyped pause_ms, untyped sub_batch_size) -> untyped
+
+      def orphaned_namespace_routes_scoped_to_range: (untyped source_key_column, untyped start_id, untyped stop_id) -> untyped
+
+      def orphaned_project_routes_scoped_to_range: (untyped source_key_column, untyped start_id, untyped stop_id) -> untyped
+
+      def non_orphaned_namespace_routes_scoped_to_range: (untyped source_key_column, untyped start_id, untyped stop_id) -> untyped
+
+      def non_orphaned_project_routes_scoped_to_range: (untyped source_key_column, untyped start_id, untyped stop_id) -> untyped
+    end
+
+    # Isolated route model for the migration
+    class Route < ApplicationRecord
+      include EachBatch
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Gitlab
+  module LocalAndRemoteStorageMigration
+    class ArtifactMigrater < Gitlab::LocalAndRemoteStorageMigration::BaseMigrater
+      def migrate_to_remote_storage: () -> untyped
+
+      def migrate_to_local_storage: () -> untyped
+    end
+  end
+end

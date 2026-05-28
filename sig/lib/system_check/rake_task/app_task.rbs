@@ -1,0 +1,12 @@
+module SystemCheck
+  module RakeTask
+    # Used by gitlab:app:check rake task
+    module AppTask
+      extend RakeTaskHelpers
+
+      def self.name: () -> "GitLab App"
+
+      def self.checks: () -> ::Array[untyped]
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class FindingKey
+          @location_fingerprint: untyped
+
+          @identifier_fingerprint: untyped
+
+          def initialize: (location_fingerprint: untyped, identifier_fingerprint: untyped) -> void
+
+          def ==: (untyped other) -> (false | untyped)
+
+          def hash: () -> untyped
+
+          alias eql? ==
+
+          attr_reader location_fingerprint: untyped
+
+          attr_reader identifier_fingerprint: untyped
+
+          def has_fingerprints?: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,63 @@
+module ClickHouse
+  class Migration
+    @connection: untyped
+
+    @name: untyped
+
+    @version: untyped
+
+    attr_accessor name: untyped
+
+    attr_accessor version: untyped
+
+    def initialize: (untyped connection, ?untyped name, ?untyped? version) -> void
+
+    MIGRATION_FILENAME_REGEXP: ::Regexp
+
+    def execute: (untyped query) -> untyped
+
+    def up: () -> (nil | untyped)
+
+    def down: () -> (nil | untyped)
+
+    # Execute this migration in the named direction
+    def migrate: (untyped direction) -> (nil | untyped)
+
+    def create_dictionary: (untyped definition, source_tables: untyped) -> untyped
+
+    # Safely swap two tables using RENAME (gVisor-compatible alternative to EXCHANGE)
+    #
+    # NOTE: When running in CI (detected via CI environment variable), this uses RENAME
+    # instead of EXCHANGE for gVisor compatibility. When running outside CI, it uses
+    # the native EXCHANGE TABLES operation which is atomic.
+    #
+    # RENAME is non-atomic (may fail partway), but:
+    # - Migrations run in controlled environment with no concurrent traffic
+    # - Migration framework will mark as failed and allow retry
+    # - Pre-flight validation reduces risk of partial failure
+    # - Risk is acceptable for one-time schema migrations in CI
+    #
+    # @param table_a [String] First table name
+    # @param table_b [String] Second table name
+    # @param temp_suffix [String] Suffix for temporary table name (default: '_swap_temp')
+    def safe_table_swap: (untyped table_a, untyped table_b, ?::String temp_suffix) -> untyped
+
+    private
+
+    attr_reader connection: untyped
+
+    def exec_migration: (untyped direction) -> untyped
+
+    def write: (?::String text) -> (untyped | nil)
+
+    def announce: (untyped message) -> untyped
+
+    def column_default_present?: (untyped table, untyped column) -> untyped
+
+    def dictionary_credentials: () -> ::String
+
+    def fetch_table_list: () -> untyped
+
+    def running_in_ci?: () -> untyped
+  end
+end

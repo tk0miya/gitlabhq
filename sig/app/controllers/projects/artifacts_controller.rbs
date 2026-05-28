@@ -1,0 +1,82 @@
+class Projects::ArtifactsController < Projects::ApplicationController
+  @path: untyped
+
+  @entry: untyped
+
+  @blob: untyped
+
+  @ref_name: untyped
+
+  @build: untyped
+
+  @artifact: untyped
+
+  @job_artifact: untyped
+
+  @artifact_file: untyped
+
+  include Ci::AuthBuildTrace
+
+  include ExtractsPath
+
+  include RendersBlob
+
+  include SendFileUpload
+
+  include Gitlab::Ci::Artifacts::Logger
+
+  MAX_PER_PAGE: 20
+
+  def index: () -> nil
+
+  def destroy: () -> untyped
+
+  def download: () -> untyped
+
+  def browse: () -> untyped
+
+  # External files are redirected to Gitlab Pages and might have unsecure content
+  # To warn the user about the possible unsecure content, we show a warning page
+  # before redirecting the user.
+  def external_file: () -> untyped
+
+  def file: () -> untyped
+
+  def raw: () -> untyped
+
+  def keep: () -> untyped
+
+  def latest_succeeded: () -> untyped
+
+  private
+
+  def audit_download: (untyped build, untyped filename) -> nil
+
+  def extract_ref_name_and_path: () -> (nil | untyped)
+
+  def artifacts_params: () -> untyped
+
+  def validate_artifacts!: () -> (untyped | nil)
+
+  def build: () -> untyped
+
+  def artifact: () -> untyped
+
+  def build_from_id: () -> (untyped | nil)
+
+  def build_from_sha: () -> (nil | untyped)
+
+  def build_from_ref: () -> (nil | untyped)
+
+  def job_artifact: () -> untyped
+
+  def artifact_file: () -> untyped
+
+  def zip_artifact?: () -> untyped
+
+  def entry: () -> untyped
+
+  def authorize_read_build_trace!: () -> (nil | untyped)
+
+  def authorize_read_job_artifacts!: () -> (untyped | nil)
+end

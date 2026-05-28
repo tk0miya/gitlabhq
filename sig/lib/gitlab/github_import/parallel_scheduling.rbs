@@ -1,0 +1,127 @@
+module Gitlab
+  module GithubImport
+    module ParallelScheduling
+      @project: untyped
+
+      @client: untyped
+
+      @parallel: untyped
+
+      @page_keyset: untyped
+
+      @already_imported_cache_key: untyped
+
+      @job_waiter_cache_key: untyped
+
+      @job_waiter_remaining_cache_key: untyped
+
+      @job_waiter: untyped
+
+      include JobDelayCalculator
+
+      attr_reader project: untyped
+
+      attr_reader client: untyped
+
+      attr_reader page_keyset: untyped
+
+      attr_reader already_imported_cache_key: untyped
+
+      attr_reader job_waiter_cache_key: untyped
+
+      attr_reader job_waiter_remaining_cache_key: untyped
+
+      attr_accessor job_started_at: untyped
+
+      attr_accessor enqueued_job_counter: untyped
+
+      # The base cache key to use for tracking already imported objects.
+      ALREADY_IMPORTED_CACHE_KEY: "github-importer/already-imported/%{project}/%{collection}"
+
+      # The base cache key to use for storing job waiter key
+      JOB_WAITER_CACHE_KEY: "github-importer/job-waiter/%{project}/%{collection}"
+
+      # The base cache key to use for storing job waiter remaining jobs
+      JOB_WAITER_REMAINING_CACHE_KEY: "github-importer/job-waiter-remaining/%{project}/%{collection}"
+
+      # project - An instance of `Project`.
+      # client - An instance of `Gitlab::GithubImport::Client`.
+      # parallel - When set to true the objects will be imported in parallel.
+      def initialize: (untyped project, untyped client, ?parallel: bool) -> void
+
+      def parallel?: () -> untyped
+
+      def execute: () -> untyped
+
+      # Imports all the objects in sequence in the current thread.
+      def sequential_import: () -> untyped
+
+      # Imports all objects in parallel by scheduling a Sidekiq job for every
+      # individual object.
+      def parallel_import: () -> untyped
+
+      def spread_parallel_import: () -> untyped
+
+      # The method that will be called for traversing through all the objects to
+      # import, yielding them to the supplied block.
+      def each_object_to_import: () { (untyped) -> untyped } -> untyped
+
+      def increment_object_counter?: (untyped _object) -> true
+
+      # Returns true if the given object has already been imported, false
+      # otherwise.
+      #
+      # object - The object to check.
+      def already_imported?: (untyped object) -> untyped
+
+      # Marks the given object as "already imported".
+      def mark_as_imported: (untyped object) -> untyped
+
+      def object_type: () -> untyped
+
+      # Returns the ID to use for the cache used for checking if an object has
+      # already been imported or not.
+      #
+      # object - The object we may want to import.
+      def id_for_already_imported_cache: (untyped object) -> untyped
+
+      # The class used for converting API responses to Hashes when performing
+      # the import.
+      def representation_class: () -> untyped
+
+      # The class to use for importing objects when importing them sequentially.
+      def importer_class: () -> untyped
+
+      # The Sidekiq worker class used for scheduling the importing of objects in
+      # parallel.
+      def sidekiq_worker_class: () -> untyped
+
+      # The name of the method to call to retrieve the data to import.
+      def collection_method: () -> untyped
+
+      def abort_on_failure: () -> false
+
+      # Any options to be passed to the method used for retrieving the data to
+      # import.
+      def collection_options: () -> ::Hash[untyped, untyped]
+
+      private
+
+      # Returns the set used to track "already imported" objects.
+      # Items are the values returned by `#id_for_already_imported_cache`.
+      def already_imported_ids: () -> untyped
+
+      def additional_object_data: () -> ::Hash[untyped, untyped]
+
+      def object_representation: (untyped object) -> untyped
+
+      def info: (untyped project_id, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def log_attributes: (untyped project_id, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def job_waiter: () -> untyped
+
+      def job_delay: () -> untyped
+    end
+  end
+end

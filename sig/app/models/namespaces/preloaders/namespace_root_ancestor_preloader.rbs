@@ -1,0 +1,21 @@
+module Namespaces
+  module Preloaders
+    class NamespaceRootAncestorPreloader
+      @namespaces: untyped
+
+      @root_ancestor_preloads: untyped
+
+      include Gitlab::Loggable
+
+      def initialize: (untyped namespaces, ?untyped root_ancestor_preloads) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def log_orphaned_namespace: (untyped namespace) -> untyped
+
+      def join_sql: () -> untyped
+    end
+  end
+end

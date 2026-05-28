@@ -1,0 +1,11 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ActiveRecord
+        class ExactMatchFilter < FilterDefinition
+          def apply: (untyped relation, untyped filter_config) -> untyped
+        end
+      end
+    end
+  end
+end

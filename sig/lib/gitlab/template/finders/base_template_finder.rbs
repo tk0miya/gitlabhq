@@ -1,0 +1,21 @@
+module Gitlab
+  module Template
+    module Finders
+      class BaseTemplateFinder
+        @base_dir: untyped
+
+        def initialize: (untyped base_dir) -> void
+
+        def list_files_for: () -> untyped
+
+        def read: () -> untyped
+
+        def find: () -> untyped
+
+        def category_directory: (untyped category) -> untyped
+
+        def self.filter_regex: (untyped extension) -> ::Regexp
+      end
+    end
+  end
+end

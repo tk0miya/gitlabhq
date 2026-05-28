@@ -1,0 +1,26 @@
+module Gitlab
+  module BackgroundMigration
+    # Backfill projectfeatures.package_registry_access_level depending on projects.packages_enabled
+    class BackfillProjectFeaturePackageRegistryAccessLevel < ::Gitlab::BackgroundMigration::BatchedMigrationJob
+      FEATURE_DISABLED: 0
+
+      FEATURE_PRIVATE: 10
+
+      FEATURE_ENABLED: 20
+
+      FEATURE_PUBLIC: 30
+
+      PROJECT_PRIVATE: 0
+
+      PROJECT_INTERNAL: 10
+
+      PROJECT_PUBLIC: 20
+
+      # Migration only version of ProjectFeature table
+      class ProjectFeature < ::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+    end
+  end
+end

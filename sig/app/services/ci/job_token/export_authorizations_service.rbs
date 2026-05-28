@@ -1,0 +1,28 @@
+# This class exports CI job token authorizations to a given project.
+module Ci
+  module JobToken
+    class ExportAuthorizationsService
+      @current_user: untyped
+
+      @accessed_project: untyped
+
+      include Gitlab::Allowable
+
+      def initialize: (current_user: untyped, accessed_project: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader accessed_project: untyped
+
+      attr_reader current_user: untyped
+
+      def authorizations: () -> untyped
+
+      def header_to_value_hash: () -> { "Origin Project Path" => untyped, "Last Authorized At (UTC)" => untyped }
+
+      def csv_filename: () -> ::String
+    end
+  end
+end

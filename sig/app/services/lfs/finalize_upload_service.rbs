@@ -1,0 +1,37 @@
+module Lfs
+  class FinalizeUploadService
+    @oid: untyped
+
+    @size: untyped
+
+    @uploaded_file: untyped
+
+    @project: untyped
+
+    @repository_type: untyped
+
+    def initialize: (oid: untyped, size: untyped, uploaded_file: untyped, project: untyped, repository_type: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader oid: untyped
+
+    attr_reader size: untyped
+
+    attr_reader uploaded_file: untyped
+
+    attr_reader project: untyped
+
+    attr_reader repository_type: untyped
+
+    def service_response_error: (untyped reason, untyped message) -> untyped
+
+    def store_file!: () -> untyped
+
+    def create_file!: () -> untyped
+
+    def replace_file!: (untyped lfs_object) -> untyped
+  end
+end

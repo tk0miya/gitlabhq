@@ -1,0 +1,36 @@
+module BulkImports
+  class LfsObjectsExportService
+    @portable: untyped
+
+    @export_path: untyped
+
+    @lfs_json: untyped
+
+    @exported_objects_count: untyped
+
+    include Gitlab::ImportExport::CommandLineUtil
+
+    BATCH_SIZE: 100
+
+    attr_reader exported_objects_count: untyped
+
+    def initialize: (untyped portable, untyped export_path) -> void
+
+    def execute: (?::Hash[untyped, untyped] options) -> untyped
+
+    private
+
+    attr_reader portable: untyped
+
+    attr_reader export_path: untyped
+
+    attr_reader lfs_json: untyped
+
+    def save_lfs_object: (untyped lfs_object) -> (nil | untyped)
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def append_lfs_json_for_batch: (untyped lfs_objects_batch) -> untyped
+
+    def write_lfs_json: () -> untyped
+  end
+end

@@ -1,0 +1,41 @@
+module Clusters
+  module Migration
+    class CreateService
+      @cluster: untyped
+
+      @clusterable: untyped
+
+      @current_user: untyped
+
+      @configuration_project: untyped
+
+      @agent_name: untyped
+
+      attr_reader cluster: untyped
+
+      attr_reader clusterable: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader configuration_project: untyped
+
+      attr_reader agent_name: untyped
+
+      def initialize: (untyped cluster, current_user: untyped, configuration_project_id: untyped, agent_name: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def validate_inputs: () -> untyped
+
+      def agent_creation_service: () -> untyped
+
+      def token_creation_service: (untyped agent) -> untyped
+
+      def find_configuration_project: (untyped project_id) -> untyped
+
+      def error_response: (message: untyped) -> untyped
+    end
+  end
+end

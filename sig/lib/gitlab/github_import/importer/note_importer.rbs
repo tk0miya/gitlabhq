@@ -1,0 +1,41 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class NoteImporter
+        @note: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        @user_finder: untyped
+
+        include Gitlab::Import::UsernameMentionRewriter
+
+        include ::Import::PlaceholderReferences::Pusher
+
+        attr_reader note: untyped
+
+        attr_reader project: untyped
+
+        attr_reader client: untyped
+
+        attr_reader user_finder: untyped
+
+        # note - An instance of `Gitlab::GithubImport::Representation::Note`.
+        # project - An instance of `Project`.
+        # client - An instance of `Gitlab::GithubImport::Client`.
+        def initialize: (untyped note, untyped project, untyped client) -> void
+
+        def execute: () -> untyped
+
+        # Returns the ID of the issue or merge request to create the note for.
+        def find_noteable_id: () -> untyped
+
+        private
+
+        def note_body: (untyped author_found) -> untyped
+      end
+    end
+  end
+end

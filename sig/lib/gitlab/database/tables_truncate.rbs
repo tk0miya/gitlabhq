@@ -1,0 +1,62 @@
+module Gitlab
+  module Database
+    class TablesTruncate
+      @database_name: untyped
+
+      @min_batch_size: untyped
+
+      @logger: untyped
+
+      @until_table: untyped
+
+      @dry_run: untyped
+
+      @tables_to_truncate: untyped
+
+      @existing_tables_set: untyped
+
+      @connection: untyped
+
+      GITLAB_SCHEMAS_TO_IGNORE: ::Array[:gitlab_geo | :gitlab_embedding | :gitlab_jh]
+
+      def initialize: (database_name: untyped, ?min_batch_size: ::Integer, ?logger: untyped?, ?until_table: untyped?, ?dry_run: bool) -> void
+
+      def execute: () -> untyped
+
+      def needs_truncation?: () -> (false | untyped)
+
+      private
+
+      attr_accessor database_name: untyped
+
+      attr_accessor min_batch_size: untyped
+
+      attr_accessor logger: untyped
+
+      attr_accessor dry_run: untyped
+
+      attr_accessor until_table: untyped
+
+      def tables_to_truncate: () -> untyped
+
+      def existing_tables_set: () -> untyped
+
+      def connection: () -> untyped
+
+      def remove_schema_name: (untyped table_with_schema) -> untyped
+
+      def disable_locks_on_table: (untyped table) -> untyped
+
+      def truncate_tables_in_batches: (untyped tables_sorted) -> untyped
+
+      # Returns tables that have FK constraints pointing to any table in +tables+ but are
+      # absent from the schema docs. Walks FK chains transitively so that multi-hop
+      # dependencies are also captured.
+      def unregistered_fk_referencing_tables: (untyped tables) -> untyped
+
+      def single_database_setup?: () -> (true | untyped)
+
+      def with_suppressed_query_analyzers: () { (?) -> untyped } -> untyped
+    end
+  end
+end

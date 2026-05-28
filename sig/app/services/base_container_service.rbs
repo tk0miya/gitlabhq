@@ -1,0 +1,49 @@
+# Base class, scoped by container (project or group).
+#
+# New or existing services which only require a project or group container
+# should subclass BaseProjectService or BaseGroupService.
+#
+# If you require a different but specific, non-polymorphic container
+# consider creating a new subclass, and update the related comment at
+# the top of the original BaseService.
+class BaseContainerService
+  @container: untyped
+
+  @current_user: untyped
+
+  @params: untyped
+
+  @project: untyped
+
+  @group: untyped
+
+  include BaseServiceUtility
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  attr_accessor project: untyped
+
+  attr_accessor group: untyped
+
+  attr_reader container: untyped
+
+  attr_reader current_user: untyped
+
+  attr_reader params: untyped
+
+  def initialize: (container: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+  def project_container?: () -> untyped
+
+  def group_container?: () -> untyped
+
+  def namespace_container?: () -> untyped
+
+  def project_group: () -> untyped
+
+  def root_ancestor: () -> untyped
+
+  private
+
+  def handle_container_type: (untyped container) -> untyped
+end

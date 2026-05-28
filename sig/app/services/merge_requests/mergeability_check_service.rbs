@@ -1,0 +1,67 @@
+module MergeRequests
+  class MergeabilityCheckService < ::BaseService
+    @merge_request: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    def initialize: (untyped merge_request) -> void
+
+    def async_execute: () -> untyped
+
+    # Updates the MR merge_status. Whenever it switches to a can_be_merged state,
+    # the merge-ref is refreshed.
+    #
+    # recheck - When given, it'll enforce a merge-ref refresh if the current merge_status is
+    # can_be_merged or cannot_be_merged and merge-ref is outdated.
+    # Given MergeRequests::RefreshService is called async, it might happen that the target
+    # branch gets updated, but the MergeRequest#merge_status lags behind. So in scenarios
+    # where we need the current state of the merge ref in repository, the `recheck`
+    # argument is required.
+    #
+    # retry_lease - Concurrent calls wait for at least 10 seconds until the
+    # lease is granted (other process finishes running). Returns an error
+    # ServiceResponse if the lease is not granted during this time.
+    #
+    # Returns a ServiceResponse indicating merge_status is/became can_be_merged
+    # and the merge-ref is synced. Success in case of being/becoming mergeable,
+    # error otherwise.
+    def execute: (?recheck: bool, ?retry_lease: bool) -> untyped
+
+    private
+
+    attr_reader merge_request: untyped
+
+    def check_mergeability: (untyped recheck) -> untyped
+
+    # It's possible for this service to send concurrent requests to Gitaly in order
+    # to "git update-ref" the same ref. Therefore we handle a light exclusive
+    # lease here.
+    #
+    def in_write_lock: (retry_lease: untyped) { (?) -> untyped } -> untyped
+
+    def payload: () -> untyped
+
+    def merge_ref_head_payload: () -> (nil | { commit_id: untyped, source_id: untyped, target_id: untyped })
+
+    def update_merge_status: () -> (false | untyped)
+
+    def reload_merge_head_diff: () -> untyped
+
+    def update_diff_discussion_positions!: () -> untyped
+
+    def recheck!: () -> (untyped | nil)
+
+    # Checks if the existing merge-ref is synced with the target branch.
+    #
+    # Returns true if the merge-ref does not exists or is out of sync.
+    def outdated_merge_ref?: () -> (false | true | untyped)
+
+    def can_git_merge?: () -> untyped
+
+    def merge_to_ref: () -> untyped
+
+    def service_error: () -> untyped
+  end
+end

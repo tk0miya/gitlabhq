@@ -1,0 +1,37 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        class Inputs
+          class Validator
+            @entries: untyped
+
+            @parsed_expressions: untyped
+
+            RULE_EXPRESSION_KEY: untyped
+
+            def initialize: (untyped entries) -> void
+
+            def validate!: () -> untyped
+
+            private
+
+            attr_reader entries: untyped
+
+            def validate_undefined_input_references: () -> untyped
+
+            def validate_rule_references: (untyped input_name, untyped rule, untyped rule_index, untyped defined_inputs) -> (nil | untyped)
+
+            def validate_circular_dependencies: () -> untyped
+
+            def build_dependency_graph: () -> untyped
+
+            def get_input_dependencies: (untyped input) -> (::Array[untyped] | untyped)
+
+            def extract_input_names_from: (untyped if_clause) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

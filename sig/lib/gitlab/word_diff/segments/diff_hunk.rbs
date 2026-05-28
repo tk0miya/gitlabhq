@@ -1,0 +1,30 @@
+# Diff hunk is line that starts with @@
+# It contains information about start line numbers
+#
+# Example:
+# @@ -1,4 +1,5 @@
+#
+# See more: https://www.gnu.org/software/diffutils/manual/html_node/Detailed-Unified.html
+module Gitlab
+  module WordDiff
+    module Segments
+      class DiffHunk
+        @line: untyped
+
+        def initialize: (untyped line) -> void
+
+        def pos_old: () -> untyped
+
+        def pos_new: () -> untyped
+
+        def first_line?: () -> untyped
+
+        def to_s: () -> untyped
+
+        private
+
+        attr_reader line: untyped
+      end
+    end
+  end
+end

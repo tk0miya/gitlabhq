@@ -1,0 +1,17 @@
+module Banzai
+  module ReferenceParser
+    class MentionedGroupParser < BaseParser
+      self.@data_attribute: untyped
+
+      GROUP_ATTR: "data-group"
+
+      def self.data_attribute: () -> untyped
+
+      def references_relation: () -> untyped
+
+      def nodes_visible_to_user: (untyped user, untyped nodes) -> untyped
+
+      def can_read_group_reference?: (untyped node, untyped user, untyped groups) -> untyped
+    end
+  end
+end

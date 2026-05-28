@@ -1,0 +1,19 @@
+module Gitlab
+  module Graphql
+    module Representation
+      class SubmoduleTreeEntry < SimpleDelegator
+        @submodule_links: untyped
+
+        include GlobalID::Identification
+
+        def self.decorate: (untyped submodules, untyped tree) -> untyped
+
+        def initialize: (untyped submodule, untyped submodule_links) -> void
+
+        def web_url: () -> untyped
+
+        def tree_url: () -> untyped
+      end
+    end
+  end
+end

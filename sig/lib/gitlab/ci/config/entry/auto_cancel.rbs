@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class AutoCancel < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Attributable
+
+          include ::Gitlab::Config::Entry::Validatable
+
+          ALLOWED_KEYS: ::Array[:on_new_commit | :on_job_failure]
+
+          ALLOWED_ON_NEW_COMMIT_OPTIONS: untyped
+
+          ALLOWED_ON_JOB_FAILURE_OPTIONS: untyped
+        end
+      end
+    end
+  end
+end

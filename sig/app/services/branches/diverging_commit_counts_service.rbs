@@ -1,0 +1,21 @@
+module Branches
+  class DivergingCommitCountsService
+    @repository: untyped
+
+    @cache: untyped
+
+    @root_ref_hash: untyped
+
+    def initialize: (untyped repository) -> void
+
+    def call: (untyped branch) -> untyped
+
+    private
+
+    attr_reader repository: untyped
+
+    attr_reader cache: untyped
+
+    def diverging_commit_counts: (untyped branch) -> untyped
+  end
+end

@@ -1,0 +1,58 @@
+class HelpController < ApplicationController
+  @help_index: untyped
+
+  @path: untyped
+
+  @instance_configuration: untyped
+
+  @clean_path: untyped
+
+  @documentation_url: untyped
+
+  @documentation_base_url: untyped
+
+  @documentation_file_path: untyped
+
+  @markdown: untyped
+
+  # Taken from Jekyll
+  # https://github.com/jekyll/jekyll/blob/3.5-stable/lib/jekyll/document.rb#L13
+  YAML_FRONT_MATTER_REGEXP: ::Regexp
+
+  def index: () -> untyped
+
+  def show: () -> untyped
+
+  def redirect_to_docs: () -> untyped
+
+  def shortcuts: () -> nil
+
+  def instance_configuration: () -> untyped
+
+  def drawers: () -> untyped
+
+  private
+
+  def get_markdown_without_frontmatter: (untyped path) -> untyped
+
+  def redirect_to_documentation_website?: () -> untyped
+
+  def documentation_url: () -> (nil | untyped)
+
+  def documentation_base_url: () -> untyped
+
+  # DEPRECATED
+  def documentation_base_url_from_db: () -> untyped
+
+  def documentation_base_url_from_yml_configuration: () -> (untyped | nil)
+
+  def documentation_file_path: () -> untyped
+
+  def version_segment: () -> (nil | untyped)
+
+  def render_documentation: () -> untyped
+
+  def path_to_doc: (untyped file_name) -> untyped
+
+  def markdown_for: (untyped raw_path) -> (nil | untyped)
+end

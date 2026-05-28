@@ -1,0 +1,41 @@
+module AlertManagement
+  class CreateAlertIssueService
+    @alert: untyped
+
+    @user: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    DEFAULT_ALERT_TITLE: untyped
+
+    DEFAULT_INCIDENT_TITLE: "New: Incident"
+
+    # @param alert [AlertManagement::Alert]
+    # @param user [User]
+    def initialize: (untyped alert, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader alert: untyped
+
+    attr_reader user: untyped
+
+    def allowed?: () -> untyped
+
+    def create_incident: () -> untyped
+
+    def update_title_for: (untyped issue) -> (nil | untyped)
+
+    def perform_after_create_tasks: (untyped issue) -> untyped
+
+    def error: (untyped message, ?untyped? issue) -> untyped
+
+    def error_issue_already_exists: () -> untyped
+
+    def error_no_permissions: () -> untyped
+
+    def alert_presenter: () -> untyped
+  end
+end

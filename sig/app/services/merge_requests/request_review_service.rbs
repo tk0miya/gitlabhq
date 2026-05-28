@@ -1,0 +1,13 @@
+module MergeRequests
+  class RequestReviewService < MergeRequests::BaseService
+    def execute: (untyped merge_request, untyped user) -> untyped
+
+    private
+
+    def notify_reviewer: (untyped merge_request, untyped reviewer) -> untyped
+
+    def create_system_note: (untyped merge_request, untyped user, untyped has_unapproved) -> untyped
+
+    def with_valid_reviewer: (untyped merge_request, untyped user) { (untyped) -> untyped } -> untyped
+  end
+end

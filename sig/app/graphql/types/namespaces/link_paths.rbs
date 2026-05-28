@@ -1,0 +1,64 @@
+module Types
+  module Namespaces
+    module LinkPaths
+      @url_helpers: untyped
+
+      include ::Types::BaseInterface
+
+      # rubocop: disable Graphql/AuthorizeTypes, GraphQL/GraphqlName -- helper class
+      class UrlHelpers
+        @current_user: untyped
+
+        include GitlabRoutingHelper
+
+        include Gitlab::Routing
+
+        include ::IssuablesHelper
+
+        include FeedTokenHelper
+
+        include LicenseHelper
+
+        def initialize: (untyped current_user) -> void
+
+        # Generates feed URL options with HMAC-signed token
+        def feed_url_options: (untyped type, untyped path) -> { format: untyped, feed_token: untyped }
+
+        private
+
+        attr_reader current_user: untyped
+      end
+
+      TYPE_MAPPINGS: ::Hash[untyped, untyped]
+
+      def self.type_mappings: () -> untyped
+
+      def self.resolve_type: (untyped object, untyped _context) -> untyped
+
+      def register: () -> untyped
+
+      def report_abuse: () -> untyped
+
+      def sign_in: () -> untyped
+
+      def emails_help_page_path: () -> untyped
+
+      def markdown_help_path: () -> untyped
+
+      def quick_actions_help_path: () -> untyped
+
+      def user_export_email: () -> untyped
+
+      def autocomplete_award_emojis_path: () -> untyped
+
+      # override in EE
+      def new_trial_path: () -> untyped
+
+      private
+
+      def url_helpers: () -> untyped
+
+      def group: () -> untyped
+    end
+  end
+end

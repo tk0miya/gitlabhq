@@ -1,0 +1,53 @@
+module RateLimitedService
+  extend ActiveSupport::Concern
+
+  RateLimitedNotSetupError: untyped
+
+  class RateLimitedError < StandardError
+    @key: untyped
+
+    @rate_limiter: untyped
+
+    def initialize: (key: untyped, rate_limiter: untyped) -> void
+
+    def headers: () -> ::Hash[untyped, untyped]
+
+    def log_request: (untyped request, untyped current_user) -> untyped
+
+    private
+
+    attr_reader key: untyped
+
+    attr_reader rate_limiter: untyped
+  end
+
+  class RateLimiterScopedAndKeyed
+    @key: untyped
+
+    @opts: untyped
+
+    @rate_limiter: untyped
+
+    @users_allowlist: untyped
+
+    attr_reader key: untyped
+
+    attr_reader opts: untyped
+
+    attr_reader rate_limiter: untyped
+
+    def initialize: (key: untyped, opts: untyped, rate_limiter: untyped) -> void
+
+    def rate_limit!: (untyped service) -> untyped
+
+    private
+
+    def users_allowlist: () -> untyped
+
+    def evaluated_scope_for: (untyped service) -> untyped
+  end
+
+  def execute_without_rate_limiting: (*untyped args, **untyped kwargs) -> untyped
+
+  def execute: (*untyped args, **untyped kwargs) -> untyped
+end

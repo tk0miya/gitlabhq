@@ -1,0 +1,9 @@
+module API
+  class ProjectMilestones < ::API::Base
+    include PaginationParams
+
+    include MilestoneResponses
+
+    include APIGuard
+  end
+end

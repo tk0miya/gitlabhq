@@ -1,0 +1,19 @@
+module Gitlab
+  module HookData
+    class MergeRequestBuilder < BaseBuilder
+      def self.safe_hook_attributes: () -> ::Array[:assignee_id | :author_id | :blocking_discussions_resolved | :created_at | :description | :draft | :head_pipeline_id | :id | :iid | :last_edited_at | :last_edited_by_id | :merge_commit_sha | :merge_error | :merge_params | :merge_status | :merge_user_id | :merge_when_pipeline_succeeds | :milestone_id | :reviewer_ids | :source_branch | :source_project_id | :squash_commit_sha | :state_id | :system | :target_branch | :target_project_id | :time_estimate | :title | :updated_at | :updated_by_id | :prepared_at]
+
+      def self.safe_hook_relations: () -> ::Array[:assignees | :labels | :reviewers | :total_time_spent | :time_change]
+
+      alias merge_request object
+
+      def build: () -> untyped
+
+      private
+
+      def additional_attributes: () -> { assignee_id: untyped, assignee_ids: untyped, blocking_discussions_resolved: untyped, description: untyped, detailed_merge_status: untyped, draft: untyped, first_contribution: untyped, human_time_change: untyped, human_time_estimate: untyped, human_total_time_spent: untyped, labels: untyped, last_commit: untyped, reviewer_ids: untyped, source: untyped, state: untyped, system: false, target: untyped, target_branch: untyped, time_change: untyped, total_time_spent: untyped, url: untyped, work_in_progress: untyped }
+
+      def detailed_merge_status: () -> untyped
+    end
+  end
+end

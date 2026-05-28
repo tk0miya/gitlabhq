@@ -1,0 +1,17 @@
+module RapidDiffs
+  module Viewers
+    class ImageViewComponent < ViewerComponent
+      include TreeHelper
+
+      def self.viewer_name: () -> "image"
+
+      def image_data: () -> { old_path: untyped, new_path: untyped, old_size: untyped, new_size: untyped, diff_mode: untyped }
+
+      def diff_file_old_blob_raw_url: () -> (nil | untyped)
+
+      def diff_file_blob_raw_url: () -> untyped
+
+      def diff_mode: () -> ("new" | "deleted" | "renamed" | "mode_changed" | "replaced")
+    end
+  end
+end

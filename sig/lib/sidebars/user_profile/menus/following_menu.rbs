@@ -1,0 +1,21 @@
+module Sidebars
+  module UserProfile
+    module Menus
+      class FollowingMenu < ::Sidebars::UserProfile::BaseMenu
+        include Gitlab::Utils::StrongMemoize
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "users"
+
+        def active_routes: () -> { path: "users#following" }
+
+        def has_pill?: () -> untyped
+
+        def pill_count: () -> untyped
+      end
+    end
+  end
+end

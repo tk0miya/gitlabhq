@@ -1,0 +1,31 @@
+module WorkItems
+  class UpdateService < ::Issues::UpdateService
+    @extra_params: untyped
+
+    @widget_params: untyped
+
+    extend Gitlab::Utils::Override
+
+    include WidgetableService
+
+    def initialize: (container: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped], ?perform_spam_check: bool, ?widget_params: ::Hash[untyped, untyped]) -> void
+
+    def execute: (untyped work_item) -> untyped
+
+    private
+
+    attr_reader extra_params: untyped
+
+    def handle_date_changes: (untyped work_item) -> (nil | untyped)
+
+    def associations_before_update: (untyped work_item) -> untyped
+
+    def after_update: (untyped work_item, untyped old_associations) -> untyped
+
+    def payload: (untyped work_item) -> { work_item: untyped }
+
+    def handle_label_changes: (untyped issuable, untyped old_labels) -> (false | untyped)
+
+    def parent: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  class EncryptedServiceDeskEmailCommand < EncryptedCommandBase
+    DISPLAY_NAME: "SERVICE_DESK_EMAIL"
+
+    EDIT_COMMAND_NAME: "gitlab:service_desk_email:secret:edit"
+
+    def self.encrypted_secrets: () -> untyped
+
+    def self.encrypted_file_template: () -> "# password: '123'\n# user: 'gitlab-incoming@gmail.com'\n"
+  end
+end

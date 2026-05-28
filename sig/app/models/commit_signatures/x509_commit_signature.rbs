@@ -1,0 +1,19 @@
+module CommitSignatures
+  class X509CommitSignature < ApplicationRecord
+    include CommitSignature
+
+    include SignatureType
+
+    def type: () -> :x509
+
+    def x509_commit: () -> (nil | untyped)
+
+    def signed_by_user: () -> untyped
+
+    private
+
+    def emails_for_verification: () -> untyped
+
+    def verified_committer_emails: () -> untyped
+  end
+end

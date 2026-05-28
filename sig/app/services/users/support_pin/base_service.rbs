@@ -1,0 +1,17 @@
+module Users
+  module SupportPin
+    class BaseService
+      @user: untyped
+
+      SUPPORT_PIN_PREFIX: "support_pin"
+
+      SUPPORT_PIN_EXPIRATION: untyped
+
+      def initialize: (untyped user) -> void
+
+      def pin_key: () -> ::String
+
+      def pin_exists?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Import
+  module GitlabProjects
+    # Validates the given object's #content_type and #content_length accordingly
+    # with the Project Import requirements
+    class RemoteFileValidator < ActiveModel::Validator
+      ALLOWED_CONTENT_TYPES: ::Array["application/gzip" | "application/x-tar" | "application/x-gzip"]
+
+      def validate: (untyped record) -> untyped
+
+      private
+
+      def validate_content_length: (untyped record) -> (untyped | untyped | nil)
+
+      def humanize: (untyped number) -> untyped
+
+      def validate_content_type: (untyped record) -> (nil | untyped)
+
+      def file_size_limit: () -> untyped
+    end
+  end
+end

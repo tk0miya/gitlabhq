@@ -1,0 +1,65 @@
+module ClickHouse
+  module Concerns
+    # This module can be used for batching over a ClickHouse database table column
+    # and do something with the yielded values. The module is responsible for
+    # correctly restoring the state (cursor) in case the processing was
+    # interrupted or restart the processing from the beginning of the table
+    # when the table was fully processed.
+    #
+    # This class acts like a "template method" pattern where the implementor classes
+    # need to define two methods:
+    #
+    # - init_context: Returns a memoized hash, initializing the context that controls the data processing.
+    # - pluck_column: which column value to take from the ClickHouse DB when iterating
+    # - process_collected_values: once a limit is reached or no more data, do something
+    # - collect_values: filter, process and store the returned values from ClickHouse
+    # with the collected values.
+    module ConsistencyWorker
+      @runtime_limiter: untyped
+
+      @metadata: untyped
+
+      @connection: untyped
+
+      extend ActiveSupport::Concern
+
+      include Gitlab::Utils::StrongMemoize
+
+      MAX_RUNTIME: untyped
+
+      MAX_TTL: untyped
+
+      CLICK_HOUSE_BATCH_SIZE: 100000
+
+      POSTGRESQL_BATCH_SIZE: 2500
+
+      LIMIT_STATUSES: ::Array[:limit_reached | :over_time]
+
+      def perform: () -> (nil | untyped)
+
+      private
+
+      attr_reader context: untyped
+
+      def click_house_each_batch: () { (untyped) -> untyped } -> untyped
+
+      def enabled?: () -> untyped
+
+      def runtime_limiter: () -> untyped
+
+      def iterator: () -> untyped
+
+      def sync_cursor: () -> ::String
+
+      def previous_id: () -> untyped
+
+      def metadata: () -> untyped
+
+      def connection: () -> untyped
+
+      def table_fully_processed?: () -> untyped
+
+      def limit_was_reached?: () -> untyped
+    end
+  end
+end

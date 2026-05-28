@@ -1,0 +1,55 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Collection
+        class Item
+          @variable: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          VARIABLES_REGEXP: ::Regexp
+
+          VARIABLE_REF_CHARS: ::Array["$" | "%"]
+
+          def initialize: (key: untyped, value: untyped, ?public: bool, ?file: bool, ?masked: bool, ?raw: bool) -> void
+
+          def key: () -> untyped
+
+          def value: () -> untyped
+
+          def raw?: () -> untyped
+
+          alias raw raw?
+
+          def file?: () -> untyped
+
+          def masked?: () -> untyped
+
+          def []: (untyped key) -> untyped
+
+          def ==: (untyped other) -> untyped
+
+          def depends_on: () -> untyped
+
+          #
+          # If `file: true` or `raw: true` has been provided we expose it, otherwise we
+          # don't expose `file` and `raw` attributes at all (stems from what the runner expects).
+          #
+          # This method should only be called via runner_variables->to_runner_variables->to_runner_variable
+          # because this is an expensive operation by initializing a new object.
+          #
+          def to_runner_variable: () -> untyped
+
+          def to_hash_variable: () -> untyped
+
+          def self.fabricate: (untyped resource) -> untyped
+
+          def self.possible_var_reference?: (untyped value) -> (nil | untyped)
+
+          # This is for debugging purposes only.
+          def to_s: () -> (untyped | ::String)
+        end
+      end
+    end
+  end
+end

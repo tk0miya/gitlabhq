@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module Parsers
+      module Terraform
+        class Tfplan
+          RESOURCE_COUNT_INTEGER_LIMIT: 999999
+
+          RESOURCE_COUNT_STRING_LIMIT: ::Regexp
+
+          InvalidResourceCountError: untyped
+
+          TfplanParserError: untyped
+
+          def parse!: (untyped json_data, untyped terraform_reports, artifact: untyped) -> untyped
+
+          private
+
+          def has_required_keys?: (untyped plan_data) -> untyped
+
+          def job_details: (untyped job) -> { "job_id" => untyped, "job_name" => untyped, "job_path" => untyped }
+
+          def invalid_tfplan: (untyped error_type, untyped job_details) -> untyped
+
+          def valid_tfplan: (untyped plan_data, untyped job_details) -> untyped
+
+          def sanitize_resource_count: (untyped value) -> untyped
+        end
+      end
+    end
+  end
+end

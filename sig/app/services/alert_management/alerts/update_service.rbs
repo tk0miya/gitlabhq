@@ -1,0 +1,78 @@
+module AlertManagement
+  module Alerts
+    class UpdateService < ::BaseProjectService
+      @alert: untyped
+
+      @param_errors: untyped
+
+      @status: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      # @param alert [AlertManagement::Alert]
+      # @param current_user [User]
+      # @param params [Hash] Attributes of the alert
+      def initialize: (untyped alert, untyped current_user, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader alert: untyped
+
+      attr_reader param_errors: untyped
+
+      attr_reader status: untyped
+
+      def allowed?: () -> untyped
+
+      def todo_service: () -> untyped
+
+      def success: () -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def error_no_permissions: () -> untyped
+
+      def error_invalid_params: () -> untyped
+
+      def add_param_error: (untyped message) -> untyped
+
+      def param_errors?: () -> untyped
+
+      def filter_params: () -> untyped
+
+      def handle_changes: (old_assignees: untyped) -> untyped
+
+      # ----- Assignee-related behavior ------
+      def filter_assignees: () -> (nil | untyped)
+
+      def unauthorized_assignees?: () -> untyped
+
+      def handle_assignement: (untyped old_assignees) -> untyped
+
+      def assign_todo: (untyped old_assignees) -> untyped
+
+      def add_assignee_system_note: (untyped old_assignees) -> untyped
+
+      # ------ Status-related behavior -------
+      def filter_status: () -> (nil | untyped)
+
+      def handle_status_change: () -> untyped
+
+      def add_status_change_system_note: () -> untyped
+
+      def resolve_todos: () -> untyped
+
+      def filter_duplicate: () -> (nil | untyped)
+
+      def duplicate_alert?: () -> (nil | untyped)
+
+      def unresolved_alert: () -> untyped
+
+      def unresolved_alert_error: () -> untyped
+
+      def unresolved_alert_url_params: () -> { link_start: untyped, link_end: untyped }
+    end
+  end
+end

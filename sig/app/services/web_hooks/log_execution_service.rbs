@@ -1,0 +1,39 @@
+module WebHooks
+  class LogExecutionService
+    @hook: untyped
+
+    @log_data: untyped
+
+    @response_category: untyped
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    LOCK_TTL: untyped
+
+    LOCK_SLEEP: untyped
+
+    LOCK_RETRY: 25
+
+    attr_reader hook: untyped
+
+    attr_reader log_data: untyped
+
+    attr_reader response_category: untyped
+
+    def initialize: (hook: untyped, log_data: untyped, response_category: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def log_execution: () -> untyped
+
+    def mask_response_headers: () -> (nil | untyped)
+
+    # Perform this operation within an `Gitlab::ExclusiveLease` lock to make it
+    # safe to be called concurrently from different workers.
+    def update_hook_failure_state: () -> untyped
+
+    def lock_name: () -> ::String
+  end
+end

@@ -1,0 +1,56 @@
+module IssuableCollections
+  @issuables: untyped
+
+  @total_pages: untyped
+
+  @issuable_meta_data: untyped
+
+  # Used by view to highlight active option
+  @sort: untyped
+
+  @finder: untyped
+
+  @collection_type: untyped
+
+  @preload_for_collection: untyped
+
+  extend ActiveSupport::Concern
+
+  include PaginatedCollection
+
+  include SearchRateLimitable
+
+  include SortingHelper
+
+  include SortingPreference
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def set_issuables_index: () -> untyped
+
+  def set_pagination: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def issuables_collection: () -> untyped
+
+  def issuable_finder_for: (untyped finder_class) -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def finder_options: () -> untyped
+
+  def default_state: () -> "opened"
+
+  def legacy_sort_cookie_name: () -> "issuable_sort"
+
+  def default_sort_order: () -> untyped
+
+  def finder: () -> untyped
+
+  def collection_type: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def preload_for_collection: () -> untyped
+end

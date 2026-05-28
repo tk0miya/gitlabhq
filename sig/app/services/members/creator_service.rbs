@@ -1,0 +1,119 @@
+module Members
+  # This class serves as more of an app-wide way we add/create members
+  # All roads to add members should take this path.
+  class CreatorService
+    @invitee: untyped
+
+    @builder: untyped
+
+    @args: untyped
+
+    @access_level: untyped
+
+    @member: untyped
+
+    def self.cannot_manage_owners?: (untyped source, untyped current_user) -> untyped
+
+    def self.parsed_access_level: (untyped access_level) -> untyped
+
+    def self.access_levels: () -> untyped
+
+    # Add members to sources with passed access option
+    #
+    # access can be an integer representing a access code
+    # or symbol like :maintainer representing role
+    #
+    # Ex.
+    #   add_members(
+    #     sources,
+    #     user_ids,
+    #     Member::MAINTAINER
+    #   )
+    #
+    #   add_members(
+    #     sources,
+    #     user_ids,
+    #     :maintainer
+    #   )
+    #
+    # @param sources [Group, Project, Array<Group>, Array<Project>, Group::ActiveRecord_Relation,
+    # Project::ActiveRecord_Relation] - Can't be an array of source ids because we don't know the type of source.
+    # @return Array<Member>
+    def self.add_members: (untyped sources, untyped invitees, untyped access_level, **untyped args) -> (::Array[untyped] | untyped)
+
+    def self.build_members: (untyped emails, untyped users, untyped common_arguments) -> untyped
+
+    # NOTE: `immediately_sync_authorizations` can be expensive to run in the foreground. This should only be used in
+    # rare cases where asynchronous authorization does not work (e.g. user is created and used immediately in the same
+    # request).
+    def self.add_member: (untyped source, untyped invitee, untyped access_level, **untyped args) -> untyped
+
+    private
+
+    def self.parsed_args: (untyped args) -> { current_user: untyped, expires_at: untyped, ldap: untyped, skip_authorization: untyped }
+
+    def self.managing_owners?: (untyped current_user, untyped access_level) -> untyped
+
+    def self.parse_users_list: (untyped source, untyped list) -> ::Array[untyped]
+
+    public
+
+    def initialize: (invitee: untyped, ?builder: untyped, **untyped args) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader invitee: untyped
+
+    attr_reader access_level: untyped
+
+    attr_reader member: untyped
+
+    attr_reader args: untyped
+
+    attr_reader builder: untyped
+
+    def assign_member_attributes: () -> untyped
+
+    def commit_member: () -> untyped
+
+    def can_commit_member?: () -> (true | untyped)
+
+    def prevent_role_change?: () -> (false | untyped)
+
+    def can_create_new_member?: () -> untyped
+
+    def can_update_existing_member?: () -> untyped
+
+    # Populates the attributes of a member.
+    #
+    # This logic resides in a separate method so that EE can extend this logic,
+    # without having to patch the `add_members` method directly.
+    def member_attributes: () -> { created_by: untyped, access_level: untyped, expires_at: untyped, importing: untyped }
+
+    def commit_changes: () -> (untyped | untyped | nil)
+
+    def approve_request: () -> untyped
+
+    def current_user: () -> untyped
+
+    def skip_authorization?: () -> untyped
+
+    def add_commit_error: () -> untyped
+
+    def add_authorization_error: () -> untyped
+
+    def same_org?: () -> (true | untyped)
+
+    def add_not_valid_org_error: () -> untyped
+
+    def find_or_build_member: () -> untyped
+
+    def ldap: () -> untyped
+
+    def source: () -> untyped
+
+    def existing_members: () -> untyped
+  end
+end

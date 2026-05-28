@@ -1,0 +1,63 @@
+module TimeboxesHelper
+  @milestone_visible_issues_count: untyped
+
+  include EntityDateHelper
+
+  include Gitlab::Utils::StrongMemoize
+
+  def milestone_status_string: (untyped milestone) -> untyped
+
+  def milestone_badge_variant: (untyped milestone) -> (:info | :warning | :neutral | :success)
+
+  def milestones_filter_path: (?::Hash[untyped, untyped] opts) -> untyped
+
+  def milestones_issues_path: (?::Hash[untyped, untyped] opts) -> untyped
+
+  def milestones_browse_issuables_path: (untyped milestone, type: untyped, ?state: untyped?) -> untyped
+
+  def milestone_issues_by_label_count: (untyped milestone, untyped label, state: untyped) -> untyped
+
+  def milestone_progress_tooltip_text: (untyped milestone) -> untyped
+
+  def milestone_progress_bar: (untyped milestone) -> untyped
+
+  def milestone_time_for: (untyped date, untyped date_type) -> untyped
+
+  def milestone_issues_tooltip_text: (untyped milestone) -> untyped
+
+  def milestone_merge_requests_tooltip_text: (untyped milestone) -> untyped
+
+  def milestone_releases_tooltip_text: (untyped milestone) -> untyped
+
+  def recent_releases_with_counts: (untyped milestone, untyped user) -> (::Array[::Array[untyped] | 0] | ::Array[untyped])
+
+  def milestone_releases_tooltip_list: (untyped releases, ?::Integer more_count) -> untyped
+
+  def milestone_tooltip_due_date: (untyped milestone) -> (::String | untyped)
+
+  def timebox_date_range: (untyped timebox) -> (untyped | untyped | untyped | nil)
+
+  alias milestone_date_range timebox_date_range
+
+  def milestone_tab_path: (untyped milestone, untyped tab, ?::Hash[untyped, untyped] params) -> untyped
+
+  def update_milestone_path: (untyped milestone, ?::Hash[untyped, untyped] params) -> untyped
+
+  def group_milestone_route: (untyped milestone, ?::Hash[untyped, untyped] params) -> untyped
+
+  def edit_milestone_path: (untyped milestone) -> (untyped | untyped | nil)
+
+  def can_admin_group_milestones?: () -> untyped
+
+  def display_issues_count_warning?: (untyped milestone) -> untyped
+
+  def milestone_issues_count_message: (untyped milestone) -> untyped
+
+  private
+
+  def milestone_visible_issues_count: (untyped milestone) -> untyped
+
+  def milestones_path_for_type: (untyped type, untyped opts) -> untyped
+
+  def use_work_items_for_issues?: (untyped type, untyped resource_parent) -> untyped
+end

@@ -1,0 +1,13 @@
+module Subscriptions
+  module Ci
+    module Stages
+      class StatusUpdated < ::Subscriptions::BaseSubscription
+        include Gitlab::Graphql::Laziness
+
+        def authorized?: (stage_id: untyped) -> untyped
+
+        def update: (stage_id: untyped) -> untyped
+      end
+    end
+  end
+end

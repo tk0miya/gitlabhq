@@ -1,0 +1,43 @@
+module Security
+  module CiConfiguration
+    CiContentParseError: untyped
+
+    class BaseCreateService
+      @project: untyped
+
+      @current_user: untyped
+
+      @branch_name: untyped
+
+      @gitlab_ci_yml: untyped
+
+      attr_reader branch_name: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader project: untyped
+
+      attr_reader name: untyped
+
+      def initialize: (untyped project, untyped current_user) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def attributes: () -> { commit_message: untyped, branch_name: untyped, start_branch: untyped, actions: ::Array[untyped] }
+
+      def existing_gitlab_ci_content: () -> untyped
+
+      def successful_change_path: () -> untyped
+
+      def remove_branch_on_exception: () -> (nil | untyped)
+
+      def track_event: (untyped attributes_for_commit) -> untyped
+
+      def extract_safe_message: (untyped message) -> untyped
+
+      def root_ref_sha: (untyped repository) -> untyped
+    end
+  end
+end

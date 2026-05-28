@@ -1,0 +1,11 @@
+module IncidentManagement
+  module Settings
+    include Gitlab::Utils::StrongMemoize
+
+    def incident_management_setting: () -> untyped
+
+    def process_issues?: () -> untyped
+
+    def auto_close_incident?: () -> untyped
+  end
+end

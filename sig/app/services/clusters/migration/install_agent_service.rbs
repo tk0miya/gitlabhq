@@ -1,0 +1,59 @@
+module Clusters
+  module Migration
+    class InstallAgentService
+      @migration: untyped
+
+      NAMESPACE_LENGTH_LIMIT: 63
+
+      def initialize: (untyped migration) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader migration: untyped
+
+      def can_install_agent?: () -> untyped
+
+      def service_account_name: () -> "install-gitlab-agent"
+
+      def service_account_namespace: () -> "default"
+
+      def service_account_resource: () -> untyped
+
+      def cluster_role_binding_resource: () -> untyped
+
+      def helm_install_pod_resource: () -> untyped
+
+      def helm_install_pod_metadata: () -> { name: untyped, namespace: untyped }
+
+      def helm_install_pod_spec: () -> { containers: ::Array[{ name: "helm", image: untyped, env: ::Array[{ name: "INSTALL_COMMAND", value: untyped }], command: ::Array["/bin/sh"], args: ::Array["-c" | "$(INSTALL_COMMAND)"] }], serviceAccountName: untyped, restartPolicy: "Never" }
+
+      def add_repository_command: () -> "helm repo add gitlab https://charts.gitlab.io"
+
+      def update_repository_command: () -> "helm repo update"
+
+      def install_command: () -> untyped
+
+      def helm_install_command: () -> untyped
+
+      def namespace_flag: () -> ::Array["--namespace" | untyped]
+
+      def image_tag_flag: () -> (nil | ::Array["--set" | ::String])
+
+      def token_flag: () -> ::Array["--set" | ::String]
+
+      def kas_address_flag: () -> ::Array["--set" | ::String]
+
+      def agent_namespace: () -> untyped
+
+      def helm_install_image: () -> "registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image:helm-3.17.2-kube-1.32.3-alpine-3.21.3"
+
+      def agent_token: () -> untyped
+
+      def kas_address: () -> untyped
+
+      def update_status!: (untyped status, ?message: untyped?) -> untyped
+    end
+  end
+end

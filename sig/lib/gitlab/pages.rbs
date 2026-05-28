@@ -1,0 +1,33 @@
+module Gitlab
+  module Pages
+    VERSION: untyped
+
+    INTERNAL_API_REQUEST_HEADER: "Gitlab-Pages-Api-Request"
+
+    MAX_SIZE: untyped
+
+    DEPLOYMENT_EXPIRATION: untyped
+
+    include JwtAuthenticatable
+
+    class UniqueDomainGenerationFailure < StandardError
+      def initialize: (?::String msg) -> void
+    end
+
+    def self.verify_api_request: (untyped request_headers) -> untyped
+
+    def self.secret_path: () -> untyped
+
+    def self.access_control_is_forced?: () -> (false | untyped)
+
+    def self.enabled?: () -> untyped
+
+    def self.add_unique_domain_to: (untyped project) -> (nil | untyped)
+
+    def self.update_primary_domain: (untyped project, untyped primary_domain) -> (nil | untyped)
+
+    def self.multiple_versions_enabled_for?: (untyped project) -> (false | untyped)
+
+    def self.generate_unique_domain: (untyped project) -> (false | untyped)
+  end
+end

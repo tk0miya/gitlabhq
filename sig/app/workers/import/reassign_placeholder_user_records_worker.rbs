@@ -1,0 +1,25 @@
+module Import
+  class ReassignPlaceholderUserRecordsWorker
+    @import_source_user: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    BACKOFF_PERIOD: untyped
+
+    def perform: (untyped import_source_user_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+    def perform_failure: (untyped exception, untyped import_source_user_id) -> untyped
+
+    private
+
+    attr_reader import_source_user: untyped
+
+    def import_source_user_valid?: () -> (true | false)
+
+    def send_reassign_complete_email: () -> untyped
+
+    def log_and_fail_reassignment: (untyped exception) -> untyped
+  end
+end

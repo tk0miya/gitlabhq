@@ -1,0 +1,33 @@
+module Import
+  module BulkImports
+    class FileDownloadStrategy
+      @logger: untyped
+
+      ServiceError: untyped
+
+      DEFAULT_ALLOWED_CONTENT_TYPES: ::Array["application/gzip" | "application/octet-stream"]
+
+      def download_file: (untyped filepath) -> untyped
+
+      def validate!: () -> untyped
+
+      def log_and_raise_error: (untyped message) -> untyped
+
+      private
+
+      def perform_download: (untyped _filepath) -> untyped
+
+      def file_size_limit: () -> untyped
+
+      def validate_symlink: (untyped filepath) -> (nil | untyped)
+
+      def validate_size!: (untyped size) -> (nil | untyped)
+
+      def validate_url!: (untyped url) -> untyped
+
+      def log_error_params: () -> ::Hash[untyped, untyped]
+
+      def logger: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module BulkImports
+  module Common
+    module Extractors
+      class NdjsonExtractor
+        @relation: untyped
+
+        @tmpdir: untyped
+
+        @download_service: untyped
+
+        @decompression_service: untyped
+
+        @ndjson_reader: untyped
+
+        def initialize: (relation: untyped) -> void
+
+        def extract: (untyped context) -> untyped
+
+        def remove_tmpdir: () -> untyped
+
+        private
+
+        attr_reader relation: untyped
+
+        attr_reader tmpdir: untyped
+
+        def filename: () -> ::String
+
+        def download_service: (untyped context) -> untyped
+
+        def decompression_service: (untyped context) -> untyped
+
+        def ndjson_reader: () -> untyped
+      end
+    end
+  end
+end

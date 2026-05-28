@@ -1,0 +1,36 @@
+module Import
+  module SourceUsers
+    class RetryFailedReassignmentService < BaseService
+      @import_source_user: untyped
+
+      @current_user: untyped
+
+      include ActionView::Helpers::DateHelper
+
+      include Gitlab::Utils::StrongMemoize
+
+      RETRY_ATTEMPTS_KEY: "import_source_users/%{source_user_id}/retry_reassignment_timestamps"
+
+      MAX_RETRY_ATTEMPTS: 3
+
+      RETRY_COOLDOWN: untyped
+
+      def initialize: (untyped import_source_user, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      # Recent retry attempt timestamps as integers sorted in ascending order (oldest to newest)
+      def recent_retry_attempts: () -> untyped
+
+      def retry_attempts_exceeded?: () -> untyped
+
+      def record_retry_attempt: () -> untyped
+
+      def retry_timestamps_key: () -> untyped
+
+      def error_retry_attempts_exceeded: () -> untyped
+    end
+  end
+end

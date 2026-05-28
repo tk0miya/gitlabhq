@@ -1,0 +1,77 @@
+module Gitlab
+  module Ci
+    module Reports
+      class TestCase
+        @suite_name: untyped
+
+        @name: untyped
+
+        @classname: untyped
+
+        @file: untyped
+
+        @execution_time: untyped
+
+        @status: untyped
+
+        @system_output: untyped
+
+        @stack_trace: untyped
+
+        @attachment: untyped
+
+        @job: untyped
+
+        @recent_failures: untyped
+
+        @key: untyped
+
+        STATUS_SUCCESS: "success"
+
+        STATUS_FAILED: "failed"
+
+        STATUS_SKIPPED: "skipped"
+
+        STATUS_ERROR: "error"
+
+        STATUS_TYPES: ::Array[untyped]
+
+        attr_reader suite_name: untyped
+
+        attr_reader name: untyped
+
+        attr_reader classname: untyped
+
+        attr_reader execution_time: untyped
+
+        attr_reader status: untyped
+
+        attr_reader file: untyped
+
+        attr_reader system_output: untyped
+
+        attr_reader stack_trace: untyped
+
+        attr_reader key: untyped
+
+        attr_reader attachment: untyped
+
+        attr_reader job: untyped
+
+        attr_reader recent_failures: untyped
+
+        def initialize: (untyped params) -> void
+
+        def set_recent_failures: (untyped count, untyped base_branch) -> untyped
+
+        def has_attachment?: () -> untyped
+
+        def attachment_url: () -> (nil | untyped)
+
+        private
+
+        def hash_key: (untyped key) -> untyped
+      end
+    end
+  end
+end

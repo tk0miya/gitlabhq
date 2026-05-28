@@ -1,0 +1,23 @@
+module BulkImports
+  class ImportsFinder
+    @user: untyped
+
+    @params: untyped
+
+    def initialize: (user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader status: untyped
+
+    def filter_by_status: (untyped imports) -> untyped
+
+    def sort: (untyped imports) -> untyped
+
+    def include_configuration: (untyped imports) -> untyped
+  end
+end

@@ -1,0 +1,68 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # Tracking of load balancing state per user session.
+      #
+      # A session starts at the beginning of a request and ends once the request
+      # has been completed. Sessions can be used to keep track of what hosts
+      # should be used for queries.
+      class Session
+        @use_primary: untyped
+
+        @performed_write: untyped
+
+        @ignore_writes: untyped
+
+        @fallback_to_replicas_for_ambiguous_queries: untyped
+
+        @use_replicas_for_read_queries: untyped
+
+        def initialize: () -> void
+
+        def use_primary?: () -> untyped
+
+        alias using_primary? use_primary?
+
+        def use_primary!: () -> untyped
+
+        def use_primary: (?write_fallback: bool) { () -> untyped } -> untyped
+
+        def ignore_writes: () { () -> untyped } -> untyped
+
+        alias without_sticky_writes ignore_writes
+
+        # Indicates that the read SQL statements from anywhere inside this
+        # blocks should use a replica, regardless of the current primary
+        # stickiness or whether a write query is already performed in the
+        # current session. This interface is reserved mostly for performance
+        # purpose. This is a good tool to push expensive queries, which can
+        # tolerate the replica lags, to the replicas.
+        #
+        # Write and ambiguous queries inside this block are still handled by
+        # the primary.
+        def use_replicas_for_read_queries: () { () -> untyped } -> untyped
+
+        def use_replicas_for_read_queries?: () -> untyped
+
+        # Indicate that the ambiguous SQL statements from anywhere inside this
+        # block should use a replica. The ambiguous statements include:
+        # - Transactions.
+        # - Custom queries (via exec_query, execute, etc.)
+        # - In-flight connection configuration change (SET LOCAL statement_timeout = 5000)
+        #
+        # This is a weak enforcement. This helper incorporates well with
+        # primary stickiness:
+        # - If the queries are about to write
+        # - The current session already performed writes
+        # - It prefers to use primary, aka, use_primary or use_primary! were called
+        def fallback_to_replicas_for_ambiguous_queries: () { () -> untyped } -> untyped
+
+        def fallback_to_replicas_for_ambiguous_queries?: () -> untyped
+
+        def write!: () -> (nil | untyped)
+
+        def performed_write?: () -> untyped
+      end
+    end
+  end
+end

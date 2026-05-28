@@ -1,0 +1,55 @@
+module AppearancesHelper
+  include MarkupHelper
+
+  include Gitlab::Utils::StrongMemoize
+
+  def appearance_pwa_icon_path_scaled: (untyped width) -> (nil | untyped)
+
+  def appearance_maskable_logo: () -> untyped
+
+  def append_root_path: (untyped path) -> untyped
+
+  def brand_title: () -> untyped
+
+  def custom_sign_in_brand_title: () -> nil
+
+  def custom_sign_up_brand_title: () -> nil
+
+  def appearance_apple_touch_icon: () -> untyped
+
+  def appearance_pwa_name: () -> untyped
+
+  def appearance_pwa_short_name: () -> untyped
+
+  def appearance_pwa_description: () -> untyped
+
+  def site_name: () -> untyped
+
+  def default_brand_title: () -> untyped
+
+  def brand_image: () -> untyped
+
+  def brand_image_path: () -> untyped
+
+  def custom_sign_in_description: () -> untyped
+
+  def brand_member_guidelines: () -> untyped
+
+  def brand_new_project_guidelines: () -> untyped
+
+  def brand_profile_image_guidelines: () -> untyped
+
+  def current_appearance: () -> untyped
+
+  def brand_header_logo: (?::Hash[untyped, untyped] options) -> untyped
+
+  def header_message: () -> (nil | untyped)
+
+  def footer_message: () -> (nil | untyped)
+
+  private
+
+  def render_message: (untyped field_sym, ?class_names: untyped, ?style: untyped) -> untyped
+
+  def message_style: () -> untyped
+end

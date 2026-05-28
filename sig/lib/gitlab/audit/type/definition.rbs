@@ -1,0 +1,61 @@
+module Gitlab
+  module Audit
+    module Type
+      class Definition
+        self.@paths: untyped
+
+        @path: untyped
+
+        @attributes: untyped
+
+        include ActiveModel::Validations
+
+        include ::Gitlab::Audit::Type::Shared
+
+        attr_reader path: untyped
+
+        attr_reader attributes: untyped
+
+        def self.declarative_policy_class: () -> "AuditEvents::DefinitionPolicy"
+
+        InvalidAuditEventTypeError: untyped
+
+        AUDIT_EVENT_TYPE_SCHEMA_PATH: untyped
+
+        AUDIT_EVENT_TYPE_SCHEMA: untyped
+
+        def initialize: (untyped path, ?::Hash[untyped, untyped] opts) -> void
+
+        def key: () -> untyped
+
+        private
+
+        def validate_schema: () -> untyped
+
+        def validate_file_name: () -> (untyped | nil)
+
+        extend ::Gitlab::Utils::StrongMemoize
+
+        def self.paths: () -> untyped
+
+        def self.definitions: () -> untyped
+
+        def self.get: (untyped key) -> untyped
+
+        def self.event_names: () -> untyped
+
+        def self.names_with_category: () -> untyped
+
+        def self.defined?: (untyped key) -> untyped
+
+        def self.stream_only?: (untyped key) -> (false | untyped)
+
+        def self.load_all!: () -> untyped
+
+        def self.load_all_from_path!: (untyped definitions, untyped glob_path) -> untyped
+
+        def self.load_from_file: (untyped path) -> untyped
+      end
+    end
+  end
+end

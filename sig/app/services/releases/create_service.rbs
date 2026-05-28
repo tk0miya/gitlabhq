@@ -1,0 +1,27 @@
+module Releases
+  class CreateService < Releases::BaseService
+    def execute: () -> untyped
+
+    private
+
+    def ensure_tag: () -> untyped
+
+    def create_tag: () -> untyped
+
+    def allowed?: () -> untyped
+
+    def can_create_tag?: () -> untyped
+
+    def create_release: (untyped tag, untyped evidence_pipeline) -> untyped
+
+    def notify_create_release: (untyped release) -> untyped
+
+    def build_release: (untyped tag) -> untyped
+
+    def links_attributes: () -> untyped
+
+    def create_evidence!: (untyped release, untyped pipeline) -> (nil | untyped)
+
+    def publish_catalog?: (untyped release) -> (false | untyped)
+  end
+end

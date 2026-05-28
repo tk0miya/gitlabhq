@@ -1,0 +1,7 @@
+class PagesDomainSslRenewalCronWorker
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  def perform: () -> (nil | untyped)
+end

@@ -1,0 +1,81 @@
+module Gitlab
+  # Given a set of process IDs, the supervisor can monitor processes
+  # for being alive and invoke a callback if some or all should go away.
+  # The receiver of the callback can then act on this event, for instance
+  # by restarting those processes or performing clean-up work.
+  #
+  # The supervisor will also trap termination signals if provided and
+  # propagate those to the supervised processes. Any supervised processes
+  # that do not terminate within a specified grace period will be killed.
+  class ProcessSupervisor < Gitlab::Daemon
+    @term_signals: untyped
+
+    @forwarded_signals: untyped
+
+    @health_check_interval_seconds: untyped
+
+    @check_terminate_interval_seconds: untyped
+
+    @terminate_timeout_seconds: untyped
+
+    @pids: untyped
+
+    @alive: untyped
+
+    @on_process_death: untyped
+
+    DEFAULT_HEALTH_CHECK_INTERVAL_SECONDS: 5
+
+    DEFAULT_TERMINATE_INTERVAL_SECONDS: 1
+
+    DEFAULT_TERMINATE_TIMEOUT_SECONDS: 10
+
+    attr_reader alive: untyped
+
+    def initialize: (?health_check_interval_seconds: untyped, ?check_terminate_interval_seconds: untyped, ?terminate_timeout_seconds: untyped, ?term_signals: untyped, ?forwarded_signals: untyped, **untyped options) -> void
+
+    # Starts a supervision loop for the given process ID(s).
+    #
+    # If any or all processes go away, the IDs of any dead processes will
+    # be yielded to the given block, so callers can act on them.
+    #
+    # If the block returns a non-empty list of IDs, the supervisor will
+    # start observing those processes instead. Otherwise it will shut down.
+    def supervise: (untyped pid_or_pids) { (?) -> untyped } -> untyped
+
+    # Shuts down the supervisor and all supervised processes with the given signal.
+    def shutdown: (?::Symbol signal) -> (nil | untyped)
+
+    def supervised_pids: () -> untyped
+
+    private
+
+    def start_working: () -> untyped
+
+    def stop_working: () -> untyped
+
+    def run_thread: () -> untyped
+
+    def check_process_health: () -> (untyped | nil)
+
+    def stop_processes: (untyped signal) -> untyped
+
+    def trap_signals!: () -> untyped
+
+    def wait_for_termination: () -> untyped
+
+    def monotonic_time: () -> untyped
+
+    def continue_waiting?: (untyped deadline) -> untyped
+
+    def signal_all: (untyped signal) -> untyped
+
+    def hard_stop_stuck_pids: () -> untyped
+
+    def any_alive?: () -> untyped
+
+    def all_alive?: () -> untyped
+
+    def live_pids: () -> untyped
+  end
+end

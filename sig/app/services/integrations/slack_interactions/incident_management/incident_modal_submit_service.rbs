@@ -1,0 +1,65 @@
+module Integrations
+  module SlackInteractions
+    module IncidentManagement
+      class IncidentModalSubmitService
+        @params: untyped
+
+        @values: untyped
+
+        @team_id: untyped
+
+        @user_id: untyped
+
+        @additional_message: untyped
+
+        include GitlabRoutingHelper
+
+        include Gitlab::Routing
+
+        IssueCreateError: untyped
+
+        def initialize: (untyped params) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_accessor params: untyped
+
+        attr_accessor values: untyped
+
+        attr_accessor team_id: untyped
+
+        attr_accessor user_id: untyped
+
+        attr_accessor additional_message: untyped
+
+        def incident_params: () -> { title: untyped, severity: untyped, confidential: untyped, description: untyped, escalation_status: { status: untyped }, work_item_type: untyped, assignee_ids: ::Array[untyped], label_ids: untyped }
+
+        def incident_work_item_type: () -> untyped
+
+        def strip_markup: (untyped string) -> untyped
+
+        def send_to_slack: (untyped text) -> untyped
+
+        def incident_link_text: (untyped incident) -> ::String
+
+        def project: () -> untyped
+
+        def find_user: () -> untyped
+
+        def description: () -> (untyped | ::String)
+
+        def confidential?: () -> untyped
+
+        def severity: () -> untyped
+
+        def status: () -> untyped
+
+        def assignee: () -> (nil | untyped)
+
+        def labels: () -> untyped
+      end
+    end
+  end
+end

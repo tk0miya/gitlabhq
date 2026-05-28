@@ -1,0 +1,21 @@
+module Sidebars
+  module Admin
+    module Menus
+      class AnalyticsMenu < ::Sidebars::Admin::BaseMenu
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "chart"
+
+        def extra_container_html_options: () -> { testid: "admin-sidebar-analytics-submenu-content" }
+
+        private
+
+        def dev_ops_reports_menu_item: () -> untyped
+
+        def usage_trends_menu_item: () -> untyped
+      end
+    end
+  end
+end

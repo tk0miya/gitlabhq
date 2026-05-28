@@ -1,0 +1,44 @@
+module API
+  module Helpers
+    module PackagesHelpers
+      extend ::Gitlab::Utils::Override
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      MAX_PACKAGE_FILE_SIZE: untyped
+
+      def require_packages_enabled!: () -> (untyped | nil)
+
+      def require_dependency_proxy_enabled!: () -> (untyped | nil)
+
+      def authorize_admin_package!: (?untyped subject) -> untyped
+
+      def authorize_read_package!: (?untyped subject) -> untyped
+
+      def authorize_create_package!: (?untyped subject) -> untyped
+
+      def authorize_destroy_package!: (?untyped subject) -> untyped
+
+      def authorize_packages_access!: (?untyped subject, ?::Symbol required_permission) -> untyped
+
+      def authorize_workhorse!: (?subject: untyped, ?has_length: bool, ?maximum_size: untyped, ?use_final_store_path: bool) -> untyped
+
+      def authorize_upload!: (?untyped subject) -> untyped
+
+      def user_project: (?action: ::Symbol) -> untyped
+
+      # This function is similar to the `find_project!` function, but it considers the `read_package` ability.
+      def user_project_with_read_package: () -> (untyped | nil)
+
+      def track_package_event: (untyped action, untyped scope, **untyped args) -> untyped
+
+      def present_package_file!: (untyped package_file, ?supports_direct_download: bool, ?content_disposition: untyped?, ?content_type: untyped?, ?extra_response_headers: ::Hash[untyped, untyped]) -> untyped
+
+      def protect_package!: (untyped package_name, untyped package_type, ?project: untyped) -> untyped
+
+      private
+
+      def track_snowplow_event: (untyped action_name, untyped snowplow_event_name, untyped category, untyped args) -> untyped
+    end
+  end
+end

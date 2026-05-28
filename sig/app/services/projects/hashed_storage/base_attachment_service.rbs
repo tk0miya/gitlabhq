@@ -1,0 +1,46 @@
+module Projects
+  module HashedStorage
+    AttachmentMigrationError: untyped
+
+    AttachmentCannotMoveError: untyped
+
+    class BaseAttachmentService < BaseService
+      @project: untyped
+
+      @old_disk_path: untyped
+
+      @logger: untyped
+
+      @skipped: untyped
+
+      # Returns the disk_path value before the execution
+      attr_reader old_disk_path: untyped
+
+      # Returns the disk_path value after the execution
+      attr_reader new_disk_path: untyped
+
+      # Returns the logger currently in use
+      attr_reader logger: untyped
+
+      def initialize: (project: untyped, old_disk_path: untyped, ?logger: untyped?) -> void
+
+      # Return whether this operation was skipped or not
+      #
+      # @return [Boolean] true if skipped of false otherwise
+      def skipped?: () -> untyped
+
+      # Check if target path has discardable content
+      #
+      # @param [String] new_path
+      # @return [Boolean] whether we can discard the target path or not
+      def target_path_discardable?: (untyped new_path) -> false
+
+      def move_folder!: (untyped old_path, untyped new_path) -> true
+
+      # Rename a path adding a suffix in order to prevent data-loss.
+      #
+      # @param [String] new_path
+      def discard_path!: (untyped new_path) -> untyped
+    end
+  end
+end

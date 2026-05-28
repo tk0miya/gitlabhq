@@ -1,0 +1,37 @@
+module ProtectedRefAccess
+  include Importable
+
+  extend ActiveSupport::Concern
+
+  def type: () -> :role
+
+  def role?: () -> untyped
+
+  def humanize: () -> untyped
+
+  # Normally this check runs when pushing to a project so current_project is
+  # passed in, however, if we are checking if a user can has access to delete
+  # aka unprotect a protected branch then current project will be nil.
+  def check_access: (untyped current_user, ?untyped? current_project) -> (false | untyped)
+
+  private
+
+  def humanize_role: () -> untyped
+
+  def admin_access?: () -> untyped
+
+  def no_access?: () -> untyped
+
+  # current_project is only present when merging or pushing into a protected
+  # branch/tag, otherwise we are checking a project or group level protected
+  # branch can be unprotected by current_user.
+  #
+  # Project level protected branches have a protected_ref_project and group
+  # level protected branches have a protected_branch_group.
+  #
+  # Protected tags cannot be configured at group level hence the naming
+  # difference.
+  def role_access_allowed?: (untyped current_user, untyped current_project) -> (untyped | untyped | untyped | nil)
+
+  def role_access_allowed_for_project?: (untyped current_user, untyped project) -> untyped
+end

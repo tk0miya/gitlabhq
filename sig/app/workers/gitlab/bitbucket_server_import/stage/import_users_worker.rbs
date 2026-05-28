@@ -1,0 +1,15 @@
+module Gitlab
+  module BitbucketServerImport
+    module Stage
+      class ImportUsersWorker
+        include StageMethods
+
+        private
+
+        def import: (untyped project) -> nil
+
+        def importer_class: () -> untyped
+      end
+    end
+  end
+end

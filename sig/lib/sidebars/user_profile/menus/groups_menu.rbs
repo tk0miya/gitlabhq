@@ -1,0 +1,15 @@
+module Sidebars
+  module UserProfile
+    module Menus
+      class GroupsMenu < ::Sidebars::UserProfile::BaseMenu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "group"
+
+        def active_routes: () -> { path: "users#groups" }
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module WebHooks
+  class CreateService
+    @current_user: untyped
+
+    include Services::ReturnServiceResponses
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped hook_params, untyped relation, ?untyped? organization) -> untyped
+
+    private
+
+    def after_create: (untyped hook) -> untyped
+
+    attr_reader current_user: untyped
+  end
+end

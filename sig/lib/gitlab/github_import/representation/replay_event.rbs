@@ -1,0 +1,21 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      class ReplayEvent
+        @attributes: untyped
+
+        include ToHash
+
+        include ExposeAttribute
+
+        attr_reader attributes: untyped
+
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        def initialize: (untyped attributes) -> void
+
+        def github_identifiers: () -> { issuable_type: untyped, issuable_iid: untyped }
+      end
+    end
+  end
+end

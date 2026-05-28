@@ -1,0 +1,40 @@
+module WorkItems
+  module ParentLinks
+    class BaseService < IssuableLinks::CreateService
+      @previous_parents: untyped
+
+      @linkable_issuables: untyped
+
+      @previous_related_issuables: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      def initialize: (untyped issuable, untyped user, untyped params) -> void
+
+      private
+
+      def set_parent: (untyped issuable, untyped work_item) -> untyped
+
+      def create_notes: (untyped work_item, ?untyped? prev_parent) -> untyped
+
+      def linkable_issuables: (untyped work_items) -> untyped
+
+      def linkable?: (untyped work_item) -> untyped
+
+      def can_admin_link?: (untyped work_item) -> untyped
+
+      # Overridden in EE
+      def can_add_to_parent?: (untyped parent_work_item, ?untyped? _child_work_item) -> untyped
+
+      def track_event: () -> (nil | untyped)
+
+      def previous_related_issuables: () -> untyped
+
+      def target_issuable_type: () -> "work item"
+
+      def issuables_not_found_message: () -> untyped
+
+      attr_accessor previous_parents: untyped
+    end
+  end
+end

@@ -1,0 +1,63 @@
+module Gitlab
+  module RelativePositioning
+    class Mover
+      @range: untyped
+
+      @start_position: untyped
+
+      @ideal_distance: untyped
+
+      @max_gap: untyped
+
+      attr_reader range: untyped
+
+      attr_reader start_position: untyped
+
+      attr_reader ideal_distance: untyped
+
+      attr_reader max_gap: untyped
+
+      def initialize: (untyped start, untyped range, ?ideal_distance: untyped, ?max_gap: untyped) -> void
+
+      def move_to_end: (untyped object) -> untyped
+
+      def move_to_start: (untyped object) -> untyped
+
+      def move: (untyped object, untyped first, untyped last) -> untyped
+
+      def context: (untyped object, ?ignoring: untyped?) -> (nil | untyped)
+
+      private
+
+      def gap_too_small?: (untyped pos_a, untyped pos_b) -> (false | untyped)
+
+      def move_to_range_end: (untyped context, untyped max_pos) -> untyped
+
+      def move_to_range_start: (untyped context, untyped min_pos) -> untyped
+
+      def create_space_between: (untyped range) -> untyped
+
+      # This method takes two integer values (positions) and
+      # calculates the position between them. The range is huge as
+      # the maximum integer value is 2147483647.
+      #
+      # We avoid open ranges by clamping the range to [MIN_POSITION, MAX_POSITION].
+      #
+      # Then we handle one of three cases:
+      #  - If the gap is too small, we raise NoSpaceLeft
+      #  - If the gap is larger than MAX_GAP, we place the new position at most
+      #    IDEAL_DISTANCE from the edge of the gap.
+      #  - otherwise we place the new position at the midpoint.
+      #
+      # The new position will always satisfy: pos_before <= midpoint <= pos_after
+      #
+      # As a precondition, the gap between pos_before and pos_after MUST be >= 2.
+      # If the gap is too small, NoSpaceLeft is raised.
+      #
+      # @raises NoSpaceLeft
+      def position_between: (untyped pos_before, untyped pos_after) -> untyped
+
+      def midpoint: (untyped lower_bound, untyped upper_bound) -> untyped
+    end
+  end
+end

@@ -1,0 +1,52 @@
+module Import
+  module GitlabProjects
+    module FileAcquisitionStrategies
+      class RemoteFileS3
+        @params: untyped
+
+        @current_user: untyped
+
+        @project_params: untyped
+
+        @file_url: untyped
+
+        @content_type: untyped
+
+        @content_length: untyped
+
+        include ActiveModel::Validations
+
+        include Gitlab::Utils::StrongMemoize
+
+        def self.allow_local_requests?: () -> untyped
+
+        # The import itself has a limit of 24h, since the URL is created before the import starts
+        # we add an expiration a bit longer to ensure it won't expire during the import.
+        URL_EXPIRATION: untyped
+
+        def initialize: (params: untyped, ?current_user: untyped?) -> void
+
+        def project_params: () -> untyped
+
+        def file_url: () -> untyped
+
+        def content_type: () -> untyped
+
+        def content_length: () -> untyped
+
+        # Make the validated params/methods accessible
+        def read_attribute_for_validation: (untyped key) -> untyped
+
+        private
+
+        attr_reader params: untyped
+
+        attr_reader current_user: untyped
+
+        def s3_object: () -> untyped
+
+        def build_s3_options: () -> untyped
+      end
+    end
+  end
+end

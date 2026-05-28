@@ -1,0 +1,21 @@
+module Mutations
+  module IncidentManagement
+    module TimelineEvent
+      class PromoteFromNote < Base
+        include NotesHelper
+
+        def resolve: (note_id: untyped) -> untyped
+
+        private
+
+        def find_object: (id: untyped) -> untyped
+
+        def authorize!: (untyped object) -> untyped
+
+        def build_note_string: (untyped note) -> ::String
+
+        def raise_noteable_not_incident!: () -> untyped
+      end
+    end
+  end
+end

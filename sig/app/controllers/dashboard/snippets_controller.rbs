@@ -1,0 +1,15 @@
+class Dashboard::SnippetsController < Dashboard::ApplicationController
+  @snippet_counts: untyped
+
+  @snippets: untyped
+
+  @noteable_meta_data: untyped
+
+  include PaginatedCollection
+
+  include Gitlab::NoteableMetadata
+
+  include SnippetsSort
+
+  def index: () -> (nil | untyped)
+end

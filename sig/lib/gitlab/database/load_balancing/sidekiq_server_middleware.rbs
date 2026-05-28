@@ -1,0 +1,47 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      class SidekiqServerMiddleware
+        include WalTrackingReceiver
+
+        JobReplicaNotUpToDate: untyped
+
+        REPLICA_WAIT_SLEEP_SECONDS: ::Float
+
+        URGENT_REPLICA_WAIT_SLEEP_SECONDS: ::Float
+
+        SLEEP_ATTEMPTS: 3
+
+        URGENT_SLEEP_ATTEMPTS: 5
+
+        def call: (untyped worker, untyped job, untyped _queue) { () -> untyped } -> untyped
+
+        private
+
+        def clear: () -> untyped
+
+        def use_primary?: (untyped strategy) -> untyped
+
+        def select_load_balancing_strategy: (untyped worker_class, untyped job) -> (:primary | :primary_no_wal | untyped)
+
+        def sleep_duration: (untyped worker_class) -> untyped
+
+        def sleep_attempts: (untyped worker_class) -> untyped
+
+        def get_wal_locations: (untyped job) -> untyped
+
+        def load_balancing_available?: (untyped worker_class) -> untyped
+
+        def can_retry?: (untyped worker_class, untyped job) -> untyped
+
+        def replica_strategy: (untyped worker_class, untyped job) -> (:replica_retried | :replica)
+
+        def retried_before?: (untyped worker_class, untyped job) -> untyped
+
+        def set_per_database_strategy: (untyped worker_class) -> untyped
+
+        def not_yet_requeued?: (untyped job) -> untyped
+      end
+    end
+  end
+end

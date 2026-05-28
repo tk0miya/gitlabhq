@@ -1,0 +1,25 @@
+module API
+  module ProjectsRelationBuilder
+    def prepare_relation: (untyped projects_relation, ?::Hash[untyped, untyped] options) -> untyped
+
+    # This is overridden by the specific Entity class to
+    # preload assocations that it needs
+    def preload_relation: (untyped projects_relation, ?::Hash[untyped, untyped] _options) -> untyped
+
+    # This is overridden by the specific Entity class to
+    # batch load certain counts
+    def execute_batch_counting: (untyped projects_relation) -> nil
+
+    def preload_repository_cache: (untyped projects_relation) -> untyped
+
+    def repositories_for_preload: (untyped projects_relation) -> untyped
+
+    # For all projects except those in a user namespace, the `namespace`
+    # and `group` are identical. Preload the group when it's not a user namespace.
+    def preload_groups: (untyped projects_relation) -> untyped
+
+    def projects_for_group_preload: (untyped projects_relation) -> untyped
+
+    def preload_member_roles: (untyped projects_relation, untyped user) -> nil
+  end
+end

@@ -1,0 +1,71 @@
+module Gitlab
+  module ImportExport
+    module Group
+      class TreeRestorer
+        @user: untyped
+
+        @shared: untyped
+
+        @top_level_group: untyped
+
+        @groups_mapping: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader user: untyped
+
+        attr_reader shared: untyped
+
+        attr_reader groups_mapping: untyped
+
+        def initialize: (user: untyped, shared: untyped, group: untyped) -> void
+
+        def restore: () -> untyped
+
+        class GroupAttributes
+          @group_id: untyped
+
+          @path: untyped
+
+          @attributes: untyped
+
+          @id: untyped
+
+          attr_reader attributes: untyped
+
+          attr_reader group_id: untyped
+
+          attr_reader id: untyped
+
+          attr_reader path: untyped
+
+          def initialize: (untyped group_id, untyped relation_reader) -> void
+
+          def delete_attribute: (untyped name) -> untyped
+
+          def delete_attributes: (*untyped names) -> untyped
+        end
+
+        private
+
+        def process_root: (untyped group_id) -> untyped
+
+        def process_child: (untyped group_id) -> untyped
+
+        def create_group: (untyped group_attributes) -> untyped
+
+        def restore_group: (untyped group, untyped group_attributes) -> untyped
+
+        def relation_reader: () -> untyped
+
+        def sub_group_visibility_level: (untyped visibility_level, untyped parent_group) -> untyped
+
+        def closest_allowed_level: (untyped visibility_level) -> untyped
+
+        def reader: () -> untyped
+
+        def import_failure_service: () -> untyped
+      end
+    end
+  end
+end

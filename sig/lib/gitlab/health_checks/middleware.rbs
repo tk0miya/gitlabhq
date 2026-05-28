@@ -1,0 +1,19 @@
+module Gitlab
+  module HealthChecks
+    class Middleware
+      @app: untyped
+
+      @readiness_probe: untyped
+
+      @liveness_probe: untyped
+
+      def initialize: (untyped app, untyped readiness_probe, untyped liveness_probe) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def render_probe: (untyped probe) -> ::Array[untyped | { "Content-Type" => "application/json; charset=utf-8" } | ::Array[untyped]]
+    end
+  end
+end

@@ -1,0 +1,50 @@
+module Gitlab::Ci
+  module Badge
+    module Coverage
+      #
+      # Test coverage report badge
+      #
+      class Report < Badge::Base
+        @project: untyped
+
+        @ref: untyped
+
+        @job: untyped
+
+        @customization: untyped
+
+        @coverage: untyped
+
+        @metadata: untyped
+
+        @template: untyped
+
+        @successful_pipeline: untyped
+
+        attr_reader project: untyped
+
+        attr_reader ref: untyped
+
+        attr_reader job: untyped
+
+        attr_reader customization: untyped
+
+        def initialize: (untyped project, untyped ref, ?opts: ::Hash[untyped, untyped]) -> void
+
+        def entity: () -> "coverage"
+
+        def status: () -> (nil | untyped)
+
+        def metadata: () -> untyped
+
+        def template: () -> untyped
+
+        private
+
+        def successful_pipeline: () -> untyped
+
+        def raw_coverage: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,82 @@
+module Network
+  class Graph
+    self.@max_count: untyped
+
+    @project: untyped
+
+    @ref: untyped
+
+    @commit: untyped
+
+    @filter_ref: untyped
+
+    @repo: untyped
+
+    @commits: untyped
+
+    @days: untyped
+
+    @map: untyped
+
+    @reserved: untyped
+
+    attr_reader days: untyped
+
+    attr_reader commits: untyped
+
+    attr_reader map: untyped
+
+    attr_reader repo: untyped
+
+    def self.max_count: () -> untyped
+
+    def initialize: (untyped project, untyped ref, untyped commit, untyped filter_ref) -> void
+
+    # Get commits from repository
+    #
+    def collect_commits: () -> untyped
+
+    # Method is adding time and space on the
+    # list of commits. As well as returns date list
+    # correlated with time set on commits.
+    #
+    # @return [Array<TimeDate>] list of commit dates correlated with time on commits
+    def index_commits: () -> untyped
+
+    # Skip count that the target commit is displayed in center.
+    def count_to_display_commit_in_center: () -> untyped
+
+    def calculate_offset: () -> untyped
+
+    def list_commits: (?::Integer skip) -> untyped
+
+    def commits_sort_by_ref: () -> untyped
+
+    def include_ref?: (untyped commit) -> untyped
+
+    def find_free_parent_spaces: (untyped commit) -> untyped
+
+    def find_free_parent_space: (untyped range, untyped space_base, untyped space_step, untyped space_default) -> untyped
+
+    def overlap?: (untyped range, untyped overlap_space) -> (true | false)
+
+    # Add space mark on commit and its parents
+    #
+    # @param [::Commit] the commit object.
+    def place_chain: (untyped commit, ?untyped? parent_time) -> (nil | untyped)
+
+    def get_space_base: (untyped leaves) -> untyped
+
+    def mark_reserved: (untyped time_range, untyped space) -> untyped
+
+    def find_free_space: (untyped time_range, untyped space_step, ?::Integer space_base, ?untyped? space_default) -> untyped
+
+    # Takes most left subtree branch of commits
+    # which don't have space mark yet.
+    #
+    # @param [::Commit] the commit object.
+    #
+    # @return [Array<Network::Commit>] list of branch commits
+    def take_left_leaves: (untyped raw_commit) -> untyped
+  end
+end

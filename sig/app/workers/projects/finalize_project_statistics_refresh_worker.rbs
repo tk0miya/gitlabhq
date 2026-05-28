@@ -1,0 +1,7 @@
+module Projects
+  class FinalizeProjectStatisticsRefreshWorker
+    include ApplicationWorker
+
+    def perform: (untyped record_class, untyped record_id) -> (nil | untyped)
+  end
+end

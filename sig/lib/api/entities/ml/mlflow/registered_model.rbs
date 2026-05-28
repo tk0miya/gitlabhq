@@ -1,0 +1,17 @@
+module API
+  module Entities
+    module Ml
+      module Mlflow
+        class RegisteredModel < Grape::Entity
+          private
+
+          def creation_timestamp: () -> untyped
+
+          def last_updated_timestamp: () -> untyped
+
+          def description: () -> untyped
+        end
+      end
+    end
+  end
+end

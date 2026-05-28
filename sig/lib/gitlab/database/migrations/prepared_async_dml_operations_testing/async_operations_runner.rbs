@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    module Migrations
+      module PreparedAsyncDmlOperationsTesting
+        module AsyncIndexMixin
+          extend ActiveSupport::Concern
+
+          def prepare_async_index: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+          def prepare_async_index_from_sql: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+          private
+
+          def mark_for_testing_execution: (untyped async_index) -> (nil | untyped)
+        end
+
+        class AsyncOperationsRunner
+          def self.install!: () -> untyped
+
+          def self.execute!: () -> untyped
+
+          private
+
+          def self.indexes_to_create: () -> untyped
+        end
+      end
+    end
+  end
+end

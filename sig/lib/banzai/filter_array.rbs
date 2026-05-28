@@ -1,0 +1,15 @@
+module Banzai
+  class FilterArray < Array
+    # Insert a value immediately after another value
+    #
+    # If the preceding value does not exist, the new value is added to the end
+    # of the Array.
+    def insert_after: (untyped after_value, untyped value) -> untyped
+
+    # Insert a value immediately before another value
+    #
+    # If the succeeding value does not exist, the new value is added to the
+    # beginning of the Array.
+    def insert_before: (untyped before_value, untyped value) -> untyped
+  end
+end

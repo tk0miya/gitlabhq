@@ -1,0 +1,15 @@
+class MergeRequests::DeleteSourceBranchWorker
+  include ApplicationWorker
+
+  LEASE_KEY_PREFIX: "branch_pending_deletion"
+
+  LEASE_TIMEOUT: untyped
+
+  def self.lease_key: (untyped project_id, untyped branch_name) -> ::String
+
+  def perform: (untyped merge_request_id, untyped source_branch_sha, untyped user_id) -> (nil | untyped)
+
+  private
+
+  def release_branch_deletion_lease: (untyped merge_request) -> (nil | untyped)
+end

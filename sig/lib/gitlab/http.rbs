@@ -1,0 +1,53 @@
+module Gitlab
+  class HTTP
+    BlockedUrlError: untyped
+
+    RedirectionTooDeep: untyped
+
+    ReadTotalTimeout: untyped
+
+    HeaderReadTimeout: untyped
+
+    SilentModeBlockedError: untyped
+
+    ResponseSizeTooLarge: untyped
+
+    MaxDecompressionSizeError: untyped
+
+    InvalidResponseError: untyped
+
+    HTTP_TIMEOUT_ERRORS: untyped
+
+    HTTP_ERRORS: untyped
+
+    DEFAULT_TIMEOUT_OPTIONS: { open_timeout: 10, read_timeout: 20, write_timeout: 30 }
+
+    DEFAULT_READ_TOTAL_TIMEOUT: untyped
+
+    # We are explicitly assigning these constants because they are used in the codebase.
+    Error: untyped
+
+    Response: untyped
+
+    ResponseError: untyped
+
+    CookieHash: untyped
+
+    def self.try_get: (untyped path, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+    # TODO: This method is subject to be removed
+    # We have this for now because we explicitly use the `perform_request` method in some places.
+    def self.perform_request: (untyped http_method, untyped path, untyped options) { (?) -> untyped } -> untyped
+
+    # Disables the decompression limit validation for the duration of the given block.
+    #
+    # SECURITY WARNING: Only use this method for requests to trusted web servers that are not
+    # user-controlled. For requests to user-controlled servers, set `accept-encoding: identity`
+    # in the request headers to request the source server not return a compressed response.
+    def self.without_decompression_limit: () { () -> untyped } -> untyped
+
+    private
+
+    def self.http_v2_options: (untyped options) -> untyped
+  end
+end

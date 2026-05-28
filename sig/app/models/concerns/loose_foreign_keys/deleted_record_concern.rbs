@@ -1,0 +1,11 @@
+module LooseForeignKeys
+  module DeletedRecordConcern
+    extend ActiveSupport::Concern
+
+    include PartitionedTable
+
+    include FromUnion
+
+    PARTITION_DURATION: untyped
+  end
+end

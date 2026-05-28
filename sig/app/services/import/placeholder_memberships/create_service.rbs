@@ -1,0 +1,29 @@
+module Import
+  module PlaceholderMemberships
+    class CreateService
+      @ignore_duplicate_errors: untyped
+
+      @reference: untyped
+
+      @logger: untyped
+
+      include Services::ReturnServiceResponses
+
+      def initialize: (source_user: untyped, access_level: untyped, ?expires_at: untyped?, ?group: untyped?, ?project: untyped?, ?ignore_duplicate_errors: bool) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader reference: untyped
+
+      attr_reader ignore_duplicate_errors: untyped
+
+      def ignore_duplicate_errors?: (untyped reference) -> untyped
+
+      def log_duplicate_membership: () -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

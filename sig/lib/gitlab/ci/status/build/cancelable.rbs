@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class Cancelable < Status::Extended
+          def has_action?: () -> untyped
+
+          def action_icon: () -> "cancel"
+
+          def action_path: () -> untyped
+
+          def action_method: () -> :post
+
+          def action_title: () -> "Cancel"
+
+          def action_button_title: () -> untyped
+
+          def self.matches?: (untyped build, untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

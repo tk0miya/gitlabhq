@@ -1,0 +1,33 @@
+module Snippets
+  class DestroyService
+    @current_user: untyped
+
+    @snippet: untyped
+
+    include Gitlab::Allowable
+
+    FAILED_TO_DELETE_ERROR: :failed_to_delete_error
+
+    SNIPPET_NOT_FOUND_ERROR: :snippet_not_found_error
+
+    SNIPPET_ACCESS_ERROR: :snippet_access_error
+
+    attr_reader current_user: untyped
+
+    attr_reader snippet: untyped
+
+    DestroyError: untyped
+
+    def initialize: (untyped user, untyped snippet) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def attempt_destroy!: () -> untyped
+
+    def user_can_delete_snippet?: () -> untyped
+
+    def service_response_error: (untyped message, untyped reason) -> untyped
+  end
+end

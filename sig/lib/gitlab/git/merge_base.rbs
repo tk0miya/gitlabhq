@@ -1,0 +1,33 @@
+module Gitlab
+  module Git
+    class MergeBase
+      @repository: untyped
+
+      @refs: untyped
+
+      @commit: untyped
+
+      @unknown_refs: untyped
+
+      @commits_for_refs: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped repository, untyped refs) -> void
+
+      # Returns the SHA of the first common ancestor
+      def sha: () -> untyped
+
+      # Returns the merge base as a Gitlab::Git::Commit
+      def commit: () -> (nil | untyped)
+
+      # Returns the refs passed on initialization that aren't found in
+      # the repository, and thus cannot be used to find a merge base.
+      def unknown_refs: () -> untyped
+
+      private
+
+      def commits_for_refs: () -> untyped
+    end
+  end
+end

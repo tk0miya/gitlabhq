@@ -1,0 +1,20 @@
+module Gitlab
+  module Instrumentation
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables -- this module patches ConnectionPool to instrument it
+    module ConnectionPool
+      @name: untyped
+
+      @size_gauge: untyped
+
+      @available_gauge: untyped
+
+      def initialize: (?::Hash[untyped, untyped] options) { (?) -> untyped } -> void
+
+      def checkout: (?::Hash[untyped, untyped] options) -> untyped
+
+      def track_pool_size: (untyped connection_class) -> (nil | untyped)
+
+      def track_available_connections: (untyped connection_class) -> untyped
+    end
+  end
+end

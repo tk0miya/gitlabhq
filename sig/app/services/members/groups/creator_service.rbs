@@ -1,0 +1,15 @@
+module Members
+  module Groups
+    class CreatorService < Members::CreatorService
+      include Gitlab::Utils::StrongMemoize
+
+      private
+
+      def can_create_new_member?: () -> (false | untyped)
+
+      def can_update_existing_member?: () -> untyped
+
+      def service_account_eligible_for_membership?: () -> (true | untyped)
+    end
+  end
+end

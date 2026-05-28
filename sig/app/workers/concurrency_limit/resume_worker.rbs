@@ -1,0 +1,33 @@
+module ConcurrencyLimit
+  class ResumeWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    RESCHEDULE_DELAY: untyped
+
+    def perform: (?untyped? worker_name) -> untyped
+
+    private
+
+    def schedule_workers: () -> untyped
+
+    def schedule_worker: (untyped worker) -> untyped
+
+    def process_worker: (untyped worker_name) -> (nil | untyped)
+
+    def concurrent_worker_count: (untyped worker) -> untyped
+
+    def queue_size: (untyped worker) -> untyped
+
+    def cleanup_stale_trackers: (untyped worker) -> untyped
+
+    def resume_processing!: (untyped worker) -> untyped
+
+    def worker_limit: (untyped worker) -> untyped
+
+    def workers: () -> untyped
+
+    def queue_for_worker: (untyped worker) -> untyped
+  end
+end

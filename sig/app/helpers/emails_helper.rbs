@@ -1,0 +1,102 @@
+module EmailsHelper
+  include AppearancesHelper
+
+  include SafeFormatHelper
+
+  def self?.subject_with_prefix_and_suffix: (untyped subject_line) -> untyped
+
+  # Google Actions
+  # https://developers.google.com/gmail/markup/reference/go-to-action
+  def email_action: (untyped url) -> (nil | untyped)
+
+  def action_title: (untyped url) -> (nil | ::String)
+
+  def gmail_goto_action: (untyped name, untyped url) -> untyped
+
+  def sanitize_name: (untyped name) -> untyped
+
+  def password_reset_token_valid_time: () -> untyped
+
+  def header_logo: () -> untyped
+
+  def email_default_heading: (untyped text) -> untyped
+
+  def closure_reason_text: (untyped closed_via, format: untyped, name: untyped) -> ("" | untyped)
+
+  # "You are receiving this email because ... on #{host}. ..."
+  def notification_reason_text: (?reason: untyped?, ?show_manage_notifications_link: bool, ?show_help_link: bool, ?manage_label_subscriptions_url: untyped?, ?unsubscribe_url: untyped?, ?format: ::Symbol) -> untyped
+
+  def create_list_id_string: (untyped project, ?::Integer list_id_max_length) -> ::String
+
+  def html_header_message: () -> (nil | untyped)
+
+  def html_footer_message: () -> (nil | untyped)
+
+  def text_header_message: () -> (nil | untyped)
+
+  def text_footer_message: () -> (nil | untyped)
+
+  def service_desk_email_additional_text: () -> nil
+
+  def say_hi: (untyped user) -> untyped
+
+  def say_hello: (untyped user) -> untyped
+
+  def two_factor_authentication_disabled_text: () -> untyped
+
+  def manage_passkeys: (?format: untyped?) -> untyped
+
+  def re_enable_two_factor_authentication_text: (?format: untyped?) -> untyped
+
+  def manage_two_factor_authentication_text: (?format: untyped?) -> untyped
+
+  def new_email_address_added_text: (untyped email) -> untyped
+
+  def remove_email_address_text: (?format: untyped?) -> untyped
+
+  def admin_changed_password_text: (?format: untyped?) -> untyped
+
+  def member_about_to_expire_text: (untyped member_source, untyped days_to_expire, ?format: untyped?) -> untyped
+
+  def member_about_to_expire_link: (untyped member, untyped member_source, ?format: untyped?) -> untyped
+
+  def group_membership_expiration_changed_text: (untyped member, untyped group) -> untyped
+
+  def group_membership_expiration_changed_link: (untyped member, untyped group, ?format: untyped?) -> untyped
+
+  def instance_access_request_text: (untyped user, ?format: untyped?) -> untyped
+
+  def instance_access_request_link: (untyped user, ?format: untyped?) -> untyped
+
+  def link_start: (untyped url) -> untyped
+
+  def link_end: () -> untyped
+
+  def contact_your_administrator_text: () -> untyped
+
+  def change_reviewer_notification_text: (untyped new_reviewers, untyped previous_reviewers, ?untyped? html_tag) -> untyped
+
+  private
+
+  def format_reviewers_string: (untyped reviewers, ?untyped? html_tag) -> (nil | untyped)
+
+  def users_to_sentence: (untyped users) -> untyped
+
+  def generate_link: (untyped text, untyped url) -> untyped
+
+  def show_footer?: () -> untyped
+
+  def show_header?: () -> untyped
+
+  def email_header_and_footer_enabled?: () -> untyped
+
+  def gitlab_host_link: (untyped format) -> untyped
+
+  def notification_reason_text_with_unsubscribe_and_manage_notifications_and_help_links: (reason: untyped, unsubscribe_url: untyped, format: untyped) -> untyped
+
+  def notification_reason_text_with_manage_label_subscriptions_and_help_links: (manage_label_subscriptions_url: untyped, format: untyped) -> untyped
+
+  def notification_reason_text_with_manage_notifications_and_help_links: (reason: untyped, format: untyped) -> untyped
+
+  def notification_reason_text_without_links: (reason: untyped, format: untyped) -> untyped
+end

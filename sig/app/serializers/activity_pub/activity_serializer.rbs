@@ -1,0 +1,15 @@
+module ActivityPub
+  # Serializer for the `Activity` ActivityStreams model.
+  # Reference: https://www.w3.org/TR/activitystreams-core/#activities
+  class ActivitySerializer < ObjectSerializer
+    MissingActorError: untyped
+
+    MissingObjectError: untyped
+
+    IntransitiveWithObjectError: untyped
+
+    private
+
+    def validate_response: (untyped serialized, untyped opts) -> untyped
+  end
+end

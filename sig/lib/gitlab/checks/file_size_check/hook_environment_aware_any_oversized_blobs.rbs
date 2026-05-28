@@ -1,0 +1,37 @@
+module Gitlab
+  module Checks
+    module FileSizeCheck
+      class HookEnvironmentAwareAnyOversizedBlobs
+        @project: untyped
+
+        @repository: untyped
+
+        @changes: untyped
+
+        @file_size_limit_megabytes: untyped
+
+        def initialize: (project: untyped, changes: untyped, file_size_limit_megabytes: untyped) -> void
+
+        def find: (?timeout: untyped?) -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader repository: untyped
+
+        attr_reader changes: untyped
+
+        attr_reader file_size_limit_megabytes: untyped
+
+        def oversized_blobs: (?timeout: untyped?) -> untyped
+
+        def filter_existing: (untyped blobs) -> untyped
+
+        def ignore_alternate_directories?: () -> untyped
+
+        def any_oversize_blobs: () -> untyped
+      end
+    end
+  end
+end

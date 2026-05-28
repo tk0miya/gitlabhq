@@ -1,0 +1,18 @@
+module RapidDiffs
+  module DiscussionActions
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables -- Need @project as is
+    def create_discussions_for_resource: () -> (untyped | nil)
+
+    private
+
+    def rapid_diffs_enabled?: () -> untyped
+
+    def noteable: () -> untyped
+
+    def create_note_params: () -> untyped
+
+    def valid_discussion_params?: () -> (untyped | true)
+
+    def validate_reply_target!: () -> (false | true)
+  end
+end

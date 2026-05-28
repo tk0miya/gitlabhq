@@ -1,0 +1,19 @@
+module Gitlab
+  module BackgroundMigration
+    class ResyncEpicDatesToWorkItemsDatesSources < BatchedMigrationJob
+      class Epics < ApplicationRecord
+      end
+
+      class WorkItemDatesSources < ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      private
+
+      def backfill_epics_dates: (untyped sub_batch) -> untyped
+
+      def build_work_items_dates_source: (untyped epics_batch) -> untyped
+    end
+  end
+end

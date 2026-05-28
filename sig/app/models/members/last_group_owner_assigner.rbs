@@ -1,0 +1,34 @@
+# Optimization class to fix group member n+1 queries
+class LastGroupOwnerAssigner
+  @group: untyped
+
+  @members: untyped
+
+  @group_single_owner: untyped
+
+  @owner_ids: untyped
+
+  @members_ids: untyped
+
+  @owners: untyped
+
+  def initialize: (untyped group, untyped members) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  attr_reader group: untyped
+
+  attr_reader members: untyped
+
+  attr_reader group_single_owner: untyped
+
+  def set_last_owner: (untyped member) -> untyped
+
+  def owner_ids: () -> untyped
+
+  def member_ids: () -> untyped
+
+  def owners: () -> untyped
+end

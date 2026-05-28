@@ -1,0 +1,26 @@
+module ResolvableNote
+  extend ActiveSupport::Concern
+
+  # Names of all subclasses of `Note` that can be resolvable.
+  RESOLVABLE_TYPES: ::Array["DiffNote" | "DiscussionNote"]
+
+  # Keep this method in sync with the `potentially_resolvable` scope
+  def potentially_resolvable?: () -> untyped
+
+  # Keep this method in sync with the `resolvable` scope
+  def resolvable?: () -> untyped
+
+  def resolved?: () -> (false | untyped)
+
+  def to_be_resolved?: () -> untyped
+
+  # If you update this method remember to also update `.resolve!`
+  def resolve_without_save: (untyped current_user, ?resolved_by_push: bool) -> (false | true)
+
+  # If you update this method remember to also update `.unresolve!`
+  def unresolve_without_save: () -> (false | true)
+
+  def resolve!: (untyped current_user, ?resolved_by_push: bool) -> untyped
+
+  def unresolve!: () -> untyped
+end

@@ -1,0 +1,27 @@
+module Boards
+  module Issues
+    class CreateService < Boards::BaseService
+      @project: untyped
+
+      @board: untyped
+
+      @list: untyped
+
+      attr_accessor project: untyped
+
+      def initialize: (untyped parent, untyped project, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def issue_params: () -> { label_ids: ::Array[untyped] }
+
+      def board: () -> untyped
+
+      def list: () -> untyped
+
+      def create_issue: (untyped params) -> untyped
+    end
+  end
+end

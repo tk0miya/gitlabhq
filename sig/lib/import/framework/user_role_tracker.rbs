@@ -1,0 +1,32 @@
+module Import
+  module Framework
+    # Tracks the access level of a user in the context of an import operation.
+    #
+    # Emits a tracking event with the user's role in the destination namespace,
+    # treating the user as an owner when no parent namespace exists or the user
+    # is not a member of the destination group.
+    class UserRoleTracker
+      @current_user: untyped
+
+      @tracking_class_name: untyped
+
+      @import_type: untyped
+
+      def initialize: (current_user: untyped, tracking_class_name: untyped, import_type: untyped) -> void
+
+      def track: (untyped destination_namespace) -> untyped
+
+      private
+
+      attr_reader tracking_class_name: untyped
+
+      attr_reader import_type: untyped
+
+      attr_reader current_user: untyped
+
+      def user_role: (untyped destination_namespace) -> (untyped | "Not a member")
+
+      def owner_role: () -> untyped
+    end
+  end
+end

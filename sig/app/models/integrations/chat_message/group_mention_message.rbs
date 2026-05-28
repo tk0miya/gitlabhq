@@ -1,0 +1,61 @@
+module Integrations
+  module ChatMessage
+    class GroupMentionMessage < BaseMessage
+      @group_name: untyped
+
+      @group_url: untyped
+
+      @detail: untyped
+
+      @source_name: untyped
+
+      @title: untyped
+
+      @source_url: untyped
+
+      ISSUE_KIND: "issue"
+
+      MR_KIND: "merge_request"
+
+      NOTE_KIND: "note"
+
+      KNOWN_KINDS: ::Array[untyped]
+
+      def initialize: (untyped params) -> void
+
+      def attachments: () -> (untyped | ::Array[{ text: untyped, color: untyped }])
+
+      def activity: () -> { title: ::String, subtitle: ::String, text: untyped, image: untyped }
+
+      private
+
+      attr_reader group_name: untyped
+
+      attr_reader group_url: untyped
+
+      attr_reader source_name: untyped
+
+      attr_reader source_url: untyped
+
+      attr_reader title: untyped
+
+      attr_reader detail: untyped
+
+      def get_source_for_commit: (untyped params) -> ::Array[::String | untyped]
+
+      def get_source_for_issue: (untyped params) -> ::Array[::String | untyped]
+
+      def get_source_for_merge_request: (untyped params) -> ::Array[::String | untyped]
+
+      def message: () -> ::String
+
+      def formatted_title: () -> untyped
+
+      def group_link: () -> untyped
+
+      def source_link: () -> untyped
+
+      def project_link: () -> untyped
+    end
+  end
+end

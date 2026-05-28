@@ -1,0 +1,56 @@
+module Projects
+  module Forks
+    # Class for calculating the divergence of a fork with the source project
+    class Details
+      @project: untyped
+
+      @fork_repo: untyped
+
+      @source_repo: untyped
+
+      @ref: untyped
+
+      @attrs: untyped
+
+      @cache_key: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      LATEST_COMMITS_COUNT: 10
+
+      LEASE_TIMEOUT: untyped
+
+      EXPIRATION_TIME: untyped
+
+      def initialize: (untyped project, untyped ref) -> void
+
+      def counts: () -> { ahead: untyped, behind: untyped }
+
+      def exclusive_lease: () -> untyped
+
+      def syncing?: () -> untyped
+
+      def has_conflicts?: () -> untyped
+
+      def update!: (untyped params) -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader fork_repo: untyped
+
+      attr_reader source_repo: untyped
+
+      attr_reader ref: untyped
+
+      def cache_key: () -> untyped
+
+      def divergence_counts: () -> (nil | untyped)
+
+      def calculate_divergence_counts: (untyped sha, untyped source_sha) -> (untyped | nil | ::Array[untyped])
+
+      def attrs: () -> untyped
+    end
+  end
+end

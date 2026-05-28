@@ -1,0 +1,31 @@
+module AlertManagement
+  module HttpIntegrations
+    class BaseService < BaseProjectService
+      @response: untyped
+
+      # @param project [Project]
+      # @param current_user [User]
+      # @param params [Hash]
+      def initialize: (untyped project, untyped current_user, untyped params) -> void
+
+      private
+
+      def allowed?: () -> untyped
+
+      def too_many_integrations?: (untyped integration) -> untyped
+
+      def permitted_params: () -> untyped
+
+      # overridden in EE
+      def permitted_params_keys: () -> ::Array[:name | :active | :type_identifier]
+
+      def error: (untyped message) -> untyped
+
+      def success: (untyped integration) -> untyped
+
+      def error_multiple_integrations: () -> untyped
+
+      def error_on_save: (untyped integration) -> untyped
+    end
+  end
+end

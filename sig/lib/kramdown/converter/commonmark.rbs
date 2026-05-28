@@ -1,0 +1,39 @@
+module Kramdown
+  module Converter
+    # Overrides the base Kramdown converter to add any special
+    # behaviour for CommonMark.
+    #
+    # Currently we support an option `html_tables` that outputs
+    # an HTML table instead of a Markdown table.  This is to
+    # support possibly being given complex tables, such as from ADF.
+    #
+    # Note: this is only an initial implementation.  Currently don't
+    # strip out IALs or other specific kramdown syntax.
+    class Commonmark < ::Kramdown::Converter::Kramdown
+      # replaces the ^ used in kramdown.  This forces the current
+      # block to end, so that a different list or codeblock can be
+      # started. https://kramdown.gettalong.org/syntax.html#eob-marker
+      END_OF_BLOCK: "<!-- -->"
+
+      def convert: (untyped el, ?::Hash[untyped, untyped] opts) -> untyped
+
+      def convert_codeblock: (untyped el, untyped _opts) -> untyped
+
+      def convert_li: (untyped el, untyped opts) -> untyped
+
+      def convert_table: (untyped el, untyped opts) -> (untyped | ::String)
+
+      def convert_thead: (untyped el, untyped opts) -> (untyped | ::String)
+
+      def convert_tbody: (untyped el, untyped opts) -> (untyped | ::String)
+
+      def convert_tfoot: (untyped el, untyped opts) -> (untyped | ::String)
+
+      def convert_tr: (untyped el, untyped opts) -> (untyped | ::String)
+
+      def convert_td: (untyped el, untyped opts) -> (untyped | ::String)
+
+      def convert_th: (untyped el, untyped opts) -> (untyped | ::String)
+    end
+  end
+end

@@ -1,0 +1,58 @@
+module WorkItems
+  module SavedViews
+    class FilterNormalizerService < FilterBaseService
+      @filters: untyped
+
+      @container: untyped
+
+      @current_user: untyped
+
+      @normalized_filters: untyped
+
+      include ::API::Concerns::Milestones::GroupProjectParams
+
+      LABEL_WILDCARDS: ::Array["Any" | "None"]
+
+      attr_reader normalized_filters: untyped
+
+      def initialize: (filter_data: untyped, container: untyped, current_user: untyped) -> void
+
+      # Overridden in EE
+      def execute: () -> untyped
+
+      private
+
+      def normalize_static_filters: () -> (nil | untyped)
+
+      def normalize_usernames: (untyped input_key, untyped output_key) -> untyped
+
+      # Normalize attributes with a custom finder method
+      def normalize_attribute: (untyped input_key, untyped output_key, ?method: untyped?, ?condition: untyped?) ?{ (untyped) -> untyped } -> (nil | untyped)
+
+      # Normalize an attribute, and if applicable, it's negation (NOT) and union (OR)
+      def normalize_with_context: (untyped input_key, untyped output_key) { (untyped) -> untyped } -> (nil | untyped)
+
+      def normalize_simple_id: (untyped key) -> (nil | untyped)
+
+      def find_label_ids: (untyped label_names) -> untyped
+
+      def find_milestone_ids: (untyped titles) -> untyped
+
+      def find_release_ids: (untyped tags) -> untyped
+
+      def normalize_full_path: () -> (nil | untyped)
+
+      def normalize_hierarchy: () -> (nil | untyped)
+
+      def normalize_author_username: () -> untyped
+
+      def normalize_label_names: () -> (nil | untyped)
+
+      def normalize_negated_parent_ids: () -> (nil | untyped)
+
+      def normalize_work_item_type_ids: () -> (nil | untyped)
+
+      def label_wildcard?: (untyped value) -> untyped
+    end
+  end
+end

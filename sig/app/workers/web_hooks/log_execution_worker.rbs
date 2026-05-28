@@ -1,0 +1,10 @@
+module WebHooks
+  class LogExecutionWorker
+    include ApplicationWorker
+
+    # This worker accepts an extra argument. This enables us to
+    # treat this worker as idempotent. Currently this is set to
+    # the Job ID (jid) of the parent worker.
+    def perform: (untyped hook_id, untyped log_data, untyped response_category, untyped _unique_by) -> (nil | untyped)
+  end
+end

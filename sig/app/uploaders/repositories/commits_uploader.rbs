@@ -1,0 +1,20 @@
+module Repositories
+  class CommitsUploader < GitlabUploader
+    include ObjectStorage::Concern
+
+    DEFAULT_MAX_REQUEST_SIZE: untyped
+
+    MAX_RATE_LIMITED_REQUEST_SIZE: untyped
+
+    # On Cloud Native GitLab, /srv/gitlab/public/uploads/tmp is a shared mount.
+    # Use a subpath from that directory to ensure the gitlab-workhorse and webservice
+    # containers can both access this directory.
+    def self.workhorse_local_upload_path: () -> untyped
+
+    def self.direct_upload_enabled?: () -> false
+
+    def self.workhorse_authorize: (?has_length: bool, ?maximum_size: untyped, **untyped kwargs) -> untyped
+
+    def self.max_request_size: () -> untyped
+  end
+end

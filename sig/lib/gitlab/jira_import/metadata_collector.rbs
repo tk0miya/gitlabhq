@@ -1,0 +1,27 @@
+module Gitlab
+  module JiraImport
+    class MetadataCollector
+      @jira_issue: untyped
+
+      @metadata: untyped
+
+      attr_accessor jira_issue: untyped
+
+      attr_accessor metadata: untyped
+
+      def initialize: (untyped jira_issue) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def add_field: (untyped keys, untyped field_label) -> (nil | untyped)
+
+      def add_parent: () -> (nil | untyped)
+
+      def add_versions: () -> (nil | untyped)
+
+      def fields: () -> untyped
+    end
+  end
+end

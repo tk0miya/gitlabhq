@@ -1,0 +1,21 @@
+module Gitlab
+  module JiraImport
+    class HandleLabelsService
+      @project: untyped
+
+      @jira_labels: untyped
+
+      def initialize: (untyped project, untyped jira_labels) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader jira_labels: untyped
+
+      def create_missing_labels: (untyped existing_labels) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,31 @@
+class UploaderFinder
+  @container: untyped
+
+  @secret: untyped
+
+  @file_path: untyped
+
+  @uploader: untyped
+
+  # Instantiates a new FileUploader or NamespaceFileUploader based on container type
+  # FileUploader can be opened via .open agnostic of storage type
+  # Arguments correspond to Upload.secret, Upload.model_type and Upload.file_path
+  # Returns a FileUploader with uploaded file retrieved into the object state
+  #
+  # container - project, project namespace or group
+  # secret - secret string in path to the file, based on FileUploader::MARKDOWN_PATTERN regex
+  # file_path - relative path to the file based on FileUploader::MARKDOWN_PATTERN regex
+  def initialize: (untyped container, untyped secret, untyped file_path) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def prevent_path_traversal_attack!: () -> untyped
+
+  def retrieve_file_state!: () -> untyped
+
+  def uploader: () -> untyped
+
+  def uploader_klass: () -> untyped
+end

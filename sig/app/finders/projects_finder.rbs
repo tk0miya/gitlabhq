@@ -1,0 +1,153 @@
+# ProjectsFinder
+#
+# Used to filter Projects  by set of params
+#
+# Arguments:
+#   current_user - which user use
+#   project_ids_relation: int[] - project ids to use
+#   params:
+#     trending: boolean
+#     owned: boolean
+#     non_public: boolean
+#     starred: boolean
+#     sort: string
+#     visibility_level: int
+#     tag: string[] - deprecated, use 'topic' instead
+#     topic: string[]
+#     topic_id: int
+#     personal: boolean
+#     search: string
+#     search_namespaces: boolean
+#     minimum_search_length: int
+#     non_archived: boolean
+#     archived: 'only' or boolean
+#     min_access_level: integer
+#     last_activity_after: datetime
+#     last_activity_before: datetime
+#     repository_storage: string
+#     not_aimed_for_deletion: boolean
+#     full_paths: string[]
+#     organization: Scope the groups to the Organizations::Organization
+#     language: int
+#     language_name: string
+#     active: boolean - Whether to include projects that are not archived.
+#     namespace_path: string - Full path of the project's namespace (group or user).
+class ProjectsFinder < UnionFinder
+  @params: untyped
+
+  @current_user: untyped
+
+  @project_ids_relation: untyped
+
+  include CustomAttributesFilter
+
+  include UpdatedAtFilter
+
+  include Projects::SearchFilter
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_accessor params: untyped
+
+  attr_reader current_user: untyped
+
+  attr_reader project_ids_relation: untyped
+
+  def initialize: (?params: ::Hash[untyped, untyped], ?current_user: untyped?, ?project_ids_relation: untyped?) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def init_collection: () -> untyped
+
+  # EE would override this to add more filters
+  def filter_projects: (untyped collection) -> untyped
+
+  def collection_with_user: () -> untyped
+
+  # Builds a collection for an anonymous user.
+  def collection_without_user: () -> untyped
+
+  # This is an optimization - surprisingly PostgreSQL does not optimize
+  # for this.
+  #
+  # If the default visibility level and desired visibility level filter cancels
+  # each other out, don't use the SQL clause for visibility level in
+  # `Project.public_or_visible_to_user`. In fact, this then becomes equivalent
+  # to just authorized projects for the user.
+  #
+  # E.g.
+  # (EXISTS(<authorized_projects>) OR projects.visibility_level IN (10,20))
+  #   AND "projects"."visibility_level" = 0
+  #
+  # is essentially
+  # EXISTS(<authorized_projects>) AND "projects"."visibility_level" = 0
+  #
+  # See https://gitlab.com/gitlab-org/gitlab/issues/37007
+  def impossible_visibility_level?: () -> (nil | untyped)
+
+  def owned_projects?: () -> untyped
+
+  def private_only?: () -> untyped
+
+  def min_access_level?: () -> untyped
+
+  def by_deleted_status: (untyped items) -> untyped
+
+  def items_without_deleted: (untyped items) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def by_ids: (untyped items) -> untyped
+
+  def by_full_paths: (untyped items) -> untyped
+
+  def by_namespace_path: (untyped items) -> untyped
+
+  def union: (untyped items) -> untyped
+
+  def by_personal: (untyped items) -> untyped
+
+  def by_starred: (untyped items) -> untyped
+
+  def by_trending: (untyped items) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def by_visibility_level: (untyped items) -> untyped
+
+  def by_topics: (untyped items) -> untyped
+
+  def by_topic_id: (untyped items) -> untyped
+
+  def by_marked_for_deletion_on: (untyped items) -> untyped
+
+  def by_aimed_for_deletion: (untyped items) -> untyped
+
+  def by_not_aimed_for_deletion: (untyped items) -> untyped
+
+  def by_last_activity_after: (untyped items) -> untyped
+
+  def by_last_activity_before: (untyped items) -> untyped
+
+  def by_repository_storage: (untyped items) -> untyped
+
+  def by_language: (untyped items) -> untyped
+
+  def should_sort_by_similarity?: () -> untyped
+
+  def sort: (untyped items) -> untyped
+
+  def by_archived: (untyped projects) -> untyped
+
+  def by_feature_availability: (untyped items) -> untyped
+
+  def by_organization: (untyped items) -> untyped
+
+  def by_active: (untyped items) -> untyped
+
+  def by_last_repository_check_failed: (untyped items) -> untyped
+
+  def finder_params: () -> (::Hash[untyped, untyped] | { min_access_level: untyped })
+
+  def namespace_id: () -> untyped
+end

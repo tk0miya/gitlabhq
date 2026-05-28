@@ -1,0 +1,25 @@
+module Integrations
+  class SquashTm < Integration
+    include HasWebHook
+
+    def self.title: () -> "Squash TM"
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.supported_events: () -> ::Array["issue" | "confidential_issue"]
+
+    def self.to_param: () -> "squash_tm"
+
+    def self.default_test_event: () -> "issue"
+
+    def execute: (untyped data) -> (nil | untyped)
+
+    def test: (untyped data) -> untyped
+
+    def hook_url: () -> untyped
+
+    def url_variables: () -> untyped
+  end
+end

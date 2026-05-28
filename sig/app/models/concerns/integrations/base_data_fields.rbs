@@ -1,0 +1,19 @@
+module Integrations
+  module BaseDataFields
+    extend ActiveSupport::Concern
+
+    def activated?: () -> untyped
+
+    def to_database_hash: () -> untyped
+
+    private
+
+    def set_sharding_key: () -> (nil | untyped)
+
+    def project_level?: () -> untyped
+
+    def group_level?: () -> untyped
+
+    def organization_level?: () -> untyped
+  end
+end

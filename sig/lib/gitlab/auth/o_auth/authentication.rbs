@@ -1,0 +1,20 @@
+module Gitlab
+  module Auth
+    module OAuth
+      class Authentication
+        @provider: untyped
+
+        @user: untyped
+
+        attr_reader provider: untyped
+
+        attr_reader user: untyped
+
+        def initialize: (untyped provider, ?untyped? user) -> void
+
+        # Implementation must return user object if login successful
+        def login: (untyped login, untyped password) -> untyped
+      end
+    end
+  end
+end

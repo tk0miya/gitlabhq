@@ -1,0 +1,47 @@
+module Projects
+  module ImportExport
+    class RelationExportService
+      @relation_export: untyped
+
+      @user: untyped
+
+      @jid: untyped
+
+      @logger: untyped
+
+      @params: untyped
+
+      @archive_file: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      def initialize: (untyped relation_export, untyped user, untyped jid, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader relation_export: untyped
+
+      attr_reader user: untyped
+
+      attr_reader jid: untyped
+
+      attr_reader logger: untyped
+
+      attr_reader params: untyped
+
+      def shared: () -> untyped
+
+      def relation_saver: () -> untyped
+
+      def upload_compressed_file: () -> untyped
+
+      def compress_export_path: () -> untyped
+
+      def archive_file_full_path: () -> untyped
+
+      def raise_error: (untyped error_message) -> untyped
+    end
+  end
+end

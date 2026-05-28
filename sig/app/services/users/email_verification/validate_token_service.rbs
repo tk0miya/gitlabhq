@@ -1,0 +1,33 @@
+module Users
+  module EmailVerification
+    class ValidateTokenService < EmailVerification::BaseService
+      @token: untyped
+
+      include ActionView::Helpers::DateHelper
+
+      TOKEN_VALID_FOR_MINUTES: 60
+
+      def initialize: (attr: untyped, user: untyped, token: untyped) -> void
+
+      def execute: () -> untyped
+
+      def expired_token?: () -> untyped
+
+      private
+
+      attr_reader user: untyped
+
+      def verification_rate_limited?: () -> untyped
+
+      def valid?: () -> (false | untyped)
+
+      def success: () -> { status: :success }
+
+      def failure: (untyped reason) -> { status: :failure, reason: untyped, message: untyped }
+
+      def failure_message: (untyped reason) -> untyped
+
+      def email_verification_interval: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Ci
+  class Resource < Ci::ApplicationRecord
+    # In some cases, state machine hooks in `Ci::Build` are skipped
+    # even if the job status transitions to a complete state.
+    # For example, `Ci::Build#doom!` (a.k.a `data_integrity_failure`) doesn't execute state machine hooks.
+    # To handle these edge cases, we check the staleness of the jobs that currently
+    # assigned to the resources, and release if it's stale.
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/335537#note_632925914 for more information.
+    def self.stale_processables: () -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module Integrations
+  module Base
+    module Asana
+      extend ActiveSupport::Concern
+
+      PERSONAL_ACCESS_TOKEN_TEST_URL: "https://app.asana.com/api/1.0/users/me"
+
+      TASK_URL_TEMPLATE: "https://app.asana.com/api/1.0/tasks/%{task_gid}"
+
+      STORY_URL_TEMPLATE: "https://app.asana.com/api/1.0/tasks/%{task_gid}/stories"
+
+      def execute: (untyped data) -> (nil | untyped)
+
+      def check_commit: (untyped message, untyped push_msg) -> untyped
+
+      def test: (untyped _) -> untyped
+
+      private
+
+      def branch_allowed?: (untyped branch_name) -> (true | untyped)
+    end
+  end
+end

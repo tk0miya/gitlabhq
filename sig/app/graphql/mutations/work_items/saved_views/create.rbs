@@ -1,0 +1,13 @@
+module Mutations
+  module WorkItems
+    module SavedViews
+      class Create < BaseMutation
+        include Mutations::SpamProtection
+
+        include FindsNamespace
+
+        def resolve: (namespace_path: untyped, **untyped attrs) -> untyped
+      end
+    end
+  end
+end

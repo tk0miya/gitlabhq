@@ -1,0 +1,13 @@
+module SystemCheck
+  # Helpers used inside a SystemCheck instance to standardize output responses
+  # when using a multi_check version
+  module MultiCheckHelpers
+    def print_skipped: (untyped reason) -> untyped
+
+    def print_warning: (untyped reason) -> untyped
+
+    def print_failure: (untyped reason) -> untyped
+
+    def print_pass: () -> untyped
+  end
+end

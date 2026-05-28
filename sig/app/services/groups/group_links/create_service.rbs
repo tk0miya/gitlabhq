@@ -1,0 +1,21 @@
+module Groups
+  module GroupLinks
+    class CreateService < ::Groups::GroupLinks::BaseService
+      @shared_with_group: untyped
+
+      @link: untyped
+
+      include GroupLinkable
+
+      def initialize: (untyped group, untyped shared_with_group, untyped user, untyped params) -> void
+
+      private
+
+      def valid_to_create?: () -> untyped
+
+      def build_link: () -> untyped
+
+      def setup_authorizations: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillMergeRequestsMergeDataFromMergeRequests < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def select_clause: (untyped sub_batch) -> ::String
+    end
+  end
+end

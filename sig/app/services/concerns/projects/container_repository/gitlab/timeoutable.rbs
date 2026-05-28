@@ -1,0 +1,19 @@
+module Projects
+  module ContainerRepository
+    module Gitlab
+      module Timeoutable
+        extend ActiveSupport::Concern
+
+        DISABLED_TIMEOUTS: ::Array[nil | 0]
+
+        TimeoutError: untyped
+
+        private
+
+        def timeout?: (untyped start_time) -> (false | untyped)
+
+        def service_timeout: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Ci
+  class ProcessSyncEventsService
+    @sync_event_class: untyped
+
+    @sync_class: untyped
+
+    @results: untyped
+
+    include ExclusiveLeaseGuard
+
+    BATCH_SIZE: 1000
+
+    def initialize: (untyped sync_event_class, untyped sync_class) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def process_events: () -> (nil | untyped)
+
+    def enqueue_worker_if_there_still_event: () -> (untyped | nil)
+
+    def lease_key: () -> ::String
+
+    def lease_timeout: () -> untyped
+
+    def add_result: (untyped result) -> untyped
+  end
+end

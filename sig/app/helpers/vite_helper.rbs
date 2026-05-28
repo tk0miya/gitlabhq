@@ -1,0 +1,15 @@
+module ViteHelper
+  def vite_enabled?: () -> (false | untyped)
+
+  def vite_page_entrypoint_paths: (?untyped? custom_action_name) -> untyped
+
+  def universal_stylesheet_link_tag: (untyped path, **untyped options) -> untyped
+
+  def universal_path_to_stylesheet: (untyped path, **untyped options) -> untyped
+
+  private
+
+  # we must add `styles/` because ViteRuby prepends assets folder to the request if `/` is missing
+  # we must use `.css` extension, otherwise Vite will not detect this as a CSS entrypoint
+  def css_entrypoint_name: (untyped path) -> ::String
+end

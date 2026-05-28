@@ -1,0 +1,18 @@
+# Snippets::RepositoryStorageMove are details of repository storage moves for a
+# snippet. For example, moving a snippet to another gitaly node to help
+# balance storage capacity.
+module Snippets
+  class RepositoryStorageMove < ApplicationRecord
+    extend ::Gitlab::Utils::Override
+
+    include RepositoryStorageMovable
+
+    alias snippet container
+
+    def schedule_repository_storage_update_worker: () -> untyped
+
+    private
+
+    def error_key: () -> :snippet
+  end
+end

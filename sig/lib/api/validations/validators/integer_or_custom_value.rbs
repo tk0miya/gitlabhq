@@ -1,0 +1,17 @@
+module API
+  module Validations
+    module Validators
+      class IntegerOrCustomValue < Grape::Validations::Validators::Base
+        @custom_values: untyped
+
+        def initialize: (untyped attrs, untyped options, untyped required, untyped scope, **untyped opts) -> void
+
+        def validate_param!: (untyped attr_name, untyped params) -> (nil | untyped)
+
+        private
+
+        def extract_custom_values: (untyped options) -> untyped
+      end
+    end
+  end
+end

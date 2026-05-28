@@ -1,0 +1,72 @@
+module IssuableActions
+  # NOTE: We only assign the instance variable on this line, and use the local variable
+  # everywhere else in the method, to avoid having to add multiple `rubocop:disable` comments.
+  @issuable: untyped
+
+  @resource_name: untyped
+
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Gitlab::Cache::Helpers
+
+  include SpammableActions::AkismetMarkAsSpamAction
+
+  include SpammableActions::CaptchaCheck::HtmlFormatActionsSupport
+
+  include SpammableActions::CaptchaCheck::JsonFormatActionsSupport
+
+  def show: () -> untyped
+
+  def update: () -> untyped
+
+  def realtime_changes: () -> untyped
+
+  def destroy: () -> untyped
+
+  def check_destroy_confirmation!: () -> (true | untyped)
+
+  def bulk_update: () -> untyped
+
+  def discussions: () ?{ (untyped) -> untyped } -> untyped
+
+  private
+
+  def notes_filter: () -> untyped
+
+  def discussion_cache_context: () -> untyped
+
+  def discussion_serializer: () -> untyped
+
+  def render_conflict_response: () -> untyped
+
+  def authorize_destroy_issuable!: () -> (untyped | nil)
+
+  def authorize_admin_issuable!: () -> (untyped | nil)
+
+  def authorize_update_issuable!: () -> (untyped | nil)
+
+  def set_application_context!: () -> nil
+
+  def bulk_update_params: () -> untyped
+
+  def clean_bulk_update_params: (untyped permitted_params) -> untyped
+
+  def bulk_update_permitted_keys: () -> ::Array[:issuable_ids | :assignee_id | :milestone_id | :state_event | :subscription_event | :confidential | :status | { assignee_ids: ::Array[untyped], add_label_ids: ::Array[untyped], remove_label_ids: ::Array[untyped] }]
+
+  def resource_name: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def render_entity_json: () -> untyped
+
+  def serializer: () -> untyped
+
+  def update_service: () -> untyped
+
+  def destroy_service: () -> untyped
+
+  def parent: () -> untyped
+
+  def finder_params_for_issuable: () -> { notes_filter: untyped, cursor: untyped, per_page: untyped }
+end

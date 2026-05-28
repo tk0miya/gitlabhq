@@ -1,0 +1,19 @@
+module Gitlab
+  module Cleanup
+    module OrphanJobArtifactFinalObjects
+      module StorageHelpers
+        include Gitlab::Utils::StrongMemoize
+
+        def connection: () -> untyped
+
+        def configuration: () -> untyped
+
+        def bucket: () -> untyped
+
+        def bucket_prefix: () -> untyped
+
+        def artifacts_directory: () -> untyped
+      end
+    end
+  end
+end

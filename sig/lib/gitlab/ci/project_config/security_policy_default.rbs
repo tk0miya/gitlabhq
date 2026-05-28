@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    class ProjectConfig
+      class SecurityPolicyDefault < Gitlab::Ci::ProjectConfig::Source
+        @project: untyped
+
+        @pipeline_source: untyped
+
+        @triggered_for_branch: untyped
+
+        @source_branch: untyped
+
+        @pipeline_policy_context: untyped
+
+        def initialize: (project: untyped, ?pipeline_source: untyped?, ?triggered_for_branch: bool, ?source_branch: untyped?, ?pipeline_policy_context: untyped?) -> void
+
+        # rubocop:disable Gitlab/NoCodeCoverageComment -- overridden and tested in EE
+        # :nocov:
+        def content: () -> nil
+
+        def source: () -> :security_policies_default_source
+      end
+    end
+  end
+end

@@ -1,0 +1,69 @@
+module Gitlab
+  module Ci
+    module Parsers
+      module Coverage
+        module Documents
+          class CoberturaDocument < Nokogiri::XML::SAX::Document
+            @coverage_report: untyped
+
+            @project_path: untyped
+
+            @paths: untyped
+
+            @matched_filenames: untyped
+
+            @parsed_lines: untyped
+
+            @sources: untyped
+
+            GO_SOURCE_PATTERN: "/usr/local/go/src"
+
+            MAX_SOURCES: 100
+
+            def initialize: (untyped coverage_report, untyped project_path, untyped worktree_paths) -> void
+
+            def error: (untyped error) -> untyped
+
+            def start_element: (untyped node_name, ?untyped attrs) -> (nil | untyped)
+
+            def characters: (untyped node_content) -> (untyped | nil)
+
+            def end_element: (untyped node_name) -> (untyped | untyped | nil)
+
+            private
+
+            attr_accessor coverage_report: untyped
+
+            attr_accessor project_path: untyped
+
+            attr_accessor paths: untyped
+
+            attr_accessor sources: untyped
+
+            attr_accessor node_name: untyped
+
+            attr_accessor filename: untyped
+
+            attr_accessor parsed_lines: untyped
+
+            attr_accessor matched_filenames: untyped
+
+            def parse_line: (untyped line) -> untyped
+
+            def parse_source: (untyped node) -> (nil | untyped)
+
+            def build_source_path: (untyped node) -> untyped
+
+            def unixify: (untyped path) -> untyped
+
+            def remove_matched_filenames: () -> (nil | untyped)
+
+            def determine_filename: (untyped filename) -> untyped
+
+            def check_source: (untyped source, untyped filename) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

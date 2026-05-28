@@ -1,0 +1,27 @@
+module IncidentManagement
+  class TimelineEventsFinder
+    @user: untyped
+
+    @incident: untyped
+
+    @params: untyped
+
+    def initialize: (untyped user, untyped incident, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader incident: untyped
+
+    attr_reader params: untyped
+
+    def allowed?: () -> untyped
+
+    def by_id: (untyped collection) -> untyped
+
+    def sort: (untyped collection) -> untyped
+  end
+end

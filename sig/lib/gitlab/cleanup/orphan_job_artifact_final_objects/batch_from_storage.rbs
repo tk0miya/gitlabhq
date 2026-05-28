@@ -1,0 +1,29 @@
+module Gitlab
+  module Cleanup
+    module OrphanJobArtifactFinalObjects
+      class BatchFromStorage
+        @fog_collection: untyped
+
+        @bucket_prefix: untyped
+
+        def initialize: (untyped fog_collection, ?bucket_prefix: untyped?) -> void
+
+        def orphan_objects: () -> (::Array[untyped] | untyped)
+
+        private
+
+        attr_reader fog_collection: untyped
+
+        attr_reader bucket_prefix: untyped
+
+        def path_without_bucket_prefix: (untyped path) -> untyped
+
+        def in_final_location?: (untyped path) -> untyped
+
+        def paths_with_job_artifact_records: (untyped paths) -> untyped
+
+        def paths_with_pending_direct_uploads: (untyped paths) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,41 @@
+module Gitlab
+  module Kubernetes
+    class Node
+      @cluster: untyped
+
+      @nodes_from_cluster: untyped
+
+      @nodes_metrics_from_cluster: untyped
+
+      @nodes: untyped
+
+      @nodes_metrics: untyped
+
+      def initialize: (untyped cluster) -> void
+
+      def all: () -> untyped
+
+      private
+
+      attr_reader cluster: untyped
+
+      def metadata: () -> untyped
+
+      def nodes_from_cluster: () -> untyped
+
+      def nodes_metrics_from_cluster: () -> untyped
+
+      def nodes: () -> untyped
+
+      def nodes_metrics: () -> untyped
+
+      def node_metrics_from_node: (untyped node) -> untyped
+
+      def graceful_request: () { (?) -> untyped } -> untyped
+
+      def base_data: (untyped node) -> { "metadata" => { "name" => untyped }, "status" => { "capacity" => { "cpu" => untyped, "memory" => untyped }, "allocatable" => { "cpu" => untyped, "memory" => untyped } } }
+
+      def node_metrics: (untyped node) -> (::Hash[untyped, untyped] | { "usage" => { "cpu" => untyped, "memory" => untyped } })
+    end
+  end
+end

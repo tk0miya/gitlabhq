@@ -1,0 +1,44 @@
+module Gitlab
+  module Metrics
+    module Samplers
+      class RubySampler < BaseSampler
+        @prefix: untyped
+
+        @metrics: untyped
+
+        DEFAULT_SAMPLING_INTERVAL_SECONDS: 60
+
+        GC_REPORT_BUCKETS: ::Array[::Float | 1]
+
+        def initialize: (?prefix: untyped?, **untyped options) -> void
+
+        def metrics: () -> untyped
+
+        def to_doc_string: (untyped name) -> untyped
+
+        def labels: () -> ::Hash[untyped, untyped]
+
+        def init_metrics: () -> untyped
+
+        def sample: () -> untyped
+
+        private
+
+        def metric_name: (untyped group, untyped metric) -> untyped
+
+        def sample_gc: () -> untyped
+
+        def sample_gc_reports: () -> untyped
+
+        def set_memory_usage_metrics: () -> untyped
+
+        def yjit_enabled?: () -> untyped
+
+        # rubocop:disable Metrics/AbcSize -- There are many metrics here to capture
+        def init_yjit_metrics: (untyped metrics) -> untyped
+
+        def sample_yjit_metrics: () -> (nil | untyped)
+      end
+    end
+  end
+end

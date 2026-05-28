@@ -1,0 +1,17 @@
+module Resolvers
+  module Noteable
+    class NotesResolver < BaseResolver
+      include LooksAhead
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def unconditional_includes: () -> ::Array[:author | :project | :note_metadata]
+
+      def preloads: () -> { award_emoji: ::Array[:award_emoji] }
+
+      def build_params: (untyped args) -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Ci
+    class ProjectConfig
+      class Compliance < Gitlab::Ci::ProjectConfig::Source
+        # rubocop:disable Gitlab/NoCodeCoverageComment -- overridden and tested in EE
+        # :nocov:
+        def content: () -> nil
+
+        def internal_include_prepended?: () -> true
+
+        def source: () -> :compliance_source
+      end
+    end
+  end
+end

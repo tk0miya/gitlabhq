@@ -1,0 +1,35 @@
+module JiraConnect
+  class CreateAsymmetricJwtService
+    @jira_connect_installation: untyped
+
+    @event: untyped
+
+    @private_key: untyped
+
+    @public_key_storage: untyped
+
+    ARGUMENT_ERROR_MESSAGE: "jira_connect_installation is not a proxy installation"
+
+    def initialize: (untyped jira_connect_installation, ?event: ::Symbol) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def jwt_claims: () -> { aud: untyped, iss: untyped, qsh: untyped }
+
+    def aud_claim: () -> untyped
+
+    def iss_claim: () -> untyped
+
+    def qsh_claim: () -> untyped
+
+    def audience_event_url: () -> untyped
+
+    def private_key: () -> untyped
+
+    def public_key_storage: () -> untyped
+
+    def jwt_headers: () -> { kid: untyped }
+  end
+end

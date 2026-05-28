@@ -1,0 +1,21 @@
+module Database
+  class MarkMigrationService < BaseMigrationService
+    @version: untyped
+
+    @migration: untyped
+
+    def initialize: (connection: untyped, version: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader version: untyped
+
+    def migration: () -> untyped
+
+    def create_version: (untyped version) -> untyped
+
+    def error: (reason: untyped) -> untyped
+  end
+end

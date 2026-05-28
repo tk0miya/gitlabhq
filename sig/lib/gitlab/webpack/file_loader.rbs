@@ -1,0 +1,31 @@
+module Gitlab
+  module Webpack
+    class FileLoader
+      class BaseError < StandardError
+        @uri: untyped
+
+        @original_error: untyped
+
+        attr_reader original_error: untyped
+
+        attr_reader uri: untyped
+
+        def initialize: (untyped uri, untyped orig) -> void
+      end
+
+      StaticLoadError: untyped
+
+      DevServerLoadError: untyped
+
+      DevServerSSLError: untyped
+
+      def self.load: (untyped path) -> untyped
+
+      def self.load_from_dev_server: (untyped path) -> untyped
+
+      def self.load_from_static: (untyped path) -> untyped
+
+      def self.dev_server_path: (untyped path) -> ::String
+    end
+  end
+end

@@ -1,0 +1,53 @@
+module Members
+  class ImportProjectTeamService < BaseService
+    @errors: untyped
+
+    @members: untyped
+
+    @result: untyped
+
+    @target_project: untyped
+
+    @source_project: untyped
+
+    ImportProjectTeamForbiddenError: untyped
+
+    SeatLimitExceededError: untyped
+
+    def initialize: (*untyped args) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader members: untyped
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader errors: untyped
+
+    attr_reader result: untyped
+
+    def import_project_team: () -> untyped
+
+    def check_target_and_source_projects_exist!: () -> (untyped | untyped | nil)
+
+    def check_seats!: () -> nil
+
+    def check_user_permissions!: () -> (nil | untyped)
+
+    def check_member_validity: (untyped member) -> (nil | untyped)
+
+    def process_import_result: () -> untyped
+
+    def target_project_id: () -> untyped
+
+    def source_project_id: () -> untyped
+
+    def target_project: () -> untyped
+
+    def source_project: () -> untyped
+  end
+end

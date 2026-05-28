@@ -1,0 +1,32 @@
+module Gitlab
+  module WebHooks
+    module RecursionDetection
+      class UUID
+        HEADER: ::String
+
+        include Singleton
+
+        attr_accessor request_uuid: untyped
+
+        def initialize: () -> void
+
+        # Back the Singleton with RequestStore so it is isolated to this request.
+        def self.instance: () -> untyped
+
+        # Returns a UUID, which will be either:
+        #
+        #   - The UUID that was recycled from the request headers if the request was made by a webhook.
+        #   - A new UUID initialized for the webhook.
+        def uuid_for_hook: (untyped hook) -> untyped
+
+        def header: (untyped hook) -> ::Hash[untyped, untyped]
+
+        private
+
+        attr_accessor new_uuids_for_hooks: untyped
+
+        def new_uuid_for_hook: (untyped hook) -> untyped
+      end
+    end
+  end
+end

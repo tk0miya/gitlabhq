@@ -1,0 +1,49 @@
+module Integrations
+  module ChatMessage
+    class AlertMessage < BaseMessage
+      @project_name: untyped
+
+      @project_url: untyped
+
+      @title: untyped
+
+      @alert_url: untyped
+
+      @severity: untyped
+
+      @events: untyped
+
+      @status: untyped
+
+      @started_at: untyped
+
+      attr_reader title: untyped
+
+      attr_reader alert_url: untyped
+
+      attr_reader severity: untyped
+
+      attr_reader events: untyped
+
+      attr_reader status: untyped
+
+      attr_reader started_at: untyped
+
+      def initialize: (untyped params) -> void
+
+      def attachments: () -> ::Array[{ title: untyped, title_link: untyped, color: untyped, fields: untyped }]
+
+      def message: () -> ::String
+
+      def attachment_color: () -> "#C95823"
+
+      private
+
+      def attachment_fields: () -> ::Array[{ title: "Severity", value: untyped, short: true } | { title: "Events", value: untyped, short: true } | { title: "Status", value: untyped, short: true } | { title: "Start time", value: untyped, short: true }]
+
+      # This formats time into the following format
+      # April 23rd, 2020 1:06AM UTC
+      def format_time: (untyped time) -> untyped
+    end
+  end
+end

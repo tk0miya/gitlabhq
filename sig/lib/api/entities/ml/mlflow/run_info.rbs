@@ -1,0 +1,31 @@
+module API
+  module Entities
+    module Ml
+      module Mlflow
+        class RunInfo < Grape::Entity
+          include ::API::Helpers::RelatedResourcesHelpers
+
+          private
+
+          CANDIDATE_PREFIX: "candidate:"
+
+          MLFLOW_ARTIFACTS_PREFIX: "mlflow-artifacts"
+
+          def run_id: () -> untyped
+
+          def artifact_uri: () -> (untyped | untyped | ::String | untyped)
+
+          # Example: http://127.0.0.1:3000/api/v4/projects/20/packages/ml_models/1/files/
+          def model_version_uri: () -> untyped
+
+          # Example: http://127.0.0.1:3000/api/v4/projects/20/packages/ml_models/1/files/
+          def ml_model_candidate_uri: () -> untyped
+
+          # Example: http://127.0.0.1:3000/api/v4/projects/20/packages/generic/ml_experiment_1/1/
+          # Note: legacy format
+          def generic_package_uri: () -> untyped
+        end
+      end
+    end
+  end
+end

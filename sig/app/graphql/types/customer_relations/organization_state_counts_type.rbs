@@ -1,0 +1,10 @@
+module Types
+  module CustomerRelations
+    # `object` is a hash. Authorization is performed by OrganizationStateCountsResolver
+    class OrganizationStateCountsType < Types::BaseObject
+      AVAILABLE_STATES: untyped
+
+      def all: () -> untyped
+    end
+  end
+end

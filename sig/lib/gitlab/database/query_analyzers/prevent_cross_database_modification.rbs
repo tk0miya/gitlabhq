@@ -1,0 +1,53 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      class PreventCrossDatabaseModification < Database::QueryAnalyzers::Base
+        CrossDatabaseModificationAcrossUnsupportedTablesError: untyped
+
+        QUERY_LIMIT: 10
+
+        # This method will allow cross database modifications within the block
+        # Example:
+        #
+        # allow_cross_database_modification_within_transaction(url: 'url-to-an-issue') do
+        #   create(:build) # inserts ci_build and project record in one transaction
+        # end
+        def self.allow_cross_database_modification_within_transaction: (url: untyped) { (?) -> untyped } -> untyped
+
+        # This method will prevent cross database modifications within the block
+        # if it was allowed previously
+        def self.with_cross_database_modification_prevented: () { (?) -> untyped } -> untyped
+
+        # This method will temporary ignore the given tables in a current transaction
+        # This is meant to disable `PreventCrossDB` check for some well known failures
+        def self.temporary_ignore_tables_in_transaction: (untyped tables, url: untyped) { () -> untyped } -> untyped
+
+        def self.begin!: () -> untyped
+
+        def self.enabled?: () -> untyped
+
+        def self.requires_tracking?: (untyped parsed) -> untyped
+
+        # rubocop:disable Metrics/AbcSize
+        def self.analyze: (untyped parsed) -> (nil | untyped)
+
+        def self.transaction_begin?: (untyped parsed) -> (true | false)
+
+        def self.transaction_end?: (untyped parsed) -> (true | false)
+
+        # Known kinds: https://github.com/pganalyze/pg_query/blob/f6588703deb9d7a94b87b34b7c3bab240087fbc4/ext/pg_query/include/nodes/parsenodes.h#L3050
+        def self.transaction_stmt?: (untyped parsed, untyped kind) -> untyped
+
+        def self.dev_or_test_env?: () -> untyped
+
+        def self.clear_queries: () -> (nil | untyped)
+
+        def self.add_to_queries: (untyped sql) -> (nil | untyped)
+
+        def self.cleaned_queries: () -> (::Array[untyped] | untyped)
+
+        def self.in_transaction?: () -> untyped
+      end
+    end
+  end
+end

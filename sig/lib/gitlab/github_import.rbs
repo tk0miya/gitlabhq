@@ -1,0 +1,13 @@
+module Gitlab
+  module GithubImport
+    def self.refmap: () -> ::Array[:heads | :tags | "+refs/pull/*/head:refs/merge-requests/*/head"]
+
+    def self.new_client_for: (untyped project, ?token: untyped?, ?host: untyped?, ?parallel: bool) -> untyped
+
+    # Returns the ID of the ghost user.
+    def self.ghost_user_id: (untyped organization_id) -> untyped
+
+    # Get formatted GitHub import URL. If github.com is in the import URL, this will return nil and octokit will use the default github.com API URL
+    def self.formatted_import_url: (untyped project) -> untyped
+  end
+end

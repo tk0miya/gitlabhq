@@ -1,0 +1,12 @@
+module SshKeys
+  class ExpiredNotificationWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    BATCH_SIZE: 500
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def perform: () -> untyped
+  end
+end

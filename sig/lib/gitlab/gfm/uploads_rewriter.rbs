@@ -1,0 +1,38 @@
+module Gitlab
+  module Gfm
+    #
+    # Class that rewrites markdown links for uploads
+    #
+    # Using a pattern defined in `FileUploader` it copies files to a new
+    # project and rewrites all links to uploads in a given text.
+    class UploadsRewriter
+      @text: untyped
+
+      @source_container: untyped
+
+      @pattern: untyped
+
+      @target_container: untyped
+
+      @klass: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped text, untyped _text_html, untyped source_container, untyped _current_user) -> void
+
+      def rewrite: (untyped target_container) -> untyped
+
+      def needs_rewrite?: () -> untyped
+
+      private
+
+      def was_embedded?: (untyped markdown) -> untyped
+
+      def find_file: (untyped secret, untyped file_name) -> untyped
+
+      def transform_markdown: (untyped markdown) -> untyped
+
+      def uploader_class: () -> untyped
+    end
+  end
+end

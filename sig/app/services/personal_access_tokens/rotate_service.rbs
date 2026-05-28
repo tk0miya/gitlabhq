@@ -1,0 +1,58 @@
+module PersonalAccessTokens
+  class RotateService
+    @current_user: untyped
+
+    @token: untyped
+
+    @resource: untyped
+
+    @params: untyped
+
+    @target_user: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    EXPIRATION_PERIOD: untyped
+
+    def initialize: (untyped current_user, untyped token, ?untyped? resource, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader token: untyped
+
+    attr_reader resource: untyped
+
+    attr_reader params: untyped
+
+    attr_reader target_user: untyped
+
+    def granular_tokens_enforced?: () -> (false | untyped)
+
+    def create_access_token: () -> untyped
+
+    def valid_access_level?: () -> true
+
+    def update_project_bot_membership: (untyped target_user, untyped expires_at) -> (nil | untyped)
+
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/509324
+    def update_project_bot_to_inherit_current_user_external_status: () -> (nil | untyped)
+
+    def expires_at: () -> (nil | untyped)
+
+    def enforced_expiration_date: () -> (untyped | nil)
+
+    def success_response: (untyped new_token) -> untyped
+
+    def error_response: (untyped message) -> untyped
+
+    def create_token_params: () -> { name: untyped, description: untyped, previous_personal_access_token_id: untyped, impersonation: untyped, scopes: untyped, granular: untyped, expires_at: untyped, organization: untyped }
+
+    def default_expiration_date: () -> untyped
+
+    def track_rotation_event: () -> untyped
+  end
+end

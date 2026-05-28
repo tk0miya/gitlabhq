@@ -1,0 +1,26 @@
+module Gitlab
+  module GitAccessResult
+    class CustomAction
+      @payload: untyped
+
+      @console_messages: untyped
+
+      attr_reader payload: untyped
+
+      attr_reader console_messages: untyped
+
+      # Example of payload:
+      #
+      # {
+      #   'action' => 'geo_proxy_to_primary',
+      #   'data' => {
+      #     'api_endpoints' => %w{geo/proxy_git_ssh/info_refs_receive_pack geo/proxy_git_ssh/receive_pack},
+      #     'gl_username' => user.username,
+      #     'primary_repo' => geo_primary_http_url_to_repo(container)
+      #   }
+      # }
+      #
+      def initialize: (untyped payload, untyped console_messages) -> void
+    end
+  end
+end

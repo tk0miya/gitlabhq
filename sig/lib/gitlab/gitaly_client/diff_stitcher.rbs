@@ -1,0 +1,17 @@
+module Gitlab
+  module GitalyClient
+    class DiffStitcher
+      @rpc_response: untyped
+
+      @diff_count: untyped
+
+      include Enumerable
+
+      def initialize: (untyped rpc_response) -> void
+
+      def size: () -> untyped
+
+      def each: () { (untyped) -> untyped } -> untyped
+    end
+  end
+end

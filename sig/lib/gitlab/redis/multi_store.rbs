@@ -1,0 +1,184 @@
+module Gitlab
+  module Redis
+    class MultiStore
+      @instance_name: untyped
+
+      @primary_pool: untyped
+
+      @secondary_pool: untyped
+
+      @primary_store: untyped
+
+      @secondary_store: untyped
+
+      @pipelined_command_error: untyped
+
+      @method_missing_counter: untyped
+
+      @instance: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      class PipelinedDiffError < StandardError
+        @non_default_store_result: untyped
+
+        @default_store_result: untyped
+
+        def initialize: (untyped non_default_store_result, untyped default_store_result) -> void
+
+        def message: () -> ::String
+      end
+
+      class MethodMissingError < StandardError
+        @cmd: untyped
+
+        def initialize: (untyped cmd) -> void
+
+        def message: () -> ::String
+      end
+
+      class NestedReadonlyPipelineError < StandardError
+        def message: () -> "Nested use of with_readonly_pipeline is detected."
+      end
+
+      attr_reader primary_pool: untyped
+
+      attr_reader secondary_pool: untyped
+
+      attr_reader instance_name: untyped
+
+      attr_reader primary_store: untyped
+
+      attr_reader secondary_store: untyped
+
+      FAILED_TO_READ_ERROR_MESSAGE: "Failed to read from the redis default_store."
+
+      FAILED_TO_WRITE_ERROR_MESSAGE: "Failed to write to the redis non_default_store."
+
+      FAILED_TO_RUN_PIPELINE: "Failed to execute pipeline on the redis non_default_store."
+
+      SKIP_LOG_METHOD_MISSING_FOR_COMMANDS: ::Array[:info]
+
+      # _client and without_reconnect are Redis::Client methods which may be called through multistore
+      REDIS_CLIENT_COMMANDS: ::Array[:_client | :without_reconnect]
+
+      PUBSUB_SUBSCRIBE_COMMANDS: ::Array[:subscribe | :unsubscribe]
+
+      READ_COMMANDS: ::Array[:exists | :exists? | :get | :hexists | :hget | :hgetall | :hlen | :hmget | :hscan_each | :llen | :lrange | :mapped_hmget | :mget | :pfcount | :pttl | :scan | :scan_each | :scard | :sismember | :smembers | :sscan | :sscan_each | :strlen | :ttl | :type | :zcard | :zcount | :zrange | :zrangebyscore | :zrevrange | :zscan_each | :zscore]
+
+      WRITE_COMMANDS: ::Array[:decr | :del | :eval | :expire | :flushdb | :hdel | :hincrby | :hset | :incr | :incrby | :incrbyfloat | :ltrim | :mapped_hmset | :pfadd | :pfmerge | :publish | :rpush | :sadd | :sadd? | :set | :setex | :setnx | :spop | :srem | :srem? | :unlink | :zadd | :zpopmin | :zrem | :zremrangebyrank | :zremrangebyscore | :memory]
+
+      PIPELINED_COMMANDS: ::Array[:pipelined | :multi]
+
+      # This initialises a MultiStore instance with references to 2 pools.
+      # All method calls must be wrapped in a `.with_borrowed_connection` scope.
+      #
+      # This is the preferred way to use MultiStore as re-using connections from connection
+      # pools is more efficient than spinning up new ones.
+      def self.create_using_pool: (untyped primary_pool, untyped secondary_pool, untyped instance_name) -> untyped
+
+      # Initialises a MultiStore with 2 client connections. This is used in situations where the
+      # caller does not use connection pools and holds long-running connections,e.g. ActionCable pubsub.
+      # This would create additional connections to the primary and secondary store on per MultiStore instance.
+      def self.create_using_client: (untyped primary_store, untyped secondary_store, untyped instance_name) -> untyped
+
+      # To transition between two Redis store, `primary_pool` should be the connection pool for the target store,
+      # and `secondary_pool` should be the connection pool for the current store.
+      #
+      # Transition is controlled with feature flags:
+      # - At the default state, all read and write operations are executed in the secondary instance.
+      # - Turning use_primary_and_secondary_stores_for_<instance_name> on: The store writes to both instances.
+      #   The read commands are executed in the default store with no fallbacks.
+      #   Other commands are executed in the the default instance (Secondary).
+      # - Turning use_primary_store_as_default_for_<instance_name> on: The behavior is the same as above,
+      #   but other commands are executed in the primary now.
+      # - Turning use_primary_and_secondary_stores_for_<instance_name> off: commands are executed in the primary store.
+      def initialize: (primary_pool: untyped, secondary_pool: untyped, primary_store: untyped, secondary_store: untyped, instance_name: untyped) -> void
+
+      # Pipelines are sent to both instances by default since
+      # they could execute both read and write commands.
+      #
+      # But for pipelines that only consists of read commands, this method
+      # can be used to scope the pipeline and send it only to the default store.
+      def with_readonly_pipeline: () { () -> untyped } -> untyped
+
+      def readonly_pipeline?: () -> untyped
+
+      def method_missing: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def respond_to_missing?: (untyped command_name, ?bool include_private) -> true
+
+      def with_borrowed_connection: () { () -> untyped } -> untyped
+
+      # This is needed because of Redis::Rack::Connection is requiring Redis::Store
+      # https://github.com/redis-store/redis-rack/blob/a833086ba494083b6a384a1a4e58b36573a9165d/lib/redis/rack/connection.rb#L15
+      # Done similarly in https://github.com/lsegal/yard/blob/main/lib/yard/templates/template.rb#L122
+      def is_a?: (untyped klass) -> (true | untyped)
+
+      alias kind_of? is_a?
+
+      def to_s: () -> untyped
+
+      def use_primary_and_secondary_stores?: () -> untyped
+
+      def use_primary_store_as_default?: () -> untyped
+
+      def feature_flag_type: (untyped feature_flag) -> (nil | :undefined)
+
+      def increment_pipelined_command_error_count: (untyped command_name) -> untyped
+
+      def increment_method_missing_count: (untyped command_name) -> untyped
+
+      def log_error: (untyped exception, untyped command_name, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def default_store: () -> untyped
+
+      def non_default_store: () -> untyped
+
+      def ping: (?untyped? message) -> untyped
+
+      # connection_pool gem calls `#close` method:
+      #
+      # https://github.com/mperham/connection_pool/blob/v2.4.1/lib/connection_pool.rb#L63
+      #
+      # Let's define it explicitly instead of propagating it to method_missing
+      def close: () -> (nil | untyped)
+
+      # blpop blocks until an element to be popped exist in the list or after a timeout.
+      def blpop: (*untyped args) -> untyped
+
+      private
+
+      # @return [Boolean]
+      def feature_table_exists?: () -> untyped
+
+      def log_method_missing: (untyped command_name, *untyped _args) -> (nil | untyped)
+
+      def read_command: (untyped command_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def write_command: (untyped command_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def read_from_default: (untyped command_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def write_both: (untyped command_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      # Run the entire pipeline on both stores. We assume that `&block` is idempotent.
+      def pipelined_both: (untyped command_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def same_redis_store?: () -> untyped
+
+      # rubocop:disable GitlabSecurity/PublicSend
+      def send_command: (untyped redis_instance, untyped command_name, *untyped args, **untyped kwargs) ?{ (?) -> untyped } -> untyped
+
+      def with_instance: (untyped instance, *untyped params) { (untyped) -> untyped } -> untyped
+
+      def redis_pool?: (untyped pool) -> untyped
+
+      def redis_store?: (untyped conn) -> untyped
+
+      def validate_attributes!: () -> untyped
+
+      def validate_redis!: (untyped store, untyped pool, untyped type) -> (untyped | nil | untyped | nil | untyped)
+    end
+  end
+end

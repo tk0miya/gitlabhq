@@ -1,0 +1,61 @@
+module Import
+  module Offline
+    module Imports
+      class CreateService
+        @params: untyped
+
+        @storage_configuration: untyped
+
+        @current_user: untyped
+
+        @fallback_organization: untyped
+
+        @destination_validator: untyped
+
+        # @param storage_configuration [Hash]
+        #   {
+        #     bucket: 'my-bucket',
+        #     provider: 'aws',
+        #     export_prefix: 'my-export',
+        #     object_storage_credentials: {
+        #       aws_access_key_id: 'AwsUserAccessKey',
+        #       aws_secret_access_key: 'aws/secret+access/key',
+        #       region: 'us-east-1',
+        #       path_style: false
+        #     }
+        #   }
+        # @option params [entities] An array of entity paths to import. This may be
+        #   a subset of the entities defined in the export's metadata.json.
+        def initialize: (untyped storage_configuration, untyped params, current_user: untyped, fallback_organization: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader current_user: untyped
+
+        attr_reader storage_configuration: untyped
+
+        attr_reader params: untyped
+
+        attr_reader fallback_organization: untyped
+
+        def create_bulk_import: () -> untyped
+
+        def create_offline_transfer_config: (untyped bulk_import) -> untyped
+
+        def destinations_valid?: () -> untyped
+
+        def destination_validator: () -> untyped
+
+        def destination_validation_error: () -> untyped
+
+        def feature_flag_disabled_error: () -> untyped
+
+        def service_error: (untyped message) -> untyped
+
+        def organization: (?untyped? namespace) -> untyped
+      end
+    end
+  end
+end

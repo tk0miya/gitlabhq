@@ -1,0 +1,24 @@
+module Types
+  module Analytics
+    module CycleAnalytics
+      module ValueStreams
+        # rubocop: disable Graphql/AuthorizeTypes -- # Already authorized in parent value stream type.
+        class StageType < BaseObject
+          @stage_entity: untyped
+
+          def start_event_identifier: () -> untyped
+
+          def end_event_identifier: () -> untyped
+
+          def start_event_html_description: () -> untyped
+
+          def end_event_html_description: () -> untyped
+
+          def events_enum: () -> untyped
+
+          def stage_entity: () -> untyped
+        end
+      end
+    end
+  end
+end

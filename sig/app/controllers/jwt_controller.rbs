@@ -1,0 +1,37 @@
+class JwtController < ApplicationController
+  @authentication_result: untyped
+
+  SERVICES: ::Hash[untyped, untyped]
+
+  # Currently POST requests for this route return a 404 by default and are allowed through in our readonly middleware -
+  # ee/lib/ee/gitlab/middleware/read_only/controller.rb
+  # If the action here changes to allow POST requests then a check for maintenance mode should be added
+  def auth: () -> untyped
+
+  private
+
+  def authenticate_project_or_user: () -> untyped
+
+  def log_authentication_failed: (untyped login, untyped result) -> untyped
+
+  def render_access_denied: () -> untyped
+
+  def auth_params: () -> untyped
+
+  def additional_params: () -> untyped
+
+  # We have to parse scope here, because Docker Client does not send an array of scopes,
+  # but rather a flat list and we loose second scope when being processed by Rails:
+  # scope=scopeA&scope=scopeB.
+  #
+  # Additionally, according to RFC6749 (https://datatracker.ietf.org/doc/html/rfc6749#section-3.3), some clients may use
+  # a scope parameter expressed as a list of space-delimited elements. Therefore, we must account for this and split the
+  # scope parameter value(s) appropriately.
+  #
+  # This method makes to always return an array of scopes
+  def scopes_param: () -> (nil | untyped)
+
+  def auth_user: () -> untyped
+
+  def bypass_admin_mode!: () { () -> untyped } -> untyped
+end

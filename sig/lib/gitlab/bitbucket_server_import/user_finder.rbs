@@ -1,0 +1,38 @@
+module Gitlab
+  module BitbucketServerImport
+    class UserFinder
+      @project: untyped
+
+      @source_user_mapper: untyped
+
+      attr_reader project: untyped
+
+      CACHE_KEY: "bitbucket_server-importer/user-finder/%{project_id}/%{by}/%{value}"
+
+      CACHE_USER_ID_NOT_FOUND: -1
+
+      # project - An instance of `Project`
+      def initialize: (untyped project) -> void
+
+      def author_id: (untyped object) -> untyped
+
+      # Object should behave as a object so we can remove object.is_a?(Hash) check
+      # This will be fixed in https://gitlab.com/gitlab-org/gitlab/-/issues/412328
+      def uid: (untyped object) -> (nil | untyped | untyped)
+
+      def find_user_id: (by: untyped, value: untyped) -> (nil | untyped)
+
+      private
+
+      def cache: () -> untyped
+
+      def build_cache_key: (untyped by, untyped value) -> untyped
+
+      def user_mapping_enabled?: (untyped project) -> untyped
+
+      def source_user_for_author: (untyped user_data) -> untyped
+
+      def source_user_mapper: () -> untyped
+    end
+  end
+end

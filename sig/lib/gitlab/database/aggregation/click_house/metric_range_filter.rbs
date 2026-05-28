@@ -1,0 +1,11 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class MetricRangeFilter < MetricFilterDefinition
+          def apply_outer: (untyped query_builder, untyped filter_config, untyped metric_column) -> untyped
+        end
+      end
+    end
+  end
+end

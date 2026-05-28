@@ -1,0 +1,62 @@
+module Gitlab
+  module Ci
+    class Trace
+      #
+      # Trace::Checksum class is responsible for calculating a CRC32 checksum
+      # of an entire build trace using partial build trace chunks stored in a
+      # database.
+      #
+      # CRC32 checksum can be easily calculated by combining partial checksums
+      # in a right order.
+      #
+      # Then we compare CRC32 checksum provided by a GitLab Runner and expect
+      # it to be the same as the CRC32 checksum derived from partial chunks.
+      #
+      class Checksum
+        @build: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader build: untyped
+
+        def initialize: (untyped build) -> void
+
+        def valid?: () -> (false | untyped)
+
+        def state_crc32: () -> untyped
+
+        def chunks_crc32: () -> untyped
+
+        def last_chunk: () -> untyped
+
+        #
+        # Trace chunks will be persisted in a database if an object store is
+        # not configured - in that case we do not want to load entire raw data
+        # of all the chunks into memory.
+        #
+        # We ignore `raw_data` attribute instead, and rely on internal build
+        # trace chunk database adapter to handle
+        # `ActiveModel::MissingAttributeError` exception.
+        #
+        # Alternative solution would be separating chunk data from chunk
+        # metadata on the database level too.
+        #
+        def trace_chunks: () -> untyped
+
+        def state_bytesize: () -> untyped
+
+        def trace_size: () -> untyped
+
+        def corrupted?: () -> (false | untyped)
+
+        def chunks_count: () -> untyped
+
+        def has_bytesize?: () -> untyped
+
+        private
+
+        def chunk_size: (untyped chunk) -> untyped
+      end
+    end
+  end
+end

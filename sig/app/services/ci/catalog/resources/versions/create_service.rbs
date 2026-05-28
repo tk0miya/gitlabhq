@@ -1,0 +1,43 @@
+module Ci
+  module Catalog
+    module Resources
+      module Versions
+        class CreateService
+          @release: untyped
+
+          @user: untyped
+
+          @project: untyped
+
+          @metadata: untyped
+
+          @errors: untyped
+
+          def initialize: (untyped release, untyped user, untyped metadata) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader project: untyped
+
+          attr_reader errors: untyped
+
+          attr_reader release: untyped
+
+          attr_reader user: untyped
+
+          attr_reader metadata: untyped
+
+          def build_catalog_resource_version: () -> untyped
+
+          def build_components: (untyped version) -> (nil | untyped)
+
+          def publish: (untyped version) -> (nil | untyped)
+
+          def error: (untyped message) -> untyped
+        end
+      end
+    end
+  end
+end

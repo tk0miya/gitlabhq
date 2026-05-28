@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    module Reports
+      class CodequalityReports
+        @degradations: untyped
+
+        @error_message: untyped
+
+        attr_reader degradations: untyped
+
+        attr_reader error_message: untyped
+
+        SEVERITY_PRIORITIES: untyped
+
+        CODECLIMATE_SCHEMA_PATH: untyped
+
+        def initialize: () -> void
+
+        def add_degradation: (untyped degradation) -> untyped
+
+        def set_error_message: (untyped error) -> untyped
+
+        def degradations_count: () -> untyped
+
+        def all_degradations: () -> untyped
+
+        def sort_degradations!: () -> untyped
+
+        def valid_degradation?: (untyped degradation) -> untyped
+
+        def code_quality_report_summary: () -> (nil | untyped)
+      end
+    end
+  end
+end

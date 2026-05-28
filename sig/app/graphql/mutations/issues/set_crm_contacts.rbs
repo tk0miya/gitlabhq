@@ -1,0 +1,11 @@
+module Mutations
+  module Issues
+    class SetCrmContacts < Base
+      def resolve: (project_path: untyped, iid: untyped, contact_ids: untyped, ?operation_mode: untyped) -> { issue: untyped, errors: untyped }
+
+      private
+
+      def feature_enabled?: (untyped project) -> untyped
+    end
+  end
+end

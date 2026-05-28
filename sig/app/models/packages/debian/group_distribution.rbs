@@ -1,0 +1,7 @@
+class Packages::Debian::GroupDistribution < ApplicationRecord
+  def self.container_type: () -> :group
+
+  include Packages::Debian::Distribution
+
+  def packages: () -> untyped
+end

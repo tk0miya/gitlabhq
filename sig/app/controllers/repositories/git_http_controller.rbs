@@ -1,0 +1,61 @@
+module Repositories
+  class GitHttpController < ::Repositories::GitHttpClientController
+    @access: untyped
+
+    @project: untyped
+
+    @access_klass: untyped
+
+    include WorkhorseRequest
+
+    # GET /foo/bar.git/info/refs?service=git-upload-pack (git pull)
+    # GET /foo/bar.git/info/refs?service=git-receive-pack (git push)
+    def info_refs: () -> untyped
+
+    # POST /foo/bar.git/git-upload-pack (git pull)
+    def git_upload_pack: () -> untyped
+
+    # POST /foo/bar.git/git-receive-pack" (git push)
+    def git_receive_pack: () -> untyped
+
+    # POST /foo/bar.git/ssh-upload-pack" (git pull via SSH)
+    def ssh_upload_pack: () -> untyped
+
+    # POST /foo/bar.git/ssh-receive-pack" (git push via SSH)
+    def ssh_receive_pack: () -> untyped
+
+    private
+
+    def deny_head_requests: () -> (untyped | nil)
+
+    def download_request?: () -> untyped
+
+    def upload_pack?: () -> untyped
+
+    def git_command: () -> untyped
+
+    def render_ok: () ?{ (untyped) -> untyped } -> untyped
+
+    def render_403_with_exception: (untyped exception) -> untyped
+
+    def render_404_with_exception: (untyped exception) -> untyped
+
+    def render_422_with_exception: (untyped exception) -> untyped
+
+    def render_503_with_exception: (untyped exception, ?message: untyped?) -> untyped
+
+    def update_fetch_statistics: () -> (nil | untyped)
+
+    def access: () -> untyped
+
+    def access_actor: () -> untyped
+
+    def access_check: () -> untyped
+
+    def access_klass: () -> untyped
+
+    def log_user_activity: () -> (nil | untyped)
+
+    def append_info_to_payload: (untyped payload) -> untyped
+  end
+end

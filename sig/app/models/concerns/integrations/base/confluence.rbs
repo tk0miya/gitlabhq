@@ -1,0 +1,27 @@
+module Integrations
+  module Base
+    module Confluence
+      extend ActiveSupport::Concern
+
+      include Base::ThirdPartyWiki
+
+      VALID_SCHEME_MATCH: untyped
+
+      VALID_HOST_MATCH: untyped
+
+      VALID_PATH_MATCH: untyped
+
+      def avatar_url: () -> untyped
+
+      def help: () -> (nil | untyped)
+
+      def testable?: () -> false
+
+      private
+
+      def validate_confluence_url_is_cloud: () -> (nil | untyped)
+
+      def confluence_uri_valid?: () -> untyped
+    end
+  end
+end

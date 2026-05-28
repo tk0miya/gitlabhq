@@ -1,0 +1,17 @@
+module Packages
+  module Cleanup
+    class UpdatePolicyService < BaseProjectService
+      ALLOWED_ATTRIBUTES: ::Array[:keep_n_duplicated_package_files]
+
+      def execute: () -> untyped
+
+      private
+
+      def policy: () -> untyped
+
+      def allowed?: () -> untyped
+
+      def policy_params: () -> untyped
+    end
+  end
+end

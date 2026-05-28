@@ -1,0 +1,27 @@
+module Gitlab
+  module GithubImport
+    # AdvanceStageWorker is a worker used by the GitHub importer to wait for a
+    # number of jobs to complete, without blocking a thread. Once all jobs have
+    # been completed this worker will advance the import process to the next
+    # stage.
+    class AdvanceStageWorker
+      include ApplicationWorker
+
+      include ::Gitlab::Import::AdvanceStage
+
+      STAGES: { repository: untyped, base_data: untyped, pull_requests: untyped, collaborators: untyped, issues_and_diff_notes: untyped, issue_events: untyped, attachments: untyped, protected_branches: untyped, lfs_objects: untyped, finish: untyped }
+
+      def find_import_state_jid: (untyped project_id) -> untyped
+
+      def find_import_state: (untyped id) -> untyped
+
+      private
+
+      def proceed_to_next_stage: (untyped import_state_jid, untyped next_stage, untyped project_id) -> untyped
+
+      def next_stage_worker: (untyped next_stage) -> untyped
+
+      def load_references: (untyped project) -> untyped
+    end
+  end
+end

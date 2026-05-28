@@ -1,0 +1,33 @@
+class LfsDownloadObject
+  @oid: untyped
+
+  @size: untyped
+
+  @link: untyped
+
+  @headers: untyped
+
+  @sanitized_uri: untyped
+
+  include ActiveModel::Validations
+
+  attr_accessor oid: untyped
+
+  attr_accessor size: untyped
+
+  attr_accessor link: untyped
+
+  attr_accessor headers: untyped
+
+  def initialize: (oid: untyped, size: untyped, link: untyped, ?headers: ::Hash[untyped, untyped]) -> void
+
+  def to_hash: () -> untyped
+
+  def sanitized_uri: () -> untyped
+
+  def has_authorization_header?: () -> untyped
+
+  private
+
+  def headers_must_be_hash: () -> (untyped | nil)
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        class Includes < ::Gitlab::Config::Entry::ComposableArray
+          include ::Gitlab::Ci::Config::Entry::Concerns::BaseIncludes
+
+          def composable_class: () -> untyped
+        end
+      end
+    end
+  end
+end

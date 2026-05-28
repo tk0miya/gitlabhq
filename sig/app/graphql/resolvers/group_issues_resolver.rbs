@@ -1,0 +1,12 @@
+# rubocop:disable Graphql/ResolverType -- inherited from Issues::BaseParentResolver
+module Resolvers
+  class GroupIssuesResolver < Issues::BaseParentResolver
+    def self.issuable_collection_name: () -> "issues"
+
+    include GroupIssuableResolver
+
+    def self.project_associations: () -> ::Array[:namespace]
+
+    def ready?: (**untyped args) -> untyped
+  end
+end

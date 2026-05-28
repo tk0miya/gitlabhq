@@ -1,0 +1,209 @@
+module Gitlab
+  module Auth
+    MissingPersonalAccessTokenError: untyped
+
+    # Scopes used for GitLab internal API (Kubernetes cluster access)
+    K8S_PROXY_SCOPE: :k8s_proxy
+
+    # Scopes used for token allowed to rotate themselves
+    SELF_ROTATE_SCOPE: :self_rotate
+
+    # Scopes used for GitLab API access
+    API_SCOPE: :api
+
+    READ_API_SCOPE: :read_api
+
+    READ_USER_SCOPE: :read_user
+
+    CREATE_RUNNER_SCOPE: :create_runner
+
+    MANAGE_RUNNER_SCOPE: :manage_runner
+
+    MCP_SCOPE: :mcp
+
+    MCP_ORBIT_SCOPE: :mcp_orbit
+
+    GRANULAR_SCOPE: :granular
+
+    API_SCOPES: ::Array[untyped]
+
+    # Scopes for Duo
+    AI_FEATURES: :ai_features
+
+    AI_FEATURES_SCOPES: ::Array[untyped]
+
+    AI_WORKFLOW: :ai_workflows
+
+    AI_WORKFLOW_SCOPES: ::Array[untyped]
+
+    DYNAMIC_USER: :"user:*"
+
+    DYNAMIC_SCOPES: ::Array[untyped]
+
+    PROFILE_SCOPE: :profile
+
+    EMAIL_SCOPE: :email
+
+    OPENID_SCOPE: :openid
+
+    # Scopes used for OpenID Connect
+    OPENID_SCOPES: ::Array[untyped]
+
+    # OpenID Connect profile scopes
+    PROFILE_SCOPES: ::Array[untyped]
+
+    # Scopes used for GitLab Repository access
+    READ_REPOSITORY_SCOPE: :read_repository
+
+    WRITE_REPOSITORY_SCOPE: :write_repository
+
+    REPOSITORY_SCOPES: ::Array[untyped]
+
+    # Scopes used for GitLab Docker Registry access
+    READ_REGISTRY_SCOPE: :read_registry
+
+    WRITE_REGISTRY_SCOPE: :write_registry
+
+    REGISTRY_SCOPES: ::Array[untyped]
+
+    # Scopes used for Virtual Registry access
+    READ_VIRTUAL_REGISTRY_SCOPE: :read_virtual_registry
+
+    WRITE_VIRTUAL_REGISTRY_SCOPE: :write_virtual_registry
+
+    VIRTUAL_REGISTRY_SCOPES: ::Array[untyped]
+
+    # Scopes used for GitLab Observability access which is outside of the GitLab app itself.
+    # Hence the lack of ability mapping in `abilities_for_scopes`.
+    READ_OBSERVABILITY_SCOPE: :read_observability
+
+    WRITE_OBSERVABILITY_SCOPE: :write_observability
+
+    OBSERVABILITY_SCOPES: ::Array[untyped]
+
+    # Scopes for Monitor access
+    READ_SERVICE_PING_SCOPE: :read_service_ping
+
+    # Scopes used for GitLab as admin
+    SUDO_SCOPE: :sudo
+
+    ADMIN_MODE_SCOPE: :admin_mode
+
+    ADMIN_SCOPES: ::Array[untyped]
+
+    Q_SCOPES: untyped
+
+    # Default scopes for OAuth applications that don't define their own
+    DEFAULT_SCOPES: ::Array[untyped]
+
+    # Scopes ordered by permission level, from lowest to highest.
+    # This is used to determine the order of scopes in the UI.
+    # If the scope is not present in this list, it won't appear in the UI.
+    UI_SCOPES_ORDERED_BY_PERMISSION: ::Array[untyped]
+
+    CI_JOB_USER: "gitlab-ci-token"
+
+    extend Gitlab::InternalEventsTracking
+
+    def self.omniauth_enabled?: () -> untyped
+
+    def self.find_for_git_client: (untyped login, untyped password, project: untyped, request: untyped) -> untyped
+
+    # Find and return a user if the provided password is valid for various
+    # authenticators (OAuth, LDAP, Local Database).
+    #
+    # Specify `increment_failed_attempts: true` to increment Devise `failed_attempts`.
+    # CAUTION: Avoid incrementing failed attempts when authentication falls through
+    # different mechanisms, as in `.find_for_git_client`. This may lead to
+    # unwanted access locks when the value provided for `password` was actually
+    # a PAT, deploy token, etc.
+    def self.find_with_user_password: (untyped login, untyped password, ?increment_failed_attempts: bool) -> (nil | untyped)
+
+    private
+
+    def self.rate_limit!: (untyped rate_limiter, success: untyped, login: untyped, request: untyped) -> (nil | untyped)
+
+    def self.skip_rate_limit?: (login: untyped) -> untyped
+
+    def self.look_to_limit_user: (untyped actor) -> (untyped | nil)
+
+    def self.authenticate_using_internal_or_ldap_password?: () -> untyped
+
+    def self.service_request_check: (untyped login, untyped password, untyped project) -> (nil | untyped)
+
+    def self.user_with_password_for_git: (untyped login, untyped password) -> (nil | untyped)
+
+    def self.oauth_access_token_check: (untyped password) -> (nil | untyped)
+
+    def self.personal_access_token_check: (untyped password, untyped project) -> (nil | untyped)
+
+    def self.can_read_project?: (untyped user, untyped project) -> untyped
+
+    def self.bot_user_can_read_project?: (untyped user, untyped project) -> untyped
+
+    def self.valid_oauth_token?: (untyped token) -> untyped
+
+    def self.valid_scoped_token?: (untyped token, untyped scopes) -> untyped
+
+    def self.abilities_for_scopes: (untyped scopes) -> untyped
+
+    def self.deploy_token_check: (untyped login, untyped password, untyped project) -> (nil | untyped)
+
+    def self.lfs_token_check: (untyped login, untyped encoded_token, untyped project, untyped request) -> (nil | untyped)
+
+    def self.build_access_token_check: (untyped login, untyped password) -> (nil | untyped)
+
+    public
+
+    def self.build_authentication_abilities: () -> ::Array[:read_project | :build_download_code | :build_push_code | :build_read_container_image | :build_create_container_image | :build_destroy_container_image]
+
+    def self.read_only_project_authentication_abilities: () -> ::Array[:read_project | :download_code]
+
+    def self.read_write_project_authentication_abilities: () -> untyped
+
+    def self.read_only_authentication_abilities: () -> untyped
+
+    def self.read_write_authentication_abilities: () -> untyped
+
+    def self.full_authentication_abilities: () -> untyped
+
+    def self.available_scopes_for: (untyped resource) -> untyped
+
+    def self.all_available_scopes: () -> untyped
+
+    # Other available scopes
+    def self.optional_scopes: () -> untyped
+
+    def self.registry_scopes: () -> (::Array[untyped] | untyped)
+
+    def self.virtual_registry_scopes: () -> (::Array[untyped] | untyped)
+
+    def self.resource_bot_scopes: () -> untyped
+
+    private
+
+    def self.git_lfs_request?: (untyped request) -> untyped
+
+    def self.available_scopes_for_resource: (untyped resource) -> untyped
+
+    def self.unavailable_scopes_for_resource: (untyped resource) -> untyped
+
+    def self.unavailable_ai_features_scopes: () -> untyped
+
+    def self.unavailable_observability_scopes_for_resource: (untyped resource) -> (::Array[untyped] | untyped)
+
+    def self.unavailable_virtual_registry_scopes_for_resource: (untyped resource) -> (untyped | ::Array[untyped])
+
+    def self.non_admin_available_scopes: () -> untyped
+
+    def self.find_build_by_token: (untyped token) -> untyped
+
+    def self.password_authenticators_for_user: (untyped user) -> untyped
+
+    def self.find_user_from_authenticators: (untyped user, untyped login, untyped password) -> untyped
+
+    def self.user_auth_attempt!: (untyped user, success: untyped) -> (nil | untyped)
+
+    def self.valid_composite_identity?: (untyped user) -> untyped
+  end
+end

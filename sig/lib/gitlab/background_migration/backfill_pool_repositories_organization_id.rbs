@@ -1,0 +1,15 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillPoolRepositoriesOrganizationId < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def update_from_source_project_sql: (untyped sub_batch) -> ::String
+
+      def update_from_member_projects_sql: (untyped sub_batch) -> ::String
+
+      def update_with_default_organization_sql: (untyped sub_batch) -> ::String
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module GithubImport
+    class ReplayEventsWorker
+      include ObjectImporter
+
+      def representation_class: () -> untyped
+
+      def importer_class: () -> untyped
+
+      def object_type: () -> :replay_event
+
+      def increment_object_counter?: (untyped _object) -> false
+    end
+  end
+end

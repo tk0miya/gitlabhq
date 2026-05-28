@@ -1,0 +1,34 @@
+module Gitlab
+  # Helper methods to do with Kubernetes network services & resources
+  module Kubernetes
+    def self.build_header_hash: () -> untyped
+
+    # This is the command that is run to start a terminal session. Kubernetes
+    # expects `command=foo&command=bar, not `command[]=foo&command[]=bar`
+    EXEC_COMMAND: untyped
+
+    # Filters an array of pods (as returned by the kubernetes API) by their labels
+    def filter_by_label: (untyped items, ?::Hash[untyped, untyped] labels) -> untyped
+
+    # Filters an array of pods (as returned by the kubernetes API) by their annotations
+    def filter_by_annotation: (untyped items, ?::Hash[untyped, untyped] annotations) -> untyped
+
+    # Filters an array of pods (as returned by the kubernetes API) by their project and environment
+    def filter_by_project_environment: (untyped items, untyped app, untyped env) -> untyped
+
+    def filter_by_legacy_label: (untyped items, untyped app, untyped env) -> untyped
+
+    # Converts a pod (as returned by the kubernetes API) into a terminal
+    def terminals_for_pod: (untyped api_url, untyped namespace, untyped pod) -> (nil | untyped)
+
+    def add_terminal_auth: (untyped terminal, token: untyped, max_session_time: untyped, ?ca_pem: untyped?) -> untyped
+
+    def container_exec_url: (untyped api_url, untyped namespace, untyped pod_name, untyped container_name) -> untyped
+
+    def to_kubeconfig: (url: untyped, namespace: untyped, token: untyped, ?ca_pem: untyped?) -> (nil | untyped)
+
+    private
+
+    def kubeconfig_embed_ca_pem: (untyped config, untyped ca_pem) -> untyped
+  end
+end

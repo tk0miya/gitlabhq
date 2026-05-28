@@ -1,0 +1,53 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        class Template
+          @config: untyped
+
+          @ctx: untyped
+
+          @errors: untyped
+
+          @blocks: untyped
+
+          @result: untyped
+
+          attr_reader blocks: untyped
+
+          attr_reader ctx: untyped
+
+          MAX_BLOCKS: 10000
+
+          BLOCK_REGEXP: untyped
+
+          BLOCK_PREFIX: "$[["
+
+          def initialize: (untyped config, untyped ctx) -> void
+
+          def valid?: () -> untyped
+
+          def errors: () -> untyped
+
+          def size: () -> untyped
+
+          def interpolated: () -> (untyped | nil)
+
+          private
+
+          def interpolate!: () -> untyped
+
+          def node_might_contain_interpolation_block?: (untyped node) -> untyped
+
+          def interpolate_blocks: (untyped matches) -> untyped
+
+          def get_interpolated_node_content!: (untyped node, untyped blocks) -> untyped
+
+          def interpolate_string_node!: (untyped node, untyped blocks) -> untyped
+
+          def used_inside_a_string?: (untyped node, untyped blocks) -> untyped
+        end
+      end
+    end
+  end
+end

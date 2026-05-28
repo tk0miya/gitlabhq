@@ -1,0 +1,22 @@
+module Ci
+  module JobArtifacts
+    class ExpireProjectBuildArtifactsService
+      @project_id: untyped
+
+      @expiry_time: untyped
+
+      BATCH_SIZE: 1000
+
+      def initialize: (untyped project_id, untyped expiry_time) -> void
+
+      # rubocop:disable CodeReuse/ActiveRecord
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project_id: untyped
+
+      attr_reader expiry_time: untyped
+    end
+  end
+end

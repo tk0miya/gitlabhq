@@ -1,0 +1,61 @@
+module Ci
+  module PipelineCreation
+    class FindPipelineInputsService
+      @current_user: untyped
+
+      @project: untyped
+
+      @ref: untyped
+
+      @pipeline_source: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ReactiveCaching
+
+      SOURCES_WITHOUT_INPUTS_SUPPORT: ::Array[:security_scan_profiles_source | :security_policies_default_source]
+
+      def self.from_cache: (untyped id) -> untyped
+
+      # This service is used by the frontend to display inputs as an HTML form
+      # when creating a pipeline as a web request.
+      # For the reason we are defaulting `pipeline_source` to be `web`.
+      def initialize: (current_user: untyped, project: untyped, ref: untyped, ?pipeline_source: ::Symbol) -> void
+
+      def execute: () -> untyped
+
+      def calculate_reactive_cache: (untyped sha) -> untyped
+
+      def id: () -> ::String
+
+      private
+
+      def fetch_inputs: (untyped sha) -> untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader project: untyped
+
+      attr_reader ref: untyped
+
+      attr_reader pipeline_source: untyped
+
+      def success_response: (untyped inputs) -> untyped
+
+      def error_response: (untyped message) -> untyped
+
+      def build_project_config: (untyped sha) -> untyped
+
+      # TODO: temporary technical debt until https://gitlab.com/gitlab-org/gitlab/-/issues/520828
+      def yaml_result_of_internal_include: (untyped content, untyped sha) -> (nil | untyped)
+
+      def build_context: (untyped sha) -> untyped
+
+      def process_header_includes: (untyped spec, untyped sha) -> untyped
+
+      def inputs_supported?: (untyped config) -> untyped
+
+      def source_supports_inputs?: (untyped config) -> untyped
+    end
+  end
+end

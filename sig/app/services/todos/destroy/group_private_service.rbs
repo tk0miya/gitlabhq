@@ -1,0 +1,23 @@
+module Todos
+  module Destroy
+    class GroupPrivateService < ::Todos::Destroy::BaseService
+      @group: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      attr_reader group: untyped
+
+      def initialize: (untyped group_id) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def delete_todos: () -> untyped
+
+      def todos: () -> untyped
+
+      def todos_to_remove?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Mutations
+  module Terraform
+    module State
+      class Lock < Base
+        def resolve: (id: untyped) -> { errors: untyped }
+
+        private
+
+        def lock_xid: () -> untyped
+      end
+    end
+  end
+end

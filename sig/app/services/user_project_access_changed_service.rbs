@@ -1,0 +1,21 @@
+class UserProjectAccessChangedService
+  @user_ids: untyped
+
+  DELAY: untyped
+
+  MEDIUM_DELAY: untyped
+
+  HIGH_PRIORITY: :high
+
+  MEDIUM_PRIORITY: :medium
+
+  LOW_PRIORITY: :low
+
+  def initialize: (untyped user_ids) -> void
+
+  def execute: (?priority: untyped) -> (nil | untyped)
+
+  private
+
+  def with_related_class_context: () { (?) -> untyped } -> untyped
+end

@@ -1,0 +1,75 @@
+class Release < ApplicationRecord
+  TAG_VERSION_PREFIX_REGEX: ::Regexp
+
+  include Presentable
+
+  include CacheMarkdownField
+
+  include Importable
+
+  include Gitlab::Utils::StrongMemoize
+
+  include EachBatch
+
+  include FromUnion
+
+  include UpdatedAtFilterable
+
+  MAX_NUMBER_TO_DISPLAY: 3
+
+  MAX_NUMBER_TO_PUBLISH: 5000
+
+  # In the future, we should support `order_by=semver`;
+  # see https://gitlab.com/gitlab-org/gitlab/-/issues/352945
+  def self.latest: (?order_by: ::String) -> untyped
+
+  # This query uses LATERAL JOIN to find the latest release for each project. To avoid
+  # joining the `projects` table, we build an in-memory table using the project ids.
+  # Example:
+  # SELECT ...
+  # FROM (VALUES (PROJECT_ID_1),(PROJECT_ID_2)) projects (id)
+  # INNER JOIN LATERAL (...)
+  def self.latest_for_projects: (untyped projects, ?order_by: ::String) -> untyped
+
+  def self.waiting_for_publish_event: () -> untyped
+
+  def sha_unchanged: () -> (untyped | nil)
+
+  def to_param: () -> untyped
+
+  def commit: () -> untyped
+
+  def assets_count: (?except: untyped) -> untyped
+
+  def sources: () -> untyped
+
+  def upcoming_release?: () -> untyped
+
+  def historical_release?: () -> untyped
+
+  def name: () -> untyped
+
+  def milestone_titles: () -> untyped
+
+  def to_hook_data: (untyped action) -> untyped
+
+  def execute_hooks: (untyped action) -> untyped
+
+  def related_deployments: () -> untyped
+
+  def tagged_packages: () -> untyped
+
+  private
+
+  def actual_sha: () -> untyped
+
+  def actual_tag: () -> untyped
+
+  def set_released_at: () -> untyped
+
+  def self.sort_by_attribute: (untyped method) -> untyped
+
+  def update_catalog_resource_version: () -> untyped
+
+  def update_catalog_resource: () -> untyped
+end

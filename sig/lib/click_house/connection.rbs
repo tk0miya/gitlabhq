@@ -1,0 +1,39 @@
+module ClickHouse
+  class Connection
+    @database: untyped
+
+    @configuration: untyped
+
+    @version: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped database, ?untyped configuration) -> void
+
+    def select: (untyped query) -> untyped
+
+    def execute: (untyped query) -> untyped
+
+    def insert_csv: (untyped query, untyped file) -> untyped
+
+    def ping: () -> untyped
+
+    def database_config: () -> untyped
+
+    def version: () -> untyped
+
+    def database_name: () -> untyped
+
+    def database_engine: () -> untyped
+
+    def replicated_engine?: () -> untyped
+
+    def table_exists?: (untyped table_name) -> untyped
+
+    private
+
+    attr_reader database: untyped
+
+    attr_reader configuration: untyped
+  end
+end

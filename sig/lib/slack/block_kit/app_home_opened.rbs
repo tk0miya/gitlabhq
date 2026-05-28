@@ -1,0 +1,56 @@
+# Builds the BlockKit UI JSON payload to respond to the Slack `app_home_opened` event.
+#
+# See:
+# - https://api.slack.com/block-kit/building
+# - https://api.slack.com/events/app_home_opened
+module Slack
+  module BlockKit
+    class AppHomeOpened
+      @slack_user_id: untyped
+
+      @slack_workspace_id: untyped
+
+      @slack_gitlab_user_connection: untyped
+
+      @slack_installation: untyped
+
+      include ActionView::Helpers::AssetUrlHelper
+
+      def initialize: (untyped slack_user_id, untyped slack_workspace_id, untyped slack_gitlab_user_connection, untyped slack_installation) -> void
+
+      def build: () -> { type: "home", blocks: ::Array[untyped] }
+
+      private
+
+      attr_reader slack_user_id: untyped
+
+      attr_reader slack_workspace_id: untyped
+
+      attr_reader slack_gitlab_user_connection: untyped
+
+      attr_reader slack_installation: untyped
+
+      def header: () -> { type: "header", text: { type: "plain_text", text: untyped, emoji: true } }
+
+      def section_introduction: () -> untyped
+
+      def section_notifications_heading: () -> untyped
+
+      def section_notifications: () -> untyped
+
+      def section_slash_commands_heading: () -> untyped
+
+      def section_slash_commands: () -> untyped
+
+      def section_slash_commands_connect: () -> untyped
+
+      def section_connect_gitlab_account: () -> untyped
+
+      def section_gitlab_account_connected: () -> untyped
+
+      def actions_gitlab_account_not_connected: () -> { type: "actions", elements: ::Array[{ type: "button", text: { type: "plain_text", text: untyped, emoji: true }, style: "primary", url: untyped }] }
+
+      def section: (untyped text) -> { type: "section", text: { type: "mrkdwn", text: untyped } }
+    end
+  end
+end

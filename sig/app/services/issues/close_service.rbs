@@ -1,0 +1,43 @@
+module Issues
+  class CloseService < Issues::BaseService
+    include ::Gitlab::Loggable
+
+    # Closes the supplied issue if the current user is able to do so.
+    def execute: (untyped issue, ?commit: untyped?, ?notifications: bool, ?system_note: bool, ?skip_authorization: bool, ?status: untyped?) -> untyped
+
+    # Closes the supplied issue without checking if the user is authorized to
+    # do so.
+    #
+    # The code calling this method is responsible for ensuring that a user is
+    # allowed to close the given issue.
+    def close_issue: (untyped issue, ?closed_via: untyped?, ?notifications: bool, ?system_note: bool, ?status: untyped?) -> untyped
+
+    private
+
+    def log_failed_auth: (untyped issue, untyped commit) -> untyped
+
+    # overridden in EE
+    def handle_closing_issue!: (untyped issue, untyped current_user) -> untyped
+
+    # overridden in EE
+    def after_close: (untyped issue, untyped _status, ?closed_via: untyped?, ?notifications: bool, ?system_note: bool) -> untyped
+
+    def can_close?: (untyped issue, ?skip_authorization: bool) -> untyped
+
+    def perform_incident_management_actions: (untyped issue) -> untyped
+
+    def close_external_issue: (untyped issue, untyped closed_via) -> (nil | untyped)
+
+    def create_note: (untyped issue, untyped current_commit) -> untyped
+
+    def resolve_alerts: (untyped issue) -> untyped
+
+    def resolve_alert: (untyped alert) -> (nil | untyped)
+
+    def resolve_incident: (untyped issue) -> (nil | untyped)
+
+    def store_first_mentioned_in_commit_at: (untyped issue, untyped merge_request, ?max_commit_lookup: ::Integer) -> (nil | untyped)
+
+    def track_work_item_close: (untyped work_item) -> untyped
+  end
+end

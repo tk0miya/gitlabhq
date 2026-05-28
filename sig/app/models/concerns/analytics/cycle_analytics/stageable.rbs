@@ -1,0 +1,48 @@
+module Analytics
+  module CycleAnalytics
+    module Stageable
+      extend ActiveSupport::Concern
+
+      include Gitlab::Utils::StrongMemoize
+
+      def start_event: () -> untyped
+
+      def end_event: () -> untyped
+
+      def events_hash_code: () -> untyped
+
+      def start_event_label_based?: () -> untyped
+
+      def end_event_label_based?: () -> untyped
+
+      def start_event_identifier=: (untyped identifier) -> untyped
+
+      def end_event_identifier=: (untyped identifier) -> untyped
+
+      def params_for_start_event: () -> ({ label: untyped } | ::Hash[untyped, untyped])
+
+      def params_for_end_event: () -> ({ label: untyped } | ::Hash[untyped, untyped])
+
+      def default_stage?: () -> untyped
+
+      # The model class that is going to be queried, Issue or MergeRequest
+      def subject_class: () -> untyped
+
+      private
+
+      def validate_stage_event_pairs: () -> (nil | untyped)
+
+      def pairing_rules: () -> untyped
+
+      def validate_labels: () -> untyped
+
+      def validate_label_within_namespace: (untyped association_name, untyped label_id) -> (nil | untyped)
+
+      def label_available_for_namespace?: (untyped label_id) -> (nil | untyped)
+
+      def ensure_stage_event_hash_id: () -> (nil | untyped)
+
+      def cleanup_old_stage_event_hash: () -> (nil | untyped)
+    end
+  end
+end

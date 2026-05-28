@@ -1,0 +1,7 @@
+class PagesDomainVerificationCronWorker
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  def perform: () -> (nil | untyped)
+end

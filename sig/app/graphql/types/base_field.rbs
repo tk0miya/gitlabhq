@@ -1,0 +1,79 @@
+module Types
+  class BaseField < GraphQL::Schema::Field
+    @requires_argument: untyped
+
+    @calls_gitaly: untyped
+
+    @doc_reference: untyped
+
+    @constant_complexity: untyped
+
+    @authorize: untyped
+
+    @skip_type_authorization: untyped
+
+    @scopes: untyped
+
+    @authorization: untyped
+
+    include Gitlab::Graphql::Deprecations
+
+    include Gitlab::Graphql::Authz::AuthorizeGranularToken
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    DEFAULT_COMPLEXITY: 1
+
+    attr_reader doc_reference: untyped
+
+    attr_accessor skip_type_authorization: untyped
+
+    def initialize: (**untyped kwargs) { (?) -> untyped } -> void
+
+    def may_call_gitaly?: () -> untyped
+
+    def requires_argument?: () -> untyped
+
+    # By default fields authorize against the current object, but that is not how our
+    # resolvers work - they use declarative permissions to authorize fields
+    # manually (so we make them opt in).
+    # TODO: https://gitlab.com/gitlab-org/gitlab/-/issues/300922
+    #       (separate out authorize into permissions on the object, and on the
+    #       resolved values)
+    # We do not support argument authorization in our schema. If/when we do,
+    # we should call `super` here, to apply argument authorization checks.
+    # See: https://gitlab.com/gitlab-org/gitlab/-/issues/324647
+    def authorized?: (untyped object, untyped args, untyped ctx) -> untyped
+
+    # This gets called from the gem's `calculate_complexity` method, allowing us
+    # to ensure our complexity calculation is used even for connections.
+    # This code is actually a copy of the default case in `calculate_complexity`
+    # in `lib/graphql/schema/field.rb`
+    # (https://github.com/rmosolgo/graphql-ruby/blob/master/lib/graphql/schema/field.rb)
+    def complexity_for: (child_complexity: untyped, query: untyped, lookahead: untyped) -> untyped
+
+    def base_complexity: () -> untyped
+
+    def calls_gitaly?: () -> untyped
+
+    def constant_complexity?: () -> untyped
+
+    private
+
+    def field_authorized?: (untyped object, untyped ctx) -> (true | false | untyped)
+
+    # Historically our resolvers have used declarative permission checks only
+    # for _what they resolved_, not the _object they resolved these things from_
+    # We preserve these semantics here, and only apply resolver authorization
+    # if the resolver has opted in.
+    def resolver_authorized?: (untyped object, untyped ctx) -> (untyped | true)
+
+    def authorization: () -> untyped
+
+    def field_complexity: (untyped resolver_class, untyped current) -> untyped
+
+    def field_resolver_complexity: () -> untyped
+
+    def connection_complexity_multiplier: (untyped ctx, untyped args, calculate_ext_conn_complexity: untyped) -> (0 | untyped)
+  end
+end

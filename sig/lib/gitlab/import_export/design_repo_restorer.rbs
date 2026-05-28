@@ -1,0 +1,11 @@
+module Gitlab
+  module ImportExport
+    class DesignRepoRestorer < RepoRestorer
+      @repository: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      def repository: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,51 @@
+class Projects::GraphsController < Projects::ApplicationController
+  @ref_type: untyped
+
+  @commits_limit: untyped
+
+  @commits: untyped
+
+  @commits_graph: untyped
+
+  @commits_per_week_days: untyped
+
+  @commits_per_time: untyped
+
+  @commits_per_month: untyped
+
+  @languages: untyped
+
+  @daily_coverage_options: untyped
+
+  include ExtractsPath
+
+  include ProductAnalyticsTracking
+
+  include HandlesGitalyErrors
+
+  MAX_COMMITS: 6000
+
+  def show: () -> untyped
+
+  def commits: () -> untyped
+
+  def languages: () -> untyped
+
+  def charts: () -> untyped
+
+  def ci: () -> untyped
+
+  private
+
+  def ref: () -> untyped
+
+  def get_commits: () -> untyped
+
+  def get_languages: () -> untyped
+
+  def get_daily_coverage_options: () -> (nil | untyped)
+
+  def tracking_namespace_source: () -> untyped
+
+  def tracking_project_source: () -> untyped
+end

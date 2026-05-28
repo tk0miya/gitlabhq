@@ -1,0 +1,11 @@
+module Packages
+  module Go
+    class SyncPackagesWorker
+      include ApplicationWorker
+
+      include Gitlab::Golang
+
+      def perform: (untyped project_id, untyped ref_name, untyped path) -> untyped
+    end
+  end
+end

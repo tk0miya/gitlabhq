@@ -1,0 +1,27 @@
+module Namespaces
+  module Groups
+    class UnarchiveService < ::Groups::BaseService
+      include ::Namespaces::Groups::ArchiveEvents
+
+      NotAuthorizedError: untyped
+
+      AlreadyUnarchivedError: untyped
+
+      AncestorArchivedError: untyped
+
+      Error: untyped
+
+      UpdateError: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def unarchive_group: () -> untyped
+
+      def after_unarchive: () -> untyped
+
+      def error_response: (untyped message) -> untyped
+    end
+  end
+end

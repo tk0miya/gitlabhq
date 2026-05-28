@@ -1,0 +1,9 @@
+module Chaos
+  class SleepWorker
+    include ApplicationWorker
+
+    include ChaosQueue
+
+    def perform: (untyped duration_s) -> untyped
+  end
+end

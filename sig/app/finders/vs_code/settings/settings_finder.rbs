@@ -1,0 +1,23 @@
+module VsCode
+  module Settings
+    class SettingsFinder
+      @current_user: untyped
+
+      @setting_types: untyped
+
+      @settings_context_hash: untyped
+
+      def initialize: (current_user: untyped, setting_types: untyped, ?settings_context_hash: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_accessor current_user: untyped
+
+      attr_accessor setting_types: untyped
+
+      attr_accessor settings_context_hash: untyped
+    end
+  end
+end

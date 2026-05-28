@@ -1,0 +1,67 @@
+module Gitlab
+  module ImportExport
+    class RemoteStreamUpload
+      @download_url: untyped
+
+      @upload_url: untyped
+
+      @upload_method: untyped
+
+      @upload_content_type: untyped
+
+      def initialize: (download_url: untyped, upload_url: untyped, ?options: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      class StreamError < StandardError
+        @response_body: untyped
+
+        @response_code: untyped
+
+        attr_reader response_body: untyped
+
+        attr_reader response_code: untyped
+
+        def initialize: (untyped message, ?::String response_body, ?untyped? response_code) -> void
+      end
+
+      class ChunkStream
+        @chunks: untyped
+
+        @last_chunk: untyped
+
+        @end_of_chunks: untyped
+
+        DEFAULT_BUFFER_SIZE: untyped
+
+        def initialize: (untyped chunks) -> void
+
+        def read: (?untyped? n1, ?untyped? n2) -> untyped
+
+        private
+
+        def ensure_chunk: () -> (untyped | nil)
+
+        def read_next_chunk: () -> untyped
+      end
+
+      private
+
+      attr_reader download_url: untyped
+
+      attr_reader upload_url: untyped
+
+      attr_reader upload_method: untyped
+
+      attr_reader upload_content_type: untyped
+
+      attr_reader logger: untyped
+
+      def receive_data: (untyped uri) { (untyped, untyped) -> untyped } -> untyped
+
+      def send_data: (untyped uri, untyped content_length, untyped chunks) { (untyped) -> untyped } -> untyped
+
+      def upload_request_class: (untyped upload_method) -> untyped
+    end
+  end
+end

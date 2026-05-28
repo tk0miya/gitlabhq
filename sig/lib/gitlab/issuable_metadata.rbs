@@ -1,0 +1,38 @@
+module Gitlab
+  class IssuableMetadata
+    @current_user: untyped
+
+    @issuable_collection: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    # data structure to store issuable meta data like
+    # upvotes, downvotes, notes and closing merge requests counts for issues and merge requests
+    # this avoiding n+1 queries when loading issuable collections on frontend
+    IssuableMeta: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader issuable_collection: untyped
+
+    def initialize: (untyped current_user, untyped issuable_collection) -> void
+
+    def data: () -> (::Hash[untyped, untyped] | untyped)
+
+    private
+
+    def metadata_for_issuable: (untyped id) -> untyped
+
+    def validate_collection!: () -> (untyped | nil)
+
+    def issuable_ids: () -> untyped
+
+    def collection_type: () -> untyped
+
+    def group_issuable_votes_count: () -> untyped
+
+    def grouped_issuable_notes_count: () -> untyped
+
+    def grouped_issuable_merge_requests_count: () -> untyped
+  end
+end

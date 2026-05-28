@@ -1,0 +1,30 @@
+module Gitlab
+  module WorkItems
+    class TimeTrackingExtractor
+      @project: untyped
+
+      @current_user: untyped
+
+      @extractor: untyped
+
+      TIME_TRACKING_REGEX: ::Regexp
+
+      # Expose the time tracking regex pattern to be used in cross-reference detection
+      def self.reference_pattern: () -> untyped
+
+      def initialize: (untyped project, untyped current_user) -> void
+
+      def extract_time_spent: (untyped message) -> (::Hash[untyped, untyped] | untyped)
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader extractor: untyped
+
+      def find_time_spent: (untyped message) -> (nil | untyped)
+    end
+  end
+end

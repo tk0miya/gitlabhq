@@ -1,0 +1,23 @@
+module Gitlab
+  module ImportExport
+    module Project
+      module Sample
+        class RelationFactory < Project::RelationFactory
+          @date_calculator: untyped
+
+          DATE_MODELS: ::Array[:issues | :milestones]
+
+          def initialize: (date_calculator: untyped, **untyped args) -> void
+
+          private
+
+          def setup_models: () -> untyped
+
+          def override_date_attributes: () -> (nil | untyped)
+
+          def calculate_by_closest_date: (untyped date) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

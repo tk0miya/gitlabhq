@@ -1,0 +1,19 @@
+# The purpose of this code is to set the migrations path
+# for the Geo tracking database and the embedding database.
+module Gitlab
+  module Patch
+    module DatabaseConfig
+      extend ActiveSupport::Concern
+
+      CommandExecutionError: untyped
+
+      def database_configuration: () -> untyped
+
+      private
+
+      def parse_extra_config: (untyped configs) -> untyped
+
+      def extra_config_from_command: (untyped command) -> untyped
+    end
+  end
+end

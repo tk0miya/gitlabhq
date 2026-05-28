@@ -1,0 +1,23 @@
+module ClickHouse
+  module MigrationSupport
+    class SchemaMigration
+      @connection: untyped
+
+      @table_name: untyped
+
+      def initialize: (untyped connection, ?table_name: ::String) -> void
+
+      def ensure_table: () -> (nil | untyped)
+
+      def all_versions: () -> untyped
+
+      def create!: (**untyped args) -> untyped
+
+      private
+
+      attr_reader connection: untyped
+
+      attr_reader table_name: untyped
+    end
+  end
+end

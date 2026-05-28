@@ -1,0 +1,9 @@
+module ResetOnColumnErrors
+  extend ActiveSupport::Concern
+
+  MAX_RESET_PERIOD: untyped
+
+  def reset_on_union_error: (untyped exception) -> untyped
+
+  def reset_on_unknown_attribute_error: (untyped exception) -> untyped
+end

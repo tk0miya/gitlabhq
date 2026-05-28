@@ -1,0 +1,19 @@
+module API
+  module Helpers
+    module IssuesHelpers
+      extend Grape::API::Helpers
+
+      def self.create_issue_mcp_params: () -> ::Array[:id | :title | :description | :assignee_ids | :milestone_id | :milestone | :labels | :confidential]
+
+      def self.update_params_at_least_one_of: () -> ::Array[:assignee_id | :assignee_ids | :confidential | :created_at | :description | :discussion_locked | :due_date | :labels | :add_labels | :remove_labels | :milestone_id | :milestone | :state_event | :title | :issue_type]
+
+      def self.sort_options: () -> ::Array["created_at" | "due_date" | "label_priority" | "milestone_due" | "popularity" | "priority" | "relative_position" | "title" | "updated_at"]
+
+      def issue_finder: (?::Hash[untyped, untyped] args) -> untyped
+
+      def find_issues: (?::Hash[untyped, untyped] args) -> untyped
+
+      def issues_statistics: (?::Hash[untyped, untyped] args) -> { statistics: { counts: { all: untyped, closed: untyped, opened: untyped } } }
+    end
+  end
+end

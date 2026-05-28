@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    class MarkVirtualRegistriesPackagesMavenCacheEntriesPendingDestruction < BatchedMigrationJob
+      PENDING_DESTRUCTION_STATUS: 2
+
+      def perform: () -> untyped
+    end
+  end
+end

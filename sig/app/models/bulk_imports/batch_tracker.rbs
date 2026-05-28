@@ -1,0 +1,9 @@
+module BulkImports
+  class BatchTracker < ApplicationRecord
+    IN_PROGRESS_STATES: ::Array[:created | :started]
+
+    # rubocop: disable Database/AvoidUsingPluckWithoutLimit -- We should use this method only when scoped to a tracker.
+    # Batches are self-limiting per tracker based on the amount of data being imported.
+    def self.pluck_batch_numbers: () -> untyped
+  end
+end

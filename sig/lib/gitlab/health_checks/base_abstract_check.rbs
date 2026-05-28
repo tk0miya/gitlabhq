@@ -1,0 +1,21 @@
+module Gitlab
+  module HealthChecks
+    module BaseAbstractCheck
+      def name: () -> untyped
+
+      def human_name: () -> untyped
+
+      def available?: () -> true
+
+      def readiness: () -> untyped
+
+      def metrics: () -> ::Array[untyped]
+
+      def metric: (untyped name, untyped value, **untyped labels) -> untyped
+
+      def with_timing: () { () -> untyped } -> ::Array[untyped]
+
+      def catch_timeout: (untyped seconds) { (?) -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module Graphql
+    module Loaders
+      class BatchCommitLoader
+        @container_class: untyped
+
+        @container_id: untyped
+
+        @oid: untyped
+
+        def initialize: (container_class: untyped, container_id: untyped, oid: untyped) -> void
+
+        def find: () -> untyped
+
+        private
+
+        def find_containers: () -> untyped
+
+        attr_reader container_class: untyped
+
+        attr_reader container_id: untyped
+
+        attr_reader oid: untyped
+      end
+    end
+  end
+end

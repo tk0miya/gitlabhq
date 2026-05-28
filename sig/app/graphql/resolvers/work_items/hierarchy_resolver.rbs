@@ -1,0 +1,11 @@
+module Resolvers
+  module WorkItems
+    class HierarchyResolver < BaseResolver
+      private
+
+      def authorized_work_items: (untyped work_items) -> untyped
+
+      def preload_resource_parents: (untyped work_items) -> (nil | untyped)
+    end
+  end
+end

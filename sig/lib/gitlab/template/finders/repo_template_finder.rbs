@@ -1,0 +1,31 @@
+# Searches and reads files present on each GitLab project repository
+module Gitlab
+  module Template
+    module Finders
+      class RepoTemplateFinder < BaseTemplateFinder
+        @categories: untyped
+
+        @extension: untyped
+
+        @repository: untyped
+
+        @commit: untyped
+
+        # Raised when file is not found
+        FileNotFoundError: untyped
+
+        def initialize: (untyped project, untyped base_dir, untyped extension, ?::Hash[untyped, untyped] categories) -> void
+
+        def read: (untyped path) -> untyped
+
+        def find: (untyped key) -> untyped
+
+        def list_files_for: (untyped dir) -> (::Array[untyped] | untyped)
+
+        private
+
+        def select_directory: (untyped file_name) -> (nil | untyped)
+      end
+    end
+  end
+end

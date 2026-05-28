@@ -1,0 +1,13 @@
+module Mutations
+  module MergeRequests
+    class SetSubscription < BaseMutation
+      include ResolvesSubscription
+
+      include Mutations::ResolvesIssuable
+
+      private
+
+      def find_object: (project_path: untyped, iid: untyped) -> untyped
+    end
+  end
+end

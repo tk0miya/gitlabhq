@@ -1,0 +1,66 @@
+module Gitlab
+  module SidekiqConfig
+    class WorkerRouter
+      self.@global_worker_router: untyped
+
+      @rule_evaluators: untyped
+
+      InvalidRoutingRuleError: untyped
+
+      RuleEvaluator: untyped
+
+      def self.queue_name_from_worker_name: (untyped worker_klass) -> untyped
+
+      def self.global: () -> untyped
+
+      # call-seq:
+      #   router = WorkerRouter.new([
+      #     ["resource_boundary=cpu", 'cpu_boundary'],
+      #     ["feature_category=pages", nil],
+      #     ["feature_category=source_code_management", ''],
+      #     ["*", "default"]
+      #   ])
+      #   router.route(ACpuBoundaryWorker) # Return "cpu_boundary"
+      #   router.route(JustAPagesWorker)   # Return "just_a_pages_worker"
+      #   router.route(PostReceive)        # Return "post_receive"
+      #   router.route(RandomWorker)       # Return "default"
+      #
+      # This class is responsible for routing a Sidekiq worker to a certain
+      # queue defined in the input routing rules. The input routing rules, as
+      # described above, is an order-matter array of tuples [query, queue_name].
+      #
+      # - The query syntax follows "worker matching query" detailedly
+      # denoted in doc/administration/operations/extra_sidekiq_processes.md.
+      #
+      # - The queue_name must be a valid Sidekiq queue name. If the queue name
+      # is nil, or an empty string, the worker is routed to the queue generated
+      # by the name of the worker instead.
+      #
+      # Rules are evaluated from first to last, and as soon as we find a match
+      # for a given worker we stop processing for that worker (first match
+      # wins). If the worker doesn't match any rule, it falls back the queue
+      # name generated from the worker name
+      #
+      # For further information, please visit:
+      #   https://gitlab.com/gitlab-com/gl-infra/scalability/-/issues/1016
+      #
+      def initialize: (untyped routing_rules) -> void
+
+      def route: (untyped worker_klass) -> untyped
+
+      def store: (untyped worker_klass) -> (untyped | nil)
+
+      def stores_with_queue: (untyped queue_name) -> untyped
+
+      private
+
+      def parse_routing_rules: (untyped routing_rules) -> untyped
+
+      def valid_routing_rule?: (untyped rule_tuple) -> untyped
+
+      def generate_worker_metadata: (untyped worker_klass) -> untyped
+
+      def queue_name_from_worker_name: (untyped worker_klass) -> untyped
+    end
+  end
+end

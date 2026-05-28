@@ -1,0 +1,35 @@
+module Packages
+  module FinderHelper
+    extend ActiveSupport::Concern
+
+    InvalidStatusError: untyped
+
+    private
+
+    def packages_for_project: (untyped project) -> untyped
+
+    def packages_visible_to_user: (untyped user, within_group: untyped, ?with_package_registry_enabled: bool) -> untyped
+
+    def packages_visible_to_user_including_public_registries: (untyped user, within_group: untyped) -> untyped
+
+    def projects_visible_to_user: (untyped user, within_group: untyped) -> untyped
+
+    def projects_visible_to_user_including_public_registries: (untyped user, within_group: untyped) -> untyped
+
+    def projects_visible_to_reporters: (untyped user, within_group: untyped, ?within_public_package_registry: bool) -> untyped
+
+    def package_type: () -> untyped
+
+    def filter_by_package_name: (untyped packages) -> untyped
+
+    def filter_by_exact_package_name: (untyped packages) -> untyped
+
+    def filter_by_package_version: (untyped packages) -> untyped
+
+    def filter_with_version: (untyped packages) -> untyped
+
+    def filter_by_status: (untyped packages) -> untyped
+
+    def packages_class: () -> untyped
+  end
+end

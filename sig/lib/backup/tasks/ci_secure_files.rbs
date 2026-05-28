@@ -1,0 +1,19 @@
+module Backup
+  module Tasks
+    class CiSecureFiles < Task
+      @target: untyped
+
+      def self.id: () -> "ci_secure_files"
+
+      def human_name: () -> untyped
+
+      def destination_path: () -> "ci_secure_files.tar.gz"
+
+      private
+
+      def target: () -> untyped
+
+      def storage_path: () -> untyped
+    end
+  end
+end

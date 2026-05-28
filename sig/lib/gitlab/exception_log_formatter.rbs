@@ -1,0 +1,15 @@
+module Gitlab
+  module ExceptionLogFormatter
+    def self.format!: (untyped exception, untyped payload) -> (nil | untyped)
+
+    def self.find_sql: (untyped exception) -> (untyped | untyped | nil)
+
+    def self.find_gitaly_metadata: (untyped exception) -> (untyped | untyped | untyped | nil)
+
+    private
+
+    def self.normalize_query: (untyped sql) -> untyped
+
+    def self.sanitize_message: (untyped exception) -> untyped
+  end
+end

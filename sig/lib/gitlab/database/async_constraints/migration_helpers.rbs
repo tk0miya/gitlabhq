@@ -1,0 +1,37 @@
+module Gitlab
+  module Database
+    module AsyncConstraints
+      module MigrationHelpers
+        # Prepares a foreign key for asynchronous validation.
+        #
+        # Stores the FK information in the postgres_async_foreign_key_validations
+        # table to be executed later.
+        #
+        def prepare_async_foreign_key_validation: (untyped table_name, ?untyped? column_name, ?name: untyped?) -> untyped
+
+        def unprepare_async_foreign_key_validation: (untyped table_name, ?untyped? column_name, ?name: untyped?) -> untyped
+
+        def prepare_partitioned_async_foreign_key_validation: (untyped table_name, ?untyped? column_name, ?name: untyped?) -> untyped
+
+        def unprepare_partitioned_async_foreign_key_validation: (untyped table_name, ?untyped? column_name, ?name: untyped?) -> untyped
+
+        # Prepares a check constraint for asynchronous validation.
+        #
+        # Stores the constraint information in the postgres_async_foreign_key_validations
+        # table to be executed later.
+        #
+        def prepare_async_check_constraint_validation: (untyped table_name, name: untyped) -> untyped
+
+        def unprepare_async_check_constraint_validation: (untyped table_name, name: untyped) -> untyped
+
+        def prepare_partitioned_async_check_constraint_validation: (untyped table_name, ?name: untyped?) -> untyped
+
+        def unprepare_partitioned_async_check_constraint_validation: (untyped table_name, ?name: untyped?) -> untyped
+
+        private
+
+        def ensure_async_constraint_validation_is_enabled: () { () -> untyped } -> (nil | untyped)
+      end
+    end
+  end
+end

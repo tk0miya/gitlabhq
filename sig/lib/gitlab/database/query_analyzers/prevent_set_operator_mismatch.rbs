@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      class PreventSetOperatorMismatch < Base
+        SetOperatorStarError: untyped
+
+        DETECT_REGEX: ::Regexp
+
+        def self.enabled?: () -> untyped
+
+        def self.analyze: (untyped parsed) -> (nil | untyped)
+
+        private
+
+        def self.next_select_stmt: (untyped node) -> (nil | untyped)
+
+        def self.requires_detection?: (untyped sql) -> untyped
+      end
+    end
+  end
+end

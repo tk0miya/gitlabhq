@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    class Trace
+      class SectionParser
+        @lines: untyped
+
+        @markers: untyped
+
+        @beginning_of_section_regex: untyped
+
+        def initialize: (untyped lines) -> void
+
+        def parse!: () -> untyped
+
+        def sections: () -> untyped
+
+        private
+
+        def parse_line: (untyped line, untyped line_start_position) -> untyped
+
+        def sanitize_markers: () -> untyped
+
+        def handle_line: (untyped action, untyped time, untyped name, untyped marker_start, untyped marker_end) -> untyped
+
+        def beginning_of_section_regex: () -> untyped
+
+        def find_next_marker: (untyped scanner) ?{ (untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Mutations
+  module Boards
+    module Lists
+      class BaseUpdate < BaseMutation
+        def resolve: (?list: untyped?, **untyped args) -> { list: untyped, errors: untyped }
+
+        private
+
+        def update_list: (untyped list, untyped args) -> untyped
+
+        def can_read_list?: (untyped list) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,48 @@
+# Renders a Pajamas compliant radio button element
+# An instance of `ActionView::Helpers::FormBuilder` must be passed as the `form` argument.
+# The easiest way to use this component is by using the `gitlab_ui_radio_component` helper.
+# See https://docs.gitlab.com/ee/development/fe_guide/haml.html#gitlab_ui_radio_component
+# To use a radio button without an instance of `ActionView::Helpers::FormBuilder` use `RadioTagComponent`.
+module Pajamas
+  class RadioComponent < Pajamas::Component
+    @form: untyped
+
+    @method: untyped
+
+    @label_argument: untyped
+
+    @help_text_argument: untyped
+
+    @label_options: untyped
+
+    @input_options: untyped
+
+    @value: untyped
+
+    include Pajamas::Concerns::CheckboxRadioLabelWithHelpText
+
+    include Pajamas::Concerns::CheckboxRadioOptions
+
+    def initialize: (form: untyped, method: untyped, ?label: untyped?, ?help_text: untyped?, ?label_options: ::Hash[untyped, untyped], ?radio_options: ::Hash[untyped, untyped], ?value: untyped?) -> void
+
+    private
+
+    attr_reader form: untyped
+
+    attr_reader method: untyped
+
+    attr_reader label_argument: untyped
+
+    attr_reader help_text_argument: untyped
+
+    attr_reader label_options: untyped
+
+    attr_reader input_options: untyped
+
+    attr_reader value: untyped
+
+    def label_content: () -> untyped
+
+    def help_text_content: () -> untyped
+  end
+end

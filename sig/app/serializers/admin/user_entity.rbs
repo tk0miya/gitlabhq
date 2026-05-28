@@ -1,0 +1,13 @@
+module Admin
+  class UserEntity < API::Entities::UserSafe
+    include RequestAwareEntity
+
+    include ::UsersHelper
+
+    include UserActionsHelper
+
+    private
+
+    def current_user: () -> untyped
+  end
+end

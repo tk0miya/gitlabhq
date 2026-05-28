@@ -1,0 +1,19 @@
+class NoteDiffFile < ApplicationRecord
+  include DiffFile
+
+  include Gitlab::EncodingHelper
+
+  include Importable
+
+  include Notes::WithAssociatedNote
+
+  def raw_diff_file: () -> untyped
+
+  def diff_export: () -> untyped
+
+  private
+
+  def skip_namespace_validation?: () -> untyped
+
+  def note_namespace_id: () -> untyped
+end

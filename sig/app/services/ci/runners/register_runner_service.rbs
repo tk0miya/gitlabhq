@@ -1,0 +1,35 @@
+module Ci
+  module Runners
+    class RegisterRunnerService
+      @registration_token: untyped
+
+      @attributes: untyped
+
+      include Gitlab::InternalEventsTracking
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped registration_token, untyped attributes) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader registration_token: untyped
+
+      attr_reader attributes: untyped
+
+      def attrs_from_token: () -> ({ runner_type: :instance_type, organization_id: nil } | { runner_type: :project_type, projects: ::Array[untyped], organization_id: untyped } | { runner_type: :group_type, groups: ::Array[untyped], organization_id: untyped } | ::Hash[untyped, untyped] | nil)
+
+      def registration_token_allowed?: (untyped attrs) -> untyped
+
+      def runner_registration_token_valid?: (untyped registration_token) -> (false | untyped)
+
+      def runner_registrar_valid?: (untyped type) -> untyped
+
+      def token_scope: () -> untyped
+
+      def track_runner_events: (untyped runner) -> untyped
+    end
+  end
+end

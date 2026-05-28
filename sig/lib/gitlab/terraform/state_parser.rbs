@@ -1,0 +1,26 @@
+module Gitlab
+  module Terraform
+    # This streaming JSON handler extracts the `serial` keyword from the Terraform
+    # state API. This is faster and more efficient than running `JSON.parse(data)['serial']`
+    # particularly for large JSON blobs.
+    class ScHandler < ::Oj::ScHandler
+      @serial: untyped
+
+      @depth: untyped
+
+      attr_reader serial: untyped
+
+      def initialize: () -> void
+
+      def hash_start: () -> untyped
+
+      def hash_end: () -> untyped
+
+      def hash_set: (untyped _hash, untyped key, untyped value) -> (nil | untyped)
+    end
+
+    class StateParser
+      def self.extract_serial: (untyped data) -> untyped
+    end
+  end
+end

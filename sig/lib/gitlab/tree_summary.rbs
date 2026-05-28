@@ -1,0 +1,82 @@
+module Gitlab
+  class TreeSummary
+    @commit: untyped
+
+    @project: untyped
+
+    @user: untyped
+
+    @path: untyped
+
+    @offset: untyped
+
+    @limit: untyped
+
+    # Ensure that if multiple tree entries share the same last commit, they share
+    # a ::Commit instance. This prevents us from rendering the same commit title
+    # multiple times
+    @resolved_commits: untyped
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    include ::MarkupHelper
+
+    CACHE_EXPIRE_IN: untyped
+
+    MAX_OFFSET: untyped
+
+    attr_reader commit: untyped
+
+    attr_reader project: untyped
+
+    attr_reader path: untyped
+
+    attr_reader offset: untyped
+
+    attr_reader limit: untyped
+
+    attr_reader user: untyped
+
+    attr_reader resolved_commits: untyped
+
+    def initialize: (untyped commit, untyped project, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    # Creates a summary of the tree entries for a commit, within the window of
+    # entries defined by the offset and limit parameters. This consists of two
+    # return values:
+    #
+    #     - An Array of Hashes containing the following keys:
+    #         - file_name:   The full path of the tree entry
+    #         - commit:      The last ::Commit to touch this entry in the tree
+    #         - commit_path: URI of the commit in the web interface
+    #         - commit_title_html: Rendered commit title
+    def summarize: () -> (::Array[untyped] | untyped)
+
+    def fetch_logs: () -> ::Array[untyped]
+
+    private
+
+    def fill_path_locks!: (untyped entries) -> untyped
+
+    def entry_path: (untyped entry) -> untyped
+
+    def lfs_lock_label: (untyped lfs_lock) -> ::String
+
+    def next_offset: (untyped entries_count) -> (nil | untyped)
+
+    def repository: () -> untyped
+
+    # Ensure the path is in "path/" format
+    def ensured_path: () -> (untyped | nil)
+
+    def fetch_last_cached_commits_list: () -> untyped
+
+    def cache_commit: (untyped commit) -> (nil | untyped)
+
+    def commit_to_hash: (untyped commit) -> untyped
+
+    def commit_path: (untyped commit) -> untyped
+
+    def prerender_commit_full_titles!: (untyped commits) -> untyped
+  end
+end

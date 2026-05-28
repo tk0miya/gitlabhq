@@ -1,0 +1,12 @@
+module Keys
+  class DestroyService < ::Keys::BaseService
+    def execute: (untyped key) -> (nil | untyped)
+
+    private
+
+    # overridden in EE::Keys::DestroyService
+    def destroy_possible?: (untyped key) -> true
+
+    def destroy: (untyped key) -> untyped
+  end
+end

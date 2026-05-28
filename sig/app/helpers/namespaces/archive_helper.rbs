@@ -1,0 +1,17 @@
+module Namespaces
+  module ArchiveHelper
+    include NamespaceHelper
+
+    def show_archived_banner?: (untyped namespace) -> (false | untyped)
+
+    def archived_banner_message: (untyped namespace) -> untyped
+
+    def archived_banner_message_mobile: (untyped namespace) -> untyped
+
+    private
+
+    def no_archived_ancestor_banner_message: (untyped namespace) -> untyped
+
+    def with_archived_ancestor_banner_message: (untyped namespace) -> untyped
+  end
+end

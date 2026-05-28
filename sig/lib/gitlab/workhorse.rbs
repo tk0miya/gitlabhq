@@ -1,0 +1,97 @@
+module Gitlab
+  class Workhorse
+    SEND_DATA_HEADER: "Gitlab-Workhorse-Send-Data"
+
+    SEND_DEPENDENCY_CONTENT_TYPE_HEADER: "Workhorse-Proxy-Content-Type"
+
+    VERSION_FILE: "GITLAB_WORKHORSE_VERSION"
+
+    INTERNAL_API_CONTENT_TYPE: "application/vnd.gitlab-workhorse+json"
+
+    INTERNAL_API_REQUEST_HEADER: "Gitlab-Workhorse-Api-Request"
+
+    NOTIFICATION_PREFIX: "workhorse:notifications:"
+
+    ALLOWED_GIT_HTTP_ACTIONS: ::Array["git_receive_pack" | "git_upload_pack" | "info_refs"]
+
+    DETECT_HEADER: "Gitlab-Workhorse-Detect-Content-Type"
+
+    ARCHIVE_FORMATS: ::Array["zip" | "tar.gz" | "tar.bz2" | "tar"]
+
+    include JwtAuthenticatable
+
+    def self.git_http_ok: (untyped repository, untyped repo_type, untyped user, untyped action, ?show_all_refs: bool, ?need_audit: bool, ?authentication_context: ::Hash[untyped, untyped]) -> untyped
+
+    def self.send_git_blob: (untyped repository, untyped blob) -> ::Array[untyped | ::String]
+
+    def self.send_git_archive: (untyped repository, ref: untyped, format: untyped, append_sha: untyped, ?path: untyped?, ?include_lfs_blobs: bool, ?exclude_paths: untyped, ?client_name: untyped?) -> ::Array[untyped | ::String]
+
+    def self.send_git_snapshot: (untyped repository) -> ::Array[untyped | ::String]
+
+    def self.send_git_diff: (untyped repository, untyped diff_refs) -> ::Array[untyped | ::String]
+
+    def self.send_changed_paths: (untyped repository, untyped requests, ?client_name: untyped?) -> ::Array[untyped | ::String]
+
+    def self.send_list_blobs: (untyped repository, untyped revisions, bytes_limit: untyped, ?client_name: untyped?) -> ::Array[untyped | ::String]
+
+    def self.send_git_patch: (untyped repository, untyped diff_refs) -> ::Array[untyped | ::String]
+
+    def self.send_artifacts_entry: (untyped file, untyped entry) -> ::Array[untyped | ::String]
+
+    # response_statuses can be set for 'error' and 'timeout'. They are optional.
+    # Their values must be a symbol accepted by Rack::Utils::SYMBOL_TO_STATUS_CODE.
+    # Example: response_statuses : { error: :internal_server_error, timeout: :bad_request }
+    # timeouts can be given for the opening the connection and reading the response headers.
+    # Their values must be given in seconds.
+    # Example: timeouts: { open: 5, read: 5 }
+    # rubocop:disable Metrics/ParameterLists -- all arguments needed
+    def self.send_url: (untyped url, ?allow_localhost: bool, ?allow_redirects: bool, ?method: ::String, ?body: untyped?, ?ssrf_filter: bool, ?headers: ::Hash[untyped, untyped], ?timeouts: ::Hash[untyped, untyped], ?response_statuses: ::Hash[untyped, untyped], ?response_headers: ::Hash[untyped, untyped], ?allowed_endpoints: untyped, ?restrict_forwarded_response_headers: ::Hash[untyped, untyped]) -> ::Array[untyped | ::String]
+
+    def self.send_scaled_image: (untyped location, untyped width, untyped content_type) -> ::Array[untyped | ::String]
+
+    def self.send_dependency: (untyped headers, untyped url, ?allow_localhost: bool, ?upload_config: ::Hash[untyped, untyped], ?response_headers: ::Hash[untyped, untyped], ?ssrf_filter: bool, ?allowed_endpoints: untyped, ?restrict_forwarded_response_headers: ::Hash[untyped, untyped]) -> ::Array[untyped | ::String]
+
+    def self.channel_websocket: (untyped channel) -> untyped
+
+    def self.version: () -> untyped
+
+    def self.verify_api_request!: (untyped request_headers) -> untyped
+
+    def self.decode_jwt_with_issuer: (untyped encoded_message) -> untyped
+
+    def self.secret_path: () -> untyped
+
+    def self.cleanup_key: (untyped key) -> untyped
+
+    def self.set_key_and_notify: (untyped key, untyped value, ?expire: untyped?, ?overwrite: bool) -> untyped
+
+    def self.detect_content_type: () -> ::Array[untyped | "true"]
+
+    def self.with_redis: () { (?) -> untyped } -> untyped
+
+    # This is the outermost encoding of a senddata: header. It is safe for
+    # inclusion in HTTP response headers
+    def self.encode: (untyped hash) -> untyped
+
+    # This is for encoding individual fields inside the senddata JSON that
+    # contain binary data. In workhorse, the corresponding struct field should
+    # be type []byte
+    def self.encode_binary: (untyped binary) -> untyped
+
+    def self.gitaly_server_hash: (untyped repository, ?client_name: untyped?) -> { address: untyped, token: untyped, call_metadata: untyped }
+
+    def self.retry_config: () -> untyped
+
+    def self.gitaly_diff_or_patch_hash: (untyped repository, untyped diff_refs) -> { repository: untyped, left_commit_id: untyped, right_commit_id: untyped }
+
+    def self.git_archive_cache_disabled?: () -> untyped
+
+    def self.git_archive_cache_cleaner_enabled?: () -> untyped
+
+    def self.archive_format: (untyped format) -> untyped
+
+    def self.send_git_archive_params: (untyped repository, untyped metadata, untyped path, untyped format, untyped include_lfs_blobs, untyped exclude_paths) -> { "ArchivePath" => untyped, "StoragePath" => untyped, "GetArchiveRequest" => untyped }
+
+    def self.restrict_forwarded_response_headers_params: (untyped params) -> untyped
+  end
+end

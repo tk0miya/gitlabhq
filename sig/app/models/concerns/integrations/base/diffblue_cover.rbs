@@ -1,0 +1,17 @@
+module Integrations
+  module Base
+    module DiffblueCover
+      extend ActiveSupport::Concern
+
+      def avatar_url: () -> untyped
+
+      def sections: () -> ::Array[{ type: untyped, title: untyped, description: untyped } | { type: untyped, title: untyped, description: "You must have a GitLab access token for Diffblue Cover to access your project. Use a GitLab access token with at least the Developer role and the <code>api</code> and <code>write_repository</code> permissions." }]
+
+      def execute: (untyped _data) -> nil
+
+      def ci_variables: () -> (::Array[untyped] | ::Array[{ key: "DIFFBLUE_LICENSE_KEY", value: untyped, public: false, masked: true } | { key: "DIFFBLUE_ACCESS_TOKEN_NAME", value: untyped, public: false, masked: true } | { key: "DIFFBLUE_ACCESS_TOKEN", value: untyped, public: false, masked: true }])
+
+      def testable?: () -> false
+    end
+  end
+end

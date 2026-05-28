@@ -1,0 +1,11 @@
+module Packages
+  module Conan
+    class PackageFileFinder < ::Packages::Conan::PackageFilesFinder
+      extend ::Gitlab::Utils::Override
+
+      def execute: () -> untyped
+
+      def execute!: () -> untyped
+    end
+  end
+end

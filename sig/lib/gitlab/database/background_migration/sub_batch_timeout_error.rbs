@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module BackgroundMigration
+      class SubBatchTimeoutError < StandardError
+        @caused_by: untyped
+
+        def initialize: (untyped caused_by) -> void
+
+        attr_reader caused_by: untyped
+      end
+    end
+  end
+end

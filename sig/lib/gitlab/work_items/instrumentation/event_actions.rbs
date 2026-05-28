@@ -1,0 +1,101 @@
+module Gitlab
+  module WorkItems
+    module Instrumentation
+      module EventActions
+        def self.link_event: (untyped link, untyped work_item, untyped action) -> (nil | untyped)
+
+        ASSIGNEES_UPDATE: "work_item_assignees_update"
+
+        BLOCKED_BY_ITEM_ADD: "work_item_blocked_by_item_add"
+
+        BLOCKED_BY_ITEM_REMOVE: "work_item_blocked_by_item_remove"
+
+        BLOCKING_ITEM_ADD: "work_item_blocking_item_add"
+
+        BLOCKING_ITEM_REMOVE: "work_item_blocking_item_remove"
+
+        CLONE: "work_item_clone"
+
+        CLOSE: "work_item_close"
+
+        CONFIDENTIALITY_DISABLE: "work_item_confidentiality_disable"
+
+        CONFIDENTIALITY_ENABLE: "work_item_confidentiality_enable"
+
+        CREATE: "work_item_create"
+
+        CREATE_CHILD_ITEMS_WIDGET: "work_item_create_child_items_widget"
+
+        CREATE_GLOBAL_NAV: "work_item_create_global_nav"
+
+        CREATE_VULNERABILITY: "work_item_create_vulnerability"
+
+        CREATE_WORK_ITEM_LIST: "work_item_create_work_item_list"
+
+        DESCRIPTION_UPDATE: "work_item_description_update"
+
+        DESIGN_CREATE: "work_item_design_create"
+
+        DESIGN_DESTROY: "work_item_design_destroy"
+
+        DESIGN_UPDATE: "work_item_design_update"
+
+        DESIGN_NOTE_CREATE: "work_item_design_note_create"
+
+        DESIGN_NOTE_DESTROY: "work_item_design_note_destroy"
+
+        DUE_DATE_UPDATE: "work_item_due_date_update"
+
+        HEALTH_STATUS_UPDATE: "work_item_health_status_update"
+
+        ITERATION_UPDATE: "work_item_iteration_update"
+
+        LABELS_UPDATE: "work_item_labels_update"
+
+        LOCK: "work_item_lock"
+
+        MARKED_AS_DUPLICATE: "work_item_marked_as_duplicate"
+
+        MILESTONE_UPDATE: "work_item_milestone_update"
+
+        MOVE: "work_item_move"
+
+        NOTE_CREATE: "work_item_note_create"
+
+        NOTE_DESTROY: "work_item_note_destroy"
+
+        NOTE_UPDATE: "work_item_note_update"
+
+        REFERENCE_ADD: "work_item_reference_add"
+
+        RELATED_ITEM_ADD: "work_item_related_item_add"
+
+        RELATED_ITEM_REMOVE: "work_item_related_item_remove"
+
+        REOPEN: "work_item_reopen"
+
+        SAVED_VIEW_CREATE: "saved_view_create"
+
+        SAVED_VIEW_UPDATE: "saved_view_update"
+
+        SAVED_VIEW_VIEW: "saved_view_view"
+
+        START_DATE_UPDATE: "work_item_start_date_update"
+
+        TIME_ESTIMATE_UPDATE: "work_item_time_estimate_update"
+
+        TIME_SPENT_UPDATE: "work_item_time_spent_update"
+
+        TITLE_UPDATE: "work_item_title_update"
+
+        UNLOCK: "work_item_unlock"
+
+        WEIGHT_UPDATE: "work_item_weight_update"
+
+        WORK_ITEM_EVENTS: ::Array[untyped]
+
+        def self.valid_work_item_event?: (untyped event) -> untyped
+      end
+    end
+  end
+end

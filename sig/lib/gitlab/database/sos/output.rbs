@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    module Sos
+      class Output
+        @mode: untyped
+
+        @zip: untyped
+
+        @dir: untyped
+
+        def self.writing: (untyped path, mode: untyped) { (untyped) -> untyped } -> untyped
+
+        def initialize: (untyped path, mode: untyped) -> void
+
+        def finish: () -> (untyped | nil)
+
+        def write_file: (untyped relative_path) { (untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end

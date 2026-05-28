@@ -1,0 +1,24 @@
+module Gitlab
+  module ErrorTracking
+    class ContextPayloadGenerator
+      def self.generate: (untyped exception, ?::Hash[untyped, untyped] extra, ?::Hash[untyped, untyped] tags) -> untyped
+
+      def generate: (untyped exception, ?::Hash[untyped, untyped] extra, ?::Hash[untyped, untyped] tags) -> { extra: untyped, tags: untyped, user: untyped }
+
+      private
+
+      def extra_payload: (untyped exception, untyped extra) -> untyped
+
+      def sanitize_request_parameters: (untyped parameters) -> untyped
+
+      def tags_payload: (untyped tags) -> untyped
+
+      def user_payload: () -> { username: untyped }
+
+      # Static tags that are set on application start
+      def extra_tags_from_env: () -> untyped
+
+      def current_context: () -> (::Hash[untyped, untyped] | untyped)
+    end
+  end
+end

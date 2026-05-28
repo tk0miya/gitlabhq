@@ -1,0 +1,31 @@
+module Packages
+  module Conan
+    class UpsertPackageRevisionService
+      @package: untyped
+
+      @package_reference_id: untyped
+
+      @revision: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      UNIQUENESS_COLUMNS: ::Array[:package_id | :package_reference_id | :revision]
+
+      def initialize: (untyped package, untyped package_reference_id, untyped revision) -> void
+
+      def execute!: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader package_reference_id: untyped
+
+      attr_reader revision: untyped
+
+      def package_revision: () -> untyped
+
+      def upsert_package_revision: () -> untyped
+    end
+  end
+end

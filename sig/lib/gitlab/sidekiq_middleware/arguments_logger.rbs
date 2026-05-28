@@ -1,0 +1,9 @@
+module Gitlab
+  module SidekiqMiddleware
+    class ArgumentsLogger
+      include Sidekiq::ServerMiddleware
+
+      def call: (untyped worker, untyped job, untyped queue) { () -> untyped } -> untyped
+    end
+  end
+end

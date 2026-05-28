@@ -1,0 +1,17 @@
+module Packages
+  module Maven
+    class PackageFinder < ::Packages::GroupOrProjectPackageFinder
+      extend ::Gitlab::Utils::Override
+
+      def execute: () -> untyped
+
+      private
+
+      def packages: () -> untyped
+
+      def group_packages: () -> untyped
+
+      def packages_class: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Mutations
+  module Ci
+    class ProjectCiCdSettingsUpdate < BaseMutation
+      include FindsProject
+
+      include Gitlab::Utils::StrongMemoize
+
+      def resolve: (full_path: untyped, **untyped args) -> untyped
+
+      private
+
+      def project_update_params: (untyped _project, **untyped args) -> untyped
+    end
+  end
+end

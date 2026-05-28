@@ -1,0 +1,61 @@
+# Include this module to have an object respond to user messages without being
+# a user.
+#
+# Use Case 1:
+# Pass something else than the user to check policies. This defines several
+# methods which the policy checker would call and check.
+#
+# Use Case 2:
+# Access the API with non-user object such as deploy tokens. This defines
+# several methods which the API auth flow would call.
+module PolicyActor
+  extend ActiveSupport::Concern
+
+  def blocked?: () -> false
+
+  def admin?: () -> false
+
+  def can_access_admin_area?: () -> false
+
+  def external?: () -> false
+
+  def internal?: () -> false
+
+  def access_locked?: () -> false
+
+  def required_terms_not_accepted?: () -> false
+
+  def can_create_group: () -> false
+
+  def alert_bot?: () -> false
+
+  def support_bot?: () -> false
+
+  def security_bot?: () -> false
+
+  def automation_bot?: () -> false
+
+  def deactivated?: () -> false
+
+  def confirmation_required_on_sign_in?: () -> false
+
+  def confirmed?: () -> false
+
+  def can?: (untyped action, ?::Symbol subject) -> untyped
+
+  def preferred_language: () -> nil
+
+  def requires_ldap_check?: () -> false
+
+  def try_obtain_ldap_lease: () -> nil
+
+  def can_read_all_resources?: () -> false
+
+  def can_admin_all_resources?: () -> false
+
+  def password_expired_if_applicable?: () -> false
+
+  def from_ci_job_token?: () -> false
+
+  def ai_service_account?: () -> false
+end

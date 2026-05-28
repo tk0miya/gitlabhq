@@ -1,0 +1,9 @@
+module BulkImports
+  class ExportUpload < ApplicationRecord
+    include WithUploads
+
+    def retrieve_upload: (untyped _identifier, untyped paths) -> untyped
+
+    def uploads_sharding_key: () -> { project_id: untyped, namespace_id: untyped }
+  end
+end

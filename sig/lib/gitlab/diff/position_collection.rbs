@@ -1,0 +1,28 @@
+module Gitlab
+  module Diff
+    class PositionCollection
+      @collection: untyped
+
+      @diff_head_sha: untyped
+
+      include Enumerable
+
+      # collection - An array of Gitlab::Diff::Position
+      def initialize: (untyped collection, ?untyped? diff_head_sha) -> void
+
+      def each: () { (?) -> untyped } -> untyped
+
+      def concat: (untyped positions) -> untyped
+
+      # Doing a lightweight filter in-memory given we're not prepared for querying
+      # positions (https://gitlab.com/gitlab-org/gitlab/issues/33271).
+      def unfoldable: () -> untyped
+
+      private
+
+      def filtered_positions: () -> untyped
+
+      def valid_head_sha?: (untyped position) -> (true | untyped)
+    end
+  end
+end

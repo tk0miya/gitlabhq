@@ -1,0 +1,15 @@
+module WikiPages
+  class DestroyService < WikiPages::BaseService
+    def execute: (untyped page) -> untyped
+
+    def internal_event_name: () -> "delete_wiki_page"
+
+    def external_action: () -> "delete"
+
+    def event_action: () -> :destroyed
+
+    def fingerprint: (untyped page) -> untyped
+
+    def mark_meta_as_deleted: (untyped page) -> untyped
+  end
+end

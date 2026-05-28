@@ -1,0 +1,23 @@
+module Organizations
+  class ApplicationController < ::ApplicationController
+    @organization: untyped
+
+    include OrganizationHelper
+
+    private
+
+    def organization: () -> (nil | untyped)
+
+    def check_feature_flag!: () -> (untyped | nil)
+
+    def authorize_create_organization!: () -> untyped
+
+    def authorize_read_organization!: () -> (untyped | nil)
+
+    def authorize_read_organization_user!: () -> (untyped | nil)
+
+    def authorize_admin_organization!: () -> (untyped | nil)
+
+    def authorize_create_group!: () -> (untyped | nil)
+  end
+end

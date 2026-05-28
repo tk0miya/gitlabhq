@@ -1,0 +1,51 @@
+# This service is an adapter used to for the GitLab Import feature, and
+# creating a project from a template.
+# The latter will under the hood just import an archive supplied by GitLab.
+module Projects
+  class GitlabProjectsImportService
+    @current_user: untyped
+
+    @params: untyped
+
+    @override_params: untyped
+
+    @import_type: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::TemplateHelper
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped user, untyped import_params, ?untyped? override_params, import_type: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader import_type: untyped
+
+    attr_reader override_params: untyped
+
+    def valid_import_type?: () -> untyped
+
+    def overwrite_project?: () -> untyped
+
+    def project_with_same_full_path?: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def current_namespace: () -> untyped
+
+    def project_path: () -> ::String
+
+    def overwrite?: () -> untyped
+
+    def template_file: () -> untyped
+
+    def prepare_import_params: () -> untyped
+
+    def params_to_h: (untyped parameters) -> (::Hash[untyped, untyped] | untyped)
+  end
+end

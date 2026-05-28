@@ -1,0 +1,19 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageEvents
+        class MetricsBasedStageEvent < StageEvent
+          # rubocop: disable CodeReuse/ActiveRecord
+          def apply_query_customization: (untyped query) -> untyped
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def apply_negated_query_customization: (untyped query) -> untyped
+
+          def column_list: () -> ::Array[untyped]
+
+          def include_in: (untyped query, **untyped) -> untyped
+        end
+      end
+    end
+  end
+end

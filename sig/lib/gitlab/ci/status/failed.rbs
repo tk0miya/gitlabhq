@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Status
+      class Failed < Status::Core
+        def text: () -> untyped
+
+        def label: () -> untyped
+
+        def icon: () -> "status_failed"
+
+        def favicon: () -> "favicon_status_failed"
+
+        def details_path: () -> nil
+      end
+    end
+  end
+end

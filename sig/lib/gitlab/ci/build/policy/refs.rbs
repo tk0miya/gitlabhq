@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Build
+      module Policy
+        class Refs < Policy::Specification
+          @patterns: untyped
+
+          @sanitized_source_name: untyped
+
+          def initialize: (untyped refs) -> void
+
+          def satisfied_by?: (untyped pipeline, ?untyped? context) -> untyped
+
+          private
+
+          def matches_path?: (untyped path, untyped pipeline) -> (true | untyped)
+
+          def matches_pattern?: (untyped pattern, untyped pipeline) -> (true | untyped)
+
+          def sanitized_source_name: (untyped pipeline) -> untyped
+        end
+      end
+    end
+  end
+end

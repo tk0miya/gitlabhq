@@ -1,0 +1,27 @@
+module Observability
+  class O11yProvisioningClient
+    PRODUCTION_GROUP_ID: 111938901
+
+    DEFAULT_API_KEY: "use-this-key-for-testing-api-key"
+
+    PROVISIONER_API: "https://provisioner.gitlab-o11y.com/api/v1/provision_requests"
+
+    def provision_group: (untyped group, untyped user) -> untyped
+
+    private
+
+    def build_api_request_data: (untyped group, untyped user) -> { group_id: untyped, email: untyped, password: untyped, encryption_key: untyped, user_name: untyped, group_path: untyped }
+
+    def build_settings_params: (untyped api_request_data) -> { o11y_service_name: untyped, o11y_service_user_email: ::String, o11y_service_password: untyped, o11y_service_post_message_encryption_key: untyped }
+
+    def make_api_request: (untyped api_request_data) -> untyped
+
+    def handle_api_error: (untyped error, untyped group_id) -> untyped
+
+    def api_key: () -> untyped
+
+    def production_api_key: () -> untyped
+
+    def log_error: (untyped data) -> untyped
+  end
+end

@@ -1,0 +1,17 @@
+module Ci
+  class PlayManualStageService < BaseService
+    @pipeline: untyped
+
+    def initialize: (untyped project, untyped current_user, untyped params) -> void
+
+    def execute: (untyped stage) -> untyped
+
+    private
+
+    attr_reader pipeline: untyped
+
+    attr_reader current_user: untyped
+
+    def logger: () -> untyped
+  end
+end

@@ -1,0 +1,9 @@
+module Projects
+  class PostCreationWorker
+    include ApplicationWorker
+
+    def perform: (untyped project_id) -> (nil | untyped)
+
+    def create_incident_management_timeline_event_tags: (untyped project) -> untyped
+  end
+end

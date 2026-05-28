@@ -1,0 +1,9 @@
+module BulkImports
+  module Groups
+    module Transformers
+      class SubgroupToEntityTransformer
+        def transform: (untyped context, untyped entry) -> { source_type: :group_entity, source_full_path: untyped, destination_name: untyped, destination_namespace: untyped, organization_id: untyped, parent_id: untyped, migrate_projects: untyped, migrate_memberships: untyped }
+      end
+    end
+  end
+end

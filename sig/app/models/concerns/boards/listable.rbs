@@ -1,0 +1,19 @@
+module Boards
+  module Listable
+    extend ActiveSupport::Concern
+
+    def destroyable?: () -> untyped
+
+    def movable?: () -> untyped
+
+    def collapsed?: (untyped user) -> untyped
+
+    def update_preferences_for: (untyped user, ?::Hash[untyped, untyped] preferences) -> (nil | untyped)
+
+    def title: () -> untyped
+
+    private
+
+    def can_be_destroyed: () -> (untyped | nil)
+  end
+end

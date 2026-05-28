@@ -1,0 +1,35 @@
+module Gitlab
+  module Checks
+    class ChangedBlobs
+      @project: untyped
+
+      @revisions: untyped
+
+      @bytes_limit: untyped
+
+      @with_paths: untyped
+
+      def initialize: (untyped project, untyped revisions, bytes_limit: untyped, ?with_paths: bool) -> void
+
+      def execute: (timeout: untyped) -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader revisions: untyped
+
+      attr_reader bytes_limit: untyped
+
+      attr_reader with_paths: untyped
+
+      def fetch_blobs_from_quarantined_repo: (timeout: untyped) -> untyped
+
+      def filter_existing!: (untyped blobs) -> untyped
+
+      def ignore_alternate_directories?: () -> untyped
+
+      def populate_paths!: (untyped blobs) -> untyped
+    end
+  end
+end

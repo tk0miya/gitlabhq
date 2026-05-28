@@ -1,0 +1,32 @@
+module Ci
+  module Inputs
+    class Builder
+      @inputs: untyped
+
+      @errors: untyped
+
+      TYPES: ::Array[untyped]
+
+      def self.input_types: () -> untyped
+
+      # @param specs [Hash] A hash containing inputs specifications from `spec:inputs` config header
+      def initialize: (untyped specs) -> void
+
+      def all_inputs: () -> untyped
+
+      def input_names: () -> untyped
+
+      def errors: () -> untyped
+
+      def validate_input_params!: (untyped params) -> untyped
+
+      def to_params: (untyped params) -> untyped
+
+      private
+
+      def build_inputs!: (untyped specs) -> untyped
+
+      def valid_specs?: (untyped specs) -> (true | false)
+    end
+  end
+end

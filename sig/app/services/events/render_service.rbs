@@ -1,0 +1,11 @@
+module Events
+  class RenderService < BaseRenderer
+    def execute: (untyped events, ?atom_request: bool) -> untyped
+
+    private
+
+    def render_notes: (untyped notes, untyped atom_request) -> untyped
+
+    def render_options: (untyped atom_request) -> (::Hash[untyped, untyped] | { only_path: false, xhtml: true })
+  end
+end

@@ -1,0 +1,9 @@
+module API
+  module Entities
+    class Tag < Grape::Entity
+      include RequestAwareEntity
+
+      def can_read_release?: () -> untyped
+    end
+  end
+end

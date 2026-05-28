@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillProjectIdOnCiBuildNeeds < BatchedMigrationJob
+      def construct_query: (sub_batch: untyped) -> ::String
+
+      def perform: () -> untyped
+    end
+  end
+end

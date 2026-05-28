@@ -1,0 +1,47 @@
+module Timebox
+  extend ActiveSupport::Concern
+
+  include CacheMarkdownField
+
+  include Gitlab::SQL::Pattern
+
+  include Referable
+
+  include StripAttribute
+
+  TimeboxStruct: untyped
+
+  # Represents a "No Timebox" state used for filtering Issues and Merge
+  # Requests that have no timeboxes assigned.
+  None: untyped
+
+  Any: untyped
+
+  Upcoming: untyped
+
+  Started: untyped
+
+  def to_reference: () -> untyped
+
+  def reference_link_text: (?untyped? from) -> untyped
+
+  def name=: (untyped value) -> untyped
+
+  def timebox_name: () -> untyped
+
+  def safe_title: () -> untyped
+
+  def resource_parent: () -> untyped
+
+  def to_ability_name: () -> untyped
+
+  def merge_requests_enabled?: () -> untyped
+
+  def weight_available?: () -> untyped
+
+  private
+
+  def start_date_should_be_less_than_due_date: () -> (untyped | nil)
+
+  def dates_within_4_digits: () -> untyped
+end

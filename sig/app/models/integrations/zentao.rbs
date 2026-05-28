@@ -1,0 +1,37 @@
+module Integrations
+  class Zentao < Integration
+    @client: untyped
+
+    include Base::IssueTracker
+
+    include Gitlab::Routing
+
+    def avatar_url: () -> untyped
+
+    def self.issues_license_available?: (untyped project) -> untyped
+
+    def data_fields: () -> untyped
+
+    alias project_url url
+
+    def set_default_data: () -> (nil | untyped)
+
+    def self.title: () -> "ZenTao"
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def client_url: () -> untyped
+
+    def self.to_param: () -> untyped
+
+    def test: (*untyped _args) -> untyped
+
+    def self.supported_events: () -> ::Array[untyped]
+
+    private
+
+    def client: () -> untyped
+  end
+end

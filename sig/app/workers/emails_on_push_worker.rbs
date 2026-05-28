@@ -1,0 +1,15 @@
+class EmailsOnPushWorker
+  @email: untyped
+
+  include ApplicationWorker
+
+  attr_reader email: untyped
+
+  attr_reader skip_premailer: untyped
+
+  def perform: (untyped project_id, untyped recipients, untyped push_data, ?::Hash[untyped, untyped] options) -> untyped
+
+  private
+
+  def send_email: (untyped recipient, untyped project_id, untyped options) -> untyped
+end

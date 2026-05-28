@@ -1,0 +1,22 @@
+class DependencyProxy::FileUploader < GitlabUploader
+  extend Workhorse::UploadPath
+
+  include ObjectStorage::Concern
+
+  alias upload model
+
+  def filename: () -> untyped
+
+  def store_dir: () -> untyped
+
+  private
+
+  # Docker manifests return a custom content type
+  # GCP will only use the content-type that is stored with the file
+  # and will not allow it to be overwritten when downloaded
+  # so we must store the custom content type in object storage.
+  # This does not apply to DependencyProxy::Blob uploads.
+  def set_content_type: (untyped file) -> (nil | untyped)
+
+  def dynamic_segment: () -> untyped
+end

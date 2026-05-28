@@ -1,0 +1,11 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class GroupRunnerTokenExpirationEnabledMetric < GenericMetric
+          def value: () -> (true | untyped)
+        end
+      end
+    end
+  end
+end

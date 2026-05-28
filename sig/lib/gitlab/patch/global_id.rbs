@@ -1,0 +1,17 @@
+# To support GlobalID arguments that present a model with its old "deprecated" name
+# we alter GlobalID so it will correctly find the record with its new model name.
+module Gitlab
+  module Patch
+    module GlobalId
+      @new_model_name: untyped
+
+      def initialize: (untyped gid, ?::Hash[untyped, untyped] options) -> void
+
+      def model_name: () -> untyped
+
+      private
+
+      attr_reader new_model_name: untyped
+    end
+  end
+end

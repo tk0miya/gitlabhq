@@ -1,0 +1,101 @@
+module Gitlab
+  module Database
+    module BackgroundMigration
+      class BatchedMigration < SharedModel
+        @prometheus_labels: untyped
+
+        @health_context: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        JOB_CLASS_MODULE: "Gitlab::BackgroundMigration"
+
+        BATCH_CLASS_MODULE: ::String
+
+        MAXIMUM_FAILED_RATIO: ::Float
+
+        MINIMUM_JOBS: 50
+
+        FINISHED_PROGRESS_VALUE: 100
+
+        MINIMUM_PAUSE_MS: 100
+
+        DEFAULT_NUMBER_OF_JOBS: 20
+
+        DEFAULT_EMA_ALPHA: ::Float
+
+        def self.gitlab_schema_column_exists?: () -> untyped
+
+        def self.valid_status: () -> untyped
+
+        def self.find_for_configuration: (untyped gitlab_schema, untyped job_class_name, untyped table_name, untyped column_name, untyped job_arguments, ?include_compatible: bool) -> untyped
+
+        def self.find_executable: (untyped id, connection: untyped) -> untyped
+
+        def self.active_migrations_distinct_on_table: (connection: untyped, limit: untyped) -> untyped
+
+        def self.successful_rows_counts: (untyped migrations) -> untyped
+
+        def reset_attempts_of_blocked_jobs!: () -> untyped
+
+        def interval_elapsed?: (?variance: ::Integer) -> (true | untyped)
+
+        def create_batched_job!: (untyped min, untyped max) -> untyped
+
+        def retry_failed_jobs!: () -> untyped
+
+        def should_stop?: () -> (nil | untyped)
+
+        def next_min_value: () -> untyped
+
+        def job_class: () -> untyped
+
+        def batch_class: () -> untyped
+
+        def job_class_name=: (untyped class_name) -> untyped
+
+        def batch_class_name=: (untyped class_name) -> untyped
+
+        def migrated_tuple_count: () -> untyped
+
+        def prometheus_labels: () -> untyped
+
+        def smoothed_time_efficiency: (?number_of_jobs: ::Integer, ?alpha: ::Float) -> (nil | untyped)
+
+        def optimize!: () -> (false | untyped)
+
+        def health_context: () -> untyped
+
+        def health_context_tables: () -> (::Array[untyped] | untyped)
+
+        def hold!: (?until_time: untyped) -> untyped
+
+        def on_hold?: () -> (false | untyped)
+
+        def to_s: () -> ::String
+
+        # Computes an estimation of the progress of the migration in percents.
+        #
+        # Because `total_tuple_count` is an estimation of the tuples based on DB statistics
+        # when the migration is complete there can actually be more or less tuples that initially
+        # estimated as `total_tuple_count` so the progress may not show 100%. For that reason when
+        # we know migration completed successfully, we just return the 100 value
+        def progress: () -> (untyped | nil)
+
+        def compute_estimated_seconds_remaining: () -> (nil | untyped)
+
+        def estimated_time_remaining: () -> (nil | untyped)
+
+        def finalize_command: () -> untyped
+
+        private
+
+        def succeeded_job_stats: () -> untyped
+
+        def validate_batched_jobs_status: () -> (untyped | nil)
+
+        def batch_optimizer: () -> untyped
+      end
+    end
+  end
+end

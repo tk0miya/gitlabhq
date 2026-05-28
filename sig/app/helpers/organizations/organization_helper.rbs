@@ -1,0 +1,52 @@
+module Organizations
+  module OrganizationHelper
+    def organization_layout_nav: () -> ("organization" | untyped)
+
+    def ui_for_organizations_enabled?: () -> untyped
+
+    def organization_show_app_data: (untyped organization) -> untyped
+
+    def organization_new_app_data: () -> untyped
+
+    def organization_settings_general_app_data: (untyped organization) -> untyped
+
+    def organization_groups_and_projects_app_data: (untyped organization) -> untyped
+
+    def organization_index_app_data: () -> untyped
+
+    def organization_user_app_data: (untyped organization) -> untyped
+
+    def organization_groups_new_app_data: (untyped organization) -> untyped
+
+    def organization_groups_edit_app_data: (untyped organization, untyped group) -> untyped
+
+    def admin_organizations_index_app_data: () -> untyped
+
+    def organization_projects_edit_app_data: (untyped organization, untyped project) -> untyped
+
+    def organization_activity_app_data: (untyped organization) -> untyped
+
+    def push_organization_breadcrumbs: (untyped organization) -> (nil | untyped)
+
+    private
+
+    def shared_groups_and_projects_app_data: (untyped organization) -> { organization_gid: untyped, new_group_path: untyped, new_project_path: untyped, can_create_group: untyped, can_create_project: untyped, organization_groups_projects_sort: untyped, organization_groups_projects_display: untyped, has_groups: untyped }
+
+    def shared_new_settings_general_app_data: () -> { preview_markdown_path: untyped, organizations_url: untyped }
+
+    def shared_organization_index_app_data: () -> { new_organization_url: untyped, can_create_organization: untyped }
+
+    def shared_organization_groups_app_data: (untyped organization) -> { base_path: untyped, groups_and_projects_organization_path: untyped, groups_organization_path: untyped, available_visibility_levels: untyped, restricted_visibility_levels: untyped, path_maxlength: untyped, path_pattern: untyped }
+
+    def available_visibility_levels_for_group: (untyped organization) -> untyped
+
+    # See UsersHelper#admin_users_paths for inspiration to this method
+    def organizations_users_paths: () -> { admin_user: untyped }
+
+    def has_groups?: (untyped organization) -> untyped
+
+    def association_counts: (untyped organization) -> untyped
+
+    def organization_activity_event_types: () -> ::Array[{ title: untyped, value: untyped }]
+  end
+end

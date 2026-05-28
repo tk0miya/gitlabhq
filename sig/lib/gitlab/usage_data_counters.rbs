@@ -1,0 +1,13 @@
+module Gitlab
+  module UsageDataCounters
+    COUNTERS: ::Array[untyped]
+
+    UsageDataCounterError: untyped
+
+    UnknownEvent: untyped
+
+    def self.counters: () -> untyped
+
+    def self.count: (untyped event_name) -> untyped
+  end
+end

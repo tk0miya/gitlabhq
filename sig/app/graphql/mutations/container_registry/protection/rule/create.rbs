@@ -1,0 +1,13 @@
+module Mutations
+  module ContainerRegistry
+    module Protection
+      module Rule
+        class Create < ::Mutations::BaseMutation
+          include FindsProject
+
+          def resolve: (project_path: untyped, **untyped kwargs) -> { container_protection_repository_rule: untyped, errors: untyped }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Gitlab
+  module Sessions
+    module CacheStoreCoder
+      extend ::Gitlab::Sessions::CacheStoreCoder
+
+      def load: (untyped payload) -> untyped
+    end
+  end
+end

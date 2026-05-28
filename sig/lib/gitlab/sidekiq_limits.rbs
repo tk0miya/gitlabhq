@@ -1,0 +1,29 @@
+module Gitlab
+  module SidekiqLimits
+    HIGH_URGENCY_DB_DURATION_THRESHOLD_SECONDS: 100000
+
+    DEFAULT_DB_DURATION_THRESHOLD_SECONDS: 20000
+
+    # Default configuration if the limits in ApplicationSetting haven't been setup
+    DEFAULT_SIDEKIQ_LIMITS: { main_db_duration_limit_per_worker: { resource_key: :db_main_duration_s, metadata: { db_config_name: "main" }, scopes: ::Array["worker_name"], rules: ::Array[{ selector: untyped, threshold: untyped, interval: 60 }] }, ci_db_duration_limit_per_worker: { resource_key: :db_ci_duration_s, metadata: { db_config_name: "ci" }, scopes: ::Array["worker_name"], rules: ::Array[{ selector: untyped, threshold: untyped, interval: 60 }] }, sec_db_duration_limit_per_worker: { resource_key: :db_sec_duration_s, metadata: { db_config_name: "sec" }, scopes: ::Array["worker_name"], rules: ::Array[{ selector: untyped, threshold: untyped, interval: 60 }] } }
+
+    # name         - <Symbol> name of the limit to be used in ApplicationRateLimiter
+    # resource_key - <Symbol> Key in SafeRequestStore which tracks a resource usage
+    # scopes       - <String> Key in ApplicationContext or the worker_name
+    # metadata     - <Hash> Hash containing metadata for various usage, e.g. emitting extra logs/metrics
+    #                or further logic checks before throttling.
+    # threshold    - <Integer> Maximum resource usage given an interval
+    # interval     - <Integer> Seconds before a resource usage tracking is refreshed
+    Limit: untyped
+
+    def self.limits_for: (untyped worker_name) -> (::Array[untyped] | untyped)
+
+    private
+
+    def self.match_rule: (untyped rules, untyped worker_attr) -> (nil | ::Array[untyped])
+
+    def self.limits_from_application_setting: () -> untyped
+
+    def self.raw_limits: () -> untyped
+  end
+end

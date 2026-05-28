@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a CI/CD Bridge job that is responsible for
+        # defining a downstream project trigger.
+        #
+        class Bridge < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Ci::Config::Entry::Processable
+
+          ALLOWED_WHEN: ::Array["on_success" | "on_failure" | "always" | "manual"]
+
+          ALLOWED_KEYS: ::Array[:trigger | :parallel]
+
+          def self.matching?: (untyped name, untyped config) -> untyped
+
+          def self.visible?: () -> true
+
+          def value: () -> untyped
+
+          def bridge_needs: () -> (untyped | nil)
+
+          def ignored?: () -> untyped
+        end
+      end
+    end
+  end
+end

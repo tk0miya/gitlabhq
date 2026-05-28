@@ -1,0 +1,25 @@
+module Gitlab
+  class UserAccessSnippet < UserAccess
+    @project: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    extend ::Gitlab::Cache::RequestCache
+
+    alias snippet container
+
+    def initialize: (untyped user, ?snippet: untyped?) -> void
+
+    def can_do_action?: (untyped action) -> (false | untyped)
+
+    def can_create_tag?: (untyped ref) -> false
+
+    def can_delete_branch?: (untyped ref) -> false
+
+    def can_push_to_branch?: (untyped ref) -> (false | untyped)
+
+    def can_merge_to_branch?: (untyped ref) -> false
+
+    attr_reader project: untyped
+  end
+end

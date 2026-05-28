@@ -1,0 +1,35 @@
+module Gitlab
+  module Middleware
+    class StaticAssetsAuthorization
+      @app: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      VSCODE_ASSETS_PATH_PREFIX: "/assets/webpack/gitlab-web-ide-vscode-workbench"
+
+      FONTS_ASSETS_PATH_PREFIX: "/assets/gitlab-mono"
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> (untyped | ::Array[401 | ::Hash[untyped, untyped] | ::Array[untyped]] | ::Array[204 | untyped | ::Array[untyped]] | ::Array[untyped])
+
+      private
+
+      def handles_request?: (untyped request) -> untyped
+
+      def deny_vscode_assets_access?: (untyped request) -> untyped
+
+      def gitlab_host?: (untyped request) -> untyped
+
+      def gitlab_host: () -> untyped
+
+      def vscode_assets_path?: (untyped request) -> untyped
+
+      def fonts_assets_path?: (untyped request) -> untyped
+
+      def get_authorization_headers: (untyped request) -> untyped
+
+      def build_allowed_origin_url: (untyped allowed_subdomain, untyped base_domain) -> ::String
+    end
+  end
+end

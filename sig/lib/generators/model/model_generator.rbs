@@ -1,0 +1,10 @@
+module Model
+  class ModelGenerator < ActiveRecord::Generators::ModelGenerator
+    def create_migration_file: () -> (nil | untyped)
+
+    def create_database_dictionary: () -> untyped
+
+    # Override to find templates from superclass as well
+    def source_paths: () -> untyped
+  end
+end

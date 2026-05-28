@@ -1,0 +1,226 @@
+module Gitlab
+  module Database
+    self.@all_database_connections: untyped
+
+    self.@all_gitlab_schemas: untyped
+
+    # Note that we use ActiveRecord::Base here and not ApplicationRecord.
+    # This is deliberate, as we also use these classes to apply load
+    # balancing to, and the load balancer must be enabled for _all_ models
+    # that inherit from ActiveRecord::Base; not just our own models that
+    # inherit from ApplicationRecord.
+    self.@database_base_models: untyped
+
+    self.@database_base_models_with_gitlab_shared: untyped
+
+    self.@database_base_models_using_load_balancing: untyped
+
+    self.@gitlab_base_models: untyped
+
+    self.@schemas_to_base_models: untyped
+
+    MAIN_DATABASE_NAME: "main"
+
+    CI_DATABASE_NAME: "ci"
+
+    SEC_DATABASE_NAME: "sec"
+
+    DEFAULT_POOL_HEADROOM: 10
+
+    # This constant is used when renaming tables concurrently.
+    # If you plan to rename a table using the `rename_table_safely` method, add your table here one milestone before the rename.
+    # Example:
+    # TABLES_TO_BE_RENAMED = {
+    #   'old_name' => 'new_name'
+    # }.freeze
+    TABLES_TO_BE_RENAMED: ::Hash[untyped, untyped]
+
+    # Minimum PostgreSQL version requirement per documentation:
+    # https://docs.gitlab.com/ee/install/requirements.html#postgresql-requirements
+    MINIMUM_POSTGRES_VERSION: 17
+
+    # https://www.postgresql.org/docs/9.2/static/datatype-numeric.html
+    MAX_INT_VALUE: 2147483647
+
+    MIN_INT_VALUE: -2147483648
+
+    MAX_BIGINT_VALUE: 9223372036854775807
+
+    MIN_BIGINT_VALUE: -9223372036854775808
+
+    MAX_SMALLINT_VALUE: 32767
+
+    # The max value between MySQL's TIMESTAMP and PostgreSQL's timestampz:
+    # https://www.postgresql.org/docs/9.1/static/datatype-datetime.html
+    # https://dev.mysql.com/doc/refman/5.7/en/datetime.html
+    # FIXME: this should just be the max value of timestampz
+    MAX_TIMESTAMP_VALUE: untyped
+
+    # The maximum number of characters for text fields, to avoid DoS attacks via parsing huge text fields
+    # https://gitlab.com/gitlab-org/gitlab-foss/issues/61974
+    MAX_TEXT_SIZE_LIMIT: 1000000
+
+    # Schema we store dynamically managed partitions in (e.g. for time partitioning)
+    DYNAMIC_PARTITIONS_SCHEMA: :gitlab_partitions_dynamic
+
+    # Schema we store static partitions in (e.g. for hash partitioning)
+    STATIC_PARTITIONS_SCHEMA: :gitlab_partitions_static
+
+    # This is an extensive list of postgres schemas owned by GitLab
+    # It does not include the default public schema
+    EXTRA_SCHEMAS: ::Array[untyped]
+
+    PRIMARY_DATABASE_NAME: untyped
+
+    FULLY_QUALIFIED_IDENTIFIER: ::Regexp
+
+    #  Database Modes
+    MODE_SINGLE_DATABASE: "single-database"
+
+    MODE_SINGLE_DATABASE_CI_CONNECTION: "single-database-ci-connection"
+
+    MODE_MULTIPLE_DATABASES: "multiple-databases"
+
+    MAX_INDEXES_ALLOWED_PER_TABLE: 15
+
+    MAX_INDEX_NAME_LENGTH: 63
+
+    def self.all_database_connection_files: () -> untyped
+
+    def self.all_gitlab_schema_files: () -> untyped
+
+    def self.all_database_connections: () -> untyped
+
+    def self.all_database_names: () -> untyped
+
+    def self.all_gitlab_schemas: () -> untyped
+
+    def self.database_base_models: () -> untyped
+
+    # This returns a list of databases that contains all the gitlab_shared schema
+    # tables.
+    def self.database_base_models_with_gitlab_shared: () -> untyped
+
+    # This returns a list of databases whose connection supports database load
+    # balancing. We can't reuse the database_base_models since not all connections
+    # do support load balancing.
+    def self.database_base_models_using_load_balancing: () -> untyped
+
+    # Returns the application record that created the given connection.
+    # In single database mode, this always returns ApplicationRecord.
+    def self.application_record_for_connection: (untyped connection) -> untyped
+
+    # This returns a list of base models with connection associated for a given gitlab_schema
+    def self.schemas_to_base_models: () -> untyped
+
+    # We configure the database connection pool size automatically based on the
+    # configured concurrency. We also add some headroom, to make sure we don't
+    # run out of connections when more threads besides the 'user-facing' ones
+    # are running.
+    #
+    # Read more about this in
+    # doc/development/database/client_side_connection_pool.md
+    def self.default_pool_size: () -> untyped
+
+    # Expose path information so that we can use it to make sure migrations are
+    # healthy
+    def self.upgrade_path: () -> untyped
+
+    # Migrations before this version may have been removed.
+    def self.min_schema_gitlab_version: () -> untyped
+
+    # Database configured. Returns true even if the database is shared
+    def self.has_config?: (untyped database_name) -> untyped
+
+    # Database configured. Returns false if the database is shared
+    def self.has_database?: (untyped database_name) -> untyped
+
+    def self.database_mode: () -> untyped
+
+    class PgUser < ApplicationRecord
+    end
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.check_for_non_superuser: () -> untyped
+
+    def self.random: () -> "RANDOM()"
+
+    def self.true_value: () -> "'t'"
+
+    def self.false_value: () -> "'f'"
+
+    def self.sanitize_timestamp: (untyped timestamp) -> untyped
+
+    # We use ApplicationRecord here but these quoting helpers can be used on any query fragment
+    # since all our databases use the same PostgreSQL adapter
+    def self.quote_table_name: (untyped table_name) -> untyped
+
+    def self.quote_column_name: (untyped column_name) -> untyped
+
+    def self.all_uncached: () { (?) -> untyped } -> untyped
+
+    def self.allow_cross_joins_across_databases: (url: untyped) { () -> untyped } -> untyped
+
+    def self.add_post_migrate_path_to_rails: (?force: bool) -> (nil | untyped)
+
+    def self.db_config_names: (with_schema: untyped) -> untyped
+
+    # This returns all matching schemas that a given connection can use
+    # Since the `ActiveRecord::Base` might change the connection (from main to ci)
+    # This does not look at literal connection names, but rather compares
+    # models that are holders for a given db_config_name
+    def self.gitlab_schemas_for_connection: (untyped connection) -> (nil | untyped)
+
+    def self.db_config_for_connection: (untyped connection) -> untyped
+
+    # At the moment, the connection can only be retrieved by
+    # Gitlab::Database::LoadBalancer#read or #read_write or from the
+    # ActiveRecord directly. Therefore, if the load balancer doesn't
+    # recognize the connection, this method returns the primary role
+    # directly. In future, we may need to check for other sources.
+    # Expected returned names:
+    # main, main_replica, ci, ci_replica, unknown
+    def self.db_config_name: (untyped connection) -> untyped
+
+    def self.db_config_database: (untyped connection) -> untyped
+
+    def self.column_type: (untyped connection, untyped table_name, untyped column_name) -> (nil | untyped)
+
+    # If the `database_tasks: false` is being used,
+    # return the expected fallback database for this database configuration
+    def self.db_config_share_with: (untyped db_config) -> (nil | untyped)
+
+    def self.read_only?: () -> false
+
+    def self.read_write?: () -> untyped
+
+    # Determines minimum viable migration version, determined by the timestamp
+    # of the earliest migration file.
+    def self.read_minimum_migration_version: () -> untyped
+
+    # Monkeypatch rails with upgraded database observability
+    def self.install_transaction_metrics_patches!: () -> untyped
+
+    def self.install_transaction_context_patches!: () -> untyped
+
+    # MonkeyPatch for ActiveRecord::Base for adding observability
+    module ActiveRecordBaseTransactionMetrics
+      extend ActiveSupport::Concern
+    end
+
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables
+    module TransactionManagerContext
+      def transaction_context: () -> untyped
+    end
+
+    module RealTransactionContext
+      @gitlab_transaction_context: untyped
+
+      def gitlab_transaction_context: () -> untyped
+
+      def commit: () -> untyped
+
+      def rollback: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Mutations
+  module Ci
+    class NamespaceSettingsUpdate < BaseMutation
+      include ResolvesNamespace
+
+      def resolve: (full_path: untyped, **untyped args) -> { ci_cd_settings: untyped, errors: untyped }
+
+      private
+
+      def find_object: (untyped full_path) -> untyped
+    end
+  end
+end

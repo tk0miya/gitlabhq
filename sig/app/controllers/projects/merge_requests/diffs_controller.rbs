@@ -1,0 +1,80 @@
+class Projects::MergeRequests::DiffsController < Projects::MergeRequests::ApplicationController
+  @merge_request_diffs: untyped
+
+  @compare: untyped
+
+  @merge_request_diff: untyped
+
+  @comparable_diffs: untyped
+
+  @start_sha: untyped
+
+  @start_version: untyped
+
+  @new_diff_note_attrs: untyped
+
+  @diff_notes_disabled: untyped
+
+  @use_legacy_diff_notes: untyped
+
+  @grouped_diff_discussions: untyped
+
+  @notes: untyped
+
+  @note_positions: untyped
+
+  include DiffHelper
+
+  include HandlesGitalyErrors
+
+  include RendersNotes
+
+  include Gitlab::Cache::Helpers
+
+  include Gitlab::Tracking::Helpers
+
+  def show: () -> untyped
+
+  def diff_by_file_hash: () -> untyped
+
+  def diff_for_path: () -> untyped
+
+  def diffs_batch: () -> (nil | untyped)
+
+  def diffs_metadata: () -> untyped
+
+  private
+
+  def preloadable_mr_relations: () -> ::Array[{ source_project: :namespace } | { target_project: :namespace }]
+
+  # Deprecated: https://gitlab.com/gitlab-org/gitlab/issues/37735
+  def render_diffs: () -> untyped
+
+  # Deprecated: https://gitlab.com/gitlab-org/gitlab/issues/37735
+  def define_diff_vars: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  # rubocop: disable Metrics/PerceivedComplexity -- Deprecated method, will be removed with legacy diffs
+  #
+  # Deprecated: https://gitlab.com/gitlab-org/gitlab/issues/37735
+  def find_merge_request_diff_compare: () -> (nil | untyped)
+
+  def additional_attributes: () -> { merge_request: untyped, merge_request_diff: untyped, merge_request_diffs: untyped, start_version: untyped, start_sha: untyped, commit: untyped, latest_diff: untyped }
+
+  # Deprecated: https://gitlab.com/gitlab-org/gitlab/issues/37735
+  def define_diff_comment_vars: () -> untyped
+
+  def render_merge_ref_head_diff?: () -> untyped
+
+  def latest_diff_with_merge_head?: () -> (false | untyped)
+
+  def note_positions: () -> untyped
+
+  def renderable_notes: () -> untyped
+
+  def update_diff_discussion_positions!: () -> (nil | untyped)
+
+  def track_viewed_diffs_events: () -> (nil | untyped)
+
+  def cache_with_max_age?: () -> untyped
+end

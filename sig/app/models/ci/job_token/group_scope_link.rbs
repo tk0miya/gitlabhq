@@ -1,0 +1,17 @@
+module Ci
+  module JobToken
+    class GroupScopeLink < Ci::ApplicationRecord
+      include BulkInsertSafe
+
+      include ExpandedJobTokenPolicies
+
+      GROUP_LINK_LIMIT: 200
+
+      def self.for_source_and_target: (untyped source_project, untyped target_group) -> untyped
+
+      private
+
+      def source_project_under_link_limit: () -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Uploads
+  class Base
+    @logger: untyped
+
+    BATCH_SIZE: 100
+
+    attr_reader logger: untyped
+
+    def initialize: (?logger: untyped?) -> void
+
+    def delete_keys_async: (untyped keys_to_delete) -> untyped
+  end
+end

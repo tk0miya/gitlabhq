@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      module Callbacks
+        def self.configure!: () { (untyped) -> untyped } -> untyped
+
+        def self.metrics_host_gauge: (untyped labels, untyped value) -> untyped
+
+        def self.track_exception: (untyped ex) -> untyped
+      end
+    end
+  end
+end

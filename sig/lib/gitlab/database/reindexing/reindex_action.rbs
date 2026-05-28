@@ -1,0 +1,14 @@
+module Gitlab
+  module Database
+    module Reindexing
+      class ReindexAction < SharedModel
+        # Amount of time to consider a previous reindexing *recent*
+        RECENT_THRESHOLD: untyped
+
+        def self.create_for: (untyped index) -> untyped
+
+        def finish: () -> untyped
+      end
+    end
+  end
+end

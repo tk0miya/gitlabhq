@@ -1,0 +1,21 @@
+# This should be in the ErrorTracking namespace. For more details, see:
+# https://gitlab.com/gitlab-org/gitlab/-/issues/323342
+module Gitlab
+  module ErrorTracking
+    class ErrorEvent
+      include ActiveModel::Model
+
+      attr_accessor issue_id: untyped
+
+      attr_accessor date_received: untyped
+
+      attr_accessor stack_trace_entries: untyped
+
+      attr_accessor gitlab_project: untyped
+
+      attr_accessor project_id: untyped
+
+      def self.declarative_policy_class: () -> "ErrorTracking::BasePolicy"
+    end
+  end
+end

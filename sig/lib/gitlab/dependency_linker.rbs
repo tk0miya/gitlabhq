@@ -1,0 +1,11 @@
+module Gitlab
+  module DependencyLinker
+    LINKERS: ::Array[untyped]
+
+    def self.linker: (untyped blob_name) -> untyped
+
+    def self.link: (untyped blob_name, untyped plain_text, untyped highlighted_text, ?used_on: ::Symbol) -> untyped
+
+    def self.usage_counter: () -> untyped
+  end
+end

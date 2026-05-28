@@ -1,0 +1,28 @@
+module Gitlab
+  module I18n
+    class MetadataEntry
+      @entry_data: untyped
+
+      @forms_to_test: untyped
+
+      @plural_information: untyped
+
+      attr_reader entry_data: untyped
+
+      # Avoid testing too many plurals if `nplurals` was incorrectly set.
+      # Based on info on https://www.gnu.org/software/gettext/manual/html_node/Plural-forms.html
+      # which mentions special cases for numbers ending in 2 digits
+      MAX_FORMS_TO_TEST: 101
+
+      def initialize: (untyped entry_data) -> void
+
+      def expected_forms: () -> (nil | untyped)
+
+      def forms_to_test: () -> untyped
+
+      private
+
+      def plural_information: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module Search
+  class PipeAbuseDetector
+    @search_type: untyped
+
+    @params: untyped
+
+    def initialize: (untyped search_type, untyped params) -> void
+
+    def abusive?: () -> (false | untyped)
+
+    private
+
+    attr_reader search_type: untyped
+
+    attr_reader params: untyped
+
+    # Overridden in EE to exclude zoekt exact search mode
+    def search_type_requires_pipe_detection?: () -> true
+
+    def abuse_detected?: () -> untyped
+  end
+end

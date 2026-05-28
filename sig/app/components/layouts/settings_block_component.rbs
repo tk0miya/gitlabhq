@@ -1,0 +1,35 @@
+module Layouts
+  class SettingsBlockComponent < ViewComponent::Base
+    @heading: untyped
+
+    @description: untyped
+
+    @id: untyped
+
+    @testid: untyped
+
+    @expanded: untyped
+
+    @button_options: untyped
+
+    @css_class: untyped
+
+    # @param [String] heading
+    # @param [String] description
+    # @param [String] id
+    # @param [String] testid
+    # @param [Boolean] expanded
+    # @param [Hash] button_options
+    def initialize: (untyped heading, ?description: untyped?, ?id: untyped?, ?testid: untyped?, ?expanded: untyped?, ?button_options: ::Hash[untyped, untyped], ?css_class: untyped?) -> void
+
+    private
+
+    def section_classes: () -> untyped
+
+    def title_classes: () -> ::Array["gl-heading-2" | "gl-cursor-pointer" | "!gl-mb-2" | "js-settings-toggle" | "js-settings-toggle-trigger-only"]
+
+    def button_text: () -> untyped
+
+    def aria_label: () -> ::String
+  end
+end

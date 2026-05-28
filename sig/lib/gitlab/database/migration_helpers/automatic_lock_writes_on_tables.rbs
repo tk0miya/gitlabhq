@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module AutomaticLockWritesOnTables
+        extend ActiveSupport::Concern
+
+        def exec_migration: (untyped connection, untyped direction) -> untyped
+
+        private
+
+        def automatic_lock_on_writes_disabled?: () -> untyped
+
+        def should_lock_writes_on_table?: (untyped db_info, untyped table_name) -> (false | untyped)
+
+        # with_retries creates new a transaction. So we set it to false if the connection is
+        # already has an open transaction, to avoid sub-transactions.
+        def lock_writes_on_table: (untyped connection, untyped table_name) -> untyped
+      end
+    end
+  end
+end

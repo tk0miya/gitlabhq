@@ -1,0 +1,75 @@
+module IssuablesHelper
+  include GitlabRoutingHelper
+
+  include IssuablesDescriptionTemplatesHelper
+
+  include ::Sidebars::Concerns::HasPill
+
+  def sidebar_gutter_toggle_icon: () -> untyped
+
+  def sidebar_gutter_collapsed_class: (untyped is_merge_request_with_flag) -> ("right-sidebar-expanded" | ::String)
+
+  def sidebar_gutter_tooltip_text: () -> untyped
+
+  def assignees_label: (untyped issuable, ?include_value: bool) -> untyped
+
+  def multi_label_name: (untyped current_labels, untyped default_label) -> untyped
+
+  def serialize_issuable: (untyped issuable, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def users_dropdown_label: (untyped selected_users) -> untyped
+
+  def issuables_state_counter_text: (untyped issuable_type, untyped state, untyped display_count) -> untyped
+
+  def issuable_reference: (untyped issuable) -> untyped
+
+  def issuable_project_reference: (untyped issuable) -> ::String
+
+  def issuable_initial_data: (untyped issuable) -> untyped
+
+  def issuables_count_for_state: (untyped issuable_type, untyped state) -> untyped
+
+  def close_issuable_path: (untyped issuable) -> untyped
+
+  def reopen_issuable_path: (untyped issuable) -> untyped
+
+  def issuable_path: (untyped issuable, *untyped options) -> untyped
+
+  def issuable_author_is_current_user: (untyped issuable) -> untyped
+
+  def has_filter_bar_param?: () -> untyped
+
+  def issuable_label_selector_data: (untyped project, untyped issuable) -> { allow_scoped_labels: untyped, field_name: ::String, full_path: untyped, initial_labels: untyped, issuable_type: untyped, labels_filter_base_path: untyped, labels_manage_path: untyped, supports_lock_on_merge: untyped }
+
+  private
+
+  def sidebar_gutter_collapsed?: () -> untyped
+
+  def close_reopen_params: (untyped issuable, untyped action) -> untyped
+
+  def labels_path: () -> (untyped | untyped | nil)
+
+  def issuable_sidebar_options: (untyped issuable, untyped project) -> { endpoint: ::String, toggleSubscriptionEndpoint: untyped, moveIssueEndpoint: untyped, projectsAutocompleteEndpoint: untyped, editable: untyped, currentUser: untyped, rootPath: untyped, fullPath: untyped, iid: untyped, id: untyped, severity: untyped, timeTrackingLimitToHours: untyped, canCreateTimelogs: untyped, createNoteEmail: untyped, issuableType: untyped, directlyInviteMembers: untyped }
+
+  def sidebar_labels_data: (untyped issuable_sidebar, untyped project) -> { allow_label_create: untyped, allow_scoped_labels: untyped, can_edit: untyped, iid: untyped, issuable_type: untyped, labels_fetch_path: untyped, labels_manage_path: untyped, project_issues_path: untyped, project_path: untyped, selected_labels: untyped }
+
+  def sidebar_status_data: (untyped issuable_sidebar, untyped project) -> { iid: untyped, issuable_type: untyped, full_path: untyped, can_edit: untyped }
+
+  def parent: () -> untyped
+
+  def format_count: (untyped issuable_type, untyped count, untyped threshold) -> untyped
+
+  def issue_only_initial_data: (untyped issuable) -> (::Hash[untyped, untyped] | ::Hash[:canCreateIncident | :fullPath | :iid | :issuableId | :issueType | :isHidden | :zoomMeetingUrl | untyped, untyped])
+
+  def incident_only_initial_data: (untyped issue) -> (::Hash[untyped, untyped] | { hasLinkedAlerts: untyped, canUpdateTimelineEvent: untyped, currentPath: untyped, currentTab: untyped })
+
+  def issue_header_data: (untyped issuable) -> untyped
+
+  def work_items_only_data: () -> { registerPath: untyped, signInPath: untyped }
+
+  def path_data: (untyped parent) -> ({ groupPath: untyped } | { projectPath: untyped, projectId: untyped, projectNamespace: untyped })
+
+  def updated_at_by: (untyped issuable) -> (::Hash[untyped, untyped] | { updatedAt: untyped, updatedBy: { name: untyped, path: untyped } })
+
+  def new_comment_template_paths: (untyped group, ?untyped? project) -> ::Array[{ text: untyped, href: untyped }]
+end

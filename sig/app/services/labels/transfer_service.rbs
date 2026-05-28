@@ -1,0 +1,45 @@
+# Labels::TransferService class
+#
+# User for recreate the missing group labels at project level
+#
+module Labels
+  # rubocop: disable CodeReuse/ActiveRecord
+  class TransferService
+    @current_user: untyped
+
+    @old_group: untyped
+
+    @project: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    BATCH_SIZE: 500
+
+    MAX_LABEL_IDS: 10000
+
+    # At this point, project has already been moved to the new namespace target
+    def initialize: (untyped current_user, untyped old_group, untyped project) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader old_group: untyped
+
+    attr_reader project: untyped
+
+    def group_label_ids: () -> untyped
+
+    def group_labels_to_transfer: (untyped label_ids) -> untyped
+
+    def update_all_label_links: (old_label_id: untyped, new_label_id: untyped) -> untyped
+
+    def project_label_links: () -> untyped
+
+    def find_or_create_label!: (untyped label) -> untyped
+
+    def update_label_priorities: (old_label_id: untyped, new_label_id: untyped) -> untyped
+  end
+end

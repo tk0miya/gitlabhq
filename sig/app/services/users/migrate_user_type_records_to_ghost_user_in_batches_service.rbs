@@ -1,0 +1,25 @@
+module Users
+  class MigrateUserTypeRecordsToGhostUserInBatchesService
+    @scope: untyped
+
+    @execution_tracker: untyped
+
+    LIMIT_SIZE: 1000
+
+    def initialize: (user_type: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader execution_tracker: untyped
+
+    def scope_for: (untyped user_type) -> untyped
+
+    def ghost_user_migrations: () -> untyped
+
+    def reschedule: (untyped job) -> untyped
+
+    def defer: (untyped job) -> untyped
+  end
+end

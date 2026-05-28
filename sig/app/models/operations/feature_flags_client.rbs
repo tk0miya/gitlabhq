@@ -1,0 +1,25 @@
+module Operations
+  class FeatureFlagsClient < ApplicationRecord
+    include TokenAuthenticatable
+
+    DEFAULT_UNLEASH_API_VERSION: 1
+
+    FEATURE_FLAGS_CLIENT_TOKEN_PREFIX: "glffct-"
+
+    attr_accessor unleash_app_name: untyped
+
+    def self.find_for_project_and_token: (untyped project_id, untyped token) -> (nil | untyped)
+
+    def self.update_last_feature_flag_updated_at!: (untyped project) -> untyped
+
+    def self.prefix_for_feature_flags_client_token: () -> untyped
+
+    def unleash_api_version: () -> untyped
+
+    def unleash_api_features: () -> (::Array[untyped] | untyped)
+
+    def unleash_api_cache_key: () -> ::String
+
+    def prefix_for_feature_flags_client_token: () -> untyped
+  end
+end

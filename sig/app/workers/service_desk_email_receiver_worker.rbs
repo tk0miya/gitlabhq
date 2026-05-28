@@ -1,0 +1,9 @@
+class ServiceDeskEmailReceiverWorker < EmailReceiverWorker
+  @receiver: untyped
+
+  include ApplicationWorker
+
+  def should_perform?: () -> untyped
+
+  def receiver: () -> untyped
+end

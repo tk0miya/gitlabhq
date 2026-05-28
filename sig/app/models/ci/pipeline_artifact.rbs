@@ -1,0 +1,31 @@
+module Ci
+  class PipelineArtifact < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include UpdateProjectStatistics
+
+    include Artifactable
+
+    include FileStoreMounter
+
+    include Lockable
+
+    include Presentable
+
+    FILE_SIZE_LIMIT: untyped
+
+    EXPIRATION_DATE: untyped
+
+    DEFAULT_FILE_NAMES: { code_coverage: "code_coverage.json", code_quality_mr_diff: "code_quality_mr_diff.json", pipeline_variables: "pipeline_variables.json" }
+
+    REPORT_TYPES: { code_coverage: :raw, code_quality_mr_diff: :raw }
+
+    def self.report_exists?: (untyped file_type) -> (false | untyped)
+
+    def self.find_by_file_type: (untyped file_type) -> untyped
+
+    def self.create_or_replace_for_pipeline!: (pipeline: untyped, file_type: untyped, file: untyped, size: untyped, ?locked: ::Symbol) -> untyped
+
+    def present: () -> untyped
+  end
+end

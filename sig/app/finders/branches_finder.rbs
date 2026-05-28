@@ -1,0 +1,13 @@
+class BranchesFinder < GitRefsFinder
+  def execute: (?gitaly_pagination: bool) -> untyped
+
+  def total: () -> untyped
+
+  private
+
+  def regex: () -> untyped
+
+  def page_token: () -> (::String | nil)
+
+  def by_regex: (untyped branches) -> untyped
+end

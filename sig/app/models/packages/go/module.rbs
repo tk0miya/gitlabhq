@@ -1,0 +1,39 @@
+module Packages
+  module Go
+    class Module
+      @project: untyped
+
+      @name: untyped
+
+      @path: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader project: untyped
+
+      attr_reader name: untyped
+
+      attr_reader path: untyped
+
+      def initialize: (untyped project, untyped name, untyped path) -> void
+
+      def versions: () -> untyped
+
+      def version_by: (?ref: untyped?, ?commit: untyped?) -> untyped
+
+      def path_valid?: (untyped major) -> untyped
+
+      def gomod_valid?: (untyped gomod) -> untyped
+
+      private
+
+      def version_by_name: (untyped name) -> (untyped | nil)
+
+      def version_by_ref: (untyped ref) -> untyped
+
+      def version_by_sha: (untyped sha) -> (nil | untyped)
+
+      def version_by_commit: (untyped commit) -> untyped
+    end
+  end
+end

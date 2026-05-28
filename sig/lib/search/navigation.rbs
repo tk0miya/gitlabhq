@@ -1,0 +1,53 @@
+module Search
+  class Navigation
+    @user: untyped
+
+    @project: untyped
+
+    @group: untyped
+
+    @options: untyped
+
+    include Gitlab::Allowable
+
+    def initialize: (user: untyped, ?project: untyped?, ?group: untyped?, ?options: ::Hash[untyped, untyped]) -> void
+
+    def tab_enabled_for_project?: (untyped tab) -> (false | untyped)
+
+    def tabs: () -> untyped
+
+    private
+
+    # Returns whether a scope should be visible
+    # This method is called for each scope defined in Search::Scopes::SCOPE_DEFINITIONS
+    def scope_visible?: (untyped scope_key) -> untyped
+
+    attr_reader user: untyped
+
+    attr_reader project: untyped
+
+    attr_reader group: untyped
+
+    attr_reader options: untyped
+
+    def search_tab_ability_map: () -> { milestones: :read_milestone, snippets: :read_snippet, issues: :read_issue, work_items: :read_work_item, blobs: :read_code, commits: :read_code, merge_requests: :read_merge_request, notes: ::Array[:read_merge_request | :read_code | :read_issue | :read_snippet], users: :read_project_member, wiki_blobs: :read_wiki }
+
+    def show_user_search_tab?: () -> (true | false | untyped)
+
+    def show_code_search_tab?: () -> untyped
+
+    def show_wiki_search_tab?: () -> untyped
+
+    def show_commits_search_tab?: () -> untyped
+
+    def show_work_items_search_tab?: () -> (true | untyped)
+
+    def show_merge_requests_search_tab?: () -> (true | untyped)
+
+    def show_comments_search_tab?: () -> untyped
+
+    def show_snippets_search_tab?: () -> untyped
+
+    def show_milestones_search_tab?: () -> untyped
+  end
+end

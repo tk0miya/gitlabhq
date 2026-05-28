@@ -1,0 +1,222 @@
+class Projects::MergeRequestsController < Projects::MergeRequests::ApplicationController
+  @merge_requests: untyped
+
+  # Get context commits from repository
+  @context_commits: untyped
+
+  @next_page: untyped
+
+  @commits: untyped
+
+  # Capture total count before pagination to ensure accurate count regardless of current page
+  @pipelines_count: untyped
+
+  @pipelines: untyped
+
+  @merge_request: untyped
+
+  # Build a note object for comment form
+  @note: untyped
+
+  @noteable: untyped
+
+  @commits_count: untyped
+
+  @diffs_count: untyped
+
+  @issuable_sidebar: untyped
+
+  @current_user_data: untyped
+
+  @show_whitespace_default: untyped
+
+  @file_by_file_default: untyped
+
+  @coverage_path: untyped
+
+  @update_current_user_path: untyped
+
+  @endpoint_metadata_url: untyped
+
+  @endpoint_diff_batch_url: untyped
+
+  @linked_file_url: untyped
+
+  @diffs_batch_cache_key: untyped
+
+  @number_of_pipelines: untyped
+
+  @serializer: untyped
+
+  @source_project: untyped
+
+  @target_project: untyped
+
+  # FIXME: We have to assign a presenter to another instance variable
+  # due to class_name checks being made with issuable classes
+  @mr_presenter: untyped
+
+  include ToggleSubscriptionAction
+
+  include IssuableActions
+
+  include RendersCommits
+
+  include RendersAssignees
+
+  include ToggleAwardEmoji
+
+  include IssuableCollections
+
+  include RecordUserLastActivity
+
+  include SourcegraphDecorator
+
+  include DiffHelper
+
+  include Gitlab::Cache::Helpers
+
+  include MergeRequestsHelper
+
+  include ParseCommitDate
+
+  include RapidDiffs::Resource
+
+  include ProductAnalyticsTracking
+
+  def index: () -> untyped
+
+  def show: () -> untyped
+
+  def diffs: () -> untyped
+
+  def rapid_diffs: () -> untyped
+
+  def commits: () -> untyped
+
+  def pipelines: () -> untyped
+
+  def context_commits: () -> untyped
+
+  def test_reports: () -> untyped
+
+  def accessibility_reports: () -> untyped
+
+  def coverage_reports: () -> untyped
+
+  # documented in doc/development/rails_endpoints/index.md
+  def codequality_mr_diff_reports: () -> untyped
+
+  # documented in doc/development/rails_endpoints/index.md
+  def codequality_reports: () -> untyped
+
+  def terraform_reports: () -> untyped
+
+  def exposed_artifacts: () -> untyped
+
+  def edit: () -> untyped
+
+  def update: () -> untyped
+
+  def remove_wip: () -> untyped
+
+  def commit_change_content: () -> untyped
+
+  def cancel_auto_merge: () -> untyped
+
+  def merge: () -> untyped
+
+  def assign_related_issues: () -> untyped
+
+  def pipeline_status: () -> untyped
+
+  def ci_environments_status: () -> untyped
+
+  def rebase: () -> untyped
+
+  def discussions: () -> untyped
+
+  def export_csv: () -> untyped
+
+  def versions: () -> untyped
+
+  alias subscribable_resource merge_request
+
+  alias issuable merge_request
+
+  alias awardable merge_request
+
+  def sorting_field: () -> untyped
+
+  def merge_params: () -> untyped
+
+  def merge_params_attributes: () -> untyped
+
+  def auto_merge_requested?: () -> untyped
+
+  private
+
+  def set_issuables_index: () -> (nil | untyped)
+
+  def show_merge_request: () -> untyped
+
+  def render_html_page: () -> untyped
+
+  def get_diffs_count: () -> untyped
+
+  def merge_request_update_params: () -> untyped
+
+  def head_pipeline: () -> untyped
+
+  def ci_environments_status_on_merge_result?: () -> untyped
+
+  def target_branch_missing?: () -> untyped
+
+  def merge!: () -> (:failed | :hook_validation_error | :sha_mismatch | untyped)
+
+  def serialize_widget: (untyped merge_request) -> untyped
+
+  def serializer: () -> untyped
+
+  def define_edit_vars: () -> untyped
+
+  def finder_type: () -> untyped
+
+  def check_user_can_push_to_source_branch!: () -> (nil | untyped)
+
+  def merge_access_check: () -> (untyped | nil)
+
+  def disable_query_limiting: () -> untyped
+
+  def reports_response: (untyped report_comparison, ?untyped? pipeline) -> untyped
+
+  def log_merge_request_show: () -> (nil | untyped)
+
+  def authorize_read_diff_head_pipeline!: () -> (untyped | nil)
+
+  def show_whitespace: () -> ("0" | "1")
+
+  def endpoint_metadata_url: (untyped project, untyped merge_request) -> untyped
+
+  def endpoint_diff_batch_url: (untyped project, untyped merge_request) -> untyped
+
+  def linked_file_url: (untyped project, untyped merge_request) -> untyped
+
+  def append_info_to_payload: (untyped payload) -> (nil | untyped)
+
+  def display_limit_warnings: () -> (nil | untyped)
+
+  def diff_file_component: (untyped base_args) -> untyped
+
+  def complete_diff_path: () -> untyped
+
+  def email_format_path: () -> untyped
+
+  def rapid_diffs_page_enabled?: () -> untyped
+
+  def auto_merge_strategy: () -> untyped
+
+  def tracking_namespace_source: () -> untyped
+
+  def tracking_project_source: () -> untyped
+end

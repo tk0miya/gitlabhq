@@ -1,0 +1,65 @@
+module Gitlab
+  module Kas
+    class Client
+      @stubs: untyped
+
+      JWT_AUDIENCE: "gitlab-kas"
+
+      STUB_CLASSES: { server_info: untyped, agent_tracker: untyped, configuration_project: untyped, autoflow: untyped, notifications: untyped, managed_resources: untyped }
+
+      AUTOFLOW_CI_VARIABLE_ENV_SCOPE: "autoflow/internal-use"
+
+      ConfigurationError: untyped
+
+      def initialize: () -> void
+
+      # Return GitLab KAS server info
+      # This method only returns information about a single KAS server instance without taking into account
+      # that there are potentially multiple KAS replicas running, which may not have the same server info.
+      # This is particularly the case during a rollout.
+      def get_server_info: () -> untyped
+
+      def get_connected_agentks_by_agent_ids: (agent_ids: untyped) -> untyped
+
+      def list_agent_config_files: (project: untyped) -> untyped
+
+      def send_git_push_event: (project: untyped) -> untyped
+
+      def send_autoflow_event: (project: untyped, type: untyped, id: untyped, data: untyped) -> (nil | untyped)
+
+      def get_environment_template: (agent: untyped, template_name: untyped) -> untyped
+
+      def get_default_environment_template: () -> untyped
+
+      def render_environment_template: (template: untyped, environment: untyped, build: untyped) -> untyped
+
+      def ensure_environment: (template: untyped, environment: untyped, build: untyped) -> untyped
+
+      def delete_environment: (managed_resource: untyped) -> untyped
+
+      private
+
+      def stub_for: (untyped service) -> untyped
+
+      def repository: (untyped project) -> untyped
+
+      def gitaly_info: (untyped project) -> untyped
+
+      def kas_endpoint_url: () -> untyped
+
+      def credentials: () -> (untyped | :this_channel_is_insecure)
+
+      def metadata: (**untyped feature_flag_actors) -> ::Hash["authorization" | untyped, ::String | untyped]
+
+      def token: () -> untyped
+
+      def timeout: () -> untyped
+
+      def templating_info: (environment: untyped, build: untyped) -> (nil | untyped)
+
+      def agent_url: (untyped project, untyped agent_name) -> untyped
+
+      def environment_url: (untyped project, untyped environment) -> untyped
+    end
+  end
+end

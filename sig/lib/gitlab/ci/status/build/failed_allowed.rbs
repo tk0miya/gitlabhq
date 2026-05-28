@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class FailedAllowed < Status::Extended
+          def label: () -> ::String
+
+          def icon: () -> "status_warning"
+
+          def group: () -> "failed-with-warnings"
+
+          def status_tooltip: () -> ::String
+
+          def self.matches?: (untyped build, untyped user) -> untyped
+
+          private
+
+          def allowed_to_fail_title: () -> "(allowed to fail)"
+        end
+      end
+    end
+  end
+end

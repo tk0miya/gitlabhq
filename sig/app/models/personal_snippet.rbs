@@ -1,0 +1,21 @@
+class PersonalSnippet < Snippet
+  # Avoid matching references that are definitely cross-project (non-personal)
+  # snippet references using a lookbehind.  This still of course overlaps with
+  # possible matches from Snippet.reference_pattern; SnippetReferenceFilter
+  # therefore must run first, before PersonalSnippetReferenceFilter.
+  self.@reference_pattern: untyped
+
+  self.@link_reference_pattern: untyped
+
+  include WithUploads
+
+  def self.reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> untyped
+
+  def parent_user: () -> untyped
+
+  def skip_project_check?: () -> true
+
+  def uploads_sharding_key: () -> { organization_id: untyped }
+end

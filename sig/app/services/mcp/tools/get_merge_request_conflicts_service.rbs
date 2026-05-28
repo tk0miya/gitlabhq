@@ -1,0 +1,28 @@
+module Mcp
+  module Tools
+    class GetMergeRequestConflictsService < CustomService
+      @project: untyped
+
+      @merge_request: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def auth_ability: () -> :read_merge_request
+
+      def auth_target: (untyped params) -> untyped
+
+      def authorize!: (untyped params) -> (nil | untyped)
+
+      # Main implementation - returns raw git conflict content
+      def perform_0_1_0: (untyped arguments) -> untyped
+
+      private
+
+      def project: (untyped arguments) -> untyped
+
+      def merge_request: (untyped arguments) -> untyped
+
+      def find_merge_request: (untyped arguments) -> untyped
+    end
+  end
+end

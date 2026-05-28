@@ -1,0 +1,41 @@
+class Tree
+  @repository: untyped
+
+  @sha: untyped
+
+  @path: untyped
+
+  @ref_type: untyped
+
+  @entries: untyped
+
+  @cursor: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_accessor repository: untyped
+
+  attr_accessor sha: untyped
+
+  attr_accessor path: untyped
+
+  attr_accessor entries: untyped
+
+  attr_accessor cursor: untyped
+
+  attr_accessor ref_type: untyped
+
+  def initialize: (untyped repository, untyped sha, ?::String path, ?recursive: bool, ?skip_flat_paths: bool, ?pagination_params: untyped?, ?ref_type: untyped?, ?rescue_not_found: bool) -> void
+
+  def readme_path: () -> untyped
+
+  def readme: () -> untyped
+
+  def trees: () -> untyped
+
+  def blobs: () -> untyped
+
+  def submodules: () -> untyped
+
+  def sorted_entries: () -> untyped
+end

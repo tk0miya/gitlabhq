@@ -1,0 +1,40 @@
+module Gitlab
+  module Profiler
+    FILTERED_STRING: "[FILTERED]"
+
+    IGNORE_BACKTRACES: ::Array["lib/gitlab/i18n.rb" | "lib/gitlab/request_context.rb" | "config/initializers" | "lib/gitlab/database/load_balancing/" | "lib/gitlab/etag_caching/" | "lib/gitlab/metrics/" | "lib/gitlab/middleware/" | "ee/lib/gitlab/middleware/" | "lib/gitlab/performance_bar/" | "lib/gitlab/query_limiting/" | "lib/gitlab/tracing/" | "lib/gitlab/profiler.rb" | "lib/gitlab/correlation_id.rb" | "lib/gitlab/webpack/dev_server_middleware.rb" | "lib/gitlab/sidekiq_status/" | "lib/gitlab/sidekiq_logging/" | "lib/gitlab/sidekiq_middleware/"]
+
+    # Takes a URL to profile (can be a fully-qualified URL, or an absolute path)
+    # and returns the profiler result. Formatting that result is the
+    # caller's responsibility. Requests are GET requests unless post_data is
+    # passed.
+    #
+    # Optional arguments:
+    # - logger: will be used for SQL logging, including a summary at the end of
+    #   the log file of the total time spent per model class.
+    #
+    # - post_data: a string of raw POST data to use. Changes the HTTP verb to
+    #   POST.
+    #
+    # - user: a user to authenticate as.
+    #
+    # - private_token: instead of providing a user instance, the token can be
+    #   given as a string. Takes precedence over the user option.
+    #
+    # - profiler_options: A keyword Hash of arguments passed to the profiler. Defaults:
+    #   { mode: :wall, out: <some temporary file>, interval: 1000, raw: true }
+    def self.profile: (untyped url, ?logger: untyped?, ?post_data: untyped?, ?user: untyped?, ?private_token: untyped?, ?headers: ::Hash[untyped, untyped], ?profiler_options: ::Hash[untyped, untyped]) -> untyped
+
+    def self.create_custom_logger: (untyped logger, ?private_token: untyped?) -> (nil | untyped)
+
+    def self.with_custom_logger: (untyped logger) { () -> untyped } -> untyped
+
+    def self.with_user: (untyped user) { () -> untyped } -> untyped
+
+    def self.remove_method: (untyped klass, untyped meth) -> (untyped | nil)
+
+    def self.log_load_times_by_model: (untyped logger) -> (nil | untyped)
+
+    def self.with_profiler: (untyped profiler_options) { () -> untyped } -> untyped
+  end
+end

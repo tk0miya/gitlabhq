@@ -1,0 +1,13 @@
+module Gitlab
+  module FilterEvaluator
+    MAX_DEPTH: 5
+
+    OPERATORS: { "eq" => untyped, "ne" => untyped, "gt" => untyped, "lt" => untyped, "contains" => untyped, "not_contains" => untyped, "in" => untyped, "not_in" => untyped }
+
+    def self.evaluate: (untyped filter, untyped data, ?::Integer depth) -> untyped
+
+    def self.evaluate_condition: (untyped rule, untyped data) -> untyped
+
+    def self.dig_value: (untyped hash, untyped path) -> untyped
+  end
+end

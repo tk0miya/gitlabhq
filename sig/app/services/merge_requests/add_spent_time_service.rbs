@@ -1,0 +1,9 @@
+module MergeRequests
+  class AddSpentTimeService < UpdateService
+    def execute: (untyped merge_request) -> untyped
+
+    private
+
+    def track_time_spend_edits: (untyped merge_request, untyped old_total_time_spent) -> (untyped | nil)
+  end
+end

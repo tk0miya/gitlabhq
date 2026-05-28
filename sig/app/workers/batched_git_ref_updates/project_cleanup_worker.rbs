@@ -1,0 +1,7 @@
+module BatchedGitRefUpdates
+  class ProjectCleanupWorker
+    include ApplicationWorker
+
+    def perform: (untyped project_id) -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+module JiraImport
+  class UsersImporter
+    @project: untyped
+
+    @start_at: untyped
+
+    @user: untyped
+
+    @users_mapper_service: untyped
+
+    def initialize: (untyped user, untyped project, untyped start_at) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader project: untyped
+
+    attr_reader start_at: untyped
+
+    def mapped_users: () -> untyped
+
+    def users_mapper_service: () -> untyped
+
+    def user_mapper_service_factory: () -> untyped
+  end
+end

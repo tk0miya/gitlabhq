@@ -1,0 +1,5 @@
+class MergeRequestAssignee < ApplicationRecord
+  include EachBatch
+
+  def cache_key: () -> ::Array[untyped]
+end

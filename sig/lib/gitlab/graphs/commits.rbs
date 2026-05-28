@@ -1,0 +1,45 @@
+module Gitlab
+  module Graphs
+    class Commits
+      @commits: untyped
+
+      @start_date: untyped
+
+      @end_date: untyped
+
+      @duration: untyped
+
+      @authors: untyped
+
+      @commit_per_day: untyped
+
+      @commits_per_week_days: untyped
+
+      @commits_per_time: untyped
+
+      @commits_per_month: untyped
+
+      attr_reader commits: untyped
+
+      attr_reader start_date: untyped
+
+      attr_reader end_date: untyped
+
+      attr_reader duration: untyped
+
+      attr_reader commits_per_week_days: untyped
+
+      attr_reader commits_per_time: untyped
+
+      attr_reader commits_per_month: untyped
+
+      def initialize: (untyped commits) -> void
+
+      def authors: () -> untyped
+
+      def commit_per_day: () -> untyped
+
+      def collect_data: () -> untyped
+    end
+  end
+end

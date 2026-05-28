@@ -1,0 +1,19 @@
+module Projects
+  class UpdateRepositoryStorageService
+    include UpdateRepositoryStorageMethods
+
+    private
+
+    def track_repository: (untyped destination_storage_name) -> untyped
+
+    def mirror_repositories: () -> untyped
+
+    def mirror_object_pool: (untyped destination_storage_name) -> (nil | untyped)
+
+    def remove_old_paths: () -> untyped
+
+    def pool_repository_exists_for?: (shard_name: untyped, pool_repository: untyped) -> untyped
+
+    def create_pool_repository_for!: (shard_name: untyped, pool_repository: untyped) -> untyped
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module GithubImport
+    # Module that provides methods shared by the various workers used for
+    # importing GitHub projects.
+    module ReschedulingMethods
+      @project: untyped
+
+      extend ActiveSupport::Concern
+
+      include JobDelayCalculator
+
+      attr_reader project: untyped
+
+      ENQUEUED_JOB_COUNT: "github-importer/enqueued_job_count/%{project}/%{collection}"
+
+      def perform: (untyped project_id, untyped hash, ?untyped? notify_key) -> untyped
+
+      def try_import: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def notify_waiter: (?untyped? key) -> (untyped | nil)
+
+      def reschedule_job: (untyped project, untyped client, untyped hash, untyped notify_key, ?untyped? reset_in) -> untyped
+    end
+  end
+end

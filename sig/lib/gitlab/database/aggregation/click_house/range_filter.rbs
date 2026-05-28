@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class RangeFilter < FilterDefinition
+          private
+
+          def apply: (untyped query_builder, untyped filter_config) -> untyped
+        end
+      end
+    end
+  end
+end

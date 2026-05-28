@@ -1,0 +1,24 @@
+module AwardEmojis
+  class BaseService < ::BaseService
+    @awardable: untyped
+
+    @name: untyped
+
+    attr_accessor awardable: untyped
+
+    attr_accessor name: untyped
+
+    def initialize: (untyped awardable, untyped name, untyped current_user) -> void
+
+    def execute_hooks: (untyped award_emoji, untyped action) -> (nil | untyped)
+
+    private
+
+    def normalize_name: (untyped name) -> untyped
+
+    # Provide more error state data than what BaseService allows.
+    # - An array of errors
+    # - The `AwardEmoji` if present
+    def error: (untyped errors, ?award: untyped?, ?status: untyped?) -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ActiveRecord
+        class DateBucketDimension < DimensionDefinition
+          include ParameterizedDefinition
+
+          GRANULARITIES_MAP: untyped
+
+          DEFAULT_GRANULARITY: :monthly
+
+          def validate_part: (untyped part) -> untyped
+
+          def to_arel: (untyped context) -> untyped
+
+          private
+
+          def validate_granularity: (untyped part) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

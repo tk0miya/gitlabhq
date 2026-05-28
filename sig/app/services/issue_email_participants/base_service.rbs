@@ -1,0 +1,31 @@
+module IssueEmailParticipants
+  class BaseService < ::BaseProjectService
+    @target: untyped
+
+    @emails: untyped
+
+    @options: untyped
+
+    MAX_NUMBER_OF_EMAILS: 6
+
+    attr_reader target: untyped
+
+    attr_reader emails: untyped
+
+    attr_reader options: untyped
+
+    def initialize: (target: untyped, current_user: untyped, emails: untyped, ?options: ::Hash[untyped, untyped]) -> void
+
+    private
+
+    def add_system_note: (untyped emails, ?user: untyped?) -> (nil | untyped)
+
+    def user_privileged?: () -> untyped
+
+    def skip_permission_check?: () -> untyped
+
+    def error: (untyped message) -> untyped
+
+    def error_underprivileged: () -> untyped
+  end
+end

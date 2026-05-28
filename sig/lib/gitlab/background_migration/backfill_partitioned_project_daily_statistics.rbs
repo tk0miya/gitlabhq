@@ -1,0 +1,12 @@
+module Gitlab
+  module BackgroundMigration
+    # rubocop: disable Migration/BatchedMigrationBaseClass -- This is indirectly deriving from the correct base class
+    class BackfillPartitionedProjectDailyStatistics < BackfillPartitionedTable
+      extend ::Gitlab::Utils::Override
+
+      private
+
+      def filter_sub_batch_content: (untyped relation) -> untyped
+    end
+  end
+end

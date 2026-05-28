@@ -1,0 +1,15 @@
+module Gitlab
+  module Middleware
+    class RackMultipartTempfileFactory
+      @app: untyped
+
+      # Immediately unlink the created temporary file so we don't have to rely
+      # on Rack::TempfileReaper catching this after the fact.
+      FACTORY: untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+    end
+  end
+end

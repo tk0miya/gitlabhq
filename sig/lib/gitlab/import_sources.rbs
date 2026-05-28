@@ -1,0 +1,29 @@
+# Gitlab::ImportSources module
+#
+# Define import sources that can be used
+# during the creation of new project
+module Gitlab
+  module ImportSources
+    ImportSource: untyped
+
+    IMPORT_TABLE: ::Array[untyped]
+
+    PROJECT_TEMPLATE_IMPORTERS: ::Array["gitlab_built_in_project_template"]
+
+    def self.values: () -> untyped
+
+    def self.import_source: (untyped name) -> untyped
+
+    def self.has_importer?: (untyped name) -> untyped
+
+    def self.template?: (untyped name) -> untyped
+
+    def self.importer: (untyped name) -> untyped
+
+    def self.title: (untyped name) -> untyped
+
+    def self.import_table: () -> untyped
+
+    def self.project_template_importers: () -> untyped
+  end
+end

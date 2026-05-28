@@ -1,0 +1,31 @@
+module Gitlab
+  module EtagCaching
+    class Middleware
+      @app: untyped
+
+      SKIP_HEADER_KEY: "X-Gitlab-Skip-Etag"
+
+      def self.skip!: (untyped response) -> untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def get_etag: (untyped request, untyped route) -> ::Array[untyped]
+
+      def maybe_apply_etag: (untyped etag, untyped status, untyped headers, untyped body) -> ::Array[untyped]
+
+      def weak_etag_format: (untyped value) -> ::String
+
+      def handle_cache_hit: (untyped etag, untyped route, untyped request) -> ::Array[untyped | ::Array[untyped]]
+
+      def track_cache_miss: (untyped if_none_match, untyped cached_value_present, untyped route) -> untyped
+
+      def track_event: (untyped name, untyped route) -> untyped
+
+      def add_instrument_for_cache_hit: (untyped status, untyped route, untyped request) -> untyped
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module Git
+    module Conflict
+      class Parser
+        UnresolvableError: untyped
+
+        UnmergeableFile: untyped
+
+        # Recoverable errors - the conflict can be resolved in an editor, but not with
+        # sections.
+        ParserError: untyped
+
+        UnexpectedDelimiter: untyped
+
+        MissingEndDelimiter: untyped
+
+        def self.parse: (untyped text, our_path: untyped, their_path: untyped, ?parent_file: untyped?) -> untyped
+
+        private
+
+        def self.validate_text!: (untyped text) -> untyped
+
+        def self.validate_delimiter!: (untyped condition) -> (untyped | nil)
+      end
+    end
+  end
+end

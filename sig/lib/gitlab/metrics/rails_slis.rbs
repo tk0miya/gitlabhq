@@ -1,0 +1,35 @@
+module Gitlab
+  module Metrics
+    module RailsSlis
+      self.@uninitialized_endpoints: untyped
+
+      def self.initialize_request_slis!: () -> untyped
+
+      def self.request_apdex: () -> untyped
+
+      def self.request_error_rate: () -> untyped
+
+      def self.graphql_query_apdex: () -> untyped
+
+      def self.graphql_query_error_rate: () -> untyped
+
+      private
+
+      def self.possible_graphql_query_labels: () -> (::Array[untyped] | untyped)
+
+      def self.possible_request_labels: () -> untyped
+
+      def self.possible_controller_labels: () -> untyped
+
+      def self.possible_api_labels: () -> untyped
+
+      def self.all_api_labels: () -> untyped
+
+      def self.all_controller_labels: () -> untyped
+
+      def self.known_git_endpoints: () -> ::Array["GET /api/:version/internal/authorized_keys" | "GET /api/:version/internal/discover" | "POST /api/:version/internal/allowed" | "POST /api/:version/internal/lfs_authenticate" | "POST /api/:version/internal/two_factor_recovery_codes" | "ProjectsController#show" | "Repositories::GitHttpController#git_receive_pack" | "Repositories::GitHttpController#git_upload_pack" | "Repositories::GitHttpController#info_refs" | "Repositories::LfsApiController#batch" | "Repositories::LfsLocksApiController#index" | "Repositories::LfsLocksApiController#verify" | "Repositories::LfsStorageController#download" | "Repositories::LfsStorageController#upload_authorize" | "Repositories::LfsStorageController#upload_finalize"]
+
+      def self.uninitialized_endpoints: () -> untyped
+    end
+  end
+end

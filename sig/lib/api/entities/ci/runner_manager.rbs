@@ -1,0 +1,13 @@
+module API
+  module Entities
+    module Ci
+      class RunnerManager < Grape::Entity
+        include ::API::Ci::Helpers::RunnerJobExecutionStatusHelper
+
+        def presented: () -> untyped
+
+        def job_execution_status: () -> (nil | untyped)
+      end
+    end
+  end
+end

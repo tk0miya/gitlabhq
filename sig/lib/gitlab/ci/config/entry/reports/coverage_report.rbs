@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Reports
+          class CoverageReport < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            include ::Gitlab::Config::Entry::Attributable
+
+            ALLOWED_KEYS: ::Array[:coverage_format | :path]
+
+            SUPPORTED_COVERAGE: ::Array["cobertura" | "jacoco"]
+          end
+        end
+      end
+    end
+  end
+end

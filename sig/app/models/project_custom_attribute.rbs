@@ -1,0 +1,5 @@
+class ProjectCustomAttribute < ApplicationRecord
+  include EachBatch
+
+  def self.declarative_policy_class: () -> "Projects::CustomAttributePolicy"
+end

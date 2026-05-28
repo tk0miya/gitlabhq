@@ -1,0 +1,29 @@
+module WorkItems
+  class ReorderService
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (current_user: untyped, params: untyped) -> void
+
+    def execute: (untyped work_item) -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def success: (untyped work_item) -> untyped
+
+    def unauthorized_error: (untyped work_item) -> untyped
+
+    def missing_arguments_error: (untyped work_item) -> untyped
+
+    def error: (untyped work_item, ?message: untyped?) -> untyped
+
+    def move_between_ids: () -> untyped
+  end
+end

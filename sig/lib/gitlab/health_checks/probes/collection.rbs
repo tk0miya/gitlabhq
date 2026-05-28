@@ -1,0 +1,27 @@
+module Gitlab
+  module HealthChecks
+    module Probes
+      class Collection
+        @checks: untyped
+
+        attr_reader checks: untyped
+
+        # This accepts an array of objects implementing `:readiness`
+        # that returns `::Gitlab::HealthChecks::Result`
+        def initialize: (*untyped checks) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def all_succeeded?: (untyped readiness) -> untyped
+
+        def status: (untyped success) -> { status: untyped }
+
+        def payload: (untyped readiness) -> untyped
+
+        def probe_readiness: () -> untyped
+      end
+    end
+  end
+end

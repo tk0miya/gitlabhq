@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module QueueErrorHandlingConcern
+      extend ActiveSupport::Concern
+
+      MAX_LAST_ERROR_LENGTH: 10000
+
+      def handle_exception!: (untyped error) -> untyped
+
+      private
+
+      def format_last_error: (untyped error) -> untyped
+    end
+  end
+end

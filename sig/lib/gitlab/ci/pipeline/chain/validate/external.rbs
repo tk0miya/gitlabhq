@@ -1,0 +1,49 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Validate
+          class External < Chain::Base
+            include Chain::Helpers
+
+            InvalidResponseCode: untyped
+
+            DEFAULT_VALIDATION_REQUEST_TIMEOUT: 5
+
+            ACCEPTED_STATUS: 200
+
+            REJECTED_STATUS: 406
+
+            def perform!: () -> (nil | untyped)
+
+            def break?: () -> untyped
+
+            private
+
+            def validate_external: () -> untyped
+
+            def validate_service_request: () -> untyped
+
+            def validation_service_timeout: () -> untyped
+
+            def validation_service_url: () -> untyped
+
+            def validation_service_token: () -> untyped
+
+            def validation_service_payload: () -> { project: { id: untyped, path: untyped, created_at: untyped, shared_runners_enabled: untyped, group_runners_enabled: untyped }, user: { id: untyped, username: untyped, email: untyped, created_at: untyped, current_sign_in_ip: untyped, last_sign_in_ip: untyped, sign_in_count: untyped }, credit_card: { similar_cards_count: untyped, similar_holder_names_count: untyped }, pipeline: { sha: untyped, ref: untyped, type: untyped }, builds: untyped, total_builds_count: untyped }
+
+            def total_builds_count: () -> untyped
+
+            def builds_validation_payload: () -> untyped
+
+            def build_validation_payload: (untyped build) -> { name: untyped, stage: untyped, image: untyped, services: untyped, tag_list: untyped, script: untyped }
+
+            def service_names: (untyped build) -> (nil | untyped)
+
+            def stages_attributes: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

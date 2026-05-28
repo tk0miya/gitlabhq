@@ -1,0 +1,55 @@
+module Notes
+  class CreateService < ::Notes::BaseService
+    @quick_actions_service: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    include IncidentManagement::UsageData
+
+    def execute: (?skip_capture_diff_note_position: bool, ?skip_merge_status_trigger: bool, ?executing_user: untyped?, ?importing: bool) -> untyped
+
+    private
+
+    def build_note: (untyped executing_user) -> untyped
+
+    def check_for_spam?: (untyped only_commands) -> untyped
+
+    def after_commit: (untyped note) -> untyped
+
+    def execute_quick_actions: (untyped note) { (untyped) -> untyped } -> untyped
+
+    def quick_actions_supported?: (untyped note) -> untyped
+
+    def quick_actions_service: () -> untyped
+
+    def update_discussions: (untyped note) -> (untyped | nil)
+
+    def when_saved: (untyped note, ?skip_capture_diff_note_position: bool, ?skip_merge_status_trigger: bool) -> untyped
+
+    def do_commands: (untyped note, untyped update_params, untyped message, untyped command_names, untyped only_commands) -> (nil | untyped)
+
+    def quick_actions_update_errors: (untyped note, untyped params) -> (nil | untyped)
+
+    def quick_action_options: () -> { merge_request_diff_head_sha: untyped, review_id: untyped, scope_validator: untyped }
+
+    def validate_commands: (untyped note, untyped update_params) -> (::String | ::String | nil)
+
+    def invalid_reviewers?: (untyped update_params) -> (untyped | false)
+
+    def invalid_assignees?: (untyped update_params) -> (untyped | false)
+
+    def track_event: (untyped note, untyped user) -> untyped
+
+    def tracking_data_for: (untyped note) -> { label: untyped, value: untyped }
+
+    def track_note_creation_usage_for_issues: (untyped note) -> untyped
+
+    def track_note_creation_usage_for_merge_requests: (untyped note) -> untyped
+
+    def should_track_ipynb_notes?: (untyped note) -> untyped
+
+    def track_note_creation_in_ipynb: (untyped note) -> (nil | untyped)
+
+    def track_note_creation: (untyped work_item, untyped event) -> (nil | untyped)
+  end
+end

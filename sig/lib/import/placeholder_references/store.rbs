@@ -1,0 +1,37 @@
+module Import
+  module PlaceholderReferences
+    class Store
+      @import_source: untyped
+
+      @import_uid: untyped
+
+      CACHE_TTL: untyped
+
+      def initialize: (import_source: untyped, import_uid: untyped) -> void
+
+      def add: (untyped serialized_reference) -> untyped
+
+      def get: (?::Integer limit) -> untyped
+
+      def remove: (untyped values) -> untyped
+
+      def count: () -> untyped
+
+      def empty?: () -> untyped
+
+      def any?: () -> untyped
+
+      def clear!: () -> untyped
+
+      private
+
+      attr_reader import_source: untyped
+
+      attr_reader import_uid: untyped
+
+      def cache: () -> untyped
+
+      def cache_key: () -> untyped
+    end
+  end
+end

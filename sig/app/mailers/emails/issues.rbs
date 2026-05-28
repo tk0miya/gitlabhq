@@ -1,0 +1,78 @@
+module Emails
+  module Issues
+    @added_assignees: untyped
+
+    @removed_assignees: untyped
+
+    @updated_by: untyped
+
+    @label_names: untyped
+
+    @labels_url: untyped
+
+    @milestone: untyped
+
+    @milestone_url: untyped
+
+    @issue_status: untyped
+
+    @new_issue: untyped
+
+    @new_project: untyped
+
+    @can_access_project: untyped
+
+    @author: untyped
+
+    @issue: untyped
+
+    @user: untyped
+
+    @project: untyped
+
+    @results: untyped
+
+    @namespace: untyped
+
+    @target_url: untyped
+
+    @closed_via: untyped
+
+    @recipient: untyped
+
+    @sent_notification: untyped
+
+    def new_issue_email: (untyped recipient_id, untyped issue_id, ?untyped? reason) -> untyped
+
+    def issue_due_email: (untyped recipient_id, untyped issue_id, ?untyped? reason) -> untyped
+
+    def new_mention_in_issue_email: (untyped recipient_id, untyped issue_id, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def reassigned_issue_email: (untyped recipient_id, untyped issue_id, untyped previous_assignee_ids, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def closed_issue_email: (untyped recipient_id, untyped issue_id, untyped updated_by_user_id, ?reason: untyped?, ?closed_via: untyped?) -> untyped
+
+    def relabeled_issue_email: (untyped recipient_id, untyped issue_id, untyped label_names, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def removed_milestone_issue_email: (untyped recipient_id, untyped issue_id, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def changed_milestone_issue_email: (untyped recipient_id, untyped issue_id, untyped milestone, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def issue_status_changed_email: (untyped recipient_id, untyped issue_id, untyped status, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def issue_moved_email: (untyped recipient, untyped issue, untyped new_issue, untyped updated_by_user, ?untyped? reason) -> untyped
+
+    def issue_cloned_email: (untyped recipient, untyped issue, untyped new_issue, untyped updated_by_user, ?untyped? reason) -> untyped
+
+    def import_issues_csv_email: (untyped user_id, untyped project_id, untyped results) -> untyped
+
+    def issues_csv_email: (untyped user, untyped project, untyped csv_data, untyped export_status) -> untyped
+
+    private
+
+    def setup_issue_mail: (untyped issue_id, untyped recipient_id, ?closed_via: untyped?) -> untyped
+
+    def issue_thread_options: (untyped sender_id, untyped reason, ?confidentiality: bool) -> { from: untyped, to: untyped, subject: untyped, "X-GitLab-NotificationReason" => untyped, "X-GitLab-ConfidentialIssue" => untyped }
+  end
+end

@@ -1,0 +1,63 @@
+module Slack
+  module BlockKit
+    module IncidentManagement
+      class IncidentModalOpened
+        @projects: untyped
+
+        @response_url: untyped
+
+        # See https://api.slack.com/reference/block-kit/composition-objects#option for the text limit.
+        # Dropdown menu items can have max length of 75 chars.
+        MAX_CHAR_LENGTH: 75
+
+        def initialize: (untyped projects, untyped response_url) -> void
+
+        def build: () -> { type: "modal", title: untyped, submit: untyped, close: untyped, notify_on_close: true, callback_id: "incident_modal", private_metadata: untyped, blocks: ::Array[untyped] }
+
+        private
+
+        attr_reader projects: untyped
+
+        attr_reader response_url: untyped
+
+        def modal_title: () -> { type: "plain_text", text: untyped }
+
+        def submit_button: () -> { type: "plain_text", text: untyped }
+
+        def close_button: () -> { type: "plain_text", text: untyped }
+
+        def formatted_project_path: (untyped path) -> untyped
+
+        def title_block: () -> { type: "input", block_id: "title_input", label: { type: "plain_text", text: untyped }, element: { type: "plain_text_input", action_id: "title", placeholder: { type: "plain_text", text: untyped }, focus_on_load: true } }
+
+        def project_selection: () -> { type: "static_select", action_id: "incident_management_project", placeholder: { type: "plain_text", text: untyped }, confirm: untyped, options: untyped, initial_option: untyped }
+
+        def status_selection: () -> { type: "static_select", action_id: "status", placeholder: { type: "plain_text", text: untyped }, options: ::Array[{ text: { type: "plain_text", text: untyped }, value: "triggered" } | { text: { type: "plain_text", text: untyped }, value: "acknowledged" } | { text: { type: "plain_text", text: untyped }, value: "resolved" }] }
+
+        def severity_selection: () -> { type: "static_select", action_id: "severity", placeholder: { type: "plain_text", text: untyped }, options: ::Array[{ text: { type: "plain_text", text: untyped }, value: "critical" } | { text: { type: "plain_text", text: untyped }, value: "high" } | { text: { type: "plain_text", text: untyped }, value: "medium" } | { text: { type: "plain_text", text: untyped }, value: "low" }] }
+
+        def assignee_selection: () -> { type: "external_select", action_id: "assignee", placeholder: { type: "plain_text", text: untyped } }
+
+        def label_block: () -> { type: "input", optional: true, block_id: "label_selector", label: { type: "plain_text", text: untyped }, element: { type: "multi_external_select", action_id: "labels", placeholder: { type: "plain_text", text: untyped } } }
+
+        def confidential_block: () -> { type: "actions", block_id: "confidentiality", elements: ::Array[{ type: "checkboxes", action_id: "confidential", options: ::Array[{ value: "confidential", text: { type: "plain_text", text: untyped } }] }] }
+
+        def details_selection_block: () -> { type: "actions", block_id: "project_and_severity_selector", elements: ::Array[untyped] }
+
+        def status_and_assignee_block: () -> { type: "actions", block_id: "status_and_assignee_selector", elements: ::Array[untyped] }
+
+        def incident_description_block: () -> { block_id: "incident_description", type: "input", element: { type: "plain_text_input", multiline: true, action_id: "description", placeholder: { type: "plain_text", text: untyped }, initial_value: untyped }, label: { type: "plain_text", text: untyped } }
+
+        def zoom_link_block: () -> { type: "input", block_id: "zoom", optional: true, element: { type: "plain_text_input", action_id: "link", placeholder: { type: "plain_text", text: untyped } }, label: { type: "plain_text", text: "Zoom" } }
+
+        def construct_project_selector: () -> untyped
+
+        def project_selector_option: (untyped project) -> { text: { type: "plain_text", text: untyped }, value: untyped }
+
+        def project_incident_template: (untyped project) -> untyped
+
+        def confirmation_dialog: (untyped question, untyped warning) -> { title: { type: "plain_text", text: untyped }, text: { type: "plain_text", text: untyped }, confirm: { type: "plain_text", text: "Yes" }, deny: { type: "plain_text", text: "No" } }
+      end
+    end
+  end
+end

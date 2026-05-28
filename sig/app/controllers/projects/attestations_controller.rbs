@@ -1,0 +1,57 @@
+module Projects
+  class AttestationsController < Projects::ApplicationController
+    @project: untyped
+
+    @attestations: untyped
+
+    @attestation_iid_param: untyped
+
+    @attestation: untyped
+
+    @subjects: untyped
+
+    @certificate: untyped
+
+    @parsed_attestation_file: untyped
+
+    @parsed_metadata: untyped
+
+    include SendFileUpload
+
+    # Fulcio-assigned OID prefix for certificate extensions
+    # See: https://github.com/sigstore/fulcio/blob/main/docs/oid-info.md
+    # and https://oid-base.com/get/1.3.6.1.4.1.57264.1
+    FULCIO_OID_PREFIX: "1.3.6.1.4.1.57264.1."
+
+    # Maps OID suffixes to human-readable attribute names
+    FULCIO_EXTENSION_MAP: { "8" => :issuer, "9" => :build_signer_uri, "10" => :build_signer_digest, "11" => :runner_environment, "12" => :source_repository_uri, "13" => :source_repository_digest, "14" => :source_repository_ref, "15" => :source_repository_identifier, "16" => :source_repository_owner_uri, "17" => :source_repository_owner_identifier, "18" => :build_config_uri, "19" => :build_config_digest, "20" => :build_trigger, "21" => :runner_invocation_uri, "22" => :source_repository_visibility }
+
+    def index: () -> untyped
+
+    def show: () -> untyped
+
+    def download: () -> untyped
+
+    private
+
+    def attestation: () -> untyped
+
+    def attestation_file: () -> untyped
+
+    def authorize_read_attestation!: () -> (untyped | nil)
+
+    def check_feature_flag!: () -> (untyped | nil)
+
+    def clean_extension_value: (untyped value) -> untyped
+
+    def pagination_params: () -> untyped
+
+    def parsed_attestation_file: () -> untyped
+
+    def parsed_metadata: () -> untyped
+
+    def parsed_certificate: () -> untyped
+
+    def parsed_certificate_extensions: () -> (::Hash[untyped, untyped] | untyped)
+  end
+end

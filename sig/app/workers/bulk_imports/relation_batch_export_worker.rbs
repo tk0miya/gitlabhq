@@ -1,0 +1,27 @@
+module BulkImports
+  class RelationBatchExportWorker
+    @user: untyped
+
+    @batch: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Sidekiq::InterruptionsExhausted
+
+    PERFORM_DELAY: untyped
+
+    def self.perform_failure: (untyped job, untyped exception) -> (nil | untyped)
+
+    def perform: (untyped user_id, untyped batch_id) -> (nil | untyped)
+
+    def max_exports_already_running?: () -> untyped
+
+    def max_exports: () -> untyped
+
+    def re_enqueue_job: (untyped user, untyped batch) -> untyped
+
+    def reset_cache_timeout: (untyped batch) -> untyped
+  end
+end

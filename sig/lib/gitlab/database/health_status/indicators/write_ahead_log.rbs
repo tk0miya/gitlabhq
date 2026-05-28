@@ -1,0 +1,30 @@
+module Gitlab
+  module Database
+    module HealthStatus
+      module Indicators
+        class WriteAheadLog
+          @connection: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          LIMIT: 42
+
+          PENDING_WAL_COUNT_SQL: "WITH\ncurrent_wal_file AS (\n  SELECT pg_walfile_name(pg_current_wal_insert_lsn()) AS pg_walfile_name\n),\ncurrent_wal AS (\n  SELECT\n    ('x' || substring(pg_walfile_name, 9, 8))::bit(32)::int AS log,\n    ('x' || substring(pg_walfile_name, 17, 8))::bit(32)::int AS seg,\n    pg_walfile_name\n  FROM current_wal_file\n),\narchive_wal AS (\n  SELECT\n    ('x' || substring(last_archived_wal, 9, 8))::bit(32)::int AS log,\n    ('x' || substring(last_archived_wal, 17, 8))::bit(32)::int AS seg,\n    last_archived_wal\n  FROM pg_stat_archiver\n)\nSELECT ((current_wal.log - archive_wal.log) * 256) + (current_wal.seg - archive_wal.seg) AS pending_wal_count\nFROM current_wal, archive_wal\n"
+
+          def initialize: (untyped context) -> void
+
+          def evaluate: () -> untyped
+
+          private
+
+          attr_reader connection: untyped
+
+          def enabled?: () -> untyped
+
+          # Returns number of WAL segments pending archival
+          def pending_wal_count: () -> untyped
+        end
+      end
+    end
+  end
+end

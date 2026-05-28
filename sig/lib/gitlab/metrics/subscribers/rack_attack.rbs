@@ -1,0 +1,50 @@
+module Gitlab
+  module Metrics
+    module Subscribers
+      # Adds logging and metrics for all Rack Attack blocks and throttling events.
+      # Instrument the cache operations of RackAttack to use in structured logs. Two fields are exposed:
+      #   - rack_attack_redis_count: the number of redis calls triggered by RackAttack in a request.
+      #   - rack_attack_redis_duration_s: the total duration of all redis calls triggered by RackAttack in a request.
+      class RackAttack < ActiveSupport::Subscriber
+        self.@parameter_filter: untyped
+
+        @event_counter: untyped
+
+        @throttle_limit: untyped
+
+        @throttle_period: untyped
+
+        INSTRUMENTATION_STORE_KEY: :rack_attack_instrumentation
+
+        def self.payload: () -> untyped
+
+        # Rubocop requires this be public
+        def self.parameter_filter: () -> untyped
+
+        def safelist: (untyped event) -> untyped
+
+        def throttle: (untyped event) -> untyped
+
+        def blocklist: (untyped event) -> untyped
+
+        def track: (untyped event) -> untyped
+
+        private
+
+        def parameter_filter: () -> untyped
+
+        def log_into_auth_logger: (untyped event, status: untyped) -> untyped
+
+        def report_metrics: (untyped event) -> (nil | untyped)
+
+        def logger: () -> untyped
+
+        def event_counter: () -> untyped
+
+        def throttle_limit: () -> untyped
+
+        def throttle_period: () -> untyped
+      end
+    end
+  end
+end

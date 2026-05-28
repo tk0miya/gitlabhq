@@ -1,0 +1,49 @@
+module Projects
+  module Settings
+    class IntegrationsController < Projects::ApplicationController
+      @hide_search_settings: untyped
+
+      @integrations: untyped
+
+      @integration: untyped
+
+      @default_integration: untyped
+
+      @web_hook_logs: untyped
+
+      include ::Integrations::Params
+
+      include ::InternalRedirect
+
+      def index: () -> untyped
+
+      def edit: () -> nil
+
+      def update: () -> untyped
+
+      def test: () -> untyped
+
+      private
+
+      def redirect_path: () -> untyped
+
+      def integration_test_response: () -> untyped
+
+      def success_message: () -> untyped
+
+      def integration: () -> untyped
+
+      def default_integration: () -> untyped
+
+      def web_hook_logs: () -> (nil | untyped)
+
+      def ensure_integration_enabled: () -> (untyped | nil)
+
+      def serialize_as_json: () -> untyped
+
+      def use_inherited_settings?: (untyped attributes) -> untyped
+
+      def check_test_rate_limit!: () -> untyped
+    end
+  end
+end

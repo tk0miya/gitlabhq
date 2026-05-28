@@ -1,0 +1,13 @@
+module Ci
+  class DailyBuildGroupReportResultService
+    def execute: (untyped pipeline) -> (untyped | nil)
+
+    private
+
+    def coverage_reports: (untyped pipeline) -> untyped
+
+    def aggregate: (untyped builds) -> untyped
+
+    def average_coverage: (untyped group) -> untyped
+  end
+end

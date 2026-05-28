@@ -1,0 +1,40 @@
+# rubocop:disable Mcp/UseApiService -- does not depend directly on REST API
+module Mcp
+  module Tools
+    class AggregatedService < BaseService
+      @tools: untyped
+
+      @request: untyped
+
+      @params: untyped
+
+      include Mcp::Tools::Concerns::Versionable
+
+      extend Gitlab::Utils::Override
+
+      def self.tool_name: () -> untyped
+
+      def initialize: (tools: untyped, ?version: untyped?) -> void
+
+      def execute: (?request: untyped?, ?params: untyped?) -> untyped
+
+      def perform_default: (?::Hash[untyped, untyped] arguments) -> untyped
+
+      def enhance_response_with_operation: (untyped response, operation: untyped, tool_name: untyped, ?action_description: untyped?) -> untyped
+
+      def json_object_or_array?: (untyped text) -> untyped
+
+      private
+
+      attr_reader tools: untyped
+
+      attr_reader request: untyped
+
+      attr_reader params: untyped
+
+      def select_tool: (untyped _args) -> untyped
+
+      def transform_arguments: (untyped _args) -> untyped
+    end
+  end
+end

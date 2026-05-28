@@ -1,0 +1,11 @@
+module Mutations
+  module Projects
+    class BlobsRemove < BaseMutation
+      include FindsProject
+
+      EMPTY_BLOBS_OIDS_ARG: "Argument 'blobOids' on InputObject 'projectBlobsRemoveInput' is required. Expected type [String!]!\n"
+
+      def resolve: (project_path: untyped, blob_oids: untyped) -> ({ errors: untyped } | { errors: ::Array[untyped] })
+    end
+  end
+end

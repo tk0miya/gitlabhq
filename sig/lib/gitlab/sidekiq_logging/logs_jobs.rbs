@@ -1,0 +1,10 @@
+module Gitlab
+  module SidekiqLogging
+    module LogsJobs
+      def base_message: (untyped payload) -> ::String
+
+      # NOTE: Arguments are truncated/stringified in sidekiq_logging/json_formatter.rb
+      def parse_job: (untyped job) -> untyped
+    end
+  end
+end

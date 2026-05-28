@@ -1,0 +1,69 @@
+module Gitlab
+  module Diff
+    class Highlight
+      @repository: untyped
+
+      @project: untyped
+
+      @plain: untyped
+
+      @diff_file: untyped
+
+      @diff_lines: untyped
+
+      @raw_lines: untyped
+
+      @syntax_highlighter: untyped
+
+      @old_lines: untyped
+
+      @new_lines: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      PREFIX_REGEXP: ::Regexp
+
+      attr_reader diff_file: untyped
+
+      attr_reader diff_lines: untyped
+
+      attr_reader repository: untyped
+
+      attr_reader project: untyped
+
+      def initialize: (untyped diff_lines, ?repository: untyped?, ?plain: bool) -> void
+
+      def highlight: () -> untyped
+
+      private
+
+      attr_reader plain: untyped
+
+      def populate_marker_ranges: () -> untyped
+
+      def apply_syntax_highlight: (untyped diff_line) -> untyped
+
+      def apply_marker_ranges_highlight: (untyped diff_line, untyped rich_line) -> untyped
+
+      def highlight_line: (untyped diff_line) -> (nil | untyped)
+
+      def diff_line_highlighting: (untyped diff_line, ?plain: bool) -> untyped
+
+      def syntax_highlighter: (untyped diff_line) -> untyped
+
+      # Deprecated: https://gitlab.com/gitlab-org/gitlab/-/issues/324159
+      # ------------------------------------------------------------------------
+      def blob_highlighting: (untyped diff_line) -> untyped
+
+      def old_lines: () -> untyped
+
+      def new_lines: () -> untyped
+
+      def highlighted_blob_lines: (untyped blob) -> (::Array[untyped] | untyped)
+
+      def diff_line_syntax_highlighting?: () -> untyped
+
+      def blobs_too_large?: () -> (true | untyped)
+    end
+  end
+end

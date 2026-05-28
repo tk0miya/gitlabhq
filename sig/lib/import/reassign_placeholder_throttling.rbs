@@ -1,0 +1,51 @@
+module Import
+  class ReassignPlaceholderThrottling
+    @import_source_user: untyped
+
+    @reassigned_by_user: untyped
+
+    @unavailable_tables: untyped
+
+    DATABASE_TABLE_HEALTH_INDICATORS: ::Array[untyped]
+
+    GLOBAL_DATABASE_HEALTH_INDICATORS: ::Array[untyped]
+
+    DatabaseHealthStatusChecker: untyped
+
+    DatabaseHealthError: untyped
+
+    def initialize: (untyped import_source_user) -> void
+
+    # The `#db_table_unavailable?` check is behind a feature flag that we intend not to roll out.
+    # The flag is a conservative measure to allow us to enable it IF it's determined that we should
+    # be delaying reassignments when tables are being autovacuumed.
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/525566#note_2418809939.
+    #
+    # TODO Remove the following block of code, and all related code (`unavailable_tables`,
+    # `#db_table_unavailable?`, and `DATABASE_TABLE_HEALTH_INDICATORS`) as part of
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/534613
+    #
+    # If table health check fails, skip processing this relation
+    # and move on to the next one. We later raise a `DatabaseHealthError` to
+    # reschedule the reassignment where the skipped relations can be tried again.
+    def db_table_unavailable?: (untyped model_relation) -> (false | true)
+
+    def db_health_check!: () -> (nil | untyped)
+
+    def unavailable_tables?: () -> untyped
+
+    private
+
+    attr_reader import_source_user: untyped
+
+    attr_reader reassigned_by_user: untyped
+
+    attr_reader unavailable_tables: untyped
+
+    def autovacuum_active?: (untyped model) -> untyped
+
+    def model_connection: (untyped model) -> untyped
+
+    def schema_connection: (untyped schema) -> untyped
+  end
+end

@@ -1,0 +1,7 @@
+class ProjectRepository < ApplicationRecord
+  include EachBatch
+
+  include Shardable
+
+  def self.find_project: (untyped disk_path) -> untyped
+end

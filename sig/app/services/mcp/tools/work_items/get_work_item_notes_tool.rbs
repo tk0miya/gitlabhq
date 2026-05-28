@@ -1,0 +1,19 @@
+module Mcp
+  module Tools
+    module WorkItems
+      class GetWorkItemNotesTool < BaseTool
+        def self.build_query: () -> "query GetWorkItemNotes($id: WorkItemID!, $after: String, $before: String, $first: Int, $last: Int) {\n  workItem(id: $id) {\n    widgets {\n      ... on WorkItemWidgetNotes {\n        notes(after: $after, before: $before, first: $first, last: $last) {\n          pageInfo {\n            hasNextPage\n            hasPreviousPage\n            startCursor\n            endCursor\n          }\n          nodes {\n            id\n            body\n            internal\n            createdAt\n            updatedAt\n            system\n            systemNoteIconName\n            author {\n              id\n              name\n              username\n              avatarUrl\n              webUrl\n            }\n            discussion {\n              id\n            }\n          }\n          count\n        }\n      }\n    }\n  }\n}\n"
+
+        def build_variables: () -> untyped
+
+        def build_variables_0_1_0: () -> untyped
+
+        private
+
+        def process_result: (untyped result) -> untyped
+
+        def extract_notes: (untyped structured_content) -> untyped
+      end
+    end
+  end
+end

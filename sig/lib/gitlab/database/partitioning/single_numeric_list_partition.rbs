@@ -1,0 +1,51 @@
+module Gitlab
+  module Database
+    module Partitioning
+      class SingleNumericListPartition
+        @table: untyped
+
+        @value: untyped
+
+        @partition_name: untyped
+
+        @conn: untyped
+
+        include Comparable
+
+        def self.from_sql: (untyped table, untyped partition_name, untyped definition) -> untyped
+
+        attr_reader table: untyped
+
+        attr_reader value: untyped
+
+        def initialize: (untyped table, untyped value, ?partition_name: untyped?) -> void
+
+        def partition_name: () -> untyped
+
+        def data_size: () -> untyped
+
+        def to_create_sql: () -> ::String
+
+        def to_attach_sql: () -> ::String
+
+        def to_detach_sql: () -> ::String
+
+        def ==: (untyped other) -> untyped
+
+        alias eql? ==
+
+        def hash: () -> untyped
+
+        def <=>: (untyped other) -> (nil | untyped)
+
+        private
+
+        def full_partition_name: () -> untyped
+
+        def fully_qualified_partition: () -> untyped
+
+        def conn: () -> untyped
+      end
+    end
+  end
+end

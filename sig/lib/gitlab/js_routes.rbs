@@ -1,0 +1,49 @@
+# See `spec/frontend/path_helpers/*_spec.js` for specs
+module Gitlab
+  module JsRoutes
+    PATH_HELPERS_PATH: "app/assets/javascripts/lib/utils/path_helpers"
+
+    EE_PATH_HELPERS_PATH: "ee/app/assets/javascripts/lib/utils/path_helpers"
+
+    def self.generate!: () -> untyped
+
+    private
+
+    def self.route_source_location: (untyped route) -> (nil | untyped)
+
+    def self.write_file_if_changed: (untyped file_path, untyped output) -> (nil | untyped)
+
+    def self.route_pairs: () -> untyped
+
+    # Group route pairs by their namespace (source location)
+    def self.group_route_pairs_by_namespace: (untyped route_pairs) -> untyped
+
+    # Group routes by EE or CE
+    def self.group_route_pairs_by_ee_or_ce: (untyped route_pairs) -> untyped
+
+    def self.generate_path_helpers!: (untyped grouped_route_pairs, untyped base_path) -> untyped
+
+    def self.generate_path_helper: (untyped global_route, untyped organization_route) -> untyped
+
+    # To support short hand project helpers defined in
+    # https://gitlab.com/gitlab-org/gitlab/-/blob/4202e37329fb343ae674db79593ce04427ebab6b/config/routes.rb#L368
+    def self.generate_project_path_helper: (untyped global_route, untyped organization_route) -> ::String
+
+    def self.generate_standard_path_helper: (untyped global_route, untyped organization_route) -> ::String
+
+    def self.generate_path_helper_without_organization_scoping: (untyped global_route) -> ("" | ::String)
+
+    # Generate path helper for global route
+    def self.generate_global_path_helper: (untyped global_route) -> untyped
+
+    # Generate path helper for scoped organization route
+    def self.generate_organization_path_helper: (untyped organization_route) -> ::Array[untyped]
+
+    # Prefix path helper name with underscore to mark as private
+    def self.private_path_helper_name: (untyped path_helper_name) -> ::String
+
+    def self.utils_import_statement: (untyped path_helpers) -> ("" | ::String)
+
+    def self.javascript_utils: () -> "// Check if the current organization has a scoped path.\n// Calls https://gitlab.com/gitlab-org/gitlab/-/blob/4202e37329fb343ae674db79593ce04427ebab6b/app/models/organizations/organization.rb#L127\n// Used to support automatic swapping of organization scoped routes similar to what we do in\n// https://gitlab.com/gitlab-org/gitlab/-/blob/4202e37329fb343ae674db79593ce04427ebab6b/app/helpers/routing/organizations_helper.rb#L92\nexport const hasOrganizationScopedPaths = () =>\n  gon?.current_organization?.has_scoped_paths ?? false;\n\n// The private `namespaceProject` helpers expect separate `namespacePath`\n// and `projectPath` arguments. Typically we only have `project.fullPath`\n// available on the frontend. This util splits `project.fullPath` into\n// separate arguments so they can be passed to the private `namespaceProject` helpers.\nexport const splitProjectFullPath = (projectFullPath) => {\n  if (!projectFullPath) {\n    throw new Error('Route missing required keys: projectFullPath');\n  }\n\n  if (typeof projectFullPath !== 'string') {\n    throw new Error('projectFullPath must be a string');\n  }\n\n  const splitProjectFullPath = projectFullPath.split(\"/\");\n  const namespacePath = splitProjectFullPath.slice(0, -1).join(\"/\");\n  const projectPath = splitProjectFullPath.at(-1);\n\n  return { namespacePath, projectPath };\n};\n"
+  end
+end

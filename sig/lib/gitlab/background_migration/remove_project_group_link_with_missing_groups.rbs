@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    # A job to remove `project_group_links` records whose associated group
+    # does not exist in `namespaces` table anymore.
+    class RemoveProjectGroupLinkWithMissingGroups < Gitlab::BackgroundMigration::BatchedMigrationJob
+      def perform: () -> untyped
+    end
+  end
+end

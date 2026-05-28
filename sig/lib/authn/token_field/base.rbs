@@ -1,0 +1,80 @@
+module Authn
+  module TokenField
+    class Base
+      @klass: untyped
+
+      @token_field: untyped
+
+      @expires_at_field: untyped
+
+      @options: untyped
+
+      TRUE_PROC: untyped
+
+      attr_reader klass: untyped
+
+      attr_reader token_field: untyped
+
+      attr_reader expires_at_field: untyped
+
+      attr_reader options: untyped
+
+      def self.fabricate: (untyped model, untyped field, untyped options) -> untyped
+
+      def initialize: (untyped klass, untyped token_field, untyped options) -> void
+
+      def find_token_authenticatable: (untyped token_owner_record, ?bool unscoped, ?uniqueness_check: bool) -> untyped
+
+      def get_token: (untyped token_owner_record) -> untyped
+
+      def set_token: (untyped token_owner_record, untyped token) -> untyped
+
+      def token_fields: () -> untyped
+
+      # The expires_at field is not considered sensitive
+      def sensitive_fields: () -> untyped
+
+      def ensure_token: (untyped token_owner_record) -> untyped
+
+      # Returns a token, but only saves when the database is in read & write mode
+      def ensure_token!: (untyped token_owner_record) -> untyped
+
+      # Resets the token, but only saves when the database is in read & write mode
+      def reset_token!: (untyped token_owner_record) -> untyped
+
+      def expires_at: (untyped token_owner_record) -> untyped
+
+      def expired?: (untyped token_owner_record) -> (false | untyped)
+
+      def expirable?: () -> untyped
+
+      def token_with_expiration: (untyped token_owner_record) -> untyped
+
+      def write_new_token: (untyped token_owner_record) -> (nil | untyped)
+
+      def relation: (untyped unscoped) -> untyped
+
+      private
+
+      # If a `format_with_prefix` option is provided, it applies and returns the formatted token.
+      # Otherwise, default implementation returns the token as-is
+      def prefix_for: (untyped token_owner_record) -> untyped
+
+      def unique: () -> untyped
+
+      def generate_available_token: (untyped token_owner_record) -> untyped
+
+      def generate_token: (untyped token_owner_record) -> (::String | untyped | ::String)
+
+      def generate_routable_token?: (untyped token_owner_record) -> untyped
+
+      def token_generator_proc: () -> untyped
+
+      def routing_condition_proc: () -> untyped
+
+      def token_set?: (untyped token_owner_record) -> untyped
+
+      def not_expired: () -> (nil | untyped)
+    end
+  end
+end

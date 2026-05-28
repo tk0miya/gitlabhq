@@ -1,0 +1,14 @@
+module RendersNotes
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def prepare_notes_for_rendering: (untyped notes) -> untyped
+
+  private
+
+  def preload_note_namespace: (untyped notes) -> untyped
+
+  def preload_max_access_for_authors: (untyped notes, untyped project) -> (nil | untyped)
+
+  def preload_noteable_for_regular_notes: (untyped notes) -> untyped
+
+  def preload_author_status: (untyped notes) -> untyped
+end

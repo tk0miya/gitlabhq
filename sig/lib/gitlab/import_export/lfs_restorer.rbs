@@ -1,0 +1,45 @@
+module Gitlab
+  module ImportExport
+    class LfsRestorer
+      @project: untyped
+
+      @shared: untyped
+
+      @lfs_file_paths: untyped
+
+      @lfs_json: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ::Import::Framework::ProgressTracking
+
+      attr_accessor project: untyped
+
+      attr_accessor shared: untyped
+
+      def initialize: (project: untyped, shared: untyped) -> void
+
+      def restore: () -> untyped
+
+      private
+
+      def link_or_create_lfs_object!: (untyped path) -> untyped
+
+      def repository_types: (untyped oid) -> (::Array["project"] | untyped)
+
+      def lfs_file_paths: () -> untyped
+
+      def has_lfs_json?: () -> untyped
+
+      def lfs_json: () -> (::Hash[untyped, untyped] | untyped)
+
+      def lfs_storage_path: () -> untyped
+
+      def lfs_json_path: () -> untyped
+
+      def progress_tracking_options: (untyped file_path) -> { scope: { project_id: untyped }, data: untyped }
+
+      def basename: (untyped file_path) -> untyped
+    end
+  end
+end

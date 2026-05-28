@@ -1,0 +1,13 @@
+module Gitlab
+  module GithubImport
+    class ImportProtectedBranchWorker
+      include ObjectImporter
+
+      def representation_class: () -> untyped
+
+      def importer_class: () -> untyped
+
+      def object_type: () -> :protected_branch
+    end
+  end
+end

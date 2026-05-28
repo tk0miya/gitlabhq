@@ -1,0 +1,49 @@
+module Gitlab
+  module Database
+    module Reindexing
+      # Number of indexes to reindex per invocation
+      DEFAULT_INDEXES_PER_INVOCATION: 2
+
+      SUPPORTED_TYPES: ::Array["btree" | "gist"]
+
+      # When dropping an index, we acquire a SHARE UPDATE EXCLUSIVE lock,
+      # which only conflicts with DDL and vacuum. We therefore execute this with a rather
+      # high lock timeout and a long pause in between retries. This is an alternative to
+      # setting a high statement timeout, which would lead to a long running query with effects
+      # on e.g. vacuum.
+      REMOVE_INDEX_RETRY_CONFIG: untyped
+
+      def self.enabled?: () -> (false | untyped)
+
+      def self.invoke: (?untyped? database) -> untyped
+
+      def self.stats: (?untyped? database) -> untyped
+
+      def self.log_pending_items: (untyped connection_name, untyped label, untyped items) -> untyped
+
+      # Performs automatic reindexing for a limited number of indexes per call
+      #  1. Consume from the explicit reindexing queue
+      #  2. Apply bloat heuristic to find most bloated indexes and reindex those
+      def self.automatic_reindexing: (?maximum_records: untyped) -> (nil | untyped)
+
+      # Reindex based on bloat heuristic for a limited number of indexes per call
+      #
+      # We use a bloat heuristic to estimate the index bloat and pick the
+      # most bloated indexes for reindexing.
+      def self.perform_with_heuristic: (?untyped candidate_indexes, ?maximum_records: untyped) -> untyped
+
+      def self.queued_actions: () -> untyped
+
+      # Reindex indexes that have been explicitly enqueued (for a limited number of indexes per call)
+      def self.perform_from_queue: (?maximum_records: untyped) -> untyped
+
+      def self.cleanup_leftovers!: () -> untyped
+
+      def self.minimum_index_size!: (untyped bytes) -> untyped
+
+      def self.minimum_relative_bloat_size!: (untyped threshold) -> untyped
+
+      def self.update_reindexing_setting!: (untyped key, untyped value) -> untyped
+    end
+  end
+end

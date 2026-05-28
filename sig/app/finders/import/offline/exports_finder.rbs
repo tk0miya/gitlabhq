@@ -1,0 +1,23 @@
+module Import
+  module Offline
+    class ExportsFinder
+      @user: untyped
+
+      @params: untyped
+
+      def initialize: (user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader user: untyped
+
+      attr_reader params: untyped
+
+      def filter_by_status: (untyped exports) -> untyped
+
+      def sort: (untyped exports) -> untyped
+    end
+  end
+end

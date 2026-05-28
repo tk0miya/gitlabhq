@@ -1,0 +1,10 @@
+module Types
+  module Organizations
+    # rubocop: disable Graphql/AuthorizeTypes -- authorization is enforced in OrganizationsFinder#by_user_access
+    class OrganizationType < BaseObject
+      def avatar_url: () -> untyped
+
+      def web_path: () -> untyped
+    end
+  end
+end

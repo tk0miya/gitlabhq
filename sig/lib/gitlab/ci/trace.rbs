@@ -1,0 +1,121 @@
+module Gitlab
+  module Ci
+    class Trace
+      @job: untyped
+
+      @current_path: untyped
+
+      include ::Gitlab::ExclusiveLeaseHelpers
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      include Checksummable
+
+      LOCK_TTL: untyped
+
+      LOCK_RETRIES: 2
+
+      LOCK_SLEEP: untyped
+
+      WATCH_FLAG_TTL: untyped
+
+      UPDATE_FREQUENCY_DEFAULT: untyped
+
+      UPDATE_FREQUENCY_WHEN_BEING_WATCHED: untyped
+
+      LOAD_BALANCING_STICKING_NAMESPACE: "ci/build/trace"
+
+      ArchiveError: untyped
+
+      AlreadyArchivedError: untyped
+
+      LockedError: untyped
+
+      attr_reader job: untyped
+
+      def initialize: (untyped job) -> void
+
+      def html: (?last_lines: untyped?, ?max_size: untyped?) -> untyped
+
+      def raw: (?last_lines: untyped?) -> untyped
+
+      def raw_range: (byte_offset: untyped, byte_limit: untyped) -> untyped
+
+      def extract_coverage: (untyped regex) -> untyped
+
+      def extract_sections: () -> untyped
+
+      def set: (untyped data) -> untyped
+
+      def append: (untyped data, untyped offset) -> untyped
+
+      def exist?: () -> untyped
+
+      def archived?: () -> untyped
+
+      def live?: () -> untyped
+
+      def read: () { (?) -> untyped } -> untyped
+
+      def write: (untyped mode) { (?) -> untyped } -> untyped
+
+      def erase_trace_chunks!: () -> untyped
+
+      def erase!: () -> untyped
+
+      def archive!: () -> untyped
+
+      def attempt_archive_cleanup!: () -> untyped
+
+      def update_interval: () -> untyped
+
+      def being_watched!: () -> untyped
+
+      def being_watched?: () -> untyped
+
+      def lock: () { (?) -> untyped } -> untyped
+
+      private
+
+      def read_stream: () { (untyped) -> untyped } -> untyped
+
+      def unsafe_write!: (untyped mode) { (untyped) -> untyped } -> untyped
+
+      def unsafe_archive!: () -> untyped
+
+      def destroy_any_orphan_trace_data!: () -> (nil | untyped)
+
+      def in_write_lock: () { (?) -> untyped } -> untyped
+
+      def archive_stream!: (untyped stream) -> untyped
+
+      def trace_metadata: () -> untyped
+
+      def ensure_path: () -> untyped
+
+      def ensure_directory: () -> untyped
+
+      def current_path: () -> untyped
+
+      def paths: () -> ::Array[untyped]
+
+      def default_directory: () -> untyped
+
+      def default_path: () -> untyped
+
+      def trace_artifact: () -> untyped
+
+      def destroy_stream: (untyped build) { () -> untyped } -> untyped
+
+      def read_trace_artifact: (untyped build) { () -> untyped } -> untyped
+
+      def being_watched_cache_key: () -> ::String
+
+      # Like `set` it writes the whole trace but doesn't hide secrets!
+      # This is solely used in spec factories to avoid calling unstubbed
+      # ApplicationSetting(ci_job_token_signing_key) attribute outside
+      # spec examples (like in `let_it_be`).
+      def unsafe_set: (untyped data) -> untyped
+    end
+  end
+end

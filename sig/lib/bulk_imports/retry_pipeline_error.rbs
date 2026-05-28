@@ -1,0 +1,9 @@
+module BulkImports
+  class RetryPipelineError < Error
+    @retry_delay: untyped
+
+    attr_reader retry_delay: untyped
+
+    def initialize: (untyped message, ?untyped? retry_delay) -> void
+  end
+end

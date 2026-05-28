@@ -1,0 +1,13 @@
+module Mentionable
+  module ReferenceRegexes
+    extend Gitlab::Utils::StrongMemoize
+
+    def self.reference_pattern: (untyped link_patterns, untyped issue_pattern) -> untyped
+
+    def self.other_patterns: () -> ::Array[untyped]
+
+    def self.default_pattern: () -> untyped
+
+    def self.external_pattern: () -> untyped
+  end
+end

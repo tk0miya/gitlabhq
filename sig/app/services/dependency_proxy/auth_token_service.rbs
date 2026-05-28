@@ -1,0 +1,27 @@
+module DependencyProxy
+  class AuthTokenService < DependencyProxy::BaseService
+    @token: untyped
+
+    attr_reader token: untyped
+
+    def initialize: (untyped token) -> void
+
+    def execute: () -> untyped
+
+    # TODO: Rename to make it obvious how it's used in Gitlab::Auth::RequestAuthenticator
+    # which is to return an <object>.<id> that is used as a rack-attack discriminator
+    # that way it cannot be confused with `.user_or_token_from_jwt`
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/454518
+    def self.user_or_deploy_token_from_jwt: (untyped raw_jwt) -> untyped
+
+    def self.user_or_token_from_jwt: (untyped raw_jwt) -> untyped
+
+    def self.token_result_from_jwt: (untyped raw_jwt) -> untyped
+
+    def self.get_user: (untyped user_id) -> untyped
+
+    def self.get_personal_access_token: (untyped raw_token) -> untyped
+
+    def self.get_deploy_token: (untyped raw_token) -> untyped
+  end
+end

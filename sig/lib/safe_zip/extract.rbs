@@ -1,0 +1,54 @@
+module SafeZip
+  # SafeZip::Extract provides a safe interface
+  # to extract specific directories or files within a `zip` archive.
+  #
+  # @example Extract directories to destination
+  #   SafeZip::Extract.new(archive_file).extract(directories: ['app/', 'test/'], to: destination_path)
+  # @example Extract files to destination
+  #   SafeZip::Extract.new(archive_file).extract(files: ['index.html', 'app/index.js'], to: destination_path)
+  class Extract
+    @archive_path: untyped
+
+    Error: untyped
+
+    PermissionDeniedError: untyped
+
+    SymlinkSourceDoesNotExistError: untyped
+
+    UnsupportedEntryError: untyped
+
+    EntrySizeError: untyped
+
+    AlreadyExistsError: untyped
+
+    NoMatchingError: untyped
+
+    ExtractError: untyped
+
+    attr_reader archive_path: untyped
+
+    def initialize: (untyped archive_file) -> void
+
+    # extract given files or directories from the archive into the destination path
+    #
+    # @param [Hash] opts the options for extraction.
+    # @option opts [Array<String] :files list of files to be extracted
+    # @option opts [Array<String] :directories list of directories to be extracted
+    # @option opts [String] :to destination path
+    #
+    # @raise [PermissionDeniedError]
+    # @raise [SymlinkSourceDoesNotExistError]
+    # @raise [UnsupportedEntryError]
+    # @raise [EntrySizeError]
+    # @raise [AlreadyExistsError]
+    # @raise [NoMatchingError]
+    # @raise [ExtractError]
+    def extract: (?::Hash[untyped, untyped] opts) -> untyped
+
+    private
+
+    def extract_with_ruby_zip: (untyped params) -> untyped
+
+    def extract_all_entries: (untyped zip_archive, untyped params, untyped entries) -> untyped
+  end
+end

@@ -1,0 +1,31 @@
+module WebIde
+  class Config
+    module Entry
+      #
+      # Entry that represents a concrete CI/CD job.
+      #
+      class Terminal < ::Gitlab::Config::Entry::Node
+        include ::Gitlab::Config::Entry::Configurable
+
+        include ::Gitlab::Config::Entry::Attributable
+
+        include Gitlab::Utils::StrongMemoize
+
+        # By default the build will finish in a few seconds, not giving the webide
+        # enough time to connect to the terminal. This default script provides
+        # those seconds blocking the build from finishing inmediately.
+        DEFAULT_SCRIPT: ::Array["sleep 60"]
+
+        ALLOWED_KEYS: ::Array[:image | :services | :tags | :before_script | :script | :variables]
+
+        def value: () -> untyped
+
+        private
+
+        def to_hash: () -> untyped
+
+        def yaml_variables: () -> untyped
+      end
+    end
+  end
+end

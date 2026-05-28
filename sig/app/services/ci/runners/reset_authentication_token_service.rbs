@@ -1,0 +1,33 @@
+module Ci
+  module Runners
+    class ResetAuthenticationTokenService
+      @runner: untyped
+
+      @current_user: untyped
+
+      @source: untyped
+
+      attr_reader runner: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader source: untyped
+
+      PERMITTED_SOURCES: ::Array[:runner_api]
+
+      def initialize: (runner: untyped, ?current_user: untyped?, ?source: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def reset_permitted?: () -> untyped
+
+      # Overridden in EE to validate token rotation deadline
+      def validate_reset: () -> untyped
+
+      # Overridden in EE to clear token rotation deadline before reset
+      def reset_runner_token!: () -> untyped
+    end
+  end
+end

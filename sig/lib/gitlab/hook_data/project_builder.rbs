@@ -1,0 +1,21 @@
+module Gitlab
+  module HookData
+    class ProjectBuilder < BaseBuilder
+      alias project object
+
+      def build: (untyped event, ?include_deprecated_owner: bool) -> untyped
+
+      private
+
+      def project_data: (include_deprecated_owner: untyped) -> untyped
+
+      def owners_data: () -> untyped
+
+      def owner_data: (untyped user) -> { name: untyped, email: untyped }
+
+      def user_email: (untyped user) -> (untyped | "")
+
+      def event_specific_project_data: (untyped event) -> (::Hash[untyped, untyped] | { old_path_with_namespace: untyped })
+    end
+  end
+end

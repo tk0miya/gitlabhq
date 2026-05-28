@@ -1,0 +1,26 @@
+module Gitlab
+  module Config
+    module Entry
+      #
+      # This class represents an undefined entry.
+      #
+      class Undefined < Node
+        def initialize: (*untyped) -> void
+
+        def value: () -> nil
+
+        def valid?: () -> true
+
+        def errors: () -> ::Array[untyped]
+
+        def specified?: () -> false
+
+        def relevant?: () -> false
+
+        def type: () -> nil
+
+        def inspect: () -> ::String
+      end
+    end
+  end
+end

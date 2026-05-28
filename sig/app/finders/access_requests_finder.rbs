@@ -1,0 +1,17 @@
+class AccessRequestsFinder
+  @source: untyped
+
+  attr_accessor source: untyped
+
+  # Arguments:
+  #   source - a Group or Project
+  def initialize: (untyped source) -> void
+
+  def execute: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def execute!: (untyped current_user) -> untyped
+
+  private
+
+  def can_see_access_requests?: (untyped current_user) -> untyped
+end

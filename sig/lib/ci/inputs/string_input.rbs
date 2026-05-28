@@ -1,0 +1,21 @@
+module Ci
+  module Inputs
+    class StringInput < BaseInput
+      extend ::Gitlab::Utils::Override
+
+      def self.matches?: (untyped spec) -> untyped
+
+      def self.type_name: () -> "string"
+
+      def validate_type: (untyped value, untyped _default) -> nil
+
+      def validate_options: (untyped value, ?::Hash[untyped, untyped] all_params) -> (nil | untyped)
+
+      private
+
+      def validate_regex: (untyped value, untyped default) -> untyped
+
+      def coerced_value: (untyped value) -> untyped
+    end
+  end
+end

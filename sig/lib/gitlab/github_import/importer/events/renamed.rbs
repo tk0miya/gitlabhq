@@ -1,0 +1,17 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Events
+        class Renamed < BaseImporter
+          def execute: (untyped issue_event) -> untyped
+
+          private
+
+          def note_params: (untyped issue_event) -> { importing: true, noteable_id: untyped, noteable_type: untyped, project_id: untyped, author_id: untyped, note: untyped, system: true, created_at: untyped, updated_at: untyped, imported_from: untyped, system_note_metadata: untyped }
+
+          def parse_body: (untyped issue_event) -> ::String
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,33 @@
+module Packages
+  module Nuget
+    class ExtractRemoteMetadataFileService
+      @remote_url: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ExtractionError: untyped
+
+      MAX_FILE_SIZE: untyped
+
+      METADATA_FILE_EXTENSION: ".nuspec"
+
+      MAX_FRAGMENTS: 5
+
+      def initialize: (untyped remote_url) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader remote_url: untyped
+
+      def nuspec_file_content: () -> untyped
+
+      def extract_nuspec_file: (untyped fragments) -> untyped
+
+      def process_zip_entries: (untyped zip) -> untyped
+
+      def extract_file_content: (untyped entry) -> untyped
+    end
+  end
+end

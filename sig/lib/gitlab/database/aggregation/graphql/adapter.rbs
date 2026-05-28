@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module Graphql
+        module Adapter
+          def self.types_prefix: (untyped name) -> untyped
+
+          def self.each_filter_argument: (untyped filters) { (untyped) -> untyped } -> untyped
+
+          def self.arguments_to_filters: (untyped filters, untyped arguments) -> untyped
+
+          def self.graphql_type: (untyped type) -> untyped
+
+          private
+
+          def self.build_filter: (untyped definition, untyped arguments) -> untyped
+
+          def self.filter_to_arguments: (untyped filter) -> untyped
+
+          def self.filter_description: (untyped filter) -> (untyped | ::String)
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Types
+  module WorkItems
+    module WidgetDefinitionInterface
+      include ::Types::BaseInterface
+
+      ORPHAN_TYPES: ::Array[untyped]
+
+      TYPE_MAPPING: ::Hash[untyped, untyped]
+
+      def self.ce_orphan_types: () -> untyped
+
+      def self.resolve_type: (untyped object, untyped _context) -> untyped
+
+      def type: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,28 @@
+# rubocop: disable CodeReuse/ActiveRecord
+module ClickHouse
+  module Models
+    class BaseModel < ClickHouse::Client::QueryLike
+      @query_builder: untyped
+
+      extend Forwardable
+
+      attr_reader query_builder: untyped
+
+      def initialize: (?untyped query_builder) -> void
+
+      def self.table_name: () -> untyped
+
+      def where: (untyped conditions) -> untyped
+
+      def order: (untyped field, ?::Symbol direction) -> untyped
+
+      def limit: (untyped count) -> untyped
+
+      def offset: (untyped count) -> untyped
+
+      def group: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def select: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+    end
+  end
+end

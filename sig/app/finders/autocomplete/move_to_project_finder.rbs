@@ -1,0 +1,31 @@
+module Autocomplete
+  # Finder that retrieves a list of projects that an issue can be moved to.
+  class MoveToProjectFinder
+    @current_user: untyped
+
+    @search: untyped
+
+    @project_id: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader search: untyped
+
+    attr_reader project_id: untyped
+
+    LIMIT: 20
+
+    # current_user - The User object of the user that wants to view the list of
+    #                projects.
+    #
+    # params - A Hash containing additional parameters to set.
+    #
+    # The following parameters can be set (as Symbols):
+    #
+    # * search: An optional search query to apply to the list of projects.
+    # * project_id: The ID of a project to exclude from the returned relation.
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+  end
+end

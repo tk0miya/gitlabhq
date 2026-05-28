@@ -1,0 +1,33 @@
+module Integrations
+  class AppleAppStore < Integration
+    ISSUER_ID_REGEX: ::Regexp
+
+    KEY_ID_REGEX: ::Regexp
+
+    IS_KEY_CONTENT_BASE64: "true"
+
+    SECTION_TYPE_APPLE_APP_STORE: "apple_app_store"
+
+    def self.title: () -> "Apple App Store Connect"
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "apple_app_store"
+
+    def self.supported_events: () -> ::Array[untyped]
+
+    def sections: () -> ::Array[{ type: untyped, title: untyped, description: untyped }]
+
+    def test: (*untyped _args) -> untyped
+
+    def ci_variables: (protected_ref: untyped) -> (::Array[untyped] | ::Array[{ key: "APP_STORE_CONNECT_API_KEY_ISSUER_ID", value: untyped, masked: true, public: false } | { key: "APP_STORE_CONNECT_API_KEY_KEY", value: untyped, masked: true, public: false } | { key: "APP_STORE_CONNECT_API_KEY_KEY_ID", value: untyped, masked: true, public: false } | { key: "APP_STORE_CONNECT_API_KEY_IS_KEY_CONTENT_BASE64", value: untyped, masked: false, public: false }])
+
+    def initialize_properties: () -> untyped
+
+    private
+
+    def client: () -> untyped
+  end
+end

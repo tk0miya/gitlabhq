@@ -1,0 +1,86 @@
+module Gitlab
+  module Analytics
+    # This class generates a date => value hash without gaps in the data points.
+    #
+    # Simple usage:
+    #
+    # > # We have the following data for the last 5 day:
+    # > input = { 3.days.ago.to_date => 10, Date.today => 5 }
+    #
+    # > # Format this data, so we can chart the complete date range:
+    # > Gitlab::Analytics::DateFiller.new(input, from: 4.days.ago, to: Date.today, default_value: 0).fill
+    # > {
+    # >  Sun, 28 Aug 2022=>0,
+    # >  Mon, 29 Aug 2022=>10,
+    # >  Tue, 30 Aug 2022=>0,
+    # >  Wed, 31 Aug 2022=>0,
+    # >  Thu, 01 Sep 2022=>5
+    # > }
+    #
+    # Parameters:
+    #
+    # **input**
+    # A Hash containing data for the series or the chart. The key is a Date object
+    # or an object which can be converted to Date.
+    #
+    # **from**
+    # Start date of the range
+    #
+    # **to**
+    # End date of the range
+    #
+    # **period**
+    # Specifies the period in which the dates should be generated. Options:
+    #
+    # - :day, generate date-value pair for each day in the given period
+    # - :week, generate date-value pair for each week (beginning of the week date)
+    # - :month, generate date-value pair for each week (beginning of the month date)
+    #
+    # Note: the Date objects in the `input` should follow the same pattern (beginning of ...)
+    #
+    # **default_value**
+    #
+    # Which value use when the `input` Hash does not contain data for the given day.
+    #
+    # **date_formatter**
+    #
+    # How to format the dates in the resulting hash.
+    class DateFiller
+      @input: untyped
+
+      @from: untyped
+
+      @to: untyped
+
+      @period: untyped
+
+      @default_value: untyped
+
+      @date_formatter: untyped
+
+      DEFAULT_DATE_FORMATTER: untyped
+
+      PERIOD_STEPS: { day: untyped, week: untyped, month: untyped }
+
+      def initialize: (untyped input, from: untyped, to: untyped, ?period: ::Symbol, ?default_value: untyped?, ?date_formatter: untyped) -> void
+
+      def fill: () -> untyped
+
+      private
+
+      attr_reader input: untyped
+
+      attr_reader from: untyped
+
+      attr_reader to: untyped
+
+      attr_reader period: untyped
+
+      attr_reader default_value: untyped
+
+      attr_reader date_formatter: untyped
+
+      def transform_date: (untyped date) -> untyped
+    end
+  end
+end

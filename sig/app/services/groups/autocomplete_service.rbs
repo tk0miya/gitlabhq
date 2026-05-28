@@ -1,0 +1,20 @@
+module Groups
+  class AutocompleteService < Groups::BaseService
+    include LabelsAsHash
+
+    SEARCH_LIMIT: 5
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def issues: (?confidential_only: bool, ?issue_types: untyped?) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def merge_requests: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def milestones: () -> untyped
+
+    def labels_as_hash: (untyped target) -> untyped
+
+    def commands: (untyped noteable) -> (::Array[untyped] | untyped)
+  end
+end

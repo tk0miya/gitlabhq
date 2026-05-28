@@ -1,0 +1,11 @@
+module Mutations
+  module WorkItems
+    module Hierarchy
+      class AddChildrenItems < BaseMutation
+        include Mutations::WorkItems::Widgetable
+
+        def resolve: (id: untyped, **untyped attributes) -> { added_children: untyped, errors: untyped }
+      end
+    end
+  end
+end

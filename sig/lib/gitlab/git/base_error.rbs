@@ -1,0 +1,35 @@
+module Gitlab
+  module Git
+    class BaseError < StandardError
+      @status: untyped
+
+      @code: untyped
+
+      @service: untyped
+
+      @metadata: untyped
+
+      METADATA_KEY: :gitaly_error_metadata
+
+      DEBUG_ERROR_STRING_REGEX: ::Regexp
+
+      GRPC_CODES: { "0" => "ok", "1" => "cancelled", "2" => "unknown", "3" => "invalid_argument", "4" => "deadline_exceeded", "5" => "not_found", "6" => "already_exists", "7" => "permission_denied", "8" => "resource_exhausted", "9" => "failed_precondition", "10" => "aborted", "11" => "out_of_range", "12" => "unimplemented", "13" => "internal", "14" => "unavailable", "15" => "data_loss", "16" => "unauthenticated" }
+
+      attr_reader status: untyped
+
+      attr_reader code: untyped
+
+      attr_reader service: untyped
+
+      attr_reader metadata: untyped
+
+      def initialize: (?untyped? msg) -> void
+
+      def build_raw_message: (untyped message) -> untyped
+
+      def set_grpc_error_code: (untyped grpc_error) -> untyped
+
+      def set_grpc_error_metadata: (untyped grpc_error) -> untyped
+    end
+  end
+end

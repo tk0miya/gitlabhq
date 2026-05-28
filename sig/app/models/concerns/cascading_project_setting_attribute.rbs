@@ -1,0 +1,31 @@
+module CascadingProjectSettingAttribute
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  def locked_value: (untyped attribute) -> untyped
+
+  def locked_ancestor: (untyped attribute) -> (nil | untyped)
+
+  def locked_by_ancestor?: (untyped attribute) -> untyped
+
+  def locked_by_application_setting?: (untyped attribute) -> untyped
+
+  def cascading_attribute_locked?: (untyped attribute) -> untyped
+
+  def cascading_attribute_changed?: (untyped attribute) -> untyped
+
+  def cascaded_ancestor_value: (untyped attribute) -> (nil | untyped)
+
+  def application_setting_value: (untyped attribute) -> untyped
+
+  def direct_ancestor_present?: () -> untyped
+
+  def namespace_ancestor_ids_joined: () -> untyped
+
+  def namespace_ancestor_ids: () -> untyped
+
+  def to_bool: (untyped value) -> untyped
+end

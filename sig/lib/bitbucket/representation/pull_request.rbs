@@ -1,0 +1,49 @@
+module Bitbucket
+  module Representation
+    class PullRequest < Representation::Base
+      def author: () -> untyped
+
+      def author_nickname: () -> untyped
+
+      def description: () -> untyped
+
+      def iid: () -> untyped
+
+      def state: () -> untyped
+
+      def created_at: () -> untyped
+
+      def updated_at: () -> untyped
+
+      def title: () -> untyped
+
+      def source_branch_name: () -> untyped
+
+      def source_branch_sha: () -> untyped
+
+      def target_branch_name: () -> untyped
+
+      def target_branch_sha: () -> untyped
+
+      def reviewers: () -> untyped
+
+      def merge_commit_sha: () -> untyped
+
+      def to_hash: () -> { iid: untyped, author: untyped, author_nickname: untyped, description: untyped, created_at: untyped, updated_at: untyped, state: untyped, title: untyped, source_branch_name: untyped, source_branch_sha: untyped, merge_commit_sha: untyped, target_branch_name: untyped, target_branch_sha: untyped, source_and_target_project_different: untyped, reviewers: untyped, closed_by: untyped }
+
+      private
+
+      def source_branch: () -> untyped
+
+      def target_branch: () -> untyped
+
+      def source_repo_uuid: () -> untyped
+
+      def target_repo_uuid: () -> untyped
+
+      def source_and_target_project_different: () -> untyped
+
+      def closed_by: () -> untyped
+    end
+  end
+end

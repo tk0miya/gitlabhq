@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+class Packages::PackageFileUploader < GitlabUploader
+  extend Workhorse::UploadPath
+
+  include ObjectStorage::Concern
+
+  include Packages::GcsSignedUrlMetadata
+
+  alias upload model
+
+  def filename: () -> untyped
+
+  def store_dir: () -> untyped
+
+  private
+
+  def dynamic_segment: () -> untyped
+end

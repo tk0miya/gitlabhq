@@ -1,0 +1,37 @@
+# Module to include into finders to provide support for querying for
+# objects up and down the group hierarchy.  Extracted from LabelsFinder
+#
+# Supports params:
+#   :group
+#   :group_id
+#   :include_ancestor_groups
+#   :include_descendant_groups
+module FinderWithGroupHierarchy
+  extend ActiveSupport::Concern
+
+  private
+
+  def item_ids: () -> untyped
+
+  # Gets redacted array of group ids
+  # which can include the ancestors and descendants of the requested group.
+  def group_ids_for: (untyped group) -> untyped
+
+  def groups_to_include: (untyped group) -> untyped
+
+  def include_ancestor_groups?: () -> untyped
+
+  def include_descendant_groups?: () -> untyped
+
+  def group?: () -> untyped
+
+  def group: () -> untyped
+
+  def read_permission: () -> untyped
+
+  def authorized_to_read_item?: (untyped item_parent) -> (true | untyped)
+
+  def groups_user_can_read_items: (untyped groups) -> untyped
+
+  def preload_associations: (untyped groups) -> untyped
+end

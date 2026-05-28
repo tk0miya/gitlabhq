@@ -1,0 +1,17 @@
+# We use this class, in conjunction with the
+# Group#dependency_proxy_for_containers_policy_subject method,
+# to specify a custom policy class for DependencyProxy.
+# A similar pattern was used in https://gitlab.com/gitlab-org/gitlab/-/merge_requests/90963
+module Packages
+  module Policies
+    module DependencyProxy
+      class Group
+        @group: untyped
+
+        attr_reader group: untyped
+
+        def initialize: (untyped group) -> void
+      end
+    end
+  end
+end

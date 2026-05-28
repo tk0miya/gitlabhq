@@ -1,0 +1,14 @@
+# rubocop:disable Gitlab/BoundedContexts -- This is the best place for this module
+# rubocop:disable Scalability/CronWorkerContext -- No metadata needed as it's called from cronjobs
+# rubocop:disable Sidekiq/EnforceDatabaseHealthSignalDeferral -- Not applicable here
+module Database
+  module BackgroundOperation
+    class CronEnqueueWorker
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      def perform: (?::Hash[untyped, untyped] args) -> untyped
+    end
+  end
+end

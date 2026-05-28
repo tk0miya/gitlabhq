@@ -1,0 +1,39 @@
+module PersonalAccessTokens
+  class RevokeService < BaseService
+    @current_user: untyped
+
+    @token: untyped
+
+    @group: untyped
+
+    @source: untyped
+
+    @project: untyped
+
+    attr_reader token: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader group: untyped
+
+    attr_reader source: untyped
+
+    VALID_SOURCES: ::Array[:self | :secret_detection | :api_admin_token]
+
+    def initialize: (?untyped? current_user, ?token: untyped?, ?group: untyped?, ?source: untyped?, ?project: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def error_message: () -> untyped
+
+    def success_message: () -> untyped
+
+    def revocation_permitted?: () -> untyped
+
+    def log_event: () -> untyped
+
+    def revoked_by: () -> untyped
+  end
+end

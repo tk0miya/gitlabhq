@@ -1,0 +1,9 @@
+module Ci
+  module JobToken
+    module InternalEventsTracking
+      include Gitlab::InternalEventsTracking
+
+      def track_job_token_scope_setting_changes: (untyped ci_cd_settings, untyped user) -> untyped
+    end
+  end
+end

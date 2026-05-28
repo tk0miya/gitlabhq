@@ -1,0 +1,10 @@
+module Types
+  module Namespaces
+    # `ResolvesGroups#resolve_with_lookahead` detects if the `project_statistics`
+    # field is requested and passes the `with_statistics` argument to `GroupsFinder`
+    # which then calls `Namespace#with_statistics`.
+    class ProjectStatisticsType < BaseObject
+      def try_field: (graphql_name: untyped) -> untyped
+    end
+  end
+end

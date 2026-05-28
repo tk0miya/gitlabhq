@@ -1,0 +1,13 @@
+class MergeRequestContextCommit < ApplicationRecord
+  include CachedCommit
+
+  include ShaAttribute
+
+  # delete all MergeRequestContextCommit & MergeRequestContextCommitDiffFile for given merge_request & commit SHAs
+  def self.delete_bulk: (untyped merge_request, untyped commits) -> untyped
+
+  # create MergeRequestContextCommit by given commit sha and it's diff file record
+  def self.bulk_insert: (untyped rows, **untyped args) -> untyped
+
+  def to_commit: () -> untyped
+end

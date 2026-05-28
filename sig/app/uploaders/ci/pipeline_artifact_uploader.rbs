@@ -1,0 +1,23 @@
+module Ci
+  class PipelineArtifactUploader < GitlabUploader
+    include ObjectStorage::Concern
+
+    alias lockbox_encrypt encrypt
+
+    alias upload model
+
+    # Override Lockbox's encrypt to conditionally encrypt based on file_type
+    def encrypt: (untyped file) -> untyped
+
+    # Override Lockbox's read to conditionally decrypt based on file_type
+    def read: () -> (nil | untyped)
+
+    def store_dir: () -> untyped
+
+    private
+
+    def dynamic_segment: () -> untyped
+
+    def encryption_key: () -> untyped
+  end
+end

@@ -1,0 +1,17 @@
+module NewIssuable
+  @user: untyped
+
+  @issuable: untyped
+
+  attr_reader issuable: untyped
+
+  attr_reader user: untyped
+
+  def objects_found?: (untyped issuable_id, untyped user_id) -> untyped
+
+  def set_user: (untyped user_id) -> untyped
+
+  def set_issuable: (untyped issuable_id) -> untyped
+
+  def log_error: (untyped record_class, untyped record_id) -> untyped
+end

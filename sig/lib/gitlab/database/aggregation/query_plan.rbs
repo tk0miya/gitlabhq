@@ -1,0 +1,47 @@
+module Gitlab
+  module Database
+    module Aggregation
+      class QueryPlan
+        @engine: untyped
+
+        @request: untyped
+
+        @filters: untyped
+
+        @dimensions: untyped
+
+        @metrics: untyped
+
+        @order: untyped
+
+        include ActiveModel::Validations
+
+        attr_reader engine: untyped
+
+        attr_reader request: untyped
+
+        def initialize: (untyped engine, untyped request) -> void
+
+        def filters: () -> untyped
+
+        def dimensions: () -> untyped
+
+        def metrics: () -> untyped
+
+        def order: () -> untyped
+
+        def orderable_parts: () -> untyped
+
+        def parts: () -> untyped
+
+        private
+
+        def validate_parts: () -> untyped
+
+        def validate_request: () -> (nil | untyped)
+
+        def validate_instance_keys_uniqueness: () -> (nil | untyped)
+      end
+    end
+  end
+end

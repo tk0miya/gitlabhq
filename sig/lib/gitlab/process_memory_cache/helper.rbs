@@ -1,0 +1,21 @@
+module Gitlab
+  class ProcessMemoryCache
+    module Helper
+      def fetch_memory_cache: (untyped key) { (?) -> untyped } -> untyped
+
+      def invalidate_memory_cache: (untyped key) -> untyped
+
+      private
+
+      def touch_cache_timestamp: (untyped key, ?untyped time) -> untyped
+
+      def stale_cache?: (untyped key, untyped cache_info) -> (true | untyped)
+
+      def store_cache: (untyped key) { () -> untyped } -> untyped
+
+      def shared_backend: () -> untyped
+
+      def cache_backend: () -> untyped
+    end
+  end
+end

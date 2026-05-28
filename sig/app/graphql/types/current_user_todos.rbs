@@ -1,0 +1,8 @@
+# Interface to expose todos for the current_user on the `object`
+module Types
+  module CurrentUserTodos
+    include BaseInterface
+
+    def current_user_todos: (?state: untyped?) -> untyped
+  end
+end

@@ -1,0 +1,39 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        #
+        # This class matches the given function string with a predefined
+        # function and then applies it to the input value.
+        #
+        class FunctionsStack
+          @ctx: untyped
+
+          @errors: untyped
+
+          @functions: untyped
+
+          Output: untyped
+
+          FUNCTIONS: ::Array[untyped]
+
+          attr_reader errors: untyped
+
+          def initialize: (untyped function_expressions, untyped ctx) -> void
+
+          def valid?: () -> untyped
+
+          def evaluate: (untyped input_value) -> untyped
+
+          private
+
+          attr_reader functions: untyped
+
+          attr_reader ctx: untyped
+
+          def build_stack: (untyped function_expressions) -> untyped
+        end
+      end
+    end
+  end
+end

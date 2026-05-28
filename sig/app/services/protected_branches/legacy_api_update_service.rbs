@@ -1,0 +1,25 @@
+# The branches#protect API still uses the `developers_can_push` and `developers_can_merge`
+# flags for backward compatibility, and so performs translation between that format and the
+# internal data model (separate access levels). The translation code is non-trivial, and so
+# lives in this service.
+module ProtectedBranches
+  class LegacyApiUpdateService < BaseService
+    @protected_branch: untyped
+
+    @developers_can_push: untyped
+
+    @developers_can_merge: untyped
+
+    attr_reader protected_branch: untyped
+
+    attr_reader developers_can_push: untyped
+
+    attr_reader developers_can_merge: untyped
+
+    def execute: (untyped protected_branch) -> untyped
+
+    private
+
+    def delete_redundant_access_levels: () -> untyped
+  end
+end

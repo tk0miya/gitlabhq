@@ -1,0 +1,7 @@
+module IncidentManagement
+  class AddSeveritySystemNoteWorker
+    include ApplicationWorker
+
+    def perform: (untyped incident_id, untyped user_id) -> (nil | untyped)
+  end
+end

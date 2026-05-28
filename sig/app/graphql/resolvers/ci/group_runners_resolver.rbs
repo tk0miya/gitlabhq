@@ -1,0 +1,9 @@
+module Resolvers
+  module Ci
+    class GroupRunnersResolver < RunnersResolver
+      def runners_finder_params: (untyped params) -> untyped
+
+      def parent_param: () -> { group: untyped }
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module SidekiqLogging
+    class PauseControlLogger
+      include Singleton
+
+      include LogsJobs
+
+      def paused_log: (untyped job, strategy: untyped) -> untyped
+
+      def resumed_log: (untyped worker_name, untyped args) -> untyped
+    end
+  end
+end

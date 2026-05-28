@@ -1,0 +1,10 @@
+module Gitlab
+  module Database
+    # Model that can be used for querying permissions of a SQL user.
+    class Grant
+      # Returns true if the current user can create and execute triggers on the
+      # given table.
+      def self.create_and_execute_trigger?: (untyped table) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module SidekiqMiddleware
+    module MetricsHelper
+      include ::Gitlab::SidekiqMiddleware::WorkerContext
+
+      TRUE_LABEL: "yes"
+
+      FALSE_LABEL: "no"
+
+      private
+
+      def create_labels: (untyped worker_class, untyped queue, untyped job) -> untyped
+
+      def bool_as_label: (untyped value) -> untyped
+    end
+  end
+end

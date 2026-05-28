@@ -1,0 +1,25 @@
+module MergeRequests
+  module Mergeability
+    class CheckLfsFileLocksService < CheckBaseService
+      include ::Gitlab::Utils::StrongMemoize
+
+      CACHE_KEY: "merge_request:%{id}:%{sha}:lfs_file_locks_mergeability:%{epoch}"
+
+      def execute: () -> untyped
+
+      def skip?: () -> untyped
+
+      def cacheable?: () -> true
+
+      def cache_key: () -> ("inactive_lfs_file_locks_mergeability_check" | untyped)
+
+      def has_lfs_file_locks?: () -> untyped
+
+      private
+
+      def contains_locked_lfs_files?: () -> (false | untyped)
+
+      def check_inactive?: () -> untyped
+    end
+  end
+end

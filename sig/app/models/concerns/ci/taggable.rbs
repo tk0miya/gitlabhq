@@ -1,0 +1,23 @@
+module Ci
+  module Taggable
+    extend ActiveSupport::Concern
+
+    include Gitlab::Utils::StrongMemoize
+
+    def tag_list: () -> untyped
+
+    def tag_list=: (untyped new_tags) -> untyped
+
+    def reload: (*untyped args) -> untyped
+
+    private
+
+    def context_tags: () -> untyped
+
+    def tag_list_cache_set?: () -> untyped
+
+    def save_tags: () -> (nil | true)
+
+    def find_or_create_tags_from_list: (untyped tags) -> untyped
+  end
+end

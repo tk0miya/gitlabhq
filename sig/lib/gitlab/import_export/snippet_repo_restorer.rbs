@@ -1,0 +1,33 @@
+module Gitlab
+  module ImportExport
+    class SnippetRepoRestorer < RepoRestorer
+      @snippet: untyped
+
+      @user: untyped
+
+      @repository: untyped
+
+      @path_to_bundle: untyped
+
+      @shared: untyped
+
+      include ::Import::Framework::ProgressTracking
+
+      attr_reader snippet: untyped
+
+      attr_reader user: untyped
+
+      SnippetRepositoryError: untyped
+
+      def initialize: (snippet: untyped, user: untyped, shared: untyped, path_to_bundle: untyped) -> void
+
+      def restore: () -> untyped
+
+      private
+
+      def create_repository_from_bundle: () -> untyped
+
+      def progress_tracking_options: (untyped snippet) -> { scope: { project_id: untyped }, data: untyped }
+    end
+  end
+end

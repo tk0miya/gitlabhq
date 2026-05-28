@@ -1,0 +1,49 @@
+module Gitlab
+  module Git
+    class Changes
+      @refs: untyped
+
+      @items: untyped
+
+      @branches_index: untyped
+
+      @tags_index: untyped
+
+      @repository_data: untyped
+
+      include Enumerable
+
+      attr_reader repository_data: untyped
+
+      def initialize: () -> void
+
+      def includes_branches?: () -> untyped
+
+      def includes_tags?: () -> untyped
+
+      def add_branch_change: (untyped change) -> self
+
+      def add_tag_change: (untyped change) -> self
+
+      def each: () { (untyped) -> untyped } -> untyped
+
+      def refs: () -> untyped
+
+      def branch_changes: () -> untyped
+
+      def tag_changes: () -> untyped
+
+      private
+
+      attr_reader items: untyped
+
+      attr_reader branches_index: untyped
+
+      attr_reader tags_index: untyped
+
+      def add_change: (untyped change) -> untyped
+
+      def build_change_repository_data: (untyped change) -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module SlashCommands
+    class IssueShow < IssueCommand
+      def self.match: (untyped text) -> untyped
+
+      def self.help_message: () -> "issue show <id>"
+
+      def execute: (untyped match) -> untyped
+    end
+  end
+end

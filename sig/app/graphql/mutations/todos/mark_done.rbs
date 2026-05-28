@@ -1,0 +1,11 @@
+module Mutations
+  module Todos
+    class MarkDone < ::Mutations::BaseMutation
+      def resolve: (id: untyped) -> { todo: untyped, errors: untyped }
+
+      private
+
+      def mark_done: (untyped todo) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Import
+  module Offline
+    class Configuration < ApplicationRecord
+      S3_BUCKET_REGEXP: ::Regexp
+
+      def entity_prefix_for_path: (untyped source_full_path) -> untyped
+
+      def endpoint: () -> (untyped | nil)
+
+      private
+
+      def generate_export_prefix: () -> (nil | untyped)
+
+      def supported_providers: () -> untyped
+    end
+  end
+end

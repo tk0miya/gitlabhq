@@ -1,0 +1,125 @@
+module Gitlab
+  module Audit
+    class Auditor
+      @context: untyped
+
+      @name: untyped
+
+      @is_audit_event_yaml_defined: untyped
+
+      @stream_only: untyped
+
+      @author: untyped
+
+      @scope: untyped
+
+      @target: untyped
+
+      @created_at: untyped
+
+      @message: untyped
+
+      @additional_details: untyped
+
+      @ip_address: untyped
+
+      @target_details: untyped
+
+      @authentication_event: untyped
+
+      @authentication_provider: untyped
+
+      @organization: untyped
+
+      attr_reader scope: untyped
+
+      attr_reader name: untyped
+
+      include ::Gitlab::Audit::Logging
+
+      PERMITTED_TARGET_CLASSES: ::Array[untyped]
+
+      # Record audit events
+      #
+      # @param [Hash] context
+      # @option context [String] :name the operation name to be audited, used for error tracking
+      # @option context [User] :author the user who authors the change
+      # @option context [User, Project, Group] :scope the scope which audit event belongs to
+      # @option context [Object] :target the target object being audited
+      # @option context [String] :message the message describing the action
+      # @option context [Hash] :additional_details the additional details we want to merge into audit event details.
+      # @option context [Time] :created_at the time that the event occurred (defaults to the current time)
+      #
+      # @example Using block (useful when events are emitted deep in the call stack)
+      #   i.e. multiple audit events
+      #
+      #   audit_context = {
+      #     name: 'merge_approval_rule_updated',
+      #     author: current_user,
+      #     scope: project_alpha,
+      #     target: merge_approval_rule,
+      #     message: 'a user has attempted to update an approval rule'
+      #   }
+      #
+      #   # in the initiating service
+      #   Gitlab::Audit::Auditor.audit(audit_context) do
+      #     service.execute
+      #   end
+      #
+      #   # in the model
+      #   Auditable.push_audit_event('an approver has been added')
+      #   Auditable.push_audit_event('an approval group has been removed')
+      #
+      # @example Using standard method call
+      #   i.e. single audit event
+      #
+      #   merge_approval_rule.save
+      #   Gitlab::Audit::Auditor.audit(audit_context)
+      #
+      # @return result of block execution
+      def self.audit: (untyped context) ?{ () -> untyped } -> (untyped | nil)
+
+      def initialize: (?::Hash[untyped, untyped] context) -> void
+
+      def single_audit: () -> untyped
+
+      def multiple_audit: () -> nil
+
+      def record: (untyped events) -> untyped
+
+      def log_events_and_stream: (untyped events) -> untyped
+
+      def log_to_file_and_stream: (untyped events) -> untyped
+
+      def audit_enabled?: () -> untyped
+
+      def permitted_target?: () -> untyped
+
+      def authentication_event?: () -> untyped
+
+      def stream_only?: () -> untyped
+
+      def log_authentication_event: () -> untyped
+
+      def authentication_event_payload: () -> { user: untyped, user_name: untyped, ip_address: untyped, result: untyped, provider: untyped, organization: untyped }
+
+      def author_if_user: () -> (untyped | nil)
+
+      def send_to_stream: (untyped events) -> nil
+
+      def build_event: (untyped message_or_attrs) -> untyped
+
+      def log_to_database: (untyped events) -> untyped
+
+      def log_to_file: (untyped events) -> untyped
+
+      private
+
+      def log_payload: (untyped event) -> untyped
+
+      def formatted_details: (untyped details) -> untyped
+
+      def feature_flag_actor: () -> (:instance | untyped)
+    end
+  end
+end

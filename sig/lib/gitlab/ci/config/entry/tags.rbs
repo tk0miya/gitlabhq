@@ -1,0 +1,16 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents an array of tags.
+        #
+        class Tags < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Validatable
+
+          TAGS_LIMIT: 50
+        end
+      end
+    end
+  end
+end

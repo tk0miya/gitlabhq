@@ -1,0 +1,33 @@
+module Gitlab
+  module Database
+    class TruncatePartition
+      @partition_name: untyped
+
+      @target_database: untyped
+
+      @logger: untyped
+
+      @allowed_partitions: untyped
+
+      def initialize: (untyped partition_name, ?target_database: untyped?, ?logger: untyped) -> void
+
+      def execute: () -> (false | untyped)
+
+      private
+
+      attr_reader partition_name: untyped
+
+      attr_reader target_database: untyped
+
+      attr_reader logger: untyped
+
+      def allowed_partitions: () -> untyped
+
+      def allowed_partition?: () -> untyped
+
+      def truncate: (untyped connection, untyped partition_data, untyped database_name) -> untyped
+
+      def log: (untyped message) -> untyped
+    end
+  end
+end

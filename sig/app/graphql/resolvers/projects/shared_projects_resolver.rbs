@@ -1,0 +1,17 @@
+module Resolvers
+  module Projects
+    class SharedProjectsResolver < BaseResolver
+      prepend ::Projects::LookAheadPreloads
+
+      alias group object
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def unconditional_includes: () -> ::Array[:creator | :group | :invited_groups | :project_setting | :project_namespace | { namespace: ::Array[:namespace_settings_with_ancestors_inherited_settings] }]
+
+      def finder_params: (untyped args) -> { search: untyped, sort: untyped, min_access_level: untyped, language_name: untyped, active: untyped, organization: untyped }
+    end
+  end
+end

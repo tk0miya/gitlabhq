@@ -1,0 +1,39 @@
+class Groups::MilestonesController < Groups::ApplicationController
+  @noteable: untyped
+
+  @milestone: untyped
+
+  @sort: untyped
+
+  include MilestoneActions
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def show: () -> nil
+
+  def edit: () -> nil
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  private
+
+  def authorize_admin_milestones!: () -> (untyped | nil)
+
+  def milestone_params: () -> untyped
+
+  def milestones: () -> untyped
+
+  def milestone: () -> untyped
+
+  def search_params: () -> untyped
+
+  def group_projects_with_access: () -> untyped
+
+  def group_ids: (?include_ancestors: bool) -> untyped
+end

@@ -1,0 +1,29 @@
+module Gitlab
+  module FogbugzImport
+    module NokogiriBackendWithLimits
+      extend ActiveSupport::XmlMini_Nokogiri
+
+      module Conversions
+        module Document
+          def to_hash: () -> untyped
+
+          private
+
+          def check_object_count!: (untyped document) -> (nil | untyped)
+
+          def object_count: (untyped object) -> (0 | 1 | untyped)
+        end
+      end
+    end
+
+    class XmlAdapter
+      ResponseTooLargeError: untyped
+
+      MAX_ALLOWED_BYTES: untyped
+
+      MAX_ALLOWED_OBJECTS: 250000
+
+      def self.parse: (untyped xml) -> untyped
+    end
+  end
+end

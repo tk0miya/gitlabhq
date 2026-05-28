@@ -1,0 +1,79 @@
+module DesignManagement
+  class Version < ApplicationRecord
+    include Importable
+
+    include ShaAttribute
+
+    include AfterCommitQueue
+
+    include Gitlab::Utils::StrongMemoize
+
+    include EachBatch
+
+    extend Gitlab::ExclusiveLeaseHelpers
+
+    NotSameIssue: untyped
+
+    class CouldNotCreateVersion < StandardError
+      @sha: untyped
+
+      @issue_id: untyped
+
+      @actions: untyped
+
+      attr_reader sha: untyped
+
+      attr_reader issue_id: untyped
+
+      attr_reader actions: untyped
+
+      def initialize: (untyped sha, untyped issue_id, untyped actions) -> void
+
+      def message: () -> ::String
+
+      def sentry_extra_data: () -> { sha: untyped, issue_id: untyped, design_ids: untyped }
+    end
+
+    # This is the one true way to create a Version.
+    #
+    # This method means you can avoid the paradox of versions being invalid without
+    # designs, and not being able to add designs without a saved version. Also this
+    # method inserts designs in bulk, rather than one by one.
+    #
+    # Before calling this method, callers must guard against concurrent
+    # modification by obtaining the lock on the design repository. See:
+    # `DesignManagement::Version.with_lock`.
+    #
+    # Parameters:
+    # - design_actions [DesignManagement::DesignAction]:
+    #     the actions that have been performed in the repository.
+    # - sha [String]:
+    #     the SHA of the commit that performed them
+    # - author [User]:
+    #     the user who performed the commit
+    # returns [DesignManagement::Version]
+    def self.create_for_designs: (untyped design_actions, untyped sha, untyped author) -> untyped
+
+    CREATION_TTL: untyped
+
+    RETRY_DELAY: untyped
+
+    LOCK_RETRY_COUNT: 5
+
+    def self.with_lock: (untyped project_id, untyped repository) { () -> untyped } -> untyped
+
+    def designs_by_event: () -> untyped
+
+    def author: () -> untyped
+
+    def diff_refs: () -> untyped
+
+    def reset: () -> untyped
+
+    private
+
+    def commit_author: () -> untyped
+
+    def commit: () -> untyped
+  end
+end

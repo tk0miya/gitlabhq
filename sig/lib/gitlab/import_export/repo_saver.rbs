@@ -1,0 +1,35 @@
+module Gitlab
+  module ImportExport
+    class RepoSaver
+      @exportable: untyped
+
+      @shared: untyped
+
+      @repository: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      include DurationMeasuring
+
+      attr_reader exportable: untyped
+
+      attr_reader shared: untyped
+
+      def initialize: (exportable: untyped, shared: untyped) -> void
+
+      def save: () -> untyped
+
+      def repository: () -> untyped
+
+      private
+
+      def repository_exists?: () -> untyped
+
+      def bundle_full_path: () -> untyped
+
+      def bundle_filename: () -> untyped
+
+      def bundle_to_disk: () -> untyped
+    end
+  end
+end

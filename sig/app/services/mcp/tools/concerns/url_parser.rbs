@@ -1,0 +1,34 @@
+module Mcp
+  module Tools
+    module Concerns
+      module UrlParser
+        extend ActiveSupport::Concern
+
+        include Constants
+
+        private
+
+        def resolve_parent_from_url: (untyped url) -> { type: untyped, full_path: untyped, record: untyped }
+
+        def resolve_work_item_from_url: (untyped url) -> untyped
+
+        # Parse parent URL (group or project)
+        # Examples:
+        #   https://gitlab.com/namespace/project -> { type: :project, path: 'namespace/project' }
+        #   https://gitlab.com/groups/namespace/group -> { type: :group, path: 'namespace/group' }
+        #   https://gitlab.com/namespace/project/-/merge_requests -> { type: :project, path: 'namespace/project' }
+        def parse_parent_url: (untyped url) -> untyped
+
+        # Parse work item URL
+        # Examples:
+        #   https://gitlab.com/namespace/project/-/work_items/42
+        #   https://gitlab.com/groups/namespace/group/-/work_items/42
+        def parse_work_item_url: (untyped url) -> { parent_type: untyped, parent_path: untyped, work_item_iid: untyped }
+
+        def extract_path_from_url: (untyped url) -> untyped
+
+        def valid_url?: (untyped url) -> untyped
+      end
+    end
+  end
+end

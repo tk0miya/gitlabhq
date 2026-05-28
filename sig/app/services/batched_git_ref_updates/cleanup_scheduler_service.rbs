@@ -1,0 +1,13 @@
+module BatchedGitRefUpdates
+  class CleanupSchedulerService
+    include Gitlab::ExclusiveLeaseHelpers
+
+    MAX_PROJECTS: 10000
+
+    BATCH_SIZE: 100
+
+    LOCK_TIMEOUT: untyped
+
+    def execute: () -> { total_projects: untyped }
+  end
+end

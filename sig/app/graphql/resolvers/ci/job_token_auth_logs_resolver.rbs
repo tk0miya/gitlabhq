@@ -1,0 +1,15 @@
+module Resolvers
+  module Ci
+    class JobTokenAuthLogsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      include LooksAhead
+
+      def resolve_with_lookahead: (**untyped _args) -> untyped
+
+      private
+
+      def preloads: () -> { origin_project: ::Array[:origin_project] }
+    end
+  end
+end

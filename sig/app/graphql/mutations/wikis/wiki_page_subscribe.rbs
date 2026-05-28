@@ -1,0 +1,11 @@
+module Mutations
+  module Wikis
+    class WikiPageSubscribe < BaseMutation
+      def resolve: (untyped args) -> { wiki_page: untyped, errors: ::Array[untyped] }
+
+      private
+
+      def update_subscription: (untyped wiki_page_meta, untyped subscribed_state) -> untyped
+    end
+  end
+end

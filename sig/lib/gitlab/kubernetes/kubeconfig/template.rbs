@@ -1,0 +1,45 @@
+module Gitlab
+  module Kubernetes
+    module Kubeconfig
+      class Template
+        @clusters: untyped
+
+        @users: untyped
+
+        @contexts: untyped
+
+        @current_context: untyped
+
+        ENTRIES: { cluster: untyped, user: untyped, context: untyped }
+
+        def initialize: () -> void
+
+        def valid?: () -> untyped
+
+        def add_cluster: (**untyped args) -> untyped
+
+        def add_user: (**untyped args) -> untyped
+
+        def add_context: (**untyped args) -> untyped
+
+        def merge_yaml: (untyped kubeconfig_yaml) -> (nil | untyped)
+
+        def to_h: () -> untyped
+
+        def to_yaml: () -> untyped
+
+        private
+
+        attr_reader clusters: untyped
+
+        attr_reader users: untyped
+
+        attr_reader contexts: untyped
+
+        attr_reader current_context: untyped
+
+        def new_entry: (untyped entry, **untyped args) -> untyped
+      end
+    end
+  end
+end

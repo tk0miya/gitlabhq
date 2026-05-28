@@ -1,0 +1,56 @@
+module Boards
+  class BaseItemsListService < Boards::BaseService
+    @collection_ids: untyped
+
+    @board_label_ids: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def execute: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def metadata: (?::Array[untyped] required_fields) -> untyped
+
+    private
+
+    def collection_ids: () -> untyped
+
+    def metadata_fields: (untyped required_fields) -> ({ size: untyped } | ::Hash[untyped, untyped])
+
+    def order: (untyped items) -> untyped
+
+    def finder: () -> untyped
+
+    def board: () -> untyped
+
+    def item_model: () -> untyped
+
+    # We memoize the query here since the finder methods we use are quite complex. This does not memoize the result of the query.
+    def init_collection: () -> untyped
+
+    def filter: (untyped items) -> untyped
+
+    def list: () -> (nil | untyped)
+
+    def filter_params: () -> untyped
+
+    def set_parent: () -> untyped
+
+    def set_state: () -> (nil | untyped)
+
+    def set_attempt_search_optimizations: () -> (nil | untyped)
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def board_label_ids: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def without_board_labels: (untyped items) -> untyped
+
+    def label_links: (untyped items, untyped label_ids) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def with_list_label: (untyped items) -> untyped
+
+    def labels_filter: () -> untyped
+  end
+end

@@ -1,0 +1,41 @@
+# rubocop:disable Gitlab/BoundedContexts -- OmniAuth is external middleware, not a GitLab bounded context
+module OmniAuth
+  module Strategies
+    # Extends OpenIDConnect for the Cells architecture, where the OAuth callback
+    # may arrive at a different cell than the one that initiated the request.
+    # Session-based CSRF state is therefore unreliable; we bind the state to the
+    # browser via a short-lived cookie instead.
+    class CellsAwareOpenidConnect < OpenIDConnect
+      @pending_cookie_clear: untyped
+
+      @user_info: untyped
+
+      OAUTH_STATE_COOKIE_NAME: "omniauth_oauth_state"
+
+      # Matches the IAM Auth Service parked-session TTL.
+      OAUTH_STATE_COOKIE_MAX_AGE: 600
+
+      def request_phase: () -> ::Array[untyped]
+
+      def callback_phase: () -> untyped
+
+      def call_app!: (?untyped env) -> ::Array[untyped]
+
+      # Override user_info method to handle IAM authentication service limitations
+      # This is overridden from https://github.com/omniauth/omniauth_openid_connect/blob/master/lib/omniauth/strategies/openid_connect.rb#L263C6-L273C10
+      # We skip the OIDC userinfo endpoint call and directly use the ID token for user information
+      # when the userinfo endpoint is not available in the IAM authentication service
+      def user_info: () -> untyped
+
+      private
+
+      def valid_oauth_state_cookie?: () -> (false | untyped)
+
+      def set_oauth_state_cookie: (untyped headers, untyped state_value) -> untyped
+
+      def clear_oauth_state_cookie: (untyped headers) -> untyped
+
+      def fail_with_csrf_error!: () -> ::Array[untyped]
+    end
+  end
+end

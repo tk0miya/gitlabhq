@@ -1,0 +1,11 @@
+module API
+  class ProjectContainerRepositories < ::API::Base
+    include PaginationParams
+
+    include ::API::Helpers::ContainerRegistryHelpers
+
+    REPOSITORY_ENDPOINT_REQUIREMENTS: untyped
+
+    DEFAULT_PAGE_COUNT: 20
+  end
+end

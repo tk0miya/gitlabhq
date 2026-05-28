@@ -1,0 +1,31 @@
+class Projects::ProtectedRefsController < Projects::ApplicationController
+  @matching_refs: untyped
+
+  @prev_path: untyped
+
+  @next_path: untyped
+
+  @protected_ref: untyped
+
+  include RepositorySettingsRedirect
+
+  def index: () -> untyped
+
+  def create: () -> untyped
+
+  def show: () -> untyped
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  def create_service_class: () -> untyped
+
+  def update_service_class: () -> untyped
+
+  def destroy_service_class: () -> untyped
+
+  def access_level_attributes: () -> ::Array[:access_level | :id | :_destroy | :deploy_key_id]
+
+  def authorize_admin_protected_refs!: () -> untyped
+end

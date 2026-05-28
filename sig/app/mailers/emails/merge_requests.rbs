@@ -1,0 +1,110 @@
+module Emails
+  module MergeRequests
+    @new_commits: untyped
+
+    @total_new_commits_count: untyped
+
+    @total_stripped_new_commits_count: untyped
+
+    @existing_commits: untyped
+
+    @total_existing_commits_count: untyped
+
+    @updated_by_user: untyped
+
+    @added_assignees: untyped
+
+    @removed_assignees: untyped
+
+    @previous_reviewers: untyped
+
+    @label_names: untyped
+
+    @labels_url: untyped
+
+    @milestone: untyped
+
+    @milestone_url: untyped
+
+    @updated_by: untyped
+
+    @mr_status: untyped
+
+    @resolved_by: untyped
+
+    @mwps_set_by: untyped
+
+    @project: untyped
+
+    @count: untyped
+
+    @written_count: untyped
+
+    @truncated: untyped
+
+    @size_limit: untyped
+
+    @approved_by: untyped
+
+    @unapproved_by: untyped
+
+    @merge_request: untyped
+
+    @target_url: untyped
+
+    @recipient: untyped
+
+    @mr_presenter: untyped
+
+    @sent_notification: untyped
+
+    extend ActiveSupport::Concern
+
+    def new_merge_request_email: (untyped recipient_id, untyped merge_request_id, ?untyped? reason) -> untyped
+
+    def new_mention_in_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    # existing_commits - an array containing the first and last commits
+    def push_to_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped updated_by_user_id, ?untyped? reason, new_commits: untyped, total_new_commits_count: untyped, existing_commits: untyped, total_existing_commits_count: untyped) -> untyped
+
+    def change_in_merge_request_draft_status_email: (untyped recipient_id, untyped merge_request_id, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def reassigned_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped previous_assignee_ids, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def changed_reviewer_of_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped previous_reviewer_ids, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def relabeled_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped label_names, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def removed_milestone_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def changed_milestone_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped milestone, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def closed_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped updated_by_user_id, ?reason: untyped?, ?closed_via: untyped?) -> untyped
+
+    def merged_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped updated_by_user_id, ?reason: untyped?, ?closed_via: untyped?) -> untyped
+
+    def request_review_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def merge_request_status_email: (untyped recipient_id, untyped merge_request_id, untyped status, untyped updated_by_user_id, ?untyped? reason) -> untyped
+
+    def merge_request_unmergeable_email: (untyped recipient_id, untyped merge_request_id, ?untyped? reason) -> untyped
+
+    def resolved_all_discussions_email: (untyped recipient_id, untyped merge_request_id, untyped resolved_by_user_id, ?untyped? reason) -> untyped
+
+    def merge_when_pipeline_succeeds_email: (untyped recipient_id, untyped merge_request_id, untyped mwps_set_by_user_id, ?untyped? reason) -> untyped
+
+    def merge_requests_csv_email: (untyped user, untyped project, untyped csv_data, untyped export_status) -> untyped
+
+    def approved_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped approved_by_user_id, ?untyped? reason) -> untyped
+
+    def unapproved_merge_request_email: (untyped recipient_id, untyped merge_request_id, untyped unapproved_by_user_id, ?untyped? reason) -> untyped
+
+    private
+
+    def setup_merge_request_mail: (untyped merge_request_id, untyped recipient_id, ?present: bool) -> untyped
+
+    def merge_request_thread_options: (untyped sender_id, ?untyped? reason) -> { from: untyped, to: untyped, subject: untyped, "X-GitLab-NotificationReason" => untyped }
+  end
+end

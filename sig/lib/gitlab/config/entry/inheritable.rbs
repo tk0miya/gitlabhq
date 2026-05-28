@@ -1,0 +1,22 @@
+module Gitlab
+  module Config
+    module Entry
+      #
+      # Entry that represents an inheritable configs.
+      #
+      module Inheritable
+        InheritError: untyped
+
+        def compose!: (?untyped? deps) { (?) -> untyped } -> untyped
+
+        private
+
+        # We inherit config entries from `default:`
+        # if the entry has the `inherit: true` flag set
+        def inherit!: (untyped deps) -> (nil | untyped)
+
+        def overwrite_entry: (untyped deps, untyped key, untyped current_entry) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,56 @@
+# Generated HTML is transformed back to GFM by app/assets/javascripts/behaviors/markdown/nodes/emoji.js
+module Banzai
+  module Filter
+    # HTML filter that replaces :emoji: and unicode with images.
+    #
+    # Based on HTML::Pipeline::EmojiFilter
+    class EmojiFilter < HTML::Pipeline::Filter
+      self.@emoji_pattern: untyped
+
+      @emoji_count: untyped
+
+      prepend Concerns::TimeoutFilterHandler
+
+      prepend Concerns::PipelineTimingCheck
+
+      IGNORED_ANCESTOR_TAGS: untyped
+
+      IGNORE_UNICODE_EMOJIS: ::Array[::String]
+
+      # A lightweight pre-filter pattern to quickly detect if text might contain
+      # emoji alpha codes before invoking the expensive TanukiEmoji pattern.
+      POTENTIAL_EMOJI_PATTERN: ::Regexp
+
+      def call: () -> untyped
+
+      # Replace :emoji: with corresponding gl-emoji unicode.
+      #
+      # text - String text to replace :emoji: in.
+      #
+      # Returns a String with :emoji: replaced with gl-emoji unicode.
+      def emoji_name_element_unicode_filter: (untyped text) -> untyped
+
+      # Replace unicode emoji with corresponding gl-emoji unicode.
+      #
+      # text - String text to replace unicode emoji in.
+      #
+      # Returns a String with unicode emoji replaced with gl-emoji unicode.
+      def emoji_unicode_element_unicode_filter: (untyped text) -> untyped
+
+      def process_emoji_tag: (untyped emoji, untyped fallback) -> untyped
+
+      def ignore_emoji?: (untyped text) -> untyped
+
+      # Build a regexp that matches all valid :emoji: names.
+      def self.emoji_pattern: () -> untyped
+
+      def self.emoji_unicode_pattern: () -> untyped
+
+      private
+
+      def emoji_pattern: () -> untyped
+
+      def emoji_unicode_pattern: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Mutations
+  module Snippets
+    class Destroy < Base
+      ERROR_MSG: "Error deleting the snippet"
+
+      def resolve: (id: untyped) -> { errors: untyped }
+
+      private
+
+      def ability_name: () -> "admin"
+    end
+  end
+end

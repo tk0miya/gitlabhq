@@ -1,0 +1,49 @@
+module BulkImports
+  class ExportRequestWorker
+    @entity: untyped
+
+    @client: untyped
+
+    @graphql_client: untyped
+
+    @entity_query: untyped
+
+    @logger: untyped
+
+    include ApplicationWorker
+
+    def perform: (untyped entity_id) -> (nil | untyped)
+
+    def perform_failure: (untyped exception, untyped entity_id) -> (nil | untyped)
+
+    private
+
+    attr_reader entity: untyped
+
+    def set_source_xid: () -> (untyped | nil)
+
+    def request_export: () -> untyped
+
+    def http_client: () -> untyped
+
+    def failure_attributes: (untyped exception) -> { bulk_import_entity_id: untyped, pipeline_class: "ExportRequestWorker", exception_class: untyped, exception_message: untyped, correlation_id_value: untyped }
+
+    def graphql_client: () -> untyped
+
+    def entity_source_xid: () -> untyped
+
+    def entity_query: () -> untyped
+
+    def logger: () -> untyped
+
+    def build_payload: (untyped exception, untyped payload) -> untyped
+
+    def log_warning: (untyped exception, untyped payload) -> untyped
+
+    def log_error: (untyped exception, untyped payload) -> untyped
+
+    def log_and_fail: (untyped exception) -> untyped
+
+    def export_url: () -> untyped
+  end
+end

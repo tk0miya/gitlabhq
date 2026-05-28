@@ -1,0 +1,38 @@
+# Targets refer to SELECT columns but also JOIN fields, etc.
+# A target can have a qualifying reference to some other entity like a table or CTE.
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      class PreventSetOperatorMismatch
+        class Targets
+          # Return the reference names used by the given target.
+          #
+          # For example:
+          # `SELECT users.id` would return ['users']
+          # `SELECT * FROM users, namespaces` would return ['users', 'namespaces']
+          def self.reference_names: (untyped target, untyped select_stmt) -> untyped
+
+          # True when `SELECT *`
+          def self.a_star?: (untyped target) -> untyped
+
+          # Null targets are used to produce "polymorphic" query result sets that can be aggregated through a UNION
+          # without having to worry about mismatched columns.
+          #
+          # A null target would be something like:
+          # SELECT NULL::namespaces FROM namespaces
+          def self.null?: (untyped target) -> untyped
+
+          private
+
+          def self.literal_ref_names: (untyped target, untyped select_stmt) -> untyped
+
+          def self.unqualified_ref_names: (untyped fields, untyped select_stmt) -> untyped
+
+          def self.fields: (untyped target) -> untyped
+
+          def self.subselect_select_stmt: (untyped target) -> untyped
+        end
+      end
+    end
+  end
+end

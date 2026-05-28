@@ -1,0 +1,35 @@
+module WorkItems
+  module DataSync
+    Error: untyped
+
+    # This is a altered version of the WorkItem::CreateService. This overwrites the `initialize_callbacks!`
+    # and replaces the callbacks called by `WorkItem::CreateService` to setup data sync related callbacks which
+    # are used to copy data from the original work item to the target work item.
+    class BaseCreateService < ::WorkItems::CreateService
+      @original_work_item: untyped
+
+      @operation: untyped
+
+      @callbacks: untyped
+
+      attr_reader original_work_item: untyped
+
+      attr_reader operation: untyped
+
+      attr_reader sync_data_params: untyped
+
+      def initialize: (original_work_item: untyped, operation: untyped, **untyped kwargs) -> void
+
+      def execute: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def initialize_callbacks!: (untyped work_item) -> untyped
+
+      private
+
+      # In legacy Issues::MoveService and Issues::CloneService, system notes are created within the
+      # work item move transaction, so we replicate the behaviour for now.
+      # This is to be changed in MVC2: https://gitlab.com/groups/gitlab-org/-/epics/15476
+      def transaction_create: (untyped new_work_item) -> untyped
+    end
+  end
+end

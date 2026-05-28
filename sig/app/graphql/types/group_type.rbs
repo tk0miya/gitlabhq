@@ -1,0 +1,55 @@
+module Types
+  class GroupType < NamespaceType
+    include ::Namespaces::DeletableHelper
+
+    def label: (title: untyped) -> untyped
+
+    def avatar_url: () -> untyped
+
+    def parent: () -> untyped
+
+    def container_repositories_count: () -> untyped
+
+    def dependency_proxy_manifests: () -> untyped
+
+    def dependency_proxy_image_count: () -> untyped
+
+    def dependency_proxy_blob_count: () -> untyped
+
+    def dependency_proxy_total_size: () -> untyped
+
+    def dependency_proxy_total_size_in_bytes: () -> untyped
+
+    def dependency_proxy_total_size_bytes: () -> untyped
+
+    def dependency_proxy_setting: () -> untyped
+
+    def descendant_groups_count: () -> untyped
+
+    def emails_disabled: () -> untyped
+
+    def projects_count: () -> untyped
+
+    def group_members_count: () -> untyped
+
+    def max_access_level: () -> untyped
+
+    def organization_edit_path: () -> (nil | untyped)
+
+    def marked_for_deletion_on: () -> untyped
+
+    def permanent_deletion_date: () -> untyped
+
+    def web_path: () -> untyped
+
+    def edit_path: () -> untyped
+
+    def admin_show_path: () -> untyped
+
+    def admin_edit_path: () -> untyped
+
+    private
+
+    def group: () -> untyped
+  end
+end

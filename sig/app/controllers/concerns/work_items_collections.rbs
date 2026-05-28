@@ -1,0 +1,53 @@
+module WorkItemsCollections
+  @finder: untyped
+
+  @work_items_collection_params: untyped
+
+  # Used by view to highlight active option
+  @sort: untyped
+
+  extend ActiveSupport::Concern
+
+  include SearchRateLimitable
+
+  include SortingHelper
+
+  include SortingPreference
+
+  include Gitlab::Utils::StrongMemoize
+
+  include PaginatedCollection
+
+  private
+
+  def work_items_for_rss: () -> untyped
+
+  def work_items_for_calendar: () -> untyped
+
+  def finder_options: () -> untyped
+
+  def default_state: () -> "opened"
+
+  def default_sort_order: () -> untyped
+
+  def finder: () -> untyped
+
+  def work_items_collection_params: () -> untyped
+
+  def rewrite_type_param!: () -> (nil | untyped)
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables -- we need to use params in the finder
+  def build_base_options: () -> untyped
+
+  def context_specific_options: () -> (untyped | ::Hash[untyped, untyped])
+
+  def project_options: () -> { project_id: untyped, attempt_project_search_optimizations: true }
+
+  def group_options: () -> { group_id: untyped, include_descendants: true, exclude_group_work_items: untyped, attempt_group_search_optimizations: true }
+
+  def extract_iid_from_search!: (untyped options) -> (nil | untyped)
+
+  def excluding_epics?: () -> untyped
+
+  def transform_custom_fields!: () -> (nil | untyped)
+end

@@ -1,0 +1,15 @@
+class IssuePresenter < Gitlab::View::Presenter::Delegated
+  def issue_path: () -> untyped
+
+  def subscribed?: () -> untyped
+
+  def parent_emails_disabled?: () -> untyped
+
+  def parent_emails_enabled?: () -> untyped
+
+  def service_desk_reply_to: () -> (nil | untyped)
+
+  alias external_author service_desk_reply_to
+
+  def issue_email_participants: () -> untyped
+end

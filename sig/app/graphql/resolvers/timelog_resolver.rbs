@@ -1,0 +1,29 @@
+module Resolvers
+  class TimelogResolver < BaseResolver
+    include LooksAhead
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    private
+
+    def finder_params: (untyped args) -> { username: untyped, start_time: untyped, end_time: untyped, group_id: untyped, project_id: untyped, sort: untyped }
+
+    def preloads: () -> { note: ::Array[:note] }
+
+    def validate_args!: (untyped object, untyped args) -> untyped
+
+    def has_parent?: (untyped object, untyped args) -> untyped
+
+    def for_current_user?: (untyped args) -> untyped
+
+    def admin_user?: () -> untyped
+
+    def parse_datetime_args: (untyped args) -> untyped
+
+    def times_provided?: (untyped args) -> untyped
+
+    def raise_argument_error: (untyped message) -> untyped
+  end
+end

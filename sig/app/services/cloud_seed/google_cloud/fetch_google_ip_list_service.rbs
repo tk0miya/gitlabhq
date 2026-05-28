@@ -1,0 +1,31 @@
+module CloudSeed
+  module GoogleCloud
+    class FetchGoogleIpListService
+      include BaseServiceUtility
+
+      GOOGLE_IP_RANGES_URL: "https://www.gstatic.com/ipranges/cloud.json"
+
+      RESPONSE_BODY_LIMIT: untyped
+
+      EXPECTED_CONTENT_TYPE: "application/json"
+
+      IpListNotRetrievedError: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      # Attempts to retrieve and parse the list of IPs from Google. Updates
+      # the internal cache so that the data is accessible.
+      #
+      # Returns an array of IPAddr objects consisting of subnets.
+      def fetch_and_update_cache!: () -> untyped
+
+      def fetch_google_ip_list: () -> untyped
+
+      def validate_response!: (untyped response) -> untyped
+
+      def parse_google_prefixes: (untyped parsed_response) -> untyped
+    end
+  end
+end

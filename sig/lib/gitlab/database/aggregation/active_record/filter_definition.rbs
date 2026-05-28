@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ActiveRecord
+        class FilterDefinition < PartDefinition
+          @max_size: untyped
+
+          attr_reader max_size: untyped
+
+          def initialize: (*untyped args, ?max_size: untyped?, **untyped kwargs) -> void
+
+          def apply: (untyped _relation, untyped _filter_config) -> untyped
+
+          def validate_part: (untyped part) -> untyped
+
+          private
+
+          def column: (untyped relation) -> untyped
+
+          def validate_max_size: (untyped part) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

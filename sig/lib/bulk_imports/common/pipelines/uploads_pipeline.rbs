@@ -1,0 +1,45 @@
+module BulkImports
+  module Common
+    module Pipelines
+      class UploadsPipeline
+        @tmpdir: untyped
+
+        @file_uploader: untyped
+
+        include Pipeline
+
+        include IndexCacheStrategy
+
+        AVATAR_PATTERN: ::Regexp
+
+        AvatarLoadingError: untyped
+
+        def extract: (untyped _context) -> untyped
+
+        def load: (untyped context, untyped file_path) -> (nil | untyped)
+
+        def after_run: (untyped _) -> untyped
+
+        private
+
+        def download_service: () -> untyped
+
+        def decompression_service: () -> untyped
+
+        def extraction_service: () -> untyped
+
+        def relation: () -> untyped
+
+        def tar_filename: () -> ::String
+
+        def targz_filename: () -> ::String
+
+        def tmpdir: () -> untyped
+
+        def file_uploader: () -> untyped
+
+        def save_avatar: (untyped file_path) -> untyped
+      end
+    end
+  end
+end

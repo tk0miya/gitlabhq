@@ -1,0 +1,27 @@
+module Organizations
+  class MarkForDeletionService
+    @organization: untyped
+
+    @current_user: untyped
+
+    include BaseServiceUtility
+
+    include ::Gitlab::Loggable
+
+    def initialize: (untyped organization, current_user: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader organization: untyped
+
+    attr_reader current_user: untyped
+
+    def authorized?: () -> untyped
+
+    def error: (untyped message) -> untyped
+
+    def log_event: () -> untyped
+  end
+end

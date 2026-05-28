@@ -1,0 +1,51 @@
+module Gitlab
+  module Checks
+    class TimedLogger
+      @start_time: untyped
+
+      @timeout: untyped
+
+      @header: untyped
+
+      @log: untyped
+
+      TimeoutError: untyped
+
+      attr_reader start_time: untyped
+
+      attr_reader header: untyped
+
+      attr_reader log: untyped
+
+      attr_reader timeout: untyped
+
+      def initialize: (timeout: untyped, ?start_time: untyped, ?log: untyped, ?header: ::String) -> void
+
+      # Adds trace of method being tracked with
+      # the correspondent time it took to run it.
+      # We make use of the start default argument
+      # on unit tests related to this method
+      #
+      def log_timed: (untyped log_message, ?untyped start) { () -> untyped } -> untyped
+
+      def check_timeout_reached: () -> (nil | untyped)
+
+      def time_left: () -> untyped
+
+      def full_message: () -> untyped
+
+      # We always want to append in-place on the log
+      def append_message: (untyped message) -> untyped
+
+      private
+
+      def time_expired?: () -> untyped
+
+      def time_suffix_message: (?cancelled: bool, ?start: untyped?) -> (::String | untyped)
+
+      def elapsed_time: (untyped start) -> untyped
+
+      def to_ms: (untyped elapsed) -> untyped
+    end
+  end
+end

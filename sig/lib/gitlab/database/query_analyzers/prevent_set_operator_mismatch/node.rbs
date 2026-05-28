@@ -1,0 +1,51 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      class PreventSetOperatorMismatch
+        # The Node class allows us to traverse PgQuery nodes with tree like semantics.
+        #
+        # This class balances convenience and performance. The PgQuery nodes are Google::Protobuf::MessageExts which
+        # contain a dynamic set of attributes known as fields. Accessing these fields can cause performance problems
+        # due to the large volume of iterable fields.
+        #
+        # When possible use #dig over the *descendant* methods.
+        #
+        # The filter available to each method reduces the traversed attributes. The default filter only traverses nodes
+        # required to parse for set operator mismatches.
+        class Node
+          extend Gitlab::Utils::StrongMemoize
+
+          # The default nodes help speed up traversal. Traversal of other nodes can greatly affect performance.
+          DEFAULT_NODES: ::Array[:a_star | :alias | :args | :column_ref | :fields | :func_call | :join_expr | :larg | :range_subselect | :range_var | :rarg | :res_target | :subquery | :val]
+
+          DEFAULT_FIELD_FILTER: untyped
+
+          # Recurse through children.
+          # The block will yield the child node and the name of that node.
+          # Calling without a block will return an Enumerator.
+          def self.descendants: (untyped node, ?filter: untyped) ?{ (untyped, untyped) -> untyped } -> (nil | untyped)
+
+          # Return the first node that matches the field.
+          def self.locate_descendant: (untyped node, untyped field, ?filter: untyped) -> untyped
+
+          # Return all nodes that match the field.
+          def self.locate_descendants: (untyped node, untyped field, ?filter: untyped) -> untyped
+
+          # Like Hash#dig, traverse attributes in sequential order and return the final value.
+          # Return nil if any of the fields are not available.
+          def self.dig: (untyped node, *untyped attrs) -> untyped
+
+          private
+
+          # Interface with a PgQuery result as though it was a tree node.
+          # All elements in a PgQuery result are ancestors of Google::Protobuf::AbstractMessage
+          #
+          # Based off PgQuery's treewalker https://github.com/pganalyze/pg_query/blob/main/lib/pg_query/treewalker.rb
+          def self.children: (untyped node, ?filter: untyped) { (untyped, untyped) -> untyped } -> untyped
+
+          def self.descriptor_fields: (untyped descriptor) -> untyped
+        end
+      end
+    end
+  end
+end

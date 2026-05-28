@@ -1,0 +1,11 @@
+module Gitlab
+  class EncryptedSmtpCommand < EncryptedCommandBase
+    DISPLAY_NAME: "SMTP"
+
+    EDIT_COMMAND_NAME: "gitlab:smtp:secret:edit"
+
+    def self.encrypted_secrets: () -> untyped
+
+    def self.encrypted_file_template: () -> "# password: '123'\n# user_name: 'gitlab-inst'\n"
+  end
+end

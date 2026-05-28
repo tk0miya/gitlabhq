@@ -1,0 +1,23 @@
+module Gitlab
+  module Git
+    # Collects and batches Git reference existence checks to reduce Gitaly calls.
+    #
+    # Instead of making individual Gitaly calls for each branch/tag existence check,
+    # this module collects refs during request processing and batches them into
+    # a single Gitaly call per project.
+    #
+    # Usage:
+    #   RefPreloader.collect_ref(project_id, "refs/heads/main")
+    #   RefPreloader.preload_refs_for_project(project)
+    module RefPreloader
+      # Collects a ref for later batch processing
+      def self.collect_ref: (untyped project_id, untyped ref_name) -> untyped
+
+      # Populates batch loading of all collected refs for the given project
+      def self.preload_refs_for_project: (untyped project) -> (nil | untyped)
+
+      # Thread-local storage for refs pending batch processing
+      def self.refs_to_preload: () -> untyped
+    end
+  end
+end

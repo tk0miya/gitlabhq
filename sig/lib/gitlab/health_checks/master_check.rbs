@@ -1,0 +1,41 @@
+module Gitlab
+  module HealthChecks
+    # This check is registered on master,
+    # and validated by worker
+    class MasterCheck
+      # when we fork, we pass the read pipe to child
+      # child can then react on whether the other end
+      # of pipe is still available
+      self.@pipe_read: untyped
+
+      # when we fork, we pass the read pipe to child
+      # child can then react on whether the other end
+      # of pipe is still available
+      self.@pipe_write: untyped
+
+      extend SimpleAbstractCheck
+
+      extend ::Gitlab::Utils::Override
+
+      def self.available?: () -> untyped
+
+      def self.register_master: () -> (nil | untyped)
+
+      def self.finish_master: () -> (nil | untyped)
+
+      def self.register_worker: () -> (nil | untyped)
+
+      private
+
+      def self.close_read: () -> untyped
+
+      def self.close_write: () -> untyped
+
+      def self.metric_prefix: () -> "master_check"
+
+      def self.successful?: (untyped result) -> untyped
+
+      def self.check: () -> untyped
+    end
+  end
+end

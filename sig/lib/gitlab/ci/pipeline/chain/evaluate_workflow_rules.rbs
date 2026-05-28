@@ -1,0 +1,36 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class EvaluateWorkflowRules < Chain::Base
+          include ::Gitlab::Utils::StrongMemoize
+
+          include Chain::Helpers
+
+          def perform!: () -> (nil | untyped)
+
+          def break?: () -> untyped
+
+          private
+
+          def workflow_passed?: () -> untyped
+
+          def workflow_rules_result: () -> untyped
+
+          def workflow_rules: () -> untyped
+
+          def global_context: () -> untyped
+
+          def has_workflow_rules?: () -> untyped
+
+          def workflow_rules_config: () -> untyped
+
+          # rubocop:disable Gitlab/NoCodeCoverageComment -- method is tested in EE
+          # :nocov:
+          # Overridden in EE
+          def force_pipeline_creation_to_continue?: () -> false
+        end
+      end
+    end
+  end
+end

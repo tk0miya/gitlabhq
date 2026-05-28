@@ -1,0 +1,12 @@
+module Gitlab
+  module SidekiqMiddleware
+    module CurrentOrganization
+      class Server
+        include Sidekiq::ServerMiddleware
+
+        # rubocop:disable Gitlab/AvoidCurrentOrganization -- We need to assign Current.organization in workers
+        def call: (untyped _worker, untyped _job, untyped _queue) { () -> untyped } -> untyped
+      end
+    end
+  end
+end

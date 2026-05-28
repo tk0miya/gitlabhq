@@ -1,0 +1,6 @@
+# Cronjobs that call other cronjobs should have their own tag
+# so that we can isolate cron activity to make end-to-end code
+# mappings better.
+module CronjobChildWorker
+  extend ActiveSupport::Concern
+end

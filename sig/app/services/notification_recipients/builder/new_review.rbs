@@ -1,0 +1,26 @@
+module NotificationRecipients
+  module Builder
+    class NewReview < Base
+      @review: untyped
+
+      attr_reader review: untyped
+
+      def initialize: (untyped review) -> void
+
+      def target: () -> untyped
+
+      def project: () -> untyped
+
+      def group: () -> untyped
+
+      def build!: () -> untyped
+
+      # A new review is a batch of new notes
+      # therefore new_note subscribers should also
+      # receive incoming new reviews
+      def custom_action: () -> :new_note
+
+      def acting_user: () -> untyped
+    end
+  end
+end

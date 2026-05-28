@@ -1,0 +1,10 @@
+module Types
+  module WorkItems
+    # rubocop:disable Graphql/AuthorizeTypes -- authorized by resolver
+    class LinkedItemType < BaseObject
+      def self.authorization_scopes: () -> untyped
+
+      def work_item: () -> untyped
+    end
+  end
+end

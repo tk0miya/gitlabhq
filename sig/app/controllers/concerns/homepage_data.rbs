@@ -1,0 +1,17 @@
+module HomepageData
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  include MergeRequestsHelper
+
+  private
+
+  def homepage_app_data: (untyped user) -> { review_requested_path: untyped, activity_path: untyped, assigned_merge_requests_path: untyped, assigned_work_items_path: untyped, authored_work_items_path: untyped, preferences_path: untyped, duo_code_review_bot_username: untyped, merge_requests_review_requested_title: untyped, merge_requests_your_merge_requests_title: untyped, last_push_event: untyped }
+
+  def prepare_last_push_event_data: (untyped last_push_event) -> (nil | untyped)
+
+  def merge_request_ids: (untyped user) -> (::Array["reviews" | "assigned"] | ::Array["reviews_requested" | "assigned_to_you"])
+
+  def duo_code_review_bot_username: (untyped user) -> untyped
+end

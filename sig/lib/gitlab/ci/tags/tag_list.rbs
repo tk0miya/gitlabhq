@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module Tags
+      class TagList < Array
+        @parser: untyped
+
+        attr_accessor owner: untyped
+
+        attr_accessor parser: untyped
+
+        def initialize: (*untyped args) -> void
+
+        def add: (*untyped names) -> self
+
+        def <<: (untyped obj) -> untyped
+
+        def +: (untyped other) -> untyped
+
+        def concat: (untyped other_tag_list) -> self
+
+        def remove: (*untyped names) -> self
+
+        def to_s: () -> untyped
+
+        def clean!: () -> self
+
+        private
+
+        def extract_and_apply_options!: (untyped args) -> untyped
+      end
+    end
+  end
+end

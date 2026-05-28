@@ -1,0 +1,29 @@
+module ContainerRegistry
+  module Protection
+    class UpdateRuleService
+      @container_registry_protection_rule: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      include Gitlab::Allowable
+
+      ALLOWED_ATTRIBUTES: ::Array[:repository_path_pattern | :minimum_access_level_for_delete | :minimum_access_level_for_push]
+
+      def initialize: (untyped container_registry_protection_rule, current_user: untyped, params: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader container_registry_protection_rule: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def service_response_error: (message: untyped) -> untyped
+    end
+  end
+end

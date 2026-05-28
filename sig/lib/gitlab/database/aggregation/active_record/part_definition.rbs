@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ActiveRecord
+        class PartDefinition < ::Gitlab::Database::Aggregation::PartDefinition
+          @scope_proc: untyped
+
+          attr_reader scope_proc: untyped
+
+          def initialize: (*untyped args, ?scope_proc: untyped?, **untyped kwargs) -> void
+
+          def apply_scope: (untyped scope, untyped context) -> untyped
+        end
+      end
+    end
+  end
+end

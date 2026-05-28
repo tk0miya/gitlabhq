@@ -1,0 +1,19 @@
+module BatchedGitRefUpdates
+  class ProjectCleanupService
+    @project_id: untyped
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    LOCK_TIMEOUT: untyped
+
+    GITALY_BATCH_SIZE: 100
+
+    QUERY_BATCH_SIZE: 1000
+
+    MAX_DELETES: 10000
+
+    def initialize: (untyped project_id) -> void
+
+    def execute: () -> { total_deletes: untyped }
+  end
+end

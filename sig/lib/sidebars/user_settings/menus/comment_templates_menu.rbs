@@ -1,0 +1,23 @@
+module Sidebars
+  module UserSettings
+    module Menus
+      class CommentTemplatesMenu < ::Sidebars::Menu
+        include ::UsersHelper
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "comment-lines"
+
+        def render?: () -> untyped
+
+        def active_routes: () -> { controller: :comment_templates }
+
+        private
+
+        def current_user: () -> untyped
+      end
+    end
+  end
+end

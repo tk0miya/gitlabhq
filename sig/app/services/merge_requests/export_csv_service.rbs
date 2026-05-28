@@ -1,0 +1,11 @@
+module MergeRequests
+  class ExportCsvService < ExportCsv::BaseService
+    include GitlabRoutingHelper
+
+    def email: (untyped user) -> untyped
+
+    private
+
+    def header_to_value_hash: () -> { "Title" => "title", "Description" => "description", "MR IID" => "iid", "URL" => untyped, "State" => "state", "Source Branch" => "source_branch", "Target Branch" => "target_branch", "Source Project ID" => "source_project_id", "Target Project ID" => "target_project_id", "Author" => untyped, "Author Username" => untyped, "Assignees" => untyped, "Assignee Usernames" => untyped, "Approvers" => untyped, "Approver Usernames" => untyped, "Merged User" => untyped, "Merged Username" => untyped, "Milestone ID" => untyped, "Created At (UTC)" => untyped, "Updated At (UTC)" => untyped }
+  end
+end

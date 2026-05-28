@@ -1,0 +1,9 @@
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class FeatureFlagStatesLogger < ::GrapeLogging::Loggers::Base
+        def parameters: (untyped _, untyped _) -> (::Hash[untyped, untyped] | { feature_flag_states: untyped })
+      end
+    end
+  end
+end

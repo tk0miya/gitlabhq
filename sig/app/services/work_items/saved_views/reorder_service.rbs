@@ -1,0 +1,27 @@
+module WorkItems
+  module SavedViews
+    class ReorderService < BaseService
+      @current_user: untyped
+
+      @params: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def initialize: (current_user: untyped, params: untyped) -> void
+
+      def execute: (untyped saved_view) -> untyped
+
+      private
+
+      def adjacent_id: () -> untyped
+
+      def user_saved_views_scope: (untyped saved_view) -> untyped
+
+      def find_adjacent: (untyped saved_view) -> (nil | untyped)
+
+      def reorder: (untyped user_saved_view_to_move, untyped adjacent_saved_view) -> untyped
+    end
+  end
+end

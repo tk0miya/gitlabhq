@@ -1,0 +1,44 @@
+module Projects
+  # Service class to detect target platforms of a project made for the Apple
+  # Ecosystem.
+  #
+  # This service searches project.pbxproj and *.xcconfig files (contains build
+  # settings) for the string "SDKROOT = <SDK_name>" where SDK_name can be
+  # 'iphoneos', 'macosx', 'appletvos' or 'watchos'. Currently, the service is
+  # intentionally limited (for performance reasons) to detect if a project
+  # targets iOS.
+  #
+  # Ref: https://developer.apple.com/documentation/xcode/build-settings-reference/
+  #
+  # Example usage:
+  # > AppleTargetPlatformDetectorService.new(a_project).execute
+  # => []
+  # > AppleTargetPlatformDetectorService.new(an_ios_project).execute
+  # => [:ios]
+  # > AppleTargetPlatformDetectorService.new(multiplatform_project).execute
+  # => [:ios, :osx, :tvos, :watchos]
+  class AppleTargetPlatformDetectorService < BaseService
+    @file_finder: untyped
+
+    BUILD_CONFIG_FILENAMES: ::Array["project.pbxproj" | "*.xcconfig"]
+
+    # For the current iteration, we only want to detect when the project targets
+    # iOS. In the future, we can use the same logic to detect projects that
+    # target OSX, TvOS, and WatchOS platforms with SDK names 'macosx', 'appletvos',
+    # and 'watchos', respectively.
+    PLATFORM_SDK_NAMES: { ios: "iphoneos" }
+
+    def execute: () -> untyped
+
+    private
+
+    def file_finder: () -> untyped
+
+    def detect_platforms: () -> untyped
+
+    # Return array of project.pbxproj and/or *.xcconfig files
+    # (Gitlab::Search::FoundBlob) that contain the setting definition string
+    # "SDKROOT = <sdk_name>"
+    def config_files_containing_sdk_setting: (untyped sdk) -> untyped
+  end
+end

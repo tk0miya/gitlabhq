@@ -1,0 +1,23 @@
+module Gitlab
+  class Logger < ::Logger
+    def self.file_name: () -> untyped
+
+    def self.debug: (untyped message) -> untyped
+
+    def self.error: (untyped message) -> untyped
+
+    def self.warn: (untyped message) -> untyped
+
+    def self.info: (untyped message) -> untyped
+
+    def self.read_latest: () -> (::Array[untyped] | untyped)
+
+    def self.build: () -> untyped
+
+    def self.log_level: (?fallback: untyped) -> untyped
+
+    def self.full_log_path: () -> untyped
+
+    def self.cache_key: () -> untyped
+  end
+end

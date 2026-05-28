@@ -1,0 +1,11 @@
+module Gitlab
+  module SidekiqDeathHandler
+    self.@counter: untyped
+
+    extend ::Gitlab::SidekiqMiddleware::MetricsHelper
+
+    def self.handler: (untyped job, untyped _exception) -> untyped
+
+    def self.counter: () -> untyped
+  end
+end

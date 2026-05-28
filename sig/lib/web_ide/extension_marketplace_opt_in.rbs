@@ -1,0 +1,9 @@
+module WebIde
+  class ExtensionMarketplaceOptIn
+    def self.opt_in_status: (user: untyped, marketplace_home_url: untyped) -> ("unset" | untyped)
+
+    def self.enabled?: (user: untyped, marketplace_home_url: untyped) -> untyped
+
+    def self.params: (enabled: untyped, marketplace_home_url: untyped) -> { extensions_marketplace_opt_in_status: untyped, extensions_marketplace_opt_in_url: untyped }
+  end
+end

@@ -1,0 +1,23 @@
+module Ci
+  module Jobs
+    class PartitionedTokenFinder < Authn::TokenField::Finders::BaseEncryptedPartitioned
+      include Gitlab::Utils::StrongMemoize
+
+      def execute: () -> (nil | untyped)
+
+      def partition_key: () -> untyped
+
+      def partition_scope: () -> untyped
+
+      def skip_fallback?: () -> untyped
+
+      def irrelevant_token?: () -> untyped
+
+      def invalid_job_token?: () -> untyped
+
+      def known_non_job_token?: () -> untyped
+
+      def known_non_job_token_types: () -> untyped
+    end
+  end
+end

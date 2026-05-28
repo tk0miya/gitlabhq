@@ -1,0 +1,25 @@
+# Encapsulate a scope used for authorization, such as `api`, or `read_user`
+# See Gitlab::Auth for the set of available scopes, and their purposes.
+module API
+  class Scope
+    @name: untyped
+
+    @if: untyped
+
+    attr_reader name: untyped
+
+    attr_reader if: untyped
+
+    def initialize: (untyped name, ?::Hash[untyped, untyped] options) -> void
+
+    # Are the `scopes` passed in sufficient to adequately authorize the passed
+    # request for the scope represented by the current instance of this class?
+    def sufficient?: (untyped scopes, untyped request) -> untyped
+
+    def to_s: () -> untyped
+
+    private
+
+    def verify_if_condition: (untyped request) -> untyped
+  end
+end

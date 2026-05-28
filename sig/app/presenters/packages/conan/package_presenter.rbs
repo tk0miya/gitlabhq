@@ -1,0 +1,43 @@
+module Packages
+  module Conan
+    class PackagePresenter
+      @package: untyped
+
+      @user: untyped
+
+      @project: untyped
+
+      @params: untyped
+
+      include API::Helpers::Packages::Conan::ApiHelpers
+
+      include API::Helpers::RelatedResourcesHelpers
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader params: untyped
+
+      def initialize: (untyped package, untyped user, untyped project, ?::Hash[untyped, untyped] params) -> void
+
+      def recipe_urls: () -> untyped
+
+      def recipe_snapshot: () -> untyped
+
+      def package_urls: () -> untyped
+
+      def package_snapshot: () -> untyped
+
+      private
+
+      def url_options: (untyped package_file) -> { package_name: untyped, package_version: untyped, package_username: untyped, package_channel: untyped, file_name: untyped, recipe_revision: untyped }
+
+      def map_package_files: () { (untyped) -> untyped } -> untyped
+
+      def package_files: () -> (nil | untyped)
+
+      def matching_reference?: (untyped package_file) -> untyped
+
+      def conan_package_reference: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Integrations
+  module ChatMessage
+    class WikiPageMessage < BaseMessage
+      @title: untyped
+
+      @wiki_page_url: untyped
+
+      @description: untyped
+
+      @diff_url: untyped
+
+      @action: untyped
+
+      attr_reader title: untyped
+
+      attr_reader wiki_page_url: untyped
+
+      attr_reader action: untyped
+
+      attr_reader description: untyped
+
+      attr_reader diff_url: untyped
+
+      def initialize: (untyped params) -> void
+
+      def attachments: () -> untyped
+
+      def activity: () -> { title: ::String, subtitle: ::String, text: untyped, image: untyped }
+
+      private
+
+      def message: () -> ::String
+
+      def description_message: () -> ::Array[{ text: untyped, color: untyped }]
+
+      def diff_link: () -> untyped
+
+      def project_link: () -> untyped
+
+      def wiki_page_link: () -> untyped
+    end
+  end
+end

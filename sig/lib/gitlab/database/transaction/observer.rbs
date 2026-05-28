@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    module Transaction
+      class Observer
+        INSTRUMENTED_STATEMENTS: ::Array["BEGIN" | "SAVEPOINT" | "ROLLBACK" | "RELEASE"]
+
+        LONGEST_COMMAND_LENGTH: untyped
+
+        START_COMMENT: "/*"
+
+        END_COMMENT: "*/"
+
+        def self.instrument_transactions: (untyped cmd, untyped event) -> (nil | untyped)
+
+        def self.register!: () -> untyped
+
+        def self.extract_sql_command: (untyped sql) -> untyped
+      end
+    end
+  end
+end

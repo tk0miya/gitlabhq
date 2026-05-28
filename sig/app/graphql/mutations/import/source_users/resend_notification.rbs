@@ -1,0 +1,13 @@
+module Mutations
+  module Import
+    module SourceUsers
+      class ResendNotification < BaseMutation
+        def resolve: (untyped args) -> { import_source_user: untyped, errors: untyped }
+
+        private
+
+        def verify_rate_limit!: (untyped import_source_user) -> (nil | untyped)
+      end
+    end
+  end
+end

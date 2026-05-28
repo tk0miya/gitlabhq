@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ActiveRecord
+        class Mean < MetricDefinition
+          def initialize: (untyped name, ?::Symbol type, *untyped args, **untyped kwargs) -> void
+
+          def identifier: () -> ::Symbol
+
+          def to_arel: (untyped context) -> untyped
+        end
+      end
+    end
+  end
+end

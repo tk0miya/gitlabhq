@@ -1,0 +1,24 @@
+module Gitlab
+  module TenantContainerLifecycle
+    module Stateful
+      # Shared state machine transition logging.
+      # Shared between Namespaces::Stateful and Organizations::Stateful.
+      #
+      # Including classes must implement `stateful_log_metadata` (private) returning a hash
+      # with at minimum a `message:` key, e.g.:
+      #   { message: 'Namespace state transition', namespace_id: id }
+      #
+      # Including classes must also implement `stateful_detail` (private) to return
+      # the associated detail model (e.g. namespace_details or organization_detail).
+      module TransitionLogging
+        private
+
+        def log_transition: (untyped transition) -> untyped
+
+        def log_transition_failure: (untyped transition) -> untyped
+
+        def stateful_log_metadata: () -> untyped
+      end
+    end
+  end
+end

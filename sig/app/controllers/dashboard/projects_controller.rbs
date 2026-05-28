@@ -1,0 +1,29 @@
+class Dashboard::ProjectsController < Dashboard::ApplicationController
+  @events: untyped
+
+  @sort: untyped
+
+  include ParamsBackwardCompatibility
+
+  include RendersMemberAccess
+
+  include RendersProjectsList
+
+  include SortingHelper
+
+  include SortingPreference
+
+  include FiltersEvents
+
+  def index: () -> untyped
+
+  private
+
+  def load_events: () -> untyped
+
+  def default_sort_order: () -> untyped
+
+  def sorting_field: () -> untyped
+
+  def set_sorting: () -> untyped
+end

@@ -1,0 +1,56 @@
+module Gitlab
+  module Database
+    module GitlabSchema
+      self.@views_and_tables_to_schema: untyped
+
+      self.@deleted_views_and_tables_to_schema: untyped
+
+      self.@deleted_tables_to_schema: untyped
+
+      self.@deleted_views_to_schema: untyped
+
+      self.@tables_to_schema: untyped
+
+      self.@views_to_schema: untyped
+
+      self.@schema_names: untyped
+
+      UnknownSchemaError: untyped
+
+      def self.table_schemas!: (untyped tables) -> untyped
+
+      # Mainly used for test tables
+      # It maps table names prefixes to gitlab_schemas.
+      # The order of keys matter. Prefixes that contain other prefixes should come first.
+      IMPLICIT_GITLAB_SCHEMAS: { "_test_gitlab_main_org_" => :gitlab_main_org, "_test_gitlab_main_" => :gitlab_main, "_test_gitlab_ci_" => :gitlab_ci, "_test_gitlab_sec_" => :gitlab_sec, "_test_gitlab_jh_" => :gitlab_jh, "_test_gitlab_embedding_" => :gitlab_embedding, "_test_gitlab_geo_" => :gitlab_geo, "_test_gitlab_pm_" => :gitlab_pm, "_test_gitlab_shared_org_" => :gitlab_shared_org, "_test_gitlab_shared_cell_local_" => :gitlab_shared_cell_local, "_test_" => :gitlab_shared, "pg_" => :gitlab_internal }
+
+      def self.table_schema: (untyped name) -> (untyped | :gitlab_internal | nil)
+
+      def self.table_schema!: (untyped name) -> untyped
+
+      def self.require_sharding_key?: (untyped schema) -> untyped
+
+      def self.sharding_root_tables: (untyped schema) -> untyped
+
+      def self.cross_joins_allowed?: (untyped all_tables) -> (true | untyped)
+
+      def self.cross_transactions_allowed?: (untyped all_tables, ?additional_schemas: untyped?) -> (true | untyped)
+
+      def self.cross_foreign_key_allowed?: (untyped all_tables) -> (true | untyped)
+
+      def self.views_and_tables_to_schema: () -> untyped
+
+      def self.deleted_views_and_tables_to_schema: () -> untyped
+
+      def self.deleted_tables_to_schema: () -> untyped
+
+      def self.deleted_views_to_schema: () -> untyped
+
+      def self.tables_to_schema: () -> untyped
+
+      def self.views_to_schema: () -> untyped
+
+      def self.schema_names: () -> untyped
+    end
+  end
+end

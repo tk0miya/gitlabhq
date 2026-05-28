@@ -1,0 +1,17 @@
+module ConfirmEmailWarning
+  include Gitlab::Utils::StrongMemoize
+
+  extend ActiveSupport::Concern
+
+  def show_confirm_warning?: () -> untyped
+
+  def set_confirm_warning: () -> (nil | untyped)
+
+  private
+
+  def email: () -> untyped
+
+  def confirm_warning_message: () -> untyped
+
+  def email_to_display: () -> untyped
+end

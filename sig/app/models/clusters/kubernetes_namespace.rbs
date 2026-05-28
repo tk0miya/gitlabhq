@@ -1,0 +1,15 @@
+module Clusters
+  class KubernetesNamespace < ApplicationRecord
+    include Gitlab::Kubernetes
+
+    include Gitlab::EncryptedAttribute
+
+    def token_name: () -> ::String
+
+    def predefined_variables: () -> untyped
+
+    private
+
+    def kubeconfig: () -> untyped
+  end
+end

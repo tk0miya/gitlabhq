@@ -1,0 +1,19 @@
+class DependencyProxy::Registry
+  AUTH_URL: "https://auth.docker.io"
+
+  LIBRARY_URL: "https://registry-1.docker.io/v2"
+
+  PROXY_AUTH_URL: untyped
+
+  def self.auth_url: (untyped image) -> ::String
+
+  def self.manifest_url: (untyped image, untyped tag) -> ::String
+
+  def self.blob_url: (untyped image, untyped blob_sha) -> ::String
+
+  def self.authenticate_header: () -> ::String
+
+  private
+
+  def self.image_path: (untyped image) -> (untyped | ::String)
+end

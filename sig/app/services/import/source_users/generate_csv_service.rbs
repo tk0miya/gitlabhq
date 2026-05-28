@@ -1,0 +1,39 @@
+module Import
+  module SourceUsers
+    # This class generates CSV data for `Import::SourceUser` records associated
+    # with a namespace. This spreadsheet is filled in and re-uploaded to
+    # facilitate the user mapping flow.
+    class GenerateCsvService
+      @namespace: untyped
+
+      @current_user: untyped
+
+      # This is just to prevent any potential abuse. A test file with 20k rows
+      # comes in at 2.3MB. A 10MB file would be several tens of thousands,
+      # whereas we would rarely expect to exceed 10k rows.
+      FILESIZE_LIMIT: untyped
+
+      COLUMN_MAPPING: { "Source host" => "source_hostname", "Import type" => "import_type", "Source user identifier" => "source_user_identifier", "Source user name" => "source_name", "Source username" => "source_username", "GitLab username" => untyped, "GitLab public email" => untyped }
+
+      # @param namespace [Namespace, Group] The namespace where the import source users are associated
+      # @param current_user [User] The user performing the CSV export
+      def initialize: (untyped namespace, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader namespace: untyped
+
+      attr_reader current_user: untyped
+
+      def csv_data: () -> untyped
+
+      def import_source_users: () -> untyped
+
+      def error_invalid_permissions: () -> untyped
+
+      def error_no_source_users: () -> untyped
+    end
+  end
+end

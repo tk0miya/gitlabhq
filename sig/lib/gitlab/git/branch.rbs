@@ -1,0 +1,19 @@
+module Gitlab
+  module Git
+    class Branch < Ref
+      STALE_BRANCH_THRESHOLD: untyped
+
+      def self.find: (untyped repo, untyped branch_name) -> untyped
+
+      def self.from_ref: (untyped repository, untyped ref, ?commit: untyped?) -> untyped
+
+      def active?: () -> untyped
+
+      def stale?: () -> untyped
+
+      def state: () -> (:active | :stale)
+
+      def cache_key: () -> untyped
+    end
+  end
+end

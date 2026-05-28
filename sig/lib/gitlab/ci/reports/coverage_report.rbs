@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Reports
+      class CoverageReport
+        @files: untyped
+
+        attr_reader files: untyped
+
+        def initialize: () -> void
+
+        def empty?: () -> untyped
+
+        def pick: (untyped keys) -> { files: untyped }
+
+        def add_file: (untyped name, untyped line_coverage) -> untyped
+
+        private
+
+        def combine_lines: (untyped name, untyped line, untyped hits) -> untyped
+      end
+    end
+  end
+end

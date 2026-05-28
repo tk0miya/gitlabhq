@@ -1,0 +1,141 @@
+class ApplicationSetting < ApplicationRecord
+  @parsed_grafana_url: untyped
+
+  @parsed_kroki_url: untyped
+
+  include CacheableAttributes
+
+  include CacheMarkdownField
+
+  include TokenAuthenticatable
+
+  include ChronicDurationAttribute
+
+  include Sanitizable
+
+  include Gitlab::EncryptedAttribute
+
+  include IgnorableColumns
+
+  include SafelyChangeColumnDefault
+
+  INSTANCE_REVIEW_MIN_USERS: 50
+
+  GRAFANA_URL_ERROR_MESSAGE: "Please check your Grafana URL setting in Admin area > Settings > Metrics and profiling > Metrics - Grafana"
+
+  KROKI_URL_ERROR_MESSAGE: "Please check your Kroki URL setting in Admin area > Settings > General > Kroki"
+
+  # Validate URIs in this model according to the current value of the `deny_all_requests_except_allowed` property,
+  # rather than the persisted value.
+  ADDRESSABLE_URL_VALIDATION_OPTIONS: { deny_all_requests_except_allowed: untyped }
+
+  HUMANIZED_ATTRIBUTES: { archive_builds_in_seconds: "Archive job value" }
+
+  # matches the size set in the database constraint
+  DEFAULT_BRANCH_PROTECTIONS_DEFAULT_MAX_SIZE: untyped
+
+  USERS_UNCONFIRMED_SECONDARY_EMAILS_DELETE_AFTER_DAYS: 3
+
+  DEFAULT_HELM_MAX_PACKAGES_COUNT: 1000
+
+  DEFAULT_AUTHENTICATED_GIT_HTTP_LIMIT: 3600
+
+  DEFAULT_AUTHENTICATED_GIT_HTTP_PERIOD: 3600
+
+  DEFAULT_RAW_BLOB_UNAUTHENTICATED_REQUEST_LIMIT: 800
+
+  SEARCH_SCOPE_SYSTEM_DEFAULT: "system default"
+
+  def self.kroki_formats_attributes: () -> { blockdiag: { label: "BlockDiag (includes BlockDiag, SeqDiag, ActDiag, NwDiag, PacketDiag, and RackDiag)" }, bpmn: { label: "BPMN" }, excalidraw: { label: "Excalidraw" }, mermaid: { label: "Mermaid" } }
+
+  # Include here so it can override methods from
+  # `add_authentication_token_field`
+  # We don't prepend for now because otherwise we'll need to
+  # fix a lot of tests using allow_any_instance_of
+  include ApplicationSettingImplementation
+
+  def self.ci_cd_settings_definition: () -> { pipeline_variables_default_allowed: ::Array[:boolean | { default: true }], ci_job_live_trace_enabled: ::Array[:boolean | { default: false }], ci_partitions_in_seconds_limit: ::Array[:integer | { default: untyped }], ci_delete_pipelines_in_seconds_limit: ::Array[:integer | { default: untyped }], git_push_pipeline_limit: ::Array[:integer | { default: 4 }] }
+
+  def self.encryption_options_base_32_aes_256_gcm: () -> { mode: :per_attribute_iv, key: :db_key_base_32, algorithm: "aes-256-gcm", encode: true }
+
+  def validate_object_storage_for_live_trace_configuration: () -> (nil | untyped)
+
+  def validate_grafana_url: () -> untyped
+
+  def grafana_url_absolute?: () -> untyped
+
+  def validate_kroki_url: () -> untyped
+
+  def sourcegraph_url_is_com?: () -> untyped
+
+  def normalize_default_branch_name: () -> untyped
+
+  def default_branch_protected?: () -> untyped
+
+  def instance_review_permitted?: () -> untyped
+
+  Recursion: untyped
+
+  def self.create_from_defaults: () -> untyped
+
+  def self.find_or_create_without_cache: () -> untyped
+
+  # Due to the frequency with which settings are accessed, it is
+  # likely that during a backup restore a running GitLab process
+  # will insert a new `application_settings` row before the
+  # constraints have been added to the table. This would add an
+  # extra row with ID 1 and prevent the primary key constraint from
+  # being added, which made ActiveRecord throw a
+  # IrreversibleOrderError anytime the settings were accessed
+  # (https://gitlab.com/gitlab-org/gitlab/-/issues/36405).  To
+  # prevent this from happening, we do a sanity check that the
+  # primary key constraint is present before inserting a new entry.
+  def self.check_schema!: () -> (nil | untyped)
+
+  # By default, the backend is Rails.cache, which uses
+  # ActiveSupport::Cache::RedisStore. Since loading ApplicationSetting
+  # can cause a significant amount of load on Redis, let's cache it in
+  # memory.
+  def self.cache_backend: () -> untyped
+
+  def self.human_attribute_name: (untyped attribute, *untyped options) -> untyped
+
+  # overridden in EE
+  def self.rate_limits_definition: () -> { autocomplete_users_limit: ::Array[:integer | { default: 300 }], autocomplete_users_unauthenticated_limit: ::Array[:integer | { default: 100 }], concurrent_bitbucket_import_jobs_limit: ::Array[:integer | { default: 100 }], concurrent_bitbucket_server_import_jobs_limit: ::Array[:integer | { default: 100 }], concurrent_github_import_jobs_limit: ::Array[:integer | { default: 1000 }], concurrent_relation_batch_export_limit: ::Array[:integer | { default: 8 }], downstream_pipeline_trigger_limit_per_project_user_sha: ::Array[:integer | { default: 0 }], group_api_limit: ::Array[:integer | { default: 400 }], group_invited_groups_api_limit: ::Array[:integer | { default: 60 }], group_projects_api_limit: ::Array[:integer | { default: 600 }], group_shared_groups_api_limit: ::Array[:integer | { default: 60 }], groups_api_limit: ::Array[:integer | { default: 200 }], members_delete_limit: ::Array[:integer | { default: 60 }], create_organization_api_limit: ::Array[:integer | { default: 10 }], project_api_limit: ::Array[:integer | { default: 400 }], group_archive_unarchive_api_limit: ::Array[:integer | { default: 60 }], project_invited_groups_api_limit: ::Array[:integer | { default: 60 }], projects_api_limit: ::Array[:integer | { default: 2000 }], project_members_api_limit: ::Array[:integer | { default: 200 }], runner_jobs_request_api_limit: ::Array[:integer | { default: 2000 }], runner_jobs_patch_trace_api_limit: ::Array[:integer | { default: 200 }], runner_jobs_endpoints_api_limit: ::Array[:integer | { default: 200 }], throttle_authenticated_git_http_enabled: ::Array[:boolean | { default: false }], throttle_authenticated_git_http_requests_per_period: ::Array[:integer | { default: untyped }], throttle_authenticated_git_http_period_in_seconds: ::Array[:integer | { default: untyped }], user_contributed_projects_api_limit: ::Array[:integer | { default: 100 }], user_projects_api_limit: ::Array[:integer | { default: 300 }], user_starred_projects_api_limit: ::Array[:integer | { default: 100 }], users_api_limit_followers: ::Array[:integer | { default: 100 }], users_api_limit_following: ::Array[:integer | { default: 100 }], users_api_limit_status: ::Array[:integer | { default: 240 }], users_api_limit_ssh_keys: ::Array[:integer | { default: 120 }], users_api_limit_ssh_key: ::Array[:integer | { default: 120 }], users_api_limit_gpg_keys: ::Array[:integer | { default: 120 }], users_api_limit_gpg_key: ::Array[:integer | { default: 120 }], pipeline_limit_per_user: ::Array[:integer | { default: 0 }], raw_blob_request_limit_unauthenticated: ::Array[:integer | { default: untyped }] }
+
+  def recaptcha_or_login_protection_enabled: () -> untyped
+
+  def kroki_format_supported?: (untyped diagram_type) -> untyped
+
+  def personal_access_tokens_disabled?: () -> false
+
+  def max_login_attempts_column_exists?: () -> untyped
+
+  def failed_login_attempts_unlock_period_in_minutes_column_exists?: () -> untyped
+
+  def ci_delete_pipelines_in_seconds_limit_human_readable_long: () -> untyped
+
+  def allow_user_remember_me?: () -> (false | untyped)
+
+  def push_rule: () -> (nil | untyped)
+
+  def custom_default_search_scope_set?: () -> untyped
+
+  def granular_tokens_enforced?: () -> (false | untyped)
+
+  private
+
+  def parsed_grafana_url: () -> untyped
+
+  def parsed_kroki_url: () -> untyped
+
+  def snowplow_and_product_usage_data_are_mutually_exclusive: () -> (nil | untyped)
+
+  def validate_url: (untyped parsed_url, untyped name, untyped error_message) -> (nil | untyped)
+
+  def reset_deletion_warning_redis_key: () -> untyped
+
+  def should_prevent_visibility_restriction?: () -> untyped
+
+  def should_reset_inactive_project_deletion_warning?: () -> untyped
+end

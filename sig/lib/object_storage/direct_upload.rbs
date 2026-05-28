@@ -1,0 +1,117 @@
+module ObjectStorage
+  #
+  # The DirectUpload class generates a set of presigned URLs
+  # that can be used to upload data to object storage from untrusted component: Workhorse, Runner?
+  #
+  # For Google it assumes that the platform supports variable Content-Length.
+  #
+  # For AWS it initiates Multipart Upload and presignes a set of part uploads.
+  #   Class calculates the best part size to be able to upload up to asked maximum size.
+  #   The number of generated parts will never go above 100,
+  #   but we will always try to reduce amount of generated parts.
+  #   The part size is rounded-up to 5MB.
+  #
+  class DirectUpload
+    @config: untyped
+
+    @credentials: untyped
+
+    @bucket_name: untyped
+
+    @object_name: untyped
+
+    @has_length: untyped
+
+    @maximum_size: untyped
+
+    @skip_delete: untyped
+
+    @connection: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    TIMEOUT: untyped
+
+    EXPIRE_OFFSET: untyped
+
+    MAXIMUM_MULTIPART_PARTS: 100
+
+    MINIMUM_MULTIPART_SIZE: untyped
+
+    attr_reader config: untyped
+
+    attr_reader credentials: untyped
+
+    attr_reader bucket_name: untyped
+
+    attr_reader object_name: untyped
+
+    attr_reader has_length: untyped
+
+    attr_reader maximum_size: untyped
+
+    attr_reader skip_delete: untyped
+
+    def initialize: (untyped config, untyped object_name, has_length: untyped, ?maximum_size: untyped?, ?skip_delete: bool) -> void
+
+    def to_hash: () -> untyped
+
+    def multipart_upload_hash: () -> (nil | { PartSize: untyped, PartURLs: untyped, CompleteURL: untyped, AbortURL: untyped })
+
+    def workhorse_client_hash: () -> (untyped | untyped | untyped | ::Hash[untyped, untyped])
+
+    def workhorse_aws_hash: () -> { UseWorkhorseClient: untyped, RemoteTempObjectID: untyped, ObjectStorage: { Provider: "AWS", S3Config: untyped } }
+
+    def workhorse_azure_hash: () -> { UseWorkhorseClient: true, RemoteTempObjectID: untyped, ObjectStorage: { Provider: "AzureRM", GoCloudConfig: { URL: untyped } } }
+
+    def azure_gocloud_url: () -> untyped
+
+    def workhorse_google_hash: () -> { UseWorkhorseClient: untyped, RemoteTempObjectID: untyped, ObjectStorage: { Provider: "Google", GoCloudConfig: { URL: untyped } } }
+
+    def google_gocloud_url: () -> untyped
+
+    def use_workhorse_s3_client?: () -> (false | true)
+
+    def use_workhorse_google_client?: () -> (false | true)
+
+    def provider: () -> untyped
+
+    # Implements https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html
+    def get_url: () -> untyped
+
+    # Implements https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html
+    def delete_url: () -> untyped
+
+    # Implements https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html
+    def store_url: () -> untyped
+
+    def multipart_part_urls: () -> untyped
+
+    # Implements https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPart.html
+    def multipart_part_upload_url: (untyped part_number) -> untyped
+
+    # Implements https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadComplete.html
+    def multipart_complete_url: () -> untyped
+
+    # Implements https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadAbort.html
+    def multipart_abort_url: () -> untyped
+
+    private
+
+    def rounded_multipart_part_size: () -> untyped
+
+    def multipart_part_size: () -> untyped
+
+    def number_of_multipart_parts: () -> untyped
+
+    def requires_multipart_upload?: () -> (false | untyped)
+
+    def upload_id: () -> (nil | untyped)
+
+    def expire_at: () -> untyped
+
+    def upload_options: () -> ::Hash[untyped, untyped]
+
+    def connection: () -> untyped
+  end
+end

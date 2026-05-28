@@ -1,0 +1,13 @@
+module Gitlab
+  module QueryLimiting
+    # Middleware for reporting (or raising) when a Sidekiq worker performs more than a
+    # certain amount of database queries.
+    class SidekiqMiddleware
+      def call: (untyped worker, untyped _job, untyped _queue) { () -> untyped } -> untyped
+
+      private
+
+      def action_name: (untyped worker) -> untyped
+    end
+  end
+end

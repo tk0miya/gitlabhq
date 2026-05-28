@@ -1,0 +1,11 @@
+module Integrations
+  module Base
+    module UnifyCircuit
+      extend ActiveSupport::Concern
+
+      include Base::ChatNotification
+
+      def default_channel_placeholder: () -> nil
+    end
+  end
+end

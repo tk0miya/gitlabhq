@@ -1,0 +1,209 @@
+# Accessible as Project#external_issue_tracker
+module Integrations
+  class Jira < Integration
+    @reference_pattern: untyped
+
+    @error: untyped
+
+    include Base::IssueTracker
+
+    include Gitlab::Routing
+
+    include ApplicationHelper
+
+    include SafeFormatHelper
+
+    include ActionView::Helpers::AssetUrlHelper
+
+    include Gitlab::Utils::StrongMemoize
+
+    include HasAvatar
+
+    PROJECTS_PER_PAGE: 50
+
+    JIRA_CLOUD_HOST: ".atlassian.net"
+
+    ATLASSIAN_REFERRER_GITLAB_COM: { atlOrigin: "eyJpIjoiY2QyZTJiZDRkNGZhNGZlMWI3NzRkNTBmZmVlNzNiZTkiLCJwIjoianN3LWdpdGxhYi1pbnQifQ" }
+
+    ATLASSIAN_REFERRER_SELF_MANAGED: { atlOrigin: "eyJpIjoiYjM0MTA4MzUyYTYxNDVkY2IwMzVjOGQ3ZWQ3NzMwM2QiLCJwIjoianN3LWdpdGxhYlNNLWludCJ9" }
+
+    API_ENDPOINTS: { find_issue: "/rest/api/2/issue/%s", server_info: "/rest/api/2/serverInfo", transition_issue: "/rest/api/2/issue/%s/transitions", issue_comments: "/rest/api/2/issue/%s/comment", link_remote_issue: "/rest/api/2/issue/%s/remotelink", client_info: "/rest/api/2/myself" }
+
+    SECTION_TYPE_JIRA_TRIGGER: "jira_trigger"
+
+    SECTION_TYPE_JIRA_ISSUES: "jira_issues"
+
+    SECTION_TYPE_JIRA_ISSUE_CREATION: "jira_issue_creation"
+
+    AUTH_TYPE_BASIC: 0
+
+    AUTH_TYPE_PAT: 1
+
+    AUTH_TYPE_SERVICE_ACCOUNT: 2
+
+    AUTH_TYPES: ::Array[untyped]
+
+    SNOWPLOW_EVENT_CATEGORY: untyped
+
+    RE2_SYNTAX_DOC_URL: "https://github.com/google/re2/wiki/Syntax"
+
+    # When these are false GitLab does not create cross reference
+    # comments on Jira except when an issue gets transitioned.
+    def self.supported_events: () -> ::Array["commit" | "merge_request"]
+
+    # {PROJECT-KEY}-{NUMBER} Examples: JIRA-1, PROJECT-1
+    def reference_pattern: (*untyped) -> untyped
+
+    def self.valid_jira_cloud_url?: (untyped url) -> untyped
+
+    def data_fields: () -> untyped
+
+    def set_default_data: () -> (nil | untyped)
+
+    def options: () -> untyped
+
+    def client: (?::Hash[untyped, untyped] additional_options) -> untyped
+
+    def self.title: () -> "Jira issues"
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "jira"
+
+    def sections: () -> untyped
+
+    def web_url: (?untyped? path, **untyped params) -> ("" | untyped)
+
+    alias project_url web_url
+
+    def issues_url: () -> untyped
+
+    def new_issue_url: () -> untyped
+
+    alias original_url url
+
+    def url: () -> untyped
+
+    alias original_api_url api_url
+
+    def api_url: () -> untyped
+
+    def execute: (untyped push) -> nil
+
+    def find_issue: (untyped issue_key, ?rendered_fields: bool, ?transitions: bool, ?restrict_project_key: bool) -> (nil | untyped)
+
+    def close_issue: (untyped entity, untyped external_issue, untyped current_user) -> (nil | untyped)
+
+    def create_cross_reference_note: (untyped external_issue, untyped mentioned_in, untyped author) -> (untyped | nil)
+
+    def valid_connection?: () -> untyped
+
+    def configured?: () -> untyped
+
+    def test: (untyped _) -> { success: untyped, result: untyped }
+
+    def support_close_issue?: () -> true
+
+    def support_cross_reference?: () -> true
+
+    def issue_transition_enabled?: () -> untyped
+
+    def personal_access_token_authorization?: () -> untyped
+
+    def basic_authorization?: () -> untyped
+
+    def service_account_authorization?: () -> untyped
+
+    def testable?: () -> untyped
+
+    def project_keys_as_string: () -> untyped
+
+    private
+
+    def jira_issue_match_regex: () -> untyped
+
+    def parse_project_from_issue_key: (untyped issue_key) -> untyped
+
+    def issue_key_allowed?: (untyped issue_key) -> untyped
+
+    def branch_name: (untyped commit) -> untyped
+
+    def client_info: () -> (untyped | nil)
+
+    def server_info: () -> (untyped | nil)
+
+    def can_cross_reference?: (untyped mentioned_in) -> untyped
+
+    # jira_issue_transition_id can have multiple values split by , or ;
+    # the issue is transitioned at the order given by the user
+    # if any transition fails it will log the error message and stop the transition sequence
+    def transition_issue: (untyped issue) -> untyped
+
+    def transition_issue_to_id: (untyped issue, untyped transition_id) -> untyped
+
+    def transition_issue_to_done: (untyped issue) -> (false | untyped)
+
+    def log_usage: (untyped action, untyped user) -> untyped
+
+    def add_issue_solved_comment: (untyped issue, untyped commit_id, untyped commit_url) -> untyped
+
+    def add_comment: (untyped data, untyped issue) -> (nil | untyped)
+
+    def comment_message: (untyped data) -> untyped
+
+    def build_jira_link: (untyped title, untyped url) -> ::String
+
+    def has_resolution?: (untyped issue) -> untyped
+
+    def comment_exists?: (untyped issue, untyped message) -> untyped
+
+    def send_message: (untyped issue, untyped message, untyped remote_link_props) -> (nil | untyped)
+
+    def create_issue_comment: (untyped issue, untyped message) -> (nil | untyped)
+
+    def find_remote_link: (untyped issue, untyped url) -> (nil | untyped)
+
+    def build_remote_link_props: (url: untyped, title: untyped, ?resolved: bool) -> { GlobalID: "GitLab", relationship: "mentioned on", object: { url: untyped, title: untyped, status: untyped, icon: { title: "GitLab", url16x16: untyped } } }
+
+    def resource_url: (untyped resource) -> ::String
+
+    def build_entity_url: (untyped entity_type, untyped entity_id) -> untyped
+
+    def build_entity_meta: (untyped entity) -> untyped
+
+    def mentionable_name: (untyped mentionable) -> untyped
+
+    # Handle errors when doing Jira API calls
+    def jira_request: (untyped path) { () -> untyped } -> untyped
+
+    def jira_error_message: (untyped error) -> (nil | untyped)
+
+    def client_url: () -> untyped
+
+    def update_deployment_type?: () -> untyped
+
+    def update_deployment_type: () -> untyped
+
+    def format_project_keys: () -> untyped
+
+    def jira_cloud?: () -> untyped
+
+    def set_deployment_type_from_url: () -> untyped
+
+    def jira_issues_section_description: () -> untyped
+
+    def validate_jira_cloud_auth_type_for_cloud: () -> (nil | untyped)
+
+    def entity_url_options: (untyped entity_type, untyped entity_id) -> untyped
+
+    def basic_authorization_activated?: () -> untyped
+
+    def base_options: () -> { site: untyped, context_path: untyped, auth_type: :basic, use_ssl: untyped }
+
+    def build_standard_options: () -> untyped
+
+    def build_service_account_options: () -> untyped
+  end
+end

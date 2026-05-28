@@ -1,0 +1,31 @@
+module Atlassian
+  module JiraConnect
+    module Jwt
+      class Symmetric
+        @jwt: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        CONTEXT_QSH_STRING: "context-qsh"
+
+        def initialize: (untyped jwt) -> void
+
+        def iss_claim: () -> untyped
+
+        def sub_claim: () -> untyped
+
+        def valid?: (untyped shared_secret) -> untyped
+
+        def verify_qsh_claim: (untyped url_with_query, untyped method, untyped url) -> untyped
+
+        def verify_context_qsh_claim: () -> untyped
+
+        private
+
+        def qsh_claim: () -> untyped
+
+        def jwt_headers: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,92 @@
+module Gitlab
+  # This class implements an 'exclusive lease'. We call it a 'lease'
+  # because it has a set expiry time. We call it 'exclusive' because only
+  # one caller may obtain a lease for a given key at a time. The
+  # implementation is intended to work across GitLab processes and across
+  # servers. It is a cheap alternative to using SQL queries and updates:
+  # you do not need to change the SQL schema to start using
+  # ExclusiveLease.
+  #
+  class ExclusiveLease
+    self.@skip_transaction_check_for_exclusive_lease: untyped
+
+    @redis_shared_state_key: untyped
+
+    @timeout: untyped
+
+    @uuid: untyped
+
+    LeaseWithinTransactionError: untyped
+
+    PREFIX: "gitlab:exclusive_lease"
+
+    NoKey: untyped
+
+    LUA_CANCEL_SCRIPT: "local key, uuid = KEYS[1], ARGV[1]\nif redis.call(\"get\", key) == uuid then\n  redis.call(\"del\", key)\nend\n"
+
+    LUA_RENEW_SCRIPT: "local key, uuid, ttl = KEYS[1], ARGV[1], ARGV[2]\nif redis.call(\"get\", key) == uuid then\n  redis.call(\"expire\", key, ttl)\n  return uuid\nend\n"
+
+    def self.get_uuid: (untyped key) -> untyped
+
+    # yield to the {block} at most {count} times per {period}
+    #
+    # Defaults to once per hour.
+    #
+    # For example:
+    #
+    #   # toot the train horn at most every 20min:
+    #   throttle(locomotive.id, count: 3, period: 1.hour) { toot_train_horn }
+    #   # Brake suddenly at most once every minute:
+    #   throttle(locomotive.id, period: 1.minute) { brake_suddenly }
+    #   # Specify a uniqueness group:
+    #   throttle(locomotive.id, group: :locomotive_brake) { brake_suddenly }
+    #
+    # If a group is not specified, each block will get a separate group to itself.
+    def self.throttle: (untyped key, ?group: untyped?, ?period: untyped, ?count: ::Integer) { () -> untyped } -> (nil | untyped)
+
+    def self.cancel: (untyped key, untyped uuid) -> (nil | untyped)
+
+    def self.redis_shared_state_key: (untyped key) -> ::String
+
+    def self.ensure_prefixed_key: (untyped key) -> untyped
+
+    # Removes any existing exclusive_lease from redis
+    # Don't run this in a live system without making sure no one is using the leases
+    def self.reset_all!: (?::String scope) -> untyped
+
+    def self.set_skip_transaction_check_flag: (?untyped? flag) -> untyped
+
+    def self.skip_transaction_check?: () -> untyped
+
+    def self.skipping_transaction_check: () { () -> untyped } -> untyped
+
+    def initialize: (untyped key, timeout: untyped, ?uuid: untyped?) -> void
+
+    # Try to obtain the lease. Return lease UUID on success,
+    # false if the lease is already taken.
+    def try_obtain: () -> untyped
+
+    def report_lock_attempt_inside_transaction: () -> untyped
+
+    # This lease is waiting to obtain
+    def waiting?: () -> untyped
+
+    # Try to renew an existing lease. Return lease UUID on success,
+    # false if the lease is taken by a different UUID or inexistent.
+    def renew: () -> untyped
+
+    # Returns true if the key for this lease is set.
+    def exists?: () -> untyped
+
+    # Returns the TTL of the Redis key.
+    #
+    # This method will return `nil` if no TTL could be obtained.
+    def ttl: () -> untyped
+
+    # Gives up this lease, allowing it to be obtained by others.
+    def cancel: () -> untyped
+
+    # Returns true if the UUID for the key hasn't changed.
+    def same_uuid?: () -> untyped
+  end
+end

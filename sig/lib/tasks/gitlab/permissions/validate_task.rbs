@@ -1,0 +1,77 @@
+module Tasks
+  module Gitlab
+    module Permissions
+      class ValidateTask < ::Tasks::Gitlab::Permissions::BaseValidateTask
+        @violations: untyped
+
+        @declarative_policy_permissions: untyped
+
+        @resources: untyped
+
+        @permission_policies: untyped
+
+        @excludes: untyped
+
+        PERMISSION_DIR: untyped
+
+        PERMISSION_TODO_FILE: ::String
+
+        JSON_SCHEMA_FILE: "config/authz/permissions/type_schema.json"
+
+        PERMISSION_NAME_REGEX: untyped
+
+        DISALLOWED_ACTIONS: untyped
+
+        attr_reader declarative_policy_permissions: untyped
+
+        def initialize: () -> void
+
+        private
+
+        attr_reader violations: untyped
+
+        attr_reader resources: untyped
+
+        def validate!: () -> untyped
+
+        def load_declarative_policy_permissions: () -> untyped
+
+        def require_policy_files: () -> untyped
+
+        def validate_permission: (untyped permission_name) -> (nil | untyped)
+
+        def add_definition_violation: (untyped permission_name) -> untyped
+
+        def permission_source_paths: (untyped permission_name) -> untyped
+
+        def validate_file: (untyped permission) -> (nil | untyped)
+
+        def validate_unknown_permissions: () -> untyped
+
+        def validate_resources: () -> untyped
+
+        def validate_empty_resource_directories: () -> untyped
+
+        def format_all_errors: () -> untyped
+
+        def format_definition_errors: () -> ("" | ::String)
+
+        def todo_source_path: (untyped permission_name) -> untyped
+
+        def permission_source_path: (untyped permission_name) -> (nil | untyped)
+
+        def policy_source_path: (untyped policy_class, ?untyped? permission_name) -> (nil | ::String | untyped)
+
+        def find_permission_line: (untyped file, untyped permission_name) -> untyped
+
+        def exclusion_list: () -> untyped
+
+        def exclusion_file: () -> untyped
+
+        def error_messages: () -> { definition: ::String, excluded: "The following permissions have a definition file.\nRemove them from config/authz/permissions/definitions_todo.txt.", schema: ::String, action: ::String, name: ::String, file: ::String, unknown_permission: ::String, missing_resource_metadata: ::String, resource_metadata_schema: ::String, empty_resource_directory: ::String }
+
+        def json_schema_file: () -> untyped
+      end
+    end
+  end
+end

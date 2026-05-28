@@ -1,0 +1,11 @@
+module API
+  module Entities
+    class MergeRequestBasic < IssuableEntity
+      private
+
+      def detailed_merge_status: () -> untyped
+
+      def can_check_mergeability?: (untyped project) -> untyped
+    end
+  end
+end

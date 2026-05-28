@@ -1,0 +1,29 @@
+module Clusters
+  module Kubernetes
+    class CreateOrUpdateNamespaceService
+      @cluster: untyped
+
+      @kubernetes_namespace: untyped
+
+      @platform: untyped
+
+      def initialize: (cluster: untyped, kubernetes_namespace: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader cluster: untyped
+
+      attr_reader kubernetes_namespace: untyped
+
+      attr_reader platform: untyped
+
+      def create_project_service_account: () -> untyped
+
+      def configure_kubernetes_token: () -> untyped
+
+      def fetch_service_account_token: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,55 @@
+module Gitlab
+  module DuoAgentPlatform
+    class Config
+      @project: untyped
+
+      @config: untyped
+
+      @file_content: untyped
+
+      @schema_validated: untyped
+
+      include ActiveModel::Validations
+
+      ConfigError: untyped
+
+      CONFIG_FILE_NAME: ".gitlab/duo/agent-config.yml"
+
+      CACHE_EXPIRY: untyped
+
+      MAX_USER_SPECIFIED_DOMAINS: 1000
+
+      attr_reader project: untyped
+
+      attr_reader config: untyped
+
+      def initialize: (untyped project) -> void
+
+      def default_image: () -> (nil | untyped)
+
+      def network_policy: () -> (nil | untyped)
+
+      def setup_script: () -> (nil | untyped)
+
+      def cache_config: () -> (nil | untyped)
+
+      def config_present?: () -> untyped
+
+      def valid_format?: () -> (false | untyped)
+
+      def validation_errors: () -> (::Array[untyped] | untyped)
+
+      private
+
+      def load_and_cache_config: () -> untyped
+
+      def load_config: () -> untyped
+
+      def file_content: () -> untyped
+
+      def cache_key: () -> ::String
+
+      def run_schema_validation: () -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module BlobViewer
+  class ComposerJson < DependencyManager
+    @package_name: untyped
+
+    include ServerSide
+
+    def manager_name: () -> "Composer"
+
+    def manager_url: () -> "https://getcomposer.org/"
+
+    def package_name: () -> untyped
+
+    def package_url: () -> ::String
+  end
+end

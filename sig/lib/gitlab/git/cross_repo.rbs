@@ -1,0 +1,26 @@
+module Gitlab
+  module Git
+    class CrossRepo
+      @source_repo: untyped
+
+      @target_repo: untyped
+
+      attr_reader source_repo: untyped
+
+      attr_reader target_repo: untyped
+
+      def initialize: (untyped source_repo, untyped target_repo) -> void
+
+      def execute: (untyped target_ref) { (?) -> untyped } -> untyped
+
+      private
+
+      def ensuring_ref_in_source: (untyped ref) { (untyped) -> untyped } -> (untyped | nil)
+
+      # Fetch the ref into source_repo from target_repo, using a temporary ref
+      # name that will be deleted once the method completes. This is a no-op if
+      # fetching the source branch fails
+      def with_commit_in_source_tmp: (untyped commit_id) { (untyped) -> untyped } -> untyped
+    end
+  end
+end

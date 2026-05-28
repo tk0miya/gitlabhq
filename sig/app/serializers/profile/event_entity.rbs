@@ -1,0 +1,31 @@
+module Profile
+  class EventEntity < Grape::Entity
+    include ActionView::Helpers::SanitizeHelper
+
+    include RequestAwareEntity
+
+    include MarkupHelper
+
+    include MergeRequestsHelper
+
+    include EventsHelper
+
+    private
+
+    def current_user: () -> untyped
+
+    def target_user: () -> untyped
+
+    def include_private_event?: (untyped event) -> untyped
+
+    def commit_from: (untyped event) -> untyped
+
+    def event_action: (untyped event) -> (untyped | "private" | nil)
+
+    def ref_path: (untyped event) -> untyped
+
+    def commit_create_mr_path: (untyped event) -> (untyped | nil)
+
+    def resource_parent_type: (untyped event) -> ("project" | "group" | nil)
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module Auth
+    module EditorExtensions
+      class LanguageServerClientVerifier
+        @current_user: untyped
+
+        @request: untyped
+
+        def initialize: (current_user: untyped, request: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader current_user: untyped
+
+        attr_reader request: untyped
+
+        def client: () -> untyped
+
+        def enforce_language_server_version?: () -> (false | untyped)
+
+        def minimum_version: () -> untyped
+      end
+    end
+  end
+end

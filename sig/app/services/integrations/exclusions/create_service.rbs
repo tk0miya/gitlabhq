@@ -1,0 +1,34 @@
+# Exclusions are custom settings at the group or project level used to selectively deactivate an instance integration
+# https://gitlab.com/gitlab-org/gitlab/-/issues/454372
+module Integrations
+  module Exclusions
+    class CreateService < BaseService
+      MAX_PROJECTS: 100
+
+      MAX_GROUPS: 100
+
+      def execute: () -> untyped
+
+      private
+
+      def create_project_integrations: () -> untyped
+
+      def create_group_integrations: () -> untyped
+
+      # Exclusions for groups should propagate to subgroup children
+      # Skip creating integrations for subgroups and projects that would already be deactivated by an ancestor
+      # integration.
+      # Also skip for projects and groups that would be deactivated by creating an integration for another group in the
+      # same call to #execute.
+      def filtered_groups: () -> untyped
+
+      def filtered_projects: () -> untyped
+
+      def ancestor_integration_group_ids: () -> untyped
+
+      def projects_over_limit?: () -> untyped
+
+      def groups_over_limit?: () -> untyped
+    end
+  end
+end

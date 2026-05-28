@@ -1,0 +1,41 @@
+module LooseForeignKeys
+  class ProcessDeletedRecordsService
+    @connection: untyped
+
+    @modification_tracker: untyped
+
+    @logger: untyped
+
+    @worker_class: untyped
+
+    @record_store: untyped
+
+    @current_schema: untyped
+
+    @tracked_tables: untyped
+
+    BATCH_SIZE: 500
+
+    def initialize: (connection: untyped, ?logger: untyped, ?modification_tracker: untyped, ?worker_class: untyped, ?record_store: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader connection: untyped
+
+    attr_reader logger: untyped
+
+    attr_reader modification_tracker: untyped
+
+    attr_reader record_store: untyped
+
+    def db_config_name: () -> untyped
+
+    def load_batch_for_table: (untyped table) -> untyped
+
+    def current_schema: () -> untyped
+
+    def tracked_tables: () -> untyped
+  end
+end

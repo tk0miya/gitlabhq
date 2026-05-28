@@ -1,0 +1,15 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Rules < ::Gitlab::Config::Entry::ComposableArray
+          include ::Gitlab::Config::Entry::Validatable
+
+          def value: () -> untyped
+
+          def composable_class: () -> untyped
+        end
+      end
+    end
+  end
+end

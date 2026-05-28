@@ -1,0 +1,11 @@
+module Subscriptions
+  module User
+    class MergeRequestUpdated < ::Subscriptions::BaseSubscription
+      include Gitlab::Graphql::Laziness
+
+      def authorized?: (user_id: untyped) -> true
+
+      def update: (user_id: untyped) -> untyped
+    end
+  end
+end

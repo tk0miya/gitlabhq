@@ -1,0 +1,19 @@
+module RequiresAllowlistedMonitoringClient
+  @ip_allowlist: untyped
+
+  extend ActiveSupport::Concern
+
+  private
+
+  def validate_ip_allowlisted_or_valid_token!: () -> (untyped | nil)
+
+  def client_ip_allowlisted?: () -> (true | untyped)
+
+  def ip_allowlist: () -> untyped
+
+  def valid_token?: () -> untyped
+
+  def render_404: () -> untyped
+
+  def compat_ip_allowlist: () -> untyped
+end

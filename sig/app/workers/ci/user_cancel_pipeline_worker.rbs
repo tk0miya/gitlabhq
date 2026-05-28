@@ -1,0 +1,7 @@
+module Ci
+  class UserCancelPipelineWorker
+    include ApplicationWorker
+
+    def perform: (untyped pipeline_id, untyped auto_canceled_by_pipeline_id, untyped current_user_id, ?::Hash[untyped, untyped] params) -> untyped
+  end
+end

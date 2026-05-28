@@ -1,0 +1,21 @@
+class AuthenticationEvent < ApplicationRecord
+  include UsageStatistics
+
+  include SafelyChangeColumnDefault
+
+  RETENTION_PERIOD: untyped
+
+  TWO_FACTOR: "two-factor"
+
+  TWO_FACTOR_WEBAUTHN: "two-factor-via-webauthn-device"
+
+  STANDARD: "standard"
+
+  STATIC_PROVIDERS: ::Array[untyped]
+
+  def self.providers: () -> untyped
+
+  def self.initial_login_or_known_ip_address?: (untyped user, untyped ip_address) -> untyped
+
+  def self.most_used_ip_address_for_user: (untyped user) -> untyped
+end

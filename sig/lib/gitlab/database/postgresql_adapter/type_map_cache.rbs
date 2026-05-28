@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module PostgresqlAdapter
+      module TypeMapCache
+        extend ActiveSupport::Concern
+
+        TYPE_MAP_CACHE_MONITOR: untyped
+
+        def initialize_type_map: (?untyped map) -> untyped
+
+        def reload_type_map: () -> untyped
+      end
+    end
+  end
+end

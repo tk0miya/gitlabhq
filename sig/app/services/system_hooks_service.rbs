@@ -1,0 +1,9 @@
+class SystemHooksService
+  def execute_hooks_for: (untyped model, untyped event) -> untyped
+
+  def execute_hooks: (untyped data, ?::Symbol hooks_scope) -> untyped
+
+  private
+
+  def build_event_data: (untyped model, untyped event) -> untyped
+end

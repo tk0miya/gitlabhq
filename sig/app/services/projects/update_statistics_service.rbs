@@ -1,0 +1,21 @@
+module Projects
+  class UpdateStatisticsService < BaseService
+    include ::Gitlab::Utils::StrongMemoize
+
+    STAT_TO_CACHED_METHOD: { repository_size: ::Array[:size | :recent_objects_size], commit_count: :commit_count }
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def after_execute_hook: () -> nil
+
+    def expire_repository_caches: () -> (untyped | untyped | nil)
+
+    def expire_wiki_caches: () -> (nil | untyped)
+
+    def method_caches_to_expire: () -> untyped
+
+    def statistics: () -> untyped
+  end
+end

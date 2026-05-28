@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Build
+      module Status
+        class Reason
+          @build: untyped
+
+          @failure_reason: untyped
+
+          @exit_code: untyped
+
+          attr_reader build: untyped
+
+          attr_reader failure_reason: untyped
+
+          attr_reader exit_code: untyped
+
+          def initialize: (untyped build, untyped failure_reason, ?untyped? exit_code) -> void
+
+          def failure_reason_enum: () -> untyped
+
+          def force_allow_failure?: () -> (false | untyped)
+
+          def self.fabricate: (untyped build, untyped reason) -> untyped
+        end
+      end
+    end
+  end
+end

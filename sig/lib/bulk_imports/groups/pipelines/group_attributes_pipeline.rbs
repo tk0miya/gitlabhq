@@ -1,0 +1,15 @@
+module BulkImports
+  module Groups
+    module Pipelines
+      class GroupAttributesPipeline
+        include Pipeline
+
+        def transform: (untyped _context, untyped data) -> (nil | untyped)
+
+        def load: (untyped _context, untyped data) -> (nil | untyped)
+
+        def after_run: (untyped _context) -> untyped
+      end
+    end
+  end
+end

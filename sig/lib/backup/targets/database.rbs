@@ -1,0 +1,93 @@
+module Backup
+  module Targets
+    class Database < Target
+      @errors: untyped
+
+      @force: untyped
+
+      @logger: untyped
+
+      @base_models_for_backup: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      extend ::Gitlab::Utils::Override
+
+      include Backup::Helper
+
+      attr_reader force: untyped
+
+      attr_reader errors: untyped
+
+      attr_reader logger: untyped
+
+      IGNORED_ERRORS: ::Array[::Regexp]
+
+      IGNORED_ERRORS_REGEXP: untyped
+
+      def initialize: (untyped progress, options: untyped) -> void
+
+      def dump: (untyped destination_dir, untyped _) -> untyped
+
+      def restore: (untyped destination_dir, untyped _) -> untyped
+
+      def do_restore: (untyped backup_connection, untyped config, untyped db_file_name) -> (false | nil | untyped)
+
+      def base_models_for_backup: () -> untyped
+
+      def main_database?: (untyped database_name) -> untyped
+
+      def file_name: (untyped base_dir, untyped database_name) -> untyped
+
+      def ignore_error?: (untyped line) -> untyped
+
+      def execute_and_track_errors: (untyped cmd, untyped decompress_rd) -> untyped
+
+      def report_success: (untyped success) -> untyped
+
+      private
+
+      # TODO: The registry_* and openbao_* helper groups below
+      # (base_keys, include_*_db?, *_database_env, *_db_connection) are intentionally parallel
+      # but duplicated. Extract shared helpers parameterised by prefix (e.g. 'REGISTRY', 'OPENBAO')
+      # to reduce duplication and make adding future additional DB connections easier.
+      # See: https://gitlab.com/gitlab-org/gitlab/-/merge_requests/230425#note_3240284618
+      def registry_db_base_keys: () -> untyped
+
+      # Registry backup is enabled when credentials (PASSWORD, SSL certs) are provided,
+      # in addition to basic connection info (HOST, PORT, NAME, USER).
+      # The presence of ONLY base connection keys means backup is not fully configured.
+      def include_registry_db?: () -> untyped
+
+      def openbao_db_base_keys: () -> untyped
+
+      # OpenBao backup is enabled when any credential key beyond the base connection keys
+      # (HOST, PORT, NAME, SSLMODE, CONNECT_TIMEOUT, USER) is present - e.g. PASSWORD,
+      # SSLCERT, SSLKEY, or ROOTCERT. Base keys alone are not sufficient to trigger backup.
+      def include_openbao_db?: () -> untyped
+
+      def drop_tables: (untyped database_name, untyped connection) -> untyped
+
+      def drop_tables_for_additional_connection: (untyped backup_connection) -> untyped
+
+      # @deprecated This will be removed when restore operation is refactored to use extended_env directly
+      def with_transient_pg_env: (untyped extended_env) { () -> untyped } -> untyped
+
+      def pg_restore_cmd: (untyped database) -> ::Array["psql" | untyped]
+
+      def registry_database_env: (untyped field) -> untyped
+
+      def registry_db_connection: () -> untyped
+
+      def openbao_database_env: (untyped field) -> untyped
+
+      def openbao_db_connection: () -> untyped
+
+      def additional_connections_config: () -> untyped
+
+      def each_database: (untyped destination_dir, ?additional_connections: untyped) { (?) -> untyped } -> untyped
+
+      def multiple_databases?: () -> untyped
+    end
+  end
+end

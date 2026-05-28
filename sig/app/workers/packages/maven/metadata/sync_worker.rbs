@@ -1,0 +1,29 @@
+module Packages
+  module Maven
+    module Metadata
+      class SyncWorker
+        @user_id: untyped
+
+        @project_id: untyped
+
+        @package_name: untyped
+
+        include ApplicationWorker
+
+        include Gitlab::Utils::StrongMemoize
+
+        SyncError: untyped
+
+        def perform: (untyped user_id, untyped project_id, untyped package_name) -> (nil | untyped)
+
+        private
+
+        def valid?: () -> untyped
+
+        def user: () -> untyped
+
+        def project: () -> untyped
+      end
+    end
+  end
+end

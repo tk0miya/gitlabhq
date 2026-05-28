@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    class Trace
+      class Metrics
+        extend Gitlab::Utils::StrongMemoize
+
+        OPERATIONS: ::Array[:appended | :streamed | :chunked | :mutated | :accepted | :finalized | :discarded | :conflict | :locked | :stalled | :invalid | :corrupted]
+
+        TRACE_ERROR_REASONS: ::Array[:chunks_invalid_size | :chunks_invalid_checksum | :archive_invalid_checksum]
+
+        def increment_trace_operation: (?operation: ::Symbol) -> untyped
+
+        def increment_trace_bytes: (untyped size) -> untyped
+
+        def increment_error_counter: (?error_reason: ::Symbol) -> untyped
+
+        def observe_migration_duration: (untyped seconds) -> untyped
+
+        def self.trace_operations: () -> untyped
+
+        def self.trace_bytes: () -> untyped
+
+        def self.finalize_histogram: () -> untyped
+
+        def self.trace_errors_counter: () -> untyped
+      end
+    end
+  end
+end

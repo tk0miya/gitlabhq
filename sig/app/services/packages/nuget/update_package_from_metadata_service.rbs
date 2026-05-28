@@ -1,0 +1,84 @@
+module Packages
+  module Nuget
+    class UpdatePackageFromMetadataService
+      @package_file: untyped
+
+      @package_zip_file: untyped
+
+      @user_or_deploy_token: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      # used by ExclusiveLeaseGuard
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      SYMBOL_PACKAGE_IDENTIFIER: "SymbolsPackage"
+
+      INVALID_METADATA_ERROR_MESSAGE: "package name, version, authors and/or description not found in metadata"
+
+      INVALID_METADATA_ERROR_SYMBOL_MESSAGE: "package name, version and/or description not found in metadata"
+
+      MISSING_MATCHING_PACKAGE_ERROR_MESSAGE: "symbol package is invalid, matching package does not exist"
+
+      DuplicatePackageError: untyped
+
+      InvalidMetadataError: untyped
+
+      ProtectedPackageError: untyped
+
+      ZipError: untyped
+
+      def initialize: (untyped package_file, untyped package_zip_file, ?untyped? user_or_deploy_token) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader user_or_deploy_token: untyped
+
+      def process_package_update: () -> untyped
+
+      def package_protected?: () -> untyped
+
+      def duplicates_allowed?: () -> untyped
+
+      def update_package: (untyped package, untyped build_infos) -> untyped
+
+      def create_symbol_files: () -> (nil | untyped)
+
+      def valid_metadata?: () -> untyped
+
+      def update_linked_package: () -> untyped
+
+      def existing_package: () -> untyped
+
+      def package_name: () -> untyped
+
+      def package_version: () -> untyped
+
+      def package_dependencies: () -> untyped
+
+      def package_tags: () -> untyped
+
+      def package_types: () -> untyped
+
+      def package_authors: () -> untyped
+
+      def package_description: () -> untyped
+
+      def symbol_package?: () -> untyped
+
+      def metadata: () -> untyped
+
+      def package_filename: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+    end
+  end
+end

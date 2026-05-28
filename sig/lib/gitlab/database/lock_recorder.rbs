@@ -1,0 +1,27 @@
+module Gitlab
+  module Database
+    class LockRecorder
+      @locks: untyped
+
+      @recording: untyped
+
+      def self.instance: () -> untyped
+
+      def self.record_key: (untyped record) -> ::Array[untyped]
+
+      def locks: () -> untyped
+
+      def add: (untyped record, untyped lock_type) -> untyped
+
+      def recording: () -> untyped
+
+      def start: () -> untyped
+
+      def stop: () -> untyped
+
+      def recording?: () -> untyped
+
+      def clear: () -> untyped
+    end
+  end
+end

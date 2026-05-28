@@ -1,0 +1,9 @@
+module Projects
+  class ScheduleRefreshBuildArtifactsSizeStatisticsWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

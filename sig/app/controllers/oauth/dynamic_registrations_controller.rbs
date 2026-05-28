@@ -1,0 +1,18 @@
+module Oauth
+  class DynamicRegistrationsController < ApplicationController
+    RESOURCE_SCOPE_MAP: { "/api/v4/orbit/mcp" => untyped, "/api/v4/mcp" => untyped }
+
+    # POST /oauth/register
+    def create: () -> untyped
+
+    private
+
+    def resolve_mcp_scope: (untyped resource, untyped requested_scope) -> untyped
+
+    def validate_dynamic_fields: (untyped client_metadata) -> (nil | untyped)
+
+    def error_data: (untyped error_description) -> { error: "invalid_client_metadata", error_description: untyped }
+
+    def check_rate_limit: () -> (nil | untyped)
+  end
+end

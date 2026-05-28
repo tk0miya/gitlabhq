@@ -1,0 +1,29 @@
+class Snippets::NotesController < ApplicationController
+  @note: untyped
+
+  @snippet: untyped
+
+  include NotesActions
+
+  include ToggleAwardEmoji
+
+  private
+
+  def note: () -> untyped
+
+  alias awardable note
+
+  def project: () -> nil
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def snippet: () -> untyped
+
+  # rubocop: enable CodeReuse/ActiveRecord
+  alias noteable snippet
+
+  def finder_params: () -> untyped
+
+  def authorize_read_snippet!: () -> (untyped | nil)
+
+  def authorize_create_note!: () -> (untyped | nil)
+end

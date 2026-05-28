@@ -1,0 +1,15 @@
+module Gitlab
+  class EncryptedRedisCommand < EncryptedCommandBase
+    DISPLAY_NAME: "Redis"
+
+    EDIT_COMMAND_NAME: "gitlab:redis:secret:edit"
+
+    def self.all_redis_instance_class_names: () -> untyped
+
+    def self.normalized_instance_name: (untyped instance) -> untyped
+
+    def self.encrypted_secrets: (**untyped args) -> untyped
+
+    def self.encrypted_file_template: () -> "# password: '123'\n"
+  end
+end

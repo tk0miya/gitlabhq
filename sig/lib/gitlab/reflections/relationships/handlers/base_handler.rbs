@@ -1,0 +1,33 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      module Handlers
+        class BaseHandler
+          @model: untyped
+
+          @association_name: untyped
+
+          @reflection: untyped
+
+          def initialize: (untyped model, untyped association_name, untyped reflection) -> void
+
+          def build_relationships: () -> untyped
+
+          attr_reader model: untyped
+
+          attr_reader association_name: untyped
+
+          attr_reader reflection: untyped
+
+          def relationship_attributes: () -> { parent_table: untyped, child_table: untyped, relationship_type: untyped }
+
+          private
+
+          def build_relationship: (**untyped attributes) -> untyped
+
+          def relationship_type: () -> untyped
+        end
+      end
+    end
+  end
+end

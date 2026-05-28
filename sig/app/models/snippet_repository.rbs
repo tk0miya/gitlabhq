@@ -1,0 +1,53 @@
+class SnippetRepository < ApplicationRecord
+  include EachBatch
+
+  include Shardable
+
+  DEFAULT_EMPTY_FILE_NAME: "snippetfile"
+
+  EMPTY_FILE_PATTERN: ::Regexp
+
+  CommitError: untyped
+
+  InvalidPathError: untyped
+
+  InvalidSignatureError: untyped
+
+  def self.find_snippet: (untyped disk_path) -> untyped
+
+  def multi_files_action: (untyped user, ?untyped files, **untyped options) -> untyped
+
+  private
+
+  def sharding_keys: () -> ::Array[:organization | :project]
+
+  def ensure_sharding_keys: () -> (nil | untyped)
+
+  def capture_git_error: () { (untyped) -> untyped } -> untyped
+
+  def transform_file_entries: (untyped files) -> untyped
+
+  def file_path_for: (untyped file_entry, untyped next_index) { () -> untyped } -> untyped
+
+  # If the user removed the file_path and the previous_path
+  # matches the EMPTY_FILE_PATTERN, we don't need to
+  # rename the file and build a new empty file name,
+  # we can just reuse the existing file name
+  def reuse_previous_path?: (untyped file_entry) -> untyped
+
+  def infer_action: (untyped file_entry) -> (:create | untyped)
+
+  def get_last_empty_file_index: () -> untyped
+
+  def build_empty_file_name: (untyped index) -> ::String
+
+  def commit_error_exception: (untyped err) -> untyped
+
+  def invalid_path_error?: (untyped err) -> untyped
+
+  def invalid_signature_error?: (untyped err) -> untyped
+
+  def only_rename_action?: (untyped action) -> untyped
+
+  def empty_update_action?: (untyped action) -> untyped
+end

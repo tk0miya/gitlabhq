@@ -1,0 +1,9 @@
+class AnalyticsIssueEntity < Grape::Entity
+  include RequestAwareEntity
+
+  include EntityDateHelper
+
+  private
+
+  def url_to: (untyped route, untyped object) -> untyped
+end

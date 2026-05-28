@@ -1,0 +1,22 @@
+module Gitlab
+  module Config
+    module Entry
+      #
+      # Entry that represents a composable array definition
+      #
+      class ComposableArray < ::Gitlab::Config::Entry::Node
+        include ::Gitlab::Config::Entry::Validatable
+
+        include Gitlab::Utils::StrongMemoize
+
+        def compose!: (?untyped? deps) -> untyped
+
+        def value: () -> untyped
+
+        def descendants: () -> untyped
+
+        def composable_class: () -> untyped
+      end
+    end
+  end
+end

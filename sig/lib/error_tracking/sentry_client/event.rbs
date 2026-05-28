@@ -1,0 +1,13 @@
+module ErrorTracking
+  class SentryClient
+    module Event
+      def issue_latest_event: (issue_id: untyped) -> untyped
+
+      private
+
+      def map_to_event: (untyped event) -> untyped
+
+      def parse_stack_trace: (untyped event) -> (::Array[untyped] | untyped)
+    end
+  end
+end

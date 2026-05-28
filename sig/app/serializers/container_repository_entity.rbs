@@ -1,0 +1,11 @@
+class ContainerRepositoryEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  alias repository object
+
+  def project: () -> untyped
+
+  def can_destroy?: () -> untyped
+end

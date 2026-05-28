@@ -1,0 +1,7 @@
+module Resolvers
+  class ContainerRepositoriesResolver < BaseResolver
+    include ::Mutations::PackageEventable
+
+    def resolve: (?name: untyped?, ?sort: untyped?) -> untyped
+  end
+end

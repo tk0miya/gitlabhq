@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      module CommonJob
+        extend ActiveSupport::Concern
+
+        include PartitionedTable
+
+        MINIMUM_PAUSE_MS: 100
+
+        PARTITION_DURATION: untyped
+
+        MAX_ATTEMPTS: 3
+
+        STUCK_JOBS_TIMEOUT: untyped
+
+        REQUIRED_COLUMNS: ::Array[:batch_size | :sub_batch_size | :worker_id | :worker_partition]
+
+        TIMEOUT_EXCEPTIONS: ::Array[untyped]
+      end
+    end
+  end
+end

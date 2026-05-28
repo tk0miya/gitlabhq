@@ -1,0 +1,37 @@
+module Projects
+  class RecordTargetPlatformsWorker
+    @project: untyped
+
+    @target_languages: untyped
+
+    @lease_key: untyped
+
+    include ApplicationWorker
+
+    include ExclusiveLeaseGuard
+
+    LEASE_TIMEOUT: untyped
+
+    APPLE_PLATFORM_LANGUAGES: ::Array["swift" | "objective-c"]
+
+    def perform: (untyped project_id) -> (nil | untyped)
+
+    private
+
+    attr_reader target_platforms: untyped
+
+    attr_reader project: untyped
+
+    def detector_service: () -> (nil | untyped)
+
+    def target_languages: () -> untyped
+
+    def log_target_platforms_metadata: () -> (nil | untyped)
+
+    def lease_key: () -> untyped
+
+    def lease_timeout: () -> untyped
+
+    def lease_release?: () -> false
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    class JwtV2
+      class ClaimMapper
+        class Bridge
+          @pipeline: untyped
+
+          def initialize: (untyped pipeline) -> void
+
+          def to_h: () -> { ci_config_ref_uri: untyped, ci_config_sha: untyped }
+
+          private
+
+          attr_reader pipeline: untyped
+        end
+      end
+    end
+  end
+end

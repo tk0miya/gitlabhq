@@ -1,0 +1,37 @@
+# LicenseTemplateFinder
+#
+# Used to find license templates, which may come from a variety of external
+# sources
+#
+# Params can be any of the following:
+#   popular: boolean. When set to true, only "popular" licenses are shown. When
+#            false, all licenses except popular ones are shown. When nil (the
+#            default), *all* licenses will be shown.
+#   name:    string. If set, return a single license matching that name (or nil)
+class LicenseTemplateFinder
+  @project: untyped
+
+  @params: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  EXCLUDED_LICENSES: ::Array["wtfpl"]
+
+  attr_reader project: untyped
+
+  attr_reader params: untyped
+
+  def initialize: (untyped project, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  def template_names: () -> untyped
+
+  private
+
+  def available_licenses: () -> untyped
+
+  def vendored_licenses: () -> untyped
+
+  def popular_only?: () -> untyped
+end

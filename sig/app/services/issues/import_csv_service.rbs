@@ -1,0 +1,19 @@
+module Issues
+  class ImportCsvService < Issuable::ImportCsv::BaseService
+    def execute: () -> untyped
+
+    def email_results_to_user: () -> untyped
+
+    private
+
+    def create_object: (untyped attributes) -> untyped
+
+    def create_object_class: () -> untyped
+
+    def extra_create_service_params: () -> { perform_spam_check: untyped }
+
+    def perform_spam_check?: () -> untyped
+
+    def record_import_attempt: () -> untyped
+  end
+end

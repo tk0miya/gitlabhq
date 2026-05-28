@@ -1,0 +1,17 @@
+module Sidebars
+  module UserSettings
+    module Menus
+      class UsageQuotasMenu < ::Sidebars::Menu
+        include ::Sidebars::Concerns::RenderIfLoggedIn
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "quota"
+
+        def active_routes: () -> { controller: :usage_quotas }
+      end
+    end
+  end
+end

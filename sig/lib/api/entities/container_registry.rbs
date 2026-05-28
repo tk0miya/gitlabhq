@@ -1,0 +1,19 @@
+module API
+  module Entities
+    module ContainerRegistry
+      class Tag < Grape::Entity
+      end
+
+      class Repository < Grape::Entity
+        include ::API::Helpers::RelatedResourcesHelpers
+
+        private
+
+        def delete_api_path: () -> untyped
+      end
+
+      class TagDetails < Tag
+      end
+    end
+  end
+end

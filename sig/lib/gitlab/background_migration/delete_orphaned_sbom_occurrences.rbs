@@ -1,0 +1,12 @@
+module Gitlab
+  module BackgroundMigration
+    class DeleteOrphanedSbomOccurrences < BatchedMigrationJob
+      class Project < ::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      def non_existent_project_ids: (untyped project_ids) -> untyped
+    end
+  end
+end

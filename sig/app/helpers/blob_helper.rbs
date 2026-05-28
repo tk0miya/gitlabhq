@@ -1,0 +1,119 @@
+module BlobHelper
+  @ref_project: untyped
+
+  @licenses_for_select: untyped
+
+  @gitignore_names: untyped
+
+  @gitlab_ci_ymls: untyped
+
+  @dockerfile_names: untyped
+
+  include WebIdeButtonHelper
+
+  def edit_blob_path: (?untyped project, ?untyped ref, ?untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+  def ide_edit_path: (?untyped project, ?untyped ref, ?untyped path) -> untyped
+
+  def ide_merge_request_path: (untyped merge_request, ?::String path) -> untyped
+
+  def ide_fork_and_edit_path: (?untyped project, ?untyped ref, ?untyped path, ?with_notice: bool) -> untyped
+
+  def fork_and_edit_path: (?untyped project, ?untyped ref, ?untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+  def fork_path_for_current_user: (untyped project, untyped path, ?with_notice: bool) -> (nil | untyped)
+
+  def encode_ide_path: (untyped path) -> untyped
+
+  def edit_blob_button: (?untyped project, ?untyped ref, ?untyped path, ?::Hash[untyped, untyped] options) -> (nil | untyped)
+
+  # Used for single file Web Editor, Delete and Replace UI actions.
+  # can_edit_tree checks if ref is on top of the branch.
+  def can_modify_blob?: (untyped blob, ?untyped project, ?untyped ref) -> untyped
+
+  # Used for WebIDE editor where editing is possible even if ref is not on top of the branch.
+  def can_modify_blob_with_web_ide?: (untyped blob, ?untyped project) -> untyped
+
+  def editing_preview_title: (untyped filename) -> untyped
+
+  # Return an image icon depending on the file mode and extension
+  #
+  # mode - File unix mode
+  # mode - File name
+  def blob_icon: (untyped mode, untyped name) -> untyped
+
+  def blob_raw_url: (**untyped kwargs) -> (untyped | untyped | untyped | nil)
+
+  def blob_raw_path: (**untyped kwargs) -> untyped
+
+  def parent_dir_raw_path: () -> ::String
+
+  # SVGs can contain malicious JavaScript; only include allowlisted
+  # elements and attributes. Note that this allowlist is by no means complete
+  # and may omit some elements.
+  def sanitize_svg_data: (untyped data) -> untyped
+
+  def ref_project: () -> untyped
+
+  def licenses_for_select: (untyped project) -> untyped
+
+  def gitignore_names: (untyped project) -> untyped
+
+  def gitlab_ci_ymls: (untyped project) -> untyped
+
+  def dockerfile_names: (untyped project) -> untyped
+
+  def blob_editor_paths: (untyped project, untyped method) -> { "relative-url-root" => untyped, "assets-prefix" => untyped, "blob-filename" => untyped, "project-id" => untyped, :"project-path" => untyped, "is-markdown" => untyped, "preview-markdown-path" => untyped, "form-method" => untyped }
+
+  def copy_file_path_button: (untyped file_path) -> untyped
+
+  def copy_blob_source_button: (untyped blob) -> (nil | untyped)
+
+  def open_raw_blob_button: (untyped blob) -> (nil | untyped)
+
+  def download_blob_button: (untyped blob) -> (nil | untyped)
+
+  def blob_render_error_reason: (untyped viewer) -> untyped
+
+  def blob_render_error_options: (untyped viewer) -> untyped
+
+  def contribution_options: (untyped project) -> untyped
+
+  def readable_blob: (untyped options, untyped path, untyped project, untyped ref) -> untyped
+
+  def edit_blob_fork_params: (untyped path, ?with_notice: bool) -> untyped
+
+  def edit_fork_button_tag: (untyped common_classes, untyped project, untyped label, untyped params, ?::String action) -> untyped
+
+  def edit_disabled_button_tag: (untyped button_text, untyped common_classes) -> untyped
+
+  def edit_link_tag: (untyped link_text, untyped edit_path, untyped common_classes) -> untyped
+
+  def edit_button_tag: (untyped blob, untyped common_classes, untyped text, untyped edit_path, untyped project, untyped ref) -> (untyped | untyped | untyped | nil)
+
+  def vue_blob_app_data: (untyped project, untyped blob, untyped ref) -> { blob_path: untyped, project_path: untyped, resource_id: untyped, user_id: untyped, target_branch: untyped, original_branch: untyped, escaped_ref: untyped, can_download_code: untyped, full_name: untyped, has_revs_file: untyped }
+
+  def vue_blob_header_app_data: (untyped project, untyped blob, untyped ref) -> { blob_path: untyped, is_binary: untyped, breadcrumbs: untyped, escaped_ref: untyped, history_link: untyped, project_id: untyped, project_root_path: untyped, project_path: untyped, project_short_path: untyped, ref_type: untyped, ref: untyped, root_ref: untyped, ssh_url: untyped, http_url: untyped, xcode_url: untyped, download_links: untyped, web_ide_button_options: untyped, web_ide_button_default_branch: untyped, show_no_ssh_key_message: untyped, user_settings_ssh_keys_path: untyped }
+
+  def edit_blob_app_data: (untyped project, untyped id, untyped blob, untyped ref, untyped action) -> untyped
+
+  private
+
+  def edit_blob_target_project_id: (untyped project, untyped ref, untyped can_push_to_project_or_branch) -> untyped
+
+  def edit_blob_target_project_path: (untyped project, untyped can_push_to_project_or_branch) -> untyped
+
+  def edit_blob_update_path: (untyped project, untyped id, untyped is_update, untyped is_create) -> (untyped | untyped | nil)
+
+  def edit_blob_cancel_path: (untyped project, untyped id, untyped is_update, untyped is_create) -> (untyped | untyped | nil)
+
+  def edit_blob_fork_project_id: (untyped project, untyped ref) -> (nil | untyped)
+
+  def edit_blob_fork_project_path: (untyped project) -> (nil | untyped)
+
+  def edit_blob_fork_project: (untyped project) -> (nil | untyped)
+
+  def edit_blob_next_fork_branch_name: (untyped project, untyped can_push_to_project_or_branch) -> (nil | untyped)
+
+  def archive_download_links: (untyped project, untyped ref, untyped archive_prefix) -> untyped
+end

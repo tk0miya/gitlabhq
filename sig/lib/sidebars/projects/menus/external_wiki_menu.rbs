@@ -1,0 +1,25 @@
+module Sidebars
+  module Projects
+    module Menus
+      class ExternalWikiMenu < ::Sidebars::Menu
+        @external_wiki: untyped
+
+        def link: () -> untyped
+
+        def extra_container_html_options: () -> { target: "_blank", rel: "noopener noreferrer", class: "shortcuts-external_wiki" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "external-link"
+
+        def render?: () -> untyped
+
+        def serialize_as_menu_item_args: () -> untyped
+
+        private
+
+        def external_wiki: () -> untyped
+      end
+    end
+  end
+end

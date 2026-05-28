@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    module Reports
+      class AccessibilityReportsComparer < ReportsComparer
+        @base_report: untyped
+
+        @head_report: untyped
+
+        def initialize: (untyped base_report, untyped head_report) -> void
+
+        def success?: () -> untyped
+
+        def existing_errors: () -> untyped
+
+        def new_errors: () -> untyped
+
+        def resolved_errors: () -> untyped
+
+        def resolved_count: () -> untyped
+
+        def total_count: () -> untyped
+
+        alias errors_count total_count
+      end
+    end
+  end
+end

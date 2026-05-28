@@ -1,0 +1,11 @@
+module Subscriptions
+  module Notes
+    class Base < ::Subscriptions::BaseSubscription
+      include Gitlab::Graphql::Laziness
+
+      def authorized?: (noteable_id: untyped) -> untyped
+
+      def update: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+    end
+  end
+end

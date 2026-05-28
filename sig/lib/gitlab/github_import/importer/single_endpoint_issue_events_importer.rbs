@@ -1,0 +1,77 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class SingleEndpointIssueEventsImporter
+        @project: untyped
+
+        @client: untyped
+
+        @parallel: untyped
+
+        @already_imported_cache_key: untyped
+
+        @job_waiter_cache_key: untyped
+
+        @job_waiter_remaining_cache_key: untyped
+
+        @import_settings: untyped
+
+        @events_cache: untyped
+
+        include ParallelScheduling
+
+        include SingleEndpointNotesImporting
+
+        PROCESSED_PAGE_CACHE_KEY: "issues/%{issuable_iid}/%{collection}"
+
+        BATCH_SIZE: 100
+
+        def initialize: (untyped project, untyped client, ?parallel: bool) -> void
+
+        # In single endpoint there is no issue info to which associated related
+        # To make it possible to identify issue in separated worker we need to patch
+        # Sawyer instances here with issue number
+        def each_associated: (untyped parent_record, untyped associated) { (untyped) -> untyped } -> (nil | untyped)
+
+        # In Github Issues and MergeRequests uses the same API to get their events.
+        # Even more - they have commonly uniq iid
+        def each_associated_page: () { (?) -> untyped } -> untyped
+
+        def importer_class: () -> untyped
+
+        def representation_class: () -> untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def object_type: () -> :issue_event
+
+        def increment_object_counter: (untyped event_name) -> untyped
+
+        def collection_method: () -> :issue_timeline
+
+        def issues_collection: () -> untyped
+
+        def merge_requests_collection: () -> untyped
+
+        def parent_imported_cache_key: () -> ::String
+
+        def page_keyset_id: (untyped issuable) -> untyped
+
+        def id_for_already_imported_cache: (untyped event) -> untyped
+
+        def collection_options: () -> ::Hash[untyped, untyped]
+
+        # Cross-referenced events on Github doesn't have id.
+        def compose_associated_id!: (untyped issuable, untyped event) -> (nil | untyped)
+
+        def import_settings: () -> untyped
+
+        def after_batch_processed: (untyped parent) -> (nil | untyped)
+
+        def cache_event: (untyped parent_record, untyped associated) -> (nil | untyped)
+
+        def events_cache: () -> untyped
+      end
+    end
+  end
+end

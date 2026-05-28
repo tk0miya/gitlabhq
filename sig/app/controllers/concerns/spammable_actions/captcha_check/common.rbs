@@ -1,0 +1,11 @@
+module SpammableActions
+  module CaptchaCheck
+    module Common
+      extend ActiveSupport::Concern
+
+      private
+
+      def with_captcha_check_common: (spammable: untyped, captcha_render_lambda: untyped) { () -> untyped } -> untyped
+    end
+  end
+end

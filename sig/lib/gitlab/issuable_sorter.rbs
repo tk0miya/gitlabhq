@@ -1,0 +1,9 @@
+module Gitlab
+  module IssuableSorter
+    def self.sort: (untyped project, untyped issuables) { (?) -> untyped } -> untyped
+
+    private
+
+    def self.natural_sort_issuables: (untyped issuables, untyped project) -> untyped
+  end
+end

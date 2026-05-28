@@ -1,0 +1,27 @@
+module Gitlab
+  module Graphql
+    module ConnectionRedaction
+      @redaction_state: untyped
+
+      class RedactionState
+        @redactor: untyped
+
+        @redacted_nodes: untyped
+
+        attr_reader redactor: untyped
+
+        attr_reader redacted_nodes: untyped
+
+        def redactor=: (untyped redactor) -> untyped
+
+        def redacted: () { () -> untyped } -> untyped
+      end
+
+      def nodes: () -> untyped
+
+      private
+
+      def redaction_state: () -> untyped
+    end
+  end
+end

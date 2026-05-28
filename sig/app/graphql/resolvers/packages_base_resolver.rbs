@@ -1,0 +1,11 @@
+module Resolvers
+  class PackagesBaseResolver < BaseResolver
+    SORT_TO_PARAMS_MAP: { created_desc: { order_by: "created", sort: "desc" }, created_asc: { order_by: "created", sort: "asc" }, name_desc: { order_by: "name", sort: "desc" }, name_asc: { order_by: "name", sort: "asc" }, version_desc: { order_by: "version", sort: "desc" }, version_asc: { order_by: "version", sort: "asc" }, type_desc: { order_by: "type", sort: "desc" }, type_asc: { order_by: "type", sort: "asc" } }
+
+    def resolve: (**untyped _args) -> untyped
+
+    private
+
+    def packages_available?: () -> untyped
+  end
+end

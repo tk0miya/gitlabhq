@@ -1,0 +1,19 @@
+module BulkImports
+  module Groups
+    module Pipelines
+      class NamespaceSettingsPipeline
+        include Pipeline
+
+        def transform: (untyped _context, untyped data) -> (nil | untyped)
+
+        def load: (untyped _context, untyped data) -> (nil | untyped)
+
+        def after_run: (untyped _context) -> untyped
+
+        private
+
+        def allowed_attributes: () -> untyped
+      end
+    end
+  end
+end

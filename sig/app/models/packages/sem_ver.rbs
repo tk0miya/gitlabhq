@@ -1,0 +1,47 @@
+class Packages::SemVer
+  @major: untyped
+
+  @minor: untyped
+
+  @patch: untyped
+
+  @prerelease: untyped
+
+  @build: untyped
+
+  @prefixed: untyped
+
+  include Comparable
+
+  attr_accessor major: untyped
+
+  attr_accessor minor: untyped
+
+  attr_accessor patch: untyped
+
+  attr_accessor prerelease: untyped
+
+  attr_accessor build: untyped
+
+  def initialize: (?::Integer major, ?::Integer minor, ?::Integer patch, ?untyped? prerelease, ?untyped? build, ?prefixed: bool) -> void
+
+  def prefixed?: () -> untyped
+
+  def <=>: (untyped other) -> (nil | untyped)
+
+  def ==: (untyped other) -> untyped
+
+  def to_s: () -> untyped
+
+  def self.match: (untyped str, ?prefixed: bool) -> (nil | untyped)
+
+  def self.match?: (untyped str, ?prefixed: bool) -> untyped
+
+  def self.parse: (untyped str, ?prefixed: bool) -> (nil | untyped)
+
+  private
+
+  def compare_prerelease: (untyped pre_a, untyped pre_b) -> (0 | 1 | -1 | untyped)
+
+  def compare_identifiers: (untyped id_a, untyped id_b) -> untyped
+end

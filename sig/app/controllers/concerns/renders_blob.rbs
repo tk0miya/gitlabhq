@@ -1,0 +1,11 @@
+module RendersBlob
+  extend ActiveSupport::Concern
+
+  def blob_viewer_json: (untyped blob) -> (::Hash[untyped, untyped] | { html: untyped })
+
+  def render_blob_json: (untyped blob) -> untyped
+
+  def conditionally_expand_blob: (untyped blob) -> untyped
+
+  def conditionally_expand_blobs: (untyped blobs) -> (nil | untyped)
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module LocalAndRemoteStorageMigration
+    class PagesDeploymentMigrater < Gitlab::LocalAndRemoteStorageMigration::BaseMigrater
+      private
+
+      def items_with_files_stored_locally: () -> untyped
+
+      def items_with_files_stored_remotely: () -> untyped
+    end
+  end
+end

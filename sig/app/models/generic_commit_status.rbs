@@ -1,0 +1,11 @@
+class GenericCommitStatus < CommitStatus
+  EXTERNAL_STAGE_IDX: 1000000
+
+  def tags: () -> ::Array[:external]
+
+  def detailed_status: (untyped current_user) -> untyped
+
+  private
+
+  def name_uniqueness_across_types: () -> (nil | untyped)
+end

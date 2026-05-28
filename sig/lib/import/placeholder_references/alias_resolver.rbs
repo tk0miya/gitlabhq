@@ -1,0 +1,36 @@
+module Import
+  module PlaceholderReferences
+    module AliasResolver
+      extend ::Import::PlaceholderReferences::AliasResolver
+
+      MissingAlias: untyped
+
+      DOCS_URL: "https://docs.gitlab.com/development/user_contribution_mapping/#placeholder-reference-aliasing"
+
+      NOTE_COLUMNS: { "author_id" => "author_id", "updated_by_id" => "updated_by_id", "resolved_by_id" => "resolved_by_id" }
+
+      NOTE_EXCLUSIONS: ::Array["updated_by_id" | "resolved_by_id"]
+
+      # A new version for a model should be defined when new entries must be
+      # mapped in a different way to data that already exists in the database.
+      # Context: https://gitlab.com/gitlab-org/gitlab/-/issues/478501
+      # Warning: Do not remove old aliases, even if a model has been renamed and no longer exists.
+      #          Unused placeholder references referencing old model names name may still exist.
+      ALIASES: { "Approval" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "AwardEmoji" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "Ci::Bridge" => { 1 => { model: untyped, columns: { "user_id" => "user_id", "erased_by_id" => "erased_by_id" }, columns_ignored_on_deletion: ::Array["user_id" | "erased_by_id"] } }, "Ci::Build" => { 1 => { model: untyped, columns: { "user_id" => "user_id", "erased_by_id" => "erased_by_id" }, columns_ignored_on_deletion: ::Array["user_id" | "erased_by_id"] } }, "Ci::Pipeline" => { 1 => { model: untyped, columns: { "user_id" => "user_id" }, columns_ignored_on_deletion: ::Array["user_id"] } }, "Ci::PipelineSchedule" => { 1 => { model: untyped, columns: { "owner_id" => "owner_id" } } }, "DesignManagement::Version" => { 1 => { model: untyped, columns: { "author_id" => "author_id" } } }, "DiffNote" => { 1 => { model: untyped, columns: untyped, columns_ignored_on_deletion: untyped } }, "DiscussionNote" => { 1 => { model: untyped, columns: untyped, columns_ignored_on_deletion: untyped } }, "Event" => { 1 => { model: untyped, columns: { "author_id" => "author_id" }, columns_ignored_on_deletion: ::Array["author_id"] } }, "Epic" => { 1 => { model: untyped, columns: { "author_id" => "author_id", "assignee_id" => "assignee_id", "updated_by_id" => "updated_by_id", "last_edited_by_id" => "last_edited_by_id", "closed_by_id" => "closed_by_id" }, columns_ignored_on_deletion: ::Array["updated_by_id"] } }, "GenericCommitStatus" => { 1 => { model: untyped, columns: { "user_id" => "user_id", "erased_by_id" => "erased_by_id" }, columns_ignored_on_deletion: ::Array["user_id" | "erased_by_id"] } }, "LegacyDiffNote" => { 1 => { model: untyped, columns: untyped, columns_ignored_on_deletion: untyped } }, "Issue" => { 1 => { model: untyped, columns: { "author_id" => "author_id", "updated_by_id" => "updated_by_id", "closed_by_id" => "closed_by_id", "last_edited_by_id" => "last_edited_by_id" }, columns_ignored_on_deletion: ::Array["last_edited_by_id"] } }, "IssueAssignee" => { 1 => { model: untyped, columns: { "user_id" => "user_id", "issue_id" => "issue_id" } } }, "List" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "MergeRequest" => { 1 => { model: untyped, columns: { "author_id" => "author_id", "updated_by_id" => "updated_by_id", "last_edited_by_id" => "last_edited_by_id", "merge_user_id" => "merge_user_id" }, columns_ignored_on_deletion: ::Array["last_edited_by_id"] } }, "MergeRequest::Metrics" => { 1 => { model: untyped, columns: { "merged_by_id" => "merged_by_id", "latest_closed_by_id" => "latest_closed_by_id" } } }, "MergeRequestAssignee" => { 1 => { model: untyped, columns: { "user_id" => "user_id", "merge_request_id" => "merge_request_id" } } }, "MergeRequestReviewer" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "Note" => { 1 => { model: untyped, columns: untyped, columns_ignored_on_deletion: untyped } }, "ProtectedTag::CreateAccessLevel" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "ProtectedBranch::MergeAccessLevel" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "ProtectedBranch::PushAccessLevel" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "ProjectSnippet" => { 1 => { model: untyped, columns: { "author_id" => "author_id" } } }, "Release" => { 1 => { model: untyped, columns: { "author_id" => "author_id" } } }, "ResourceLabelEvent" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "ResourceMilestoneEvent" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "ResourceStateEvent" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "Snippet" => { 1 => { model: untyped, columns: { "author_id" => "author_id" } } }, "Timelog" => { 1 => { model: untyped, columns: { "user_id" => "user_id" } } }, "Vulnerability" => { 1 => { model: untyped, columns: { "author_id" => "author_id", "resolved_by_id" => "resolved_by_id", "dismissed_by_id" => "dismissed_by_id", "confirmed_by_id" => "confirmed_by_id" } } }, "WorkItem" => { 1 => { model: untyped, columns: { "author_id" => "author_id", "updated_by_id" => "updated_by_id", "closed_by_id" => "closed_by_id", "last_edited_by_id" => "last_edited_by_id" } } } }
+
+      def aliases: () -> untyped
+
+      def version_for_model: (untyped model) -> (untyped | 1)
+
+      def aliased_model: (untyped model, version: untyped) -> untyped
+
+      def aliased_column: (untyped model, untyped column, version: untyped) -> untyped
+
+      def models_with_data: () -> untyped
+
+      def self.missing_alias_error: (model: untyped, ?column: untyped?, ?version: untyped?) -> untyped
+
+      def self.track_error_for_missing: (model: untyped, ?column: untyped?, ?version: untyped?) -> untyped
+    end
+  end
+end

@@ -1,0 +1,39 @@
+module Packages
+  module Debian
+    class ExtractChangesMetadataService
+      @package_file: untyped
+
+      @entries: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ExtractionError: untyped
+
+      def initialize: (untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def metadata: () -> untyped
+
+      def file_type: () -> untyped
+
+      def fields: () -> untyped
+
+      def files: () -> untyped
+
+      def init_entries_from_files: () -> untyped
+
+      def entries_from_checksums_sha1: () -> untyped
+
+      def entries_from_checksums_sha256: () -> untyped
+
+      def each_lines_for: (untyped field) { (untyped) -> untyped } -> untyped
+
+      def entries_from_package_files: () -> untyped
+
+      def incoming: () -> untyped
+    end
+  end
+end

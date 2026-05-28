@@ -1,0 +1,31 @@
+module Gitlab
+  module Kubernetes
+    module Kubeconfig
+      module Entry
+        class Cluster
+          @name: untyped
+
+          @url: untyped
+
+          @ca_pem: untyped
+
+          attr_reader name: untyped
+
+          def initialize: (name: untyped, url: untyped, ?ca_pem: untyped?) -> void
+
+          def to_h: () -> { name: untyped, cluster: untyped }
+
+          private
+
+          attr_reader url: untyped
+
+          attr_reader ca_pem: untyped
+
+          def cluster: () -> untyped
+
+          def certificate_authority_data: () -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

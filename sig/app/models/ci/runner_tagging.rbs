@@ -1,0 +1,17 @@
+module Ci
+  class RunnerTagging < Ci::ApplicationRecord
+    include BulkInsertSafe
+
+    include EachBatch
+
+    MAX_NAME_LENGTH: 255
+
+    private
+
+    def set_runner_type: () -> untyped
+
+    def copy_tag_name_from_tags: () -> untyped
+
+    def no_organization_id: () -> (nil | untyped)
+  end
+end

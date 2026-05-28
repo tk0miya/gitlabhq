@@ -1,0 +1,29 @@
+module Gitlab
+  module GithubImport
+    class ProjectRelationType
+      @client: untyped
+
+      CACHE_ORGS_EXPIRES_IN: untyped
+
+      CACHE_USER_EXPIRES_IN: untyped
+
+      def initialize: (untyped client) -> void
+
+      def for: (untyped import_source) -> untyped
+
+      private
+
+      attr_reader client: untyped
+
+      def user?: (untyped namespace) -> untyped
+
+      def organization?: (untyped namespace) -> untyped
+
+      def github_user_login: () -> untyped
+
+      def github_org_logins: () -> untyped
+
+      def cache_key: (untyped subject) -> untyped
+    end
+  end
+end

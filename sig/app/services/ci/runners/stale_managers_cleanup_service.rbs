@@ -1,0 +1,15 @@
+module Ci
+  module Runners
+    class StaleManagersCleanupService
+      MAX_DELETIONS: 1000
+
+      SUB_BATCH_LIMIT: 100
+
+      def execute: () -> untyped
+
+      private
+
+      def delete_stale_runner_managers: () -> { total_deleted: untyped, batch_counts: untyped }
+    end
+  end
+end

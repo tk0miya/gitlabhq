@@ -1,0 +1,21 @@
+module Mcp
+  module Tools
+    module WorkItems
+      class GraphqlGetSavedViewWorkItemsService < GraphqlService
+        def graphql_tool_class: () -> untyped
+
+        def perform_0_1_0: (untyped arguments) -> untyped
+
+        def perform_default: (?::Hash[untyped, untyped] arguments) -> untyped
+
+        private
+
+        def append_unsupported_filter_warnings: (untyped combined, untyped unsupported_filters) -> (nil | untyped)
+
+        def execute_saved_view_tool: (untyped arguments) -> untyped
+
+        def execute_work_items_tool: (untyped arguments, untyped saved_view) -> ::Array[untyped]
+      end
+    end
+  end
+end

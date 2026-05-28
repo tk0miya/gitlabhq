@@ -1,0 +1,25 @@
+module Gitlab
+  module Metrics
+    class RuntimeLimiter
+      @start_time: untyped
+
+      @max_runtime: untyped
+
+      @last_check: untyped
+
+      DEFAULT_MAX_RUNTIME: untyped
+
+      attr_reader max_runtime: untyped
+
+      attr_reader start_time: untyped
+
+      def initialize: (?untyped max_runtime) -> void
+
+      def elapsed_time: () -> untyped
+
+      def over_time?: () -> untyped
+
+      def was_over_time?: () -> untyped
+    end
+  end
+end

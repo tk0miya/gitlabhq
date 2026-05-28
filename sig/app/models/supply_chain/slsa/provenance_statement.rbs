@@ -1,0 +1,107 @@
+module SupplyChain
+  module Slsa
+    module CamelCaseJson
+      def deep_change_case: (untyped json) -> untyped
+    end
+
+    class ProvenanceStatement
+      @_type: untyped
+
+      @predicate_type: untyped
+
+      include ActiveModel::Serializers::JSON
+
+      include CamelCaseJson
+
+      attr_accessor _type: untyped
+
+      attr_accessor subject: untyped
+
+      attr_accessor predicate_type: untyped
+
+      attr_accessor predicate: untyped
+
+      PREDICATE_TYPE_V1: "https://slsa.dev/provenance/v1"
+
+      def self.from_build: (untyped build) -> untyped
+
+      def initialize: () -> void
+
+      def as_json: (?untyped? options) -> untyped
+
+      def attributes: () -> { "_type" => nil, "subject" => nil, "predicate_type" => nil, "predicate" => nil }
+
+      class BuildDefinition
+        include ActiveModel::Model
+
+        attr_accessor build_type: untyped
+
+        attr_accessor external_parameters: untyped
+
+        attr_accessor internal_parameters: untyped
+
+        attr_accessor resolved_dependencies: untyped
+
+        def self.from_build: (untyped build) -> untyped
+      end
+
+      class RunDetails
+        include ActiveModel::Model
+
+        attr_accessor builder: untyped
+
+        attr_accessor metadata: untyped
+
+        attr_accessor byproducts: untyped
+
+        def self.from_build: (untyped build) -> untyped
+      end
+
+      class ExternalParameters
+        include ActiveModel::Model
+
+        attr_accessor source: untyped
+
+        attr_accessor entry_point: untyped
+
+        attr_accessor variables: untyped
+
+        def self.from_build: (untyped build) -> untyped
+      end
+
+      class Builder
+        include ActiveModel::Model
+
+        attr_accessor id: untyped
+
+        attr_accessor builder_dependencies: untyped
+
+        attr_accessor version: untyped
+      end
+
+      class BuildMetadata
+        include ActiveModel::Model
+
+        attr_accessor invocation_id: untyped
+
+        attr_accessor started_on: untyped
+
+        attr_accessor finished_on: untyped
+      end
+
+      class Predicate
+        include ActiveModel::Model
+
+        include CamelCaseJson
+
+        def self.from_build: (untyped build) -> untyped
+
+        def as_json: (?untyped? options) -> untyped
+
+        attr_accessor build_definition: untyped
+
+        attr_accessor run_details: untyped
+      end
+    end
+  end
+end

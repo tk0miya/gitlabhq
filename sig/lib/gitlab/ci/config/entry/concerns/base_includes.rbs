@@ -1,0 +1,24 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        module Concerns
+          #
+          # Module that provides common functionality for includes entries
+          #
+          # This module is included by:
+          # - Gitlab::Ci::Config::Entry::Includes
+          # - Gitlab::Ci::Config::Header::Includes
+          #
+          # This module is tested indirectly through the classes that include it.
+          #
+          module BaseIncludes
+            extend ActiveSupport::Concern
+
+            def composable_class: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateDuplicatePushRulesToProjectPushRules < BatchedMigrationJob
+      class PushRule < ::ApplicationRecord
+      end
+
+      class ProjectPushRule < ::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      private
+
+      def migrate_duplicates_with_explicit_ordering: (untyped sub_batch) -> untyped
+
+      def migrate_duplicates_with_implicit_ordering: (untyped sub_batch) -> (nil | untyped)
+
+      def find_duplicate_project_ids: (untyped project_ids) -> untyped
+
+      def filter_already_migrated: (untyped duplicate_project_ids) -> untyped
+
+      def migrate_each_duplicate: (untyped duplicate_project_ids) -> untyped
+    end
+  end
+end

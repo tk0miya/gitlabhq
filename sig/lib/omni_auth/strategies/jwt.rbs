@@ -1,0 +1,25 @@
+module OmniAuth
+  module Strategies
+    class Jwt
+      @decoded: untyped
+
+      # Many web servers limit max header size to 8KB. It's also possible to POST a JWT using GET method
+      # to avoid header limit. Allow up to 10KB for flexibility while still balancing performance.
+      MAX_JWT_BYTESIZE: 10000
+
+      ClaimInvalid: untyped
+
+      JwtTooLarge: untyped
+
+      include OmniAuth::Strategy
+
+      def request_phase: () -> untyped
+
+      def decoded: () -> untyped
+
+      def callback_phase: () -> untyped
+
+      def secret: () -> untyped
+    end
+  end
+end

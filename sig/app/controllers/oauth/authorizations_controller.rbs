@@ -1,0 +1,63 @@
+class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
+  include Gitlab::GonHelper
+
+  include InitializesCurrentUserMode
+
+  include Gitlab::Utils::StrongMemoize
+
+  include RequestPayloadLogger
+
+  # Overridden from Doorkeeper::AuthorizationsController to
+  # include the call to session.delete
+  def new: () -> untyped
+
+  private
+
+  # In Rails 8 alias_method at class-body level fails when the aliased method
+  # is not yet in the ancestor chain at load time. Define explicitly instead.
+  def auth_user: () -> untyped
+
+  def audit_oauth_authorization: () -> (nil | untyped)
+
+  # Chrome blocks redirections if the form-action CSP directive is present
+  # and the redirect location's scheme isn't allow-listed
+  # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/form-action
+  # https://github.com/w3c/webappsec-csp/issues/8
+  def allow_redirect_uri_form_action: (untyped redirect_uri_scheme) -> (nil | untyped)
+
+  def pre_auth_params: () -> untyped
+
+  def resource_is_mcp_server?: () -> untyped
+
+  def resource_is_mcp_orbit_server?: () -> untyped
+
+  def should_force_scope_for_dynamic_app?: (untyped scope) -> untyped
+
+  # limit scopes when signing in with GitLab
+  def downgrade_scopes!: () -> (nil | untyped)
+
+  # Configure the application to support read_user scope, if it already
+  # supports scopes with greater levels of privileges.
+  def ensure_read_user_scope!: () -> (nil | untyped)
+
+  def add_read_user_scope!: () -> (nil | untyped)
+
+  def doorkeeper_application: () -> untyped
+
+  def application_has_read_user_scope?: () -> untyped
+
+  def application_has_api_scope?: () -> untyped
+
+  def verify_confirmed_email!: () -> (nil | untyped)
+
+  def verify_admin_allowed!: () -> (untyped | nil)
+
+  def disallow_connect?: () -> untyped
+
+  def dangerous_scopes?: () -> untyped
+
+  def validate_pkce_for_dynamic_applications: () -> (nil | untyped)
+
+  # Used by `set_current_organization` in BaseActionController
+  def organization_params: () -> ::Hash[untyped, untyped]
+end

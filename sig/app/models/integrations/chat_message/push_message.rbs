@@ -1,0 +1,63 @@
+module Integrations
+  module ChatMessage
+    class PushMessage < BaseMessage
+      @after: untyped
+
+      @before: untyped
+
+      @commits: untyped
+
+      @ref_type: untyped
+
+      @ref: untyped
+
+      attr_reader after: untyped
+
+      attr_reader before: untyped
+
+      attr_reader commits: untyped
+
+      attr_reader ref: untyped
+
+      attr_reader ref_type: untyped
+
+      def initialize: (untyped params) -> void
+
+      def attachments: () -> (::Array[untyped] | untyped)
+
+      def activity: () -> { title: untyped, subtitle: ::String, text: untyped, image: untyped }
+
+      def attachment_color: () -> "#345"
+
+      private
+
+      def humanized_action: (?short: bool) -> untyped
+
+      def message: () -> untyped
+
+      def format: (untyped string) -> untyped
+
+      def commit_messages: () -> untyped
+
+      def commit_message_attachments: () -> ::Array[{ text: untyped, color: untyped }]
+
+      def compose_commit_message: (untyped commit) -> ::String
+
+      def new_branch?: () -> untyped
+
+      def removed_branch?: () -> untyped
+
+      def ref_url: () -> ::String
+
+      def compare_url: () -> ::String
+
+      def ref_link: () -> untyped
+
+      def project_link: () -> untyped
+
+      def compare_link: () -> untyped
+
+      def compose_action_details: () -> (::Array["pushed new" | untyped | ::String] | ::Array["removed" | untyped | ::String] | ::Array["pushed to" | untyped | ::String])
+    end
+  end
+end

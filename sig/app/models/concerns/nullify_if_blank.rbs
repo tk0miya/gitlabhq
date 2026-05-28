@@ -1,0 +1,27 @@
+# Helper that sets attributes to nil prior to validation if they
+# are blank (are false, empty or contain only whitespace), to avoid
+# unnecessarily persisting empty strings.
+#
+# Model usage:
+#
+#   class User < ApplicationRecord
+#     include NullifyIfBlank
+#
+#     nullify_if_blank :name, :email
+#   end
+#
+#
+# Test usage:
+#
+#   RSpec.describe User do
+#     it { is_expected.to nullify_if_blank(:name) }
+#     it { is_expected.to nullify_if_blank(:email) }
+#   end
+#
+module NullifyIfBlank
+  extend ActiveSupport::Concern
+
+  private
+
+  def nullify_blank_attributes: () -> untyped
+end

@@ -1,0 +1,31 @@
+# Converts a line from `git diff --word-diff=porcelain` output into a segment
+#
+# Possible options:
+# 1. Diff hunk
+# 2. Chunk
+# 3. Newline
+module Gitlab
+  module WordDiff
+    class LineProcessor
+      @line: untyped
+
+      @full_line: untyped
+
+      def initialize: (untyped line) -> void
+
+      def extract: () -> (nil | untyped)
+
+      private
+
+      attr_reader line: untyped
+
+      def diff_hunk?: () -> untyped
+
+      def empty_line?: () -> untyped
+
+      def newline_delimiter?: () -> untyped
+
+      def full_line: () -> untyped
+    end
+  end
+end

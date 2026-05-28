@@ -1,0 +1,23 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Attachments
+        class IssuesImporter < ::Gitlab::GithubImport::Importer::Attachments::BaseImporter
+          def sidekiq_worker_class: () -> untyped
+
+          def collection_method: () -> :issue_attachments
+
+          def object_type: () -> :issue_attachment
+
+          def id_for_already_imported_cache: (untyped issue) -> untyped
+
+          private
+
+          def collection: () -> untyped
+
+          def ordering_column: () -> :iid
+        end
+      end
+    end
+  end
+end

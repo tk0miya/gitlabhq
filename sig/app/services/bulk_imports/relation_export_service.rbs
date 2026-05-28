@@ -1,0 +1,48 @@
+module BulkImports
+  class RelationExportService
+    @user: untyped
+
+    @portable: untyped
+
+    @relation: untyped
+
+    @jid: untyped
+
+    @offline_export_id: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include ::Import::BulkImports::ExportUploadable
+
+    EXISTING_EXPORT_TTL: untyped
+
+    # @param offline_export_id [Integer] ID of offline transfer to which export is related
+    def initialize: (untyped user, untyped portable, untyped relation, untyped jid, ?offline_export_id: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader portable: untyped
+
+    attr_reader relation: untyped
+
+    attr_reader jid: untyped
+
+    attr_reader offline_export_id: untyped
+
+    def export: () -> untyped
+
+    def upload: () -> untyped
+
+    def start_export!: (untyped export) -> untyped
+
+    def finish_export!: () -> untyped
+
+    # Create empty file on disk
+    # if relation is empty and nothing was exported
+    def ensure_export_file_exists!: () -> untyped
+  end
+end

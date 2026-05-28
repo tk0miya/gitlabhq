@@ -1,0 +1,29 @@
+module Authn
+  module Passkey
+    class RegisterService < BaseService
+      @user: untyped
+
+      @params: untyped
+
+      @challenge: untyped
+
+      @passkey_credential: untyped
+
+      include WebauthnErrors
+
+      attr_reader user: untyped
+
+      def initialize: (untyped user, untyped params, untyped challenge) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def passkey_eligible?: (untyped passkey_credential) -> untyped
+
+      def notify_on_success: (untyped user, untyped device_name) -> untyped
+
+      def success_message: (untyped user) -> untyped
+    end
+  end
+end

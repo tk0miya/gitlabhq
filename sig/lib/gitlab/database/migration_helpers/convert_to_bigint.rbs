@@ -1,0 +1,40 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module ConvertToBigint
+        INDEX_OPTIONS_MAP: { unique: :unique, order: :orders, opclass: :opclasses, where: :where, type: :type, using: :using, comment: :comment }
+
+        # Acts as ActiveRecord::ConnectionAdapters::IndexDefinition when
+        # creating bigint indexes for primary key at #create_primary_key_index method
+        PkIndexDefinition: untyped
+
+        def com_or_dev_or_test_but_not_jh?: () -> (true | untyped)
+
+        def temp_column_removed?: (untyped table_name, untyped column_name) -> untyped
+
+        def skip_bigint_migration?: (untyped table, untyped columns) -> (true | false)
+
+        def columns_swapped?: (untyped table_name, untyped column_name) -> untyped
+
+        def add_bigint_column_indexes: (untyped table_name, untyped int_column_name) -> (nil | untyped)
+
+        def create_primary_key_index: (untyped table_name, untyped int_column_name, untyped bigint_column_name) -> untyped
+
+        def drop_bigint_columns_indexes: (untyped table_name, untyped int_columns) -> untyped
+
+        # default 'index_name' method is not used because this method can be reused while swapping/dropping the indexes
+        def bigint_index_name: (untyped int_column_index_name) -> ::String
+
+        def tmp_foreign_key_name: (untyped int_column_fk_name) -> ::String
+
+        private
+
+        def create_bigint_index: (untyped table_name, untyped index_definition, untyped int_column_name, untyped bigint_column_name) -> untyped
+
+        def bigint_index_columns: (untyped int_column_name, untyped bigint_column_name, untyped int_index_columns) -> untyped
+
+        def create_bigint_options: (untyped index_options, untyped int_index_name, untyped int_column_name, untyped bigint_column_name) -> untyped
+      end
+    end
+  end
+end

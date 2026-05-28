@@ -1,0 +1,29 @@
+module CloudSeed
+  module GoogleCloud
+    DEFAULT_REGION: "us-east1"
+
+    class CreateCloudsqlInstanceService < ::CloudSeed::GoogleCloud::BaseService
+      WORKER_INTERVAL: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def create_cloud_instance: () -> untyped
+
+      def trigger_instance_setup_worker: () -> untyped
+
+      def protected?: () -> untyped
+
+      def instance_name: () -> untyped
+
+      def root_password: () -> untyped
+
+      def database_version: () -> untyped
+
+      def region: () -> untyped
+
+      def tier: () -> untyped
+    end
+  end
+end

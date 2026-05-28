@@ -1,0 +1,21 @@
+module Gitlab
+  module Verify
+    class LfsObjects < BatchVerifier
+      def name: () -> "LFS objects"
+
+      def describe: (untyped object) -> ::String
+
+      private
+
+      def all_relation: () -> untyped
+
+      def local?: (untyped lfs_object) -> untyped
+
+      def expected_checksum: (untyped lfs_object) -> untyped
+
+      def actual_checksum: (untyped lfs_object) -> untyped
+
+      def remote_object_exists?: (untyped lfs_object) -> untyped
+    end
+  end
+end

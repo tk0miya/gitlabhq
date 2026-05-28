@@ -1,0 +1,91 @@
+class WikiPage
+  class Meta < ApplicationRecord
+    @canonical_slug: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Mentionable
+
+    include Noteable
+
+    include Participable
+
+    include Subscribable
+
+    include Todoable
+
+    include Awardable
+
+    include FromUnion
+
+    include IdInOrdered
+
+    WikiPageInvalid: untyped
+
+    # Return the (updated) WikiPage::Meta record for a given wiki page
+    #
+    # If none is found, then a new record is created, and its fields are set
+    # to reflect the wiki_page passed.
+    #
+    # @param [String] last_known_slug
+    # @param [WikiPage] wiki_page
+    #
+    # This method raises errors on validation issues.
+    def self.find_or_create: (untyped last_known_slug, untyped wiki_page) -> untyped
+
+    def self.find_by_canonical_slug: (untyped canonical_slug, untyped container) -> (nil | untyped)
+
+    def self.declarative_policy_class: () -> "WikiPagePolicy"
+
+    private
+
+    def self.wiki_page_updates: (untyped wiki_page) -> { title: untyped, created_at: untyped, updated_at: untyped }
+
+    def self.container_attrs: (untyped container) -> ({ project_id: untyped } | untyped)
+
+    public
+
+    def wiki_page: () -> untyped
+
+    def container: () -> untyped
+
+    def container=: (untyped value) -> untyped
+
+    def resource_parent: () -> untyped
+
+    def for_group_wiki?: () -> untyped
+
+    def container_key: () -> (:namespace_id | :project_id)
+
+    def canonical_slug: () -> untyped
+
+    def canonical_slug=: (untyped slug) -> (nil | untyped)
+
+    def update_state: (untyped created, untyped known_slugs, untyped wiki_page, untyped updates) -> untyped
+
+    def gfm_reference: (?untyped? from) -> ::String
+
+    def reference_link_text: () -> untyped
+
+    # Used by app/policies/todo_policy.rb
+    def readable_by?: (untyped user) -> untyped
+
+    def to_ability_name: () -> "wiki_page"
+
+    def notes_with_associations: () -> untyped
+
+    def subscribed_without_subscriptions?: (untyped user, untyped _project) -> untyped
+
+    private
+
+    def update_wiki_page_attributes: (untyped updates) -> untyped
+
+    def insert_slugs: (untyped strings, untyped is_new, untyped canonical_slug) -> untyped
+
+    def slug_attributes: (untyped slug, untyped canonical_slug, untyped is_new, untyped creation) -> untyped
+
+    def slug_meta_attributes: () -> ::Hash[untyped, untyped]
+
+    def no_two_metarecords_in_same_container_can_have_same_canonical_slug: () -> (nil | untyped)
+  end
+end

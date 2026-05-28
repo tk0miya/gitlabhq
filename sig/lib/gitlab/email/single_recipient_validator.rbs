@@ -1,0 +1,23 @@
+module Gitlab
+  module Email
+    module SingleRecipientValidator
+      # It is possible to send email to one or more recipients in one email
+      # by setting the list of emails to the :to key, or by :cc or :bcc-ing
+      # recipients.
+      # https://guides.rubyonrails.org/action_mailer_basics.html#sending-email-to-multiple-recipients
+      #
+      # This method ensures an email will only go to zero or one recipients.
+      def validate_single_recipient_in_opts!: (untyped opts) -> (nil | true)
+
+      # This method validates that only a single recipient is present.
+      # It must be a String; e.g. an Array of Strings is not valid.
+      # Email separators are commas in RFC5322, but semicolons are also
+      # permitted in RFC1485.
+      #
+      # It does not validate that the recipient is a valid email address.
+      def validate_single_recipient_in_email: (untyped email) -> untyped
+
+      def validate_single_recipient_in_email!: (untyped email) -> (nil | untyped)
+    end
+  end
+end

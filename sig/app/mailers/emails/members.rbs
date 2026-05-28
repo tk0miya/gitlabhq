@@ -1,0 +1,36 @@
+module Emails
+  module Members
+    @member_source_type: untyped
+
+    @member_id: untyped
+
+    @member: untyped
+
+    @member_source: untyped
+
+    @member_source_organization: untyped
+
+    extend ActiveSupport::Concern
+
+    include MembersHelper
+
+    include Gitlab::Experiment::Dsl
+
+    def member_access_granted_email: (untyped member_source_type, untyped member_id) -> (nil | untyped)
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def member: () -> untyped
+
+    def member_source: () -> untyped
+
+    def member_source_organization: () -> untyped
+
+    def notification_group: () -> untyped
+
+    private
+
+    def member_exists?: () -> untyped
+
+    def member_source_class: () -> untyped
+  end
+end

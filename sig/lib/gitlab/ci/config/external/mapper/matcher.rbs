@@ -1,0 +1,28 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        class Mapper
+          # Matches the first file type that matches the given location
+          class Matcher < Base
+            include Gitlab::Utils::StrongMemoize
+
+            private
+
+            def process_without_instrumentation: (untyped locations) -> untyped
+
+            def new_file_class: (untyped file_class, untyped location) -> untyped
+
+            def masked_location: (untyped location) -> untyped
+
+            def file_subkeys: () -> untyped
+
+            def include_type: () -> "include"
+
+            def file_classes: () -> ::Array[untyped]
+          end
+        end
+      end
+    end
+  end
+end

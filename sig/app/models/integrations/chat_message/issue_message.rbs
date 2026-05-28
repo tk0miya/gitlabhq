@@ -1,0 +1,65 @@
+module Integrations
+  module ChatMessage
+    class IssueMessage < BaseMessage
+      @title: untyped
+
+      @issue_iid: untyped
+
+      @issue_url: untyped
+
+      @action: untyped
+
+      @state: untyped
+
+      @description: untyped
+
+      @object_kind: untyped
+
+      @type: untyped
+
+      @issue_type: untyped
+
+      attr_reader title: untyped
+
+      attr_reader issue_iid: untyped
+
+      attr_reader issue_url: untyped
+
+      attr_reader action: untyped
+
+      attr_reader state: untyped
+
+      attr_reader description: untyped
+
+      attr_reader object_kind: untyped
+
+      attr_reader type: untyped
+
+      def initialize: (untyped params) -> void
+
+      def attachments: () -> (::Array[untyped] | untyped)
+
+      def activity: () -> { title: ::String, subtitle: untyped, text: untyped, image: untyped }
+
+      def attachment_color: () -> "#C95823"
+
+      def issue_type: () -> untyped
+
+      private
+
+      def message: () -> ::String
+
+      def opened_issue?: () -> untyped
+
+      def description_message: () -> ::Array[{ title: untyped, title_link: untyped, text: untyped, color: untyped }]
+
+      def project_link: () -> (nil | untyped)
+
+      def issue_link: () -> untyped
+
+      def issue_title: () -> ::String
+
+      def fallback_type: () -> ("Incident" | "Issue")
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Projects
+  module Ml
+    module ModelRegistryHelper
+      def index_ml_model_data: (untyped project, untyped user) -> untyped
+
+      def new_ml_model_data: (untyped project, untyped user) -> untyped
+
+      def show_ml_model_data: (untyped model, untyped user) -> untyped
+
+      def edit_ml_model_data: (untyped model, untyped user) -> untyped
+
+      def new_ml_model_version_data: (untyped model, untyped user) -> untyped
+
+      def show_ml_model_version_data: (untyped model_version, untyped user) -> untyped
+
+      def edit_ml_model_version_data: (untyped model_version, untyped user) -> untyped
+
+      private
+
+      def model_version_artifact_import_path: (untyped project_id, untyped model_version_id) -> untyped
+
+      def can_write_model_registry?: (untyped user, untyped project) -> untyped
+
+      def max_allowed_file_size: (untyped project) -> untyped
+
+      def to_json: (untyped data) -> untyped
+    end
+  end
+end

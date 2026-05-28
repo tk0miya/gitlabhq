@@ -1,0 +1,19 @@
+module Gitlab
+  class ResourceUsageLimiter
+    # Sidekiq runtime should define worker_name
+    # Puma runtime can use caller_id in labkit
+    @params: untyped
+
+    def initialize: (?worker_name: untyped?) -> void
+
+    def exceeded_limits: () -> untyped
+
+    def exceeded_limits?: () -> untyped
+
+    private
+
+    def limits: () -> (::Array[untyped] | untyped)
+
+    def throttled?: (untyped limit, ?peek: bool) -> (false | untyped)
+  end
+end

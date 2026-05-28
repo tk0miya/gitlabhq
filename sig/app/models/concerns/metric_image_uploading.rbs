@@ -1,0 +1,19 @@
+module MetricImageUploading
+  @filename: untyped
+
+  @file_path: untyped
+
+  extend ActiveSupport::Concern
+
+  MAX_FILE_SIZE: untyped
+
+  def filename: () -> untyped
+
+  def file_path: () -> untyped
+
+  private
+
+  def valid_file_extensions: () -> untyped
+
+  def validate_file_is_image: () -> (untyped | nil)
+end

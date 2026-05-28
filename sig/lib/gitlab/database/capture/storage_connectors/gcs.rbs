@@ -1,0 +1,32 @@
+module Gitlab
+  module Database
+    module Capture
+      module StorageConnectors
+        # Google Cloud Storage Connector
+        # https://cloud.google.com/ruby/docs/reference/google-cloud-storage/latest
+        class Gcs
+          @settings: untyped
+
+          @client: untyped
+
+          @bucket: untyped
+
+          def initialize: (untyped settings) -> void
+
+          # We have to escape "/" from the filename to avoid gcp to interpret as a subfolder. This can be a problem
+          # if we use the primary write location compose the filename, which can include an address like +"1F/4BE69098"+
+          def upload: (untyped filename, untyped data) -> untyped
+
+          private
+
+          attr_reader settings: untyped
+
+          def client: () -> untyped
+
+          # Permission 'storage.buckets.get' must be granted to access to the Google Cloud Storage bucket
+          def bucket: () -> untyped
+        end
+      end
+    end
+  end
+end

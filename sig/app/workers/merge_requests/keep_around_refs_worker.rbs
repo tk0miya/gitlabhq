@@ -1,0 +1,7 @@
+module MergeRequests
+  class KeepAroundRefsWorker
+    include ApplicationWorker
+
+    def perform: (untyped project_ids, untyped shas, untyped source) -> (nil | untyped)
+  end
+end

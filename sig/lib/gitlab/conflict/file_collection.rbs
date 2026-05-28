@@ -1,0 +1,49 @@
+module Gitlab
+  module Conflict
+    class FileCollection
+      @our_commit: untyped
+
+      @their_commit: untyped
+
+      @target_repo: untyped
+
+      @source_repo: untyped
+
+      @our_commit_id: untyped
+
+      @their_commit_id: untyped
+
+      @resolver: untyped
+
+      @merge_request: untyped
+
+      @files: untyped
+
+      @cache: untyped
+
+      include Gitlab::RepositoryCacheAdapter
+
+      attr_reader merge_request: untyped
+
+      attr_reader resolver: untyped
+
+      def initialize: (untyped merge_request, ?allow_tree_conflicts: bool, ?skip_content: bool) -> void
+
+      def resolve: (untyped user, untyped commit_message, untyped files) -> untyped
+
+      def files: () -> untyped
+
+      def can_be_resolved_in_ui?: () -> untyped
+
+      def file_for_path: (untyped old_path, untyped new_path) -> untyped
+
+      def as_json: (?untyped? opts) -> { target_branch: untyped, source_commit: { sha: untyped, message: untyped }, source_branch: untyped, commit_sha: untyped, commit_message: untyped, files: untyped }
+
+      def default_commit_message: () -> untyped
+
+      private
+
+      def cache: () -> untyped
+    end
+  end
+end

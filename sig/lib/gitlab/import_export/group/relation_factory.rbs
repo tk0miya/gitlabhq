@@ -1,0 +1,49 @@
+module Gitlab
+  module ImportExport
+    module Group
+      class RelationFactory < Base::RelationFactory
+        @relation_hash: untyped
+
+        @group_ids: untyped
+
+        @project_ids: untyped
+
+        @logger: untyped
+
+        OVERRIDES: { labels: :group_labels, label: :group_label, parent: :epic, iterations_cadences: "Iterations::Cadence", user_contributions: :user, epic_lists: "Boards::EpicList", epic_boards: "Boards::EpicBoard" }
+
+        EXISTING_OBJECT_RELATIONS: ::Array[:epic | :epics | :milestone | :milestones | :label | :labels | :group_label | :group_labels | :iteration | :iterations]
+
+        RELATIONS_WITH_REWRITABLE_USERNAMES: ::Array[:milestone | :milestones | :epic | :epics | :release | :releases | :note | :notes]
+
+        MILESTONE_TITLE_UPDATE_MSG: "[Project/Group Import] Updating milestone title - source title used by existing group or project milestone"
+
+        private
+
+        def setup_models: () -> (nil | untyped)
+
+        def invalid_relation?: () -> untyped
+
+        def update_group_references: () -> (nil | untyped)
+
+        def use_attributes_permitter?: () -> false
+
+        def setup_iterations_cadence: () -> untyped
+
+        def setup_event: () -> (untyped | nil)
+
+        def setup_epic: () -> untyped
+
+        def ensure_milestone_title_is_unique: () -> (nil | untyped)
+
+        def group_ids: () -> untyped
+
+        def project_ids: () -> untyped
+
+        def unique_milestone_title: (untyped title) -> ::String
+
+        def logger: () -> untyped
+      end
+    end
+  end
+end

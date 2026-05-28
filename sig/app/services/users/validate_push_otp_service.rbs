@@ -1,0 +1,17 @@
+module Users
+  class ValidatePushOtpService < BaseService
+    @current_user: untyped
+
+    @strategy: untyped
+
+    include ::Gitlab::Auth::Otp::Fortinet
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader strategy: untyped
+  end
+end

@@ -1,0 +1,67 @@
+module Gitlab
+  module Tracking
+    InvalidEventError: untyped
+
+    class EventDefinition
+      self.@definitions: untyped
+
+      self.@paths: untyped
+
+      self.@internal_event_actions: untyped
+
+      @path: untyped
+
+      @attributes: untyped
+
+      @event_selection_rules: untyped
+
+      attr_reader path: untyped
+
+      IDENTIFIERS: ::Array[:user | :namespace | :project]
+
+      extend Gitlab::Utils::StrongMemoize
+
+      def self.definitions: () -> untyped
+
+      def self.internal_event_exists?: (untyped event_name) -> untyped
+
+      def self.find: (untyped event_name) -> untyped
+
+      private
+
+      def self.paths: () -> untyped
+
+      def self.load_from_file: (untyped path) -> untyped
+
+      def self.load_all_from_path: (untyped glob_path) -> untyped
+
+      def self.internal_event_actions: () -> untyped
+
+      public
+
+      def initialize: (untyped path, ?::Hash[untyped, untyped] opts) -> void
+
+      def additional_properties: () -> untyped
+
+      def internal_events?: () -> untyped
+
+      def category: () -> untyped
+
+      def yaml_path: () -> untyped
+
+      def event_selection_rules: () -> untyped
+
+      def action: () -> untyped
+
+      def extra_trackers: () -> untyped
+
+      def duo_event?: () -> untyped
+
+      def raw_attributes: () -> untyped
+
+      private
+
+      def find_event_selection_rules: () -> untyped
+    end
+  end
+end

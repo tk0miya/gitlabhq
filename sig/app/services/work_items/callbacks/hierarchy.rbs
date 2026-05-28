@@ -1,0 +1,45 @@
+module WorkItems
+  module Callbacks
+    class Hierarchy < Base
+      INVALID_RELATIVE_POSITION_ERROR: "Relative position is not valid."
+
+      CHILDREN_REORDERING_ERROR: "Relative position cannot be combined with childrenIds."
+
+      UNRELATED_ADJACENT_HIERARCHY_ERROR: "The adjacent work item's parent must match the new parent work item."
+
+      INVALID_ADJACENT_PARENT_ERROR: "The adjacent work item's parent must match the current parent work item."
+
+      def after_create: () -> untyped
+
+      def after_update: () -> untyped
+
+      private
+
+      def handle_service_response!: (untyped response) -> untyped
+
+      def positioning?: () -> untyped
+
+      def handle_positioning: () -> untyped
+
+      def validate_positioning_params!: () -> untyped
+
+      def handle_hierarchy_changes: () -> untyped
+
+      def validate_hierarchy_change_params!: () -> untyped
+
+      def update_work_item_parent: (untyped parent) -> untyped
+
+      def update_work_item_children: (untyped children) -> untyped
+
+      def remove_parent_link: (untyped child) -> (nil | untyped)
+
+      def incomplete_relative_position?: () -> untyped
+
+      def missing_positioning_children?: () -> untyped
+
+      def unrelated_adjacent_hierarchy?: () -> (false | untyped)
+
+      def invalid_adjacent_parent?: () -> (false | untyped)
+    end
+  end
+end

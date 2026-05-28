@@ -1,0 +1,37 @@
+module Gitlab
+  module Memory
+    class Reporter
+      @reports_path: untyped
+
+      @logger: untyped
+
+      @worker_id: untyped
+
+      @worker_uuid: untyped
+
+      @report_duration_counter: untyped
+
+      COMPRESS_CMD: ::Array["gzip" | "--fast"]
+
+      attr_reader reports_path: untyped
+
+      def initialize: (?reports_path: untyped?, ?logger: untyped) -> void
+
+      def run_report: (untyped report) -> untyped
+
+      private
+
+      def store_report: (untyped report) -> untyped
+
+      def write_compressed_file: (untyped report, untyped path) -> untyped
+
+      def log_labels: (**untyped extra_labels) -> untyped
+
+      def file_name: (untyped report) -> untyped
+
+      def file_size: (untyped file_path) -> untyped
+
+      def init_prometheus_metrics: () -> untyped
+    end
+  end
+end

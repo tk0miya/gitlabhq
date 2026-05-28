@@ -1,0 +1,31 @@
+module FeatureFlags
+  class UpdateService < FeatureFlags::BaseService
+    AUDITABLE_STRATEGY_ATTRIBUTES_HUMAN_NAMES: { "scopes" => "environment scopes", "parameters" => "parameters" }
+
+    def success: (**untyped args) -> untyped
+
+    def execute: (untyped feature_flag) -> untyped
+
+    private
+
+    def execute_hooks_after_commit: (untyped feature_flag) -> (nil | untyped)
+
+    def audit_context: (untyped feature_flag) -> { name: "feature_flag_updated", message: untyped, author: untyped, scope: untyped, target: untyped }
+
+    def audit_message: (untyped feature_flag) -> (nil | untyped)
+
+    def changed_attributes_messages: (untyped feature_flag) -> untyped
+
+    def changed_strategies_messages: (untyped feature_flag) -> untyped
+
+    def deleted_strategy_message: (untyped strategy) -> ::String
+
+    def updated_strategy_message: (untyped strategy) -> (nil | untyped)
+
+    def can_update?: (untyped feature_flag) -> untyped
+
+    def user_list_ids: (untyped params) -> untyped
+
+    def valid_user_list_ids?: (untyped feature_flag, untyped user_list_ids) -> untyped
+  end
+end

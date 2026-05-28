@@ -1,0 +1,33 @@
+module Packages
+  module Protection
+    class CheckRuleExistenceService < BaseProjectService
+      SUCCESS_RESPONSE_RULE_EXISTS: untyped
+
+      SUCCESS_RESPONSE_RULE_DOESNT_EXIST: untyped
+
+      ERROR_RESPONSE_UNAUTHORIZED: untyped
+
+      ERROR_RESPONSE_INVALID_PACKAGE_TYPE: untyped
+
+      def self.for_push: (params: untyped, **untyped args) -> untyped
+
+      def self.for_delete: (params: untyped, **untyped args) -> untyped
+
+      def initialize: (params: untyped, **untyped args) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def package_type_allowed?: () -> untyped
+
+      def current_user_can_do_action?: () -> untyped
+
+      def check_rule_exists_for_user: () -> (false | untyped)
+
+      def check_rule_exists_for_deploy_token_or_blank_user: () -> untyped
+
+      def service_response_for: (untyped protection_rule_exists) -> untyped
+    end
+  end
+end

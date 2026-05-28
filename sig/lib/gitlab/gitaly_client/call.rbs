@@ -1,0 +1,41 @@
+module Gitlab
+  module GitalyClient
+    class Call
+      @storage: untyped
+
+      @service: untyped
+
+      @rpc: untyped
+
+      @request: untyped
+
+      @remote_storage: untyped
+
+      @timeout: untyped
+
+      @duration: untyped
+
+      @gitaly_context: untyped
+
+      @circuit_breaker: untyped
+
+      @start: untyped
+
+      def initialize: (untyped storage, untyped service, untyped rpc, untyped request, untyped remote_storage, untyped timeout, ?gitaly_context: ::Hash[untyped, untyped]) -> void
+
+      def call: () { (?) -> untyped } -> untyped
+
+      private
+
+      def circuit_breaker: () -> untyped
+
+      def instrument_stream: (untyped response) -> untyped
+
+      def recording_request: () { () -> untyped } -> untyped
+
+      def store_timings: () -> (nil | untyped)
+
+      def set_gitaly_error_metadata: (untyped err) -> untyped
+    end
+  end
+end

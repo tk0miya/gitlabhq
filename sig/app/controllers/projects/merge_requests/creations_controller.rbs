@@ -1,0 +1,78 @@
+class Projects::MergeRequests::CreationsController < Projects::MergeRequests::ApplicationController
+  @merge_request: untyped
+
+  @source_project: untyped
+
+  @target_project: untyped
+
+  @pipelines: untyped
+
+  @diffs: untyped
+
+  @diff_notes_disabled: untyped
+
+  @ref: untyped
+
+  @commit: untyped
+
+  @rapid_diffs_presenter: untyped
+
+  @noteable: untyped
+
+  @commits: untyped
+
+  @commits_count_label: untyped
+
+  # FIXME: We have to assign a presenter to another instance variable
+  # due to class_name checks being made with issuable classes
+  @mr_presenter: untyped
+
+  @labels: untyped
+
+  include DiffForPath
+
+  include DiffHelper
+
+  include RendersCommits
+
+  include ProductAnalyticsTracking
+
+  include Projects::TargetProjects
+
+  include RapidDiffs::Resource
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def pipelines: () -> untyped
+
+  def diffs: () -> untyped
+
+  def diff_for_path: () -> untyped
+
+  def branch_from: () -> untyped
+
+  def branch_to: () -> untyped
+
+  private
+
+  def rapid_diffs_presenter: () -> (nil | untyped)
+
+  def define_new_vars: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def selected_target_project: () -> untyped
+
+  def webide_source?: () -> untyped
+
+  def after_push_link?: () -> untyped
+
+  def incr_count_webide_merge_request: () -> untyped
+
+  def tracking_project_source: () -> untyped
+
+  def tracking_namespace_source: () -> untyped
+
+  def start_user_experience_create_mr: () -> untyped
+end

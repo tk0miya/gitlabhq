@@ -1,0 +1,41 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Limit
+          class RateLimit < Chain::Base
+            include Chain::Helpers
+
+            include ::Gitlab::Utils::StrongMemoize
+
+            RATE_LIMITS: ::Array[{ key: :pipelines_create, scope: untyped } | { key: :pipelines_created_per_user, scope: untyped }]
+
+            EXCLUDED_WORKFLOW_DEFINITIONS: ::Array["sast_fp_detection/v1" | "secrets_fp_detection/v1" | "resolve_sast_vulnerability/v1"]
+
+            def perform!: () -> (nil | untyped)
+
+            def break?: () -> untyped
+
+            private
+
+            def excluded_from_rate_limit?: () -> untyped
+
+            def creating_policy_pipeline?: () -> untyped
+
+            def excluded_duo_workflow?: () -> (false | untyped)
+
+            def find_throttled_keys: () -> untyped
+
+            def create_log_entry: (untyped throttled_keys) -> untyped
+
+            def throttle_message: () -> "Too many pipelines created in the last minute. Try again later."
+
+            def enforce_throttle?: () -> untyped
+
+            def throttle_override?: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

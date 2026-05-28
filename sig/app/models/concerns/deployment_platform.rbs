@@ -1,0 +1,14 @@
+module DeploymentPlatform
+  @deployment_platform: untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def deployment_platform: (?environment: untyped?) -> (nil | untyped)
+
+  private
+
+  def find_deployment_platform: (untyped environment) -> untyped
+
+  def find_platform_kubernetes_with_cte: (untyped environment) -> untyped
+
+  def find_instance_cluster_platform_kubernetes: (?environment: untyped?) -> untyped
+end

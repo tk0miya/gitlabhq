@@ -1,0 +1,42 @@
+module Users
+  # Service class for caching and retrieving the last push event of a user.
+  class LastPushEventService
+    @user: untyped
+
+    EXPIRATION: untyped
+
+    def initialize: (untyped user) -> void
+
+    # Caches the given push event for the current user in the Rails cache.
+    #
+    # event - An instance of PushEvent to cache.
+    def cache_last_push_event: (untyped event) -> untyped
+
+    # Returns the last PushEvent for the current user.
+    #
+    # This method will return nil if no event was found.
+    def last_event_for_user: () -> untyped
+
+    # Returns the last PushEvent for the current user and the given project.
+    #
+    # project - An instance of Project for which to retrieve the PushEvent.
+    #
+    # This method will return nil if no event was found.
+    def last_event_for_project: (untyped project) -> untyped
+
+    def find_cached_event: (untyped cache_key) -> (nil | untyped)
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_event_in_database: (untyped id) -> untyped
+
+    def user_cache_key: () -> ::String
+
+    def project_cache_key: (untyped project) -> ::String
+
+    def get_key: (untyped key) -> untyped
+
+    def set_key: (untyped key, untyped value) -> untyped
+  end
+end

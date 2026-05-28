@@ -1,0 +1,19 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      module Handlers
+        # Handles polymorphic has_many and has_one associations with :as option
+        # Examples:
+        #   has_many :comments, as: :commentable
+        #   has_one :image, as: :imageable
+        class PolymorphicHasAssociationHandler < BaseHandler
+          def relationship_attributes: () -> { parent_table: untyped, child_table: nil, primary_key: untyped, foreign_key: ::String, relationship_type: untyped, polymorphic: true, polymorphic_type_column: ::String, polymorphic_name: untyped, parent_association: { name: untyped, type: untyped, model: untyped } }
+
+          private
+
+          def relationship_type: () -> untyped
+        end
+      end
+    end
+  end
+end

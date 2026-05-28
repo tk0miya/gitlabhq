@@ -1,0 +1,27 @@
+module Gitlab
+  module Tracking
+    self.@tracker: untyped
+
+    self.@feature_map: untyped
+
+    def self.frontend_connect_directly_to_snowplow_collector?: () -> untyped
+
+    def self.micro_verification_enabled?: () -> untyped
+
+    def self.event: (untyped category, untyped action, ?label: untyped?, ?property: untyped?, ?value: untyped?, ?context: untyped, ?project: untyped?, ?user: untyped?, ?namespace: untyped?, **untyped extra) -> untyped
+
+    def self.frontend_client_options: () -> untyped
+
+    def self.collector_hostname: () -> untyped
+
+    def self.snowplow_micro_enabled?: () -> untyped
+
+    def self.tracker: () -> untyped
+
+    private
+
+    def self.reset_tracker?: () -> (false | true)
+
+    def self.track_struct_event: (untyped destination, untyped category, untyped action, label: untyped, property: untyped, value: untyped, contexts: untyped) -> untyped
+  end
+end

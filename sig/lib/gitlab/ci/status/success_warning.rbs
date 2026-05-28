@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Status
+      #
+      # Extended status used when pipeline or stage passed conditionally.
+      # This means that failed jobs that are allowed to fail were present.
+      #
+      class SuccessWarning < Status::Extended
+        def text: () -> untyped
+
+        def label: () -> untyped
+
+        def status_tooltip: () -> untyped
+
+        def icon: () -> "status_warning"
+
+        def name: () -> "SUCCESS_WITH_WARNINGS"
+
+        def group: () -> "success-with-warnings"
+
+        def self.matches?: (untyped subject, untyped user) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Resolvers
+  module Ci
+    class PipelineStagesResolver < BaseResolver
+      include LooksAhead
+
+      alias pipeline object
+
+      def resolve_with_lookahead: () -> untyped
+
+      def unconditional_includes: () -> untyped
+
+      def preloads: () -> { jobs: { latest_statuses: ::Array[:needs] } }
+    end
+  end
+end

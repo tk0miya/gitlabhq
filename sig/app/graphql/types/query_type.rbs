@@ -1,0 +1,32 @@
+module Types
+  class QueryType < ::Types::BaseObject
+    # The design management context object needs to implement #issue
+    DesignManagementObject: untyped
+
+    def self.authorization_scopes: () -> untyped
+
+    def design_management: () -> untyped
+
+    def issue: (id: untyped) -> untyped
+
+    def note: (id: untyped) -> untyped
+
+    def merge_request: (id: untyped) -> untyped
+
+    def milestone: (id: untyped, lookahead: untyped) -> untyped
+
+    def container_repository: (id: untyped) -> untyped
+
+    def current_user: () -> untyped
+
+    def ci_application_settings: () -> untyped
+
+    def application_settings: () -> untyped
+
+    def gitpod_enabled: () -> untyped
+
+    def query_complexity: () -> untyped
+
+    def ci_pipeline_stage: (id: untyped) -> (nil | untyped)
+  end
+end

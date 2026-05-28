@@ -1,0 +1,25 @@
+class Admin::DashboardController < Admin::ApplicationController
+  @counts: untyped
+
+  @projects: untyped
+
+  @users: untyped
+
+  @groups: untyped
+
+  @notices: untyped
+
+  @kas_server_info: untyped
+
+  @redis_versions: untyped
+
+  @users_statistics: untyped
+
+  include CountHelper
+
+  COUNTED_ITEMS: ::Array[untyped]
+
+  def index: () -> untyped
+
+  def stats: () -> untyped
+end

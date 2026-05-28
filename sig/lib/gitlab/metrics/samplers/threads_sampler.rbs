@@ -1,0 +1,27 @@
+module Gitlab
+  module Metrics
+    module Samplers
+      class ThreadsSampler < BaseSampler
+        @metrics: untyped
+
+        DEFAULT_SAMPLING_INTERVAL_SECONDS: 5
+
+        METRIC_PREFIX: "gitlab_ruby_threads_"
+
+        METRIC_DESCRIPTIONS: { max_expected_threads: "Maximum number of threads expected to be running and performing application work", running_threads: "Number of running Ruby threads by name" }
+
+        def metrics: () -> untyped
+
+        def sample: () -> untyped
+
+        private
+
+        def set_running_threads: (untyped name, uses_db_connection: untyped, size: untyped) -> untyped
+
+        def threads_by_name: () -> untyped
+
+        def uses_db_connection: (untyped thread) -> ("yes" | "no")
+      end
+    end
+  end
+end

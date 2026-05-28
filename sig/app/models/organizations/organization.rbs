@@ -1,0 +1,79 @@
+module Organizations
+  class Organization < ApplicationRecord
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::SQL::Pattern
+
+    include Gitlab::VisibilityLevel
+
+    include FeatureGate
+
+    include Organizations::Isolatable
+
+    include Organizations::Stateful
+
+    include Cells::Claimable
+
+    DEFAULT_ORGANIZATION_ID: 1
+
+    def self.search: (untyped query, ?use_minimum_char_limit: bool) -> untyped
+
+    def self.default_organization: () -> untyped
+
+    def self.find_by_id_with_isolation_record: (untyped id) -> untyped
+
+    def self.find_by_path_with_isolation_record: (untyped path) -> (nil | untyped)
+
+    def self.find_by_namespace_path_with_isolation_record: (untyped path) -> untyped
+
+    def self.default?: (untyped id) -> untyped
+
+    # Required for Gitlab::VisibilityLevel module
+    def visibility_level_field: () -> :visibility_level
+
+    def organization_detail: () -> untyped
+
+    def default?: () -> untyped
+
+    def empty?: () -> untyped
+
+    def to_param: () -> untyped
+
+    def owner_user_ids: () -> untyped
+
+    def user?: (untyped user) -> untyped
+
+    def owner?: (untyped user) -> untyped
+
+    def add_owner: (untyped user) -> untyped
+
+    def web_url: (?only_path: untyped?) -> untyped
+
+    # For example:
+    # scoped path   - /o/my-org/my-group/my-project
+    # unscoped path - /my-group/my-project
+    def scoped_paths?: () -> untyped
+
+    def inspect: () -> ::String
+
+    # Root path in the context of this organization instance.
+    def root_path: () -> untyped
+
+    # Deprecated, use root_path instead.
+    # Will be removed in future commit.
+    def full_path: () -> ("" | ::String)
+
+    private
+
+    # The visibility must be broader than the visibility of any contained root groups.
+    def check_visibility_level: () -> (nil | untyped)
+
+    # The 'o' path is reserved as it's used for routing organization resources
+    # Example: /o/:organization_path
+    def check_organization_reserved_name: () -> (nil | untyped)
+
+    def check_if_default_organization: () -> (nil | untyped)
+
+    def unique_attributes: () -> ::Array[:path]
+  end
+end

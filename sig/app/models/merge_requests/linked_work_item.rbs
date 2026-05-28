@@ -1,0 +1,19 @@
+module MergeRequests
+  class LinkedWorkItem
+    @link_type: untyped
+
+    @work_item: untyped
+
+    @external_issue: untyped
+
+    include ActiveModel::Validations
+
+    attr_reader work_item: untyped
+
+    attr_reader external_issue: untyped
+
+    attr_reader link_type: untyped
+
+    def initialize: (link_type: untyped, ?work_item: untyped?, ?external_issue: untyped?) -> void
+  end
+end

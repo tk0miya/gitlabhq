@@ -1,0 +1,9 @@
+module Ci
+  class PipelineBridgeStatusWorker
+    include ::ApplicationWorker
+
+    include ::PipelineQueue
+
+    def perform: (untyped pipeline_id) -> untyped
+  end
+end

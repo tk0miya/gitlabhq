@@ -1,0 +1,33 @@
+module ServiceDesk
+  module CustomEmails
+    class CreateService < BaseService
+      def execute: () -> untyped
+
+      private
+
+      def update_settings: () -> untyped
+
+      def rollback_credential: () -> untyped
+
+      def create_credential: () -> untyped
+
+      def create_verification: () -> untyped
+
+      def create_setting_params: () -> untyped
+
+      def create_credential_params: () -> untyped
+
+      def ensure_params: () -> untyped
+
+      def has_required_params?: () -> untyped
+
+      def required_keys: () -> ::Array[:custom_email | :smtp_address | :smtp_port | :smtp_username | :smtp_password]
+
+      def error_custom_email_exists: () -> untyped
+
+      def error_params_missing: () -> untyped
+
+      def error_cannot_create_custom_email: () -> untyped
+    end
+  end
+end

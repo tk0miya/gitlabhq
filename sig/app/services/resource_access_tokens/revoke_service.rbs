@@ -1,0 +1,39 @@
+module ResourceAccessTokens
+  class RevokeService < BaseService
+    @current_user: untyped
+
+    @access_token: untyped
+
+    @bot_user: untyped
+
+    @resource: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    RevokeAccessTokenError: untyped
+
+    def initialize: (untyped current_user, untyped resource, untyped access_token) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader access_token: untyped
+
+    attr_reader bot_user: untyped
+
+    attr_reader resource: untyped
+
+    def can_destroy_token?: () -> untyped
+
+    def find_member: () -> untyped
+
+    def log_event: () -> untyped
+
+    def error: (untyped message) -> untyped
+
+    def success: (untyped message) -> untyped
+  end
+end

@@ -1,0 +1,35 @@
+module ErrorTracking
+  class BaseService < ::BaseProjectService
+    include Gitlab::Utils::UsageData
+
+    def initialize: (untyped project, ?untyped? user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def perform: () -> untyped
+
+    def compose_response: (untyped response) ?{ () -> untyped } -> untyped
+
+    def parse_response: (untyped response) -> untyped
+
+    def unauthorized: () -> untyped
+
+    def parse_errors: (untyped response) -> untyped
+
+    def http_status_for: (untyped error_type) -> untyped
+
+    def project_error_tracking_setting: () -> untyped
+
+    def enabled?: () -> untyped
+
+    def can_read?: () -> untyped
+
+    def can_update?: () -> untyped
+
+    def error_repository: () -> untyped
+
+    def handle_error_repository_exceptions: () { () -> untyped } -> untyped
+  end
+end

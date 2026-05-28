@@ -1,0 +1,34 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      class Issue
+        @attributes: untyped
+
+        include Representable
+
+        # Builds an issue from a GitHub API response.
+        #
+        # issue - An instance of `Hash` containing the issue
+        #         details.
+        def self.from_api_response: (untyped issue, ?::Hash[untyped, untyped] additional_data) -> untyped
+
+        # Builds a new issue using a Hash that was built from a JSON payload.
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        # attributes - A hash containing the raw issue details. The keys of this
+        #              Hash (and any nested hashes) must be symbols.
+        def initialize: (untyped attributes) -> void
+
+        def truncated_title: () -> untyped
+
+        def labels?: () -> untyped
+
+        def pull_request?: () -> untyped
+
+        def issuable_type: () -> ("MergeRequest" | "Issue")
+
+        def github_identifiers: () -> { iid: untyped, issuable_type: untyped, title: untyped }
+      end
+    end
+  end
+end

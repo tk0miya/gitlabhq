@@ -1,0 +1,33 @@
+module Integrations
+  module Propagation
+    class BulkCreateService
+      @integration: untyped
+
+      @batch: untyped
+
+      @association: untyped
+
+      include BulkOperationHashes
+
+      def initialize: (untyped integration, untyped batch, untyped association) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader integration: untyped
+
+      attr_reader batch: untyped
+
+      attr_reader association: untyped
+
+      def bulk_insert_integrations: () -> untyped
+
+      def bulk_insert_data_fields: (untyped integration_ids) -> untyped
+
+      def bulk_insert_slack_integrations: (untyped integration_ids) -> untyped
+
+      def bulk_insert_slack_integration_scopes: (untyped inserted_slack_ids) -> untyped
+    end
+  end
+end

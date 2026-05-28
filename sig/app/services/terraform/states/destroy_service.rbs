@@ -1,0 +1,18 @@
+module Terraform
+  module States
+    class DestroyService
+      @state: untyped
+
+      def initialize: (untyped state) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader state: untyped
+
+      # Overridden in EE
+      def process_batch: (untyped batch) -> untyped
+    end
+  end
+end

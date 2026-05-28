@@ -1,0 +1,21 @@
+module Import
+  module PlaceholderReferences
+    InvalidReferenceError: untyped
+
+    class PushService < BaseService
+      @reference: untyped
+
+      def self.from_record: (import_source: untyped, import_uid: untyped, source_user: untyped, record: untyped, user_reference_column: untyped) -> untyped
+
+      def initialize: (import_source: untyped, import_uid: untyped, source_user_id: untyped, source_user_namespace_id: untyped, model: untyped, user_reference_column: untyped, ?numeric_key: untyped?, ?composite_key: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader reference: untyped
+
+      def track_error: (untyped reference) -> untyped
+    end
+  end
+end

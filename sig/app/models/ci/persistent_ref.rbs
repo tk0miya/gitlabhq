@@ -1,0 +1,23 @@
+module Ci
+  #
+  # The persistent pipeline ref to ensure runners can safely fetch source code
+  # even if force-push/source-branch-deletion happens.
+  class PersistentRef
+    include ActiveModel::Model
+
+    attr_accessor pipeline: untyped
+
+    def exist?: () -> untyped
+
+    # This needs to be kept in sync with `Ci::Pipeline#after_transition` calling `pipeline.persistent_ref.delete`
+    def should_delete?: () -> untyped
+
+    def create: () -> untyped
+
+    def delete: () -> untyped
+
+    def async_delete: () -> (nil | untyped)
+
+    def path: () -> ::String
+  end
+end

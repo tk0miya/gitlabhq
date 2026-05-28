@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        #
+        # This class represents the root entry of the GitLab CI configuration header.
+        #
+        # A header is the first document in a multi-doc YAML that contains metadata
+        # and specifications about the GitLab CI configuration (the second document).
+        #
+        # The header is optional. A CI configuration can also be represented with a
+        # YAML containing a single document.
+        class Root < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          ALLOWED_KEYS: ::Array[:spec]
+
+          def spec_inputs_value: () -> untyped
+
+          def spec_component_value: () -> untyped
+        end
+      end
+    end
+  end
+end

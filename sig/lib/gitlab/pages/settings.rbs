@@ -1,0 +1,15 @@
+module Gitlab
+  module Pages
+    class Settings < ::SimpleDelegator
+      DiskAccessDenied: untyped
+
+      def path: () -> untyped
+
+      private
+
+      def disk_access_denied?: () -> (true | untyped)
+
+      def report_denied_disk_access: () -> untyped
+    end
+  end
+end

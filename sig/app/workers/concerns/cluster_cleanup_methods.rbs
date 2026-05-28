@@ -1,0 +1,27 @@
+# Concern for setting Sidekiq settings for the various GitLab ObjectStorage workers.
+module ClusterCleanupMethods
+  @logger: untyped
+
+  extend ActiveSupport::Concern
+
+  include ApplicationWorker
+
+  include ClusterQueue
+
+  DEFAULT_EXECUTION_LIMIT: 10
+
+  ExceededExecutionLimitError: untyped
+
+  private
+
+  # Override this method to customize the execution_limit
+  def execution_limit: () -> untyped
+
+  def exceeded_execution_limit?: (untyped execution_count) -> untyped
+
+  def logger: () -> untyped
+
+  def exceeded_execution_limit: (untyped cluster) -> untyped
+
+  def log_exceeded_execution_limit_error: (untyped cluster) -> untyped
+end

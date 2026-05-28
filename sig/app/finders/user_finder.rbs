@@ -1,0 +1,34 @@
+# A simple finding for obtaining a single User.
+#
+# While using `User.find_by` directly is straightforward, it can lead to a lot
+# of code duplication. Sometimes we just want to find a user by an ID, other
+# times we may want to exclude blocked user. By using this finder (and extending
+# it whenever necessary) we can keep this logic in one place.
+class UserFinder
+  @username_or_id: untyped
+
+  def initialize: (untyped username_or_id) -> void
+
+  # Tries to find a User by id, returning nil if none could be found.
+  def find_by_id: () -> untyped
+
+  # Tries to find a User by id, raising a `ActiveRecord::RecordNotFound` if it could
+  # not be found.
+  def find_by_id!: () -> untyped
+
+  # Tries to find a User by username, returning nil if none could be found.
+  def find_by_username: () -> untyped
+
+  # Tries to find a User by username, raising a `ActiveRecord::RecordNotFound` if it could
+  # not be found.
+  def find_by_username!: () -> untyped
+
+  # Tries to find a User by username or id, returning nil if none could be found.
+  def find_by_id_or_username: () -> untyped
+
+  # Tries to find a User by username or id, raising a `ActiveRecord::RecordNotFound` if it could
+  # not be found.
+  def find_by_id_or_username!: () -> untyped
+
+  def input_is_id?: () -> untyped
+end

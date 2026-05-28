@@ -1,0 +1,58 @@
+module MergeRequests
+  class PushOptionsHandlerService < ::BaseProjectService
+    @target_project: untyped
+
+    @changes: untyped
+
+    @push_options: untyped
+
+    @errors: untyped
+
+    @changes_by_branch: untyped
+
+    @merge_requests: untyped
+
+    LIMIT: 10
+
+    attr_reader errors: untyped
+
+    attr_reader changes: untyped
+
+    attr_reader push_options: untyped
+
+    attr_reader target_project: untyped
+
+    def initialize: (project: untyped, current_user: untyped, changes: untyped, push_options: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> self
+
+    private
+
+    def branches: () -> untyped
+
+    def changes_by_branch: () -> untyped
+
+    def validate_service: () -> (nil | untyped)
+
+    # Returns a Hash of branch => MergeRequest
+    def merge_requests: () -> untyped
+
+    def execute_for_branch: (untyped branch) -> untyped
+
+    def create!: (untyped branch) -> (nil | untyped)
+
+    def update!: (untyped merge_request) -> (nil | untyped)
+
+    def base_params: () -> untyped
+
+    def merge_params: (untyped branch) -> (::Hash[untyped, untyped] | { auto_merge_enabled: untyped, merge_user: untyped, sha: untyped })
+
+    def create_params: (untyped branch) -> untyped
+
+    def update_params: (untyped merge_request) -> untyped
+
+    def convert_to_user_ids: (untyped ids_or_usernames) -> untyped
+
+    def collect_errors_from_merge_request: (untyped merge_request) -> untyped
+  end
+end

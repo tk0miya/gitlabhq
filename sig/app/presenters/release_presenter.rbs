@@ -1,0 +1,33 @@
+class ReleasePresenter < Gitlab::View::Presenter::Delegated
+  def commit_path: () -> (nil | untyped)
+
+  def tag_path: () -> (nil | untyped)
+
+  def self_url: () -> untyped
+
+  def opened_merge_requests_url: () -> untyped
+
+  def merged_merge_requests_url: () -> untyped
+
+  def closed_merge_requests_url: () -> untyped
+
+  def opened_issues_url: () -> untyped
+
+  def closed_issues_url: () -> untyped
+
+  def edit_url: () -> (nil | untyped)
+
+  def assets_count: () -> untyped
+
+  def name: () -> untyped
+
+  def download_url: (untyped filepath) -> untyped
+
+  private
+
+  def can_read_code?: () -> untyped
+
+  def params_for_issues_and_mrs: (?state: ::String) -> { scope: "all", state: untyped, release_tag: untyped }
+
+  def release_edit_page_available?: () -> untyped
+end

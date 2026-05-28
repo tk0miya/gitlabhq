@@ -1,0 +1,29 @@
+module Gitlab
+  module Import
+    module UserFromMention
+      SOURCE_USER_CACHE_KEY: "%s/project/%s/source/%s"
+
+      SOURCE_USERNAME_CACHE_KEY: "%s/project/%s/source/username/%s"
+
+      USER_MAPPABLE_TYPES: ::Array[:email]
+
+      def user_from_cache: (untyped mention) -> (nil | untyped)
+
+      def cache_multiple: (untyped hash) -> untyped
+
+      def source_user_cache_key: (untyped importer, untyped project_id, untyped source_key) -> untyped
+
+      def source_user_cache_value: (untyped source_value, type: untyped) -> untyped
+
+      private
+
+      def read: (untyped mention) -> untyped
+
+      def find_user: (untyped email) -> untyped
+
+      def timeout: () -> untyped
+
+      def read_cached_email: (untyped mention) -> (nil | untyped)
+    end
+  end
+end

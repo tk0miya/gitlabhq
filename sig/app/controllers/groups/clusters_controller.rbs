@@ -1,0 +1,13 @@
+class Groups::ClustersController < ::Clusters::ClustersController
+  @clusterable: untyped
+
+  @group: untyped
+
+  include ControllerWithCrossProjectAccessCheck
+
+  private
+
+  def clusterable: () -> untyped
+
+  def group: () -> untyped
+end

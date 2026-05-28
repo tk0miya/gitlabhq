@@ -1,0 +1,21 @@
+module Sidebars
+  module UserProfile
+    class Panel < ::Sidebars::Panel
+      include ::UsersHelper
+
+      include Gitlab::Allowable
+
+      def configure_menus: () -> untyped
+
+      def aria_label: () -> untyped
+
+      def super_sidebar_context_header: () -> untyped
+
+      private
+
+      def add_legacy_menu?: () -> untyped
+
+      def add_menus: () -> (nil | untyped)
+    end
+  end
+end

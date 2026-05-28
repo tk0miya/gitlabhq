@@ -1,0 +1,9 @@
+module Deployments
+  # This service archives old deploymets and deletes deployment refs for
+  # keeping the project repository performant.
+  class ArchiveInProjectService < ::BaseService
+    BATCH_SIZE: 100
+
+    def execute: () -> untyped
+  end
+end

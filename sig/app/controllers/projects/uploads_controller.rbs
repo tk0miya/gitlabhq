@@ -1,0 +1,18 @@
+class Projects::UploadsController < Projects::ApplicationController
+  include UploadsActions
+
+  include WorkhorseRequest
+
+  private
+
+  # Starting with this version, #show is handled by Banzai::UploadsController#show
+  def disallow_new_uploads!: () -> (untyped | nil)
+
+  def upload_model_class: () -> untyped
+
+  def uploader_class: () -> untyped
+
+  def target_project: () -> untyped
+
+  def find_model: () -> untyped
+end

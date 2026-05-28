@@ -1,0 +1,20 @@
+module Cells
+  class BulkClaimsWorker
+    include ApplicationWorker
+
+    # @param model_name [String] e.g. "RedirectRoute"
+    # @param attribute_name [String] e.g. "path"
+    # @param payload [Hash] with optional keys:
+    #   "create_record_ids" => [Integer] - IDs to load from DB and create claims for
+    #   "destroy_metadata"  => [Hash] - pre-built serializable metadata for destroyed records
+    def perform: (untyped model_name, untyped attribute_name, untyped payload) -> untyped
+
+    private
+
+    def enabled?: (untyped model, untyped attribute) -> (false | untyped)
+
+    def build_create_metadata: (untyped model, untyped attribute, untyped payload) -> (::Array[untyped] | untyped)
+
+    def build_destroy_metadata: (untyped payload) -> (::Array[untyped] | untyped)
+  end
+end

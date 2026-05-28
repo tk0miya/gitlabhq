@@ -1,0 +1,9 @@
+module Ci
+  class ExpirePipelineCacheWorker
+    include ApplicationWorker
+
+    include PipelineBackgroundQueue
+
+    def perform: (untyped pipeline_id, ?::Hash[untyped, untyped] options) -> untyped
+  end
+end

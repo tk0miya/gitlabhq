@@ -1,0 +1,13 @@
+module Gitlab
+  module Email
+    module Handler
+      self.@handlers: untyped
+
+      def self.handlers: () -> untyped
+
+      def self.load_handlers: () -> ::Array[untyped]
+
+      def self.for: (untyped mail, untyped mail_key) -> untyped
+    end
+  end
+end

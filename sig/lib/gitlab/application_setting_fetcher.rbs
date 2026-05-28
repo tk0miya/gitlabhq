@@ -1,0 +1,27 @@
+module Gitlab
+  module ApplicationSettingFetcher
+    self.@in_memory_application_settings: untyped
+
+    def self.clear_in_memory_application_settings!: () -> untyped
+
+    def self.current_application_settings: () -> untyped
+
+    def self.current_application_settings?: () -> untyped
+
+    def self.expire_current_application_settings: () -> untyped
+
+    private
+
+    def self.cached_application_settings: () -> untyped
+
+    def self.uncached_application_settings: () -> untyped
+
+    def self.needs_migration?: () -> untyped
+
+    def self.in_memory_application_settings: () -> untyped
+
+    def self.fake_application_settings: (?::Hash[untyped, untyped] attributes) -> untyped
+
+    def self.connect_to_db?: () -> untyped
+  end
+end

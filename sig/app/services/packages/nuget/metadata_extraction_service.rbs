@@ -1,0 +1,19 @@
+module Packages
+  module Nuget
+    class MetadataExtractionService
+      @package_zip_file: untyped
+
+      def initialize: (untyped package_zip_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_zip_file: untyped
+
+      def metadata: () -> untyped
+
+      def nuspec_file_content: () -> untyped
+    end
+  end
+end

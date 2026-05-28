@@ -1,0 +1,21 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Attachments
+        class NotesImporter < ::Gitlab::GithubImport::Importer::Attachments::BaseImporter
+          def sidekiq_worker_class: () -> untyped
+
+          def collection_method: () -> :note_attachments
+
+          def object_type: () -> :note_attachment
+
+          def id_for_already_imported_cache: (untyped note) -> untyped
+
+          private
+
+          def collection: () -> untyped
+        end
+      end
+    end
+  end
+end

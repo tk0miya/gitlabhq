@@ -1,0 +1,118 @@
+module Gitlab
+  class UsageData
+    self.@recorded_at: untyped
+
+    MAX_GENERATION_TIME_FOR_SAAS: untyped
+
+    CE_MEMOIZED_VALUES: ::Array[:issue_minimum_id | :issue_maximum_id | :project_minimum_id | :project_maximum_id | :user_minimum_id | :user_maximum_id | :deployment_minimum_id | :deployment_maximum_id | :auth_providers | :recorded_at]
+
+    extend Gitlab::Utils::UsageData
+
+    extend Gitlab::Utils::StrongMemoize
+
+    extend Gitlab::Usage::TimeFrame
+
+    def self.data: () -> untyped
+
+    def self.recorded_at: () -> untyped
+
+    # rubocop: disable Metrics/AbcSize
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.system_usage_data: () -> { counts: untyped }
+
+    def self.system_usage_data_license: () -> { license: ::Hash[untyped, untyped] }
+
+    def self.system_usage_data_weekly: () -> { counts_weekly: ::Hash[untyped, untyped] }
+
+    def self.features_usage_data: () -> ::Hash[untyped, untyped]
+
+    def self.components_usage_data: () -> { git: { version: untyped }, gitaly: { version: untyped, servers: untyped, clusters: untyped, filesystems: untyped }, gitlab_pages: { enabled: untyped, version: untyped }, container_registry_server: { vendor: untyped, version: untyped }, database: { adapter: untyped, version: untyped, pg_system_id: untyped, flavor: untyped }, mail: { smtp_server: untyped } }
+
+    def self.object_store_config: (untyped component) -> untyped
+
+    def self.object_store_usage_data: () -> { object_store: { artifacts: untyped, external_diffs: untyped, lfs: untyped, uploads: untyped, packages: untyped } }
+
+    def self.topology_usage_data: () -> untyped
+
+    # augmented in EE
+    def self.user_preferences_usage: () -> { user_preferences_user_gitpod_enabled: untyped }
+
+    # Source: https://gitlab.com/gitlab-data/analytics/blob/master/transform/snowflake-dbt/data/ping_metrics_to_stage_mapping_data.csv
+    def self.usage_activity_by_stage: (?::Symbol key, ?::Hash[untyped, untyped] time_period) -> ::Hash[untyped, { configure: untyped, create: untyped, enablement: untyped, manage: untyped, monitor: untyped, package: untyped, plan: untyped, release: untyped, verify: untyped }]
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    # rubocop: disable UsageData/LargeTable
+    def self.usage_activity_by_stage_configure: (untyped time_period) -> { clusters_management_project: untyped, clusters_disabled: untyped, clusters_enabled: untyped, clusters_platforms_gke: untyped, clusters_platforms_eks: untyped, clusters_platforms_user: untyped, instance_clusters_disabled: untyped, instance_clusters_enabled: untyped, group_clusters_disabled: untyped, group_clusters_enabled: untyped, project_clusters_disabled: untyped, project_clusters_enabled: untyped, projects_slack_notifications_active: untyped }
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.usage_activity_by_stage_create: (untyped time_period) -> { deploy_keys: untyped, keys: untyped, projects_with_disable_overriding_approvers_per_merge_request: untyped, projects_without_disable_overriding_approvers_per_merge_request: untyped, remote_mirrors: untyped, snippets: untyped }
+
+    # Empty placeholder allows this to match the pattern used by other sections
+    def self.usage_activity_by_stage_enablement: (untyped time_period) -> ::Hash[untyped, untyped]
+
+    # Omitted because no user, creator or author associated: `campaigns_imported_from_github`, `ldap_group_links`
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.usage_activity_by_stage_manage: (untyped time_period) -> { events: untyped, groups: untyped, users_created: untyped, omniauth_providers: untyped, user_auth_by_provider: untyped, bulk_imports: { gitlab_v1: untyped }, group_imports: untyped }
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.usage_activity_by_stage_monitor: (untyped time_period) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.usage_activity_by_stage_package: (untyped time_period) -> { projects_with_packages: untyped }
+
+    # Omitted because no user, creator or author associated: `boards`, `labels`, `milestones`, `uploads`
+    # Omitted because too expensive: `epics_deepest_relationship_level`
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.usage_activity_by_stage_plan: (untyped time_period) -> { issues: untyped, notes: untyped, projects: untyped, todos: untyped, service_desk_enabled_projects: untyped, service_desk_issues: untyped, projects_jira_active: untyped, projects_jira_dvcs_server_active: untyped }
+
+    # Omitted because no user, creator or author associated: `environments`, `feature_flags`, `in_review_folder`, `pages_domains`
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.usage_activity_by_stage_release: (untyped time_period) -> { deployments: untyped, failed_deployments: untyped, releases: untyped, successful_deployments: untyped, releases_with_milestones: untyped }
+
+    # Omitted because no user, creator or author associated: `ci_runners`
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.usage_activity_by_stage_verify: (untyped time_period) -> { ci_builds: untyped, ci_external_pipelines: untyped, ci_internal_pipelines: untyped, ci_pipeline_config_auto_devops: untyped, ci_pipeline_config_repository: untyped, ci_pipeline_schedules: untyped, ci_pipelines: untyped, ci_triggers: untyped }
+
+    def self.with_metadata: () { () -> untyped } -> untyped
+
+    private
+
+    def self.stage_manage_events: (untyped time_period) -> untyped
+
+    def self.usage_data_metrics: () -> untyped
+
+    def self.metric_time_period: (untyped time_period) -> ("28d" | "none")
+
+    def self.distinct_count_service_desk_enabled_projects: (untyped time_period) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.service_desk_counts: () -> { service_desk_enabled_projects: untyped, service_desk_issues: untyped }
+
+    def self.clear_memoized: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.cluster_integrations_user_distinct_count: (untyped integrations, untyped time_period) -> untyped
+
+    def self.clusters_user_distinct_count: (untyped clusters, untyped time_period) -> untyped
+
+    def self.omniauth_provider_names: () -> untyped
+
+    # LDAP provider names are set by customers and could include
+    # sensitive info (server names, etc). LDAP providers normally
+    # don't appear in omniauth providers but filter to ensure
+    # no internal details leak via usage ping.
+    def self.filtered_omniauth_provider_names: () -> untyped
+
+    def self.group_imports: (untyped time_period) -> { group_import: untyped, gitlab_migration: untyped }
+
+    # rubocop:disable CodeReuse/ActiveRecord
+    def self.distinct_count_user_auth_by_provider: (untyped time_period) -> untyped
+
+    # rubocop:disable UsageData/LargeTable
+    def self.auth_providers: () -> untyped
+
+    def self.auth_providers_except_ldap: () -> untyped
+
+    def self.any_ldap_auth_providers?: () -> untyped
+  end
+end

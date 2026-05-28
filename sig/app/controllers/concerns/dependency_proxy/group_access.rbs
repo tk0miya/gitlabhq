@@ -1,0 +1,19 @@
+module DependencyProxy
+  module GroupAccess
+    extend ActiveSupport::Concern
+
+    private
+
+    def auth_user_or_token: () -> untyped
+
+    def verify_dependency_proxy_available!: () -> (untyped | nil)
+
+    # TODO: Split the authorization logic into dedicated methods
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/452145
+    def authorize_read_dependency_proxy!: () -> untyped
+
+    def authorize_read_dependency_proxy_for_users!: () -> (untyped | nil)
+
+    def authorize_read_dependency_proxy_for_tokens!: () -> (untyped | nil)
+  end
+end

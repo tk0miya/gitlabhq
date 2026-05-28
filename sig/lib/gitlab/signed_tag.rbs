@@ -1,0 +1,51 @@
+module Gitlab
+  class SignedTag
+    @repository: untyped
+
+    @context: untyped
+
+    @signature_data: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def self.from_repository_tag: (untyped repository, untyped tag) -> untyped
+
+    def self.class_for_signature_type: (untyped signature_type) -> untyped
+
+    def self.context_from_tag: (untyped tag) -> { user_email: untyped, id: untyped, has_signature: untyped }
+
+    def self.batch_read_cached_signatures: (untyped project, untyped signed_tags) -> untyped
+
+    def self.batch_write_cached_signatures: (untyped signed_tags, ?timeout: untyped) -> untyped
+
+    private
+
+    def self.cache_signatures_async: (untyped signed_tags) -> untyped
+
+    public
+
+    def initialize: (untyped repository, untyped context) -> void
+
+    attr_reader context: untyped
+
+    attr_reader repository: untyped
+
+    def object_name: () -> untyped
+
+    def signature_data: (?timeout: untyped) -> (nil | untyped)
+
+    def signature: () -> nil
+
+    def lazy_cached_signature: (?timeout: untyped) -> (nil | untyped)
+
+    def signature_class: () -> nil
+
+    def build_cached_signature: () -> (nil | untyped)
+
+    def attributes: () -> nil
+
+    def signature_text: () -> untyped
+
+    def signed_text: () -> untyped
+  end
+end

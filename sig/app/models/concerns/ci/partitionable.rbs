@@ -1,0 +1,23 @@
+module Ci
+  #
+  # This module implements a way to set the `partition_id` value on a dependent
+  # resource from a parent record.
+  # Usage:
+  #
+  #     class PipelineVariable < Ci::ApplicationRecord
+  #       include Ci::Partitionable
+  #
+  #       belongs_to :pipeline
+  #       partitionable scope: :pipeline
+  #       # Or
+  #       partitionable scope: ->(record) { record.partition_value }
+  #
+  #
+  module Partitionable
+    extend ActiveSupport::Concern
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    def self.registered_models: () -> untyped
+  end
+end

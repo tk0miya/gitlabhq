@@ -1,0 +1,11 @@
+module API
+  module Entities
+    module EntityHelpers
+      def can_read: (untyped attr) { (untyped) -> untyped } -> untyped
+
+      def can_destroy: (untyped attr) { (untyped) -> untyped } -> untyped
+
+      def expose_restricted: (untyped attr, ?documentation: ::Hash[untyped, untyped]) { (?) -> untyped } -> untyped
+    end
+  end
+end

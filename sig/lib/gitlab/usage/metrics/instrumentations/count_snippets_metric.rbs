@@ -1,0 +1,17 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class CountSnippetsMetric < DatabaseMetric
+          def value: () -> untyped
+
+          def project_snippet_relation: () -> untyped
+
+          def personal_snippet_relation: () -> untyped
+
+          def to_sql: () -> ::String
+        end
+      end
+    end
+  end
+end

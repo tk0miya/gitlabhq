@@ -1,0 +1,11 @@
+module Integrations
+  module HarborSerializers
+    class ArtifactEntity < Grape::Entity
+      include ActionView::Helpers::SanitizeHelper
+
+      private
+
+      def validate_path: (untyped path) -> untyped
+    end
+  end
+end

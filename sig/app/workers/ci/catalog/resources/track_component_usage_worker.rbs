@@ -1,0 +1,51 @@
+module Ci
+  module Catalog
+    module Resources
+      class TrackComponentUsageWorker
+        @project: untyped
+
+        @user: untyped
+
+        @component_hashes: untyped
+
+        @component_projects: untyped
+
+        include ApplicationWorker
+
+        include PipelineQueue
+
+        def perform: (untyped project_id, untyped user_id, untyped component_hashes) -> (nil | untyped)
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader user: untyped
+
+        attr_reader component_hashes: untyped
+
+        attr_reader component_projects: untyped
+
+        def load_component_projects: () -> untyped
+
+        def filter_catalog_component_hashes: () -> untyped
+
+        def track_all_components: () -> untyped
+
+        def process_catalog_components: (untyped catalog_component_hashes) -> (nil | untyped)
+
+        def group_by_project_and_sha: (untyped catalog_component_hashes) -> untyped
+
+        def collect_catalog_components: (untyped grouped_hashes) -> untyped
+
+        def find_catalog_components_batch: (untyped component_project, untyped sha, untyped component_names) -> untyped
+
+        def track_all_components_event: (untyped component_hash, untyped component_project) -> untyped
+
+        def track_catalog_component_event: (untyped component, untyped component_project) -> untyped
+
+        def component_type: () -> untyped
+      end
+    end
+  end
+end

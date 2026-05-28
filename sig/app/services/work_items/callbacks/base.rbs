@@ -1,0 +1,11 @@
+module WorkItems
+  module Callbacks
+    class Base < Issuable::Callbacks::Base
+      alias work_item issuable
+
+      def raise_error: (untyped message) -> untyped
+
+      def log_error: (untyped message) -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Chaos
+  class DbSpinWorker
+    include ApplicationWorker
+
+    include ChaosQueue
+
+    def perform: (untyped duration_s, untyped interval_s) -> untyped
+  end
+end

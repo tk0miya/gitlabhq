@@ -1,0 +1,97 @@
+module Clusters
+  module Platforms
+    class Kubernetes < ApplicationRecord
+      @kubeclient: untyped
+
+      @logger: untyped
+
+      include Gitlab::Kubernetes
+
+      include AfterCommitQueue
+
+      include ReactiveCaching
+
+      include NullifyIfBlank
+
+      include Gitlab::EncryptedAttribute
+
+      RESERVED_NAMESPACES: ::Array["gitlab-managed-apps"]
+
+      REQUIRED_K8S_MIN_VERSION: 23
+
+      MAX_TOKEN_LENGTH: 8192
+
+      MAX_CA_CERT_LENGTH: 65535
+
+      MAX_API_URL_LENGTH: 2048
+
+      IGNORED_CONNECTION_EXCEPTIONS: ::Array[untyped]
+
+      FailedVersionCheckError: untyped
+
+      def enabled?: () -> untyped
+
+      alias active? enabled?
+
+      def provided_by_user?: () -> untyped
+
+      def allow_user_defined_namespace?: () -> untyped
+
+      def predefined_variables: (project: untyped, environment_name: untyped, ?kubernetes_namespace: untyped?) -> untyped
+
+      def calculate_reactive_cache_for: (untyped environment) -> (nil | { pods: untyped, deployments: untyped, ingresses: untyped })
+
+      def terminals: (untyped environment, untyped data) -> untyped
+
+      def kubeclient: () -> untyped
+
+      def rollout_status: (untyped environment, untyped data) -> untyped
+
+      def ingresses: (untyped namespace) -> untyped
+
+      def patch_ingress: (untyped namespace, untyped ingress, untyped data) -> untyped
+
+      def kubeconfig: (untyped namespace) -> untyped
+
+      private
+
+      def default_namespace: (untyped project, environment_name: untyped) -> untyped
+
+      def find_persisted_namespace: (untyped project, environment_name: untyped) -> untyped
+
+      def read_pods: (untyped namespace) -> untyped
+
+      def read_deployments: (untyped namespace) -> untyped
+
+      def read_ingresses: (untyped namespace) -> untyped
+
+      def server_version: () -> untyped
+
+      def build_kube_client!: () -> untyped
+
+      def kubeclient_ssl_options: () -> untyped
+
+      def kubeclient_auth_options: () -> { bearer_token: untyped }
+
+      def terminal_auth: () -> { token: untyped, ca_pem: untyped, max_session_time: untyped }
+
+      def enforce_namespace_to_lower_case: () -> untyped
+
+      def enforce_ca_whitespace_trimming: () -> untyped
+
+      def no_namespace: () -> (untyped | nil)
+
+      def prevent_modification: () -> (nil | false | true)
+
+      def extract_relevant_pod_data: (untyped pods) -> untyped
+
+      def extract_relevant_deployment_data: (untyped deployments) -> untyped
+
+      def extract_relevant_ingress_data: (untyped ingresses) -> untyped
+
+      def log_kube_connection_error: (untyped error) -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,153 @@
+module Gitlab
+  module Cluster
+    # We take advantage of the fact that the application is pre-loaded in the primary
+    # process. If it's a pre-fork server like Puma, this will be the Puma master process.
+    # Otherwise it is the worker itself such as for Sidekiq.
+    PRIMARY_PID: untyped
+
+    #
+    # LifecycleEvents lets Rails initializers register application startup hooks
+    # that are sensitive to forking. For example, to defer the creation of
+    # watchdog threads. This lets us abstract away the Unix process
+    # lifecycles of Sidekiq, Puma, Puma Cluster, etc.
+    #
+    # We have the following lifecycle events.
+    #
+    # - on_before_fork (on master process):
+    #
+    #     Puma Cluster: This will be called exactly once,
+    #       on startup, before the workers are forked. This is
+    #       called in the PARENT/MASTER process.
+    #
+    #     Sidekiq/Puma Single: This is not called.
+    #
+    # - on_master_start (on master process):
+    #
+    #     Puma Cluster: This will be called exactly once,
+    #       on startup, before the workers are forked. This is
+    #       called in the PARENT/MASTER process.
+    #
+    #     Sidekiq/Puma Single: This is called immediately.
+    #
+    # - on_before_blackout_period (on master process):
+    #
+    #     Puma Cluster: This will be called before a blackout
+    #       period when performing graceful shutdown of master.
+    #       This is called on `master` process.
+    #
+    #     Sidekiq/Puma Single: This is not called.
+    #
+    # - on_before_graceful_shutdown (on master process):
+    #
+    #     Puma Cluster: This will be called before a graceful
+    #       shutdown  of workers starts happening, but after blackout period.
+    #       This is called on `master` process.
+    #
+    #     Sidekiq/Puma Single: This is not called.
+    #
+    # - on_before_master_restart (on master process):
+    #
+    #     Puma Cluster: This will be called before a new master is spun up.
+    #       This is called on `master` process.
+    #
+    #     Sidekiq/Puma Single: This is not called.
+    #
+    # - on_worker_start (on worker process):
+    #
+    #     Puma Cluster: This is called in the worker process
+    #       exactly once before processing requests.
+    #
+    #     Sidekiq/Puma Single: This is called immediately.
+    #
+    # - on_worker_stop (on worker process):
+    #
+    #     Puma Cluster: Called in the worker process
+    #       exactly once after it stops processing requests
+    #       but before it shuts down.
+    #
+    #     Sidekiq: Called after the scheduler shuts down but
+    #       before the worker finishes ongoing jobs.
+    #
+    # Blocks will be executed in the order in which they are registered.
+    #
+    class LifecycleEvents
+      # Defer block execution
+      self.@worker_start_hooks: untyped
+
+      # Defer block execution
+      self.@before_fork_hooks: untyped
+
+      # Defer block execution
+      self.@master_blackout_period: untyped
+
+      # Defer block execution
+      self.@master_graceful_shutdown: untyped
+
+      # Defer block execution
+      self.@master_restart_hooks: untyped
+
+      self.@worker_stop_hooks: untyped
+
+      self.@puma_options: untyped
+
+      self.@puma_worker_count: untyped
+
+      FatalError: untyped
+
+      USE_FATAL_LIFECYCLE_EVENTS: untyped
+
+      #
+      # Hook registration methods (called from initializers)
+      #
+      def self.on_worker_start: () { () -> untyped } -> untyped
+
+      def self.on_before_fork: () { (?) -> untyped } -> untyped
+
+      # Read the config/initializers/cluster_events_before_phased_restart.rb
+      def self.on_before_blackout_period: () { (?) -> untyped } -> untyped
+
+      # Read the config/initializers/cluster_events_before_phased_restart.rb
+      def self.on_before_graceful_shutdown: () { (?) -> untyped } -> untyped
+
+      def self.on_before_master_restart: () { (?) -> untyped } -> untyped
+
+      def self.on_master_start: () { (?) -> untyped } -> untyped
+
+      def self.on_worker_stop: () { (?) -> untyped } -> untyped
+
+      #
+      # Lifecycle integration methods (called from puma.rb, etc.)
+      #
+      def self.do_worker_start: () -> untyped
+
+      def self.do_before_fork: () -> untyped
+
+      def self.do_before_graceful_shutdown: () -> untyped
+
+      def self.do_before_master_restart: () -> untyped
+
+      def self.do_worker_stop: () -> untyped
+
+      # DEPRECATED
+      alias self.do_master_restart self.do_before_master_restart
+
+      # Puma doesn't use singletons (which is good) but
+      # this means we need to pass through whether the
+      # puma server is running in single mode or cluster mode
+      # DEPRECATED for Puma 6 because options cannot be
+      # accessed directly until the config has been fully loaded due to
+      # https://github.com/puma/puma/pull/3297.
+      def self.set_puma_options: (untyped options) -> untyped
+
+      # Added to support Puma 7 to replace accessing Puma options
+      # directly.
+      def self.set_puma_worker_count: (untyped count) -> untyped
+
+      private
+
+      def self.call: (untyped name, untyped hooks) -> (nil | untyped)
+
+      def self.in_clustered_puma?: () -> (false | untyped)
+    end
+  end
+end

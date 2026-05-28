@@ -1,0 +1,10 @@
+module Types
+  module WorkItems
+    module WidgetDefinitions
+      # rubocop:disable Graphql/AuthorizeTypes -- Authorization too granular, parent type is authorized
+      class StartAndDueDateType < BaseObject
+        def can_roll_up: () -> untyped
+      end
+    end
+  end
+end

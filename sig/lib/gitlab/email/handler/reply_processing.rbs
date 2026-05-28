@@ -1,0 +1,58 @@
+module Gitlab
+  module Email
+    module Handler
+      module ReplyProcessing
+        @project: untyped
+
+        @message: untyped
+
+        @message_with_reply: untyped
+
+        @message_including_reply_or_only_quotes: untyped
+
+        @message_with_appended_reply: untyped
+
+        # rubocop:disable Gitlab/ModuleWithInstanceVariables
+        def project: () -> untyped
+
+        private
+
+        attr_reader project_id: untyped
+
+        attr_reader project_slug: untyped
+
+        attr_reader project_path: untyped
+
+        attr_reader incoming_email_token: untyped
+
+        def author: () -> untyped
+
+        def message: () -> untyped
+
+        def message_including_reply: () -> untyped
+
+        def message_including_reply_or_only_quotes: () -> untyped
+
+        def message_with_appended_reply: () -> untyped
+
+        def process_message: (**untyped kwargs) -> untyped
+
+        def add_attachments: (untyped reply) -> untyped
+
+        def upload_params: () -> { upload_parent: untyped, uploader_class: untyped, author: untyped }
+
+        def validate_permission!: (untyped permission) -> untyped
+
+        def verify_record!: (record: untyped, invalid_exception: untyped, record_name: untyped) -> (nil | untyped)
+
+        def valid_project_slug?: (untyped found_project) -> (false | untyped)
+
+        def strip_quick_actions: (untyped content) -> untyped
+
+        def quick_actions_extractor: () -> untyped
+
+        def append_reply: (untyped message, untyped reply) -> untyped
+      end
+    end
+  end
+end

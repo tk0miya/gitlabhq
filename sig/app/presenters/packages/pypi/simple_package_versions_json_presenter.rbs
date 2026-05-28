@@ -1,0 +1,28 @@
+# Display package version data according to PyPI (PEP 691 JSON)
+# Spec: https://peps.python.org/pep-0691/
+#
+# Generates the JSON body for PyPI simple API package endpoint.
+# Basically a list of package download entries for a specific package.
+module Packages
+  module Pypi
+    class SimplePackageVersionsJsonPresenter < SimplePresenterBase
+      @package_name: untyped
+
+      API_VERSION: "1.0"
+
+      def initialize: (untyped packages, untyped project_or_group, package_name: untyped) -> void
+
+      def body: () -> untyped
+
+      private
+
+      def files: () -> untyped
+
+      def file_entry: (untyped package, untyped file) -> untyped
+
+      def build_pypi_package_file_path: (untyped file) -> ::String
+
+      def body_name: () -> untyped
+    end
+  end
+end

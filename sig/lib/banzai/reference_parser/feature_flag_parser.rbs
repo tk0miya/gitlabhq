@@ -1,0 +1,11 @@
+module Banzai
+  module ReferenceParser
+    class FeatureFlagParser < BaseParser
+      def references_relation: () -> untyped
+
+      private
+
+      def can_read_reference?: (untyped user, untyped feature_flag, untyped node) -> untyped
+    end
+  end
+end

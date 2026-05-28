@@ -1,0 +1,31 @@
+module Gitlab
+  module Checks
+    module Integrations
+      class BeyondIdentityCheck < ::Gitlab::Checks::BaseBulkChecker
+        @changes_access: untyped
+
+        LOG_MESSAGE: "Starting BeyondIdentity scan..."
+
+        COMMIT_HAS_NO_SIGNATURE_ERROR: "Commit is not signed with a GPG signature"
+
+        INTEGRATION_VERIFICATION_PERIOD: untyped
+
+        def initialize: (untyped integration_check) -> void
+
+        def validate!: () -> (nil | untyped)
+
+        private
+
+        def skip_validation?: () -> (true | false)
+
+        def reverified_with_integration?: (untyped key) -> untyped
+
+        def verified_externally?: (untyped key) -> untyped
+
+        def require_reverification?: (untyped key) -> (true | untyped)
+
+        def integration: () -> untyped
+      end
+    end
+  end
+end

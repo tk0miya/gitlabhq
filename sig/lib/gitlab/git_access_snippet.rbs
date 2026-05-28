@@ -1,0 +1,47 @@
+module Gitlab
+  class GitAccessSnippet < GitAccess
+    @auth_result_type: untyped
+
+    @authentication_abilities: untyped
+
+    @user_access: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    ERROR_MESSAGES: { authentication_mechanism: "The authentication mechanism is not supported.", read_snippet: "You are not allowed to read this snippet.", update_snippet: "You are not allowed to update this snippet.", snippet_not_found: "The snippet you were looking for could not be found.", no_repo: "The snippet repository you were looking for could not be found." }
+
+    alias snippet container
+
+    def initialize: (untyped actor, untyped snippet, untyped protocol, **untyped kwargs) -> void
+
+    def project: () -> (untyped | nil)
+
+    def check: (untyped cmd, untyped changes) -> untyped
+
+    def download_ability: () -> :read_snippet
+
+    def push_ability: () -> :update_snippet
+
+    private
+
+    def check_custom_ssh_action!: () -> nil
+
+    def check_valid_actor!: () -> untyped
+
+    def allowed_actor?: () -> untyped
+
+    def check_push_access!: () -> untyped
+
+    def check_snippet_accessibility!: () -> (untyped | nil)
+
+    def can_download?: () -> untyped
+
+    def download_forbidden_message: () -> untyped
+
+    def check_change_access!: () -> untyped
+
+    def check_access!: () -> untyped
+
+    def user_access: () -> untyped
+  end
+end

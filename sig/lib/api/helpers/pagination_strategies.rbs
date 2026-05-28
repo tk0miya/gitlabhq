@@ -1,0 +1,26 @@
+module API
+  module Helpers
+    module PaginationStrategies
+      # paginator_params are only currently supported with offset pagination
+      def paginate_with_strategies: (untyped relation, ?untyped? request_scope, ?paginator_params: ::Hash[untyped, untyped], ?use_cursor: bool) ?{ (untyped) -> untyped } -> untyped
+
+      def paginator: (untyped relation, ?untyped? request_scope, ?bool use_cursor) -> untyped
+
+      private
+
+      def keyset_paginator: (untyped relation, untyped use_cursor) -> untyped
+
+      def offset_paginator: (untyped relation, untyped request_scope) -> untyped
+
+      def cursor_based_keyset_pagination_supported?: (untyped relation) -> untyped
+
+      def cursor_based_keyset_pagination_enforced?: (untyped request_scope, untyped relation) -> untyped
+
+      def keyset_pagination_enabled?: () -> untyped
+
+      def limit_for_scope: (untyped scope) -> untyped
+
+      def offset_limit_exceeded?: (untyped offset_limit) -> untyped
+    end
+  end
+end

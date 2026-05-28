@@ -1,0 +1,48 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Collection
+        # LazyItem wraps a variable whose value is computed on-demand.
+        class LazyItem
+          @key: untyped
+
+          @value_proc: untyped
+
+          @options: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          attr_reader key: untyped
+
+          def initialize: (key: untyped, value_proc: untyped, ?public: bool, ?file: bool, ?masked: bool, ?raw: bool) -> void
+
+          def value: () -> untyped
+
+          def raw?: () -> untyped
+
+          alias raw raw?
+
+          def file?: () -> untyped
+
+          def masked?: () -> untyped
+
+          def []: (untyped attr_key) -> untyped
+
+          def ==: (untyped other) -> untyped
+
+          def depends_on: () -> nil
+
+          def to_runner_variable: () -> untyped
+
+          def to_hash_variable: () -> untyped
+
+          def to_s: () -> ::String
+
+          private
+
+          def resolved_item: () -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

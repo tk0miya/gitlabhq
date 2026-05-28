@@ -1,0 +1,27 @@
+# This should be in the ErrorTracking namespace. For more details, see:
+# https://gitlab.com/gitlab-org/gitlab/-/issues/323342
+module Gitlab
+  module ErrorTracking
+    class ErrorCollection
+      @project: untyped
+
+      @external_url: untyped
+
+      @issues: untyped
+
+      include GlobalID::Identification
+
+      attr_accessor issues: untyped
+
+      attr_accessor external_url: untyped
+
+      attr_accessor project: untyped
+
+      alias gitlab_project project
+
+      def initialize: (project: untyped, ?external_url: untyped?, ?issues: untyped) -> void
+
+      def self.declarative_policy_class: () -> "ErrorTracking::BasePolicy"
+    end
+  end
+end

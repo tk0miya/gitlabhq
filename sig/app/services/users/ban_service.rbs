@@ -1,0 +1,15 @@
+module Users
+  class BanService < BannedUserBaseService
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def update_user: (untyped user) -> (true | false)
+
+    def valid_state?: (untyped user) -> untyped
+
+    def action: () -> :ban
+
+    def ban_duplicate_users: (untyped user) -> untyped
+  end
+end

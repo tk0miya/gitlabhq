@@ -1,0 +1,20 @@
+module IncidentManagement
+  # Shared functionality for a `#status` field, representing
+  # whether action is required. In EE, this corresponds
+  # to paging functionality with EscalationPolicies.
+  #
+  # This module is only responsible for setting the status and
+  # possible status-related timestamps (EX triggered_at/resolved_at)
+  # for the implementing class. The relationships between these
+  # values and other related timestamps/logic should be managed from
+  # the object class itself. (EX Alert#ended_at = Alert#resolved_at)
+  module Escalatable
+    extend ActiveSupport::Concern
+
+    STATUSES: { triggered: 0, acknowledged: 1, resolved: 2, ignored: 3 }
+
+    STATUS_DESCRIPTIONS: { triggered: "Investigation has not started", acknowledged: "Someone is actively investigating the problem", resolved: "The problem has been addressed", ignored: "No action will be taken" }
+
+    OPEN_STATUSES: ::Array[:triggered | :acknowledged]
+  end
+end

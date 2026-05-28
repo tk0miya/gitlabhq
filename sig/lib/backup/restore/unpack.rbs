@@ -1,0 +1,62 @@
+module Backup
+  module Restore
+    class Unpack
+      @backup_id: untyped
+
+      @backup_path: untyped
+
+      @manifest_filepath: untyped
+
+      @options: untyped
+
+      @logger: untyped
+
+      @tar_file: untyped
+
+      @backup_file_list: untyped
+
+      FILE_NAME_SUFFIX: "_gitlab_backup.tar"
+
+      attr_reader backup_id: untyped
+
+      attr_reader backup_path: untyped
+
+      attr_reader manifest_filepath: untyped
+
+      attr_reader options: untyped
+
+      attr_reader logger: untyped
+
+      # Unpacks a tar file from a previous or current backup
+      #
+      # @param [String] backup_id Current or previous backup ID
+      # @param [Pathname] backup_path Backup path defined by Gitlab settings
+      # @param [Pathname] manifest_filepath Filepath of backup_information.yml
+      # @param [Backup::Options] options Backup options
+      # @param [Gitlab::BackupLogger] logger interfaces
+      def initialize: (backup_id: untyped, backup_path: untyped, manifest_filepath: untyped, options: untyped, logger: untyped) -> void
+
+      def run!: () -> (nil | untyped)
+
+      private
+
+      def tar_file: () -> untyped
+
+      def backup_file_list: () -> untyped
+
+      def available_timestamps: () -> untyped
+
+      def non_tarred_backup?: () -> untyped
+
+      def validate_tar_file_existence!: () -> (nil | untyped)
+
+      def many_backups?: () -> untyped
+
+      def many_backups_output!: () -> untyped
+
+      def no_backups_output!: () -> untyped
+
+      def start_unpack!: () -> untyped
+    end
+  end
+end

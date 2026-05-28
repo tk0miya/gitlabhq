@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Build
+        class PipelineVariablesArtifactBuilder
+          @pipeline: untyped
+
+          @variables_attributes: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          FILE_TYPE: :pipeline_variables
+
+          def initialize: (untyped pipeline, untyped variables_attributes) -> void
+
+          def run: () -> (nil | untyped)
+
+          private
+
+          attr_reader pipeline: untyped
+
+          attr_reader variables_attributes: untyped
+
+          def carrierwave_file: () -> untyped
+
+          def variables_json: () -> untyped
+
+          def variables: () -> untyped
+        end
+      end
+    end
+  end
+end

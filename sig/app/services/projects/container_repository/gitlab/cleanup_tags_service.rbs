@@ -1,0 +1,33 @@
+module Projects
+  module ContainerRepository
+    module Gitlab
+      class CleanupTagsService < CleanupTagsBaseService
+        @params: untyped
+
+        include ::Projects::ContainerRepository::Gitlab::Timeoutable
+
+        TAGS_PAGE_SIZE: 1000
+
+        def initialize: (container_repository: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def execute_for_tags: (untyped tags, untyped overall_result) -> untyped
+
+        def with_timeout: () { (untyped, untyped) -> untyped } -> untyped
+
+        def filter_by_keep_n: (untyped tags) -> untyped
+
+        def filter_by_older_than: (untyped tags) -> untyped
+
+        def pushed_at: (untyped tag) -> untyped
+
+        def timeout_disabled?: () -> untyped
+
+        def skip_protected_tags?: () -> untyped
+      end
+    end
+  end
+end

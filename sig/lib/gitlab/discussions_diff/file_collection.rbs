@@ -1,0 +1,43 @@
+module Gitlab
+  module DiscussionsDiff
+    class FileCollection
+      @collection: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include Enumerable
+
+      def initialize: (untyped collection) -> void
+
+      def each: () { (?) -> untyped } -> untyped
+
+      # Returns a Gitlab::Diff::File with the given ID (`unique_identifier` in
+      # Gitlab::Diff::File).
+      def find_by_id: (untyped id) -> untyped
+
+      # Writes cache and preloads highlighted diff lines for
+      # highlightable object IDs, in @collection.
+      #
+      # - Highlight cache is written just for uncached diff files
+      # - The cache content is not updated (there's no need to do so)
+      # - Load only the related diff note ids
+      def load_highlight: (?diff_note_ids: untyped?) -> (nil | untyped)
+
+      private
+
+      def highlightable_collection_ids: (untyped diff_note_ids) -> untyped
+
+      def read_cache: (untyped ids) -> untyped
+
+      def diff_files_indexed_by_id: () -> untyped
+
+      def diff_files: () -> untyped
+
+      # Processes the diff lines highlighting for diff files matching the given
+      # IDs.
+      #
+      # Returns a Hash with { id => [Array of Gitlab::Diff::line], ...]
+      def highlighted_lines_by_ids: (untyped ids) -> untyped
+    end
+  end
+end

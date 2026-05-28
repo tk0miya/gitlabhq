@@ -1,0 +1,25 @@
+class JiraImportState < ApplicationRecord
+  include AfterCommitQueue
+
+  include ImportState::SidekiqJobTracker
+
+  include UsageStatistics
+
+  ERROR_MESSAGE_SIZE: 1000
+
+  STATUSES: { initial: 0, scheduled: 1, started: 2, failed: 3, finished: 4 }
+
+  alias scheduled_by user
+
+  def in_progress?: () -> untyped
+
+  def non_initial?: () -> untyped
+
+  def store_issue_counts: () -> untyped
+
+  def mark_as_failed: (untyped error_message) -> untyped
+
+  private
+
+  def ensure_error_message_size: () -> untyped
+end

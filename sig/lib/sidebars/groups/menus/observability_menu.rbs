@@ -1,0 +1,60 @@
+# rubocop:disable Gitlab/BoundedContexts -- This has to be named this way.
+module Sidebars
+  module Groups
+    module Menus
+      class ObservabilityMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> (false | true)
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "eye"
+
+        def link: () -> (untyped | nil)
+
+        def active_routes: () -> { controller: "groups/observability" }
+
+        def extra_container_html_options: () -> { class: "shortcuts-observability" }
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def observability_access?: () -> untyped
+
+        def feature_enabled?: () -> untyped
+
+        def o11y_settings_access_enabled?: () -> untyped
+
+        def services_menu_item: () -> untyped
+
+        def traces_explorer_menu_item: () -> untyped
+
+        def logs_explorer_menu_item: () -> untyped
+
+        def metrics_explorer_menu_item: () -> untyped
+
+        def infrastructure_monitoring_menu_item: () -> untyped
+
+        def dashboard_menu_item: () -> untyped
+
+        def messaging_queues_menu_item: () -> untyped
+
+        def api_monitoring_menu_item: () -> untyped
+
+        def alerts_menu_item: () -> untyped
+
+        def exceptions_menu_item: () -> untyped
+
+        def service_map_menu_item: () -> untyped
+
+        def notification_channels_menu_item: () -> untyped
+
+        def api_keys_menu_item: () -> untyped
+
+        def o11y_settings_menu_item: () -> untyped
+
+        def setup_menu_item: () -> untyped
+      end
+    end
+  end
+end

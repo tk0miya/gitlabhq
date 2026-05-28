@@ -1,0 +1,41 @@
+module Members
+  class PruneDeletionsWorker
+    @execution_tracker: untyped
+
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include LimitedCapacity::Worker
+
+    include Gitlab::Utils::StrongMemoize
+
+    MAX_RUNNING_JOBS: 1
+
+    MEMBER_BATCH_SIZE: 100
+
+    SCHEDULE_BATCH_SIZE: 10
+
+    def perform_work: () -> (nil | untyped)
+
+    def remaining_work_count: (*untyped _args) -> untyped
+
+    def max_running_jobs: () -> untyped
+
+    private
+
+    attr_reader execution_tracker: untyped
+
+    def process_member_deletion_schedules: () -> untyped
+
+    def remove_user_from_namespace: (untyped member_deletion_schedule) -> untyped
+
+    def member_deletion_schedules: () -> untyped
+
+    def destroy_member: (untyped member, untyped member_deletion_schedule) -> untyped
+
+    def log_monitoring_data: (untyped user_id, untyped namespace_id, untyped destroyed_count, untyped destroy_duration) -> untyped
+
+    def cleanup_schedule: (untyped member_deletion_schedule) -> untyped
+  end
+end

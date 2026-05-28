@@ -1,0 +1,15 @@
+module ServiceDesk
+  class CustomEmailVerification < ApplicationRecord
+    include Gitlab::EncryptedAttribute
+
+    TIMEFRAME: untyped
+
+    STATES: { started: 0, finished: 1, failed: 2 }
+
+    def self.generate_token: () -> untyped
+
+    def accepted_until: () -> (nil | untyped)
+
+    def in_timeframe?: () -> (false | untyped)
+  end
+end

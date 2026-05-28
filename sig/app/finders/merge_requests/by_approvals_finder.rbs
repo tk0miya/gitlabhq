@@ -1,0 +1,65 @@
+module MergeRequests
+  # Used to filter MergeRequest collections by approvers
+  class ByApprovalsFinder
+    # rubocop:disable CodeReuse/ActiveRecord
+    @usernames: untyped
+
+    @ids: untyped
+
+    attr_reader usernames: untyped
+
+    attr_reader ids: untyped
+
+    # We apply a limitation to the amount of elements that can be part of the filter condition
+    MAX_FILTER_ELEMENTS: 5
+
+    # Initialize the finder
+    #
+    # @param [Array<String>] usernames
+    # @param [Array<Integers>] ids
+    def initialize: (untyped usernames, untyped ids) -> void
+
+    # Filter MergeRequest collections by approvers
+    #
+    # @param [ActiveRecord::Relation] items the activerecord relation
+    def execute: (untyped items) -> untyped
+
+    private
+
+    # Is param using special condition: "None" ?
+    #
+    # @return [Boolean] whether special condition "None" is being used
+    def by_no_approvals?: () -> untyped
+
+    # Is param using special condition: "Any" ?
+    #
+    # @return [Boolean] whether special condition "Any" is being used
+    def by_any_approvals?: () -> untyped
+
+    # Check if we have the special label in ids or usernames field
+    #
+    # @param [String] label the special label
+    # @return [Boolean] whether ids or usernames includes the special label
+    def includes_special_label?: (untyped label) -> untyped
+
+    # Merge requests without any approval
+    #
+    # @param [ActiveRecord::Relation] items
+    def without_approvals: (untyped items) -> untyped
+
+    # Merge requests with any number of approvals
+    #
+    # @param [ActiveRecord::Relation] items the activerecord relation
+    def with_any_approvals: (untyped items) -> untyped
+
+    # Merge requests approved by given usernames
+    #
+    # @param [ActiveRecord::Relation] items the activerecord relation
+    def find_approved_by_names: (untyped items) -> untyped
+
+    # Merge requests approved by given user IDs
+    #
+    # @param [ActiveRecord::Relation] items the activerecord relation
+    def find_approved_by_ids: (untyped items) -> untyped
+  end
+end

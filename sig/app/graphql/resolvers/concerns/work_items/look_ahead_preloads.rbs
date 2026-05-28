@@ -1,0 +1,15 @@
+module WorkItems
+  module LookAheadPreloads
+    extend ActiveSupport::Concern
+
+    private
+
+    def preloads: () -> untyped
+
+    def widget_preloads: () -> ::Hash[::Array[:widgets | :assignees] | ::Array[:widgets | :award_emoji] | ::Array[:widgets | :children] | ::Array[:widgets | :closing_merge_requests] | ::Array[:widgets | :due_date] | ::Array[:widgets | :has_parent] | ::Array[:widgets | :last_edited_by] | ::Array[:widgets | :milestone] | ::Array[:widgets | :parent] | ::Array[:widgets | :participants] | ::Array[:widgets | :start_date] | ::Array[:widgets | :subscribed], :assignees_by_name_and_id | { award_emoji: :awardable } | { work_item_children_by_relative_position: ::Array[:author | { project: :project_feature }] } | { merge_requests_closing_issues: { merge_request: ::Array[:target_project | :author] } } | :dates_source | :work_item_parent | :last_edited_by | { milestone: ::Array[:project | :group] } | untyped]
+
+    def feature_preloads: () -> ::Hash[::Array[:features | :assignees] | ::Array[:features | :award_emoji] | ::Array[:features | :description | :last_edited_by] | ::Array[:features | :development | :closing_merge_requests] | ::Array[:features | :hierarchy | :children] | ::Array[:features | :hierarchy | :has_parent] | ::Array[:features | :hierarchy | :parent] | ::Array[:features | :milestone] | ::Array[:features | :notifications | :subscribed] | ::Array[:features | :participants] | ::Array[:features | :start_and_due_date], :assignees_by_name_and_id | { award_emoji: :awardable } | :last_edited_by | { merge_requests_closing_issues: { merge_request: ::Array[:target_project | :author] } } | { work_item_children_by_relative_position: ::Array[:author | { project: :project_feature }] } | :work_item_parent | { milestone: ::Array[:project | :group] } | untyped | :dates_source]
+
+    def unconditional_includes: () -> untyped
+  end
+end

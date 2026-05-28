@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module HealthStatus
+      module Indicators
+        class PatroniApdex < PrometheusAlertIndicator
+          private
+
+          def enabled?: () -> untyped
+
+          def sli_query_key: () -> :apdex_sli_query
+
+          def slo_key: () -> :apdex_slo
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module Import
+  module GithubOauth
+    @oauth_client_from_config: untyped
+
+    @oauth_config: untyped
+
+    extend ActiveSupport::Concern
+
+    OAuthConfigMissingError: untyped
+
+    private
+
+    def provider_auth: () -> (nil | untyped)
+
+    def ci_cd_only?: () -> untyped
+
+    def go_to_provider_for_permissions: () -> untyped
+
+    def oauth_client: () -> untyped
+
+    def oauth_client_from_config: () -> untyped
+
+    def oauth_config: () -> untyped
+
+    def oauth_options: () -> (nil | untyped)
+
+    def authorize_url: () -> untyped
+
+    def get_token: (untyped code) -> untyped
+
+    def missing_oauth_config: () -> untyped
+
+    def callback_import_url: () -> untyped
+
+    def extra_import_params: () -> ::Hash[untyped, untyped]
+  end
+end

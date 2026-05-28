@@ -1,0 +1,24 @@
+module Gitlab
+  module SidekiqSharding
+    class ScheduledEnq < ::Sidekiq::Scheduled::Enq
+      @client: untyped
+
+      # This class replaces Sidekiq::Client within Sidekiq::Scheduled::Enq
+      # as it implements only a .push method which is used in Enq.
+      # This minimises the surface area of the patch to just .push.
+      class ScheduledEnqClient
+        @config: untyped
+
+        @client: untyped
+
+        def initialize: (untyped container) -> void
+
+        def push: (untyped job_hash) -> untyped
+
+        def unroutable_class?: (untyped klass) -> untyped
+      end
+
+      def initialize: (untyped container) -> void
+    end
+  end
+end

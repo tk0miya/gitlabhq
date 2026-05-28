@@ -1,0 +1,41 @@
+module Ml
+  class CreateModelVersionService
+    @model: untyped
+
+    @version: untyped
+
+    @package: untyped
+
+    @description: untyped
+
+    @user: untyped
+
+    @metadata: untyped
+
+    @candidate_id: untyped
+
+    @candidate_eid: untyped
+
+    def initialize: (untyped model, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def find_or_create_candidate: () -> untyped
+
+    def find_or_create_package: (untyped model_name, untyped model_version) -> untyped
+
+    def error: (untyped errors) -> untyped
+
+    class ModelVersionCreationError < StandardError
+      @errors: untyped
+
+      attr_reader errors: untyped
+
+      def initialize: (untyped errors) -> void
+    end
+
+    def audit_creation_event: () -> untyped
+  end
+end

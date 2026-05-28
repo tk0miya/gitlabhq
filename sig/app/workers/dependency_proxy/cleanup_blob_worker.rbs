@@ -1,0 +1,19 @@
+module DependencyProxy
+  class CleanupBlobWorker
+    include ApplicationWorker
+
+    include ::Packages::CleanupArtifactWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    def max_running_jobs: () -> untyped
+
+    private
+
+    def model: () -> untyped
+
+    def log_metadata: (untyped blob) -> untyped
+
+    def log_cleanup_item: (untyped blob) -> untyped
+  end
+end

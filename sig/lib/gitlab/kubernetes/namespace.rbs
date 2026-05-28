@@ -1,0 +1,33 @@
+module Gitlab
+  module Kubernetes
+    class Namespace
+      @name: untyped
+
+      @client: untyped
+
+      @labels: untyped
+
+      @logger: untyped
+
+      attr_accessor name: untyped
+
+      attr_accessor labels: untyped
+
+      def initialize: (untyped name, untyped client, ?labels: untyped?) -> void
+
+      def exists?: () -> untyped
+
+      def create!: () -> untyped
+
+      def ensure_exists!: () -> untyped
+
+      private
+
+      def log_create_failed: (untyped error) -> untyped
+
+      def log_event: (untyped event) -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

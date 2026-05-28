@@ -1,0 +1,41 @@
+module Gitlab
+  module BitbucketServerImport
+    class ProjectCreator
+      @project_key: untyped
+
+      @repo_slug: untyped
+
+      @repo: untyped
+
+      @name: untyped
+
+      @namespace: untyped
+
+      @current_user: untyped
+
+      @session_data: untyped
+
+      @timeout_strategy: untyped
+
+      attr_reader project_key: untyped
+
+      attr_reader repo_slug: untyped
+
+      attr_reader repo: untyped
+
+      attr_reader name: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader session_data: untyped
+
+      attr_reader timeout_strategy: untyped
+
+      def initialize: (untyped project_key, untyped repo_slug, untyped repo, untyped name, untyped namespace, untyped current_user, untyped session_data, untyped timeout_strategy) -> void
+
+      def execute: () -> untyped
+    end
+  end
+end

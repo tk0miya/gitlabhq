@@ -1,0 +1,206 @@
+module Backup
+  # Backup options provided by the command line interface
+  class Options
+    @backup_id: untyped
+
+    @previous_backup: untyped
+
+    @incremental: untyped
+
+    @force: untyped
+
+    @strategy: untyped
+
+    @skippable_tasks: untyped
+
+    @skippable_operations: untyped
+
+    @max_parallelism: untyped
+
+    @max_storage_parallelism: untyped
+
+    @remote_directory: untyped
+
+    @repositories_server_side_backup: untyped
+
+    @repositories_storages: untyped
+
+    @repositories_paths: untyped
+
+    @skip_repositories_paths: untyped
+
+    @compression_options: untyped
+
+    @gzip_rsyncable: untyped
+
+    @container_registry_bucket: untyped
+
+    @service_account_file: untyped
+
+    # SkippableTasks store which tasks can be skipped
+    # Setting any one to true, will create or restore a backup without that data
+    # @example Skipping database content and CI job artifacts
+    #    SkippableTasks.new(db: true, artifacts: true)
+    SkippableTasks: untyped
+
+    # What operations can be skipped
+    SkippableOperations: untyped
+
+    CompressionOptions: untyped
+
+    # A backup will by default use STREAM strategy where content is streamed to the archive
+    # With COPY strategy, files are copied first to a temporary location before they are added to the archive
+    module Strategy
+      STREAM: :stream
+
+      COPY: :copy
+    end
+
+    # Backup ID is the backup filename portion without extensions
+    # When this option is not provided, the backup name will be based on date, timestamp and gitlab version
+    #
+    # @return [String|Nil] backup id that is used as part of filename
+    attr_accessor backup_id: untyped
+
+    # Reference to previous backup full path
+    #
+    # @return [String|Nil] previous backup full path
+    attr_accessor previous_backup: untyped
+
+    # Run incremental backup?
+    #
+    # @return [Boolean] whether to run an incremental backup
+    attr_accessor incremental: untyped
+
+    alias incremental? incremental
+
+    # Whether to bypass warnings when performing dangerous operations
+    # This is currently being used for the database restore task only
+    #
+    # @return [Boolean] whether to bypass warnings and perform dangerous operations
+    attr_accessor force: untyped
+
+    alias force? force
+
+    # What strategy the backup process should use
+    #
+    # @return [Strategy::STREAM|Strategy::COPY]
+    attr_accessor strategy: untyped
+
+    # A list of all tasks and whether they can be skipped or not
+    #
+    # @return [SkippableTasks]
+    attr_accessor skippable_tasks: untyped
+
+    # A list of all operations and whether they can be skipped or not
+    #
+    # @return [SkippableOperations]
+    attr_accessor skippable_operations: untyped
+
+    # When using multiple repository storages, repositories can be backed up and restored in parallel
+    # This option allows to customize the overall limit.
+    #
+    # This is only used by repository backup and restore steps (GitalyBackup)
+    #
+    # @return [Integer|Nil] limit of backup or restore operations to happen in parallel overall
+    attr_accessor max_parallelism: untyped
+
+    # When using multiple repository storages, repositories can be backed up and restored in parallel
+    # This option allows to customize the limit per storage.
+    #
+    # This is only used by repository backup and restore steps (GitalyBackup)
+    #
+    # @return [Integer|Nil] limit of backup or restore operations to happen in parallel per storage
+    attr_accessor max_storage_parallelism: untyped
+
+    # When using multiple repository storages, repositories from specific storages can be backed up
+    # separately by running the backup operation while setting this option
+    #
+    # @return [Array<String>] a list of repository storages to be backed up
+    attr_accessor repositories_storages: untyped
+
+    # In order to backup specific repositories, multiple paths containing the
+    # selected namespaces will be used to find which repositories to backup
+    #
+    # Ex: ['group-a', 'group-b/project-c'] will select all projects in group-a and project-c in group-b
+    # This can be combined with #skip_repositories_paths
+    #
+    # @return [Array<String>] a list of paths to select which repositories to backup
+    attr_accessor repositories_paths: untyped
+
+    # In order to backup specific repositories, multiple paths containing the
+    # selected namespaces can be specified using #repositories_paths. To further
+    # refine the list, a new list of paths can be provided to be skipped among
+    # the previous pre-selected ones.
+    #
+    # Ex: for a repository_paths containing ['group-a'] and skip_repository_paths
+    # containing ['group-a/project-d'], all projects in `group-a` except `project-d`
+    # will be backed up
+    #
+    # @return [Array<String>] a list of paths to skip backup
+    attr_accessor skip_repositories_paths: untyped
+
+    # Specify GitalyBackup to handle and perform backups server-side and stream it to object storage
+    #
+    # When this is defined, repositories will not be part of the backup archive
+    # @return [Boolean] whether to perform server-side backups for repositories
+    attr_accessor repositories_server_side_backup: untyped
+
+    # A custom directory to send your remote backups to
+    # It can be used to group different types of backups (ex: daily, weekly)
+    #
+    # @return [String|Nil]
+    attr_accessor remote_directory: untyped
+
+    # Custom compression and decompression options
+    #
+    # When compression is customized, it will ignore other related options like `:gzip_rsyncable`
+    # @return [CompressionOptions] custom compression and decompression commands
+    attr_accessor compression_options: untyped
+
+    # Whether to run gzip with `--rsyncable` flag
+    #
+    # This is ignored if custom :compression_options are provided
+    # @return [Boolean] whether to use `--rsyncable` flag with gzip
+    attr_accessor gzip_rsyncable: untyped
+
+    # If the container registry is using object storage, this is the bucket that is used
+    # @return [String|Nil]
+    attr_accessor container_registry_bucket: untyped
+
+    # If we are backing up object storage in GCP, this is a file containing the service account credentials to use
+    attr_accessor service_account_file: untyped
+
+    # rubocop:disable Metrics/ParameterLists -- This is a data object with all possible CMD options
+    def initialize: (?backup_id: untyped?, ?previous_backup: untyped?, ?incremental: bool, ?force: bool, ?strategy: untyped, ?skippable_tasks: untyped, ?skippable_operations: untyped, ?max_parallelism: untyped?, ?max_storage_parallelism: untyped?, ?repository_storages: untyped, ?repository_paths: untyped, ?skip_repository_paths: untyped, ?repositories_server_side_backup: bool, ?remote_directory: untyped?, ?compression_options: untyped, ?gzip_rsyncable: bool, ?container_registry_bucket: untyped?, ?service_account_file: untyped?) -> void
+
+    # rubocop:disable Metrics/AbcSize -- TODO: Complexity will be solved in the Unified Backup implementation (https://gitlab.com/groups/gitlab-org/-/epics/11635)
+    # Extract supported options from defined ENV variables
+    def extract_from_env!: () -> untyped
+
+    def update_from_backup_information!: (untyped backup_information) -> untyped
+
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity -- TODO: Complexity will be solved in the Unified Backup implementation (https://gitlab.com/groups/gitlab-org/-/epics/11635)
+    # Return a String with a list of skippables, separated by commas
+    #
+    # @return [String] a list of skippables
+    def serialize_skippables: () -> untyped
+
+    # Extract skippables from provided data field
+    # Current callers will provide either ENV['SKIP'] or backup_information[:skipped] content
+    #
+    # The first time the method is executed it will setup `true` or `false` to each field
+    # subsequent executions will preserve `true` values and evaluate again only when previously set to `false`
+    #
+    # @param [String] field contains a list separated by comma without surrounding spaces
+    def extract_skippables!: (untyped field) -> untyped
+
+    def skip_task?: (untyped task_name) -> untyped
+
+    private
+
+    def extract_skippable_operations!: (untyped list) -> untyped
+
+    def extract_skippable_tasks: (untyped list) -> untyped
+  end
+end

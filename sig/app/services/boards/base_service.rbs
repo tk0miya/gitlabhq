@@ -1,0 +1,20 @@
+module Boards
+  class BaseService < ::BaseService
+    @parent: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    # Parent can either a group or a project
+    attr_accessor parent: untyped
+
+    # Parent can either a group or a project
+    attr_accessor current_user: untyped
+
+    # Parent can either a group or a project
+    attr_accessor params: untyped
+
+    def initialize: (untyped parent, untyped user, ?::Hash[untyped, untyped] params) -> void
+  end
+end

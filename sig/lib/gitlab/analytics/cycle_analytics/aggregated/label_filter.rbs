@@ -1,0 +1,22 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module Aggregated
+        # This class makes it possible to add label filters to stage event tables
+        class LabelFilter < Issuables::LabelFilter
+          @stage: untyped
+
+          extend ::Gitlab::Utils::Override
+
+          def initialize: (stage: untyped, **untyped kwargs) -> void
+
+          private
+
+          attr_reader stage: untyped
+
+          def label_link_query: (untyped target_model, ?label_ids: untyped?) -> untyped
+        end
+      end
+    end
+  end
+end

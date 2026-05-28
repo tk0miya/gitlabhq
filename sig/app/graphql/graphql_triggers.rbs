@@ -1,0 +1,53 @@
+module GraphqlTriggers
+  def self.ci_job_processed_with_artifacts: (untyped job) -> (nil | untyped)
+
+  def self.ci_job_processed: (untyped job) -> (nil | untyped)
+
+  def self.ci_job_status_updated: (untyped job) -> untyped
+
+  def self.ci_stage_updated: (untyped job) -> untyped
+
+  def self.ci_stage_status_updated: (untyped stage) -> untyped
+
+  def self.ci_pipeline_status_updated: (untyped pipeline) -> untyped
+
+  def self.ci_pipeline_statuses_updated: (untyped pipeline) -> untyped
+
+  def self.ci_pipeline_schedule_status_updated: (untyped schedule) -> untyped
+
+  def self.ci_pipeline_creation_requests_updated: (untyped merge_request) -> untyped
+
+  def self.issuable_assignees_updated: (untyped issuable) -> untyped
+
+  def self.issue_crm_contacts_updated: (untyped issue) -> untyped
+
+  def self.issuable_title_updated: (untyped issuable) -> untyped
+
+  def self.issuable_description_updated: (untyped issuable) -> untyped
+
+  def self.issuable_labels_updated: (untyped issuable) -> untyped
+
+  def self.issuable_dates_updated: (untyped issuable) -> untyped
+
+  def self.issuable_milestone_updated: (untyped issuable) -> untyped
+
+  def self.work_item_note_created: (untyped work_item_gid, untyped note_data) -> untyped
+
+  def self.work_item_note_deleted: (untyped work_item_gid, untyped note_data) -> untyped
+
+  def self.work_item_note_updated: (untyped work_item_gid, untyped note_data) -> untyped
+
+  def self.merge_request_reviewers_updated: (untyped merge_request) -> untyped
+
+  def self.merge_request_merge_status_updated: (untyped merge_request) -> untyped
+
+  def self.merge_request_approval_state_updated: (untyped merge_request) -> untyped
+
+  def self.merge_request_diff_generated: (untyped merge_request) -> untyped
+
+  def self.work_item_updated: (untyped work_item) -> untyped
+
+  def self.issuable_todo_updated: (untyped issuable) -> (nil | untyped)
+
+  def self.user_merge_request_updated: (untyped user, untyped merge_request) -> untyped
+end

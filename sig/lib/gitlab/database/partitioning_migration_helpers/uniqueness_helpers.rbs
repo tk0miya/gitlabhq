@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module PartitioningMigrationHelpers
+      module UniquenessHelpers
+        include Gitlab::Database::MigrationHelpers
+
+        include Gitlab::Database::SchemaHelpers
+
+        def ensure_unique_id: (untyped table_name, seq: untyped) -> (nil | untyped)
+
+        def revert_ensure_unique_id: (untyped table_name, seq: untyped) -> untyped
+      end
+    end
+  end
+end

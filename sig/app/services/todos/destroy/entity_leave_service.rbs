@@ -1,0 +1,50 @@
+module Todos
+  module Destroy
+    class EntityLeaveService < ::Todos::Destroy::BaseService
+      @user: untyped
+
+      @entity: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      attr_reader user: untyped
+
+      attr_reader entity: untyped
+
+      def initialize: (untyped user_id, untyped entity_id, untyped entity_type) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def enqueue_private_features_worker: () -> untyped
+
+      def remove_confidential_resource_todos: () -> untyped
+
+      def remove_project_todos: () -> untyped
+
+      def remove_group_todos: () -> (nil | untyped)
+
+      def projects: () -> untyped
+
+      def authorized_planner_projects: () -> untyped
+
+      def authorized_guest_projects: () -> untyped
+
+      def non_authorized_planner_projects: () -> untyped
+
+      def non_authorized_guest_projects: () -> untyped
+
+      def authorized_planner_groups: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def unauthorized_private_groups: () -> (::Array[untyped] | untyped)
+
+      def non_authorized_planner_groups: () -> untyped
+
+      def user_can_read_confidential_issues?: () -> (false | untyped)
+
+      def confidential_issues: () -> untyped
+    end
+  end
+end

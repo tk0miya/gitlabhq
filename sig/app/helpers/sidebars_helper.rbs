@@ -1,0 +1,74 @@
+module SidebarsHelper
+  include MergeRequestsHelper
+
+  include Nav::NewDropdownHelper
+
+  def organization_sidebar_context: (untyped organization, untyped user, **untyped args) -> untyped
+
+  def project_sidebar_context: (untyped project, untyped user, untyped current_ref, ?ref_type: untyped?, **untyped args) -> untyped
+
+  def group_sidebar_context: (untyped group, untyped user, **untyped args) -> untyped
+
+  def your_work_sidebar_context: (untyped user, **untyped args) -> untyped
+
+  def super_sidebar_context: (untyped user, group: untyped, project: untyped, panel: untyped, panel_type: untyped) -> untyped
+
+  def super_sidebar_shared_context: (panel: untyped, panel_type: untyped) -> untyped
+
+  def super_sidebar_logged_out_context: (panel: untyped, panel_type: untyped) -> untyped
+
+  def super_sidebar_logged_in_context: (untyped user, group: untyped, project: untyped, panel: untyped, panel_type: untyped) -> untyped
+
+  def super_sidebar_instance_version_data: () -> (::Hash[untyped, untyped] | { gitlab_version: untyped, gitlab_version_check: untyped })
+
+  # Overridden in EE
+  def super_sidebar_whats_new_data: () -> (::Hash[untyped, untyped] | { whats_new_most_recent_release_items_count: untyped, whats_new_version_digest: untyped, whats_new_read_articles: untyped, whats_new_mark_as_read_path: untyped })
+
+  def work_items_modal_data: (untyped group, untyped project) -> ({ full_path: untyped, has_issuable_health_status_feature: untyped, issues_list_path: untyped, labels_manage_path: untyped, can_admin_label: untyped, has_issue_weights_feature: untyped, has_iterations_feature: untyped } | nil | { full_path: untyped, has_issuable_health_status_feature: untyped, issues_list_path: untyped, labels_manage_path: untyped, can_admin_label: untyped, has_issue_weights_feature: untyped })
+
+  def super_sidebar_nav_panel: (?nav: untyped?, ?project: untyped?, ?user: untyped?, ?group: untyped?, ?current_ref: untyped?, ?ref_type: untyped?, ?viewed_user: untyped?, ?organization: untyped?) -> untyped
+
+  def command_palette_data: (?project: untyped?, ?current_ref: untyped?) -> (::Hash[untyped, untyped] | { project_files_url: untyped, project_blob_url: untyped })
+
+  def compare_plans_url: (*untyped) -> ::String
+
+  private
+
+  def fallback_sidebar_panel: (untyped nav, untyped context_adds, ?untyped? user) -> untyped
+
+  def search_data: () -> { search_path: untyped, issues_path: untyped, mr_path: untyped, autocomplete_path: untyped, settings_path: untyped, search_context: untyped }
+
+  def user_status_menu_data: (untyped user) -> { can_update: untyped, busy: untyped, customized: untyped, availability: untyped, emoji: untyped, message_html: untyped, message: untyped, clear_after: untyped }
+
+  def create_new_menu_groups: (group: untyped, project: untyped) -> untyped
+
+  def base_tracking_attrs: (untyped item) -> { :"data-track-label" => untyped, :"data-track-action" => "click_link", :"data-track-property" => "nav_create_menu", :"data-testid" => "create_menu_item", :"data-qa-create-menu-item" => untyped }
+
+  def project_sidebar_context_data: (untyped project, untyped user, untyped current_ref, ?ref_type: untyped?) -> { current_user: untyped, container: untyped, current_ref: untyped, ref_type: untyped, jira_issues_integration: untyped, can_view_pipeline_editor: untyped, show_cluster_hint: untyped }
+
+  def group_sidebar_context_data: (untyped group, untyped user) -> { current_user: untyped, container: untyped }
+
+  def your_work_context_data: (untyped user) -> { current_user: untyped, container: untyped, show_security_dashboard: false }
+
+  def super_sidebar_current_context: (?project: untyped?, ?group: untyped?) -> ({ namespace: "projects", item: { id: untyped, name: untyped, namespace: untyped, fullPath: untyped, webUrl: untyped, avatarUrl: untyped } } | { namespace: "groups", item: { id: untyped, name: untyped, namespace: untyped, fullPath: untyped, webUrl: untyped, avatarUrl: untyped } } | ::Hash[untyped, untyped])
+
+  def context_switcher_links: () -> untyped
+
+  def impersonating?: () -> untyped
+
+  def shortcut_links_anonymous: () -> ::Array[{ title: untyped, href: untyped, css_class: "dashboard-shortcuts-snippets" } | { title: untyped, href: untyped, css_class: "dashboard-shortcuts-groups" } | { title: untyped, href: untyped, css_class: "dashboard-shortcuts-projects" }]
+
+  def shortcut_links: (?user: untyped?, ?project: untyped?) -> untyped
+
+  # overridden on EE
+  # rubocop:disable Lint/UnusedMethodArgument -- group is used on EE
+  def pinned_items: (untyped user, untyped panel_type, ?group: untyped?) -> untyped
+
+  def super_sidebar_default_pins: (untyped panel_type) -> untyped
+
+  def terms_link: () -> (untyped | nil)
+
+  def admin_area_link: () -> untyped
+
+  def display_admin_area_link?: () -> untyped
+end

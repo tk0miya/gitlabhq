@@ -1,0 +1,15 @@
+module MergeRequests
+  class LinkLfsObjectsService < ::BaseProjectService
+    BATCH_SIZE: 100
+
+    def execute: (untyped merge_request, ?oldrev: untyped, ?newrev: untyped) -> (nil | untyped)
+
+    private
+
+    def no_changes?: (untyped oldrev, untyped newrev) -> untyped
+
+    def lfs_oids: (untyped source_repository, untyped oldrev, untyped newrev) -> untyped
+
+    def filter_valid_lfs_oids: (untyped source_project, untyped new_lfs_oids) -> untyped
+  end
+end

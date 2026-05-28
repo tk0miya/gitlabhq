@@ -1,0 +1,25 @@
+module Gitlab
+  module InternalPostReceive
+    class Response
+      @messages: untyped
+
+      @reference_counter_decreased: untyped
+
+      attr_accessor reference_counter_decreased: untyped
+
+      attr_reader messages: untyped
+
+      Message: untyped
+
+      def initialize: () -> void
+
+      def add_merge_request_urls: (untyped urls_data) -> untyped
+
+      def add_merge_request_url: (untyped url_data) -> untyped
+
+      def add_basic_message: (untyped text) -> (untyped | nil)
+
+      def add_alert_message: (untyped text) -> (untyped | nil)
+    end
+  end
+end

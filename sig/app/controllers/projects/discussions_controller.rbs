@@ -1,0 +1,32 @@
+class Projects::DiscussionsController < Projects::ApplicationController
+  @noteable: untyped
+
+  @discussion: untyped
+
+  include NotesHelper
+
+  include RendersNotes
+
+  def resolve: () -> untyped
+
+  def unresolve: () -> untyped
+
+  def show: () -> untyped
+
+  private
+
+  def render_discussion: () -> untyped
+
+  def render_json_with_discussions_serializer: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def noteable: () -> untyped
+
+  def noteable_finder_class: () -> untyped
+
+  def check_noteable_supports_resolvable_notes!: () -> (untyped | nil)
+
+  def discussion: () -> untyped
+
+  def authorize_resolve_discussion!: () -> (untyped | nil)
+end

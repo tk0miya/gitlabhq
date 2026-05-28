@@ -1,0 +1,27 @@
+module Gitlab
+  module Database
+    module SchemaMigrations
+      class Context
+        @connection: untyped
+
+        @schema_directory: untyped
+
+        @database_name: untyped
+
+        attr_reader connection: untyped
+
+        def initialize: (untyped connection) -> void
+
+        def schema_directory: () -> untyped
+
+        def versions_to_create: () -> untyped
+
+        private
+
+        def database_name: () -> untyped
+
+        def database_schema_migrations_path: () -> untyped
+      end
+    end
+  end
+end

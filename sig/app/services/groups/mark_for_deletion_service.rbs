@@ -1,0 +1,25 @@
+module Groups
+  class MarkForDeletionService < ::Namespaces::MarkForDeletionBaseService
+    RenamingFailedError: untyped
+
+    DeletionScheduleSavingFailedError: untyped
+
+    private
+
+    def remove_permission: () -> :remove_group
+
+    def notification_method: () -> :group_scheduled_for_deletion
+
+    def resource_name: () -> "group"
+
+    def execute_deletion: () -> untyped
+
+    def rename_group_for_deletion!: () -> (nil | untyped)
+
+    def rename_group_for_deletion?: () -> untyped
+
+    def update_service_params: () -> { name: untyped, path: untyped }
+
+    def save_deletion_schedule!: (untyped deletion_schedule) -> (nil | untyped)
+  end
+end

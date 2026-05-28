@@ -1,0 +1,76 @@
+module Ci
+  class CreateCommitStatusService < BaseService
+    @pipeline: untyped
+
+    @stage: untyped
+
+    @commit_status: untyped
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    include ::Services::ReturnServiceResponses
+
+    InvalidState: untyped
+
+    # Default number of pipelines to return
+    DEFAULT_LIMIT_PIPELINES: 100
+
+    def execute: (optional_commit_status_params: untyped) -> untyped
+
+    private
+
+    attr_reader pipeline: untyped
+
+    attr_reader stage: untyped
+
+    attr_reader commit_status: untyped
+
+    attr_reader optional_commit_status_params: untyped
+
+    def unsafe_execute: () -> untyped
+
+    def validate: () -> (untyped | nil)
+
+    def ref: () -> untyped
+
+    def commit: () -> untyped
+
+    def find_or_create_pipeline: () -> untyped
+
+    def can_append_jobs_to_existing_pipeline?: () -> (true | false)
+
+    def first_matching_pipeline: () -> untyped
+
+    def first_matching_pipeline_size_exceeded?: () -> untyped
+
+    def name: () -> untyped
+
+    def create_pipeline: () -> untyped
+
+    def find_or_create_external_stage: () -> untyped
+
+    def external_commit_status_exists?: () -> untyped
+
+    def find_or_build_external_commit_status: () -> untyped
+
+    def external_commit_status_scope: (untyped pipeline) -> untyped
+
+    def add_or_update_external_job: () -> untyped
+
+    def apply_job_state!: (untyped job) -> untyped
+
+    def pipeline_lock_key: () -> ::String
+
+    def pipeline_lock_params: () -> { ttl: untyped, sleep_sec: untyped, retries: 20 }
+
+    def create_log_entry: () -> untyped
+
+    def not_found: (untyped message) -> untyped
+
+    def bad_request: (untyped message) -> untyped
+
+    def forbidden: () -> untyped
+  end
+end

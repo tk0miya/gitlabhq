@@ -1,0 +1,23 @@
+module Gitlab
+  module Gpg
+    class Commit < Gitlab::Repositories::BaseSignedCommit
+      @signature: untyped
+
+      def update_signature!: (untyped cached_signature) -> untyped
+
+      def update_cached_signature!: (untyped cached_signature, untyped gpg_key) -> untyped
+
+      private
+
+      def project: () -> untyped
+
+      def signature_class: () -> untyped
+
+      def create_cached_signature!: () -> (nil | untyped)
+
+      def attributes: (untyped gpg_key) -> untyped
+
+      def gpg_signature: (?gpg_key: untyped?) -> untyped
+    end
+  end
+end

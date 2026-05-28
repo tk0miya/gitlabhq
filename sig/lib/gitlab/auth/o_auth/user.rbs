@@ -1,0 +1,113 @@
+# OAuth extension for User model
+#
+# * Find GitLab user based on omniauth uid and provider
+# * Create new user from omniauth data
+#
+module Gitlab
+  module Auth
+    module OAuth
+      class User
+        @user_params: untyped
+
+        @gl_user: untyped
+
+        @auth_hash: untyped
+
+        def self.find_by_uid_and_provider: (untyped uid, untyped provider) -> (nil | untyped)
+
+        SignupDisabledError: untyped
+
+        SigninDisabledForProviderError: untyped
+
+        IdentityWithUntrustedExternUidError: untyped
+
+        UnknownAttributeMappingError: untyped
+
+        attr_reader auth_hash: untyped
+
+        def initialize: (untyped auth_hash, ?::Hash[untyped, untyped] user_params) -> void
+
+        def persisted?: () -> untyped
+
+        def new?: () -> untyped
+
+        def valid?: () -> untyped
+
+        def valid_sign_in?: () -> untyped
+
+        def save: (?untyped provider) -> untyped
+
+        def gl_user: () -> untyped
+
+        def find_user: () -> untyped
+
+        def find_and_update!: () -> untyped
+
+        def bypass_two_factor?: () -> untyped
+
+        def protocol_name: () -> "OAuth"
+
+        attr_reader user_params: untyped
+
+        def activate_user_if_user_cap_not_reached: () -> nil
+
+        def should_save?: () -> true
+
+        def add_or_update_user_identities: () -> (nil | untyped)
+
+        def find_or_build_ldap_user: () -> (nil | untyped)
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def find_by_email: () -> (nil | untyped)
+
+        def auto_link_ldap_user?: () -> untyped
+
+        def creating_linked_ldap_user?: () -> untyped
+
+        def ldap_person: () -> untyped
+
+        def find_ldap_person: (untyped auth_hash, untyped adapter) -> untyped
+
+        def ldap_config: () -> (untyped | nil)
+
+        def needs_blocking?: () -> untyped
+
+        def signup_enabled?: () -> untyped
+
+        def external_provider?: () -> untyped
+
+        def block_after_signup?: () -> untyped
+
+        def auth_hash=: (untyped auth_hash) -> untyped
+
+        def find_by_uid_and_provider: () -> untyped
+
+        def build_new_user: (?skip_confirmation: bool) -> untyped
+
+        def user_attributes: () -> { name: untyped, username: untyped, email: untyped, password: untyped, password_confirmation: untyped, password_automatically_set: true, organization_id: untyped }
+
+        def sanitize_username: (untyped username) -> untyped
+
+        def sync_profile_from_provider?: () -> untyped
+
+        def update_profile: () -> (nil | untyped)
+
+        def clear_user_synced_attributes_metadata: () -> untyped
+
+        def log: () -> untyped
+
+        def oauth_provider_disabled?: () -> untyped
+
+        def auto_link_user?: () -> untyped
+
+        def any_auth_hash_errors?: () -> (false | true)
+
+        def assign_errors_from_auth_hash: () -> untyped
+
+        private
+
+        def assign_value_to_user: (untyped user, untyped auth_hash, untyped key) -> (nil | true)
+      end
+    end
+  end
+end

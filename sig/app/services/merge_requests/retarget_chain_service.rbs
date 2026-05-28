@@ -1,0 +1,7 @@
+module MergeRequests
+  class RetargetChainService < MergeRequests::BaseService
+    MAX_RETARGET_MERGE_REQUESTS: 4
+
+    def execute: (untyped merge_request) -> (nil | untyped)
+  end
+end

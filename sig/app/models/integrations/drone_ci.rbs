@@ -1,0 +1,51 @@
+module Integrations
+  class DroneCi < Integration
+    include Base::Ci
+
+    include HasWebHook
+
+    include HasAvatar
+
+    include PushDataValidations
+
+    include ReactivelyCached
+
+    prepend EnableSslVerification
+
+    DRONE_SAAS_HOSTNAME: "cloud.drone.io"
+
+    def execute: (untyped data) -> (nil | untyped)
+
+    def self.supported_events: () -> ::Array["push" | "merge_request" | "tag_push"]
+
+    def commit_status_path: (untyped sha, untyped ref) -> untyped
+
+    def commit_status: (untyped sha, untyped ref) -> untyped
+
+    def calculate_reactive_cache: (untyped sha, untyped ref) -> { commit_status: untyped }
+
+    def build_page: (untyped sha, untyped ref) -> untyped
+
+    def self.title: () -> "Drone"
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "drone_ci"
+
+    def hook_url: () -> untyped
+
+    def url_variables: () -> { "token" => untyped }
+
+    def update_web_hook!: () -> (untyped | nil)
+
+    def enable_ssl_verification: () -> untyped
+
+    def self.attribution_notice: () -> "Drone CI icon and logo by Harness Inc. are licensed under CC NC-ND 4.0."
+
+    private
+
+    def url_is_saas?: () -> untyped
+  end
+end

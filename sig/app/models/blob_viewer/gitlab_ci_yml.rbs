@@ -1,0 +1,18 @@
+module BlobViewer
+  class GitlabCiYml < Base
+    @validation_message: untyped
+
+    include ServerSide
+
+    include Auxiliary
+
+    # rubocop:disable Lint/UnusedMethodArgument -- The keyword argument is required by the parent class but not here.
+    def self.can_render?: (untyped blob, ?verify_binary: bool) -> untyped
+
+    def validation_message: (untyped opts) -> untyped
+
+    def valid?: (untyped opts) -> untyped
+
+    def visible_to?: (untyped _current_user, untyped ref) -> untyped
+  end
+end

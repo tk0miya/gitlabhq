@@ -1,0 +1,66 @@
+module Gitlab
+  class LfsToken
+    @actor: untyped
+
+    @container: untyped
+
+    module LfsTokenHelper
+      def user?: () -> untyped
+
+      def actor_name: () -> (untyped | ::String)
+
+      def container_gid: () -> (untyped | nil)
+    end
+
+    include LfsTokenHelper
+
+    DEFAULT_EXPIRE_TIME: 7200
+
+    attr_accessor actor: untyped
+
+    def initialize: (untyped actor, untyped container) -> void
+
+    def token: () -> untyped
+
+    # When the token is an lfs one and the actor
+    # is blocked or the password has been changed,
+    # the token is no longer valid
+    def token_valid?: (untyped token_to_check) -> untyped
+
+    def deploy_key_pushable?: (untyped project) -> untyped
+
+    def type: () -> (:lfs_token | :lfs_deploy_token)
+
+    def valid_user?: () -> (true | untyped)
+
+    def authentication_payload: (untyped repository_http_path) -> { username: untyped, lfs_token: untyped, repository_http_path: untyped, expires_in: untyped }
+
+    def basic_encoding: () -> untyped
+
+    private
+
+    attr_reader container: untyped
+
+    class HMACToken
+      @actor: untyped
+
+      @container: untyped
+
+      include LfsTokenHelper
+
+      def initialize: (untyped actor, untyped container) -> void
+
+      def token: (untyped expire_time) -> untyped
+
+      def token_valid?: (untyped token_to_check) -> untyped
+
+      private
+
+      attr_reader actor: untyped
+
+      attr_reader container: untyped
+
+      def secret: () -> untyped
+    end
+  end
+end

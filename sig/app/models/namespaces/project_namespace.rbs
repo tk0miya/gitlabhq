@@ -1,0 +1,31 @@
+module Namespaces
+  class ProjectNamespace < Namespace
+    SYNCED_ATTRIBUTES: ::Array["name" | "path" | "namespace_id" | "namespace" | "visibility_level" | "shared_runners_enabled" | "organization_id"]
+
+    # These aliases are added to make it easier to sync parent/parent_id attribute with
+    # project.namespace/project.namespace_id attribute.
+    #
+    # TODO: we can remove these attribute aliases when we no longer need to sync these with project model,
+    # see ProjectNamespace#sync_attributes_from_project
+    alias namespace parent
+
+    alias namespace_id= parent_id=
+
+    def self.sti_name: () -> "Project"
+
+    def self.polymorphic_name: () -> "Namespaces::ProjectNamespace"
+
+    def self.create_from_project!: (untyped project) -> (nil | untyped)
+
+    def owner_entity: () -> untyped
+
+    def sync_attributes_from_project: (untyped project) -> untyped
+
+    # It's always 1 project but it has to be an AR relation
+    def all_projects: () -> untyped
+
+    def max_member_access_for_user: (untyped user) -> untyped
+
+    def remove_ancestor_inherited_transitions?: () -> untyped
+  end
+end

@@ -1,0 +1,8 @@
+module Environments
+  class RecalculateAutoStopWorker
+    include ApplicationWorker
+
+    # rubocop: disable CodeReuse/ActiveRecord -- we already use partition pruning
+    def perform: (untyped job_id, ?::Hash[untyped, untyped] options) -> untyped
+  end
+end

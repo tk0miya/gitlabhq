@@ -1,0 +1,49 @@
+class Groups::LabelsController < Groups::ApplicationController
+  @label: untyped
+
+  @previous_labels_path: untyped
+
+  @available_labels: untyped
+
+  @sort: untyped
+
+  include ToggleSubscriptionAction
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def edit: () -> untyped
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  def authorize_group_for_admin_labels!: () -> (untyped | nil)
+
+  def authorize_label_for_admin_label!: () -> (untyped | nil)
+
+  def authorize_read_labels!: () -> (untyped | nil)
+
+  def label: () -> untyped
+
+  alias subscribable_resource label
+
+  def subscribable_project: () -> nil
+
+  def label_params: () -> untyped
+
+  def redirect_back_or_group_labels_path: (?::Hash[untyped, untyped] options) -> untyped
+
+  def previous_labels_path: () -> untyped
+
+  def fallback_path: () -> untyped
+
+  def save_previous_label_path: () -> untyped
+
+  def available_labels: (?untyped options) -> untyped
+
+  def sort: () -> untyped
+end

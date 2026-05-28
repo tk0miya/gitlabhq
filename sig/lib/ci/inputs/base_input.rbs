@@ -1,0 +1,84 @@
+module Ci
+  module Inputs
+    #
+    # This is a common abstraction for all input types
+    class BaseInput
+      @name: untyped
+
+      @errors: untyped
+
+      @spec: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def self.matches?: (untyped spec) -> untyped
+
+      # Human readable type used in error messages
+      def self.type_name: () -> untyped
+
+      attr_reader errors: untyped
+
+      attr_reader name: untyped
+
+      attr_reader spec: untyped
+
+      def initialize: (name: untyped, spec: untyped) -> void
+
+      def validate_param!: (untyped param, ?::Hash[untyped, untyped] all_params) -> (nil | untyped)
+
+      def actual_value: (untyped param, ?::Hash[untyped, untyped] all_params) -> untyped
+
+      def type: () -> untyped
+
+      # An input specification without a default value is required.
+      # For example:
+      # ```yaml
+      # spec:
+      #   inputs:
+      #     website:
+      # ```
+      # For rules-based inputs, check if any rule provides a default value (this functionality is under a feature
+      # flag).
+      def required?: () -> untyped
+
+      def default_value_present?: () -> untyped
+
+      def default: () -> untyped
+
+      def options: () -> untyped
+
+      def description: () -> untyped
+
+      def regex: () -> (nil | untyped)
+
+      def rules: () -> (nil | untyped)
+
+      private
+
+      def resolved_options: (?::Hash[untyped, untyped] current_inputs) -> untyped
+
+      def resolved_default: (?::Hash[untyped, untyped] current_inputs) -> untyped
+
+      def rules_evaluator: (untyped current_inputs) -> untyped
+
+      def has_default_through_rules?: () -> (false | untyped)
+
+      def run_validations: (untyped value, ?::Hash[untyped, untyped] all_params, ?default: bool) -> untyped
+
+      # Type validations are done separately for different input types.
+      def validate_type: (untyped _value, untyped _default) -> untyped
+
+      # Options are validated by subclasses that support them (StringInput, NumberInput, ArrayInput).
+      def validate_options: (untyped _value, ?::Hash[untyped, untyped] _all_params) -> (nil | untyped)
+
+      # Regex can be only be a StringInput and is validated accordingly.
+      def validate_regex: (untyped _value, untyped _default) -> (nil | untyped)
+
+      def regex_provided?: () -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def coerced_value: (untyped value) -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Sidebars
+  class NilMenuItem < MenuItem
+    extend ::Gitlab::Utils::Override
+
+    def initialize: (item_id: untyped) -> void
+
+    def render?: () -> false
+  end
+end

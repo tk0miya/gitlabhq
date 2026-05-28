@@ -1,0 +1,15 @@
+class AbstractPathValidator < ActiveModel::EachValidator
+  extend Gitlab::EncodingHelper
+
+  def self.path_regex: () -> untyped
+
+  def self.format_regex: () -> untyped
+
+  def self.format_error_message: () -> untyped
+
+  def self.valid_path?: (untyped path) -> untyped
+
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+  def build_full_path_to_validate_against_reserved_names?: () -> true
+end

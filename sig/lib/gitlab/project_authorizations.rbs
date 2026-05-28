@@ -1,0 +1,48 @@
+# This class relies on Common Table Expressions to efficiently get all data,
+# including data for nested groups.
+module Gitlab
+  class ProjectAuthorizations
+    @user: untyped
+
+    attr_reader user: untyped
+
+    # user - The User object for which to calculate the authorizations.
+    def initialize: (untyped user) -> void
+
+    def calculate: () -> untyped
+
+    private
+
+    # Builds a recursive CTE that gets all the groups the current user has
+    # access to, including any nested groups and any shared groups.
+    def recursive_cte: () -> untyped
+
+    # Builds a LEFT JOIN to join optional memberships onto the CTE.
+    def join_members_on_namespaces: () -> untyped
+
+    def join_group_group_links: () -> untyped
+
+    def join_members_on_group_group_links: () -> untyped
+
+    # Builds an INNER JOIN to join namespaces onto the CTE.
+    def join_cte: (untyped cte) -> untyped
+
+    def greatest: (untyped left, untyped right, untyped column_alias) -> untyped
+
+    def least: (untyped left, untyped right, untyped column_alias) -> untyped
+
+    def sql_function: (untyped name, untyped args, untyped column_alias) -> untyped
+
+    def alias_as_column: (untyped value, untyped alias_to) -> untyped
+
+    def relations: (cte_alias: untyped) -> ::Array[untyped]
+
+    def projects_shared_with_namespaces_user_has_access_to: (cte_alias: untyped) -> untyped
+
+    def projects_belonging_directy_to_any_groups_user_has_access_to: (cte_alias: untyped) -> untyped
+
+    def projects: () -> untyped
+
+    def links: () -> untyped
+  end
+end

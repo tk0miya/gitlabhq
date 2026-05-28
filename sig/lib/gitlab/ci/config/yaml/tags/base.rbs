@@ -1,0 +1,46 @@
+module Gitlab
+  module Ci
+    class Config
+      module Yaml
+        module Tags
+          class Base
+            @data: untyped
+
+            CircularReferenceError: untyped
+
+            NotValidError: untyped
+
+            extend ::Gitlab::Utils::Override
+
+            attr_accessor resolved_status: untyped
+
+            attr_accessor resolved_value: untyped
+
+            attr_accessor data: untyped
+
+            def self.tag: () -> untyped
+
+            # Only one of the `seq`, `scalar`, `map` fields is available.
+            def init_with: (untyped coder) -> untyped
+
+            def valid?: () -> untyped
+
+            def resolve: (untyped resolver) -> untyped
+
+            private
+
+            def _resolve: (untyped resolver) -> untyped
+
+            def resolved?: () -> untyped
+
+            def resolving?: () -> untyped
+
+            def circular_error_message: () -> ::String
+
+            def validation_error_message: () -> ::String
+          end
+        end
+      end
+    end
+  end
+end

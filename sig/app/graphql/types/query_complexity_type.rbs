@@ -1,0 +1,10 @@
+module Types
+  # rubocop: disable Graphql/AuthorizeTypes
+  class QueryComplexityType < ::Types::BaseObject
+    ANALYZER: untyped
+
+    alias query object
+
+    def score: () -> untyped
+  end
+end

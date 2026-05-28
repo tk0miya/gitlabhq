@@ -1,0 +1,31 @@
+module IncidentManagement
+  module TimelineEvents
+    class DestroyService < TimelineEvents::BaseService
+      @timeline_event: untyped
+
+      @user: untyped
+
+      @incident: untyped
+
+      @project: untyped
+
+      # @param timeline_event [IncidentManagement::TimelineEvent]
+      # @param user [User]
+      def initialize: (untyped timeline_event, untyped user) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader timeline_event: untyped
+
+      attr_reader user: untyped
+
+      attr_reader incident: untyped
+
+      def add_system_note: (untyped incident, untyped user) -> untyped
+    end
+  end
+end

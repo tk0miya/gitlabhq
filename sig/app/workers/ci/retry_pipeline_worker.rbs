@@ -1,0 +1,9 @@
+module Ci
+  class RetryPipelineWorker
+    include ::ApplicationWorker
+
+    include ::PipelineQueue
+
+    def perform: (untyped pipeline_id, untyped user_id) -> untyped
+  end
+end

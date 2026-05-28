@@ -1,0 +1,13 @@
+module Namespaces
+  class Descendants < ApplicationRecord
+    def self.expire_for: (untyped namespace_ids) -> untyped
+
+    def self.expire_recursive_for: (untyped group) -> untyped
+
+    def self.load_outdated_batch: (untyped batch_size) -> untyped
+
+    def self.upsert_with_consistent_data: (namespace: untyped, self_and_descendant_ids: untyped, self_and_descendant_group_ids: untyped, all_project_ids: untyped, all_unarchived_project_ids: untyped, ?outdated_at: untyped?) -> untyped
+
+    def self.handle_outdated_at: (untyped previous_outdated_at) -> (::String | "outdated_at = EXCLUDED.outdated_at,")
+  end
+end

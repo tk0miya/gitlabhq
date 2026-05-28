@@ -1,0 +1,72 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class PullRequestImporter
+        @pull_request: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        @user_finder: untyped
+
+        @milestone_finder: untyped
+
+        @issuable_finder: untyped
+
+        include Gitlab::Import::MergeRequestHelpers
+
+        include Gitlab::Import::UsernameMentionRewriter
+
+        include ::Import::PlaceholderReferences::Pusher
+
+        attr_reader pull_request: untyped
+
+        attr_reader project: untyped
+
+        attr_reader client: untyped
+
+        attr_reader user_finder: untyped
+
+        attr_reader milestone_finder: untyped
+
+        attr_reader issuable_finder: untyped
+
+        # pull_request - An instance of
+        #                `Gitlab::GithubImport::Representation::PullRequest`.
+        # project - An instance of `Project`
+        # client - An instance of `Gitlab::GithubImport::Client`
+        def initialize: (untyped pull_request, untyped project, untyped client) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        # Creates the merge request and returns its ID.
+        #
+        # This method will return `nil` if the merge request could not be
+        # created, otherwise it will return an Array containing the following
+        # values:
+        #
+        # 1. A MergeRequest instance.
+        # 2. A boolean indicating if the MR already exists.
+        def create_merge_request: () -> untyped
+
+        def set_merge_request_assignees: (untyped merge_request) -> untyped
+
+        def insert_git_data: (untyped merge_request, untyped already_exists) -> untyped
+
+        # An imported merge request will not be mergeable unless the
+        # source branch exists. For pull requests from forks, the source
+        # branch will be in the form of
+        # "github/fork/{project-name}/{source_branch}". This branch will never
+        # exist, so we create it here.
+        #
+        # Note that we only create the branch if the merge request is still open.
+        # For projects that have many pull requests, we assume that if it's closed
+        # the branch has already been deleted.
+        def create_source_branch_if_not_exists: (untyped merge_request) -> untyped
+      end
+    end
+  end
+end

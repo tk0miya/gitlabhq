@@ -1,0 +1,25 @@
+module Gitlab
+  module Mailgun
+    module WebhookProcessors
+      class MemberInvites < Base
+        @member: untyped
+
+        ProcessWebhookServiceError: untyped
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader member: untyped
+
+        def should_process?: () -> untyped
+
+        def update_member_and_log: () -> (untyped | nil)
+
+        def log_update_event: () -> untyped
+
+        def invite_token: () -> untyped
+      end
+    end
+  end
+end

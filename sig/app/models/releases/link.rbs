@@ -1,0 +1,17 @@
+module Releases
+  class Link < ApplicationRecord
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/218753
+    # Regex modified to prevent catastrophic backtracking
+    FILEPATH_REGEX: ::Regexp
+
+    FILEPATH_MAX_LENGTH: 128
+
+    # we use a custom validator here to prevent running the regex if the string is too long
+    # see https://gitlab.com/gitlab-org/gitlab/-/issues/273771
+    def filepath_format_valid?: () -> (nil | untyped)
+
+    def internal?: () -> untyped
+
+    def hook_attrs: () -> { id: untyped, link_type: untyped, name: untyped, url: untyped }
+  end
+end

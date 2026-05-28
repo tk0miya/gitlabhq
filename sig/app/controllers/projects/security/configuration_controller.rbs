@@ -1,0 +1,19 @@
+module Projects
+  module Security
+    class ConfigurationController < Projects::ApplicationController
+      @configuration: untyped
+
+      include SecurityAndCompliancePermissions
+
+      def show: () -> untyped
+
+      private
+
+      def configuration: () -> untyped
+
+      def configuration_presenter: () -> untyped
+
+      def presenter_attributes: () -> ::Hash[untyped, untyped]
+    end
+  end
+end

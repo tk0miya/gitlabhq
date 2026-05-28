@@ -1,0 +1,51 @@
+class PersonalAccessTokensFinder
+  @params: untyped
+
+  @current_user: untyped
+
+  attr_accessor params: untyped
+
+  def initialize: (?::Hash[untyped, untyped] params, ?untyped? current_user) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  attr_reader current_user: untyped
+
+  def by_current_user: (untyped tokens) -> untyped
+
+  def by_token_id: (untyped tokens) -> untyped
+
+  def by_user: (untyped tokens) -> untyped
+
+  def by_users: (untyped tokens) -> untyped
+
+  def sort: (untyped tokens) -> untyped
+
+  def by_impersonation: (untyped tokens) -> untyped
+
+  def by_state: (untyped tokens) -> untyped
+
+  def by_revoked_state: (untyped tokens) -> untyped
+
+  def by_created_before: (untyped tokens) -> untyped
+
+  def by_created_after: (untyped tokens) -> untyped
+
+  def by_expires_before: (untyped tokens) -> untyped
+
+  def by_expires_after: (untyped tokens) -> untyped
+
+  def by_last_used_before: (untyped tokens) -> untyped
+
+  def by_last_used_after: (untyped tokens) -> untyped
+
+  def by_search: (untyped tokens) -> untyped
+
+  def by_organization: (untyped tokens) -> untyped
+
+  def by_group: (untyped tokens) -> untyped
+
+  def by_user_types_with_in_operator_optimization: (untyped tokens) -> untyped
+end

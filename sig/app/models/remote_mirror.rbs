@@ -1,0 +1,89 @@
+class RemoteMirror < ApplicationRecord
+  include AfterCommitQueue
+
+  include MirrorAuthentication
+
+  include SafeUrl
+
+  include Gitlab::EncryptedAttribute
+
+  # Limit push mirrors per project to prevent performance issues from
+  # excessive concurrent sync jobs.
+  # See https://gitlab.com/gitlab-org/gitlab/-/issues/580289
+  MAX_MIRRORS_PER_PROJECT: 10
+
+  MAX_FIRST_RUNTIME: untyped
+
+  MAX_INCREMENTAL_RUNTIME: untyped
+
+  PROTECTED_BACKOFF_DELAY: untyped
+
+  UNPROTECTED_BACKOFF_DELAY: untyped
+
+  def update_failed?: () -> untyped
+
+  def update_in_progress?: () -> untyped
+
+  def update_repository: () -> untyped
+
+  def options_for_update: () -> untyped
+
+  def sync?: () -> untyped
+
+  def sync: () -> (nil | untyped)
+
+  def enabled: () -> (false | true)
+
+  alias enabled? enabled
+
+  def disabled?: () -> untyped
+
+  def updated_since?: (untyped timestamp) -> (false | untyped)
+
+  def mark_for_delete_if_blank_url: () -> (untyped | nil)
+
+  def update_error_message: (untyped error_message) -> untyped
+
+  def mark_as_failed!: (untyped error_message) -> untyped
+
+  # Force the mrror into the retry state
+  def hard_retry!: (untyped error_message) -> untyped
+
+  # Force the mirror into the failed state
+  def hard_fail!: (untyped error_message) -> untyped
+
+  def url=: (untyped value) -> (nil | untyped)
+
+  def url: () -> untyped
+
+  def safe_url: () -> untyped
+
+  def bare_url: () -> untyped
+
+  def after_sent_notification: () -> untyped
+
+  def backoff_delay: () -> untyped
+
+  def max_runtime: () -> untyped
+
+  def send_failure_notifications: () -> untyped
+
+  private
+
+  def enabling_mirror?: () -> untyped
+
+  def store_credentials: () -> untyped
+
+  # The remote URL omits any password if SSH public-key authentication is in use
+  def remote_url: () -> untyped
+
+  def schedule_with_delay?: () -> (false | untyped)
+
+  def reset_fields: () -> untyped
+
+  def set_override_remote_mirror_available: () -> untyped
+
+  def saved_change_to_mirror_url?: () -> untyped
+
+  def validate_mirror_count: () -> (nil | untyped)
+end

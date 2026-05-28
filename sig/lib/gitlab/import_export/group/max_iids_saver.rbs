@@ -1,0 +1,13 @@
+module Gitlab
+  module ImportExport
+    module Group
+      class MaxIidsSaver < BaseMaxIidsSaver
+        RESOURCE_QUERIES: { group_milestones: untyped }
+
+        def self.resource_queries: () -> untyped
+
+        def initialize: (group: untyped, shared: untyped) -> void
+      end
+    end
+  end
+end

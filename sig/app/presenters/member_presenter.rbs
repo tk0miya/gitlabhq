@@ -1,0 +1,32 @@
+class MemberPresenter < Gitlab::View::Presenter::Delegated
+  def access_level_roles: () -> untyped
+
+  def valid_level_roles: () -> untyped
+
+  def valid_member_roles: () -> ::Array[untyped]
+
+  def role_type: () -> "default"
+
+  def can_resend_invite?: () -> untyped
+
+  def can_update?: () -> untyped
+
+  def can_remove?: () -> untyped
+
+  def can_approve?: () -> untyped
+
+  # This functionality is only available in EE.
+  def can_override?: () -> false
+
+  def last_owner?: () -> untyped
+
+  def member_role_description: () -> untyped
+
+  private
+
+  def admin_member_permission: () -> untyped
+
+  def update_member_permission: () -> untyped
+
+  def destroy_member_permission: () -> untyped
+end

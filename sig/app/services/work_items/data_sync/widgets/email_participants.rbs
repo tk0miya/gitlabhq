@@ -1,0 +1,15 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class EmailParticipants < Base
+        def after_save_commit: () -> (nil | untyped)
+
+        def post_move_cleanup: () -> untyped
+
+        private
+
+        def new_work_item_email_participants: (untyped email_participants_batch) -> untyped
+      end
+    end
+  end
+end

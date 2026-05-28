@@ -1,0 +1,11 @@
+module Boards
+  class UpdateService < Boards::BaseService
+    PERMITTED_PARAMS: ::Array[:name | :hide_backlog_list | :hide_closed_list]
+
+    def execute: (untyped board) -> untyped
+
+    def filter_params: () -> untyped
+
+    def permitted_params: () -> untyped
+  end
+end

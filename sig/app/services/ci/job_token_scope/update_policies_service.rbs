@@ -1,0 +1,29 @@
+module Ci
+  module JobTokenScope
+    class UpdatePoliciesService < ::BaseService
+      include EditScopeValidations
+
+      include ScopeEventTracking
+
+      def execute: (untyped target, untyped default_permissions, untyped policies) -> untyped
+
+      private
+
+      def link_for: (untyped target) -> (untyped | nil)
+
+      def error_target_not_found: () -> untyped
+
+      def error_no_permissions: () -> untyped
+
+      def error_link_not_found: () -> untyped
+
+      def error_updating: (untyped link) -> untyped
+
+      def validate_permissions!: (untyped target) -> untyped
+
+      def find_link_using_source_and_target: (untyped target) -> untyped
+
+      def build_scope_for_self_target: () -> untyped
+    end
+  end
+end

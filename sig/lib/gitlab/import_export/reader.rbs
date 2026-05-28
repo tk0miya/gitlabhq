@@ -1,0 +1,31 @@
+module Gitlab
+  module ImportExport
+    class Reader
+      @shared: untyped
+
+      @config: untyped
+
+      @attributes_finder: untyped
+
+      attr_reader tree: untyped
+
+      attr_reader attributes_finder: untyped
+
+      def initialize: (shared: untyped, ?config: untyped) -> void
+
+      # Outputs a hash in the format described here: http://api.rubyonrails.org/classes/ActiveModel/Serializers/JSON.html
+      # for outputting a project in JSON format, including its relations and sub relations.
+      def project_tree: () -> untyped
+
+      def project_relation_names: () -> untyped
+
+      def group_tree: () -> untyped
+
+      def group_relation_names: () -> untyped
+
+      def group_members_tree: () -> untyped
+
+      def tree_by_key: (untyped key) -> untyped
+    end
+  end
+end

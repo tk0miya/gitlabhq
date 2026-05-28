@@ -1,0 +1,31 @@
+module Onboarding
+  module WhatsNew
+    class ReadStatusService
+      @user_id: untyped
+
+      @version_digest: untyped
+
+      @article_id: untyped
+
+      def initialize: (untyped user_id, untyped version_digest) -> void
+
+      def mark_article_as_read: (untyped article_id) -> untyped
+
+      def most_recent_version_read_articles: () -> untyped
+
+      private
+
+      attr_reader user_id: untyped
+
+      attr_reader version_digest: untyped
+
+      attr_reader article_id: untyped
+
+      def redis_set_key: () -> ::String
+
+      def already_read?: () -> untyped
+
+      def valid_id?: () -> untyped
+    end
+  end
+end

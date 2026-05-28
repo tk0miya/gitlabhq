@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Artifacts
+      class Metrics
+        include Gitlab::Utils::StrongMemoize
+
+        def self.build_completed_report_type_counter: (untyped report_type) -> untyped
+
+        def increment_destroyed_artifacts_count: (untyped size) -> untyped
+
+        def increment_destroyed_artifacts_bytes: (untyped bytes) -> untyped
+
+        private
+
+        def destroyed_artifacts_counter: () -> untyped
+
+        def destroyed_artifacts_bytes_counter: () -> untyped
+      end
+    end
+  end
+end

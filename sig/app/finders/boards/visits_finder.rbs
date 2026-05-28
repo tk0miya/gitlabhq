@@ -1,0 +1,23 @@
+module Boards
+  class VisitsFinder
+    @current_user: untyped
+
+    @parent: untyped
+
+    attr_accessor params: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor parent: untyped
+
+    def initialize: (untyped parent, untyped current_user) -> void
+
+    def execute: (?untyped? count) -> (nil | untyped)
+
+    alias latest execute
+
+    private
+
+    def recent_visit_model: () -> untyped
+  end
+end

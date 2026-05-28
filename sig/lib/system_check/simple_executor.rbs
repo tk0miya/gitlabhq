@@ -1,0 +1,59 @@
+module SystemCheck
+  # Simple Executor is current default executor for GitLab
+  # It is a simple port from display logic in the old check.rake
+  #
+  # There is no concurrency level and the output is progressively
+  # printed into the STDOUT
+  #
+  # @attr_reader [Array<BaseCheck>] checks classes of corresponding checks to be executed in the same order
+  # @attr_reader [String] component name of the component relative to the checks being executed
+  class SimpleExecutor
+    @component: untyped
+
+    @checks: untyped
+
+    attr_reader checks: untyped
+
+    attr_reader component: untyped
+
+    # @param [String] component name of the component relative to the checks being executed
+    def initialize: (untyped component) -> void
+
+    # Add a check to be executed
+    #
+    # @param [BaseCheck] check class
+    def <<: (untyped check) -> untyped
+
+    # Executes defined checks in the specified order and outputs confirmation or error information
+    def execute: () -> untyped
+
+    # Executes a single check
+    #
+    # @param [SystemCheck::BaseCheck] check_klass
+    def run_check: (untyped check_klass) -> untyped
+
+    private
+
+    def say: (?::String message) -> untyped
+
+    def print_display_name: (untyped check_klass) -> untyped
+
+    def print_check_pass: (untyped check_klass) -> untyped
+
+    def print_check_failure: (untyped check_klass) -> untyped
+
+    def print_success: () -> untyped
+
+    def print_failure: () -> untyped
+
+    # Prints header content for the series of checks to be executed for this component
+    #
+    # @param [String] component name of the component relative to the checks being executed
+    def start_checking: (untyped component) -> untyped
+
+    # Prints footer content for the series of checks executed for this component
+    #
+    # @param [String] component name of the component relative to the checks being executed
+    def finished_checking: (untyped component) -> untyped
+  end
+end

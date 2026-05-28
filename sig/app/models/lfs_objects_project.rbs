@@ -1,0 +1,15 @@
+class LfsObjectsProject < ApplicationRecord
+  include ::EachBatch
+
+  def self.link_to_project!: (untyped lfs_object, untyped project, untyped repository_type) -> untyped
+
+  def self.update_statistics_for_project_id: (untyped project_id) -> untyped
+
+  private
+
+  def update_oid: () -> (nil | untyped)
+
+  def ensure_uniqueness: () -> (nil | untyped)
+
+  def update_project_statistics: () -> untyped
+end

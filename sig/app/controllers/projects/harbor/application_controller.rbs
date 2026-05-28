@@ -1,0 +1,11 @@
+module Projects
+  module Harbor
+    class ApplicationController < Projects::ApplicationController
+      include ::Harbor::Access
+
+      private
+
+      def authorize_read_harbor_registry!: () -> (untyped | nil)
+    end
+  end
+end

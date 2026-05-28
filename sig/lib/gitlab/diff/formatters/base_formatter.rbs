@@ -1,0 +1,41 @@
+module Gitlab
+  module Diff
+    module Formatters
+      class BaseFormatter
+        @old_path: untyped
+
+        @new_path: untyped
+
+        @base_sha: untyped
+
+        @start_sha: untyped
+
+        @head_sha: untyped
+
+        attr_reader old_path: untyped
+
+        attr_reader new_path: untyped
+
+        attr_reader base_sha: untyped
+
+        attr_reader start_sha: untyped
+
+        attr_reader head_sha: untyped
+
+        attr_reader ignore_whitespace_change: untyped
+
+        def initialize: (untyped attrs) -> void
+
+        def key: () -> ::Array[untyped]
+
+        def to_h: () -> { base_sha: untyped, start_sha: untyped, head_sha: untyped, old_path: untyped, new_path: untyped, position_type: untyped }
+
+        def position_type: () -> untyped
+
+        def ==: (untyped other) -> untyped
+
+        def complete?: () -> untyped
+      end
+    end
+  end
+end

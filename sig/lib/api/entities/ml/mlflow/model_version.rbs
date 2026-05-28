@@ -1,0 +1,39 @@
+module API
+  module Entities
+    module Ml
+      module Mlflow
+        class ModelVersion < Grape::Entity
+          include ::API::Helpers::RelatedResourcesHelpers
+
+          private
+
+          def version: () -> untyped
+
+          def name: () -> untyped
+
+          def creation_timestamp: () -> untyped
+
+          def last_updated_timestamp: () -> untyped
+
+          def user_id: () -> nil
+
+          def current_stage: () -> "development"
+
+          def description: () -> untyped
+
+          def source: () -> untyped
+
+          def run_id: () -> untyped
+
+          def status: () -> "READY"
+
+          def status_message: () -> ""
+
+          def run_link: () -> ""
+
+          def aliases: () -> ::Array[untyped]
+        end
+      end
+    end
+  end
+end

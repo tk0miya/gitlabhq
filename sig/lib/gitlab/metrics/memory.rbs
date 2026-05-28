@@ -1,0 +1,11 @@
+module Gitlab
+  module Metrics
+    module Memory
+      extend ::Gitlab::Metrics::Memory
+
+      HEAP_SLOTS_PER_PAGE: untyped
+
+      def gc_heap_fragmentation: (?untyped gc_stat) -> untyped
+    end
+  end
+end

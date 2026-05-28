@@ -1,0 +1,9 @@
+module Mutations
+  module Uploads
+    class Create < BaseMutation
+      include Mutations::ResolvesResourceParent
+
+      def resolve: (file: untyped, **untyped args) -> untyped
+    end
+  end
+end

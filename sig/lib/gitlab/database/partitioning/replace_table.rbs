@@ -1,0 +1,83 @@
+module Gitlab
+  module Database
+    module Partitioning
+      class ReplaceTable
+        @connection: untyped
+
+        @original_table: untyped
+
+        @replacement_table: untyped
+
+        @replaced_table: untyped
+
+        @primary_key_columns: untyped
+
+        @rename_partitions: untyped
+
+        @original_primary_key: untyped
+
+        @replacement_primary_key: untyped
+
+        @replaced_primary_key: untyped
+
+        @sql_to_replace_table: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        DELIMITER: ";\n\n"
+
+        attr_reader original_table: untyped
+
+        attr_reader replacement_table: untyped
+
+        attr_reader replaced_table: untyped
+
+        attr_reader primary_key_columns: untyped
+
+        attr_reader original_primary_key: untyped
+
+        attr_reader replacement_primary_key: untyped
+
+        attr_reader replaced_primary_key: untyped
+
+        attr_reader rename_partitions: untyped
+
+        def initialize: (untyped connection, untyped original_table, untyped replacement_table, untyped replaced_table, untyped primary_key_columns, ?rename_partitions: bool) -> void
+
+        def sequence: () -> untyped
+
+        def perform: () ?{ (untyped) -> untyped } -> untyped
+
+        private
+
+        attr_reader connection: untyped
+
+        def find_sequence: (untyped table, untyped column) -> untyped
+
+        def find_sequence_from_column_default: (untyped table, untyped column) -> (nil | untyped)
+
+        def default_primary_key: (untyped table) -> ::String
+
+        def sql_to_replace_table: () -> untyped
+
+        def combined_sql_statements: () -> untyped
+
+        def rename_table_objects: (untyped statements, untyped old_table, untyped new_table, untyped old_primary_key, untyped new_primary_key) -> untyped
+
+        def rename_partitions_sql: (untyped statements, untyped old_table_name, untyped new_table_name) -> untyped
+
+        def alter_column_default: (untyped table_name, untyped column_name, expression: untyped) -> ::String
+
+        def alter_sequence_owned_by: (untyped sequence_name, untyped table_name, untyped column_name) -> ::String
+
+        def rename_table: (untyped old_name, untyped new_name) -> ::String
+
+        def rename_constraint: (untyped table_name, untyped old_name, untyped new_name) -> ::String
+
+        def set_table_owner_statement: (untyped table_name, untyped new_owner) -> untyped
+
+        def table_owner: (untyped table_name) -> untyped
+      end
+    end
+  end
+end

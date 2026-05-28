@@ -1,0 +1,17 @@
+module Mcp
+  module Tools
+    module WorkItems
+      class LinkWorkItemsTool < BaseTool
+        def self.build_mutation: () -> "mutation LinkWorkItems($input: WorkItemAddLinkedItemsInput!) {\n  workItemAddLinkedItems(input: $input) {\n    workItem {\n      id\n      iid\n      title\n    }\n    message\n    errors\n  }\n}\n"
+
+        def build_variables: () -> { input: untyped }
+
+        private
+
+        def resolve_target_work_item_ids: () -> untyped
+
+        def normalized_link_type: () -> ("RELATED" | untyped)
+      end
+    end
+  end
+end

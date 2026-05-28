@@ -1,0 +1,9 @@
+# == CheckRateLimit
+#
+# Controller concern that checks if the rate limit for a given action is throttled by calling the
+# Gitlab::ApplicationRateLimiter class. If the action is throttled for the current user, the request
+# will be logged and an error message will be rendered with a Too Many Requests response status.
+# See lib/api/helpers/rate_limiter.rb for API version
+module CheckRateLimit
+  def check_rate_limit!: (untyped key, scope: untyped, ?redirect_back: bool, **untyped options) ?{ () -> untyped } -> (nil | untyped)
+end

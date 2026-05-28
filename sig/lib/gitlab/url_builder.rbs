@@ -1,0 +1,35 @@
+module Gitlab
+  class UrlBuilder
+    include Singleton
+
+    include Gitlab::Routing
+
+    include GitlabRoutingHelper
+
+    extend ActionView::RecordIdentifier
+
+    # Using a case statement here is preferable for readability and maintainability.
+    # See discussion in https://gitlab.com/gitlab-org/gitlab/-/issues/217397
+    #
+    # rubocop:disable Metrics/CyclomaticComplexity
+    def self.build: (untyped object, **untyped options) -> untyped
+
+    def self.board_url: (untyped board, **untyped options) -> untyped
+
+    def self.commit_url: (untyped commit, **untyped options) -> ("" | untyped)
+
+    def self.compare_url: (untyped compare, **untyped options) -> ("" | untyped)
+
+    def self.note_url: (untyped note, **untyped options) -> ("" | untyped | untyped | untyped | untyped | untyped | untyped | nil)
+
+    def self.snippet_url: (untyped snippet, **untyped options) -> untyped
+
+    def self.wiki_url: (untyped wiki, **untyped options) -> untyped
+
+    def self.wiki_page_url: (untyped wiki, untyped page, **untyped options) -> untyped
+
+    def self.design_url: (untyped design, **untyped options) -> untyped
+
+    def self.package_url: (untyped package, **untyped options) -> untyped
+  end
+end

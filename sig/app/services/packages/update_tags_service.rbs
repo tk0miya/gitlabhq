@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+module Packages
+  class UpdateTagsService
+    @package: untyped
+
+    @tags: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped package, ?untyped tags) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def existing_tags: () -> untyped
+
+    def rows: (untyped tags) -> untyped
+  end
+end

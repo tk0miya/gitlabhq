@@ -1,0 +1,17 @@
+# Converts git diff --word-diff=porcelain output to Gitlab::Diff::Line objects
+# see: https://git-scm.com/docs/git-diff#Documentation/git-diff.txt-porcelain
+module Gitlab
+  module WordDiff
+    class Parser
+      include Enumerable
+
+      def parse: (untyped lines, ?diff_file: untyped?) -> (::Array[untyped] | untyped)
+
+      private
+
+      attr_reader counter: untyped
+
+      def build_line: (untyped content, untyped type, ?::Hash[untyped, untyped] options) -> untyped
+    end
+  end
+end

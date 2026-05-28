@@ -1,0 +1,32 @@
+module WorkItems
+  class TypesFinder
+    @container: untyped
+
+    def initialize: (container: untyped) -> void
+
+    # `only_available` uses a `nil` sentinel default to distinguish three cases:
+    #   - `nil`   => caller did not pass the argument at all (new default behaviour).
+    #               Returns all types for the namespace with FF/license filters
+    #               applied via the provider's `available_types`. This is the path the
+    #               GraphQL resolver uses when the FE drops the deprecated
+    #               `onlyAvailable` argument.
+    #   - `true`  => legacy "only available" path. Returns `allowed_types` (which
+    #               keeps the `project_namespace?` guard for backward
+    #               compatibility with the legacy `WorkItems::TypesFilter`).
+    #   - `false` => legacy "all types" path. Returns the unfiltered list
+    #               (`all_ordered_by_name`), preserving behaviour for any caller
+    #               that explicitly opts out of filtering.
+    #
+    # TODO: The `name` and `only_available` parameters are deprecated and will be removed in 19.1.
+    # At that point the three branches collapse into a single call to
+    # `available_types` (which will be merged with `allowed_types`).
+    # See https://gitlab.com/gitlab-org/gitlab/-/work_items/593038
+    def execute: (?name: untyped?, ?only_available: untyped?) -> (::Array[untyped] | untyped)
+
+    private
+
+    def filter_by_name: (untyped types, untyped name) -> untyped
+
+    def unavailable_container?: () -> untyped
+  end
+end

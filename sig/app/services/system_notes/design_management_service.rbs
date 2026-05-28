@@ -1,0 +1,42 @@
+module SystemNotes
+  class DesignManagementService < ::SystemNotes::BaseService
+    include ActionView::RecordIdentifier
+
+    # Parameters:
+    #   - version [DesignManagement::Version]
+    #
+    # Example Note text:
+    #
+    #   "added [1 designs](link-to-version)"
+    #   "changed [2 designs](link-to-version)"
+    #
+    # Returns [Array<Note>]: the created Note objects
+    def design_version_added: (untyped version) -> untyped
+
+    # Called when a new discussion is created on a design
+    #
+    # discussion_note - DiscussionNote
+    #
+    # Example Note text:
+    #
+    #   "started a discussion on screen.png"
+    #
+    # Returns the created Note object
+    def design_discussion_added: (untyped discussion_note) -> untyped
+
+    # Take one of the `DesignManagement::Action.events` and
+    # return:
+    #   * an English past-tense verb.
+    #   * the name of an icon used in renderin a system note
+    #
+    # We do not currently internationalize our system notes,
+    # instead we just produce English-language descriptions.
+    # See: https://gitlab.com/gitlab-org/gitlab/issues/30408
+    # See: https://gitlab.com/gitlab-org/gitlab/issues/14056
+    def self.design_event_note_data: (untyped event) -> untyped
+
+    private
+
+    def designs_path: (?::Hash[untyped, untyped] params) -> untyped
+  end
+end

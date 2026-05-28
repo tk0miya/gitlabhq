@@ -1,0 +1,69 @@
+module Gitlab
+  module FogbugzImport
+    class Importer
+      @project: untyped
+
+      @repo: untyped
+
+      @known_labels: untyped
+
+      @cases: untyped
+
+      @categories: untyped
+
+      @import_data_credentials: untyped
+
+      @user_map: untyped
+
+      attr_reader project: untyped
+
+      attr_reader repo: untyped
+
+      def initialize: (untyped project) -> void
+
+      def execute: () -> true
+
+      private
+
+      def preallocate_iids!: () -> (nil | untyped)
+
+      def fb_session: () -> (untyped | nil)
+
+      def user_map: () -> untyped
+
+      def import_labels: () -> untyped
+
+      def nice_label_color: (untyped name) -> untyped
+
+      def create_label: (untyped name) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def user_info: (untyped person_id) -> { name: untyped, gitlab_id: untyped }
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def import_cases: () -> (nil | untyped)
+
+      def opened_content: (untyped comments) -> (untyped | "")
+
+      def import_issue_comments: (untyped issue, untyped comments) -> untyped
+
+      def linkify_issues: (untyped str) -> untyped
+
+      def escape_for_markdown: (untyped str) -> untyped
+
+      def format_content: (untyped raw_content) -> untyped
+
+      def format_attachments: (untyped raw_attachments) -> (::Array[untyped] | untyped)
+
+      def format_attachment: (untyped attachment) -> (nil | untyped)
+
+      def build_attachment_url: (untyped rel_url) -> ::String
+
+      def format_updates: (untyped comment) -> untyped
+
+      def format_issue_body: (untyped author, untyped date, untyped content) -> untyped
+
+      def format_issue_comment_body: (untyped id, untyped author, untyped date, untyped content, untyped attachments, untyped updates) -> untyped
+    end
+  end
+end

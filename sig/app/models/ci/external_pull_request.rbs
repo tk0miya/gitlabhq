@@ -1,0 +1,42 @@
+# This model stores pull requests coming from external providers, such as
+# GitHub, when GitLab project is set as CI/CD only and remote mirror.
+#
+# When setting up a remote mirror with GitHub we subscribe to push and
+# pull_request webhook events. When a pull request is opened on GitHub,
+# a webhook is sent out, we create or update the status of the pull
+# request locally.
+#
+# When the mirror is updated and changes are pushed to branches we check
+# if there are open pull requests for the source and target branch.
+# If so, we create pipelines for external pull requests.
+module Ci
+  class ExternalPullRequest < Ci::ApplicationRecord
+    include Gitlab::Utils::StrongMemoize
+
+    include ShaAttribute
+
+    include EachBatch
+
+    def self.create_or_update_from_params: (untyped params) ?{ (untyped) -> untyped } -> untyped
+
+    def self.safe_find_or_initialize_and_update: (find: untyped, update: untyped) ?{ (untyped) -> untyped } -> untyped
+
+    def actual_branch_head?: () -> untyped
+
+    def from_fork?: () -> untyped
+
+    def source_ref: () -> untyped
+
+    def predefined_variables: () -> untyped
+
+    def modified_paths: () -> untyped
+
+    def changed_paths: () -> untyped
+
+    private
+
+    def actual_source_branch_sha: () -> untyped
+
+    def not_from_fork: () -> (nil | untyped)
+  end
+end

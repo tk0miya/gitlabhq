@@ -1,0 +1,14 @@
+module Search
+  module SearchRateLimitable
+    extend ActiveSupport::Concern
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    # Implement scope and search_params methods in the class which includes this concern.
+    def verify_search_rate_limit!: (**untyped args) -> untyped
+
+    private
+
+    def safe_search_scope: (**untyped args) -> (untyped | nil)
+  end
+end

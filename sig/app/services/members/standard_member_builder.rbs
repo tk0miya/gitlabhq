@@ -1,0 +1,23 @@
+module Members
+  class StandardMemberBuilder
+    @source: untyped
+
+    @invitee: untyped
+
+    @existing_members: untyped
+
+    def initialize: (untyped source, untyped invitee, untyped existing_members) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader source: untyped
+
+    attr_reader invitee: untyped
+
+    attr_reader existing_members: untyped
+
+    def find_or_initialize_member_by_user: (untyped user_id) -> untyped
+  end
+end

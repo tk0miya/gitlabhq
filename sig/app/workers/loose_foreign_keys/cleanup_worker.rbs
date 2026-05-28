@@ -1,0 +1,23 @@
+module LooseForeignKeys
+  class CleanupWorker
+    include ApplicationWorker
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+
+    private
+
+    # Rotate the databases every minute
+    #
+    # If one DB is configured: every minute use the configured DB
+    # If two DBs are configured (Main, CI): minute 1 -> Main, minute 2 -> CI
+    def current_connection_name_and_base_model: () -> untyped
+
+    def initialize_modification_tracker_for: (untyped connection_name) -> ::Array[untyped]
+
+    def turbo_mode?: (untyped connection_name) -> untyped
+  end
+end

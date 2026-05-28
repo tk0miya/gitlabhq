@@ -1,0 +1,17 @@
+module MergeRequests
+  class MergeabilityCheckBatchWorker
+    @logger: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    def logger: () -> untyped
+
+    def perform: (untyped merge_request_ids, untyped user_id) -> (nil | untyped)
+
+    private
+
+    def merge_status_recheck_not_allowed?: (untyped project, untyped user) -> untyped
+  end
+end

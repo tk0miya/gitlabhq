@@ -1,0 +1,23 @@
+module Import
+  module UserMapping
+    class ProjectBotBypassAuthorizer
+      @group: untyped
+
+      @assignee_user: untyped
+
+      @reassigned_by_user: untyped
+
+      def initialize: (untyped group, untyped assignee_user, untyped reassigned_by_user) -> void
+
+      def allowed?: () -> (false | untyped)
+
+      private
+
+      attr_reader assignee_user: untyped
+
+      attr_reader group: untyped
+
+      attr_reader reassigned_by_user: untyped
+    end
+  end
+end

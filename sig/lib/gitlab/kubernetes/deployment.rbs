@@ -1,0 +1,58 @@
+module Gitlab
+  module Kubernetes
+    class Deployment
+      @attributes: untyped
+
+      @pods: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      STABLE_TRACK_VALUE: "stable"
+
+      def initialize: (?::Hash[untyped, untyped] attributes, ?pods: untyped) -> void
+
+      def name: () -> untyped
+
+      def labels: () -> untyped
+
+      def annotations: () -> untyped
+
+      def track: () -> untyped
+
+      def stable?: () -> untyped
+
+      def order: () -> (1 | 0)
+
+      def outdated?: () -> untyped
+
+      def wanted_instances: () -> untyped
+
+      def created_instances: () -> untyped
+
+      # These are replicas that did not get created yet,
+      # So they still do not have any associated pod,
+      # these are marked as pending instances.
+      def not_created_instances: () -> (::Array[untyped] | untyped)
+
+      def filtered_pods_by_track: () -> untyped
+
+      def instances: () -> untyped
+
+      private
+
+      def deployment_instance: (pod_name: untyped, pod_status: untyped) -> { status: untyped, pod_name: untyped, tooltip: ::String, track: untyped, stable: untyped }
+
+      def has_same_track?: (untyped pod) -> untyped
+
+      def metadata: () -> untyped
+
+      def spec: () -> untyped
+
+      def status: () -> untyped
+
+      def generation: () -> untyped
+
+      def observed_generation: () -> untyped
+    end
+  end
+end

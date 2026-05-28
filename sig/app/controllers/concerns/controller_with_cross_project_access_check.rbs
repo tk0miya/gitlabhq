@@ -1,0 +1,7 @@
+module ControllerWithCrossProjectAccessCheck
+  extend ActiveSupport::Concern
+
+  def cross_project_check: () -> (untyped | nil)
+
+  def authorize_cross_project_page!: () -> (nil | untyped)
+end

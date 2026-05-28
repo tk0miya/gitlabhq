@@ -1,0 +1,13 @@
+module Gitlab
+  class PollingInterval
+    HEADER_NAME: "Poll-Interval"
+
+    def self.set_header: (untyped response, interval: untyped) -> untyped
+
+    def self.set_api_header: (untyped context, interval: untyped) -> untyped
+
+    def self.polling_interval_value: (untyped interval) -> (-1 | untyped)
+
+    def self.polling_enabled?: () -> untyped
+  end
+end

@@ -1,0 +1,31 @@
+module JSONWebToken
+  class RSAToken < Token
+    @key_file: untyped
+
+    @key_data: untyped
+
+    @key: untyped
+
+    ALGORITHM: "RS256"
+
+    attr_reader key_file: untyped
+
+    def initialize: (untyped key_file) -> void
+
+    def encoded: () -> untyped
+
+    def self.encode: (untyped payload, untyped key, untyped kid) -> untyped
+
+    def self.decode: (untyped token, untyped key, ?verify_expiration: bool) -> untyped
+
+    private
+
+    def key_data: () -> untyped
+
+    def key: () -> untyped
+
+    def public_key: () -> untyped
+
+    def kid: () -> untyped
+  end
+end

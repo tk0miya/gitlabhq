@@ -1,0 +1,10 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillMcpServerEnabled < BatchedMigrationJob
+      class NamespaceSetting < ApplicationRecord
+      end
+
+      def perform: () -> untyped
+    end
+  end
+end

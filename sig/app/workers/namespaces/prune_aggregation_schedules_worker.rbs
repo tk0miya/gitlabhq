@@ -1,0 +1,15 @@
+module Namespaces
+  class PruneAggregationSchedulesWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    # Worker to prune pending rows on Namespace::AggregationSchedule
+    # It's scheduled to run once a day at 1:05am.
+    def perform: () -> untyped
+
+    private
+
+    def aggregation_schedules: () -> untyped
+  end
+end

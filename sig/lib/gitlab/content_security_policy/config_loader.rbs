@@ -1,0 +1,78 @@
+module Gitlab
+  module ContentSecurityPolicy
+    class ConfigLoader
+      # Using <default_value> falls back to the default values.
+      @merged_csp_directives: untyped
+
+      DIRECTIVES: ::Array["base_uri" | "child_src" | "connect_src" | "default_src" | "font_src" | "form_action" | "frame_ancestors" | "frame_src" | "img_src" | "manifest_src" | "media_src" | "object_src" | "report_uri" | "script_src" | "style_src" | "worker_src"]
+
+      DEFAULT_FALLBACK_VALUE: "<default_value>"
+
+      HTTP_PORTS: ::Array[80 | 443]
+
+      def self.default_enabled: () -> untyped
+
+      def self.default_directives: () -> untyped
+
+      def self.default_directives_defaults: () -> { "default_src" => "'self'", "base_uri" => "'self'", "connect_src" => untyped, "font_src" => "'self'", "form_action" => "'self' https: http:", "frame_ancestors" => "'self'", "frame_src" => untyped, "img_src" => "'self' data: blob: http: https:", "manifest_src" => "'self'", "media_src" => "'self' data: blob: http: https:", "script_src" => untyped, "style_src" => untyped, "worker_src" => untyped, "object_src" => "'none'", "report_uri" => nil }
+
+      # connect_src with 'self' includes https/wss variations of the origin,
+      # however, safari hasn't covered this yet and we need to explicitly add
+      # support for websocket origins until Safari catches up with the specs
+      def self.allow_development_tooling: (untyped directives) -> (nil | untyped)
+
+      def self.allow_webpack_dev_server: (untyped directives) -> untyped
+
+      def self.allow_vite_dev_server: (untyped directives) -> (nil | untyped)
+
+      # Allows the Vite origin; for use when CSP is globally disabled (and so no nonce covers
+      # cross-origin scripts) but is enabled for a specific endpoint.
+      def self.allow_vite_dev_server_script: (untyped directives) -> (nil | untyped)
+
+      def self.allow_letter_opener: (untyped directives) -> untyped
+
+      def self.allow_snowplow_micro: (untyped directives) -> untyped
+
+      def self.allow_lfs: (untyped directives) -> (nil | untyped)
+
+      def self.allow_websocket_connections: (untyped directives) -> untyped
+
+      def self.allow_cdn: (untyped directives) -> (nil | untyped)
+
+      def self.allow_zuora: (untyped directives) -> (nil | untyped)
+
+      def self.allow_sentry: (untyped directives) -> (nil | untyped)
+
+      def self.sentry_client_side_dsn_enabled?: () -> untyped
+
+      # Using 'self' in the CSP introduces several CSP bypass opportunities
+      # for this reason we list the URLs where GitLab frames itself instead
+      def self.allow_framed_gitlab_paths: (untyped directives) -> untyped
+
+      def self.allow_customersdot: (untyped directives) -> (nil | untyped)
+
+      # The follow contains workarounds to patch Safari's lack of support for CSP Level 3
+      def self.csp_level_3_backport: (untyped directives) -> untyped
+
+      def self.append_to_directive: (untyped directives, untyped directive, untyped text) -> untyped
+
+      def self.zuora_host: () -> "https://*.zuora.com/apps/PublicHostedPageLite.do"
+
+      def self.build_lfs_url: () -> untyped
+
+      private
+
+      def self.vite_dev_server_urls: () -> (nil | { http_path: untyped, hmr_ws_url: untyped })
+
+      public
+
+      def initialize: (untyped csp_directives) -> void
+
+      def load: (untyped policy) -> untyped
+
+      private
+
+      def arguments_for: (untyped directive) -> (nil | untyped)
+    end
+  end
+end

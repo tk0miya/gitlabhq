@@ -1,0 +1,15 @@
+module Ci
+  module PipelineEditorHelper
+    include ChecksCollaboration
+
+    def can_view_pipeline_editor?: (untyped project) -> untyped
+
+    def current_branch: () -> untyped
+
+    def js_pipeline_editor_data: (untyped project) -> { "ci-catalog-path" => untyped, :"ci-config-path" => untyped, "ci-examples-help-page-path" => untyped, "ci-help-page-path" => untyped, "ci-lint-path" => untyped, "ci-troubleshooting-path" => untyped, "default-branch" => untyped, "empty-state-illustration-path" => untyped, "initial-branch-name" => untyped, "includes-help-page-path" => untyped, "lint-help-page-path" => untyped, "needs-help-page-path" => untyped, "new-merge-request-path" => untyped, "new-pipeline-path" => untyped, "pipeline_etag" => untyped, "pipeline-page-path" => untyped, "project-path" => untyped, "project-full-path" => untyped, "project-namespace" => untyped, "simulate-pipeline-help-page-path" => untyped, "total-branches" => untyped, "uses-external-config" => untyped, "validate-tab-illustration-path" => untyped, "yml-help-page-path" => untyped }
+
+    private
+
+    def uses_external_config?: (untyped project) -> untyped
+  end
+end

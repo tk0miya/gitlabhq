@@ -1,0 +1,47 @@
+module Gitlab
+  module Database
+    class StatActivity
+      @connection_name: untyped
+
+      # Keep 5 minutes worth of samples
+      SAMPLING_WINDOW_SECONDS: untyped
+
+      attr_reader connection_name: untyped
+
+      def self.write: (untyped connection_name, untyped sample) -> untyped
+
+      def initialize: (untyped connection_name) -> void
+
+      def write: (untyped sample) -> untyped
+
+      # Returns the total of non-idle connections aggregated from the last `min_samples`
+      # for each database name, eg `gitlabhq_production_sidekiq`, `gitlabhq_production_sidekiq_urgent`.
+      # Hash for each database will be empty if there are not enough samples in Redis to meet `min_samples`.
+      #
+      # Returns {
+      #   "gitlabhq_production_sidekiq": {
+      #     "WorkerA": 1,
+      #     "WorkerB": 2
+      #   },
+      #   gitlabhq_production_sidekiq_urgent: {
+      #     "WorkerC": 3
+      #   }
+      # }
+      def non_idle_connections_by_db: (untyped min_samples) -> untyped
+
+      private
+
+      def hash_key: (untyped application) -> ::String
+
+      def update_cached_samples: (untyped application, untyped database, untyped payload) -> untyped
+
+      def aggregate_sample_data: (untyped data) -> untyped
+
+      def samples_by_db: () -> untyped
+
+      def non_idle_by_endpoints: (untyped sample) -> untyped
+
+      def with_redis: () { (?) -> untyped } -> untyped
+    end
+  end
+end

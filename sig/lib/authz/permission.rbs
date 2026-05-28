@@ -1,0 +1,9 @@
+module Authz
+  class Permission
+    include Authz::Concerns::YamlPermission
+
+    BASE_PATH: "config/authz/permissions"
+
+    def self.config_path: () -> untyped
+  end
+end

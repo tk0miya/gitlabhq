@@ -1,0 +1,33 @@
+class ServiceDeskSetting < ApplicationRecord
+  include Gitlab::Utils::StrongMemoize
+
+  include Cells::Claimable
+
+  CUSTOM_EMAIL_VERIFICATION_SUBADDRESS: "+verify"
+
+  def custom_email_credential: () -> untyped
+
+  def custom_email_verification: () -> untyped
+
+  def custom_email_address_for_verification: () -> (nil | untyped)
+
+  def issue_template_content: () -> untyped
+
+  def issue_template_missing?: () -> untyped
+
+  def valid_issue_template: () -> (untyped | nil)
+
+  def valid_project_key: () -> (untyped | nil)
+
+  def custom_email_enabled_state: () -> (nil | untyped)
+
+  def tickets_confidential_by_default?: () -> (true | untyped)
+
+  private
+
+  def source_template_project: () -> nil
+
+  def projects_with_same_slug_and_key_exists?: () -> (false | untyped)
+
+  def needs_custom_email_credentials?: () -> untyped
+end

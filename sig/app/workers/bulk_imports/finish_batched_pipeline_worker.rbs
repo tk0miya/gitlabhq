@@ -1,0 +1,45 @@
+module BulkImports
+  class FinishBatchedPipelineWorker
+    @tracker: untyped
+
+    @context: untyped
+
+    @sorted_batches: untyped
+
+    @export_status: untyped
+
+    @logger: untyped
+
+    include ApplicationWorker
+
+    include ExceptionBacktrace
+
+    REQUEUE_DELAY: untyped
+
+    STALE_AFTER: untyped
+
+    def perform: (untyped pipeline_tracker_id) -> (nil | untyped)
+
+    private
+
+    attr_reader tracker: untyped
+
+    attr_reader sorted_batches: untyped
+
+    def re_enqueue: () -> untyped
+
+    def import_in_progress?: () -> untyped
+
+    def all_batches_created?: () -> untyped
+
+    def export_status: () -> untyped
+
+    def most_recent_batch_stale?: () -> (false | untyped)
+
+    def fail_stale_tracker_and_batches: () -> untyped
+
+    def logger: () -> untyped
+
+    def log_attributes: (?::Hash[untyped, untyped] extra) -> untyped
+  end
+end

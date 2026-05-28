@@ -1,0 +1,9 @@
+module TodosDestroyer
+  class ConfidentialIssueWorker
+    include ApplicationWorker
+
+    include TodosDestroyerQueue
+
+    def perform: (?untyped? issue_id, ?untyped? project_id) -> untyped
+  end
+end

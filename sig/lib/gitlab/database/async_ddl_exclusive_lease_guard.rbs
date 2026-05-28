@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module AsyncDdlExclusiveLeaseGuard
+      @lease_key: untyped
+
+      extend ActiveSupport::Concern
+
+      include ExclusiveLeaseGuard
+
+      def lease_key: () -> untyped
+
+      def database_config_name: () -> untyped
+    end
+  end
+end

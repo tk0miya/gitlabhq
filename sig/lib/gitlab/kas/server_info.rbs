@@ -1,0 +1,23 @@
+module Gitlab
+  module Kas
+    class ServerInfo
+      @fetched_server_info: untyped
+
+      include Presentable
+
+      def initialize: () -> void
+
+      def retrieved_server_info?: () -> untyped
+
+      def version_info: () -> (nil | untyped)
+
+      def valid_commit_ref?: () -> (nil | untyped)
+
+      private
+
+      attr_reader fetched_server_info: untyped
+
+      def fetch_server_info: () -> untyped
+    end
+  end
+end

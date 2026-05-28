@@ -1,0 +1,19 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class SchemaInconsistenciesMetric < GenericMetric
+          MAX_INCONSISTENCIES: 150
+
+          private
+
+          def validators: () -> untyped
+
+          def database: () -> untyped
+
+          def structure_sql: () -> untyped
+        end
+      end
+    end
+  end
+end

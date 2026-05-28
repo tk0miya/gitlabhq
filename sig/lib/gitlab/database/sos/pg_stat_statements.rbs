@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module Sos
+      class PgStatStatements < BaseDbStatsHandler
+        include Gitlab::Utils::StrongMemoize
+
+        QUERY: "SELECT now() AS timestamp, *\nFROM pg_stat_statements;\n"
+
+        def run: () -> (nil | untyped)
+
+        def pg_stat_statements_installed?: () -> untyped
+      end
+    end
+  end
+end

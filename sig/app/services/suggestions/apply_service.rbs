@@ -1,0 +1,31 @@
+module Suggestions
+  class ApplyService < ::BaseService
+    @current_user: untyped
+
+    @message: untyped
+
+    @suggestion_set: untyped
+
+    def initialize: (untyped current_user, *untyped suggestions, ?message: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader suggestion_set: untyped
+
+    def result: () -> untyped
+
+    def update_suggestions: (untyped result) -> (nil | untyped)
+
+    def update_associated_merge_request: (untyped result) -> (nil | untyped)
+
+    def author: () -> (nil | untyped)
+
+    def multi_service: () -> untyped
+
+    def commit_message: () -> untyped
+  end
+end

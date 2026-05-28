@@ -1,0 +1,60 @@
+module Gitlab
+  module Graphql
+    module Pagination
+      # rubocop: disable CodeReuse/ActiveRecord -- requires AR methods to build the keyset pagination conditions
+      class ClickHouseConnection < GraphQL::Pagination::Connection
+        @has_previous_page_cache: untyped
+
+        @limit_value: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        # Timestamps are stored with 6 digit microseconds precision in both PG and in CH (our schema)
+        TIME_PATTERN: "%Y-%m-%d %H:%M:%S.%6N"
+
+        # rubocop: disable Naming/PredicatePrefix -- methods required by PageInfo
+        # https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo.Fields
+        def has_previous_page: () -> (true | untyped | false)
+
+        def has_next_page: () -> (true | untyped | false)
+
+        # rubocop: enable Naming/PredicatePrefix
+        def nodes: () -> untyped
+
+        def cursor_for: (untyped item) -> untyped
+
+        def decoded_cursor: (untyped cursor) -> untyped
+
+        private
+
+        def limited_nodes: () -> untyped
+
+        def sliced_nodes: () -> untyped
+
+        def add_after_condition: (untyped query, untyped raw_cursor) -> untyped
+
+        def add_before_condition: (untyped query, untyped raw_cursor) -> untyped
+
+        def limit_value: () -> untyped
+
+        # Build a condition that handles multiple sort columns with different directions
+        # For example:
+        # (col1 = val1 AND col2 = val2 AND col3 > val3) OR (col1 = val1 AND col2 < val2) OR (col1 > val1)
+        # for col1 ASC, col2 DESC, col3 ASC sorting and `after` as direction
+        def build_pagination_conditions: (untyped cursor, untyped direction) -> untyped
+
+        # Builds (other_part1 = val1 AND other_part2 = val2 AND current_part > val3)
+        def build_current_cursor_condition: (untyped cursor, untyped direction) -> untyped
+
+        def build_cursor: (untyped raw_cursor) -> untyped
+
+        def reverse_order: (untyped query) -> untyped
+
+        def execute_query: (untyped query) -> untyped
+
+        # Returns the column name for an ORDER BY node.
+        def order_expression_name: (untyped order) -> untyped
+      end
+    end
+  end
+end

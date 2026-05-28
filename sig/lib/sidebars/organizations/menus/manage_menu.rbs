@@ -1,0 +1,19 @@
+module Sidebars
+  module Organizations
+    module Menus
+      class ManageMenu < ::Sidebars::Menu
+        def title: () -> untyped
+
+        def sprite_icon: () -> "users"
+
+        def pick_into_super_sidebar?: () -> true
+
+        def configure_menu_items: () -> untyped
+
+        private
+
+        def users_menu_item: () -> (nil | untyped)
+      end
+    end
+  end
+end

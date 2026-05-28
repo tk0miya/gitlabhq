@@ -1,0 +1,34 @@
+module Gitlab
+  module Uploads
+    class MigrationHelper
+      @to_store: untyped
+
+      @mounted_as: untyped
+
+      @uploader_class: untyped
+
+      @model_class: untyped
+
+      @logger: untyped
+
+      attr_reader logger: untyped
+
+      def initialize: (untyped args, untyped logger) -> void
+
+      def migrate_to_remote_storage: () -> untyped
+
+      def migrate_to_local_storage: () -> untyped
+
+      private
+
+      def batch_size: () -> untyped
+
+      def prepare_variables: (untyped args, untyped logger) -> untyped
+
+      def enqueue_batch: (untyped batch, untyped index) -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord
+      def uploads: (?::Array[untyped] store_type) -> untyped
+    end
+  end
+end

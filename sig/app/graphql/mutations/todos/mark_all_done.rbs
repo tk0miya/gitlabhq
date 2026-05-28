@@ -1,0 +1,15 @@
+module Mutations
+  module Todos
+    class MarkAllDone < ::Mutations::BaseMutation
+      TodoableID: untyped
+
+      def resolve: (**untyped args) -> { todos: untyped, errors: ::Array[untyped] }
+
+      private
+
+      def mark_all_todos_done: (**untyped args) -> (::Array[untyped] | untyped)
+
+      def todo_finder_params: (untyped args) -> { state: :pending, type: untyped, group_id: untyped, author_id: untyped, action_id: untyped, project_id: untyped }
+    end
+  end
+end

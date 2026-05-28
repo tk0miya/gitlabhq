@@ -1,0 +1,6 @@
+module ResolvesProject
+  # Accepts EITHER one of
+  #  - full_path: String (see Project#full_path)
+  #  - project_id: GlobalID. Arguments should be typed as: `::Types::GlobalIDType[Project]`
+  def resolve_project: (?full_path: untyped?, ?project_id: untyped?) -> untyped
+end

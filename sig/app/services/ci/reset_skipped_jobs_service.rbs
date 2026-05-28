@@ -1,0 +1,30 @@
+module Ci
+  # This service resets skipped jobs so they can be processed again.
+  # It affects the jobs that depend on the passed in job parameter.
+  class ResetSkippedJobsService < ::BaseService
+    @processables: untyped
+
+    @pipeline: untyped
+
+    def execute: (untyped processables) -> untyped
+
+    private
+
+    def process_subsequent_jobs: () -> untyped
+
+    def reset_source_bridge: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def dependent_jobs: () -> untyped
+
+    def process: (untyped job) -> untyped
+
+    def stage_dependent_jobs: () -> untyped
+
+    def needs_dependent_jobs: () -> untyped
+
+    def ordered_by_dag: (untyped jobs) -> untyped
+
+    def sort_jobs: (untyped jobs) -> untyped
+  end
+end

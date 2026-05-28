@@ -1,0 +1,30 @@
+module Topics
+  class MergeService
+    @source_topic: untyped
+
+    @target_topic: untyped
+
+    attr_accessor source_topic: untyped
+
+    attr_accessor target_topic: untyped
+
+    def initialize: (untyped source_topic, untyped target_topic) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def validate_parameters!: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def move_project_topics: () -> untyped
+
+    def refresh_target_topic_counters: () -> untyped
+
+    def delete_source_topic: () -> untyped
+
+    def total_projects_count: (untyped topic_id) -> untyped
+
+    def non_private_projects_count: (untyped topic_id) -> untyped
+  end
+end

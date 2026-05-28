@@ -1,0 +1,67 @@
+module Gitlab
+  module ImportExport
+    class MembersMapper
+      @user: untyped
+
+      @importable: untyped
+
+      @exported_members: untyped
+
+      @map: untyped
+
+      @existing_users_email_map: untyped
+
+      @exported_members_email_map: untyped
+
+      @logger: untyped
+
+      def initialize: (exported_members: untyped, user: untyped, importable: untyped, ?default_member: bool) -> void
+
+      def map: () -> untyped
+
+      def default_user_id: () -> untyped
+
+      def include?: (untyped old_user_id) -> untyped
+
+      private
+
+      def determine_exported_members: (untyped exported_members) -> (::Array[untyped] | untyped)
+
+      def can_add_members?: () -> untyped
+
+      def missing_keys_tracking_hash: () -> untyped
+
+      def ensure_default_member!: () -> untyped
+
+      def importer_access_level: () -> untyped
+
+      def user_already_member?: () -> untyped
+
+      # Returns {email => user_id} hash where user_id is an ID at current instance
+      def existing_users_email_map: () -> untyped
+
+      # Returns {user_id => email} hash where user_id is an ID at source "old" instance
+      def exported_members_email_map: () -> untyped
+
+      def get_email: (untyped member_data) -> (nil | untyped)
+
+      def add_team_member: (untyped member, ?untyped? existing_user_id) -> (true | untyped)
+
+      def member_hash: (untyped member) -> untyped
+
+      def parsed_hash: (untyped member) -> untyped
+
+      def relation_class: () -> untyped
+
+      def highest_access_level: () -> untyped
+
+      def log_member_addition: (untyped member_hash) -> untyped
+
+      def log_member_addition_failure: (untyped member_hash, untyped errors) -> untyped
+
+      def base_log_params: (untyped member_hash) -> { user_id: untyped, access_level: untyped, importable_type: untyped, importable_id: untyped, root_namespace_id: untyped }
+
+      def logger: () -> untyped
+    end
+  end
+end

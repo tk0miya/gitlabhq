@@ -1,0 +1,13 @@
+module Gitlab
+  # Gitlab::Utils::ZoomUrlValidator
+  #
+  # Custom validator for zoom urls
+  #
+  # @example usage
+  #    validates :url, 'gitlab/zoom_url': true
+  class ZoomUrlValidator < ActiveModel::EachValidator
+    ALLOWED_SCHEMES: ::Array["https"]
+
+    def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+  end
+end

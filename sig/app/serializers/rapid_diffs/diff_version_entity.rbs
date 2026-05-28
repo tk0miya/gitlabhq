@@ -1,0 +1,19 @@
+module RapidDiffs
+  class DiffVersionEntity < Grape::Entity
+    include Gitlab::Routing
+
+    include MergeRequestsHelper
+
+    include Gitlab::Utils::StrongMemoize
+
+    def diff_version_index: (untyped merge_request_diff) -> (nil | untyped)
+
+    def latest_or_merge_head?: (untyped merge_request_diff) -> untyped
+
+    def merge_request: () -> untyped
+
+    def merge_request_diffs: () -> untyped
+
+    def current_merge_request_diff: () -> (nil | untyped)
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module DependencyLinker
+    class Package
+      @name: untyped
+
+      @git_ref: untyped
+
+      @github_ref: untyped
+
+      attr_reader name: untyped
+
+      attr_reader git_ref: untyped
+
+      attr_reader github_ref: untyped
+
+      def initialize: (untyped name, untyped git_ref, untyped github_ref) -> void
+
+      def external_ref: () -> untyped
+    end
+  end
+end

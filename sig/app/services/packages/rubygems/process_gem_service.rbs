@@ -1,0 +1,51 @@
+module Packages
+  module Rubygems
+    class ProcessGemService
+      @package_file: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      ExtractionError: untyped
+
+      InvalidMetadataError: untyped
+
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      def initialize: (untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_file: untyped
+
+      def process_gem: () -> true
+
+      def rename_package_and_set_version: () -> untyped
+
+      def rename_package_file: () -> untyped
+
+      def cleanup_temp_package: () -> (untyped | nil)
+
+      def gemspec: () -> untyped
+
+      def success: () -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def temp_package: () -> untyped
+
+      def package: () -> untyped
+
+      def gem: () -> untyped
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Mutations
+  module Achievements
+    class Create < BaseMutation
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (untyped args) -> { achievement: untyped, errors: untyped }
+    end
+  end
+end

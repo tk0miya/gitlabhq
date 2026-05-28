@@ -1,0 +1,26 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents matrix style parallel builds.
+        #
+        module Product
+          class Matrix < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Utils::StrongMemoize
+
+            include ::Gitlab::Config::Entry::Validatable
+
+            include ::Gitlab::Config::Entry::Attributable
+
+            def compose!: (?untyped? deps) -> untyped
+
+            def value: () -> untyped
+
+            def number_of_generated_jobs: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

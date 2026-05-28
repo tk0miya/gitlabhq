@@ -1,0 +1,27 @@
+module ObjectStorage
+  module CDN
+    class GoogleIpCache
+      GOOGLE_CDN_LIST_KEY: "google_cdn_ip_list"
+
+      CACHE_EXPIRATION_TIME: untyped
+
+      def self.update!: (untyped subnets) -> untyped
+
+      def self.ready?: () -> untyped
+
+      def self.google_ip?: (untyped request_ip) -> (false | untyped)
+
+      def self.async_refresh: () -> untyped
+
+      private
+
+      def self.caches: () -> ::Array[untyped]
+
+      def self.l1_cache: () -> untyped
+
+      def self.l2_cache: () -> untyped
+
+      def self.cached_value: (untyped key) -> untyped
+    end
+  end
+end

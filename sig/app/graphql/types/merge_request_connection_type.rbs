@@ -1,0 +1,6 @@
+module Types
+  # rubocop: disable Graphql/AuthorizeTypes
+  class MergeRequestConnectionType < Types::CountableConnectionType
+    def total_time_to_merge: () -> untyped
+  end
+end

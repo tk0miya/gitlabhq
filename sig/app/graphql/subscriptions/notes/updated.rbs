@@ -1,0 +1,11 @@
+module Subscriptions
+  module Notes
+    class Updated < Base
+      include Gitlab::Utils::StrongMemoize
+
+      private
+
+      def note_object: () -> (nil | untyped)
+    end
+  end
+end

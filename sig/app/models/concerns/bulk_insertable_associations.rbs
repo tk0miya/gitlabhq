@@ -1,0 +1,57 @@
+#
+# ActiveRecord model classes can mix in this concern if they own associations
+# who declare themselves to be eligible for bulk-insertion via [BulkInsertSafe].
+# This allows the caller to write items from [has_many] associations en-bloc
+# when the owner is first created.
+#
+# This implementation currently has a few limitations:
+# - only works for [has_many] relations
+# - does not support the [:through] option
+# - it cannot bulk-insert items that had previously been saved, nor can the
+#   owner of the association have previously been saved; if you attempt to
+#   so, an error will be raised
+#
+# @example
+#
+#   class MergeRequestDiff < ApplicationRecord
+#     include BulkInsertableAssociations
+#
+#     # target association class must `include BulkInsertSafe`
+#     has_many :merge_request_diff_commits
+#   end
+#
+#   diff = MergeRequestDiff.new(...)
+#   diff.diff_commits << MergeRequestDiffCommit.build(...)
+#   BulkInsertableAssociations.with_bulk_insert do
+#     diff.save! # this will also write all `diff_commits` in bulk
+#   end
+#
+# Note that just like [BulkInsertSafe.bulk_insert!], validations will run for
+# all items that are scheduled for bulk-insertions.
+#
+module BulkInsertableAssociations
+  extend ActiveSupport::Concern
+
+  def self.bulk_inserts_enabled?: () -> untyped
+
+  # All associations that are [BulkInsertSafe] and that as a result of calls to
+  # [save] or [save!] would be written to the database, will be inserted using
+  # [bulk_insert!] instead.
+  #
+  # Note that this will only work for entities that have not been persisted yet.
+  #
+  # @param [Boolean] enabled When [true], bulk-inserts will be attempted within
+  #                          the given block. If [false], bulk-inserts will be
+  #                          disabled. This behavior can be nested.
+  def self.with_bulk_insert: (?enabled: bool) { () -> untyped } -> untyped
+
+  def bulk_insert_associations!: () -> untyped
+
+  private
+
+  def _bulk_insert_association!: (untyped reflection) -> (nil | untyped)
+
+  def _association_supports_bulk_inserts?: (untyped reflection) -> untyped
+
+  def _bulk_insert_configure_foreign_key: (untyped reflection, untyped items) -> untyped
+end

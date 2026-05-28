@@ -1,0 +1,9 @@
+module Resolvers
+  module Repositories
+    class CommitResolver < BaseResolver
+      alias repository object
+
+      def resolve: (ref: untyped) -> untyped
+    end
+  end
+end

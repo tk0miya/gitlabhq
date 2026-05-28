@@ -1,0 +1,38 @@
+module SortingPreference
+  @remember_sorting_key: untyped
+
+  include SortingHelper
+
+  include CookiesHelper
+
+  def set_sort_order: (?untyped field, ?untyped default_order) -> untyped
+
+  # Implement sorting_field method on controllers
+  # to choose which column to store the sorting parameter.
+  def sorting_field: () -> nil
+
+  # Implement default_sort_order method on controllers
+  # to choose which default sort should be applied if
+  # sort param is not provided.
+  def default_sort_order: () -> nil
+
+  # Implement legacy_sort_cookie_name method on controllers
+  # to set sort from cookie for backwards compatibility.
+  def legacy_sort_cookie_name: () -> nil
+
+  private
+
+  def set_sort_order_from_user_preference: (?untyped field) -> (nil | untyped)
+
+  def set_sort_order_from_cookie: (?untyped field) -> (nil | untyped)
+
+  # Convert sorting_field to legacy cookie name for backwards compatibility
+  # :merge_requests_sort => 'mergerequest_sort'
+  # :issues_sort => 'issue_sort'
+  def remember_sorting_key: (?untyped field) -> untyped
+
+  # Update old values to the actual ones.
+  def update_cookie_value: (untyped value) -> untyped
+
+  def valid_sort_order?: (untyped sort_order) -> (false | untyped | true)
+end

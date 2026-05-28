@@ -1,0 +1,25 @@
+module MergeRequests
+  class AfterCreateService < MergeRequests::BaseService
+    @logger: untyped
+
+    def execute: (untyped merge_request) -> untyped
+
+    private
+
+    def prepare_for_mergeability: (untyped merge_request) -> untyped
+
+    def prepare_merge_request: (untyped merge_request) -> untyped
+
+    def link_lfs_objects: (untyped merge_request) -> untyped
+
+    def check_mergeability: (untyped merge_request) -> (nil | untyped)
+
+    def mark_merge_request_as_prepared: (untyped merge_request) -> untyped
+
+    def logger: () -> untyped
+
+    def log_payload: (untyped merge_request, untyped message) -> untyped
+
+    def async_pipeline_creation?: (untyped merge_request) -> untyped
+  end
+end

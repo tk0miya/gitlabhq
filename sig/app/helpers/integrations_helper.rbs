@@ -1,0 +1,69 @@
+module IntegrationsHelper
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def integration_event_title: (untyped event) -> untyped
+
+  def integration_event_description: (untyped integration, untyped event) -> untyped
+
+  def integration_event_field_name: (untyped event) -> ::String
+
+  def scoped_integrations_path: (?project: untyped?, ?group: untyped?) -> untyped
+
+  def scoped_integration_path: (untyped integration, ?project: untyped?, ?group: untyped?) -> untyped
+
+  def scoped_edit_integration_path: (untyped integration, ?project: untyped?, ?group: untyped?) -> untyped
+
+  def scoped_overrides_integration_path: (untyped integration, ?::Hash[untyped, untyped] options) -> untyped
+
+  def scoped_test_integration_path: (untyped integration, ?project: untyped?, ?group: untyped?) -> untyped
+
+  def scoped_reset_integration_path: (untyped integration, ?group: untyped?) -> ("" | untyped)
+
+  def integration_form_data: (untyped integration, ?project: untyped?, ?group: untyped?) -> untyped
+
+  def integration_overrides_data: (untyped integration, ?project: untyped?, ?group: untyped?) -> { edit_path: untyped, overrides_path: untyped }
+
+  def integration_list_data: (untyped integrations, ?group: untyped?, ?project: untyped?) -> { integrations: untyped, is_admin: untyped }
+
+  def integrations_help_page_path: () -> untyped
+
+  def project_jira_issues_integration?: () -> false
+
+  def instance_level_integrations?: () -> untyped
+
+  def integration_issue_type: (untyped issue_type) -> untyped
+
+  def integration_todo_target_type: (untyped target_type) -> untyped
+
+  def integration_webhook_event_human_name: (untyped event) -> untyped
+
+  def add_to_slack_link: (untyped parent, untyped slack_app_id) -> untyped
+
+  def slack_integration_destroy_path: (untyped parent) -> untyped
+
+  def gitlab_slack_application_data: (untyped projects) -> { projects: untyped, sign_in_path: untyped, is_signed_in: untyped, slack_link_path: untyped, gitlab_logo_path: untyped, slack_logo_path: untyped }
+
+  def jira_specific_form_data: (untyped integration) -> (::Hash[untyped, untyped] | { jira_issue_transition_automatic: untyped, jira_issue_transition_id: untyped })
+
+  def slack_specific_form_data: (untyped integration) -> (::Hash[untyped, untyped] | { upgrade_slack_url: untyped, should_upgrade_slack: untyped })
+
+  extend ::IntegrationsHelper
+
+  private
+
+  def add_to_slack_link_redirect_url: (untyped parent) -> untyped
+
+  def jira_integration_event_description: (untyped event) -> untyped
+
+  def teamcity_integration_event_description: (untyped event) -> untyped
+
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def default_integration_event_description: (untyped event) -> untyped
+
+  def trigger_events_for_integration: (untyped integration) -> untyped
+
+  def fields_for_integration: (untyped integration) -> untyped
+
+  def integration_level: (untyped integration) -> ("instance" | "group" | "project")
+
+  def serialize_integration: (untyped integration, ?group: untyped?, ?project: untyped?) -> { id: untyped, active: untyped, configured: untyped, title: untyped, description: untyped, updated_at: untyped, edit_path: untyped, name: untyped, icon: untyped }
+end

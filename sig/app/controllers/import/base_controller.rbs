@@ -1,0 +1,44 @@
+class Import::BaseController < ApplicationController
+  @filter: untyped
+
+  @already_added_projects: untyped
+
+  include ActionView::Helpers::SanitizeHelper
+
+  def status: () -> untyped
+
+  def realtime_changes: () -> untyped
+
+  def importable_repos: () -> untyped
+
+  def incompatible_repos: () -> untyped
+
+  def provider_name: () -> untyped
+
+  def provider_url: () -> untyped
+
+  def extra_representation_opts: () -> ::Hash[untyped, untyped]
+
+  private
+
+  def sanitized_filter_param: () -> untyped
+
+  def filtered: (untyped collection) -> untyped
+
+  def serialized_provider_repos: () -> untyped
+
+  def serialized_incompatible_repos: () -> untyped
+
+  def serialized_imported_projects: () -> untyped
+
+  def already_added_projects: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def find_already_added_projects: (untyped import_type) -> untyped
+
+  # deprecated: being replaced by app/services/import/base_service.rb
+  def find_or_create_namespace: (untyped names, untyped owner) -> untyped
+
+  # deprecated: being replaced by app/services/import/base_service.rb
+  def project_save_error: (untyped project) -> untyped
+end

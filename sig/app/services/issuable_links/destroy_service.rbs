@@ -1,0 +1,35 @@
+module IssuableLinks
+  class DestroyService < BaseService
+    @link: untyped
+
+    @current_user: untyped
+
+    @source: untyped
+
+    @target: untyped
+
+    attr_reader link: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader source: untyped
+
+    attr_reader target: untyped
+
+    def initialize: (untyped link, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def create_notes: () -> untyped
+
+    def after_destroy: () -> untyped
+
+    def remove_relation: () -> untyped
+
+    def not_found_message: () -> "No Issue Link found"
+
+    def track_event: () -> nil
+  end
+end

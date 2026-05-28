@@ -1,0 +1,19 @@
+module Gitlab
+  module Checks
+    class ProjectCreated < PostPushMessage
+      PROJECT_CREATED: "project_created"
+
+      def message: () -> ::String
+
+      private
+
+      def self.message_key: (untyped user, untyped repository) -> ::String
+
+      # TODO: Remove in the next release
+      # https://gitlab.com/gitlab-org/gitlab/-/issues/292030
+      def self.legacy_message_key: (untyped user, untyped repository) -> (nil | ::String)
+
+      def project_url: () -> untyped
+    end
+  end
+end

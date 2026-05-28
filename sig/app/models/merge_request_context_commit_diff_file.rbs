@@ -1,0 +1,12 @@
+class MergeRequestContextCommitDiffFile < ApplicationRecord
+  include Gitlab::EncodingHelper
+
+  include ShaAttribute
+
+  include DiffFile
+
+  # create MergeRequestContextCommitDiffFile by given diff file record(s)
+  def self.bulk_insert: (*untyped args) -> untyped
+
+  def path: () -> untyped
+end

@@ -1,0 +1,13 @@
+module Resolvers
+  class UserNotesCountResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    def resolve: () -> untyped
+
+    def authorized_resource?: (untyped object) -> untyped
+
+    private
+
+    def load_notes_counts: () -> untyped
+  end
+end

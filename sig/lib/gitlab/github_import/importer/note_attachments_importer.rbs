@@ -1,0 +1,66 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class NoteAttachmentsImporter
+        @note_text: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        @web_endpoint: untyped
+
+        @supported_video_media_types: untyped
+
+        attr_reader note_text: untyped
+
+        attr_reader project: untyped
+
+        attr_reader client: untyped
+
+        attr_reader web_endpoint: untyped
+
+        SUPPORTED_RECORD_TYPES: ::Array[untyped]
+
+        # note_text - An instance of `Gitlab::GithubImport::Representation::NoteText`.
+        # project - An instance of `Project`.
+        # client - An instance of `Gitlab::GithubImport::Client`.
+        def initialize: (untyped note_text, untyped project, untyped client) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        def save_download_errors: (untyped download_errors) -> untyped
+
+        def external_identifiers: () -> untyped
+
+        def gitlab_attachment_link: (untyped attachment) -> untyped
+
+        def supported_video_media_types: () -> untyped
+
+        # From: https://github.com/login/test-import-attachments-source/blob/main/example.md
+        # To: https://gitlab.com/login/test-import-attachments-target/-/blob/main/example.md
+        def convert_project_content_link: (untyped attachment_url, untyped import_source) -> untyped
+
+        # in: an instance of Gitlab::GithubImport::Markdown::Attachment
+        # out: gitlab attachment markdown url
+        def download_attachment: (untyped attachment) -> untyped
+
+        def options: () -> { headers: { "Authorization" => ::String } }
+
+        def update_note_record: (untyped text) -> (nil | untyped)
+
+        def supported_record_type?: () -> untyped
+
+        def find_record: () -> untyped
+
+        def record_column_for_type: (untyped record_type) -> untyped
+
+        def update_ghe_video_path: (untyped file) -> untyped
+
+        def github_file_url_regex: () -> ::Regexp
+      end
+    end
+  end
+end

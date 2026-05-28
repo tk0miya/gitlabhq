@@ -1,0 +1,13 @@
+module Namespaces
+  module Stateful
+    module TransitionValidation
+      include ::Gitlab::TenantContainerLifecycle::Stateful::TransitionValidation
+
+      FORBIDDEN_ANCESTOR_STATES: { archive: ::Array[:archived | :deletion_in_progress | :deletion_scheduled], unarchive: ::Array[:deletion_in_progress | :deletion_scheduled], schedule_deletion: ::Array[:deletion_in_progress | :deletion_scheduled] }
+
+      private
+
+      def validate_ancestors_state: (untyped transition) -> (true | false)
+    end
+  end
+end

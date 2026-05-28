@@ -1,0 +1,69 @@
+module Milestoneish
+  @total_issues_count: untyped
+
+  @close_issues_count: untyped
+
+  @total_merge_request_count: untyped
+
+  @total_time_spent: untyped
+
+  @total_time_estimate: untyped
+
+  @memoized_users: untyped
+
+  DISPLAY_ISSUES_LIMIT: 500
+
+  def total_issues_count: () -> untyped
+
+  def closed_issues_count: () -> untyped
+
+  def opened_issues_count: () -> untyped
+
+  def total_merge_requests_count: () -> untyped
+
+  def complete?: () -> untyped
+
+  def percent_complete: () -> untyped
+
+  def remaining_days: () -> (0 | untyped)
+
+  def elapsed_days: () -> (0 | untyped)
+
+  def issues_visible_to_user: (untyped user) -> untyped
+
+  def issue_participants_visible_by_user: (untyped user) -> untyped
+
+  def issue_labels_visible_by_user: (untyped user) -> untyped
+
+  def milestone_issues: (untyped user) -> untyped
+
+  def merge_requests_visible_to_user: (untyped user) -> untyped
+
+  def upcoming?: () -> untyped
+
+  def upcoming: () -> untyped
+
+  def expires_at: () -> (::String | nil)
+
+  def expired?: () -> untyped
+
+  def expired: () -> untyped
+
+  def total_time_spent: () -> untyped
+
+  def human_total_time_spent: () -> untyped
+
+  def total_time_estimate: () -> untyped
+
+  def human_total_time_estimate: () -> untyped
+
+  private
+
+  def memoize_per_user: (untyped user, untyped method_name) { () -> untyped } -> untyped
+
+  def memoized_users: () -> untyped
+
+  # override in a class that includes this module to get a faster query
+  # from IssuesFinder
+  def issues_finder_params: () -> ::Hash[untyped, untyped]
+end

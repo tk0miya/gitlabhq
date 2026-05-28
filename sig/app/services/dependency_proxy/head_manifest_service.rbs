@@ -1,0 +1,19 @@
+module DependencyProxy
+  class HeadManifestService < DependencyProxy::BaseService
+    @image: untyped
+
+    @tag: untyped
+
+    @token: untyped
+
+    ACCEPT_HEADERS: untyped
+
+    def initialize: (untyped image, untyped tag, untyped token) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def manifest_url: () -> untyped
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module PostgresqlAdapter
+      module ForceDisconnectableMixin
+        @force_disconnect_timer: untyped
+
+        extend ActiveSupport::Concern
+
+        def force_disconnect_if_old!: () -> (nil | untyped)
+
+        def reset_force_disconnect_timer!: () -> untyped
+
+        def force_disconnect_timer: () -> untyped
+      end
+    end
+  end
+end

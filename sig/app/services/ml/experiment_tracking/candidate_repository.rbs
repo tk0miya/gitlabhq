@@ -1,0 +1,49 @@
+module Ml
+  module ExperimentTracking
+    class CandidateRepository
+      @project: untyped
+
+      @user: untyped
+
+      attr_accessor project: untyped
+
+      attr_accessor user: untyped
+
+      attr_accessor experiment: untyped
+
+      attr_accessor candidate: untyped
+
+      def initialize: (untyped project, ?untyped? user) -> void
+
+      def by_eid: (untyped eid) -> untyped
+
+      def create!: (untyped experiment, untyped start_time, ?untyped? tags, ?untyped? name) -> untyped
+
+      def update: (untyped candidate, untyped status, untyped end_time) -> untyped
+
+      def add_metric!: (untyped candidate, untyped name, untyped value, untyped tracked_at, untyped step) -> untyped
+
+      def add_param!: (untyped candidate, untyped name, untyped value) -> untyped
+
+      def add_tag!: (untyped candidate, untyped name, untyped value) -> untyped
+
+      def add_metrics: (untyped candidate, untyped metric_definitions) -> untyped
+
+      def add_params: (untyped candidate, untyped param_definitions) -> untyped
+
+      def add_tags: (untyped candidate, untyped tag_definitions) -> (nil | untyped)
+
+      private
+
+      def handle_gitlab_tags: (untyped candidate, untyped tag_definitions) -> (nil | untyped)
+
+      def timestamps: () -> { created_at: untyped, updated_at: untyped }
+
+      def insert_many: (untyped candidate, untyped definitions, untyped entity_class, ?::Hash[untyped, untyped] extra_keys) -> (nil | untyped)
+
+      def candidate_name: (untyped name, untyped tags) -> untyped
+
+      def candidate_name_from_tags: (untyped tags) -> untyped
+    end
+  end
+end

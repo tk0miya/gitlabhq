@@ -1,0 +1,29 @@
+module Gitlab::UsageDataCounters
+  class BaseCounter
+    extend RedisCounter
+
+    UnknownEvent: untyped
+
+    def self.redis_key: (untyped event) -> untyped
+
+    def self.count: (untyped event) -> untyped
+
+    def self.read: (untyped event) -> untyped
+
+    def self.totals: () -> untyped
+
+    def self.fallback_totals: () -> untyped
+
+    def self.fetch_supported_event: (untyped event_name) -> (nil | untyped)
+
+    private
+
+    def self.require_known_event: (untyped event) -> (untyped | nil)
+
+    def self.counter_key: (untyped event) -> ::Symbol
+
+    def self.known_events: () -> untyped
+
+    def self.prefix: () -> untyped
+  end
+end

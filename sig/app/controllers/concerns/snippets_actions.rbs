@@ -1,0 +1,42 @@
+module SnippetsActions
+  @blob: untyped
+
+  @blobs: untyped
+
+  extend ActiveSupport::Concern
+
+  include RendersNotes
+
+  include RendersBlob
+
+  include PaginatedCollection
+
+  include Gitlab::NoteableMetadata
+
+  include Snippets::SendBlob
+
+  include SnippetsSort
+
+  include ProductAnalyticsTracking
+
+  def edit: () -> nil
+
+  # This endpoint is being replaced by Snippets::BlobController#raw
+  # Support for old raw links will be maintainted via this action but
+  # it will only return the first blob found,
+  # see: https://gitlab.com/gitlab-org/gitlab/-/issues/217775
+  def raw: () -> untyped
+
+  def js_request?: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def show: () -> untyped
+
+  private
+
+  def blob: () -> untyped
+
+  def blobs: () -> untyped
+
+  def convert_line_endings: (untyped content) -> untyped
+end

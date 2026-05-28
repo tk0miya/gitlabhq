@@ -1,0 +1,19 @@
+module Resolvers
+  module Kas
+    class AgentConnectionsResolver < BaseResolver
+      @kas_client: untyped
+
+      alias agent object
+
+      def resolve: () -> (::Array[untyped] | untyped)
+
+      private
+
+      def can_read_connected_agents?: () -> untyped
+
+      def get_connected_agents: (untyped agent_ids) -> untyped
+
+      def kas_client: () -> untyped
+    end
+  end
+end

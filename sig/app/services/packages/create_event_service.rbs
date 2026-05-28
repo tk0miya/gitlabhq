@@ -1,0 +1,21 @@
+module Packages
+  class CreateEventService < BaseService
+    @event_scope: untyped
+
+    INTERNAL_EVENTS_NAMES: { "delete_package" => "delete_package_from_registry", "delete_recipe_revision" => "delete_recipe_revision_from_registry", "delete_package_reference" => "delete_package_reference_from_registry", "delete_package_revision" => "delete_package_revision_from_registry", "pull_package" => "pull_package_from_registry", "push_package" => "push_package_to_registry", "push_symbol_package" => "push_symbol_package_to_registry", "pull_symbol_package" => "pull_symbol_package_from_registry" }
+
+    def execute: () -> (nil | untyped)
+
+    def originator_type: () -> untyped
+
+    private
+
+    def event_scope: () -> untyped
+
+    def scope: () -> untyped
+
+    def event_name: () -> untyped
+
+    def deploy_token_id: () -> (nil | untyped)
+  end
+end

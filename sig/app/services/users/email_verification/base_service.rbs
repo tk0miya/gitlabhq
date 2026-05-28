@@ -1,0 +1,25 @@
+module Users
+  module EmailVerification
+    class BaseService
+      @attr: untyped
+
+      @user: untyped
+
+      VALID_ATTRS: ::Array[:unlock_token | :confirmation_token | :email_otp]
+
+      def initialize: (attr: untyped, user: untyped) -> void
+
+      attr_reader attr: untyped
+
+      attr_reader user: untyped
+
+      attr_reader token: untyped
+
+      def validate_attr!: () -> (untyped | nil)
+
+      def digest: () -> untyped
+
+      def attr_value: () -> untyped
+    end
+  end
+end

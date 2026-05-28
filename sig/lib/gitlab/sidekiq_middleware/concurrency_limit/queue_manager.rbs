@@ -1,0 +1,77 @@
+module Gitlab
+  module SidekiqMiddleware
+    module ConcurrencyLimit
+      class QueueManager
+        @worker_name: untyped
+
+        @redis_key: untyped
+
+        @metadata_key: untyped
+
+        @lease_key: untyped
+
+        @deferred_job_counter: untyped
+
+        include ExclusiveLeaseGuard
+
+        MAX_PROCESSING_TIME: untyped
+
+        LEASE_TIMEOUT: untyped
+
+        MAX_BATCH_SIZE: 5000
+
+        attr_reader redis_key: untyped
+
+        attr_reader metadata_key: untyped
+
+        attr_reader worker_name: untyped
+
+        def initialize: (worker_name: untyped, prefix: untyped) -> void
+
+        def add_to_queue!: (untyped job, untyped context) -> untyped
+
+        def queue_size: () -> untyped
+
+        def has_jobs_in_queue?: () -> untyped
+
+        def resume_processing!: () -> untyped
+
+        private
+
+        def lease_timeout: () -> untyped
+
+        def lease_key: () -> untyped
+
+        def lease_taken_log_level: () -> :info
+
+        def resume_processing_once!: (untyped redis) -> (0 | untyped)
+
+        def num_jobs_to_resume: () -> untyped
+
+        def worker_limit: () -> untyped
+
+        def concurrent_worker_count: () -> untyped
+
+        def with_redis: () { (?) -> untyped } -> untyped
+
+        def serialize: (untyped job, untyped context) -> untyped
+
+        def deserialize: (untyped json) -> untyped
+
+        def bulk_send_to_processing_queue: (untyped jobs) -> (nil | untyped)
+
+        def prepare_and_store_metadata: (untyped jobs) -> untyped
+
+        def job_metadata: (untyped job) -> untyped
+
+        def worker_klass: () -> untyped
+
+        def next_batch_from_queue: (untyped redis, limit: untyped) -> (::Array[untyped] | untyped)
+
+        def remove_processed_jobs: (untyped redis, limit: untyped) -> untyped
+
+        def deferred_job_counter: () -> untyped
+      end
+    end
+  end
+end

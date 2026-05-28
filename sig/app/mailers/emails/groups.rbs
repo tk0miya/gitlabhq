@@ -1,0 +1,31 @@
+module Emails
+  module Groups
+    @current_user: untyped
+
+    @group: untyped
+
+    @target_url: untyped
+
+    @old_path_with_namespace: untyped
+
+    @errors: untyped
+
+    @user: untyped
+
+    @deletion_due_in_days: untyped
+
+    @deletion_date: untyped
+
+    include Namespaces::DeletableHelper
+
+    def group_was_exported_email: (untyped current_user, untyped group) -> untyped
+
+    def group_was_not_exported_email: (untyped current_user, untyped group, untyped errors) -> untyped
+
+    def group_was_transferred_email: (untyped group_id, untyped user_id, untyped old_path_with_namespace) -> (nil | untyped)
+
+    def group_email: (untyped current_user, untyped group, untyped subj, ?errors: untyped?) -> untyped
+
+    def group_scheduled_for_deletion: (untyped recipient_id, untyped group_id) -> untyped
+  end
+end

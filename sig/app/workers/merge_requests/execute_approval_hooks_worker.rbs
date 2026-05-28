@@ -1,0 +1,9 @@
+module MergeRequests
+  # Worker is not idempotent: each run sends email notifications and
+  # fires webhooks, both of which are non-idempotent external side effects.
+  class ExecuteApprovalHooksWorker
+    include Gitlab::EventStore::Subscriber
+
+    def handle_event: (untyped event) -> (nil | untyped)
+  end
+end

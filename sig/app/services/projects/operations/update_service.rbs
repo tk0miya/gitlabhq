@@ -1,0 +1,21 @@
+module Projects
+  module Operations
+    class UpdateService < BaseService
+      def execute: () -> untyped
+
+      private
+
+      def project_update_params: () -> untyped
+
+      def error_tracking_params: () -> (::Hash[untyped, untyped] | untyped)
+
+      def error_tracking_params_partial_updates?: (untyped settings) -> untyped
+
+      def error_tracking_params_for_partial_update: (untyped settings) -> { error_tracking_setting_attributes: untyped }
+
+      def error_tracking_params_for_update: (untyped settings) -> untyped
+
+      def incident_management_setting_params: () -> (::Hash[untyped, untyped] | { incident_management_setting_attributes: untyped })
+    end
+  end
+end

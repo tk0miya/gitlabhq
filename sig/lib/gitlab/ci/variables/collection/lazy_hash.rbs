@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Collection
+        # LazyHash wraps a Variables::Collection and provides hash-like access
+        # while preserving lazy evaluation of LazyItem values.
+        class LazyHash
+          @collection: untyped
+
+          def initialize: (untyped collection) -> void
+
+          def []: (untyped key) -> untyped
+
+          def fetch: (untyped key, ?untyped? default) -> untyped
+
+          def with_indifferent_access: () -> self
+
+          def key?: (untyped key) -> untyped
+
+          alias has_key? key?
+
+          def to_hash: () -> untyped
+
+          alias to_h to_hash
+        end
+      end
+    end
+  end
+end

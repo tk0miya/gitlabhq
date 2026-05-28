@@ -1,0 +1,9 @@
+module Clusters
+  module Agents
+    class ActivityEvent < ApplicationRecord
+      include EachBatch
+
+      include NullifyIfBlank
+    end
+  end
+end

@@ -1,0 +1,84 @@
+module Gitlab
+  module Git
+    module Finders
+      class RefsFinder
+        @repository: untyped
+
+        @search: untyped
+
+        @ref_type: untyped
+
+        @sort_by: untyped
+
+        @per_page: untyped
+
+        @page_token: untyped
+
+        @ref_names: untyped
+
+        @ignore_case: untyped
+
+        @next_cursor: untyped
+
+        UnknownRefTypeError: untyped
+
+        ALLOWED_SORT_OPTIONS: ::Array["name_asc" | "name_desc" | "updated_asc" | "updated_desc"]
+
+        # @param repository [Gitlab::Git::Repository] The Git repository to search in
+        # @param ref_type [Symbol] The type of references to find (:branches or :tags)
+        # @param search [String, nil] Search pattern to filter refs by name (supports wildcards)
+        # @param sort_by [String, nil] Sort order for results ('name_asc', 'name_desc', 'updated_asc', 'updated_desc')
+        # @param per_page [Integer, nil] Number of results per page for pagination
+        # @param page_token [String, nil] Token for pagination to get next page of results
+        # @param ref_names [Array<String>] List of specific ref names to find (exact match, overrides search)
+        # @param ignore_case [Boolean] When true, makes pattern matching and sorting case-insensitive
+        #
+        # @example Basic search
+        #   RefsFinder.new(repo, ref_type: :branches, search: "feat")
+        #
+        # @example Exact match for specific refs
+        #   RefsFinder.new(repo, ref_type: :branches, ref_names: ["master", "develop"])
+        #
+        # @example With pagination and sorting
+        #   RefsFinder.new(repo, ref_type: :tags, sort_by: "name_desc", per_page: 10)
+        def initialize: (untyped repository, ref_type: untyped, ?search: untyped?, ?sort_by: untyped?, ?per_page: untyped?, ?page_token: untyped?, ?ref_names: untyped, ?ignore_case: bool) -> void
+
+        attr_reader next_cursor: untyped
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader repository: untyped
+
+        attr_reader search: untyped
+
+        attr_reader ref_type: untyped
+
+        attr_reader sort_by: untyped
+
+        attr_reader page_token: untyped
+
+        attr_reader ref_names: untyped
+
+        attr_reader ignore_case: untyped
+
+        def validate_sort_by!: () -> (nil | untyped)
+
+        def patterns: () -> untyped
+
+        def exact_match_pattern: () -> (untyped | nil)
+
+        def search_pattern: () -> ::Array[untyped]
+
+        def wildcard_search?: () -> untyped
+
+        def pagination_params: () -> (nil | untyped)
+
+        def per_page: () -> untyped
+
+        def prefix: () -> untyped
+      end
+    end
+  end
+end

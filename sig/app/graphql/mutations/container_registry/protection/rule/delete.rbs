@@ -1,0 +1,11 @@
+module Mutations
+  module ContainerRegistry
+    module Protection
+      module Rule
+        class Delete < ::Mutations::BaseMutation
+          def resolve: (id: untyped, **untyped _kwargs) -> { container_protection_repository_rule: untyped, errors: untyped }
+        end
+      end
+    end
+  end
+end

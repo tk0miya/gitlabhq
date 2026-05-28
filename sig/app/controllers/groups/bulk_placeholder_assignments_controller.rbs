@@ -1,0 +1,25 @@
+module Groups
+  class BulkPlaceholderAssignmentsController < Groups::ApplicationController
+    include WorkhorseAuthorization
+
+    PERMITTED_FILE_EXTENSIONS: ::Array["csv"]
+
+    def show: () -> untyped
+
+    def create: () -> (untyped | nil)
+
+    private
+
+    alias file_type_is_valid? file_is_valid?
+
+    def file_params: () -> untyped
+
+    def uploader_class: () -> untyped
+
+    def file_extension_allowlist: () -> untyped
+
+    def maximum_size: () -> untyped
+
+    def render_unprocessable_entity: (untyped message) -> untyped
+  end
+end

@@ -1,0 +1,31 @@
+module Packages
+  module Npm
+    class CheckManifestCoherenceService
+      @package: untyped
+
+      @package_json_entry: untyped
+
+      MismatchError: untyped
+
+      PKG_TYPE: "npm"
+
+      MANIFEST_NOT_COHERENT_ERROR: "Package manifest is not coherent"
+
+      VERSION_NOT_COMPLIANT_ERROR: "Version in package.json is not SemVer compliant"
+
+      def initialize: (untyped package, untyped package_json_entry) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader package_json_entry: untyped
+
+      def coherent?: (untyped package_json) -> untyped
+
+      def same_version?: (untyped version1, untyped version2) -> untyped
+    end
+  end
+end

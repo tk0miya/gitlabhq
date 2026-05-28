@@ -1,0 +1,38 @@
+module Ci
+  module PipelineSchedules
+    class BaseSaveService
+      include Gitlab::Utils::StrongMemoize
+
+      # The only way that ref can be unexpanded after #expand_short_ref runs is if the ref
+      # is ambiguous because both a branch and a tag with the name exist, or it is
+      # ambiguous because neither exists.
+      INVALID_REF_MESSAGE: "Ref is ambiguous"
+
+      INVALID_REF_MODEL_MESSAGE: "is ambiguous"
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader user: untyped
+
+      attr_reader params: untyped
+
+      attr_reader schedule: untyped
+
+      def valid_ref_format?: () -> untyped
+
+      def allowed_to_save?: () -> untyped
+
+      def forbidden_to_save: () -> untyped
+
+      def allowed_to_save_variables?: () -> (true | untyped)
+
+      def forbidden_to_save_variables: () -> untyped
+
+      def invalid_ref_format: () -> untyped
+    end
+  end
+end

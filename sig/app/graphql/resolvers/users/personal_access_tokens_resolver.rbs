@@ -1,0 +1,19 @@
+module Resolvers
+  module Users
+    class PersonalAccessTokensResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      include LooksAhead
+
+      alias user object
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def preloads: () -> { scopes: { granular_scopes: ::Array[:namespace] }, active: ::Array[:user], last_used_ips: ::Array[:last_used_ips] }
+
+      def filter_params: (untyped args) -> untyped
+    end
+  end
+end

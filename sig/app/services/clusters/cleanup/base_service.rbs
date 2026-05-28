@@ -1,0 +1,28 @@
+module Clusters
+  module Cleanup
+    class BaseService
+      @cluster: untyped
+
+      @execution_count: untyped
+
+      @logger: untyped
+
+      DEFAULT_EXECUTION_INTERVAL: untyped
+
+      def initialize: (untyped cluster, ?::Integer execution_count) -> void
+
+      private
+
+      attr_reader cluster: untyped
+
+      def logger: () -> untyped
+
+      def log_event: (untyped event, ?::Hash[untyped, untyped] extra_data) -> untyped
+
+      def schedule_next_execution: (untyped worker_class) -> untyped
+
+      # Override this method to customize the execution interval
+      def execution_interval: () -> untyped
+    end
+  end
+end

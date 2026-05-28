@@ -1,0 +1,97 @@
+module Gitlab
+  module Database
+    module Migrations
+      module Conversions
+        class BigintConverter
+          @migration: untyped
+
+          @table: untyped
+
+          @columns: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          MIN_MILESTONE: "17.4"
+
+          DEFAULT_VALUE_MAP: { integer: 0, bigint: 0, uuid: "00000000-0000-0000-0000-000000000000" }
+
+          YAML_FILE_PATH: "db/integer_ids_not_yet_initialized_to_bigint.yml"
+
+          YAML_HEADER: "# -- DON'T MANUALLY EDIT --\n# Contains the list of integer IDs which were converted to bigint for new installations in\n# https://gitlab.com/gitlab-org/gitlab/-/issues/438124, but they are still integers for existing instances.\n# On cleanup_conversion_of_integer_to_bigint those integer IDs will be removed automatically from here.\n"
+
+          def initialize: (untyped migration, untyped table, untyped columns) -> void
+
+          def init: () -> (nil | untyped)
+
+          def revert_init: () -> untyped
+
+          def restore_cleanup: () -> untyped
+
+          def cleanup: () -> untyped
+
+          # We will queue the job and let the job to check if columns exist and continue with the copy
+          def backfill: (primary_key: untyped, batch_size: untyped, sub_batch_size: untyped, pause_ms: untyped, job_interval: untyped) -> untyped
+
+          def ensure_backfill: (primary_key: untyped) -> untyped
+
+          def revert_backfill: (primary_key: untyped) -> untyped
+
+          private
+
+          attr_reader migration: untyped
+
+          attr_reader table: untyped
+
+          attr_reader columns: untyped
+
+          def verify_table_and_columns_exist!: () -> (nil | untyped)
+
+          def all_converted?: () -> untyped
+
+          def verify_all_integer_ids_are_included!: () -> (nil | untyped)
+
+          # This check can be removed once we convert all integer IDs to bigint
+          # in https://gitlab.com/gitlab-org/gitlab/-/issues/465805
+          def initialization_for_all_integer_ids_not_required?: () -> untyped
+
+          def all_table_integer_ids: () -> untyped
+
+          def check_trigger_permissions!: () -> untyped
+
+          def create_bigint_columns: (source: untyped, type: untyped) -> untyped
+
+          def remove_bigint_columns: () -> untyped
+
+          # Since trigger checks if bigint column for conversion exists or not,
+          # the full list of columns can be used to ensure same trigger name can be used
+          # across all different instances.
+          def create_trigger: () -> untyped
+
+          def remove_trigger: () -> untyped
+
+          def all_columns: () -> untyped
+
+          def selected_columns: () -> untyped
+
+          def integer_columns: () -> untyped
+
+          def bigint_columns_for_conversion: (source: untyped) -> untyped
+
+          def all_bigint_column_names: () -> untyped
+
+          def column_pair: () -> ::Array[untyped]
+
+          def default_for: (untyped column) -> untyped
+
+          def nullable?: (untyped column) -> untyped
+
+          def primary_key?: (untyped column) -> untyped
+
+          def primary_keys: () -> untyped
+
+          def update_file_for_integer_ids_not_yet_initialized_to_bigint: () -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

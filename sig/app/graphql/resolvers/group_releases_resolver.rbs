@@ -1,0 +1,10 @@
+module Resolvers
+  class GroupReleasesResolver < BaseResolver
+    alias group object
+
+    # GroupReleasesFinder only supports sorting by `released_at`
+    SORT_TO_PARAMS_MAP: { released_at_desc: { sort: "desc" }, released_at_asc: { sort: "asc" } }
+
+    def resolve: (sort: untyped) -> untyped
+  end
+end

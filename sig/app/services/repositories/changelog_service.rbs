@@ -1,0 +1,88 @@
+module Repositories
+  # A service class for generating a changelog section.
+  class ChangelogService
+    @project: untyped
+
+    @user: untyped
+
+    @version: untyped
+
+    @from: untyped
+
+    @to: untyped
+
+    @date: untyped
+
+    @branch: untyped
+
+    @trailer: untyped
+
+    @config_file: untyped
+
+    @config_file_ref: untyped
+
+    @file: untyped
+
+    @message: untyped
+
+    DEFAULT_TRAILER: "Changelog"
+
+    DEFAULT_FILE: "CHANGELOG.md"
+
+    # The maximum number of commits allowed to fetch in `from` and `to` range.
+    #
+    # This value is arbitrarily chosen. Increasing it means more Gitaly calls
+    # and more presure on Gitaly services.
+    #
+    # This number is 3x of the average number of commits per GitLab releases.
+    # Some examples for GitLab's own releases:
+    #
+    # * 13.6.0: 4636 commits
+    # * 13.5.0: 5912 commits
+    # * 13.4.0: 5541 commits
+    COMMITS_LIMIT: 15000
+
+    # The `project` specifies the `Project` to generate the changelog section
+    # for.
+    #
+    # The `user` argument specifies a `User` to use for committing the changes
+    # to the Git repository.
+    #
+    # The `version` arguments must be a version `String` using semantic
+    # versioning as the format.
+    #
+    # The arguments `from` and `to` must specify a Git ref or SHA to use for
+    # fetching the commits to include in the changelog. The SHA/ref set in the
+    # `from` argument isn't included in the list.
+    #
+    # The `date` argument specifies the date of the release, and defaults to the
+    # current time/date.
+    #
+    # The `branch` argument specifies the branch to commit the changes to. The
+    # branch must already exist.
+    #
+    # The `trailer` argument is the Git trailer to use for determining what
+    # commits to include in the changelog.
+    #
+    # The `config_file` arguments specifies the path to the configuration file as
+    # stored in the project's Git repository.
+    #
+    # The `config_file_ref` argument specifies the ref where the configuration file is
+    # stored. By default, it's a default repository branch.
+    #
+    # The `file` arguments specifies the name/path of the file to commit the
+    # changes to. If the file doesn't exist, it's created automatically.
+    #
+    # The `message` argument specifies the commit message to use when committing
+    # the changelog changes.
+    #
+    # rubocop: disable Metrics/ParameterLists
+    def initialize: (untyped project, untyped user, version: untyped, ?branch: untyped, ?from: untyped?, ?to: untyped, ?date: untyped, ?trailer: untyped, ?config_file: untyped, ?config_file_ref: untyped, ?file: untyped, ?message: ::String) -> void
+
+    def execute: (?commit_to_changelog: bool) -> untyped
+
+    def start_of_commit_range: (untyped config) -> untyped
+
+    def verify_commit_range!: (untyped from, untyped to) -> untyped
+  end
+end

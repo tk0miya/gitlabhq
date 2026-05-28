@@ -1,0 +1,20 @@
+module Integrations
+  module HasWebHook
+    extend ActiveSupport::Concern
+
+    # Return the URL to be used for the webhook.
+    def hook_url: () -> untyped
+
+    # Return the url variables to be used for the webhook.
+    def url_variables: () -> untyped
+
+    # Return whether the webhook should use SSL verification.
+    def hook_ssl_verification: () -> (untyped | true)
+
+    # Create or update the webhook, raising an exception if it cannot be saved.
+    def update_web_hook!: () -> untyped
+
+    # Execute the webhook, creating it if necessary.
+    def execute_web_hook!: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+  end
+end

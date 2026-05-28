@@ -1,0 +1,8 @@
+# Provides a way to execute nullify behaviour in batches
+# to avoid query timeouts for really big tables
+# Assumes that associations have `dependent: :nullify` statement
+module BatchNullifyDependentAssociations
+  extend ActiveSupport::Concern
+
+  def nullify_dependent_associations_in_batches: (?exclude: untyped, ?batch_size: ::Integer) -> untyped
+end

@@ -1,0 +1,25 @@
+module Ci
+  class BulkDeleteExpiredJobArtifactsWorker
+    @mod_bucket: untyped
+
+    @bucket_claimed: untyped
+
+    @more_work_likely: untyped
+
+    include ApplicationWorker
+
+    include LimitedCapacity::Worker
+
+    def self.max_running_jobs_limit: () -> 5
+
+    def perform_work: () -> (nil | untyped)
+
+    def remaining_work_count: () -> (0 | untyped)
+
+    def max_running_jobs: () -> untyped
+
+    private
+
+    def release_bucket: (destroyed: untyped) -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+# This service copies AwardEmoji from one Awardable to another.
+#
+# It expects the calling code to have performed the necessary authorization
+# checks in order to allow the copy to happen.
+module AwardEmojis
+  class CopyService
+    @from_awardable: untyped
+
+    @to_awardable: untyped
+
+    def initialize: (untyped from_awardable, untyped to_awardable) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_accessor from_awardable: untyped
+
+    attr_accessor to_awardable: untyped
+  end
+end

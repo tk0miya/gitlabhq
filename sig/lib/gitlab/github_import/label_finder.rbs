@@ -1,0 +1,25 @@
+module Gitlab
+  module GithubImport
+    class LabelFinder
+      @project: untyped
+
+      attr_reader project: untyped
+
+      # The base cache key to use for storing/retrieving label IDs.
+      CACHE_KEY: "github-import/label-finder/%{project}/%{name}"
+
+      CACHE_OBJECT_NOT_FOUND: -1
+
+      # project - An instance of `Project`.
+      def initialize: (untyped project) -> void
+
+      # Returns the label ID for the given name.
+      def id_for: (untyped name) -> (nil | untyped)
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def build_cache: () -> untyped
+
+      def cache_key_for: (untyped name) -> untyped
+    end
+  end
+end

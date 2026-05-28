@@ -1,0 +1,53 @@
+module Gitlab
+  module Cache
+    class JsonCache
+      @backend: untyped
+
+      @namespace: untyped
+
+      @cache_key_strategy: untyped
+
+      STRATEGY_KEY_COMPONENTS: { revision: untyped, version: ::Array[untyped] }
+
+      def initialize: (?::Hash[untyped, untyped] options) -> void
+
+      def active?: () -> (untyped | true)
+
+      def expire: (untyped key) -> untyped
+
+      def read: (untyped key, ?untyped? klass) -> untyped
+
+      def write: (untyped key, untyped value, ?untyped? options) -> untyped
+
+      def fetch: (untyped key, ?::Hash[untyped, untyped] options) { () -> untyped } -> untyped
+
+      private
+
+      attr_reader backend: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader cache_key_strategy: untyped
+
+      def cache_key: (untyped key) -> untyped
+
+      def write_raw: (untyped _key, untyped _value, untyped _options) -> untyped
+
+      def expanded_cache_key: (untyped _key) -> untyped
+
+      def read_raw: (untyped _key) -> untyped
+
+      def parse_value: (untyped value, untyped klass) -> untyped
+
+      def parse_entry: (untyped raw, untyped klass) -> (nil | untyped)
+
+      def encode_for: (untyped klass, untyped raw) -> untyped
+
+      def new_record?: (untyped raw, untyped klass) -> untyped
+
+      def valid_entry?: (untyped raw, untyped klass) -> (false | untyped)
+
+      def parse_entries: (untyped values, untyped klass) -> untyped
+    end
+  end
+end

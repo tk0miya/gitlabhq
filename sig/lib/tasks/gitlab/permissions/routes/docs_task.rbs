@@ -1,0 +1,87 @@
+module Tasks
+  module Gitlab
+    module Permissions
+      module Routes
+        class DocsTask
+          @routes: untyped
+
+          @skipped_routes: untyped
+
+          @doc_path: untyped
+
+          @template_path: untyped
+
+          REQUEST_METHOD_SORT_ORDER: { GET: 0, POST: 1, PATCH: 2, PUT: 3, HEAD: 4, DELETE: 5 }
+
+          BOUNDARY_SORT_ORDER: { project: 0, group: 1, user: 2, instance: 3 }
+
+          REASON_LABELS: untyped
+
+          def initialize: () -> void
+
+          def check_docs: () -> untyped
+
+          def compile_docs: () -> untyped
+
+          def allowed_endpoints: () -> untyped
+
+          def skipped_endpoints: () -> untyped
+
+          def public_endpoints: () -> untyped
+
+          def publicly_accessible_endpoints: () -> untyped
+
+          private
+
+          attr_reader routes: untyped
+
+          attr_reader skipped_routes: untyped
+
+          attr_reader doc_path: untyped
+
+          attr_reader template_path: untyped
+
+          # Build routes as a collection of structs, each representing a route
+          # with its associated permissions, category, resource, and action. If
+          # a route has multiple boundaries it results to multiple structs, one
+          # for each boundary. This makes it possible to do
+          # routes.group_by(&:(category|resource|action)) instead of
+          # routes.group_by { |r| compute_group_by_attr_for_route(r) }.
+          def build_route_structs: (untyped routes) -> untyped
+
+          def route_permissions: (untyped route) -> untyped
+
+          def boundaries_for_route: (untyped route) -> untyped
+
+          def deduplicate_routes: (untyped routes) -> untyped
+
+          def route_reason: (untyped route) -> untyped
+
+          def publicly_accessible?: (untyped route, untyped boundary) -> (false | untyped)
+
+          def reason_label: (untyped reason) -> untyped
+
+          def route_path: (untyped route) -> untyped
+
+          def markdown_row: (untyped row) -> ::String
+
+          def build_table: (untyped header) { () -> untyped } -> untyped
+
+          def build_section: (untyped title, untyped description, untyped routes) { (untyped, untyped) -> untyped } -> untyped
+
+          def build_route_row: (untyped base_columns, untyped route) -> untyped
+
+          def sort_routes_by_request_method: (untyped routes) -> untyped
+
+          def group_routes_by_boundary: (untyped routes) -> untyped
+
+          def group_routes_by_action: (untyped routes) -> untyped
+
+          def build_resource_section: (untyped resource, untyped resource_routes) -> untyped
+
+          def build_category_section: (untyped category, untyped category_routes) -> untyped
+        end
+      end
+    end
+  end
+end

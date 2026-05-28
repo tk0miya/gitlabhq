@@ -1,0 +1,21 @@
+module Gitlab
+  module GithubGistsImport
+    class FinishImportWorker
+      include ApplicationWorker
+
+      INTERVAL: untyped
+
+      BLOCKING_WAIT_TIME: 5
+
+      GISTS_ERRORS_BY_ID: "gitlab:github-gists-import:%{user_id}:errors"
+
+      def perform: (untyped user_id, untyped waiter_key, untyped remaining) -> untyped
+
+      private
+
+      def wait_for_jobs: (untyped key, untyped remaining) -> (nil | untyped)
+
+      def send_email_if_errors: (untyped user_id) -> untyped
+    end
+  end
+end

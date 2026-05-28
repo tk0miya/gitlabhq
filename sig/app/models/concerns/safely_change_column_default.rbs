@@ -1,0 +1,22 @@
+# == SafelyChangeColumnDefault concern.
+#
+# Contains functionality that allows safely changing a column default without downtime.
+# Without this concern, Rails can mutate the old default value to the new default value if the old default is explicitly
+# specified.
+#
+# Usage:
+#
+#   class SomeModel < ApplicationRecord
+#     include SafelyChangeColumnDefault
+#
+#     columns_changing_default :value
+#   end
+#
+#   # Assume a default of 100 for value
+#   SomeModel.create!(value: 100) # INSERT INTO some_model (value) VALUES (100)
+#   change_column_default('some_model', 'value', from: 100, to: 101)
+#   SomeModel.create!(value: 100) # INSERT INTO some_model (value) VALUES (100)
+#   # Without this concern, would be INSERT INTO some_model (value) DEFAULT VALUES and would insert 101.
+module SafelyChangeColumnDefault
+  extend ActiveSupport::Concern
+end

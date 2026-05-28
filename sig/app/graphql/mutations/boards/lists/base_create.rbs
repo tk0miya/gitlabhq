@@ -1,0 +1,19 @@
+module Mutations
+  module Boards
+    module Lists
+      class BaseCreate < BaseMutation
+        def ready?: (**untyped args) -> untyped
+
+        def resolve: (**untyped args) -> { list: untyped, errors: untyped }
+
+        private
+
+        def create_list: (untyped board, untyped params) -> untyped
+
+        def create_list_params: (untyped args) -> untyped
+
+        def mutually_exclusive_args: () -> ::Array[:backlog | :label_id]
+      end
+    end
+  end
+end

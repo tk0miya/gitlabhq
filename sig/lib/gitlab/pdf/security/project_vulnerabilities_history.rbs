@@ -1,0 +1,55 @@
+module Gitlab
+  module PDF
+    module Security
+      class ProjectVulnerabilitiesHistory
+        @pdf: untyped
+
+        @data: untyped
+
+        @y: untyped
+
+        include Prawn::View
+
+        SEVERITY_LEGEND: ::Array[{ name: "Critical", color: "660e00" } | { name: "High", color: "ae1800" } | { name: "Medium", color: "9e5400" } | { name: "Low", color: "c17d10" } | { name: "Info", color: "428fdc" } | { name: "Unknown", color: "868686" }]
+
+        # the SVG provided by the frontend uses CSS variables, but
+        # prawn-svg does not support CSS variables. We will gsub in
+        # hardedcoded colors for the CSS variable we care about.
+        CHART_HEIGHT: 250
+
+        SVG_HEIGHT: 200
+
+        TITLE_FONT_SIZE: 14
+
+        DESCRIPTION_FONT_SIZE: 10
+
+        LEGEND_FONT_SIZE: 8
+
+        LEGEND_LINE_WIDTH: 8
+
+        LEGEND_LINE_RIGHT_PADDING: 5
+
+        LEGEND_TEXT_WIDTH: 40
+
+        LEGEND_START_X_OFFSET: 30
+
+        BACKGROUND_COLOR: "F9F9F9"
+
+        DIVIDER_COLOR: "dddddd"
+
+        CSS_TRANSLATIONS: ::Array[::Array["var(--gl-chart-axis-line-color)" | "#dddddd"] | ::Array["var(--gl-text-color-default)" | "#333333"] | ::Array["var(--gl-chart-axis-text-color)" | "#666666"]]
+
+        def self.render: (untyped pdf, ?data: untyped?) -> untyped
+
+        def initialize: (untyped pdf, untyped data) -> void
+
+        # rubocop:disable Metrics/AbcSize --- this is the nature of the dsl.
+        def render: () -> (:noop | untyped)
+
+        private
+
+        def process_raw: (untyped data) -> (nil | untyped)
+      end
+    end
+  end
+end

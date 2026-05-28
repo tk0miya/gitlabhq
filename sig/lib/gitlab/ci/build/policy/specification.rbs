@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Build
+      module Policy
+        #
+        # Abstract class that defines an interface of job policy
+        # specification.
+        #
+        # Used for job's only/except policy configuration.
+        #
+        class Specification
+          @spec: untyped
+
+          UnknownPolicyError: untyped
+
+          def initialize: (untyped spec) -> void
+
+          def satisfied_by?: (untyped pipeline, ?untyped? context) -> untyped
+        end
+      end
+    end
+  end
+end

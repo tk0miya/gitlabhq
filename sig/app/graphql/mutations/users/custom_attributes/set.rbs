@@ -1,0 +1,9 @@
+module Mutations
+  module Users
+    module CustomAttributes
+      class Set < BaseMutation
+        def resolve: (user_id: untyped, key: untyped, value: untyped) -> ({ custom_attribute: nil, errors: untyped } | { custom_attribute: untyped, errors: ::Array[untyped] })
+      end
+    end
+  end
+end

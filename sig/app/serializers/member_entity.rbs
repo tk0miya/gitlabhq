@@ -1,0 +1,13 @@
+class MemberEntity < Grape::Entity
+  include RequestAwareEntity
+
+  include AvatarsHelper
+
+  private
+
+  def current_user: () -> untyped
+
+  def direct_member?: (untyped member, untyped options) -> untyped
+
+  def inherited_member?: (untyped member, untyped options) -> (false | untyped | untyped)
+end

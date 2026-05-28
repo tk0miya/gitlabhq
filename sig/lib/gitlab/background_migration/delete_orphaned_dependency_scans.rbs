@@ -1,0 +1,14 @@
+module Gitlab
+  module BackgroundMigration
+    class DeleteOrphanedDependencyScans < BatchedMigrationJob
+      # Only delete scans that have been in created state for more than 7 days
+      STALE_THRESHOLD: untyped
+
+      DEPENDENCY_SCANNING: 2
+
+      CREATED: 0
+
+      def perform: () -> untyped
+    end
+  end
+end

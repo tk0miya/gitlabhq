@@ -1,0 +1,96 @@
+module Gitlab
+  module Counters
+    class BufferedCounter
+      @counter_record: untyped
+
+      @attribute: untyped
+
+      include Gitlab::ExclusiveLeaseHelpers
+
+      WORKER_DELAY: untyped
+
+      WORKER_LOCK_TTL: untyped
+
+      # Refresh keys are set to expire after a very long time,
+      # so that they do not occupy Redis memory indefinitely,
+      # if for any reason they are not deleted.
+      # In practice, a refresh is not expected to take longer than this TTL.
+      REFRESH_KEYS_TTL: untyped
+
+      CLEANUP_BATCH_SIZE: 50
+
+      CLEANUP_INTERVAL_SECONDS: ::Float
+
+      # Limit size of bitmap key to 2^26-1 (~8MB)
+      MAX_BITMAP_OFFSET: 67108863
+
+      LUA_FLUSH_INCREMENT_SCRIPT: "local increment_key, flushed_key = KEYS[1], KEYS[2]\nlocal increment_value = redis.call(\"get\", increment_key) or 0\nlocal flushed_value = redis.call(\"incrby\", flushed_key, increment_value)\nif flushed_value == 0 then\n  redis.call(\"del\", increment_key, flushed_key)\nelse\n  redis.call(\"del\", increment_key)\nend\nreturn flushed_value\n"
+
+      def initialize: (untyped counter_record, untyped attribute) -> void
+
+      def get: () -> untyped
+
+      LUA_INCREMENT_WITH_DEDUPLICATION_SCRIPT: ::String
+
+      def increment: (untyped increment) -> untyped
+
+      def bulk_increment: (untyped increments) -> untyped
+
+      LUA_INITIATE_REFRESH_SCRIPT: ::String
+
+      def initiate_refresh!: () -> untyped
+
+      LUA_FINALIZE_REFRESH_SCRIPT: "local counter_key, refresh_key, refresh_indicator_key = KEYS[1], KEYS[2], KEYS[3]\nlocal refresh_amount = redis.call(\"get\", refresh_key) or 0\n\nredis.call(\"incrby\", counter_key, refresh_amount)\nredis.call(\"del\", refresh_indicator_key, refresh_key)\n"
+
+      def finalize_refresh: () -> untyped
+
+      def cleanup_refresh: () -> untyped
+
+      def commit_increment!: () -> untyped
+
+      # amount_to_be_flushed returns the total value to be flushed.
+      # The total value is the sum of the following:
+      # - current value in the increment_key
+      # - any existing value in the flushed_key that has not been flushed
+      def amount_to_be_flushed: () -> untyped
+
+      def key: () -> ::String
+
+      def flushed_key: () -> ::String
+
+      def refresh_indicator_key: () -> ::String
+
+      def refresh_key: () -> ::String
+
+      private
+
+      attr_reader counter_record: untyped
+
+      attr_reader attribute: untyped
+
+      def increment_args: (untyped increment) -> { keys: ::Array[untyped], argv: ::Array[untyped] }
+
+      def tracking_shard_key: (untyped increment) -> untyped
+
+      def opposing_tracking_shard_key: (untyped increment) -> untyped
+
+      def shards_key: () -> ::String
+
+      def positive_shard_key: (untyped ref) -> ::String
+
+      def negative_shard_key: (untyped ref) -> ::String
+
+      def shard_number: (untyped ref) -> untyped
+
+      def tracking_offset: (untyped increment) -> untyped
+
+      def positive?: (untyped increment) -> untyped
+
+      def remove_flushed_key: () -> untyped
+
+      def redis_state: () { (?) -> untyped } -> untyped
+
+      def with_exclusive_lease: () { (?) -> untyped } -> untyped
+    end
+  end
+end

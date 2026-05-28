@@ -1,0 +1,17 @@
+module MergeRequests
+  class MergeRequestDiffComparison
+    @merge_request_diff: untyped
+
+    @project: untyped
+
+    def initialize: (untyped merge_request_diff) -> void
+
+    def compare_with: (untyped sha) -> untyped
+
+    private
+
+    attr_reader merge_request_diff: untyped
+
+    attr_reader project: untyped
+  end
+end

@@ -1,0 +1,8 @@
+module Banzai
+  module Filter
+    # Text filter that escapes these HTML entities: & " < >
+    class HtmlEntityFilter < HTML::Pipeline::TextFilter
+      def call: () -> untyped
+    end
+  end
+end

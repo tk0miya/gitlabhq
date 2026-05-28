@@ -1,0 +1,36 @@
+module WorkItems
+  module DataSync
+    class BaseService < ::BaseContainerService
+      # this helps reuse this service with Issue instances in legacy code, as well as WorkItem instances
+      @work_item: untyped
+
+      @target_namespace: untyped
+
+      include ::Services::ReturnServiceResponses
+
+      attr_reader work_item: untyped
+
+      attr_reader service_response: untyped
+
+      attr_reader target_namespace: untyped
+
+      # work_item - original work item
+      # target_namespace - ProjectNamespace, Group or Project. When Project is passed it is translated into
+      # `Namespaces::ProjectNamespace` afterwards.
+      # current_user - user performing the move/clone action
+      def initialize: (work_item: untyped, target_namespace: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def verify_work_item_action_permission!: () -> nil
+
+      def data_sync_action: () -> nil
+
+      def ensure_work_item: (untyped work_item) -> untyped
+
+      def handle_target_namespace_type: (untyped target_namespace) -> untyped
+    end
+  end
+end

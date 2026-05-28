@@ -1,0 +1,7 @@
+module WorkItems
+  class ImportWorkItemsCsvWorker
+    include ApplicationWorker
+
+    def perform: (untyped current_user_id, untyped project_id, untyped upload_id) -> untyped
+  end
+end

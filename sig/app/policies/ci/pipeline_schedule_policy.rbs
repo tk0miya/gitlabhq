@@ -1,0 +1,9 @@
+module Ci
+  class PipelineSchedulePolicy < PipelinePolicy
+    alias pipeline_schedule subject
+
+    private
+
+    def full_ref?: (untyped ref) -> untyped
+  end
+end

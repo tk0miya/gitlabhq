@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    class EnvironmentMatcher
+      @pattern: untyped
+
+      @wildcard_regex: untyped
+
+      def initialize: (untyped pattern) -> void
+
+      def match?: (untyped environment) -> (false | untyped)
+
+      private
+
+      attr_reader pattern: untyped
+
+      attr_reader match_type: untyped
+
+      def exact_match?: (untyped environment) -> untyped
+
+      def wildcard_match?: (untyped environment) -> (false | untyped)
+
+      def wildcard?: () -> untyped
+
+      def wildcard_regex: () -> untyped
+    end
+  end
+end

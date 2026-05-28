@@ -1,0 +1,34 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class IssueEventImporter
+        @issue_event: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        attr_reader issue_event: untyped
+
+        attr_reader project: untyped
+
+        attr_reader client: untyped
+
+        SUPPORTED_EVENTS: ::Array["assigned" | "closed" | "cross-referenced" | "demilestoned" | "labeled" | "merged" | "milestoned" | "renamed" | "reopened" | "review_request_removed" | "review_requested" | "unassigned" | "unlabeled" | "commented" | "reviewed"]
+
+        EVENT_COUNTER_MAP: { "commented" => "note", "reviewed" => "pull_request_review", "merged" => "pull_request_merged_by" }
+
+        # issue_event - An instance of `Gitlab::GithubImport::Representation::IssueEvent`.
+        # project - An instance of `Project`.
+        # client - An instance of `Gitlab::GithubImport::Client`.
+        def initialize: (untyped issue_event, untyped project, untyped client) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def event_importer_class: (untyped issue_event) -> untyped
+      end
+    end
+  end
+end

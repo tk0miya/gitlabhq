@@ -1,0 +1,19 @@
+module Atlassian
+  module JiraConnect
+    module Serializers
+      class BaseEntity < Grape::Entity
+        include Gitlab::Routing
+
+        include GitlabRoutingHelper
+
+        def eql: (untyped other) -> untyped
+
+        alias == eql
+
+        private
+
+        def update_sequence_id: () -> untyped
+      end
+    end
+  end
+end

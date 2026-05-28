@@ -1,0 +1,39 @@
+module Gitlab
+  module Ci
+    class Trace
+      class Archive
+        @job: untyped
+
+        @trace_metadata: untyped
+
+        @metrics: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        include Checksummable
+
+        def initialize: (untyped job, untyped trace_metadata, ?untyped metrics) -> void
+
+        def execute!: (untyped stream) -> untyped
+
+        private
+
+        attr_reader job: untyped
+
+        attr_reader trace_metadata: untyped
+
+        attr_reader metrics: untyped
+
+        attr_accessor trace_artifact: untyped
+
+        def clone_file!: (untyped src_stream, untyped temp_dir) { (untyped) -> untyped } -> untyped
+
+        def create_build_trace!: (untyped path, untyped file_sha256) -> untyped
+
+        def validate_archived_trace: () -> (nil | untyped)
+
+        def remote_checksum: () -> untyped
+      end
+    end
+  end
+end

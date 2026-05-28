@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        class Inputs < ::Gitlab::Config::Entry::ComposableHash
+          def compose!: (?untyped? deps) -> untyped
+
+          private
+
+          def composable_class: (untyped _name, untyped _config) -> untyped
+
+          def validate_rules!: () -> untyped
+        end
+      end
+    end
+  end
+end

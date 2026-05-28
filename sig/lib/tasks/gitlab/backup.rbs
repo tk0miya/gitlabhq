@@ -1,0 +1,30 @@
+module Tasks
+  module Gitlab
+    module Backup
+      PID: untyped
+
+      PID_FILE: ::String
+
+      def self.create_backup: () -> untyped
+
+      def self.restore_backup: () -> untyped
+
+      # Verify backup file to ensure it is compatible with current GitLab's version
+      def self.verify_backup: () -> untyped
+
+      def self.create_task: (untyped task_id) -> untyped
+
+      def self.restore_task: (untyped task_id) -> untyped
+
+      # A Backup only includes regular repositories, after a restore we need to reinitialize their respective pools.
+      # This process is done by changing its original state to 'none' and scheduling its creation process again
+      def self.reset_pool_repositories!: () -> untyped
+
+      def self.backup_progress: () -> untyped
+
+      def self.lock_backup: () { () -> untyped } -> untyped
+
+      def self.read_pid: (untyped file_content) -> untyped
+    end
+  end
+end

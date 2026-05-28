@@ -1,0 +1,30 @@
+module Gitlab
+  module BackgroundMigration
+    module BatchingStrategies
+      # Generic batching class for use with a BatchedBackgroundMigration.
+      # Batches over the given table and column combination, returning the MIN() and MAX()
+      # values for the next batch as an array.
+      #
+      # If no more batches exist in the table, returns nil.
+      class PrimaryKeyBatchingStrategy < BaseStrategy
+        include Gitlab::Database::DynamicModelHelpers
+
+        # Finds and returns the next batch in the table.
+        #
+        # table_name - The table to batch over
+        # column_name - The column to batch over
+        # batch_min_value - The minimum value which the next batch will start at
+        # batch_size - The size of the next batch
+        # job_arguments - The migration job arguments
+        # job_class - The migration job class
+        # rubocop:disable Metrics/AbcSize -- temporarily contains two branches for cursor and non-cursor batching
+        # rubocop:disable Metrics/MethodLength -- temporarily contains two branches for cursor and non-cursor batching
+        def next_batch: (untyped table_name, untyped column_name, batch_min_value: untyped, batch_size: untyped, job_arguments: untyped, ?job_class: untyped?) -> untyped
+
+        private
+
+        def filter_batch: (untyped relation, table_name: untyped, column_name: untyped, job_class: untyped, ?job_arguments: untyped) -> untyped
+      end
+    end
+  end
+end

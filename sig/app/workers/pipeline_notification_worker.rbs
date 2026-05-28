@@ -1,0 +1,7 @@
+class PipelineNotificationWorker
+  include ApplicationWorker
+
+  include PipelineQueue
+
+  def perform: (untyped pipeline_id, ?::Hash[untyped, untyped] args) -> (nil | untyped)
+end

@@ -1,0 +1,36 @@
+module Gitlab
+  module GithubImport
+    class EventsCache
+      @project: untyped
+
+      MAX_NUMBER_OF_EVENTS: 100
+
+      MAX_EVENT_SIZE: untyped
+
+      def initialize: (untyped project) -> void
+
+      # Add issue event as JSON to the cache
+      #
+      # @param record [ActiveRecord::Model] Model that responds to :iid
+      # @param event [GitLab::GitHubImport::Representation::IssueEvent]
+      def add: (untyped record, untyped issue_event) -> (nil | untyped)
+
+      # Reads issue events from cache
+      #
+      # @param record [ActiveRecord::Model] Model that responds to :iid
+      # @return [Array<GitLab::GitHubImport::Representation::IssueEvent>] List of issue events
+      def events: (untyped record) -> untyped
+
+      # Deletes the cache
+      #
+      # @param record [ActiveRecord::Model] Model that responds to :iid
+      def delete: (untyped record) -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      def events_cache_key: (untyped record) -> ::String
+    end
+  end
+end

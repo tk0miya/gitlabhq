@@ -1,0 +1,13 @@
+module Mutations
+  module ResolvesIssuable
+    extend ActiveSupport::Concern
+
+    def resolve_issuable: (type: untyped, parent_path: untyped, iid: untyped) -> (nil | untyped)
+
+    private
+
+    def issuable_finder: (untyped type, untyped args) -> untyped
+
+    def resolve_issuable_parent: (untyped type, untyped parent_path) -> (nil | untyped)
+  end
+end

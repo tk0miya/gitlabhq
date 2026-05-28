@@ -1,0 +1,17 @@
+module Repositories
+  module Tags
+    class GpgSignature < ApplicationRecord
+      include ShaAttribute
+
+      include SignatureType
+
+      include BulkInsertSafe
+
+      def type: () -> :gpg
+
+      def gpg_key: () -> (untyped | untyped | nil)
+
+      def gpg_key=: (untyped model) -> untyped
+    end
+  end
+end

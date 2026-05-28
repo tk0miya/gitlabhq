@@ -1,0 +1,12 @@
+module Ci
+  # TODO: a couple of points with this approach:
+  # + reuses existing architecture and reactive caching
+  # - it's not a report comparison and some comparing features must be turned off.
+  # see CompareReportsBaseService for more notes.
+  # issue: https://gitlab.com/gitlab-org/gitlab/issues/34224
+  class GenerateExposedArtifactsReportService < CompareReportsBaseService
+    def execute: (untyped base_pipeline, untyped head_pipeline) -> untyped
+
+    def latest?: (untyped base_pipeline, untyped head_pipeline, untyped data) -> untyped
+  end
+end

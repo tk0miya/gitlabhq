@@ -1,0 +1,13 @@
+module Mutations
+  module Packages
+    class DestroyFile < ::Mutations::BaseMutation
+      include Mutations::Packages::DeleteProtection
+
+      def resolve: (id: untyped) -> ({ errors: ::Array[untyped] } | { errors: untyped })
+
+      private
+
+      def sync_helm_metadata_cache: (untyped package_file) -> (nil | untyped)
+    end
+  end
+end

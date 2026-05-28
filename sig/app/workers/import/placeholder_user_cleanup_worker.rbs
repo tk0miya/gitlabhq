@@ -1,0 +1,15 @@
+module Import
+  class PlaceholderUserCleanupWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    MAX_ATTEMPTS: 15
+
+    def perform: () -> untyped
+
+    def max_attempts_reached?: (untyped detail) -> untyped
+
+    def log_max_attempts_warning: (untyped detail) -> untyped
+  end
+end

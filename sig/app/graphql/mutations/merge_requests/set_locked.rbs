@@ -1,0 +1,7 @@
+module Mutations
+  module MergeRequests
+    class SetLocked < Base
+      def resolve: (project_path: untyped, iid: untyped, locked: untyped) -> { merge_request: untyped, errors: untyped }
+    end
+  end
+end

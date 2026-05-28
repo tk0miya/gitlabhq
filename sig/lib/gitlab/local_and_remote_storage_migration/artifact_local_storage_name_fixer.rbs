@@ -1,0 +1,23 @@
+module Gitlab
+  module LocalAndRemoteStorageMigration
+    class ArtifactLocalStorageNameFixer
+      @logger: untyped
+
+      def initialize: (?untyped? logger) -> void
+
+      def rename_artifacts: () -> untyped
+
+      private
+
+      attr_reader logger: untyped
+
+      def batch_size: () -> untyped
+
+      def log_success: (untyped item) -> untyped
+
+      def log_error: (untyped err, untyped item) -> untyped
+
+      def items_with_files_stored_locally: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module ErrorTracking
+  class SentryClient
+    module PaginationParser
+      PATTERN: ::Regexp
+
+      def self.parse: (untyped headers) -> untyped
+
+      def self.parse_link: (untyped link) -> (nil | ::Array[untyped | { "cursor" => untyped }])
+    end
+  end
+end

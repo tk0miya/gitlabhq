@@ -1,0 +1,171 @@
+class Event < ApplicationRecord
+  @capability: untyped
+
+  include Sortable
+
+  include FromUnion
+
+  include Presentable
+
+  include DeleteWithLimit
+
+  include CreatedAtFilterable
+
+  include Gitlab::Utils::StrongMemoize
+
+  include UsageStatistics
+
+  include ShaAttribute
+
+  include EachBatch
+
+  include Import::HasImportSource
+
+  ACTIONS: untyped
+
+  PROJECT_ACTIONS: ::Array[:created | :pushed | :joined | :left | :expired]
+
+  WIKI_ACTIONS: ::Array[:created | :updated | :destroyed]
+
+  DESIGN_ACTIONS: ::Array[:created | :updated | :destroyed]
+
+  TEAM_ACTIONS: ::Array[:joined | :left | :expired]
+
+  ISSUE_ACTIONS: ::Array[:created | :updated | :closed | :reopened]
+
+  ISSUE_TYPES: ::Array[untyped]
+
+  TARGET_TYPES: untyped
+
+  RESET_PROJECT_ACTIVITY_INTERVAL: untyped
+
+  REPOSITORY_UPDATED_AT_INTERVAL: untyped
+
+  CONTRIBUTABLE_TARGET_TYPES: ::Array["MergeRequest" | "Issue" | "WorkItem" | "DesignManagement::Design"]
+
+  def self.model_name: () -> untyped
+
+  def self.find_sti_class: (untyped action) -> untyped
+
+  def self.limit_recent: (?::Integer limit, ?untyped? offset) -> untyped
+
+  def self.target_types: () -> untyped
+
+  def present: () -> untyped
+
+  def visible_to_user?: (?untyped? user) -> (false | untyped)
+
+  def resource_parent: () -> untyped
+
+  def target_title: () -> untyped
+
+  def push_action?: () -> false
+
+  def membership_changed?: () -> untyped
+
+  def created_project_action?: () -> untyped
+
+  def created_wiki_page?: () -> untyped
+
+  def updated_wiki_page?: () -> untyped
+
+  def milestone?: () -> untyped
+
+  def note?: () -> untyped
+
+  def issue?: () -> untyped
+
+  def merge_request?: () -> untyped
+
+  def wiki_page?: () -> untyped
+
+  def design?: () -> untyped
+
+  def work_item?: () -> untyped
+
+  def project?: () -> untyped
+
+  def target_type: () -> ("Project" | untyped)
+
+  def target_id: () -> untyped
+
+  def target: () -> untyped
+
+  def milestone: () -> (untyped | nil)
+
+  def issue: () -> (untyped | nil)
+
+  def design: () -> (untyped | nil)
+
+  def merge_request: () -> (untyped | nil)
+
+  def wiki_page: () -> untyped
+
+  def note: () -> (untyped | nil)
+
+  # rubocop: disable Metrics/CyclomaticComplexity
+  # rubocop: disable Metrics/PerceivedComplexity
+  def action_name: () -> (untyped | untyped | "closed" | "accepted" | "joined" | "left" | "removed due to membership expiration from" | "destroyed" | "commented on" | "created" | "updated" | untyped | "approved" | "opened")
+
+  def target_iid: () -> untyped
+
+  def commit_note?: () -> untyped
+
+  def issue_note?: () -> untyped
+
+  def merge_request_note?: () -> untyped
+
+  def snippet_note?: () -> untyped
+
+  def project_snippet_note?: () -> untyped
+
+  def personal_snippet_note?: () -> untyped
+
+  def design_note?: () -> untyped
+
+  def wiki_page_note?: () -> untyped
+
+  def note_target: () -> untyped
+
+  def note_target_id: () -> untyped
+
+  def note_target_reference: () -> (nil | untyped)
+
+  def body?: () -> (untyped | true | untyped)
+
+  def ensure_sharding_key: () -> (nil | untyped)
+
+  def update_project: () -> (nil | untyped)
+
+  def reset_project_activity: () -> (nil | untyped)
+
+  def authored_by?: (untyped user) -> (untyped | false)
+
+  def to_partial_path: () -> untyped
+
+  def has_no_project_and_group?: () -> untyped
+
+  def target_deleted?: () -> untyped
+
+  def capability: () -> untyped
+
+  def capabilities: () -> { download_code: ::Array[:push_action? | :commit_note?], read_project: ::Array[:membership_changed? | :created_project_action?], read_issue: ::Array[:issue? | :issue_note?], read_merge_request: ::Array[:merge_request? | :merge_request_note?], read_snippet: ::Array[:personal_snippet_note? | :project_snippet_note?], read_milestone: ::Array[:milestone?], read_wiki: ::Array[:wiki_page?], read_design: ::Array[:design_note? | :design?], read_note: ::Array[:note?], read_work_item: ::Array[:work_item?] }
+
+  private
+
+  def permission_object: () -> untyped
+
+  def push_action_name: () -> ("pushed new" | "deleted" | "pushed to")
+
+  def created_project_action_name: () -> ("imported" | "created")
+
+  def recent_update?: () -> untyped
+
+  def set_last_repository_updated_at: () -> untyped
+
+  def design_action_names: () -> { created: "added", updated: "updated", destroyed: "removed" }
+
+  def action_enum_value: () -> untyped
+
+  def project_as_target?: (untyped target_type) -> (false | untyped)
+end

@@ -1,0 +1,12 @@
+module Gitlab
+  module Email
+    module Hook
+      class EmailTemplateInterceptor
+        #
+        # Remove HTML part if HTML emails are disabled.
+        #
+        def self.delivering_email: (untyped message) -> (untyped | nil)
+      end
+    end
+  end
+end

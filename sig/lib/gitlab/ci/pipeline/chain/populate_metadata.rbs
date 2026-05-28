@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class PopulateMetadata < Chain::Base
+          include Chain::Helpers
+
+          def perform!: () -> (nil | untyped)
+
+          def break?: () -> untyped
+
+          private
+
+          def set_pipeline_name: () -> (nil | untyped)
+
+          def set_auto_cancel: () -> (nil | untyped)
+
+          def set_auto_cancel_on_new_commit: (untyped auto_cancel) -> (nil | untyped)
+
+          def set_auto_cancel_on_job_failure: (untyped auto_cancel) -> (nil | untyped)
+
+          def global_context: () -> untyped
+
+          def assign_to_metadata: (untyped attributes) -> untyped
+        end
+      end
+    end
+  end
+end

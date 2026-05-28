@@ -1,0 +1,11 @@
+module Banzai
+  module Pipeline
+    class EmojiPipeline < BasePipeline
+      self.@filters: untyped
+
+      # These filters will only perform sanitization of the content, preventing
+      # XSS, and replace emoji.
+      def self.filters: () -> untyped
+    end
+  end
+end

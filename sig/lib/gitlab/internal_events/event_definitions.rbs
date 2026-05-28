@@ -1,0 +1,17 @@
+module Gitlab
+  module InternalEvents
+    module EventDefinitions
+      self.@events: untyped
+
+      def self.load_configurations: () -> nil
+
+      private
+
+      def self.events: () -> untyped
+
+      def self.load_metric_definitions: () -> untyped
+
+      def self.process_events: (untyped all_events, untyped metric_events) -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Metrics
+    module DatabaseTransactionSlis
+      REQUEST_STORE_KEY: :txn_duration
+
+      DEFAULT_DURATION_THRESHOLD: 1
+
+      THRESHOLDS: { "main" => ::Float, "ci" => ::Float }
+
+      def self.initialize_slis!: (untyped possible_labels) -> untyped
+
+      def self.record_txn_apdex: (untyped labels, untyped txn_durations) -> untyped
+    end
+  end
+end

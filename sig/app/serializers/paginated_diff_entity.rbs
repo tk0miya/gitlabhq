@@ -1,0 +1,14 @@
+# Serializes diffs with pagination data.
+#
+# Avoid adding more keys to this serializer as processing the
+# diff file serialization is not cheap.
+#
+class PaginatedDiffEntity < Grape::Entity
+  include RequestAwareEntity
+
+  include DiffHelper
+
+  private
+
+  def merge_request: () -> untyped
+end

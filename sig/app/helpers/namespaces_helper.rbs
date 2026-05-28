@@ -1,0 +1,23 @@
+module NamespacesHelper
+  def namespace_id_from: (untyped params) -> untyped
+
+  def check_group_lock: (untyped group, untyped method) -> (untyped | false)
+
+  def check_project_lock: (untyped project, untyped method) -> (untyped | false)
+
+  def cascading_namespace_settings_tooltip_data: (untyped attribute, untyped group, untyped settings_path_helper) -> { tooltip_data: untyped, testid: "cascading-settings-lock-icon" }
+
+  def cascading_namespace_settings_tooltip_raw_data: (untyped attribute, untyped group, untyped settings_path_helper) -> (::Hash[untyped, untyped] | untyped)
+
+  def project_cascading_namespace_settings_tooltip_data: (untyped attribute, untyped project, untyped settings_path_helper) -> (nil | untyped)
+
+  def cascading_namespace_setting_locked?: (untyped attribute, untyped group, **untyped args) -> (false | untyped)
+
+  def pipeline_usage_app_data: (untyped namespace) -> { namespace_actual_plan_name: untyped, namespace_id: untyped, user_namespace: untyped, page_size: untyped }
+
+  def storage_usage_app_data: (untyped namespace) -> { namespace_id: untyped, namespace_path: untyped, user_namespace: untyped, default_per_page: untyped }
+
+  def import_usage_app_data: (untyped namespace) -> { placeholder_users_count: untyped, placeholder_users_limit: untyped }
+
+  def group_usage_quotas_url: (untyped group, *untyped args) -> untyped
+end

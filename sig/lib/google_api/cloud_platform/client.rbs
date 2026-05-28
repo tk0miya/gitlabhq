@@ -1,0 +1,81 @@
+module GoogleApi
+  module CloudPlatform
+    class Client < GoogleApi::Auth
+      @gpc_service: untyped
+
+      @sql_admin_service: untyped
+
+      SCOPE: "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/service.management"
+
+      LEAST_TOKEN_LIFE_TIME: untyped
+
+      ROLES_LIST: ::Array["roles/iam.serviceAccountUser" | "roles/artifactregistry.admin" | "roles/cloudbuild.builds.builder" | "roles/run.admin" | "roles/storage.admin" | "roles/cloudsql.client" | "roles/browser"]
+
+      REVOKE_URL: "https://oauth2.googleapis.com/revoke"
+
+      def self.session_key_for_token: () -> :cloud_platform_access_token
+
+      def self.session_key_for_expires_at: () -> :cloud_platform_expires_at
+
+      def self.new_session_key_for_redirect_uri: () { (untyped) -> untyped } -> untyped
+
+      def self.session_key_for_redirect_uri: (untyped state) -> ::String
+
+      def scope: () -> untyped
+
+      def validate_token: (untyped expires_at) -> (false | true)
+
+      def list_projects: () -> untyped
+
+      def create_service_account: (untyped gcp_project_id, untyped display_name, untyped description) -> untyped
+
+      def create_service_account_key: (untyped gcp_project_id, untyped service_account_id) -> untyped
+
+      def grant_service_account_roles: (untyped gcp_project_id, untyped email) -> untyped
+
+      def enable_cloud_run: (untyped gcp_project_id) -> untyped
+
+      def enable_artifacts_registry: (untyped gcp_project_id) -> untyped
+
+      def enable_cloud_build: (untyped gcp_project_id) -> untyped
+
+      def enable_cloud_sql_admin: (untyped gcp_project_id) -> untyped
+
+      def enable_compute: (untyped gcp_project_id) -> untyped
+
+      def enable_service_networking: (untyped gcp_project_id) -> untyped
+
+      def enable_vision_api: (untyped gcp_project_id) -> untyped
+
+      def revoke_authorizations: () -> untyped
+
+      def list_cloudsql_databases: (untyped gcp_project_id, untyped instance_name) -> untyped
+
+      def create_cloudsql_database: (untyped gcp_project_id, untyped instance_name, untyped database_name) -> untyped
+
+      def list_cloudsql_users: (untyped gcp_project_id, untyped instance_name) -> untyped
+
+      def create_cloudsql_user: (untyped gcp_project_id, untyped instance_name, untyped username, untyped password) -> untyped
+
+      def get_cloudsql_instance: (untyped gcp_project_id, untyped instance_name) -> untyped
+
+      def create_cloudsql_instance: (untyped gcp_project_id, untyped instance_name, untyped root_password, untyped database_version, untyped region, untyped tier) -> untyped
+
+      private
+
+      def enable_service: (untyped gcp_project_id, untyped service_name) -> untyped
+
+      def token_life_time: (untyped expires_at) -> untyped
+
+      def user_agent_header: () -> untyped
+
+      def policy_request_body: (untyped gcp_project_id, untyped email) -> untyped
+
+      def additional_policy_bindings: (untyped member) -> untyped
+
+      def cloud_resource_manager_service: () -> untyped
+
+      def sql_admin_service: () -> untyped
+    end
+  end
+end

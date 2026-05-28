@@ -1,0 +1,31 @@
+module Boards
+  module Lists
+    # This class is used by issue and epic board lists
+    # for creating new list
+    class BaseCreateService < Boards::BaseService
+      include Gitlab::Utils::StrongMemoize
+
+      def execute: (untyped board) -> untyped
+
+      private
+
+      def type: () -> (:backlog | :label)
+
+      def target: (untyped board) -> untyped
+
+      def available_labels: () -> untyped
+
+      # Shift each list that is after the new list's position so that they
+      # are in the correct order.
+      def reorder_subsequent_lists!: (untyped board, untyped insert_position) -> (nil | untyped)
+
+      def next_position: (untyped board) -> untyped
+
+      def create_list: (untyped board, untyped type, untyped target, untyped position) -> untyped
+
+      def create_list_attributes: (untyped type, untyped target, untyped position) -> ::Hash[untyped | :list_type | :position, untyped]
+
+      def create_backlog: (untyped board) -> untyped
+    end
+  end
+end

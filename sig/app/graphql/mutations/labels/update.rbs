@@ -1,0 +1,11 @@
+module Mutations
+  module Labels
+    class Update < BaseMutation
+      def resolve: (id: untyped, **untyped args) -> { label: untyped, errors: untyped }
+
+      private
+
+      def find_object: (untyped id) -> untyped
+    end
+  end
+end

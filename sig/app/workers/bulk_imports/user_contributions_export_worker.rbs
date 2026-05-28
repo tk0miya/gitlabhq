@@ -1,0 +1,55 @@
+module BulkImports
+  class UserContributionsExportWorker
+    @portable_id: untyped
+
+    @portable_class: untyped
+
+    @user_id: untyped
+
+    @enqueued_at: untyped
+
+    @offline_export_id: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    REENQUEUE_DELAY: untyped
+
+    EXPORT_TIMEOUT: untyped
+
+    def perform: (untyped portable_id, untyped portable_class, untyped user_id, untyped offline_export_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+    def perform_failure: (untyped job, untyped exception) -> untyped
+
+    private
+
+    attr_reader portable_id: untyped
+
+    attr_reader portable_class: untyped
+
+    attr_reader user_id: untyped
+
+    attr_reader enqueued_at: untyped
+
+    attr_reader offline_export_id: untyped
+
+    def in_initial_export_state?: () -> untyped
+
+    def ignored_relation?: (untyped relation) -> untyped
+
+    def job_stuck_without_exports?: () -> untyped
+
+    def exports_still_processing?: () -> (true | untyped)
+
+    def re_enqueue: () -> untyped
+
+    def log_and_fail: (untyped message) -> untyped
+
+    def portable: () -> untyped
+
+    def user_contributions_export: () -> untyped
+
+    def log_error: (untyped message) -> untyped
+  end
+end

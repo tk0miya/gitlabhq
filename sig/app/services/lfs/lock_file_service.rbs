@@ -1,0 +1,14 @@
+module Lfs
+  class LockFileService < BaseFileLockService
+    def execute: () -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def current_lock: () -> untyped
+
+    def create_lock!: () -> untyped
+
+    def error: (untyped message, untyped http_status, ?untyped? lock) -> { status: :error, message: untyped, http_status: untyped, lock: untyped }
+  end
+end

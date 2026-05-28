@@ -1,0 +1,10 @@
+module Ci
+  module JobAbilities
+    extend ActiveSupport::Concern
+
+    # TODO: remove usages of :update_build permission
+    UPDATE_JOB_ABILITIES: ::Array[:update_build | :play_job | :retry_job | :unschedule_job | :keep_job_artifacts]
+
+    CLEANUP_JOB_ABILITIES: ::Array[:cancel_build | :erase_build]
+  end
+end

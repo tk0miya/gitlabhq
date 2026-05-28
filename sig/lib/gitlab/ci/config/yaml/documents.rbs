@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    class Config
+      module Yaml
+        class Documents
+          @documents: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped documents) -> void
+
+          def header: () -> (nil | untyped)
+
+          def content: () -> untyped
+
+          private
+
+          attr_reader documents: untyped
+
+          def has_header?: () -> (false | untyped)
+
+          def parsed_first_document: () -> (::Hash[untyped, untyped] | untyped)
+        end
+      end
+    end
+  end
+end

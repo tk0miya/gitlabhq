@@ -1,0 +1,19 @@
+module Mutations
+  module Notes
+    module Create
+      # This is a Base class for the Note creation Mutations and is not
+      # mounted as a GraphQL mutation itself.
+      class Base < Mutations::Notes::Base
+        def resolve: (untyped args) -> untyped
+
+        private
+
+        def create_note_params: (untyped noteable, untyped args) -> { noteable: untyped, note: untyped, internal: untyped }
+
+        def verify_rate_limit!: (untyped current_user) -> (nil | untyped)
+
+        def rate_limit_throttled?: () -> untyped
+      end
+    end
+  end
+end

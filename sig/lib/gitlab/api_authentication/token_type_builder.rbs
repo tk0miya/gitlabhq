@@ -1,0 +1,14 @@
+# See Gitlab::Auth::AuthBuilder
+module Gitlab
+  module APIAuthentication
+    class TokenTypeBuilder
+      @strategies: untyped
+
+      def initialize: (untyped strategies) -> void
+
+      def token_types: (*untyped resolvers) -> untyped
+
+      alias token_type token_types
+    end
+  end
+end

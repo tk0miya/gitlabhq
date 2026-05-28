@@ -1,0 +1,21 @@
+module Database
+  module BackgroundOperation
+    class BaseSchedulerWorker
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      include Database::BackgroundWorkSchedulable
+
+      def self.scheduler_feature_flag_enabled?: () -> untyped
+
+      def perform: () -> (nil | untyped)
+
+      private
+
+      def queueable_workers: () -> untyped
+
+      def queue_workers_for_execution: (untyped workers) -> (nil | untyped)
+    end
+  end
+end

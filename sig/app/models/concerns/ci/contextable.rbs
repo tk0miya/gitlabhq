@@ -1,0 +1,25 @@
+module Ci
+  #
+  # This module implements methods that provide context in form of
+  # essential CI/CD variables that can be used by a build / bridge job.
+  #
+  module Contextable
+    #
+    # Variables in the environment name scope.
+    #
+    def scoped_variables: (?environment: untyped, ?dependencies: bool) -> untyped
+
+    def unprotected_scoped_variables: (expose_project_variables: untyped, expose_group_variables: untyped, ?environment: untyped, ?dependencies: bool) -> untyped
+
+    def track_duration: () { () -> untyped } -> untyped
+
+    #
+    # Variables that do not depend on the environment name.
+    #
+    def simple_variables: () -> untyped
+
+    def manual_variables: () -> untyped
+
+    def simple_variables_without_dependencies: () -> untyped
+  end
+end

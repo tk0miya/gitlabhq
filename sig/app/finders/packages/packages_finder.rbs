@@ -1,0 +1,38 @@
+module Packages
+  class PackagesFinder
+    @projects: untyped
+
+    @params: untyped
+
+    include ::Packages::FinderHelper
+
+    # @param projects [Project, Array<Project>, ActiveRecord::Relation<Project>]
+    # a single project, collection of projects, or projects relation
+    # @param params [Hash] filtering and sorting options
+    # @option params [String] :order_by ('created_at') attribute to order by
+    # @option params [String] :sort ('asc') sort direction
+    # @option params [String] :package_name filter by package name
+    # @option params [String] :package_type filter by package type
+    # @option params [String] :package_version filter by version
+    # @option params [Boolean] :preload_pipelines (true) whether to preload pipelines
+    # @option params [Boolean] :include_versionless include packages without version
+    # @option params [Boolean] :exact_name whether to match package name exactly or not
+    def initialize: (untyped projects, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader params: untyped
+
+    attr_reader projects: untyped
+
+    def filter_by_name: (untyped packages) -> untyped
+
+    def order_packages: (untyped packages) -> untyped
+
+    def preload_pipelines: () -> untyped
+
+    def base: () -> untyped
+  end
+end

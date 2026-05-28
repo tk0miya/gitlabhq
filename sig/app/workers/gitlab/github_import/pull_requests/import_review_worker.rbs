@@ -1,0 +1,15 @@
+module Gitlab
+  module GithubImport
+    module PullRequests
+      class ImportReviewWorker
+        include ObjectImporter
+
+        def representation_class: () -> untyped
+
+        def importer_class: () -> untyped
+
+        def object_type: () -> :pull_request_review
+      end
+    end
+  end
+end

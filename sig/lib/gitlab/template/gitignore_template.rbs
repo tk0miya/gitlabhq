@@ -1,0 +1,13 @@
+module Gitlab
+  module Template
+    class GitignoreTemplate < BaseTemplate
+      def self.extension: () -> ".gitignore"
+
+      def self.categories: () -> { "Languages" => "", "Global" => "Global" }
+
+      def self.base_dir: () -> untyped
+
+      def self.finder: (?untyped? project) -> untyped
+    end
+  end
+end

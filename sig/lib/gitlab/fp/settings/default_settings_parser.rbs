@@ -1,0 +1,30 @@
+module Gitlab
+  module Fp
+    module Settings
+      class DefaultSettingsParser
+        # @param [String] module_name
+        # @param [Array] requested_setting_names
+        # @param [Hash] default_settings
+        # @param [Array] mutually_dependent_settings_groups
+        # @return [Array<(Hash, Hash)>] settings, setting_types
+        # @raise [RuntimeError]
+        def self.parse: (module_name: untyped, requested_setting_names: untyped, default_settings: untyped, ?mutually_dependent_settings_groups: untyped) -> ::Array[untyped]
+
+        # @param [array] requested_setting_names
+        # @param [array] mutually_dependent_settings
+        # @param [array] default_setting_names
+        # @return boolean
+        # @raise [RuntimeError]
+        def self.validate_mutually_dependent_settings: (requested_setting_names: untyped, mutually_dependent_settings: untyped, default_setting_names: untyped) -> (true | untyped)
+
+        # @param [Object] setting_value
+        # @param [Class, Symbol] setting_type
+        # @param [Symbol] setting_name
+        # @param [String] module_name
+        # @return boolean
+        # @raise [RuntimeError]
+        def self.validate_setting_type: (untyped setting_value, untyped setting_type, untyped setting_name, untyped module_name) -> (true | untyped)
+      end
+    end
+  end
+end

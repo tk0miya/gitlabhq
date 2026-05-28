@@ -1,0 +1,92 @@
+module Gitlab
+  module Ci
+    module Charts
+      class Chart
+        @project: untyped
+
+        @selected_statuses: untyped
+
+        @labels: untyped
+
+        @totals: untyped
+
+        @interval_step: untyped
+
+        attr_reader from: untyped
+
+        attr_reader to: untyped
+
+        attr_reader project: untyped
+
+        COMPLETED_STATUSES: ::Array[:success | :failed]
+
+        SELECTABLE_STATUSES: untyped
+
+        STATUSES: untyped
+
+        def initialize: (untyped project, ?untyped selected_statuses) -> void
+
+        def labels: () -> untyped
+
+        def totals: (?status: ::Symbol) -> untyped
+
+        private
+
+        attr_reader interval: untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def collect: () -> untyped
+
+        def totals_by_status: (untyped pipelines_by_interval) -> (::Hash[untyped, untyped] | untyped)
+
+        def interval_step: () -> untyped
+      end
+
+      class YearChart < Chart
+        @to: untyped
+
+        @from: untyped
+
+        @interval: untyped
+
+        @format: untyped
+
+        def initialize: (*untyped) -> void
+      end
+
+      class MonthChart < Chart
+        @to: untyped
+
+        @from: untyped
+
+        @interval: untyped
+
+        @format: untyped
+
+        def initialize: (*untyped) -> void
+      end
+
+      class WeekChart < Chart
+        @to: untyped
+
+        @from: untyped
+
+        @interval: untyped
+
+        @format: untyped
+
+        def initialize: (*untyped) -> void
+      end
+
+      class PipelineTime < Chart
+        @pipeline_times: untyped
+
+        def initialize: (*untyped) -> void
+
+        def pipeline_times: () -> untyped
+
+        def collect: () -> untyped
+      end
+    end
+  end
+end

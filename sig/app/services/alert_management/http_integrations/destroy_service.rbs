@@ -1,0 +1,29 @@
+module AlertManagement
+  module HttpIntegrations
+    class DestroyService
+      @integration: untyped
+
+      @current_user: untyped
+
+      # @param integration [AlertManagement::HttpIntegration]
+      # @param current_user [User]
+      def initialize: (untyped integration, untyped current_user) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader integration: untyped
+
+      attr_reader current_user: untyped
+
+      def allowed?: () -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def success: () -> untyped
+
+      def error_no_permissions: () -> untyped
+    end
+  end
+end

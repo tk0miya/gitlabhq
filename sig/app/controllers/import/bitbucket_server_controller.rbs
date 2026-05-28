@@ -1,0 +1,61 @@
+class Import::BitbucketServerController < Import::BaseController
+  @project_key: untyped
+
+  @repo_slug: untyped
+
+  @client: untyped
+
+  @bitbucket_repos: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include ActionView::Helpers::SanitizeHelper
+
+  include SafeFormatHelper
+
+  def new: () -> nil
+
+  def create: () -> untyped
+
+  def configure: () -> untyped
+
+  # We need to re-expose controller's internal method 'status' as action.
+  # rubocop:disable Lint/UselessMethodDefinition
+  def status: () -> untyped
+
+  def importable_repos: () -> untyped
+
+  def incompatible_repos: () -> untyped
+
+  def provider_name: () -> :bitbucket_server
+
+  def provider_url: () -> untyped
+
+  private
+
+  def client: () -> untyped
+
+  def bitbucket_repos: () -> untyped
+
+  def normalize_import_params: () -> untyped
+
+  def bitbucket_auth: () -> (untyped | nil)
+
+  def verify_bitbucket_server_import_enabled: () -> (untyped | nil)
+
+  def bitbucket_server_url_key: () -> :bitbucket_server_url
+
+  def bitbucket_server_username_key: () -> :bitbucket_server_username
+
+  def personal_access_token_key: () -> :bitbucket_server_personal_access_token
+
+  def clear_session_data: () -> untyped
+
+  def credentials: () -> { base_uri: untyped, user: untyped, password: untyped }
+
+  def page_offset: () -> untyped
+
+  def limit_per_page: () -> untyped
+
+  def bitbucket_connection_error: (untyped error) -> untyped
+end

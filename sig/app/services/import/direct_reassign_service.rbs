@@ -1,0 +1,78 @@
+module Import
+  class DirectReassignService
+    @import_source_user: untyped
+
+    @reassigned_by_user: untyped
+
+    @reassignment_throttling: untyped
+
+    @execution_tracker: untyped
+
+    @sleep_time: untyped
+
+    REASSIGN_BATCH_LIMIT: 100
+
+    BATCH_SLEEP: 3
+
+    MAX_RUNTIME: untyped
+
+    MODEL_LIST: { "Approval" => ::Array["user_id"], "AwardEmoji" => ::Array["user_id"], "Ci::Pipeline" => ::Array["user_id"], "Ci::PipelineSchedule" => ::Array["owner_id"], "CommitStatus" => ::Array["user_id"], "DesignManagement::Version" => ::Array["author_id"], "Epic" => ::Array["author_id" | "assignee_id" | "last_edited_by_id" | "closed_by_id"], "Event" => ::Array["author_id"], "Issue" => ::Array["author_id" | "updated_by_id" | "closed_by_id"], "IssueAssignee" => ::Array["user_id"], "List" => ::Array["user_id"], "MergeRequest::Metrics" => ::Array["merged_by_id" | "latest_closed_by_id"], "MergeRequest" => ::Array["author_id" | "updated_by_id" | "merge_user_id"], "MergeRequestAssignee" => ::Array["user_id"], "MergeRequestReviewer" => ::Array["user_id"], "Note" => ::Array["author_id"], "ProtectedBranch::MergeAccessLevel" => ::Array["user_id"], "ProtectedBranch::PushAccessLevel" => ::Array["user_id"], "ProtectedTag::CreateAccessLevel" => ::Array["user_id"], "Release" => ::Array["author_id"], "ResourceLabelEvent" => ::Array["user_id"], "ResourceMilestoneEvent" => ::Array["user_id"], "ResourceStateEvent" => ::Array["user_id"], "Snippet" => ::Array["author_id"], "Timelog" => ::Array["user_id"], "Vulnerability" => ::Array["author_id" | "resolved_by_id" | "dismissed_by_id" | "confirmed_by_id"] }
+
+    # Lists all models and attributes that are imported, reference users, and have an
+    # index for the attribute
+    #
+    # Overridden in EE
+    def self.model_list: () -> untyped
+
+    # Determines if reassignment without placeholder references can be used for the given model, attribute and
+    # source user.
+    #
+    # @param model_class [Class] The model class (e.g., Issue, MergeRequest)
+    # @param attribute [String] The model attribute/database column name
+    # @param source_user [Import::SourceUser] The source user being reassigned
+    #
+    # @return [Boolean] true if direct reassignment is supported, false otherwise
+    #
+    # == Decision Logic
+    #
+    # Direct reassignment is *not supported* when:
+    # 1. The placeholder user is an import_user type
+    # 2. The model class and attribute are excluded from the model list
+    def self.supported?: (untyped model_class, untyped attribute, untyped source_user) -> (false | untyped)
+
+    def initialize: (untyped import_source_user, reassignment_throttling: untyped, ?sleep_time: untyped) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_accessor import_source_user: untyped
+
+    attr_accessor reassigned_by_user: untyped
+
+    attr_accessor sleep_time: untyped
+
+    attr_accessor execution_tracker: untyped
+
+    attr_accessor reassignment_throttling: untyped
+
+    def transaction: (untyped model_class, untyped _contributions) { () -> untyped } -> untyped
+
+    # @param model [String] - Model name as string
+    # @param column [String] - Model attribute/db column
+    def direct_reassign_model_user_references: (untyped model, untyped column) -> untyped
+
+    # @param model_class [Class] - Model class, for example Issue
+    # @param column [String] - Model attribute/db column
+    # rubocop:disable CodeReuse/ActiveRecord -- this query is performed in several distinct model
+    def find_batch_of_contributions: (untyped model_class, untyped column) -> untyped
+
+    def reassign_single_contribution: (untyped model_class, untyped contribution, untyped column) -> untyped
+
+    def logger: () -> untyped
+
+    def log_warn: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def logger_params: (untyped message, **untyped params) -> untyped
+  end
+end

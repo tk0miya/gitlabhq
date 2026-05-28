@@ -1,0 +1,30 @@
+module Projects
+  class IssueLinksController < Projects::ApplicationController
+    @issue: untyped
+
+    @link: untyped
+
+    include IssuableLinks
+
+    private
+
+    def disable_query_limit!: () -> untyped
+
+    def authorize_admin_issue_link!: () -> (untyped | nil)
+
+    def authorize_issue_link_association!: () -> (untyped | nil)
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def issue: () -> untyped
+
+    def list_service: () -> untyped
+
+    def create_service: () -> untyped
+
+    def destroy_service: () -> untyped
+
+    def link: () -> untyped
+
+    def create_params: () -> untyped
+  end
+end

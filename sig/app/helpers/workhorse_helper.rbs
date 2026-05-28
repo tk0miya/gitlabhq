@@ -1,0 +1,30 @@
+# Helpers to send Git blobs, diffs, patches or archives through Workhorse.
+# Workhorse will also serve files when using `send_file`.
+module WorkhorseHelper
+  # Send a Git blob through Workhorse
+  def send_git_blob: (untyped repository, untyped blob, ?inline: bool) -> untyped
+
+  # Send a Git diff through Workhorse
+  def send_git_diff: (untyped repository, untyped diff_refs) -> untyped
+
+  # Send a Git patch through Workhorse
+  def send_git_patch: (untyped repository, untyped diff_refs) -> untyped
+
+  # Archive a Git repository and send it through Workhorse
+  def send_git_archive: (untyped repository, **untyped kwargs) -> untyped
+
+  # Send an entry from artifacts through Workhorse and set safe content type
+  def send_artifacts_entry: (untyped file, untyped entry) -> untyped
+
+  def send_dependency: (untyped dependency_headers, untyped url, untyped filename, ?ssrf_params: ::Hash[untyped, untyped]) -> untyped
+
+  def set_workhorse_internal_api_content_type: () -> untyped
+
+  def workhorse_set_content_type!: () -> untyped
+
+  def content_disposition_for_blob: (untyped blob, untyped inline) -> untyped
+
+  def inline_content_disposition: (untyped blob) -> untyped
+
+  def attachment_content_disposition: (untyped blob) -> untyped
+end

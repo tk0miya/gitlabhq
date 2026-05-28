@@ -1,0 +1,13 @@
+module Gitlab
+  module SQL
+    module Glob
+      extend ::Gitlab::SQL::Glob
+
+      # Convert a simple glob pattern with wildcard (*) to SQL LIKE pattern
+      # with SQL expression
+      def to_like: (untyped pattern) -> ::String
+
+      def q: (untyped string) -> untyped
+    end
+  end
+end

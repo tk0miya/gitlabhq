@@ -1,0 +1,9 @@
+module Doorkeeper
+  module DeviceAuthorizationGrant
+    class DeviceGrant < ApplicationRecord
+      include Doorkeeper::DeviceAuthorizationGrant::DeviceGrantMixin
+
+      include SafelyChangeColumnDefault
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module WorkItems
+  module TypesFramework
+    module SystemDefined
+      module Definitions
+        module Issue
+          def self.widgets: () -> ::Array["agent_plan" | "ai_session" | "assignees" | "award_emoji" | "crm_contacts" | "current_user_todos" | "custom_fields" | "description" | "designs" | "development" | "email_participants" | "error_tracking" | "health_status" | "hierarchy" | "iteration" | "labels" | "linked_items" | "milestone" | "notes" | "notifications" | "participants" | "start_and_due_date" | "time_tracking" | "vulnerabilities" | "linked_resources" | "weight" | "status"]
+
+          def self.widget_options: () -> ::Hash[untyped, untyped]
+
+          def self.configuration: () -> { id: 1, name: "Issue", base_type: "issue", icon_name: "work-item-issue" }
+
+          def self.allowed_child_types: () -> ::Array[{ type: :task, maximum_depth: 1 }]
+
+          # This method adds a configuration for the parent of the Type, and it coresponding license.
+          # The format should be { parent.base_type.to_s: license_name.to_sym}
+          def self.licenses_for_parent: () -> { "epic" => :epics }
+
+          def self.supports_move_action?: () -> true
+
+          def self.filterable_board_view?: () -> true
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,16 @@
+class GraphqlChannel < ApplicationCable::Channel
+  @subscription_ids: untyped
+
+  def subscribed: () -> untyped
+
+  def unsubscribed: () -> (nil | untyped)
+
+  private
+
+  # When modifying the context, also update GraphqlController#context if needed
+  # so that we have similar context when executing queries, mutations, and subscriptions
+  #
+  # Objects added to the context may also need to be reloaded in
+  # `Subscriptions::BaseSubscription` so that they are not stale
+  def context: () -> { channel: self, current_user: untyped, current_organization: untyped, is_sessionless_user: false, scope_validator: untyped }
+end

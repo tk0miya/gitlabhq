@@ -1,0 +1,43 @@
+module Observability
+  class GroupO11ySetting < ApplicationRecord
+    include Gitlab::Utils::StrongMemoize
+
+    HUMANIZED_ATTRIBUTES: { o11y_service_url: "O11y service name" }
+
+    SETUP_WINDOW: untyped
+
+    attr_writer o11y_service_name: untyped
+
+    def self.find_by_group_id: (untyped group_id) -> untyped
+
+    def self.human_attribute_name: (untyped attribute, *untyped options) -> untyped
+
+    def self.observability_setting_for: (untyped resource) -> (nil | untyped)
+
+    def o11y_service_name: () -> untyped
+
+    def name_from_url: () -> (nil | untyped)
+
+    def name_from_group: () -> untyped
+
+    def validate_email_format: () -> (nil | untyped)
+
+    def gitlab_observability_export_variable: () -> untyped
+
+    def provisioning?: () -> untyped
+
+    def otel_http_endpoint: () -> ::String
+
+    def otel_grpc_endpoint: () -> ::String
+
+    def otel_https_endpoint: () -> ::String
+
+    def otel_grpcs_endpoint: () -> ::String
+
+    def otel_address: () -> (::String | untyped)
+
+    private
+
+    def within_provisioning_window?: () -> (false | untyped)
+  end
+end

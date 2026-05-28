@@ -1,0 +1,10 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillJiraTrackerDataShardingKey < BatchedMigrationJob
+      class Integration < ::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+    end
+  end
+end

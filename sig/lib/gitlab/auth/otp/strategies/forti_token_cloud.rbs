@@ -1,0 +1,28 @@
+module Gitlab
+  module Auth
+    module Otp
+      module Strategies
+        class FortiTokenCloud < Base
+          include Gitlab::Utils::StrongMemoize
+
+          BASE_API_URL: "https://ftc.fortinet.com:9696/api/v1"
+
+          def validate: (untyped otp_code) -> untyped
+
+          private
+
+          # TODO: Cache the access token: https://gitlab.com/gitlab-org/gitlab/-/issues/292437
+          def access_token_create_response: () -> untyped
+
+          def access_token: () -> untyped
+
+          def verify_otp: (untyped otp_code) -> untyped
+
+          def url: (untyped path) -> untyped
+
+          def post: (url: untyped, body: untyped, ?headers: ::Hash[untyped, untyped]) -> untyped
+        end
+      end
+    end
+  end
+end

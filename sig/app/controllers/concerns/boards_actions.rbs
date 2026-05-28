@@ -1,0 +1,33 @@
+module BoardsActions
+  # if no board exists, create one
+  @board: untyped
+
+  @latest_visited_board: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  extend ActiveSupport::Concern
+
+  def index: () -> (untyped | nil)
+
+  def show: () -> untyped
+
+  private
+
+  def redirect_to_recent_board: () -> (nil | untyped)
+
+  def latest_visited_board: () -> untyped
+
+  # Noop on FOSS
+  def push_licensed_features: () -> nil
+
+  def board: () -> untyped
+
+  def board_visit_service: () -> untyped
+
+  def parent: () -> untyped
+
+  def board_path: (untyped board) -> untyped
+
+  def group?: () -> untyped
+end

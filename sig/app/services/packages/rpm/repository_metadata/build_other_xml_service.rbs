@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+module Packages
+  module Rpm
+    module RepositoryMetadata
+      class BuildOtherXmlService < BuildXmlBaseService
+        ROOT_TAG: "otherdata"
+
+        ROOT_ATTRIBUTES: { xmlns: "http://linux.duke.edu/metadata/other", packages: "0" }
+
+        def execute: () -> untyped
+
+        private
+
+        def build_changelog_nodes: (untyped xml) -> untyped
+      end
+    end
+  end
+end

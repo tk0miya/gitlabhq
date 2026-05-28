@@ -1,0 +1,5 @@
+class Packages::BuildInfo < ApplicationRecord
+  include Ci::Partitionable::AssociationFinder
+
+  def self.supported_keyset_orderings: () -> { id: ::Array[:desc] }
+end

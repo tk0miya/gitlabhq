@@ -1,0 +1,11 @@
+module Database
+  class SchemaCheckerWorker
+    include ApplicationWorker
+
+    SCHEMA_CHECK_CACHE_TTL: untyped
+
+    SCHEMA_CHECK_CACHE_KEY: "gitlab:database:schema_check:v2"
+
+    def perform: () -> untyped
+  end
+end

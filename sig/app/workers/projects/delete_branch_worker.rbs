@@ -1,0 +1,10 @@
+module Projects
+  class DeleteBranchWorker
+    include ApplicationWorker
+
+    # Temporary error when Gitaly cannot lock the branch reference. A retry should solve it.
+    GitReferenceLockedError: untyped
+
+    def perform: (untyped project_id, untyped user_id, untyped branch_name) -> (nil | untyped)
+  end
+end

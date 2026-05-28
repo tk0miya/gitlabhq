@@ -1,0 +1,44 @@
+module Gitlab
+  module Database
+    module Partitioning
+      class PartitionImporter
+        @connection: untyped
+
+        include Gitlab::Database::MigrationHelpers::LooseForeignKeyHelpers
+
+        ImportError: untyped
+
+        # @param connection [ActiveRecord::ConnectionAdapters::AbstractAdapter]
+        def initialize: (connection: untyped) -> void
+
+        # @param table_definitions [Array<Hash>]
+        # @param dry_run [Boolean] when true, report what would be created without executing DDL
+        # @return [Hash]
+        #   { created: Integer, skipped: Integer, tables_processed: Integer }
+        def import: (untyped table_definitions, ?dry_run: bool) -> untyped
+
+        private
+
+        attr_reader connection: untyped
+
+        def execute: (untyped sql) -> untyped
+
+        def process_table: (untyped table_def, dry_run: untyped, totals: untyped, errors: untyped) -> untyped
+
+        def apply_partitions: (untyped partitions, dry_run: untyped) -> (nil | untyped)
+
+        def missing_partitions: (untyped table_name, untyped partitions_data, untyped errors) -> untyped
+
+        def existing_partition_bounds: (untyped table_name) -> untyped
+
+        def create_partitions: (untyped partitions) -> untyped
+
+        def log_dry_run: (untyped partitions) -> untyped
+
+        def error_summary: (untyped errors) -> untyped
+
+        def process_created_partition: (untyped partition) -> (nil | untyped)
+      end
+    end
+  end
+end

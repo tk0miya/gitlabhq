@@ -1,0 +1,19 @@
+module Database
+  module BatchedBackgroundMigration
+    module SingleDatabaseWorker
+      extend ActiveSupport::Concern
+
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      include Database::BackgroundWorkSchedulable
+
+      def perform: () -> (nil | untyped)
+
+      private
+
+      def queue_migrations_for_execution: (untyped migrations) -> untyped
+    end
+  end
+end

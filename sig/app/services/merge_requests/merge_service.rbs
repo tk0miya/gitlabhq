@@ -1,0 +1,82 @@
+module MergeRequests
+  # MergeService class
+  #
+  # Do git merge and in case of success
+  # mark merge request as merged and execute all hooks and notifications
+  # Executed when you do merge via GitLab UI
+  #
+  class MergeService < MergeRequests::MergeBaseService
+    @merge_strategy: untyped
+
+    @merge_request: untyped
+
+    @options: untyped
+
+    @logger: untyped
+
+    @merge_request_info: untyped
+
+    @merge_status: untyped
+
+    @branch_deletion_lease_uuid: untyped
+
+    @source_branch_deletion_lease_key: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    GENERIC_ERROR_MESSAGE: "An error occurred while merging"
+
+    def execute: (untyped merge_request, ?::Hash[untyped, untyped] options) -> untyped
+
+    private
+
+    def validate!: () -> untyped
+
+    def authorization_check!: () -> (untyped | nil)
+
+    def validate_strategy!: () -> untyped
+
+    def target_branch_pending_deletion_check!: () -> (nil | untyped)
+
+    def updated_check!: () -> (untyped | nil)
+
+    def commit: () -> untyped
+
+    def try_merge: () { () -> untyped } -> untyped
+
+    def after_merge: () -> untyped
+
+    def branch_deletion_user: () -> untyped
+
+    # Verify again that the source branch can be removed, since branch may be protected,
+    # or the source branch may have been updated, or the user may not have permission
+    #
+    def delete_source_branch?: () -> untyped
+
+    def merge_request_merge_param: () -> (untyped | nil)
+
+    def handle_merge_error: (log_message: untyped, ?save_message_on_model: bool) -> untyped
+
+    def log_info: (untyped message) -> untyped
+
+    def log_error: (untyped message) -> untyped
+
+    def logger: () -> untyped
+
+    def log_payload: (untyped message) -> untyped
+
+    def merge_request_info: () -> untyped
+
+    def merge_status: () -> untyped
+
+    def source_matches?: () -> untyped
+
+    def obtain_branch_deletion_lease: () -> untyped
+
+    def release_branch_deletion_lease: () -> (nil | untyped)
+
+    def source_branch_deletion_lease_key: () -> untyped
+
+    def exclusive_lease: (untyped merge_request) -> untyped
+  end
+end

@@ -1,0 +1,32 @@
+module AlertManagement
+  class HttpIntegrationsFinder
+    @project: untyped
+
+    @params: untyped
+
+    @collection: untyped
+
+    TYPE_IDENTIFIERS: untyped
+
+    def initialize: (untyped project, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader params: untyped
+
+    attr_reader collection: untyped
+
+    # Overridden in EE
+    def filter_by_availability: () -> untyped
+
+    def filter_by_endpoint_identifier: () -> (nil | untyped)
+
+    def filter_by_active: () -> (nil | untyped)
+
+    def filter_by_type: () -> (nil | untyped)
+  end
+end

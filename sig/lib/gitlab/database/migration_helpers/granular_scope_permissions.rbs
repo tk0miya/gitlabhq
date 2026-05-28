@@ -1,0 +1,37 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      # Helper module for background migrations that rename assignable permissions
+      # in the `granular_scopes` table. Including classes must define a `RENAMES`
+      # constant mapping old permission names to new ones:
+      #
+      #    class RenameManyPermissions < BatchedMigrationJob
+      #      RENAMES = {
+      #        'old_name' => 'new_name',
+      #        'split_me' => %w[part_a part_b]
+      #      }.freeze
+      #
+      #      include Gitlab::Database::MigrationHelpers::GranularScopePermissions
+      #
+      #      feature_category :permissions
+      #    end
+      #
+      # See: https://docs.gitlab.com/development/permissions/granular_access/assignable_permissions/#renaming-assignable-permissions
+      module GranularScopePermissions
+        extend ActiveSupport::Concern
+
+        def perform: () -> untyped
+
+        private
+
+        def perform_renames: (untyped renames) -> untyped
+
+        def rename_granular_scope_permission: (untyped old_permission, untyped new_permissions, batch_scope: untyped) -> untyped
+
+        def scope_with_any_permission: (untyped permissions) -> untyped
+
+        def contains_permission_sql: (untyped permission) -> ::String
+      end
+    end
+  end
+end

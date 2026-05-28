@@ -1,0 +1,76 @@
+module Analytics
+  module Glql
+    # Service for handling GLQL queries with rate limiting, complexity tracking, and logging
+    # Used by both Glql::BaseController and API::Glql
+    class QueryService
+      @current_user: untyped
+
+      @original_query: untyped
+
+      @request: untyped
+
+      @current_organization: untyped
+
+      @query: untyped
+
+      @variables: untyped
+
+      @operation_name: untyped
+
+      @graphql_context: untyped
+
+      @query_sha: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      GlqlQueryLockedError: untyped
+
+      def initialize: (current_user: untyped, original_query: untyped, ?request: untyped?, ?current_organization: untyped?) -> void
+
+      def execute: (query: untyped, ?variables: ::Hash[untyped, untyped], ?context: ::Hash[untyped, untyped], ?operation_name: untyped?) -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader original_query: untyped
+
+      attr_reader request: untyped
+
+      attr_reader current_organization: untyped
+
+      attr_reader query: untyped
+
+      attr_reader variables: untyped
+
+      attr_reader graphql_context: untyped
+
+      attr_reader operation_name: untyped
+
+      def check_rate_limit: () -> (nil | untyped)
+
+      def execute_graphql: () -> untyped
+
+      def build_graphql_context: (?::Hash[untyped, untyped] additional_context) -> untyped
+
+      def extract_complexity_score: () -> (nil | untyped)
+
+      def enhance_graphql_logs: () -> (nil | untyped)
+
+      def query_sha: () -> untyped
+
+      def increment_rate_limit_counter: () -> untyped
+
+      def increment_glql_sli: (duration_s: untyped, error_type: untyped) -> (nil | untyped)
+
+      def caller_endpoint_id: () -> untyped
+
+      def log_execution_metrics: (untyped result) -> untyped
+
+      def error_type_from: (untyped exception) -> (nil | untyped)
+
+      # Normalize GraphQL errors to use symbol keys consistently
+      def normalize_errors: (untyped errors) -> (nil | untyped)
+    end
+  end
+end

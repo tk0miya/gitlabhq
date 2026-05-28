@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module Migrations
+      module Observers
+        class QueryDetails < MigrationObserver
+          @file: untyped
+
+          @writer: untyped
+
+          @subscriber: untyped
+
+          def before: () -> untyped
+
+          def after: () -> untyped
+
+          def record: () -> nil
+
+          def record_sql_event: (untyped _name, untyped started, untyped finished, untyped _unique_id, untyped payload) -> untyped
+        end
+      end
+    end
+  end
+end

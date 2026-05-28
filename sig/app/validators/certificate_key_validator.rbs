@@ -1,0 +1,15 @@
+# CertificateKeyValidator
+#
+# Custom validator for private keys.
+#
+#   class Project < ActiveRecord::Base
+#     validates :certificate_key, certificate_key: true
+#   end
+#
+class CertificateKeyValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+  private
+
+  def valid_private_key_pem?: (untyped value) -> untyped
+end

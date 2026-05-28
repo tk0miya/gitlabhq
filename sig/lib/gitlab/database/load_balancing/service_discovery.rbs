@@ -1,0 +1,122 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # Service discovery of secondary database hosts.
+      #
+      # Service discovery works by periodically looking up a DNS record. If the
+      # DNS record returns a new list of hosts, this class will update the load
+      # balancer with said hosts. Requests may continue to use the old hosts
+      # until they complete.
+      class ServiceDiscovery
+        @nameserver: untyped
+
+        @port: untyped
+
+        @record: untyped
+
+        @record_type: untyped
+
+        @interval: untyped
+
+        @disconnect_timeout: untyped
+
+        @use_tcp: untyped
+
+        @load_balancer: untyped
+
+        @max_replica_pools: untyped
+
+        @nameserver_ttl: untyped
+
+        @resolver: untyped
+
+        @sampler: untyped
+
+        EmptyDnsResponse: untyped
+
+        attr_accessor refresh_thread: untyped
+
+        attr_accessor refresh_thread_last_run: untyped
+
+        attr_accessor refresh_thread_interruption_logged: untyped
+
+        attr_reader interval: untyped
+
+        attr_reader record: untyped
+
+        attr_reader record_type: untyped
+
+        attr_reader disconnect_timeout: untyped
+
+        attr_reader load_balancer: untyped
+
+        MAX_SLEEP_ADJUSTMENT: 10
+
+        MAX_DISCOVERY_RETRIES: 3
+
+        DISCOVERY_THREAD_REFRESH_DELTA: 5
+
+        RETRY_DELAY_RANGE: untyped
+
+        RECORD_TYPES: { "A" => untyped, "SRV" => untyped }
+
+        Address: untyped
+
+        # nameserver - The nameserver to use for DNS lookups.
+        # port - The port of the nameserver.
+        # record - The DNS record to look up for retrieving the secondaries.
+        # record_type - The type of DNS record to look up
+        # interval - The time to wait between lookups.
+        # disconnect_timeout - The time after which an old host should be
+        #                      forcefully disconnected.
+        # use_tcp - Use TCP instaed of UDP to look up resources
+        # load_balancer - The load balancer instance to use
+        # rubocop:disable Metrics/ParameterLists
+        def initialize: (untyped load_balancer, nameserver: untyped, port: untyped, record: untyped, ?record_type: ::String, ?interval: ::Integer, ?disconnect_timeout: ::Integer, ?use_tcp: bool, ?max_replica_pools: untyped?) -> void
+
+        def start: () -> untyped
+
+        def perform_service_discovery: () -> untyped
+
+        # Refreshes the hosts, but only if the DNS record returned a new list of
+        # addresses.
+        #
+        # The return value is the amount of time (in seconds) to wait before
+        # checking the DNS record for any changes.
+        def refresh_if_necessary: () -> untyped
+
+        # Replaces all the hosts in the load balancer with the new ones,
+        # disconnecting the old connections.
+        #
+        # addresses - An Array of Address structs to use for the new hosts.
+        def replace_hosts: (untyped addresses) -> untyped
+
+        # Returns an Array containing:
+        #
+        # 1. The time to wait for the next check.
+        # 2. An array containing the hostnames of the DNS record.
+        def addresses_from_dns: () -> ::Array[untyped]
+
+        def new_wait_time_for: (untyped resources) -> untyped
+
+        def addresses_from_load_balancer: () -> untyped
+
+        def resolver: () -> untyped
+
+        def log_refresh_thread_interruption: () -> (nil | untyped)
+
+        private
+
+        def record_type_for: (untyped type) -> untyped
+
+        def addresses_from_srv_record: (untyped response) -> untyped
+
+        def addresses_from_a_record: (untyped resources) -> untyped
+
+        def sampler: () -> untyped
+
+        def disconnect_old_hosts: (untyped hosts) -> (nil | untyped)
+      end
+    end
+  end
+end

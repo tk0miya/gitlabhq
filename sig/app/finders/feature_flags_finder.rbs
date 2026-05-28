@@ -1,0 +1,23 @@
+class FeatureFlagsFinder
+  @project: untyped
+
+  @current_user: untyped
+
+  @params: untyped
+
+  attr_reader project: untyped
+
+  attr_reader params: untyped
+
+  attr_reader current_user: untyped
+
+  def initialize: (untyped project, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: (?preload: bool) -> untyped
+
+  private
+
+  def feature_flags: () -> untyped
+
+  def by_scope: (untyped items) -> untyped
+end

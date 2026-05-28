@@ -1,0 +1,17 @@
+class StateNote < SyntheticNote
+  @note_html: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  def self.from_event: (untyped event, ?resource: untyped?, ?resource_parent: untyped?) -> untyped
+
+  def note_html: () -> untyped
+
+  private
+
+  def note_text: (?html: bool) -> ("resolved the corresponding error and closed the issue" | "automatically closed this incident because the alert resolved" | "merged manually" | untyped)
+
+  def event_source: () -> untyped
+
+  def self.action_by: (untyped event) -> ("opened" | untyped)
+end

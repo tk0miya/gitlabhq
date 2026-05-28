@@ -1,0 +1,14 @@
+module Gitlab
+  module SidekiqMiddleware
+    module DuplicateJobs
+      module Strategies
+        # This strategy will never deduplicate a job
+        class None < Base
+          def schedule: (untyped _job) { () -> untyped } -> untyped
+
+          def perform: (untyped _job) { () -> untyped } -> untyped
+        end
+      end
+    end
+  end
+end

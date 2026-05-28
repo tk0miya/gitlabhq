@@ -1,0 +1,21 @@
+module Gitlab
+  module Octokit
+    class ResponseValidation < ::Faraday::Middleware
+      ResponseSizeTooLarge: untyped
+
+      def on_complete: (untyped env) -> (nil | untyped)
+
+      private
+
+      # : => Number of key-value pairs
+      # , => Number of elements in arrays (off by one since [1, 2, 3] has just 2 commas)
+      # [ => Number of arrays
+      # { => Number of objects
+      def total_value_count_estimate: (untyped body) -> untyped
+
+      def max_allowed_bytes: () -> untyped
+
+      def max_allowed_values: () -> untyped
+    end
+  end
+end

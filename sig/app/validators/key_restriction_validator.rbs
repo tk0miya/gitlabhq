@@ -1,0 +1,17 @@
+class KeyRestrictionValidator < ActiveModel::EachValidator
+  FORBIDDEN: -1
+
+  ALLOWED: 0
+
+  def self.supported_sizes: (untyped type) -> untyped
+
+  def self.supported_key_restrictions: (untyped type) -> untyped
+
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+  private
+
+  def supported_sizes_message: () -> untyped
+
+  def valid_restriction?: (untyped value) -> untyped
+end

@@ -1,0 +1,88 @@
+# ExactlyOnePresentValidator
+#
+# Custom validator for ensuring that exactly one of the specified fields or associations is present.
+#
+# Options:
+# - :fields - Array, Symbol, or Proc for database columns and custom methods.
+#             Uses the reader method (public_send) to get the value, so any custom
+#             getter definition will be used.
+# - :associations - Array, Symbol, or Proc for ActiveRecord associations.
+#                   Uses ActiveRecord's association reflection to get the value directly,
+#                   bypassing any custom reader methods.
+# - :error_key - Symbol for the error key (default: :base)
+# - :message - String or Proc for custom error message
+#
+# At least one of :fields or :associations must be provided. Both can be used together.
+#
+# The validator supports three types of values for :fields and :associations:
+# - Array: Static list of field/association names
+# - Symbol: Method name that returns an array of field/association names
+# - Proc/lambda: Dynamic resolution executed in the record's context
+#
+# Examples:
+#
+#   # Using :fields with an Array (database columns and custom methods)
+#   class MyModel < ApplicationRecord
+#     validates_with ExactlyOnePresentValidator, fields: %i[name url identifier]
+#   end
+#
+#   # Using :associations with an Array (ActiveRecord associations)
+#   class MyModel < ApplicationRecord
+#     belongs_to :project, optional: true
+#     belongs_to :group, optional: true
+#     validates_with ExactlyOnePresentValidator, associations: %i[project group]
+#   end
+#
+#   # Combining :fields and :associations
+#   class MyModel < ApplicationRecord
+#     belongs_to :custom_status, optional: true
+#     validates_with ExactlyOnePresentValidator,
+#       fields: %i[system_defined_status],
+#       associations: %i[custom_status]
+#
+#     def system_defined_status
+#       @system_defined_status ||= SystemStatus.find_by(id: system_status_id)
+#     end
+#   end
+#
+#   # Using a Symbol to call a method that returns fields dynamically
+#   class MyModel < ApplicationRecord
+#     validates_with ExactlyOnePresentValidator, fields: :dynamic_fields
+#
+#     def dynamic_fields
+#       some_condition? ? %i[field_a field_b] : %i[field_c field_d]
+#     end
+#   end
+#
+#   # Using a Proc/lambda for dynamic field resolution
+#   class MyModel < ApplicationRecord
+#     validates_with ExactlyOnePresentValidator, fields: -> {
+#       self.type == 'TypeA' ? %i[field_a field_b] : %i[field_c field_d]
+#     }
+#   end
+#
+#   # Using custom error key and message
+#   class MyModel < ApplicationRecord
+#     validates_with ExactlyOnePresentValidator,
+#       fields: %i[name url],
+#       associations: %i[project],
+#       error_key: :custom_key,
+#       message: 'Please provide exactly one identifier'
+#   end
+class ExactlyOnePresentValidator < ActiveModel::Validator
+  def initialize: (*untyped args) -> void
+
+  def validate: (untyped record) -> (nil | untyped)
+
+  private
+
+  def resolve_option: (untyped record, untyped option_name) -> untyped
+
+  def present_field_values: (untyped record, untyped fields) -> untyped
+
+  def present_association_values: (untyped record, untyped associations) -> untyped
+
+  def add_validation_error: (untyped record, untyped all_keys) -> untyped
+
+  def build_error_message: (untyped all_keys) -> untyped
+end

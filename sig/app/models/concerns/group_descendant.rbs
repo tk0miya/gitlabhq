@@ -1,0 +1,34 @@
+module GroupDescendant
+  # Returns the hierarchy of a project or group in the from of a hash upto a
+  # given top.
+  #
+  # Options:
+  #   upto_preloaded_ancestors_only: boolean - When `true`, the hierarchy expansions stops at the
+  #                                            highest level preloaded ancestor. The hierarchy isn't
+  #                                            guaranteed to reach the `hierarchy_top`.
+  #
+  # > project.hierarchy
+  # => { parent_group => { child_group => project } }
+  def hierarchy: (?untyped? hierarchy_top, ?untyped? preloaded, ?::Hash[untyped, untyped] opts) -> untyped
+
+  # Merges all hierarchies of the given groups or projects into an array of
+  # hashes. All ancestors need to be loaded into the given `descendants` to avoid
+  # queries down the line.
+  #
+  # Options:
+  #   upto_preloaded_ancestors_only: boolean - When `true`, the hierarchy expansions stops at the
+  #                                            highest level preloaded ancestor. The hierarchy isn't
+  #                                            guaranteed to reach the `hierarchy_top`.
+  #
+  # > GroupDescendant.merge_hierarchy([project, child_group, child_group2, parent])
+  # => { parent => [{ child_group => project}, child_group2] }
+  def self.build_hierarchy: (untyped descendants, ?untyped? hierarchy_top, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+  private
+
+  def expand_hierarchy_for_child: (untyped child, untyped hierarchy, untyped hierarchy_top, untyped preloaded, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def load_parent!: (untyped child, untyped preloaded) -> (nil | untyped)
+
+  def validate_hierarchy_top_in_tree!: (untyped parent, untyped hierarchy_top) -> (nil | untyped)
+end

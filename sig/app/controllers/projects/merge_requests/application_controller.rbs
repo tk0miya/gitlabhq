@@ -1,0 +1,45 @@
+class Projects::MergeRequests::ApplicationController < Projects::ApplicationController
+  @rapid_diffs_presenter: untyped
+
+  @issuable: untyped
+
+  @pipeline_display_limit: untyped
+
+  @pipelines: untyped
+
+  @commit: untyped
+
+  private
+
+  PIPELINE_DISPLAY_LIMIT: 100
+
+  def rapid_diffs_presenter: () -> untyped
+
+  def rapid_diff_options: () -> untyped
+
+  # Normally the methods with `check_(\w+)_available!` pattern are
+  # handled by the `method_missing` defined in `ProjectsController::ApplicationController`
+  # but that logic does not take the member roles into account, therefore, we handle this
+  # case here manually.
+  def check_merge_requests_available!: () -> (untyped | nil)
+
+  def project_policy: () -> untyped
+
+  def merge_request: () -> untyped
+
+  def merge_request_includes: (untyped association) -> untyped
+
+  def preloadable_mr_relations: () -> ::Array[:metrics | { assignees: :status } | { author: :status }]
+
+  def merge_request_params: () -> untyped
+
+  def merge_request_params_attributes: () -> ::Array[:allow_collaboration | :description | :force_remove_source_branch | :lock_version | :milestone_id | :source_branch | :source_project_id | :state_event | :wip_event | :squash | :target_branch | :target_project_id | :task_num | :title | :discussion_locked | :issue_iid | :merge_after | { label_ids: ::Array[untyped], assignee_ids: ::Array[untyped], reviewer_ids: ::Array[untyped], update_task: ::Array[:checked | :line_source | :line_sourcepos] }]
+
+  def set_pipeline_variables: () -> untyped
+
+  def close_merge_request_if_no_source_project: () -> (nil | untyped)
+
+  def commit: () -> (nil | untyped)
+
+  def build_merge_request: () -> untyped
+end

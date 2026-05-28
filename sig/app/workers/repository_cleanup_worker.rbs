@@ -1,0 +1,13 @@
+class RepositoryCleanupWorker
+  @notification_service: untyped
+
+  include ApplicationWorker
+
+  def perform: (untyped project_id, untyped user_id) -> untyped
+
+  def perform_failure: (untyped project_id, untyped user_id, untyped error) -> untyped
+
+  private
+
+  def notification_service: () -> untyped
+end

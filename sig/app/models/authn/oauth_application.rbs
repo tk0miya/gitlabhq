@@ -1,0 +1,22 @@
+module Authn
+  class OauthApplication < Doorkeeper::Application
+    include Doorkeeper::Concerns::TokenFallback
+
+    include FeatureGate
+
+    # Hashes raw token
+    def self.encode: (untyped raw_token_value) -> untyped
+
+    # Check whether the given plain text secret matches our stored secret
+    #
+    # @param input [#to_s] Plain secret provided by user
+    #        (any object that responds to `#to_s`)
+    #
+    # @return [Boolean] Whether the given secret matches the stored secret
+    #                of this application.
+    #
+    def secret_matches?: (untyped input) -> (false | true)
+
+    def iam_routing_enabled?: () -> untyped
+  end
+end

@@ -1,0 +1,51 @@
+module Gitlab
+  module Diff
+    class ViewerHunk
+      @lines: untyped
+
+      @header: untyped
+
+      @parallel_lines: untyped
+
+      attr_reader header: untyped
+
+      attr_accessor lines: untyped
+
+      def self.init_from_diff_lines: (untyped diff_lines) -> (::Array[untyped] | untyped)
+
+      def self.init_from_expanded_lines: (untyped diff_lines, untyped bottom, untyped closest_line_number) -> (::Array[untyped] | untyped)
+
+      def self.create_viewer_hunks: (untyped non_match_lines, untyped header, untyped bottom) -> ::Array[untyped]
+
+      def self.valid_closest_line_number?: (untyped bottom, untyped closest_line_number, untyped first_pos, untyped last_pos) -> (false | untyped)
+
+      def initialize: (?lines: untyped, ?header: untyped?) -> void
+
+      def parallel_lines: () -> (untyped | nil)
+    end
+
+    class ViewerHunkHeader
+      @line: untyped
+
+      @previous_line_pos: untyped
+
+      @next_line_pos: untyped
+
+      attr_reader line: untyped
+
+      MAX_EXPANDABLE_LINES: 20
+
+      def initialize: (untyped line, untyped previous_line_pos, untyped next_line_pos) -> void
+
+      def text: () -> untyped
+
+      def expand_directions: () -> (::Array[:both] | untyped)
+
+      private
+
+      def line_count_between: () -> (0 | untyped)
+
+      def invalid_pos?: (untyped pos) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+class WorkItemPresenter < IssuePresenter
+  extend ::Gitlab::Utils::Override
+
+  def web_url: () -> untyped
+
+  def web_path: () -> untyped
+
+  def duplicated_to_work_item_url: () -> (nil | untyped)
+
+  def moved_to_work_item_url: () -> (nil | untyped)
+
+  private
+
+  def allowed_to_read_work_item?: (untyped item) -> untyped
+
+  def work_item_url_helper: (only_path: untyped) -> untyped
+end

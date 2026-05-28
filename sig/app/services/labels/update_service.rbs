@@ -1,0 +1,18 @@
+module Labels
+  class UpdateService < Labels::BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_reader current_user: untyped
+
+    def initialize: (?untyped? current_user, ?::Hash[untyped, untyped] params) -> void
+
+    # returns the updated label
+    def execute: (untyped label) -> untyped
+
+    private
+
+    def allow_lock_on_merge?: (untyped label) -> (nil | untyped)
+  end
+end

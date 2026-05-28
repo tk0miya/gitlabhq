@@ -1,0 +1,59 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      class SessionMap
+        @session_map: untyped
+
+        CACHE_KEY: :gitlab_load_balancer_session_map
+
+        InvalidLoadBalancerNameError: untyped
+
+        # lb - Gitlab::Database::LoadBalancing::LoadBalancer instance
+        def self.current: (untyped load_balancer) -> untyped
+
+        # models - Array<ActiveRecord::Base>
+        def self.with_sessions: (?untyped models) -> untyped
+
+        def self.clear_session: () -> untyped
+
+        def self.without_sticky_writes: () { (?) -> untyped } -> untyped
+
+        def self.use_replica_if_available: (?untyped sessions) { (?) -> untyped } -> untyped
+
+        def self.cached_instance: () -> untyped
+
+        attr_reader session_map: untyped
+
+        def initialize: () -> void
+
+        def lookup: (untyped load_balancer) -> untyped
+
+        def validate_db_name: (untyped db) -> (nil | untyped)
+      end
+
+      class ScopedSessions
+        @scope: untyped
+
+        @scoped_sessions: untyped
+
+        attr_reader scoped_sessions: untyped
+
+        def initialize: (untyped scope, untyped session_map) -> void
+
+        def use_primary!: () -> untyped
+
+        def ignore_writes: () { (?) -> untyped } -> untyped
+
+        def use_primary: () { (?) -> untyped } -> untyped
+
+        def use_replicas_for_read_queries: () { (?) -> untyped } -> untyped
+
+        def fallback_to_replicas_for_ambiguous_queries: () { (?) -> untyped } -> untyped
+
+        private
+
+        def nest_sessions: (untyped sessions, untyped method) ?{ () -> untyped } -> (untyped | nil | untyped)
+      end
+    end
+  end
+end

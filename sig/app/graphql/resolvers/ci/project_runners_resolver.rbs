@@ -1,0 +1,7 @@
+module Resolvers
+  module Ci
+    class ProjectRunnersResolver < RunnersResolver
+      def parent_param: () -> { project: untyped }
+    end
+  end
+end

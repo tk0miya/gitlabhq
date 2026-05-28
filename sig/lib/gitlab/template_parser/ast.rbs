@@ -1,0 +1,72 @@
+module Gitlab
+  module TemplateParser
+    # AST nodes to evaluate when rendering a template.
+    #
+    # Evaluating an AST is done by walking over the nodes and calling
+    # `evaluate`. This method takes two arguments:
+    #
+    # 1. An instance of `EvalState`, used for tracking data such as the number
+    #    of nested loops.
+    # 2. An object used as the data for the current scope. This can be an Array,
+    #    Hash, String, or something else. It's up to the AST node to determine
+    #    what to do with it.
+    #
+    # While tree walking interpreters (such as implemented here) aren't usually
+    # the fastest type of interpreter, they are:
+    #
+    # 1. Fast enough for our use case
+    # 2. Easy to implement and maintain
+    #
+    # In addition, our AST interpreter doesn't allow for arbitrary code
+    # execution, unlike existing template engines such as Mustache
+    # (https://github.com/mustache/mustache/issues/244) or ERB.
+    #
+    # Our interpreter also takes care of limiting the number of nested loops.
+    # And unlike Liquid, our interpreter is much smaller and thus has a smaller
+    # attack surface. Liquid isn't without its share of issues, such as
+    # https://github.com/Shopify/liquid/pull/1071.
+    #
+    # We also evaluated using Handlebars using the project
+    # https://github.com/SmartBear/ruby-handlebars. Sadly, this implementation
+    # of Handlebars doesn't support control of whitespace
+    # (https://github.com/SmartBear/ruby-handlebars/issues/37), and the project
+    # didn't appear to be maintained that much.
+    #
+    # This doesn't mean these template engines aren't good, instead it means
+    # they won't work for our use case. For more information, refer to the
+    # comment https://gitlab.com/gitlab-org/gitlab/-/merge_requests/50063#note_469293322.
+    module AST
+      # An identifier in a selector.
+      Identifier: untyped
+
+      # An integer used in a selector.
+      Integer: untyped
+
+      # A selector used for loading a value.
+      Selector: untyped
+
+      # A tag used for displaying a value in the output.
+      Variable: untyped
+
+      # A collection of zero or more expressions.
+      Expressions: untyped
+
+      # A single text node.
+      Text: untyped
+
+      # An `if` expression, with an optional `else` clause.
+      If: untyped
+
+      # An `each` expression.
+      Each: untyped
+
+      # A class for transforming a raw Parslet AST into a more structured/easier
+      # to work with AST.
+      #
+      # For more information about Parslet transformations, refer to the
+      # documentation at http://kschiess.github.io/parslet/transform.html.
+      class Transformer < Parslet::Transform
+      end
+    end
+  end
+end

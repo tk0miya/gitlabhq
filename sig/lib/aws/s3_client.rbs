@@ -1,0 +1,9 @@
+module Aws
+  class S3Client
+    @s3_client: untyped
+
+    def initialize: (untyped access_key_id, untyped secret_access_key, untyped aws_region) -> void
+
+    def upload_object: (untyped key, untyped bucket, untyped body, ?::String content_type) -> untyped
+  end
+end

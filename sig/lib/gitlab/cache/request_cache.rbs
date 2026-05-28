@@ -1,0 +1,14 @@
+module Gitlab
+  module Cache
+    # See https://docs.gitlab.com/ee/development/utilities.html#requestcache
+    module RequestCache
+      def self.extended: (untyped klass) -> (nil | untyped)
+
+      attr_accessor request_cache_key_block: untyped
+
+      def request_cache_key: () ?{ (?) -> untyped } -> untyped
+
+      def request_cache: (untyped method_name) { (?) -> untyped } -> untyped
+    end
+  end
+end

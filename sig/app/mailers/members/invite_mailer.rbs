@@ -1,0 +1,29 @@
+module Members
+  class InviteMailer < ApplicationMailer
+    @member: untyped
+
+    @token: untyped
+
+    include SafeFormatHelper
+
+    INITIAL_INVITE: "initial_email"
+
+    def initial_email: (untyped member, untyped token) -> (nil | untyped)
+
+    private
+
+    attr_reader token: untyped
+
+    attr_reader member: untyped
+
+    def member_source: () -> untyped
+
+    def email_subject_text: () -> untyped
+
+    def email_headers: () -> ({ "X-Mailgun-Tag" => untyped, "X-Mailgun-Variables" => untyped } | ::Hash[untyped, untyped])
+
+    def member_exists?: () -> untyped
+
+    def invited_to_description: (untyped source) -> untyped
+  end
+end

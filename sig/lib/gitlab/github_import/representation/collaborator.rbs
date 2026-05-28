@@ -1,0 +1,25 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      class Collaborator
+        @attributes: untyped
+
+        include Representable
+
+        # Builds a user from a GitHub API response.
+        #
+        # collaborator - An instance of `Hash` containing the user & role details.
+        def self.from_api_response: (untyped collaborator, ?::Hash[untyped, untyped] _additional_data) -> untyped
+
+        # Builds a user using a Hash that was built from a JSON payload.
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        # attributes - A Hash containing the user details. The keys of this
+        #              Hash (and any nested hashes) must be symbols.
+        def initialize: (untyped attributes) -> void
+
+        def github_identifiers: () -> { id: untyped, login: untyped }
+      end
+    end
+  end
+end

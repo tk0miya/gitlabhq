@@ -1,0 +1,29 @@
+module Members
+  class ScheduleDeletionService
+    @root_namespace: untyped
+
+    @user_id: untyped
+
+    @scheduled_by: untyped
+
+    @ip_address: untyped
+
+    include BaseServiceUtility
+
+    def initialize: (untyped root_namespace, untyped user_id, untyped scheduled_by, ?untyped? ip_address) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader root_namespace: untyped
+
+    attr_reader user_id: untyped
+
+    attr_reader scheduled_by: untyped
+
+    attr_reader ip_address: untyped
+
+    def schedule_deletion: () -> untyped
+  end
+end

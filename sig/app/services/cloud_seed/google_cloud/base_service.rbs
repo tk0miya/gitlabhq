@@ -1,0 +1,27 @@
+module CloudSeed
+  module GoogleCloud
+    class BaseService < ::BaseService
+      @google_api_client_instance: untyped
+
+      @unique_gcp_project_ids: untyped
+
+      def google_oauth2_token: () -> untyped
+
+      def gcp_project_id: () -> untyped
+
+      def environment_name: () -> untyped
+
+      def google_api_client: () -> untyped
+
+      def unique_gcp_project_ids: () -> untyped
+
+      def group_vars_by_environment: (untyped keys) -> untyped
+
+      def create_or_replace_project_vars: (untyped environment_scope, untyped key, untyped value, untyped is_protected, ?bool is_masked) -> untyped
+
+      private
+
+      def find_existing_variable: (untyped environment_scope, untyped key) -> untyped
+    end
+  end
+end

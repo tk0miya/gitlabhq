@@ -1,0 +1,47 @@
+module WorkItems
+  module RelatedWorkItemLinks
+    class DestroyService < BaseService
+      @work_item: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      @failed_ids: untyped
+
+      @removed_ids: untyped
+
+      def initialize: (untyped work_item, untyped user, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader work_item: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader failed_ids: untyped
+
+      attr_reader removed_ids: untyped
+
+      def can_admin_work_item_link?: (untyped resource) -> untyped
+
+      def destroy_links_for: (untyped item_ids) -> untyped
+
+      def destroy_links: (source: untyped, target: untyped, direction: untyped) -> untyped
+
+      # Overridden on EE to sync deletion with
+      # related epic links records
+      def perform_destroy_link: (untyped link, untyped linked_item) -> true
+
+      def create_notes: (untyped link) -> untyped
+
+      def error_message: () -> ("" | untyped)
+
+      def response_message: () -> (untyped | ::String)
+
+      def track_destroyed_link: (untyped link) -> untyped
+    end
+  end
+end

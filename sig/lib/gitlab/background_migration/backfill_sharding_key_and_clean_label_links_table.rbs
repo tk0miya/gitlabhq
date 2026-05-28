@@ -1,0 +1,23 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillShardingKeyAndCleanLabelLinksTable < BatchedMigrationJob
+      @link_columns: untyped
+
+      def perform: () -> untyped
+
+      private
+
+      def common_query: (untyped sub_batch, untyped target_type) { () -> untyped } -> ::String
+
+      def handle_issue_related_records: (untyped sub_batch) -> untyped
+
+      def handle_merge_request_related_records: (untyped sub_batch) -> untyped
+
+      def handle_epic_related_records: (untyped sub_batch) -> untyped
+
+      def delete_and_archive_label_links_with_no_namespace: (untyped sub_batch) -> untyped
+
+      def label_links_columns_for_archive: () -> untyped
+    end
+  end
+end

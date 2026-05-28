@@ -1,0 +1,21 @@
+module Gitlab
+  module Auth
+    class TooManyIps < StandardError
+      @user_id: untyped
+
+      @ip: untyped
+
+      @unique_ips_count: untyped
+
+      attr_reader user_id: untyped
+
+      attr_reader ip: untyped
+
+      attr_reader unique_ips_count: untyped
+
+      def initialize: (untyped user_id, untyped ip, untyped unique_ips_count) -> void
+
+      def message: () -> ::String
+    end
+  end
+end

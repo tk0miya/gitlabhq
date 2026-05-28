@@ -1,0 +1,11 @@
+module Ci
+  module PipelineArtifacts
+    class CoverageReportWorker
+      include ApplicationWorker
+
+      include PipelineBackgroundQueue
+
+      def perform: (untyped pipeline_id) -> (nil | untyped)
+    end
+  end
+end

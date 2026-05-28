@@ -1,0 +1,13 @@
+module Ci
+  module ExternalPullRequests
+    class CreatePipelineWorker
+      include ApplicationWorker
+
+      def perform: (untyped project_id, untyped user_id, untyped external_pull_request_id) -> (nil | untyped)
+
+      private
+
+      def execute_params: (untyped pull_request) -> { ref: untyped, source_sha: untyped, target_sha: untyped }
+    end
+  end
+end

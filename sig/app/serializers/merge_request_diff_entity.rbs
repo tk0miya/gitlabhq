@@ -1,0 +1,11 @@
+class MergeRequestDiffEntity < Grape::Entity
+  include Gitlab::Routing
+
+  include GitHelper
+
+  include MergeRequestsHelper
+
+  def merge_request: () -> untyped
+
+  def path_extra_options: () -> untyped
+end

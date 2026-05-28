@@ -1,0 +1,39 @@
+module Backup
+  class Metadata
+    @manifest_filepath: untyped
+
+    @backup_information: untyped
+
+    # Fullpath for the manifest file
+    # @return [Pathname] full path for the manifest file
+    attr_reader manifest_filepath: untyped
+
+    # Information present in the manifest file shipped along with the backup
+    # @return [BackupInformation]
+    attr_reader backup_information: untyped
+
+    YAML_PERMITTED_CLASSES: ::Array[untyped]
+
+    # Backup Manifest content, describing what the backup contains and the environment in which it was created
+    # Includes versions information, timestamp, installation type and other data required to restore or to
+    # keep incremental backups working
+    BackupInformation: untyped
+
+    def initialize: (untyped manifest_filepath) -> void
+
+    # Load #BackupInformation from a YAML manifest file on disk
+    def load!: () -> untyped
+
+    # Save content from #BackupInformation into a manifest YAML file on disk
+    def save!: () -> untyped
+
+    # Update backup information with provided data
+    #
+    # @param [Hash] data arguments matching #BackupInformation keyword arguments
+    def update: (**untyped data) -> untyped
+
+    private
+
+    def load_from_file: () -> untyped
+  end
+end

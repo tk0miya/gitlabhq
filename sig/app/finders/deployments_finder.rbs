@@ -1,0 +1,80 @@
+# WARNING: This finder does not check permissions!
+#
+# Arguments:
+#   params:
+#     project: Project model - Find deployments for this project
+#     updated_after: DateTime
+#     updated_before: DateTime
+#     finished_after: DateTime
+#     finished_before: DateTime
+#     environment: String (name) or Integer (ID)
+#     status: String or Array<String> (see Deployment.statuses)
+#     order_by: String (see ALLOWED_SORT_VALUES constant)
+#     sort: String (asc | desc)
+class DeploymentsFinder
+  @params: untyped
+
+  include UpdatedAtFilter
+
+  attr_reader params: untyped
+
+  # Warning:
+  # These const are directly used in Deployment Rest API, thus
+  # modifying these values could implicitly change the API interface or introduce a breaking change.
+  # Also, if you add a sort value, make sure that the new query will stay
+  # performant with the other filtering/sorting parameters.
+  # The composed query could be significantly slower when the filtering and sorting columns are different.
+  # See https://gitlab.com/gitlab-org/gitlab/-/issues/325627 for example.
+  ALLOWED_SORT_VALUES: ::Array["id" | "iid" | "created_at" | "updated_at" | "finished_at"]
+
+  DEFAULT_SORT_VALUE: "id"
+
+  ALLOWED_SORT_DIRECTIONS: ::Array["asc" | "desc"]
+
+  DEFAULT_SORT_DIRECTION: "asc"
+
+  InefficientQueryError: untyped
+
+  def initialize: (?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def validate!: () -> untyped
+
+  def init_collection: () -> untyped
+
+  def sort: (untyped items) -> untyped
+
+  def by_finished_at: (untyped items) -> untyped
+
+  def by_environment: (untyped items) -> untyped
+
+  def by_status: (untyped items) -> untyped
+
+  def build_sort_params: () -> ::Hash[untyped, untyped]
+
+  def optimize_sort_params!: (untyped sort_params) -> untyped
+
+  def filter_by_updated_at?: () -> untyped
+
+  def filter_by_finished_at?: () -> untyped
+
+  def filter_by_successful_deployment?: () -> untyped
+
+  def filter_by_finished_statuses?: () -> untyped
+
+  def filter_by_upcoming_statuses?: () -> untyped
+
+  def filter_by_environment_name?: () -> untyped
+
+  def filter_by_environment_id?: () -> untyped
+
+  def order_by_updated_at?: () -> untyped
+
+  def order_by_finished_at?: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def preload_associations: (untyped scope) -> untyped
+end

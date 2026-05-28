@@ -1,0 +1,64 @@
+# This service downloads and links lfs objects from a remote URL
+module Projects
+  module LfsPointers
+    class LfsDownloadService < BaseService
+      @lfs_download_object: untyped
+
+      @tmp_storage_dir: untyped
+
+      @storage_dir: untyped
+
+      @lfs_object: untyped
+
+      SizeError: untyped
+
+      OidError: untyped
+
+      ResponseError: untyped
+
+      LARGE_FILE_SIZE: untyped
+
+      attr_reader lfs_download_object: untyped
+
+      def initialize: (untyped project, untyped lfs_download_object) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def wrap_download_errors: () { () -> untyped } -> untyped
+
+      def download_lfs_file!: () -> untyped
+
+      def find_or_create_lfs_object: (untyped tmp_file) -> untyped
+
+      def download_and_save_file!: (untyped file) -> untyped
+
+      def digest_fragment?: (untyped fragment) -> untyped
+
+      def download_options: () -> untyped
+
+      def fetch_file: () { (?) -> untyped } -> untyped
+
+      def with_tmp_file: () { (untyped) -> untyped } -> untyped
+
+      def tmp_filename: () -> untyped
+
+      def create_tmp_storage_dir: () -> untyped
+
+      def tmp_storage_dir: () -> untyped
+
+      def storage_dir: () -> untyped
+
+      def raise_size_error!: () -> untyped
+
+      def raise_oid_error!: () -> untyped
+
+      def error: (untyped message, ?untyped? http_status) -> untyped
+
+      def lfs_object: () -> untyped
+
+      def link_existing_lfs_object!: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Analytics
+  module CycleAnalytics
+    class ProjectLevel
+      @project: untyped
+
+      @options: untyped
+
+      @summary: untyped
+
+      @stats: untyped
+
+      attr_reader project: untyped
+
+      attr_reader options: untyped
+
+      def initialize: (project: untyped, options: untyped) -> void
+
+      def summary: () -> untyped
+
+      def permissions: (user: untyped) -> untyped
+
+      def stats: () -> untyped
+
+      def []: (untyped stage_name) -> untyped
+
+      private
+
+      def build_stage: (untyped stage_name) -> untyped
+
+      def stage_params_by_name: (untyped name) -> untyped
+
+      def default_stage_names: () -> untyped
+    end
+  end
+end

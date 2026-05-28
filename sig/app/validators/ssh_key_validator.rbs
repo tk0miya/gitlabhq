@@ -1,0 +1,15 @@
+# SshKeyValidator
+#
+# Custom validator for SSH keys.
+#
+#   class Project < ActiveRecord::Base
+#     validates :key, ssh_key: true
+#   end
+#
+class SshKeyValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+
+  private
+
+  def forbidden_key_type_message: () -> ::String
+end

@@ -1,0 +1,37 @@
+module Gitlab
+  module Database
+    module Aggregation
+      # -- builds ActiveRecord queries
+      module ActiveRecord
+        class Engine < Gitlab::Database::Aggregation::Engine
+          extend ::Gitlab::Utils::Override
+
+          COLUMN_PREFIX: "aeq_"
+
+          def self.metrics_mapping: () -> { count: untyped, mean: untyped }
+
+          def self.dimensions_mapping: () -> { column: untyped, date_bucket: untyped }
+
+          def self.filters_mapping: () -> { exact_match: untyped }
+
+          private
+
+          def execute_query_plan: (untyped plan) -> untyped
+
+          # Returns [projections, dimension_aliases, metric_aliases]
+          def build_select_list_and_aliases: (untyped plan) -> ::Array[untyped]
+
+          def apply_scope: (untyped relation, untyped plan) -> untyped
+
+          def apply_filters: (untyped relation, untyped plan) -> untyped
+
+          def apply_grouping: (untyped relation, untyped dimension_aliases) -> untyped
+
+          def apply_order: (untyped relation, untyped plan, untyped dimension_aliases, untyped metric_aliases) -> untyped
+
+          def column_alias: (untyped plan_part) -> ::String
+        end
+      end
+    end
+  end
+end

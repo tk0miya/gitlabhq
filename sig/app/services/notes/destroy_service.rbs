@@ -1,0 +1,17 @@
+module Notes
+  class DestroyService < ::Notes::BaseService
+    def execute: (untyped note, ?old_note_body: untyped?) -> untyped
+
+    private
+
+    def track_note_removal_usage_for_issues: (untyped note) -> untyped
+
+    def track_note_removal_usage_for_merge_requests: (untyped note) -> untyped
+
+    def track_note_removal_usage_for_design: (untyped note) -> untyped
+
+    def track_note_removal: (untyped work_item, untyped event) -> (nil | untyped)
+
+    def track_note_removal_usage_for_wiki: (untyped note) -> untyped
+  end
+end

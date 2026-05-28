@@ -1,0 +1,48 @@
+module Gitlab
+  module Ci
+    module Reports
+      class TestSuiteSummary
+        @build_report_results: untyped
+
+        @name: untyped
+
+        @total_time: untyped
+
+        @success_count: untyped
+
+        @failed_count: untyped
+
+        @skipped_count: untyped
+
+        @error_count: untyped
+
+        @total_count: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped build_report_results) -> void
+
+        def name: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def build_ids: () -> untyped
+
+        def total_time: () -> untyped
+
+        def success_count: () -> untyped
+
+        def failed_count: () -> untyped
+
+        def skipped_count: () -> untyped
+
+        def error_count: () -> untyped
+
+        def total_count: () -> untyped
+
+        def suite_error: () -> untyped
+
+        def to_h: () -> { time: untyped, count: untyped, success: untyped, failed: untyped, skipped: untyped, error: untyped, suite_error: untyped }
+      end
+    end
+  end
+end

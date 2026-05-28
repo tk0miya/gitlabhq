@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    class Config
+      class Stages
+        @config: untyped
+
+        @stages: untyped
+
+        EDGE_PRE: ".pre"
+
+        EDGE_POST: ".post"
+
+        EDGES: ::Array[untyped]
+
+        def self.wrap_with_edge_stages: (untyped stages) -> untyped
+
+        def initialize: (untyped config) -> void
+
+        def inject_edge_stages!: () -> untyped
+
+        private
+
+        attr_reader config: untyped
+
+        attr_reader stages: untyped
+
+        def extract_stages: () -> (::Array[untyped] | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+class ProjectImportData < ApplicationRecord
+  include Gitlab::EncryptedAttribute
+
+  # Timeout strategy can only be changed via API, currently only with GitHub and BitBucket Server
+  OPTIMISTIC_TIMEOUT: "optimistic"
+
+  PESSIMISTIC_TIMEOUT: "pessimistic"
+
+  TIMEOUT_STRATEGIES: ::Array[untyped]
+
+  def symbolize_credentials: () -> (untyped | nil)
+
+  def merge_data: (untyped hash) -> (untyped | nil)
+
+  def merge_credentials: (untyped hash) -> (untyped | nil)
+
+  def user_mapping_enabled?: () -> untyped
+end

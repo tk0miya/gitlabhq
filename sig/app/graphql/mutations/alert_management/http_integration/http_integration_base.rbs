@@ -1,0 +1,14 @@
+module Mutations
+  module AlertManagement
+    module HttpIntegration
+      class HttpIntegrationBase < BaseMutation
+        private
+
+        def response: (untyped result) -> { integration: untyped, errors: untyped }
+
+        # overridden in EE
+        def http_integration_params: (untyped _project, untyped args) -> untyped
+      end
+    end
+  end
+end

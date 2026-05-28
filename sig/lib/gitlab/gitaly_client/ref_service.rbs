@@ -1,0 +1,85 @@
+module Gitlab
+  module GitalyClient
+    class RefService
+      @repository: untyped
+
+      @gitaly_repo: untyped
+
+      @storage: untyped
+
+      include Gitlab::EncodingHelper
+
+      include WithFeatureFlagActors
+
+      TAGS_SORT_KEY: { "name" => untyped, "updated" => untyped, "version" => untyped }
+
+      TAGS_SORT_DIRECTION: { "asc" => untyped, "desc" => untyped }
+
+      AMBIGUOUS_REFERENCE: "reference is ambiguous"
+
+      # 'repository' is a Gitlab::Git::Repository
+      def initialize: (untyped repository) -> void
+
+      def branches: () -> untyped
+
+      def remote_branches: (untyped remote_name) -> untyped
+
+      def merged_branches: (?untyped branch_names) -> untyped
+
+      def default_branch_name: (?head_only: bool) -> untyped
+
+      def local_branches: (?sort_by: untyped?, ?pagination_params: untyped?) -> untyped
+
+      def tags: (?sort_by: untyped?, ?pagination_params: untyped?) -> untyped
+
+      def ref_exists?: (untyped ref_name) -> untyped
+
+      def find_branch: (untyped branch_name) -> untyped
+
+      def find_tag: (untyped tag_name) -> untyped
+
+      def update_refs: (ref_list: untyped) -> untyped
+
+      def delete_refs: (?refs: untyped, ?except_with_prefixes: untyped) -> untyped
+
+      # Limit: 0 implies no limit, thus all tag names will be returned
+      def tag_names_contains_sha: (untyped sha, ?limit: ::Integer) -> untyped
+
+      # Limit: 0 implies no limit, thus all tag names will be returned
+      def branch_names_contains_sha: (untyped sha, ?limit: ::Integer) -> untyped
+
+      def get_tag_messages: (untyped tag_ids) -> untyped
+
+      def get_tag_signatures: (untyped tag_ids, ?timeout: untyped) -> untyped
+
+      # peel_tags slows down the request by a factor of 3-4
+      def list_refs: (?::Array[untyped] patterns, ?pointing_at_oids: untyped, ?peel_tags: bool, ?dynamic_timeout: untyped?, ?sort_by: untyped?, ?pagination_params: untyped?, ?ignore_case: bool) -> untyped
+
+      def find_refs_by_oid: (oid: untyped, limit: untyped, ?ref_patterns: untyped?) -> untyped
+
+      private
+
+      def consume_refs_response: (untyped response) { (untyped) -> untyped } -> untyped
+
+      def consume_list_refs_response: (untyped response) -> untyped
+
+      def sort_local_branches_by_param: (untyped sort_by) -> untyped
+
+      def sort_tags_by_param: (untyped sort_by) -> (nil | untyped)
+
+      def consume_find_local_branches_response: (untyped response) -> untyped
+
+      def consume_find_all_branches_response: (untyped response) -> untyped
+
+      def consume_find_all_remote_branches_response: (untyped remote_name, untyped response) -> untyped
+
+      def consume_tags_response: (untyped response) -> untyped
+
+      def commit_from_local_branches_response: (untyped response) -> untyped
+
+      def consume_ref_contains_sha_response: (untyped stream, untyped collection_name) -> untyped
+
+      def invalid_ref!: (untyped message) -> untyped
+    end
+  end
+end

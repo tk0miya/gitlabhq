@@ -1,0 +1,18 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      module Models
+        # rubocop:disable Migration/BatchedMigrationBaseClass -- This is not a migration file class so we do not need to inherit from BatchedMigrationJob
+        class BmWorkspace
+          include WorkspaceOperations::BmStates
+
+          # @return [Boolean]
+          def desired_state_running?: () -> untyped
+
+          # @return [BackgroundMigration::Models::BmWorkspaceAgentConfig]
+          def workspaces_agent_config: () -> untyped
+        end
+      end
+    end
+  end
+end

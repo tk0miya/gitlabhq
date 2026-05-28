@@ -1,0 +1,26 @@
+module Gitlab
+  module BitbucketServerImport
+    module StageMethods
+      extend ActiveSupport::Concern
+
+      include ::Import::ResumableImportJob
+
+      # project_id - The ID of the GitLab project to import the data into.
+      def perform: (untyped project_id) -> untyped
+
+      def find_project: (untyped id) -> untyped
+
+      def abort_on_failure: () -> false
+
+      private
+
+      def track_and_raise: (untyped project_id, untyped exception) -> untyped
+
+      def log_non_retryable_error: (untyped project_id, untyped exception) -> untyped
+
+      def info: (untyped project_id, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def log_attributes: (untyped project_id, ?::Hash[untyped, untyped] extra) -> untyped
+    end
+  end
+end

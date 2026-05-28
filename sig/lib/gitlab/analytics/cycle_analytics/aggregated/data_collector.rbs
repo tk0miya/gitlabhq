@@ -1,0 +1,45 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module Aggregated
+        # Arguments:
+        #   stage - an instance of CycleAnalytics::Stage
+        #   params:
+        #     current_user: an instance of User
+        #     from: DateTime
+        #     to: DateTime
+        class DataCollector
+          @stage: untyped
+
+          @params: untyped
+
+          @query_builder: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          MAX_COUNT: 10001
+
+          def initialize: (stage: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+          def median: () -> untyped
+
+          def count: () -> untyped
+
+          def records_fetcher: () -> untyped
+
+          private
+
+          attr_reader stage: untyped
+
+          attr_reader params: untyped
+
+          def query: () -> untyped
+
+          def query_builder: () -> untyped
+
+          def limit_count: () -> untyped
+        end
+      end
+    end
+  end
+end

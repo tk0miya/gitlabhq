@@ -1,0 +1,19 @@
+module Packages
+  module Go
+    class ModuleFinder
+      @project: untyped
+
+      @module_name: untyped
+
+      include Gitlab::Golang
+
+      attr_reader project: untyped
+
+      attr_reader module_name: untyped
+
+      def initialize: (untyped project, untyped module_name) -> void
+
+      def execute: () -> (nil | untyped)
+    end
+  end
+end

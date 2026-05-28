@@ -1,0 +1,30 @@
+# rubocop:disable Gitlab/ModuleWithInstanceVariables -- instance variables are set for the including controller
+module JwtAuthenticatable
+  @authentication_result: untyped
+
+  extend ActiveSupport::Concern
+
+  EMPTY_AUTH_RESULT: untyped
+
+  def authenticate_user_from_jwt_token!: () -> untyped
+
+  private
+
+  attr_reader personal_access_token: untyped
+
+  def request_bearer_token!: () -> untyped
+
+  def can_sign_in?: (untyped user_or_token) -> (false | true)
+
+  def link_composite_identity_from_jwt: (untyped user, untyped result) -> (nil | untyped)
+
+  def set_auth_result: (untyped actor, untyped type) -> untyped
+
+  def skip_session: () -> untyped
+
+  def authenticate_header: () -> untyped
+
+  def handle_personal_access_token: (untyped token) -> nil
+
+  def valid_service_type?: (untyped _service_type) -> false
+end

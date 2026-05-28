@@ -1,0 +1,23 @@
+class WhatsNewController < ApplicationController
+  include Gitlab::Utils::StrongMemoize
+
+  def index: () -> untyped
+
+  def mark_as_read: () -> untyped
+
+  private
+
+  def check_whats_new_enabled: () -> (untyped | nil)
+
+  def check_valid_page_param: () -> (untyped | nil)
+
+  def current_page: () -> untyped
+
+  def highlights: () -> untyped
+
+  def set_pagination_headers: () -> untyped
+
+  def mark_as_read_params: () -> untyped
+
+  def article_read_status_service: () -> untyped
+end

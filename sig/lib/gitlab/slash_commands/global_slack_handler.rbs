@@ -1,0 +1,31 @@
+module Gitlab
+  module SlashCommands
+    class GlobalSlackHandler
+      @project_alias: untyped
+
+      @params: untyped
+
+      attr_reader project_alias: untyped
+
+      attr_reader params: untyped
+
+      def initialize: (untyped params) -> void
+
+      def trigger: () -> (false | untyped)
+
+      private
+
+      def valid_token?: () -> untyped
+
+      def help_command?: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def find_slack_integration: () -> (nil | untyped)
+
+      # Splits the command
+      # '/gitlab help' => [nil, 'help']
+      # '/gitlab group/project issue new some title' => ['group/project', 'issue new some title']
+      def parse_command_text: (untyped params) -> (::Array[nil | untyped] | untyped)
+    end
+  end
+end

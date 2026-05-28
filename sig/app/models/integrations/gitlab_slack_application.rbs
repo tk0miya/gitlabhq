@@ -1,0 +1,47 @@
+module Integrations
+  class GitlabSlackApplication < Integration
+    @slack_api: untyped
+
+    include Integrations::Base::SlackNotification
+
+    include SlackMattermostFields
+
+    def self.title: () -> untyped
+
+    def self.description: () -> untyped
+
+    def self.to_param: () -> "gitlab_slack_application"
+
+    def manual_activation?: () -> false
+
+    def test: (untyped _data) -> { success: untyped, result: untyped }
+
+    def editable?: () -> untyped
+
+    def fields: () -> (::Array[untyped] | untyped)
+
+    def sections: () -> (::Array[untyped] | untyped)
+
+    def self.webhook_help: () -> nil
+
+    def configurable_events: () -> (::Array[untyped] | untyped)
+
+    def after_build_from_integration: (untyped new_integration) -> (nil | untyped)
+
+    def self.requires_webhook?: () -> false
+
+    def upgrade_needed?: () -> untyped
+
+    private
+
+    def notify: (untyped message, untyped opts) -> (false | untyped)
+
+    def notify_slack_channel!: (untyped channel, untyped payload) -> untyped
+
+    def api_client: () -> untyped
+
+    def test_notification_channels: () -> (nil | untyped)
+
+    def metrics_key_prefix: () -> "i_integrations_gitlab_for_slack_app"
+  end
+end

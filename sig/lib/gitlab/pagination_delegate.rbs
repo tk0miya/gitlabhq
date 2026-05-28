@@ -1,0 +1,41 @@
+module Gitlab
+  class PaginationDelegate
+    @count: untyped
+
+    @options: untyped
+
+    @per_page: untyped
+
+    @page: untyped
+
+    DEFAULT_PER_PAGE: untyped
+
+    MAX_PER_PAGE: untyped
+
+    def initialize: (page: untyped, per_page: untyped, count: untyped, ?options: ::Hash[untyped, untyped]) -> void
+
+    def total_count: () -> untyped
+
+    def total_pages: () -> untyped
+
+    def next_page: () -> (untyped | nil)
+
+    def prev_page: () -> (untyped | nil)
+
+    def current_page: () -> untyped
+
+    def limit_value: () -> untyped
+
+    def first_page?: () -> untyped
+
+    def last_page?: () -> untyped
+
+    def offset: () -> untyped
+
+    private
+
+    def sanitize_per_page: (untyped per_page) -> untyped
+
+    def sanitize_page: (untyped page) -> (1 | untyped)
+  end
+end

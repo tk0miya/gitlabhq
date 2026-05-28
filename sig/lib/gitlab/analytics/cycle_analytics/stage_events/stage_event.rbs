@@ -1,0 +1,51 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageEvents
+        # Base class for expressing an event that can be used for a stage.
+        class StageEvent
+          @params: untyped
+
+          include Gitlab::CycleAnalytics::MetricsTables
+
+          extend Gitlab::Utils::Override
+
+          def initialize: (untyped params) -> void
+
+          def self.name: () -> untyped
+
+          def html_description: (?::Hash[untyped, untyped] options) -> untyped
+
+          def self.identifier: () -> untyped
+
+          def object_type: () -> untyped
+
+          def hash_code: () -> untyped
+
+          # Each StageEvent must expose a timestamp or a timestamp like expression in order to build a range query.
+          # Example: get me all the Issue records between start event end end event
+          def timestamp_projection: () -> untyped
+
+          # List of columns that are referenced in the `timestamp_projection` expression
+          # Example timestamp projection: COALESCE(issue_metrics.created_at, issue_metrics.updated_at)
+          # Expected column list: issue_metrics.created_at, issue_metrics.updated_at
+          def column_list: () -> untyped
+
+          # Optionally a StageEvent may apply additional filtering or join other tables on the base query.
+          def apply_query_customization: (untyped query) -> untyped
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def apply_negated_query_customization: (untyped query) -> untyped
+
+          def include_in: (untyped query, **untyped) -> untyped
+
+          def self.label_based?: () -> false
+
+          private
+
+          attr_reader params: untyped
+        end
+      end
+    end
+  end
+end

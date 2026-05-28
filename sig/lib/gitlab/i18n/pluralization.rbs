@@ -1,0 +1,27 @@
+module Gitlab
+  module I18n
+    # Pluralization formulas per locale used by FastGettext via:
+    # `FastGettext.pluralisation_rule.call(count)`.
+    module Pluralization
+      # rubocop:disable all
+      MAP: { "bg" => untyped, "cs_CZ" => untyped, "da_DK" => untyped, "de" => untyped, "en" => untyped, "eo" => untyped, "es" => untyped, "fil_PH" => untyped, "fr" => untyped, "ga_IE" => untyped, "gl_ES" => untyped, "id_ID" => untyped, "it" => untyped, "ja" => untyped, "ko" => untyped, "nb_NO" => untyped, "nl_NL" => untyped, "pl_PL" => untyped, "pt_BR" => untyped, "ro_RO" => untyped, "ru" => untyped, "si_LK" => untyped, "tr_TR" => untyped, "uk" => untyped, "zh_CN" => untyped, "zh_HK" => untyped, "zh_TW" => untyped }
+
+      NOT_FOUND_ERROR: untyped
+
+      def self.call: (untyped count) -> untyped
+
+      def self.install_on: (untyped klass) -> untyped
+
+      module FastGettextClassMethods
+        # FastGettext allows to set the rule via
+        # `FastGettext.pluralisation_rule=` which is on thread-level.
+        #
+        # Because we are patching FastGettext at boot time per thread values
+        # won't work so we have to override the method implementation.
+        #
+        # `FastGettext.pluralisation_rule=` has now no effect.
+        def pluralisation_rule: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,60 @@
+module Analytics
+  module Glql
+    # Service for logging GLQL/GraphQL execution metrics and performance data
+    # Logs to GraphQL logger for monitoring, optimization, and debugging
+    # Used by both REST API::Glql (with GLQL-specific details) and Glql::BaseController (GraphQL only)
+    class LoggingService
+      @current_user: untyped
+
+      @result: untyped
+
+      @query_sha: untyped
+
+      @glql_query: untyped
+
+      @generated_graphql: untyped
+
+      @fields: untyped
+
+      @context: untyped
+
+      def initialize: (current_user: untyped, result: untyped, query_sha: untyped, ?glql_query: untyped?, ?generated_graphql: untyped?, ?fields: untyped?, ?context: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader result: untyped
+
+      attr_reader query_sha: untyped
+
+      attr_reader glql_query: untyped
+
+      attr_reader generated_graphql: untyped
+
+      attr_reader fields: untyped
+
+      attr_reader context: untyped
+
+      def timeout_occurred?: () -> untyped
+
+      def high_complexity?: () -> untyped
+
+      def slow_query?: () -> untyped
+
+      def complexity_score: () -> untyped
+
+      def duration_s: () -> untyped
+
+      def base_log_data: () -> untyped
+
+      def log_timeout: () -> untyped
+
+      def log_high_complexity: () -> untyped
+
+      def log_slow_query: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,39 @@
+module Ci
+  class PlayBuildService
+    @current_user: untyped
+
+    @build: untyped
+
+    @variables: untyped
+
+    @inputs: untyped
+
+    @project: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    def initialize: (current_user: untyped, build: untyped, ?variables: untyped?, ?inputs: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader build: untyped
+
+    attr_reader variables: untyped
+
+    attr_reader inputs: untyped
+
+    attr_reader project: untyped
+
+    def retry_build: (untyped build) -> untyped
+
+    def check_access!: () -> untyped
+
+    def process_job_inputs: (untyped job, untyped inputs) -> untyped
+
+    def track_play_with_new_input_values: (untyped filtered_inputs) -> (nil | untyped)
+  end
+end

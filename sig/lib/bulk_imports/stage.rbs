@@ -1,0 +1,21 @@
+module BulkImports
+  class Stage
+    @bulk_import_entity: untyped
+
+    @bulk_import: untyped
+
+    @pipelines: untyped
+
+    def initialize: (untyped bulk_import_entity) -> void
+
+    def pipelines: () -> untyped
+
+    private
+
+    attr_reader bulk_import: untyped
+
+    attr_reader bulk_import_entity: untyped
+
+    def config: () -> untyped
+  end
+end

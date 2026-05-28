@@ -1,0 +1,13 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      module PullRequestNotes
+        class StandaloneNotes < BaseNoteDiffImporter
+          def execute: (untyped comment) -> untyped
+
+          def pull_request_comment_attributes: (untyped comment) -> untyped
+        end
+      end
+    end
+  end
+end

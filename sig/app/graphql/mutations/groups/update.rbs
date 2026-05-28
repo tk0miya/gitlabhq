@@ -1,0 +1,17 @@
+module Mutations
+  module Groups
+    class Update < Mutations::BaseMutation
+      include ::Gitlab::Allowable
+
+      include Mutations::ResolvesGroup
+
+      def resolve: (full_path: untyped, **untyped args) -> ({ group: nil, errors: untyped } | { group: untyped, errors: ::Array[untyped] })
+
+      private
+
+      def find_object: (full_path: untyped) -> untyped
+
+      def authorized_args: (untyped group, untyped args) -> (untyped | { shared_runners_setting: untyped })
+    end
+  end
+end

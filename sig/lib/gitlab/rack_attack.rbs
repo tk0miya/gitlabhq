@@ -1,0 +1,30 @@
+# When adding new user-configurable throttles, remember to update the documentation
+# in doc/administration/settings/user_and_ip_rate_limits.md
+#
+# Integration specs for throttling can be found in:
+# spec/requests/rack_attack_global_spec.rb
+module Gitlab
+  module RackAttack
+    self.@user_allowlist: untyped
+
+    def self.configure: (untyped rack_attack) -> untyped
+
+    def self.configure_user_allowlist: () -> untyped
+
+    ThrottleDefinition: untyped
+
+    def self.throttle_definitions: () -> ::Hash["throttle_unauthenticated_web" | "throttle_product_analytics_collector" | "throttle_authenticated_web" | "throttle_unauthenticated_protected_paths" | "throttle_authenticated_protected_paths_api" | "throttle_authenticated_protected_paths_web" | "throttle_unauthenticated_get_protected_paths" | "throttle_authenticated_get_protected_paths_api" | "throttle_authenticated_get_protected_paths_web" | "throttle_authenticated_git_lfs" | untyped, untyped]
+
+    def self.throttle_definitions_unauthenticated_git_http: () -> { "throttle_unauthenticated_git_http" => untyped }
+
+    def self.throttle_definitions_authenticated_git_http: () -> { "throttle_authenticated_git_http" => untyped }
+
+    def self.configure_throttles: (untyped rack_attack) -> untyped
+
+    def self.throttle_or_track: (untyped rack_attack, untyped throttle_name, *untyped args) { (?) -> untyped } -> untyped
+
+    def self.track?: (untyped name) -> (false | true | untyped)
+
+    def self.user_allowlist: () -> untyped
+  end
+end

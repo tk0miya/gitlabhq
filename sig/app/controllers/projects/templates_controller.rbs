@@ -1,0 +1,21 @@
+class Projects::TemplatesController < Projects::ApplicationController
+  @template_type: untyped
+
+  def index: () -> untyped
+
+  def show: () -> untyped
+
+  def names: () -> untyped
+
+  private
+
+  # User must have:
+  # - `read_merge_request` to see merge request templates, or
+  # - `read_issue` to see issue templates
+  #
+  # Note params[:template_type] has a route constraint to limit it to
+  # `merge_request` or `issue`
+  def authorize_can_read_issuable!: () -> untyped
+
+  def get_template_class: () -> untyped
+end

@@ -1,0 +1,15 @@
+module BulkImports
+  module Groups
+    module Pipelines
+      class ProjectEntitiesPipeline
+        include Pipeline
+
+        include HexdigestCacheStrategy
+
+        def transform: (untyped context, untyped data) -> { source_type: :project_entity, source_full_path: untyped, destination_name: untyped, destination_namespace: untyped, parent_id: untyped, source_xid: untyped }
+
+        def load: (untyped context, untyped data) -> untyped
+      end
+    end
+  end
+end

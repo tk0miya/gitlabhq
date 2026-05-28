@@ -1,0 +1,41 @@
+module Gitlab
+  module Middleware
+    class CompressedJson
+      @app: untyped
+
+      INSTANCE_PACKAGES_PATH: ::Regexp
+
+      GROUP_PACKAGES_PATH: ::Regexp
+
+      PROJECT_PACKAGES_PATH: ::Regexp
+
+      MAXIMUM_BODY_SIZE: untyped
+
+      UNSAFE_CHARACTERS: ::Regexp
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      def compressed_et_request?: (untyped env) -> untyped
+
+      def too_large: () -> ::Array[413 | { "Content-Type" => "text/plain" } | ::Array["Payload Too Large"]]
+
+      def relative_url: () -> untyped
+
+      def extract: (untyped input) -> untyped
+
+      def post_request?: (untyped env) -> untyped
+
+      def gzip_encoding?: (untyped env) -> untyped
+
+      def match_content_type?: (untyped env) -> untyped
+
+      def match_path?: (untyped env) -> untyped
+
+      def match_packages_path?: (untyped env) -> (false | true | untyped)
+
+      def url_encoded?: (untyped id) -> untyped
+    end
+  end
+end

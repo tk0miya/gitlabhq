@@ -1,0 +1,51 @@
+module Ci
+  class AuthJobFinder
+    @token: untyped
+
+    class AuthError < StandardError
+      @job: untyped
+
+      attr_reader job: untyped
+
+      def initialize: (untyped message, job: untyped) -> void
+    end
+
+    NotRunningJobError: untyped
+
+    ErasedJobError: untyped
+
+    DeletedProjectError: untyped
+
+    ExpiredJobTokenError: untyped
+
+    MAX_TOKEN_BYTESIZE: untyped
+
+    def initialize: (token: untyped) -> void
+
+    def execute!: () -> untyped
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader token: untyped
+
+    def find_job_by_token: () -> (nil | untyped)
+
+    def find_job_by_jwt: () -> (nil | untyped)
+
+    def link_composite_identity!: (untyped jwt) -> (nil | untyped)
+
+    def find_from_database_token: () -> (nil | untyped)
+
+    def validate_job!: (untyped job) -> true
+
+    def validate_executing_job!: (untyped job) -> (nil | untyped)
+
+    def validate_job_not_erased!: (untyped job) -> (untyped | nil)
+
+    def validate_project_presence!: (untyped job) -> (nil | untyped)
+
+    def log_successful_job_auth: (untyped job) -> untyped
+  end
+end

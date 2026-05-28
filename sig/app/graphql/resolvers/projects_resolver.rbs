@@ -1,0 +1,23 @@
+module Resolvers
+  class ProjectsResolver < BaseResolver
+    prepend ::Projects::LookAheadPreloads
+
+    include ProjectSearchArguments
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    private
+
+    def validate_args!: (untyped args) -> (nil | untyped)
+
+    def unconditional_includes: () -> ::Array[:creator | :group | :invited_groups | :project_setting | :project_namespace | { namespace: ::Array[:namespace_settings_with_ancestors_inherited_settings] }]
+
+    def finder_params: (untyped args) -> untyped
+
+    def sanitize_params: (untyped params) -> untyped
+
+    def parse_gids: (untyped gids) -> untyped
+
+    def user_is_admin?: () -> untyped
+  end
+end

@@ -1,0 +1,35 @@
+module Sidebars
+  module Admin
+    module Menus
+      class AdminOverviewMenu < ::Sidebars::Admin::BaseMenu
+        include ::Organizations::OrganizationHelper
+
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "overview"
+
+        def extra_container_html_options: () -> { testid: "admin-overview-submenu-content" }
+
+        def render_with_abilities: () -> untyped
+
+        private
+
+        def dashboard_menu_item: () -> untyped
+
+        def projects_menu_item: () -> untyped
+
+        def users_menu_item: () -> untyped
+
+        def groups_menu_item: () -> untyped
+
+        def organizations_menu_item: () -> (nil | untyped)
+
+        def topics_menu_item: () -> untyped
+
+        def gitaly_servers_menu_item: () -> untyped
+      end
+    end
+  end
+end

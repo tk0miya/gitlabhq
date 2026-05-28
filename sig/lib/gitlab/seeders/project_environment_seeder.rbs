@@ -1,0 +1,29 @@
+module Gitlab
+  module Seeders
+    class ProjectEnvironmentSeeder
+      @project: untyped
+
+      @seed_count: untyped
+
+      @prefix: untyped
+
+      DEFAULT_SEED_COUNT: 10
+
+      DEFAULT_PREFIX: "ENV_"
+
+      def initialize: (untyped params) -> void
+
+      def seed: () -> (nil | untyped)
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader seed_count: untyped
+
+      attr_reader prefix: untyped
+
+      def create_project_environment_scope: (untyped id) -> (nil | untyped)
+    end
+  end
+end

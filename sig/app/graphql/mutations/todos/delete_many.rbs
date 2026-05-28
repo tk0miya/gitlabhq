@@ -1,0 +1,15 @@
+module Mutations
+  module Todos
+    class DeleteMany < BaseMany
+      def resolve: (ids: untyped) -> { deleted_ids: untyped, errors: untyped }
+
+      private
+
+      def process_todos: (untyped todos) -> untyped
+
+      def todo_state_to_find: () -> :done
+
+      def verify_rate_limit!: () -> (nil | untyped)
+    end
+  end
+end

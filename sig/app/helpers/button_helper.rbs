@@ -1,0 +1,76 @@
+module ButtonHelper
+  # Output a "Copy to Clipboard" button
+  #
+  # data  - Data attributes passed to `content_tag` (default: {}):
+  #         :text   - Text to copy (optional)
+  #         :gfm    - GitLab Flavored Markdown to copy, if different from `text` (optional)
+  #         :target - Selector for target element to copy from (optional)
+  #         :class  - CSS classes to be applied to the button (optional)
+  #         :title  - Button's title attribute (used for the tooltip) (optional, default: Copy)
+  #         :aria_label - Button's aria-label attribute (optional)
+  #         :aria_keyshortcuts - Button's aria-keyshortcuts attribute (optional)
+  #         :button_text - Button's displayed label (optional)
+  #         :hide_tooltip - Whether the tooltip should be hidden (optional, default: false)
+  #         :hide_button_icon - Whether the icon should be hidden (optional, default: false)
+  #         :item_prop - itemprop attribute
+  #         :variant - Button variant (optional, default: :default)
+  #         :category - Button category (optional, default: :tertiary)
+  #         :size - Button size (optional, default: :small)
+  #
+  # Examples:
+  #
+  #   # Define the clipboard's text
+  #   clipboard_button(text: "Foo")
+  #   # => "<button class='...' data-clipboard-text='Foo'>...</button>"
+  #
+  #   # Define the target element
+  #   clipboard_button(target: "div#foo")
+  #   # => "<button class='...' data-clipboard-target='div#foo'>...</button>"
+  #
+  # See http://clipboardjs.com/#usage
+  def clipboard_button: (?::Hash[untyped, untyped] data) -> untyped
+
+  def http_clone_button: (untyped container, ?append_link: bool) -> untyped
+
+  def http_dropdown_description: (untyped protocol) -> (untyped | untyped | nil)
+
+  def ssh_clone_button: (untyped container, ?append_link: bool) -> untyped
+
+  def dropdown_item_with_description: (untyped title, untyped description, ?href: untyped?, ?data: untyped?, ?default: bool) -> untyped
+
+  # Creates a link that looks like a button.
+  #
+  # It renders a Pajamas::ButtonComponent.
+  #
+  # It has the same API as `link_to`, but with some additional options
+  # specific to button rendering.
+  #
+  # Examples:
+  #   # Default button
+  #   link_button_to _('Foo'), some_path
+  #
+  #   # Default button using a block
+  #   link_button_to some_path do
+  #     _('Foo')
+  #   end
+  #
+  #   # Confirm variant
+  #   link_button_to _('Foo'), some_path, variant: :confirm
+  #
+  #   # With icon
+  #   link_button_to _('Foo'), some_path, icon: 'pencil'
+  #
+  #   # Icon-only
+  #   # NOTE: The content must be `nil` in order to correctly render. Use aria-label
+  #   # to ensure the link is accessible.
+  #   link_button_to nil, some_path, icon: 'pencil', 'aria-label': _('Foo')
+  #
+  #   # Small button
+  #   link_button_to _('Foo'), some_path, size: :small
+  #
+  #   # Secondary category danger button
+  #   link_button_to _('Foo'), some_path, variant: :danger, category: :secondary
+  #
+  # For accessibility, ensure that icon-only links have aria-label set.
+  def link_button_to: (?untyped? name, ?untyped? href, ?untyped? options) ?{ () -> untyped } -> untyped
+end

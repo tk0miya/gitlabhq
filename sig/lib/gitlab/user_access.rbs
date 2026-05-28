@@ -1,0 +1,71 @@
+module Gitlab
+  class UserAccess
+    @user: untyped
+
+    @container: untyped
+
+    @push_ability: untyped
+
+    @skip_collaboration_check: untyped
+
+    @permission_cache: untyped
+
+    extend Gitlab::Cache::RequestCache
+
+    attr_reader user: untyped
+
+    attr_reader push_ability: untyped
+
+    attr_accessor container: untyped
+
+    def initialize: (untyped user, ?container: untyped?, ?push_ability: ::Symbol, ?skip_collaboration_check: bool) -> void
+
+    def can_do_action?: (untyped action) -> (false | untyped)
+
+    def cannot_do_action?: (untyped action) -> untyped
+
+    def allowed?: () -> (false | true)
+
+    def can_create_tag?: (untyped ref) -> (false | untyped)
+
+    def can_delete_branch?: (untyped ref) -> (false | untyped)
+
+    def can_update_branch?: (untyped ref) -> untyped
+
+    def can_run_pipeline_on_branch?: (untyped ref) -> untyped
+
+    def can_push_to_branch?: (untyped ref) -> (false | true | untyped)
+
+    def can_merge_to_branch?: (untyped ref) -> (false | untyped)
+
+    def can_push_for_ref?: (untyped _) -> untyped
+
+    private
+
+    attr_reader skip_collaboration_check: untyped
+
+    def can_push?: () -> untyped
+
+    def can_collaborate?: (untyped ref) -> untyped
+
+    def branch_allows_collaboration_for?: (untyped ref) -> (false | untyped)
+
+    def permission_cache: () -> untyped
+
+    def can_access_git?: () -> untyped
+
+    def protected_branch_accessible_to?: (untyped ref, action: untyped) -> untyped
+
+    def protected_tag_accessible_to?: (untyped ref, action: untyped) -> untyped
+
+    def protected?: (untyped kind, untyped refs) -> untyped
+
+    def project: () -> untyped
+
+    # Any method that assumes that it is operating on a project should make this
+    # explicit by calling `#assert_project!`.
+    # TODO: remove when we make this class polymorphic enough not to care about projects
+    # See: https://gitlab.com/gitlab-org/gitlab/-/issues/227635
+    def assert_project!: () -> (untyped | nil)
+  end
+end

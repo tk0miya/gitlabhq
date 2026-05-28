@@ -1,0 +1,41 @@
+module Gitlab
+  module Database
+    module Migrations
+      class BatchedMigrationLastId
+        @connection: untyped
+
+        @base_dir: untyped
+
+        @file_path: untyped
+
+        FILE_NAME: "last-batched-background-migration-id.txt"
+
+        def initialize: (untyped connection, untyped base_dir) -> void
+
+        def store: () -> untyped
+
+        # Reads the last id from the file
+        #
+        # @info casts the file content into an +Integer+.
+        #       Casts any unexpected content to +nil+
+        #
+        # @example
+        #   Integer('4', exception: false) # => 4
+        #   Integer('', exception: false) # => nil
+        #
+        # @return [Integer, nil]
+        def read: () -> (nil | untyped)
+
+        private
+
+        attr_reader connection: untyped
+
+        attr_reader base_dir: untyped
+
+        def file_path: () -> untyped
+
+        def last_background_migration_id: () -> untyped
+      end
+    end
+  end
+end

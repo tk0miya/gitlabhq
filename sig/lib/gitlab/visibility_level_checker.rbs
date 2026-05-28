@@ -1,0 +1,76 @@
+# Gitlab::VisibilityLevelChecker verifies that:
+#   - Current @project.visibility_level is not restricted
+#   - Override visibility param is not restricted
+#     - @see https://docs.gitlab.com/ee/api/project_import_export.html#import-a-file
+#
+# @param current_user [User] Current user object to verify visibility level against
+# @param project [Project] Current project that is being created/imported
+# @param project_params [Hash] Supplementary project params (e.g. import
+# params containing visibility override)
+#
+# @example
+#   user = User.find(2)
+#   project = Project.last
+#   project_params = {:import_data=>{:data=>{:override_params=>{"visibility"=>"public"}}}}
+#   level_checker = Gitlab::VisibilityLevelChecker.new(user, project, project_params: project_params)
+#
+#   project_visibility = level_checker.level_restricted?
+#   => #<Gitlab::VisibilityEvaluationResult:0x00007fbe16ee33c0 @restricted=true, @visibility_level=20>
+#
+#   if project_visibility.restricted?
+#     deny_visibility_level(project, project_visibility.visibility_level)
+#   end
+#
+# @return [VisibilityEvaluationResult] Visibility evaluation result. Responds to:
+# #restricted - boolean indicating if level is restricted
+# #visibility_level - integer of restricted visibility level
+#
+module Gitlab
+  class VisibilityLevelChecker
+    @current_user: untyped
+
+    @project: untyped
+
+    @project_params: untyped
+
+    @import_data: untyped
+
+    @override_visibility_level: untyped
+
+    @override_visibility_level_value: untyped
+
+    def initialize: (untyped current_user, untyped project, ?project_params: ::Hash[untyped, untyped]) -> void
+
+    def level_restricted?: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader project: untyped
+
+    attr_reader project_params: untyped
+
+    def override_visibility_restricted?: () -> (nil | true)
+
+    def project_visibility_restricted?: () -> (nil | true)
+
+    def import_data: () -> untyped
+
+    def override_visibility_level: () -> untyped
+
+    def override_visibility_level_value: () -> untyped
+  end
+
+  class VisibilityEvaluationResult
+    @restricted: untyped
+
+    @visibility_level: untyped
+
+    attr_reader visibility_level: untyped
+
+    def initialize: (untyped restricted, untyped visibility_level) -> void
+
+    def restricted?: () -> untyped
+  end
+end

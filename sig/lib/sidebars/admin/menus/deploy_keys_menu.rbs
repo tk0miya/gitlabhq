@@ -1,0 +1,15 @@
+module Sidebars
+  module Admin
+    module Menus
+      class DeployKeysMenu < ::Sidebars::Admin::BaseMenu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "key"
+
+        def active_routes: () -> { controller: :deploy_keys }
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Ci
+  class ArtifactBlob
+    @entry: untyped
+
+    include BlobLike
+
+    attr_reader entry: untyped
+
+    def initialize: (untyped entry) -> void
+
+    def id: () -> untyped
+
+    def size: () -> untyped
+
+    alias external_size size
+
+    def data: () -> ::String
+
+    def mode: () -> untyped
+
+    def external_storage: () -> :build_artifact
+
+    def external_url: (untyped job) -> untyped
+
+    def external_link?: (untyped job) -> untyped
+  end
+end

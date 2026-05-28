@@ -1,0 +1,21 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module Aggregated
+        module StageQueryHelpers
+          def percentile_cont: () -> untyped
+
+          def duration: () -> untyped
+
+          def in_progress?: () -> untyped
+
+          def duration_in_seconds: (?untyped duration_expression) -> untyped
+
+          private
+
+          def calculate_duration: () -> untyped
+        end
+      end
+    end
+  end
+end

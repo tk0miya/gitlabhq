@@ -1,0 +1,75 @@
+module Gitlab
+  # Class for counting and caching the number of issuables per state.
+  class IssuablesCountForState
+    @finder: untyped
+
+    @project: untyped
+
+    @fast_fail: untyped
+
+    @cache: untyped
+
+    @store_in_redis_cache: untyped
+
+    # The name of the Gitlab::SafeRequestStore cache key.
+    CACHE_KEY: :issuables_count_for_state
+
+    # The expiration time for the Rails cache.
+    CACHE_EXPIRES_IN: untyped
+
+    THRESHOLD: 1000
+
+    # The state values that can be safely casted to a Symbol.
+    STATES: ::Array["opened" | "closed" | "merged" | "all"]
+
+    attr_reader project: untyped
+
+    attr_reader finder: untyped
+
+    def self.declarative_policy_class: () -> "IssuablePolicy"
+
+    # finder - The finder class to use for retrieving the issuables.
+    # fast_fail - restrict counting to a shorter period, degrading gracefully on
+    # failure
+    def initialize: (untyped finder, ?untyped? project, ?fast_fail: bool, ?store_in_redis_cache: bool) -> void
+
+    def for_state_or_opened: (?untyped? state) -> untyped
+
+    def fast_fail?: () -> untyped
+
+    # Returns the count for the given state.
+    #
+    # state - The name of the state as either a String or a Symbol.
+    #
+    # Returns an Integer.
+    def []: (untyped state) -> untyped
+
+    private
+
+    def cache_for_finder: () -> untyped
+
+    def cast_state_to_symbol?: (untyped state) -> untyped
+
+    def initialize_cache: () -> untyped
+
+    def perform_count: (untyped finder) -> untyped
+
+    def fast_count_by_state_attempt!: () -> untyped
+
+    def fast_count_by_state_failure!: () -> untyped
+
+    def cache_issues_count?: () -> untyped
+
+    def parent_group: () -> untyped
+
+    def group_issues_list?: () -> untyped
+
+    def filter_by_issue_type?: () -> (false | untyped)
+
+    def redis_cache_key: () -> untyped
+
+    def cache_options: () -> { expires_in: untyped }
+
+    def params_include_filters?: () -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      class IssueNew < Presenters::Base
+        include Presenters::IssueBase
+
+        def present: () -> untyped
+
+        private
+
+        def pretext: () -> ::String
+
+        def issue_link: () -> ::String
+
+        def response_message: (?custom_pretext: untyped) -> { text: untyped }
+
+        def issue_url: () -> untyped
+      end
+    end
+  end
+end

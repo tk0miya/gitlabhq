@@ -1,0 +1,35 @@
+# Client for interacting with the Slack API.
+# See https://api.slack.com/web.
+module Slack
+  class API
+    @token: untyped
+
+    BASE_URL: "https://slack.com/api"
+
+    BASE_HEADERS: { "Content-Type" => "application/json; charset=utf-8" }
+
+    def initialize: (untyped slack_installation) -> void
+
+    def post: (untyped api_method, untyped payload) -> untyped
+
+    def get: (untyped api_method, ?::Hash[untyped, untyped] query) -> untyped
+
+    def add_reaction: (channel: untyped, name: untyped, timestamp: untyped) -> untyped
+
+    def remove_reaction: (channel: untyped, name: untyped, timestamp: untyped) -> untyped
+
+    def post_ephemeral: (channel: untyped, user: untyped, text: untyped) -> untyped
+
+    def post_message: (channel: untyped, text: untyped, ?thread_ts: untyped?) -> untyped
+
+    private
+
+    attr_reader token: untyped
+
+    def normalize_response: (untyped response) -> untyped
+
+    def handle_http_error: (untyped exception, untyped message, untyped channel) -> untyped
+
+    def log_error: (untyped message, untyped response, untyped channel) -> untyped
+  end
+end

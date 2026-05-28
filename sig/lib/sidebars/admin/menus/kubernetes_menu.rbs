@@ -1,0 +1,17 @@
+module Sidebars
+  module Admin
+    module Menus
+      class KubernetesMenu < ::Sidebars::Admin::BaseMenu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "cloud-gear"
+
+        def render?: () -> untyped
+
+        def active_routes: () -> { controller: :clusters }
+      end
+    end
+  end
+end

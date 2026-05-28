@@ -1,0 +1,34 @@
+module Cells
+  module Claims
+    class BulkClaimService < BaseService
+      @model: untyped
+
+      @attribute: untyped
+
+      @creates: untyped
+
+      @destroys: untyped
+
+      # @param model [Class] The ActiveRecord model class (e.g. RedirectRoute).
+      #   Must include Cells::Claimable.
+      # @param attribute [Symbol] The claimable attribute to claim (e.g. :path)
+      # @param creates [Array<Hash>] Claim metadata hashes for records to create
+      #   claims for. Each hash must contain the full claim metadata structure
+      #   expected by BaseService#commit_changes.
+      # @param destroys [Array<Hash>] Claim metadata hashes for records to destroy
+      #   claims for. Each hash must contain the full claim metadata structure
+      #   expected by BaseService#commit_changes.
+      def initialize: (model: untyped, attribute: untyped, ?creates: untyped, ?destroys: untyped) -> void
+
+      def execute: () -> ({ created: 0, destroyed: 0, chunk_count: 0 } | { created: untyped, destroyed: untyped, chunk_count: untyped })
+
+      private
+
+      attr_reader attribute: untyped
+
+      attr_reader creates: untyped
+
+      attr_reader destroys: untyped
+    end
+  end
+end

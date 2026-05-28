@@ -1,0 +1,13 @@
+module RoutableActions
+  extend ActiveSupport::Concern
+
+  def find_routable!: (untyped routable_klass, untyped routable_full_path, untyped full_path, ?extra_authorization_proc: untyped?) -> untyped
+
+  def not_found_actions: () -> ::Array[untyped]
+
+  def perform_not_found_actions: (untyped routable, untyped actions, untyped full_path) -> untyped
+
+  def routable_authorized?: (untyped routable, untyped extra_authorization_proc) -> (false | untyped)
+
+  def ensure_canonical_path: (untyped routable, untyped routable_full_path) -> untyped
+end

@@ -1,0 +1,39 @@
+module Gitlab
+  module Kubernetes
+    class Pod
+      @attributes: untyped
+
+      PENDING: "Pending"
+
+      RUNNING: "Running"
+
+      SUCCEEDED: "Succeeded"
+
+      FAILED: "Failed"
+
+      UNKNOWN: "Unknown"
+
+      PHASES: ::Array[untyped]
+
+      STABLE_TRACK_VALUE: "stable"
+
+      def initialize: (?::Hash[untyped, untyped] attributes) -> void
+
+      def track: () -> untyped
+
+      def name: () -> untyped
+
+      def stable?: () -> untyped
+
+      def status: () -> untyped
+
+      def order: () -> (1 | 0)
+
+      private
+
+      attr_reader attributes: untyped
+
+      def metadata: () -> untyped
+    end
+  end
+end

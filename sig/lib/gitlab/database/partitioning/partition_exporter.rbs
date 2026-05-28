@@ -1,0 +1,28 @@
+module Gitlab
+  module Database
+    module Partitioning
+      # Export integer range partition definitions for a given connection
+      # so they can be imported into another cell prior to PG replication,
+      # to avoid insertion errors.
+      class PartitionExporter
+        @connection: untyped
+
+        INTEGER_TYPES: ::Array["integer" | "bigint"]
+
+        # @param connection [ActiveRecord::ConnectionAdapters::AbstractAdapter]
+        def initialize: (connection: untyped) -> void
+
+        # @return [Array<Hash>]
+        #   Array of { table_name: String, partitions: Array<Hash> } where each
+        #   partition is { partition_name: String, from: Integer, to: Integer }.
+        def export: () -> untyped
+
+        private
+
+        def integer_partition_key?: (untyped table) -> (false | untyped)
+
+        def export_partitions_for: (untyped table) -> untyped
+      end
+    end
+  end
+end

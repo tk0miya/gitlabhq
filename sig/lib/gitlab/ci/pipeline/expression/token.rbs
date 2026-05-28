@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        class Token
+          @value: untyped
+
+          @lexeme: untyped
+
+          attr_reader value: untyped
+
+          attr_reader lexeme: untyped
+
+          def initialize: (untyped value, untyped lexeme) -> void
+
+          def build: (*untyped args) -> untyped
+
+          def type: () -> untyped
+
+          def to_lexeme: () -> untyped
+        end
+      end
+    end
+  end
+end

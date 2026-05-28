@@ -1,0 +1,46 @@
+module Gitlab
+  module Markdown
+    module IframeUrlTransforms
+      self.@rules: untyped
+
+      TRANSFORMS_PATH: untyped
+
+      Rule: untyped
+
+      # Transform URLs according to rules in TRANSFORMS_PATH.
+      #
+      # Rules are evaluated in order; first match wins.
+      # If no rule matches, the input is returned unchanged.
+      #
+      # Matching is done via URI parsing:
+      #   - "host" is matched exactly against the URL's hostname
+      #   - "path" is a prefix pattern with optional {named} captures for path segments
+      #   - "params" lists query parameter names whose values are extracted
+      #   - "match" provides per-capture allowed-value constraints
+      #
+      # The "to" template uses {name} placeholders, expanded from both path captures and
+      # extracted query parameters.
+      def self.transform: (untyped url) -> untyped
+
+      def self.rules: () -> untyped
+
+      def self.reset!: () -> untyped
+
+      private
+
+      def self.match_rule: (untyped uri, untyped rule) -> (nil | untyped)
+
+      def self.match_path: (untyped path, untyped rule_segments) -> (nil | untyped)
+
+      def self.extract_params: (untyped uri, untyped rule_params) -> (::Hash[untyped, untyped] | nil | untyped)
+
+      def self.satisfies_matches?: (untyped captures, untyped rule_matches) -> untyped
+
+      def self.expand_template: (untyped template, untyped captures) -> untyped
+
+      def self.load_config!: () -> untyped
+
+      def self.load_rules!: () -> untyped
+    end
+  end
+end

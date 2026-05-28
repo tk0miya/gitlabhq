@@ -1,0 +1,37 @@
+module Gitlab
+  module Git
+    module Patches
+      class CommitPatches
+        @user: untyped
+
+        @repository: untyped
+
+        @branch: untyped
+
+        @patches: untyped
+
+        @target_sha: untyped
+
+        include Gitlab::Git::WrapsGitalyErrors
+
+        def initialize: (untyped user, untyped repository, untyped branch, untyped patch_collection, untyped target_sha) -> void
+
+        def commit: () -> untyped
+
+        private
+
+        attr_reader user: untyped
+
+        attr_reader repository: untyped
+
+        attr_reader branch: untyped
+
+        attr_reader patches: untyped
+
+        attr_reader target_sha: untyped
+
+        def operation_service: () -> untyped
+      end
+    end
+  end
+end

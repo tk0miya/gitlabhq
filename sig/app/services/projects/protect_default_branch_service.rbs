@@ -1,0 +1,37 @@
+module Projects
+  # Service class that can be used to execute actions necessary after creating a
+  # default branch.
+  class ProtectDefaultBranchService
+    @project: untyped
+
+    @default_branch_protection: untyped
+
+    attr_reader project: untyped
+
+    attr_reader default_branch_protection: untyped
+
+    # @param [Project] project
+    def initialize: (untyped project) -> void
+
+    def execute: () -> (untyped | nil)
+
+    def protect_default_branch: () -> untyped
+
+    def create_protected_branch: () -> untyped
+
+    # overridden in EE
+    def code_owner_approval_required?: () -> false
+
+    def allow_force_push?: () -> untyped
+
+    def protect_branch?: () -> untyped
+
+    def protected_branch_exists?: () -> untyped
+
+    def default_branch: () -> untyped
+
+    def push_access_level: () -> untyped
+
+    def merge_access_level: () -> untyped
+  end
+end

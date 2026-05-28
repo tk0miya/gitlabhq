@@ -1,0 +1,27 @@
+module Mutations
+  module Boards
+    module Issues
+      class IssueMoveList < Mutations::Issues::Base
+        BoardGID: untyped
+
+        ListID: untyped
+
+        IssueID: untyped
+
+        def ready?: (**untyped args) -> untyped
+
+        def resolve: (board: untyped, project_path: untyped, iid: untyped, **untyped args) -> { issue: untyped, errors: untyped }
+
+        private
+
+        def move_issue: (untyped board, untyped issue, untyped move_params) -> untyped
+
+        def move_list_arguments: (untyped args) -> untyped
+
+        def move_arguments: (untyped args) -> untyped
+
+        def error_for: (untyped result) -> ::Array[untyped]
+      end
+    end
+  end
+end

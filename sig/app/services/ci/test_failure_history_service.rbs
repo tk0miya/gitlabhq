@@ -1,0 +1,43 @@
+module Ci
+  class TestFailureHistoryService
+    @pipeline: untyped
+
+    @failed_builds: untyped
+
+    class Async
+      @service: untyped
+
+      attr_reader service: untyped
+
+      def initialize: (untyped service) -> void
+
+      def perform_if_needed: () -> (untyped | nil)
+    end
+
+    MAX_TRACKABLE_FAILURES: 200
+
+    attr_reader pipeline: untyped
+
+    def initialize: (untyped pipeline) -> void
+
+    def execute: () -> (nil | untyped)
+
+    def should_track_failures?: () -> (false | untyped)
+
+    def async: () -> untyped
+
+    private
+
+    def failed_builds: () -> untyped
+
+    def track_failures: () -> (nil | untyped)
+
+    def gather_failed_unit_tests_from_reports: (untyped failed_builds) -> untyped
+
+    def generate_test_suite!: (untyped build) -> untyped
+
+    def ci_unit_test_attrs: (untyped batch) -> untyped
+
+    def ci_unit_test_failure_attrs: (untyped ci_unit_tests, untyped failed_unit_tests) -> untyped
+  end
+end

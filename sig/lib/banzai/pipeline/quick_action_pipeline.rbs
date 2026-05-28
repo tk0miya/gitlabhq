@@ -1,0 +1,11 @@
+module Banzai
+  module Pipeline
+    # Pipeline for detecting possible paragraphs with quick actions,
+    # leveraging the markdown processor
+    class QuickActionPipeline < BasePipeline
+      def self.filters: () -> untyped
+
+      def self.transform_context: (untyped context) -> untyped
+    end
+  end
+end

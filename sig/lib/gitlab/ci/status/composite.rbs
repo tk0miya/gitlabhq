@@ -1,0 +1,61 @@
+module Gitlab
+  module Ci
+    module Status
+      class Composite
+        @status_set: untyped
+
+        @status_key: untyped
+
+        @allow_failure_key: untyped
+
+        @dag: untyped
+
+        @project: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        # This class accepts an array of arrays/hashes/or objects
+        # `with_allow_failure` will be removed when deleting ci_remove_ensure_stage_service
+        def initialize: (untyped all_jobs, ?with_allow_failure: bool, ?dag: bool, ?project: untyped?) -> void
+
+        # The status calculation is order dependent,
+        # 1. In some cases we assume that that status is exact
+        #    if the we only have given statues,
+        # 2. In other cases we assume that status is of that type
+        #    based on what statuses are no longer valid based on the
+        #    data set that we have
+        #
+        # This method is used for three cases:
+        # 1. When it is called for a stage or a pipeline (with `all_jobs` from all jobs in a stage or a pipeline),
+        #    then, the returned status is assigned to the stage or pipeline.
+        # 2. When it is called for a job (with `all_jobs` from all previous jobs or all needed jobs),
+        #    then, the returned status is used to determine if the job is processed or not.
+        # 3. When it is called for a group (of jobs that are related),
+        #    then, the returned status is used to show the overall status of the group.
+        # rubocop: disable Metrics/CyclomaticComplexity
+        # rubocop: disable Metrics/PerceivedComplexity
+        def status: () -> (nil | untyped)
+
+        def warnings?: () -> untyped
+
+        private
+
+        def none?: () -> untyped
+
+        def any_of?: (*untyped names) -> untyped
+
+        def only_of?: (*untyped names) -> untyped
+
+        def any_skipped_or_ignored?: () -> untyped
+
+        def consume_all_jobs: (untyped all_jobs) -> untyped
+
+        def consume_job_status: (untyped job_attrs) -> untyped
+
+        def success_with_warnings?: (untyped job_attrs) -> untyped
+
+        def ignored_status?: (untyped job_attrs) -> untyped
+      end
+    end
+  end
+end

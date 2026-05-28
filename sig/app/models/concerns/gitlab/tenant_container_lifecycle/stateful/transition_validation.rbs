@@ -1,0 +1,13 @@
+module Gitlab
+  module TenantContainerLifecycle
+    module Stateful
+      # Shared state machine transition validation.
+      # Shared between Namespaces::Stateful and Organizations::Stateful.
+      module TransitionValidation
+        private
+
+        def ensure_transition_user: (untyped transition) -> (true | false)
+      end
+    end
+  end
+end

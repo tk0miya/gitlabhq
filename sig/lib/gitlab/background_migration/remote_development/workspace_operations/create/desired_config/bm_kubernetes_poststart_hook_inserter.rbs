@@ -1,0 +1,26 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      module WorkspaceOperations
+        module Create
+          module DesiredConfig
+            # NOTE: This class has "Kubernetes" prepended to "Poststart" in the name to make it explicit that it
+            #       deals with Kubernetes postStart hooks in the Kubernetes Deployment resource, and that
+            #       it is NOT dealing with the postStart events which are found in devfiles.
+            class BmKubernetesPoststartHookInserter
+              include BmFiles
+
+              include BmCreateConstants
+
+              # @param [Array] containers
+              # @param [Array<Hash>] devfile_commands
+              # @param [Hash] devfile_events
+              # @return [void]
+              def self.insert: (containers: untyped, devfile_commands: untyped, devfile_events: untyped) -> nil
+            end
+          end
+        end
+      end
+    end
+  end
+end

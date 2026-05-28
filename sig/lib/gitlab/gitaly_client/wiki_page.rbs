@@ -1,0 +1,27 @@
+module Gitlab
+  module GitalyClient
+    class WikiPage
+      # All gRPC strings in a response are frozen, so we get an unfrozen
+      # version here so appending to `raw_data` doesn't blow up.
+      @raw_data: untyped
+
+      @title: untyped
+
+      @path: untyped
+
+      @name: untyped
+
+      ATTRS: ::Array[:title | :format | :url_path | :path | :name | :historical | :raw_data]
+
+      include AttributesBag
+
+      include Gitlab::EncodingHelper
+
+      def initialize: (untyped params) -> void
+
+      def historical?: () -> untyped
+
+      def format: () -> untyped
+    end
+  end
+end

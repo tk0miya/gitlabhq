@@ -1,0 +1,45 @@
+module Enums
+  module Security
+    extend ActiveSupport::Concern
+
+    ANALYZER_TYPES: { sast: 0, sast_advanced: 1, sast_iac: 2, dast: 3, dependency_scanning: 4, container_scanning: 5, secret_detection: 6, coverage_fuzzing: 7, api_fuzzing: 8, cluster_image_scanning: 9 }
+
+    ANALYZER_STATUSES: { not_configured: 0, success: 1, failed: 2, stale: 3 }
+
+    EDITABLE_STATES: { locked: 0, editable_attributes: 10, editable: 20 }
+
+    CATEGORIES_TEMPLATE_TYPES: { business_impact: 0, business_unit: 1, application: 2, exposure: 3 }
+
+    BUSINESS_IMPACT_ATTRIBUTES_TYPES: { mission_critical: 0, business_critical: 1, business_operational: 2, business_administrative: 3, non_essential: 4 }
+
+    SCAN_PROFILES_TYPES: { sast: 0, secret_detection: 1, container_scanning: 3, dependency_scanning: 4 }
+
+    SCAN_PROFILE_STATUSES: { not_configured: 0, success: 1, failed: 2, warning: 3 }
+
+    SCAN_PROFILE_TRIGGER_TYPES: { default_branch_pipeline: 0, merge_request_pipeline: 1, git_push_event: 2 }
+
+    DEFAULT_CONFIGURATION_SOURCE: :sbom
+
+    CONFIGURATION_SOURCE_TYPES: untyped
+
+    def self.analyzer_types: () -> untyped
+
+    def self.extended_analyzer_types: () -> untyped
+
+    def self.analyzer_statuses: () -> untyped
+
+    def self.editable_states: () -> untyped
+
+    def self.categories_template_types: () -> untyped
+
+    def self.attributes_template_types: () -> untyped
+
+    def self.configuration_source_types: () -> untyped
+
+    def self.scan_profile_types: () -> untyped
+
+    def self.scan_profile_statuses: () -> untyped
+
+    def self.scan_profile_trigger_types: () -> untyped
+  end
+end

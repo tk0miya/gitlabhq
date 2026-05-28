@@ -1,0 +1,13 @@
+class MilestoneNote < SyntheticNote
+  @note_html: untyped
+
+  attr_accessor milestone: untyped
+
+  def self.from_event: (untyped event, ?resource: untyped?, ?resource_parent: untyped?) -> untyped
+
+  def note_html: () -> untyped
+
+  private
+
+  def note_text: (?html: bool) -> untyped
+end

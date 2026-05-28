@@ -1,0 +1,17 @@
+module Packages
+  module Nuget
+    class SymbolUploader < GitlabUploader
+      include ObjectStorage::Concern
+
+      include Packages::GcsSignedUrlMetadata
+
+      alias upload model
+
+      def store_dir: () -> untyped
+
+      private
+
+      def dynamic_segment: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module Instrumentation
+    class GlobalSearchApi
+      TYPE: "meta.search.type"
+
+      LEVEL: "meta.search.level"
+
+      SCOPE: "meta.search.scope"
+
+      SEARCH_DURATION_S: :global_search_duration_s
+
+      def self.get_type: () -> untyped
+
+      def self.get_level: () -> untyped
+
+      def self.get_scope: () -> untyped
+
+      def self.get_search_duration_s: () -> untyped
+
+      def self.payload: () -> untyped
+
+      def self.set_information: (type: untyped, level: untyped, scope: untyped, search_duration_s: untyped) -> (untyped | nil)
+    end
+  end
+end

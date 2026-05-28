@@ -1,0 +1,19 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillNoteDiffFilesNamespaceId < BatchedMigrationJob
+      TABLE_NAME: :note_diff_files
+
+      FOREIGN_KEY: :diff_note_id
+
+      def perform: () -> untyped
+
+      private
+
+      def build_update_query: (untyped sub_batch) -> ::String
+
+      def namespace_relation_subquery: () -> ::String
+
+      def update_statement: () -> ::String
+    end
+  end
+end

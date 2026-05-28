@@ -1,0 +1,9 @@
+module Gitlab
+  module Logging
+    module JsonMetadataHelper
+      JSON_METADATA_HEADERS: ::Array[:json_body_bytesize | :json_total_elements | :json_max_array_count | :json_max_hash_count | :json_max_depth]
+
+      def store_json_metadata_headers!: (untyped payload, untyped request) -> (nil | untyped)
+    end
+  end
+end

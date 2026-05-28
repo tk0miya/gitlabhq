@@ -1,0 +1,20 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents allow_failure settings.
+        #
+        class AllowFailure < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Attributable
+
+          include ::Gitlab::Config::Entry::Validatable
+
+          ALLOWED_KEYS: ::Array[:exit_codes]
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

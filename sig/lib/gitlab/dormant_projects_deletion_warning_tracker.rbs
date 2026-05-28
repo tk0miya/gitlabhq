@@ -1,0 +1,35 @@
+module Gitlab
+  class DormantProjectsDeletionWarningTracker
+    @project_id: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader project_id: untyped
+
+    DELETION_TRACKING_REDIS_KEY: "inactive_projects_deletion_warning_email_notified"
+
+    # Redis key 'inactive_projects_deletion_warning_email_notified' is a hash. It stores the date when the
+    # deletion warning notification email was sent for an inactive project. The fields and values look like:
+    # {"project:1"=>"2022-04-22", "project:5"=>"2022-04-22", "project:7"=>"2022-04-25"}
+    # @return [Hash]
+    def self.notified_projects: () -> untyped
+
+    def self.reset_all: () -> untyped
+
+    def initialize: (untyped project_id) -> void
+
+    def notified?: () -> untyped
+
+    def mark_notified: () -> untyped
+
+    def notification_date: () -> untyped
+
+    def scheduled_deletion_date: () -> untyped
+
+    def reset: () -> untyped
+
+    private
+
+    def grace_period_after_notification: () -> untyped
+  end
+end

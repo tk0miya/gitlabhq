@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Build
+      class Rules::Rule::Clause
+        @spec: untyped
+
+        #
+        # Abstract class that defines an interface of a single
+        # job rule specification.
+        #
+        # Used for job's inclusion rules configuration.
+        #
+        UnknownClauseError: untyped
+
+        ParseError: untyped
+
+        def self.fabricate: (untyped type, untyped value) -> untyped
+
+        def initialize: (untyped spec) -> void
+
+        def satisfied_by?: (untyped pipeline, ?untyped? context) -> untyped
+      end
+    end
+  end
+end

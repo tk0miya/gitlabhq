@@ -1,0 +1,92 @@
+class Projects::PipelinesController < Projects::ApplicationController
+  @pipelines: untyped
+
+  @pipelines_count: untyped
+
+  @pipeline: untyped
+
+  @stage: untyped
+
+  @stages: untyped
+
+  @pipeline_path: untyped
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  include ProductAnalyticsTracking
+
+  include ProjectStatsRefreshConflictsGuard
+
+  POLLING_INTERVAL: 10000
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def show: () -> untyped
+
+  def destroy: () -> untyped
+
+  def builds: () -> untyped
+
+  def failures: () -> untyped
+
+  def status: () -> untyped
+
+  def stage: () -> untyped
+
+  def retry: () -> untyped
+
+  def cancel: () -> untyped
+
+  def test_report: () -> untyped
+
+  def manual_variables: () -> untyped
+
+  def downloadable_artifacts: () -> untyped
+
+  private
+
+  def serialize_pipelines: () -> untyped
+
+  def render_show: () -> untyped
+
+  def show_represent_params: () -> { grouped: true, expanded: untyped }
+
+  def create_params: () -> untyped
+
+  def create_execute_params: () -> untyped
+
+  def ensure_pipeline: () -> (untyped | nil)
+
+  def redirect_for_legacy_scope_filter: () -> (nil | untyped)
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def pipeline: () -> untyped
+
+  def set_pipeline_path: () -> untyped
+
+  def find_latest_pipeline?: () -> untyped
+
+  def disable_query_limiting: () -> untyped
+
+  def authorize_update_pipeline!: () -> (untyped | nil)
+
+  def authorize_cancel_pipeline!: () -> (untyped | nil)
+
+  def authorize_read_build_on_pipeline!: () -> (untyped | nil)
+
+  def limited_pipelines_count: (untyped project, ?untyped? scope) -> untyped
+
+  def pipeline_test_report: () -> untyped
+
+  def index_params: () -> untyped
+
+  def should_track_ci_cd_pipelines?: () -> untyped
+
+  def tracking_namespace_source: () -> untyped
+
+  def tracking_project_source: () -> untyped
+end

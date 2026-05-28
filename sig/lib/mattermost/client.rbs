@@ -1,0 +1,31 @@
+module Mattermost
+  ClientError: untyped
+
+  class Client
+    @user: untyped
+
+    attr_reader user: untyped
+
+    def initialize: (untyped user) -> void
+
+    def with_session: () { (?) -> untyped } -> untyped
+
+    private
+
+    # Should be used in a session manually
+    def get: (untyped session, untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+    # Should be used in a session manually
+    def post: (untyped session, untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+    def delete: (untyped session, untyped path, untyped options) -> untyped
+
+    def session_get: (untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+    def session_post: (untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+    def session_delete: (untyped path, ?::Hash[untyped, untyped] options) -> untyped
+
+    def json_response: (untyped response) -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module AuthenticatesWithTwoFactorForAdminMode
+  @user: untyped
+
+  extend ActiveSupport::Concern
+
+  def admin_mode_prompt_for_two_factor: (untyped user, ?status: ::Symbol) -> untyped
+
+  def admin_mode_authenticate_with_two_factor: () -> untyped
+
+  def admin_mode_authenticate_with_two_factor_via_otp: (untyped user) -> untyped
+
+  def admin_mode_authenticate_with_two_factor_via_webauthn: (untyped user) -> untyped
+
+  private
+
+  def enable_admin_mode: () -> untyped
+
+  def invalid_login_redirect: () -> untyped
+
+  def admin_handle_two_factor_success: () -> untyped
+
+  def admin_handle_two_factor_failure: (untyped user, untyped method, untyped message) -> untyped
+end

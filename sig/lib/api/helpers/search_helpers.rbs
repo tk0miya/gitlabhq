@@ -1,0 +1,19 @@
+module API
+  module Helpers
+    module SearchHelpers
+      def self.global_search_scopes: () -> ::Array["projects" | "issues" | "work_items" | "merge_requests" | "milestones" | "snippet_titles" | "users"]
+
+      def self.group_search_scopes: () -> ::Array["projects" | "issues" | "work_items" | "merge_requests" | "milestones" | "users"]
+
+      def self.project_search_scopes: () -> ::Array["issues" | "work_items" | "merge_requests" | "milestones" | "notes" | "wiki_blobs" | "commits" | "blobs" | "users"]
+
+      def self.search_states: () -> ::Array["all" | "opened" | "closed" | "merged"]
+
+      def self.work_item_type_filter_desc: () -> "Filter work items by type. Only applies to work_items scope. Available types: issue, task, incident, ticket."
+
+      def self.search_param_keys: () -> ::Array[:scope | :search | :state | :confidential | :search_type | :include_archived | :page | :per_page | :order_by | :sort | :type]
+
+      def self.gitlab_search_mcp_params: () -> untyped
+    end
+  end
+end

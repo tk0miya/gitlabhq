@@ -1,0 +1,39 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      class Metrics
+        extend Gitlab::Utils::StrongMemoize
+
+        def self.pipeline_creation_duration_histogram: () -> untyped
+
+        def self.pipeline_creation_step_duration_histogram: () -> untyped
+
+        def self.pipeline_security_orchestration_policy_processing_duration_histogram: () -> untyped
+
+        def self.pipeline_size_histogram: () -> untyped
+
+        def self.pipeline_age_histogram: () -> untyped
+
+        def self.active_jobs_histogram: () -> untyped
+
+        def self.pipeline_builder_scoped_variables_histogram: () -> untyped
+
+        def self.pipeline_processing_events_counter: () -> untyped
+
+        def self.pipelines_created_counter: () -> untyped
+
+        def self.pipeline_failure_reason_counter: () -> untyped
+
+        def self.job_failure_reason_counter: () -> untyped
+
+        def self.job_token_inbound_access_counter: () -> untyped
+
+        def self.duplicate_job_name_errors_counter: () -> untyped
+
+        def self.job_token_authorization_failures_counter: () -> untyped
+
+        def ci_minutes_exceeded_builds_counter: () -> untyped
+      end
+    end
+  end
+end

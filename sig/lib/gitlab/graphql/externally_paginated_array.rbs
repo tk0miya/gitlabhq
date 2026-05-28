@@ -1,0 +1,23 @@
+module Gitlab
+  module Graphql
+    class ExternallyPaginatedArray < Array
+      @start_cursor: untyped
+
+      @end_cursor: untyped
+
+      @has_next_page: untyped
+
+      @has_previous_page: untyped
+
+      attr_reader start_cursor: untyped
+
+      attr_reader end_cursor: untyped
+
+      attr_reader has_next_page: untyped
+
+      attr_reader has_previous_page: untyped
+
+      def initialize: (untyped previous_cursor, untyped next_cursor, *untyped args, ?has_next_page: untyped?, ?has_previous_page: untyped?) -> void
+    end
+  end
+end

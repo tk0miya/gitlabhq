@@ -1,0 +1,21 @@
+module Projects
+  class UpdateRemoteMirrorService < BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    MAX_TRIES: 3
+
+    def execute: (untyped remote_mirror, untyped tries) -> untyped
+
+    private
+
+    def normalized_url: (untyped url) -> untyped
+
+    def update_mirror: (untyped remote_mirror) -> untyped
+
+    def failure_status: (untyped lfs_status, untyped response, untyped remote_mirror) -> ::Array[untyped]
+
+    def send_lfs_objects!: (untyped remote_mirror) -> (nil | untyped)
+
+    def hard_retry_or_fail: (untyped mirror, untyped message, untyped tries) -> untyped
+  end
+end

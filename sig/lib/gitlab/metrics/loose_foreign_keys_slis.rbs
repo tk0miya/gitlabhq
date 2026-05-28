@@ -1,0 +1,19 @@
+module Gitlab
+  module Metrics
+    module LooseForeignKeysSlis
+      include Gitlab::Metrics::SliConfig
+
+      def self.initialize_slis!: () -> untyped
+
+      def self.record_apdex: (success: untyped, db_config_name: untyped) -> untyped
+
+      def self.record_error_rate: (error: untyped, db_config_name: untyped) -> untyped
+
+      private
+
+      def self.possible_labels: () -> untyped
+
+      def self.labels: (untyped db_config_name) -> { db_config_name: untyped, feature_category: :database }
+    end
+  end
+end

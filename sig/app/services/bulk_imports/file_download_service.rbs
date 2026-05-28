@@ -1,0 +1,34 @@
+# File Download Service orchestrates remote file download into tmp directory according to configuration context.
+module BulkImports
+  class FileDownloadService
+    @tmpdir: untyped
+
+    @filename: untyped
+
+    @file_download_strategy: untyped
+
+    @filepath: untyped
+
+    # @param context [BulkImports::Context] Context object containing connection credentials
+    # @param relation [String] Relation type being downloaded.
+    # @param tmpdir [String] Temp directory to store downloaded file to. Must be located under `Dir.tmpdir`.
+    # @param filename [String] Name of the file to download.
+    def self.for_context: (context: untyped, relation: untyped, tmpdir: untyped, filename: untyped) -> untyped
+
+    def initialize: (tmpdir: untyped, filename: untyped, file_download_strategy: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader file_download_strategy: untyped
+
+    attr_reader tmpdir: untyped
+
+    attr_reader filename: untyped
+
+    def validate_tmpdir: () -> untyped
+
+    def filepath: () -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Spamcheck
+    class Result
+      @response: untyped
+
+      include ::Spam::SpamConstants
+
+      attr_reader response: untyped
+
+      VERDICT_MAPPING: ::Hash[untyped, untyped]
+
+      def initialize: (untyped response) -> void
+
+      def score: () -> untyped
+
+      def verdict: () -> untyped
+
+      def evaluated?: () -> untyped
+    end
+  end
+end

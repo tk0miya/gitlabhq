@@ -1,0 +1,13 @@
+module Resolvers
+  module Analytics
+    module CycleAnalytics
+      class BaseCountResolver < BaseResolver
+        def ready?: (**untyped args) -> untyped
+
+        # :project level: no customization, returning the original resolver
+        # :group level: add the project_ids argument
+        def self.[]: (?::Symbol context) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class TreeSaver
+        @params: untyped
+
+        @project: untyped
+
+        @current_user: untyped
+
+        @shared: untyped
+
+        @logger: untyped
+
+        @reader: untyped
+
+        @json_writer: untyped
+
+        include DurationMeasuring
+
+        attr_reader full_path: untyped
+
+        def initialize: (project: untyped, current_user: untyped, shared: untyped, ?params: ::Hash[untyped, untyped], ?logger: untyped) -> void
+
+        def save: () -> untyped
+
+        private
+
+        def stream_export: () -> untyped
+
+        def reader: () -> untyped
+
+        def exportable: () -> untyped
+
+        def exportable_params: () -> untyped
+
+        def presenter_class: () -> untyped
+
+        def json_writer: () -> untyped
+      end
+    end
+  end
+end

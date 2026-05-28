@@ -1,0 +1,21 @@
+module Users
+  class PinsController < ApplicationController
+    include Gitlab::InternalEventsTracking
+
+    include SidebarsHelper
+
+    def update: () -> untyped
+
+    private
+
+    def pins_params: () -> untyped
+
+    def check_request_size: () -> (nil | untyped)
+
+    def track_nav_item_change: (untyped panel, untyped new_menu_items, untyped prev_menu_items) -> untyped
+
+    def track_unpin_event: (untyped panel, untyped item) -> untyped
+
+    def track_pin_event: (untyped panel, untyped item) -> untyped
+  end
+end

@@ -1,0 +1,9 @@
+module Mutations
+  module UserPreferences
+    class Update < BaseMutation
+      NON_NULLABLE_ARGS: ::Array[:extensions_marketplace_opt_in_status | :organization_groups_projects_display | :visibility_pipeline_id_type | :use_work_items_view | :merge_request_dashboard_list_type | :merge_request_dashboard_show_drafts | :wiki_use_auto_commit_message]
+
+      def resolve: (**untyped attributes) -> { user_preferences: untyped, errors: untyped }
+    end
+  end
+end

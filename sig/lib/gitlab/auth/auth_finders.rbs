@@ -1,0 +1,222 @@
+module Gitlab
+  module Auth
+    AuthenticationError: untyped
+
+    MissingTokenError: untyped
+
+    InvalidTokenError: untyped
+
+    TokenNotFoundError: untyped
+
+    ExpiredError: untyped
+
+    RevokedError: untyped
+
+    ImpersonationDisabled: untyped
+
+    UnauthorizedError: untyped
+
+    GranularPermissionsError: untyped
+
+    class DpopValidationError < AuthenticationError
+      def initialize: (untyped msg) -> void
+    end
+
+    class RestrictedLanguageServerClientError < AuthenticationError
+      def initialize: (untyped msg) -> void
+    end
+
+    class InsufficientScopeError < AuthenticationError
+      @scopes: untyped
+
+      attr_reader scopes: untyped
+
+      def initialize: (untyped scopes) -> void
+    end
+
+    module AuthFinders
+      @current_authenticated_deploy_token: untyped
+
+      @current_authenticated_job: untyped
+
+      @current_request: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ActionController::HttpAuthentication::Basic
+
+      include ActionController::HttpAuthentication::Token
+
+      include Gitlab::RackLoadBalancingHelpers
+
+      PRIVATE_TOKEN_HEADER: "HTTP_PRIVATE_TOKEN"
+
+      PRIVATE_TOKEN_PARAM: :private_token
+
+      JOB_TOKEN_HEADER: "HTTP_JOB_TOKEN"
+
+      JOB_TOKEN_PARAM: :job_token
+
+      DEPLOY_TOKEN_HEADER: "HTTP_DEPLOY_TOKEN"
+
+      RUNNER_TOKEN_PARAM: :token
+
+      RUNNER_JOB_TOKEN_PARAM: :token
+
+      PARAM_TOKEN_KEYS: untyped
+
+      HEADER_TOKEN_KEYS: ::Array[untyped]
+
+      MAX_JOB_TOKEN_SIZE_BYTES: 8192
+
+      attr_accessor current_token: untyped
+
+      BEARER_PATTERN: ::Regexp
+
+      # Check the Rails session for valid authentication details
+      def find_user_from_warden: () -> (untyped | nil)
+
+      def find_user_from_static_object_token: (untyped request_format) -> (nil | untyped)
+
+      def find_user_from_feed_token: (untyped request_format) -> (nil | untyped)
+
+      def find_user_from_bearer_token: () -> untyped
+
+      def find_user_from_job_token: () -> (nil | untyped)
+
+      def find_user_from_basic_auth_password: () -> (nil | untyped)
+
+      def find_user_from_lfs_token: () -> (nil | untyped)
+
+      def find_user_from_personal_access_token: () -> (nil | untyped)
+
+      # We allow private access tokens with `api` scope to be used by web
+      # requests on RSS feeds or ICS files for backwards compatibility.
+      # It is also used by GraphQL/API requests.
+      # And to allow accessing /archive programatically as it was a big pain point
+      # for users https://gitlab.com/gitlab-org/gitlab/-/issues/28978.
+      # Used for release downloading as well
+      def find_user_from_web_access_token: (untyped request_format, ?scopes: ::Array[untyped]) -> (nil | untyped)
+
+      def find_user_from_access_token: () -> (nil | untyped)
+
+      # This returns a deploy token, not a user since a deploy token does not
+      # belong to a user.
+      #
+      # deploy tokens are accepted with deploy token headers and basic auth headers
+      def deploy_token_from_request: () -> (nil | untyped)
+
+      def cluster_agent_token_from_authorization_token: () -> (nil | untyped)
+
+      def find_runner_from_token: () -> (nil | untyped)
+
+      def find_job_from_job_token: () -> (nil | untyped)
+
+      def validate_and_save_access_token!: (?scopes: untyped, ?save_auth_context: bool, ?reset_token: bool) -> (nil | untyped)
+
+      def authentication_token_present?: () -> untyped
+
+      def self.path_dependent_feed_token_regex: () -> ::Regexp
+
+      private
+
+      def resolve_composite_identity_user: (untyped user) -> untyped
+
+      def extract_personal_access_token: () -> untyped
+
+      def current_auth_header_type: () -> untyped
+
+      def request_token_type: () -> untyped
+
+      def save_current_token_in_env: () -> untyped
+
+      def save_auth_failure_in_application_context: (untyped access_token, untyped cause, untyped requested_scopes) -> untyped
+
+      def clear_auth_failure_in_application_context: (untyped save_auth_context) -> (nil | untyped)
+
+      def find_user_from_job_bearer_token: () -> (nil | untyped)
+
+      def route_authentication_setting: () -> (::Hash[untyped, untyped] | untyped)
+
+      def access_token: () -> untyped
+
+      def pat_prefix_token?: () -> (false | untyped)
+
+      def find_personal_access_token: () -> (nil | untyped)
+
+      def find_oauth_access_token: () -> (nil | untyped)
+
+      def find_personal_access_token_from_http_basic_auth: () -> (nil | untyped)
+
+      def find_feed_token_user: (untyped token) -> untyped
+
+      def find_user_from_path_feed_token: (untyped token) -> (nil | untyped)
+
+      def can_authenticate_job_token_basic_auth?: () -> untyped
+
+      def can_authenticate_job_token_request?: () -> untyped
+
+      def find_user_from_job_token_query_params_or_header: () -> (nil | untyped)
+
+      def find_user_from_job_token_basic_auth: () -> (nil | untyped)
+
+      def parsed_oauth_token: () -> untyped
+
+      # Check if the request is GET/HEAD, or if CSRF token is valid.
+      def verified_request?: () -> untyped
+
+      def ensure_action_dispatch_request: (untyped request) -> untyped
+
+      def current_request: () -> untyped
+
+      def valid_web_access_format?: (untyped request_format) -> untyped
+
+      def valid_rss_format?: (untyped request_format) -> untyped
+
+      def valid_static_objects_format?: (untyped request_format) -> untyped
+
+      def rss_request?: () -> untyped
+
+      def ics_request?: () -> untyped
+
+      def api_request?: () -> untyped
+
+      def git_request?: () -> untyped
+
+      def git_lfs_request?: () -> untyped
+
+      def git_or_lfs_request?: () -> untyped
+
+      def archive_request?: () -> untyped
+
+      def download_request?: () -> untyped
+
+      def blob_request?: () -> untyped
+
+      def find_valid_running_job_by_token!: (untyped token) -> untyped
+
+      def revoke_token_family: (untyped token) -> (nil | untyped)
+
+      def get_job_token_from_query_param_or_header: () -> untyped
+
+      def access_token_rotation_request?: () -> untyped
+
+      # To prevent Rack Attack from incorrectly rate limiting
+      # authenticated Git activity, we need to authenticate the user
+      # from other means (e.g. HTTP Basic Authentication) only if the
+      # request originated from a Git or Git LFS
+      # request. Repositories::GitHttpClientController or
+      # Repositories::LfsApiController normally does the authentication,
+      # but Rack Attack runs before those controllers.
+      def find_user_for_git_or_lfs_request: () -> untyped
+
+      def find_user_from_personal_access_token_for_api_or_git: () -> (nil | untyped)
+
+      def find_user_from_dependency_proxy_token: () -> untyped
+
+      def dependency_proxy_request?: () -> untyped
+
+      def validate_job_token_size!: (untyped token) -> (untyped | nil)
+    end
+  end
+end

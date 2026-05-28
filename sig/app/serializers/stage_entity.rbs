@@ -1,0 +1,9 @@
+class StageEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  alias stage object
+
+  def detailed_status: () -> untyped
+end

@@ -1,0 +1,37 @@
+module ClickHouse
+  class RecordSyncContext
+    @last_record_id: untyped
+
+    @runtime_limiter: untyped
+
+    @max_records_per_batch: untyped
+
+    @last_processed_id: untyped
+
+    @record_count_in_current_batch: untyped
+
+    @total_record_count: untyped
+
+    @no_more_records: untyped
+
+    attr_reader last_record_id: untyped
+
+    attr_reader last_processed_id: untyped
+
+    attr_reader total_record_count: untyped
+
+    attr_reader record_count_in_current_batch: untyped
+
+    def initialize: (last_record_id: untyped, max_records_per_batch: untyped, ?runtime_limiter: untyped) -> void
+
+    def new_batch!: () -> untyped
+
+    def no_more_records!: () -> untyped
+
+    def no_more_records?: () -> untyped
+
+    def last_processed_id=: (untyped value) -> untyped
+
+    def record_limit_reached?: () -> untyped
+  end
+end

@@ -1,0 +1,12 @@
+module Types
+  module Authz
+    module PersonalAccessTokens
+      # rubocop:disable Graphql/AuthorizeTypes -- Authorization handled in the resolver
+      class PersonalAccessTokenType < BaseObject
+        def scopes: () -> untyped
+
+        def last_used_ips: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Mutations
+  module DesignManagement
+    class Delete < Base
+      Errors: untyped
+
+      def resolve: (project_path: untyped, iid: untyped, filenames: untyped) -> { version: untyped, errors: untyped }
+
+      private
+
+      # Here we check that:
+      #  * we find exactly as many designs as filenames
+      def resolve_designs: (untyped issue, untyped filenames) -> untyped
+
+      def validate_all_were_found!: (untyped designs, untyped filenames) -> untyped
+    end
+  end
+end

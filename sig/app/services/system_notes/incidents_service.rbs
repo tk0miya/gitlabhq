@@ -1,0 +1,17 @@
+module SystemNotes
+  class IncidentsService < ::SystemNotes::BaseService
+    @noteable: untyped
+
+    @project: untyped
+
+    CHANGED_TEXT: { occurred_at: "the event time/date on ", note: "the text on ", occurred_at_and_note: "the event time/date and text on " }
+
+    def initialize: (noteable: untyped) -> void
+
+    def add_timeline_event: (untyped timeline_event) -> untyped
+
+    def edit_timeline_event: (untyped timeline_event, untyped author, was_changed: untyped) -> untyped
+
+    def delete_timeline_event: (untyped author) -> untyped
+  end
+end

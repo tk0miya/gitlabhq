@@ -1,0 +1,74 @@
+class NamespaceSetting < ApplicationRecord
+  # Single optimized query using traversal_ids
+  # Order by position in traversal_ids array (root first, so most distant ancestor has precedence)
+  @step_up_auth_inherited_setting: untyped
+
+  include CascadingNamespaceSettingAttribute
+
+  include Sanitizable
+
+  include ChronicDurationAttribute
+
+  include EachBatch
+
+  include SafelyChangeColumnDefault
+
+  include NullifyIfBlank
+
+  NAMESPACE_SETTINGS_PARAMS: ::Array[:emails_enabled | :default_branch_name | :resource_access_token_creation_allowed | :prevent_sharing_groups_outside_hierarchy | :new_user_signups_cap | :setup_for_company | :seat_control | :jobs_to_be_done | :runner_token_expiration_interval | :enabled_git_access_protocol | :subgroup_runner_token_expiration_interval | :project_runner_token_expiration_interval | :default_branch_protection_defaults | :math_rendering_limits_enabled | :lock_math_rendering_limits_enabled | :jwt_ci_cd_job_token_enabled]
+
+  # matches the size set in the database constraint
+  DEFAULT_BRANCH_PROTECTIONS_DEFAULT_MAX_SIZE: untyped
+
+  def self.declarative_policy_class: () -> "Ci::NamespaceSettingPolicy"
+
+  def self.allowed_namespace_settings_params: () -> untyped
+
+  def self.enterprise_bypass_min_date: () -> untyped
+
+  def self.enterprise_bypass_max_date: () -> untyped
+
+  def self.next_namespace_ids: (cursor: untyped, limit: untyped) -> untyped
+
+  def prevent_sharing_groups_outside_hierarchy: () -> untyped
+
+  def pipeline_variables_default_role: () -> untyped
+
+  def emails_enabled?: () -> untyped
+
+  # Where this function is used, a returned "nil" is considered a truthy value
+  def show_diff_preview_in_email?: () -> untyped
+
+  def runner_registration_enabled?: () -> untyped
+
+  def all_ancestors_have_runner_registration_enabled?: () -> (false | true | untyped)
+
+  def allow_runner_registration_token?: () -> untyped
+
+  def jwt_ci_cd_job_token_enabled?: () -> (true | untyped)
+
+  def enterprise_placeholder_bypass_enabled?: () -> untyped
+
+  # Returns the namespace_setting that provides the inherited step-up auth provider (excluding self)
+  # This is the base method that all other inheritance methods build upon
+  def step_up_auth_required_oauth_provider_inherited_namespace_setting: () -> (nil | untyped)
+
+  # Returns the active/effective step-up auth provider, considering inheritance from parent groups
+  def step_up_auth_required_oauth_provider_from_self_or_inherited: () -> untyped
+
+  def granular_tokens_enforced?: () -> (false | untyped)
+
+  private
+
+  def validate_enterprise_bypass_expires_at: () -> (nil | untyped)
+
+  def validate_step_up_auth_inheritance: () -> (nil | untyped)
+
+  def set_pipeline_variables_default_role: () -> (nil | untyped)
+
+  def all_ancestors_have_emails_enabled?: () -> untyped
+
+  def all_ancestors_allow_diff_preview_in_email?: () -> untyped
+
+  def subgroup?: () -> untyped
+end

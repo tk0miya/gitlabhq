@@ -1,0 +1,33 @@
+module Gitlab
+  module Graphql
+    class Variables
+      @param: untyped
+
+      @parse_limits: untyped
+
+      # See lib/gitlab/middleware/json_validation.rb (`DEFAULT_LIMITS`) for matching limits
+      PARSE_LIMITS: { max_depth: 32, max_array_size: 50000, max_hash_size: 50000, max_total_elements: 100000, max_json_size_bytes: 0 }
+
+      MAX_RECURSION_DEPTH: 3
+
+      MAX_NESTED_STRING_SIZE: 10000000
+
+      Invalid: untyped
+
+      def initialize: (untyped param, ?::Hash[untyped, untyped] options) -> void
+
+      def to_h: () -> untyped
+
+      private
+
+      # Handle form data, JSON body, or a blank value
+      def ensure_hash: (untyped ambiguous_param, ?::Integer depth) -> untyped
+
+      def validate_nesting_depth!: (untyped depth) -> (untyped | nil)
+
+      def validate_nested_string_size!: (untyped param, untyped depth) -> (untyped | nil)
+
+      def parse_json: (untyped user_input) -> untyped
+    end
+  end
+end

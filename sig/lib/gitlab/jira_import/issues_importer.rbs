@@ -1,0 +1,42 @@
+module Gitlab
+  module JiraImport
+    class IssuesImporter < BaseImporter
+      @imported_items_cache_key: untyped
+
+      @job_waiter: untyped
+
+      @issue_type: untyped
+
+      @jira_integration: untyped
+
+      # Jira limits max items per request to be fetched to 100
+      # see https://jira.atlassian.com/browse/JRACLOUD-67570
+      # We set it to 1000 in case they change their mind.
+      BATCH_SIZE: 1000
+
+      attr_reader imported_items_cache_key: untyped
+
+      attr_reader start_at: untyped
+
+      attr_reader job_waiter: untyped
+
+      def initialize: (untyped project) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader jira_integration: untyped
+
+      def import_issues: () -> untyped
+
+      def jira_last_page_reached?: () -> untyped
+
+      def schedule_issue_import_workers: (untyped issues) -> untyped
+
+      def fetch_issues: () -> untyped
+
+      def update_pagination_state: (untyped payload) -> untyped
+    end
+  end
+end

@@ -1,0 +1,33 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class IssuesImporter
+        @work_item_type_id: untyped
+
+        include ParallelScheduling
+
+        def initialize: (untyped project, untyped client, ?parallel: bool) -> void
+
+        def importer_class: () -> untyped
+
+        def representation_class: () -> untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def object_type: () -> :issue
+
+        def collection_method: () -> :issues
+
+        def id_for_already_imported_cache: (untyped issue) -> untyped
+
+        def collection_options: () -> { state: "all", sort: "created", direction: "asc" }
+
+        def increment_object_counter?: (untyped object) -> untyped
+
+        private
+
+        def additional_object_data: () -> { work_item_type_id: untyped }
+      end
+    end
+  end
+end

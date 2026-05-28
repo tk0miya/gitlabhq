@@ -1,0 +1,48 @@
+# Count objects fetched or imported from Github.
+module Gitlab
+  module GithubImport
+    class ObjectCounter
+      OPERATIONS: ::Array["fetched" | "imported"]
+
+      PROJECT_COUNTER_LIST_KEY: "github-importer/object-counters-list/%{project}/%{operation}"
+
+      PROJECT_COUNTER_KEY: "github-importer/object-counter/%{project}/%{operation}/%{object_type}"
+
+      EMPTY_SUMMARY: untyped
+
+      GLOBAL_COUNTER_KEY: "github_importer_%{operation}_%{object_type}"
+
+      GLOBAL_COUNTER_DESCRIPTION: "The number of %{operation} Github %{object_type}"
+
+      CACHING: untyped
+
+      IMPORT_CACHING_TIMEOUT: untyped
+
+      # Increments the project and the global counters if the given value is >= 1
+      def self.increment: (untyped project, untyped object_type, untyped operation, ?value: ::Integer) -> (nil | untyped)
+
+      def self.summary: (untyped project) -> untyped
+
+      private
+
+      def self.cashed_summary: (untyped project) -> untyped
+
+      # Global counters are long lived, in Prometheus,
+      # and it's used to report the health of the Github Importer
+      # in the Grafana Dashboard
+      # https://dashboards.gitlab.net/d/2zgM_rImz/github-importer?orgId=1
+      def self.increment_global_counter: (untyped object_type, untyped operation, untyped value) -> untyped
+
+      # Project counters are short lived, in Redis,
+      # and it's used to report how successful a project
+      # import was with the #summary method.
+      def self.increment_project_counter: (untyped project, untyped object_type, untyped operation, untyped value) -> untyped
+
+      def self.add_counter_to_list: (untyped project, untyped operation, untyped key) -> untyped
+
+      def self.counter_list_key: (untyped project, untyped operation) -> untyped
+
+      def self.validate_operation!: (untyped operation) -> (untyped | nil)
+    end
+  end
+end

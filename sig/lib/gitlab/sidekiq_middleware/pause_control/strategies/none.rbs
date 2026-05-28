@@ -1,0 +1,12 @@
+module Gitlab
+  module SidekiqMiddleware
+    module PauseControl
+      module Strategies
+        # This strategy will never pause a job
+        class None < Base
+          def should_pause?: () -> false
+        end
+      end
+    end
+  end
+end

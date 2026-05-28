@@ -1,0 +1,17 @@
+module Resolvers
+  module Projects
+    class ForkTargetsResolver < BaseResolver
+      include LooksAhead
+
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias project object
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def preloads: () -> untyped
+    end
+  end
+end

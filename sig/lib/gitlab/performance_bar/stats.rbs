@@ -1,0 +1,31 @@
+module Gitlab
+  module PerformanceBar
+    # This class fetches Peek stats stored in redis and logs them in a
+    # structured log (so these can be then analyzed in Kibana)
+    class Stats
+      @redis: untyped
+
+      @logger: untyped
+
+      IGNORED_BACKTRACE_LOCATIONS: ::Array["ee/lib/ee/peek" | "lib/peek" | "lib/gitlab/database" | "lib/gitlab/gitaly_client.rb" | "lib/gitlab/gitaly_client/call.rb" | "lib/gitlab/instrumentation/redis_interceptor.rb"]
+
+      def initialize: (untyped redis) -> void
+
+      def process: (untyped id) -> untyped
+
+      private
+
+      def request: (untyped id) -> untyped
+
+      def log_queries: (untyped id, untyped data, untyped type) -> untyped
+
+      def queries_by_location: (untyped data, untyped type) -> (::Array[untyped] | untyped)
+
+      def parse_backtrace: (untyped backtrace) -> (nil | { filename: untyped, method: untyped })
+
+      def find_caller: (untyped backtrace) -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module API
+  # This API endpoint handles options payloads sent from Slack.
+  # See https://api.slack.com/reference/block-kit/block-elements#external_select.
+  class Integrations
+    module Slack
+      class Options < ::API::Base
+        include Slack::Concerns::VerifiesRequest
+      end
+    end
+  end
+end

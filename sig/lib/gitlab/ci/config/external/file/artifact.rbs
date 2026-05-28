@@ -1,0 +1,43 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        module File
+          class Artifact < Base
+            @location: untyped
+
+            @job_name: untyped
+
+            extend ::Gitlab::Utils::Override
+
+            include Gitlab::Utils::StrongMemoize
+
+            attr_reader job_name: untyped
+
+            def initialize: (untyped params, untyped context) -> void
+
+            def content: () -> untyped
+
+            def include_type: () -> :artifact
+
+            def metadata: () -> untyped
+
+            def validate_context!: () -> untyped
+
+            def validate_content_presence!: () -> (untyped | nil)
+
+            private
+
+            def artifact_job: () -> untyped
+
+            def creating_child_pipeline?: () -> untyped
+
+            def expand_context_attrs: () -> untyped
+
+            def masked_job_name: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

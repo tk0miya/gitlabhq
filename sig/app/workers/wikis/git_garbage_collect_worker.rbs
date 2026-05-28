@@ -1,0 +1,15 @@
+module Wikis
+  class GitGarbageCollectWorker
+    extend ::Gitlab::Utils::Override
+
+    include GitGarbageCollectMethods
+
+    private
+
+    def find_resource: (untyped id) -> untyped
+
+    def update_db_repository_statistics: (untyped resource, untyped stats) -> untyped
+
+    def stats: () -> ::Array[:wiki_size]
+  end
+end

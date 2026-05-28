@@ -1,0 +1,21 @@
+module Gitlab
+  module Bullet
+    class Exclusions
+      @config_file: untyped
+
+      @exclusions: untyped
+
+      def initialize: (?untyped config_file) -> void
+
+      def execute: () -> untyped
+
+      def validate_paths!: () -> untyped
+
+      private
+
+      attr_reader config_file: untyped
+
+      def exclusions: () -> untyped
+    end
+  end
+end

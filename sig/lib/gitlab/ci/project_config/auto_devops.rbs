@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    class ProjectConfig
+      class AutoDevops < Source
+        def content: () -> untyped
+
+        def internal_include_prepended?: () -> true
+
+        def source: () -> :auto_devops_source
+
+        private
+
+        def template_name: () -> "Auto-DevOps"
+      end
+    end
+  end
+end

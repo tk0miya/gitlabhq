@@ -1,0 +1,19 @@
+module Snippets::BlobsActions
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Snippets::SendBlob
+
+  def raw: () -> untyped
+
+  private
+
+  def blob: () -> (nil | untyped)
+
+  def ensure_blob: () -> untyped
+
+  def ensure_repository: () -> (nil | untyped)
+
+  def snippet_id: () -> untyped
+end

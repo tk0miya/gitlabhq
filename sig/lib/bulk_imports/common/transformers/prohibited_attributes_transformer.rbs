@@ -1,0 +1,15 @@
+module BulkImports
+  module Common
+    module Transformers
+      class ProhibitedAttributesTransformer
+        PROHIBITED_REFERENCES: untyped
+
+        def transform: (untyped context, untyped data) -> (nil | untyped)
+
+        private
+
+        def prohibited_key?: (untyped key) -> untyped
+      end
+    end
+  end
+end

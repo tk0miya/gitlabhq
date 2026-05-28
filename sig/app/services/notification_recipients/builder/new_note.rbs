@@ -1,0 +1,29 @@
+module NotificationRecipients
+  module Builder
+    class NewNote < Base
+      @note: untyped
+
+      attr_reader note: untyped
+
+      def initialize: (untyped note) -> void
+
+      def target: () -> untyped
+
+      def recipients_target: () -> untyped
+
+      # NOTE: may be nil, in the case of a PersonalSnippet
+      #
+      # (this is okay because NotificationRecipient is written
+      # to handle nil projects)
+      def project: () -> untyped
+
+      def group: () -> untyped
+
+      def build!: () -> untyped
+
+      def custom_action: () -> :new_note
+
+      def acting_user: () -> untyped
+    end
+  end
+end

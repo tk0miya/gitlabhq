@@ -1,0 +1,9 @@
+module Gitlab
+  module Kubernetes
+    # Miscellaneous commands that run in the helm-install-image pod, tuned to
+    # the idiosynchrasies of the default shell of helm-install-image
+    module PodCmd
+      def self.retry_command: (untyped command, ?times: ::Integer) -> ::String
+    end
+  end
+end

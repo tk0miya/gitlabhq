@@ -1,0 +1,13 @@
+module Integrations
+  class EventEntity < Grape::Entity
+    include RequestAwareEntity
+
+    private
+
+    alias event object
+
+    def event_field_name: () -> untyped
+
+    def integration: () -> untyped
+  end
+end

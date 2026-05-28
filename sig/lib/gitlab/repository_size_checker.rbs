@@ -1,0 +1,42 @@
+module Gitlab
+  # Centralized class for repository size related calculations.
+  class RepositorySizeChecker
+    @current_size_proc: untyped
+
+    @limit: untyped
+
+    @namespace: untyped
+
+    @enabled: untyped
+
+    @current_size: untyped
+
+    @error_message_object: untyped
+
+    attr_reader limit: untyped
+
+    # @param current_size_proc [Proc] returns repository size in bytes
+    def initialize: (current_size_proc: untyped, limit: untyped, namespace: untyped, ?enabled: bool) -> void
+
+    # @return [Integer] bytes
+    def current_size: () -> untyped
+
+    def enabled?: () -> untyped
+
+    def above_size_limit?: () -> (false | untyped)
+
+    # @param change_size [int] in bytes
+    def changes_will_exceed_size_limit?: (untyped change_size, untyped _project) -> (false | untyped)
+
+    # @param change_size [int] in bytes
+    def exceeded_size: (?::Integer change_size) -> untyped
+
+    def error_message: () -> untyped
+
+    def additional_repo_storage_available?: () -> false
+
+    private
+
+    attr_reader namespace: untyped
+  end
+end

@@ -1,0 +1,29 @@
+module Integrations
+  class GooglePlay < Integration
+    PACKAGE_NAME_REGEX: ::Regexp
+
+    SECTION_TYPE_GOOGLE_PLAY: "google_play"
+
+    def self.title: () -> untyped
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "google_play"
+
+    def self.supported_events: () -> ::Array[untyped]
+
+    def sections: () -> ::Array[{ type: untyped, title: untyped, description: untyped }]
+
+    def test: (*untyped _args) -> untyped
+
+    def ci_variables: (protected_ref: untyped) -> (::Array[untyped] | ::Array[{ key: "SUPPLY_JSON_KEY_DATA", value: untyped, masked: true, public: false } | { key: "SUPPLY_PACKAGE_NAME", value: untyped, masked: false, public: false }])
+
+    def initialize_properties: () -> untyped
+
+    private
+
+    def client: () -> untyped
+  end
+end

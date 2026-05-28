@@ -1,0 +1,27 @@
+module Gitlab
+  module WorkItems
+    module IssuableLinks
+      class ErrorMessage
+        @target_type: untyped
+
+        @container_type: untyped
+
+        def initialize: (target_type: untyped, container_type: untyped) -> void
+
+        def for_http_status: (untyped http_status) -> untyped
+
+        def already_assigned: () -> untyped
+
+        def no_permission_error: () -> untyped
+
+        def not_found: () -> untyped
+
+        attr_reader target_type: untyped
+
+        private
+
+        attr_reader container_type: untyped
+      end
+    end
+  end
+end

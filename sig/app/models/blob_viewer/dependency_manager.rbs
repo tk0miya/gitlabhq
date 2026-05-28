@@ -1,0 +1,25 @@
+module BlobViewer
+  class DependencyManager < Base
+    @json_data: untyped
+
+    include Auxiliary
+
+    def manager_name: () -> untyped
+
+    def manager_url: () -> untyped
+
+    def package_type: () -> "package"
+
+    def package_name: () -> nil
+
+    def package_url: () -> nil
+
+    private
+
+    def json_data: () -> untyped
+
+    def fetch_from_json: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def package_name_from_method_call: (untyped name) -> untyped
+  end
+end

@@ -1,0 +1,38 @@
+# Interface to the Redis-backed cache store to keep track of complete cache keys
+# for a ReactiveCache resource.
+module Gitlab
+  class SetCache
+    @expires_in: untyped
+
+    attr_reader expires_in: untyped
+
+    def initialize: (?expires_in: untyped) -> void
+
+    def cache_key: (untyped key) -> ::String
+
+    # Returns the number of keys deleted by Redis
+    def expire: (*untyped keys) -> (0 | untyped)
+
+    def exist?: (untyped key) -> untyped
+
+    def write: (untyped key, untyped value) -> untyped
+
+    def read: (untyped key) -> untyped
+
+    def include?: (untyped key, untyped value) -> untyped
+
+    # Like include?, but also tells us if the cache was populated when it ran
+    # by returning two booleans: [member_exists, set_exists]
+    def try_include?: (untyped key, untyped value) -> untyped
+
+    def ttl: (untyped key) -> untyped
+
+    def count: (untyped key) -> untyped
+
+    private
+
+    def with: () { (?) -> untyped } -> untyped
+
+    def cache_namespace: () -> untyped
+  end
+end

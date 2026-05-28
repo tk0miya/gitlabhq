@@ -1,0 +1,25 @@
+module WorkItems
+  class BulkUpdateService
+    @parent: untyped
+
+    @work_item_ids: untyped
+
+    @current_user: untyped
+
+    @attributes: untyped
+
+    @all_widget_keys: untyped
+
+    def initialize: (parent: untyped, current_user: untyped, work_item_ids: untyped, ?attributes: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def scoped_work_items: () -> untyped
+
+    def all_widget_keys: () -> untyped
+
+    def extract_supported_widget_params: (untyped work_item_type, untyped attributes, untyped resource_parent) -> (::Hash[untyped, untyped] | untyped)
+  end
+end

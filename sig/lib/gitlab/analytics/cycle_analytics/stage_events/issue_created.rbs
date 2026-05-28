@@ -1,0 +1,17 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageEvents
+        class IssueCreated < StageEvent
+          def self.name: () -> untyped
+
+          def self.identifier: () -> :issue_created
+
+          def object_type: () -> untyped
+
+          def column_list: () -> ::Array[untyped]
+        end
+      end
+    end
+  end
+end

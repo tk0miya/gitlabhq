@@ -1,0 +1,11 @@
+module WikiPages
+  class CreateService < WikiPages::BaseService
+    def execute: () -> untyped
+
+    def internal_event_name: () -> "create_wiki_page"
+
+    def external_action: () -> "create"
+
+    def event_action: () -> :created
+  end
+end

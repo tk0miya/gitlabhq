@@ -1,0 +1,27 @@
+module Packages
+  module Npm
+    class DeprecatePackageService < BaseService
+      include Gitlab::Utils::StrongMemoize
+
+      BATCH_SIZE: 50
+
+      def initialize: (untyped project, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def packages: () -> untyped
+
+      def metadatum_attributes: (untyped package) -> (nil | untyped)
+
+      def identical?: (untyped package_json_deprecated, untyped deprecation_msg) -> untyped
+
+      def update_package_json: (untyped package_json, untyped deprecation_msg) -> untyped
+
+      def package_status_for: (untyped deprecation_msg) -> untyped
+
+      def package_name: () -> untyped
+    end
+  end
+end

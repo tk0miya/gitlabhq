@@ -1,0 +1,41 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        module Functions
+          class Base
+            @errors: untyped
+
+            @function_args: untyped
+
+            @ctx: untyped
+
+            attr_reader errors: untyped
+
+            def self.function_expression_pattern: () -> untyped
+
+            def self.name: () -> untyped
+
+            def self.matches?: (untyped function_expression) -> untyped
+
+            def initialize: (untyped function_expression, untyped ctx) -> void
+
+            def valid?: () -> untyped
+
+            def execute: (untyped _input_value) -> untyped
+
+            private
+
+            attr_reader function_args: untyped
+
+            attr_reader ctx: untyped
+
+            def error: (untyped message) -> nil
+
+            def parse_args: (untyped function_expression) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

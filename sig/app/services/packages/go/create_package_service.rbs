@@ -1,0 +1,23 @@
+module Packages
+  module Go
+    class CreatePackageService < BaseService
+      @version: untyped
+
+      GoZipSizeError: untyped
+
+      attr_accessor version: untyped
+
+      def initialize: (untyped project, ?untyped? user, version: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def prepare_file: (untyped version, untyped type, untyped content) -> ::Array[untyped]
+
+      def create_package: () -> untyped
+
+      def create_file: (untyped package, untyped type, untyped file, untyped digests) -> untyped
+    end
+  end
+end

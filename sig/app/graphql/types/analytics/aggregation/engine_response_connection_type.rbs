@@ -1,0 +1,10 @@
+module Types
+  module Analytics
+    module Aggregation
+      # rubocop:disable GraphQL/GraphqlName -- connection
+      class EngineResponseConnectionType < GraphQL::Types::Relay::BaseConnection
+        def count: () -> untyped
+      end
+    end
+  end
+end

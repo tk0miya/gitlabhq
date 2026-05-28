@@ -1,0 +1,29 @@
+module ActivityPub
+  module Projects
+    class ReleasesSubscriptionService
+      @project: untyped
+
+      @payload: untyped
+
+      @errors: untyped
+
+      @previous_subscription: untyped
+
+      attr_reader errors: untyped
+
+      def initialize: (untyped project, untyped payload) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader payload: untyped
+
+      def subscriber_url: () -> (nil | untyped)
+
+      def previous_subscription: () -> untyped
+    end
+  end
+end

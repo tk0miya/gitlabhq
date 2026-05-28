@@ -1,0 +1,15 @@
+module Gitlab
+  module JiraImport
+    module Stage
+      class ImportIssuesWorker
+        include Gitlab::JiraImport::ImportWorker
+
+        private
+
+        def import: (untyped project) -> untyped
+
+        def next_stage: (untyped project) -> untyped
+      end
+    end
+  end
+end

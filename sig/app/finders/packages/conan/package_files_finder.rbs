@@ -1,0 +1,19 @@
+module Packages
+  module Conan
+    class PackageFilesFinder < ::Packages::PackageFilesFinder
+      private
+
+      def package_files: () -> untyped
+
+      def by_conan_file_type: (untyped files) -> untyped
+
+      def by_conan_package_reference: (untyped files) -> untyped
+
+      def by_recipe_revision: (untyped files) -> untyped
+
+      def by_package_revision: (untyped files) -> untyped
+
+      def by_file_sha1: (untyped files) -> untyped
+    end
+  end
+end

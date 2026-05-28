@@ -1,0 +1,31 @@
+module Gitlab
+  module ImportExport
+    class AttributeCleaner
+      @relation_hash: untyped
+
+      @relation_class: untyped
+
+      @excluded_keys: untyped
+
+      ALLOWED_REFERENCES: untyped
+
+      PROHIBITED_REFERENCES: untyped
+
+      ALLOWED_REFERENCES_PER_CLASS: { :"Vulnerabilities::Scanner" => ::Array["external_id"], :"Vulnerabilities::Identifier" => ::Array["external_id"], :"DesignManagement::Version" => ::Array["namespace_id"] }
+
+      def self.clean: (*untyped args, **untyped kwargs) -> untyped
+
+      def initialize: (relation_hash: untyped, relation_class: untyped, ?excluded_keys: untyped) -> void
+
+      def clean: () -> untyped
+
+      private
+
+      def prohibited_key?: (untyped key) -> (false | untyped)
+
+      def permitted_key?: (untyped key) -> untyped
+
+      def excluded_key?: (untyped key) -> (false | untyped)
+    end
+  end
+end

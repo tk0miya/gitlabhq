@@ -1,0 +1,26 @@
+module Ci
+  class BuildNameFinder
+    @relation: untyped
+
+    @name: untyped
+
+    @project: untyped
+
+    def initialize: (relation: untyped, name: untyped, project: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader relation: untyped
+
+    attr_reader name: untyped
+
+    attr_reader project: untyped
+
+    def limited_name_search_terms: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- Need specialized queries for database optimizations
+    def filter_by_name: (untyped build_relation) -> untyped
+  end
+end

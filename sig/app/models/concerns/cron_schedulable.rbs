@@ -1,0 +1,23 @@
+module CronSchedulable
+  extend ActiveSupport::Concern
+
+  include Schedulable
+
+  def set_next_run_at: () -> untyped
+
+  private
+
+  #
+  # The `next_run_at` column is set to the actual execution date of worker that
+  # triggers the schedule. This way, a schedule like `*/1 * * * *` won't be triggered
+  # in a short interval when the worker runs irregularly by Sidekiq Memory Killer.
+  def calculate_next_run_at: (?untyped start_time) -> untyped
+
+  def ideal_next_run_from: (untyped start_time) -> untyped
+
+  def cron_worker_next_run_from: (untyped start_time) -> untyped
+
+  def next_time_from: (untyped start_time, untyped cron, untyped cron_timezone) -> untyped
+
+  def worker_cron_expression: () -> untyped
+end

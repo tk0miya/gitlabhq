@@ -1,0 +1,7 @@
+class PipelineProcessWorker
+  include ApplicationWorker
+
+  include PipelineQueue
+
+  def perform: (untyped pipeline_id) -> untyped
+end

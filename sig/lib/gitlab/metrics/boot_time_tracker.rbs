@@ -1,0 +1,17 @@
+module Gitlab
+  module Metrics
+    class BootTimeTracker
+      @startup_time: untyped
+
+      include Singleton
+
+      SUPPORTED_RUNTIMES: ::Array[:puma | :sidekiq | :console]
+
+      def startup_time: () -> untyped
+
+      def track_boot_time!: (?logger: untyped) -> (nil | untyped)
+
+      def reset!: () -> untyped
+    end
+  end
+end

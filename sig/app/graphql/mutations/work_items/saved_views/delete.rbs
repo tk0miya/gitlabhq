@@ -1,0 +1,13 @@
+module Mutations
+  module WorkItems
+    module SavedViews
+      class Delete < BaseMutation
+        def resolve: (id: untyped) -> { saved_view: untyped, errors: ::Array[untyped] }
+
+        private
+
+        def find_object: (id: untyped) -> untyped
+      end
+    end
+  end
+end

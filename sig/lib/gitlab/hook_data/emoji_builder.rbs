@@ -1,0 +1,11 @@
+module Gitlab
+  module HookData
+    class EmojiBuilder < BaseBuilder
+      SAFE_HOOK_ATTRIBUTES: ::Array[:user_id | :created_at | :id | :name | :awardable_type | :awardable_id | :updated_at]
+
+      alias award_emoji object
+
+      def build: () -> untyped
+    end
+  end
+end

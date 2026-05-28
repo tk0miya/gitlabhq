@@ -1,0 +1,9 @@
+module Ci
+  module Observability
+    class ExportWorker
+      include ApplicationWorker
+
+      def perform: (untyped pipeline_id) -> (nil | untyped)
+    end
+  end
+end

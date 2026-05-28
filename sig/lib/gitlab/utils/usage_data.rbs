@@ -1,0 +1,70 @@
+module Gitlab
+  module Utils
+    module UsageData
+      include Gitlab::Utils::StrongMemoize
+
+      extend ::Gitlab::Utils::UsageData
+
+      FALLBACK: -1
+
+      HISTOGRAM_FALLBACK: { "-1" => -1 }
+
+      DISTRIBUTED_HLL_FALLBACK: -2
+
+      MAX_BUCKET_SIZE: 100
+
+      def with_metadata: () { () -> untyped } -> untyped
+
+      def add_metric: (untyped metric, ?time_frame: ::String, ?options: ::Hash[untyped, untyped]) -> untyped
+
+      def count: (untyped relation, ?untyped? column, ?batch: bool, ?batch_size: untyped?, ?start: untyped?, ?finish: untyped?, ?start_at: untyped) -> untyped
+
+      def distinct_count: (untyped relation, ?untyped? column, ?batch: bool, ?batch_size: untyped?, ?start: untyped?, ?finish: untyped?) -> untyped
+
+      def estimate_batch_distinct_count: (untyped relation, ?untyped? column, ?batch_size: untyped?, ?start: untyped?, ?finish: untyped?) ?{ (untyped) -> untyped } -> untyped
+
+      def sum: (untyped relation, untyped column, ?batch_size: untyped?, ?start: untyped?, ?finish: untyped?) -> untyped
+
+      def average: (untyped relation, untyped column, ?batch_size: untyped?, ?start: untyped?, ?finish: untyped?) -> untyped
+
+      # We don't support batching with histograms.
+      # Please avoid using this method on large tables.
+      # See https://gitlab.com/gitlab-org/gitlab/-/issues/323949.
+      #
+      # rubocop: disable CodeReuse/ActiveRecord
+      def histogram: (untyped relation, untyped column, buckets: untyped, ?bucket_size: untyped) -> untyped
+
+      def add: (*untyped args) -> untyped
+
+      def alt_usage_data: (?untyped? value, ?fallback: untyped) { () -> untyped } -> untyped
+
+      def redis_usage_data: (?untyped? counter) { (?) -> untyped } -> untyped
+
+      def with_prometheus_client: (?fallback: ::Hash[untyped, untyped], ?verify: bool) { (untyped) -> untyped } -> untyped
+
+      def measure_duration: () { () -> untyped } -> ::Array[untyped]
+
+      def with_finished_at: (untyped key) { () -> untyped } -> untyped
+
+      # @param event_name [String, Symbol] the event name
+      # @param values [Array|String] the values counted
+      def track_usage_event: (untyped event_name, untyped values) -> untyped
+
+      def maximum_id: (untyped model, ?untyped? column) -> untyped
+
+      def minimum_id: (untyped model, ?untyped? column) -> untyped
+
+      def metrics_collection_metadata: (untyped payload, ?untyped parents) -> (::Array[untyped] | untyped)
+
+      private
+
+      def prometheus_client: (verify: untyped) -> (nil | untyped)
+
+      def prometheus_server_address: () -> (untyped | untyped | nil)
+
+      def redis_usage_counter: () { () -> untyped } -> untyped
+
+      def redis_usage_data_totals: (untyped counter) -> untyped
+    end
+  end
+end

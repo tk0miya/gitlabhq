@@ -1,0 +1,60 @@
+module Issues
+  class UpdateService < Issues::BaseService
+    @perform_spam_check: untyped
+
+    # NOTE: For Issues::UpdateService, we default perform_spam_check to false, because spam_checking is not
+    # necessary in many cases, and we don't want to require every caller to explicitly pass it
+    # to disable spam checking.
+    def initialize: (container: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped], ?perform_spam_check: bool) -> void
+
+    def execute: (untyped issue) -> untyped
+
+    def update: (untyped issue) -> untyped
+
+    def before_update: (untyped issue, ?skip_spam_check: bool) -> (nil | untyped)
+
+    def change_work_item_type: (untyped issue) -> (nil | untyped)
+
+    def handle_changes: (untyped issue, untyped options) -> untyped
+
+    def handle_assignee_changes: (untyped issue, untyped old_assignees) -> (nil | untyped)
+
+    def handle_task_changes: (untyped issuable) -> untyped
+
+    def change_issue_duplicate: (untyped issue) -> (nil | untyped)
+
+    def move_issue_to_new_container: (untyped issue) -> (nil | untyped)
+
+    private
+
+    attr_reader perform_spam_check: untyped
+
+    def after_update: (untyped issue, untyped old_associations) -> untyped
+
+    def publish_event: (untyped work_item, untyped old_associations) -> untyped
+
+    def handle_date_changes: (untyped issue) -> (nil | untyped)
+
+    def clone_issue: (untyped issue) -> (nil | untyped)
+
+    def create_merge_request_from_quick_action: () -> (nil | untyped)
+
+    def handle_confidential_change: (untyped issue) -> (untyped | nil)
+
+    def handle_added_labels: (untyped issue, untyped old_labels) -> untyped
+
+    def handle_added_mentions: (untyped issue, untyped old_mentioned_users) -> untyped
+
+    def handle_severity_change: (untyped issue, untyped old_severity) -> (nil | untyped)
+
+    def create_confidentiality_note: (untyped issue) -> untyped
+
+    def handle_issue_type_change: (untyped issue) -> (nil | untyped)
+
+    def do_handle_issue_type_change: (untyped issue) -> untyped
+
+    def move_to_same_container?: (untyped issue, untyped target_container) -> untyped
+
+    def allowed_update_params: (untyped params) -> untyped
+  end
+end

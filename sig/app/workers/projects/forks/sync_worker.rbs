@@ -1,0 +1,9 @@
+module Projects
+  module Forks
+    class SyncWorker
+      include ApplicationWorker
+
+      def perform: (untyped project_id, untyped user_id, untyped ref) -> (nil | untyped)
+    end
+  end
+end

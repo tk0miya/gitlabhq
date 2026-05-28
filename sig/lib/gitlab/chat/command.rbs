@@ -1,0 +1,66 @@
+module Gitlab
+  module Chat
+    # Class for scheduling chat pipelines.
+    #
+    # A Command takes care of creating a `Ci::Pipeline` with all the data
+    # necessary to execute a chat command. This includes data such as the chat
+    # data (e.g. the response URL) and any environment variables that should be
+    # exposed to the chat command.
+    class Command
+      @project: untyped
+
+      @chat_name: untyped
+
+      @name: untyped
+
+      @arguments: untyped
+
+      @channel: untyped
+
+      @response_url: untyped
+
+      include Utils::StrongMemoize
+
+      attr_reader project: untyped
+
+      attr_reader chat_name: untyped
+
+      attr_reader name: untyped
+
+      attr_reader arguments: untyped
+
+      attr_reader response_url: untyped
+
+      attr_reader channel: untyped
+
+      # project - The Project to schedule the command for.
+      # chat_name - The ChatName belonging to the user that scheduled the
+      #             command.
+      # name - The name of the chat command to run.
+      # arguments - The arguments (as a String) to pass to the command.
+      # channel - The channel the message was sent from.
+      # response_url - The URL to send the response back to.
+      def initialize: (project: untyped, chat_name: untyped, name: untyped, arguments: untyped, channel: untyped, response_url: untyped) -> void
+
+      # Tries to create a new pipeline.
+      #
+      # This method will return a pipeline that _may_ be persisted, or `nil` if
+      # the pipeline could not be created.
+      def try_create_pipeline: () -> (nil | untyped)
+
+      def create_pipeline: () -> untyped
+
+      # Returns the chat environment variables as attributes for pipeline creation.
+      def chat_variables: () -> ::Array[{ key: "CHAT_INPUT", value: untyped } | { key: "CHAT_CHANNEL", value: untyped } | { key: "CHAT_USER_ID", value: untyped }]
+
+      # pipeline - The `Ci::Pipeline` to create the chat data for.
+      def build_chat_data: (untyped pipeline) -> untyped
+
+      def valid?: () -> untyped
+
+      def branch: () -> untyped
+
+      def commit: () -> untyped
+    end
+  end
+end

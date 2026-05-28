@@ -1,0 +1,15 @@
+module Packages
+  module TerraformModule
+    class Metadatum < ApplicationRecord
+      include Gitlab::Utils::StrongMemoize
+
+      include SemanticVersionable
+
+      MAX_FIELDS_SIZE: untyped
+
+      private
+
+      def ensure_fields_size: () -> (nil | untyped)
+    end
+  end
+end

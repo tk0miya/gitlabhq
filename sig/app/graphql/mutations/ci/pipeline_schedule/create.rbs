@@ -1,0 +1,11 @@
+module Mutations
+  module Ci
+    module PipelineSchedule
+      class Create < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, ?variables: untyped, ?inputs: untyped, **untyped pipeline_schedule_attrs) -> ({ pipeline_schedule: nil, errors: untyped } | { pipeline_schedule: untyped, errors: ::Array[untyped] })
+      end
+    end
+  end
+end

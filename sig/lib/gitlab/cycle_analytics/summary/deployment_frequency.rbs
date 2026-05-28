@@ -1,0 +1,23 @@
+module Gitlab
+  module CycleAnalytics
+    module Summary
+      class DeploymentFrequency < Base
+        @deployments: untyped
+
+        @value: untyped
+
+        include SummaryHelper
+
+        def initialize: (deployments: untyped, options: untyped, project: untyped) -> void
+
+        def title: () -> untyped
+
+        def value: () -> untyped
+
+        def unit: () -> untyped
+
+        def links: () -> ::Array[{ "name" => untyped, "url" => untyped, "label" => untyped } | { "name" => untyped, "url" => untyped, "docs_link" => true, "label" => untyped }]
+      end
+    end
+  end
+end

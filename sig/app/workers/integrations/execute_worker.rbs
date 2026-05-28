@@ -1,0 +1,7 @@
+module Integrations
+  class ExecuteWorker
+    include ApplicationWorker
+
+    def perform: (untyped hook_id, untyped data) -> (nil | untyped)
+  end
+end

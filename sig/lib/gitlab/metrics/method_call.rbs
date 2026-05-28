@@ -1,0 +1,46 @@
+module Gitlab
+  module Metrics
+    # Class for tracking timing information about method calls
+    class MethodCall
+      @module_name: untyped
+
+      @method_name: untyped
+
+      @transaction: untyped
+
+      @name: untyped
+
+      @labels: untyped
+
+      @real_time: untyped
+
+      @cpu_time: untyped
+
+      @call_count: untyped
+
+      attr_reader real_time: untyped
+
+      attr_reader cpu_time: untyped
+
+      attr_reader call_count: untyped
+
+      # name - The full name of the method (including namespace) such as
+      #        `User#sign_in`.
+      #
+      def initialize: (untyped name, untyped module_name, untyped method_name, untyped transaction) -> void
+
+      # Measures the real and CPU execution time of the supplied block.
+      def measure: () { () -> untyped } -> untyped
+
+      # Returns true if the total runtime of this method exceeds the method call
+      # threshold.
+      def above_threshold?: () -> untyped
+
+      private
+
+      attr_reader labels: untyped
+
+      attr_reader transaction: untyped
+    end
+  end
+end

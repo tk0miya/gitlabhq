@@ -1,0 +1,129 @@
+module Gitlab
+  module RelativePositioning
+    # This class is API private - it should not be explicitly instantiated
+    # outside of tests
+    # rubocop: disable CodeReuse/ActiveRecord
+    class ItemContext
+      @object: untyped
+
+      @range: untyped
+
+      @model_class: untyped
+
+      @ignoring: untyped
+
+      @ideal_distance: untyped
+
+      @max_gap: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader object: untyped
+
+      attr_reader model_class: untyped
+
+      attr_reader range: untyped
+
+      attr_reader ideal_distance: untyped
+
+      attr_reader max_gap: untyped
+
+      attr_accessor ignoring: untyped
+
+      def initialize: (untyped object, untyped range, ?ignoring: untyped?, ?ideal_distance: untyped, ?max_gap: untyped) -> void
+
+      def ==: (untyped other) -> untyped
+
+      def positioned?: () -> untyped
+
+      def min_relative_position: () -> untyped
+
+      def max_relative_position: () -> untyped
+
+      def prev_relative_position: () -> (untyped | nil)
+
+      def next_relative_position: () -> (untyped | nil)
+
+      def nextify: (untyped relation, ?bool gt) -> untyped
+
+      def relative_siblings: (?untyped relation) -> untyped
+
+      # Handles the possibility that the position is already occupied by a sibling
+      def place_at_position: (untyped position, untyped lhs) -> untyped
+
+      def lhs_neighbour: () -> untyped
+
+      def rhs_neighbour: () -> untyped
+
+      def neighbour: (untyped item) -> (nil | untyped)
+
+      def calculate_relative_position: (untyped calculation) ?{ (untyped) -> untyped } -> untyped
+
+      def grouping_column: () -> untyped
+
+      def max_sibling: () -> untyped
+
+      def min_sibling: () -> untyped
+
+      def at_position: (untyped position) -> untyped
+
+      def shift_left: (?min_gap: untyped, ?exclude: untyped?) -> untyped
+
+      def shift_right: (?min_gap: untyped, ?exclude: untyped?) -> untyped
+
+      def find_next_gap_before: (?min_gap: untyped) -> untyped
+
+      def find_next_gap_after: (?min_gap: untyped) -> untyped
+
+      def find_next_gap: (untyped items_with_next_pos, untyped default_end, order: untyped, ?min_gap: untyped) -> (nil | untyped)
+
+      def scoped_items: () -> untyped
+
+      def relative_position: () -> untyped
+
+      private
+
+      # Moves the sequence starting from the current item to the middle of the next gap before it.
+      # For example, we have
+      #
+      #   5 . . . . . 11 12 13 14 [15] 16 . 17
+      #               ----------------
+      #
+      # This moves the sequence [11 12 13 14 15] to [8 9 10 11 12], so we have:
+      #
+      #   5 . . 8 9 10 11 [12] . . . 16 . 17
+      #         --------------
+      #
+      # Creating a gap to the right of the current item. We can understand this as
+      # dividing the 5 spaces between 5 and 11 into two smaller gaps of 2 and 3.
+      #
+      # As an optimization, the gap can be precalculated and passed to this method.
+      #
+      # @api private
+      # @raises NoSpaceLeft if the sequence cannot be moved
+      def move_sequence_before: (?next_gap: untyped, ?exclude: untyped?) -> untyped
+
+      # Moves the sequence starting from the current item to the middle of the next gap after it.
+      # For example, we have:
+      #
+      #   8 . 10 [11] 12 13 14 15 . . . . . 21
+      #          ----------------
+      #
+      # This moves the sequence [11 12 13 14 15] to [14 15 16 17 18], so we have:
+      #
+      #   8 . 10 . . . [14] 15 16 17 18 . . 21
+      #                ----------------
+      #
+      # Creating a gap to the left of the current item. We can understand this as
+      # dividing the 5 spaces between 15 and 21 into two smaller gaps of 3 and 2.
+      #
+      # As an optimization, the gap can be precalculated and passed to this method.
+      #
+      # @api private
+      # @raises NoSpaceLeft if the sequence cannot be moved
+      def move_sequence_after: (?next_gap: untyped, ?exclude: untyped?) -> untyped
+
+      def move_sequence: (untyped start_pos, untyped end_pos, untyped delta, ?exclude: untyped?) -> untyped
+    end
+  end
+end

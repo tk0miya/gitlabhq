@@ -1,0 +1,18 @@
+module Oauth
+  class DeviceAuthorizationsController < Doorkeeper::DeviceAuthorizationGrant::DeviceAuthorizationsController
+    # rubocop:enable CodeReuse/ActiveRecord
+    @scopes: untyped
+
+    include RequestPayloadLogger
+
+    def index: () -> untyped
+
+    def confirm: () -> untyped
+
+    private
+
+    # In Rails 8 alias_method at class-body level fails when the aliased method
+    # is not yet in the ancestor chain at load time. Define explicitly instead.
+    def auth_user: () -> untyped
+  end
+end

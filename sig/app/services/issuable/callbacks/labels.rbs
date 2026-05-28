@@ -1,0 +1,24 @@
+module Issuable
+  module Callbacks
+    class Labels < Base
+      include ::Gitlab::Utils::StrongMemoize
+
+      ALLOWED_PARAMS: ::Array[:labels | :add_labels | :remove_labels | :label_ids | :add_label_ids | :remove_label_ids]
+
+      def after_initialize: () -> (nil | untyped)
+
+      private
+
+      def normalize_and_filter_label_params!: () -> untyped
+
+      def compute_new_label_ids: () -> untyped
+
+      # Restore any locked labels that the user is attempting to remove
+      def restore_removed_locked_labels: (untyped new_label_ids) -> untyped
+
+      def normalize_and_filter_param: (untyped id_param_name, untyped title_param_name, ?create_when_missing: bool) -> (untyped | untyped | nil)
+
+      def available_labels_service: () -> untyped
+    end
+  end
+end

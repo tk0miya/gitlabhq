@@ -1,0 +1,13 @@
+module Mutations
+  module AlertManagement
+    class CreateAlertIssue < Base
+      def resolve: (untyped args) -> untyped
+
+      private
+
+      def create_alert_issue: (untyped alert, untyped user) -> untyped
+
+      def prepare_response: (untyped alert, untyped result) -> { alert: untyped, issue: untyped, errors: untyped }
+    end
+  end
+end

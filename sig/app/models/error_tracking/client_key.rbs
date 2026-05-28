@@ -1,0 +1,11 @@
+class ErrorTracking::ClientKey < ApplicationRecord
+  @sentry_dsn: untyped
+
+  def self.find_by_public_key: (untyped key) -> untyped
+
+  def sentry_dsn: () -> untyped
+
+  private
+
+  def generate_key: () -> untyped
+end

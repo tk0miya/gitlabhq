@@ -1,0 +1,9 @@
+module Gitlab
+  module Database
+    module BackgroundMigration
+      class BatchedJobTransitionLog < SharedModel
+        include PartitionedTable
+      end
+    end
+  end
+end

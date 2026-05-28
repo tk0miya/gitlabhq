@@ -1,0 +1,58 @@
+module BulkImports
+  class TransformReferencesWorker
+    @tracker: untyped
+
+    @mapped_usernames: untyped
+
+    @username_regex: untyped
+
+    @source_host: untyped
+
+    @source_full_path: untyped
+
+    @context: untyped
+
+    include ApplicationWorker
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def perform: (untyped object_ids, untyped klass, untyped tracker_id) -> (nil | untyped)
+
+    attr_reader tracker: untyped
+
+    private
+
+    def transform_and_save: (untyped object) -> untyped
+
+    def object_body: (untyped object) -> untyped
+
+    def object_body_changed?: (untyped object) -> untyped
+
+    def call_object_method: (untyped object, ?suffix: untyped?) -> untyped
+
+    def body_field: (untyped object) -> ("note" | "description")
+
+    def mapped_usernames: () -> untyped
+
+    def username_regex: (untyped mapped_usernames) -> untyped
+
+    def matching_urls: (untyped object) -> untyped
+
+    def new_url: (untyped object, untyped parsed_old_url) -> untyped
+
+    def source_host: () -> untyped
+
+    def source_full_path: () -> untyped
+
+    def full_path: (untyped object) -> untyped
+
+    def object_has_reference?: (untyped body) -> untyped
+
+    def log_and_fail: (untyped exception) -> untyped
+
+    def log_params: () -> { message: "Failed to update references", bulk_import_id: untyped, bulk_import_entity_id: untyped, source_full_path: untyped, source_version: untyped, importer: "gitlab_migration" }
+
+    def failure_attributes: (untyped exception) -> { bulk_import_entity_id: untyped, pipeline_class: "ReferencesPipeline", exception_class: untyped, exception_message: untyped, correlation_id_value: untyped }
+
+    def context: () -> untyped
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class Base
+          @pipeline: untyped
+
+          @command: untyped
+
+          attr_reader pipeline: untyped
+
+          attr_reader command: untyped
+
+          attr_reader config: untyped
+
+          def initialize: (untyped pipeline, untyped command) -> void
+
+          def perform!: () -> untyped
+
+          def break?: () -> untyped
+        end
+      end
+    end
+  end
+end

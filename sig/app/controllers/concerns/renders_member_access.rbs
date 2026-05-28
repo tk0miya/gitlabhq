@@ -1,0 +1,8 @@
+module RendersMemberAccess
+  def prepare_groups_for_rendering: (untyped groups) -> untyped
+
+  private
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def preload_max_member_access_for_collection: (untyped klass, untyped collection) -> (nil | untyped)
+end

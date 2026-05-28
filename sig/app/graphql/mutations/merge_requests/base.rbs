@@ -1,0 +1,11 @@
+module Mutations
+  module MergeRequests
+    class Base < BaseMutation
+      include Mutations::ResolvesIssuable
+
+      private
+
+      def find_object: (project_path: untyped, iid: untyped) -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Resolvers
+  module Users
+    class ProjectCountResolver < BaseResolver
+      alias user object
+
+      def resolve: (**untyped _args) -> (nil | untyped)
+
+      def can_read_project_count?: () -> untyped
+    end
+  end
+end

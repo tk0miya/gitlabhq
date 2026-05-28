@@ -1,0 +1,63 @@
+module Gitlab
+  module QuickActions
+    class UsersExtractor
+      @current_user: untyped
+
+      @project: untyped
+
+      @group: untyped
+
+      @target: untyped
+
+      @text: untyped
+
+      @references: untyped
+
+      @args: untyped
+
+      MAX_QUICK_ACTION_USERS: 100
+
+      Error: untyped
+
+      TooManyError: untyped
+
+      MissingError: untyped
+
+      TooManyFoundError: untyped
+
+      TooManyRefsError: untyped
+
+      attr_reader text: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader project: untyped
+
+      attr_reader group: untyped
+
+      attr_reader target: untyped
+
+      def initialize: (untyped current_user, project: untyped, group: untyped, target: untyped, text: untyped) -> void
+
+      def execute: () -> (::Array[untyped] | untyped)
+
+      private
+
+      def collect_users: () -> untyped
+
+      def check_users!: (untyped users) -> untyped
+
+      def found_names: (untyped users) -> untyped
+
+      def find_referenced_users: () -> untyped
+
+      def usernames: () -> untyped
+
+      def references: () -> untyped
+
+      def args: () -> untyped
+
+      def me?: () -> untyped
+    end
+  end
+end

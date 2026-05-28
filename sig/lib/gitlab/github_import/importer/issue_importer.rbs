@@ -1,0 +1,56 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class IssueImporter
+        @issue: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        @user_finder: untyped
+
+        @milestone_finder: untyped
+
+        @issuable_finder: untyped
+
+        @map: untyped
+
+        include ::Import::PlaceholderReferences::Pusher
+
+        attr_reader project: untyped
+
+        attr_reader issue: untyped
+
+        attr_reader client: untyped
+
+        attr_reader user_finder: untyped
+
+        attr_reader milestone_finder: untyped
+
+        attr_reader issuable_finder: untyped
+
+        # Imports an issue if it's a regular issue and not a pull request.
+        def self.import_if_issue: (untyped issue, untyped project, untyped client) -> (untyped | nil)
+
+        # issue - An instance of `Gitlab::GithubImport::Representation::Issue`.
+        # project - An instance of `Project`
+        # client - An instance of `Gitlab::GithubImport::Client`
+        def initialize: (untyped issue, untyped project, untyped client) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        # Returns a Hash of { GitLabUserId => GitHubUserId }
+        # that can be used for both importing and pushing user references.
+        def issue_assignee_map: () -> untyped
+
+        # Creates a new GitLab issue for the current GitHub issue.
+        def create_issue: () -> untyped
+
+        def push_issue_placeholder_references: (untyped new_issue) -> untyped
+      end
+    end
+  end
+end

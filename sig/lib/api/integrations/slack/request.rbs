@@ -1,0 +1,24 @@
+module API
+  class Integrations
+    module Slack
+      module Request
+        VERIFICATION_VERSION: "v0"
+
+        VERIFICATION_TIMESTAMP_HEADER: "X-Slack-Request-Timestamp"
+
+        VERIFICATION_SIGNATURE_HEADER: "X-Slack-Signature"
+
+        VERIFICATION_DELIMITER: ":"
+
+        VERIFICATION_HMAC_ALGORITHM: "sha256"
+
+        VERIFICATION_TIMESTAMP_EXPIRY: untyped
+
+        # Verify the request by comparing the given request signature in the header
+        # with a signature value that we compute according to the steps in:
+        # https://api.slack.com/authentication/verifying-requests-from-slack.
+        def self.verify!: (untyped request) -> (false | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Import
+  class SourceUserPlaceholderReference < ApplicationRecord
+    include BulkInsertSafe
+
+    include EachBatch
+
+    MODEL_BATCH_LIMIT: 500
+
+    # If an element is ever added to this array, ensure that `.from_serialized` handles receiving
+    # older versions of the array by filling in missing values with defaults. We'd keep that in place
+    # for at least one release cycle to ensure backward compatibility.
+    SERIALIZABLE_ATTRIBUTES: ::Array["composite_key" | "model" | "namespace_id" | "numeric_key" | "source_user_id" | "user_reference_column" | "alias_version"]
+
+    SerializationError: untyped
+
+    def aliased_model: () -> untyped
+
+    def aliased_user_reference_column: () -> untyped
+
+    def aliased_composite_key: () -> untyped
+
+    def to_serialized: () -> untyped
+
+    def model_record: () -> untyped
+
+    def self.from_serialized: (untyped serialized_reference) -> untyped
+
+    # Model relations are yielded in a block to ensure all relations will be batched, regardless of the model
+    def self.model_relations_for_source_user_reference: (model: untyped, source_user: untyped, user_reference_column: untyped, alias_version: untyped) { (untyped) -> untyped } -> untyped
+
+    def self.composite_key_columns: (untyped composite_keys) -> untyped
+
+    def self.composite_key_values: (untyped composite_keys) -> untyped
+
+    def self.tuple: (untyped values) -> ::String
+
+    private
+
+    # Membership data is handled in `Import::Placeholders::Membership` records instead.
+    # Use `Import::PlaceholderMemberships::CreateService` to save the membership data.
+    def validate_model_is_not_member: () -> (nil | untyped)
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # This class represents a variables inherit entry
+        #
+        class Inherit
+          class Variables < ::Gitlab::Config::Entry::Simplifiable
+            class BooleanStrategy < ::Gitlab::Config::Entry::Boolean
+            end
+
+            class ArrayStrategy < ::Gitlab::Config::Entry::Node
+              include ::Gitlab::Config::Entry::Validatable
+            end
+
+            class UnknownStrategy < ::Gitlab::Config::Entry::Node
+              def errors: () -> ::Array[::String]
+            end
+          end
+        end
+      end
+    end
+  end
+end

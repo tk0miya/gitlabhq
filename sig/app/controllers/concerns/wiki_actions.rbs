@@ -1,0 +1,149 @@
+module WikiActions
+  @wiki_entries: untyped
+
+  @wiki_entries_count: untyped
+
+  # Assign vars expected by MarkupHelper
+  @ref: untyped
+
+  @path: untyped
+
+  @templates: untyped
+
+  @page: untyped
+
+  @error: untyped
+
+  @commits_count: untyped
+
+  @commits: untyped
+
+  @diffs: untyped
+
+  @diff_notes_disabled: untyped
+
+  @sidebar_page: untyped
+
+  @wiki_pages_count: untyped
+
+  include DiffHelper
+
+  include PreviewMarkdown
+
+  include SendsBlob
+
+  include Gitlab::Utils::StrongMemoize
+
+  include ProductAnalyticsTracking
+
+  include SafeFormatHelper
+
+  extend ActiveSupport::Concern
+
+  include StrongPaginationParams
+
+  RESCUE_GIT_TIMEOUTS_IN: ::Array["index" | "show" | "raw" | "edit" | "history" | "diff" | "pages" | "templates"]
+
+  RedirectsFileTooLargeError: untyped
+
+  def new: () -> untyped
+
+  def index: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def pages: () -> untyped
+
+  def pages_list: () -> untyped
+
+  def templates_list: () -> untyped
+
+  def templates: () -> untyped
+
+  # `#show` handles a number of scenarios:
+  #
+  # - If `id` matches a WikiPage, then show the wiki page.
+  # - If `id` is a file in the wiki repository, then send the file.
+  # - If we know the user wants to create a new page with the given `id`,
+  #   then display a create form.
+  # - Otherwise show the empty wiki page and invite the user to create a page.
+  #
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def show: () -> untyped
+
+  def handle_redirection: () -> untyped
+
+  def handle_create_form: () -> untyped
+
+  def raw: () -> untyped
+
+  def edit: () -> untyped
+
+  def update: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def create: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def history: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def diff: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def destroy: () -> untyped
+
+  def git_access: () -> untyped
+
+  private
+
+  def handle_action_success: (untyped action, untyped page) -> untyped
+
+  def container: () -> untyped
+
+  def show_create_form?: () -> untyped
+
+  def wiki: () -> untyped
+
+  def page: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def load_sidebar: () -> untyped
+
+  def wiki_params: () -> untyped
+
+  def build_page: (?::Hash[untyped, untyped] args) -> untyped
+
+  def page_params: () -> untyped
+
+  def valid_encoding?: () -> untyped
+
+  def page_encoding: () -> untyped
+
+  def set_encoding_error: () -> untyped
+
+  def file_blob: () -> untyped
+
+  # Override CommitsHelper#view_file_button
+  def view_file_button: (untyped commit_sha, *untyped _args) -> untyped
+
+  # Override DiffHelper#diff_file_html_data
+  def diff_file_html_data: (untyped _project, untyped _diff_file_path, untyped diff_commit_id) -> { blob_diff_path: untyped, view: untyped }
+
+  def send_wiki_file_blob: (untyped wiki, untyped file_blob) -> untyped
+
+  def log_wiki_page_view: () -> (nil | untyped)
+
+  def load_content?: () -> (false | true)
+
+  def tracking_project_source: () -> (untyped | nil)
+
+  def tracking_namespace_source: () -> untyped
+
+  def find_redirection: (untyped original_path, ?::Integer redirect_limit) -> (untyped | { error: true, reason: :loop } | { error: true, reason: :limit })
+
+  def resolve_next_subpath_redirect: (untyped path, untyped seen_full_paths, untyped seen_subpaths, untyped redirect_limit) -> (nil | untyped)
+
+  def full_path_with_redirect: (untyped redirected_subpath, untyped rest) -> untyped
+
+  def redirections: () -> untyped
+end

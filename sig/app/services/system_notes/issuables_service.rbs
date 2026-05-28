@@ -1,0 +1,304 @@
+module SystemNotes
+  class IssuablesService < ::SystemNotes::BaseService
+    # We create cross-referenced system notes when a commit relates to an issue.
+    # There are two options what time to use for the system note:
+    # 1. The push date (default)
+    # 2. The commit date
+    #
+    # The commit date is useful when an existing Git repository is imported to GitLab.
+    # It helps to preserve an original order of all notes (comments, commits, status changes, e.t.c)
+    # in the imported issues. Otherwise, all commits will be linked before or after all other imported notes.
+    #
+    # See also the discussion in https://gitlab.com/gitlab-org/gitlab/-/merge_requests/60700#note_612724683
+    USE_COMMIT_DATE_FOR_CROSS_REFERENCE_NOTE: false
+
+    def self.issuable_events: () -> { assigned: untyped, unassigned: untyped, review_requested: untyped, review_request_removed: untyped }
+
+    #
+    # noteable_ref - Referenced noteable object, or array of objects
+    #
+    # Example Note text:
+    #
+    #   "marked as related to gitlab-foss#9001"
+    #   "marked as related to gitlab-foss#9001, gitlab-foss#9002, and gitlab-foss#9003"
+    #
+    # Returns the created Note object
+    def relate_issuable: (untyped noteable_ref) -> untyped
+
+    #
+    # noteable_ref - Referenced noteable object
+    #
+    # Example Note text:
+    #
+    #   "removed the relation with gitlab-foss#9001"
+    #
+    # Returns the created Note object
+    def unrelate_issuable: (untyped noteable_ref) -> untyped
+
+    # Called when the assignee of a Noteable is changed or removed
+    #
+    # assignee - User being assigned, or nil
+    #
+    # Example Note text:
+    #
+    #   "removed assignee"
+    #
+    #   "assigned to @rspeicher"
+    #
+    # Returns the created Note object
+    def change_assignee: (untyped assignee) -> untyped
+
+    # Called when the assignees of an issuable is changed or removed
+    #
+    # assignees - Users being assigned, or nil
+    #
+    # Example Note text:
+    #
+    #   "removed all assignees"
+    #
+    #   "assigned to @user1 additionally to @user2"
+    #
+    #   "assigned to @user1, @user2 and @user3 and unassigned @user4 and @user5"
+    #
+    #   "assigned to @user1 and @user2"
+    #
+    # Returns the created Note object
+    def change_issuable_assignees: (untyped old_assignees) -> untyped
+
+    # Called when the reviewers of an issuable is changed or removed
+    #
+    # reviewers - Users being requested to review, or nil
+    #
+    # Example Note text:
+    #
+    #   "requested review from @user1 and @user2"
+    #
+    #   "requested review from @user1, @user2 and @user3 and removed review request for @user4 and @user5"
+    #
+    # Returns the created Note object
+    def change_issuable_reviewers: (untyped old_reviewers) -> untyped
+
+    def request_review: (untyped user, untyped has_unapproved) -> untyped
+
+    # Called when the contacts of an issuable are changed or removed
+    # We intend to reference the contacts but for security we are just
+    # going to state how many were added/removed for now. See discussion:
+    # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/77816#note_806114273
+    #
+    # added_count - number of contacts added, or 0
+    # removed_count - number of contacts  removed, or 0
+    #
+    # Example Note text:
+    #
+    #   "added 2 contacts"
+    #
+    #   "added 3 contacts and removed one contact"
+    #
+    # Returns the created Note object
+    def change_issuable_contacts: (untyped added_count, untyped removed_count) -> (nil | untyped)
+
+    # Called when the title of a Noteable is changed
+    #
+    # old_title - Previous String title
+    #
+    # Example Note text:
+    #
+    #   "changed title from **Old** to **New**"
+    #
+    # Returns the created Note object
+    def change_title: (untyped old_title) -> untyped
+
+    # Called when the hierarchy of a work item is changed
+    #
+    # noteable  - Noteable object that responds to `work_item_parent` and `work_item_children`
+    # project   - Project owning noteable
+    # author    - User performing the change
+    #
+    # Example Note text:
+    #
+    #   "added #1 as child item"
+    #
+    # Returns the created Note object
+    def hierarchy_changed: (untyped work_item, untyped action) -> untyped
+
+    # Called when the description of a Noteable is changed
+    #
+    # noteable  - Noteable object that responds to `description`
+    # project   - Project owning noteable
+    # author    - User performing the change
+    #
+    # Example Note text:
+    #
+    #   "changed the description"
+    #
+    # Returns the created Note object
+    def change_description: () -> untyped
+
+    # Called when a Mentionable (the `mentioned_in`) references another Mentionable (the `mentioned`,
+    # passed to this service as `noteable`).
+    #
+    # Example Note text:
+    #
+    #   "mentioned in #1"
+    #
+    #   "mentioned in !2"
+    #
+    #   "mentioned in 54f7727c"
+    #
+    # See cross_reference_note_content.
+    #
+    # @param mentioned_in [Mentionable]
+    # @return [Note]
+    def cross_reference: (untyped mentioned_in) -> (nil | untyped)
+
+    # Check if a cross-reference is disallowed
+    #
+    # This method prevents adding a "mentioned in !1" note on every single commit
+    # in a merge request. Additionally, it prevents the creation of references to
+    # external issues (which would fail).
+    #
+    # @param mentioned_in [Mentionable]
+    # @return [Boolean]
+    def cross_reference_disallowed?: (untyped mentioned_in) -> (true | false | untyped)
+
+    # Called when the status of a Task has changed
+    #
+    # new_task  - Taskable::Item object.
+    #
+    # Example Note text:
+    #
+    #   "marked the checklist item Whatever as completed."
+    #
+    # Returns the created Note object
+    def change_task_status: (untyped new_task) -> untyped
+
+    # Called when noteable has been moved to another project
+    #
+    # noteable_ref - Referenced noteable
+    # direction    - symbol, :to or :from
+    #
+    # Example Note text:
+    #
+    #   "moved to some_namespace/project_new#11"
+    #
+    # Returns the created Note object
+    def noteable_moved: (untyped noteable_ref, untyped direction) -> untyped
+
+    # Called when noteable has been cloned
+    #
+    # noteable_ref - Referenced noteable
+    # direction    - symbol, :to or :from
+    # created_at   - timestamp for the system note, defaults to current time
+    #
+    # Example Note text:
+    #
+    #   "cloned to some_namespace/project_new#11"
+    #
+    # Returns the created Note object
+    def noteable_cloned: (untyped noteable_ref, untyped direction, ?created_at: untyped?) -> untyped
+
+    # Called when the confidentiality changes
+    #
+    # Example Note text:
+    #
+    #   "made the item confidential"
+    #
+    # Returns the created Note object
+    def change_issue_confidentiality: () -> untyped
+
+    # Called when the status of a Noteable is changed
+    #
+    # status   - String status
+    # source   - Mentionable performing the change, or nil
+    #
+    # Example Note text:
+    #
+    #   "merged"
+    #
+    #   "closed via bc17db76"
+    #
+    # Returns the created Note object
+    def change_status: (untyped status, ?untyped? source) -> untyped
+
+    # Check if a cross reference to a Mentionable from the `mentioned_in` Mentionable
+    # already exists.
+    #
+    # This method is used to prevent multiple notes being created for a mention
+    # when a issue is updated, for example. The method also calls `existing_mentions_for`
+    # to check if the mention is in a commit, and return matches only on commit hash
+    # instead of project + commit, to avoid repeated mentions from forks.
+    #
+    # @param mentioned_in [Mentionable]
+    # @return [Boolean]
+    def cross_reference_exists?: (untyped mentioned_in) -> untyped
+
+    # Called when a Noteable has been marked as the canonical Issue of a duplicate
+    #
+    # duplicate_issue - Issue that was a duplicate of this
+    #
+    # Example Note text:
+    #
+    #   "marked #1234 as a duplicate of this issue"
+    #
+    #   "marked other_project#5678 as a duplicate of this issue"
+    #
+    # Returns the created Note object
+    def mark_canonical_issue_of_duplicate: (untyped duplicate_issue) -> untyped
+
+    # Called when a Noteable has been marked as a duplicate of another Issue
+    #
+    # canonical_issue - Issue that this is a duplicate of
+    #
+    # Example Note text:
+    #
+    #   "marked this issue as a duplicate of #1234"
+    #
+    #   "marked this issue as a duplicate of other_project#5678"
+    #
+    # Returns the created Note object
+    def mark_duplicate_issue: (untyped canonical_issue) -> untyped
+
+    def email_participants: (untyped body) -> untyped
+
+    def discussion_lock: () -> untyped
+
+    def close_after_error_tracking_resolve: () -> untyped
+
+    def auto_resolve_prometheus_alert: () -> untyped
+
+    def change_issue_type: () -> untyped
+
+    def move_child_to_new_parent: (untyped child, untyped new_parent) -> untyped
+
+    private
+
+    def cross_reference_note_content: (untyped gfm_reference) -> ::String
+
+    def existing_mentions_for: (untyped mentioned_in, untyped noteable, untyped notes) -> untyped
+
+    def self.cross_reference_note_prefix: () -> "mentioned in "
+
+    def self.cross_reference?: (untyped note_text) -> untyped
+
+    def create_resource_state_event: (untyped params) -> untyped
+
+    def issue_activity_counter: () -> untyped
+
+    def work_item_activity_counter: () -> untyped
+
+    def track_cross_reference_action: () -> untyped
+
+    def track_cross_reference: (untyped mentioned_in, untyped note) -> (nil | untyped)
+
+    def hierarchy_note_params: (untyped action, untyped parent, untyped child) -> (::Hash[untyped, untyped] | untyped)
+
+    def track_issue_event: (untyped event_name) -> (nil | untyped)
+
+    # System notes intentionally use the generic word "item" instead of the
+    # specific noteable type (e.g. "issue", "task", "incident"). The user is
+    # already viewing the item, so the type is redundant in the note copy.
+    def noteable_name: () -> untyped
+
+    def extract_issuable_reference: (untyped reference) -> untyped
+  end
+end

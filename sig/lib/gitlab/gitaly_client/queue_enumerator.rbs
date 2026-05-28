@@ -1,0 +1,15 @@
+module Gitlab
+  module GitalyClient
+    class QueueEnumerator
+      @queue: untyped
+
+      def initialize: () -> void
+
+      def push: (untyped elem) -> untyped
+
+      def close: () -> untyped
+
+      def each: () ?{ (untyped) -> untyped } -> untyped
+    end
+  end
+end

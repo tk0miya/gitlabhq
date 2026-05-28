@@ -1,0 +1,14 @@
+module Ci
+  module Partitionable
+    module Switch
+      extend ActiveSupport::Concern
+
+      # These methods are cached at the class level and depend on the value
+      # of `table_name`, changing that value resets them.
+      # `cached_find_by_statement` is used to cache SQL statements which can
+      # include the table name.
+      #
+      SWAPABLE_METHODS: ::Array[:table_name | :quoted_table_name | :arel_table | :predicate_builder | :cached_find_by_statement]
+    end
+  end
+end

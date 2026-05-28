@@ -1,0 +1,21 @@
+class Ldap::OmniauthCallbacksController < OmniauthCallbacksController
+  extend ::Gitlab::Utils::Override
+
+  def self.define_providers!: () -> (nil | untyped)
+
+  # We only find ourselves here
+  # if the authentication to LDAP was successful.
+  def ldap: () -> (nil | untyped)
+
+  def set_remember_me: (untyped user, untyped _auth_user) -> (untyped | nil)
+
+  def fail_login: (untyped _user) -> untyped
+
+  private
+
+  def check_action_name_in_available_providers: () -> (untyped | nil)
+
+  def available_providers: () -> untyped
+
+  def log_audit_event: (untyped user, ?::Hash[untyped, untyped] options) -> untyped
+end

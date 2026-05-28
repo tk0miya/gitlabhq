@@ -1,0 +1,48 @@
+module Emails
+  module Notes
+    @commit: untyped
+
+    @target_url: untyped
+
+    @issue: untyped
+
+    @merge_request: untyped
+
+    @snippet: untyped
+
+    @wiki_page: untyped
+
+    # `note_id` is a `Note` when originating in `NotifyPreview`
+    @note: untyped
+
+    @project: untyped
+
+    @group: untyped
+
+    @recipient: untyped
+
+    @sent_notification: untyped
+
+    def note_commit_email: (untyped recipient_id, untyped note_id, ?untyped? reason) -> untyped
+
+    def note_issue_email: (untyped recipient_id, untyped note_id, ?untyped? reason) -> untyped
+
+    def note_merge_request_email: (untyped recipient_id, untyped note_id, ?untyped? reason) -> untyped
+
+    def note_snippet_email: (untyped recipient_id, untyped note_id, ?untyped? reason) -> untyped
+
+    def note_design_email: (untyped recipient_id, untyped note_id, ?untyped? reason) -> untyped
+
+    def note_wiki_page_email: (untyped recipient_id, untyped note_id, ?untyped? reason) -> untyped
+
+    private
+
+    def note_target_url_options: () -> ::Array[untyped]
+
+    def note_target_url_query_params: () -> { anchor: ::String }
+
+    def note_thread_options: (untyped reason, ?confidentiality: untyped?) -> untyped
+
+    def setup_note_mail: (untyped note_id, untyped recipient_id) -> untyped
+  end
+end

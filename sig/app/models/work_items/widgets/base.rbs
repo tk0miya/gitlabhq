@@ -1,0 +1,35 @@
+module WorkItems
+  module Widgets
+    class Base
+      @work_item: untyped
+
+      @widget_definition: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def self.type: () -> untyped
+
+      def self.api_symbol: () -> ::Symbol
+
+      def self.quick_action_commands: () -> ::Array[untyped]
+
+      def self.process_quick_action_param: (untyped param_name, untyped value) -> ::Hash[untyped, untyped]
+
+      def self.callback_class: () -> untyped
+
+      def self.sync_data_callback_class: () -> untyped
+
+      def self.sorting_keys: () -> ::Hash[untyped, untyped]
+
+      def sync_data_callback_class: () -> untyped
+
+      def type: () -> untyped
+
+      def initialize: (untyped work_item, ?widget_definition: untyped?) -> void
+
+      attr_reader work_item: untyped
+
+      attr_reader widget_definition: untyped
+    end
+  end
+end

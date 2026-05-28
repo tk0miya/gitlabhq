@@ -1,0 +1,12 @@
+# rubocop: disable Graphql/AuthorizeTypes
+module Types
+  module Ci
+    class JobTraceType < BaseObject
+      MAX_SIZE_KB: 16
+
+      MAX_SIZE_B: untyped
+
+      def html_summary: (last_lines: untyped) -> untyped
+    end
+  end
+end

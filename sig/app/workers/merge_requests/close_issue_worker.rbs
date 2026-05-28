@@ -1,0 +1,10 @@
+module MergeRequests
+  class CloseIssueWorker
+    include ApplicationWorker
+
+    # This worker only accepts ID of an Issue. We are intentionally using this
+    # worker to close Issues asynchronously as we only experience SQL timeouts
+    # when closing an Issue.
+    def perform: (untyped project_id, untyped user_id, untyped issue_id, untyped merge_request_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+  end
+end

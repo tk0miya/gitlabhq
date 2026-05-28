@@ -1,0 +1,27 @@
+module Gitlab
+  module Verify
+    class RakeTask
+      @verifier: untyped
+
+      @verbose: untyped
+
+      def self.run!: (untyped verify_kls) -> untyped
+
+      attr_reader verifier: untyped
+
+      attr_reader output: untyped
+
+      def initialize: (untyped verifier, untyped verbose) -> void
+
+      def run!: () -> untyped
+
+      def verbose?: () -> untyped
+
+      private
+
+      def say: (untyped text) -> untyped
+
+      def run_batch: (untyped range, untyped failures) -> (nil | untyped)
+    end
+  end
+end

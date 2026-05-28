@@ -1,0 +1,15 @@
+module Gitlab
+  module Email
+    module IncomingEmail
+      extend Gitlab::Email::Common
+
+      def self.config: () -> untyped
+
+      def self.key_from_address: (untyped address, ?wildcard_address: untyped?) -> (nil | untyped)
+
+      private
+
+      def self.address_regex: (untyped wildcard_address) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,34 @@
+module Gitlab
+  module Git
+    # Ephemeral (per request) storage for environment variables that some
+    # Git commands need during internal API calls made from the Git
+    # pre-receive push hook.
+    #
+    # See
+    # https://gitlab.com/gitlab-org/gitaly/-/blob/master/doc/object_quarantine.md#gitlab-and-git-object-quarantine
+    # for more information.
+    #
+    # This class is thread-safe via RequestStore.
+    class HookEnv
+      ALLOWLISTED_VARIABLES: ::Array["GIT_OBJECT_DIRECTORY_RELATIVE" | "GIT_ALTERNATE_OBJECT_DIRECTORIES_RELATIVE"]
+
+      # set stores the quarantining variables into request store.
+      #
+      # relative_path is sent from Gitaly to Rails when invoking internal API. In production it points to the
+      # transaction's snapshot repository. Tests should pass the original relative path of the repository as
+      # Gitaly is stubbed out from the invokation loop and doesn't create a transaction snapshot.
+      def self.set: (untyped gl_repository, untyped relative_path, untyped env) -> (nil | untyped)
+
+      # get_relative_path returns the relative path of the repository this hook call is triggered for.
+      # This is the repository's relative path in the transaction's snapshot and is passed back to Gitaly
+      # in quarantined calls.
+      def self.get_relative_path: () -> (nil | untyped)
+
+      def self.all: (untyped gl_repository) -> (::Hash[untyped, untyped] | untyped)
+
+      def self.to_env_hash: (untyped gl_repository) -> untyped
+
+      def self.allowlist_git_env: (untyped env) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+class NotePresenter < Gitlab::View::Presenter::Delegated
+  include ActionView::Helpers::SanitizeHelper
+
+  include MarkupHelper
+
+  def note: () -> untyped
+
+  def note_html: () -> untyped
+
+  def note_first_line_html: () -> untyped
+
+  def external_author: () -> (nil | untyped)
+
+  private
+
+  def obfuscate_participants_emails_in_system_note: (untyped text) -> untyped
+end

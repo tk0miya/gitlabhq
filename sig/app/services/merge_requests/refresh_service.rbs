@@ -1,0 +1,103 @@
+module MergeRequests
+  class RefreshService < MergeRequests::BaseService
+    @push: untyped
+
+    @push_commit_ids: untyped
+
+    @outdate_service: untyped
+
+    @commits: untyped
+
+    @source_merge_requests: untyped
+
+    @merge_requests_for_forks: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader push: untyped
+
+    # Staggered delays for auto-merge worker enqueue.
+    # Each MR gets a delay of index * INTERVAL seconds, spaced 3 seconds apart
+    # (0s, 3s, 6s, ..., 57s) to avoid workers from the same or overlapping push
+    # events landing at the same time. Capped at 20 MRs per push event; remaining
+    # MRs are picked up in subsequent rounds as merges trigger new pushes.
+    AUTO_MERGE_DELAY_INTERVAL: 3
+
+    AUTO_MERGE_BATCH_LIMIT: 20
+
+    def execute: (untyped oldrev, untyped newrev, untyped ref) -> (true | untyped)
+
+    private
+
+    def refresh_merge_requests!: () -> true
+
+    def branch_added_or_removed?: () -> untyped
+
+    def close_upon_missing_source_branch_ref: () -> untyped
+
+    # Collect open merge requests that target same branch we push into
+    # and close if push to master include last commit from merge request
+    # We need this to close(as merged) merge requests that were merged into
+    # target branch manually
+    # rubocop: disable CodeReuse/ActiveRecord
+    def post_merge_manually_merged: () -> (nil | untyped)
+
+    # Link LFS objects that exists in forks but does not exists in merge requests
+    # target project
+    def link_forks_lfs_objects: () -> (nil | untyped)
+
+    # Refresh merge request diff if we push to source or target branch of merge request
+    # Note: we should update merge requests from forks too
+    def reload_merge_requests: () -> untyped
+
+    def recheck_merge_requests_batched: (untyped filtered_merge_requests) -> untyped
+
+    def enqueue_auto_merge_for_unchecked: (untyped merge_requests) -> (nil | untyped)
+
+    def push_commit_ids: () -> untyped
+
+    def branch_and_project_match?: (untyped merge_request) -> untyped
+
+    def outdate_suggestions: (untyped merge_request) -> untyped
+
+    def outdate_service: () -> untyped
+
+    def abort_auto_merges?: (untyped merge_request) -> untyped
+
+    def abort_auto_merges: (untyped merge_request) -> (nil | untyped)
+
+    def abort_ff_merge_requests_with_auto_merges: () -> (nil | untyped)
+
+    def merge_requests_with_auto_merge_enabled_to: (untyped target_branch) -> untyped
+
+    def mark_pending_todos_done: (untyped merge_request) -> untyped
+
+    def find_new_commits: () -> (nil | untyped | untyped)
+
+    # Add comment about branches being deleted or added to merge requests
+    def comment_mr_branch_presence_changed: (untyped merge_request) -> untyped
+
+    # Add comment about pushing new commits to merge requests and send notification emails
+    #
+    def notify_about_push: (untyped merge_request) -> (nil | untyped)
+
+    def mark_mr_as_draft_from_commits: (untyped merge_request) -> (nil | untyped)
+
+    # If the merge requests closes any issues, save this information in the
+    # `MergeRequestsClosingIssues` model (as a performance optimization).
+    # rubocop: disable CodeReuse/ActiveRecord
+    def cache_merge_requests_closing_issues: () -> untyped
+
+    def filter_merge_requests: (untyped merge_requests) -> untyped
+
+    def merge_requests_for_source_branch: (?reload: bool) -> untyped
+
+    def merge_requests_for_forks: () -> untyped
+
+    def schedule_duo_code_review: (untyped merge_request) -> nil
+
+    def execute_async_workers: () -> untyped
+
+    def prepare_commits_for_notification: (untyped commits, ?first_and_last_only: bool) -> (::Array[::Array[untyped] | 0] | ::Array[untyped])
+  end
+end

@@ -1,0 +1,17 @@
+module Prometheus
+  module PidProvider
+    extend ::Prometheus::PidProvider
+
+    def worker_id: () -> untyped
+
+    private
+
+    def sidekiq_worker_id: () -> (::String | "sidekiq")
+
+    def puma_worker_id: () -> (::String | "puma_master" | untyped)
+
+    def unknown_process_id: () -> ::String
+
+    def process_name: () -> untyped
+  end
+end

@@ -1,0 +1,38 @@
+module MirrorHelper
+  PUSH_DIRECTION: "push"
+
+  PULL_DIRECTION: "pull"
+
+  def mirrors_form_data_attributes: () -> { project_mirror_ssh_endpoint: untyped, project_mirror_endpoint: untyped }
+
+  def pull_mirror_lfs_sync_message: () -> untyped
+
+  def push_mirror_lfs_sync_message: () -> untyped
+
+  def push_mirror_lfs_ssh_sync_message: () -> untyped
+
+  def mirrored_repositories_count: () -> untyped
+
+  def remote_mirrors_table_data: (untyped remote_mirrors) -> untyped
+
+  private
+
+  # Shared builder for both push and pull mirror JSON rows.
+  # Both directions use this to ensure the Vue table contract
+  # has a single source of truth.
+  #
+  # Note: last_update_at represents "last successful update" for
+  # both push and pull mirrors. For push mirrors the caller
+  # passes RemoteMirror#last_update_at (set only on success).
+  # For pull mirrors the caller passes
+  # ImportState#last_successful_update_at.
+  # rubocop:disable Metrics/ParameterLists -- all keyword args are required to enforce the Vue table contract
+  def serialize_mirror_row: (id: untyped, enabled: untyped, url: untyped, direction: untyped, last_update_started_at: untyped, last_update_at: untyped, last_error: untyped, update_status: untyped, ssh_key_auth: untyped, ssh_public_key: untyped, ?archived: untyped?) -> { id: untyped, enabled: untyped, url: untyped, direction: untyped, last_update_started_at: untyped, last_update_at: untyped, last_error: untyped, update_status: untyped, ssh_key_auth: untyped, ssh_public_key: untyped, archived: untyped }
+
+  # Use read_attribute(:enabled) to get the raw DB column value,
+  # bypassing RemoteMirror#enabled which applies project-level
+  # checks (remote_mirror_available?, repository_exists?, etc.).
+  # The Vue table needs the per-mirror toggle state, not the
+  # computed project-aware value.
+  def serialize_remote_mirror_row: (untyped mirror) -> untyped
+end

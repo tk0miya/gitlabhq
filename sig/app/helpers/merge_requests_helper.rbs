@@ -1,0 +1,86 @@
+module MergeRequestsHelper
+  include Gitlab::Utils::StrongMemoize
+
+  include CompareHelper
+
+  DIFF_BATCH_ENDPOINT_PER_PAGE: 5
+
+  def create_mr_button_from_event?: (untyped event) -> untyped
+
+  def create_mr_path_from_push_event: (untyped event) -> untyped
+
+  def mr_css_classes: (untyped mr) -> untyped
+
+  def merge_path_description: (untyped merge_request, ?with_arrow: bool) -> untyped
+
+  def mr_change_branches_path: (untyped merge_request) -> untyped
+
+  def format_mr_branch_names: (untyped merge_request) -> untyped
+
+  def target_projects: (untyped project) -> untyped
+
+  def merge_request_button_hidden?: (untyped merge_request, untyped closed) -> untyped
+
+  def merge_request_version_path: (untyped project, untyped merge_request, untyped merge_request_diff, ?::Hash[untyped, untyped] path_extra_options) -> untyped
+
+  def merge_params: (untyped merge_request) -> { auto_merge_strategy: untyped, should_remove_source_branch: true, sha: untyped, squash: untyped }
+
+  def tab_link_for: (untyped merge_request, untyped tab, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+  def allow_collaboration_unavailable_reason: (untyped merge_request) -> (nil | untyped)
+
+  def merge_request_source_project_for_project: (?untyped project) -> (nil | untyped)
+
+  def reviewers_label: (untyped merge_request, ?include_value: bool) -> untyped
+
+  def can_use_description_composer: (untyped _user, untyped _merge_request) -> false
+
+  # Overridden in EE
+  def summarize_new_merge_request_disabled_reason: (untyped _merge_request) -> nil
+
+  def diffs_tab_pane_data: (untyped project, untyped merge_request, untyped params) -> { :"is-locked" => untyped, endpoint: untyped, endpoint_metadata: untyped, endpoint_batch: untyped, endpoint_coverage: untyped, endpoint_diff_for_path: untyped, help_page_path: untyped, current_user_data: untyped, update_current_user_path: untyped, project_path: untyped, changes_empty_state_illustration: untyped, is_fluid_layout: untyped, dismiss_endpoint: untyped, show_suggest_popover: untyped, show_whitespace_default: untyped, file_by_file_default: untyped, default_suggestion_commit_message: untyped, source_project_default_url: untyped, source_project_full_path: untyped, is_forked: untyped, new_comment_template_paths: untyped, iid: untyped, per_page: untyped, linked_file_url: untyped }
+
+  def award_emoji_merge_request_api_path: (untyped merge_request) -> untyped
+
+  def how_merge_modal_data: (untyped merge_request) -> { is_fork: untyped, source_branch: untyped, source_project_path: untyped, source_project_full_path: untyped, source_project_default_url: untyped, reviewing_docs_path: untyped }
+
+  def mr_compare_form_data: (untyped _, untyped merge_request) -> { source_branch_url: untyped, target_branch_url: untyped }
+
+  def default_merge_request_sort: () -> untyped
+
+  def common_merge_request_list_data: (untyped current_user) -> { autocomplete_award_emojis_path: untyped, merge_request_target_branches_path: untyped, merge_request_source_branches_path: untyped, initial_sort: untyped, is_public_visibility_restricted: untyped, is_signed_in: untyped, show_export_button: "true", issuable_type: :merge_request, email: untyped, rss_url: untyped, emails_help_page_path: untyped, quick_actions_help_path: untyped, markdown_help_path: untyped }
+
+  def project_merge_requests_list_data: (untyped project, untyped current_user) -> untyped
+
+  def group_merge_requests_list_data: (untyped group, untyped current_user) -> untyped
+
+  def identity_verification_alert_data: (untyped _) -> { identity_verification_required: "false" }
+
+  def sticky_header_data: (untyped project, untyped merge_request) -> untyped
+
+  def merge_request_squash_option?: (untyped merge_request) -> untyped
+
+  def merge_request_dashboard_show_drafts?: () -> untyped
+
+  private
+
+  def default_suggestion_commit_message: (untyped project) -> untyped
+
+  def merge_request_source_branch: (untyped merge_request) -> untyped
+
+  def merge_request_header: (untyped merge_request) -> untyped
+
+  def hidden_merge_request_icon: (untyped merge_request) -> (nil | untyped)
+
+  def tab_count_display: (untyped merge_request, untyped count) -> ("-" | untyped)
+
+  def review_bar_data: (untyped _merge_request, untyped _user) -> { diffs_path: untyped, new_comment_template_paths: untyped }
+
+  def merge_request_dashboard_role_based_data: () -> { tabs: ::Array[{ title: untyped, key: "", lists: ::Array[::Array[{ id: "reviews", title: untyped, helpContent: untyped, query: "reviewRequestedMergeRequests", variables: { reviewStates: ::Array["UNREVIEWED" | "REVIEW_STARTED" | "UNAPPROVED"], perPage: 10 } } | { id: "assigned", title: untyped, helpContent: untyped, query: "authorOrAssigneeMergeRequests", variables: { draft: untyped, perPage: 10 } } | { id: "reviews_inactive", title: untyped, hideCount: true, helpContent: untyped, query: "reviewRequestedMergeRequests", variables: { reviewStates: ::Array["APPROVED" | "REQUESTED_CHANGES" | "REVIEWED"], perPage: 10 } }]] } | { title: untyped, key: "merged", lists: ::Array[::Array[{ id: "merged_recently_reviews", title: untyped, helpContent: untyped, query: "reviewRequestedMergeRequests", variables: { state: "merged", mergedAfter: untyped, sort: "MERGED_AT_DESC" } } | { id: "merged_recently_assigned", title: untyped, helpContent: untyped, query: "authorOrAssigneeMergeRequests", variables: { state: "merged", mergedAfter: untyped, sort: "MERGED_AT_DESC" } }]] }] }
+
+  def merge_request_dashboard_data: () -> (untyped | { tabs: ::Array[{ title: untyped, key: "", lists: ::Array[::Array[{ id: "returned_to_you", title: untyped, helpContent: untyped, query: "authorOrAssigneeMergeRequests", variables: { reviewStates: ::Array["REVIEWED" | "REQUESTED_CHANGES"], ignoredReviewerUsername: untyped } } | { id: "reviews_requested", title: untyped, helpContent: untyped, query: "reviewRequestedMergeRequests", variables: { reviewStates: ::Array["UNAPPROVED" | "UNREVIEWED" | "REVIEW_STARTED"] } } | { id: "assigned_to_you", title: untyped, helpContent: untyped, query: "authorOrAssigneeMergeRequests", variables: { draft: untyped, or: { reviewerWildcard: "NONE", onlyReviewerUsername: untyped } } }] | ::Array[{ id: "waiting_for_assignee", title: untyped, hideCount: true, helpContent: untyped, query: "reviewRequestedMergeRequests", variables: { reviewStates: ::Array["REVIEWED" | "REQUESTED_CHANGES"] } } | { id: "waiting_for_approvals", title: untyped, hideCount: true, helpContent: untyped, query: "authorOrAssigneeMergeRequests", variables: { ignoredReviewerUsername: untyped, reviewStates: ::Array["UNREVIEWED" | "UNAPPROVED" | "REVIEW_STARTED"], not: { reviewStates: ::Array["REQUESTED_CHANGES" | "REVIEWED"] } } } | { id: "approved_by_you", title: untyped, hideCount: true, helpContent: untyped, query: "reviewRequestedMergeRequests", variables: { reviewState: "APPROVED" } } | { id: "approved_by_others", title: untyped, hideCount: true, helpContent: untyped, query: "authorOrAssigneeMergeRequests", variables: { ignoredReviewerUsername: untyped, reviewState: "APPROVED", not: { reviewStates: ::Array["REQUESTED_CHANGES" | "REVIEWED" | "UNREVIEWED" | "REVIEW_STARTED" | "UNAPPROVED"] } } }]] } | { title: untyped, key: "merged", lists: ::Array[::Array[{ id: "merged_recently_reviews", title: untyped, helpContent: untyped, query: "reviewRequestedMergeRequests", variables: { state: "merged", mergedAfter: untyped, sort: "MERGED_AT_DESC" } } | { id: "merged_recently_assigned", title: untyped, helpContent: untyped, query: "authorOrAssigneeMergeRequests", variables: { state: "merged", mergedAfter: untyped, sort: "MERGED_AT_DESC" } }]] }] })
+
+  def dashboard_list_title: (untyped list_id) -> untyped
+
+  def duo_code_review_bot_username: (untyped user) -> untyped
+end

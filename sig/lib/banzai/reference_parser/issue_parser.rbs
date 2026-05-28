@@ -1,0 +1,15 @@
+module Banzai
+  module ReferenceParser
+    class IssueParser < IssuableParser
+      @issues_for_nodes: untyped
+
+      def nodes_visible_to_user: (untyped user, untyped nodes) -> untyped
+
+      def records_for_nodes: (untyped nodes) -> untyped
+
+      private
+
+      def node_includes: () -> untyped
+    end
+  end
+end

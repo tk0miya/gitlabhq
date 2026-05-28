@@ -1,0 +1,11 @@
+module Ci
+  class ProjectMetric < Ci::ApplicationRecord
+    KNOWN_AGENT_SOURCES: ::Array["ci_expert_agent/v1"]
+
+    def self.first_pipeline_success_recorded?: (untyped project_id) -> untyped
+
+    def self.record_first_pipeline_success!: (untyped project_id, ?untyped timestamp) -> untyped
+
+    def self.track_ai_generated_config!: (untyped project_id, author_source: untyped) -> (nil | untyped)
+  end
+end

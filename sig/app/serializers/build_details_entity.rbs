@@ -1,0 +1,25 @@
+class BuildDetailsEntity < Ci::JobEntity
+  private
+
+  alias build object
+
+  def build_failed_issue_options: () -> { title: ::String, description: ::String }
+
+  def current_user: () -> untyped
+
+  def project: () -> untyped
+
+  def can_create_build_terminal?: () -> untyped
+
+  def can_admin_build?: () -> untyped
+
+  def callout_message: () -> untyped
+
+  def invalid_dependencies: () -> untyped
+
+  def failure_message: () -> untyped
+
+  def help_message: (untyped docs_url, untyped troubleshooting_url) -> untyped
+
+  def timeout_human_readable_source: () -> (nil | untyped)
+end

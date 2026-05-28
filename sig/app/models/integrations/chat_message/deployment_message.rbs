@@ -1,0 +1,63 @@
+module Integrations
+  module ChatMessage
+    class DeploymentMessage < BaseMessage
+      @commit_title: untyped
+
+      @commit_url: untyped
+
+      @deployable_id: untyped
+
+      @deployable_url: untyped
+
+      @environment: untyped
+
+      @short_sha: untyped
+
+      @status: untyped
+
+      @user_url: untyped
+
+      attr_reader commit_title: untyped
+
+      attr_reader commit_url: untyped
+
+      attr_reader deployable_id: untyped
+
+      attr_reader deployable_url: untyped
+
+      attr_reader environment: untyped
+
+      attr_reader short_sha: untyped
+
+      attr_reader status: untyped
+
+      attr_reader user_url: untyped
+
+      def initialize: (untyped data) -> void
+
+      def attachments: () -> (untyped | ::Array[{ text: untyped, color: untyped }])
+
+      def activity: () -> ::Hash[untyped, untyped]
+
+      def attachment_color: () -> untyped
+
+      private
+
+      def message: () -> ::String
+
+      def project_link: () -> untyped
+
+      def deployment_link: () -> untyped
+
+      def user_link: () -> untyped
+
+      def commit_link: () -> untyped
+
+      def humanized_status: () -> ("succeeded" | untyped)
+
+      def running?: () -> untyped
+
+      def description_message: () -> ::String
+    end
+  end
+end

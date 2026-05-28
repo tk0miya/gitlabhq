@@ -1,0 +1,38 @@
+module Packages
+  module Npm
+    class CreateMetadataCacheService
+      @project: untyped
+
+      @package_name: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      # used by ExclusiveLeaseGuard
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      def initialize: (untyped project, untyped package_name) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_name: untyped
+
+      attr_reader project: untyped
+
+      def metadata_content: () -> untyped
+
+      def packages: () -> untyped
+
+      def metadata: () -> untyped
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+    end
+  end
+end

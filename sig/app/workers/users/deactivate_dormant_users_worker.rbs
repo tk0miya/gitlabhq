@@ -1,0 +1,19 @@
+module Users
+  class DeactivateDormantUsersWorker
+    @admin_bots: untyped
+
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> (nil | untyped)
+
+    private
+
+    def deactivate_users: (untyped scope) -> untyped
+
+    def process_user_deactivation: (untyped user) -> untyped
+
+    def admin_bot_for_organization_id: (untyped organization_id) -> untyped
+  end
+end

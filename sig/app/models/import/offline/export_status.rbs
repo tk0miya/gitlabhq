@@ -1,0 +1,57 @@
+module Import
+  module Offline
+    class ExportStatus < ::Import::ExportStatus
+      @configuration: untyped
+
+      @client: untyped
+
+      OFFLINE_CACHE_KEY: "offline_import/export_status/%{entity_id}/%{relation}"
+
+      def initialize: (untyped pipeline_tracker, untyped relation) -> void
+
+      def in_progress?: () -> false
+
+      def failed?: () -> untyped
+
+      # In offline transfer, relation exports are never pending. All export files must have already completed
+      # and been uploaded to the configured bucket. Missing files are considered failed.
+      def waiting_on_export?: () -> false
+
+      def error: () -> untyped
+
+      def batched?: () -> untyped
+
+      def batches_count: () -> (0 | untyped)
+
+      def all_batch_numbers: () -> untyped
+
+      def batch_failed?: (untyped batch_number) -> (nil | untyped)
+
+      def batch_error: (untyped batch_number) -> (nil | untyped)
+
+      def total_objects_count: () -> 0
+
+      private
+
+      attr_reader client: untyped
+
+      attr_reader configuration: untyped
+
+      def status: () -> untyped
+
+      def status_from_bucket: () -> untyped
+
+      def batch_keys: () -> untyped
+
+      def batch_numbers: () -> untyped
+
+      def unbatched_relation_key_present?: () -> untyped
+
+      def validate_request_url!: (untyped prefix) -> untyped
+
+      def object_key_builder: () -> untyped
+
+      def cache_key: (?untyped cache_key_template) -> untyped
+    end
+  end
+end

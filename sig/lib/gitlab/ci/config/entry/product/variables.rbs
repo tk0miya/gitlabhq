@@ -1,0 +1,20 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents variables for parallel matrix builds.
+        #
+        module Product
+          class Variables < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            def self.default: (**untyped) -> ::Hash[untyped, untyped]
+
+            def value: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module Gitlab
+  module Ci
+    module Parsers
+      module Test
+        class Junit
+          JunitParserError: untyped
+
+          ATTACHMENT_TAG_REGEX: ::Regexp
+
+          def parse!: (untyped xml_data, untyped test_report, job: untyped) -> untyped
+
+          private
+
+          def set_total_time_from_xml: (untyped root, untyped test_suite) -> (nil | untyped)
+
+          def collect_all_testsuites: (untyped root) -> untyped
+
+          def add_testcase_times: (untyped testsuites) -> untyped
+
+          def ensure_test_cases_limited!: (untyped total_parsed, untyped limit) -> (nil | untyped)
+
+          def all_cases: (untyped root, ?untyped? parent) { (?) -> untyped } -> (nil | untyped)
+
+          def each_case: (untyped testcase, untyped testsuite_name) { (untyped) -> untyped } -> (nil | untyped)
+
+          def create_test_case: (untyped data, untyped test_suite, untyped job) -> untyped
+
+          def suite_name: (untyped parent, untyped test_suite) -> untyped
+
+          def dig_into_testsuites: (untyped root, *untyped params) -> untyped
+
+          def attachment_path: (untyped data) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

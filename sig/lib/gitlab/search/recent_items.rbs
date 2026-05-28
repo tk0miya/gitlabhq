@@ -1,0 +1,58 @@
+module Gitlab
+  module Search
+    # This is an abstract class used for storing/searching recently viewed
+    # items. The #type and #finder methods are the only ones needed to be
+    # implemented by classes inheriting from this.
+    class RecentItems
+      @user: untyped
+
+      @items_limit: untyped
+
+      @expires_after: untyped
+
+      ITEMS_LIMIT: 100
+
+      SEARCH_LIMIT: 5
+
+      EXPIRES_AFTER: untyped
+
+      attr_reader user: untyped
+
+      def initialize: (user: untyped, ?items_limit: untyped, ?expires_after: untyped) -> void
+
+      def log_view: (untyped item) -> untyped
+
+      # Searches for recently viewed items matching the given term
+      #
+      # @param term [String, nil] Search term to filter items by title, or nil for no filtering
+      # @return [Array<ActiveRecord::Base>] Array of matching items ordered by recency
+      def search: (untyped term) -> untyped
+
+      # Returns the most recently viewed items with their view timestamps
+      #
+      # @return [Hash<ActiveRecord::Base, Time>] Hash where keys are recently viewed ActiveRecord
+      # objects and values are the timestamp of the last visit
+      def latest_with_timestamps: () -> untyped
+
+      private
+
+      def latest_ids: () -> untyped
+
+      def latest_ids_with_timestamps: () -> untyped
+
+      def query_items_by_ids: (untyped term, untyped ids) -> untyped
+
+      def query_items_with_ilike: (untyped term, untyped ids) -> untyped
+
+      def match_title: (untyped items, untyped term) -> untyped
+
+      def with_redis: () { (?) -> untyped } -> untyped
+
+      def key: () -> ::String
+
+      def type: () -> untyped
+
+      def finder: () -> untyped
+    end
+  end
+end

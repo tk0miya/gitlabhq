@@ -1,0 +1,36 @@
+class Admin::ImpersonationTokensController < Admin::ApplicationController
+  @can_impersonate: untyped
+
+  @impersonation_error_text: untyped
+
+  @impersonation_token: untyped
+
+  @user: untyped
+
+  @scopes: untyped
+
+  @active_impersonation_tokens: untyped
+
+  def index: () -> untyped
+
+  def create: () -> untyped
+
+  def revoke: () -> untyped
+
+  def rotate: () -> untyped
+
+  private
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def user: () -> untyped
+
+  def verify_impersonation_enabled!: () -> (untyped | nil)
+
+  def finder: (?::Hash[untyped, untyped] options) -> untyped
+
+  def active_impersonation_tokens: () -> untyped
+
+  def impersonation_token_params: () -> untyped
+
+  def set_index_vars: () -> untyped
+end

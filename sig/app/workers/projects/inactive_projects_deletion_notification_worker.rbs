@@ -1,0 +1,17 @@
+module Projects
+  class InactiveProjectsDeletionNotificationWorker
+    @notification_service: untyped
+
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include ExceptionBacktrace
+
+    def perform: (untyped project_id, untyped deletion_date) -> untyped
+
+    private
+
+    def notification_service: () -> untyped
+  end
+end

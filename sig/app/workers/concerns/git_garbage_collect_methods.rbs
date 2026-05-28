@@ -1,0 +1,38 @@
+module GitGarbageCollectMethods
+  extend ActiveSupport::Concern
+
+  # Timeout set to 24h
+  LEASE_TIMEOUT: 86400
+
+  def perform: (untyped resource_id, ?::Symbol task, ?untyped? lease_key, ?untyped? lease_uuid) -> untyped
+
+  private
+
+  def default_lease_key: (untyped task, untyped resource) -> ::String
+
+  def find_resource: (untyped id) -> untyped
+
+  def gc?: (untyped task) -> untyped
+
+  def try_obtain_lease: (untyped key) -> untyped
+
+  def renew_lease: (untyped key, untyped uuid) -> untyped
+
+  def cancel_lease: (untyped key, untyped uuid) -> untyped
+
+  def get_lease_uuid: (untyped key) -> untyped
+
+  def before_gitaly_call: (untyped task, untyped resource) -> nil
+
+  def gitaly_call: (untyped task, untyped resource) -> untyped
+
+  def after_gitaly_call: (untyped task, untyped resource) -> nil
+
+  def flush_ref_caches: (untyped resource) -> untyped
+
+  def update_repository_statistics: (untyped resource, untyped task) -> (nil | untyped)
+
+  def update_db_repository_statistics: (untyped resource, untyped stats) -> nil
+
+  def stats: () -> ::Array[untyped]
+end

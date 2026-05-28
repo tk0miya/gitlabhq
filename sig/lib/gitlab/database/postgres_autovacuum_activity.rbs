@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    class PostgresAutovacuumActivity < SharedModel
+      def self.for_tables: (untyped tables) -> (::Array[untyped] | untyped)
+
+      private
+
+      def self.prepare_table_names: (untyped tables) -> ::Array[untyped]
+
+      def self.split_qualified_and_simple_tables: (untyped tables) -> untyped
+
+      def self.fully_qualified?: (untyped name) -> untyped
+
+      def self.split_qualified_names: (untyped qualified_tables) -> untyped
+
+      def self.find_partitioned_tables: (untyped tables) -> untyped
+
+      def self.fetch_partitions: (untyped partitioned_tables) -> untyped
+
+      def self.execute_in_primary_scope: () { (?) -> untyped } -> untyped
+
+      def self.build_query_scope: (untyped regular_tables, untyped partitions) -> untyped
+
+      public
+
+      def to_s: () -> ::String
+    end
+  end
+end

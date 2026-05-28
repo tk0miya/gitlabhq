@@ -1,0 +1,8 @@
+module Gitlab
+  module BackgroundMigration
+    # Add expiry to all OAuth access tokens
+    class ExpireOAuthTokens < ::Gitlab::BackgroundMigration::BatchedMigrationJob
+      def perform: () -> untyped
+    end
+  end
+end

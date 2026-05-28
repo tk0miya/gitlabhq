@@ -1,0 +1,24 @@
+module Gitlab
+  module GitalyClient
+    class BlobsStitcher
+      @rpc_response: untyped
+
+      @filter_function: untyped
+
+      include Enumerable
+
+      def initialize: (untyped rpc_response, ?filter_function: untyped?) -> void
+
+      def each: () { (untyped) -> untyped } -> untyped
+
+      private
+
+      # Avoid using #to_h because google-protobuf v4 omits default values
+      def blob_attributes: (untyped msg) -> untyped
+
+      def removed_by_filter: (untyped msg) -> (nil | untyped)
+
+      def new_blob: (untyped blob_data) -> untyped
+    end
+  end
+end

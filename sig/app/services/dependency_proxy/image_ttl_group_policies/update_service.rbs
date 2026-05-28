@@ -1,0 +1,19 @@
+module DependencyProxy
+  module ImageTtlGroupPolicies
+    class UpdateService < BaseContainerService
+      include Gitlab::Utils::StrongMemoize
+
+      ALLOWED_ATTRIBUTES: ::Array[:enabled | :ttl]
+
+      def execute: () -> untyped
+
+      private
+
+      def dependency_proxy_image_ttl_policy: () -> untyped
+
+      def allowed?: () -> untyped
+
+      def dependency_proxy_image_ttl_policy_params: () -> untyped
+    end
+  end
+end

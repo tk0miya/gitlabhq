@@ -1,0 +1,11 @@
+module Users
+  module SupportPin
+    class RevokeService < SupportPin::BaseService
+      def execute: () -> ({ status: :not_found, message: "Support PIN not found or already expired" } | untyped)
+
+      private
+
+      def revoke_pin: () -> untyped
+    end
+  end
+end

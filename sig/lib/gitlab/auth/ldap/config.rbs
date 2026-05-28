@@ -1,0 +1,135 @@
+# Load a specific server configuration
+module Gitlab
+  module Auth
+    module Ldap
+      class Config
+        @provider: untyped
+
+        @options: untyped
+
+        @base: untyped
+
+        @constructed_user_filter: untyped
+
+        @tls_options: untyped
+
+        @secrets: untyped
+
+        NET_LDAP_ENCRYPTION_METHOD: { simple_tls: :simple_tls, start_tls: :start_tls, plain: nil }
+
+        attr_accessor provider: untyped
+
+        attr_accessor options: untyped
+
+        InvalidProvider: untyped
+
+        def self.enabled?: () -> untyped
+
+        def self.sign_in_enabled?: () -> untyped
+
+        def self.prevent_ldap_sign_in?: () -> untyped
+
+        def self.servers: () -> untyped
+
+        def self.available_servers: () -> (::Array[untyped] | untyped)
+
+        def self._available_servers: () -> untyped
+
+        def self.providers: () -> untyped
+
+        def self.available_providers: () -> untyped
+
+        def self.provider_names_from_servers: (untyped servers) -> untyped
+
+        def self.valid_provider?: (untyped provider) -> untyped
+
+        def self.invalid_provider: (untyped provider) -> untyped
+
+        def self.encrypted_secrets: () -> untyped
+
+        def initialize: (untyped provider) -> void
+
+        def enabled?: () -> untyped
+
+        def adapter_options: () -> untyped
+
+        def omniauth_options: () -> untyped
+
+        def base: () -> untyped
+
+        def uid: () -> untyped
+
+        def label: () -> untyped
+
+        def sync_ssh_keys?: () -> untyped
+
+        # The LDAP attribute in which the ssh keys are stored
+        def sync_ssh_keys: () -> untyped
+
+        def user_filter: () -> untyped
+
+        def constructed_user_filter: () -> untyped
+
+        def group_base: () -> untyped
+
+        def admin_group: () -> untyped
+
+        def duo_add_on_groups: () -> untyped
+
+        def active_directory: () -> untyped
+
+        def smartcard_ad_cert_field: () -> untyped
+
+        def smartcard_ad_cert_format: () -> untyped
+
+        def block_auto_created_users: () -> untyped
+
+        def attributes: () -> untyped
+
+        def timeout: () -> untyped
+
+        def retry_empty_result_with_codes: () -> untyped
+
+        def external_groups: () -> untyped
+
+        def has_auth?: () -> untyped
+
+        def allow_username_or_email_login: () -> untyped
+
+        def lowercase_usernames: () -> untyped
+
+        def sync_name: () -> untyped
+
+        def encryption: () -> untyped
+
+        def name_proc: () -> untyped
+
+        def default_attributes: () -> { "username" => untyped, "email" => ::Array["mail" | "email" | "userPrincipalName"], "name" => "cn", "first_name" => "givenName", "last_name" => "sn" }
+
+        def base_options: () -> { host: untyped, port: untyped, hosts: untyped }
+
+        def base_config: () -> untyped
+
+        def config_for: (untyped provider) -> untyped
+
+        def encryption_options: () -> (nil | { method: untyped, tls_options: untyped })
+
+        def translate_method: () -> untyped
+
+        def tls_options: () -> (untyped | nil)
+
+        def custom_tls_options: () -> (::Hash[untyped, untyped] | untyped)
+
+        def auth_options: () -> { auth: { method: :simple, username: untyped, password: untyped } }
+
+        def secrets: () -> untyped
+
+        def auth_password: () -> untyped
+
+        def auth_username: () -> untyped
+
+        def omniauth_user_filter: () -> untyped
+      end
+    end
+  end
+end

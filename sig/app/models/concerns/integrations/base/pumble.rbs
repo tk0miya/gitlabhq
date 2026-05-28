@@ -1,0 +1,11 @@
+module Integrations
+  module Base
+    module Pumble
+      extend ActiveSupport::Concern
+
+      include Base::ChatNotification
+
+      include HasAvatar
+    end
+  end
+end

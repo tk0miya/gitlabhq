@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module WraparoundAutovacuum
+        # This is used for partitioning CI tables because the autovacuum for wraparound
+        # prevention can take many hours to complete on some of the tables and this in
+        # turn blocks the post deployment migrations pipeline.
+        # Intended workflow for this helper:
+        # 1. Introduce a migration that is guarded with this helper for self-managed
+        #    so that the tests and everything else depending on it can reflect the changes
+        # 2. Introduce the migration again for .com
+        #    so that we can keep trying until it succeeds on .com
+        def can_execute_on?: (*untyped tables) -> (true | false)
+
+        def wraparound_prevention_on_tables?: (untyped tables) -> untyped
+      end
+    end
+  end
+end

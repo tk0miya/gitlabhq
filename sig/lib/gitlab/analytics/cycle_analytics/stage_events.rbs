@@ -1,0 +1,38 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageEvents
+        # Convention:
+        # Issue: < 100
+        # MergeRequest: >= 100 && < 1000
+        # Custom events for default stages: >= 1000 (legacy)
+        #
+        # To avoid duplications, verify that the value does not exist in ee/lib/ee/gitlab/analytics/cycle_analytics/stage_events.rb
+        ENUM_MAPPING: ::Hash[untyped, 1 | 2 | 10 | 100 | 101 | 102 | 103 | 104 | 1000 | 1001 | 1002]
+
+        EVENTS: untyped
+
+        INTERNAL_EVENTS: ::Array[untyped]
+
+        # Defines which start_event and end_event pairs are allowed
+        PAIRING_RULES: ::Hash[untyped, ::Array[untyped]]
+
+        def self.[]: (untyped identifier) -> untyped
+
+        # hash for defining ActiveRecord enum: identifier => number
+        def self.to_enum: () -> untyped
+
+        def self.pairing_rules: () -> untyped
+
+        def self.events: () -> untyped
+
+        def self.enum_mapping: () -> untyped
+
+        # Events that are specific to the 7 default stages
+        def self.internal_events: () -> untyped
+
+        def self.selectable_events: () -> untyped
+      end
+    end
+  end
+end

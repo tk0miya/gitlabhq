@@ -1,0 +1,17 @@
+module Mutations
+  module AlertManagement
+    module Alerts
+      class SetAssignees < Base
+        def resolve: (untyped args) -> untyped
+
+        private
+
+        def set_assignees: (untyped alert, untyped assignee_usernames, untyped operation_mode) -> untyped
+
+        def find_target_users: (untyped assignee_usernames) -> untyped
+
+        def prepare_response: (untyped result) -> { alert: untyped, errors: untyped }
+      end
+    end
+  end
+end

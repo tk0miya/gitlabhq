@@ -1,0 +1,76 @@
+class AbuseReport < ApplicationRecord
+  include CacheMarkdownField
+
+  include Sortable
+
+  include Gitlab::FileTypeDetection
+
+  include WithUploads
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Mentionable
+
+  include Noteable
+
+  MAX_CHAR_LIMIT_URL: 512
+
+  MAX_MESSAGE_SIZE: 2048
+
+  MAX_FILE_SIZE: untyped
+
+  # For CacheMarkdownField
+  alias author reporter
+
+  HUMANIZED_ATTRIBUTES: { reported_from_url: "Reported from" }
+
+  CONTROLLER_TO_REPORT_TYPE: { "users" => :profile, "projects/issues" => :issue, "projects/work_items" => :issue, "projects/merge_requests" => :merge_request }
+
+  def self.human_attribute_name: (untyped attr, ?::Hash[untyped, untyped] options) -> untyped
+
+  def remove_user: (deleted_by: untyped) -> untyped
+
+  def notify: () -> (nil | untyped)
+
+  def screenshot_path: () -> (nil | untyped)
+
+  def report_type: () -> untyped
+
+  def reported_content: () -> untyped
+
+  def past_closed_reports_for_user: () -> untyped
+
+  def similar_open_reports_for_user: () -> untyped
+
+  # createNote mutation calls noteable.project,
+  # which in case of abuse reports is nil
+  def project: () -> nil
+
+  def uploads_sharding_key: () -> { organization_id: untyped }
+
+  private
+
+  def reported_project: () -> untyped
+
+  def reported_group: () -> untyped
+
+  # NOTE: recognize_path uses RFC3986 URI parser, which is stricter and
+  # raises URI::InvalidURIError on malformed URLs. We pre-parse the input
+  # so we can fall back to stripping fragments, avoiding "bad URI (is not URI?)".
+  # Rack's RFC2396 parser can't be used here because recognize_path doesn't expose it.
+  def route_hash: () -> untyped
+
+  def note_id_from_url: () -> untyped
+
+  def filter_empty_strings_from_links_to_spam: () -> (nil | untyped)
+
+  def links_to_spam_contains_valid_urls: () -> untyped
+
+  def filename: () -> untyped
+
+  def valid_image_extensions: () -> untyped
+
+  def validate_screenshot_is_image: () -> (nil | untyped)
+
+  def self.aggregated_by_user_and_category: (?bool sort_by_count) -> untyped
+end

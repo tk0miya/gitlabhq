@@ -1,0 +1,67 @@
+module Emails
+  module Projects
+    @current_user: untyped
+
+    @project: untyped
+
+    @target_url: untyped
+
+    @old_path_with_namespace: untyped
+
+    @errors: untyped
+
+    @user: untyped
+
+    @deletion_due_in_days: untyped
+
+    @deletion_date: untyped
+
+    @error: untyped
+
+    @group: untyped
+
+    @updated_count: untyped
+
+    @skipped_count: untyped
+
+    @message: untyped
+
+    @diff_notes_disabled: untyped
+
+    @alert: untyped
+
+    @incident: untyped
+
+    include Namespaces::DeletableHelper
+
+    def project_was_moved_email: (untyped project_id, untyped user_id, untyped old_path_with_namespace) -> untyped
+
+    def project_was_exported_email: (untyped current_user, untyped project) -> untyped
+
+    def project_was_not_exported_email: (untyped current_user, untyped project, untyped errors) -> untyped
+
+    def project_scheduled_for_deletion: (untyped recipient_id, untyped project_id) -> untyped
+
+    def repository_cleanup_success_email: (untyped project, untyped user) -> untyped
+
+    def repository_cleanup_failure_email: (untyped project, untyped user, untyped error) -> untyped
+
+    def repository_rewrite_history_success_email: (untyped project, untyped user) -> untyped
+
+    def repository_rewrite_history_failure_email: (untyped project, untyped user, untyped error) -> untyped
+
+    def pipeline_variables_migration_complete_email: (untyped user, untyped group, untyped counts) -> untyped
+
+    def repository_push_email: (untyped project_id, ?::Hash[untyped, untyped] opts) -> untyped
+
+    def prometheus_alert_fired_email: (untyped project, untyped user, untyped alert) -> untyped
+
+    def inactive_project_deletion_warning_email: (untyped project, untyped user, untyped deletion_date) -> untyped
+
+    private
+
+    def add_alert_headers: () -> (nil | untyped)
+
+    def add_incident_headers: () -> (nil | untyped)
+  end
+end

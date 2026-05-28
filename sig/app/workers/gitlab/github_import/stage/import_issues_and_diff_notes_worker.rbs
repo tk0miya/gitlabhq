@@ -1,0 +1,23 @@
+module Gitlab
+  module GithubImport
+    module Stage
+      class ImportIssuesAndDiffNotesWorker
+        include ApplicationWorker
+
+        include StageMethods
+
+        # client - An instance of Gitlab::GithubImport::Client.
+        # project - An instance of Project.
+        def import: (untyped client, untyped project) -> untyped
+
+        # The importers to run in this stage. Issues can't be imported earlier
+        # on as we also use these to enrich pull requests with assigned labels.
+        def importers: (untyped project) -> ::Array[untyped]
+
+        private
+
+        def diff_notes_importer: (untyped project) -> untyped
+      end
+    end
+  end
+end

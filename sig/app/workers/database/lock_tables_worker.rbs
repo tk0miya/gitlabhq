@@ -1,0 +1,19 @@
+module Database
+  class LockTablesWorker
+    include ApplicationWorker
+
+    TableShouldNotBeLocked: untyped
+
+    def perform: (untyped database_name, untyped tables) -> untyped
+
+    private
+
+    def check_if_should_lock_database: (untyped database_name) -> untyped
+
+    def check_if_should_lock_tables: (untyped tables, untyped database_name, untyped connection) -> untyped
+
+    def should_lock_writes_on_table?: (untyped connection, untyped database_name, untyped table_name) -> untyped
+
+    def lock_writes_manager: (untyped table_name, untyped connection, untyped database_name) -> untyped
+  end
+end

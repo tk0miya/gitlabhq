@@ -1,0 +1,81 @@
+class GitlabSchema < GraphQL::Schema
+  DEFAULT_MAX_COMPLEXITY: 200
+
+  AUTHENTICATED_MAX_COMPLEXITY: 250
+
+  ADMIN_MAX_COMPLEXITY: 300
+
+  # Current GraphiQL introspection query has complexity of 226.
+  # As we cache this specific query we allow it to have a higher complexity.
+  INTROSPECTION_MAX_COMPLEXITY: 226
+
+  DEFAULT_MAX_DEPTH: 15
+
+  AUTHENTICATED_MAX_DEPTH: 20
+
+  def self.multiplex: (untyped queries, **untyped kwargs) -> untyped
+
+  def self.get_type: (untyped type_name, *untyped other_args) -> untyped
+
+  def self.id_from_object: (untyped object, ?untyped? _type, ?untyped? _ctx) -> untyped
+
+  # Find an object by looking it up from its global ID, passed as a string.
+  #
+  # This is the composition of 'parse_gid' and 'find_by_gid', see these
+  # methods for further documentation.
+  def self.object_from_id: (untyped global_id, ?::Hash[untyped, untyped] ctx) -> untyped
+
+  def self.resolve_type: (untyped type, untyped object, ?::Symbol ctx) -> (nil | untyped)
+
+  # Find an object by looking it up from its 'GlobalID'.
+  #
+  # * For `ApplicationRecord`s, this is equivalent to
+  #   `global_id.model_class.find(gid.model_id)`, but more efficient.
+  # * For classes that implement `.lazy_find(global_id)`, this class method
+  #   will be called.
+  # * All other classes will use `GlobalID#find`
+  def self.find_by_gid: (untyped gid) -> (nil | untyped)
+
+  # Parse a string to a GlobalID, raising ArgumentError if there are problems
+  # with it.
+  #
+  # Problems that may occur:
+  #  * it may not be syntactically valid
+  #  * it may not match the expected type (see below)
+  #
+  # Options:
+  #  * :expected_type [Class] - the type of object this GlobalID should refer to.
+  #  * :expected_type [[Class]] - array of the types of object this GlobalID should refer to.
+  #
+  # e.g.
+  #
+  # ```
+  #   gid = GitlabSchema.parse_gid(my_string, expected_type: ::Project)
+  #   project_id = gid.model_id
+  #   gid.model_class == ::Project
+  # ```
+  def self.parse_gid: (untyped global_id, ?::Hash[untyped, untyped] ctx) -> untyped
+
+  # Parse an array of strings to an array of GlobalIDs, raising ArgumentError if there are problems
+  # with it.
+  # See #parse_gid
+  #
+  # ```
+  #   gids = GitlabSchema.parse_gids(my_array_of_strings, expected_type: ::Project)
+  #   project_ids = gids.map(&:model_id)
+  #   gids.all? { |gid| gid.model_class == ::Project }
+  # ```
+  def self.parse_gids: (untyped global_ids, ?::Hash[untyped, untyped] ctx) -> untyped
+
+  def self.unauthorized_field: (untyped error) -> untyped
+
+  private
+
+  def self.max_query_complexity: (untyped ctx) -> untyped
+
+  def self.max_query_depth: (untyped ctx) -> untyped
+
+  public
+
+  def get_type: (untyped type_name) -> untyped
+end

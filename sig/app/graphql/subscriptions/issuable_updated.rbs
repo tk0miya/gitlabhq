@@ -1,0 +1,7 @@
+module Subscriptions
+  class IssuableUpdated < BaseSubscription
+    include Gitlab::Graphql::Laziness
+
+    def authorized?: (issuable_id: untyped) -> untyped
+  end
+end

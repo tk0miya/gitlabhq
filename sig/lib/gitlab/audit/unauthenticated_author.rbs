@@ -1,0 +1,11 @@
+module Gitlab
+  module Audit
+    class UnauthenticatedAuthor < Gitlab::Audit::NullAuthor
+      def initialize: (?name: untyped?) -> void
+
+      # Events that are authored by unauthenticated users, should be
+      # shown as authored by `An unauthenticated user` in the UI.
+      def name: () -> untyped
+    end
+  end
+end

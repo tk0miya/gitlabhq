@@ -1,0 +1,19 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillResourceLabelEventsNamespaceIdAndCleanInvalid < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def query_prefix: (untyped sub_batch, untyped where_clause) -> ::String
+
+      def clean_epic_records: (untyped sub_batch) -> untyped
+
+      def update_issue_records: (untyped sub_batch) -> untyped
+
+      def update_merge_request_records: (untyped sub_batch) -> untyped
+
+      def update_epic_records: (untyped sub_batch) -> untyped
+    end
+  end
+end

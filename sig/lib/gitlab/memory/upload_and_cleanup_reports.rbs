@@ -1,0 +1,43 @@
+module Gitlab
+  module Memory
+    class UploadAndCleanupReports
+      @uploader: untyped
+
+      @reports_path: untyped
+
+      @sleep_time_seconds: untyped
+
+      @alive: untyped
+
+      @logger: untyped
+
+      DEFAULT_SLEEP_TIME_SECONDS: 900
+
+      def initialize: (uploader: untyped, reports_path: untyped, logger: untyped, ?sleep_time_seconds: untyped) -> void
+
+      attr_reader uploader: untyped
+
+      attr_reader reports_path: untyped
+
+      attr_reader sleep_time_seconds: untyped
+
+      attr_reader logger: untyped
+
+      def call: () -> untyped
+
+      private
+
+      def upload_and_cleanup!: (untyped path) -> untyped
+
+      def cleanup!: (untyped path) -> untyped
+
+      def files_to_process: () -> untyped
+
+      def log_started: () -> untyped
+
+      def log_exception: (untyped error) -> untyped
+
+      def log_labels: () -> { message: "Diagnostic reports", class: untyped, pid: untyped }
+    end
+  end
+end

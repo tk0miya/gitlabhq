@@ -1,0 +1,25 @@
+module Diffs
+  class StatsComponent < BaseComponent
+    @diff_files: untyped
+
+    @changed: untyped
+
+    @added: untyped
+
+    @removed: untyped
+
+    attr_reader diff_files: untyped
+
+    def initialize: (diff_files: untyped) -> void
+
+    def diff_files_data: () -> untyped
+
+    def diff_file_path_text: (untyped diff_file, ?max: ::Integer) -> (untyped | ::String)
+
+    private
+
+    def diff_file_changed_icon: (untyped diff_file) -> ("file-deletion" | "file-addition" | "file-modified")
+
+    def diff_file_changed_icon_color: (untyped diff_file) -> ("danger" | "success" | nil)
+  end
+end

@@ -1,0 +1,15 @@
+class LfsObjectUploader < GitlabUploader
+  extend Workhorse::UploadPath
+
+  include ObjectStorage::Concern
+
+  alias upload model
+
+  def filename: () -> untyped
+
+  def store_dir: () -> untyped
+
+  private
+
+  def dynamic_segment: () -> untyped
+end

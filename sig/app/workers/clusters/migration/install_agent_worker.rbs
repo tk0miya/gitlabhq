@@ -1,0 +1,11 @@
+module Clusters
+  module Migration
+    class InstallAgentWorker
+      include ApplicationWorker
+
+      include ClusterQueue
+
+      def perform: (untyped migration_id) -> (nil | untyped)
+    end
+  end
+end

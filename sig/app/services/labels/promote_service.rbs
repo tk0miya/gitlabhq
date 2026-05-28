@@ -1,0 +1,34 @@
+module Labels
+  class PromoteService < BaseService
+    BATCH_SIZE: 1000
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def execute: (untyped label) -> (nil | untyped)
+
+    private
+
+    def update_old_label_relations: (untyped group_label, untyped old_label_ids) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def subscribe_users: (untyped group_label, untyped label_ids) -> untyped
+
+    def label_ids_for_merge: (untyped group_label) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_issuables: (untyped group_label, untyped label_ids) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_resource_label_events: (untyped group_label, untyped label_ids) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_issue_board_lists: (untyped group_label, untyped label_ids) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_priorities: (untyped group_label, untyped label_ids) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def destroy_project_labels: (untyped label_ids) -> untyped
+
+    def find_or_create_group_label: (untyped label) -> untyped
+  end
+end

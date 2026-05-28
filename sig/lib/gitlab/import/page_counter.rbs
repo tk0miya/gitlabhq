@@ -1,0 +1,27 @@
+module Gitlab
+  module Import
+    # PageCounter can be used to keep track of the last imported page of a
+    # collection, allowing workers to resume where they left off in the event of
+    # an error.
+    class PageCounter
+      @cache_key: untyped
+
+      attr_reader cache_key: untyped
+
+      # The base cache key to use for storing the last page number.
+      CACHE_KEY: "%{import_type}/page-counter/%{object}/%{collection}"
+
+      def initialize: (untyped object, untyped collection, ?::String import_type) -> void
+
+      # Sets the page number to the given value.
+      #
+      # Returns true if the page number was overwritten, false otherwise.
+      def set: (untyped page) -> untyped
+
+      # Returns the current value from the cache.
+      def current: () -> untyped
+
+      def expire!: () -> untyped
+    end
+  end
+end

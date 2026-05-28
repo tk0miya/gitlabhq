@@ -1,0 +1,9 @@
+module NotifyHelper
+  def merge_request_reference_link: (untyped entity, *untyped args) -> untyped
+
+  def issue_reference_link: (untyped entity, *untyped args, ?full: bool) -> untyped
+
+  def work_item_type_for: (untyped work_item) -> untyped
+
+  def merge_request_hash_param: (untyped merge_request, untyped reviewer) -> { mr_highlight: untyped, highlight_end: untyped, mr_link: untyped, reviewer_highlight: untyped, reviewer_avatar: untyped, reviewer_link: untyped }
+end

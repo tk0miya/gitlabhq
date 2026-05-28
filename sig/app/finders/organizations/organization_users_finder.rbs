@@ -1,0 +1,26 @@
+# Organizations::OrganizationUsersFinder
+#
+# Used to find Users of an Organization
+module Organizations
+  class OrganizationUsersFinder
+    @organization: untyped
+
+    @current_user: untyped
+
+    # @param organization [Organizations::Organization]
+    # @param current_user [User]
+    def initialize: (organization: untyped, current_user: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader organization: untyped
+
+    attr_reader current_user: untyped
+
+    def all_organization_users: () -> untyped
+
+    def authorized?: () -> untyped
+  end
+end

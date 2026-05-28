@@ -1,0 +1,25 @@
+module Gitlab
+  module QueryLimiting
+    # Middleware for reporting (or raising) when a request performs more than a
+    # certain amount of database queries.
+    class Middleware
+      @app: untyped
+
+      CONTROLLER_KEY: "action_controller.instance"
+
+      ENDPOINT_KEY: "api.endpoint"
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      def action_name: (untyped env) -> (untyped | untyped | nil)
+
+      private
+
+      def action_for_rails: (untyped env) -> untyped
+
+      def action_for_grape: (untyped env) -> untyped
+    end
+  end
+end

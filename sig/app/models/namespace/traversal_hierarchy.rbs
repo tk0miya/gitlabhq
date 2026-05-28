@@ -1,0 +1,63 @@
+# frozen_string_literal: true
+#
+# A Namespace::TraversalHierarchy is the collection of namespaces that descend
+# from a root Namespace as defined by the Namespace#traversal_ids attributes.
+#
+# This class provides operations to be performed on the hierarchy itself,
+# rather than individual namespaces.
+#
+# This includes methods for synchronizing traversal_ids attributes to a correct
+# state. We use recursive methods to determine the correct state so we don't
+# have to depend on the integrity of the traversal_ids attribute values
+# themselves.
+#
+class Namespace
+  class TraversalHierarchy
+    @root: untyped
+
+    include Transactions
+
+    LOCK_TIMEOUT: "1000ms"
+
+    attr_accessor root: untyped
+
+    def initialize: (untyped root) -> void
+
+    # Update all traversal_ids in the current namespace hierarchy.
+    def sync_traversal_ids!: () -> untyped
+
+    # Identify all incorrect traversal_ids in the current namespace hierarchy.
+    def incorrect_traversal_ids: () -> untyped
+
+    def self.for_namespace: (untyped namespace) -> untyped
+
+    # Update all traversal_ids for the given namespace and it's descendants.
+    def self.sync_traversal_ids!: (untyped node) -> untyped
+
+    # Determine traversal_ids for the node and it's descendants using recursive methods.
+    # Generate a collection of [id, traversal_ids] rows.
+    #
+    # Note that the traversal_ids represent a calculated traversal path for the
+    # namespace and not the value stored within the traversal_ids attribute.
+    # rubocop:disable Cop/AvoidBecomes -- Normalize STI queries
+    def self.recursive_traversal_ids: (untyped node) -> ::String
+
+    private
+
+    # Update all traversal_ids in the current namespace hierarchy.
+    # Not thread safe, ensure the appropriate nodes are locked before calling.
+    def self.sync_traversal_ids_tree!: (untyped node) -> untyped
+
+    # This is essentially Namespace#root_ancestor which will soon be rewritten
+    # to use traversal_ids. We replicate here as a reliable way to find the
+    # root using recursive methods.
+    def self.recursive_root_ancestor: (untyped namespace) -> untyped
+
+    # rubocop:disable Database/RescueQueryCanceled -- Measuring specific query timeouts
+    def self.acquire_locks: (untyped node) -> untyped
+
+    def self.db_query_timeout_counter: () -> untyped
+
+    def self.db_deadlock_counter: () -> untyped
+  end
+end

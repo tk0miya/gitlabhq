@@ -1,0 +1,7 @@
+module Ci
+  class RunnerVersion < Ci::ApplicationRecord
+    include EachBatch
+
+    STATUS_DESCRIPTIONS: { invalid_version: "Runner version is not valid.", unavailable: "Upgrade is not available for the runner.", available: "Upgrade is available for the runner.", recommended: "Upgrade is available and recommended for the runner." }
+  end
+end

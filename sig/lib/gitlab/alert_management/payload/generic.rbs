@@ -1,0 +1,16 @@
+# Attribute mapping for alerts via generic alerting integration.
+module Gitlab
+  module AlertManagement
+    module Payload
+      class Generic < Base
+        DEFAULT_TITLE: "New: Alert"
+
+        DEFAULT_SOURCE: "Generic Alert Endpoint"
+
+        def resolved?: () -> untyped
+
+        def source: () -> untyped
+      end
+    end
+  end
+end

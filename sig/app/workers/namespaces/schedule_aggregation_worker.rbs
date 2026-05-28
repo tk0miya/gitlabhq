@@ -1,0 +1,18 @@
+module Namespaces
+  class ScheduleAggregationWorker
+    include ApplicationWorker
+
+    def perform: (untyped namespace_id) -> untyped
+
+    private
+
+    # On db/post_migrate/20180529152628_schedule_to_archive_legacy_traces.rb
+    # traces are archived through build.trace.archive, which in consequence
+    # calls UpdateProjectStatistics#schedule_namespace_statistics_worker.
+    #
+    # The migration and specs fails since NamespaceAggregationSchedule table
+    # does not exist at that point.
+    # https://gitlab.com/gitlab-org/gitlab-foss/issues/50712
+    def aggregation_schedules_table_exists?: () -> (true | untyped)
+  end
+end

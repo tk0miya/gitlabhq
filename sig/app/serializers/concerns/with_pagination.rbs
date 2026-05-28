@@ -1,0 +1,12 @@
+module WithPagination
+  attr_accessor paginator: untyped
+
+  def with_pagination: (untyped request, untyped response) -> untyped
+
+  def paginated?: () -> untyped
+
+  # super is `BaseSerializer#represent` here.
+  #
+  # we shouldn't try to paginate single resources
+  def represent: (untyped resource, ?::Hash[untyped, untyped] opts) -> untyped
+end

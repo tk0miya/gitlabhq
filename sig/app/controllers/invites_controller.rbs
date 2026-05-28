@@ -1,0 +1,50 @@
+class InvitesController < ApplicationController
+  @token: untyped
+
+  @invite_details: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include SafeFormatHelper
+
+  def show: () -> (untyped | nil)
+
+  # Note: This action is rarely reached in the normal flow because:
+  # - New users auto-accept pending invitations during registration
+  # - Existing users auto-accept invitations
+  #
+  # This action primarily handles the edge case where an existing user changes
+  # their email address and then clicks an invitation link like:
+  # http://gitlab.com/-/invites/L4KRHEoQxsc_1nrH5sCg?invite_type=initial_email
+  def accept: () -> untyped
+
+  def decline: () -> untyped
+
+  private
+
+  def skip_invitation_prompt?: () -> untyped
+
+  def current_user_matches_invite?: () -> untyped
+
+  def member?: () -> untyped
+
+  def member: () -> untyped
+
+  def ensure_member_exists: () -> (nil | untyped)
+
+  def track_invite_join_click: () -> (nil | untyped)
+
+  def authenticate_user!: () -> (nil | untyped)
+
+  def set_session_invite_params: () -> untyped
+
+  def initial_invite_email?: () -> untyped
+
+  def sign_in_redirect_params: () -> ({ invite_email: untyped } | ::Hash[untyped, untyped])
+
+  def user_sign_up?: () -> untyped
+
+  def sign_in_notice: () -> untyped
+
+  def invite_details: () -> untyped
+end

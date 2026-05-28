@@ -1,0 +1,25 @@
+module Gitlab
+  module Email
+    module Hook
+      class SmimeSignatureInterceptor
+        self.@certificate: untyped
+
+        def self.delivering_email: (untyped message) -> untyped
+
+        private
+
+        def self.certificate: () -> untyped
+
+        def self.key_path: () -> untyped
+
+        def self.cert_path: () -> untyped
+
+        def self.ca_certs_path: () -> untyped
+
+        def self.overwrite_body: (untyped message, untyped signed_email) -> untyped
+
+        def self.overwrite_headers: (untyped message, untyped signed_email) -> untyped
+      end
+    end
+  end
+end

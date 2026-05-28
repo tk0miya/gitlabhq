@@ -1,0 +1,9 @@
+module Gitlab
+  module DataBuilder
+    module WikiPage
+      extend ::Gitlab::DataBuilder::WikiPage
+
+      def build: (untyped wiki_page, untyped user, untyped action) -> (::Hash[untyped, untyped] | { object_kind: untyped, user: untyped, project: untyped, wiki: untyped, object_attributes: untyped })
+    end
+  end
+end

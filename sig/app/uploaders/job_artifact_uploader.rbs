@@ -1,0 +1,23 @@
+class JobArtifactUploader < GitlabUploader
+  extend Workhorse::UploadPath
+
+  include ObjectStorage::Concern
+
+  include ObjectStorage::CDN::Concern
+
+  UnknownFileLocationError: untyped
+
+  alias upload model
+
+  def cached_size: () -> untyped
+
+  def store_dir: () -> untyped
+
+  private
+
+  def dynamic_segment: () -> untyped
+
+  def hashed_path: () -> untyped
+
+  def legacy_path: () -> untyped
+end

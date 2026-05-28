@@ -1,0 +1,16 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        #
+        # Extended status for playable manual actions.
+        #
+        class Action < Status::Extended
+          def label: () -> (untyped | ::String)
+
+          def self.matches?: (untyped build, untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

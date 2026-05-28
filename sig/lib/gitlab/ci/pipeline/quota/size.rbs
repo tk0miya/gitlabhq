@@ -1,0 +1,37 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Quota
+        class Size < ::Gitlab::Ci::Limit
+          @namespace: untyped
+
+          @pipeline: untyped
+
+          @command: untyped
+
+          include ::Gitlab::Utils::StrongMemoize
+
+          include ActionView::Helpers::TextHelper
+
+          LOGGABLE_JOBS_COUNT: 2000
+
+          def initialize: (untyped namespace, untyped pipeline, untyped command) -> void
+
+          def enabled?: () -> untyped
+
+          def exceeded?: () -> (false | untyped)
+
+          def log_exceeded_limit?: () -> untyped
+
+          def message: () -> ::String
+
+          private
+
+          def ci_pipeline_size_limit: () -> untyped
+
+          def seeds_size: () -> untyped
+        end
+      end
+    end
+  end
+end

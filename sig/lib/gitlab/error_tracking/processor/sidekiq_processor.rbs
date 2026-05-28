@@ -1,0 +1,19 @@
+module Gitlab
+  module ErrorTracking
+    module Processor
+      module SidekiqProcessor
+        self.@permitted_arguments_for_worker: untyped
+
+        FILTERED_STRING: "[FILTERED]"
+
+        def self.filter_arguments: (untyped args, untyped klass) -> untyped
+
+        def self.permitted_arguments_for_worker: (untyped klass) -> untyped
+
+        def self.loggable_arguments: (untyped args, untyped klass) -> untyped
+
+        def self.call: (untyped event) -> untyped
+      end
+    end
+  end
+end

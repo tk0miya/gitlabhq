@@ -1,0 +1,37 @@
+module API
+  module Helpers
+    module WorkItems
+      module Rendering
+        def render_work_items_collection_for: (untyped resource_parent) -> untyped
+
+        def render_work_item_response: (untyped result, status: untyped) -> untyped
+
+        def render_children_for: (untyped parent_work_item) -> untyped
+
+        def render_linked_items_for: (untyped parent_work_item, ?link_type: untyped?) -> untyped
+
+        # Work items are loaded via the parent relation (keyset-ordered, by relative position for children), not via
+        # WorkItemsFinder. Pagination runs first so finalize sees the full page and produces a correct next-cursor,
+        # then per-record :read_work_item policy filters the response in Ruby. A page may therefore present fewer items
+        # than per_page when some records are not readable, but cursor advancement stays correct.
+        def render_paginated_work_items_for: (untyped parent_work_item, entity: untyped) { (untyped) -> untyped } -> untyped
+
+        def render_work_item_for: (untyped resource_parent, untyped work_item_iid) -> untyped
+
+        private
+
+        def keyset_supported_for_order?: () -> untyped
+
+        def requested_field_keys: (untyped requested_fields) -> untyped
+
+        def requested_feature_keys: (untyped requested_features) -> untyped
+
+        def check_pagination_param!: (untyped params) -> (nil | untyped)
+
+        def check_work_item_rest_api_feature_flag!: () -> (nil | untyped)
+
+        def filter_requested_keys: (untyped requested_param, untyped available_keys) -> (::Array[untyped] | untyped)
+      end
+    end
+  end
+end

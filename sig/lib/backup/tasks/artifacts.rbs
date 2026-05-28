@@ -1,0 +1,19 @@
+module Backup
+  module Tasks
+    class Artifacts < Task
+      @target: untyped
+
+      def self.id: () -> "artifacts"
+
+      def human_name: () -> untyped
+
+      def destination_path: () -> "artifacts.tar.gz"
+
+      private
+
+      def target: () -> untyped
+
+      def storage_path: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Resolvers
+  module MergeRequests
+    class WorkItemRelatedResolver < IssueRelatedResolver
+      extend ::Gitlab::Utils::Override
+
+      def resolve_with_lookahead: () -> untyped
+
+      private
+
+      def resource: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,35 @@
+# Handles the Slack `app_home_opened` event sent from Slack to GitLab.
+# Responds with a POST to the Slack API 'views.publish' method.
+#
+# See:
+# - https://api.slack.com/methods/views.publish
+# - https://api.slack.com/events/app_home_opened
+module Integrations
+  module SlackEvents
+    class AppHomeOpenedService
+      @slack_user_id: untyped
+
+      @slack_workspace_id: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def slack_installation: () -> untyped
+
+      def slack_gitlab_user_connection: () -> untyped
+
+      def payload: () -> { user_id: untyped, view: untyped }
+
+      def logger: () -> untyped
+
+      attr_reader slack_user_id: untyped
+
+      attr_reader slack_workspace_id: untyped
+    end
+  end
+end

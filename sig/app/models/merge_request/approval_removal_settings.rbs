@@ -1,0 +1,21 @@
+class MergeRequest::ApprovalRemovalSettings
+  @project: untyped
+
+  @reset_approvals_on_push: untyped
+
+  @selective_code_owner_removals: untyped
+
+  include ActiveModel::Validations
+
+  attr_accessor project: untyped
+
+  def initialize: (untyped project, untyped reset_approvals_on_push, untyped selective_code_owner_removals) -> void
+
+  private
+
+  def selective_code_owner_removals: () -> untyped
+
+  def reset_approvals_on_push: () -> untyped
+
+  def mutually_exclusive_settings: () -> (nil | untyped)
+end

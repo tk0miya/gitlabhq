@@ -1,0 +1,9 @@
+class NewMergeRequestWorker
+  include ApplicationWorker
+
+  include NewIssuable
+
+  def perform: (untyped merge_request_id, untyped user_id) -> untyped
+
+  def issuable_class: () -> untyped
+end

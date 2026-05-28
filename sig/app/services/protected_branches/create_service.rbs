@@ -1,0 +1,17 @@
+module ProtectedBranches
+  class CreateService < ProtectedBranches::BaseService
+    @protected_branch: untyped
+
+    def execute: (?skip_authorization: bool) -> untyped
+
+    def authorized?: () -> untyped
+
+    private
+
+    def save_protected_branch: () -> untyped
+
+    def publish_created_event: () -> (nil | untyped)
+
+    def protected_branch: () -> untyped
+  end
+end

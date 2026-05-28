@@ -1,0 +1,145 @@
+# Blob is a Rails-specific wrapper around Gitlab::Git::Blob, SnippetBlob and Ci::ArtifactBlob
+class Blob < SimpleDelegator
+  @container: untyped
+
+  @data: untyped
+
+  @stored_externally: untyped
+
+  @extension: untyped
+
+  @simple_viewer: untyped
+
+  @rich_viewer: untyped
+
+  @auxiliary_viewer: untyped
+
+  @expanded: untyped
+
+  include GlobalID::Identification
+
+  include Presentable
+
+  include BlobLanguageFromGitAttributes
+
+  include BlobActiveModel
+
+  MODE_SYMLINK: "120000"
+
+  MODE_EXECUTABLE: "100755"
+
+  MODE_TREE: "40000"
+
+  CACHE_TIME: 60
+
+  CACHE_TIME_IMMUTABLE: 3600
+
+  # Finding a viewer for a blob happens based only on extension and whether the
+  # blob is binary or text, which means 1 blob should only be matched by 1 viewer,
+  # and the order of these viewers doesn't really matter.
+  #
+  # However, when the blob is an LFS pointer, we cannot know for sure whether the
+  # file being pointed to is binary or text. In this case, we match only on
+  # extension, preferring binary viewers over text ones if both exist, since the
+  # large files referred to in "Large File Storage" are much more likely to be
+  # binary than text.
+  #
+  # `.stl` files, for example, exist in both binary and text forms, and are
+  # handled by different viewers (`BinarySTL` and `TextSTL`) depending on blob
+  # type. LFS pointers to `.stl` files are assumed to always be the binary kind,
+  # and use the `BinarySTL` viewer.
+  RICH_VIEWERS: untyped
+
+  AUXILIARY_VIEWERS: ::Array[untyped]
+
+  attr_reader container: untyped
+
+  attr_accessor ref_type: untyped
+
+  # Wrap a Gitlab::Git::Blob object, or return nil when given nil
+  #
+  # This method prevents the decorated object from evaluating to "truthy" when
+  # given a nil value. For example:
+  #
+  #     blob = Blob.new(nil)
+  #     puts "truthy" if blob # => "truthy"
+  #
+  #     blob = Blob.decorate(nil)
+  #     puts "truthy" if blob # No output
+  def self.decorate: (untyped blob, ?untyped? container) -> (nil | untyped)
+
+  def self.lazy: (untyped repository, untyped commit_id, untyped path, ?blob_size_limit: untyped) -> untyped
+
+  def initialize: (untyped blob, ?untyped? container) -> void
+
+  def inspect: () -> ::String
+
+  # Returns the data of the blob.
+  #
+  # If the blob is a text based blob the content is converted to UTF-8 and any
+  # invalid byte sequences are replaced.
+  def data: () -> untyped
+
+  def load_all_data!: () -> untyped
+
+  def empty?: () -> untyped
+
+  def external_storage_error?: () -> (untyped | false)
+
+  def stored_externally?: () -> untyped
+
+  # Returns the size of the file that this blob represents. If this blob is an
+  # LFS pointer, this is the size of the file stored in LFS. Otherwise, this is
+  # the size of the blob itself.
+  def raw_size: () -> untyped
+
+  # Returns whether the file that this blob represents is binary. If this blob is
+  # an LFS pointer, we assume the file stored in LFS is binary, unless a
+  # text-based rich blob viewer matched on the file's extension. Otherwise, this
+  # depends on the type of the blob itself.
+  def binary?: () -> (untyped | false | untyped | true | untyped)
+
+  def symlink?: () -> untyped
+
+  def executable?: () -> untyped
+
+  def tree?: () -> untyped
+
+  def extension: () -> untyped
+
+  def file_type: () -> untyped
+
+  def video?: () -> untyped
+
+  def audio?: () -> untyped
+
+  def readable_text?: () -> untyped
+
+  def simple_viewer: () -> untyped
+
+  def rich_viewer: () -> untyped
+
+  def auxiliary_viewer: () -> untyped
+
+  def rendered_as_text?: (?ignore_errors: bool) -> untyped
+
+  def show_viewer_switcher?: () -> untyped
+
+  def expanded?: () -> untyped
+
+  def expand!: () -> untyped
+
+  def file_hash: () -> untyped
+
+  def short_file_hash: () -> untyped
+
+  private
+
+  def simple_viewer_class: () -> untyped
+
+  def rich_viewer_class: () -> untyped
+
+  def auxiliary_viewer_class: () -> untyped
+
+  def viewer_class_from: (untyped classes) -> (nil | untyped)
+end

@@ -1,0 +1,63 @@
+module Packages
+  module Conan
+    class PackageFinder
+      @current_user: untyped
+
+      @name: untyped
+
+      @version: untyped
+
+      @username: untyped
+
+      @channel: untyped
+
+      @project: untyped
+
+      @ignorecase: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ActiveRecord::Sanitization::ClassMethods
+
+      MAX_PACKAGES_COUNT: 500
+
+      WILDCARD: "*"
+
+      SQL_WILDCARD: "%"
+
+      def initialize: (untyped current_user, untyped params, ?project: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader name: untyped
+
+      attr_reader project: untyped
+
+      attr_reader version: untyped
+
+      attr_reader username: untyped
+
+      attr_reader ignorecase: untyped
+
+      attr_reader channel: untyped
+
+      def sanitize_sql: (untyped query) -> (untyped | nil)
+
+      def packages: () -> untyped
+
+      def by_name: (untyped packages) -> untyped
+
+      def by_version: (untyped packages) -> untyped
+
+      def base: () -> untyped
+
+      def project_from_path: () -> (nil | untyped)
+
+      def full_path: () -> (nil | untyped)
+    end
+  end
+end

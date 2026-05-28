@@ -1,0 +1,49 @@
+module JSONWebToken
+  class Token
+    @id: untyped
+
+    @issued_at: untyped
+
+    # we give a few seconds for time shift
+    @not_before: untyped
+
+    # default 60 seconds should be more than enough for this authentication token
+    @expire_time: untyped
+
+    @custom_payload: untyped
+
+    attr_accessor issuer: untyped
+
+    attr_accessor subject: untyped
+
+    attr_accessor audience: untyped
+
+    attr_accessor id: untyped
+
+    attr_accessor issued_at: untyped
+
+    attr_accessor not_before: untyped
+
+    attr_accessor expire_time: untyped
+
+    DEFAULT_NOT_BEFORE_TIME: 5
+
+    DEFAULT_EXPIRE_TIME: 60
+
+    def initialize: () -> void
+
+    def []: (untyped key) -> untyped
+
+    def []=: (untyped key, untyped value) -> untyped
+
+    def encoded: () -> untyped
+
+    def payload: () -> untyped
+
+    private
+
+    def predefined_claims: () -> ::Hash[untyped, untyped]
+
+    def default_payload: () -> untyped
+  end
+end

@@ -1,0 +1,17 @@
+module DependencyProxy
+  module GroupSettings
+    class UpdateService < BaseContainerService
+      ALLOWED_ATTRIBUTES: ::Array[:enabled | :identity | :secret]
+
+      def execute: () -> untyped
+
+      private
+
+      def dependency_proxy_setting: () -> untyped
+
+      def allowed?: () -> untyped
+
+      def dependency_proxy_setting_params: () -> untyped
+    end
+  end
+end

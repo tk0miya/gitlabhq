@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Status
+      module Bridge
+        class Play < Status::Build::Play
+          def has_action?: () -> untyped
+
+          def self.matches?: (untyped bridge, untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

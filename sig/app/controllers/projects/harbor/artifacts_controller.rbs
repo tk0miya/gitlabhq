@@ -1,0 +1,11 @@
+module Projects
+  module Harbor
+    class ArtifactsController < ::Projects::Harbor::ApplicationController
+      include ::Harbor::Artifact
+
+      private
+
+      def container: () -> untyped
+    end
+  end
+end

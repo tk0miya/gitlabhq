@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Build
+      class Cache
+        @cache: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped cache, untyped pipeline) -> void
+
+        def cache_attributes: () -> untyped
+
+        private
+
+        # The below method fixes a bug related to incorrect caches being used
+        # For more details please see: https://gitlab.com/gitlab-org/gitlab/-/issues/388374
+        def cache_prefix: (untyped cache, untyped index) -> (untyped | ::String)
+      end
+    end
+  end
+end

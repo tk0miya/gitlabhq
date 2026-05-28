@@ -1,0 +1,31 @@
+module Gitlab
+  module Graphql
+    module NegatableArguments
+      class TypeDefiner
+        @resolver_class: untyped
+
+        @type_definition: untyped
+
+        @negated_params_type: untyped
+
+        @type_class_name: untyped
+
+        def initialize: (untyped resolver_class, untyped type_definition) -> void
+
+        def define!: () -> untyped
+
+        def negated_params_type: () -> untyped
+
+        private
+
+        def existing_type: () -> (untyped | nil)
+
+        def build_type: () -> untyped
+
+        def type_class_name: () -> untyped
+      end
+
+      def negated: (?param_key: ::Symbol) { (?) -> untyped } -> untyped
+    end
+  end
+end

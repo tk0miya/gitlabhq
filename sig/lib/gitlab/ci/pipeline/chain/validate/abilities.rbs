@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Validate
+          class Abilities < Chain::Base
+            include Gitlab::Allowable
+
+            include Chain::Helpers
+
+            GL_BUILD_ID_KEY: "glBuildId"
+
+            def perform!: () -> untyped
+
+            def break?: () -> untyped
+
+            private
+
+            def allowed_to_create_pipeline?: () -> untyped
+
+            def allowed_to_run_pipeline?: () -> untyped
+
+            def allowed_to_write_ref?: () -> untyped
+
+            def push_from_ci?: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

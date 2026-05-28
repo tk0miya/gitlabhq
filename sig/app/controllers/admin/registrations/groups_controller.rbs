@@ -1,0 +1,31 @@
+module Admin
+  module Registrations
+    class GroupsController < Admin::ApplicationController
+      @group: untyped
+
+      @project: untyped
+
+      @project_templates: untyped
+
+      @template_name: untyped
+
+      include Gitlab::InternalEventsTracking
+
+      def new: () -> untyped
+
+      def create: () -> untyped
+
+      private
+
+      def verify_available!: () -> (untyped | nil)
+
+      def group_params: () -> untyped
+
+      def project_params: () -> untyped
+
+      def permitted_template_name: () -> untyped
+
+      def valid_template_names: () -> untyped
+    end
+  end
+end

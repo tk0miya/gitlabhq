@@ -1,0 +1,71 @@
+class UploadedFile
+  @tempfile: untyped
+
+  @size: untyped
+
+  @upload_duration: untyped
+
+  @content_type: untyped
+
+  @original_filename: untyped
+
+  @sha256: untyped
+
+  @sha1: untyped
+
+  @md5: untyped
+
+  @remote_id: untyped
+
+  InvalidPathError: untyped
+
+  UnknownSizeError: untyped
+
+  ALLOWED_KWARGS: ::Array[:filename | :content_type | :sha256 | :remote_id | :size | :upload_duration | :sha1 | :md5]
+
+  # The filename, *not* including the path, of the "uploaded" file
+  attr_reader original_filename: untyped
+
+  # The tempfile
+  attr_reader tempfile: untyped
+
+  # The content type of the "uploaded" file
+  attr_accessor content_type: untyped
+
+  attr_reader remote_id: untyped
+
+  attr_reader sha256: untyped
+
+  attr_reader size: untyped
+
+  attr_reader upload_duration: untyped
+
+  attr_reader sha1: untyped
+
+  attr_reader md5: untyped
+
+  def initialize: (untyped path, **untyped kwargs) -> void
+
+  def self.from_params: (untyped params, untyped upload_paths) -> (nil | untyped)
+
+  def self.allowed_path?: (untyped file_path, untyped paths) -> untyped
+
+  # copy-pasted from CarrierWave::SanitizedFile
+  def sanitize_filename: (untyped name) -> untyped
+
+  def path: () -> untyped
+
+  def close: () -> untyped
+
+  def empty_size?: () -> untyped
+
+  alias local_path path
+
+  def method_missing: (untyped method_name, *untyped args) { (?) -> untyped } -> untyped
+
+  def respond_to?: (untyped method_name, ?bool include_private) -> untyped
+
+  private
+
+  def validate_kwargs: (untyped kwargs) -> untyped
+end

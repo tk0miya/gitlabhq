@@ -1,0 +1,11 @@
+module Mutations
+  module Boards
+    class Create < ::Mutations::BaseMutation
+      include Mutations::ResolvesResourceParent
+
+      include Mutations::Boards::CommonMutationArguments
+
+      def resolve: (untyped args) -> { board: untyped, errors: untyped }
+    end
+  end
+end

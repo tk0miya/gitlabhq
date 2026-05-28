@@ -1,0 +1,39 @@
+module Packages
+  module Cleanup
+    class ExecutePolicyService
+      @policy: untyped
+
+      @counts: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      MAX_EXECUTION_TIME: untyped
+
+      DUPLICATED_FILES_BATCH_SIZE: 10000
+
+      MARK_PACKAGE_FILES_FOR_DESTRUCTION_SERVICE_BATCH_SIZE: 200
+
+      def initialize: (untyped policy) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def cleanup_duplicated_files: () -> (nil | untyped)
+
+      def installable_package_files: () -> untyped
+
+      def cleanup_duplicated_files_on: (untyped package_files) -> untyped
+
+      def unique_package_id_and_file_name_and_package_type_from: (untyped package_files) -> untyped
+
+      def remove_duplicated_files_for: (package_id: untyped, file_name: untyped, package_type: untyped) -> untyped
+
+      def conan_keep_n_duplicate_ids: (untyped package_files) -> untyped
+
+      def batch_deadline: () -> untyped
+
+      def response_success: (timeout: untyped) -> untyped
+    end
+  end
+end

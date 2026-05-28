@@ -1,0 +1,93 @@
+module Gitlab
+  module Database
+    class Dictionary
+      self.@entries: untyped
+
+      @dictionary_entries: untyped
+
+      include Enumerable
+
+      ALL_SCOPES: ::Array["" | "views" | "deleted_tables"]
+
+      def initialize: (untyped dictionary_entries) -> void
+
+      def to_name_and_schema_mapping: () -> untyped
+
+      def find_by_table_name: (untyped name) -> untyped
+
+      def find_all_by_schema: (untyped schema_name) -> untyped
+
+      def find_all_having_desired_sharding_key_migration_job: () -> untyped
+
+      def find_all_with_partition_detach_info: () -> untyped
+
+      def find_detach_allowed_partitions: () -> untyped
+
+      def self.entries: (?::String scope) -> untyped
+
+      def self.any_entry: (untyped name) -> (untyped | nil)
+
+      def self.entry: (untyped name, ?::String scope) -> untyped
+
+      def self.dictionary_path_globs: (untyped scope) -> untyped
+
+      def self.dictionary_paths: () -> untyped
+
+      class Entry
+        @file_path: untyped
+
+        @data: untyped
+
+        def initialize: (untyped file_path) -> void
+
+        def name_and_schema: () -> ::Array[untyped]
+
+        def table_name: () -> untyped
+
+        def feature_categories: () -> untyped
+
+        def view_name: () -> untyped
+
+        def milestone: () -> untyped
+
+        def milestone_greater_than_or_equal_to?: (untyped other_milestone) -> (false | untyped)
+
+        def gitlab_schema: () -> untyped
+
+        def table_size: () -> untyped
+
+        def sharding_key: () -> untyped
+
+        def desired_sharding_key: () -> untyped
+
+        def sharding_key_issue_url: () -> untyped
+
+        def classes: () -> untyped
+
+        def allow_cross_to_schemas: (untyped type) -> untyped
+
+        def desired_sharding_key_migration_job_name: () -> untyped
+
+        def schema?: (untyped schema_name) -> untyped
+
+        def key_name: () -> untyped
+
+        def partition_detach_info: () -> untyped
+
+        def organization_transfer_support: () -> untyped
+
+        def validate!: () -> (true | untyped)
+
+        private
+
+        def not_having_a_clean_milestone?: () -> untyped
+
+        attr_reader file_path: untyped
+
+        attr_reader data: untyped
+
+        def help_page_url: () -> "https://docs.gitlab.com/ee/development/database/database_dictionary.html"
+      end
+    end
+  end
+end

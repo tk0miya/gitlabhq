@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class Flag
+          @type: untyped
+
+          @origin: untyped
+
+          @description: untyped
+
+          attr_reader type: untyped
+
+          attr_reader origin: untyped
+
+          attr_reader description: untyped
+
+          MAP: { "flagged-as-likely-false-positive" => :false_positive }
+
+          DEFAULT_FLAG_TYPE: :false_positive
+
+          def flag_type: () -> untyped
+
+          def initialize: (?type: untyped?, ?origin: untyped?, ?description: untyped?) -> void
+
+          def to_h: () -> untyped
+
+          def false_positive?: () -> untyped
+        end
+      end
+    end
+  end
+end

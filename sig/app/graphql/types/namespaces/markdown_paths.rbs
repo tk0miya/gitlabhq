@@ -1,0 +1,27 @@
+module Types
+  module Namespaces
+    module MarkdownPaths
+      include ::Types::BaseInterface
+
+      include ::IssuablesHelper
+
+      TYPE_MAPPINGS: ::Hash[untyped, untyped]
+
+      NEW_WORK_ITEM_IID: "new-work-item-iid"
+
+      def self.type_mappings: () -> untyped
+
+      def self.resolve_type: (untyped object, untyped _context) -> untyped
+
+      private
+
+      def url_helpers: () -> untyped
+
+      def build_autocomplete_params: (?iid: untyped?, ?work_item_type_id: untyped?) -> untyped
+
+      def extract_id_from_gid: (untyped gid) -> untyped
+
+      def new_work_item?: (untyped iid) -> untyped
+    end
+  end
+end

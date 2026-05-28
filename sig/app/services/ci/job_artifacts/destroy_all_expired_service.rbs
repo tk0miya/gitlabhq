@@ -1,0 +1,39 @@
+module Ci
+  module JobArtifacts
+    class DestroyAllExpiredService
+      @mod_bucket: untyped
+
+      @max_buckets: untyped
+
+      @destroyed_count: untyped
+
+      @drain_loops: untyped
+
+      @partitions_exhausted: untyped
+
+      @exited_early: untyped
+
+      include ::Gitlab::LoopHelpers
+
+      BATCH_SIZE: 100
+
+      LOOP_LIMIT: 500
+
+      LOOP_TIMEOUT: untyped
+
+      Result: untyped
+
+      def initialize: (mod_bucket: untyped, max_buckets: untyped) -> void
+
+      #
+      # Destroys expired job artifacts for the given mod_bucket by iterating
+      # over physical partition groups of `p_ci_job_artifacts`. Each query is
+      # scoped to a single partition group so PostgreSQL can prune partitions.
+      def execute: () -> untyped
+
+      private
+
+      def drain: (untyped partition_ids) -> untyped
+    end
+  end
+end

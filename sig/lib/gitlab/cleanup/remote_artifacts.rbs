@@ -1,0 +1,15 @@
+module Gitlab
+  module Cleanup
+    class RemoteArtifacts < RemoteObjectStorage
+      extend ::Gitlab::Utils::Override
+
+      def initialize: (?logger: untyped?) -> void
+
+      private
+
+      def expected_file_path_format_regexp: () -> ::Regexp
+
+      def query_for_row_tracking_the_file: (untyped file_path) -> untyped
+    end
+  end
+end

@@ -1,0 +1,59 @@
+module Projects
+  module ImportExport
+    class ParallelExportService
+      @export_job: untyped
+
+      @current_user: untyped
+
+      @after_export_strategy: untyped
+
+      @shared: untyped
+
+      @logger: untyped
+
+      @version_saver: untyped
+
+      @max_iids_saver: untyped
+
+      @relation_saver: untyped
+
+      def initialize: (untyped export_job, untyped current_user, untyped after_export_strategy) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader export_job: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader after_export_strategy: untyped
+
+      attr_reader shared: untyped
+
+      attr_reader logger: untyped
+
+      def execute_after_export_action: (untyped after_export_strategy) -> (nil | untyped)
+
+      def exporters: () -> ::Array[untyped]
+
+      def save_exporters: () -> untyped
+
+      def save_export_archive: () -> untyped
+
+      def version_saver: () -> untyped
+
+      def max_iids_saver: () -> untyped
+
+      def exported_relations_merger: () -> untyped
+
+      def cleanup: () -> untyped
+
+      def log_info: (untyped message) -> untyped
+
+      def notify_error: () -> untyped
+
+      def log_base_data: () -> { project_id: untyped, project_name: untyped, project_path: untyped }
+    end
+  end
+end

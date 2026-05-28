@@ -1,0 +1,17 @@
+module SendFileUpload
+  def send_upload: (untyped file_upload, ?send_params: ::Hash[untyped, untyped], ?redirect_params: ::Hash[untyped, untyped], ?attachment: untyped?, ?proxy: bool, ?disposition: ::String, ?ssrf_params: ::Hash[untyped, untyped], ?sanitize_content_type: bool) -> untyped
+
+  private
+
+  def content_type_for: (untyped attachment, sanitize: untyped) -> ("" | untyped)
+
+  def image_scaling_request?: (untyped file_upload) -> (false | untyped)
+
+  def mounted_as_avatar?: (untyped file_upload) -> untyped
+
+  def mounted_as_pwa_icon?: (untyped file_upload) -> untyped
+
+  def valid_image_scaling_width?: (untyped allowed_scalar_widths) -> untyped
+
+  def safe_width: () -> (0 | untyped)
+end

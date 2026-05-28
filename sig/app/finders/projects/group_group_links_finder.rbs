@@ -1,0 +1,36 @@
+# Finder for retrieving inherited group memberships of a project.
+module Projects
+  class GroupGroupLinksFinder
+    @project: untyped
+
+    @params: untyped
+
+    # @param project [Project] project to find memberships for
+    # @param params [Hash] optional parameters
+    # @option params [Boolean] :max_access when true, returns only highest access level memberships
+    # @option params [String] :search filter by group namespace
+    def initialize: (untyped project, ?::Hash[untyped, untyped] params) -> void
+
+    # Executes the finder and returns group links.
+    #
+    # @return [ActiveRecord::Relation] collection of GroupGroupLink records
+    def execute: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader params: untyped
+
+    def collection: () -> untyped
+
+    def group_links: () -> untyped
+
+    # Returns inherited group memberships with highest access level.
+    # Excludes inherited membership if direct membership has equal/higher access.
+    # rubocop:disable CodeReuse/ActiveRecord -- needs specialized query
+    def group_links_max_access: () -> untyped
+
+    def by_search: (untyped collection) -> untyped
+  end
+end

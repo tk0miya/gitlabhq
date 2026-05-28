@@ -1,0 +1,19 @@
+module Gitlab
+  module GithubGistsImport
+    class StartImportWorker
+      include ApplicationWorker
+
+      def perform: (untyped user_id, untyped encrypted_token) -> untyped
+
+      private
+
+      def schedule_finish_worker: (untyped user_id, untyped waiter) -> untyped
+
+      def schedule_next_attempt: (untyped next_attempt_in, untyped user_id, untyped encrypted_token) -> untyped
+
+      def log_error_and_raise!: (untyped user_id, untyped error) -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

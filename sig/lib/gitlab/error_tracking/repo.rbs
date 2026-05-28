@@ -1,0 +1,21 @@
+# This should be in the ErrorTracking namespace. For more details, see:
+# https://gitlab.com/gitlab-org/gitlab/-/issues/323342
+module Gitlab
+  module ErrorTracking
+    class Repo
+      @status: untyped
+
+      @integration_id: untyped
+
+      @project_id: untyped
+
+      attr_accessor status: untyped
+
+      attr_accessor integration_id: untyped
+
+      attr_accessor project_id: untyped
+
+      def initialize: (status: untyped, integration_id: untyped, project_id: untyped) -> void
+    end
+  end
+end

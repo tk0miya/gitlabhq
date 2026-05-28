@@ -1,0 +1,72 @@
+# Gitlab::VisibilityLevel module
+#
+# Define allowed public modes that can be used for
+# GitLab projects to determine project public mode
+#
+module Gitlab
+  module VisibilityLevel
+    extend ActiveSupport::Concern
+
+    PRIVATE: 0
+
+    INTERNAL: 10
+
+    PUBLIC: 20
+
+    LEVELS_FOR_ADMINS: ::Array[untyped]
+
+    def self.levels_for_user: (?untyped? user, ?include_private: bool) -> (::Array[untyped] | untyped)
+
+    def self.string_values: () -> untyped
+
+    def self.options: () -> ::Hash[untyped, untyped]
+
+    def self.string_options: () -> { "private" => untyped, "internal" => untyped, "public" => untyped }
+
+    def self.allowed_levels: () -> untyped
+
+    def self.closest_allowed_level: (untyped target_level) -> untyped
+
+    def self.allowed_for?: (untyped user, untyped level) -> (true | untyped)
+
+    # Level should be a numeric value, e.g. `20`
+    # Return true if the specified level is allowed for the current user.
+    def self.allowed_level?: (untyped level) -> untyped
+
+    def self.allowed_levels_for_user: (untyped user, untyped subject) -> (::Array[untyped] | untyped)
+
+    def self.non_restricted_level?: (untyped level) -> untyped
+
+    def self.restricted_level?: (untyped level) -> untyped
+
+    def self.public_visibility_restricted?: () -> untyped
+
+    def self.valid_level?: (untyped level) -> untyped
+
+    def self.level_name: (untyped level) -> untyped
+
+    def self.level_value: (untyped level, ?fallback_value: untyped) -> untyped
+
+    def self.string_level: (untyped level) -> untyped
+
+    def visibility_level_previous_changes: () -> untyped
+
+    def private?: () -> untyped
+
+    def internal?: () -> untyped
+
+    def public?: () -> untyped
+
+    def visibility_level_value: () -> untyped
+
+    def visibility: () -> untyped
+
+    def visibility=: (untyped level) -> untyped
+
+    def visibility_attribute_present?: (untyped attributes) -> (true | false)
+
+    def visibility_attribute_value: (untyped attributes) -> (untyped | nil)
+
+    def visibility_level_attributes: () -> ::Array[untyped | :visibility | "visibility"]
+  end
+end

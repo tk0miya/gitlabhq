@@ -1,0 +1,27 @@
+module Webauthn
+  class DestroyService < BaseService
+    @current_user: untyped
+
+    @user: untyped
+
+    @webauthn_registration: untyped
+
+    attr_reader webauthn_registration: untyped
+
+    attr_reader user: untyped
+
+    attr_reader current_user: untyped
+
+    def initialize: (untyped current_user, untyped user, untyped second_factor_webauthn_registrations_id) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def authorized?: () -> untyped
+
+    def destroy_second_factor_webauthn_device: () -> untyped
+
+    def notify_on_success: (untyped user, untyped device_name) -> untyped
+  end
+end

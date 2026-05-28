@@ -1,0 +1,54 @@
+module Gitlab
+  module Database
+    class AlterLegacyCellSequencesMaxValue
+      @maxval: untyped
+
+      @connection: untyped
+
+      @logger: untyped
+
+      @sequence_names: untyped
+
+      @skip_trigger_install: untyped
+
+      MISSING_MAXVAL_MSG: "maxval is required to alter sequence max value"
+
+      # PostgreSQL's bigint max value (2^63 - 1 = 9223372036854775807).
+      # Rails does not expose a built-in constant for this.
+      # All sequences in our production and staging environments use this as their default max value.
+      DEFAULT_MAX_VALUE: untyped
+
+      TRIGGER_NAME: "alter_new_sequences_max_value"
+
+      FUNCTION_NAME: "alter_new_sequences_max_value"
+
+      attr_reader maxval: untyped
+
+      attr_reader connection: untyped
+
+      attr_reader sequence_names: untyped
+
+      attr_reader skip_trigger_install: untyped
+
+      attr_reader logger: untyped
+
+      def initialize: (untyped maxval, untyped connection, ?sequence_names: untyped?, ?skip_trigger_install: bool, ?logger: untyped) -> void
+
+      def execute: () -> (nil | untyped)
+
+      def rollback: () -> untyped
+
+      def drop_event_trigger: () -> untyped
+
+      def alter_new_sequences_max_value_function: () -> ::String
+
+      def alter_new_sequences_max_value_trigger: () -> ::String
+
+      private
+
+      def sequences: () -> untyped
+
+      def with_lock_retries: () { (?) -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module Sos
+      class PlatformConfigInfo < BaseDbStatsHandler
+        attr_reader connection: untyped
+
+        attr_reader name: untyped
+
+        attr_reader output: untyped
+
+        QUERY: " SELECT name AS key,\n setting AS value\nFROM pg_settings\nWHERE name IN ('server_version', 'data_directory', 'rds.extensions',\n  'cloudsql.iam_authentication', 'azure.extensions')\nOR name LIKE 'alloydb%'\nUNION ALL\nSELECT 'System information', version();\n"
+
+        def run: () -> untyped
+      end
+    end
+  end
+end

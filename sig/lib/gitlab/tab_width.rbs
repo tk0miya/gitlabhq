@@ -1,0 +1,19 @@
+module Gitlab
+  module TabWidth
+    extend ::Gitlab::TabWidth
+
+    MIN: 1
+
+    MAX: 12
+
+    DEFAULT: 8
+
+    def css_class_for_user: (untyped user) -> untyped
+
+    private
+
+    def css_class_for_value: (untyped value) -> ::String
+
+    def in_range?: (untyped value) -> untyped
+  end
+end

@@ -1,0 +1,61 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Seed
+        class Build
+          class Cache
+            @pipeline: untyped
+
+            @key: untyped
+
+            @paths: untyped
+
+            @policy: untyped
+
+            @untracked: untyped
+
+            @when: untyped
+
+            @unprotect: untyped
+
+            @custom_key_prefix: untyped
+
+            @fallback_keys: untyped
+
+            @expanded_patterns: untyped
+
+            def initialize: (untyped pipeline, untyped cache, untyped custom_key_prefix) -> void
+
+            def attributes: () -> untyped
+
+            def build_attributes: () -> { options: untyped }
+
+            private
+
+            def key_string: () -> untyped
+
+            def key_from_string: () -> (untyped | nil)
+
+            def key_from_files: () -> (nil | untyped)
+
+            def cache_key_digest: () -> (untyped | "default")
+
+            def hash_of_file_contents: () -> (nil | untyped)
+
+            def hash_of_the_latest_changes: () -> untyped
+
+            def digest_from_hashes: (untyped hashes) -> untyped
+
+            def files: () -> untyped
+
+            def files_commits_files: () -> untyped
+
+            def expand_file_patterns: (untyped patterns) -> untyped
+
+            def last_commit_id_for_path: (untyped path) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

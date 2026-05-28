@@ -1,0 +1,13 @@
+module Mutations
+  module Users
+    module PersonalAccessTokens
+      class Rotate < BaseMutation
+        def resolve: (id: untyped, **untyped args) -> ({ errors: ::Array[untyped] } | { token: untyped, errors: ::Array[untyped] })
+
+        private
+
+        def find_object: (untyped id) -> untyped
+      end
+    end
+  end
+end

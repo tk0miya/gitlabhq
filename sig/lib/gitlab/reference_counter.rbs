@@ -1,0 +1,60 @@
+module Gitlab
+  # Reference Counter
+  #
+  # A reference counter is used as a mechanism to identify when
+  # a repository is being accessed by a writable operation.
+  #
+  # Maintenance operations would use this as a clue to when it should
+  # execute significant changes in order to avoid disrupting running traffic
+  class ReferenceCounter
+    @gl_repository: untyped
+
+    @key: untyped
+
+    REFERENCE_EXPIRE_TIME: 600
+
+    attr_reader gl_repository: untyped
+
+    attr_reader key: untyped
+
+    # Reference Counter instance
+    #
+    # @example
+    #   Gitlab::ReferenceCounter.new('project-1')
+    #
+    # @see Gitlab::GlRepository::RepoType.identifier_for_repositorable
+    # @param [String] gl_repository repository identifier
+    def initialize: (untyped gl_repository) -> void
+
+    # Return the actual counter value
+    #
+    # @return [Integer] value
+    def value: () -> untyped
+
+    # Increase the counter
+    #
+    # @return [Boolean] whether operation was a success
+    def increase: () -> untyped
+
+    # Decrease the counter
+    #
+    # @return [Boolean] whether operation was a success
+    def decrease: () -> untyped
+
+    # Reset the reference counter
+    #
+    # @private Used internally by SRE and debugging purpose
+    # @return [Boolean] whether reset was a success
+    def reset!: () -> untyped
+
+    # When the reference counter would expire
+    #
+    # @api private Used internally by SRE and debugging purpose
+    # @return [Integer] Number in seconds until expiration or false if never
+    def expires_in: () -> untyped
+
+    private
+
+    def redis_cmd: () { (untyped) -> untyped } -> untyped
+  end
+end

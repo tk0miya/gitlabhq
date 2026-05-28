@@ -1,0 +1,23 @@
+module BulkImports
+  module Groups
+    module Graphql
+      class GetGroupQuery
+        @context: untyped
+
+        attr_reader context: untyped
+
+        def initialize: (context: untyped) -> void
+
+        def to_s: () -> "          query($full_path: ID!) {\n            group(fullPath: $full_path) {\n              id\n              name\n              path\n              description\n              visibility\n              emails_disabled: emailsDisabled\n              lfs_enabled: lfsEnabled\n              mentions_disabled: mentionsDisabled\n              project_creation_level: projectCreationLevel\n              request_access_enabled: requestAccessEnabled\n              require_two_factor_authentication: requireTwoFactorAuthentication\n              share_with_group_lock: shareWithGroupLock\n              subgroup_creation_level: subgroupCreationLevel\n              two_factor_grace_period: twoFactorGracePeriod\n            }\n          }\n"
+
+        def variables: () -> { full_path: untyped }
+
+        def base_path: () -> ::Array["data" | "group"]
+
+        def data_path: () -> untyped
+
+        def page_info_path: () -> untyped
+      end
+    end
+  end
+end

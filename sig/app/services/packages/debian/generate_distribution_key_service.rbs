@@ -1,0 +1,31 @@
+module Packages
+  module Debian
+    class GenerateDistributionKeyService
+      @params: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      NEWLINE_REGEX: ::Regexp
+
+      INVALID_PASSPHRASE_ERROR: untyped
+
+      def initialize: (?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader params: untyped
+
+      def passphrase: () -> untyped
+
+      def pinentry_script_content: () -> ::String
+
+      def using_pinentry: () { (untyped) -> untyped } -> untyped
+
+      def generate_key_params: () -> untyped
+
+      def invalid_passphrase?: () -> untyped
+    end
+  end
+end

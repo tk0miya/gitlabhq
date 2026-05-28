@@ -1,0 +1,35 @@
+module Gitlab
+  module Audit
+    class NullAuthor
+      @id: untyped
+
+      @name: untyped
+
+      attr_reader id: untyped
+
+      attr_reader name: untyped
+
+      # Creates an Author
+      #
+      # While tracking events that could take place even when
+      # a user is not logged in, (eg: downloading repo of a public project),
+      # we set the author_id of such events as -1
+      #
+      # @param [Integer] id
+      # @param [String] name
+      # rubocop: disable Layout/LineLength
+      # @return [Gitlab::Audit::UnauthenticatedAuthor, Gitlab::Audit::DeletedAuthor, Gitlab::Audit::CiRunnerTokenAuthor, Gitlab::Audit::DeployTokenAuthor]
+      def self.for: (untyped id, untyped audit_event) -> untyped
+
+      def initialize: (id: untyped, name: untyped) -> void
+
+      def to_global_id: () -> "gid://gitlab/ComplianceManagement::NullAuthor/@id"
+
+      def current_sign_in_ip: () -> nil
+
+      def full_path: () -> nil
+
+      def impersonated?: () -> false
+    end
+  end
+end

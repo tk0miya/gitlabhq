@@ -1,0 +1,19 @@
+module Analytics
+  module UsageTrends
+    class CounterJobWorker
+      TIMEOUT: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      include ApplicationWorker
+
+      include CronjobChildWorker
+
+      def perform: (untyped measurement_identifier, untyped min_id, untyped max_id, untyped recorded_at, ?untyped? partial_results) -> (untyped | nil)
+
+      private
+
+      def counter: (untyped query_scope, untyped min_id, untyped max_id, untyped partial_results) -> ({ status: :completed, count: 0 } | untyped)
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class Operator < Lexeme::Base
+            OperatorError: untyped
+
+            def self.type: () -> untyped
+
+            def self.precedence: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

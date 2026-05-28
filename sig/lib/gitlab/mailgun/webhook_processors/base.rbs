@@ -1,0 +1,17 @@
+module Gitlab
+  module Mailgun
+    module WebhookProcessors
+      class Base
+        @payload: untyped
+
+        def initialize: (untyped payload) -> void
+
+        def execute: () -> nil
+
+        private
+
+        attr_reader payload: untyped
+      end
+    end
+  end
+end

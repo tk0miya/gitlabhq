@@ -1,0 +1,11 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      module PullRequestNotes
+        class Inline < BaseNoteDiffImporter
+          def execute: (untyped comment) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

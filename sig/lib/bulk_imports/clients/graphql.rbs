@@ -1,0 +1,19 @@
+module BulkImports
+  module Clients
+    class Graphql
+      @url: untyped
+
+      @token: untyped
+
+      REQUEST_TIMEOUT: 60
+
+      attr_reader url: untyped
+
+      def initialize: (?url: untyped, ?token: untyped?) -> void
+
+      def execute: (query: untyped, ?variables: ::Hash[untyped, untyped]) -> untyped
+
+      def headers: () -> { "Content-Type" => "application/json", "Authorization" => ::String }
+    end
+  end
+end

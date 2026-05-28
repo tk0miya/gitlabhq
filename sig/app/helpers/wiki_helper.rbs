@@ -1,0 +1,43 @@
+module WikiHelper
+  include API::Helpers::RelatedResourcesHelpers
+
+  def wiki_page_title: (untyped page, ?untyped? action) -> untyped
+
+  def wiki_sidebar_toggle_button: () -> untyped
+
+  # Produces a pure text breadcrumb for a given page.
+  #
+  # page_slug - The slug of a WikiPage object.
+  #
+  # Returns a String composed of the capitalized name of each directory and the
+  # capitalized name of the page itself.
+  def breadcrumb: (untyped page_slug) -> untyped
+
+  def wiki_breadcrumb_items: (untyped page_slug) -> untyped
+
+  def wiki_breadcrumb_collapsed_links: (untyped page_slug) -> untyped
+
+  def wiki_attachment_upload_url: () -> untyped
+
+  def wiki_sort_controls: (untyped wiki, untyped direction, ?action: ::Symbol) -> untyped
+
+  def wiki_404_messages: () -> { writable: { title: untyped, body: untyped }, readonly: { title: untyped, body: untyped } }
+
+  def wiki_empty_state_messages: (untyped wiki) -> untyped
+
+  def wiki_page_tracking_context: (untyped page) -> { "wiki-format" => untyped, "wiki-title-size" => untyped, "wiki-content-size" => untyped, "wiki-directory-nest-level" => untyped, "wiki-container-type" => untyped }
+
+  def show_enable_confluence_integration?: (untyped container) -> untyped
+
+  def wiki_page_render_api_endpoint: (untyped page) -> untyped
+
+  def wiki_markup_hash_by_name_id: () -> untyped
+
+  private
+
+  def wiki_page_render_api_endpoint_params: (untyped page) -> { id: untyped, slug: untyped, params: { version: untyped } }
+
+  def wiki_page_info: (untyped page, ?uploads_path: ::String) -> { last_commit_sha: untyped, persisted: untyped, title: untyped, content: untyped, front_matter: untyped, format: untyped, uploads_path: untyped, slug: untyped, path: untyped, wiki_path: untyped, help_path: untyped, markdown_help_path: untyped, markdown_preview_path: untyped, create_path: untyped }
+
+  def wiki_page_basic_info: (untyped page) -> { title: untyped, format: untyped, slug: untyped, path: untyped }
+end

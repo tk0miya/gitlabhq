@@ -1,0 +1,9 @@
+module API
+  class Todos < ::API::Base
+    include PaginationParams
+
+    include APIGuard
+
+    ISSUABLE_TYPES: { "merge_requests" => untyped, "issues" => untyped }
+  end
+end

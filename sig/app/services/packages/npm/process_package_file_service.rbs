@@ -1,0 +1,29 @@
+module Packages
+  module Npm
+    class ProcessPackageFileService
+      @package_file: untyped
+
+      ExtractionError: untyped
+
+      PACKAGE_JSON_ENTRY_REGEX: ::Regexp
+
+      MAX_FILE_SIZE: untyped
+
+      def initialize: (untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_file: untyped
+
+      def valid_package_file?: () -> untyped
+
+      def with_package_json_entry: () { (untyped) -> untyped } -> untyped
+
+      def entry_full_name: (untyped tar_reader) -> untyped
+
+      def path_for: (untyped entry) -> untyped
+    end
+  end
+end

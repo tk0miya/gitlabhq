@@ -1,0 +1,39 @@
+module Gitlab
+  module Ci
+    module Variables
+      module Downstream
+        class Generator
+          @bridge: untyped
+
+          @raw_variable_generator: untyped
+
+          @expandable_variable_generator: untyped
+
+          Context: untyped
+
+          def initialize: (untyped bridge) -> void
+
+          def calculate: () -> untyped
+
+          private
+
+          attr_reader bridge: untyped
+
+          attr_reader all_bridge_variables: untyped
+
+          def calculate_downstream_variables: () -> untyped
+
+          def downstream_yaml_variables: () -> (::Array[untyped] | untyped)
+
+          def downstream_pipeline_variables: () -> (::Array[untyped] | untyped)
+
+          def downstream_pipeline_schedule_variables: () -> (::Array[untyped] | untyped)
+
+          def downstream_pipeline_dotenv_variables: () -> (::Array[untyped] | untyped)
+
+          def build_downstream_variables_from: (untyped variables) -> untyped
+        end
+      end
+    end
+  end
+end

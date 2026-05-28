@@ -1,0 +1,31 @@
+module Gitlab
+  module ClickHouse
+    module MaterializedView
+      class ChangeGenerator < MigrationGenerator
+        @number_of_rebuilds: untyped
+
+        @view_name: untyped
+
+        @old_query: untyped
+
+        @connection: untyped
+
+        def create_migration_file: () -> untyped
+
+        private
+
+        def template: () -> "change_materialized_view_migration.rb.template"
+
+        def file_name: () -> ::String
+
+        def number_of_rebuilds: () -> untyped
+
+        def prepare_template_assigns!: () -> untyped
+
+        def old_materialized_view_query: (untyped name) -> untyped
+
+        def connection: () -> untyped
+      end
+    end
+  end
+end

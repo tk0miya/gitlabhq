@@ -1,0 +1,27 @@
+module Authn
+  module Passkey
+    class DestroyService < BaseService
+      @current_user: untyped
+
+      @user: untyped
+
+      @passkey: untyped
+
+      attr_reader passkey: untyped
+
+      attr_reader user: untyped
+
+      attr_reader current_user: untyped
+
+      def initialize: (untyped current_user, untyped user, untyped passkey_id) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def authorized?: () -> untyped
+
+      def notify_on_success: (untyped user, untyped device_name) -> untyped
+    end
+  end
+end

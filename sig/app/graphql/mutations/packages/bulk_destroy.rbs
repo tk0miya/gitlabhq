@@ -1,0 +1,19 @@
+module Mutations
+  module Packages
+    class BulkDestroy < ::Mutations::BaseMutation
+      include Mutations::Packages::DeleteProtection
+
+      MAX_PACKAGES: 100
+
+      TOO_MANY_IDS_ERROR: ::String
+
+      def resolve: (ids: untyped) -> { errors: untyped }
+
+      private
+
+      def packages_from: (untyped ids) -> untyped
+
+      def filter_protected_packages: (untyped packages) -> ::Array[untyped]
+    end
+  end
+end

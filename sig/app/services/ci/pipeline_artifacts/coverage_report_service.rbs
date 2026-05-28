@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+module Ci
+  module PipelineArtifacts
+    class CoverageReportService
+      @pipeline: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped pipeline) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader pipeline: untyped
+
+      def report: () -> untyped
+
+      def pipeline_artifact_params: () -> { pipeline: untyped, file_type: :code_coverage, file: untyped, size: untyped, locked: untyped }
+
+      def carrierwave_file: () -> untyped
+
+      def log_params: (untyped pipeline_artifact) -> { project_id: untyped, pipeline_id: untyped, pipeline_artifact_id: untyped, message: "Created code coverage for pipeline." }
+    end
+  end
+end

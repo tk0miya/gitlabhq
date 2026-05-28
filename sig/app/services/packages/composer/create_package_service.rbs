@@ -1,0 +1,25 @@
+module Packages
+  module Composer
+    class CreatePackageService < ::Packages::CreatePackageService
+      include ::Gitlab::Utils::StrongMemoize
+
+      def execute: () -> untyped
+
+      private
+
+      def created_package: () -> untyped
+
+      def composer_json: () -> untyped
+
+      def package_name: () -> untyped
+
+      def target: () -> untyped
+
+      def branch: () -> untyped
+
+      def tag: () -> untyped
+
+      def package_version: () -> untyped
+    end
+  end
+end

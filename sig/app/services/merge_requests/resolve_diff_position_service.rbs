@@ -1,0 +1,20 @@
+module MergeRequests
+  class ResolveDiffPositionService < ::BaseService
+    def execute: () -> untyped
+
+    private
+
+    # For multiline notes, the top-level position line is the end of the range
+    # (the anchor), while line_range captures the full start-to-end span.
+    def apply_multiline_position!: (untyped position_attrs, untyped file_path, old_line: untyped, new_line: untyped, end_old_line: untyped, end_new_line: untyped) -> untyped
+
+    def find_diff_file: (untyped merge_request, untyped file_path) -> (nil | untyped)
+
+    # String keys are required - Gitlab::Diff::Position accesses line_range with string keys
+    def build_line_range: (untyped file_path, old_line: untyped, new_line: untyped, end_old_line: untyped, end_new_line: untyped) -> { "start" => untyped, "end" => untyped }
+
+    def build_line_range_entry: (untyped file_path, old_line: untyped, new_line: untyped) -> untyped
+
+    def line_type: (old_line: untyped, new_line: untyped) -> (nil | "new" | "old")
+  end
+end

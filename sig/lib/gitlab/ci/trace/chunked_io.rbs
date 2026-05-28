@@ -1,0 +1,95 @@
+#
+# This class is compatible with IO class (https://ruby-doc.org/core-2.3.1/IO.html)
+# source: https://gitlab.com/snippets/1685610
+module Gitlab
+  module Ci
+    class Trace
+      class ChunkedIO
+        @build: untyped
+
+        @chunks_cache: untyped
+
+        @tell: untyped
+
+        @size: untyped
+
+        CHUNK_SIZE: untyped
+
+        FailedToGetChunkError: untyped
+
+        attr_reader build: untyped
+
+        attr_reader tell: untyped
+
+        attr_reader size: untyped
+
+        attr_reader chunk_data: untyped
+
+        attr_reader chunk_range: untyped
+
+        alias pos tell
+
+        def initialize: (untyped build) ?{ (untyped) -> untyped } -> void
+
+        def close: () -> nil
+
+        def binmode: () -> nil
+
+        def binmode?: () -> true
+
+        def seek: (untyped pos, ?untyped where) -> untyped
+
+        def eof?: () -> untyped
+
+        def each_line: () { (untyped) -> untyped } -> untyped
+
+        def read: (?untyped? length, ?untyped? outbuf) -> untyped
+
+        def readline: () -> untyped
+
+        def write: (untyped data) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def truncate: (untyped offset) -> untyped
+
+        def flush: () -> nil
+
+        def present?: () -> true
+
+        def destroy!: () -> untyped
+
+        private
+
+        #
+        # The below methods are not implemented in IO class
+        #
+        def in_range?: () -> untyped
+
+        def chunk_slice_from_offset: () -> untyped
+
+        def chunk_offset: () -> untyped
+
+        def chunk_index: () -> untyped
+
+        def chunk_start: () -> untyped
+
+        def chunk_end: () -> untyped
+
+        def invalidate_chunk_cache: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def current_chunk: () -> untyped
+
+        def next_chunk: () -> untyped
+
+        def ensure_chunk: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def trace_chunks: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def calculate_size: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,109 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # Load balancing for ActiveRecord connections.
+      #
+      # Each host in the load balancer uses the same credentials as the primary
+      # database.
+      class LoadBalancer
+        @configuration: untyped
+
+        @primary_only: untyped
+
+        @host_list: untyped
+
+        ANY_CAUGHT_UP: :any
+
+        ALL_CAUGHT_UP: :all
+
+        NONE_CAUGHT_UP: :none
+
+        CACHE_KEY: :gitlab_load_balancer_host
+
+        REPLICA_SUFFIX: "_replica"
+
+        attr_accessor service_discovery: untyped
+
+        attr_reader host_list: untyped
+
+        attr_reader configuration: untyped
+
+        # configuration - An instance of `LoadBalancing::Configuration` that
+        #                 contains the configuration details (such as the hosts)
+        #                 for this load balancer.
+        def initialize: (untyped configuration) -> void
+
+        def name: () -> untyped
+
+        def primary_only?: () -> untyped
+
+        def disconnect!: (?timeout: ::Integer) -> untyped
+
+        # Yields a connection that can be used for reads.
+        #
+        # If no secondaries were available this method will use the primary
+        # instead.
+        def read: () { (untyped) -> untyped } -> untyped
+
+        # Yields a connection that can be used for both reads and writes.
+        def read_write: () { (untyped) -> untyped } -> untyped
+
+        # Returns a host to use for queries.
+        #
+        # Hosts are scoped per thread so that multiple threads don't
+        # accidentally re-use the same host + connection.
+        def host: () -> untyped
+
+        # Releases the host and connection for the current thread.
+        # force: true will release connections from all the hosts - reference: https://gitlab.com/gitlab-org/gitlab/-/work_items/588806
+        def release_host: (?force: bool) -> (nil | untyped)
+
+        def clear_cache_and_release_host: (untyped host) -> untyped
+
+        def release_primary_connection: () -> untyped
+
+        # Returns the transaction write location of the primary.
+        def primary_write_location: () -> untyped
+
+        # Finds any up to date replica for the given LSN location and stores an up to date replica in the
+        # SafeRequestStore to be used later for read-only queries. It returns a symbol to indicate if :any, :all or
+        # :none were found to be caught up.
+        def select_up_to_date_host: (untyped location) -> untyped
+
+        # Yields a block, retrying it upon error using an exponential backoff.
+        def retry_with_backoff: (?attempts: ::Integer, ?time: ::Integer) { (untyped) -> untyped } -> untyped
+
+        def connection_error?: (untyped error) -> untyped
+
+        def serialization_failure?: (untyped error) -> untyped
+
+        # pool_size - The size of the DB pool.
+        # host - An optional host name to use instead of the default one.
+        # port - An optional port to connect to.
+        def create_replica_connection_pool: (untyped pool_size, ?untyped? host, ?untyped? port) -> untyped
+
+        # ActiveRecord::ConnectionAdapters::ConnectionHandler handles fetching,
+        # and caching for connections pools for each "connection", so we
+        # leverage that.
+        # rubocop:disable Database/MultipleDatabases
+        def pool: () -> untyped
+
+        def wal_diff: (untyped location1, untyped location2) -> untyped
+
+        private
+
+        def can_log_force_released_hosts?: (untyped hosts_force_released, untyped hosts_force_query_cache_cleared) -> (false | untyped)
+
+        def ensure_caching!: () -> (nil | untyped)
+
+        def request_cache: () -> untyped
+
+        # @param [ActiveRecord::Connection] ar_connection
+        # @return [String]
+        def get_write_location: (untyped ar_connection) -> untyped
+
+        def raise_if_concurrent_ruby!: () -> untyped
+      end
+    end
+  end
+end

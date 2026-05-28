@@ -1,0 +1,45 @@
+class Import::FogbugzController < Import::BaseController
+  @client: untyped
+
+  @user_map: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include SafeFormatHelper
+
+  def new: () -> nil
+
+  def callback: () -> untyped
+
+  def new_user_map: () -> nil
+
+  def create_user_map: () -> untyped
+
+  def status: () -> untyped
+
+  def create: () -> untyped
+
+  def importable_repos: () -> untyped
+
+  def incompatible_repos: () -> ::Array[untyped]
+
+  def provider_name: () -> :fogbugz
+
+  def provider_url: () -> untyped
+
+  private
+
+  def client: () -> untyped
+
+  def user_map: () -> untyped
+
+  def fogbugz_unauthorized: (untyped exception) -> untyped
+
+  def import_params: () -> untyped
+
+  def user_map_params: () -> untyped
+
+  def verify_fogbugz_import_enabled: () -> (untyped | nil)
+
+  def verify_blocked_uri: () -> untyped
+end

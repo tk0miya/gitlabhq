@@ -1,0 +1,9 @@
+module Repositories
+  module StreamableDiff
+    extend ActiveSupport::Concern
+
+    def diffs_for_streaming: (?::Hash[untyped, untyped] diff_options) -> untyped
+
+    def diffs_for_streaming_by_changed_paths: (?::Hash[untyped, untyped] diff_options) { (?) -> untyped } -> untyped
+  end
+end

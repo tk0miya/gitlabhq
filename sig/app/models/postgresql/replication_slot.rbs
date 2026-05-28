@@ -1,0 +1,32 @@
+module Postgresql
+  class ReplicationSlot < Gitlab::Database::SharedModel
+    # Returns true if there are any replication slots in use.
+    # PostgreSQL-compatible databases such as Aurora don't support
+    # replication slots, so this will return false as well.
+    def self.in_use?: () -> untyped
+
+    # Returns true if the lag observed across all replication slots exceeds a
+    # given threshold.
+    #
+    # max - The maximum replication lag size, in bytes. Based on GitLab.com
+    #       statistics it takes between 1 and 5 seconds to replicate around
+    #       100 MB of data.
+    def self.lag_too_great?: (?untyped max) -> (false | untyped)
+
+    def self.count: () -> untyped
+
+    def self.unused_slots_count: () -> untyped
+
+    def self.used_slots_count: () -> untyped
+
+    # array of slots and the retained_bytes
+    # https://www.skillslogic.com/blog/databases/checking-postgres-replication-lag
+    # http://bdr-project.org/docs/stable/monitoring-peers.html
+    def self.slots_retained_bytes: () -> untyped
+
+    # returns the max number WAL space (in bytes) being used across the replication slots
+    def self.max_retained_wal: () -> untyped
+
+    def self.max_replication_slots: () -> untyped
+  end
+end

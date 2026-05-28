@@ -1,0 +1,21 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Attachments
+        class ReleasesImporter < ::Gitlab::GithubImport::Importer::Attachments::BaseImporter
+          def sidekiq_worker_class: () -> untyped
+
+          def collection_method: () -> :release_attachments
+
+          def object_type: () -> :release_attachment
+
+          def id_for_already_imported_cache: (untyped release) -> untyped
+
+          private
+
+          def collection: () -> untyped
+        end
+      end
+    end
+  end
+end

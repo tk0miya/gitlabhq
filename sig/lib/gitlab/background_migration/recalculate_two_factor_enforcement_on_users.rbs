@@ -1,0 +1,24 @@
+module Gitlab
+  module BackgroundMigration
+    class RecalculateTwoFactorEnforcementOnUsers < BatchedMigrationJob
+      HUMAN_USER_TYPE: 0
+
+      class Group < ::ApplicationRecord
+        include FromUnion
+      end
+
+      class GroupMember < ::ApplicationRecord
+      end
+
+      class User < ::ApplicationRecord
+        GUEST_ACCESS_LEVEL: 10
+
+        def update_two_factor_requirement: () -> (nil | untyped)
+
+        def expanded_groups_requiring_two_factor_authentication: () -> untyped
+      end
+
+      def perform: () -> untyped
+    end
+  end
+end

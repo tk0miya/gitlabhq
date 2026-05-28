@@ -1,0 +1,20 @@
+module Banzai
+  # Extract possible GFM references from an arbitrary String for further processing.
+  class ReferenceExtractor
+    @texts_and_contexts: untyped
+
+    @html_documents: untyped
+
+    def initialize: () -> void
+
+    def analyze: (untyped text, ?::Hash[untyped, untyped] context) -> untyped
+
+    def references: (untyped type, untyped project, untyped current_user, ?ids_only: bool) -> untyped
+
+    def reset_memoized_values: () -> untyped
+
+    private
+
+    def html_documents: () -> (::Array[untyped] | untyped)
+  end
+end

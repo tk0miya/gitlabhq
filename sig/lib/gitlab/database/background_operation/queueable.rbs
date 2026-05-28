@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      module Queueable
+        extend ActiveSupport::Concern
+
+        DEFAULT_BATCH_VALUES: { batch_size: 1000, sub_batch_size: 100, min_cursor: ::Array[1], interval: untyped, batch_class_name: "PrimaryKey", pause_ms: 100 }
+
+        EXISTING_OPERATION_MSG: "Background Operation not enqueued because there is already an active operation with\njob_class_name: %s, table_name: %s, column_name: %s and job_arguments: [%s].\n"
+      end
+    end
+  end
+end

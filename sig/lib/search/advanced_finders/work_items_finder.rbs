@@ -1,0 +1,18 @@
+module Search
+  module AdvancedFinders
+    class WorkItemsFinder
+      @current_user: untyped
+
+      @context: untyped
+
+      @resource_parent: untyped
+
+      @params: untyped
+
+      def initialize: (untyped current_user, untyped context, untyped resource_parent, ?::Hash[untyped, untyped] params) -> void
+
+      # Overwritten in ee/lib/ee/search/advanced_finders/work_items_finder.rb
+      def use_elasticsearch_finder?: () -> false
+    end
+  end
+end

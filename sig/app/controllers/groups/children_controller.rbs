@@ -1,0 +1,27 @@
+module Groups
+  class ChildrenController < Groups::ApplicationController
+    @children: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    extend ::Gitlab::Utils::Override
+
+    def index: () -> untyped
+
+    private
+
+    def has_project_list?: () -> true
+
+    def parent: () -> untyped
+
+    def children: () -> untyped
+
+    def descendants_params: () -> untyped
+
+    def expand_inactive_hierarchy?: () -> untyped
+
+    def expand_hierarchy?: () -> untyped
+
+    def validate_per_page: () -> (nil | untyped)
+  end
+end

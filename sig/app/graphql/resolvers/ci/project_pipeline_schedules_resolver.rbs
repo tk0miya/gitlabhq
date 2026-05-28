@@ -1,0 +1,9 @@
+module Resolvers
+  module Ci
+    class ProjectPipelineSchedulesResolver < BaseResolver
+      alias project object
+
+      def resolve: (?status: untyped?, ?ids: untyped?, ?sort: ::Symbol) -> untyped
+    end
+  end
+end

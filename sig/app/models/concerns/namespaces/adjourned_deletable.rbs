@@ -1,0 +1,44 @@
+# A module for deletable models. It provides methods to describe the deletion status of a model.
+# Support for delayed deletion is provided.
+#
+# The #self_deletion_in_progress? method needs to be defined.
+# The #ancestors_scheduled_for_deletion method can be overridden.
+module Namespaces
+  module AdjournedDeletable
+    extend ActiveSupport::Concern
+
+    # Models need to define this method, usually based on the value of a database attribute
+    def self_deletion_in_progress?: () -> untyped
+
+    private
+
+    # Returns an array of the record's ancestors that are scheduled for deletion.
+    # This method can be overridden.
+    def ancestors_scheduled_for_deletion: () -> ::Array[untyped]
+
+    public
+
+    # Returns the date when the scheduled deletion was created.
+    def self_deletion_scheduled_deletion_created_on: () -> untyped
+
+    # Returns true if the record is scheduled for deletion.
+    def self_deletion_scheduled?: () -> untyped
+
+    def ancestor_scheduled_for_deletion?: () -> untyped
+
+    # Returns the first record that's scheduled for deletion in self's ancestors chain (including itself).
+    def first_scheduled_for_deletion_in_hierarchy_chain: () -> (self | untyped)
+
+    # Returns true if the record or any of its ancestors is scheduled for deletion.
+    def scheduled_for_deletion_in_hierarchy_chain?: () -> untyped
+
+    # Returns true if the record or any of its ancestors is being deleted or scheduled for deletion.
+    def deletion_in_progress_or_scheduled_in_hierarchy_chain?: () -> untyped
+
+    def deletion_adjourned_period: () -> untyped
+
+    private
+
+    def self_deletion_scheduled_deletion_created_on_legacy: () -> untyped
+  end
+end

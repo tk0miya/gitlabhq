@@ -1,0 +1,14 @@
+module Expirable
+  extend ActiveSupport::Concern
+
+  DAYS_TO_EXPIRE: 7
+
+  def expired?: () -> untyped
+
+  # Used in subclasses that override expired?
+  alias expired_original? expired?
+
+  def expires?: () -> untyped
+
+  def expires_soon?: () -> untyped
+end

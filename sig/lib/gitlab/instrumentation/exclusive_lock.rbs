@@ -1,0 +1,25 @@
+module Gitlab
+  module Instrumentation
+    class ExclusiveLock
+      EXCLUSIVE_LOCK_REQUESTED_COUNT: :exclusive_lock_requested_count
+
+      EXCLUSIVE_LOCK_WAIT_DURATION: :exclusive_lock_wait_duration_s
+
+      EXCLUSIVE_LOCK_HOLD_DURATION: :exclusive_lock_hold_duration_s
+
+      def self.requested_count: () -> untyped
+
+      def self.increment_requested_count: () -> (nil | untyped)
+
+      def self.wait_duration: () -> untyped
+
+      def self.add_wait_duration: (untyped duration) -> (nil | untyped)
+
+      def self.hold_duration: () -> untyped
+
+      def self.add_hold_duration: (untyped duration) -> (nil | untyped)
+
+      def self.payload: () -> ::Hash[untyped, untyped]
+    end
+  end
+end

@@ -1,0 +1,34 @@
+# Wikis::PageMetaFinder
+#
+# Used to filter WikiPage::Meta collections by set of params
+#
+# Arguments:
+#   user - which user to scope visibility for
+#   params:
+#     search: string - filter by title (ILIKE match)
+#
+module Wikis
+  class PageMetaFinder
+    @user: untyped
+
+    @search: untyped
+
+    def initialize: (untyped user, ?search: untyped?, **untyped) -> void
+
+    def execute: () -> untyped
+
+    # Required by RecentItems#query_items_by_ids to return a typed empty relation
+    # when no recent item IDs are found.
+    def klass: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader search: untyped
+
+    def init_collection: () -> untyped
+
+    def by_search: (untyped items) -> untyped
+  end
+end

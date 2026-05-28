@@ -1,0 +1,7 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillDesiredShardingKeyPartitionJob < BackfillDesiredShardingKeyJob
+      def construct_query: (sub_batch: untyped) -> ::String
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module DependencyLinker
+    class CargoTomlLinker < BaseLinker
+      @toml: untyped
+
+      def link: () -> untyped
+
+      private
+
+      def link_dependencies: () -> untyped
+
+      def link_dependencies_at: (untyped type) -> (nil | untyped)
+
+      def link_toml: (untyped key, untyped value, untyped type) { (?) -> untyped } -> (untyped | nil | untyped | nil)
+
+      def toml: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Resolvers
+  module Analytics
+    module Aggregation
+      module EngineResolver
+        class BaseEngineResolver < BaseResolver
+          attr_accessor self.engine: untyped
+
+          def resolve: (**untyped arguments) -> { engine: untyped, request: untyped, validate_request: untyped }
+
+          private
+
+          def engine_class: () -> untyped
+
+          def aggregation_scope: () -> untyped
+
+          def validate_request!: (untyped engine_request) -> nil
+        end
+      end
+    end
+  end
+end

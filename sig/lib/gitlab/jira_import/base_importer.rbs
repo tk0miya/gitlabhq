@@ -1,0 +1,35 @@
+module Gitlab
+  module JiraImport
+    class BaseImporter
+      @running_import: untyped
+
+      @jira_project_key: untyped
+
+      @project: untyped
+
+      @client: untyped
+
+      @formatter: untyped
+
+      attr_reader project: untyped
+
+      attr_reader client: untyped
+
+      attr_reader formatter: untyped
+
+      attr_reader jira_project_key: untyped
+
+      attr_reader running_import: untyped
+
+      def initialize: (untyped project, ?untyped? client) -> void
+
+      private
+
+      def imported_items_cache_key: () -> untyped
+
+      def mark_as_imported: (untyped id) -> untyped
+
+      def already_imported?: (untyped id) -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+class OauthAccessToken < Doorkeeper::AccessToken
+  include Gitlab::Utils::StrongMemoize
+
+  include Doorkeeper::Concerns::TokenFallback
+
+  alias user resource_owner
+
+  alias user= resource_owner=
+
+  RETENTION_PERIOD: untyped
+
+  def scopes=: (untyped value) -> untyped
+
+  def scope_user: () -> (nil | untyped)
+end

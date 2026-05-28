@@ -1,0 +1,22 @@
+module Types
+  module Ci
+    module Catalog
+      module Resources
+        # rubocop: disable Graphql/AuthorizeTypes -- Authorization is handled by Ci::Catalog::Resources
+        class VersionType < BaseObject
+          include ::Gitlab::Utils::StrongMemoize
+
+          def readme: () -> (nil | untyped)
+
+          def readme_html_resolver: () -> (nil | untyped)
+
+          def author: () -> untyped
+
+          private
+
+          def can_read_code?: () -> untyped
+        end
+      end
+    end
+  end
+end

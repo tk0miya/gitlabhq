@@ -1,0 +1,23 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        # Usage example
+        #
+        # In metric YAML definition:
+        #
+        # instrumentation_class: UniqueTotalsMetric
+        # event:
+        #   name: gitlab_cli_command_used
+        #   unique: label
+        #   operator: 'total'
+        #
+        class UniqueTotalsMetric < BaseMetric
+          include Gitlab::UsageDataCounters::RedisHashCounter
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

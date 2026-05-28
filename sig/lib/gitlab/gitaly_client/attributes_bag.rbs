@@ -1,0 +1,15 @@
+module Gitlab
+  module GitalyClient
+    # This module expects an `ATTRS` const to be defined on the subclass
+    # See GitalyClient::WikiPage for an example
+    module AttributesBag
+      extend ActiveSupport::Concern
+
+      def initialize: (untyped params) -> void
+
+      def ==: (untyped other) -> untyped
+
+      def attributes: () -> untyped
+    end
+  end
+end

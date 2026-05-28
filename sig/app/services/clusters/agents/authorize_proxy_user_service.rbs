@@ -1,0 +1,36 @@
+module Clusters
+  module Agents
+    class AuthorizeProxyUserService < ::BaseService
+      @current_user: untyped
+
+      @agent: untyped
+
+      @authorizations: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped current_user, untyped agent) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader agent: untyped
+
+      # Override in EE
+      def handle_access: (untyped access_as) -> (untyped | nil)
+
+      def authorizations: () -> untyped
+
+      def response_base: () -> { agent: { id: untyped, config_project: { id: untyped } }, user: { id: untyped, username: untyped } }
+
+      def access_as_agent: () -> untyped
+
+      def user_access_config: () -> untyped
+
+      def forbidden: (untyped message) -> untyped
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    class DecompressedGzipSizeValidator
+      @archive_path: untyped
+
+      @max_bytes: untyped
+
+      DEFAULT_MAX_BYTES: untyped
+
+      TIMEOUT_LIMIT: untyped
+
+      ServiceError: untyped
+
+      def initialize: (archive_path: untyped, ?max_bytes: untyped) -> void
+
+      def valid?: () -> untyped
+
+      private
+
+      def validate: () -> untyped
+
+      def validate_archive_path: () -> untyped
+
+      def command: () -> ::Array[::Array["gzip" | "-dc" | untyped] | ::Array["wc" | "-c"]]
+
+      attr_reader archive_path: untyped
+
+      attr_reader max_bytes: untyped
+    end
+  end
+end

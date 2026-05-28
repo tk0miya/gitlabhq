@@ -1,0 +1,5 @@
+class UpdateMergeRequestsWorker
+  include ApplicationWorker
+
+  def perform: (untyped project_id, untyped user_id, untyped oldrev, untyped newrev, untyped ref, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+end

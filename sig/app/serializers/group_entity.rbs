@@ -1,0 +1,9 @@
+class GroupEntity < Grape::Entity
+  include ActionView::Helpers::NumberHelper
+
+  include RequestAwareEntity
+
+  include MembersHelper
+
+  include GroupsHelper
+end

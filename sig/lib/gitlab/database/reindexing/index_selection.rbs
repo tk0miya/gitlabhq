@@ -1,0 +1,34 @@
+module Gitlab
+  module Database
+    module Reindexing
+      class IndexSelection
+        @candidates: untyped
+
+        @indexes: untyped
+
+        include Enumerable
+
+        VERY_LARGE_TABLES: ::Array[:ci_builds]
+
+        def initialize: (untyped candidates) -> void
+
+        private
+
+        attr_reader candidates: untyped
+
+        def indexes: () -> untyped
+
+        def relations_that_need_cleaning_before_deadline: () -> untyped
+
+        def minimum_index_size: () -> untyped
+
+        def minimum_relative_bloat_size: () -> untyped
+
+        # The reindexing process takes place during the weekends and starting a
+        # reindexing action on a large table late on Sunday could span during
+        # Monday. We don't want this because it prevents vacuum from running.
+        def too_late_for_very_large_table?: () -> (false | untyped)
+      end
+    end
+  end
+end

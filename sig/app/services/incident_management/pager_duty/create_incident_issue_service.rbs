@@ -1,0 +1,25 @@
+module IncidentManagement
+  module PagerDuty
+    class CreateIncidentIssueService < BaseService
+      include IncidentManagement::Settings
+
+      def initialize: (untyped project, untyped incident_payload) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      alias incident_payload params
+
+      def create_incident: () -> untyped
+
+      def webhook_available?: () -> untyped
+
+      def forbidden: () -> untyped
+
+      def issue_title: () -> untyped
+
+      def issue_description: () -> untyped
+    end
+  end
+end

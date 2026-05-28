@@ -1,0 +1,26 @@
+module Gitlab::Ci
+  module Badge
+    module Pipeline
+      #
+      # Class that represents a pipeline badge template.
+      #
+      # Template object will be passed to badge.svg.erb template.
+      #
+      class Template < Badge::Template
+        @status: untyped
+
+        STATUS_RENAME: { "success" => "passed" }
+
+        STATUS_COLOR: { created: "#9f9f9f", waiting_for_resource: "#9f9f9f", preparing: "#9f9f9f", waiting_for_callback: "#9f9f9f", pending: "#d99530", running: "#428fdc", failed: "#dd2b0e", success: "#2da160", canceling: "#737278", canceled: "#737278", skipped: "#9f9f9f", manual: "#737278", scheduled: "#9f9f9f", unknown: "#9f9f9f" }
+
+        def initialize: (untyped badge) -> void
+
+        def value_text: () -> untyped
+
+        def value_width: () -> 54
+
+        def value_color: () -> untyped
+      end
+    end
+  end
+end

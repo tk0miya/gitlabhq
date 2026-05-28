@@ -1,0 +1,37 @@
+module Backup
+  module Restore
+    class Process
+      @backup_id: untyped
+
+      @backup_task: untyped
+
+      @backup_path: untyped
+
+      @logger: untyped
+
+      attr_reader backup_id: untyped
+
+      attr_reader backup_task: untyped
+
+      attr_reader backup_path: untyped
+
+      attr_reader logger: untyped
+
+      # Restore process class, dedicated to perform restore tasks
+      #
+      # @param [String] backup_id Current or previous backup ID
+      # @param [Backup::Tasks::Task] backup_task Task to restore
+      # @param [Pathname] backup_path Pathname of the backup
+      # @param [Gitlab::BackupLogger] logger interface
+      def initialize: (backup_id: untyped, backup_task: untyped, backup_path: untyped, logger: untyped) -> void
+
+      def execute!: () -> untyped
+
+      private
+
+      def backup_task_enabled?: () -> (true | false)
+
+      def output_warning: (untyped warning) -> (nil | untyped)
+    end
+  end
+end

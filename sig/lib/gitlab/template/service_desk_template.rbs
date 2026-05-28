@@ -1,0 +1,11 @@
+module Gitlab
+  module Template
+    class ServiceDeskTemplate < BaseTemplate
+      def self.extension: () -> ".md"
+
+      def self.base_dir: () -> ".gitlab/service_desk_templates/"
+
+      def self.finder: (untyped project) -> untyped
+    end
+  end
+end

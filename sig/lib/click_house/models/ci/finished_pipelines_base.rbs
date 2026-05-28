@@ -1,0 +1,49 @@
+module ClickHouse
+  module Models
+    module Ci
+      class FinishedPipelinesBase < ClickHouse::Models::BaseModel
+        def self.time_window_valid?: (untyped from_time, untyped to_time) -> untyped
+
+        def self.validate_time_window: (untyped from_time, untyped to_time) -> untyped
+
+        def self.by_status: (untyped statuses) -> untyped
+
+        def self.group_by_status: () -> untyped
+
+        def self.for_container: (untyped container) -> untyped
+
+        def for_project: (untyped project) -> untyped
+
+        def for_source: (untyped source) -> untyped
+
+        def for_ref: (untyped ref) -> untyped
+
+        def for_group: (untyped group) -> untyped
+
+        def for_subgroups: (untyped subgroups) -> (self | untyped)
+
+        def within_dates: (untyped from_time, untyped to_time) -> untyped
+
+        def by_status: (untyped statuses) -> untyped
+
+        def group_by_status: () -> untyped
+
+        def group_by_timestamp_bin: () -> untyped
+
+        def timestamp_bin_function: (untyped time_series_period) -> untyped
+
+        def count_pipelines_function: () -> untyped
+
+        def duration_quantile_function: (untyped quantile) -> untyped
+
+        private
+
+        def format_time: (untyped date) -> untyped
+
+        def timestamp_alias: () -> "timestamp"
+
+        def timezone: () -> untyped
+      end
+    end
+  end
+end

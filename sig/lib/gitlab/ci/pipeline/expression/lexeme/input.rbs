@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class Input < Lexeme::Value
+            PATTERN: ::Regexp
+
+            def self.build: (untyped string) -> untyped
+
+            def evaluate: (?::Hash[untyped, untyped] variables) -> untyped
+
+            def inspect: () -> ::String
+          end
+        end
+      end
+    end
+  end
+end

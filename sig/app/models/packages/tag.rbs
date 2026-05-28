@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+class Packages::Tag < ApplicationRecord
+  FOR_PACKAGES_TAGS_LIMIT: 200
+
+  NUGET_TAGS_SEPARATOR: " "
+
+  def self.for_package_ids: (untyped package_ids) -> untyped
+
+  def ensure_project_id: () -> untyped
+end

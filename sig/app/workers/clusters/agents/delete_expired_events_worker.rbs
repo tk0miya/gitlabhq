@@ -1,0 +1,11 @@
+module Clusters
+  module Agents
+    class DeleteExpiredEventsWorker
+      include ApplicationWorker
+
+      include ClusterAgentQueue
+
+      def perform: (untyped agent_id) -> (untyped | nil)
+    end
+  end
+end

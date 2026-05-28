@@ -1,0 +1,17 @@
+module Resolvers
+  module Analytics
+    module CycleAnalytics
+      class StagesResolver < BaseResolver
+        def resolve: (?id: untyped?) -> untyped
+
+        private
+
+        def list_stages: (untyped list_service_params) -> untyped
+
+        def namespace: () -> untyped
+
+        def stage_params: (?id: untyped?) -> untyped
+      end
+    end
+  end
+end

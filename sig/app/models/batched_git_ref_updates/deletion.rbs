@@ -1,0 +1,17 @@
+module BatchedGitRefUpdates
+  class Deletion < ApplicationRecord
+    PARTITION_DURATION: untyped
+
+    include BulkInsertSafe
+
+    include PartitionedTable
+
+    include EachBatch
+
+    def self.mark_records_processed: (untyped records) -> untyped
+
+    # Your scope must select_ref_and_identity before calling this method as it relies on partition being explicitly
+    # selected
+    def self.update_by_partition: (untyped records) { (untyped) -> untyped } -> untyped
+  end
+end

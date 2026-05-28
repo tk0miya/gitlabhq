@@ -1,0 +1,13 @@
+module Mutations
+  module Ci
+    class SafeDisablePipelineVariables < BaseMutation
+      include Mutations::ResolvesGroup
+
+      def resolve: (full_path: untyped) -> { success: true, errors: ::Array[untyped] }
+
+      private
+
+      def find_object: (untyped full_path) -> untyped
+    end
+  end
+end

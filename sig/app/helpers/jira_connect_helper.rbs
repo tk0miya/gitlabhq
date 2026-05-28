@@ -1,0 +1,17 @@
+module JiraConnectHelper
+  @oauth_state: untyped
+
+  def jira_connect_app_data: (untyped subscriptions, untyped installation) -> { groups_path: untyped, subscriptions: untyped, subscriptions_path: untyped, gitlab_user_path: untyped, oauth_metadata: untyped, public_key_storage_enabled: untyped }
+
+  private
+
+  def jira_connect_oauth_data: (untyped installation) -> { oauth_authorize_url: untyped, oauth_token_path: untyped, state: untyped, oauth_token_payload: { grant_type: :authorization_code, client_id: untyped, redirect_uri: untyped } }
+
+  def oauth_state: () -> untyped
+
+  def serialize_subscription: (untyped subscription) -> { group: { name: untyped, avatar_url: untyped, full_name: untyped, description: untyped }, created_at: untyped, unlink_path: untyped }
+
+  def relative_url_root: () -> untyped
+
+  def oauth_authorize_path: () -> untyped
+end

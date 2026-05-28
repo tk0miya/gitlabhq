@@ -1,0 +1,32 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      class PreventSetOperatorMismatch
+        class Froms
+          # Parse the FROM part of the SELECT. Construct a mapping of FROM names to their PgQuery node. Recurse any
+          # sub-queries and resolve to a Set of dynamic/static/error.
+          #
+          # Whenever a node is aliased, use the alias name as it's reference and ignore it's original name.
+          #
+          # For example, given:
+          #
+          # SELECT id
+          # FROM namespaces ns
+          #
+          # Return a Hash of { 'ns' => NodeObject }
+          #
+          # @param [PgQuery::Node] node The PgQuery SELECT statement node containing the CTEs.
+          # @param [References] cte_refs Inherited CTEs from scopes that wrap this SELECT statement.
+          #
+          # @return [Hash] name of from references mapped to the node that defines their value, or Set if already
+          # resolved.
+          def self.references: (untyped node, untyped cte_refs) -> untyped
+
+          private
+
+          def self.range_var_reference: (untyped range_var, untyped cte_refs) -> ::Hash[untyped, untyped]
+        end
+      end
+    end
+  end
+end

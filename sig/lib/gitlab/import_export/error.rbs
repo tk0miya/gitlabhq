@@ -1,0 +1,13 @@
+module Gitlab
+  module ImportExport
+    class Error < StandardError
+      def self.permission_error: (untyped user, untyped object) -> untyped
+
+      def self.unsupported_object_type_error: () -> untyped
+
+      def self.file_compression_error: (untyped error) -> untyped
+
+      def self.incompatible_import_file_error: () -> untyped
+    end
+  end
+end

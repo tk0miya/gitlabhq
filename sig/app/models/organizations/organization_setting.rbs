@@ -1,0 +1,11 @@
+module Organizations
+  class OrganizationSetting < ApplicationRecord
+    def self.for: (untyped organization_id) -> (nil | untyped)
+
+    private
+
+    # This method is based off the ApplicationSetting method with the same name.
+    # This method is an optimization to perform visibility validation only when some fields have changed.
+    def should_prevent_visibility_restriction?: () -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+module Users
+  class AutoBanService
+    @user: untyped
+
+    @reason: untyped
+
+    Error: untyped
+
+    def initialize: (user: untyped, reason: untyped) -> void
+
+    def execute: () -> untyped
+
+    def execute!: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader reason: untyped
+
+    def ban_user: () -> untyped
+
+    def admin_bot: () -> untyped
+
+    def ban_duplicate_users: () -> untyped
+
+    def record_custom_attribute: () -> untyped
+  end
+end

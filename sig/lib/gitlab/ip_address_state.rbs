@@ -1,0 +1,16 @@
+# rubocop: disable Gitlab/NamespacedClass -- General utility
+module Gitlab
+  class IpAddressState
+    THREAD_KEY: :current_ip_address
+
+    def self.with: (untyped address) { () -> untyped } -> untyped
+
+    def self.set_address: (untyped address) -> untyped
+
+    def self.nullify_address: () -> untyped
+
+    def self.current: () -> untyped
+
+    def self.current=: (untyped value) -> untyped
+  end
+end

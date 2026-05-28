@@ -1,0 +1,24 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class Designs < Base
+        def after_save_commit: () -> (nil | untyped)
+
+        def post_move_cleanup: () -> untyped
+
+        private
+
+        def user_can_copy?: () -> untyped
+
+        # cleanup all designs for the work item, we use destroy as there are the notes, user_mentions and events
+        # associations that have `dependent: delete_all` and they need to be deleted too, after they are being copied
+        # to the target work item
+        def cleanup_designs: () -> untyped
+
+        # cleanup all design versions for the work item, we can safely use delete_all as there are no associated
+        # records or callbacks
+        def cleanup_design_versions: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,10 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillCiPendingBuildsPlanNameUid < BatchedMigrationJob
+      class Plan < ::ApplicationRecord
+      end
+
+      def perform: () -> (nil | untyped)
+    end
+  end
+end

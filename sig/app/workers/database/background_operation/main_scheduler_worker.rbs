@@ -1,0 +1,11 @@
+module Database
+  module BackgroundOperation
+    class MainSchedulerWorker < BaseSchedulerWorker
+      def self.worker_class: () -> untyped
+
+      def self.tracking_database: () -> untyped
+
+      def self.orchestrator_class: () -> untyped
+    end
+  end
+end

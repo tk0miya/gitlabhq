@@ -1,0 +1,112 @@
+module Members
+  class DestroyService < Members::BaseService
+    @member: untyped
+
+    @current_user: untyped
+
+    @skip_authorization: untyped
+
+    @skip_subresources: untyped
+
+    @unassign_issuables: untyped
+
+    @destroy_bot: untyped
+
+    @skip_saml_identity: untyped
+
+    @ip_address: untyped
+
+    @recursive_call: untyped
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    # member: Member to destroy.
+    # options: Configuration for this service. Can be any of the following:
+    #   - skip_authorization: Whether to skip authorization checks.
+    #   - skip_subresources: Whether to skip deleting subresources.
+    #   - unassign_issuables: Whether to unassign issuables from the member.
+    #   - destroy_bot: Whether this is a bot member destruction.
+    #   - skip_saml_identity: Whether to skip SAML identity deletion.
+    #   - ip_address: IP address of the request, used for audit events.
+    def initialize: (untyped member, ?current_user: untyped?, **untyped options) -> void
+
+    def execute: () -> untyped
+
+    # We use this to mark recursive calls made to this service from within the same service.
+    # We do this so as to help us run some tasks that needs to be run only once per hierarchy, and not recursively.
+    def mark_as_recursive_call: () -> untyped
+
+    private
+
+    attr_reader member: untyped
+
+    attr_reader skip_authorization: untyped
+
+    attr_reader skip_subresources: untyped
+
+    attr_reader unassign_issuables: untyped
+
+    attr_reader destroy_bot: untyped
+
+    attr_reader skip_saml_identity: untyped
+
+    attr_reader ip_address: untyped
+
+    def publish_events_once: () -> (nil | untyped)
+
+    # These actions need to be executed only once per hierarchy because the underlying services
+    # apply these actions to the entire hierarchy anyway, so there is no need to execute them recursively.
+    def enqueue_jobs_that_needs_to_be_run_only_once_per_hierarchy: () -> (nil | untyped)
+
+    def enqueue_cleanup_jobs_once_per_hierarchy: () -> untyped
+
+    def recursive_call?: () -> untyped
+
+    def process_destroy_of_group_owner_member: () -> untyped
+
+    def destroy_member: () -> untyped
+
+    def destroy_data_related_to_member: () -> untyped
+
+    def a_group_owner?: () -> untyped
+
+    def delete_member_associations: () -> untyped
+
+    def authorized?: () -> untyped
+
+    def delete_subresources: () -> (nil | untyped)
+
+    def delete_project_members: () -> untyped
+
+    def delete_subgroup_members: () -> untyped
+
+    def delete_invited_members: () -> untyped
+
+    def destroy_project_members: (untyped members) -> untyped
+
+    def destroy_group_members: (untyped members) -> untyped
+
+    def delete_project_invitations_by: () -> (nil | untyped)
+
+    def can_destroy_member?: () -> untyped
+
+    def can_destroy_bot_member?: () -> untyped
+
+    def can_destroy_member_access_request?: () -> untyped
+
+    def can_withdraw_member_access_request?: () -> untyped
+
+    def destroying_member_with_owner_access_level?: () -> untyped
+
+    def destroy_member_permission: () -> untyped
+
+    # overridden in EE::Members::DestroyService
+    def destroy_group_member_permission: () -> :destroy_group_member
+
+    def destroy_bot_member_permission: () -> :destroy_project_bot_member
+
+    def enqueue_unassign_issuables: () -> untyped
+
+    def publish_destroyed_event: () -> untyped
+  end
+end

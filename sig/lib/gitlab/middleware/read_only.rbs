@@ -1,0 +1,17 @@
+module Gitlab
+  module Middleware
+    class ReadOnly
+      self.@internal_routes: untyped
+
+      @app: untyped
+
+      API_VERSIONS: untyped
+
+      def self.internal_routes: () -> untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+    end
+  end
+end

@@ -1,0 +1,45 @@
+module Analytics
+  module CycleAnalytics
+    module StageActions
+      @stage: untyped
+
+      @data_collector: untyped
+
+      @value_stream: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      extend ActiveSupport::Concern
+
+      def index: () -> untyped
+
+      def median: () -> untyped
+
+      def average: () -> untyped
+
+      def records: () -> untyped
+
+      def count: () -> untyped
+
+      private
+
+      def namespace: () -> untyped
+
+      def authorize_stage: () -> untyped
+
+      def add_pagination_headers: (untyped relation) -> untyped
+
+      def stage: () -> untyped
+
+      def data_collector: () -> untyped
+
+      def value_stream: () -> untyped
+
+      def list_params: () -> { value_stream: untyped }
+
+      def list_service: () -> untyped
+
+      def cycle_analytics_configuration: (untyped stages) -> untyped
+    end
+  end
+end

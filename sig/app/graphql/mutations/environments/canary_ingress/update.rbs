@@ -1,0 +1,15 @@
+module Mutations
+  module Environments
+    module CanaryIngress
+      class Update < ::Mutations::BaseMutation
+        REMOVAL_ERR_MSG: "This endpoint was deactivated as part of the certificate-basedkubernetes integration removal. See Epic:https://gitlab.com/groups/gitlab-org/configure/-/epics/8"
+
+        def resolve: (id: untyped, **untyped kwargs) -> ({ errors: ::Array[untyped] } | { errors: untyped })
+
+        private
+
+        def certificate_based_clusters_enabled?: () -> untyped
+      end
+    end
+  end
+end

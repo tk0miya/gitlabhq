@@ -1,0 +1,21 @@
+# Conan Package Manager Client API
+#
+# These API endpoints are not consumed directly by users, so there is no documentation for the
+# individual endpoints. They are called by the Conan package manager client when users run commands
+# like `conan install` or `conan upload`. The usage of the GitLab Conan repository is documented here:
+# https://docs.gitlab.com/ee/user/packages/conan_repository/#installing-a-package
+#
+# Technical debt: https://gitlab.com/gitlab-org/gitlab/issues/35798
+module API
+  module Concerns
+    module Packages
+      module Conan
+        module V1Endpoints
+          extend ActiveSupport::Concern
+
+          include SharedEndpoints
+        end
+      end
+    end
+  end
+end

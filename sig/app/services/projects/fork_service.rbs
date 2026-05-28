@@ -1,0 +1,67 @@
+module Projects
+  class ForkService < BaseService
+    @valid_fork_targets: untyped
+
+    @fork_network: untyped
+
+    @target_path: untyped
+
+    @target_name: untyped
+
+    @target_description: untyped
+
+    @target_namespace: untyped
+
+    @skip_disk_validation: untyped
+
+    @target_mr_default_target_self: untyped
+
+    def execute: (?untyped? fork_to_project) -> untyped
+
+    def valid_fork_targets: (?::Hash[untyped, untyped] options) -> untyped
+
+    def valid_fork_branch?: (untyped branch) -> untyped
+
+    def valid_fork_target?: (?untyped namespace) -> (true | untyped)
+
+    private
+
+    def after_fork: (untyped project) -> (nil | untyped)
+
+    def link_existing_project: (untyped fork_to_project) -> untyped
+
+    def fork_new_project: () -> untyped
+
+    def new_fork_params: () -> untyped
+
+    def allowed_fork?: () -> untyped
+
+    def fork_network: () -> untyped
+
+    def build_fork_network: () -> untyped
+
+    def build_fork_network_member: (untyped fork_to_project) -> untyped
+
+    def link_fork_network: (untyped fork_to_project) -> (nil | untyped)
+
+    def refresh_forks_count: () -> untyped
+
+    def target_path: () -> untyped
+
+    def target_name: () -> untyped
+
+    def target_description: () -> untyped
+
+    def target_namespace: () -> untyped
+
+    def skip_disk_validation: () -> untyped
+
+    def target_visibility_level: () -> untyped
+
+    def target_mr_default_target_self: () -> untyped
+
+    def stream_audit_event: (untyped forked_project) -> nil
+
+    def branch: () -> untyped
+  end
+end

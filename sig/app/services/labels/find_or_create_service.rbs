@@ -1,0 +1,48 @@
+module Labels
+  class FindOrCreateService
+    @current_user: untyped
+
+    @parent: untyped
+
+    @available_labels: untyped
+
+    @existing_labels_by_title: untyped
+
+    @params: untyped
+
+    @skip_authorization: untyped
+
+    def initialize: (untyped current_user, untyped parent, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: (?skip_authorization: bool, ?find_only: bool) -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader parent: untyped
+
+    attr_reader params: untyped
+
+    attr_reader skip_authorization: untyped
+
+    attr_reader existing_labels_by_title: untyped
+
+    def available_labels: () -> untyped
+
+    # Only creates the label if current_user can do so, if the label does not exist
+    # and the user can not create the label, nil is returned
+    def find_or_create_label: (?find_only: bool) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_existing_label: (untyped title) -> untyped
+
+    def title: () -> untyped
+
+    def parent_type: () -> untyped
+
+    def parent_is_group?: () -> untyped
+
+    def include_ancestor_groups?: () -> untyped
+  end
+end

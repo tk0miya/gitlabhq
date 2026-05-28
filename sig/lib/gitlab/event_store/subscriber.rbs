@@ -1,0 +1,17 @@
+module Gitlab
+  module EventStore
+    module Subscriber
+      extend ActiveSupport::Concern
+
+      def perform: (untyped event_type, untyped data) -> untyped
+
+      def handle_event_in: (untyped delay, untyped event) -> untyped
+
+      def handle_event: (untyped event) -> untyped
+
+      private
+
+      def construct_event: (untyped event_type, untyped event_data) -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+class Snippets::ApplicationController < ApplicationController
+  include FindSnippet
+
+  include SnippetAuthorizations
+
+  private
+
+  def authorize_read_snippet!: () -> (nil | untyped)
+
+  def snippet_klass: () -> untyped
+end

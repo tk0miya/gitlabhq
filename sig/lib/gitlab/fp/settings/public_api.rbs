@@ -1,0 +1,36 @@
+module Gitlab
+  # noinspection RubyClassModuleNamingConvention -- This is already fixed in an upcoming RubyMine release
+  module Fp
+    module Settings
+      # The PublicApi module is the public interface that a domain-specific Settings module can
+      # extend to retrieve settings values.
+      #
+      # It DRYs up and encapsulates error handling and the transformation of the "ServiceResponse"
+      # type structure returned by the `#get_settings` method of the "settings_main_class" class.
+      #
+      # It should be extended in a `YourDomain::Settings` module, so it
+      # can be conveniently and concisely called from code within `YourDomain`.
+      #
+      # Note that the API intentionally does not use named arguments, to allow it to be called
+      # more concisely.
+      #
+      # The extending class must implement the following method:
+      #
+      # - `YourDomain::Settings.settings_main_class`: Returns the class that implements the
+      #   `#get_settings` method.
+      module PublicApi
+        # @param [Array<Symbol>] setting_names
+        # @param [Hash] options
+        # @return [Object]
+        # @raise [RuntimeError]
+        def get: (untyped setting_names, ?::Hash[untyped, untyped] options) -> untyped
+
+        # @param [Symbol] setting_name
+        # @param [Hash] options
+        # @return [Object]
+        # @raise [RuntimeError]
+        def get_single_setting: (untyped setting_name, ?::Hash[untyped, untyped] options) -> untyped
+      end
+    end
+  end
+end

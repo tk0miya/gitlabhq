@@ -1,0 +1,21 @@
+module RapidDiffs
+  module Viewers
+    module Text
+      class ParallelViewComponent < TextViewComponent
+        @hunks_with_row_counts: untyped
+
+        @total_rows: untyped
+
+        def self.viewer_name: () -> "text_parallel"
+
+        private
+
+        def column_titles: () -> ::Array[untyped]
+
+        def hunks_with_row_counts: () -> untyped
+
+        def total_rows: () -> untyped
+      end
+    end
+  end
+end

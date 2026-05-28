@@ -1,0 +1,26 @@
+module Gitlab
+  module Database
+    module AsyncIndexes
+      class PostgresAsyncIndex < SharedModel
+        include QueueErrorHandlingConcern
+
+        # schema_name + . + table_name
+        MAX_TABLE_NAME_LENGTH: untyped
+
+        MAX_IDENTIFIER_LENGTH: untyped
+
+        MAX_DEFINITION_LENGTH: 2048
+
+        MAX_ATTEMPTS: 5
+
+        def to_s: () -> untyped
+
+        private
+
+        def remove_whitespaces: () -> (untyped | nil)
+
+        def ensure_correct_schema_and_table_name: () -> (nil | untyped)
+      end
+    end
+  end
+end

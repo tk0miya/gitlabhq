@@ -1,0 +1,27 @@
+module Gitlab
+  module Counters
+    # This class is a wrapper over ActiveRecord counter
+    # for attributes that have not adopted Redis-backed BufferedCounter.
+    class LegacyCounter
+      @counter_record: untyped
+
+      @attribute: untyped
+
+      @current_value: untyped
+
+      def initialize: (untyped counter_record, untyped attribute) -> void
+
+      def increment: (untyped increment) -> untyped
+
+      def bulk_increment: (untyped increments) -> untyped
+
+      private
+
+      def update_counter_record_attribute: (untyped amount) -> untyped
+
+      attr_reader counter_record: untyped
+
+      attr_reader attribute: untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Webauthn
+  class RegisterService < BaseService
+    @user: untyped
+
+    @params: untyped
+
+    @challenge: untyped
+
+    include Authn::WebauthnErrors
+
+    def initialize: (untyped user, untyped params, untyped challenge) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def passkey?: (untyped passkey_credential) -> untyped
+  end
+end

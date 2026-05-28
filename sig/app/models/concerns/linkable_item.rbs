@@ -1,0 +1,13 @@
+# == LinkableItem concern
+#
+# Contains common functionality shared between related issue links and related work item links
+#
+# Used by IssueLink, WorkItems::RelatedWorkItemLink
+#
+module LinkableItem
+  extend ActiveSupport::Concern
+
+  include FromUnion
+
+  include IssuableLink
+end

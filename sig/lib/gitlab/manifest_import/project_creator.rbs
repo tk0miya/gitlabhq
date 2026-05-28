@@ -1,0 +1,25 @@
+module Gitlab
+  module ManifestImport
+    class ProjectCreator
+      @repository: untyped
+
+      @destination: untyped
+
+      @current_user: untyped
+
+      attr_reader repository: untyped
+
+      attr_reader destination: untyped
+
+      attr_reader current_user: untyped
+
+      def initialize: (untyped repository, untyped destination, untyped current_user) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def create_group_with_parents: (untyped full_path) -> untyped
+    end
+  end
+end

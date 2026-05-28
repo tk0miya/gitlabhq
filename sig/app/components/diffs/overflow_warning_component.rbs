@@ -1,0 +1,33 @@
+module Diffs
+  class OverflowWarningComponent < BaseComponent
+    @diffs: untyped
+
+    @diff_files: untyped
+
+    @project: untyped
+
+    @commit: untyped
+
+    @merge_request: untyped
+
+    @can_download_files: untyped
+
+    def initialize: (diffs: untyped, diff_files: untyped, project: untyped, ?commit: untyped?, ?merge_request: untyped?) -> void
+
+    def before_render: () -> untyped
+
+    def message: () -> untyped
+
+    def diff_link: () -> untyped
+
+    def patch_link: () -> untyped
+
+    def message_text: () -> untyped
+
+    private
+
+    def commit?: () -> untyped
+
+    def merge_request?: () -> untyped
+  end
+end

@@ -1,0 +1,16 @@
+module Organizations
+  class OrganizationUserDetail < ApplicationRecord
+    @reference_pattern: untyped
+
+    include Referable
+
+    # Referable methods should be the same as User
+    def reference_prefix: () -> "@"
+
+    def reference_pattern: () -> untyped
+
+    def to_reference: (*untyped) -> ::String
+
+    def no_namespace_conflicts: () -> (nil | untyped)
+  end
+end

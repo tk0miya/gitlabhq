@@ -1,0 +1,24 @@
+# This class is used to store ephemeral data during a BulkImport.
+module Import
+  module BulkImports
+    class EphemeralData
+      @bulk_import_id: untyped
+
+      def initialize: (untyped bulk_import_id) -> void
+
+      def enable_importer_user_mapping: () -> untyped
+
+      def importer_user_mapping_enabled?: () -> untyped
+
+      private
+
+      attr_reader bulk_import_id: untyped
+
+      def add: (untyped field, untyped value) -> untyped
+
+      def read: (untyped field) -> untyped
+
+      def cache_key: () -> ::String
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module API
+  module Entities
+    class Todo < Grape::Entity
+      def todo_target_class: (untyped target_type) -> untyped
+
+      def todo_target_anchor: (untyped todo) -> (::String | nil)
+
+      def design_todo_target_url: (untyped todo) -> untyped
+    end
+  end
+end

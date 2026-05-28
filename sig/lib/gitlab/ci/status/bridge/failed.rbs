@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Status
+      module Bridge
+        class Failed < Status::Build::Failed
+          private
+
+          def failure_reason_message: () -> untyped
+        end
+      end
+    end
+  end
+end

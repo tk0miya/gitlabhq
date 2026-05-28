@@ -1,0 +1,24 @@
+module Gitlab
+  module PerformanceBar
+    ALLOWED_USER_IDS_KEY: "performance_bar_allowed_user_ids:v2"
+
+    EXPIRY_TIME_L1_CACHE: untyped
+
+    EXPIRY_TIME_L2_CACHE: untyped
+
+    def self.enabled_for_request?: () -> untyped
+
+    def self.allowed_for_user?: (?untyped? user) -> (true | false | untyped)
+
+    def self.allowed_group_id: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.allowed_user_ids: () -> untyped
+
+    def self.expire_allowed_user_ids_cache: () -> untyped
+
+    def self.l1_cache_backend: () -> untyped
+
+    def self.l2_cache_backend: () -> untyped
+  end
+end

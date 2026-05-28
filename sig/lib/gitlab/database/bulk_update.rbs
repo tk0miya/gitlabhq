@@ -1,0 +1,91 @@
+module Gitlab
+  module Database
+    # Constructs queries of the form:
+    #
+    #   with cte(a, b, c) as (
+    #     select * from (values (:x, :y, :z), (:q, :r, :s)) as t
+    #     )
+    #   update table set b = cte.b, c = cte.c where a = cte.a
+    #
+    # Which is useful if you want to update a set of records in a single query
+    # but cannot express the update as a calculation (i.e. you have arbitrary
+    # updates to perform).
+    #
+    # The requirements are that the table must have an ID column used to
+    # identify the rows to be updated.
+    #
+    # Usage:
+    #
+    #  mapping = {
+    #    issue_a => { title: 'This title', relative_position: 100 },
+    #    issue_b => { title: 'That title', relative_position: 173 }
+    #  }
+    #
+    #  ::Gitlab::Database::BulkUpdate.execute(%i[title relative_position], mapping)
+    #
+    # Note that this is a very low level tool, and operates on the raw column
+    # values. Enums/state fields must be translated into their underlying
+    # representations, for example, and no hooks will be called.
+    #
+    # This tool does not support all column types. For example,
+    # ActiveModel::Type.lookup(column.type) throws an exception when
+    # the column type is `:timestamptz` (timestamp with time zone).
+    #
+    #
+    module BulkUpdate
+      LIST_SEPARATOR: ", "
+
+      class Setter
+        @table_name: untyped
+
+        @connection: untyped
+
+        @columns: untyped
+
+        @mapping: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped model, untyped columns, untyped mapping) -> void
+
+        def update!: () -> untyped
+
+        def self.column_definitions: (untyped model, untyped columns) -> untyped
+
+        def self.column_definition: (untyped model, untyped name) -> untyped
+
+        def self.value_mapping: (untyped mapping) -> untyped
+
+        private
+
+        attr_reader table_name: untyped
+
+        attr_reader connection: untyped
+
+        attr_reader columns: untyped
+
+        attr_reader mapping: untyped
+
+        def log_name: () -> untyped
+
+        def params: () -> untyped
+
+        def query_attribute: (untyped column, untyped key, untyped values) -> untyped
+
+        def values: () -> untyped
+
+        def list_of: (untyped list) -> untyped
+
+        def sql: () -> ::String
+
+        def column_names: () -> untyped
+
+        def cte_columns: () -> untyped
+
+        def updates: () -> untyped
+      end
+
+      def self.execute: (untyped columns, untyped mapping) { (untyped) -> untyped } -> untyped
+    end
+  end
+end

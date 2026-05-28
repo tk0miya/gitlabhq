@@ -1,0 +1,46 @@
+module Ci
+  class JobRedisState
+    @job: untyped
+
+    @redis_key: untyped
+
+    include ActiveModel::Model
+
+    include ActiveModel::Attributes
+
+    class RedisBool < ::ActiveRecord::Type::Value
+      def deserialize: (untyped value) -> untyped
+
+      def serialize: (untyped value) -> untyped
+    end
+
+    UnpersistedJobError: untyped
+
+    REDIS_TTL: 300
+
+    REDIS_KEY: "ci_job_redis_state:{%{project_id}}:%{job_id}"
+
+    def self.find_or_initialize_by: (job: untyped) -> untyped
+
+    def self.redis_key: (untyped project_id, untyped job_id) -> untyped
+
+    def self.with_redis: () { (?) -> untyped } -> untyped
+
+    def initialize: (?::Hash[untyped, untyped] attributes) -> void
+
+    # We need a job_id to save the record in Redis
+    def save: () -> true
+
+    def update: (?::Hash[untyped, untyped] values) -> untyped
+
+    def enqueue_immediately?: () -> untyped
+
+    private
+
+    attr_reader job: untyped
+
+    def attributes_for_redis: () -> untyped
+
+    def redis_key: () -> untyped
+  end
+end

@@ -1,0 +1,71 @@
+module GitlabSettings
+  class Options
+    @options: untyped
+
+    extend Forwardable
+
+    # Recursively build GitlabSettings::Options
+    def self.build: (untyped obj) -> untyped
+
+    def initialize: (untyped value) -> void
+
+    def []: (untyped key) -> untyped
+
+    def []=: (untyped key, untyped value) -> untyped
+
+    def key?: (untyped key) -> untyped
+
+    alias has_key? key?
+
+    # Some configurations use the 'default' key, like:
+    # https://gitlab.com/gitlab-org/gitlab/-/blob/c4d5c77c87494bb320fa7fdf19b0e4d7d52af1d1/spec/support/helpers/stub_configuration.rb#L96
+    # But since `default` is also a method in Hash, this can be confusing and
+    # raise an exception instead of returning nil, as expected in some places.
+    # To avoid that, we use #default always as a possible internal key
+    def default: () -> untyped
+
+    # For backward compatibility, like:
+    # https://gitlab.com/gitlab-org/gitlab/-/blob/adf67e90428670aaa955731f3bdeafb8b3a874cd/lib/gitlab/database/health_status/indicators/patroni_apdex.rb#L58
+    def with_indifferent_access: () -> untyped
+
+    def dup: () -> untyped
+
+    def merge: (untyped other) -> untyped
+
+    def merge!: (untyped other) -> untyped
+
+    def reverse_merge!: (untyped other) -> untyped
+
+    def deep_merge: (untyped other) -> untyped
+
+    def deep_merge!: (untyped other) -> untyped
+
+    def is_a?: (untyped klass) -> (true | untyped)
+
+    def to_hash: () -> untyped
+
+    alias to_h to_hash
+
+    # Don't alter the internal keys
+    def stringify_keys!: () -> untyped
+
+    alias deep_stringify_keys! stringify_keys!
+
+    # Don't alter the internal keys
+    def symbolize_keys!: () -> untyped
+
+    alias deep_symbolize_keys! symbolize_keys!
+
+    def method_missing: (untyped name, *untyped args) { (?) -> untyped } -> untyped
+
+    def respond_to_missing?: (untyped name, ?bool include_all) -> (true | untyped)
+
+    private
+
+    # We can't call Gitlab::ErrorTracking.track_and_raise_for_dev_exception
+    # because that method will attempt to load ApplicationContext and
+    # fail to load User since the Devise is not yet set up in
+    # `config/initialiers/8_devise.rb`.
+    def log_and_raise_dev_exception: (untyped message, ?::Hash[untyped, untyped] extra) -> untyped
+  end
+end

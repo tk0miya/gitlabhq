@@ -1,0 +1,63 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        module File
+          class Remote < Base
+            @location: untyped
+
+            include Gitlab::Utils::StrongMemoize
+
+            def initialize: (untyped params, untyped context) -> void
+
+            def preload_content: () -> untyped
+
+            def content: () -> (nil | untyped)
+
+            def include_type: () -> :remote
+
+            def metadata: () -> untyped
+
+            def validate_context!: () -> nil
+
+            def validate_location!: () -> untyped
+
+            private
+
+            def fetch_body_with_cache: () -> untyped
+
+            def cache_enabled?: () -> untyped
+
+            def cache_key: () -> ::String
+
+            def cache_ttl: () -> untyped
+
+            def fetch_response_body: () -> untyped
+
+            def fetch_async_content: () -> untyped
+
+            def http_options: () -> { async: true, open_timeout: untyped, read_timeout: untyped, write_timeout: 30, timeout: untyped }
+
+            def fetch_with_error_handling: () { () -> untyped } -> (untyped | nil)
+
+            def retry_or_add_error_for_response: (untyped code, untyped attempt, untyped max_attempts) -> (true | false)
+
+            def retry_or_add_error: (untyped attempt, untyped max_attempts, untyped error_message) -> (true | false)
+
+            def should_retry_response?: (untyped code, untyped attempt, untyped max_attempts) -> untyped
+
+            def should_retry_error?: (untyped attempt, untyped max_attempts) -> untyped
+
+            def backoff_delay: (untyped attempt) -> untyped
+
+            def log_cache_access: (cache_hit: untyped, duration: untyped) -> untyped
+
+            def log_http_timeout: () -> untyped
+
+            def verify_integrity: (untyped content) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

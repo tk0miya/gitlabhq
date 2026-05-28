@@ -1,0 +1,17 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateCiTriggersTokenToTokenEncrypted < BatchedMigrationJob
+      class CiTrigger < ::Ci::ApplicationRecord
+        include TokenAuthenticatable
+
+        TRIGGER_TOKEN_PREFIX: "glptt-"
+
+        def token=: (untyped new_token) -> untyped
+
+        def compute_token_prefix: () -> untyped
+      end
+
+      def perform: () -> untyped
+    end
+  end
+end

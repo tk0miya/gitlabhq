@@ -1,0 +1,88 @@
+module Gitlab
+  module Config
+    module Entry
+      #
+      # Base abstract class for each configuration entry node.
+      #
+      class Node
+        self.@aspects: untyped
+
+        @config: untyped
+
+        @metadata: untyped
+
+        @entries: untyped
+
+        @warnings: untyped
+
+        InvalidError: untyped
+
+        attr_reader config: untyped
+
+        attr_reader metadata: untyped
+
+        attr_accessor key: untyped
+
+        attr_accessor parent: untyped
+
+        attr_accessor default: untyped
+
+        attr_accessor description: untyped
+
+        attr_accessor deprecation: untyped
+
+        def initialize: (untyped config, **untyped metadata) ?{ (untyped) -> untyped } -> void
+
+        def []: (untyped key) -> untyped
+
+        def compose!: (?untyped? deps) ?{ () -> untyped } -> (nil | untyped)
+
+        def leaf?: () -> untyped
+
+        def descendants: () -> untyped
+
+        def ancestors: () -> (untyped | ::Array[untyped])
+
+        def opt: (untyped key) -> untyped
+
+        def valid?: () -> untyped
+
+        def errors: () -> ::Array[untyped]
+
+        def warnings: () -> untyped
+
+        def add_warning: (untyped message) -> untyped
+
+        def value: () -> untyped
+
+        def specified?: () -> true
+
+        def relevant?: () -> true
+
+        def location: () -> untyped
+
+        def inspect: () -> ::String
+
+        def hash?: () -> untyped
+
+        def array?: () -> untyped
+
+        def string?: () -> untyped
+
+        def integer?: () -> untyped
+
+        def self.default: (**untyped) -> nil
+
+        def self.aspects: () -> untyped
+
+        def self.with_aspect: (untyped blk) -> untyped
+
+        private
+
+        attr_reader entries: untyped
+
+        def log_and_warn_deprecated_entry: (untyped entry) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module ApplicationWorker
+  extend ActiveSupport::Concern
+
+  include Sidekiq::Worker
+
+  include WorkerAttributes
+
+  include WorkerContext
+
+  include Gitlab::SidekiqVersioning::Worker
+
+  include Gitlab::Loggable
+
+  LOGGING_EXTRA_KEY: "extra"
+
+  SAFE_PUSH_BULK_LIMIT: 1000
+
+  # This is a hook for EE
+  #
+  # @param sharding_object [Object] the sharding object to check, such as an
+  # organization, namespace, or project
+  # @yield [block] Executed if the sharding object is an SSOT, not a replica
+  def skip_writes_if_replica: (untyped _sharding_object) { () -> untyped } -> untyped
+
+  # This is a hook for EE
+  #
+  # @param sharding_object [Object] the sharding object to check, such as an
+  # organization, namespace, or project
+  # @return [Boolean] true if the sharding object is a replica, false if SSOT
+  def skip_writes_if_replica?: (untyped _sharding_object) -> false
+end

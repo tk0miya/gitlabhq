@@ -1,0 +1,19 @@
+module BulkImports
+  class StaleImportWorker
+    @logger: untyped
+
+    include ApplicationWorker
+
+    # This worker does not schedule other workers that require context.
+    include CronjobQueue
+
+    # Using Keyset pagination for scopes that involve timestamp indexes
+    def perform: () -> untyped
+
+    def logger: () -> untyped
+
+    def bulk_import_scope: () -> untyped
+
+    def entity_scope: () -> untyped
+  end
+end

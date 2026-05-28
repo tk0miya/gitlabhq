@@ -1,0 +1,9 @@
+module Ci
+  class ArchiveTraceWorker
+    include ApplicationWorker
+
+    include PipelineBackgroundQueue
+
+    def perform: (untyped job_id) -> untyped
+  end
+end

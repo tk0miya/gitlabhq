@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    module Build
+      class Step
+        @name: untyped
+
+        @allow_failure: untyped
+
+        WHEN_ON_FAILURE: "on_failure"
+
+        WHEN_ON_SUCCESS: "on_success"
+
+        WHEN_ALWAYS: "always"
+
+        attr_reader name: untyped
+
+        attr_accessor script: untyped
+
+        attr_accessor timeout: untyped
+
+        attr_accessor when: untyped
+
+        attr_accessor allow_failure: untyped
+
+        def self.from_commands: (untyped job) -> untyped
+
+        def self.from_release: (untyped job) -> (nil | untyped)
+
+        def self.from_after_script: (untyped job) -> (nil | untyped)
+
+        def initialize: (untyped name) -> void
+      end
+    end
+  end
+end

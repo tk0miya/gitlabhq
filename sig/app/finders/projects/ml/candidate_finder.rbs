@@ -1,0 +1,37 @@
+module Projects
+  module Ml
+    class CandidateFinder
+      @experiment: untyped
+
+      @params: untyped
+
+      VALID_ORDER_BY_TYPES: ::Array["column" | "metric"]
+
+      VALID_ORDER_BY_COLUMNS: ::Array["name" | "created_at" | "id"]
+
+      VALID_SORT: ::Array["asc" | "desc"]
+
+      def initialize: (untyped experiment, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def by_name: (untyped candidates) -> untyped
+
+      def order: (untyped candidates) -> untyped
+
+      def order_by_metric?: () -> untyped
+
+      def order_by_type: () -> untyped
+
+      def column_order_by: () -> untyped
+
+      def metric_order_by: () -> untyped
+
+      def sort: () -> untyped
+
+      def valid_or_default: (untyped value, untyped valid_values, untyped default) -> untyped
+    end
+  end
+end

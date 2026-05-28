@@ -1,0 +1,105 @@
+class TodosFinder
+  @users: untyped
+
+  @params: untyped
+
+  @types: untyped
+
+  prepend FinderWithCrossProjectAccess
+
+  include FinderMethods
+
+  include Gitlab::Utils::StrongMemoize
+
+  include SafeFormatHelper
+
+  NONE: "0"
+
+  TODO_TYPES: untyped
+
+  attr_accessor params: untyped
+
+  def self.todo_types: () -> untyped
+
+  def initialize: (users: untyped, **untyped params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  attr_reader users: untyped
+
+  def skip_cross_project_check?: () -> untyped
+
+  def current_user: () -> untyped
+
+  def users_list: () -> untyped
+
+  def action_id?: () -> untyped
+
+  def action_id: () -> untyped
+
+  def action_array_provided?: () -> untyped
+
+  def map_actions_to_ids: () -> untyped
+
+  def to_action_id: () -> untyped
+
+  def action?: () -> untyped
+
+  def action: () -> untyped
+
+  def snoozed?: () -> untyped
+
+  def author?: () -> untyped
+
+  def author: () -> untyped
+
+  def project?: () -> untyped
+
+  def group?: () -> untyped
+
+  def group: () -> untyped
+
+  def types: () -> untyped
+
+  def valid_types?: () -> untyped
+
+  def invalid_type_message: () -> untyped
+
+  def sort: (untyped items) -> untyped
+
+  # We only need to surface snoozed to-dos when querying pending items. The special sort order is
+  # unnecessary in the `Done` and `All` tabs where we can simply sort by ID (= creation date).
+  def use_snooze_custom_sort?: () -> untyped
+
+  def by_action: (untyped items) -> untyped
+
+  def action_id_array_provided?: () -> untyped
+
+  def by_action_ids: (untyped items) -> untyped
+
+  def by_action_id: (untyped items) -> untyped
+
+  def by_author: (untyped items) -> untyped
+
+  def by_project: (untyped items) -> untyped
+
+  def by_group: (untyped items) -> untyped
+
+  def by_state: (untyped items) -> untyped
+
+  def by_snoozed_status: (untyped items) -> untyped
+
+  def by_target_id: (untyped items) -> untyped
+
+  def by_types: (untyped items) -> untyped
+
+  def without_hidden: (untyped items) -> untyped
+
+  def filter_all?: () -> untyped
+
+  def filter_pending_only?: () -> untyped
+
+  def filter_done_only?: () -> untyped
+end

@@ -1,0 +1,19 @@
+class IssuesFinder
+  class Params < IssuableFinder::Params
+    def filter_by_any_due_date?: () -> untyped
+
+    def filter_by_no_due_date?: () -> untyped
+
+    def filter_by_overdue?: () -> untyped
+
+    def filter_by_due_today?: () -> untyped
+
+    def filter_by_due_tomorrow?: () -> untyped
+
+    def filter_by_due_this_week?: () -> untyped
+
+    def filter_by_due_this_month?: () -> untyped
+
+    def filter_by_due_next_month_and_previous_two_weeks?: () -> untyped
+  end
+end

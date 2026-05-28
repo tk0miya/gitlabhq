@@ -1,0 +1,19 @@
+module Ci
+  class BuildReportResult < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    def tests_name: () -> untyped
+
+    def tests_duration: () -> untyped
+
+    def tests_success: () -> untyped
+
+    def tests_failed: () -> untyped
+
+    def tests_errored: () -> untyped
+
+    def tests_skipped: () -> untyped
+
+    def suite_error: () -> untyped
+  end
+end

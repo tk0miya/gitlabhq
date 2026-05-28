@@ -1,0 +1,69 @@
+module Ci
+  class RunnersFinder < UnionFinder
+    @params: untyped
+
+    @group: untyped
+
+    @project: untyped
+
+    @user: untyped
+
+    @current_user: untyped
+
+    include Gitlab::Allowable
+
+    DEFAULT_SORT: "created_at_desc"
+
+    def initialize: (current_user: untyped, params: untyped) -> void
+
+    def execute: () -> untyped
+
+    def sort_key: () -> untyped
+
+    private
+
+    attr_reader group: untyped
+
+    attr_reader project: untyped
+
+    def by_ids: (untyped items) -> untyped
+
+    def runner_type: () -> untyped
+
+    def membership: () -> untyped
+
+    def allowed_sorts: () -> ::Array["contacted_asc" | "contacted_desc" | "created_at_asc" | "created_at_desc" | "created_date" | "token_expires_at_asc" | "token_expires_at_desc"]
+
+    def all_runners: () -> untyped
+
+    def group_runners: () -> untyped
+
+    def project_runners: () -> untyped
+
+    def assignable_for_project: (untyped items) -> untyped
+
+    def search: (untyped items) -> untyped
+
+    def by_active: (untyped items) -> untyped
+
+    def by_status: (untyped items) -> untyped
+
+    def by_upgrade_status: (untyped items) -> untyped
+
+    def by_runner_type: (untyped items) -> untyped
+
+    def by_tag_list: (untyped items) -> untyped
+
+    def by_creator_id: (untyped items) -> untyped
+
+    def by_creator_username: (untyped items) -> untyped
+
+    def by_owner: (untyped items) -> untyped
+
+    def by_version_prefix: (untyped items) -> untyped
+
+    def sort: (untyped items) -> untyped
+
+    def request_tag_list: (untyped items) -> untyped
+  end
+end

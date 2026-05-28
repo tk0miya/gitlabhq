@@ -1,0 +1,8 @@
+# Verifies features availability based on issue type.
+# This can be used, for example, for hiding UI elements or blocking specific
+# quick actions for particular issue types;
+module IssueAvailableFeatures
+  extend ActiveSupport::Concern
+
+  def issue_type_supports?: (untyped feature) -> untyped
+end

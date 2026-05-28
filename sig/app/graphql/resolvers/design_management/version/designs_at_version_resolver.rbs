@@ -1,0 +1,28 @@
+module Resolvers
+  module DesignManagement
+    module Version
+      # Resolver for DesignAtVersion objects given an implicit version context
+      class DesignsAtVersionResolver < BaseResolver
+        include Gitlab::Graphql::Authorize::AuthorizeResource
+
+        DesignID: untyped
+
+        def self.single: () -> untyped
+
+        def resolve: (?ids: untyped?, ?filenames: untyped?) -> untyped
+
+        private
+
+        def find: (untyped ids, untyped filenames) -> untyped
+
+        def design_ids: (untyped gids) -> (nil | untyped)
+
+        def issue: () -> untyped
+
+        def version: () -> untyped
+
+        def make: (untyped design) -> untyped
+      end
+    end
+  end
+end

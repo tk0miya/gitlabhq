@@ -1,0 +1,15 @@
+module LooseForeignKeys
+  class PartitionCleanerService < CleanerService
+    def execute: () -> { affected_rows: untyped, table: untyped }
+
+    private
+
+    def arel_table: () -> untyped
+
+    def primary_keys: () -> untyped
+
+    def quoted_table_name: () -> untyped
+
+    def execute_partitioned_queries: () -> untyped
+  end
+end

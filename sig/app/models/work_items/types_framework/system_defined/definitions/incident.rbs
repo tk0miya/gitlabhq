@@ -1,0 +1,25 @@
+module WorkItems
+  module TypesFramework
+    module SystemDefined
+      module Definitions
+        module Incident
+          def self.widgets: () -> ::Array["ai_session" | "assignees" | "award_emoji" | "crm_contacts" | "current_user_todos" | "description" | "development" | "email_participants" | "hierarchy" | "iteration" | "labels" | "linked_items" | "linked_resources" | "milestone" | "notes" | "notifications" | "participants" | "time_tracking"]
+
+          def self.widget_options: () -> ::Hash[untyped, untyped]
+
+          def self.configuration: () -> { id: 2, name: "Incident", base_type: "incident", icon_name: "work-item-incident" }
+
+          def self.allowed_child_types: () -> ::Array[{ type: :task, maximum_depth: 1 }]
+
+          def self.use_legacy_view?: () -> true
+
+          def self.incident_management?: () -> true
+
+          def self.configurable?: () -> false
+
+          def self.filterable_board_view?: () -> true
+        end
+      end
+    end
+  end
+end

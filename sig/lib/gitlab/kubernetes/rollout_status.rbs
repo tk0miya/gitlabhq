@@ -1,0 +1,46 @@
+module Gitlab
+  module Kubernetes
+    # Calculates the rollout status for a set of kubernetes deployments.
+    #
+    # A GitLab environment may be composed of several Kubernetes deployments and
+    # other resources. The rollout status sums the Kubernetes deployments
+    # together.
+    class RolloutStatus
+      @status: untyped
+
+      @deployments: untyped
+
+      @instances: untyped
+
+      @canary_ingress: untyped
+
+      @completion: untyped
+
+      attr_reader deployments: untyped
+
+      attr_reader instances: untyped
+
+      attr_reader completion: untyped
+
+      attr_reader status: untyped
+
+      attr_reader canary_ingress: untyped
+
+      def complete?: () -> untyped
+
+      def loading?: () -> untyped
+
+      def not_found?: () -> untyped
+
+      def found?: () -> untyped
+
+      def canary_ingress_exists?: () -> untyped
+
+      def self.from_deployments: (*untyped deployments_attrs, ?pods_attrs: untyped, ?ingresses: untyped) -> untyped
+
+      def self.loading: () -> untyped
+
+      def initialize: (untyped deployments, ?pods: untyped, ?ingresses: untyped, ?status: ::Symbol) -> void
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Packages
+  module Debian
+    class ProcessPackageFileWorker
+      @package_file_id: untyped
+
+      @distribution_name: untyped
+
+      @component_name: untyped
+
+      include ApplicationWorker
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ::Packages::ErrorHandling
+
+      def perform: (untyped package_file_id, untyped distribution_name, untyped component_name) -> untyped
+
+      private
+
+      def package_file: () -> untyped
+    end
+  end
+end

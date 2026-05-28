@@ -1,0 +1,81 @@
+module WorkItems
+  module SavedViews
+    class FilterSanitizerService < FilterBaseService
+      @filters: untyped
+
+      @container: untyped
+
+      @current_user: untyped
+
+      @warnings: untyped
+
+      @sanitized_filters: untyped
+
+      @work_item_types_provider: untyped
+
+      attr_accessor warnings: untyped
+
+      attr_reader sanitized_filters: untyped
+
+      def initialize: (filter_data: untyped, namespace: untyped, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def validate_static_filters: () -> (nil | untyped)
+
+      # Simple cases using validate_with_context
+      def validate_assignee: () -> untyped
+
+      def validate_milestone: () -> untyped
+
+      def validate_release: () -> untyped
+
+      # Author - custom handling due to singular output and different OR key
+      def validate_author: () -> (nil | untyped)
+
+      def validate_not_author: () -> untyped
+
+      def validate_or_author: () -> (nil | untyped)
+
+      # Labels - custom handling due to unique and different OR key
+      def validate_labels: () -> untyped
+
+      def validate_not_labels: () -> untyped
+
+      def validate_or_labels: () -> (nil | untyped)
+
+      def validate_hierarchy: () -> (nil | untyped)
+
+      def validate_not_parent_ids: () -> (nil | untyped)
+
+      def validate_crm_contact_id: () -> (nil | untyped)
+
+      def validate_crm_organization_id: () -> (nil | untyped)
+
+      def validate_work_item_type_ids: () -> (nil | untyped)
+
+      def validate_not_work_item_type_ids: () -> (nil | untyped)
+
+      def resolve_work_item_type_ids: (untyped type_ids, untyped warning_key) -> untyped
+
+      def work_item_types_provider: () -> untyped
+
+      def validate_full_path: () -> (nil | untyped)
+
+      # Validates regular, negated, and OR contexts for simple cases
+      def validate_with_context: (id_key: untyped, model: untyped, attribute: untyped, output_key: untyped, warning_label: untyped, ?unique: bool) -> (nil | untyped)
+
+      def validate_id_to_attribute: (id_key: untyped, model: untyped, attribute: untyped, output_key: untyped, warning_label: untyped, ?unique: bool) -> (nil | untyped)
+
+      def validate_negated_id_to_attribute: (id_key: untyped, model: untyped, attribute: untyped, output_key: untyped, warning_label: untyped, ?unique: bool) -> (nil | untyped)
+
+      def find_records_and_attributes: (untyped ids, untyped model, untyped attribute, ?unique: bool) -> untyped
+
+      def add_missing_warning: (untyped field, untyped expected_count, untyped found_count, untyped warning_label) -> untyped
+
+      def add_warning: (untyped field, untyped message) -> untyped
+    end
+  end
+end

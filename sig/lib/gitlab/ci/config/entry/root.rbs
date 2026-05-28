@@ -1,0 +1,40 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # This class represents a global entry - root Entry for entire
+        # GitLab CI Configuration file.
+        #
+        class Root < ::Gitlab::Config::Entry::Node
+          @jobs_config: untyped
+
+          @config: untyped
+
+          include ::Gitlab::Config::Entry::Configurable
+
+          ALLOWED_KEYS: ::Array[:default | :include | :before_script | :image | :services | :after_script | :variables | :stages | :cache | :workflow]
+
+          attr_reader jobs_config: untyped
+
+          extend ::Gitlab::Utils::StrongMemoize
+
+          def self.reserved_nodes_names: () -> untyped
+
+          def initialize: (untyped config, **untyped metadata) -> void
+
+          def compose!: (?untyped? _deps) -> untyped
+
+          private
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def compose_jobs!: () -> untyped
+
+          def filter_jobs!: () -> (nil | untyped)
+
+          def logger: () -> untyped
+        end
+      end
+    end
+  end
+end

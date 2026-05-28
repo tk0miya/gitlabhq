@@ -1,0 +1,17 @@
+module Gitlab
+  module Cache
+    module JsonCaches
+      class JsonKeyed < JsonCache
+        private
+
+        def expanded_cache_key: (untyped key) -> ::Array[untyped]
+
+        def write_raw: (untyped key, untyped value, ?untyped? options) -> untyped
+
+        def read_raw: (untyped key) -> untyped
+
+        def strategy_key_component: () -> untyped
+      end
+    end
+  end
+end

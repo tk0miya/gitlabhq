@@ -1,0 +1,13 @@
+module Resolvers
+  module Wikis
+    class WikiPageResolver < BaseResolver
+      def resolve: (?slug: untyped?, ?namespace_id: untyped?, ?project_id: untyped?) -> (nil | untyped)
+
+      private
+
+      def extract_project_id: (untyped gid) -> untyped
+
+      def extract_namespace_id: (untyped gid) -> untyped
+    end
+  end
+end

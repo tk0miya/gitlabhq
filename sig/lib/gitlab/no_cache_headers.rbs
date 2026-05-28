@@ -1,0 +1,7 @@
+module Gitlab
+  module NoCacheHeaders
+    DEFAULT_GITLAB_NO_CACHE_HEADERS: { "Cache-Control" => ::String, "Expires" => "Fri, 01 Jan 1990 00:00:00 GMT" }
+
+    def no_cache_headers: () -> untyped
+  end
+end

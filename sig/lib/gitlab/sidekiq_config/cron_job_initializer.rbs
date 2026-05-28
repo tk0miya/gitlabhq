@@ -1,0 +1,16 @@
+module Gitlab
+  module SidekiqConfig
+    class CronJobInitializer
+      def self.execute: () -> untyped
+
+      private
+
+      # Migrated from Settings#load_dynamic_cron_schedules! in config/settings.rb.
+      def self.load_dynamic_cron_schedules!: () -> (nil | untyped)
+
+      # Computes a per-instance random schedule from the instance UUID so that
+      # service pings are distributed across instances rather than firing all at once.
+      def self.cron_for_service_ping: () -> ::String
+    end
+  end
+end

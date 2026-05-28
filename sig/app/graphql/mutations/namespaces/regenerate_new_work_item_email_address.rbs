@@ -1,0 +1,13 @@
+module Mutations
+  module Namespaces
+    class RegenerateNewWorkItemEmailAddress < BaseMutation
+      include ResolvesNamespace
+
+      def resolve: (full_path: untyped) -> ({ namespace: nil, errors: ::Array[untyped] } | { namespace: untyped, errors: ::Array[untyped] })
+
+      private
+
+      def find_object: (untyped full_path) -> untyped
+    end
+  end
+end

@@ -1,0 +1,59 @@
+module Gitlab
+  module Ci
+    module Variables
+      class Collection
+        @variables: untyped
+
+        @variables_by_key: untyped
+
+        @errors: untyped
+
+        include Enumerable
+
+        attr_reader errors: untyped
+
+        def self.fabricate: (untyped input) -> untyped
+
+        def initialize: (?untyped variables, ?untyped? errors) -> void
+
+        def append: (untyped resource) -> self
+
+        def compact: () -> untyped
+
+        def concat: (untyped resources) -> (self | untyped)
+
+        def each: () { (untyped) -> untyped } -> untyped
+
+        def +: (untyped other) -> untyped
+
+        def []: (untyped key) -> untyped
+
+        def all: (untyped key) -> untyped
+
+        def size: () -> untyped
+
+        # This method should only be called via runner_variables->to_runner_variables
+        # because this is an expensive operation by initializing new objects in `to_runner_variable`.
+        def to_runner_variables: () -> untyped
+
+        def to_hash_variables: () -> untyped
+
+        def to_hash: () -> untyped
+
+        def to_lazy_hash: () -> untyped
+
+        def reject: () { (?) -> untyped } -> untyped
+
+        def sort_and_expand_all: (?keep_undefined: bool, ?expand_file_refs: bool, ?expand_raw_refs: bool) -> untyped
+
+        def to_s: () -> ::String
+
+        def expand_value: (untyped value, ?keep_undefined: bool, ?expand_file_refs: bool, ?expand_raw_refs: bool) -> untyped
+
+        private
+
+        attr_reader variables: untyped
+      end
+    end
+  end
+end

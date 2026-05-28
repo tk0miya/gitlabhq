@@ -1,0 +1,20 @@
+module Mutations
+  module Issues
+    class Create < BaseMutation
+      include Mutations::SpamProtection
+
+      include FindsProject
+
+      include CommonMutationArguments
+
+      def ready?: (**untyped args) -> untyped
+
+      def resolve: (project_path: untyped, **untyped attributes) -> { issue: untyped, errors: untyped }
+
+      private
+
+      # _project argument is unused here, but it is necessary on the EE version of the method
+      def build_create_issue_params: (untyped params, untyped _project) -> untyped
+    end
+  end
+end

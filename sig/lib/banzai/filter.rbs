@@ -1,0 +1,11 @@
+module Banzai
+  module Filter
+    # The maximum number of items that a filter should allow,
+    # such as emojis, etc.
+    FILTER_ITEM_LIMIT: 1000
+
+    def self.[]: (untyped name) -> untyped
+
+    def self.filter_item_limit_exceeded?: (untyped count, ?limit: untyped) -> untyped
+  end
+end

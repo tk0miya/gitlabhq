@@ -1,0 +1,11 @@
+module Gitlab
+  module LanguageData
+    EXTENSION_MUTEX: untyped
+
+    extend Gitlab::Utils::StrongMemoize
+
+    def self.extensions: () -> untyped
+
+    def self.clear_extensions!: () -> untyped
+  end
+end

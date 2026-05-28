@@ -1,0 +1,128 @@
+module Gitlab
+  module SidekiqMiddleware
+    module DuplicateJobs
+      # This class defines an identifier of a job in a queue
+      # The identifier based on a job's class and arguments.
+      #
+      # As strategy decides when to keep track of the job in redis and when to
+      # remove it.
+      #
+      # Storing the deduplication key in redis can be done by calling `check!`
+      # check returns the `jid` of the job if it was scheduled, or the `jid` of
+      # the duplicate job if it was already scheduled
+      #
+      # When new jobs can be scheduled again, the strategy calls `#delete`.
+      class DuplicateJob
+        @job: untyped
+
+        @queue_name: untyped
+
+        @idempotency_key: untyped
+
+        @worker_klass: untyped
+
+        @existing_wal_locations: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        DEFAULT_DUPLICATE_KEY_TTL: untyped
+
+        DEFAULT_STRATEGY: :until_executing
+
+        STRATEGY_NONE: :none
+
+        attr_reader existing_jid: untyped
+
+        def initialize: (untyped job, untyped queue_name) -> void
+
+        # This will continue the middleware chain if the job should be scheduled
+        # It will return false if the job needs to be cancelled
+        def schedule: () { (?) -> untyped } -> untyped
+
+        # This will continue the server middleware chain if the job should be
+        # executed.
+        # It will return false if the job should not be executed.
+        def perform: () { (?) -> untyped } -> untyped
+
+        # This method will return the jid that was set in redis
+        def check!: (?untyped expiry) -> untyped
+
+        def set_signaling_key: (untyped expiry) -> (nil | untyped)
+
+        def clear_signaling_key: () -> (nil | untyped)
+
+        def check_and_del_reschedule_signal: () -> untyped
+
+        def update_latest_wal_location!: () -> (nil | untyped)
+
+        def idempotency_key: () -> untyped
+
+        def latest_wal_locations: () -> (::Hash[untyped, untyped] | untyped)
+
+        def delete!: () -> untyped
+
+        def reschedule: () -> untyped
+
+        def scheduled?: () -> untyped
+
+        def duplicate?: () -> untyped
+
+        def scheduled_at: () -> untyped
+
+        def options: () -> (::Hash[untyped, untyped] | untyped)
+
+        def idempotent?: () -> (false | untyped)
+
+        def duplicate_key_ttl: () -> untyped
+
+        def deferred?: () -> untyped
+
+        def concurrency_limit_resumed?: () -> untyped
+
+        def strategy: () -> untyped
+
+        def reschedulable?: () -> untyped
+
+        private
+
+        attr_writer existing_wal_locations: untyped
+
+        attr_reader queue_name: untyped
+
+        attr_reader job: untyped
+
+        attr_writer existing_jid: untyped
+
+        def worker_klass: () -> untyped
+
+        def job_wal_locations: () -> untyped
+
+        def pg_wal_lsn_diff: (untyped connection_name) -> untyped
+
+        def worker_class_name: () -> untyped
+
+        def arguments: () -> untyped
+
+        def jid: () -> untyped
+
+        def reschedule_signal_key: () -> ::String
+
+        def cookie_key: () -> ::String
+
+        def get_cookie: () -> untyped
+
+        def idempotency_hash: () -> untyped
+
+        def namespace: () -> ::String
+
+        def idempotency_string: () -> ::String
+
+        def idempotency_arguments: () -> untyped
+
+        def existing_wal_locations: () -> untyped
+
+        def with_redis: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

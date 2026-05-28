@@ -1,0 +1,75 @@
+module Gitlab
+  module X509
+    class Signature
+      @signature_text: untyped
+
+      @signed_text: untyped
+
+      @email: untyped
+
+      @created_at: untyped
+
+      @project: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include SignatureType
+
+      attr_reader signature_text: untyped
+
+      attr_reader signed_text: untyped
+
+      attr_reader created_at: untyped
+
+      attr_reader project: untyped
+
+      def initialize: (untyped signature_text, untyped signed_text, untyped email, untyped created_at, untyped project) -> void
+
+      def type: () -> :x509
+
+      def x509_certificate: () -> (nil | untyped)
+
+      def signed_by_user: () -> untyped
+
+      def verified_signature: () -> untyped
+
+      def verification_status: () -> (:unverified | :verified)
+
+      private
+
+      def cert: () -> untyped
+
+      def cert_store: () -> untyped
+
+      def p7: () -> untyped
+
+      def valid_signing_time?: () -> untyped
+
+      def valid_signature?: () -> untyped
+
+      def verified_signature?: () -> untyped
+
+      def signer_certificate: (untyped p7) -> untyped
+
+      def certificate_crl: () -> (nil | untyped)
+
+      def get_certificate_extension: (untyped extension) -> untyped
+
+      def issuer_subject_key_identifier: () -> (nil | untyped)
+
+      def certificate_subject_key_identifier: () -> (nil | untyped)
+
+      def certificate_issuer: () -> untyped
+
+      def certificate_subject: () -> untyped
+
+      def certificate_email: () -> untyped
+
+      def certificate_emails: () -> (nil | untyped)
+
+      def x509_issuer: () -> (nil | untyped)
+
+      def certificate_attributes: () -> (nil | { subject_key_identifier: untyped, subject: untyped, email: untyped, emails: untyped, serial_number: untyped, x509_issuer_id: untyped, project_id: untyped })
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      module Ci
+        # The purpose of this analyzer is to detect queries not going through a partitioning routing table
+        class PartitioningRoutingAnalyzer < Database::QueryAnalyzers::Base
+          RoutingTableNotUsedError: untyped
+
+          ENABLED_TABLES: ::Array["ci_builds" | "ci_builds_metadata" | "ci_job_artifacts" | "ci_pipeline_variables" | "ci_pipelines" | "ci_stages"]
+
+          def self.enabled?: () -> untyped
+
+          def self.analyze: (untyped parsed) -> (nil | untyped)
+
+          private
+
+          def self.analyze_legacy_tables_usage: (untyped parsed) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,10 @@
+# Concern that overrides the Devise methods to allow reset password instructions
+# to be sent to any users' confirmed secondary emails.
+# See https://github.com/heartcombo/devise/blob/main/lib/devise/models/recoverable.rb
+module RecoverableByAnyEmail
+  extend ActiveSupport::Concern
+
+  def send_reset_password_instructions: (?::Hash[untyped, untyped] opts) -> untyped
+
+  def send_reset_password_instructions_notification: (untyped token, ?::Hash[untyped, untyped] opts) -> untyped
+end

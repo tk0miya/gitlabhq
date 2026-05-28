@@ -1,0 +1,13 @@
+module Database
+  class BatchedBackgroundMigrationWorker
+    self.@tracking_database: untyped
+
+    @execution_worker_class: untyped
+
+    include BatchedBackgroundMigration::SingleDatabaseWorker
+
+    def self.tracking_database: () -> untyped
+
+    def execution_worker_class: () -> untyped
+  end
+end

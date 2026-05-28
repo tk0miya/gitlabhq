@@ -1,0 +1,12 @@
+module Integrations
+  module SlackWorkspace
+    class IntegrationApiScope < ApplicationRecord
+      # Efficient scope propagation
+      def self.update_scopes: (untyped slack_integrations, untyped scopes) -> (nil | untyped)
+
+      private
+
+      def ensure_sharding_key: () -> untyped
+    end
+  end
+end

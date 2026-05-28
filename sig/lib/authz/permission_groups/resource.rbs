@@ -1,0 +1,33 @@
+module Authz
+  module PermissionGroups
+    class Resource
+      include Authz::Concerns::YamlPermission
+
+      include Gitlab::Utils::StrongMemoize
+
+      BASE_PATH: "config/authz/permission_groups/assignable_permissions"
+
+      def self.get: (untyped name) -> untyped
+
+      def self.config_path: () -> untyped
+
+      private
+
+      def self.resource_identifier: (untyped _, untyped file_path) -> untyped
+
+      public
+
+      def resource_name: () -> untyped
+
+      def description: () -> untyped
+
+      private
+
+      def name: () -> untyped
+
+      def default_description: () -> ::String
+
+      def action_list: () -> untyped
+    end
+  end
+end

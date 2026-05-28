@@ -1,0 +1,53 @@
+module Integrations
+  module ChatMessage
+    class MergeMessage < BaseMessage
+      @merge_request_iid: untyped
+
+      @source_branch: untyped
+
+      @target_branch: untyped
+
+      @action: untyped
+
+      @state: untyped
+
+      @title: untyped
+
+      attr_reader merge_request_iid: untyped
+
+      attr_reader source_branch: untyped
+
+      attr_reader target_branch: untyped
+
+      attr_reader action: untyped
+
+      attr_reader state: untyped
+
+      attr_reader title: untyped
+
+      def initialize: (untyped params) -> void
+
+      def attachments: () -> ::Array[untyped]
+
+      def activity: () -> { title: ::String, subtitle: ::String, text: untyped, image: untyped }
+
+      private
+
+      def format_title: (untyped title) -> ::String
+
+      def message: () -> untyped
+
+      def project_link: () -> untyped
+
+      def merge_request_message: () -> ::String
+
+      def merge_request_link: () -> untyped
+
+      def merge_request_title: () -> ::String
+
+      def merge_request_url: () -> ::String
+
+      def state_or_action_text: () -> untyped
+    end
+  end
+end

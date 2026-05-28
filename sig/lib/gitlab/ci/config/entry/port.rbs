@@ -1,0 +1,24 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a configuration of an Image Port.
+        #
+        class Port < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Validatable
+
+          ALLOWED_KEYS: ::Array[:number | :protocol | :name]
+
+          def number: () -> untyped
+
+          def protocol: () -> untyped
+
+          def name: () -> untyped
+
+          def value: () -> ({ number: untyped } | untyped | ::Hash[untyped, untyped])
+        end
+      end
+    end
+  end
+end

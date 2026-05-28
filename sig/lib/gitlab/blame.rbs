@@ -1,0 +1,49 @@
+module Gitlab
+  class Blame
+    @blob: untyped
+
+    @commit: untyped
+
+    @range: untyped
+
+    @ignore_revs: untyped
+
+    @blame: untyped
+
+    @highlighted_lines: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    IGNORE_REVS_FILE_NAME: ".git-blame-ignore-revs"
+
+    attr_accessor blob: untyped
+
+    attr_accessor commit: untyped
+
+    attr_accessor range: untyped
+
+    attr_reader blame: untyped
+
+    def initialize: (untyped blob, untyped commit, ?range: untyped?, ?ignore_revs: untyped?) -> void
+
+    def first_line: () -> untyped
+
+    def groups: (?highlight: bool) -> untyped
+
+    private
+
+    def current_line: (untyped highlight, untyped line, untyped line_number) -> untyped
+
+    def wrapped_commit: (untyped commit, untyped project) -> untyped
+
+    attr_reader ignore_revs: untyped
+
+    def default_ignore_revisions_ref: () -> ::String
+
+    def highlighted_lines: () -> untyped
+
+    def project: () -> untyped
+
+    def repository: () -> untyped
+  end
+end

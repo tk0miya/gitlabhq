@@ -1,0 +1,25 @@
+module API
+  module Helpers
+    module Packages
+      module Maven
+        module ApiErrorFormatter
+          extend ::Gitlab::Utils::Override
+
+          PROBLEM_DETAILS_CONTENT_TYPE: "application/problem+json"
+
+          def render_structured_api_error!: (untyped hash, untyped status) -> untyped
+
+          private
+
+          def problem_details_enabled?: (untyped status_code) -> untyped
+
+          def message_string_for_detail: (untyped message) -> untyped
+
+          def extract_detail: (untyped message) -> (nil | untyped)
+
+          def build_problem_details_body: (untyped status_code, untyped detail) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Ci
+  module Queue
+    class BuildQueueService
+      @runner: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      attr_reader runner: untyped
+
+      def initialize: (untyped runner) -> void
+
+      def new_builds: () -> untyped
+
+      def build_candidates: () -> untyped
+
+      #
+      # This is overridden in EE
+      #
+      def builds_for_shared_runner: () -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord
+      def builds_for_group_runner: () -> untyped
+
+      def builds_for_project_runner: () -> untyped
+
+      def builds_for_protected_runner: (untyped relation) -> untyped
+
+      def builds_matching_tag_ids: (untyped relation, untyped ids) -> untyped
+
+      def builds_with_any_tags: (untyped relation) -> untyped
+
+      def order: (untyped relation) -> untyped
+
+      def execute: (untyped relation) -> untyped
+
+      private
+
+      def strategy: () -> untyped
+
+      def runner_projects_relation: () -> untyped
+    end
+  end
+end

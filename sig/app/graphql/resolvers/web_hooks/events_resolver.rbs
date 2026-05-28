@@ -1,0 +1,17 @@
+module Resolvers
+  module WebHooks
+    class EventsResolver < BaseResolver
+      include ::LooksAhead
+
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def ready?: (**untyped args) -> untyped
+
+      def resolve: (**untyped args) -> untyped
+
+      private
+
+      def web_hook_log_finder_params: (untyped args) -> untyped
+    end
+  end
+end

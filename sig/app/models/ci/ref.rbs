@@ -1,0 +1,23 @@
+module Ci
+  class Ref < Ci::ApplicationRecord
+    include AfterCommitQueue
+
+    FAILING_STATUSES: ::Array["failed" | "broken" | "still_failing"]
+
+    def self.ensure_for: (untyped pipeline) -> untyped
+
+    def self.failing_state?: (untyped status_name) -> untyped
+
+    def last_finished_pipeline_id: () -> untyped
+
+    def last_finished_pipeline: () -> untyped
+
+    def artifacts_locked?: () -> untyped
+
+    def update_status_by!: (untyped pipeline) -> untyped
+
+    def last_successful_ci_source_pipeline: () -> untyped
+
+    def last_unlockable_ci_source_pipeline: () -> untyped
+  end
+end

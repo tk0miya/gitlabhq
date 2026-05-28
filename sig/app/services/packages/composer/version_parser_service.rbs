@@ -1,0 +1,17 @@
+module Packages
+  module Composer
+    class VersionParserService
+      @tag_name: untyped
+
+      @branch_name: untyped
+
+      def initialize: (?tag_name: untyped?, ?branch_name: untyped?) -> void
+
+      def execute: () -> (untyped | untyped | nil)
+
+      private
+
+      def branch_suffix_or_prefix: (untyped match) -> (untyped | ::String)
+    end
+  end
+end

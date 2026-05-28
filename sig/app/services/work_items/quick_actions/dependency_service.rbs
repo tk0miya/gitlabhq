@@ -1,0 +1,19 @@
+module WorkItems
+  module QuickActions
+    class DependencyService < ::WorkItems::QuickActions::BaseDependencyService
+      def can_admin_link?: () -> (false | untyped)
+
+      def can_block?: () -> untyped
+
+      def param_hint: () -> "<#item | group/project#item | item URL>"
+
+      def type_name: () -> untyped
+
+      def parse_params: (untyped items) -> untyped
+
+      def create_link: (untyped items, link_type: untyped) -> untyped
+
+      def destroy_link: (untyped item) -> (nil | untyped)
+    end
+  end
+end

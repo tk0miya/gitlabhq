@@ -1,0 +1,9 @@
+module Backup
+  module Helper
+    include ::Gitlab::Utils::StrongMemoize
+
+    def compress_cmd: () -> (untyped | "gzip --rsyncable -c -1" | "gzip -c -1")
+
+    def decompress_cmd: () -> (untyped | "gzip -cd")
+  end
+end

@@ -1,0 +1,21 @@
+module Releases
+  class Source
+    include ActiveModel::Model
+
+    attr_accessor project: untyped
+
+    attr_accessor tag_name: untyped
+
+    attr_accessor format: untyped
+
+    def self.all: (untyped project, untyped tag_name) -> untyped
+
+    def url: () -> untyped
+
+    def hook_attrs: () -> { format: untyped, url: untyped }
+
+    private
+
+    def archive_prefix: () -> ::String
+  end
+end

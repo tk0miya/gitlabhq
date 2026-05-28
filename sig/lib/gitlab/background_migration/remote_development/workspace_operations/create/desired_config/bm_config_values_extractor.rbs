@@ -1,0 +1,26 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      module WorkspaceOperations
+        module Create
+          module DesiredConfig
+            class BmConfigValuesExtractor
+              include BmStates
+
+              include BmWorkspaceOperationsConstants
+
+              # rubocop:disable Metrics/MethodLength -- this is a won't fix
+              # @param [Hash] context
+              # @return [Hash]
+              def self.extract: (untyped context) -> untyped
+
+              # @param [Array, Hash] collection
+              # @return [Array, Hash]
+              def self.deep_sort_and_symbolize_hashes: (untyped collection) -> untyped
+            end
+          end
+        end
+      end
+    end
+  end
+end

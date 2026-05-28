@@ -1,0 +1,15 @@
+module Gitlab
+  module Auth
+    class UniqueIpsLimiter
+      USER_UNIQUE_IPS_PREFIX: "user_unique_ips"
+
+      def self.limit_user_id!: (untyped user_id) -> (untyped | nil)
+
+      def self.limit_user!: (?untyped? user) ?{ () -> untyped } -> untyped
+
+      def self.config: () -> untyped
+
+      def self.update_and_return_ips_count: (untyped user_id, untyped ip) -> untyped
+    end
+  end
+end

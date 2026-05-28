@@ -1,0 +1,44 @@
+module Ci
+  module RetentionPolicies
+    class ProjectsCleanupQueue
+      include Singleton
+
+      LAST_QUEUED_KEY: "ci_old_pipelines_removal_last_processed_project_id{}"
+
+      REDIS_EXPIRATION_TIME: untyped
+
+      QUEUE_KEY: "ci_old_pipelines_removal_project_ids_queue{}"
+
+      PROJECTS_LIMIT: 2500
+
+      def size: () -> untyped
+
+      def max_size: () -> untyped
+
+      def enqueue_projects!: () -> (nil | untyped)
+
+      def enqueue!: (untyped project) -> untyped
+
+      def fetch_next_project_id!: () -> untyped
+
+      def last_queued_project_id: () -> untyped
+
+      def list_all: () -> untyped
+
+      private
+
+      #
+      # Add new work to the queue and keep track of last item.
+      #
+      # existing[1, 2, 3] << new[4, 5, 6] ==> [1, 2, 3, 4, 5, 6]
+      # last: 6
+      def enqueue_and_track_last!: (untyped project_ids) -> (nil | untyped)
+
+      def fetch_next_project_ids: (untyped limit) -> untyped
+
+      def restart!: () -> untyped
+
+      def with_redis: () { (?) -> untyped } -> untyped
+    end
+  end
+end

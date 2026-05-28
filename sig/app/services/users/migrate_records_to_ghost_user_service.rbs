@@ -1,0 +1,74 @@
+# When a user is destroyed, some of their associated records are
+# moved to a "Ghost User", to prevent these associated records from
+# being destroyed.
+#
+# For example, all the issues/MRs a user has created are _not_ destroyed
+# when the user is destroyed.
+module Users
+  class MigrateRecordsToGhostUserService
+    @user: untyped
+
+    @initiator_user: untyped
+
+    @execution_tracker: untyped
+
+    @ghost_user: untyped
+
+    @hard_delete: untyped
+
+    extend ActiveSupport::Concern
+
+    DestroyError: untyped
+
+    attr_reader ghost_user: untyped
+
+    attr_reader user: untyped
+
+    attr_reader initiator_user: untyped
+
+    attr_reader hard_delete: untyped
+
+    def initialize: (untyped user, untyped initiator_user, untyped execution_tracker) -> void
+
+    def execute: (?hard_delete: bool) -> untyped
+
+    private
+
+    attr_reader execution_tracker: untyped
+
+    def migrate_records: () -> (nil | untyped)
+
+    def post_migrate_records: () -> untyped
+
+    def delete_snippets: () -> untyped
+
+    def migrate_authored_todos: () -> untyped
+
+    def migrate_issues: () -> untyped
+
+    def migrate_saved_views: () -> untyped
+
+    def migrate_merge_requests: () -> untyped
+
+    def migrate_notes: () -> untyped
+
+    def migrate_abuse_reports: () -> untyped
+
+    def migrate_award_emoji: () -> untyped
+
+    def migrate_snippets: () -> untyped
+
+    def migrate_reviews: () -> untyped
+
+    def migrate_releases: () -> untyped
+
+    def migrate_user_achievements: () -> untyped
+
+    def migrate_timelogs: () -> untyped
+
+    def migrate_pipelines: () -> untyped
+
+    # rubocop:disable CodeReuse/ActiveRecord
+    def batched_migrate: (untyped base_scope, untyped column, ?batch_size: ::Integer) -> untyped
+  end
+end

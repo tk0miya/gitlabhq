@@ -1,0 +1,9 @@
+module Mutations
+  module Uploads
+    class Delete < BaseMutation
+      include Mutations::ResolvesResourceParent
+
+      def resolve: (untyped args) -> { upload: untyped, errors: untyped }
+    end
+  end
+end

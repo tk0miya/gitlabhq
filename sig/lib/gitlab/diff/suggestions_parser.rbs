@@ -1,0 +1,21 @@
+module Gitlab
+  module Diff
+    class SuggestionsParser
+      # Matches for instance "-1", "+1" or "-1+2".
+      SUGGESTION_CONTEXT: ::Regexp
+
+      CSS: "pre.language-suggestion"
+
+      XPATH: untyped
+
+      # Returns an array of Gitlab::Diff::Suggestion which represents each
+      # suggestion in the given text.
+      #
+      def self.parse: (untyped text, position: untyped, project: untyped, ?supports_suggestion: bool) -> (::Array[untyped] | untyped)
+
+      private
+
+      def self.fetch_suggestion_params: (untyped lang_param) -> untyped
+    end
+  end
+end

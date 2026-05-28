@@ -1,0 +1,7 @@
+class Ci::BuildPendingState < Ci::ApplicationRecord
+  include Ci::Partitionable
+
+  def crc32: () -> untyped
+
+  def set_project_id: () -> untyped
+end

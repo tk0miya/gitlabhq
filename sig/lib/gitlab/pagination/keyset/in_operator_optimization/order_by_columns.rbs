@@ -1,0 +1,43 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      module InOperatorOptimization
+        class OrderByColumns
+          @columns: untyped
+
+          include Enumerable
+
+          # This class exposes collection methods for the order by columns
+          #
+          # Example: by modeling the `issues.created_at ASC, issues.id ASC` ORDER BY
+          # SQL clause, this class will receive two ColumnOrderDefinition objects
+          def initialize: (untyped columns, untyped arel_table) -> void
+
+          def arel_columns: () -> untyped
+
+          def array_aggregated_columns: () -> untyped
+
+          def array_aggregated_column_names: () -> untyped
+
+          def original_column_names: () -> untyped
+
+          def original_column_names_as_arel_string: () -> untyped
+
+          def original_column_names_as_tmp_tamble: () -> untyped
+
+          def cursor_values: (untyped table_name) -> untyped
+
+          def array_lookup_expressions_by_position: (untyped table_name) -> untyped
+
+          def replace_value_in_array_by_position_expressions: () -> untyped
+
+          def each: () { (?) -> untyped } -> untyped
+
+          private
+
+          attr_reader columns: untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Resolvers
+  module Ci
+    class JobTokenScopeAllowlistResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias source_project object
+
+      def resolve: (**untyped _args) -> { groups_allowlist: untyped, projects_allowlist: untyped }
+    end
+  end
+end

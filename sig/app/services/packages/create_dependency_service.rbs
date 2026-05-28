@@ -1,0 +1,26 @@
+module Packages
+  # rubocop: disable Gitlab/BulkInsert
+  class CreateDependencyService < BaseService
+    @package: untyped
+
+    @dependencies: untyped
+
+    attr_reader package: untyped
+
+    attr_reader dependencies: untyped
+
+    def initialize: (untyped package, untyped dependencies) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def create_dependency: (untyped type) -> (nil | untyped)
+
+    def find_existing_ids_and_names: (untyped names_and_version_patterns) -> ::Array[untyped]
+
+    def bulk_insert_package_dependencies: (untyped names_and_version_patterns) -> (::Array[untyped] | untyped)
+
+    def bulk_insert_package_dependency_links: (untyped type, untyped dependency_ids) -> untyped
+  end
+end

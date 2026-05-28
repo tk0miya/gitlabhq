@@ -1,0 +1,25 @@
+module Environments
+  class DeleteManagedResourcesService
+    @environment: untyped
+
+    @current_user: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped environment, current_user: untyped) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader environment: untyped
+
+    attr_reader current_user: untyped
+
+    def can_delete_resources?: () -> untyped
+
+    def managed_resource: () -> untyped
+
+    def emit_event: () -> untyped
+  end
+end

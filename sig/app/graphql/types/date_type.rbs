@@ -1,0 +1,7 @@
+module Types
+  class DateType < BaseScalar
+    def self.coerce_input: (untyped value, untyped ctx) -> untyped
+
+    def self.coerce_result: (untyped value, untyped ctx) -> (nil | untyped)
+  end
+end

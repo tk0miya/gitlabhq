@@ -1,0 +1,13 @@
+module Mutations
+  module Packages
+    module Cleanup
+      module Policy
+        class Update < Mutations::BaseMutation
+          include FindsProject
+
+          def resolve: (project_path: untyped, **untyped args) -> { packages_cleanup_policy: untyped, errors: untyped }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,36 @@
+module DesignManagement
+  class MoveDesignsService < DesignService
+    @ids: untyped
+
+    # @param user [User] The current user
+    # @param [Hash] params
+    # @option params [DesignManagement::Design] :current_design
+    # @option params [DesignManagement::Design] :previous_design (nil)
+    # @option params [DesignManagement::Design] :next_design (nil)
+    def initialize: (untyped user, untyped params) -> void
+
+    def execute: () -> untyped
+
+    def error: (untyped message) -> untyped
+
+    def success: () -> untyped
+
+    private
+
+    def move_nulls_to_end: () -> (nil | untyped)
+
+    def neighbors: () -> untyped
+
+    def all_distinct?: () -> untyped
+
+    def all_same_issue?: () -> untyped
+
+    def ids: () -> untyped
+
+    def current_design: () -> untyped
+
+    def previous_design: () -> untyped
+
+    def next_design: () -> untyped
+  end
+end

@@ -1,0 +1,24 @@
+module Projects
+  module AutoDevops
+    class DisableService < BaseService
+      @auto_devops_pipelines: untyped
+
+      def execute: () -> (false | untyped)
+
+      private
+
+      def implicitly_enabled_and_first_pipeline_failure?: () -> untyped
+
+      # We're using `limit` to optimize `auto_devops pipeline` query,
+      # since we only care about the first element, and using only `.count`
+      # is an expensive operation. See
+      # https://gitlab.com/gitlab-org/gitlab-foss/merge_requests/21172#note_99037378
+      # for more context.
+      def first_pipeline_failure?: () -> untyped
+
+      def disable_auto_devops: () -> untyped
+
+      def auto_devops_pipelines: () -> untyped
+    end
+  end
+end

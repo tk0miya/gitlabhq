@@ -1,0 +1,17 @@
+module API
+  module Helpers
+    module VariablesHelpers
+      extend ActiveSupport::Concern
+
+      extend Grape::API::Helpers
+
+      def filter_variable_parameters: (untyped _, untyped params) -> untyped
+
+      def find_variable: (untyped owner, untyped params) -> untyped
+
+      def audit_single_variable_access: (untyped variable, untyped scope) -> nil
+
+      def audit_all_variables_access: (untyped scope) -> nil
+    end
+  end
+end

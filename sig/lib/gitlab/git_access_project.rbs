@@ -1,0 +1,29 @@
+module Gitlab
+  class GitAccessProject < GitAccess
+    extend ::Gitlab::Utils::Override
+
+    CreationError: untyped
+
+    ERROR_MESSAGES: { namespace_not_found: "The namespace you were looking for could not be found." }
+
+    def download_ability: () -> :download_code
+
+    def push_ability: () -> :push_code
+
+    private
+
+    def check_container!: () -> untyped
+
+    def check_namespace!: () -> (untyped | nil)
+
+    def namespace: () -> untyped
+
+    def namespace_path: () -> untyped
+
+    def project_path: () -> untyped
+
+    def repository_path_match: () -> untyped
+
+    def ensure_project_on_push!: () -> (nil | untyped)
+  end
+end

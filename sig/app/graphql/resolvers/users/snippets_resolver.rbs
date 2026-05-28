@@ -1,0 +1,17 @@
+module Resolvers
+  module Users
+    class SnippetsResolver < BaseResolver
+      include ResolvesSnippets
+
+      include Gitlab::Allowable
+
+      alias user object
+
+      private
+
+      def resolve_snippets: (untyped _args) -> untyped
+
+      def snippet_finder_params: (untyped args) -> untyped
+    end
+  end
+end

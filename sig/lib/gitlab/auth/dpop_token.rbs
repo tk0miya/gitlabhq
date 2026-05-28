@@ -1,0 +1,32 @@
+# Demonstrated Proof of Possession (DPoP) is a mechanism to tie a user's
+# Personal Access Token (PAT) to one of their signing keys.
+#
+# A DPoP Token is a signed JSON Web Token. This class implements
+# the logic to ensure a provided DPoP Token is well-formed and
+# cryptographically signed.
+#
+module Gitlab
+  module Auth
+    class DpopToken
+      @data: untyped
+
+      @payload: untyped
+
+      @header: untyped
+
+      MAX_EXPIRY_TIME_IN_SECS: 300
+
+      KID_DELIMITER: ":"
+
+      attr_reader data: untyped
+
+      attr_reader payload: untyped
+
+      attr_reader header: untyped
+
+      def initialize: (data: untyped) -> void
+
+      def validate!: () -> (nil | untyped)
+    end
+  end
+end

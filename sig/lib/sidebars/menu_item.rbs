@@ -1,0 +1,74 @@
+module Sidebars
+  class MenuItem
+    @title: untyped
+
+    @link: untyped
+
+    @active_routes: untyped
+
+    @item_id: untyped
+
+    @container_html_options: untyped
+
+    @sprite_icon: untyped
+
+    @sprite_icon_html_options: untyped
+
+    @avatar: untyped
+
+    @entity_id: untyped
+
+    @has_pill: untyped
+
+    @pill_count: untyped
+
+    @pill_count_field: untyped
+
+    @pill_count_dynamic: untyped
+
+    @super_sidebar_parent: untyped
+
+    include ::Sidebars::Concerns::LinkWithHtmlOptions
+
+    attr_reader title: untyped
+
+    attr_reader link: untyped
+
+    attr_reader active_routes: untyped
+
+    attr_reader item_id: untyped
+
+    attr_reader container_html_options: untyped
+
+    attr_reader sprite_icon: untyped
+
+    attr_reader sprite_icon_html_options: untyped
+
+    attr_reader has_pill: untyped
+
+    attr_reader pill_count: untyped
+
+    attr_reader pill_count_field: untyped
+
+    attr_reader pill_count_dynamic: untyped
+
+    attr_reader super_sidebar_parent: untyped
+
+    attr_reader avatar: untyped
+
+    attr_reader entity_id: untyped
+
+    attr_accessor render: untyped
+
+    alias has_pill? has_pill
+
+    # rubocop: disable Metrics/ParameterLists
+    def initialize: (title: untyped, link: untyped, active_routes: untyped, ?item_id: untyped?, ?container_html_options: ::Hash[untyped, untyped], ?sprite_icon: untyped?, ?sprite_icon_html_options: ::Hash[untyped, untyped], ?has_pill: bool, ?pill_count_dynamic: bool, ?pill_count: untyped?, ?pill_count_field: untyped?, ?super_sidebar_parent: untyped?, ?avatar: untyped?, ?entity_id: untyped?) -> void
+
+    def render?: () -> (true | untyped)
+
+    def serialize_for_super_sidebar: () -> untyped
+
+    def pill_attributes: () -> (::Hash[untyped, untyped] | { pill_count: untyped, pill_count_field: untyped, pill_count_dynamic: untyped })
+  end
+end

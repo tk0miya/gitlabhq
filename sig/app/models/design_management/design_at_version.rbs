@@ -1,0 +1,50 @@
+# Tuple of design and version
+# * has a composite ID, with lazy_find
+module DesignManagement
+  class DesignAtVersion
+    @design: untyped
+
+    @version: untyped
+
+    include ActiveModel::Validations
+
+    include GlobalID::Identification
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader version: untyped
+
+    attr_reader design: untyped
+
+    def initialize: (?design: untyped?, ?version: untyped?) -> void
+
+    # The ID, needed by GraphQL types and as part of the Lazy-fetch
+    # protocol, includes information about both the design and the version.
+    #
+    # The particular format is not interesting, and should be treated as opaque
+    # by all callers.
+    def id: () -> ::String
+
+    def ==: (untyped other) -> (false | untyped)
+
+    alias eql? ==
+
+    def self.lazy_find: (untyped id) -> untyped
+
+    def self.find: (untyped ids) -> untyped
+
+    def status: () -> (:not_created_yet | :deleted | :current)
+
+    def deleted?: () -> untyped
+
+    def not_created_yet?: () -> untyped
+
+    private
+
+    def action: () -> untyped
+
+    def design_and_version_belong_to_the_same_issue: () -> (nil | untyped)
+
+    def design_and_version_have_issue_id: () -> (nil | untyped)
+  end
+end

@@ -1,0 +1,33 @@
+module LimitedCapacity
+  module Worker
+    extend ActiveSupport::Concern
+
+    include Gitlab::Utils::StrongMemoize
+
+    def perform: (*untyped, **untyped) ?{ (?) -> untyped } -> (untyped | nil)
+
+    def perform_work: (*untyped args) -> untyped
+
+    def remaining_work_count: (*untyped args) -> untyped
+
+    def max_running_jobs: () -> untyped
+
+    def remove_failed_jobs: () -> untyped
+
+    def report_prometheus_metrics: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    private
+
+    def perform_registered: (*untyped args) -> untyped
+
+    def report_running_jobs_metrics: () -> untyped
+
+    def running_jobs_count: () -> untyped
+
+    def job_tracker: () -> untyped
+
+    def re_enqueue: (*untyped args) -> (nil | untyped)
+
+    def set_metric: (untyped name, untyped value) -> untyped
+  end
+end

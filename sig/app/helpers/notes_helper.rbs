@@ -1,0 +1,41 @@
+module NotesHelper
+  MAX_PRERENDERED_NOTES: 10
+
+  def note_target_title: (untyped note) -> (nil | untyped)
+
+  def note_target_fields: (untyped note) -> (untyped | nil)
+
+  def note_supports_quick_actions?: (untyped note) -> untyped
+
+  def diff_view_data: () -> (::Hash[untyped, untyped] | untyped)
+
+  def diff_view_line_data: (untyped line_code, untyped position, untyped line_type) -> (nil | untyped)
+
+  def add_diff_note_button: (untyped line_code, untyped position, untyped line_type) -> (nil | untyped)
+
+  def link_to_reply_discussion: (untyped discussion, ?untyped? line_type) -> (nil | untyped)
+
+  def note_human_max_access: (untyped note) -> untyped
+
+  def discussion_path: (untyped discussion) -> (nil | untyped)
+
+  def notes_url: (?::Hash[untyped, untyped] params) -> untyped
+
+  def note_url: (untyped note, ?untyped project) -> untyped
+
+  def noteable_note_url: (untyped note) -> (untyped | nil)
+
+  def form_resources: () -> ::Array[untyped]
+
+  def new_form_url: () -> (nil | untyped)
+
+  def can_create_note?: () -> untyped
+
+  def initial_notes_data: (untyped autocomplete) -> { notesUrl: untyped, now: untyped, diffView: untyped, enableGFM: { emojis: true, members: untyped, issues: untyped, mergeRequests: untyped, vulnerabilities: untyped, epics: untyped, milestones: untyped, labels: untyped } }
+
+  def discussions_path: (untyped issuable, **untyped params) -> untyped
+
+  def notes_data: (untyped issuable) -> untyped
+
+  def rendered_for_merge_request?: () -> untyped
+end

@@ -1,0 +1,19 @@
+module API
+  module Helpers
+    module BlobHelpers
+      extend Grape::API::Helpers
+
+      MAX_BLOB_SIZE: untyped
+
+      LARGE_BLOB_THROTTLED_ERROR: ::String
+
+      LARGE_FILE_THROTTLED_ERROR: ::String
+
+      def check_rate_limit_for_blob: (untyped blob, ?untyped? endpoint) -> (nil | untyped)
+
+      private
+
+      def error_msg: (untyped endpoint) -> untyped
+    end
+  end
+end

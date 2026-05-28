@@ -1,0 +1,12 @@
+# Authentication Strategies Builder
+#
+# AuthBuilder and its child classes, TokenType and SentThrough, support
+# declaring allowed authentication strategies with patterns like
+# `accept.token_type(:job_token).sent_through(:http_basic)`.
+module Gitlab
+  module APIAuthentication
+    class Builder
+      def build: () { (untyped) -> untyped } -> untyped
+    end
+  end
+end

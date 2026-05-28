@@ -1,0 +1,39 @@
+module Packages
+  module Conan
+    class UpsertPackageReferenceService
+      @package: untyped
+
+      @package_reference_value: untyped
+
+      @recipe_revision_id: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      UNIQUENESS_COLUMNS: ::Array[:package_id | :reference]
+
+      UNIQUENESS_COLUMNS_WITH_REVISION: ::Array[:package_id | :recipe_revision_id | :reference]
+
+      def initialize: (untyped package, untyped package_reference_value, ?untyped? recipe_revision_id) -> void
+
+      def execute!: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader package_reference_value: untyped
+
+      attr_reader recipe_revision_id: untyped
+
+      def package_reference: () -> untyped
+
+      def upsert_package_reference: () -> untyped
+
+      # Two uniqueness constraints are used:
+      # - (package_id, reference) when recipe_revision_id is NULL
+      # - (package_id, recipe_revision_id, reference) when recipe_revision_id is present
+      # This allows having the same package_id/reference pair with different recipe_revision_id values
+      def uniqueness_constraint_columns: () -> untyped
+    end
+  end
+end

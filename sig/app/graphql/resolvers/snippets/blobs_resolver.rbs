@@ -1,0 +1,11 @@
+module Resolvers
+  module Snippets
+    class BlobsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias snippet object
+
+      def resolve: (?paths: untyped) -> (::Array[untyped] | untyped)
+    end
+  end
+end

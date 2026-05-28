@@ -1,0 +1,11 @@
+module TimeTracking
+  class TimelogCategory < ApplicationRecord
+    include StripAttribute
+
+    include CaseSensitivity
+
+    DEFAULT_COLOR: untyped
+
+    def self.find_by_name: (untyped namespace_id, untyped name) -> untyped
+  end
+end

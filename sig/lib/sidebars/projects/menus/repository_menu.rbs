@@ -1,0 +1,35 @@
+module Sidebars
+  module Projects
+    module Menus
+      class RepositoryMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> (false | true)
+
+        def extra_container_html_options: () -> { class: "shortcuts-tree" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "doc-text"
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def files_menu_item: () -> untyped
+
+        def commits_menu_item: () -> untyped
+
+        def branches_menu_item: () -> untyped
+
+        def tags_menu_item: () -> untyped
+
+        def contributors_menu_item: () -> (false | untyped)
+
+        def graphs_menu_item: () -> untyped
+
+        def compare_menu_item: () -> untyped
+
+        def ref_type_from_context: (untyped context) -> untyped
+      end
+    end
+  end
+end

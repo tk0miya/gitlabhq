@@ -1,0 +1,15 @@
+# A collection of Commits for a container and Git reference
+# with the next pagination cursor instead of page number. This is used for the
+# list commits RPC which uses cursor pagination but we want to follow the same
+# object API as the CommitCollection
+module Repositories
+  class CommitCollectionWithNextCursor < ::CommitCollection
+    @next_cursor: untyped
+
+    def initialize: (untyped container, untyped commits, ?untyped? ref, ?next_cursor: untyped?) -> void
+
+    attr_reader next_cursor: untyped
+
+    alias next_page next_cursor
+  end
+end

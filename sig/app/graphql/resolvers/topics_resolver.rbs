@@ -1,0 +1,15 @@
+module Resolvers
+  class TopicsResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    def resolve: (**untyped args) -> untyped
+
+    private
+
+    def find_object: (id: untyped) -> untyped
+
+    def authorized_resource?: (untyped organization) -> untyped
+
+    def organization_topics: (untyped organization_id) -> untyped
+  end
+end

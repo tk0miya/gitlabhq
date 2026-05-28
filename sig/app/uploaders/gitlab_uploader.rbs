@@ -1,0 +1,101 @@
+class GitlabUploader < CarrierWave::Uploader::Base
+  @pathname: untyped
+
+  include ContentTypeWhitelist::Concern
+
+  PROTECTED_METHODS: ::Array[:filename | :cache_dir | :work_dir | :store_dir]
+
+  ObjectNotReadyError: untyped
+
+  # DSL setter
+  def self.storage_location: (untyped location) -> untyped
+
+  def self.options: () -> untyped
+
+  def self.root: () -> untyped
+
+  # represent the directory namespacing at the class level
+  def self.base_dir: () -> untyped
+
+  def self.file_storage?: () -> untyped
+
+  def self.absolute_path: (untyped upload_record) -> untyped
+
+  def self.version: (*untyped args, **untyped kwargs) { (?) -> untyped } -> untyped
+
+  def initialize: (untyped model, ?untyped? mounted_as, **untyped uploader_context) -> void
+
+  def options: () -> untyped
+
+  def file_cache_storage?: () -> untyped
+
+  def move_to_cache: () -> untyped
+
+  def move_to_store: () -> untyped
+
+  def exists?: () -> untyped
+
+  def empty_size?: () -> untyped
+
+  def cache_dir: () -> untyped
+
+  def work_dir: () -> untyped
+
+  def filename: () -> untyped
+
+  def relative_path: () -> untyped
+
+  def model_valid?: () -> untyped
+
+  def local_url: () -> untyped
+
+  def cached_size: () -> untyped
+
+  def open: () ?{ (untyped) -> untyped } -> (nil | untyped)
+
+  def multi_read: (untyped offsets) -> untyped
+
+  # Used to replace an existing upload with another +file+ without modifying stored metadata
+  # Use this method only to repair/replace an existing upload, or to upload to a Geo secondary node
+  #
+  # @param [CarrierWave::SanitizedFile] file that will replace existing upload
+  # @return CarrierWave::SanitizedFile
+  def replace_file_without_saving!: (untyped file) -> untyped
+
+  def url_or_file_path: (?::Hash[untyped, untyped] url_options) -> untyped
+
+  def check_remote_file_existence_on_upload?: () -> true
+
+  def sync_model_object_store?: () -> false
+
+  private
+
+  # Designed to be overridden by child uploaders that have a dynamic path
+  # segment -- that is, a path that changes based on mutable attributes of its
+  # associated model
+  #
+  # For example, `FileUploader` builds the storage path based on the associated
+  # project model's `path_with_namespace` value, which can change when the
+  # project or its containing namespace is moved or renamed.
+  #
+  # When implementing this method, raise `ObjectNotReadyError` if the model
+  # does not yet exist, as it will be tested in `#protect_from_path_traversal!`
+  def dynamic_segment: () -> untyped
+
+  # To prevent files from moving across filesystems, override the default
+  # implementation:
+  # http://github.com/carrierwaveuploader/carrierwave/blob/v1.0.0/lib/carrierwave/uploader/cache.rb#L181-L183
+  def workfile_path: (?untyped for_file) -> untyped
+
+  def pathname: () -> untyped
+
+  # Protect against path traversal attacks
+  # This takes a list of methods to test for path traversal, e.g. ../../
+  # and checks each of them. This uses `.send` so that any potential errors
+  # don't block the entire set from being tested.
+  #
+  # @param [CarrierWave::SanitizedFile]
+  # @return [Nil]
+  # @raise [Gitlab::PathTraversal::PathTraversalAttackError]
+  def protect_from_path_traversal!: (untyped file) -> untyped
+end

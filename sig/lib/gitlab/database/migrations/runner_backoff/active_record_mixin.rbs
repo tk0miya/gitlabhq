@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    module Migrations
+      module RunnerBackoff
+        module ActiveRecordMixin
+          module ActiveRecordMigrationProxyRunnerBackoff
+            # Regular AR migrations don't have this,
+            # only ones inheriting from Gitlab::Database::Migration have
+            def enable_runner_backoff?: () -> untyped
+          end
+
+          module ActiveRecordMigratorRunnerBackoff
+            def execute_migration_in_transaction: (untyped migration) -> untyped
+          end
+
+          def self.patch!: () -> untyped
+        end
+      end
+    end
+  end
+end

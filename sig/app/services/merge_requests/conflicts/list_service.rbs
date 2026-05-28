@@ -1,0 +1,19 @@
+module MergeRequests
+  module Conflicts
+    class ListService < MergeRequests::Conflicts::BaseService
+      # #cannot_be_merged? is generally indicative of conflicts, and is set via
+      #   MergeRequests::MergeabilityCheckService. However, it can also indicate
+      #   that either #has_no_commits? or #branch_missing? are true.
+      #
+      @conflicts_can_be_resolved_in_ui: untyped
+
+      @conflicts: untyped
+
+      def can_be_resolved_by?: (untyped user) -> (false | untyped)
+
+      def can_be_resolved_in_ui?: () -> untyped
+
+      def conflicts: () -> untyped
+    end
+  end
+end

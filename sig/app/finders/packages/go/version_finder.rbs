@@ -1,0 +1,17 @@
+module Packages
+  module Go
+    class VersionFinder
+      @mod: untyped
+
+      include Gitlab::Golang
+
+      attr_reader mod: untyped
+
+      def initialize: (untyped mod) -> void
+
+      def execute: () -> untyped
+
+      def find: (untyped target) -> untyped
+    end
+  end
+end

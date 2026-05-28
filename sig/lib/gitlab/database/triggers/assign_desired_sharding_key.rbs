@@ -1,0 +1,51 @@
+module Gitlab
+  module Database
+    module Triggers
+      class AssignDesiredShardingKey
+        @table: untyped
+
+        @sharding_key: untyped
+
+        @parent_table: untyped
+
+        @parent_table_primary_key: untyped
+
+        @parent_sharding_key: untyped
+
+        @foreign_key: untyped
+
+        @name: untyped
+
+        @connection: untyped
+
+        include Gitlab::Database::SchemaHelpers
+
+        attr_reader name: untyped
+
+        def initialize: (table: untyped, sharding_key: untyped, parent_table: untyped, parent_sharding_key: untyped, foreign_key: untyped, connection: untyped, ?parent_table_primary_key: untyped?, ?trigger_name: untyped?) -> void
+
+        def create: () -> untyped
+
+        def drop: () -> untyped
+
+        private
+
+        attr_reader table: untyped
+
+        attr_reader sharding_key: untyped
+
+        attr_reader parent_table: untyped
+
+        attr_reader parent_table_primary_key: untyped
+
+        attr_reader parent_sharding_key: untyped
+
+        attr_reader foreign_key: untyped
+
+        attr_reader connection: untyped
+
+        def generated_name: () -> ::String
+      end
+    end
+  end
+end

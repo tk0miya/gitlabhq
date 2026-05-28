@@ -1,0 +1,21 @@
+module ApplicationCable
+  class Connection < ActionCable::Connection::Base
+    include Logging
+
+    include Gitlab::Auth::AuthFinders
+
+    attr_accessor current_organization: untyped
+
+    def connect: () -> untyped
+
+    private
+
+    def find_user_from_session_store: () -> untyped
+
+    def session_id: () -> untyped
+
+    def notification_payload: (untyped _) -> untyped
+
+    def find_current_organization: () -> untyped
+  end
+end

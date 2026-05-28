@@ -1,0 +1,27 @@
+module Gitlab
+  module SidekiqMiddleware
+    module SizeLimiter
+      class Compressor
+        PayloadDecompressionConflictError: untyped
+
+        PayloadDecompressionError: untyped
+
+        # Level 5 is a good trade-off between space and time
+        # https://gitlab.com/gitlab-com/gl-infra/scalability/-/issues/1054#note_568129605
+        COMPRESS_LEVEL: 5
+
+        ORIGINAL_SIZE_KEY: "original_job_size_bytes"
+
+        COMPRESSED_KEY: "compressed"
+
+        def self.compressed?: (untyped job) -> untyped
+
+        def self.compress: (untyped job, untyped job_args) -> untyped
+
+        def self.decompress: (untyped job) -> untyped
+
+        def self.validate_args!: (untyped job) -> (untyped | nil)
+      end
+    end
+  end
+end

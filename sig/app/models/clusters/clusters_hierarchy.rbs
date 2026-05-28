@@ -1,0 +1,58 @@
+module Clusters
+  class ClustersHierarchy
+    @clusterable: untyped
+
+    @clusters: untyped
+
+    @groups: untyped
+
+    @clusters_star: untyped
+
+    DEPTH_COLUMN: :depth
+
+    def initialize: (untyped clusterable) -> void
+
+    # Returns clusters in order from deepest to highest group
+    def base_and_ancestors: () -> untyped
+
+    private
+
+    attr_reader clusterable: untyped
+
+    def recursive_cte: () -> untyped
+
+    # Returns project-level clusters where the project is the management project
+    # for the cluster. The management project has to be in the same namespace /
+    # group as the cluster's project.
+    #
+    # Support for management project in sub-groups is planned in
+    # https://gitlab.com/gitlab-org/gitlab/issues/34650
+    #
+    # NB: group_parent_id is un-used but we still need to match the same number of
+    # columns as other queries in the CTE.
+    def same_namespace_management_clusters_query: () -> untyped
+
+    # Management clusters should be first in the hierarchy so we use 0 for the
+    # depth column.
+    #
+    # Only applicable if the clusterable is a project (most especially when
+    # requesting project.deployment_platform).
+    def depth_order_clause: () -> (::Hash[untyped, :asc] | untyped)
+
+    def group_clusters_base_query: () -> untyped
+
+    def project_clusters_base_query: () -> untyped
+
+    def parent_query: (untyped cte) -> untyped
+
+    def model: () -> untyped
+
+    def clusters: () -> untyped
+
+    def groups: () -> untyped
+
+    def clusters_star: () -> untyped
+
+    def alias_as_column: (untyped value, untyped alias_to) -> untyped
+  end
+end

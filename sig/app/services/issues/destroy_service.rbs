@@ -1,0 +1,11 @@
+module Issues
+  class DestroyService < Issuable::DestroyService
+    @work_item_parent_id: untyped
+
+    private
+
+    def before_destroy: (untyped issuable) -> untyped
+
+    def after_destroy: (untyped issuable) -> untyped
+  end
+end

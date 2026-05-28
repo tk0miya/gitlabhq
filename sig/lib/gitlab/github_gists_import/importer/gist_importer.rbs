@@ -1,0 +1,64 @@
+module Gitlab
+  module GithubGistsImport
+    module Importer
+      class GistImporter
+        @gist: untyped
+
+        @user: untyped
+
+        @snippet: untyped
+
+        attr_reader gist: untyped
+
+        attr_reader user: untyped
+
+        attr_reader snippet: untyped
+
+        FileCountLimitError: untyped
+
+        RepoSizeLimitError: untyped
+
+        SnippetRepositoryError: untyped
+
+        FILE_COUNT_LIMIT_MESSAGE: "Snippet maximum file count exceeded"
+
+        REPO_SIZE_LIMIT_MESSAGE: "Snippet repository size exceeded"
+
+        # gist - An instance of `Gitlab::GithubGistsImport::Representation::Gist`.
+        def initialize: (untyped gist, untyped user_id) -> void
+
+        # Marking for refactor in:
+        # https://gitlab.com/gitlab-org/gitlab/-/issues/469564
+        # We'll want to use the Snippets::CreateService here.
+        def execute: () -> untyped
+
+        private
+
+        # Duplicate logic in
+        # app/services/snippets/create_service.rb
+        # Remove as part of refactor in: https://gitlab.com/gitlab-org/gitlab/-/issues/469564
+        def organization_id: () -> untyped
+
+        def build_snippet: () -> untyped
+
+        def import_repository: () -> untyped
+
+        def get_resolved_address: () -> untyped
+
+        def check_gist_files_count!: () -> (nil | untyped)
+
+        def check_gist_repo_size!: () -> (nil | untyped)
+
+        def remove_snippet_and_repository: () -> untyped
+
+        def allow_local_requests?: () -> untyped
+
+        def fail_and_track: (untyped snippet, untyped exception) -> untyped
+
+        def validate_gist!: () -> untyped
+
+        def validate_repository!: () -> untyped
+      end
+    end
+  end
+end

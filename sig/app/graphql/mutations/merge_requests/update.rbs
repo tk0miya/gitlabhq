@@ -1,0 +1,15 @@
+module Mutations
+  module MergeRequests
+    class Update < Base
+      include ValidateTimeEstimate
+
+      def resolve: (project_path: untyped, iid: untyped, **untyped args) -> { merge_request: untyped, errors: untyped }
+
+      def ready?: (?time_estimate: untyped?, **untyped args) -> untyped
+
+      private
+
+      def parse_arguments: (untyped args) -> untyped
+    end
+  end
+end

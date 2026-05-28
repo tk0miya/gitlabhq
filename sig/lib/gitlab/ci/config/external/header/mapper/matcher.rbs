@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        module Header
+          class Mapper
+            #
+            # Header-specific matcher that reuses the core matching logic
+            # but only matches header-compatible file types
+            class Matcher < ::Gitlab::Ci::Config::External::Mapper::Matcher
+              private
+
+              def new_file_class: (untyped file_class, untyped location) -> untyped
+
+              # Override to provide header-compatible file classes
+              def file_classes: () -> ::Array[untyped]
+
+              def include_type: () -> "header include"
+            end
+          end
+        end
+      end
+    end
+  end
+end

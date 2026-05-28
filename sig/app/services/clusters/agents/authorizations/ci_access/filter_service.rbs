@@ -1,0 +1,47 @@
+module Clusters
+  module Agents
+    module Authorizations
+      module CiAccess
+        class FilterService
+          @authorizations: untyped
+
+          @filter_params: untyped
+
+          @project: untyped
+
+          @environments_matcher: untyped
+
+          @environment_filter: untyped
+
+          def initialize: (untyped authorizations, untyped filter_params, untyped project) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader authorizations: untyped
+
+          attr_reader filter_params: untyped
+
+          attr_reader project: untyped
+
+          def filter_by_environment: (untyped auths) -> untyped
+
+          def filter_by_environment?: () -> untyped
+
+          def environment_filter: () -> untyped
+
+          def matches_environment?: (untyped environment_pattern) -> (false | untyped)
+
+          def environments_matcher: (untyped environment_pattern) -> untyped
+
+          def filter_protected_ref: (untyped authorizations) -> (::Array[untyped] | untyped)
+
+          def protected_ref_filter_present?: () -> untyped
+
+          def only_run_on_protected_ref?: (untyped authorization) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,33 @@
+module Packages
+  module Nuget
+    class PackagesMetadataPresenter
+      @packages: untyped
+
+      include Packages::Nuget::PresenterHelpers
+
+      include Gitlab::Utils::StrongMemoize
+
+      COUNT: 1
+
+      def initialize: (untyped packages) -> void
+
+      def count: () -> untyped
+
+      def items: () -> ::Array[untyped]
+
+      private
+
+      def summary: () -> { json_url: untyped, lower_version: untyped, upper_version: untyped, packages_count: untyped, packages: untyped }
+
+      def metadata_for: (untyped package) -> { json_url: untyped, archive_url: untyped, catalog_entry: untyped }
+
+      def json_url: () -> untyped
+
+      def lower_version: () -> untyped
+
+      def upper_version: () -> untyped
+
+      def sorted_versions: () -> untyped
+    end
+  end
+end

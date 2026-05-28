@@ -1,0 +1,12 @@
+module Projects
+  module Packages
+    class PackagesController < Projects::ApplicationController
+      include PackagesAccess
+
+      def index: () -> nil
+
+      # The show action renders index to allow frontend routing to work on page refresh
+      def show: () -> untyped
+    end
+  end
+end

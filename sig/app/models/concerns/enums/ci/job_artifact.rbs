@@ -1,0 +1,49 @@
+module Enums
+  module Ci
+    module JobArtifact
+      NON_ERASABLE_FILE_TYPES: ::Array["trace"]
+
+      REPORT_FILE_TYPES: { sast: ::Array["sast"], secret_detection: ::Array["secret_detection"], sarif: ::Array["sarif"], test: ::Array["junit"], accessibility: ::Array["accessibility"], coverage: ::Array["cobertura" | "jacoco"], codequality: ::Array["codequality"], terraform: ::Array["terraform"] }
+
+      DEFAULT_FILE_NAMES: { archive: nil, metadata: nil, trace: nil, metrics_referee: nil, network_referee: nil, junit: "junit.xml", accessibility: "gl-accessibility.json", codequality: "gl-code-quality-report.json", sast: "gl-sast-report.json", secret_detection: "gl-secret-detection-report.json", dependency_scanning: "gl-dependency-scanning-report.json", container_scanning: "gl-container-scanning-report.json", cluster_image_scanning: "gl-cluster-image-scanning-report.json", dast: "gl-dast-report.json", license_scanning: "gl-license-scanning-report.json", performance: "performance.json", browser_performance: "browser-performance.json", load_performance: "load-performance.json", metrics: "metrics.txt", lsif: "lsif.json", scip: "index.scip", dotenv: ".env", cobertura: "cobertura-coverage.xml", jacoco: "jacoco-coverage.xml", terraform: "tfplan.json", cluster_applications: "gl-cluster-applications.json", requirements: "requirements.json", requirements_v2: "requirements_v2.json", coverage_fuzzing: "gl-coverage-fuzzing.json", api_fuzzing: "gl-api-fuzzing-report.json", cyclonedx: "gl-sbom.cdx.json", annotations: "gl-annotations.json", repository_xray: "gl-repository-xray.json", sarif: "gl-sarif-report.sarif", environment_key: "environment_key.txt" }
+
+      INTERNAL_TYPES: { archive: :zip, metadata: :gzip, trace: :raw }
+
+      REPORT_TYPES: { junit: :gzip, metrics: :gzip, metrics_referee: :gzip, network_referee: :gzip, dotenv: :gzip, cobertura: :gzip, jacoco: :gzip, cluster_applications: :gzip, lsif: :zip, scip: :zip, cyclonedx: :gzip, annotations: :gzip, repository_xray: :gzip, sast: :raw, secret_detection: :raw, dependency_scanning: :raw, container_scanning: :raw, cluster_image_scanning: :raw, dast: :raw, license_scanning: :raw, accessibility: :raw, codequality: :raw, performance: :raw, browser_performance: :raw, load_performance: :raw, terraform: :raw, requirements: :raw, requirements_v2: :raw, coverage_fuzzing: :raw, api_fuzzing: :raw, sarif: :raw, environment_key: :raw }
+
+      DOWNLOADABLE_TYPES: ::Array["accessibility" | "api_fuzzing" | "archive" | "cobertura" | "jacoco" | "codequality" | "container_scanning" | "dast" | "dependency_scanning" | "dotenv" | "junit" | "license_scanning" | "lsif" | "scip" | "metrics" | "performance" | "browser_performance" | "load_performance" | "sast" | "secret_detection" | "requirements" | "requirements_v2" | "cluster_image_scanning" | "cyclonedx" | "sarif"]
+
+      SECURITY_REPORT_FILE_TYPES: ::Array["sast" | "secret_detection" | "dependency_scanning" | "container_scanning" | "cluster_image_scanning" | "dast" | "coverage_fuzzing" | "api_fuzzing" | "sarif"]
+
+      SECURITY_REPORT_AND_CYCLONEDX_REPORT_FILE_TYPES: untyped
+
+      SECURITY_ALL_REPORT_FILE_TYPES: untyped
+
+      def self.non_erasable_file_types: () -> untyped
+
+      def self.security_report_file_types: () -> untyped
+
+      def self.security_report_and_cyclonedx_report_file_types: () -> untyped
+
+      def self.all_security_report_file_types: () -> untyped
+
+      def self.report_file_types: () -> untyped
+
+      def self.default_file_names: () -> untyped
+
+      def self.internal_types: () -> untyped
+
+      def self.report_types: () -> untyped
+
+      def self.downloadable_types: () -> untyped
+
+      def self.type_and_format_pairs: () -> untyped
+
+      # Returns the Hash to use for creating the `file_type` enum for
+      # `JobArtifact`.
+      def self.file_type: () -> { archive: 1, metadata: 2, trace: 3, junit: 4, sast: 5, dependency_scanning: 6, container_scanning: 7, dast: 8, codequality: 9, license_scanning: 101, performance: 11, metrics: 12, metrics_referee: 13, network_referee: 14, lsif: 15, dotenv: 16, cobertura: 17, terraform: 18, accessibility: 19, cluster_applications: 20, secret_detection: 21, requirements: 22, coverage_fuzzing: 23, browser_performance: 24, load_performance: 25, api_fuzzing: 26, cluster_image_scanning: 27, cyclonedx: 28, requirements_v2: 29, annotations: 30, repository_xray: 31, jacoco: 32, scip: 33, sarif: 34, environment_key: 35 }
+
+      def self.file_location: () -> { legacy_path: 1, hashed_path: 2 }
+    end
+  end
+end

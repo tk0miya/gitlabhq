@@ -1,0 +1,70 @@
+module Banzai
+  module Filter
+    # HTML Filter to modify the attributes of external links.
+    # This is considered a sanitization filter.
+    class ExternalLinkFilter < HTML::Pipeline::Filter
+      @internal_url: untyped
+
+      prepend Concerns::TimeoutFilterHandler
+
+      SCHEMES: ::Array["http" | "https" | nil]
+
+      RTLO: ::String
+
+      ENCODED_RTLO: "%E2%80%AE"
+
+      def call: () -> untyped
+
+      private
+
+      def render_timeout: () -> untyped
+
+      # Since this filter does a level of sanitization, we can not return
+      # partial un-sanitized results.
+      # It's ok to allow any following filters to run since this is safe HTML.
+      def returned_timeout_value: () -> untyped
+
+      # if this is a link to a proxied image, then `src` is already the correct
+      # proxied url, so work with the `data-canonical-src`
+      def node_src_attribute: (untyped node) -> ("data-canonical-src" | "href")
+
+      def node_src: (untyped node) -> untyped
+
+      def uri_strict: (untyped href) -> untyped
+
+      def addressable_uri: (untyped href) -> untyped
+
+      def links: () -> untyped
+
+      def internal_url?: (untyped uri) -> (false | true | untyped)
+
+      def internal_url: () -> untyped
+
+      # Only replace an autolink with an IDN with it's punycode
+      # version if we need emailable links.  Otherwise let it
+      # be shown normally and the tooltips will show the
+      # punycode version.
+      def punycode_autolink_node!: (untyped uri, untyped node) -> (nil | untyped)
+
+      # escape any right-to-left (RTLO) characters in link text
+      def sanitize_link_text!: (untyped node) -> untyped
+
+      # If the domain is an international domain name (IDN),
+      # let's expose with a tooltip in case it's intended
+      # to be malicious. This is particularly useful for links
+      # where the link text is not the same as the actual link.
+      # We will continue to show the unicode version of the domain
+      # in autolinked link text, which could contain emojis, etc.
+      #
+      # Also show the tooltip if the url contains the RTLO character,
+      # as this is an indicator of a malicious link
+      def add_malicious_tooltip!: (untyped uri, untyped node) -> (untyped | nil)
+
+      def add_nofollow!: (untyped uri, untyped node) -> (untyped | nil)
+
+      def idn?: (untyped uri) -> untyped
+
+      def has_encoded_rtlo?: (untyped uri) -> untyped
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module Gitlab
+  class Throttle
+    DEFAULT_RATE_LIMITING_RESPONSE_TEXT: "Retry later"
+
+    # Each of these settings follows the same pattern of specifying separate
+    # authenticated and unauthenticated rates via settings. New throttles should
+    # ideally be regular as well.
+    REGULAR_THROTTLES: ::Array[:api | :packages_api | :files_api | :deprecated_api]
+
+    def self.settings: () -> untyped
+
+    # Returns true if we should use the Admin area protected paths throttle
+    def self.protected_paths_enabled?: () -> untyped
+
+    def self.omnibus_protected_paths_present?: () -> untyped
+
+    def self.bypass_header: () -> (nil | ::String)
+
+    def self.options: (untyped throttle, authenticated: untyped) -> { limit: untyped, period: untyped }
+
+    def self.throttle_fragment!: (untyped throttle, authenticated: untyped) -> ::String
+
+    def self.unauthenticated_web_options: () -> { limit: untyped, period: untyped }
+
+    def self.authenticated_web_options: () -> { limit: untyped, period: untyped }
+
+    def self.protected_paths_options: () -> { limit: untyped, period: untyped }
+
+    def self.throttle_unauthenticated_git_http_options: () -> { limit: untyped, period: untyped }
+
+    def self.throttle_authenticated_git_http_options: () -> { limit: untyped, period: untyped }
+
+    def self.throttle_authenticated_git_lfs_options: () -> { limit: untyped, period: untyped }
+
+    def self.rate_limiting_response_text: () -> untyped
+  end
+end

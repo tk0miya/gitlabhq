@@ -1,0 +1,35 @@
+module Gitlab
+  module Checks
+    class MatchingMergeRequest
+      @newrev: untyped
+
+      @branch_name: untyped
+
+      @project: untyped
+
+      @total_counter: untyped
+
+      @stale_counter: untyped
+
+      TOTAL_METRIC: :gitlab_merge_request_match_total
+
+      STALE_METRIC: :gitlab_merge_request_match_stale_secondary
+
+      def initialize: (untyped newrev, untyped branch_name, untyped project) -> void
+
+      def match?: () -> untyped
+
+      private
+
+      def track_session_metrics: () { () -> untyped } -> untyped
+
+      def increment_attempt_count: () -> untyped
+
+      def increment_stale_secondary_count: () -> untyped
+
+      def total_counter: () -> untyped
+
+      def stale_counter: () -> untyped
+    end
+  end
+end

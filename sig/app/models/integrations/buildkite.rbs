@@ -1,0 +1,61 @@
+module Integrations
+  class Buildkite < Integration
+    include Base::Ci
+
+    include HasWebHook
+
+    include ReactivelyCached
+
+    include HasAvatar
+
+    ENDPOINT: "https://buildkite.com"
+
+    def self.supported_events: () -> ::Array["push" | "merge_request" | "tag_push"]
+
+    # This is a stub method to work with deprecated API response
+    # TODO: remove enable_ssl_verification after 14.0
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/222808
+    def enable_ssl_verification: () -> true
+
+    # Since SSL verification will always be enabled for Buildkite,
+    # we no longer need to store the boolean.
+    # This is a stub method to work with deprecated API param.
+    # TODO: remove enable_ssl_verification after 14.0
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/222808
+    def enable_ssl_verification=: (untyped _value) -> untyped
+
+    def hook_url: () -> ::String
+
+    def url_variables: () -> { "webhook_token" => untyped }
+
+    def execute: (untyped data) -> (nil | untyped)
+
+    def commit_status: (untyped sha, untyped ref) -> untyped
+
+    def commit_status_path: (untyped sha) -> ::String
+
+    def build_page: (untyped sha, untyped ref) -> ::String
+
+    def self.title: () -> "Buildkite"
+
+    def self.description: () -> "Run CI/CD pipelines with Buildkite."
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "buildkite"
+
+    def calculate_reactive_cache: (untyped sha, untyped ref) -> { commit_status: untyped }
+
+    private
+
+    def webhook_token: () -> untyped
+
+    def status_token: () -> untyped
+
+    def token_parts: () -> (untyped | ::Array[untyped])
+
+    def buildkite_endpoint: (?untyped? subdomain) -> untyped
+
+    def request_options: () -> { extra_log_info: { project_id: untyped } }
+  end
+end

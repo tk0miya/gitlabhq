@@ -1,0 +1,13 @@
+module API
+  module Entities
+    class CommitDetail < Commit
+      include ::API::Helpers::Presentable
+
+      def self.execute_batch_counting: (untyped commits_relation) -> untyped
+
+      private
+
+      def can_read_pipeline?: () -> untyped
+    end
+  end
+end

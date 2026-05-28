@@ -1,0 +1,23 @@
+module Gitlab
+  module Instrumentation
+    module RedisClusterRouter
+      # Patch the `send_command` method in RedisClient::Cluster::Router
+      # See https://github.com/redis-rb/redis-cluster-client/blob/v0.8.2/lib/redis_client/cluster/router.rb#L34
+      #
+      # When a Redis Cluster is in a fail state, we might not have metrics on the server-side.
+      # This allows the application to dump its local topology state to get the client-side perspective of any
+      # cluster failure.
+      def send_command: (untyped method, untyped command, *untyped args) { (?) -> untyped } -> untyped
+
+      private
+
+      def instrumentation_class: (untyped config) -> (nil | untyped)
+
+      def self.format_slotmap: (untyped slots) -> (::Hash[untyped, untyped] | untyped)
+
+      # compact_array converts an array of integers into a range string
+      # e.g. [0, 1, 2, 4, 5, 6] to "0-2,4-6"
+      def self.compact_array: (untyped arr) -> ("" | untyped)
+    end
+  end
+end

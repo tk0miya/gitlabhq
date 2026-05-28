@@ -1,0 +1,20 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a configuration for pipeline stages.
+        #
+        class Stages < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Validatable
+
+          MAX_NESTING_LEVEL: 10
+
+          def self.default: () -> untyped
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

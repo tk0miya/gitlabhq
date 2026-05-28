@@ -1,0 +1,44 @@
+class Admin::GroupsController < Admin::ApplicationController
+  # Group.with_statistics doesn't behave nicely when including other relations.
+  # Group.find_by_full_path includes the routes relation to avoid a common N+1
+  # (at the expense of this action: there are two queries here to find and retrieve
+  # the Group with statistics).
+  @group: untyped
+
+  @members: untyped
+
+  @requesters: untyped
+
+  @projects: untyped
+
+  include MembersPresentation
+
+  def index: () -> nil
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def show: () -> untyped
+
+  def new: () -> untyped
+
+  def edit: () -> (untyped | nil)
+
+  def create: () -> untyped
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  private
+
+  def groups: () -> untyped
+
+  def group: () -> untyped
+
+  def group_members: () -> untyped
+
+  def group_params: () -> untyped
+
+  def allowed_group_params: () -> ::Array[:avatar | :description | :lfs_enabled | :name | :path | :request_access_enabled | :runner_registration_enabled | :visibility_level | :require_two_factor_authentication | :two_factor_grace_period | :enabled_git_access_protocol | :project_creation_level | :subgroup_creation_level | :organization_id | { admin_note_attributes: ::Array[:note] }]
+
+  def safe_params: () -> untyped
+end

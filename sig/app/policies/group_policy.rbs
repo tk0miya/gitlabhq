@@ -1,0 +1,25 @@
+class GroupPolicy < Namespaces::GroupProjectNamespaceSharedPolicy
+  @access_level: untyped
+
+  include FindGroupProjects
+
+  include ::Authz::RolePermissions
+
+  include ::Authn::SubgroupProvisionedServiceAccountRestriction
+
+  def access_level: (?for_any_session: bool) -> untyped
+
+  def lookup_access_level!: (?for_any_session: bool) -> untyped
+
+  private
+
+  def group: () -> untyped
+
+  def resource_access_token_feature_available?: () -> true
+
+  def resource_access_token_create_feature_available?: () -> true
+
+  def can_read_group_member?: () -> untyped
+
+  def resource_access_token_creation_allowed?: () -> untyped
+end

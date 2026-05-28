@@ -1,0 +1,78 @@
+module Resolvers
+  class BaseResolver < GraphQL::Schema::Resolver
+    self.@requires_argument: untyped
+
+    self.@calls_gitaly: untyped
+
+    self.@as_single: untyped
+
+    self.@single: untyped
+
+    self.@last: untyped
+
+    self.@before_connection_authorization_block: untyped
+
+    self.@authorization: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    def self.requires_argument!: () -> untyped
+
+    def self.requires_argument?: () -> untyped
+
+    def self.calls_gitaly!: () -> untyped
+
+    def self.calls_gitaly?: () -> untyped
+
+    # This is a flag to allow us to use `complexity_multiplier` to compute complexity for connection
+    # fields(see BaseField#connection_complexity_multiplier) in resolvers that do external connection pagination,
+    # thus disabling the default `connection` option.
+    def self.calculate_ext_conn_complexity: () -> false
+
+    def self.singular_type: () -> (nil | untyped)
+
+    def self.when_single: () { (?) -> untyped } -> untyped
+
+    def self.as_single: () -> untyped
+
+    def self.single_definition_blocks: () -> untyped
+
+    def self.single: () -> untyped
+
+    def self.last: () -> untyped
+
+    def self.complexity: () -> 0
+
+    def self.resolver_complexity: (untyped args, child_complexity: untyped) -> untyped
+
+    def self.complexity_multiplier: (untyped args) -> (0 | untyped)
+
+    def self.before_connection_authorization: () { (?) -> untyped } -> untyped
+
+    # rubocop: disable Style/TrivialAccessors
+    def self.before_connection_authorization_block: () -> untyped
+
+    def offset_pagination: (untyped relation) -> untyped
+
+    def object: () -> untyped
+
+    def single?: () -> false
+
+    def current_user: () -> untyped
+
+    # Overridden in sub-classes (see .single, .last)
+    def select_result: (untyped results) -> untyped
+
+    def self.authorization: () -> untyped
+
+    def self.authorized?: (untyped object, untyped context) -> untyped
+
+    private
+
+    def current_organization: () -> untyped
+  end
+end

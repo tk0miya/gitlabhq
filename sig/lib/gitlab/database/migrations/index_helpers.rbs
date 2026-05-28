@@ -1,0 +1,44 @@
+module Gitlab
+  module Database
+    module Migrations
+      module IndexHelpers
+        include TimeoutHelpers
+
+        include ::Gitlab::Database::PartitionHelpers
+
+        include ::Gitlab::Database::AsyncIndexes::MigrationHelpers
+
+        # Creates a new index, concurrently
+        #
+        # Example:
+        #
+        #     add_concurrent_index :users, :some_column
+        #
+        # See Rails' `add_index` for more info on the available arguments.
+        def add_concurrent_index: (untyped table_name, untyped column_name, ?::Hash[untyped, untyped] options) -> (nil | untyped)
+
+        # Removes an existed index, concurrently
+        #
+        # Example:
+        #
+        #     remove_concurrent_index :users, :some_column
+        #
+        # See Rails' `remove_index` for more info on the available arguments.
+        def remove_concurrent_index: (untyped table_name, untyped column_name, ?::Hash[untyped, untyped] options) -> (nil | untyped)
+
+        # Removes an existing index, concurrently
+        #
+        # Example:
+        #
+        #     remove_concurrent_index :users, "index_X_by_Y"
+        #
+        # See Rails' `remove_index` for more info on the available arguments.
+        def remove_concurrent_index_by_name: (untyped table_name, untyped index_name, ?::Hash[untyped, untyped] options) -> (nil | untyped)
+
+        private
+
+        def index_invalid?: (untyped index_name, ?schema: untyped?) -> untyped
+      end
+    end
+  end
+end

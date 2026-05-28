@@ -1,0 +1,17 @@
+module Gitlab
+  module RelativePositioning
+    class Range
+      attr_reader lhs: untyped
+
+      attr_reader rhs: untyped
+
+      def open_on_left?: () -> untyped
+
+      def open_on_right?: () -> untyped
+
+      def cover?: (untyped item_context) -> (true | false | untyped)
+
+      def ==: (untyped other) -> untyped
+    end
+  end
+end

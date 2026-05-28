@@ -1,0 +1,31 @@
+class Projects::BuildArtifactsController < Projects::ApplicationController
+  @ref_name: untyped
+
+  @path: untyped
+
+  @job: untyped
+
+  include ExtractsPath
+
+  def download: () -> untyped
+
+  def browse: () -> untyped
+
+  def file: () -> untyped
+
+  def raw: () -> untyped
+
+  def latest_succeeded: () -> untyped
+
+  private
+
+  def validate_artifacts!: () -> (untyped | nil)
+
+  def extract_ref_name_and_path: () -> (nil | untyped)
+
+  def job: () -> untyped
+
+  def job_from_id: () -> (untyped | nil)
+
+  def job_from_ref: () -> (nil | untyped)
+end

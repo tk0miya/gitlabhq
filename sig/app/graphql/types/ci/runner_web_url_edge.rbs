@@ -1,0 +1,18 @@
+module Types
+  module Ci
+    class RunnerWebUrlEdge < ::Types::BaseEdge
+      @runner: untyped
+
+      def initialize: (untyped node, untyped connection) -> void
+
+      # here parent is a Keyset::Connection
+      def edit_url: (parent: untyped) -> untyped
+
+      def web_url: (parent: untyped) -> untyped
+
+      private
+
+      def runner_url: (owner: untyped, ?url_type: ::Symbol) -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Auth
+    module Atlassian
+      class IdentityLinker < OmniauthIdentityLinkerBase
+        extend ::Gitlab::Utils::Override
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        private
+
+        def identity: () -> untyped
+
+        def build_atlassian_identity: () -> untyped
+
+        def auth_hash: () -> untyped
+      end
+    end
+  end
+end

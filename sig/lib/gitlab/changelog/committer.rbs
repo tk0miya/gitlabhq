@@ -1,0 +1,26 @@
+module Gitlab
+  module Changelog
+    # A class used for committing a release's changelog to a Git repository.
+    class Committer
+      @project: untyped
+
+      @user: untyped
+
+      def initialize: (untyped project, untyped user) -> void
+
+      # Commits a release's changelog to a file on a branch.
+      #
+      # The `release` argument is a `Gitlab::Changelog::Release` for which to
+      # update the changelog.
+      #
+      # The `file` argument specifies the path to commit the changes to.
+      #
+      # The `branch` argument specifies the branch to commit the changes on.
+      #
+      # The `message` argument specifies the commit message to use.
+      def commit: (release: untyped, file: untyped, branch: untyped, message: untyped) -> untyped
+
+      def blob_content: (untyped file, ?untyped? commit) -> (nil | untyped)
+    end
+  end
+end

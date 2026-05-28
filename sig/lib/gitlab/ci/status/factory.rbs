@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Status
+      class Factory
+        @subject: untyped
+
+        @user: untyped
+
+        @status: untyped
+
+        @extended_statuses: untyped
+
+        def initialize: (untyped subject, untyped user) -> void
+
+        def fabricate!: () -> untyped
+
+        def core_status: () -> untyped
+
+        def compound_extended_status: () -> untyped
+
+        def extended_statuses: () -> untyped
+
+        def self.extended_statuses: () -> ::Array[untyped]
+
+        def self.common_helpers: () -> untyped
+      end
+    end
+  end
+end

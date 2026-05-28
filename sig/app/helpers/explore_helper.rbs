@@ -1,0 +1,17 @@
+module ExploreHelper
+  def filter_projects_path: (?::Hash[untyped, untyped] options) -> untyped
+
+  def public_visibility_restricted?: () -> untyped
+
+  def projects_filter_items: () -> untyped
+
+  def projects_filter_selected: (untyped visibility_level) -> untyped
+
+  def explore_projects_app_data: () -> { initial_sort: untyped, programming_languages: untyped, base_path: untyped }
+
+  def explore_groups_app_data: () -> { endpoint: untyped, initial_sort: "id_desc", base_path: untyped }
+
+  private
+
+  def request_path_with_options: (?::Hash[untyped, untyped] options) -> untyped
+end

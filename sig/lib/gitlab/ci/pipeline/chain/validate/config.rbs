@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Validate
+          class Config < Chain::Base
+            include Chain::Helpers
+
+            def perform!: () -> (nil | untyped)
+
+            def break?: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

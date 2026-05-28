@@ -1,0 +1,16 @@
+module Gitlab
+  module Graphql
+    module VersionFilter
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables -- we need to keep the original query for the fallback later
+      module IntroducedTracer
+        @original_query_document: untyped
+
+        @contain_future_fields: untyped
+
+        def parse: (query_string: untyped) -> untyped
+
+        def execute_query: (query: untyped) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,46 @@
+module Gitlab::Ci
+  module Badge
+    module Coverage
+      #
+      # Class that represents a coverage badge template.
+      #
+      # Template object will be passed to badge.svg.erb template.
+      #
+      class Template < Badge::Template
+        @status: untyped
+
+        @min_good: untyped
+
+        @min_acceptable: untyped
+
+        @min_medium: untyped
+
+        STATUS_COLOR: { good: "#4c1", acceptable: "#a3c51c", medium: "#dfb317", low: "#e05d44", unknown: "#9f9f9f" }
+
+        COVERAGE_MAX: 100
+
+        COVERAGE_MIN: 0
+
+        MIN_GOOD_DEFAULT: 95
+
+        MIN_ACCEPTABLE_DEFAULT: 90
+
+        MIN_MEDIUM_DEFAULT: 75
+
+        def initialize: (untyped badge) -> void
+
+        def value_text: () -> (untyped | "unknown")
+
+        def value_width: () -> (54 | 58)
+
+        def min_good_value: () -> untyped
+
+        def min_acceptable_value: () -> untyped
+
+        def min_medium_value: () -> untyped
+
+        def value_color: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,72 @@
+module BulkImports
+  class CreateService
+    @current_user: untyped
+
+    @fallback_organization: untyped
+
+    @params: untyped
+
+    @credentials: untyped
+
+    @organization: untyped
+
+    @entity_type: untyped
+
+    @source_full_path: untyped
+
+    @destination_validator: untyped
+
+    @client: untyped
+
+    @graphql_client: untyped
+
+    ENTITY_TYPES_MAPPING: ::Hash[untyped, "groups" | "projects"]
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    attr_reader credentials: untyped
+
+    attr_reader fallback_organization: untyped
+
+    def initialize: (untyped current_user, untyped params, untyped credentials, fallback_organization: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_accessor source_entity_identifier: untyped
+
+    def validate!: () -> untyped
+
+    def create_bulk_import: () -> untyped
+
+    def validate_source_full_path!: () -> untyped
+
+    def validate_setting_enabled!: () -> untyped
+
+    def organization: (untyped namespace) -> untyped
+
+    def entity_type: () -> untyped
+
+    def source_full_path: () -> untyped
+
+    def track_access_level: (untyped entity_params) -> untyped
+
+    def validate_import_destinations!: () -> untyped
+
+    # Rejects cross-organization imports when either side is isolated.
+    # Mirrors Members::CreatorService#commit_member.
+    # See https://gitlab.com/groups/gitlab-org/-/epics/17388 (Enforce Organization Data Isolation).
+    def validate_destination_organizations!: () -> (nil | untyped)
+
+    def destination_validator: () -> untyped
+
+    def client: () -> untyped
+
+    def graphql_client: () -> untyped
+
+    def query_type: (untyped entity_type) -> untyped
+  end
+end

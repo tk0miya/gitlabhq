@@ -1,0 +1,25 @@
+module Gitlab
+  module Redis
+    class CursorStore
+      @namespace: untyped
+
+      @ttl: untyped
+
+      def initialize: (untyped namespace, ?ttl: untyped) -> void
+
+      def commit: (untyped payload) -> untyped
+
+      def cursor: () -> untyped
+
+      private
+
+      attr_reader namespace: untyped
+
+      attr_reader ttl: untyped
+
+      def cache_key: () -> ::String
+
+      def value_on_redis: () -> untyped
+    end
+  end
+end

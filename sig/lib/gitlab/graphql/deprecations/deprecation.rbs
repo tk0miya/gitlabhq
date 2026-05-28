@@ -1,0 +1,68 @@
+module Gitlab
+  module Graphql
+    module Deprecations
+      class Deprecation
+        @reason: untyped
+
+        @milestone: untyped
+
+        @replacement: untyped
+
+        @original_description: untyped
+
+        @reason_text: untyped
+
+        REASON_RENAMED: :renamed
+
+        REASON_EXPERIMENT: :experiment
+
+        REASONS: ::Hash[untyped, "This was renamed." | "**Status**: Experiment."]
+
+        include ActiveModel::Validations
+
+        def self.parse: (?experiment: untyped?, ?deprecated: untyped?) -> (nil | untyped)
+
+        def initialize: (?reason: untyped?, ?milestone: untyped?, ?replacement: untyped?) -> void
+
+        def ==: (untyped other) -> (false | untyped)
+
+        alias eql ==
+
+        def markdown: (?context: ::Symbol) -> untyped
+
+        def replacement_markdown: () -> (nil | ::String)
+
+        def edit_description: (untyped original_description) -> (nil | untyped)
+
+        def original_description: () -> (nil | untyped | ::String)
+
+        def deprecation_reason: () -> untyped
+
+        def experiment?: () -> untyped
+
+        private
+
+        attr_reader reason: untyped
+
+        attr_reader milestone: untyped
+
+        attr_reader replacement: untyped
+
+        def milestone_is_string: () -> (nil | untyped)
+
+        def reason_known_or_string: () -> (nil | untyped)
+
+        def reason_is_string?: () -> untyped
+
+        def reason_text: () -> untyped
+
+        def description_suffix: () -> ::String
+
+        # Returns 'Deprecated in GitLab <milestone>' for proper deprecations.
+        # Returns 'Introduced in GitLab <milestone>' for :experiment deprecations.
+        # Formatted to markdown or plain format.
+        def changed_in_milestone: (?format: ::Symbol) -> untyped
+      end
+    end
+  end
+end

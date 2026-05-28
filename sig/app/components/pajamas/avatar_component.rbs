@@ -1,0 +1,42 @@
+module Pajamas
+  AvatarEmail: untyped
+
+  class AvatarComponent < Pajamas::Component
+    @item: untyped
+
+    @alt: untyped
+
+    @class: untyped
+
+    @size: untyped
+
+    @avatar_options: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    SIZE_OPTIONS: ::Array[16 | 24 | 32 | 48 | 64 | 96]
+
+    # @param item [User, Project, Group, AvatarEmail, String]
+    # @param alt [String] text for the alt attribute
+    # @param class [String] custom CSS class(es)
+    # @param size [Integer] size in pixel
+    # @param [Hash] avatar_options
+    def initialize: (untyped item, ?alt: untyped?, ?class: ::String, ?size: ::Integer, ?avatar_options: ::Hash[untyped, untyped]) -> void
+
+    private
+
+    def avatar_classes: () -> untyped
+
+    def src: () -> (untyped | untyped | untyped | ::String | nil)
+
+    def srcset: () -> (nil | ::String)
+
+    def aria_hide?: () -> (true | untyped)
+
+    def alt: () -> (nil | untyped)
+
+    def avatar_attributes: () -> untyped
+
+    def initial: () -> untyped
+  end
+end

@@ -1,0 +1,9 @@
+module Mutations
+  module JiraImport
+    class ImportUsers < BaseMutation
+      include FindsProject
+
+      def resolve: (project_path: untyped, ?start_at: ::Integer) -> { jira_users: untyped, errors: untyped }
+    end
+  end
+end

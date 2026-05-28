@@ -1,0 +1,71 @@
+module Tasks
+  module Gitlab
+    module Permissions
+      class BaseValidateTask
+        @schema_validator: untyped
+
+        attr_reader declarative_policy_permissions: untyped
+
+        DOCS_ROOT: "https://docs.gitlab.com"
+
+        def initialize: () -> void
+
+        def run: () -> untyped
+
+        private
+
+        attr_reader violations: untyped
+
+        def validate!: () -> untyped
+
+        def abort_if_errors_found!: () -> (nil | untyped)
+
+        def print_success_message: () -> untyped
+
+        def print_errors: (untyped formatted_errors) -> untyped
+
+        def format_error_list: (untyped kind) -> ("" | ::String)
+
+        def format_schema_errors: (?::Symbol key) ?{ (untyped) -> untyped } -> ("" | ::String)
+
+        def format_file_errors: () -> ("" | ::String)
+
+        def validate_schema: (untyped permission) -> untyped
+
+        def validate_name: (untyped permission) -> (nil | untyped)
+
+        def validate_action: (untyped permission) -> (nil | untyped)
+
+        def format_error_list_with_source: (untyped kind) -> ("" | ::String)
+
+        def format_action_errors: () -> ("" | ::String)
+
+        def permission_source_paths: (untyped _permission_name) -> untyped
+
+        def error_messages: () -> untyped
+
+        def format_all_errors: () -> untyped
+
+        def json_schema_file: () -> untyped
+
+        def schema_validator: () -> untyped
+
+        def find_empty_directories: (untyped glob_pattern) -> untyped
+
+        def find_empty_parent_directories: (untyped glob_pattern) -> untyped
+
+        def relative_path: (untyped file) -> untyped
+
+        def implementation_guide_link: (?anchor: untyped?) -> untyped
+
+        def conventions_link: (?anchor: untyped?) -> untyped
+
+        def permission_definitions_link: (?anchor: untyped?) -> untyped
+
+        def assignable_permissions_link: (?anchor: untyped?) -> untyped
+
+        def build_doc_link: (untyped link, ?anchor: untyped?) -> ::String
+      end
+    end
+  end
+end

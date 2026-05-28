@@ -1,0 +1,46 @@
+module Gitlab
+  module DataBuilder
+    module Note
+      extend ::Gitlab::DataBuilder::Note
+
+      VALID_ACTIONS: ::Array[:create | :update]
+
+      # Produce a hash of post-receive data
+      #
+      # For all notes:
+      #
+      # data = {
+      #   object_kind: "note",
+      #   event_type: "confidential_note",
+      #   user: {
+      #     name: String,
+      #     username: String,
+      #     avatar_url: String
+      #   }
+      #   project_id: Integer,
+      #   repository: {
+      #     name: String,
+      #     url: String,
+      #     description: String,
+      #     homepage: String,
+      #   }
+      #  object_attributes: {
+      #    <hook data for note>
+      #  }
+      #  <note-specific data>: {
+      # }
+      # note-specific data is a hash with one of the following keys and contains
+      # the hook data for that type.
+      #  - commit
+      #  - issue
+      #  - merge_request
+      #  - snippet
+      #
+      def build: (untyped note, untyped user, untyped action) -> untyped
+
+      def build_base_data: (untyped project, untyped user, untyped note, untyped action) -> { object_kind: "note", event_type: untyped, user: untyped, project_id: untyped, project: untyped, object_attributes: untyped, repository: untyped }
+
+      def build_data_for_commit: (untyped project, untyped user, untyped note) -> untyped
+    end
+  end
+end

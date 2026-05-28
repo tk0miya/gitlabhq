@@ -1,0 +1,15 @@
+module BitbucketServer
+  module Representation
+    class Base
+      @raw: untyped
+
+      attr_reader raw: untyped
+
+      def initialize: (untyped raw) -> void
+
+      def self.decorate: (untyped entries) -> untyped
+
+      def self.convert_timestamp: (untyped time_usec) -> (untyped | nil)
+    end
+  end
+end

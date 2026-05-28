@@ -1,0 +1,11 @@
+module Import
+  module Offline
+    module Imports
+      class ScheduleImportWorker
+        include ApplicationWorker
+
+        def perform: (untyped bulk_import_id, untyped entities) -> (nil | untyped)
+      end
+    end
+  end
+end

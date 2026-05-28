@@ -1,0 +1,25 @@
+module Ci
+  module Pipelines
+    class AddJobService
+      @pipeline: untyped
+
+      include ::Gitlab::ExclusiveLeaseHelpers
+
+      attr_reader pipeline: untyped
+
+      def initialize: (untyped pipeline) -> void
+
+      def execute!: (untyped job) { (untyped) -> untyped } -> untyped
+
+      private
+
+      LOCK_TIMEOUT: untyped
+
+      LOCK_SLEEP: untyped
+
+      LOCK_RETRIES: 20
+
+      def assign_pipeline_attributes: (untyped job) -> untyped
+    end
+  end
+end

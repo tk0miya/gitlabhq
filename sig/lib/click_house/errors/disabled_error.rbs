@@ -1,0 +1,11 @@
+module ClickHouse
+  module Errors
+    class DisabledError < StandardError
+      def initialize: (?msg: untyped?) -> void
+
+      private
+
+      def default_message: () -> "ClickHouse analytics database is not enabled"
+    end
+  end
+end

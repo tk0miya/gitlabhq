@@ -1,0 +1,16 @@
+module Types
+  # rubocop:disable Graphql/AuthorizeTypes
+  # TODO: This type should be removed when Work Items become generally available.
+  # This mechanism is introduced temporarily to make the client implementation easier during this transition.
+  class WorkItemIdType < GlobalIDType
+    def self.coerce_result: (untyped gid, untyped ctx) -> untyped
+
+    def self.coerce_input: (untyped string, untyped ctx) -> (nil | untyped)
+
+    def self.suitable?: (untyped gid) -> (false | untyped)
+
+    private
+
+    def self.work_item_gid: (untyped gid) -> untyped
+  end
+end

@@ -1,0 +1,66 @@
+module Gitlab
+  module Tracking
+    class StandardContext
+      @namespace: untyped
+
+      @plan_name: untyped
+
+      @project_id: untyped
+
+      @user: untyped
+
+      @extra: untyped
+
+      @feature_enabled_by_namespace_ids: untyped
+
+      GITLAB_STANDARD_SCHEMA_URL: "iglu:com.gitlab/gitlab_standard/jsonschema/1-1-8"
+
+      GITLAB_RAILS_SOURCE: "gitlab-rails"
+
+      GITLAB_REALM_SELF_MANAGED: "self-managed"
+
+      def initialize: (?namespace: untyped?, ?project_id: untyped?, ?user: untyped?, ?feature_enabled_by_namespace_ids: untyped?, **untyped extra) -> void
+
+      def to_context: () -> untyped
+
+      def environment: () -> ("staging" | "production" | "org" | "self-managed" | "development")
+
+      def source: () -> untyped
+
+      def to_h: () -> { environment: untyped, source: untyped, correlation_id: untyped, plan: untyped, extra: untyped, user_id: untyped, global_user_id: untyped, user_type: untyped, is_gitlab_team_member: untyped, namespace_id: untyped, ultimate_parent_namespace_id: untyped, project_id: untyped, feature_enabled_by_namespace_ids: untyped, realm: untyped, deployment_type: untyped, instance_id: untyped, unique_instance_id: untyped, host_name: untyped, instance_version: untyped, context_generated_at: untyped, organization_id: untyped }
+
+      private
+
+      attr_accessor namespace: untyped
+
+      attr_accessor project_id: untyped
+
+      attr_accessor extra: untyped
+
+      attr_accessor plan_name: untyped
+
+      attr_accessor user: untyped
+
+      attr_accessor feature_enabled_by_namespace_ids: untyped
+
+      def get_plan_name: (untyped _namespace) -> "free"
+
+      def tracked_user_id: () -> (nil | untyped)
+
+      def tracked_user_type: () -> (nil | untyped)
+
+      def check_argument_type: (untyped argument_name, untyped argument_value, untyped allowed_class) -> (nil | untyped)
+
+      def global_user_id: () -> (nil | untyped)
+
+      def organization_id: () -> (nil | untyped)
+
+      # Overridden in EE
+      def gitlab_team_member?: (untyped _user_id) -> nil
+
+      def realm: () -> untyped
+
+      def deployment_type: () -> untyped
+    end
+  end
+end

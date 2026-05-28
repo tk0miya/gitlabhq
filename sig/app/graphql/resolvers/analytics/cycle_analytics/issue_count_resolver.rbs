@@ -1,0 +1,14 @@
+# rubocop:disable Graphql/ResolverType -- inherited from Resolvers::Analytics::CycleAnalytics::BaseIssueResolver
+module Resolvers
+  module Analytics
+    module CycleAnalytics
+      class IssueCountResolver < BaseIssueResolver
+        def resolve: (**untyped args) -> { value: untyped, title: untyped, identifier: "issues", links: ::Array[untyped] }
+
+        private
+
+        def process_params: (untyped params) -> untyped
+      end
+    end
+  end
+end

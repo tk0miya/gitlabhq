@@ -1,0 +1,27 @@
+module WorkItems
+  module TypesFramework
+    module SystemDefined
+      class WidgetDefinition
+        include ActiveRecord::FixedItemsModel::Model
+
+        include ActiveRecord::FixedItemsModel::HasOne
+
+        def self.fixed_items: () -> untyped
+
+        # List of all available widgets as strings
+        def self.widget_types: () -> ::Array["assignees" | "award_emoji" | "crm_contacts" | "current_user_todos" | "description" | "designs" | "development" | "email_participants" | "error_tracking" | "hierarchy" | "labels" | "linked_items" | "linked_resources" | "milestone" | "notes" | "notifications" | "participants" | "start_and_due_date" | "time_tracking"]
+
+        def self.available_widgets: () -> untyped
+
+        def self.widget_classes: () -> untyped
+
+        def widget_class: () -> untyped
+
+        def build_widget: (untyped work_item) -> untyped
+
+        # all CE widgets are available without license, we override this method in EE
+        def licensed?: (untyped _resource_parent) -> true
+      end
+    end
+  end
+end

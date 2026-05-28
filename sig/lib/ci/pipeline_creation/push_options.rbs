@@ -1,0 +1,25 @@
+module Ci
+  module PipelineCreation
+    class PushOptions
+      @push_options: untyped
+
+      def self.fabricate: (untyped push_options) -> untyped
+
+      def initialize: (untyped push_options) -> void
+
+      def skips_ci?: () -> untyped
+
+      def no_pipeline?: () -> untyped
+
+      def variables: () -> (::Array[untyped] | untyped)
+
+      def inputs: () -> (::Hash[untyped, untyped] | untyped)
+
+      private
+
+      attr_reader push_options: untyped
+
+      def extract_key_value_pairs_from_push_option: (untyped push_option) -> (::Array[untyped] | untyped)
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    class Metrics
+      extend ::Gitlab::Utils::StrongMemoize
+
+      def self.subtransactions_increment: (untyped model_name) -> untyped
+
+      private
+
+      def self.subtransactions_counter: () -> untyped
+    end
+  end
+end

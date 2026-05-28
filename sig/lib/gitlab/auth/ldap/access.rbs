@@ -1,0 +1,51 @@
+# LDAP authorization model
+#
+# * Check if we are allowed access (not blocked)
+#
+module Gitlab
+  module Auth
+    module Ldap
+      class Access
+        @adapter: untyped
+
+        @user: untyped
+
+        @ldap_identity: untyped
+
+        @provider: untyped
+
+        @ldap_user: untyped
+
+        attr_reader provider: untyped
+
+        attr_reader user: untyped
+
+        attr_reader ldap_identity: untyped
+
+        def self.open: (untyped user) { (untyped) -> untyped } -> untyped
+
+        def self.allowed?: (untyped user, ?::Hash[untyped, untyped] options) -> untyped
+
+        def initialize: (untyped user, ?untyped? adapter) -> void
+
+        def allowed?: () -> untyped
+
+        def update_user: () -> nil
+
+        private
+
+        def adapter: () -> untyped
+
+        def ldap_config: () -> untyped
+
+        def ldap_user: () -> (nil | untyped)
+
+        def find_ldap_user: () -> untyped
+
+        def block_user: (untyped user, untyped reason) -> untyped
+
+        def unblock_user: (untyped user, untyped reason) -> untyped
+      end
+    end
+  end
+end

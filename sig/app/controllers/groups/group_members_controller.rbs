@@ -1,0 +1,62 @@
+class Groups::GroupMembersController < Groups::ApplicationController
+  @sort: untyped
+
+  @include_relations: untyped
+
+  @invited_members: untyped
+
+  @members: untyped
+
+  @placeholder_users_count: untyped
+
+  @requesters: untyped
+
+  include MembershipActions
+
+  include Members::InviteModalActions
+
+  include MembersPresentation
+
+  include SortingHelper
+
+  include Gitlab::Utils::StrongMemoize
+
+  MEMBER_PER_PAGE_LIMIT: 50
+
+  def self.admin_not_required_endpoints: () -> ::Array[:index | :leave | :request_access]
+
+  def index: () -> untyped
+
+  # MembershipActions concern
+  alias membershipable group
+
+  private
+
+  def members: () -> untyped
+
+  def invited_members: () -> untyped
+
+  def non_invited_members: () -> untyped
+
+  def present_invited_members: (untyped invited_members) -> untyped
+
+  def present_group_members: (untyped members) -> untyped
+
+  def filter_params: () -> untyped
+
+  def membershipable_members: () -> untyped
+
+  def plain_source_type: () -> "group"
+
+  def source_type: () -> untyped
+
+  def source: () -> untyped
+
+  def members_page_url: () -> untyped
+
+  def root_params_key: () -> :group_member
+
+  def placeholder_users_count: () -> { pagination: { total_items: untyped, awaiting_reassignment_items: untyped, reassigned_items: untyped } }
+
+  def placeholder_users: () -> untyped
+end

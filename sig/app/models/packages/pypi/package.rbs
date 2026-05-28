@@ -1,0 +1,8 @@
+module Packages
+  module Pypi
+    class Package < Packages::Package
+      # As defined in PEP 503 https://peps.python.org/pep-0503/#normalized-names
+      def normalized_pypi_name: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+# This grape_logging module (https://github.com/aserafin/grape_logging) makes it
+# possible to log the details of the action
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class RouteLogger < ::GrapeLogging::Loggers::Base
+        def parameters: (untyped request, untyped _) -> untyped
+      end
+    end
+  end
+end

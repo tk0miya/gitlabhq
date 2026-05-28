@@ -1,0 +1,17 @@
+module Resolvers
+  module Achievements
+    # rubocop:disable Graphql/ResolverType -- the type is inherited from the parent class
+    class UserAchievementsForUserResolver < UserAchievementsResolver
+      def resolve_with_lookahead: (include_hidden: untyped) -> untyped
+
+      private
+
+      # Returns the union of publicly shown achievements and achievements hidden on profile
+      # that the current_user is allowed to see as an awarder (maintainer or owner of the
+      # achievement's namespace, via direct membership, inherited access, or group-link).
+      # Uses Groups::AcceptingProjectImportsFinder, which implements the same three-path
+      # namespace union used here.
+      def hidden_achievements_for_awarder: (untyped relation) -> untyped
+    end
+  end
+end

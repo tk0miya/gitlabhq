@@ -1,0 +1,24 @@
+module Gitlab
+  module Database
+    module Capture
+      class Storage
+        CONNECTORS: { "Gcs" => untyped }
+
+        def self.upload: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def upload: (untyped filename, untyped data) -> untyped
+
+        private
+
+        # Fetches the configured provider or uses +StorageConnectors::Local+ as fallback connector.
+        def connector: () -> untyped
+
+        def connector_provider: () -> untyped
+
+        def connector_settings: () -> untyped
+
+        def log: (untyped message, untyped filename, ?untyped? duration) -> untyped
+      end
+    end
+  end
+end

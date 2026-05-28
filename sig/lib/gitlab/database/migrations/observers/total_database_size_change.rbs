@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module Migrations
+      module Observers
+        class TotalDatabaseSizeChange < MigrationObserver
+          @size_before: untyped
+
+          @size_after: untyped
+
+          def before: () -> untyped
+
+          def after: () -> untyped
+
+          def record: () -> (nil | untyped)
+
+          private
+
+          def get_total_database_size: () -> untyped
+        end
+      end
+    end
+  end
+end

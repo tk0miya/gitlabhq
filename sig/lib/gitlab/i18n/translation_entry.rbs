@@ -1,0 +1,103 @@
+module Gitlab
+  module I18n
+    class TranslationEntry
+      @entry_data: untyped
+
+      @nplurals: untyped
+
+      @msgid: untyped
+
+      @plural_id: untyped
+
+      @msgid_without_namespace: untyped
+
+      @all_translations: untyped
+
+      @plural_translations: untyped
+
+      @translation_entries: untyped
+
+      @translation_keys: untyped
+
+      PERCENT_REGEX: ::Regexp
+
+      ANGLE_BRACKET_REGEX: ::Regexp
+
+      NAMESPACE_REGEX: ::Regexp
+
+      SPACE_REGEX: ::Regexp
+
+      MULTIPLE_CONSECUTIVE_SPACES_REGEX: untyped
+
+      attr_reader nplurals: untyped
+
+      attr_reader entry_data: untyped
+
+      def initialize: (entry_data: untyped, nplurals: untyped) -> void
+
+      def msgid: () -> untyped
+
+      def plural_id: () -> untyped
+
+      def msgid_without_namespace: () -> untyped
+
+      def has_plural?: () -> untyped
+
+      def singular_translation: () -> (untyped | nil)
+
+      def all_translations: () -> untyped
+
+      def translated?: () -> untyped
+
+      def plural_translations: () -> (::Array[untyped] | untyped)
+
+      def flag: () -> untyped
+
+      def has_singular_translation?: () -> untyped
+
+      def msgid_has_multiple_lines?: () -> untyped
+
+      def plural_id_has_multiple_lines?: () -> untyped
+
+      def translations_have_multiple_lines?: () -> untyped
+
+      def translations_contain_namespace?: () -> untyped
+
+      def contains_namespace?: (untyped string) -> untyped
+
+      def translations_contain_leading_space?: () -> untyped
+
+      def contains_leading_space?: (untyped translation) -> untyped
+
+      def translations_contain_trailing_space?: () -> untyped
+
+      def contains_trailing_space?: (untyped translation) -> untyped
+
+      def translations_contain_multiple_spaces?: () -> untyped
+
+      def contains_multiple_spaces?: (untyped translation) -> untyped
+
+      def msgid_contains_unescaped_chars?: () -> untyped
+
+      def plural_id_contains_unescaped_chars?: () -> untyped
+
+      def translations_contain_unescaped_chars?: () -> untyped
+
+      def contains_unescaped_chars?: (untyped string) -> untyped
+
+      def msgid_contains_potential_html?: () -> untyped
+
+      def plural_id_contains_potential_html?: () -> untyped
+
+      def translations_contain_potential_html?: () -> untyped
+
+      private
+
+      def contains_angle_brackets?: (untyped string) -> untyped
+
+      def translation_entries: () -> untyped
+
+      def translation_keys: () -> untyped
+    end
+  end
+end

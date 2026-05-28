@@ -1,0 +1,8 @@
+# Base class, scoped by group
+class BaseGroupService < ::BaseContainerService
+  @group: untyped
+
+  attr_accessor group: untyped
+
+  def initialize: (group: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+end

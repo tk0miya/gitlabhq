@@ -1,0 +1,21 @@
+module Gitlab
+  module GitalyClient
+    class ListRefsSort
+      @sort_by: untyped
+
+      def initialize: (untyped sort_by) -> void
+
+      def gitaly_sort_by: () -> untyped
+
+      private
+
+      attr_reader sort_by: untyped
+
+      def key: () -> untyped
+
+      def direction: () -> untyped
+
+      def match?: (untyped key) -> (false | untyped)
+    end
+  end
+end

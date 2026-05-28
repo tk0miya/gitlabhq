@@ -1,0 +1,42 @@
+module Namespaces
+  class MarkForDeletionBaseService < ::BaseService
+    @resource: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    DELETION_SCHEDULED_PATH_INFIX: "deletion_scheduled"
+
+    LEGACY_DELETION_SCHEDULED_PATH_INFIX: "deleted"
+
+    def initialize: (untyped resource, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader resource: untyped
+
+    def remove_permission: () -> untyped
+
+    def notification_method: () -> untyped
+
+    def resource_name: () -> untyped
+
+    def preconditions_checks: () -> untyped
+
+    def already_marked_error: () -> untyped
+
+    def ancestor_already_marked_error: () -> untyped
+
+    # Can be overridden
+    def post_success: () -> untyped
+
+    def suffixed_identifier: (untyped original_identifier) -> ::String
+
+    def log_event: () -> untyped
+
+    def send_notification: () -> untyped
+  end
+end

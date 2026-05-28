@@ -1,0 +1,266 @@
+class MergeRequestDiff < ApplicationRecord
+  @diffs_no_whitespace: untyped
+
+  @raw_diffs: untyped
+
+  @compare: untyped
+
+  include Sortable
+
+  include Importable
+
+  include ManualInverseAssociation
+
+  include EachBatch
+
+  include Gitlab::Utils::StrongMemoize
+
+  include BulkInsertableAssociations
+
+  include ShaAttribute
+
+  include ObjectStorable
+
+  include FromUnion
+
+  STORE_COLUMN: :external_diff_store
+
+  # Don't display more than 100 commits at once
+  COMMITS_SAFE_SIZE: 100
+
+  BATCH_SIZE: 1000
+
+  # Applies to closed or merged MRs when determining whether to migrate their
+  # diffs to external storage
+  EXTERNAL_DIFF_CUTOFF: untyped
+
+  # The files_count column is a 2-byte signed integer. Look up the true value
+  # from the database if this sentinel is seen
+  FILES_COUNT_SENTINEL: untyped
+
+  # External diff cache key used by diffs export
+  EXTERNAL_DIFFS_CACHE_TMPDIR: "project-%{project_id}-external-mr-%{mr_id}-diff-%{id}-cache"
+
+  EXTERNAL_DIFF_CACHE_CHUNK_SIZE: untyped
+
+  def self.ids_for_external_storage_migration: (limit: untyped) -> (::Array[untyped] | untyped)
+
+  def self.ids_for_external_storage_migration_strategy_always: (limit: untyped) -> untyped
+
+  def self.ids_for_external_storage_migration_strategy_outdated: (limit: untyped) -> untyped
+
+  def self.find_by_diff_refs: (untyped diff_refs) -> untyped
+
+  def viewable?: () -> untyped
+
+  def preload_gitaly_data: () -> untyped
+
+  # Collect information about commits and diff from repository
+  # and save it to the database as serialized data
+  def save_git_content: () -> (nil | untyped)
+
+  def set_patch_id_sha: () -> (nil | untyped)
+
+  def get_patch_id_sha: () -> (untyped | nil)
+
+  def set_as_latest_diff: () -> (nil | untyped)
+
+  def trigger_diff_generated_subscription: () -> untyped
+
+  def ensure_commit_shas: () -> nil
+
+  # Override head_commit_sha to keep compatibility with merge request diff
+  # created before version 8.4 that does not store head_commit_sha in separate db field.
+  def head_commit_sha: () -> untyped
+
+  def files_count: () -> untyped
+
+  # This method will rely on repository branch sha
+  # in case start_commit_sha is nil. It's necessary for old merge request diff
+  # created before version 8.4 to work
+  def safe_start_commit_sha: () -> untyped
+
+  def size: () -> untyped
+
+  def lines_count: () -> untyped
+
+  def raw_diffs: (?::Hash[untyped, untyped] options) -> untyped
+
+  def commits: (?limit: untyped?, ?load_from_gitaly: bool, ?page: untyped?) -> untyped
+
+  def last_commit_sha: () -> untyped
+
+  def first_commit: () -> untyped
+
+  def last_commit: () -> untyped
+
+  def base_commit: () -> (nil | untyped)
+
+  def start_commit: () -> (nil | untyped)
+
+  def head_commit: () -> (nil | untyped)
+
+  # Returns commit SHAs for this diff.
+  #
+  # @param limit [Integer, nil] maximum number of SHAs to return
+  # @param mode [Symbol] controls the data source:
+  #   :auto (default) - uses the preloaded association when available (no metadata preloading);
+  #     falls back to the metadata DB query when the association is not loaded.
+  #   :preload - like :auto but also preloads commit metadata for efficient SHA lookup.
+  #   :force_metadata - always queries the DB via the metadata join, bypassing any preloaded association.
+  def commit_shas: (?limit: untyped?, ?mode: ::Symbol) -> untyped
+
+  def includes_any_commits?: (untyped shas) -> (false | untyped)
+
+  def diff_refs=: (untyped new_diff_refs) -> untyped
+
+  def diff_refs: () -> (nil | untyped)
+
+  def diff_stats: () -> (nil | untyped)
+
+  # MRs created before 8.4 don't store their true diff refs (start and base),
+  # but we need to get a commit SHA for the "View file @ ..." link by a file,
+  # so we use an approximation of the diff refs if we can't get the actual one.
+  #
+  # These will not be the actual diff refs if the target branch was merged into
+  # the source branch after the merge request was created, but it is good enough
+  # for the specific purpose of linking to a commit.
+  #
+  # It is not good enough for highlighting diffs, so we can't simply pass
+  # these as `diff_refs.`
+  def fallback_diff_refs: () -> untyped
+
+  def first_diffs_slice: (untyped limit, ?::Hash[untyped, untyped] diff_options) -> untyped
+
+  def diffs_for_streaming: (?::Hash[untyped, untyped] diff_options) -> untyped
+
+  def diffs_for_streaming_by_changed_paths: (?::Hash[untyped, untyped] diff_options) { (?) -> untyped } -> untyped
+
+  def diffs_in_batch: (untyped batch_page, untyped batch_size, diff_options: untyped) -> untyped
+
+  def paginated_diffs: (untyped page, untyped per_page, ?::Hash[untyped, untyped] diff_options) -> untyped
+
+  def diffs: (?untyped? diff_options) -> untyped
+
+  # Should always return the DB persisted diffs collection
+  # (e.g. Gitlab::Diff::FileCollection::MergeRequestDiff.
+  # It's useful when trying to invalidate old caches through
+  # FileCollection::MergeRequestDiff#clear_cache!
+  def diffs_collection: (?untyped? diff_options) -> untyped
+
+  def project: () -> untyped
+
+  def compare: () -> untyped
+
+  def latest?: () -> untyped
+
+  def modified_paths: (?fallback_on_overflow: bool) -> untyped
+
+  def update_external_diff_store: () -> (nil | untyped)
+
+  # If enabled, yields the external file containing the diff. Otherwise, yields
+  # nil. This method is not thread-safe, but it *is* re-entrant, which allows
+  # multiple merge_request_diff_files to load their data efficiently
+  def opening_external_diff: () { (untyped) -> untyped } -> untyped
+
+  # Transactionally migrate the current merge_request_diff_files entries to
+  # external storage. If external storage isn't an option for this diff, the
+  # method is a no-op.
+  def migrate_files_to_external_storage!: () -> (nil | untyped)
+
+  # Transactionally migrate the current merge_request_diff_files entries from
+  # external storage, back to the database. This is the rollback operation for
+  # +migrate_files_to_external_storage!+
+  #
+  # If this diff isn't in external storage, the method is a no-op.
+  #
+  # Although there are no callers in the codebase, this method is invoked
+  # manually (e.g. from a Rails console) to recover diffs when an external
+  # diff object is missing or corrupted on storage, so retain it.
+  # See https://gitlab.com/gitlab-com/request-for-help/-/work_items/3386#note_2739146033
+  def migrate_files_to_database!: () -> (nil | untyped)
+
+  # Yields locally cached external diff if it's externally stored.
+  # Used during Project Export to speed up externally
+  # stored merge request diffs export
+  def cached_external_diff: () { (untyped) -> untyped } -> untyped
+
+  def remove_cached_external_diff: () -> (nil | untyped)
+
+  def has_encoded_file_paths?: () -> untyped
+
+  def partition_enabled?: () -> (false | untyped)
+
+  private
+
+  def preload_metadata_for_commits: (untyped commits) -> untyped
+
+  def convert_external_diffs_to_database: () -> untyped
+
+  def diffs_in_batch_collection: (untyped batch_page, untyped batch_size, diff_options: untyped) -> untyped
+
+  def encode_in_base64?: (untyped diff_text) -> (false | untyped)
+
+  def build_external_merge_request_diff_files: (untyped rows) -> untyped
+
+  def create_merge_request_diff_files: (untyped rows) -> untyped
+
+  def build_external_diff_tempfile: (untyped rows) -> untyped
+
+  def build_merge_request_diff_files: (untyped diffs) -> untyped
+
+  # Yields the block with the repository Compare object if it should
+  # fetch diffs from the repository instead DB.
+  def fetching_repository_diffs: (untyped diff_options) ?{ (untyped) -> untyped } -> (nil | untyped)
+
+  def use_external_diff?: () -> (false | untyped)
+
+  def outdated_by_merge?: () -> (false | untyped)
+
+  def outdated_by_closure?: () -> (false | untyped)
+
+  def old_version?: () -> untyped
+
+  def load_diffs: (untyped options) -> untyped
+
+  def load_commits: (?limit: untyped?, ?load_from_gitaly: bool, ?page: untyped?) -> untyped
+
+  def save_diffs: () -> untyped
+
+  def reversed_compare_commits_preloaded: () -> untyped
+
+  def compare_diffs_preloaded: () -> untyped
+
+  def eager_load_diff_collection: () -> untyped
+
+  def save_commits: () -> untyped
+
+  def set_count_columns: () -> untyped
+
+  def ensure_project_id: () -> untyped
+
+  def repository: () -> untyped
+
+  def find_base_sha: () -> (nil | untyped)
+
+  def enqueue_keep_around_commits: () -> (nil | untyped)
+
+  def async_keep_around_refs?: () -> untyped
+
+  def keep_around_commits: () -> (nil | untyped)
+
+  def reorder_diff_files!: () -> (nil | untyped)
+
+  def sort_diffs: (untyped diffs) -> untyped
+
+  # Downloads external diff to a temp storage location.
+  def cache_external_diff: () -> (nil | untyped)
+
+  def external_diff_cache_filepath: () -> untyped
+
+  def external_diff_cache_dir: () -> untyped
+
+  def metadata_sha_exists?: (untyped shas) -> untyped
+
+  def commit_shas_from_metadata: (untyped limit) -> untyped
+end

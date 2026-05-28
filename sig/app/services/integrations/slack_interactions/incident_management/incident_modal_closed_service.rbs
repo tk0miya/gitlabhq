@@ -1,0 +1,23 @@
+module Integrations
+  module SlackInteractions
+    module IncidentManagement
+      class IncidentModalClosedService
+        @params: untyped
+
+        def initialize: (untyped params) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_accessor params: untyped
+
+        def close_modal: () -> untyped
+
+        def close_request_body: () -> { replace_original: "true", text: untyped }
+
+        def headers: () -> { "Content-Type" => "application/json" }
+      end
+    end
+  end
+end

@@ -1,0 +1,53 @@
+module Spam
+  #
+  # This class is a Parameter Object (https://refactoring.com/catalog/introduceParameterObject.html)
+  # which acts as an container abstraction for multiple values related to spam and
+  # captcha processing for a provided HTTP request object.
+  #
+  # It is used to encapsulate these values and allow them to be passed from the Controller/GraphQL
+  # layers down into to the Service layer, without needing to pass the entire request and therefore
+  # unnecessarily couple the Service layer to the HTTP request.
+  #
+  # Values contained are:
+  #
+  # captcha_response: The response resulting from the user solving a captcha.  Currently it is
+  #   a scalar reCAPTCHA response string, but it can be expanded to an object in the future to
+  #   support other captcha implementations such as FriendlyCaptcha. Obtained from
+  #   request.headers['X-GitLab-Captcha-Response']
+  # spam_log_id: The id of a SpamLog record. Obtained from request.headers['X-GitLab-Spam-Log-Id']
+  # ip_address = The remote IP. Obtained from request.env['action_dispatch.remote_ip']
+  # user_agent = The user agent. Obtained from request.env['HTTP_USER_AGENT']
+  # referer = The HTTP referer. Obtained from request.env['HTTP_REFERER']
+  #
+  # NOTE: The presence of these values in the request is not currently enforced. If they are missing,
+  #      then the spam check may fail, or the SpamLog or UserAgentDetail may have missing fields.
+  class SpamParams
+    @captcha_response: untyped
+
+    @spam_log_id: untyped
+
+    @ip_address: untyped
+
+    @user_agent: untyped
+
+    @referer: untyped
+
+    def self.new_from_request: (request: untyped) -> untyped
+
+    attr_reader captcha_response: untyped
+
+    attr_reader spam_log_id: untyped
+
+    attr_reader ip_address: untyped
+
+    attr_reader user_agent: untyped
+
+    attr_reader referer: untyped
+
+    def initialize: (captcha_response: untyped, spam_log_id: untyped, ip_address: untyped, user_agent: untyped, referer: untyped) -> void
+
+    def ==: (untyped other) -> untyped
+
+    def self.normalize_grape_request_headers: (request: untyped) -> untyped
+  end
+end

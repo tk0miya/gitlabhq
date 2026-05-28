@@ -1,0 +1,15 @@
+module Gitlab
+  module HookData
+    class GroupBuilder < BaseBuilder
+      alias group object
+
+      def build: (untyped event) -> untyped
+
+      private
+
+      def group_data: () -> { name: untyped, path: untyped, full_path: untyped, group_id: untyped }
+
+      def event_specific_group_data: (untyped event) -> (::Hash[untyped, untyped] | { old_path: untyped, old_full_path: untyped })
+    end
+  end
+end

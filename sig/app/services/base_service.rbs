@@ -1,0 +1,28 @@
+# This is the original root class for service related classes,
+# and due to historical reason takes a project as scope.
+# Later separate base classes for different scopes will be created,
+# and existing service will use these one by one.
+# After all are migrated, we can remove this class.
+#
+# For new services, please see https://docs.gitlab.com/ee/development/reusing_abstractions.html#service-classes
+class BaseService
+  @project: untyped
+
+  @current_user: untyped
+
+  @params: untyped
+
+  include BaseServiceUtility
+
+  include Gitlab::Experiment::Dsl
+
+  UnauthorizedError: untyped
+
+  attr_accessor project: untyped
+
+  attr_accessor current_user: untyped
+
+  attr_accessor params: untyped
+
+  def initialize: (untyped project, ?untyped? user, ?::Hash[untyped, untyped] params) -> void
+end

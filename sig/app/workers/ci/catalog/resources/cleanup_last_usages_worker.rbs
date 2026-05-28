@@ -1,0 +1,13 @@
+module Ci
+  module Catalog
+    module Resources
+      class CleanupLastUsagesWorker
+        include ApplicationWorker
+
+        include CronjobQueue
+
+        def perform: () -> untyped
+      end
+    end
+  end
+end

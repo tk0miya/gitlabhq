@@ -1,0 +1,29 @@
+module Packages
+  class ProjectsFinder
+    @current_user: untyped
+
+    @group: untyped
+
+    @params: untyped
+
+    def initialize: (current_user: untyped, group: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader group: untyped
+
+    attr_reader params: untyped
+
+    def visible_projects: () -> untyped
+
+    def access: () -> untyped
+
+    def with_public_package_registry: () -> untyped
+
+    def groups: () -> (::Array[untyped] | untyped)
+  end
+end

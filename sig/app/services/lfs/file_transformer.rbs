@@ -1,0 +1,76 @@
+module Lfs
+  # Usage: Calling `new_file` check to see if a file should be in LFS and
+  #        return a transformed result with `content` and `encoding` to commit.
+  #
+  #        The `repository` passed to the initializer can be a Repository or
+  #        class that inherits from Repository.
+  #
+  #        The `repository_type` property will be one of the types named in
+  #        `Gitlab::GlRepository.types`, and is recorded on the `LfsObjectsProject`
+  #        in order to identify the repository location of the blob.
+  #
+  #        For LFS an LfsObject linked to the project is stored and an LFS
+  #        pointer returned. If the file isn't in LFS the untransformed content
+  #        is returned to save in the commit.
+  #
+  # transformer = Lfs::FileTransformer.new(project, repository, @branch_name)
+  # content_or_lfs_pointer = transformer.new_file(file_path, content).content
+  # create_transformed_commit(content_or_lfs_pointer)
+  #
+  class FileTransformer
+    @project: untyped
+
+    @repository: untyped
+
+    @repository_type: untyped
+
+    @branch_name: untyped
+
+    @start_branch_name: untyped
+
+    @branch_to_base_off: untyped
+
+    @cached_attributes: untyped
+
+    attr_reader project: untyped
+
+    attr_reader repository: untyped
+
+    attr_reader repository_type: untyped
+
+    attr_reader branch_name: untyped
+
+    def initialize: (untyped project, untyped repository, untyped branch_name, ?start_branch_name: untyped?) -> void
+
+    def new_file: (untyped file_path, untyped file_content, ?encoding: untyped?, ?detect_content_type: bool) -> untyped
+
+    def branch_to_base_off: () -> untyped
+
+    class Result
+      @content: untyped
+
+      @encoding: untyped
+
+      attr_reader content: untyped
+
+      attr_reader encoding: untyped
+
+      def initialize: (content: untyped, encoding: untyped) -> void
+    end
+
+    private
+
+    attr_reader start_branch_name: untyped
+
+    def lfs_file?: (untyped file_path) -> untyped
+
+    def cached_attributes: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def create_lfs_object!: (untyped lfs_pointer_file, untyped file_content, untyped detect_content_type) -> untyped
+
+    def link_lfs_object!: (untyped lfs_object) -> untyped
+
+    def parse_file_content: (untyped file_content, ?encoding: untyped?) -> untyped
+  end
+end

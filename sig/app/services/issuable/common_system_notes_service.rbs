@@ -1,0 +1,41 @@
+module Issuable
+  class CommonSystemNotesService < ::BaseProjectService
+    @issuable: untyped
+
+    @is_update: untyped
+
+    attr_reader issuable: untyped
+
+    attr_reader is_update: untyped
+
+    def execute: (untyped issuable, ?old_labels: untyped, ?old_milestone: untyped?, ?is_update: bool) -> untyped
+
+    private
+
+    def handle_start_date_or_due_date_change_note: () -> untyped
+
+    def handle_time_tracking_note: () -> untyped
+
+    def handle_description_change_note: () -> (untyped | nil)
+
+    def create_draft_note: (untyped old_title) -> (nil | untyped)
+
+    def create_labels_note: (untyped old_labels) -> untyped
+
+    def create_title_change_note: (untyped old_title) -> untyped
+
+    def create_description_change_note: () -> untyped
+
+    def create_task_status_note: () -> untyped
+
+    def create_time_estimate_note: () -> untyped
+
+    def create_time_spent_note: () -> untyped
+
+    def create_milestone_change_event: (untyped old_milestone) -> untyped
+
+    def create_start_date_or_due_date_note: (untyped changed_dates) -> (nil | untyped)
+
+    def create_discussion_lock_note: () -> untyped
+  end
+end

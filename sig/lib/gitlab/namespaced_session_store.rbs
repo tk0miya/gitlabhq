@@ -1,0 +1,23 @@
+module Gitlab
+  class NamespacedSessionStore
+    @namespace_key: untyped
+
+    @session: untyped
+
+    include Enumerable
+
+    def initialize: (untyped key, ?untyped session) -> void
+
+    def initiated?: () -> untyped
+
+    def each: () { (?) -> untyped } -> (nil | untyped)
+
+    def []: (untyped key) -> (nil | untyped)
+
+    def []=: (untyped key, untyped value) -> (nil | untyped)
+
+    private
+
+    attr_reader session: untyped
+  end
+end

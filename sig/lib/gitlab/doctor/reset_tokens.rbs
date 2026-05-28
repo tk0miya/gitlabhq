@@ -1,0 +1,29 @@
+module Gitlab
+  module Doctor
+    class ResetTokens
+      @logger: untyped
+
+      @model_names: untyped
+
+      @token_names: untyped
+
+      @dry_run: untyped
+
+      attr_reader logger: untyped
+
+      PRINT_PROGRESS_EVERY: 1000
+
+      def initialize: (untyped logger, model_names: untyped, token_names: untyped, ?dry_run: bool) -> void
+
+      def run!: () -> untyped
+
+      private
+
+      def fix_model: (untyped model) -> (nil | untyped)
+
+      def fix_attribute: (untyped instance, untyped attribute_name) -> untyped
+
+      def models_with_encrypted_tokens: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,42 @@
+# Recursive queries, with relatively low effort, can quickly spiral out of control exponentially
+# and may not be picked up by depth and complexity alone.
+module Gitlab
+  module Graphql
+    module QueryAnalyzers
+      module AST
+        class RecursionAnalyzer < GraphQL::Analysis::AST::Analyzer
+          @node_visits: untyped
+
+          @recurring_fields: untyped
+
+          IGNORED_FIELDS: ::Array["node" | "edges" | "nodes" | "ofType"]
+
+          RECURSION_THRESHOLD: 2
+
+          def initialize: (untyped query) -> void
+
+          def on_enter_field: (untyped node, untyped _parent, untyped visitor) -> (nil | untyped)
+
+          # Visitors are all defined on the AST::Analyzer base class
+          # We override them for custom analyzers.
+          def on_leave_field: (untyped node, untyped _parent, untyped visitor) -> (nil | untyped)
+
+          def result: () -> untyped
+
+          private
+
+          attr_reader node_visits: untyped
+
+          attr_reader recurring_fields: untyped
+
+          def recursion_too_deep?: (untyped node_name, untyped times_encountered) -> (nil | untyped)
+
+          def skip_node?: (untyped node, untyped visitor) -> (false | untyped)
+
+          # separated into a method for use in allow_high_graphql_recursion
+          def recursion_threshold: () -> untyped
+        end
+      end
+    end
+  end
+end

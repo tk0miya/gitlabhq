@@ -1,0 +1,28 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        class Parser
+          @tokens: untyped
+
+          @nodes: untyped
+
+          ParseError: untyped
+
+          def initialize: (untyped tokens) -> void
+
+          def tree: () -> untyped
+
+          def self.seed: (untyped statement) -> untyped
+
+          private
+
+          # Parse the expression into Reverse Polish Notation
+          # (See: Shunting-yard algorithm)
+          # Taken from: https://en.wikipedia.org/wiki/Shunting-yard_algorithm#The_algorithm_in_detail
+          def tokens_rpn: () -> untyped
+        end
+      end
+    end
+  end
+end

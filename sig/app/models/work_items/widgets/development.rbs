@@ -1,0 +1,13 @@
+module WorkItems
+  module Widgets
+    class Development < Base
+      def self.quick_action_commands: () -> ::Array[:create_merge_request]
+
+      def self.quick_action_params: () -> ::Array[:branch_name]
+
+      def closing_merge_requests: () -> untyped
+
+      def will_auto_close_by_merge_request: () -> (false | untyped)
+    end
+  end
+end

@@ -1,0 +1,40 @@
+module API
+  module Support
+    class GitAccessActor
+      @user: untyped
+
+      @key: untyped
+
+      @deploy_token: untyped
+
+      extend ::Gitlab::Identifier
+
+      attr_reader user: untyped
+
+      attr_reader key: untyped
+
+      attr_reader deploy_token: untyped
+
+      def initialize: (?user: untyped?, ?key: untyped?, ?deploy_token: untyped?) -> void
+
+      def self.from_params: (untyped params) -> untyped
+
+      def self.from_identifier: (untyped identifier) -> untyped
+
+      # TODO: Rename this method to better reflect that it now includes DeployTokens.
+      # We are keeping the name 'key_or_user' for now to avoid a large refactor
+      # that would distract from the functional changes in this MR.
+      # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/224363
+      # A follow-up MR will address the rename across all call sites.
+      def key_or_user: () -> untyped
+
+      def resolved_identity: () -> untyped
+
+      def username: () -> untyped
+
+      def update_last_used_at!: () -> untyped
+
+      def key_details: () -> (::Hash[untyped, untyped] | { gl_key_type: untyped, gl_key_id: untyped })
+    end
+  end
+end

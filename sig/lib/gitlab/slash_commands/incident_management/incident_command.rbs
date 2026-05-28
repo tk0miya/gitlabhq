@@ -1,0 +1,13 @@
+module Gitlab
+  module SlashCommands
+    module IncidentManagement
+      class IncidentCommand < BaseCommand
+        def self.available?: (untyped project) -> true
+
+        def collection: () -> untyped
+
+        def slack_installation: () -> untyped
+      end
+    end
+  end
+end

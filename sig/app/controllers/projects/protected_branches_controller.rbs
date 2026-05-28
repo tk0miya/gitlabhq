@@ -1,0 +1,17 @@
+class Projects::ProtectedBranchesController < Projects::ProtectedRefsController
+  @protected_ref: untyped
+
+  def show: () -> untyped
+
+  def ref_type: () -> :branches
+
+  def project_refs: () -> untyped
+
+  def service_namespace: () -> untyped
+
+  def load_protected_ref: () -> untyped
+
+  def access_levels: () -> ::Array[:merge_access_levels | :push_access_levels]
+
+  def protected_ref_params: (*untyped attrs) -> untyped
+end

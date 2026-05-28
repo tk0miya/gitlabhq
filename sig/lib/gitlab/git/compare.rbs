@@ -1,0 +1,31 @@
+module Gitlab
+  module Git
+    class Compare
+      @repository: untyped
+
+      @straight: untyped
+
+      @commits: untyped
+
+      @base: untyped
+
+      @head: untyped
+
+      attr_reader head: untyped
+
+      attr_reader base: untyped
+
+      attr_reader straight: untyped
+
+      def initialize: (untyped repository, untyped base, untyped head, ?straight: bool) -> void
+
+      def same: () -> untyped
+
+      def commits: (?limit: untyped?) -> untyped
+
+      def diffs: (?::Hash[untyped, untyped] options) -> untyped
+
+      def generated_files: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Resolvers
+  module Ci
+    class RunnerJobCountResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias runner object
+
+      def resolve: (?statuses: untyped?) -> untyped
+
+      private
+
+      def calculate_job_count_per_runner: (untyped runner_ids, untyped statuses) -> untyped
+    end
+  end
+end

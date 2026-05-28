@@ -1,0 +1,11 @@
+module DependencyProxy
+  module Expireable
+    extend ActiveSupport::Concern
+
+    UPDATE_BATCH_SIZE: 100
+
+    private
+
+    def expire_artifacts: (untyped collection) -> untyped
+  end
+end

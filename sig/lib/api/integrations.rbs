@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+module API
+  class Integrations < ::API::Base
+    INTEGRATIONS_TAGS: ::Array["integrations"]
+
+    INTEGRATIONS: untyped
+
+    SLASH_COMMAND_INTEGRATIONS: { "mattermost-slash-commands" => untyped }
+  end
+end

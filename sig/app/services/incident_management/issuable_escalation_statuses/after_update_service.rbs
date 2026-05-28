@@ -1,0 +1,25 @@
+module IncidentManagement
+  module IssuableEscalationStatuses
+    class AfterUpdateService < ::BaseProjectService
+      @issuable: untyped
+
+      @escalation_status: untyped
+
+      def initialize: (untyped issuable, untyped current_user, **untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader issuable: untyped
+
+      attr_reader escalation_status: untyped
+
+      def after_update: () -> untyped
+
+      def add_status_system_note: () -> (nil | untyped)
+
+      def add_timeline_event: () -> (nil | untyped)
+    end
+  end
+end

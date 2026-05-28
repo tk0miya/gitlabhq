@@ -1,0 +1,49 @@
+module Packages
+  module Debian
+    class CreateDistributionService
+      @container: untyped
+
+      @params: untyped
+
+      @components: untyped
+
+      @architectures: untyped
+
+      @distribution: untyped
+
+      @errors: untyped
+
+      def initialize: (untyped container, untyped user, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader container: untyped
+
+      attr_reader params: untyped
+
+      attr_reader components: untyped
+
+      attr_reader architectures: untyped
+
+      attr_reader distribution: untyped
+
+      attr_reader errors: untyped
+
+      def append_errors: (untyped record, ?::String prefix) -> (nil | untyped)
+
+      def create_distribution: () -> untyped
+
+      def create_components: () -> untyped
+
+      def create_architectures: () -> untyped
+
+      def create_objects: (untyped objects, untyped object_names_from_params, error_label: untyped) -> untyped
+
+      def success: () -> untyped
+
+      def error: () -> untyped
+    end
+  end
+end

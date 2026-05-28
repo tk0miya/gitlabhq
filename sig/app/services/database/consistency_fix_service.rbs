@@ -1,0 +1,36 @@
+module Database
+  class ConsistencyFixService
+    @source_model: untyped
+
+    @target_model: untyped
+
+    @sync_event_class: untyped
+
+    @source_sort_key: untyped
+
+    @target_sort_key: untyped
+
+    def initialize: (source_model: untyped, target_model: untyped, sync_event_class: untyped, source_sort_key: untyped, target_sort_key: untyped) -> void
+
+    attr_accessor source_model: untyped
+
+    attr_accessor target_model: untyped
+
+    attr_accessor sync_event_class: untyped
+
+    attr_accessor source_sort_key: untyped
+
+    attr_accessor target_sort_key: untyped
+
+    def execute: (ids: untyped) -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def source_object: (untyped id) -> untyped
+
+    def target_object: (untyped id) -> untyped
+
+    def create_sync_event_for: (untyped id) -> untyped
+  end
+end

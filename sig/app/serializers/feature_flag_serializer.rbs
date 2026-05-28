@@ -1,0 +1,5 @@
+class FeatureFlagSerializer < BaseSerializer
+  include WithPagination
+
+  def represent: (untyped resource, ?::Hash[untyped, untyped] opts) -> untyped
+end

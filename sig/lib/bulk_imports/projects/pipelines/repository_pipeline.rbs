@@ -1,0 +1,17 @@
+module BulkImports
+  module Projects
+    module Pipelines
+      class RepositoryPipeline
+        include Pipeline
+
+        def transform: (untyped _, untyped data) -> untyped
+
+        def load: (untyped context, untyped data) -> (nil | untyped)
+
+        # The initial fetch can bring in lots of loose refs and objects.
+        # Running a `git gc` will make importing merge requests faster.
+        def after_run: (untyped _) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module API
+  module Hooks
+    # It is important that this re-usable module is not a Grape Instance,
+    # since it will be re-mounted.
+    # rubocop: disable API/Base
+    class UrlVariables < ::Grape::API
+    end
+  end
+end

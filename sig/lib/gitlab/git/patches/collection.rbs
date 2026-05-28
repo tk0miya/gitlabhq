@@ -1,0 +1,23 @@
+module Gitlab
+  module Git
+    module Patches
+      class Collection
+        @patches: untyped
+
+        @size: untyped
+
+        MAX_PATCH_SIZE: untyped
+
+        def initialize: (untyped one_or_more_patches) -> void
+
+        def content: () -> untyped
+
+        def valid_size?: () -> untyped
+
+        # `@patches` is not an `ActiveRecord` relation, but an `Enumerable`
+        # We're using sum from `ActiveSupport`
+        def size: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Attachments
+        class BaseImporter
+          include ParallelScheduling
+
+          BATCH_SIZE: 100
+
+          # The method that will be called for traversing through all the objects to
+          # import, yielding them to the supplied block.
+          def each_object_to_import: () { (untyped) -> untyped } -> untyped
+
+          def representation_class: () -> untyped
+
+          def importer_class: () -> untyped
+
+          # To avoid hitting rate limits, we use a smaller limit for attachments than the one defined in the
+          # application settings.
+          def parallel_import_batch: () -> { size: 100, delay: untyped }
+
+          private
+
+          def collection: () -> untyped
+
+          def ordering_column: () -> :id
+
+          def object_representation: (untyped object) -> untyped
+
+          def fetch_attachments: (untyped object) -> (::Array[untyped] | untyped)
+        end
+      end
+    end
+  end
+end

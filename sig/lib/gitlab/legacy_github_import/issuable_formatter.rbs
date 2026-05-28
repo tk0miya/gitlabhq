@@ -1,0 +1,52 @@
+module Gitlab
+  module LegacyGithubImport
+    class IssuableFormatter < BaseFormatter
+      @author: untyped
+
+      @author_id: untyped
+
+      @assignee: untyped
+
+      @assignee_id: untyped
+
+      include Import::UsernameMentionRewriter
+
+      attr_writer assignee_id: untyped
+
+      attr_writer author_id: untyped
+
+      def project_association: () -> untyped
+
+      def number: () -> untyped
+
+      def find_condition: () -> { iid: untyped }
+
+      def create!: () -> untyped
+
+      def project_assignee_association: () -> untyped
+
+      def contributing_assignee_formatters: () -> untyped
+
+      private
+
+      def state: () -> ("closed" | "opened")
+
+      def assigned?: () -> untyped
+
+      def author: () -> untyped
+
+      def author_id: () -> untyped
+
+      def assignee: () -> (untyped | nil)
+
+      def assignee_id: () -> untyped
+
+      def body: () -> untyped
+
+      def description: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def milestone: () -> (untyped | nil)
+    end
+  end
+end

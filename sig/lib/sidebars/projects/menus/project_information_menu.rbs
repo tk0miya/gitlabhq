@@ -1,0 +1,25 @@
+module Sidebars
+  module Projects
+    module Menus
+      class ProjectInformationMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> true
+
+        def extra_container_html_options: () -> { class: "shortcuts-project-information" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "project"
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def activity_menu_item: () -> untyped
+
+        def labels_menu_item: () -> untyped
+
+        def members_menu_item: () -> untyped
+      end
+    end
+  end
+end

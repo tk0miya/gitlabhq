@@ -1,0 +1,40 @@
+module Gitlab
+  class SafeRequestLoader
+    @resource_key: untyped
+
+    @resource_ids: untyped
+
+    @default_value: untyped
+
+    @resource_data: untyped
+
+    # Look up only the IDs we need
+    @missing_resource_ids: untyped
+
+    def self.execute: (untyped args) { (?) -> untyped } -> untyped
+
+    def initialize: (resource_key: untyped, resource_ids: untyped, ?default_value: untyped?) -> void
+
+    def execute: () ?{ (?) -> untyped } -> untyped
+
+    private
+
+    attr_reader resource_key: untyped
+
+    attr_reader resource_ids: untyped
+
+    attr_reader default_value: untyped
+
+    attr_reader resource_data: untyped
+
+    attr_reader missing_resource_ids: untyped
+
+    def load_resource_data: () -> untyped
+
+    def remove_loaded_resource_ids: () -> untyped
+
+    def update_resource_data: () { (untyped) -> untyped } -> (nil | untyped)
+
+    def mark_absent_values: () -> untyped
+  end
+end

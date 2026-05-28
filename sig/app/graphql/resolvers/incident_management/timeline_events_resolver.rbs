@@ -1,0 +1,19 @@
+module Resolvers
+  module IncidentManagement
+    class TimelineEventsResolver < BaseResolver
+      include LooksAhead
+
+      alias project object
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      def preloads: () -> { timeline_event_tags: ::Array[:timeline_event_tags] }
+
+      private
+
+      def alert_is_disabled?: (untyped project) -> untyped
+
+      def error_message: () -> "Field 'incidentManagementTimelineEvents' doesn't exist on type 'Project'."
+    end
+  end
+end

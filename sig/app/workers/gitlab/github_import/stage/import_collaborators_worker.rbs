@@ -1,0 +1,25 @@
+module Gitlab
+  module GithubImport
+    module Stage
+      class ImportCollaboratorsWorker
+        include ApplicationWorker
+
+        include StageMethods
+
+        # client - An instance of Gitlab::GithubImport::Client.
+        # project - An instance of Project.
+        def import: (untyped client, untyped project) -> untyped
+
+        private
+
+        def import_collaborators?: (untyped project) -> (false | untyped)
+
+        def has_push_access?: (untyped client, untyped repo) -> untyped
+
+        def log_no_push_access: (untyped project) -> untyped
+
+        def move_to_next_stage: (untyped project, ?::Hash[untyped, untyped] waiters) -> untyped
+      end
+    end
+  end
+end

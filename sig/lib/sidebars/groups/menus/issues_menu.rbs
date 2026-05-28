@@ -1,0 +1,31 @@
+module Sidebars
+  module Groups
+    module Menus
+      class IssuesMenu < ::Sidebars::Menu
+        include Gitlab::Utils::StrongMemoize
+
+        def configure_menu_items: () -> (nil | true)
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "issues"
+
+        def has_pill?: () -> true
+
+        def pill_count_field: () -> "openIssuesCount"
+
+        def pill_html_options: () -> { class: "issue_counter" }
+
+        def serialize_as_menu_item_args: () -> untyped
+
+        private
+
+        def list_menu_item: () -> untyped
+
+        def boards_menu_item: () -> untyped
+
+        def milestones_menu_item: () -> untyped
+      end
+    end
+  end
+end

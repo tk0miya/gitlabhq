@@ -1,0 +1,12 @@
+class PipelineSerializer < BaseSerializer
+  include WithPagination
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def represent: (untyped resource, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def represent_status: (untyped resource) -> (::Hash[untyped, untyped] | untyped)
+
+  private
+
+  def preloaded_relations: (?preload_statuses: bool, ?preload_downstream_statuses: bool, **untyped options) -> untyped
+end

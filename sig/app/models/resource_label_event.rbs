@@ -1,0 +1,35 @@
+class ResourceLabelEvent < ResourceEvent
+  include MergeRequestResourceEvent
+
+  include Import::HasImportSource
+
+  include FromUnion
+
+  def self.issuable_attrs: () -> ::Array[:issue | :merge_request]
+
+  def self.preload_label_subjects: (untyped events) -> untyped
+
+  def issuable: () -> untyped
+
+  def synthetic_note_class: () -> untyped
+
+  def outdated_reference?: () -> untyped
+
+  def refresh_invalid_reference: () -> untyped
+
+  def self.visible_to_user?: (untyped user, untyped events) -> untyped
+
+  private
+
+  def ensure_namespace_id: () -> untyped
+
+  def label_reference: () -> untyped
+
+  def broadcast_notes_changed: () -> untyped
+
+  def local_label?: () -> untyped
+
+  def resource_parent: () -> untyped
+
+  def discussion_id_key: () -> ::Array[untyped]
+end

@@ -1,0 +1,25 @@
+class JiraConnect::ApplicationController < ApplicationController
+  @current_jira_installation: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader current_jira_installation: untyped
+
+  private
+
+  def verify_atlassian_jwt!: () -> untyped
+
+  def verify_qsh_claim!: () -> (nil | untyped)
+
+  def atlassian_jwt_valid?: () -> (false | untyped)
+
+  def installation_from_jwt: () -> untyped
+
+  def jira_user: () -> untyped
+
+  def jwt: () -> untyped
+
+  def valid_token_size?: (untyped token) -> untyped
+
+  def auth_token: () -> untyped
+end

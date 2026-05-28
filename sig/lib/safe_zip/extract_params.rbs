@@ -1,0 +1,33 @@
+module SafeZip
+  class ExtractParams
+    @directories: untyped
+
+    @files: untyped
+
+    @extract_path: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader directories: untyped
+
+    attr_reader files: untyped
+
+    attr_reader extract_path: untyped
+
+    def initialize: (to: untyped, ?directories: untyped, ?files: untyped) -> void
+
+    def matching_target_directory: (untyped path) -> untyped
+
+    def target_directories: () -> untyped
+
+    def directories_wildcard: () -> untyped
+
+    def matching_target_file: (untyped path) -> untyped
+
+    private
+
+    def target_files: () -> untyped
+
+    def validate!: () -> (untyped | nil)
+  end
+end

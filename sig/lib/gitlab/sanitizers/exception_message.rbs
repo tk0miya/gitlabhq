@@ -1,0 +1,13 @@
+module Gitlab
+  module Sanitizers
+    module ExceptionMessage
+      FILTERED_STRING: "[FILTERED]"
+
+      EXCEPTION_NAMES: ::Array["URI::InvalidURIError" | "Addressable::URI::InvalidURIError"]
+
+      MESSAGE_REGEX: ::Regexp
+
+      def self.clean: (untyped exception_name, untyped message) -> untyped
+    end
+  end
+end

@@ -1,0 +1,66 @@
+module DesignManagement
+  class SaveDesignsService < DesignService
+    @files: untyped
+
+    @designs: untyped
+
+    @actions: untyped
+
+    @event_create_service: untyped
+
+    @filenames: untyped
+
+    @existing_blobs: untyped
+
+    include RunsDesignActions
+
+    include OnSuccessCallbacks
+
+    include Gitlab::InternalEventsTracking
+
+    MAX_FILES: 10
+
+    def initialize: (untyped project, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader files: untyped
+
+    def upload_designs!: () -> untyped
+
+    # Returns `Design` instances that correspond with `files`.
+    # New `Design`s will be created where a file name does not match
+    # an existing `Design`
+    def designs: () -> untyped
+
+    def build_actions: () -> untyped
+
+    def build_design_action: (untyped file, untyped design) -> (nil | untyped)
+
+    # Returns true if the design file is the same as its latest version
+    def design_unchanged?: (untyped design, untyped content) -> untyped
+
+    def create_events: () -> untyped
+
+    def event_create_service: () -> untyped
+
+    def commit_message: () -> ::String
+
+    def formatted_file_list: () -> untyped
+
+    def filenames: () -> untyped
+
+    def can_create_designs?: () -> untyped
+
+    def new_file?: (untyped design) -> untyped
+
+    def file_content: (untyped file, untyped full_path) -> untyped
+
+    # Returns the latest blobs for the designs as a Hash of `{ Design => Blob }`
+    def existing_blobs: () -> untyped
+
+    def track_design_actions: (untyped by_action) -> untyped
+  end
+end

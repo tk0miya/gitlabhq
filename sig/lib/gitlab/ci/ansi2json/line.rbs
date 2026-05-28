@@ -1,0 +1,101 @@
+module Gitlab
+  module Ci
+    module Ansi2json
+      # Line class is responsible for keeping the internal state of
+      # a log line and to finally serialize it as Hash.
+      class Line
+        @offset: untyped
+
+        @segments: untyped
+
+        @sections: untyped
+
+        @section_header: untyped
+
+        @section_footer: untyped
+
+        @timestamps: untyped
+
+        @duration: untyped
+
+        @at_line_start: untyped
+
+        @current_segment: untyped
+
+        @section_options: untyped
+
+        @section_duration: untyped
+
+        # Line::Segment is a portion of a line that has its own style
+        # and text. Multiple segments make the line content.
+        class Segment
+          @text: untyped
+
+          @style: untyped
+
+          include EncodingHelper
+
+          attr_accessor text: untyped
+
+          attr_accessor style: untyped
+
+          def initialize: (style: untyped) -> void
+
+          def empty?: () -> untyped
+
+          def to_h: () -> untyped
+        end
+
+        attr_reader offset: untyped
+
+        attr_reader timestamps: untyped
+
+        attr_reader sections: untyped
+
+        attr_reader segments: untyped
+
+        attr_reader current_segment: untyped
+
+        attr_reader section_header: untyped
+
+        attr_reader section_footer: untyped
+
+        attr_reader section_duration: untyped
+
+        attr_reader section_options: untyped
+
+        def initialize: (offset: untyped, style: untyped, ?sections: untyped, ?timestamps: untyped) -> void
+
+        def <<: (untyped data) -> untyped
+
+        def clear!: () -> untyped
+
+        def style: () -> untyped
+
+        def empty?: () -> untyped
+
+        def at_line_start?: () -> untyped
+
+        def update_style: (untyped ansi_commands) -> untyped
+
+        def timestamp: () -> untyped
+
+        def add_timestamp: (untyped value) -> (untyped | nil)
+
+        def add_section: (untyped section) -> untyped
+
+        def set_section_options: (untyped options) -> untyped
+
+        def set_as_section_header: () -> untyped
+
+        def set_as_section_footer: () -> untyped
+
+        def set_section_duration: (untyped duration_in_seconds) -> untyped
+
+        def flush_current_segment!: () -> (nil | untyped)
+
+        def to_h: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,37 @@
+class TemplateFinder
+  @type: untyped
+
+  @project: untyped
+
+  @params: untyped
+
+  @vendored_templates: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  VENDORED_TEMPLATES: untyped
+
+  def self.build: (untyped type, untyped project, ?::Hash[untyped, untyped] params) -> (untyped | untyped | nil)
+
+  def self.all_template_names: (untyped project, untyped type) -> (::Hash[untyped, untyped] | untyped)
+
+  def self.type_allowed?: (untyped type) -> (true | untyped)
+
+  attr_reader type: untyped
+
+  attr_reader project: untyped
+
+  attr_reader params: untyped
+
+  private
+
+  attr_reader vendored_templates: untyped
+
+  public
+
+  def initialize: (untyped type, untyped project, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  def template_names: () -> untyped
+end

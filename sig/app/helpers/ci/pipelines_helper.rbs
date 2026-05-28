@@ -1,0 +1,21 @@
+module Ci
+  module PipelinesHelper
+    include Gitlab::Ci::Warnings
+
+    def has_gitlab_ci?: (untyped project) -> untyped
+
+    def suggested_ci_templates: () -> ::Array[{ name: "Android", logo: untyped } | { name: "Bash", logo: untyped } | { name: "C++", logo: untyped } | { name: "Clojure", logo: untyped } | { name: "Composer", logo: untyped } | { name: "Crystal", logo: untyped } | { name: "Dart", logo: untyped } | { name: "Django", logo: untyped } | { name: "Docker", logo: untyped } | { name: "Elixir", logo: untyped } | { name: "iOS-Fastlane", logo: untyped, title: "iOS with Fastlane" } | { name: "Flutter", logo: untyped } | { name: "Go", logo: untyped } | { name: "Gradle", logo: untyped } | { name: "Grails", logo: untyped } | { name: "dotNET", logo: untyped } | { name: "Julia", logo: untyped } | { name: "Laravel", logo: untyped } | { name: "LaTeX", logo: untyped } | { name: "MATLAB", logo: untyped } | { name: "Maven", logo: untyped } | { name: "Mono", logo: untyped } | { name: "Nodejs", logo: untyped } | { name: "npm", logo: untyped } | { name: "OpenShift", logo: untyped } | { name: "Packer", logo: untyped } | { name: "PHP", logo: untyped } | { name: "Python", logo: untyped } | { name: "Ruby", logo: untyped } | { name: "Rust", logo: untyped } | { name: "Scala", logo: untyped } | { name: "Swift", logo: untyped } | { name: "Terraform", logo: untyped }]
+
+    def pipelines_list_data: (untyped project) -> { project_id: untyped, default_branch_name: untyped, params: untyped, artifacts_endpoint: untyped, artifacts_endpoint_placeholder: untyped, pipeline_schedules_path: untyped, can_create_pipeline: untyped, new_pipeline_path: untyped, reset_cache_path: untyped, has_gitlab_ci: untyped, pipeline_editor_path: untyped, suggested_ci_templates: untyped, full_path: untyped, visibility_pipeline_id_type: untyped, show_jenkins_ci_prompt: untyped, pipelines_analytics_path: untyped, uses_external_config: untyped, empty_state_illustration_path: untyped, project_pipelines_etag_path: untyped }
+
+    def visibility_pipeline_id_type: () -> ("id" | untyped)
+
+    def new_pipeline_data: (untyped project) -> { project_id: untyped, pipelines_path: untyped, default_branch: untyped, pipeline_editor_path: untyped, can_view_pipeline_editor: untyped, ref_param: untyped, var_param: untyped, file_param: untyped, project_path: untyped, project_refs_endpoint: untyped, settings_link: untyped, max_warnings: untyped, user_role: untyped, can_set_pipeline_variables: untyped }
+
+    def uses_external_config?: (untyped project) -> untyped
+
+    private
+
+    def show_jenkins_ci_prompt: (untyped project) -> (false | untyped)
+  end
+end

@@ -1,0 +1,9 @@
+module TodosDestroyer
+  class PrivateFeaturesWorker
+    include ApplicationWorker
+
+    include TodosDestroyerQueue
+
+    def perform: (untyped project_id, ?untyped? user_id) -> untyped
+  end
+end

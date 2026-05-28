@@ -1,0 +1,23 @@
+module Resolvers
+  module DesignManagement
+    class DesignAtVersionResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (id: untyped) -> untyped
+
+      def find_object: (id: untyped) -> (nil | untyped)
+
+      def self.single: () -> self
+
+      private
+
+      # If this resolver is mounted on something that has an issue
+      # (such as design collection for instance), then we should check
+      # that the DesignAtVersion as found by its ID does in fact belong
+      # to this issue.
+      def consistent?: (untyped dav) -> untyped
+
+      def issue: () -> untyped
+    end
+  end
+end

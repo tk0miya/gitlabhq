@@ -1,0 +1,15 @@
+module Ci
+  module TimedOutBuilds
+    class DropCancelingService
+      include StuckBuilds::DropHelpers
+
+      MINUTE_BUFFER: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def timed_out_canceling_builds: (untyped partition) -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Ci
+  class UnitTestFailure < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    REPORT_WINDOW: untyped
+
+    def self.recent_failures_count: (project: untyped, unit_test_keys: untyped, ?date_range: untyped) -> untyped
+  end
+end

@@ -1,0 +1,24 @@
+# Renders a GlAnimatedIcon
+module Pajamas
+  class AnimatedIconComponent < Pajamas::Component
+    @icon: untyped
+
+    @variant: untyped
+
+    @is_on: untyped
+
+    @icon_options: untyped
+
+    VARIANT_CLASSES: { current: "gl-animated-icon-current", default: "gl-animated-icon-default", subtle: "gl-animated-icon-subtle", strong: "gl-animated-icon-strong", disabled: "gl-animated-icon-disabled", link: "gl-animated-icon-link", info: "gl-animated-icon-info", warning: "gl-animated-icon-warning", danger: "gl-animated-icon-danger", success: "gl-animated-icon-success" }
+
+    ICONS: ::Array[:chevron_down_up | :chevron_lg_down_up | :chevron_lg_right_down | :chevron_right_down | :smile | :duo_chat | :loader | :notifications | :sidebar | :sort | :star | :todo | :upload]
+
+    # @param [Symbol] icon
+    # @param [Symbol] variant
+    # @param [Boolean] is_on
+    # @param [Hash] icon_options
+    def initialize: (?icon: ::Symbol, ?variant: ::Symbol, ?is_on: bool, ?icon_options: ::Hash[untyped, untyped]) -> void
+
+    def icon_class: () -> untyped
+  end
+end

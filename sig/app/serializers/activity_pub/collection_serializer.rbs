@@ -1,0 +1,21 @@
+module ActivityPub
+  # Serializer for the `Collection` ActivityStreams model.
+  # Reference: https://www.w3.org/TR/activitystreams-core/#collections
+  class CollectionSerializer < ::BaseSerializer
+    include WithPagination
+
+    NotPaginatedError: untyped
+
+    alias base_represent represent
+
+    def represent: (untyped resources, ?::Hash[untyped, untyped] opts) -> untyped
+
+    private
+
+    def represent_page: (untyped resources, untyped page, untyped opts) -> { :@context => "https://www.w3.org/ns/activitystreams", type: "OrderedCollectionPage", id: untyped, prev: untyped, next: untyped, partOf: untyped, orderedItems: untyped }
+
+    def represent_pagination_index: (untyped resources) -> { :@context => "https://www.w3.org/ns/activitystreams", type: "OrderedCollection", id: untyped, totalItems: untyped, first: untyped, last: untyped }
+
+    def collection_url: (?untyped? page) -> untyped
+  end
+end

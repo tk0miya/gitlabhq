@@ -1,0 +1,104 @@
+module Gitlab
+  module Diff
+    class Line
+      @text: untyped
+
+      @type: untyped
+
+      @index: untyped
+
+      @old_pos: untyped
+
+      @new_pos: untyped
+
+      @parent_file: untyped
+
+      @rich_text: untyped
+
+      # When line code is not provided from cache store we build it
+      # using the parent_file(Diff::File or Conflict::File).
+      @line_code: untyped
+
+      @marker_ranges: untyped
+
+      # When SERIALIZE_KEYS is updated, to reset the redis cache entries you'll
+      #   need to bump the VERSION constant on Gitlab::Diff::HighlightCache
+      #
+      SERIALIZE_KEYS: ::Array[:line_code | :rich_text | :text | :type | :index | :old_pos | :new_pos]
+
+      attr_reader marker_ranges: untyped
+
+      attr_writer text: untyped
+
+      attr_writer rich_text: untyped
+
+      attr_accessor index: untyped
+
+      attr_accessor old_pos: untyped
+
+      attr_accessor new_pos: untyped
+
+      attr_accessor line_code: untyped
+
+      attr_accessor type: untyped
+
+      attr_accessor embedded_image: untyped
+
+      attr_accessor expanded: untyped
+
+      def initialize: (untyped text, untyped type, untyped index, untyped old_pos, untyped new_pos, ?parent_file: untyped?, ?line_code: untyped?, ?rich_text: untyped?) -> void
+
+      def self.init_from_hash: (untyped hash) -> untyped
+
+      def self.safe_init_from_hash: (untyped hash) -> untyped
+
+      def to_hash: () -> untyped
+
+      def set_marker_ranges: (untyped marker_ranges) -> untyped
+
+      def text: (?prefix: bool) -> untyped
+
+      def old_line: () -> (untyped | nil)
+
+      def new_line: () -> (untyped | nil)
+
+      def line: () -> untyped
+
+      def unchanged?: () -> untyped
+
+      def added?: () -> untyped
+
+      def removed?: () -> untyped
+
+      def meta?: () -> untyped
+
+      def has_mapping_in_raw?: () -> untyped
+
+      def match?: () -> untyped
+
+      def discussable?: () -> untyped
+
+      def suggestible?: () -> untyped
+
+      def expanded?: () -> untyped
+
+      def rich_text: () -> untyped
+
+      def meta_positions: () -> (nil | { old_pos: untyped, new_pos: untyped })
+
+      # We have to keep this here since it is still used for conflict resolution
+      # Conflict::File#as_json renders json diff lines in sections
+      def as_json: (?untyped? opts) -> untyped
+
+      def text_content: () -> untyped
+
+      def id: (untyped file_hash) -> (nil | ::String)
+
+      def legacy_id: (untyped file_path) -> (nil | untyped)
+
+      private
+
+      def calculate_line_code: () -> untyped
+    end
+  end
+end

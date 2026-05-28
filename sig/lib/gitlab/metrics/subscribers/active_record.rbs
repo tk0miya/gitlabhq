@@ -1,0 +1,83 @@
+module Gitlab
+  module Metrics
+    module Subscribers
+      # Class for tracking the total query duration of a transaction.
+      class ActiveRecord < ActiveSupport::Subscriber
+        extend Gitlab::Utils::StrongMemoize
+
+        DB_COUNTERS: ::Array[:count | :write_count | :cached_count | :txn_count]
+
+        SQL_COMMANDS_WITH_COMMENTS_REGEX: ::Regexp
+
+        SQL_DURATION_BUCKET: ::Array[::Float]
+
+        TRANSACTION_DURATION_BUCKET: ::Array[::Float | 1]
+
+        DB_LOAD_BALANCING_ROLES: ::Array[:replica | :primary]
+
+        DB_LOAD_BALANCING_COUNTERS: ::Array[:txn_count | :count | :write_count | :cached_count | :wal_count | :wal_cached_count]
+
+        DB_LOAD_BALANCING_DURATIONS: ::Array[:txn_max_duration_s | :txn_duration_s | :duration_s]
+
+        SQL_WAL_LOCATION_REGEX: ::Regexp
+
+        # This event is published from ActiveRecordBaseTransactionMetrics and
+        # used to record a database transaction duration when calling
+        # ApplicationRecord.transaction {} block.
+        def transaction: (untyped event) -> (nil | untyped)
+
+        def sql: (untyped event) -> (nil | untyped)
+
+        def self.db_counter_payload: () -> (::Hash[untyped, untyped] | untyped)
+
+        private
+
+        def wal_command?: (untyped payload) -> untyped
+
+        def increment_db_role_counters: (untyped db_role, untyped payload, cached_query: untyped, select_sql_command: untyped) -> untyped
+
+        def observe_db_role_duration: (untyped db_role, untyped event) -> (nil | untyped)
+
+        def ignored_query?: (untyped payload) -> untyped
+
+        def cached_query?: (untyped payload) -> untyped
+
+        def select_sql_command?: (untyped payload) -> untyped
+
+        def increment: (untyped counter, db_config_name: untyped, ?db_role: untyped?) -> untyped
+
+        def observe: (untyped histogram, untyped event) { (?) -> untyped } -> untyped
+
+        def current_transaction: () -> untyped
+
+        def db_config_name: (untyped payload) -> untyped
+
+        def self.db_counter_keys: () -> untyped
+
+        def self.load_balancing_metric_counter_keys: () -> untyped
+
+        def self.load_balancing_metric_duration_keys: () -> untyped
+
+        def self.load_balancing_roles_metric_counter_keys: () -> untyped
+
+        def self.load_balancing_roles_metric_duration_keys: () -> untyped
+
+        def self.load_balancing_roles_metric_keys: (untyped metrics) -> untyped
+
+        def self.load_balancing_metric_keys: (untyped metrics) -> untyped
+
+        def compose_metric_key: (untyped metric, ?untyped? db_role, ?untyped? db_config_name) -> untyped
+
+        def self.compose_metric_key: (untyped metric, ?untyped? db_role, ?untyped? db_config_name) -> untyped
+
+        def increment_log_key: (untyped log_key) -> untyped
+
+        def increment_duration_key: (untyped duration_key, untyped duration) -> untyped
+
+        def update_max_duration_key: (untyped duration_key, untyped duration, ?untyped? db_config_name) -> (nil | untyped)
+
+        def convert_ms_to_s: (untyped duration) -> untyped
+      end
+    end
+  end
+end

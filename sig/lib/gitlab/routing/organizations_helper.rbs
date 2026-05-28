@@ -1,0 +1,10 @@
+module Gitlab
+  module Routing
+    module OrganizationsHelper
+      extend ActiveSupport::Concern
+
+      # Check if this is an organization route (/o/org-path/...)
+      def self?.organization_scoped_route?: (untyped path) -> (false | untyped)
+    end
+  end
+end

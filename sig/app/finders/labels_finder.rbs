@@ -1,0 +1,85 @@
+class LabelsFinder < UnionFinder
+  @current_user: untyped
+
+  @params: untyped
+
+  # Preload container records (project, group) by default, in some cases we invoke
+  # the LabelsPreloader on the loaded records to prevent all N+1 queries.
+  # In that case we disable the default with_preloaded_container scope because it
+  # interferes with the LabelsPreloader.
+  @preload_parent_association: untyped
+
+  @skip_authorization: untyped
+
+  @project: untyped
+
+  @projects: untyped
+
+  extend Gitlab::Utils::Override
+
+  prepend FinderWithCrossProjectAccess
+
+  include FinderWithGroupHierarchy
+
+  include FinderMethods
+
+  include Gitlab::Utils::StrongMemoize
+
+  def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: (?skip_authorization: bool) -> untyped
+
+  private
+
+  attr_reader current_user: untyped
+
+  attr_reader params: untyped
+
+  attr_reader skip_authorization: untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def item_ids: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def sort: (untyped items) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def with_title: (untyped items) -> untyped
+
+  def by_search: (untyped labels) -> untyped
+
+  def by_subscription: (untyped labels) -> untyped
+
+  def by_archived: (untyped labels) -> untyped
+
+  def filter_by_archived?: () -> untyped
+
+  def by_locked_labels: (untyped items) -> untyped
+
+  def subscriber_id: () -> (untyped | nil)
+
+  def subscribed?: () -> untyped
+
+  def projects?: () -> untyped
+
+  def only_group_labels?: () -> untyped
+
+  def search?: () -> untyped
+
+  def title: () -> untyped
+
+  def project?: () -> untyped
+
+  def project: () -> untyped
+
+  def projects: () -> untyped
+
+  def read_permission: () -> :read_label
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def ids_user_can_read_labels: (untyped projects) -> untyped
+
+  def groups_user_can_read_items: (untyped groups) -> untyped
+
+  def user_can_access_all_subgroup_labels?: () -> untyped
+end

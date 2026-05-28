@@ -1,0 +1,9 @@
+module JiraConnect
+  class SyncDeploymentsWorker
+    include ApplicationWorker
+
+    def perform: (untyped deployment_id, untyped sequence_id) -> (nil | untyped)
+
+    def self.perform_async: (untyped id) -> untyped
+  end
+end

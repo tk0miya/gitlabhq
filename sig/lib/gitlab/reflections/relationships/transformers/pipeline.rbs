@@ -1,0 +1,16 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      module Transformers
+        # Executes a sequence of transformers in order
+        class Pipeline
+          @transformers: untyped
+
+          def initialize: (*untyped transformers) -> void
+
+          def execute: (untyped input) -> untyped
+        end
+      end
+    end
+  end
+end

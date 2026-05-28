@@ -1,0 +1,11 @@
+module Resolvers
+  class NestedGroupsResolver < BaseResolver
+    include ResolvesGroups
+
+    alias parent object
+
+    private
+
+    def resolve_groups: (untyped args) -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+module Ci
+  module Runners
+    class BulkDeleteRunnersService
+      @runners: untyped
+
+      @current_user: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader runners: untyped
+
+      RUNNER_LIMIT: 50
+
+      # @param runners [Array<Ci::Runner>] the runners to unregister/destroy
+      # @param current_user [User] the user performing the operation
+      def initialize: (runners: untyped, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def delete_runners: () -> untyped
+
+      def compute_authorized_runners: () -> ::Array[untyped]
+
+      def error_messages: (untyped runner_count, untyped authorized_runners_ids, untyped unauthorized_runners_ids) -> untyped
+    end
+  end
+end

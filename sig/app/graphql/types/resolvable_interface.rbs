@@ -1,0 +1,9 @@
+module Types
+  # This Interface contains fields that are shared between objects that include either
+  # the `ResolvableNote` or `ResolvableDiscussion` modules.
+  module ResolvableInterface
+    include Types::BaseInterface
+
+    def resolved_by: () -> (nil | untyped)
+  end
+end

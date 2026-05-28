@@ -1,0 +1,37 @@
+# rubocop:disable CodeReuse/ActiveRecord
+module Quality
+  module Seeders
+    class Issues
+      @project: untyped
+
+      @suffix: untyped
+
+      @labels_pool: untyped
+
+      DEFAULT_BACKFILL_WEEKS: 52
+
+      DEFAULT_AVERAGE_ISSUES_PER_WEEK: 20
+
+      attr_reader project: untyped
+
+      attr_reader user: untyped
+
+      def initialize: (project: untyped) -> void
+
+      def seed: (?backfill_weeks: untyped, ?average_issues_per_week: untyped) -> untyped
+
+      private
+
+      # Overridden on Quality::Seeders::Insights::Issues
+      def additional_params: () -> ::Hash[untyped, untyped]
+
+      def create_team_members!: () -> untyped
+
+      def create_milestones!: () -> untyped
+
+      def suffix: () -> untyped
+
+      def labels: () -> untyped
+    end
+  end
+end

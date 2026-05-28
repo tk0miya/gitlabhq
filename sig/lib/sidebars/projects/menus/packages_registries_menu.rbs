@@ -1,0 +1,33 @@
+module Sidebars
+  module Projects
+    module Menus
+      class PackagesRegistriesMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "package"
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def packages_registry_menu_item: () -> untyped
+
+        def container_registry_menu_item: () -> untyped
+
+        def infrastructure_registry_menu_item: () -> untyped
+
+        def harbor_registry_menu_item: () -> untyped
+
+        def model_experiments_menu_item: () -> untyped
+
+        def model_registry_menu_item: () -> untyped
+
+        def packages_registry_disabled?: () -> untyped
+
+        def container_registry_unavailable?: () -> untyped
+      end
+    end
+  end
+end

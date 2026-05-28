@@ -1,0 +1,95 @@
+module Gitlab
+  module Git
+    class DiffCollection
+      @iterator: untyped
+
+      @generated_files: untyped
+
+      @limits: untyped
+
+      @enforce_limits: untyped
+
+      @expanded: untyped
+
+      @offset_index: untyped
+
+      @line_count: untyped
+
+      @byte_count: untyped
+
+      @overflow: untyped
+
+      @empty: untyped
+
+      @array: untyped
+
+      @populated: untyped
+
+      @size: untyped
+
+      @collapsed_safe_files: untyped
+
+      @collapsed_safe_lines: untyped
+
+      @collapsed_safe_bytes: untyped
+
+      include Enumerable
+
+      include Gitlab::EncodingHelper
+
+      attr_reader limits: untyped
+
+      def self.default_limits: () -> { max_files: untyped, max_lines: untyped }
+
+      def self.collect_all_paths?: (untyped collect_all_paths) -> (untyped | false)
+
+      def self.limits: (?::Hash[untyped, untyped] options) -> untyped
+
+      def initialize: (untyped iterator, ?::Hash[untyped, untyped] options) -> void
+
+      def each: () { (?) -> untyped } -> (nil | untyped)
+
+      def sort: () { (?) -> untyped } -> self
+
+      def empty?: () -> untyped
+
+      def overflow?: () -> untyped
+
+      def overflow_max_lines?: () -> untyped
+
+      def overflow_max_bytes?: () -> untyped
+
+      def overflow_max_files?: () -> untyped
+
+      def collapsed_safe_lines?: () -> untyped
+
+      def collapsed_safe_files?: () -> untyped
+
+      def collapsed_safe_bytes?: () -> untyped
+
+      def collapsed_safe_limits?: () -> untyped
+
+      def size: () -> untyped
+
+      def real_size: () -> untyped
+
+      def line_count: () -> untyped
+
+      def decorate!: () { (untyped) -> untyped } -> untyped
+
+      alias to_ary to_a
+
+      private
+
+      def populate!: () -> nil
+
+      def over_safe_limits?: (untyped files) -> untyped
+
+      def expand_diff?: (untyped raw) -> untyped
+
+      def each_gitaly_patch: () { (untyped) -> untyped } -> untyped
+
+      def each_serialized_patch: () { (untyped) -> untyped } -> untyped
+    end
+  end
+end

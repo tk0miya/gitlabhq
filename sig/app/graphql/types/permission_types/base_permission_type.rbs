@@ -1,0 +1,19 @@
+module Types
+  module PermissionTypes
+    class BasePermissionType < BaseObject
+      extend Gitlab::Allowable
+
+      RESOLVING_KEYWORDS: untyped
+
+      def self.abilities: (*untyped abilities) -> untyped
+
+      def self.ability_field: (untyped ability, **untyped kword_args) { (?) -> untyped } -> untyped
+
+      def self.permission_field: (untyped name, **untyped kword_args) { (?) -> untyped } -> untyped
+
+      def self.define_field_resolver_method: (untyped ability) -> (untyped | nil)
+
+      def self.resolving_keywords?: (untyped arguments) -> untyped
+    end
+  end
+end

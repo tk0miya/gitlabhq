@@ -1,0 +1,33 @@
+module Packages
+  module Nuget
+    class CreateTemporaryPackageService
+      @project: untyped
+
+      @user: untyped
+
+      @package_params: untyped
+
+      @package_file_params: untyped
+
+      ERRORS: { failed_to_create_temporary_package: untyped, failed_to_create_package_file: untyped, unauthorized: untyped }
+
+      def initialize: (project: untyped, user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader user: untyped
+
+      attr_reader package_params: untyped
+
+      attr_reader package_file_params: untyped
+
+      def create_temporary_package: () -> untyped
+
+      def create_package_file: (untyped package) -> untyped
+    end
+  end
+end

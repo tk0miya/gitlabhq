@@ -1,0 +1,92 @@
+module Gitlab
+  module ClickHouse
+    class SiphonGenerator < Rails::Generators::Base
+      @db_docs_yml: untyped
+
+      # Lower value is faster for IN queries doing primary key lookups (default: 8192)
+      @table_settings: untyped
+
+      @fields_metadata: untyped
+
+      @pg_primary_keys: untyped
+
+      @base_time: untyped
+
+      # Data types table
+      # Postgresql OID reference - https://jdbc.postgresql.org/documentation/publicapi/org/postgresql/core/Oid.html
+      PG_TYPE_MAP: { 16 => "Bool", 17 => "String", 20 => "Int64", 21 => "Int16", 23 => "Int64", 25 => "String", 700 => "Float32", 701 => "Float64", 869 => "String", 1000 => "Array(Bool)", 1005 => "Array(Int16)", 1007 => "Array(Int64)", 1009 => "Array(String)", 1015 => "Array(String)", 1016 => "Array(Int64)", 1021 => "Array(Float32)", 1022 => "Array(Float64)", 1043 => "String", 1082 => "Date32", 1114 => "DateTime64(6, 'UTC')", 1184 => "DateTime64(6, 'UTC')", 2950 => "UUID", 3802 => "String" }
+
+      # The generator needs to look up traversal_path values from parent entities (organizations,
+      # namespaces, or projects).
+      # Instead of expensive JOINs, ClickHouse uses dictionaries for O(1) lookups.
+      # Organization, Namespace and Project are the only entities that have traversal_ids/traversal_path in PostgreSQL.
+      DICTIONARIES: { "projects" => "project_traversal_paths_dict", "namespaces" => "namespace_traversal_paths_dict", "organizations" => "organization_traversal_paths_dict" }
+
+      PG_TO_CH_DEFAULT_MAP: ::Hash[::Regexp | "now()" | "true" | "false", untyped]
+
+      def validate!: () -> (nil | untyped)
+
+      def generate_ch_table: () -> untyped
+
+      def generate_pg_pkey_ordered_migration: () -> (nil | untyped)
+
+      def generate_siphon_yml: () -> (nil | untyped)
+
+      private
+
+      def clickhouse_table_name: () -> ::String
+
+      def table_definition: () -> untyped
+
+      def build_traversal_path_field: () -> ::String
+
+      def db_docs_yml: () -> untyped
+
+      def siphon_yml_content: () -> untyped
+
+      def siphon_database: () -> untyped
+
+      def sensitive_columns: () -> untyped
+
+      def siphon_reconcile: () -> { "column" => "traversal_path", "expression_key_columns" => untyped }
+
+      def sharding_key_columns: () -> untyped
+
+      def primary_keys: () -> untyped
+
+      def table_columns: () -> untyped
+
+      def table_settings: () -> untyped
+
+      def ch_type_for: (untyped pg_field) -> ("INSERT_CH_TYPE" | untyped)
+
+      def ch_default_for: (untyped pg_default) -> (nil | untyped | "INSERT_COLUMN_DEFAULT")
+
+      def pg_fields_metadata: () -> untyped
+
+      def pg_primary_keys: () -> untyped
+
+      def hierarchy_denormalization?: () -> untyped
+
+      def null_engine?: () -> untyped
+
+      def base_time: () -> untyped
+
+      def base_timestamp: () -> untyped
+
+      def pg_pkey_ordered_table_name: () -> ::String
+
+      def pg_pkey_ordered_mv_name: () -> ::String
+
+      def pg_pkey_ordered_primary_keys: () -> untyped
+
+      def pg_pkey_ordered_columns: () -> untyped
+
+      def pg_pkey_ordered_table_definition: () -> untyped
+
+      def pg_pkey_ordered_mv_definition: () -> untyped
+
+      def compression_for: (untyped field) -> ("CODEC(DoubleDelta, ZSTD)" | "CODEC(ZSTD(3))" | nil | "CODEC(ZSTD(1))" | "CODEC(Delta, ZSTD(1))")
+    end
+  end
+end

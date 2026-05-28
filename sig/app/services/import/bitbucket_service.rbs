@@ -1,0 +1,55 @@
+# Imports a project from Bitbucket Cloud using an API token
+module Import
+  class BitbucketService < Import::BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    @client: untyped
+
+    @bitbucket_repo: untyped
+
+    @bitbucket_user: untyped
+
+    @normalized_repo_path: untyped
+
+    @project_name: untyped
+
+    @target_namespace: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    # @param [User] current_user
+    # @param [Hash] params
+    # @option params [String] bitbucket_email - Bitbucket Cloud email
+    # @option params [String] bitbucket_api_token - Bitbucket Cloud API token
+    def initialize: (untyped current_user, untyped params) -> void
+
+    # rubocop:disable Style/IfUnlessModifier -- line becomes too long
+    def execute: () -> untyped
+
+    private
+
+    def client: () -> untyped
+
+    def credentials: () -> { email: untyped, api_token: untyped }
+
+    def create_project: () -> untyped
+
+    def bitbucket_repo: () -> untyped
+
+    def bitbucket_user: () -> untyped
+
+    def normalized_repo_path: () -> untyped
+
+    def project_name: () -> untyped
+
+    def target_namespace: () -> untyped
+
+    def log_and_return_error: (untyped message, untyped error_type) -> untyped
+
+    def log_error: (untyped message) -> untyped
+  end
+end

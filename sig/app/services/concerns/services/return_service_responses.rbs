@@ -1,0 +1,9 @@
+module Services
+  # adapter for existing services over BaseServiceUtility - add error and
+  # success methods returning ServiceResponse objects
+  module ReturnServiceResponses
+    def error: (untyped message, untyped http_status, ?pass_back: ::Hash[untyped, untyped]) -> untyped
+
+    def success: (untyped payload) -> untyped
+  end
+end

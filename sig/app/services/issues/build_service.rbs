@@ -1,0 +1,41 @@
+module Issues
+  class BuildService < Issues::BaseService
+    @issue: untyped
+
+    @issue_params: untyped
+
+    include ResolveDiscussions
+
+    def execute: (?initialize_callbacks: bool) -> untyped
+
+    def issue_params_with_info_from_discussions: () -> (::Hash[untyped, untyped] | { title: untyped, description: untyped })
+
+    def title_from_merge_request: () -> ::String
+
+    def description_for_discussions: () -> (::String | untyped)
+
+    def items_for_discussions: () -> untyped
+
+    def item_for_discussion: (untyped discussion) -> untyped
+
+    def issue_params: () -> untyped
+
+    private
+
+    def container_param: () -> untyped
+
+    def set_work_item_type: (untyped issue) -> (nil | untyped)
+
+    def resolve_work_item_type: (?skip_visibility_check: bool) -> (nil | untyped)
+
+    def extract_work_item_type_param: () -> untyped
+
+    def model_klass: () -> untyped
+
+    def public_params: () -> untyped
+
+    def build_issue_params: () -> untyped
+
+    def author: () -> untyped
+  end
+end

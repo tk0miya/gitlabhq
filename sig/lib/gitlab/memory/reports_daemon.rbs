@@ -1,0 +1,45 @@
+module Gitlab
+  module Memory
+    class ReportsDaemon < Daemon
+      @alive: untyped
+
+      @sleep_s: untyped
+
+      @sleep_max_delta_s: untyped
+
+      @sleep_between_reports_s: untyped
+
+      @reporter: untyped
+
+      @reports: untyped
+
+      DEFAULT_SLEEP_S: 7200
+
+      DEFAULT_SLEEP_MAX_DELTA_S: 600
+
+      DEFAULT_SLEEP_BETWEEN_REPORTS_S: 120
+
+      def initialize: (?reporter: untyped?, ?reports: untyped?, **untyped options) -> void
+
+      attr_reader sleep_s: untyped
+
+      attr_reader sleep_max_delta_s: untyped
+
+      attr_reader sleep_between_reports_s: untyped
+
+      def run_thread: () -> untyped
+
+      private
+
+      attr_reader alive: untyped
+
+      attr_reader reports: untyped
+
+      # Returns the sleep interval with a random adjustment.
+      # The random adjustment is put in place to ensure continued availability.
+      def interval_with_jitter: () -> untyped
+
+      def stop_working: () -> untyped
+    end
+  end
+end

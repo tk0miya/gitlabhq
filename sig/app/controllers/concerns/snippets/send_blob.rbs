@@ -1,0 +1,11 @@
+module Snippets::SendBlob
+  @disposition: untyped
+
+  include SendsBlob
+
+  def send_snippet_blob: (untyped snippet, untyped blob) -> untyped
+
+  private
+
+  def content_disposition: () -> untyped
+end

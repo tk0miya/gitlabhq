@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ParameterizedDefinition
+        @parameters: untyped
+
+        extend ActiveSupport::Concern
+
+        attr_reader parameters: untyped
+
+        def initialize: (*untyped args, ?parameters: ::Hash[untyped, untyped], **untyped kwargs) -> void
+
+        def instance_key: (untyped configuration) -> (untyped | ::String)
+
+        private
+
+        def instance_parameter: (untyped param_identifier, untyped configuration) -> untyped
+
+        def parameterized?: () -> untyped
+
+        def guard_parameters_definition!: (untyped params) -> untyped
+      end
+    end
+  end
+end

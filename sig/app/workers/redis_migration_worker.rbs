@@ -1,0 +1,9 @@
+class RedisMigrationWorker
+  include ApplicationWorker
+
+  SCAN_START_STOP: "0"
+
+  def perform: (untyped job_class_name, untyped cursor, ?::Hash[untyped, untyped] options) -> untyped
+
+  def self.fetch_migrator!: (untyped job_class_name) -> untyped
+end

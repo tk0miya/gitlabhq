@@ -1,0 +1,15 @@
+module Packages
+  module Composer
+    class Package < ::Packages::Package
+      TARGET_SHA_MAX_LENGTH: untyped
+
+      VERSION_CACHE_SHA_MAX_LENGTH: untyped
+
+      def self.inheritance_column: () -> nil
+
+      private
+
+      def valid_composer_global_name: () -> (nil | untyped)
+    end
+  end
+end

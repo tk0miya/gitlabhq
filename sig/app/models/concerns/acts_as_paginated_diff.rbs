@@ -1,0 +1,7 @@
+module ActsAsPaginatedDiff
+  # Comparisons going back to the repository will need proper batch
+  # loading (https://gitlab.com/gitlab-org/gitlab/issues/32859).
+  # For now, we're returning all the diffs available with
+  # no pagination data.
+  def diffs_in_batch: (untyped _batch_page, untyped _batch_size, diff_options: untyped) -> untyped
+end

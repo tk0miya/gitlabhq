@@ -1,0 +1,23 @@
+module Webauthn
+  class AuthenticateService < BaseService
+    @user: untyped
+
+    @device_response: untyped
+
+    @challenge: untyped
+
+    include Authn::WebauthnErrors
+
+    include SafeFormatHelper
+
+    def initialize: (untyped user, untyped device_response, untyped challenge) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def webauthn_credential_not_found_error: () -> untyped
+
+    def stored_passkey_or_second_factor_webauthn_credential: (untyped encoded_raw_id) -> untyped
+  end
+end

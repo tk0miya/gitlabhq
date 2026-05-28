@@ -1,0 +1,27 @@
+# Used for searching users that can be added to group/project members
+#
+# Arguments:
+#   current_user - which user use
+#   resource - group or project
+#   search: string
+module Members
+  class InviteUsersFinder < UsersFinder
+    @current_user: untyped
+
+    @resource: untyped
+
+    @params: untyped
+
+    attr_reader resource: untyped
+
+    def initialize: (untyped current_user, untyped resource, organization_id: untyped, ?search: untyped?) -> void
+
+    def base_scope: () -> untyped
+
+    def scope_for_resource: (untyped users) -> untyped
+
+    private
+
+    def checker_args: () -> untyped
+  end
+end

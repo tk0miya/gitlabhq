@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    class Config
+      class Normalizer
+        class NumberStrategy
+          @job_name: untyped
+
+          @instance: untyped
+
+          @total: untyped
+
+          def self.applies_to?: (untyped config) -> untyped
+
+          def self.build_from: (untyped job_name, untyped config) -> untyped
+
+          def initialize: (untyped job_name, untyped instance, untyped total) -> void
+
+          def attributes: () -> { name: untyped, instance: untyped, parallel: { total: untyped } }
+
+          def name: () -> ::String
+
+          private
+
+          attr_reader job_name: untyped
+
+          attr_reader instance: untyped
+
+          attr_reader total: untyped
+        end
+      end
+    end
+  end
+end

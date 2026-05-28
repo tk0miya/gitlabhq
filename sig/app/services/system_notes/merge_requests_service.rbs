@@ -1,0 +1,72 @@
+module SystemNotes
+  class MergeRequestsService < ::SystemNotes::BaseService
+    # Called when the auto merge is executed
+    def merge_when_checks_pass: (untyped sha) -> untyped
+
+    # Called when the auto merge is canceled
+    def cancel_auto_merge: () -> untyped
+
+    # Called when the auto merge is aborted
+    def abort_auto_merge: (untyped reason) -> untyped
+
+    def handle_merge_request_draft: () -> untyped
+
+    def add_merge_request_draft_from_commit: (untyped commit) -> untyped
+
+    def resolve_all_discussions: () -> untyped
+
+    def discussion_continued_in_issue: (untyped discussion, untyped issue) -> untyped
+
+    def diff_discussion_outdated: (untyped discussion, untyped change_position) -> untyped
+
+    # Example Note text is based on event_type:
+    #
+    #   update: "changed target branch from `Old` to `New`"
+    #   delete: "deleted the `Old` branch. This merge request now targets the `New` branch"
+    #
+    # Returns the created Note object
+    def change_branch: (untyped branch_type, untyped event_type, untyped old_branch, untyped new_branch) -> untyped
+
+    # Called when a branch in Noteable is added or deleted
+    #
+    # branch_type - :source or :target
+    # branch      - branch name
+    # presence    - :add or :delete
+    #
+    # Example Note text:
+    #
+    #   "restored target branch `feature`"
+    #
+    # Returns the created Note object
+    def change_branch_presence: (untyped branch_type, untyped branch, untyped presence) -> untyped
+
+    # Called when a branch is created from the 'new branch' button on a issue
+    # Example note text:
+    #
+    #   "created branch `201-issue-branch-button`"
+    def new_issue_branch: (untyped branch, ?branch_project: untyped?) -> untyped
+
+    def new_merge_request: (untyped merge_request) -> untyped
+
+    def picked_into_branch: (untyped branch_name, untyped pick_commit) -> untyped
+
+    # Called when the merge request is approved by user
+    #
+    # Example Note text:
+    #
+    #   "approved this merge request"
+    #
+    # Returns the created Note object
+    def approve_mr: () -> untyped
+
+    def unapprove_mr: () -> untyped
+
+    def requested_changes: () -> untyped
+
+    def reviewed: () -> untyped
+
+    private
+
+    def format_reason: (untyped reason) -> (nil | untyped)
+  end
+end

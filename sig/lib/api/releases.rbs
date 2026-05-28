@@ -1,0 +1,11 @@
+module API
+  class Releases < ::API::Base
+    include PaginationParams
+
+    include APIGuard
+
+    RELEASE_ENDPOINT_REQUIREMENTS: untyped
+
+    RELEASE_CLI_USER_AGENT: "GitLab-release-cli"
+  end
+end

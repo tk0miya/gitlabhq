@@ -1,0 +1,17 @@
+module Gitlab
+  module Tracking
+    class EventEligibilityChecker
+      def self.only_send_duo_events?: () -> untyped
+
+      def self.internal_duo_events: () -> ::Array[untyped]
+
+      def eligible?: (untyped _event, ?untyped? _app_id) -> untyped
+
+      private
+
+      def snowplow_enabled?: () -> untyped
+
+      def send_usage_data?: () -> untyped
+    end
+  end
+end

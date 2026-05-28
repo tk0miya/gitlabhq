@@ -1,0 +1,14 @@
+module API
+  module Helpers
+    module UsersHelpers
+      extend ActiveSupport::Concern
+
+      extend Grape::API::Helpers
+
+      def model_errors: (untyped model) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def find_user_by_id: (untyped params) -> untyped
+    end
+  end
+end

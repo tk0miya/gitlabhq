@@ -1,0 +1,29 @@
+# When provided a diff for a specific file, maps old line numbers to new line
+# numbers and back, to find out where a specific line in a file was moved by the
+# changes.
+module Gitlab
+  module Diff
+    class LineMapper
+      @diff_file: untyped
+
+      @diff_lines: untyped
+
+      attr_accessor diff_file: untyped
+
+      def initialize: (untyped diff_file) -> void
+
+      # Find new line number for old line number.
+      def old_to_new: (untyped old_line) -> untyped
+
+      # Find old line number for new line number.
+      def new_to_old: (untyped new_line) -> untyped
+
+      private
+
+      def diff_lines: () -> untyped
+
+      # Find old/new line number based on its old/new counterpart line number.
+      def map_line_number: (untyped from_line, from: untyped, to: untyped) -> (untyped | nil)
+    end
+  end
+end

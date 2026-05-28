@@ -1,0 +1,33 @@
+module WorkItems
+  module SavedViews
+    class SavedViewsFinder
+      @user: untyped
+
+      @namespace: untyped
+
+      @params: untyped
+
+      def initialize: (user: untyped, namespace: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader user: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader params: untyped
+
+      def by_visibility: (untyped items) -> untyped
+
+      def by_id: (untyped items) -> untyped
+
+      def by_subscription: (untyped items) -> untyped
+
+      def by_search: (untyped items) -> untyped
+
+      def sort: (untyped items) -> untyped
+    end
+  end
+end

@@ -1,0 +1,10 @@
+# This module adds additional correlation id the grape logger
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class CorrelationIdLogger < ::GrapeLogging::Loggers::Base
+        def parameters: (untyped _, untyped _) -> ::Hash[untyped, untyped]
+      end
+    end
+  end
+end

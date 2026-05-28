@@ -1,0 +1,76 @@
+module CommitsHelper
+  include Gitlab::Utils::StrongMemoize
+
+  # Returns a link to the commit author. If the author has a matching user and
+  # is a member of the current @project it will link to the team member page.
+  # Otherwise it will link to the author email as specified in the commit.
+  #
+  # options:
+  #  avatar: true will prepend the avatar image
+  #  size:   size of the avatar image in px
+  def commit_author_link: (untyped commit, ?::Hash[untyped, untyped] options) -> untyped
+
+  # Just like #author_link but for the committer.
+  def commit_committer_link: (untyped commit, ?::Hash[untyped, untyped] options) -> untyped
+
+  def commit_committer_avatar: (untyped committer, ?::Hash[untyped, untyped] options) -> untyped
+
+  def commit_to_html: (untyped commit, untyped ref, untyped project) -> untyped
+
+  def commit_list_app_data: () -> { "project_full_path" => untyped, "project_root_path" => untyped, "project_path" => untyped, "project_id" => untyped, "escaped_ref" => untyped, "ref_type" => untyped, "root_ref" => untyped, "browse_files_path" => untyped, "commits_feed_path" => untyped, "base_path" => untyped }
+
+  # Breadcrumb links for a Project and, if applicable, a tree path
+  def commits_breadcrumbs: () -> (nil | untyped)
+
+  def commit_blob: () -> untyped
+
+  def link_to_browse_code: (untyped project, untyped commit) -> (nil | untyped)
+
+  def path_to_browse_file_or_directory: (untyped project, untyped ref, untyped path) -> untyped
+
+  def commit_options_dropdown_data: (untyped project, untyped commit) -> { new_project_tag_path: untyped, email_patches_path: untyped, plain_diff_path: untyped, can_revert: untyped, can_cherry_pick: untyped, can_tag: untyped, can_email_patches: untyped }
+
+  def conditionally_paginate_diff_files: (untyped diffs, paginate: untyped, page: untyped, per: untyped) -> untyped
+
+  def local_committed_date: (untyped commit, untyped user) -> untyped
+
+  def cherry_pick_projects_data: (untyped project) -> untyped
+
+  # This is used to calculate a cache key for the app/views/projects/commits/_commit.html.haml
+  # partial. It takes some of the same parameters as used in the partial and will hash the
+  # current pipeline status.
+  #
+  # This includes a keyed hash for values that can be nil, to prevent invalid cache entries
+  # being served if the order should change in future.
+  def commit_partial_cache_key: (untyped commit, ref: untyped, merge_request: untyped, request: untyped) -> ::Array[untyped | { merge_request: untyped, pipeline_status: untyped, xhr: untyped, controller: untyped, path: untyped, referenced_by: untyped }]
+
+  DEFAULT_SHA: "0000000"
+
+  # Returns the template path for commit resources
+  # to be utilized by the client applications.
+  def commit_path_template: (untyped project) -> untyped
+
+  def diff_mode_swap_button: (untyped mode, untyped file_hash) -> untyped
+
+  def tag_checksum: (untyped tags_array) -> untyped
+
+  # Private: Returns a link to a person. If the person has a matching user and
+  # is a member of the current @project it will link to the team member page.
+  # Otherwise it will link to the person email as specified in the commit.
+  #
+  # options:
+  #  source: one of :author or :committer
+  #  avatar: true will prepend the avatar image
+  #  size:   size of the avatar image in px
+  def commit_person_link: (untyped commit, ?::Hash[untyped, untyped] options) -> untyped
+
+  def view_file_button: (untyped commit_sha, untyped diff_new_path, untyped project, ?replaced: bool) -> untyped
+
+  def view_on_environment_button: (untyped commit_sha, untyped diff_new_path, untyped environment) -> (nil | untyped)
+
+  def truncate_sha: (untyped sha) -> untyped
+
+  def clean: (untyped string) -> untyped
+
+  def commit_path: (untyped project, untyped commit, ?merge_request: untyped?) -> untyped
+end

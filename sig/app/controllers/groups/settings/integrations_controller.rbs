@@ -1,0 +1,21 @@
+module Groups
+  module Settings
+    class IntegrationsController < Groups::ApplicationController
+      @hide_search_settings: untyped
+
+      @integrations: untyped
+
+      @default_integration: untyped
+
+      include ::Integrations::Actions
+
+      def index: () -> untyped
+
+      def edit: () -> untyped
+
+      private
+
+      def find_or_initialize_non_project_specific_integration: (untyped name) -> untyped
+    end
+  end
+end

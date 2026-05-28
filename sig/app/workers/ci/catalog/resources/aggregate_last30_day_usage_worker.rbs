@@ -1,0 +1,19 @@
+module Ci
+  module Catalog
+    module Resources
+      class AggregateLast30DayUsageWorker
+        include ApplicationWorker
+
+        include CronjobQueue
+
+        MAX_RUNTIME: untyped
+
+        # See https://gitlab.com/gitlab-org/gitlab/-/merge_requests/155001#note_1941066672
+        # Includes extra time (1.minute) to execute `&usage_counts_block`
+        WORKER_DEDUP_TTL: untyped
+
+        def perform: () -> untyped
+      end
+    end
+  end
+end

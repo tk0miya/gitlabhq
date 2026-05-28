@@ -1,0 +1,42 @@
+module Gitlab
+  module ImportExport
+    module Group
+      class GroupRestorer
+        @user: untyped
+
+        @shared: untyped
+
+        @group: untyped
+
+        @group_attributes: untyped
+
+        @importable_path: untyped
+
+        @relation_reader: untyped
+
+        @reader: untyped
+
+        # consume_relation returns a list of [relation, index]
+        @group_members: untyped
+
+        @relation_tree_restorer: untyped
+
+        @members_mapper: untyped
+
+        def initialize: (user: untyped, shared: untyped, group: untyped, attributes: untyped, importable_path: untyped, relation_reader: untyped, reader: untyped) -> void
+
+        def restore: () -> (nil | untyped)
+
+        private
+
+        def restorer: () -> untyped
+
+        def members_mapper: () -> untyped
+
+        def relation_factory: () -> untyped
+
+        def object_builder: () -> untyped
+      end
+    end
+  end
+end

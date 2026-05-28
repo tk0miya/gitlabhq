@@ -1,0 +1,36 @@
+module Gitlab
+  module SidekiqConfig
+    class CronJobs
+      self.@config: untyped
+
+      SCHEDULE_PATH: untyped
+
+      EE_SCHEDULE_PATH: untyped
+
+      SAAS_SCHEDULE_PATH: untyped
+
+      JH_SCHEDULE_PATH: untyped
+
+      # Keys a user may override via `gitlab.yml` (via `cron_jobs` config key)
+      USER_OVERRIDABLE_CONFIG_KEYS: ::Array["cron" | "args"]
+
+      def self.config: () -> untyped
+
+      def self.reset!: () -> untyped
+
+      def load: () -> untyped
+
+      private
+
+      def schedule_paths: () -> untyped
+
+      def load_schedule_files: (untyped paths) -> untyped
+
+      def load_schedule_file: (untyped path) -> (::Hash[untyped, untyped] | untyped)
+
+      def apply_user_overrides: (untyped jobs) -> untyped
+
+      def user_configured_overrides: () -> untyped
+    end
+  end
+end

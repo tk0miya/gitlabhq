@@ -1,0 +1,11 @@
+module Gitlab
+  module DataBuilder
+    module Emoji
+      extend ::Gitlab::DataBuilder::Emoji
+
+      def build: (untyped award_emoji, untyped user, untyped action) -> untyped
+
+      def build_base_data: (untyped project, untyped user, untyped award_emoji, untyped action) -> untyped
+    end
+  end
+end

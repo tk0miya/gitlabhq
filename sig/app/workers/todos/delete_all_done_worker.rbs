@@ -1,0 +1,23 @@
+module Todos
+  class DeleteAllDoneWorker
+    include ApplicationWorker
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    include EachBatch
+
+    include TodosDestroyerQueue
+
+    LOCK_TIMEOUT: untyped
+
+    BATCH_DELETE_SIZE: 10000
+
+    SUB_BATCH_DELETE_SIZE: 100
+
+    SLEEP_INTERVAL: 100
+
+    MAX_RUNTIME: untyped
+
+    def perform: (untyped user_id, untyped time) -> untyped
+  end
+end

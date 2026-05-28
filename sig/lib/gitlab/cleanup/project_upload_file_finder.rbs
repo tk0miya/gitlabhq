@@ -1,0 +1,26 @@
+module Gitlab
+  module Cleanup
+    class ProjectUploadFileFinder
+      FIND_BATCH_SIZE: 500
+
+      ABSOLUTE_UPLOAD_DIR: untyped
+
+      EXCLUDED_SYSTEM_UPLOADS_PATH: ::String
+
+      EXCLUDED_HASHED_UPLOADS_PATH: ::String
+
+      EXCLUDED_TMP_UPLOADS_PATH: ::String
+
+      # Paths are relative to the upload directory
+      def each_file_batch: (?batch_size: untyped) { (?) -> untyped } -> untyped
+
+      private
+
+      def yield_paths_in_batches: (untyped stdout, untyped batch_size) { (untyped) -> untyped } -> untyped
+
+      def build_find_command: (untyped search_dir) -> untyped
+
+      def which_ionice: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module ExternalAuthorization
+    class Response
+      @response: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped response) -> void
+
+      def valid?: () -> untyped
+
+      def successful?: () -> untyped
+
+      def reason: () -> (untyped | nil)
+
+      private
+
+      def parsed_response: () -> untyped
+
+      def parse_response!: () -> untyped
+    end
+  end
+end

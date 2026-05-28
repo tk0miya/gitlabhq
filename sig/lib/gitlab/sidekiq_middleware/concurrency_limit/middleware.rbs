@@ -1,0 +1,62 @@
+module Gitlab
+  module SidekiqMiddleware
+    module ConcurrencyLimit
+      class Middleware
+        @worker: untyped
+
+        @job: untyped
+
+        @worker_class: untyped
+
+        @worker_name: untyped
+
+        def initialize: (untyped worker, untyped job) -> void
+
+        # This will continue the middleware chain if the job should be scheduled
+        # It will return false if the job needs to be cancelled
+        def schedule: () { () -> untyped } -> (nil | untyped)
+
+        # This will continue the server middleware chain if the job should be
+        # executed.
+        # It will return false if the job should not be executed.
+        def perform: () { () -> untyped } -> untyped
+
+        private
+
+        attr_reader job: untyped
+
+        attr_reader worker: untyped
+
+        attr_reader worker_name: untyped
+
+        attr_reader worker_class: untyped
+
+        def should_defer_schedule?: () -> (false | untyped)
+
+        def should_defer_perform?: () -> (false | true | untyped)
+
+        def concurrency_service: () -> untyped
+
+        def track_execution_start: () -> (nil | untyped)
+
+        def track_execution_end: () -> (nil | untyped)
+
+        def cleanup_stale_trackers: () -> (nil | untyped)
+
+        def worker_limit: () -> (untyped | 0)
+
+        def resumed?: () -> untyped
+
+        def has_jobs_in_queue?: () -> untyped
+
+        def current_count: () -> untyped
+
+        def defer_job!: () -> untyped
+
+        def current_context: () -> untyped
+
+        def disabled_for_worker?: () -> untyped
+      end
+    end
+  end
+end

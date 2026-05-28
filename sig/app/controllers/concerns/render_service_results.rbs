@@ -1,0 +1,9 @@
+module RenderServiceResults
+  extend ActiveSupport::Concern
+
+  def success_response: (untyped result) -> untyped
+
+  def continue_polling_response: () -> untyped
+
+  def error_response: (untyped result) -> untyped
+end

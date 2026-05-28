@@ -1,0 +1,27 @@
+module Peek
+  module Views
+    class ActiveRecord < DetailedView
+      self.@thresholds: untyped
+
+      DEFAULT_THRESHOLDS: { calls: 100, duration: 3000, individual_call: 1000 }
+
+      THRESHOLDS: { production: { calls: 100, duration: 15000, individual_call: 5000 } }
+
+      def self.thresholds: () -> untyped
+
+      def results: () -> untyped
+
+      private
+
+      def summary: () -> untyped
+
+      def count_summary: (untyped item, untyped count) -> untyped
+
+      def setup_subscribers: () -> untyped
+
+      def generate_detail: (untyped start, untyped finish, untyped data) -> { start: untyped, duration: untyped, sql: untyped, backtrace: untyped, cached: untyped, transaction: untyped, db_role: untyped, db_config_name: ::String }
+
+      def db_role: (untyped data) -> ::String
+    end
+  end
+end

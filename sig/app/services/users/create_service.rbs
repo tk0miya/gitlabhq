@@ -1,0 +1,29 @@
+module Users
+  class CreateService < BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    @user: untyped
+
+    include NewUserNotifier
+
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def user: () -> untyped
+
+    def after_create_hook: (untyped user, untyped reset_token) -> untyped
+
+    def build_class: () -> untyped
+
+    def create_user: (untyped user, untyped reset_token) -> untyped
+
+    def error: (untyped message, untyped payload) -> untyped
+
+    def success: (untyped payload) -> untyped
+  end
+end

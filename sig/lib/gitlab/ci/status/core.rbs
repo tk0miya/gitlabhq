@@ -1,0 +1,63 @@
+module Gitlab
+  module Ci
+    module Status
+      # Base abstract class for core status
+      #
+      class Core
+        @subject: untyped
+
+        @user: untyped
+
+        include Gitlab::Routing
+
+        include Gitlab::Allowable
+
+        attr_reader subject: untyped
+
+        attr_reader user: untyped
+
+        def initialize: (untyped subject, untyped user) -> void
+
+        def id: () -> ::String
+
+        def icon: () -> untyped
+
+        def favicon: () -> untyped
+
+        def illustration: () -> untyped
+
+        def label: () -> untyped
+
+        def name: () -> untyped
+
+        def group: () -> untyped
+
+        def has_details?: () -> false
+
+        def details_path: () -> untyped
+
+        def has_action?: () -> false
+
+        def action_icon: () -> untyped
+
+        def action_path: () -> untyped
+
+        def action_method: () -> untyped
+
+        def action_title: () -> untyped
+
+        def action_button_title: () -> untyped
+
+        # Hint that appears on all the pipeline graph tooltips and builds on the right sidebar in Job detail view
+        def status_tooltip: () -> untyped
+
+        # Hint that appears on the build badges
+        def badge_tooltip: () -> untyped
+
+        def confirmation_message: () -> nil
+
+        def deployment_details_path: () -> nil
+      end
+    end
+  end
+end

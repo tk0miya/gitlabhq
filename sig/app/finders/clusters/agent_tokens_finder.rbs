@@ -1,0 +1,29 @@
+module Clusters
+  class AgentTokensFinder
+    @agent: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include FinderMethods
+
+    def initialize: (untyped agent, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader agent: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def agent_tokens_by_status: () -> untyped
+
+    def active_tokens_only?: () -> untyped
+
+    def can_read_cluster_agent?: () -> untyped
+  end
+end

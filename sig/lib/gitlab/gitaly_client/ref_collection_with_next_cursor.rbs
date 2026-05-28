@@ -1,0 +1,13 @@
+module Gitlab
+  module GitalyClient
+    class RefCollectionWithNextCursor < SimpleDelegator
+      include Enumerable
+
+      def initialize: (untyped response) -> void
+
+      attr_reader next_cursor: untyped
+
+      def each: () { (?) -> untyped } -> untyped
+    end
+  end
+end

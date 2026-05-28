@@ -1,0 +1,39 @@
+class UserDetail < ApplicationRecord
+  extend ::Gitlab::Utils::Override
+
+  include Sanitizable
+
+  DEFAULT_FIELD_LENGTH: 500
+
+  # specification for bluesky identifier https://web.plc.directory/spec/v0.1/did-plc
+  BLUESKY_VALIDATION_REGEX: ::Regexp
+
+  MASTODON_VALIDATION_REGEX: ::Regexp
+
+  ORCID_VALIDATION_REGEX: ::Regexp
+
+  # Exclude the hashed email_otp attribute
+  def serializable_hash: (?untyped? options) -> untyped
+
+  private
+
+  def sanitize_attrs: () -> untyped
+
+  def sanitize_location_and_company: () -> untyped
+
+  def prevent_nil_fields: () -> untyped
+
+  def company_length_as_organization: () -> (nil | untyped)
+
+  def bot_namespace_user_type: () -> (nil | untyped)
+
+  def provisioning_source_mutually_exclusive: () -> (nil | untyped)
+end
+
+class Object
+  def discord_format: () -> (nil | untyped)
+
+  def mastodon_format: () -> (nil | untyped)
+
+  def orcid_format: () -> (nil | untyped)
+end

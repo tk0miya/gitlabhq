@@ -1,0 +1,43 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      module WorkspaceOperations
+        module Create
+          module DesiredConfig
+            class BmScriptsConfigmapAppender
+              include BmCreateConstants
+
+              include BmWorkspaceOperationsConstants
+
+              # @param [Array] desired_config_array
+              # @param [String] name
+              # @param [String] namespace
+              # @param [Hash] labels
+              # @param [Hash] annotations
+              # @param [Array<Hash>] devfile_commands
+              # @param [Hash] devfile_events
+              # @return [void]
+              def self.append: (desired_config_array: untyped, name: untyped, namespace: untyped, labels: untyped, annotations: untyped, devfile_commands: untyped, devfile_events: untyped) -> nil
+
+              # @param [Hash] configmap_data
+              # @param [Array<Hash>] devfile_commands
+              # @param [Hash] devfile_events
+              # @return [void]
+              def self.add_devfile_command_scripts_to_configmap_data: (configmap_data: untyped, devfile_commands: untyped, devfile_events: untyped) -> nil
+
+              # @param [Hash] configmap_data
+              # @param [Array<Hash>] devfile_commands
+              # @param [Hash] devfile_events
+              # @return [void]
+              def self.add_run_poststart_commands_script_to_configmap_data: (configmap_data: untyped, devfile_commands: untyped, devfile_events: untyped) -> nil
+
+              # @param [Array] poststart_command_ids
+              # @return [String]
+              def self.get_poststart_command_script_content: (poststart_command_ids: untyped) -> untyped
+            end
+          end
+        end
+      end
+    end
+  end
+end

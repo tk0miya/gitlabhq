@@ -1,0 +1,19 @@
+module SystemCheck
+  module IncomingEmail
+    class MailRoomEnabledCheck < SystemCheck::BaseCheck
+      include ::SystemCheck::InitHelpers
+
+      def skip?: () -> untyped
+
+      def check?: () -> untyped
+
+      def show_error: () -> untyped
+
+      private
+
+      def mail_room_enabled?: () -> untyped
+
+      def mail_room_configured?: () -> untyped
+    end
+  end
+end

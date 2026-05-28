@@ -1,0 +1,19 @@
+module Import
+  module Offline
+    module Groups
+      module Transformers
+        class GroupAttributesTransformer
+          include ::BulkImports::PathNormalization
+
+          include ::BulkImports::Uniquify
+
+          def transform: (untyped context, untyped data) -> (nil | untyped)
+
+          private
+
+          def allowed_visibility_level: (untyped level, untyped namespace) -> untyped
+        end
+      end
+    end
+  end
+end

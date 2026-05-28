@@ -1,0 +1,18 @@
+module Gitlab
+  # Helper methods to interact with Prometheus network services & resources. Needs basic auth.
+  class MimirClient < PrometheusClient
+    @mimir_url: untyped
+
+    PROMETHEUS_API_ENDPOINT: "prometheus"
+
+    def initialize: (mimir_url: untyped, user: untyped, password: untyped, ?options: ::Hash[untyped, untyped]) -> void
+
+    def healthy?: () -> untyped
+
+    def ready_url: () -> ::String
+
+    private
+
+    attr_reader mimir_url: untyped
+  end
+end

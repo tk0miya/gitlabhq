@@ -1,0 +1,19 @@
+module Packages
+  module Conan
+    class PackageReference < ApplicationRecord
+      include ShaAttribute
+
+      include PackageFileable
+
+      REFERENCE_LENGTH_MAX: 40
+
+      MAX_INFO_SIZE: 20000
+
+      def self.for_package_id_and_reference: (untyped package_id, untyped reference) -> untyped
+
+      private
+
+      def ensure_info_size: () -> (nil | untyped)
+    end
+  end
+end

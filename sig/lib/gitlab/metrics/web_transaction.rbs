@@ -1,0 +1,53 @@
+module Gitlab
+  module Metrics
+    # Exclusive transaction-type metrics for web servers (including Web/Api/Git
+    # fleet). One instance of this class is created for each request going
+    # through the Rack metric middleware. Any metrics dispatched with this
+    # instance include metadata such as controller, action, feature category,
+    # etc.
+    class WebTransaction < Transaction
+      @env: untyped
+
+      # memoize transaction labels only source env variables were present
+      @labels: untyped
+
+      @endpoint_paths_cache: untyped
+
+      THREAD_KEY: :_gitlab_metrics_transaction
+
+      BASE_LABEL_KEYS: ::Array[:controller | :action | :feature_category | :endpoint_id]
+
+      CONTROLLER_KEY: "action_controller.instance"
+
+      ENDPOINT_KEY: "api.endpoint"
+
+      ALLOWED_SUFFIXES: untyped
+
+      SMALL_BUCKETS: ::Array[::Float]
+
+      def self.current: () -> untyped
+
+      def self.prometheus_metric: (untyped name, untyped type) { (?) -> untyped } -> untyped
+
+      def initialize: (untyped env) -> void
+
+      def run: () { () -> untyped } -> untyped
+
+      def labels: () -> untyped
+
+      private
+
+      def record_duration_if_needed: (untyped status, untyped duration) -> (nil | untyped)
+
+      def labels_from_controller: () -> { controller: untyped, action: untyped, feature_category: untyped, endpoint_id: ::String }
+
+      def labels_from_endpoint: () -> untyped
+
+      def endpoint_paths_cache: () -> untyped
+
+      def endpoint_instrumentable_path: (untyped raw_path) -> untyped
+
+      def feature_category: () -> untyped
+    end
+  end
+end

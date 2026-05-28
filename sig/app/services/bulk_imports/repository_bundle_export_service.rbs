@@ -1,0 +1,25 @@
+module BulkImports
+  class RepositoryBundleExportService
+    @repository: untyped
+
+    @export_path: untyped
+
+    @export_filename: untyped
+
+    def initialize: (untyped repository, untyped export_path, untyped export_filename) -> void
+
+    def execute: (?::Hash[untyped, untyped] _options) -> (nil | untyped)
+
+    private
+
+    attr_reader repository: untyped
+
+    attr_reader export_path: untyped
+
+    attr_reader export_filename: untyped
+
+    def repository_exists?: () -> untyped
+
+    def bundle_filepath: () -> untyped
+  end
+end

@@ -1,0 +1,86 @@
+module Gitlab
+  class UrlSanitizer
+    @credentials: untyped
+
+    @url: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    MASK: "*****"
+
+    ALLOWED_SCHEMES: ::Array["http" | "https" | "ssh" | "git"]
+
+    ALLOWED_WEB_SCHEMES: ::Array["http" | "https"]
+
+    SCHEMIFIED_SCHEME: "glschemelessuri"
+
+    SCHEMIFY_PLACEHOLDER: ::String
+
+    # URI::DEFAULT_PARSER.make_regexp will only match URLs with schemes or
+    # relative URLs. This section will match schemeless URIs with userinfo
+    # e.g. user:pass@gitlab.com but will not match scp-style URIs e.g.
+    # user@server:path/to/file)
+    #
+    # The userinfo part is very loose compared to URI's implementation so we
+    # also match non-escaped userinfo e.g foo:b?r@gitlab.com which should be
+    # encoded as foo:b%3Fr@gitlab.com
+    URI_REGEXP: ::Regexp
+
+    # This expression is derived from `URI::REGEXP::PATTERN::USERINFO` but with the
+    # addition of `{` and `}` in the list of allowed characters to account for the
+    # possibility of the userinfo portion of a URL containing masked segments.
+    # e.g.
+    # http://myuser:{masked_password}@{masked_domain}.com/{masked_hook}
+    MASKED_USERINFO_REGEX: ::Regexp
+
+    def self.sanitize: (untyped content, ?user: untyped?, ?password: untyped?) -> untyped
+
+    def self.sanitize_unencoded: (untyped content, ?user: untyped?, ?password: untyped?) -> untyped
+
+    # Strips the userinfo (user:password@) portion from a URL string so that
+    # special characters in the password (e.g. #, ?, /) don't confuse URI parsers.
+    # Only operates on scheme-based URLs (http://, https://, ssh://, git://).
+    #
+    # NOTE: The greedy .*@ matches up to the last @ in the URL. This mirrors
+    # the behavior in #parse_url and correctly handles passwords containing @.
+    def self.strip_userinfo: (untyped url) -> untyped
+
+    def self.valid?: (untyped url, ?allowed_schemes: untyped) -> untyped
+
+    def self.valid_web?: (untyped url) -> untyped
+
+    # Percent-encodes a string for safe use in URL userinfo.
+    # CGI.escape converts spaces to +, but this doesn't work for git clone.
+    def self.encode_percent: (untyped string) -> untyped
+
+    # The url associated with records like `WebHookLog` may contain masked
+    # portions represented by paired curly brackets in the URL. As this
+    # prohibits straightforward parsing of the URL, we can use a variation of
+    # the existing USERINFO regex for these cases.
+    def self.sanitize_masked_url: (untyped url) -> untyped
+
+    def initialize: (untyped url, ?credentials: untyped?) -> void
+
+    def credentials: () -> untyped
+
+    def user: () -> untyped
+
+    def sanitized_url: () -> untyped
+
+    def masked_url: () -> untyped
+
+    def full_url: () -> untyped
+
+    private
+
+    def parse_url: (untyped url) -> untyped
+
+    def schemify: (untyped url) -> untyped
+
+    def reverse_schemify: (untyped url) -> untyped
+
+    def valid_credentials?: () -> untyped
+
+    def encode_percent: (untyped string) -> untyped
+  end
+end

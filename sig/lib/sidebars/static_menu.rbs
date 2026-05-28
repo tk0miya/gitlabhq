@@ -1,0 +1,8 @@
+module Sidebars
+  # This is a special menu which does not serialize as
+  # a section and instead hoists all of menu items
+  # to be top-level items
+  class StaticMenu < ::Sidebars::Menu
+    def serialize_for_super_sidebar: () -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module Ci
+  module StuckBuilds
+    class DropPendingService
+      include DropHelpers
+
+      BUILD_PENDING_OUTDATED_TIMEOUT: untyped
+
+      BUILD_PENDING_STUCK_TIMEOUT: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      # We're adding the ordering clause by `created_at` and `project_id`
+      # because we want to force the query planner to use the
+      # `ci_builds_gitlab_monitor_metrics` index all the time.
+      def pending_builds: (untyped timeout) -> untyped
+
+      def pending_builds_queue: (untyped timeout) -> untyped
+    end
+  end
+end

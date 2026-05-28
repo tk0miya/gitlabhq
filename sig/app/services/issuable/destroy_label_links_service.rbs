@@ -1,0 +1,19 @@
+module Issuable
+  class DestroyLabelLinksService
+    @target_id: untyped
+
+    @target_type: untyped
+
+    BATCH_SIZE: 100
+
+    def initialize: (untyped target_id, untyped target_type) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader target_id: untyped
+
+    attr_reader target_type: untyped
+  end
+end

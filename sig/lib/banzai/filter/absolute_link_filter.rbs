@@ -1,0 +1,20 @@
+module Banzai
+  module Filter
+    # HTML filter that converts relative urls into absolute ones.
+    class AbsoluteLinkFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      CSS: "a.gfm"
+
+      XPATH: untyped
+
+      def call: () -> untyped
+
+      def skip?: () -> untyped
+
+      def process_link_attr: (untyped html_attr) -> untyped
+
+      def convert_link_href: (untyped uri) -> untyped
+    end
+  end
+end

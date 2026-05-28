@@ -1,0 +1,69 @@
+module Packages
+  module Nuget
+    class SearchService < BaseService
+      @current_user: untyped
+
+      @project_or_group: untyped
+
+      @search_term: untyped
+
+      @options: untyped
+
+      include ::Packages::FinderHelper
+
+      include Gitlab::Utils::StrongMemoize
+
+      MAX_PER_PAGE: 30
+
+      MAX_VERSIONS_PER_PACKAGE: 10
+
+      PRE_RELEASE_VERSION_MATCHING_TERM: "%-%"
+
+      DEFAULT_OPTIONS: { include_prerelease_versions: true, per_page: untyped, padding: 0 }
+
+      def initialize: (untyped current_user, untyped project_or_group, untyped search_term, ?::Hash[untyped, untyped] options) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def search_packages: () -> untyped
+
+      def package_names_partition: () -> untyped
+
+      def paginated_matching_package_names: () -> untyped
+
+      def non_paginated_matching_package_names: () -> untyped
+
+      def base_matching_package_names: () -> untyped
+
+      def nuget_packages: () -> untyped
+
+      def project_ids_cte: () -> (nil | untyped)
+
+      def project_ids: () -> untyped
+
+      def use_project_ids_cte?: () -> untyped
+
+      def project?: () -> untyped
+
+      def group?: () -> untyped
+
+      def include_prerelease_versions?: () -> untyped
+
+      def padding: () -> untyped
+
+      def per_page: () -> untyped
+
+      def packages_class: () -> untyped
+
+      class Result
+        include ActiveModel::Model
+
+        attr_accessor results: untyped
+
+        attr_accessor total_count: untyped
+      end
+    end
+  end
+end

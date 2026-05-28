@@ -1,0 +1,27 @@
+module Gitlab
+  module FogbugzImport
+    class Client
+      @api: untyped
+
+      @repos: untyped
+
+      attr_reader api: untyped
+
+      def initialize: (?::Hash[untyped, untyped] options) -> void
+
+      def get_token: () -> untyped
+
+      def valid?: () -> untyped
+
+      def user_map: () -> untyped
+
+      def repos: () -> untyped
+
+      def repo: (untyped id) -> untyped
+
+      def cases: (untyped project_id) -> (::Array[untyped] | untyped)
+
+      def categories: () -> untyped
+    end
+  end
+end

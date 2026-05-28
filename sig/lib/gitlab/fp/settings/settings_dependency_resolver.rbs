@@ -1,0 +1,12 @@
+module Gitlab
+  module Fp
+    module Settings
+      class SettingsDependencyResolver
+        # @param [Array] setting_names An array of setting names
+        # @param [Hash] dependencies A hash of setting names to array of dependent setting names
+        # @return [Array] An array of setting names + all recursive dependencies
+        def self.resolve: (untyped setting_names, untyped dependencies) -> untyped
+      end
+    end
+  end
+end

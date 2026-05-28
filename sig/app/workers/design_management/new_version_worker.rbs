@@ -1,0 +1,13 @@
+module DesignManagement
+  class NewVersionWorker
+    include ApplicationWorker
+
+    def perform: (untyped version_id, ?bool skip_system_notes) -> untyped
+
+    private
+
+    def add_system_note: (untyped version) -> untyped
+
+    def generate_image_versions: (untyped version) -> untyped
+  end
+end

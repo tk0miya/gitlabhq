@@ -1,0 +1,31 @@
+module Terraform
+  class RemoteStateHandler < BaseService
+    StateLockedError: untyped
+
+    StateDeletedError: untyped
+
+    UnauthorizedError: untyped
+
+    def find_with_lock: () ?{ (untyped) -> untyped } -> untyped
+
+    def handle_with_lock: () ?{ (untyped) -> untyped } -> nil
+
+    def lock!: () -> untyped
+
+    def unlock!: () -> untyped
+
+    private
+
+    def retrieve_with_lock: (?find_only: bool) { (untyped) -> untyped } -> untyped
+
+    def create_or_find!: (find_only: untyped) -> untyped
+
+    def lock_matches?: (untyped state) -> (true | untyped)
+
+    def can_modify_state?: () -> untyped
+
+    def find_state: (untyped find_params) -> untyped
+
+    def find_state!: (untyped find_params) -> untyped
+  end
+end

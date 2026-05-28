@@ -1,0 +1,41 @@
+module Boards
+  class BaseItemMoveService < Boards::BaseService
+    @moving_from_list: untyped
+
+    @moving_to_list: untyped
+
+    LIST_END_POSITION: -1
+
+    def execute: (untyped issuable) -> (nil | untyped)
+
+    private
+
+    def success: (untyped issuable) -> untyped
+
+    def error: (untyped issuable, untyped message) -> untyped
+
+    def issuable_params: (untyped issuable) -> untyped
+
+    def reposition_params: (untyped reposition_ids) -> { move_between_ids: untyped }
+
+    def move_single_issuable: (untyped issuable, untyped issuable_modification_params) -> (nil | untyped)
+
+    def move_between_lists?: () -> untyped
+
+    def moving_from_list: () -> (nil | untyped)
+
+    def moving_to_list: () -> (nil | untyped)
+
+    def issuable_state: () -> ("reopen" | untyped)
+
+    def add_label_ids: () -> untyped
+
+    def remove_label_ids: () -> untyped
+
+    def board_label_ids: () -> untyped
+
+    def move_params_from_list_position: (untyped position) -> ({ move_before_id: untyped, move_after_id: nil } | untyped | { move_before_id: nil, move_after_id: untyped })
+
+    def move_between_ids: (untyped move_params) -> untyped
+  end
+end

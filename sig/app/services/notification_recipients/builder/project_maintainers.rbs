@@ -1,0 +1,17 @@
+module NotificationRecipients
+  module Builder
+    class ProjectMaintainers < Base
+      @target: untyped
+
+      @action: untyped
+
+      attr_reader target: untyped
+
+      def initialize: (untyped target, action: untyped) -> void
+
+      def build!: () -> (::Array[untyped] | untyped)
+
+      def acting_user: () -> nil
+    end
+  end
+end

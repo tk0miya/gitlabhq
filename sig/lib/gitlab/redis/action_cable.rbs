@@ -1,0 +1,10 @@
+module Gitlab
+  module Redis
+    class ActionCable < ::Gitlab::Redis::Wrapper
+      # The data we store on ActionCable used to be stored on SharedState.
+      def self.config_fallback: () -> untyped
+
+      def self.active?: () -> (untyped | false)
+    end
+  end
+end

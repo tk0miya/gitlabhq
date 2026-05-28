@@ -1,0 +1,37 @@
+module Captcha
+  #
+  # Encapsulates logic of checking captchas.
+  #
+  class CaptchaVerificationService
+    @spam_params: untyped
+
+    @request: untyped
+
+    include Recaptcha::Adapters::ControllerMethods
+
+    # Currently the only value that is used out of the request by the reCAPTCHA library
+    # is 'remote_ip'. Therefore, we just create a struct to avoid passing the full request
+    # object through all the service layer objects, and instead just rely on passing only
+    # the required remote_ip value. This eliminates the need to couple the service layer
+    # to the HTTP request (for the purpose of this service, at least).
+    RequestStruct: untyped
+
+    def initialize: (spam_params: untyped) -> void
+
+    #
+    # Performs verification of a captcha response.
+    #
+    # NOTE: Currently only supports reCAPTCHA, and is not yet used in all places of the app in which
+    # captchas are verified, but these can be addressed in future MRs.  See:
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/273480
+    def execute: () -> (false | untyped)
+
+    private
+
+    attr_reader spam_params: untyped
+
+    # The recaptcha library's Recaptcha::Adapters::ControllerMethods#verify_recaptcha method requires that
+    # 'request' be a readable attribute - it doesn't support passing it as an options argument.
+    attr_reader request: untyped
+  end
+end

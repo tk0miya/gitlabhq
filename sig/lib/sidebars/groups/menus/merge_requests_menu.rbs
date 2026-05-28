@@ -1,0 +1,27 @@
+module Sidebars
+  module Groups
+    module Menus
+      class MergeRequestsMenu < ::Sidebars::Menu
+        include Gitlab::Utils::StrongMemoize
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "merge-request"
+
+        def render?: () -> untyped
+
+        def has_pill?: () -> true
+
+        def pill_count_field: () -> "openMergeRequestsCount"
+
+        def pill_html_options: () -> { class: "merge_counter js-merge-counter" }
+
+        def active_routes: () -> { path: "groups#merge_requests" }
+
+        def serialize_as_menu_item_args: () -> untyped
+      end
+    end
+  end
+end

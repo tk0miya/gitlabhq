@@ -1,0 +1,9 @@
+module API
+  class GenericPackages < ::API::Base
+    GENERIC_PACKAGES_REQUIREMENTS: { package_name: untyped, file_name: untyped }
+
+    ALLOWED_STATUSES: ::Array["default" | "hidden"]
+
+    SHA256_CHECKSUM_HEADER: "X-Checksum-SHA256"
+  end
+end

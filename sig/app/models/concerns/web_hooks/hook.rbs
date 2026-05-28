@@ -1,0 +1,28 @@
+module WebHooks
+  module Hook
+    extend ActiveSupport::Concern
+
+    InterpolationError: untyped
+
+    SECRET_MASK: "************"
+
+    MAX_PARAM_LENGTH: 8192
+
+    SIGNING_TOKEN_PREFIX: "whsec_"
+
+    # Format of a signing token with 32 encoded bytes.
+    # Base64.strict_encode64(SecureRandom.bytes(32)).length # => 44 (43 chars + 1 padding "=")
+    SIGNING_TOKEN_FORMAT: ::Regexp
+
+    MAX_CUSTOM_HEADER_NAME_LENGTH: 255
+
+    TEMPLATE_PARSE_LIMITS: { max_depth: 32, max_array_size: 100, max_hash_size: 100, max_total_elements: 500, max_json_size_bytes: 4096 }
+
+    DANGEROUS_EXPONENT_RE: untyped
+
+    CUSTOM_TEMPLATE_INTERPOLATION_REGEX: untyped
+
+    # See app/validators/json_schemas/web_hooks_url_variables.json
+    VARIABLE_REFERENCE_RE: ::Regexp
+  end
+end

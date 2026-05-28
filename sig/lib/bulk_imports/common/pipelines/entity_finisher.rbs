@@ -1,0 +1,37 @@
+module BulkImports
+  module Common
+    module Pipelines
+      class EntityFinisher
+        @context: untyped
+
+        @entity: untyped
+
+        @trackers: untyped
+
+        @logger: untyped
+
+        def self.file_extraction_pipeline?: () -> false
+
+        def self.abort_on_failure?: () -> false
+
+        def initialize: (untyped context) -> void
+
+        def run: () -> (nil | untyped)
+
+        private
+
+        attr_reader context: untyped
+
+        attr_reader entity: untyped
+
+        attr_reader trackers: untyped
+
+        def logger: () -> untyped
+
+        def all_other_trackers_failed?: () -> untyped
+
+        def schedule_group_work_item_placement: () -> (nil | untyped)
+      end
+    end
+  end
+end

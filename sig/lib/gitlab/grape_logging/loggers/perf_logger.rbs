@@ -1,0 +1,12 @@
+# This module adds additional performance metrics to the grape logger
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class PerfLogger < ::GrapeLogging::Loggers::Base
+        include ::Gitlab::InstrumentationHelper
+
+        def parameters: (untyped _, untyped _) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+class Projects::Ci::DailyBuildGroupReportResultsController < Projects::ApplicationController
+  def index: () -> untyped
+
+  private
+
+  def validate_param_type!: () -> (untyped | nil)
+
+  def render_csv: (untyped collection) -> untyped
+
+  def render_json: (untyped collection) -> untyped
+
+  def report_results: () -> untyped
+
+  def finder_params: () -> { project: untyped, coverage: true, start_date: untyped, end_date: untyped, ref_path: untyped, sort: true }
+
+  def allowed_param_types: () -> untyped
+
+  def param_type: () -> untyped
+
+  def safe_params: () -> untyped
+end

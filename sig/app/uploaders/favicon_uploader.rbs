@@ -1,0 +1,13 @@
+class FaviconUploader < AttachmentUploader
+  EXTENSION_ALLOWLIST: ::Array["png" | "ico"]
+
+  MIME_ALLOWLIST: ::Array["image/png" | "image/vnd.microsoft.icon"]
+
+  def extension_whitelist: () -> untyped
+
+  def content_type_whitelist: () -> untyped
+
+  private
+
+  def filename_for_different_format: (untyped filename, untyped format) -> untyped
+end

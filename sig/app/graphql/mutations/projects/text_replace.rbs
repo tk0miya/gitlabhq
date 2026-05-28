@@ -1,0 +1,17 @@
+module Mutations
+  module Projects
+    class TextReplace < BaseMutation
+      include FindsProject
+
+      UNSUPPORTED_REPLACEMENT_PREFIX: ::Regexp
+
+      SUPPORTED_REPLACEMENT_PREFIX: ::Regexp
+
+      EMPTY_REPLACEMENTS_ARG_ERROR: "Argument 'replacements' on InputObject 'projectTextReplaceInput' is required. Expected type [String!]!\n"
+
+      UNSUPPORTED_REPLACEMENTS_ARG_ERROR: "Argument 'replacements' on InputObject 'projectTextReplaceInput' does not support 'regex:' or 'glob:' values.\n"
+
+      def resolve: (project_path: untyped, replacements: untyped) -> ({ errors: untyped } | { errors: ::Array[untyped] })
+    end
+  end
+end

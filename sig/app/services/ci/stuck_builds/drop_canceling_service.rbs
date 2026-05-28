@@ -1,0 +1,15 @@
+module Ci
+  module StuckBuilds
+    class DropCancelingService
+      include DropHelpers
+
+      TIMEOUT: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def canceling_timed_out_builds: () -> untyped
+    end
+  end
+end

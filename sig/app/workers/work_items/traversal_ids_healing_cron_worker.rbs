@@ -1,0 +1,37 @@
+module WorkItems
+  # Periodically heals divergence between a namespace's traversal_ids and the
+  # namespace_traversal_ids denormalized onto the issues table.
+  # This is necessary to handle cases where we missed to spawn the UpdateNamespaceTraversalIdsWorker
+  # either due to unkown bugs in our system, or when there was a problem with the sidekiq job queue.
+  class TraversalIdsHealingCronWorker
+    include ApplicationWorker
+
+    include LoopWithRuntimeLimit
+
+    include CronjobQueue
+
+    MAX_RUNTIME: untyped
+
+    BATCH_SIZE: untyped
+
+    RESCHEDULE_DELAY: untyped
+
+    CURSOR_KEY: "work_items:traversal_ids_healing:last_namespace_id"
+
+    CURSOR_TTL: untyped
+
+    def perform: () -> (nil | untyped)
+
+    private
+
+    def next_namespace_ids: (untyped cursor) -> untyped
+
+    def enqueue_heals: (untyped namespace_ids) -> (nil | untyped)
+
+    def load_cursor: () -> untyped
+
+    def save_cursor: (untyped cursor) -> untyped
+
+    def delete_cursor: () -> untyped
+  end
+end

@@ -1,0 +1,33 @@
+module Gitlab
+  module Database
+    class DeleteRelationWithReturning
+      @relation: untyped
+
+      @returning: untyped
+
+      @returning_columns: untyped
+
+      DELETE_SQL_TEMPLATE: "DELETE FROM %{table_name}\nWHERE %{primary_key} IN (%{select_sql})\n%{returning}\n"
+
+      def self.execute: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def initialize: (untyped relation, untyped returning) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader relation: untyped
+
+      attr_reader returning: untyped
+
+      def delete_sql: () -> untyped
+
+      def select_sql: () -> untyped
+
+      def returning_clause: () -> untyped
+
+      def returning_columns: () -> untyped
+    end
+  end
+end

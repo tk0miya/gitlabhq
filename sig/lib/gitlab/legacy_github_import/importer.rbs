@@ -1,0 +1,124 @@
+module Gitlab
+  module LegacyGithubImport
+    class Importer
+      @project: untyped
+
+      @repo: untyped
+
+      @repo_url: untyped
+
+      @errors: untyped
+
+      @labels: untyped
+
+      @client: untyped
+
+      @credentials: untyped
+
+      @cache_key_prefix: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      PLACEHOLDER_LOAD_SLEEP: 3
+
+      PLACEHOLDER_LOAD_TIMEOUT: 300
+
+      def self.refmap: () -> untyped
+
+      attr_reader errors: untyped
+
+      attr_reader project: untyped
+
+      attr_reader repo: untyped
+
+      attr_reader repo_url: untyped
+
+      def initialize: (untyped project) -> void
+
+      def client: () -> untyped
+
+      def source_user_mapper: () -> untyped
+
+      def execute: () -> true
+
+      def preallocate_iids!: () -> (nil | untyped)
+
+      private
+
+      def credentials: () -> untyped
+
+      def handle_errors: () -> (nil | untyped)
+
+      def collect_issue_iids: (untyped max_iids) -> (nil | untyped)
+
+      def collect_merge_request_iids: (untyped max_iids) -> (nil | untyped)
+
+      def collect_milestone_iids: (untyped max_iids) -> (nil | untyped)
+
+      def iid_allocated?: (untyped usage) -> untyped
+
+      def fetch_max_issue_number: () -> untyped
+
+      def fetch_max_pull_request_number: () -> untyped
+
+      # Gitea uses the milestone :id field as the IID (see MilestoneFormatter#number).
+      # The Gitea milestones API does not support sorting by ID, and sorting by
+      # created_at is unreliable (some instances return unsorted results),
+      # so we fetch all milestones and compute the max client-side.
+      def fetch_max_milestone_id: () -> (nil | untyped)
+
+      def import_labels: () -> untyped
+
+      def import_milestones: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def import_issues: () -> untyped
+
+      def import_pull_requests: () -> untyped
+
+      def restore_source_branch: (untyped pull_request) -> untyped
+
+      def restore_target_branch: (untyped pull_request) -> untyped
+
+      def remove_branch: (untyped name) -> untyped
+
+      def clean_up_restored_branches: (untyped pull_request) -> (nil | untyped)
+
+      def apply_labels: (untyped issuable, untyped raw) -> (nil | untyped)
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def import_comments: (untyped issuable_type) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def create_comments: (untyped comments) -> untyped
+
+      def discard_inserted_comments: (untyped comments, untyped last_note) -> (nil | untyped)
+
+      def import_wiki: () -> untyped
+
+      def import_releases: () -> untyped
+
+      def cache_labels!: () -> untyped
+
+      def fetch_resources: (untyped resource_type, *untyped opts) { (untyped) -> untyped } -> untyped
+
+      def load_placeholder_references: () -> (nil | untyped)
+
+      def placeholder_references_loaded?: () -> untyped
+
+      def wait_for_placeholder_references: () -> (nil | untyped)
+
+      def should_map_users?: () -> (false | true)
+
+      def imported?: (untyped resource_type) -> untyped
+
+      def imported!: (untyped resource_type) -> untyped
+
+      def increment_page: (untyped resource_type) -> untyped
+
+      def current_page: (untyped resource_type) -> untyped
+
+      def cache_key_prefix: () -> untyped
+    end
+  end
+end

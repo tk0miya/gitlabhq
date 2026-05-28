@@ -1,0 +1,19 @@
+module BlobViewer
+  class GoMod < DependencyManager
+    include ServerSide
+
+    include Gitlab::Utils::StrongMemoize
+
+    MODULE_REGEX: ::Regexp
+
+    def manager_name: () -> "Go Modules"
+
+    def manager_url: () -> "https://golang.org/ref/mod"
+
+    def package_type: () -> "go"
+
+    def package_name: () -> untyped
+
+    def package_url: () -> untyped
+  end
+end

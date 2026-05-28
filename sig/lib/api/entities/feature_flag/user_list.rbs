@@ -1,0 +1,9 @@
+module API
+  module Entities
+    class FeatureFlag < Grape::Entity
+      class UserList < BasicUserList
+        include RequestAwareEntity
+      end
+    end
+  end
+end

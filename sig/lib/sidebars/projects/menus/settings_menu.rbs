@@ -1,0 +1,53 @@
+module Sidebars
+  module Projects
+    module Menus
+      class SettingsMenu < ::Sidebars::Menu
+        MENU_ITEMS: ::Array[:general_menu_item | :service_accounts_menu_item | :integrations_menu_item | :webhooks_menu_item | :access_tokens_menu_item | :repository_menu_item | :merge_requests_menu_item | :ci_cd_menu_item | :packages_and_registries_menu_item | :monitor_menu_item | :usage_quotas_menu_item]
+
+        NON_ADMIN_MENU_ITEMS: { general_menu_item: ::Array[:view_edit_page], integrations_menu_item: ::Array[:admin_integrations], webhooks_menu_item: ::Array[:read_web_hook], access_tokens_menu_item: ::Array[:manage_resource_access_tokens], repository_menu_item: ::Array[:admin_push_rules | :manage_deploy_tokens | :admin_protected_branch | :manage_protected_tags], merge_requests_menu_item: ::Array[:manage_merge_request_settings], ci_cd_menu_item: ::Array[:admin_cicd_variables | :admin_protected_environments | :read_runners] }
+
+        def configure_menu_items: () -> (false | true)
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "settings"
+
+        def pick_into_super_sidebar?: () -> true
+
+        def separated?: () -> true
+
+        private
+
+        def can_admin_project?: () -> untyped
+
+        def general_menu_item: () -> untyped
+
+        def integrations_menu_item: () -> untyped
+
+        def webhooks_menu_item: () -> untyped
+
+        def access_tokens_menu_item: () -> untyped
+
+        def repository_menu_item: () -> untyped
+
+        def ci_cd_menu_item: () -> untyped
+
+        def packages_and_registries_menu_item: () -> untyped
+
+        def monitor_menu_item: () -> untyped
+
+        def service_accounts_menu_item: () -> untyped
+
+        def service_accounts_available?: () -> untyped
+
+        def usage_quotas_menu_item: () -> untyped
+
+        def merge_requests_menu_item: () -> (nil | untyped)
+
+        alias build send
+
+        def enabled_menu_items: () -> (::Array[untyped] | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class Reports
+          @reports: untyped
+
+          @pipeline: untyped
+
+          attr_reader reports: untyped
+
+          attr_reader pipeline: untyped
+
+          def initialize: (untyped pipeline) -> void
+
+          def get_report: (untyped report_type, untyped report_artifact) -> untyped
+
+          def findings: () -> untyped
+        end
+      end
+    end
+  end
+end

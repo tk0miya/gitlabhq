@@ -1,0 +1,9 @@
+module API
+  module Terraform
+    class State < ::API::Base
+      include ::Gitlab::Utils::StrongMemoize
+
+      STATE_NAME_URI_REQUIREMENTS: { name: untyped }
+    end
+  end
+end

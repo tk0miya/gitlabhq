@@ -1,0 +1,14 @@
+module Users
+  class BlockService < BaseService
+    @current_user: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped user) -> untyped
+
+    private
+
+    # overridden by EE module
+    def after_block_hook: (untyped user) -> untyped
+  end
+end

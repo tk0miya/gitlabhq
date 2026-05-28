@@ -1,0 +1,23 @@
+# This service tracks failed CI builds using Snowplow.
+#
+# @param build [Ci::Build] the build that failed.
+# @param exit_code [Int] the resulting exit code.
+module Ci
+  class TrackFailedBuildService
+    @build: untyped
+
+    @exit_code: untyped
+
+    @failure_reason: untyped
+
+    SCHEMA_URL: "iglu:com.gitlab/ci_build_failed/jsonschema/1-0-2"
+
+    def initialize: (build: untyped, exit_code: untyped, failure_reason: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def payload: () -> { build_id: untyped, build_name: untyped, build_artifact_types: untyped, exit_code: untyped, failure_reason: untyped, project: untyped }
+  end
+end

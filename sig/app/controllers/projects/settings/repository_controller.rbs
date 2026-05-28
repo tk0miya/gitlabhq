@@ -1,0 +1,68 @@
+module Projects
+  module Settings
+    class RepositoryController < Projects::ApplicationController
+      @created_deploy_token: untyped
+
+      @new_deploy_token: untyped
+
+      @deploy_keys: untyped
+
+      @protected_branches: untyped
+
+      @protected_tags: untyped
+
+      @protected_branch: untyped
+
+      @protected_tag: untyped
+
+      @protected_tags_count: untyped
+
+      @remote_mirror: untyped
+
+      @remote_mirrors: untyped
+
+      @deploy_tokens: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def show: () -> untyped
+
+      def cleanup: () -> untyped
+
+      def create_deploy_token: () -> untyped
+
+      def update: () -> untyped
+
+      private
+
+      def render_show: () -> untyped
+
+      def define_variables: () -> untyped
+
+      def tag_names: () -> untyped
+
+      def branch_names: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def define_protected_refs: () -> untyped
+
+      def fetch_protected_branches: (untyped project) -> untyped
+
+      def remote_mirror: () -> untyped
+
+      def deploy_token_params: () -> untyped
+
+      def project_params: () -> untyped
+
+      def project_params_attributes: () -> ::Array[:issue_branch_template | :default_branch | :autoclose_referenced_issues]
+
+      def protectable_tags_for_dropdown: () -> { open_tags: untyped }
+
+      def protectable_branches_for_dropdown: () -> { open_branches: untyped }
+
+      def define_deploy_token_variables: () -> untyped
+
+      def load_gon_index: () -> untyped
+    end
+  end
+end

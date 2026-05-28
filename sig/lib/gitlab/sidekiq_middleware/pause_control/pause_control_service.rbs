@@ -1,0 +1,59 @@
+module Gitlab
+  module SidekiqMiddleware
+    module PauseControl
+      class PauseControlService
+        @worker_name: untyped
+
+        @redis_set_key: untyped
+
+        @redis_score_key: untyped
+
+        # Class for managing queues for paused workers
+        # When a worker is paused all jobs are saved in a separate sorted sets in redis
+        LIMIT: 1000
+
+        PROJECT_CONTEXT_KEY: ::String
+
+        def initialize: (untyped worker_name) -> void
+
+        def self.add_to_waiting_queue!: (untyped worker_name, untyped args, untyped context) -> untyped
+
+        def self.has_jobs_in_waiting_queue?: (untyped worker_name) -> untyped
+
+        def self.resume_processing!: (untyped worker_name) -> untyped
+
+        def self.queue_size: (untyped worker_name) -> untyped
+
+        def add_to_waiting_queue!: (untyped args, untyped context) -> untyped
+
+        def queue_size: () -> untyped
+
+        def has_jobs_in_waiting_queue?: () -> untyped
+
+        def resume_processing!: (?iterations: ::Integer) -> untyped
+
+        private
+
+        attr_reader worker_name: untyped
+
+        attr_reader redis_set_key: untyped
+
+        attr_reader redis_score_key: untyped
+
+        def with_redis: () { (?) -> untyped } -> untyped
+
+        def serialize: (untyped args, untyped context) -> untyped
+
+        def deserialize: (untyped json) -> untyped
+
+        def send_to_processing_queue: (untyped job) -> untyped
+
+        def generate_unique_score: (untyped redis) -> untyped
+
+        def next_batch_from_waiting_queue: (untyped redis) -> untyped
+
+        def remove_jobs_from_waiting_queue: (untyped redis, untyped jobs_with_scores) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module Gitlab
+  module Import
+    class ImportUserCreator
+      @portable: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      NoRootGroupError: untyped
+
+      attr_reader portable: untyped
+
+      def initialize: (portable: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def create_user: () -> untyped
+
+      def create_namespace_import_user: (untyped user) -> untyped
+
+      def username_and_email_generator: () -> untyped
+
+      def import_user: () -> untyped
+
+      def root_ancestor: () -> untyped
+
+      def username_prefix: () -> ::String
+
+      def random_segment: () -> untyped
+
+      def import_user_in_cache: () -> untyped
+
+      def request_store_cache_key: () -> ::String
+    end
+  end
+end

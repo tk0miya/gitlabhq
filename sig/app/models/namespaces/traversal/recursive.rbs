@@ -1,0 +1,64 @@
+module Namespaces
+  module Traversal
+    module Recursive
+      extend ActiveSupport::Concern
+
+      include RecursiveScopes
+
+      def root_ancestor: () -> (untyped | self | untyped)
+
+      alias recursive_root_ancestor root_ancestor
+
+      def all_project_ids: () -> untyped
+
+      alias recursive_all_project_ids all_project_ids
+
+      def all_unarchived_project_ids: () -> untyped
+
+      alias recursive_all_unarchived_project_ids all_unarchived_project_ids
+
+      # Returns all ancestors, self, and descendants of the current namespace.
+      def self_and_hierarchy: () -> untyped
+
+      alias recursive_self_and_hierarchy self_and_hierarchy
+
+      # Returns all the ancestors of the current namespaces.
+      def ancestors: (?hierarchy_order: untyped?, ?skope: untyped) -> untyped
+
+      alias recursive_ancestors ancestors
+
+      def ancestor_ids: (?hierarchy_order: untyped?) -> untyped
+
+      alias recursive_ancestor_ids ancestor_ids
+
+      # returns all ancestors upto but excluding the given namespace
+      # when no namespace is given, all ancestors upto the top are returned
+      def ancestors_upto: (?untyped? top, ?hierarchy_order: untyped?) -> untyped
+
+      alias recursive_ancestors_upto ancestors_upto
+
+      def self_and_ancestors: (?hierarchy_order: untyped?, ?skope: untyped) -> untyped
+
+      alias recursive_self_and_ancestors self_and_ancestors
+
+      def self_and_ancestor_ids: (?hierarchy_order: untyped?) -> untyped
+
+      alias recursive_self_and_ancestor_ids self_and_ancestor_ids
+
+      # Returns all the descendants of the current namespace.
+      def descendants: () -> untyped
+
+      alias recursive_descendants descendants
+
+      def self_and_descendants: (?skope: untyped) -> untyped
+
+      alias recursive_self_and_descendants self_and_descendants
+
+      def self_and_descendant_ids: (?skope: untyped) -> untyped
+
+      alias recursive_self_and_descendant_ids self_and_descendant_ids
+
+      def object_hierarchy: (untyped ancestors_base) -> untyped
+    end
+  end
+end

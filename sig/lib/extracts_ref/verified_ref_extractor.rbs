@@ -1,0 +1,54 @@
+module ExtractsRef
+  class VerifiedRefExtractor
+    @ref_type: untyped
+
+    @ref: untyped
+
+    @repository: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    SYMBOLIC_REF_PREFIX: ::Regexp
+
+    def self.ref_type: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def self.ambiguous_ref?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def initialize: (untyped repository, ref_type: untyped, ref: untyped) -> void
+
+    attr_reader repository: untyped
+
+    attr_reader ref: untyped
+
+    def ref_type: () -> untyped
+
+    def ambiguous_ref?: () -> (false | true | untyped)
+
+    private
+
+    def detect_ref_type: () -> (nil | "tags" | untyped)
+
+    # This method behave differently when the ref is short_sha. Unfortunately
+    # git behaves differently if a branch or tag exists with a name matching a
+    # short_sha or full_sha:
+    #
+    #  Full SHA
+    #
+    # 1. branch/tag exists         -> repository.commit(ref).sha == ref
+    # 2. branch/tag does not exist -> repository.commit(ref).sha == ref
+    #
+    #  Short SHA
+    #
+    # 1. branch/tag exists         -> repository.commit(ref).short_sha == ref
+    # 2. branch/tag does not exist -> repository.commit(ref).short_sha != ref
+    #
+    # This happens because git treats the branch as a better match if a
+    # short_sha is passed and a branch exists with that name.
+    #
+    def commit_exists?: () -> untyped
+
+    def tag_exists?: () -> untyped
+
+    def branch_exists?: () -> untyped
+  end
+end

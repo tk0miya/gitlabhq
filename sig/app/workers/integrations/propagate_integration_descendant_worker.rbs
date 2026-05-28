@@ -1,0 +1,7 @@
+module Integrations
+  class PropagateIntegrationDescendantWorker
+    include ApplicationWorker
+
+    def perform: (untyped integration_id, untyped min_id, untyped max_id) -> (nil | untyped)
+  end
+end

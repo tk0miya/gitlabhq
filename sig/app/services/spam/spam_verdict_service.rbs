@@ -1,0 +1,53 @@
+module Spam
+  class SpamVerdictService
+    @target: untyped
+
+    @user: untyped
+
+    @options: untyped
+
+    @context: untyped
+
+    @extra_features: untyped
+
+    @spamcheck_client: untyped
+
+    @logger: untyped
+
+    @histogram: untyped
+
+    include AkismetMethods
+
+    include SpamConstants
+
+    def initialize: (user: untyped, target: untyped, options: untyped, ?context: ::Hash[untyped, untyped], ?extra_features: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader target: untyped
+
+    attr_reader options: untyped
+
+    attr_reader context: untyped
+
+    attr_reader extra_features: untyped
+
+    def get_akismet_verdict: () -> untyped
+
+    def get_spamcheck_verdict: () -> (nil | untyped)
+
+    def override_via_allow_possible_spam?: (verdict: untyped) -> (false | untyped)
+
+    def allow_possible_spam?: () -> untyped
+
+    def spamcheck_client: () -> untyped
+
+    def logger: () -> untyped
+
+    def histogram: () -> untyped
+  end
+end

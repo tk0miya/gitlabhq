@@ -1,0 +1,87 @@
+module Types
+  class ProjectType < BaseObject
+    @project: untyped
+
+    include ::Namespaces::DeletableHelper
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    def self.authorization_scopes: () -> untyped
+
+    def ci_pipeline_creation_request: (request_id: untyped) -> untyped
+
+    def pages_force_https: () -> untyped
+
+    def pages_use_unique_domain: () -> untyped
+
+    def protectable_branches: () -> untyped
+
+    def timelog_categories: () -> (untyped | nil)
+
+    def label: (title: untyped) -> untyped
+
+    def container_protection_tag_rules: () -> untyped
+
+    def jobs_enabled: () -> untyped
+
+    def open_issues_count: () -> (untyped | nil)
+
+    def open_merge_requests_count: () -> (nil | untyped)
+
+    def forks_count: () -> untyped
+
+    def is_catalog_resource: () -> untyped
+
+    def explore_catalog_path: () -> (nil | untyped)
+
+    def is_published: () -> untyped
+
+    def statistics: () -> untyped
+
+    def container_repositories_count: () -> untyped
+
+    def ci_pipeline_creation_inputs: (ref: untyped, ?fail_on_cache_miss: bool) -> (nil | untyped)
+
+    def ci_config_variables: (ref: untyped, ?fail_on_cache_miss: bool) -> (nil | untyped)
+
+    def job: (id: untyped) -> untyped
+
+    def sast_ci_configuration: () -> (nil | untyped)
+
+    def service_desk_address: () -> (nil | untyped)
+
+    def service_desk_enabled: () -> untyped
+
+    def languages: () -> untyped
+
+    def visible_forks: (?minimum_access_level: untyped?) -> (untyped | ::Array[untyped] | untyped)
+
+    def statistics_details_paths: () -> { repository: untyped, wiki: untyped, build_artifacts: untyped, packages: untyped, snippets: untyped, container_registry: untyped }
+
+    def max_access_level: () -> untyped
+
+    def organization_edit_path: () -> (nil | untyped)
+
+    # marked_for_deletion_at is deprecated in our v5 REST API in favor of marked_for_deletion_on
+    # https://docs.gitlab.com/ee/api/projects.html#removals-in-api-v5
+    def marked_for_deletion_on: () -> untyped
+
+    def permanent_deletion_date: () -> untyped
+
+    def web_path: () -> untyped
+
+    def edit_path: () -> untyped
+
+    def admin_show_path: () -> untyped
+
+    def admin_edit_path: () -> untyped
+
+    def grafana_integration: () -> nil
+
+    private
+
+    def project: () -> untyped
+
+    def add_file_docs_link: () -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+class Projects::WebIdeTerminalsController < Projects::ApplicationController
+  @build: untyped
+
+  def check_config: () -> untyped
+
+  def show: () -> untyped
+
+  def create: () -> untyped
+
+  def cancel: () -> untyped
+
+  def retry: () -> untyped
+
+  private
+
+  def authorize_create_web_ide_terminal!: () -> (untyped | nil)
+
+  def authorize_read_web_ide_terminal!: () -> untyped
+
+  def authorize_update_web_ide_terminal!: () -> untyped
+
+  def authorize_build_ability!: (untyped ability) -> (untyped | nil)
+
+  def build: () -> untyped
+
+  def branch_sha: () -> (nil | untyped)
+
+  def render_terminal: (untyped current_build) -> untyped
+end

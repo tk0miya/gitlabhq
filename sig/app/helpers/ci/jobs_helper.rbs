@@ -1,0 +1,11 @@
+module Ci
+  module JobsHelper
+    def jobs_data: (untyped project, untyped build) -> { "job_endpoint" => untyped, "log_endpoint" => untyped, "test_report_summary_url" => untyped, "page_path" => untyped, "project_path" => untyped, "artifact_help_url" => untyped, "deployment_help_url" => untyped, "runner_settings_url" => untyped, "retry_outdated_job_docs_url" => untyped, "pipeline_test_report_url" => untyped, "log_viewer_path" => untyped, "can_set_pipeline_variables" => untyped }
+
+    def job_statuses: () -> untyped
+
+    private
+
+    def test_report_summary: (untyped project, untyped build) -> ("" | untyped)
+  end
+end

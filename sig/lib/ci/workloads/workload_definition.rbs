@@ -1,0 +1,60 @@
+module Ci
+  module Workloads
+    # This class knows how to take a minimal set of attributes and construct a valid CI job yaml definition. It may in
+    # future be able to construct the definitions for other ways of running a workload (e.g. CI steps)
+    class WorkloadDefinition
+      @variables: untyped
+
+      @commands: untyped
+
+      @services: untyped
+
+      DEFAULT_TIMEOUT: untyped
+
+      attr_accessor image: untyped
+
+      attr_accessor commands: untyped
+
+      attr_accessor variables: untyped
+
+      attr_accessor artifacts_paths: untyped
+
+      attr_accessor timeout: untyped
+
+      attr_accessor cache: untyped
+
+      attr_accessor tags: untyped
+
+      attr_accessor services: untyped
+
+      attr_accessor suspend_on_success: untyped
+
+      attr_accessor suspend_on_failure: untyped
+
+      attr_accessor environment_key: untyped
+
+      def initialize: () ?{ (untyped) -> untyped } -> void
+
+      def add_variable: (untyped name, untyped value) -> untyped
+
+      # Adds a service to the workload definition.
+      #
+      # @param service [String, Hash] The service to add. Can be:
+      #   - A string with the service image name (e.g., 'docker:dind', 'postgres:13')
+      #   - A hash with service configuration (e.g., { name: 'postgres:13', alias: 'db' })
+      #
+      # @example Add Docker in Docker service
+      #   workload.add_service('docker:dind')
+      #
+      # @example Add service with alias
+      #   workload.add_service({ name: 'postgres:13', alias: 'db' })
+      def add_service: (untyped service) -> untyped
+
+      def to_job_hash: () -> untyped
+
+      private
+
+      def variables_without_expand: () -> untyped
+    end
+  end
+end

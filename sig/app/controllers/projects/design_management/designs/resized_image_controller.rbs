@@ -1,0 +1,24 @@
+# Returns smaller sized design images
+module Projects
+  module DesignManagement
+    module Designs
+      class ResizedImageController < Projects::DesignManagement::DesignsController
+        @version: untyped
+
+        include SendFileUpload
+
+        def show: () -> untyped
+
+        private
+
+        def validate_size!: () -> (untyped | nil)
+
+        def validate_sha!: () -> (untyped | nil)
+
+        def size: () -> untyped
+
+        def version: () -> (nil | untyped)
+      end
+    end
+  end
+end

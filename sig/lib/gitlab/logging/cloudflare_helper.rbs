@@ -1,0 +1,11 @@
+module Gitlab
+  module Logging
+    module CloudflareHelper
+      CLOUDFLARE_CUSTOM_HEADERS: { "Cf-Request-Id" => :cf_request_id, "Cf-IPCountry" => :cf_ipcountry }
+
+      def store_cloudflare_headers!: (untyped payload, untyped request) -> untyped
+
+      def valid_cloudflare_header?: (untyped value) -> (false | true)
+    end
+  end
+end

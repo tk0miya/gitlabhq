@@ -1,0 +1,84 @@
+module Gitlab
+  module Email
+    module Message
+      class RepositoryPush
+        @notify: untyped
+
+        @project_id: untyped
+
+        @opts: untyped
+
+        @author_id: untyped
+
+        @ref: untyped
+
+        @action: untyped
+
+        @project: untyped
+
+        @author: untyped
+
+        @commits: untyped
+
+        # This diff is more moderated in number of files and lines
+        @diffs: untyped
+
+        @changed_files: untyped
+
+        @action_name: untyped
+
+        @ref_name: untyped
+
+        @ref_type: untyped
+
+        attr_reader author_id: untyped
+
+        attr_reader ref: untyped
+
+        attr_reader action: untyped
+
+        include Gitlab::Routing
+
+        include DiffHelper
+
+        def initialize: (untyped notify, untyped project_id, ?::Hash[untyped, untyped] opts) -> void
+
+        def project: () -> untyped
+
+        def author: () -> untyped
+
+        def commits: () -> (nil | untyped)
+
+        def diffs: () -> (nil | untyped)
+
+        def changed_files: () -> (nil | untyped)
+
+        def diffs_count: () -> untyped
+
+        def compare: () -> untyped
+
+        def diff_refs: () -> untyped
+
+        def compare_timeout: () -> untyped
+
+        def reverse_compare?: () -> untyped
+
+        def disable_diffs?: () -> untyped
+
+        def send_from_committer_email?: () -> untyped
+
+        def action_name: () -> untyped
+
+        def ref_name: () -> untyped
+
+        def ref_type: () -> untyped
+
+        def target_url: () -> (untyped | untyped | nil)
+
+        def reply_to: () -> untyped
+
+        def subject: () -> untyped
+      end
+    end
+  end
+end

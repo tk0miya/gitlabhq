@@ -1,0 +1,22 @@
+# rubocop:disable Gitlab/NamespacedClass -- We want this to be top level due to scope of use and no namespace due to ease of calling
+class Current < ActiveSupport::CurrentAttributes
+  class OrganizationNotAssignedError < RuntimeError
+    def message: () -> "Assign an organization to Current.organization before calling it."
+  end
+
+  class OrganizationAlreadyAssignedError < RuntimeError
+    def message: () -> "Current.organization has already been set in the current thread and should not be set again."
+  end
+
+  # TODO: After updating to Rails 7.2, move this logic to the attribute default.
+  def cells_claims_leases?: () -> untyped
+
+  def organization=: (untyped value) -> (nil | untyped)
+
+  def organization: () -> untyped
+
+  private
+
+  # Do not allow to reset this
+  def organization_assigned=: (untyped value) -> untyped
+end

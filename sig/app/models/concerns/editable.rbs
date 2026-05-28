@@ -1,0 +1,15 @@
+# currently included in Note, Snippet
+# via Issuable: Issue, MergeRequest
+module Editable
+  @editable_ghost_author: untyped
+
+  extend ActiveSupport::Concern
+
+  def edited?: () -> untyped
+
+  def last_edited_by: () -> (nil | untyped)
+
+  private
+
+  def editable_ghost_author: () -> untyped
+end

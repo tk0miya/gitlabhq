@@ -1,0 +1,17 @@
+module Resolvers
+  module Ci
+    class ProjectPipelinesResolver < BaseResolver
+      include LooksAhead
+
+      include ResolvesPipelines
+
+      alias project object
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def preloads: () -> { jobs: { statuses_order_id_desc: ::Array[:needs] }, upstream: ::Array[:triggered_by_pipeline], downstream: ::Array[:triggered_pipelines], has_manual_actions: ::Array[:manual_actions], has_scheduled_actions: ::Array[:scheduled_actions], pipeline_schedule: ::Array[untyped], type: ::Array[:merge_request], merge_request: ::Array[:merge_request], merge_request_event_type: ::Array[:merge_request], ref_path: ::Array[:merge_request] }
+    end
+  end
+end

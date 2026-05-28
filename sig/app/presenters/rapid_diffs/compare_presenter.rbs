@@ -1,0 +1,15 @@
+module RapidDiffs
+  class ComparePresenter < BasePresenter
+    extend ::Gitlab::Utils::Override
+
+    def diffs_stats_endpoint: () -> untyped
+
+    def diff_files_endpoint: () -> untyped
+
+    def diff_file_endpoint: () -> untyped
+
+    def reload_stream_url: (?offset: untyped?, ?diff_view: untyped?, ?skip_old_path: untyped?, ?skip_new_path: untyped?) -> untyped
+
+    def offset: () -> 0
+  end
+end

@@ -1,0 +1,11 @@
+module Types
+  module PermissionTypes
+    class Project < BasePermissionType
+      def create_snippet: () -> untyped
+
+      def can_leave: () -> (false | untyped)
+
+      def admin_all_resources: () -> (false | untyped)
+    end
+  end
+end

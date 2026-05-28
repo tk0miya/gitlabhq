@@ -1,0 +1,25 @@
+module CommitSignatures
+  class GpgSignature < ApplicationRecord
+    include CommitSignature
+
+    include SignatureType
+
+    include EachBatch
+
+    def signed_by_user: () -> untyped
+
+    def type: () -> :gpg
+
+    def self.with_key_and_subkeys: (untyped gpg_key) -> untyped
+
+    def gpg_key=: (untyped model) -> untyped
+
+    def gpg_key: () -> (untyped | untyped | nil)
+
+    def gpg_key_primary_keyid: () -> untyped
+
+    def gpg_commit: () -> (nil | untyped)
+
+    def user: () -> untyped
+  end
+end

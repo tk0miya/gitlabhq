@@ -1,0 +1,9 @@
+class BasePolicy < DeclarativePolicy::Base
+  private
+
+  def user_is_user?: () -> untyped
+
+  def owns_organization?: (untyped org) -> (false | untyped)
+
+  def admin_mode_required?: () -> (false | untyped)
+end

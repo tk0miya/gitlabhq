@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    class Config
+      module Yaml
+        class Result
+          @config: untyped
+
+          @error: untyped
+
+          @error_class: untyped
+
+          @interpolated: untyped
+
+          attr_reader error: untyped
+
+          attr_reader error_class: untyped
+
+          def initialize: (?config: untyped?, ?error: untyped?, ?error_class: untyped?, ?interpolated: bool) -> void
+
+          def valid?: () -> untyped
+
+          def interpolated?: () -> untyped
+
+          def has_header?: () -> (false | untyped)
+
+          def header: () -> untyped
+
+          def content: () -> untyped
+
+          def spec: () -> untyped
+        end
+      end
+    end
+  end
+end

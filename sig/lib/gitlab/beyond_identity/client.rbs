@@ -1,0 +1,41 @@
+module Gitlab
+  module BeyondIdentity
+    class Client
+      @integration: untyped
+
+      API_URL: "https://api.byndid.com/key-mgmt/v0/gpg/key/authorization/git-commit-signing"
+
+      Error: untyped
+
+      class ApiError
+        @code: untyped
+
+        @message: untyped
+
+        ACCEPTABLE_ERROR_CODES: ::Array[404]
+
+        attr_reader code: untyped
+
+        attr_reader message: untyped
+
+        def initialize: (untyped message, untyped code) -> void
+
+        # In some cases, we treat error response as acceptable:
+        #
+        # A GPG key that wasn't issued by BeyondIdentity returns 404 status code
+        # but users should be able to add those GPG keys to their profile.
+        def acceptable_error?: () -> untyped
+      end
+
+      attr_reader integration: untyped
+
+      def initialize: (untyped integration) -> void
+
+      def execute: (untyped params) -> untyped
+
+      private
+
+      def headers: () -> { :"Content-Type" => "application/json", Authorization: ::String }
+    end
+  end
+end

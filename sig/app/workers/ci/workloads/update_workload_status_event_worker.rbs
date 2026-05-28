@@ -1,0 +1,10 @@
+module Ci
+  module Workloads
+    # rubocop: disable Scalability/IdempotentWorker -- EventStore::Subscriber includes idempotent
+    class UpdateWorkloadStatusEventWorker
+      include Gitlab::EventStore::Subscriber
+
+      def handle_event: (untyped event) -> (nil | untyped)
+    end
+  end
+end

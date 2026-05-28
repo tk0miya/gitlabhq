@@ -1,0 +1,13 @@
+module ActivityPub
+  class ApplicationController < ::ApplicationController
+    include RoutableActions
+
+    def can?: (untyped object, untyped action, ?::Symbol subject) -> untyped
+
+    def route_not_found: () -> untyped
+
+    def set_content_type: () -> untyped
+
+    def ensure_feature_flag: () -> (untyped | nil)
+  end
+end

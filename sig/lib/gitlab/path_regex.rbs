@@ -1,0 +1,188 @@
+module Gitlab
+  module PathRegex
+    @organization_route_regex: untyped
+
+    @root_namespace_route_regex: untyped
+
+    @full_namespace_route_regex: untyped
+
+    @project_route_regex: untyped
+
+    @repository_route_regex: untyped
+
+    @repository_git_route_regex: untyped
+
+    @repository_git_lfs_route_regex: untyped
+
+    @repository_wiki_git_route_regex: untyped
+
+    @full_namespace_path_regex: untyped
+
+    @organization_path_regex: untyped
+
+    @full_project_path_regex: untyped
+
+    @full_project_git_path_regex: untyped
+
+    @organization_format_regex: untyped
+
+    @namespace_format_regex: untyped
+
+    @project_path_format_regex: untyped
+
+    #                           |zip|tar|    tar.gz    |         tar.bz2         |
+    @archive_formats_regex: untyped
+
+    @git_reference_regex: untyped
+
+    @container_image_regex: untyped
+
+    @container_image_blob_sha_regex: untyped
+
+    @dependency_proxy_route_regex: untyped
+
+    extend ::Gitlab::PathRegex
+
+    # All routes that appear on the top level must be listed here.
+    # This will make sure that groups cannot be created with these names
+    # as these routes would be masked by the paths already in place.
+    #
+    # Example:
+    #   /api/api-project
+    #
+    #  the path `api` shouldn't be allowed because it would be masked by `api/*`
+    #
+    TOP_LEVEL_ROUTES: ::Array["-" | ".well-known" | "404.html" | "422.html" | "500.html" | "502.html" | "503.html" | "admin" | "api" | "apple-touch-icon.png" | "assets" | "dashboard" | "deploy.html" | "explore" | "favicon.ico" | "favicon.png" | "groups" | "health_check" | "help" | "import" | "jwt" | "login" | "o" | "oauth" | "profile" | "projects" | "public" | "robots.txt" | "s" | "search" | "sitemap" | "sitemap.xml" | "sitemap.xml.gz" | "slash-command-logo.png" | "snippets" | "unsubscribes" | "uploads" | "users" | "v2"]
+
+    # NOTE: Do not add new items to this list unless necessary as this will
+    # cause conflicts with existing namespaced routes for groups or projects.
+    # See https://docs.gitlab.com/ee/development/routing.html#project-routes
+    #
+    # This list should contain all words following `/*namespace_id/:project_id` in
+    # routes that contain a second wildcard.
+    #
+    # Example:
+    #   /*namespace_id/:project_id/badges/*ref/build
+    #
+    # If `badges` was allowed as a project/group name, we would not be able to access the
+    # `badges` route for those projects:
+    #
+    # Consider a namespace with path `foo/bar` and a project called `badges`.
+    # The route to the build badge would then be `/foo/bar/badges/badges/master/build.svg`
+    #
+    # When accessing this path the route would be matched to the `badges` path
+    # with the following params:
+    #   - namespace_id: `foo`
+    #   - project_id: `bar`
+    #   - ref: `badges/master`
+    #
+    # Failing to find the project, this would result in a 404.
+    #
+    # By rejecting `badges` the router can _count_ on the fact that `badges` will
+    # be preceded by the `namespace/project`.
+    PROJECT_WILDCARD_ROUTES: ::Array["-" | "badges" | "blame" | "blob" | "builds" | "commits" | "create" | "create_dir" | "edit" | "environments/folders" | "files" | "find_file" | "gitlab-lfs/objects" | "info/lfs/objects" | "new" | "preview" | "raw" | "refs" | "tree" | "update" | "wikis"]
+
+    # NOTE: Do not add new items to this list unless necessary as this will
+    # cause conflicts with existing namespaced routes for groups or projects.
+    # See https://docs.gitlab.com/ee/development/routing.html#group-routes
+    #
+    # These are all the paths that follow `/groups/*id/ or `/groups/*group_id`
+    # We need to reject these because we have a `/groups/*id` page that is the same
+    # as the `/*id`.
+    #
+    # If we would allow a subgroup to be created with the name `activity` then
+    # this group would not be accessible through `/groups/parent/activity` since
+    # this would map to the activity-page of its parent.
+    GROUP_ROUTES: ::Array["-"]
+
+    ILLEGAL_PROJECT_PATH_WORDS: untyped
+
+    ILLEGAL_GROUP_PATH_WORDS: untyped
+
+    ILLEGAL_ORGANIZATION_PATH_WORDS: untyped
+
+    # The namespace regex is used in JavaScript to validate usernames in the "Register" form. However, Javascript
+    # does not support the negative lookbehind assertion (?<!) that disallows usernames ending in `.git` and `.atom`.
+    # Since this is a non-trivial problem to solve in Javascript (heavily complicate the regex, modify view code to
+    # allow non-regex validations, etc), `NAMESPACE_FORMAT_REGEX_JS` serves as a Javascript-compatible version of
+    # `NAMESPACE_FORMAT_REGEX`, with the negative lookbehind assertion removed. This means that the client-side validation
+    # will pass for usernames ending in `.atom` and `.git`, but will be caught by the server-side validation.
+    PATH_START_CHAR: "[a-zA-Z0-9_\\.]"
+
+    PATH_REGEX_STR: untyped
+
+    NAMESPACE_FORMAT_REGEX_JS: untyped
+
+    NO_SUFFIX_REGEX: ::Regexp
+
+    NAMESPACE_FORMAT_REGEX: ::Regexp
+
+    PROJECT_PATH_FORMAT_REGEX: ::Regexp
+
+    FULL_NAMESPACE_FORMAT_REGEX: ::Regexp
+
+    ORGANIZATION_PATH_REGEX_STR: untyped
+
+    ORGANIZATION_PATH_FORMAT_REGEX: ::Regexp
+
+    def organization_route_regex: () -> untyped
+
+    def root_namespace_route_regex: () -> untyped
+
+    def full_namespace_route_regex: () -> untyped
+
+    def project_route_regex: () -> untyped
+
+    def repository_route_regex: () -> untyped
+
+    def repository_git_route_regex: () -> untyped
+
+    def repository_git_lfs_route_regex: () -> untyped
+
+    def repository_wiki_git_route_regex: () -> untyped
+
+    def full_namespace_path_regex: () -> untyped
+
+    def organization_path_regex: () -> untyped
+
+    def full_project_path_regex: () -> untyped
+
+    def full_project_git_path_regex: () -> untyped
+
+    def organization_format_regex: () -> untyped
+
+    def organization_format_message: () -> "can contain only letters, digits, '_' and '-'. Cannot start with '-'."
+
+    def namespace_format_regex: () -> untyped
+
+    def namespace_format_message: () -> "can contain only letters, digits, '_', '-' and '.'. Cannot start with '-' or end in '.', '.git' or '.atom'."
+
+    def project_path_format_regex: () -> untyped
+
+    def project_path_format_message: () -> "can contain only letters, digits, '_', '-' and '.'. Cannot start with '-', end in '.git' or end in '.atom'"
+
+    def archive_formats_regex: () -> untyped
+
+    def git_reference_regex: () -> untyped
+
+    def full_snippets_repository_path_regex: () -> ::Regexp
+
+    def container_image_regex: () -> untyped
+
+    def container_image_blob_sha_regex: () -> untyped
+
+    def dependency_proxy_route_regex: () -> untyped
+
+    private
+
+    def personal_snippet_path_regex: () -> ::Regexp
+
+    def personal_snippet_repository_path_regex: () -> ::Regexp
+
+    def project_snippet_path_regex: () -> ::Regexp
+
+    def project_snippet_repository_path_regex: () -> ::Regexp
+
+    def single_line_regexp: (untyped regex) -> untyped
+  end
+end

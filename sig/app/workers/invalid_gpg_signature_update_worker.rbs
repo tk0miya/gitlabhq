@@ -1,0 +1,5 @@
+class InvalidGpgSignatureUpdateWorker
+  include ApplicationWorker
+
+  def perform: (untyped gpg_key_id) -> (nil | untyped)
+end

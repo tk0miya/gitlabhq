@@ -1,0 +1,16 @@
+module Types
+  module Analytics
+    module CycleAnalytics
+      module ValueStreams
+        # rubocop: disable Graphql/AuthorizeTypes -- # Already authorized in parent value stream type.
+        class StageMetricsType < BaseObject
+          def count: () -> { value: untyped, identifier: "value_stream_stage_count", title: untyped }
+
+          def average: () -> { value: untyped, identifier: "value_stream_stage_average", title: untyped, unit: untyped }
+
+          def median: () -> { value: untyped, identifier: "value_stream_stage_median", title: untyped, unit: untyped }
+        end
+      end
+    end
+  end
+end

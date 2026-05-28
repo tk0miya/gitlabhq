@@ -1,0 +1,7 @@
+module JiraConnect
+  class ForwardEventWorker
+    include ApplicationWorker
+
+    def perform: (untyped installation_id, untyped base_path, untyped event_path) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,27 @@
+module GitlabSettings
+  class Settings
+    @source: untyped
+
+    @section: untyped
+
+    @loaded: untyped
+
+    @config: untyped
+
+    attr_reader source: untyped
+
+    def initialize: (untyped source, untyped section) -> void
+
+    def reload!: () -> untyped
+
+    def method_missing: (untyped name, *untyped args) -> untyped
+
+    def respond_to_missing?: (untyped name, ?bool include_all) -> untyped
+
+    private
+
+    attr_reader config: untyped
+
+    attr_reader section: untyped
+  end
+end

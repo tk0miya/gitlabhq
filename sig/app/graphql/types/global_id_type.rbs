@@ -1,0 +1,19 @@
+module Types
+  class GlobalIDType < BaseScalar
+    self.@id_types: untyped
+
+    # @param value [GID]
+    # @return [String]
+    def self.coerce_result: (untyped value, untyped _ctx) -> untyped
+
+    # @param value [String]
+    # @return [GID]
+    def self.coerce_input: (untyped value, untyped _ctx) -> (nil | untyped)
+
+    # Construct a restricted type, that can only be inhabited by an ID of
+    # a given model class.
+    def self.[]: (untyped model_class) -> untyped
+
+    def self.model_name_to_graphql_name: (untyped model_name) -> ::String
+  end
+end

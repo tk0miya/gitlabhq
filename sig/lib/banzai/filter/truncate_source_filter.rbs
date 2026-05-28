@@ -1,0 +1,11 @@
+module Banzai
+  module Filter
+    class TruncateSourceFilter < HTML::Pipeline::TextFilter
+      CHARACTER_COUNT_LIMIT: untyped
+
+      USER_MSG_LIMIT: 10000
+
+      def call: () -> untyped
+    end
+  end
+end

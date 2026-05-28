@@ -1,0 +1,35 @@
+class LabelNote < SyntheticNote
+  @events: untyped
+
+  attr_accessor resource_parent: untyped
+
+  attr_reader events: untyped
+
+  def self.from_event: (untyped event, resource: untyped, resource_parent: untyped) -> untyped
+
+  def self.from_events: (untyped events, resource: untyped, resource_parent: untyped) -> untyped
+
+  def events=: (untyped events) -> untyped
+
+  def cached_html_up_to_date?: (untyped markdown_field) -> true
+
+  def note_html: () -> ::String
+
+  private
+
+  def update_outdated_reference: () -> untyped
+
+  def note_text: (?html: bool) -> untyped
+
+  # returns string containing added/removed labels including
+  # count of deleted labels:
+  #
+  # added ~1 ~2 + 1 deleted label
+  # added 3 deleted labels
+  # added ~1 ~2 labels
+  def labels_str: (untyped label_refs, ?prefix: ::String) -> (nil | ::String)
+
+  def label_refs_by_action: (untyped action) -> untyped
+
+  def label_url_method: () -> (:project_merge_requests_url | untyped)
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module GithubImport
+    module Stage
+      class ImportPullRequestsReviewRequestsWorker
+        include ApplicationWorker
+
+        include StageMethods
+
+        def perform: (untyped project_id) -> nil
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Integrations
+  class FieldEntity < Grape::Entity
+    include RequestAwareEntity
+
+    include Gitlab::Utils::StrongMemoize
+
+    private
+
+    def integration: () -> untyped
+
+    def value_for: (untyped field) -> untyped
+
+    def non_empty_password?: (untyped field) -> untyped
+  end
+end

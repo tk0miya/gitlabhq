@@ -1,0 +1,17 @@
+class NoteEntity < API::Entities::Note
+  @discussion: untyped
+
+  include RequestAwareEntity
+
+  include NotesHelper
+
+  private
+
+  def discussion: () -> untyped
+
+  def current_user: () -> untyped
+
+  def with_base_discussion?: () -> untyped
+
+  def note_presenter: (untyped note) -> untyped
+end

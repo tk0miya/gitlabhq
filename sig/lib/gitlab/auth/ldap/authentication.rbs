@@ -1,0 +1,21 @@
+module Gitlab
+  module Auth
+    module Ldap
+      class Authentication < Gitlab::Auth::OAuth::Authentication
+        @user: untyped
+
+        def self.login: (untyped login, untyped password) -> (nil | untyped)
+
+        def self.providers: () -> untyped
+
+        def login: (untyped login, untyped password) -> (nil | untyped)
+
+        def adapter: () -> untyped
+
+        def config: () -> untyped
+
+        def user_filter: (untyped login) -> untyped
+      end
+    end
+  end
+end

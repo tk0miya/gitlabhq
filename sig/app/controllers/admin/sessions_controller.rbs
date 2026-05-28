@@ -1,0 +1,27 @@
+class Admin::SessionsController < ApplicationController
+  include AuthenticatesWithTwoFactorForAdminMode
+
+  include InternalRedirect
+
+  include RendersLdapServers
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def destroy: () -> untyped
+
+  private
+
+  def user_is_admin!: () -> (untyped | nil)
+
+  def two_factor_enabled_for_user?: () -> untyped
+
+  def redirect_path: () -> untyped
+
+  def excluded_redirect_paths: () -> ::Array[untyped]
+
+  def user_params: () -> untyped
+
+  def valid_otp_attempt?: (untyped user) -> untyped
+end

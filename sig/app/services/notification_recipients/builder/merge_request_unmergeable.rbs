@@ -1,0 +1,17 @@
+module NotificationRecipients
+  module Builder
+    class MergeRequestUnmergeable < Base
+      @target: untyped
+
+      attr_reader target: untyped
+
+      def initialize: (untyped merge_request) -> void
+
+      def build!: () -> untyped
+
+      def custom_action: () -> :unmergeable_merge_request
+
+      def acting_user: () -> nil
+    end
+  end
+end

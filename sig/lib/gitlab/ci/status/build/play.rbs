@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class Play < Status::Extended
+          def label: () -> "manual play action"
+
+          def has_action?: () -> untyped
+
+          def action_icon: () -> "play"
+
+          def action_title: () -> "Run"
+
+          def action_button_title: () -> untyped
+
+          def action_path: () -> untyped
+
+          def action_method: () -> :post
+
+          def confirmation_message: () -> untyped
+
+          def self.matches?: (untyped build, untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module MembersDestroyer
+  class UnassignIssuablesWorker
+    include ApplicationWorker
+
+    ENTITY_TYPES: ::Array["Group" | "Project"]
+
+    def perform: (untyped user_id, untyped entity_id, untyped entity_type, untyped requesting_user_id) -> (nil | untyped)
+  end
+end

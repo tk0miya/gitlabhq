@@ -1,0 +1,22 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      # The purpose of this analyzer is to observe via prometheus metrics
+      # all unique schemas observed on a given connection
+      #
+      # This effectively allows to do sample 1% or 0.01% of queries hitting
+      # system and observe if on a given connection we observe queries that
+      # are misaligned (`ci_replica` sees queries doing accessing only `gitlab_main`)
+      #
+      class GitlabSchemasMetrics < Base
+        self.@schemas_metrics: untyped
+
+        def self.enabled?: () -> untyped
+
+        def self.analyze: (untyped parsed) -> (nil | untyped)
+
+        def self.schemas_metrics: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Environments
+  # This class creates an environment record for a pipeline job.
+  class CreateForJobService
+    include Gitlab::InternalEventsTracking
+
+    def execute: (untyped job) -> (nil | untyped)
+
+    private
+
+    # rubocop: disable Performance/ActiveRecordSubtransactionMethods
+    def to_resource: (untyped job) -> untyped
+
+    def expanded_auto_stop_in: (untyped job) -> (nil | untyped)
+
+    def cluster_agent_path: (untyped job) -> untyped
+
+    def environment_options: (untyped job) -> untyped
+
+    def matching_authorization: (untyped job) -> (false | untyped)
+
+    def ci_access_authorizations_for_project: (untyped job) -> untyped
+
+    def expanded_cluster_agent_path: (untyped job) -> (nil | untyped)
+
+    def track_environment_usage: (untyped job, untyped environment) -> untyped
+  end
+end

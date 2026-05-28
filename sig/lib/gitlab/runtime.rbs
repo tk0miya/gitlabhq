@@ -1,0 +1,42 @@
+module Gitlab
+  # Provides routines to identify the current runtime as which the application
+  # executes, such as whether it is an application server and which one.
+  module Runtime
+    IdentificationError: untyped
+
+    AmbiguousProcessError: untyped
+
+    UnknownProcessError: untyped
+
+    AVAILABLE_RUNTIMES: ::Array[:console | :geo_log_cursor | :puma | :rails_runner | :rake | :sidekiq | :test_suite]
+
+    def self.identify: () -> untyped
+
+    def self.safe_identify: () -> untyped
+
+    def self.puma?: () -> untyped
+
+    def self.sidekiq?: () -> untyped
+
+    def self.rake?: () -> untyped
+
+    def self.test_suite?: () -> untyped
+
+    def self.console?: () -> untyped
+
+    def self.geo_log_cursor?: () -> untyped
+
+    def self.rails_runner?: () -> untyped
+
+    # Whether we are executing in an actual application context i.e. Puma or Sidekiq.
+    def self.application?: () -> untyped
+
+    # Whether we are executing in a multi-threaded environment. For now this is equivalent
+    # to meaning Puma or Sidekiq, but this could change in the future.
+    def self.multi_threaded?: () -> untyped
+
+    def self.puma_in_clustered_mode?: () -> (nil | untyped)
+
+    def self.max_threads: () -> untyped
+  end
+end

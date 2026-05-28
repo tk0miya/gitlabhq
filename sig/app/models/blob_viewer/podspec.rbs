@@ -1,0 +1,17 @@
+module BlobViewer
+  class Podspec < DependencyManager
+    @package_name: untyped
+
+    include ServerSide
+
+    def manager_name: () -> "CocoaPods"
+
+    def manager_url: () -> "https://cocoapods.org/"
+
+    def package_type: () -> "pod"
+
+    def package_name: () -> untyped
+
+    def package_url: () -> ::String
+  end
+end

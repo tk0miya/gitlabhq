@@ -1,0 +1,72 @@
+module ContainerRegistry
+  class GitlabApiClient < BaseClient
+    include Gitlab::Utils::StrongMemoize
+
+    JSON_TYPE: "application/json"
+
+    CANCEL_RESPONSE_STATUS_HEADER: "status"
+
+    GITLAB_REPOSITORIES_PATH: "/gitlab/v1/repositories"
+
+    RENAME_RESPONSES: { 202 => :accepted, 204 => :ok, 400 => :bad_request, 401 => :unauthorized, 404 => :not_found, 409 => :name_taken, 422 => :too_many_subrepositories, 501 => :rename_not_supported }
+
+    REGISTRY_GITLAB_V1_API_FEATURE: "gitlab_v1_api"
+
+    MAX_TAGS_PAGE_SIZE: 1000
+
+    MAX_REPOSITORIES_PAGE_SIZE: 1000
+
+    PAGE_SIZE: 1
+
+    UnsuccessfulResponseError: untyped
+
+    def self.supports_gitlab_api?: () -> untyped
+
+    def self.statistics: () -> untyped
+
+    def self.deduplicated_size: (untyped path) -> untyped
+
+    def self.one_project_with_container_registry_tag: (untyped path) -> untyped
+
+    def self.rename_base_repository_path: (untyped path, name: untyped, project: untyped, ?dry_run: bool) -> untyped
+
+    def self.move_repository_to_namespace: (untyped path, namespace: untyped, project: untyped, ?dry_run: bool) -> untyped
+
+    # https://gitlab.com/gitlab-org/container-registry/-/blob/master/docs/spec/gitlab/api.md#compliance-check
+    def supports_gitlab_api?: () -> untyped
+
+    # https://gitlab.com/gitlab-org/container-registry/-/blob/master/docs/spec/gitlab/api.md#get-repository-details
+    def repository_details: (untyped path, ?sizing: untyped?) -> untyped
+
+    def tag_details: (untyped path, untyped name) -> untyped
+
+    # https://gitlab.com/gitlab-org/container-registry/-/blob/master/docs/spec/gitlab/api.md#list-repository-tags
+    def tags: (untyped path, ?page_size: ::Integer, ?last: untyped?, ?before: untyped?, ?name: untyped?, ?sort: untyped?, ?referrers: untyped?, ?referrer_type: untyped?) -> untyped
+
+    # https://gitlab.com/gitlab-org/container-registry/-/blob/master/docs/spec/gitlab/api.md#list-sub-repositories
+    def sub_repositories_with_tag: (untyped path, ?page_size: ::Integer, ?last: untyped?) -> untyped
+
+    # Given a path 'group/subgroup/project' and name 'newname',
+    # with a successful rename, it will be 'group/subgroup/newname'
+    # https://gitlab.com/gitlab-org/container-registry/-/blob/master/docs/spec/gitlab/api.md#rename-base-repository
+    def rename_base_repository_path: (untyped path, name: untyped, ?dry_run: bool) -> untyped
+
+    # Given a path 'group/subgroup/project' and a namespace 'group/subgroup_2'
+    # with a successful move, it will be 'group/subgroup_2/project'
+    # https://gitlab.com/gitlab-org/container-registry/-/blob/master/docs/spec/gitlab/api.md#renamemove-origin-repository
+    def move_repository_to_namespace: (untyped path, namespace: untyped, ?dry_run: bool) -> untyped
+
+    # https://gitlab.com/gitlab-org/container-registry/-/blob/master/docs/spec/gitlab/api.md?ref_type=heads#get-registry-statistics
+    # example output: {"release"=>{"ext_features"=>"tag_delete", "version"=>"v4.20"}, "database"=>{"enabled"=>true}}
+    def statistics: () -> untyped
+
+    private
+
+    def patch_repository: (untyped path, untyped body, ?dry_run: bool) -> untyped
+
+    def with_token_faraday: () { (untyped) -> untyped } -> untyped
+
+    # overrides the default configuration
+    def configure_connection: (untyped conn) -> untyped
+  end
+end

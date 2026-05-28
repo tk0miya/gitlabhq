@@ -1,0 +1,33 @@
+module ContainerRegistry
+  class Blob
+    @repository: untyped
+
+    @config: untyped
+
+    @data: untyped
+
+    attr_reader repository: untyped
+
+    attr_reader config: untyped
+
+    def initialize: (untyped repository, untyped config) -> void
+
+    def valid?: () -> untyped
+
+    def path: () -> ::String
+
+    def digest: () -> untyped
+
+    def type: () -> untyped
+
+    def size: () -> untyped
+
+    def revision: () -> untyped
+
+    def short_revision: () -> untyped
+
+    def delete: () -> untyped
+
+    def data: () -> untyped
+  end
+end

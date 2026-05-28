@@ -1,0 +1,22 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        #
+        # Input parameter used for interpolation with the CI configuration.
+        #
+        class Input < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Ci::Config::Entry::BaseInput
+
+          include ::Gitlab::Config::Entry::Configurable
+
+          ADDITIONAL_ALLOWED_KEYS: ::Array[:rules]
+
+          ALLOWED_KEYS: untyped
+
+          def input_rules: () -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

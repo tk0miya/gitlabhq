@@ -1,0 +1,276 @@
+class NotifyPreview < ActionMailer::Preview
+  @project: untyped
+
+  @custom_email_verification: untyped
+
+  @custom_email_credential: untyped
+
+  @service_desk_setting: untyped
+
+  @issue: untyped
+
+  @merge_request: untyped
+
+  @wiki_page_meta: untyped
+
+  @milestone: untyped
+
+  @pipeline: untyped
+
+  @pipeline_schedule: untyped
+
+  @remote_mirror: untyped
+
+  @user: untyped
+
+  @group: untyped
+
+  @member: untyped
+
+  @key: untyped
+
+  @gpg_key: untyped
+
+  @pages_domain: untyped
+
+  def note_merge_request_email_for_individual_note: () -> untyped
+
+  def note_wiki_page_email_for_individual_note: () -> untyped
+
+  def new_user_email: () -> untyped
+
+  def note_merge_request_email_for_discussion: () -> untyped
+
+  def note_merge_request_email_for_diff_discussion: () -> untyped
+
+  def resource_access_token_about_to_expire_email: () -> untyped
+
+  def access_token_created_email: () -> untyped
+
+  def access_token_expired_email: () -> untyped
+
+  def access_token_revoked_email: () -> untyped
+
+  def access_token_about_to_expire_email: () -> untyped
+
+  def deploy_token_about_to_expire_email: () -> untyped
+
+  def ssh_key_expired_email: () -> untyped
+
+  def new_mention_in_merge_request_email: () -> untyped
+
+  def closed_issue_email: () -> untyped
+
+  def issue_status_changed_email: () -> untyped
+
+  def removed_milestone_issue_email: () -> untyped
+
+  def changed_milestone_issue_email: () -> untyped
+
+  def import_issues_csv_email: () -> untyped
+
+  def import_work_items_csv_email: () -> untyped
+
+  def issues_csv_email: () -> untyped
+
+  def new_issue_email: () -> untyped
+
+  def new_merge_request_email: () -> untyped
+
+  def new_ssh_key_email: () -> untyped
+
+  def new_gpg_key_email: () -> untyped
+
+  def closed_merge_request_email: () -> untyped
+
+  def merge_request_status_email: () -> untyped
+
+  def merge_request_unmergeable_email: () -> untyped
+
+  def merged_merge_request_email: () -> untyped
+
+  def removed_milestone_merge_request_email: () -> untyped
+
+  def changed_milestone_merge_request_email: () -> untyped
+
+  def pages_domain_enabled_email: () -> untyped
+
+  def pages_domain_disabled_email: () -> untyped
+
+  def pages_domain_verification_succeeded_email: () -> untyped
+
+  def pages_domain_verification_failed_email: () -> untyped
+
+  def pages_domain_auto_ssl_failed_email: () -> untyped
+
+  def pipeline_success_email: () -> untyped
+
+  def pipeline_failed_email: () -> untyped
+
+  def pipeline_fixed_email: () -> untyped
+
+  def pipeline_variables_migration_complete_email: () -> untyped
+
+  def pipeline_variables_migration_complete_email_all_updated: () -> untyped
+
+  def pipeline_variables_migration_complete_email_single_project: () -> untyped
+
+  def pipeline_variables_migration_complete_email_single_skipped: () -> untyped
+
+  def pipeline_schedule_owner_unavailable: () -> untyped
+
+  def autodevops_disabled_email: () -> untyped
+
+  def remote_mirror_update_failed_email: () -> untyped
+
+  def unknown_sign_in_email: () -> untyped
+
+  def two_factor_otp_attempt_failed_email: () -> untyped
+
+  def enabled_two_factor_passkey_email: () -> untyped
+
+  def enabled_two_factor_otp_email: () -> untyped
+
+  def enabled_two_factor_webauthn_email: () -> untyped
+
+  def disabled_two_factor_email: () -> untyped
+
+  def disabled_two_factor_passkey_email: () -> untyped
+
+  def disabled_two_factor_otp_email: () -> untyped
+
+  def disabled_two_factor_webauthn_email: () -> untyped
+
+  def new_email_address_added_email: () -> untyped
+
+  def service_desk_new_note_email: () -> untyped
+
+  def service_desk_thank_you_email: () -> untyped
+
+  def service_desk_new_participant_email: () -> untyped
+
+  def service_desk_custom_email_verification_email: () -> untyped
+
+  def service_desk_verification_triggered_email: () -> untyped
+
+  def service_desk_verification_result_email_for_verified_state: () -> untyped
+
+  def service_desk_verification_result_email_for_incorrect_forwarding_target_error: () -> untyped
+
+  def service_desk_verification_result_email_for_read_timeout_error: () -> untyped
+
+  def service_desk_verification_result_email_for_incorrect_token_error: () -> untyped
+
+  def service_desk_verification_result_email_for_incorrect_from_error: () -> untyped
+
+  def service_desk_verification_result_email_for_mail_not_received_within_timeframe_error: () -> untyped
+
+  def service_desk_verification_result_email_for_invalid_credentials_error: () -> untyped
+
+  def service_desk_verification_result_email_for_smtp_host_issue_error: () -> untyped
+
+  def merge_when_pipeline_succeeds_email: () -> untyped
+
+  def inactive_project_deletion_warning: () -> untyped
+
+  def verification_instructions_email: () -> untyped
+
+  def project_was_exported_email: () -> untyped
+
+  def repository_cleanup_success_email: () -> untyped
+
+  def request_review_merge_request_email: () -> untyped
+
+  def new_review_email: () -> untyped
+
+  def project_was_moved_email: () -> untyped
+
+  def github_gists_import_errors_email: () -> untyped
+
+  def project_import_complete: () -> untyped
+
+  def bulk_import_complete: () -> untyped
+
+  # To generate the appropriate test record via the Rails console:
+  # user = User.first
+  # export = FactoryBot.create(:offline_export, :finished, :with_configuration, user: user)
+  def offline_export_complete: () -> untyped
+
+  def offline_export_failed: () -> untyped
+
+  def bulk_import_csv_user_mapping_success: () -> untyped
+
+  def bulk_import_csv_user_mapping_failed: () -> untyped
+
+  def csv_placeholder_reassignment_failed: () -> untyped
+
+  def import_source_user_reassign: () -> untyped
+
+  def import_source_user_rejected: () -> untyped
+
+  def import_source_user_complete: () -> untyped
+
+  def repository_rewrite_history_success_email: () -> untyped
+
+  def repository_rewrite_history_failure_email: () -> untyped
+
+  def project_scheduled_for_deletion: () -> untyped
+
+  def group_scheduled_for_deletion: () -> untyped
+
+  def group_was_transferred_email: () -> untyped
+
+  private
+
+  def project: () -> untyped
+
+  def service_desk_verification_result_email_for_error_state: (error: untyped) -> untyped
+
+  def setup_service_desk_custom_email_objects: () -> untyped
+
+  def custom_email_verification: () -> untyped
+
+  def custom_email_credential: () -> untyped
+
+  def service_desk_setting: () -> untyped
+
+  def issue: () -> untyped
+
+  def merge_request: () -> untyped
+
+  def wiki_page_meta: () -> untyped
+
+  def milestone: () -> untyped
+
+  def pipeline: () -> untyped
+
+  def pipeline_schedule: () -> untyped
+
+  def remote_mirror: () -> untyped
+
+  def user: () -> untyped
+
+  def group: () -> untyped
+
+  def member: () -> untyped
+
+  def key: () -> untyped
+
+  def find_or_create_key: () -> untyped
+
+  def gpg_key: () -> untyped
+
+  def find_or_create_gpg_key: () -> untyped
+
+  def create_note: (untyped params) -> untyped
+
+  def note_email: (untyped method) { () -> untyped } -> untyped
+
+  def ensure_support_bot_exists: () -> untyped
+
+  def ensure_visual_review_bot_exists: () -> untyped
+
+  def cleanup: () { () -> untyped } -> untyped
+
+  def pages_domain: () -> untyped
+end

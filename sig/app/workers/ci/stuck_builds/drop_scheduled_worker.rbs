@@ -1,0 +1,20 @@
+module Ci
+  module StuckBuilds
+    class DropScheduledWorker
+      include ApplicationWorker
+
+      include ExclusiveLeaseGuard
+
+      # rubocop:disable Scalability/CronWorkerContext
+      # This is an instance-wide cleanup query, so there's no meaningful
+      # scope to consider this in the context of.
+      include CronjobQueue
+
+      def perform: () -> untyped
+
+      private
+
+      def lease_timeout: () -> untyped
+    end
+  end
+end

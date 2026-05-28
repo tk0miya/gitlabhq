@@ -1,0 +1,10 @@
+module ChecksCollaboration
+  @user_access: untyped
+
+  def can_collaborate_with_project?: (untyped project, ?ref: untyped?) -> (true | untyped)
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  # enabling this so we can easily cache the user access value as it might be
+  # used across multiple calls in the view
+  def user_access: (untyped project) -> untyped
+end

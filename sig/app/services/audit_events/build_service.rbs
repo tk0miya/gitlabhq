@@ -1,0 +1,50 @@
+module AuditEvents
+  class BuildService
+    @author: untyped
+
+    @scope: untyped
+
+    @target: untyped
+
+    @ip_address: untyped
+
+    @message: untyped
+
+    @created_at: untyped
+
+    @additional_details: untyped
+
+    @target_details: untyped
+
+    include ::Gitlab::Audit::ScopeValidation
+
+    # Handle missing attributes
+    MissingAttributeError: untyped
+
+    # @raise [MissingAttributeError] when required attributes are blank
+    #
+    # @return [BuildService]
+    def initialize: (author: untyped, scope: untyped, target: untyped, message: untyped, ?created_at: untyped, ?additional_details: ::Hash[untyped, untyped], ?ip_address: untyped?, ?target_details: untyped?) -> void
+
+    # Create an instance of AuditEvent
+    #
+    # @return [AuditEvent]
+    def execute: () -> untyped
+
+    private
+
+    def payload: () -> untyped
+
+    def base_payload: () -> { author_id: untyped, author_name: untyped, entity_id: untyped, entity_type: untyped, created_at: untyped }
+
+    def base_details_payload: () -> untyped
+
+    def build_author: (untyped author) -> untyped
+
+    def build_target: (untyped target) -> untyped
+
+    def build_message: (untyped message) -> untyped
+
+    def build_ip_address: () -> untyped
+  end
+end

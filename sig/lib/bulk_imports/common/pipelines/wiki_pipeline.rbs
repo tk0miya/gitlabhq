@@ -1,0 +1,23 @@
+module BulkImports
+  module Common
+    module Pipelines
+      class WikiPipeline
+        include Pipeline
+
+        def extract: (*untyped) -> untyped
+
+        def transform: (untyped _, untyped data) -> untyped
+
+        def load: (untyped context, untyped data) -> (nil | untyped)
+
+        private
+
+        def url_from_parent_path: (untyped parent_path) -> untyped
+
+        def source_wiki_exists?: () -> untyped
+
+        def client: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Resolvers
+  module Projects
+    class PlanLimitsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: () -> { ci_pipeline_schedules: untyped }
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Ci
+  class BuildPrepareWorker
+    include ApplicationWorker
+
+    include PipelineQueue
+
+    def perform: (untyped build_id) -> untyped
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module Email
+    class HTMLParser
+      @raw_body: untyped
+
+      @document: untyped
+
+      @filtered_html: untyped
+
+      @filtered_text: untyped
+
+      def self.parse_reply: (untyped raw_body) -> untyped
+
+      attr_reader raw_body: untyped
+
+      def initialize: (untyped raw_body) -> void
+
+      def document: () -> untyped
+
+      def filter_replies!: () -> untyped
+
+      def filtered_html: () -> untyped
+
+      def filtered_text: () -> untyped
+    end
+  end
+end

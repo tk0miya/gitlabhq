@@ -1,0 +1,22 @@
+module Ci
+  module StuckBuilds
+    module DropHelpers
+      BATCH_SIZE: 100
+
+      def drop: (untyped builds, failure_reason: untyped) -> untyped
+
+      def drop_stuck_from_queue: (untyped builds_queue, failure_reason: untyped) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def fetch_from_queue: (untyped builds_queue) { (untyped) -> untyped } -> untyped
+
+      def fetch: (untyped builds) { (untyped) -> untyped } -> untyped
+
+      def drop_build: (untyped type, untyped build, untyped reason) -> untyped
+
+      def track_exception_for_build: (untyped ex, untyped build) -> untyped
+
+      def log_dropping_message: (untyped type, untyped build, untyped reason) -> untyped
+    end
+  end
+end

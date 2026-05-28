@@ -1,0 +1,5 @@
+#   validates :issue, same_project_association: true
+# end
+class SameProjectAssociationValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+end

@@ -1,0 +1,25 @@
+module Groups
+  class CustomEmojiFinder < Base
+    @group: untyped
+
+    @params: untyped
+
+    @skip_authorization: untyped
+
+    include FinderWithGroupHierarchy
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped group, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader group: untyped
+
+    attr_reader params: untyped
+
+    attr_reader skip_authorization: untyped
+  end
+end

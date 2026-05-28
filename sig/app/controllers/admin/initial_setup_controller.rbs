@@ -1,0 +1,23 @@
+module Admin
+  class InitialSetupController < ApplicationController
+    @result: untyped
+
+    @user: untyped
+
+    include CheckInitialSetup
+
+    def new: () -> nil
+
+    def update: () -> untyped
+
+    private
+
+    def user_params: () -> untyped
+
+    def check_initial_setup: () -> (nil | untyped)
+
+    # the initial email generated randomly by fixtures, or from the GITLAB_ROOT_EMAIL env var
+    # should be cleaned up if different than the assigned-via-UI initial account email
+    def clean_up_non_primary_emails: (untyped user) -> untyped
+  end
+end

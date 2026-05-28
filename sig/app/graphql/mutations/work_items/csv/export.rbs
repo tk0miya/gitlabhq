@@ -1,0 +1,15 @@
+module Mutations
+  module WorkItems
+    module CSV
+      class Export < BaseMutation
+        include FindsProject
+
+        include ::SearchArguments
+
+        include ::WorkItems::SharedFilterArguments
+
+        def resolve: (untyped args) -> { message: untyped, errors: ::Array[untyped] }
+      end
+    end
+  end
+end

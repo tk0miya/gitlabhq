@@ -1,0 +1,79 @@
+module Gitlab
+  module Help
+    # This class is used to rewrite the output of markdown files that
+    # include Hugo-style shortcodes when viewed in the in-app Help pages.
+    # Shortcodes are used on the GitLab Docs website, but do not render
+    # the same in the Help pages. So, we need to provide basic fallbacks
+    # and remove Hugo-specific syntax to ensure Help pages are readable.
+    class HugoTransformer
+      DISCLAIMER_TEXT: untyped
+
+      # Patterns for Hugo shortcodes
+      CODE_BLOCK_PATTERN: ::Regexp
+
+      PAIRED_SHORTCODE_PATTERN: ::Regexp
+
+      INLINE_SHORTCODE_PATTERN: ::Regexp
+
+      DISCLAIMER_ALERT_PATTERN: ::Regexp
+
+      ICON_SHORTCODE_PATTERN: ::Regexp
+
+      TAB_CONTENT_PATTERN: ::Regexp
+
+      TABS_WRAPPER_PATTERN: ::Regexp
+
+      HISTORY_PATTERN: ::Regexp
+
+      MAINTAINED_VERSIONS_PATTERN: ::Regexp
+
+      COLLAPSIBLE_PATTERN: ::Regexp
+
+      YES_NO_PATTERN: ::Regexp
+
+      GLOSSARY_TOOLTIP_PATTERN: ::Regexp
+
+      MARKDOWN_ATTRIBUTE_PATTERN: ::Regexp
+
+      # Markdown heading constants
+      HEADING_PATTERN: ::Regexp
+
+      MAX_HEADING_LEVEL: 6
+
+      DEFAULT_HEADING_LEVEL: 2
+
+      def transform: (untyped content) -> untyped
+
+      def hugo_anchor: (untyped title) -> ("" | untyped)
+
+      private
+
+      def handle_disclaimer_alerts: (untyped content) -> untyped
+
+      def handle_history_shortcodes: (untyped content) -> untyped
+
+      def handle_icon_shortcodes: (untyped content) -> untyped
+
+      def handle_tab_shortcodes: (untyped content) -> untyped
+
+      def handle_maintained_versions_shortcodes: (untyped content) -> untyped
+
+      def handle_collapsible_shortcodes: (untyped content) -> untyped
+
+      def handle_yes_no_shortcodes: (untyped content) -> untyped
+
+      def handle_glossary_tooltip_shortcodes: (untyped content) -> untyped
+
+      # Determines the appropriate heading level for a new section,
+      # based on preceding Markdown content.
+      # Returns a value between 2-6, representing h2-h6 in Markdown.
+      def find_next_heading_level: (untyped content, untyped position) -> untyped
+
+      def remove_generic_shortcodes: (untyped content) -> untyped
+
+      def remove_markdown_attributes: (untyped content) -> untyped
+
+      def clean_up_blank_lines: (untyped content) -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Sidebars
+  module UserProfile
+    module Menus
+      class PersonalProjectsMenu < ::Sidebars::UserProfile::BaseMenu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "project"
+
+        def active_routes: () -> { path: "users#projects" }
+      end
+    end
+  end
+end

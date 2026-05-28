@@ -1,0 +1,25 @@
+class Profiles::NotificationsController < Profiles::ApplicationController
+  @user: untyped
+
+  @user_groups: untyped
+
+  @group_notifications: untyped
+
+  @project_notifications: untyped
+
+  @global_notification_setting: untyped
+
+  def show: () -> untyped
+
+  def update: () -> untyped
+
+  def user_params: () -> untyped
+
+  private
+
+  def user_groups: () -> untyped
+
+  def project_notifications_with_preloaded_associations: () -> untyped
+
+  def project_associations: () -> { namespace: ::Array[:route | :owner], group: ::Array[untyped], creator: ::Array[untyped], project_setting: ::Array[untyped] }
+end

@@ -1,0 +1,351 @@
+class Namespace < ApplicationRecord
+  @shared_runners: untyped
+
+  include Sortable
+
+  include Gitlab::VisibilityLevel
+
+  include Routable
+
+  include AfterCommitQueue
+
+  include Gitlab::SQL::Pattern
+
+  include FeatureGate
+
+  include FromUnion
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Namespaces::Traversal::Recursive
+
+  include Namespaces::Traversal::Linear
+
+  include Namespaces::Traversal::Cached
+
+  include Namespaces::Traversal::Traversable
+
+  include Namespaces::AdjournedDeletable
+
+  include Namespaces::Stateful
+
+  include Organizations::Isolatable
+
+  include EachBatch
+
+  include BlocksUnsafeSerialization
+
+  include Ci::NamespaceSettings
+
+  include Referable
+
+  include UseSqlFunctionForPrimaryKeyLookups
+
+  include SafelyChangeColumnDefault
+
+  include Todoable
+
+  include Cells::Claimable
+
+  extend Gitlab::Utils::Override
+
+  # Prevent users from creating unreasonably deep level of nesting.
+  # The number 20 was taken based on maximum nesting level of
+  # Android repo (15) + some extra backup.
+  NUMBER_OF_ANCESTORS_ALLOWED: 20
+
+  SR_DISABLED_AND_UNOVERRIDABLE: "disabled_and_unoverridable"
+
+  SR_DISABLED_AND_OVERRIDABLE: "disabled_and_overridable"
+
+  SR_ENABLED: "enabled"
+
+  SHARED_RUNNERS_SETTINGS: ::Array[untyped]
+
+  URL_MAX_LENGTH: 255
+
+  STATISTICS_COLUMNS: ::Array[:storage_size | :repository_size | :wiki_size | :snippets_size | :lfs_objects_size | :build_artifacts_size | :pipeline_artifacts_size | :packages_size | :uploads_size]
+
+  def self.ordered_ids_after: (untyped cursor, limit: untyped) -> untyped
+
+  # Make sure that the name is same as strong_memoize name in root_ancestor
+  # method
+  attr_writer root_ancestor: untyped
+
+  # Make sure that the name is same as strong_memoize name in root_ancestor
+  # method
+  attr_writer emails_enabled_memoized: untyped
+
+  def self.sti_class_for: (untyped type_name) -> untyped
+
+  def self.by_path: (untyped path) -> untyped
+
+  # Case insensitive search for namespace by path or name
+  def self.find_by_path_or_name: (untyped path) -> untyped
+
+  def self.find_top_level: () -> untyped
+
+  # Extracts root namespace IDs from a list of namespace IDs.
+  #
+  # @param namespace_ids [Array<Integer>] List of namespace IDs
+  # @return [Array<Integer>] List of unique root namespace IDs
+  def self.root_ids_for: (untyped namespace_ids) -> untyped
+
+  # Searches for namespaces matching the given query.
+  #
+  # This method uses ILIKE on PostgreSQL.
+  #
+  # query - The search query as a String.
+  #
+  # Returns an ActiveRecord::Relation.
+  def self.search: (untyped query, ?include_parents: bool, ?use_minimum_char_limit: bool, ?exact_matches_first: bool) -> untyped
+
+  # This should be kept in sync with the frontend filtering in
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/5d34e3488faa3982d30d7207773991c1e0b6368a/app/assets/javascripts/gfm_auto_complete.js#L68 and
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/5d34e3488faa3982d30d7207773991c1e0b6368a/app/assets/javascripts/gfm_auto_complete.js#L1053
+  def self.gfm_autocomplete_search: (untyped query) -> untyped
+
+  def self.clean_path: (untyped path, ?limited_to: untyped) -> untyped
+
+  def self.reference_prefix: () -> untyped
+
+  def self.reference_pattern: () -> untyped
+
+  def self.sum_project_statistics_column: (untyped column) -> untyped
+
+  def self.username_reserved?: (untyped username) -> untyped
+
+  def self.username_reserved_for_organization?: (untyped username, untyped organization, ?excluding: untyped) -> untyped
+
+  def self.self_or_ancestors_archived_setting_subquery: () -> untyped
+
+  # namespaces.traversal_ids could be either an integer[] or a bigint[]
+  # this utility method exists to help cast arguments when writing raw queries
+  def self.traversal_ids_type: () -> untyped
+
+  def archived?: () -> untyped
+
+  alias self_archived? archived?
+
+  def self_or_ancestors_archived?: () -> untyped
+
+  def ancestors_archived?: () -> untyped
+
+  def self_or_ancestors_transfer_scheduled?: () -> untyped
+
+  def self_or_ancestors_transfer_in_progress?: () -> untyped
+
+  def to_reference_base: (?untyped? from, ?full: bool, ?absolute_path: bool) -> (::String | untyped | untyped | nil)
+
+  def to_reference: (*untyped) -> ::String
+
+  def package_settings: () -> untyped
+
+  def default_branch_protection: () -> untyped
+
+  def default_branch_protection_settings: () -> untyped
+
+  def visibility_level_field: () -> :visibility_level
+
+  def to_param: () -> untyped
+
+  def human_name: () -> untyped
+
+  def any_project_has_container_registry_tags?: () -> untyped
+
+  def first_project_with_container_registry_tags: () -> untyped
+
+  def kind: () -> ("group" | "project" | "user")
+
+  def group_namespace?: () -> untyped
+
+  def work_item_positioning_root: () -> (self | untyped)
+
+  def project_namespace?: () -> untyped
+
+  def user_namespace?: () -> untyped
+
+  def bot_user_namespace?: () -> (false | true)
+
+  def owner_required?: () -> untyped
+
+  def first_owner: () -> untyped
+
+  def find_fork_of: (untyped project) -> (nil | untyped)
+
+  # any ancestor can disable emails for all descendants
+  def emails_disabled?: () -> untyped
+
+  def default_branch_protected?: () -> untyped
+
+  def can_push_initial_commit?: (untyped user) -> (true | untyped)
+
+  def emails_enabled?: () -> (true | untyped)
+
+  def lfs_enabled?: () -> untyped
+
+  def any_project_with_shared_runners_enabled?: () -> untyped
+
+  def user_ids_for_project_authorizations: () -> ::Array[untyped]
+
+  # Includes projects from this namespace and projects from all subgroups
+  # that belongs to this namespace
+  def all_projects: () -> untyped
+
+  def all_catalog_resources: () -> untyped
+
+  def all_projects_except_soft_deleted: () -> untyped
+
+  def all_active_project_ids: () -> untyped
+
+  def has_parent?: () -> untyped
+
+  def subgroup?: () -> untyped
+
+  # Overridden on EE module
+  def multiple_issue_boards_available?: () -> false
+
+  def all_project_ids_except: (untyped ids) -> untyped
+
+  # Deprecated, use #licensed_feature_available? instead. Remove once Namespace#feature_available? isn't used anymore.
+  def feature_available?: (untyped feature, ?untyped? _user) -> untyped
+
+  # Overridden in EE::Namespace
+  def licensed_feature_available?: (untyped _feature) -> false
+
+  def full_path_before_last_save: () -> (untyped | ::String)
+
+  def refresh_project_authorizations: () -> untyped
+
+  def auto_devops_enabled?: () -> untyped
+
+  def first_auto_devops_config: () -> ({ scope: :group, status: untyped } | untyped)
+
+  def aggregation_scheduled?: () -> untyped
+
+  # To help with polymorphism between Namespaces and Project
+  # both models answers to `owner_entity`, where
+  # -`Namespaces::ProjectNamespace` returns the `#project`
+  # -`Namespaces::UserNamespace` returns the `#owner`
+  def owner_entity: () -> self
+
+  # To help with polymorphism between Namespaces and Project
+  # both models answers to `owner_entity_name`
+  def owner_entity_name: () -> untyped
+
+  def container_repositories_size_cache_key: () -> ::String
+
+  def container_repositories_size: () -> untyped
+
+  def all_container_repositories: () -> untyped
+
+  def any_project_with_pages_deployed?: () -> untyped
+
+  def closest_setting: (untyped name) -> untyped
+
+  def actual_plan: () -> untyped
+
+  def paid?: () -> untyped
+
+  def linked_to_subscription?: () -> untyped
+
+  def actual_limits: () -> untyped
+
+  def actual_plan_name: () -> untyped
+
+  def changing_shared_runners_enabled_is_allowed: () -> (nil | untyped)
+
+  def changing_allow_descendants_override_disabled_shared_runners_is_allowed: () -> (nil | untyped)
+
+  def shared_runners_setting: () -> untyped
+
+  def shared_runners_setting_higher_than?: (untyped other_setting) -> untyped
+
+  def shared_runners: () -> untyped
+
+  def root?: () -> untyped
+
+  def recent?: () -> untyped
+
+  def issue_repositioning_disabled?: () -> untyped
+
+  def certificate_based_clusters_enabled?: () -> untyped
+
+  def enabled_git_access_protocol: () -> untyped
+
+  def all_ancestors_have_runner_registration_enabled?: () -> untyped
+
+  def allow_runner_registration_token?: () -> untyped
+
+  def pages_access_control_trie: (?untyped namespaces) -> untyped
+
+  def pages_access_control_forced_by_self_or_ancestor?: () -> untyped
+
+  def pages_access_control_forced_by_ancestor?: () -> untyped
+
+  def all_projects_with_pages: () -> untyped
+
+  def web_url: (?only_path: untyped?) -> untyped
+
+  def uploads_sharding_key: () -> { namespace_id: untyped }
+
+  def pipeline_variables_default_role: () -> untyped
+
+  def traversal_ids_as_sql: () -> untyped
+
+  def namespace_details: () -> untyped
+
+  def user_role: (untyped user) -> (nil | untyped)
+
+  def allowed_work_item_types: () -> untyped
+
+  def allowed_work_item_type?: (untyped type) -> untyped
+
+  def supports_work_items?: () -> untyped
+
+  private
+
+  def parent_organization_match: () -> (nil | untyped)
+
+  # route / path global uniqueness is handled by Routeable concern
+  # here we are checking only for conflicts with per-organization username aliases
+  def no_conflict_with_organization_user_details: () -> (nil | untyped)
+
+  def cross_namespace_reference?: (untyped from) -> (false | untyped)
+
+  # Check if a reference is being done cross-project
+  def cross_project_reference?: (untyped from) -> untyped
+
+  def cluster_enabled_granted?: () -> untyped
+
+  def certificate_based_clusters_enabled_ff?: () -> untyped
+
+  def parent_changed?: () -> untyped
+
+  def saved_change_to_parent?: () -> untyped
+
+  def saved_change_to_path_or_parent?: () -> untyped
+
+  def refresh_access_of_projects_invited_groups: () -> untyped
+
+  def enqueue_jobs_for_groups_requiring_authorizations_refresh: (priority: untyped) -> untyped
+
+  def nesting_level_allowed: () -> (untyped | nil)
+
+  def validate_parent_type: () -> (nil | untyped)
+
+  def sync_share_with_group_lock_with_parent: () -> (untyped | nil)
+
+  def force_share_with_group_lock_on_descendants: () -> untyped
+
+  def expire_first_auto_devops_config_cache: () -> (nil | untyped)
+
+  def enforce_minimum_path_length?: () -> untyped
+
+  # SyncEvents are created by PG triggers (with the function `insert_namespaces_sync_event`)
+  def schedule_sync_event_worker: () -> untyped
+
+  def first_auto_devops_config_cache_key_for: (untyped group_id) -> ::String
+
+  def unique_attributes: () -> ::Array[:path]
+end

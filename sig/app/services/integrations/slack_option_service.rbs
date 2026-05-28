@@ -1,0 +1,33 @@
+module Integrations
+  class SlackOptionService
+    @params: untyped
+
+    @search_type: untyped
+
+    @selected_value: untyped
+
+    @view_id: untyped
+
+    UnknownOptionError: untyped
+
+    OPTIONS: { "assignee" => untyped, "labels" => untyped }
+
+    def initialize: (untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def current_user: () -> untyped
+
+    def option?: (untyped option) -> untyped
+
+    attr_reader params: untyped
+
+    attr_reader search_type: untyped
+
+    attr_reader selected_value: untyped
+
+    attr_reader view_id: untyped
+  end
+end

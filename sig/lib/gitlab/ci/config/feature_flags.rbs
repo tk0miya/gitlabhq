@@ -1,0 +1,34 @@
+module Gitlab
+  module Ci
+    class Config
+      module FeatureFlags
+        ACTOR_KEY: "ci_config_feature_flag_actor"
+
+        CORRECT_USAGE_KEY: "ci_config_feature_flag_correct_usage"
+
+        NO_ACTOR_VALUE: :no_actor
+
+        NO_ACTOR_MESSAGE: "Actor not set. Ensure to call `enabled?` inside `with_actor` block"
+
+        NoActorError: untyped
+
+        # Cache a feature flag actor as thread local variable so
+        # we can have it available later with #enabled?
+        def self.with_actor: (untyped actor) { () -> untyped } -> untyped
+
+        # Use this to check if a feature flag is enabled
+        def self.enabled?: (untyped feature_flag) -> untyped
+
+        def self.ensure_correct_usage: () { () -> untyped } -> untyped
+
+        private
+
+        def self.current_actor: () -> untyped
+
+        def self.handle_missing_actor: (untyped exception) -> untyped
+
+        def self.ensure_correct_usage?: () -> untyped
+      end
+    end
+  end
+end

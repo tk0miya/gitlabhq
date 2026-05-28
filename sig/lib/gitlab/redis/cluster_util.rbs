@@ -1,0 +1,29 @@
+module Gitlab
+  module Redis
+    module ClusterUtil
+      self.@pipeline_batch_size: untyped
+
+      # clusters? is used to select Redis command types, on `true`, the subsequent
+      # commands should be compatible with Redis Cluster.
+      #
+      # When working with MultiStore, if even 1 of 2 stores is a Redis::Cluster,
+      # we should err on the side of caution and return `true `,
+      def self.cluster?: (untyped obj) -> untyped
+
+      def self.batch_unlink: (untyped keys, untyped redis) -> untyped
+
+      def self.batch_del: (untyped keys, untyped redis) -> untyped
+
+      # Redis cluster alternative to mget
+      def self.batch_get: (untyped keys, untyped redis) -> untyped
+
+      def self.batch_entries: (untyped entries) { (untyped) -> untyped } -> untyped
+
+      def self.batch: (untyped entries, untyped redis) { (untyped, untyped) -> untyped } -> untyped
+
+      private
+
+      def self.pipeline_batch_size: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,39 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      module InOperatorOptimization
+        module Strategies
+          class RecordLoaderStrategy
+            @finder_query: untyped
+
+            @order_by_columns: untyped
+
+            @table_name: untyped
+
+            @model: untyped
+
+            RECORDS_COLUMN: "records"
+
+            def initialize: (untyped finder_query, untyped model, untyped order_by_columns) -> void
+
+            def initializer_columns: () -> ::Array[::String]
+
+            def columns: () -> ::Array[::String]
+
+            def final_projections: () -> (untyped | ::Array[::String])
+
+            private
+
+            attr_reader finder_query: untyped
+
+            attr_reader order_by_columns: untyped
+
+            attr_reader table_name: untyped
+
+            def verify_order_by_attributes_on_model!: (untyped model, untyped order_by_columns) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

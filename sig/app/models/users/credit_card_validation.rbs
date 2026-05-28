@@ -1,0 +1,29 @@
+module Users
+  class CreditCardValidation < ApplicationRecord
+    DAILY_VERIFICATION_LIMIT: 5
+
+    attr_accessor last_digits: untyped
+
+    attr_accessor network: untyped
+
+    attr_accessor holder_name: untyped
+
+    attr_accessor expiration_date: untyped
+
+    def similar_records: () -> untyped
+
+    def similar_holder_names_count: () -> untyped
+
+    def used_by_banned_user?: () -> untyped
+
+    def set_last_digits_hash: () -> untyped
+
+    def set_holder_name_hash: () -> untyped
+
+    def set_network_hash: () -> untyped
+
+    def set_expiration_date_hash: () -> untyped
+
+    def exceeded_daily_verification_limit?: () -> untyped
+  end
+end

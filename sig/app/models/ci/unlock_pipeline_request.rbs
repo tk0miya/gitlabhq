@@ -1,0 +1,15 @@
+module Ci
+  class UnlockPipelineRequest
+    QUEUE_REDIS_KEY: "ci_unlock_pipeline_requests:queue"
+
+    def self.enqueue: (untyped pipeline_id) -> untyped
+
+    def self.next!: () -> untyped
+
+    def self.total_pending: () -> untyped
+
+    def self.with_redis: () { (?) -> untyped } -> untyped
+
+    def self.log_event: (untyped event, untyped pipeline_id) -> untyped
+  end
+end

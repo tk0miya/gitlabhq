@@ -1,0 +1,7 @@
+module Gitlab
+  module Abuse
+    CONFIDENCE_LEVELS: { certain: ::Float, likely: ::Float, uncertain: ::Float, unknown: ::Float }
+
+    def self.confidence: (untyped rating) -> untyped
+  end
+end

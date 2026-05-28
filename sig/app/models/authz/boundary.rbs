@@ -1,0 +1,63 @@
+module Authz
+  class Boundary
+    def self.for: (untyped boundary) -> untyped
+
+    class Base
+      @boundary: untyped
+
+      def self.declarative_policy_class: () -> "Authz::BoundaryPolicy"
+
+      def initialize: (untyped boundary) -> void
+
+      def path: () -> untyped
+
+      def type_label: () -> untyped
+
+      def visible_to?: (untyped _user) -> true
+
+      attr_reader boundary: untyped
+    end
+
+    class GroupBoundary < Base
+      def access: () -> untyped
+
+      def type_label: () -> "group"
+
+      def namespace: () -> untyped
+
+      def member?: (untyped user) -> untyped
+
+      def visible_to?: (untyped user) -> untyped
+    end
+
+    class ProjectBoundary < Base
+      def access: () -> untyped
+
+      def type_label: () -> "project"
+
+      def namespace: () -> untyped
+
+      def member?: (untyped user) -> untyped
+
+      def visible_to?: (untyped user) -> untyped
+    end
+
+    class PersonalProjectsBoundary < Base
+      def access: () -> untyped
+
+      def namespace: () -> untyped
+
+      def member?: (untyped user) -> untyped
+    end
+
+    class NilBoundary < Base
+      def access: () -> untyped
+
+      def namespace: () -> nil
+
+      def member?: (untyped _) -> true
+
+      def path: () -> nil
+    end
+  end
+end

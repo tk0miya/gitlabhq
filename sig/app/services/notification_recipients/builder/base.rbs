@@ -1,0 +1,79 @@
+module NotificationRecipients
+  module Builder
+    class Base
+      @recipients: untyped
+
+      @notification_recipients: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      BATCH_SIZE: 100
+
+      def initialize: (*untyped) -> void
+
+      def build!: () -> untyped
+
+      def filter!: () -> untyped
+
+      def acting_user: () -> untyped
+
+      def target: () -> untyped
+
+      # override if needed
+      def recipients_target: () -> untyped
+
+      def project: () -> untyped
+
+      def group: () -> untyped
+
+      def recipients: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def add_recipients: (untyped users, untyped type, untyped reason) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def user_scope: () -> untyped
+
+      def make_recipient: (untyped user, untyped type, untyped reason) -> untyped
+
+      def notification_recipients: () -> untyped
+
+      def custom_action: () -> nil
+
+      def add_participants: (untyped user) -> (nil | untyped)
+
+      def add_mentions: (untyped user, target: untyped) -> (nil | untyped)
+
+      # Get project/group users with CUSTOM notification level
+      # rubocop: disable CodeReuse/ActiveRecord
+      def add_custom_notifications: () -> (nil | untyped)
+
+      def related_notification_settings_sources: (untyped level) -> untyped
+
+      def global_setting_by_level_query: (untyped level) -> untyped
+
+      def source_or_global_setting_by_level_query: (untyped level) -> untyped
+
+      def add_project_watchers: () -> (untyped | nil)
+
+      def add_group_watchers: () -> untyped
+
+      # Get project users with WATCH notification level
+      # rubocop: disable CodeReuse/ActiveRecord
+      def project_watchers: () -> (nil | untyped)
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def group_watchers: () -> (::Array[untyped] | untyped)
+
+      def add_subscribed_users: () -> (nil | untyped)
+
+      def add_labels_subscribers: (?labels: untyped?) -> (nil | untyped)
+
+      private
+
+      def preload_notification_settings: () -> untyped
+
+      def preload_users_namespace_bans: (untyped _users) -> nil
+    end
+  end
+end

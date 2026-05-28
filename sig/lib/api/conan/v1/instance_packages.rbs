@@ -1,0 +1,10 @@
+# Conan Instance-Level Package Manager Client API
+module API
+  module Conan
+    module V1
+      class InstancePackages < ::API::Base
+        def self.authorization_boundary_options: () -> { boundary_type: :instance }
+      end
+    end
+  end
+end

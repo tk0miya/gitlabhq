@@ -1,0 +1,93 @@
+module Gitlab
+  module BackgroundOperation
+    # rubocop:disable Metrics/ParameterLists -- Need a lot of args
+    # rubocop:disable CodeReuse/ActiveRecord -- Need to manipulate active record object
+    class BaseOperationWorker
+      @min_cursor: untyped
+
+      @max_cursor: untyped
+
+      @batch_table: untyped
+
+      @batch_column: untyped
+
+      @sub_batch_size: untyped
+
+      @pause_ms: untyped
+
+      @job_arguments: untyped
+
+      @connection: untyped
+
+      @sub_batch_exception: untyped
+
+      @batch_metrics: untyped
+
+      include Gitlab::Database::DynamicModelHelpers
+
+      include Gitlab::ClassAttributes
+
+      DEFAULT_FEATURE_CATEGORY: :database
+
+      MINIMUM_PAUSE_MS: 100
+
+      def self.operation_name: (untyped operation) -> untyped
+
+      def self.job_arguments: (*untyped args) -> untyped
+
+      def self.feature_category: (?untyped? feature_category_name) -> untyped
+
+      def self.cursor_columns: () -> ::Array[untyped]
+
+      def self.cursor?: () -> untyped
+
+      def self.cursor: (*untyped args) -> untyped
+
+      def self.scope_to: (untyped scope) -> untyped
+
+      def self.reset_cursor!: () -> untyped
+
+      def self.reset_cursor?: () -> false
+
+      def initialize: (batch_table: untyped, batch_column: untyped, sub_batch_size: untyped, pause_ms: untyped, connection: untyped, ?job_arguments: untyped, ?min_cursor: untyped?, ?max_cursor: untyped?, ?sub_batch_exception: untyped?) -> void
+
+      def filter_batch: (untyped relation) -> untyped
+
+      def perform: () -> untyped
+
+      def batch_metrics: () -> untyped
+
+      private
+
+      attr_reader min_cursor: untyped
+
+      attr_reader max_cursor: untyped
+
+      attr_reader batch_table: untyped
+
+      attr_reader batch_column: untyped
+
+      attr_reader sub_batch_size: untyped
+
+      attr_reader pause_ms: untyped
+
+      attr_reader connection: untyped
+
+      attr_reader sub_batch_exception: untyped
+
+      def each_sub_batch: (?batching_arguments: ::Hash[untyped, untyped]) { (untyped) -> untyped } -> untyped
+
+      def base_relation: () -> untyped
+
+      def arel_for_cursor: (untyped cursor, untyped arel_table) -> untyped
+
+      def sub_batch_relation: () -> untyped
+
+      def fetch_primary_key: () -> untyped
+
+      def operation_name: () -> (untyped | nil)
+
+      def cursor: () -> (untyped | nil)
+    end
+  end
+end

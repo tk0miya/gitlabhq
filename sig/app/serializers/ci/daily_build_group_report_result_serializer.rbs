@@ -1,0 +1,11 @@
+module Ci
+  class DailyBuildGroupReportResultSerializer < BaseSerializer
+    def represent: (untyped resource, ?::Hash[untyped, untyped] opts) -> untyped
+
+    private
+
+    def group: (untyped resource) -> untyped
+
+    def collect: (untyped resource) -> (untyped | ::Array[untyped])
+  end
+end

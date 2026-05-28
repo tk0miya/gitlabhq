@@ -1,0 +1,15 @@
+module Boards
+  module Lists
+    class ListService < Boards::BaseService
+      def execute: (untyped board, ?create_default_lists: bool) -> untyped
+
+      private
+
+      def available_list_types_for: (untyped board) -> untyped
+
+      def licensed_list_types: (untyped board) -> ::Array[untyped]
+
+      def visible_lists: (untyped board) -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Mutations
+  module Clusters
+    module AgentTokens
+      class Create < BaseMutation
+        ClusterAgentID: untyped
+
+        def resolve: (untyped args) -> { secret: untyped, token: untyped, errors: untyped }
+      end
+    end
+  end
+end

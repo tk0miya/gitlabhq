@@ -1,0 +1,11 @@
+module API
+  class CommitStatuses < ::API::Base
+    ALLOWED_SORT_VALUES: ::Array["id" | "pipeline_id"]
+
+    DEFAULT_SORT_VALUE: "id"
+
+    ALLOWED_SORT_DIRECTIONS: ::Array["asc" | "desc"]
+
+    DEFAULT_SORT_DIRECTION: "asc"
+  end
+end

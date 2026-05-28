@@ -1,0 +1,24 @@
+module Gitlab
+  module Metrics
+    module Subscribers
+      # Class for tracking the rendering timings of views.
+      class ActionView < ActiveSupport::Subscriber
+        SERIES: "views"
+
+        def render_template: (untyped event) -> (untyped | nil)
+
+        alias render_view render_template
+
+        private
+
+        def track: (untyped event) -> untyped
+
+        def relative_path: (untyped path) -> untyped
+
+        def tags_for: (untyped event) -> { view: untyped }
+
+        def current_transaction: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,75 @@
+module Gitlab
+  module Cleanup
+    module OrphanJobArtifactFinalObjects
+      class ProcessList
+        @force_restart: untyped
+
+        @logger: untyped
+
+        @orphan_list_filename: untyped
+
+        @deleted_list_filename: untyped
+
+        @cursor_tracker_key: untyped
+
+        @orphan_list_file: untyped
+
+        @deleted_list_file: untyped
+
+        BATCH_SIZE: untyped
+
+        DELETED_LIST_FILENAME_PREFIX: "deleted_from--"
+
+        CURSOR_TRACKER_REDIS_KEY_PREFIX: "orphan-job-artifact-objects-cleanup-cursor-tracker--"
+
+        def initialize: (?filename: untyped?, ?force_restart: bool, ?logger: untyped) -> void
+
+        def run!: () -> untyped
+
+        private
+
+        attr_reader orphan_list_file: untyped
+
+        attr_reader orphan_list_filename: untyped
+
+        attr_reader deleted_list_file: untyped
+
+        attr_reader deleted_list_filename: untyped
+
+        attr_reader cursor_tracker_key: untyped
+
+        attr_reader force_restart: untyped
+
+        attr_reader logger: untyped
+
+        def build_deleted_list_filename: () -> untyped
+
+        def build_cursor_tracker_key: () -> ::String
+
+        def initialize_files: () -> untyped
+
+        def each_batch: () { (untyped) -> untyped } -> untyped
+
+        def orphans_from_batch: (untyped entries) -> untyped
+
+        def resume_from_last_cursor_position: () -> (nil | untyped)
+
+        def get_last_cursor_position: () -> untyped
+
+        def save_current_cursor_position: (untyped position) -> untyped
+
+        def clear_last_cursor_position: () -> untyped
+
+        def build_fog_file: (untyped line) -> untyped
+
+        def delete_orphan_object: (untyped fog_file) -> (untyped | nil)
+
+        def log_deleted_object: (untyped fog_file) -> untyped
+
+        def add_deleted_object_to_list: (untyped fog_file) -> untyped
+
+        def log_info: (untyped msg) -> untyped
+      end
+    end
+  end
+end

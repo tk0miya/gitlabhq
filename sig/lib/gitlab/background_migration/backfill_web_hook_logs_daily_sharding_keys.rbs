@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillWebHookLogsDailyShardingKeys < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def update_sql: (untyped sub_batch) -> ::String
+    end
+  end
+end

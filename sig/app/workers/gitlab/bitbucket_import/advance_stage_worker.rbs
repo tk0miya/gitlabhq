@@ -1,0 +1,24 @@
+module Gitlab
+  module BitbucketImport
+    # AdvanceStageWorker is a worker used by the BitBucket Importer to wait for a
+    # number of jobs to complete, without blocking a thread. Once all jobs have
+    # been completed this worker will advance the import process to the next
+    # stage.
+    class AdvanceStageWorker
+      include ApplicationWorker
+
+      include ::Gitlab::Import::AdvanceStage
+
+      # The known importer stages and their corresponding Sidekiq workers.
+      STAGES: { repository: untyped, pull_requests: untyped, pull_requests_notes: untyped, issues: untyped, issues_notes: untyped, lfs_objects: untyped, finish: untyped }
+
+      def find_import_state_jid: (untyped project_id) -> untyped
+
+      def find_import_state: (untyped id) -> untyped
+
+      private
+
+      def next_stage_worker: (untyped next_stage) -> untyped
+    end
+  end
+end

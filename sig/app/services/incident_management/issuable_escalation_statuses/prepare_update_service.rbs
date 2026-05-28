@@ -1,0 +1,47 @@
+module IncidentManagement
+  module IssuableEscalationStatuses
+    class PrepareUpdateService < ::BaseProjectService
+      @issuable: untyped
+
+      @param_errors: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      SUPPORTED_PARAMS: ::Array[:status]
+
+      def initialize: (untyped issuable, untyped current_user, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader issuable: untyped
+
+      attr_reader param_errors: untyped
+
+      def available?: () -> untyped
+
+      def user_has_permissions?: () -> untyped
+
+      def escalation_status: () -> untyped
+
+      def filter_unsupported_params: () -> untyped
+
+      def supported_params: () -> untyped
+
+      def filter_attributes: () -> untyped
+
+      def filter_status: () -> (nil | untyped)
+
+      def filter_redundant_params: () -> untyped
+
+      def current_params: () -> untyped
+
+      def add_param_error: (untyped param) -> untyped
+
+      def availability_error: () -> untyped
+
+      def invalid_param_error: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,5 @@
+class DestroyPagesDeploymentsWorker
+  include ApplicationWorker
+
+  def perform: (untyped project_id, ?untyped? last_deployment_id) -> (nil | untyped)
+end

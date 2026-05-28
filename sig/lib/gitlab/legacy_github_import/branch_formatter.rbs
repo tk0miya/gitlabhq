@@ -1,0 +1,27 @@
+module Gitlab
+  module LegacyGithubImport
+    class BranchFormatter < BaseFormatter
+      def repo: () -> untyped
+
+      def sha: () -> untyped
+
+      def ref: () -> untyped
+
+      def exists?: () -> untyped
+
+      def valid?: () -> untyped
+
+      def user: () -> untyped
+
+      def short_sha: () -> untyped
+
+      private
+
+      def branch_exists?: () -> untyped
+
+      def commit_exists?: () -> untyped
+
+      def short_id: () -> untyped
+    end
+  end
+end

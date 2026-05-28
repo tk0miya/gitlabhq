@@ -1,0 +1,13 @@
+module Authz
+  module PermissionGroups
+    class Base
+      @permissions: untyped
+
+      include Authz::Concerns::YamlPermission
+
+      include Gitlab::Utils::StrongMemoize
+
+      def permissions: () -> untyped
+    end
+  end
+end

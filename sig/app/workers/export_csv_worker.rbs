@@ -1,0 +1,9 @@
+class ExportCsvWorker
+  @current_user: untyped
+
+  @project: untyped
+
+  include ApplicationWorker
+
+  def perform: (untyped current_user_id, untyped project_id, untyped params) -> untyped
+end

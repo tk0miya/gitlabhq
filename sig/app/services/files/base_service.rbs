@@ -1,0 +1,33 @@
+module Files
+  class BaseService < Commits::CreateService
+    @author_email: untyped
+
+    @author_name: untyped
+
+    @commit_message: untyped
+
+    @last_commit_sha: untyped
+
+    @file_path: untyped
+
+    @previous_path: untyped
+
+    @file_content: untyped
+
+    @execute_filemode: untyped
+
+    FileChangedError: untyped
+
+    def initialize: (*untyped args) -> void
+
+    def file_has_changed?: (untyped path, untyped commit_id) -> (false | untyped)
+
+    private
+
+    def validate!: () -> untyped
+
+    def get_last_commit_for_path: (ref: untyped, path: untyped) -> untyped
+
+    def commit_email: (untyped git_user) -> (untyped | nil)
+  end
+end

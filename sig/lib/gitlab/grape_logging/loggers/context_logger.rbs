@@ -1,0 +1,10 @@
+# This class adds application context to the grape logger
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class ContextLogger < ::GrapeLogging::Loggers::Base
+        def parameters: (untyped request, untyped _) -> untyped
+      end
+    end
+  end
+end

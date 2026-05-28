@@ -1,0 +1,19 @@
+module Ci
+  module PipelineSchedules
+    class CalculateNextRunService < BaseService
+      @schedule: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def execute: (untyped schedule, fallback_method: untyped) -> untyped
+
+      private
+
+      def schedule_cron: () -> untyped
+
+      def worker_cron: () -> untyped
+
+      def plan_cron: () -> untyped
+    end
+  end
+end

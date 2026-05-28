@@ -1,0 +1,27 @@
+module Gitlab
+  module BitbucketImport
+    module Importers
+      class PullRequestsImporter
+        include ParallelScheduling
+
+        def execute: () -> untyped
+
+        private
+
+        def sidekiq_worker_class: () -> untyped
+
+        def collection_method: () -> :pull_requests
+
+        def collection_options: () -> { raw: true }
+
+        def representation_type: () -> :pull_request
+
+        def id_for_already_enqueued_cache: (untyped object) -> untyped
+
+        # To avoid overloading Gitaly, we use a smaller limit for pull requests than the one defined in the
+        # application settings.
+        def concurrent_import_jobs_limit: () -> 100
+      end
+    end
+  end
+end

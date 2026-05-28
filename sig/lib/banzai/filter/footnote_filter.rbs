@@ -1,0 +1,47 @@
+module Banzai
+  module Filter
+    # This filter adds a random number to each footnote (the same number
+    # can be used for a single render). So you get `id=fn-1-4335` and `id=fn-foot-4335`.
+    #
+    class FootnoteFilter < HTML::Pipeline::Filter
+      # We allow overriding the randomness with a static value from GITLAB_TEST_FOOTNOTE_ID.
+      # This allows stable generation of example HTML during GLFM Snapshot Testing
+      # (https://docs.gitlab.com/ee/development/gitlab_flavored_markdown/specification_guide/#markdown-snapshot-testing),
+      # and reduces the need for normalization of the example HTML
+      # (https://docs.gitlab.com/ee/development/gitlab_flavored_markdown/specification_guide/#normalization)
+      @random_number: untyped
+
+      prepend Concerns::PipelineTimingCheck
+
+      FOOTNOTE_ID_PREFIX: "fn-"
+
+      FOOTNOTE_LINK_ID_PREFIX: "fnref-"
+
+      FOOTNOTE_LI_REFERENCE_PATTERN: ::Regexp
+
+      FOOTNOTE_LINK_REFERENCE_PATTERN: ::Regexp
+
+      CSS_SECTION: "section[data-footnotes]"
+
+      XPATH_SECTION: untyped
+
+      CSS_FOOTNOTE: "sup > a[data-footnote-ref]"
+
+      XPATH_FOOTNOTE: untyped
+
+      # Limit of how many footnotes we will process.
+      # Protects against pathological number of footnotes.
+      FOOTNOTE_LIMIT: 1000
+
+      def call: () -> untyped
+
+      private
+
+      def random_number: () -> untyped
+
+      def fn_id: (untyped num) -> ::String
+
+      def fnref_id: (untyped num) -> ::String
+    end
+  end
+end

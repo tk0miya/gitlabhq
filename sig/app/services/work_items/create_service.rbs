@@ -1,0 +1,25 @@
+module WorkItems
+  class CreateService < Issues::CreateService
+    @create_source: untyped
+
+    @widget_params: untyped
+
+    include WidgetableService
+
+    def initialize: (container: untyped, ?perform_spam_check: bool, ?current_user: untyped?, ?params: ::Hash[untyped, untyped], ?widget_params: ::Hash[untyped, untyped]) -> void
+
+    def execute: (?skip_system_notes: bool) -> untyped
+
+    def parent: () -> untyped
+
+    private
+
+    def authorization_action: () -> :create_work_item
+
+    def payload: (untyped work_item) -> { work_item: untyped }
+
+    def skip_system_notes?: () -> false
+
+    def track_work_item_create: (untyped work_item) -> untyped
+  end
+end

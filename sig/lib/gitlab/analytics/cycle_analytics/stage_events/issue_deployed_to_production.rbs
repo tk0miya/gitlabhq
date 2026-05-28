@@ -1,0 +1,22 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageEvents
+        class IssueDeployedToProduction < StageEvent
+          def self.name: () -> untyped
+
+          def self.identifier: () -> :issue_deployed_to_production
+
+          def object_type: () -> untyped
+
+          def column_list: () -> ::Array[untyped]
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def apply_query_customization: (untyped query) -> untyped
+
+          def include_in: (untyped query, **untyped) -> untyped
+        end
+      end
+    end
+  end
+end

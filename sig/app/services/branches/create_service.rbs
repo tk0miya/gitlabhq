@@ -1,0 +1,33 @@
+module Branches
+  class CreateService < BaseService
+    @errors: untyped
+
+    @branch_validation_service: untyped
+
+    def initialize: (untyped project, ?untyped? user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: (untyped branch_name, untyped ref, ?create_default_branch_if_empty: bool) -> untyped
+
+    def bulk_create: (untyped branches) -> untyped
+
+    private
+
+    attr_reader errors: untyped
+
+    def reset_errors: () -> untyped
+
+    def only_valid_branches: (untyped branches) -> untyped
+
+    def create_branches: (untyped branches) -> untyped
+
+    def expire_branches_cache: (untyped branches) -> untyped
+
+    def create_branch: (untyped branch_name, untyped ref, ?expire_cache: bool) -> untyped
+
+    def validate_ref: (untyped ref) -> untyped
+
+    def create_default_branch: () -> untyped
+
+    def branch_validation_service: () -> untyped
+  end
+end

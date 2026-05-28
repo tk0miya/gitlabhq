@@ -1,0 +1,16 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a configuration of the ports of a Docker service.
+        #
+        class Ports < ::Gitlab::Config::Entry::ComposableArray
+          include ::Gitlab::Config::Entry::Validatable
+
+          def composable_class: () -> untyped
+        end
+      end
+    end
+  end
+end

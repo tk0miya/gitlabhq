@@ -1,0 +1,19 @@
+module Commits
+  class CherryPickService < ChangeService
+    @start_project: untyped
+
+    @source_project: untyped
+
+    def initialize: (*untyped args) -> void
+
+    def create_commit!: () -> untyped
+
+    private
+
+    def commit_message: () -> ::String
+
+    def track_mr_picking: (untyped pick_sha) -> (nil | untyped)
+
+    def perform_cherry_pick: (untyped message) -> untyped
+  end
+end

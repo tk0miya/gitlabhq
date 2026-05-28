@@ -1,0 +1,17 @@
+module MergeRequests
+  class ReloadMergeHeadDiffService
+    @merge_request: untyped
+
+    include BaseServiceUtility
+
+    def initialize: (untyped merge_request) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader merge_request: untyped
+
+    def recreate_merge_head_diff: () -> untyped
+  end
+end

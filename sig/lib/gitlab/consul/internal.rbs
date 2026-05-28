@@ -1,0 +1,29 @@
+module Gitlab
+  module Consul
+    class Internal
+      Error: untyped
+
+      UnexpectedResponseError: untyped
+
+      SocketError: untyped
+
+      SSLError: untyped
+
+      ECONNREFUSED: untyped
+
+      def self.api_url: () -> untyped
+
+      def self.discover_service: (service_name: untyped) -> (nil | ::Array[untyped])
+
+      def self.discover_prometheus_server_address: () -> (nil | ::String)
+
+      private
+
+      def self.json_get: (untyped path, untyped options) -> untyped
+
+      def self.parse_response_body: (untyped body) -> untyped
+
+      def self.get: (untyped path, untyped options) -> untyped
+    end
+  end
+end

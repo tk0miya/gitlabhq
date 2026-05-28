@@ -1,0 +1,15 @@
+class NamespaceFileUploader < FileUploader
+  # Re-Override
+  def self.root: () -> untyped
+
+  def self.base_dir: (untyped model, ?untyped? store) -> untyped
+
+  def self.base_dirs: (untyped model) -> ::Hash[untyped, untyped]
+
+  def self.model_path_segment: (untyped model) -> untyped
+
+  def self.workhorse_local_upload_path: () -> untyped
+
+  # Re-Override
+  def store_dir: () -> untyped
+end

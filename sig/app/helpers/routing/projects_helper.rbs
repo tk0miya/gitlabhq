@@ -1,0 +1,39 @@
+module Routing
+  module ProjectsHelper
+    def project_tree_path: (untyped project, ?untyped? ref, *untyped args) -> untyped
+
+    def project_commits_path: (untyped project, ?untyped? ref, *untyped args) -> untyped
+
+    def project_ref_path: (untyped project, untyped ref_name, *untyped args) -> untyped
+
+    def environment_path: (untyped environment, *untyped args) -> untyped
+
+    def environment_delete_path: (untyped environment, *untyped args) -> untyped
+
+    def merge_request_path: (untyped entity, *untyped args) -> untyped
+
+    def pipeline_path: (untyped pipeline, *untyped args) -> untyped
+
+    def issue_path: (untyped entity, *untyped args) -> untyped
+
+    def work_item_url: (untyped entity, *untyped args) -> untyped
+
+    alias issue_url work_item_url
+
+    def merge_request_url: (untyped entity, *untyped args) -> untyped
+
+    def pipeline_url: (untyped pipeline, *untyped args) -> untyped
+
+    def pipeline_job_url: (untyped pipeline, untyped build, *untyped args) -> untyped
+
+    def commits_url: (untyped entity, *untyped args) -> untyped
+
+    def commit_url: (untyped entity, *untyped args) -> untyped
+
+    def release_url: (untyped entity, *untyped args) -> untyped
+
+    def edit_milestone_path: (untyped entity, *untyped args) -> untyped
+
+    def toggle_subscription_path: (untyped entity, *untyped args) -> untyped
+  end
+end

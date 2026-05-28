@@ -1,0 +1,17 @@
+module Sidebars
+  module UserSettings
+    module Menus
+      class NotificationsMenu < ::Sidebars::Menu
+        include ::Sidebars::Concerns::RenderIfLoggedIn
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "notifications"
+
+        def active_routes: () -> { controller: :notifications }
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Types
+  module PermissionTypes
+    class MergeRequest < BasePermissionType
+      PERMISSION_FIELDS: ::Array[:push_to_source_branch | :remove_source_branch | :cherry_pick_on_current_merge_request | :revert_on_current_merge_request]
+
+      def can_merge: () -> untyped
+
+      def can_approve: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+class GroupGroupLink < ApplicationRecord
+  include Expirable
+
+  alias group shared_group
+
+  alias shared_from shared_group
+
+  def self.search: (untyped query, **untyped options) -> untyped
+
+  def self.access_options: () -> untyped
+
+  def self.default_access: () -> untyped
+
+  def human_access: () -> untyped
+end

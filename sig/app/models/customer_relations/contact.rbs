@@ -1,0 +1,46 @@
+class CustomerRelations::Contact < ApplicationRecord
+  include Gitlab::SQL::Pattern
+
+  include Sortable
+
+  include StripAttribute
+
+  SAFE_ATTRIBUTES: ::Array["created_at" | "description" | "first_name" | "group_id" | "id" | "last_name" | "organization_id" | "state" | "updated_at"]
+
+  def hook_attrs: () -> untyped
+
+  def self.reference_prefix: () -> "[contact:"
+
+  def self.reference_prefix_quoted: () -> "[\"contact:"
+
+  def self.reference_postfix: () -> "]"
+
+  # Searches for contacts with a matching first name, last name, email or description.
+  #
+  # This method uses ILIKE on PostgreSQL
+  #
+  # query - The search query as a String
+  #
+  # Returns an ActiveRecord::Relation.
+  def self.search: (untyped query) -> untyped
+
+  def self.search_by_state: (untyped state) -> untyped
+
+  def self.sort_by_field: (untyped field, untyped direction) -> untyped
+
+  def self.sort_by_organization: (untyped direction) -> untyped
+
+  def self.sort_by_name: () -> untyped
+
+  def self.find_ids_by_emails: (untyped group, untyped emails) -> untyped
+
+  def self.exists_for_group?: (untyped group) -> (false | untyped)
+
+  def self.counts_by_state: () -> untyped
+
+  private
+
+  def validate_email_format: () -> (nil | untyped)
+
+  def validate_crm_group: () -> (nil | untyped)
+end

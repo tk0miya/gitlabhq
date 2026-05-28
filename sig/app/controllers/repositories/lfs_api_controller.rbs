@@ -1,0 +1,64 @@
+module Repositories
+  class LfsApiController < ::Repositories::GitHttpClientController
+    @oids_from_fork: untyped
+
+    include LfsRequest
+
+    include Gitlab::Utils::StrongMemoize
+
+    LFS_TRANSFER_CONTENT_TYPE: "application/octet-stream"
+
+    # Downloading directly with presigned URLs via batch requests
+    # require longer expire time.
+    # The 1h should be enough to download 100 objects.
+    LFS_DIRECT_BATCH_EXPIRE_IN: untyped
+
+    def batch: () -> (nil | untyped)
+
+    def deprecated: () -> untyped
+
+    private
+
+    def download_request?: () -> untyped
+
+    def upload_request?: () -> untyped
+
+    def download_objects!: () -> untyped
+
+    def upload_objects!: () -> untyped
+
+    def download_actions: (untyped object, untyped lfs_object) -> untyped
+
+    def direct_download_actions: (untyped lfs_object) -> { download: { href: untyped } }
+
+    def proxy_download_actions: (untyped object) -> { download: { href: untyped, header: untyped } }
+
+    # Overridden in EE
+    def proxy_download_actions_download_path: (untyped object) -> ::String
+
+    def upload_actions: (untyped object) -> { upload: { href: ::String, header: untyped } }
+
+    # Overridden in EE
+    def upload_http_url_to_repo: () -> untyped
+
+    def upload_headers: () -> { Authorization: untyped, :"Content-Type" => untyped, :"Transfer-Encoding" => "chunked" }
+
+    def lfs_check_batch_operation!: () -> (untyped | nil)
+
+    # Overridden in EE
+    def batch_operation_disallowed?: () -> untyped
+
+    # Overridden in EE
+    def lfs_read_only_message: () -> untyped
+
+    def authorization_header: () -> untyped
+
+    def lfs_auth_header: () -> (nil | untyped)
+
+    def should_auto_link?: () -> (false | untyped)
+
+    def oids_from_fork: () -> untyped
+
+    def link_to_project!: (untyped object) -> (nil | untyped)
+  end
+end

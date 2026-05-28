@@ -1,0 +1,21 @@
+module JiraConnectSubscriptions
+  class DestroyService
+    @subscription: untyped
+
+    @jira_user: untyped
+
+    attr_accessor subscription: untyped
+
+    attr_accessor jira_user: untyped
+
+    def initialize: (untyped subscription, untyped jira_user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def can_administer_jira?: () -> untyped
+
+    def deactivate_jira_cloud_app_integrations: (untyped namespace_id) -> untyped
+  end
+end

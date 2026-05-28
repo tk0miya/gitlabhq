@@ -1,0 +1,19 @@
+module Integrations
+  module Base
+    module Linear
+      extend ActiveSupport::Concern
+
+      include Base::IssueTracker
+
+      include HasAvatar
+
+      # Workspace keys in the URL must be between 3 and 32 characters long and
+      # contain only lowercase letters, numbers, and hyphens.
+      LINEAR_WORKSPACE_URI_REGEX: ::Regexp
+
+      # References like FEAT-123.
+      # The project key part is between one and 7 characters long and uppercase letters + digits
+      LINEAR_ISSUE_REFERENCE: ::Regexp
+    end
+  end
+end

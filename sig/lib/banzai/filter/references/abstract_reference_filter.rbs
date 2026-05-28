@@ -1,0 +1,124 @@
+module Banzai
+  module Filter
+    module References
+      # Issues, merge requests, Snippets, Commits and Commit Ranges share
+      # similar functionality in reference filtering.
+      class AbstractReferenceFilter < ReferenceFilter
+        @reference_cache: untyped
+
+        include CrossProjectReference
+
+        prepend Concerns::TimeoutFilterHandler
+
+        prepend Concerns::PipelineTimingCheck
+
+        def initialize: (untyped doc, ?untyped? context, ?untyped? result) -> void
+
+        # See ReferenceFilter#references_in for requirements on the input, block,
+        # and return value of this function.
+        #
+        # This function yields the String match, the Integer referenced object ID, an optional String
+        # of the external project reference, an optional String of the namespace reference,
+        # and the full MatchData.
+        def references_in: (untyped text, ?untyped pattern) { (untyped, untyped, untyped, untyped, untyped) -> untyped } -> untyped
+
+        def identifier: (untyped match_data) -> untyped
+
+        def symbol_from_match_data: (untyped match_data) -> untyped
+
+        # Transform a symbol extracted from the text to a meaningful value
+        # In most cases these will be integers, so we call #to_i by default
+        #
+        # This method has the contract that if a string `ref` refers to a
+        # record `record`, then `parse_symbol(ref) == record_identifier(record)`.
+        def parse_symbol: (untyped symbol, untyped match_data) -> untyped
+
+        # We assume that most classes are identifying records by ID.
+        #
+        # This method has the contract that if a string `ref` refers to a
+        # record `record`, then `class.parse_symbol(ref) == record_identifier(record)`.
+        def record_identifier: (untyped record) -> untyped
+
+        # Implement in child class
+        # Example: project.merge_requests.find
+        def find_object: (untyped parent_object, untyped id) -> untyped
+
+        # Override if the link reference pattern produces a different ID (global
+        # ID vs internal ID, for instance) to the regular reference pattern.
+        def find_object_from_link: (untyped parent_object, untyped id) -> untyped
+
+        # Implement in child class
+        # Example: project_merge_request_url
+        def url_for_object: (untyped object, untyped parent_object) -> untyped
+
+        def find_object_cached: (untyped parent_object, untyped id) -> untyped
+
+        def find_object_from_link_cached: (untyped parent_object, untyped id) -> untyped
+
+        def from_ref_cached: (untyped ref) -> untyped
+
+        def url_for_object_cached: (untyped object, untyped parent_object) -> untyped
+
+        def call: () -> untyped
+
+        # Replace references (like `!123` for merge requests) in text with links
+        # to the referenced object's details page.
+        #
+        # text - String text to replace references in.
+        # pattern - Reference pattern to match against.
+        # link_content_html - Original HTML content of the link being replaced.
+        # link_reference - True if this was using the link reference pattern,
+        #                  false otherwise.
+        #
+        # Returns String HTML with references replaced with links, or nil if no
+        # replacements were made. All links have `gfm` and `gfm-OBJECT_NAME`
+        # class names attached for styling.
+        #
+        # Note carefully:
+        #
+        # * `text` is text, not HTML.
+        # * `link_content_html`, if provided, is HTML.
+        # * The return value is HTML (or nil).
+        def object_link_filter: (untyped text, untyped pattern, ?link_content_html: untyped?, ?link_reference: bool) -> untyped
+
+        def build_object_link: (untyped object, untyped parent, untyped match_text, untyped matches, ?link_content_html: untyped?, ?link_reference: bool) -> untyped
+
+        def wrap_link: (untyped link, untyped object) -> untyped
+
+        # If the reference was found inside a link, "original_href" contains the original href text
+        # as written by the user.  It is text, and not safe HTML.  In this case, "original" is the
+        # inner HTML content of the link tag, and we set data-link="true".  This is used by e.g. the
+        # rich-text editor, so it knows the target should not be treated as a plain reference.
+        #
+        # Otherwise, "original_href" is nil, and "original" is the HTML-escaped reference as written
+        # by the user.
+        #
+        # Note that "original" must always be safe HTML.
+        def data_attributes_for: (untyped original, untyped parent, untyped object, ?original_href: untyped?, ?link_reference: bool) -> untyped
+
+        # Provides the default content of the created link, if there was no original content to use.
+        #
+        # Returns a HTML String.  If you override this, ensure you return HTML by escaping any text.
+        def object_link_content_html: (untyped object, untyped matches) -> untyped
+
+        # Provides extra content for the default content of the created link, used by
+        # the default implementation of #object_link_content_html.
+        #
+        # Returns an Array of HTML Strings.  If you override this, ensure you return HTML by escaping any text.
+        def object_link_content_html_extras: (untyped object, untyped matches) -> untyped
+
+        def object_link_title: (untyped object, untyped matches) -> untyped
+
+        def parent_type: () -> :project
+
+        def parent: () -> untyped
+
+        private
+
+        attr_accessor reference_cache: untyped
+
+        def additional_object_attributes: (untyped object) -> ::Hash[untyped, untyped]
+      end
+    end
+  end
+end

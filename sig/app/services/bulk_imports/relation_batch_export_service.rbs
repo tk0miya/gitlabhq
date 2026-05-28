@@ -1,0 +1,31 @@
+module BulkImports
+  class RelationBatchExportService
+    @user: untyped
+
+    @batch: untyped
+
+    @upload: untyped
+
+    include ::Import::BulkImports::ExportUploadable
+
+    def initialize: (untyped user, untyped batch) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader batch: untyped
+
+    def upload: () -> untyped
+
+    def relation_batch_ids: () -> (::Array[untyped] | untyped)
+
+    def cache_key: () -> untyped
+
+    def start_batch!: () -> untyped
+
+    def finish_batch!: () -> untyped
+  end
+end

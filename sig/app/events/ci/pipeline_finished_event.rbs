@@ -1,0 +1,5 @@
+module Ci
+  class PipelineFinishedEvent < ::Gitlab::EventStore::Event
+    def schema: () -> { "type" => "object", "required" => ::Array["pipeline_id" | "status"], "properties" => { "pipeline_id" => { "type" => "integer" }, "status" => { "type" => "string" } } }
+  end
+end

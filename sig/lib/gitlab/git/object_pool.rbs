@@ -1,0 +1,52 @@
+module Gitlab
+  module Git
+    class ObjectPool
+      @storage: untyped
+
+      @relative_path: untyped
+
+      @source_repository: untyped
+
+      @gl_project_path: untyped
+
+      @repository: untyped
+
+      @object_pool_service: untyped
+
+      # GL_REPOSITORY has to be passed for Gitlab::Git::Repositories, but not
+      # used for ObjectPools.
+      GL_REPOSITORY: ""
+
+      attr_reader storage: untyped
+
+      attr_reader relative_path: untyped
+
+      attr_reader source_repository: untyped
+
+      attr_reader gl_project_path: untyped
+
+      def self.init_from_gitaly: (untyped gitaly_object_pool, untyped source_repository) -> untyped
+
+      def initialize: (untyped storage, untyped relative_path, untyped source_repository, untyped gl_project_path) -> void
+
+      def create: () -> untyped
+
+      def link: (untyped to_link_repo) -> untyped
+
+      def gitaly_object_pool: () -> untyped
+
+      def to_gitaly_repository: () -> untyped
+
+      # Allows for reusing other RPCs by 'tricking' Gitaly to think its a repository
+      def repository: () -> untyped
+
+      def fetch: () -> untyped
+
+      private
+
+      def object_pool_service: () -> untyped
+
+      def relative_path_to: (untyped pool_member_path) -> untyped
+    end
+  end
+end

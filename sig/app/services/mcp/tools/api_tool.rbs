@@ -1,0 +1,55 @@
+module Mcp
+  module Tools
+    class ApiTool
+      @name: untyped
+
+      @route: untyped
+
+      @settings: untyped
+
+      @version: untyped
+
+      attr_reader name: untyped
+
+      attr_reader route: untyped
+
+      attr_reader settings: untyped
+
+      attr_reader version: untyped
+
+      # Grape types are represented as a string by calling `.to_s` on a type
+      # The values are built based on the existing routes:
+      # - [String, Integer] is usually a type of an id, which can be represented as a string
+      # - Grape::API::Boolean is a boolean
+      # - [Integer] is an array of integers
+      # - [String] represents a comma-separated string
+      TYPE_CONVERSIONS: { "[String, Integer]" => "string", "Grape::API::Boolean" => "boolean", "[Integer]" => { type: "array", items: { type: "integer" } }, "[String]" => "string" }
+
+      ARRAY_TYPE_PATTERN: ::Regexp
+
+      GENERIC_NOT_FOUND_MESSAGE: "404 Not Found"
+
+      def initialize: (name: untyped, route: untyped) -> void
+
+      def description: () -> untyped
+
+      def input_schema: () -> { type: "object", properties: untyped, required: untyped, additionalProperties: false }
+
+      def icons: () -> untyped
+
+      def execute: (?request: untyped?, ?params: untyped?) -> untyped
+
+      def annotations: () -> untyped
+
+      private
+
+      def parse_type: (untyped type) -> (untyped | { type: "array", items: { type: untyped } })
+
+      def process_response: (untyped status, untyped body) -> untyped
+
+      def resource_not_found_message: () -> ::String
+
+      def generic_not_found?: (untyped parsed_response) -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+# This model serves to keep track of changes to the namespaces table in the main database, and allowing to safely
+# replicate these changes to other databases.
+class Namespaces::SyncEvent < ApplicationRecord
+  def self.mark_records_processed: (untyped records) -> untyped
+
+  def self.enqueue_worker: () -> untyped
+
+  def self.upper_bound_count: () -> untyped
+end

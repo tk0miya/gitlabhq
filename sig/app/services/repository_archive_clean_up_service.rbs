@@ -1,0 +1,40 @@
+# RepositoryArchiveCleanUpService removes cached repository archives
+# that are generated on-the-fly by Gitaly. These files are stored in the
+# following form (as defined in lib/gitlab/git/repository.rb) and served
+# by GitLab Workhorse:
+#
+# /path/to/repository/downloads/project-N/sha/@v2/archive.format
+#
+# Legacy paths omit the @v2 prefix.
+#
+# For example:
+#
+# /var/opt/gitlab/gitlab-rails/shared/cache/archive/project-1/master/@v2/archive.zip
+class RepositoryArchiveCleanUpService
+  @mmin: untyped
+
+  @path: untyped
+
+  LAST_MODIFIED_TIME_IN_MINUTES: 120
+
+  # For `/path/project-N/sha/@v2/archive.zip`, `find /path -maxdepth 4` will find this file
+  MAX_ARCHIVE_DEPTH: 4
+
+  attr_reader mmin: untyped
+
+  attr_reader path: untyped
+
+  def initialize: (?untyped mmin) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def clean_up_old_archives: () -> untyped
+
+  def clean_up_empty_directories: () -> untyped
+
+  def clean_up_empty_directories_with_depth: (untyped depth) -> untyped
+
+  def run: (untyped cmd) -> untyped
+end

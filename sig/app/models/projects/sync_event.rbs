@@ -1,0 +1,9 @@
+# This model serves to keep track of changes to the namespaces table in the main database as they relate to projects,
+# allowing to safely replicate changes to other databases.
+class Projects::SyncEvent < ApplicationRecord
+  def self.mark_records_processed: (untyped records) -> untyped
+
+  def self.enqueue_worker: () -> untyped
+
+  def self.upper_bound_count: () -> untyped
+end

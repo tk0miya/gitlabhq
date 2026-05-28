@@ -1,0 +1,29 @@
+module BulkImports
+  class FinishBatchedRelationExportWorker
+    @export: untyped
+
+    include ApplicationWorker
+
+    REENQUEUE_DELAY: untyped
+
+    TIMEOUT: untyped
+
+    def perform: (untyped export_id) -> (nil | untyped)
+
+    private
+
+    attr_reader export: untyped
+
+    def fail_export!: () -> untyped
+
+    def re_enqueue: () -> untyped
+
+    def export_timeout?: () -> untyped
+
+    def export_in_progress?: () -> untyped
+
+    def finish_export!: () -> untyped
+
+    def expire_cache!: () -> untyped
+  end
+end

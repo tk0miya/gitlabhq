@@ -1,0 +1,11 @@
+module MergeRequests
+  class HandleAssigneesChangeService < MergeRequests::BaseService
+    def async_execute: (untyped merge_request, untyped old_assignees, ?::Hash[untyped, untyped] options) -> untyped
+
+    def execute: (untyped merge_request, untyped old_assignees, ?::Hash[untyped, untyped] options) -> untyped
+
+    private
+
+    def execute_assignees_hooks: (untyped merge_request, untyped old_assignees) -> untyped
+  end
+end

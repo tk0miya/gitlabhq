@@ -1,0 +1,53 @@
+class InstanceConfiguration
+  @configuration: untyped
+
+  SSH_ALGORITHMS: ::Array["DSA" | "ECDSA" | "ED25519" | "RSA"]
+
+  SSH_ALGORITHMS_PATH: "/etc/ssh/"
+
+  CACHE_KEY: "instance_configuration"
+
+  EXPIRATION_TIME: untyped
+
+  def settings: () -> untyped
+
+  private
+
+  def configuration: () -> untyped
+
+  def ssh_algorithms_hashes: () -> untyped
+
+  def ssh_algorithm_enabled?: (untyped algorithm) -> untyped
+
+  def host: () -> untyped
+
+  def gitlab_pages: () -> untyped
+
+  def resolv_dns: (untyped dns) -> untyped
+
+  def size_limits: () -> { max_attachment_size: untyped, receive_max_input_size: untyped, max_export_size: untyped, max_import_size: untyped, diff_max_patch_bytes: untyped, max_artifacts_size: untyped, max_pages_size: untyped, snippet_size_limit: untyped, max_import_remote_file_size: untyped, bulk_import_max_download_file_size: untyped }
+
+  def package_file_size_limits: () -> untyped
+
+  def plan_file_size_limits: (untyped plan) -> { conan: untyped, helm: untyped, maven: untyped, npm: untyped, nuget: untyped, pypi: untyped, terraform_module: untyped, generic: untyped }
+
+  def rate_limits: () -> untyped
+
+  def ci_cd_limits: () -> untyped
+
+  def plan_ci_cd_limits: (untyped plan) -> untyped
+
+  def ssh_algorithm_file: (untyped algorithm) -> untyped
+
+  def ssh_algorithm_hashes: (untyped algorithm) -> (nil | { name: untyped, md5: untyped, sha256: untyped })
+
+  def ssh_algorithm_file_content: (untyped algorithm) -> (nil | untyped)
+
+  def ssh_algorithm_md5: (untyped ssh_file_content) -> untyped
+
+  def ssh_algorithm_sha256: (untyped ssh_file_content) -> untyped
+
+  def application_settings: () -> untyped
+
+  def application_setting_limit_per_minute: (untyped setting) -> { enabled: untyped, requests_per_period: untyped, period_in_seconds: untyped }
+end

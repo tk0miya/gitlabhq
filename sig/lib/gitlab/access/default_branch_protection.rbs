@@ -1,0 +1,35 @@
+module Gitlab
+  module Access
+    class DefaultBranchProtection
+      @settings: untyped
+
+      attr_reader settings: untyped
+
+      def initialize: (untyped settings) -> void
+
+      def code_owner_approval_required?: () -> untyped
+
+      def allow_force_push?: () -> untyped
+
+      def any?: () -> (true | untyped)
+
+      def no_one_can_push?: () -> untyped
+
+      def no_one_can_merge?: () -> untyped
+
+      def maintainer_can_push?: () -> untyped
+
+      def maintainer_can_merge?: () -> untyped
+
+      def developer_can_push?: () -> untyped
+
+      def developer_can_initial_push?: () -> untyped
+
+      def developer_can_merge?: () -> untyped
+
+      def can_initial_push?: (untyped member_access_level) -> (true | false)
+
+      def fully_protected?: () -> (false | untyped)
+    end
+  end
+end

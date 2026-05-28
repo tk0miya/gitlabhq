@@ -1,0 +1,39 @@
+module Pages
+  class VirtualDomain
+    @projects: untyped
+
+    @trim_prefix: untyped
+
+    @domain: untyped
+
+    @namespace: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (projects: untyped, ?trim_prefix: untyped?, ?domain: untyped?, ?namespace: untyped?) -> void
+
+    def certificate: () -> untyped
+
+    def key: () -> untyped
+
+    def root_namespace_id: () -> untyped
+
+    def lookup_paths: () -> untyped
+
+    private
+
+    attr_reader projects: untyped
+
+    attr_reader trim_prefix: untyped
+
+    attr_reader domain: untyped
+
+    def access_control_for: (untyped project) -> (false | true | untyped)
+
+    def pages_access_control_trie: () -> untyped
+
+    def lookup_paths_for: (untyped project, untyped root_namespace_id) -> untyped
+
+    def deployments_for: (untyped project) -> untyped
+  end
+end

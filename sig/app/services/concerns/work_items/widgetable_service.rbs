@@ -1,0 +1,20 @@
+module WorkItems
+  module WidgetableService
+    @callbacks: untyped
+
+    extend ActiveSupport::Concern
+
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables
+    def initialize_callbacks!: (untyped work_item) -> untyped
+
+    def handle_quick_actions: (untyped work_item) -> untyped
+
+    def params_include_state_and_status_changes?: () -> untyped
+
+    private
+
+    def new_type_excludes_widget?: (untyped widget, untyped resource_parent) -> (false | untyped)
+
+    def handle_widget_quick_actions!: (untyped work_item) -> (nil | untyped)
+  end
+end

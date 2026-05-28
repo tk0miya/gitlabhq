@@ -1,0 +1,29 @@
+module Integrations
+  module SlackOptions
+    class UserSearchHandler
+      @current_user: untyped
+
+      @search_value: untyped
+
+      @view_id: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped current_user, untyped search_value, untyped view_id) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def project: () -> (nil | untyped)
+
+      def build_user_list: (untyped members) -> (::Array[untyped] | { options: untyped })
+
+      attr_reader current_user: untyped
+
+      attr_reader search_value: untyped
+
+      attr_reader view_id: untyped
+    end
+  end
+end

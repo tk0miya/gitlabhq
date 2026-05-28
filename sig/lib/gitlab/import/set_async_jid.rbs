@@ -1,0 +1,16 @@
+# The original import JID is the JID of the RepositoryImportWorker job,
+# which will be removed once that job completes. Reusing that JID could
+# result in Gitlab::Import::StuckProjectImportJobsWorker marking the job
+# as stuck before we get to running Stage::ImportRepositoryWorker.
+#
+# We work around this by setting the JID to a custom generated one, then
+# refreshing it in the various stages whenever necessary.
+module Gitlab
+  module Import
+    module SetAsyncJid
+      def self.set_jid: (untyped import_state) -> untyped
+
+      def self.generate_jid: (untyped import_state) -> ::String
+    end
+  end
+end

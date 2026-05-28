@@ -1,0 +1,36 @@
+module UserSettings
+  class ProfilesController < ApplicationController
+    @user: untyped
+
+    @user_params: untyped
+
+    include ActionView::Helpers::SanitizeHelper
+
+    include Gitlab::Tracking
+
+    include AuthHelper
+
+    def show: () -> nil
+
+    def update: () -> untyped
+
+    private
+
+    def user: () -> untyped
+
+    def user_params_attributes: () -> ::Array[:achievements_enabled | :avatar | :bio | :bluesky | :commit_email | :discord | :email | :gitpod_enabled | :hide_no_password | :hide_no_ssh_key | :hide_project_limit | :include_private_contributions | :job_title | :linkedin | :location | :mastodon | :name | :orcid | :company | :private_profile | :pronouns | :pronunciation | :public_email | :timezone | :twitter | :username | :validation_password | :website_url | :github | { status: ::Array[:emoji | :message | :availability | :clear_status_after] } | :email_otp_required_as_boolean]
+
+    def user_params: () -> untyped
+
+    def current_password_params: () -> untyped
+
+    # Provides user-facing validation for email OTP enrollment changes.
+    # Model-level validation in Users::UpdateService ensures consistency
+    # when records are updated through the service layer.
+    def validate_email_otp_preference_modification: () -> (nil | untyped)
+
+    def respond_with_error: (untyped message) -> untyped
+
+    def current_password_matches?: () -> (true | false)
+  end
+end

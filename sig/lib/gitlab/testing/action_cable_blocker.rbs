@@ -1,0 +1,22 @@
+# This is inspired by http://www.salsify.com/blog/engineering/tearing-capybara-ajax-tests
+# Rack middleware that keeps track of the number of active requests and can block new requests.
+module Gitlab
+  module Testing
+    class ActionCableBlocker
+      @@num_active_requests: untyped
+
+      @@block_requests: untyped
+
+      # Returns the number of requests the server is currently processing.
+      def self.num_active_requests: () -> untyped
+
+      # Prevents the server from accepting new requests. Any new requests will be skipped.
+      def self.block_requests!: () -> untyped
+
+      # Allows the server to accept requests again.
+      def self.allow_requests!: () -> untyped
+
+      def self.install: () -> untyped
+    end
+  end
+end

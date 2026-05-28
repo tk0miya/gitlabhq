@@ -1,0 +1,43 @@
+class Admin::ProjectsController < Admin::ApplicationController
+  @group_members: untyped
+
+  @project_members: untyped
+
+  @requesters: untyped
+
+  @project: untyped
+
+  @group: untyped
+
+  include MembersPresentation
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def show: () -> untyped
+
+  def destroy: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def transfer: () -> untyped
+
+  def edit: () -> nil
+
+  def update: () -> untyped
+
+  def repository_check: () -> untyped
+
+  def project: () -> untyped
+
+  def group: () -> untyped
+
+  def project_params: () -> untyped
+
+  def allowed_project_params: () -> ::Array[:description | :name | :runner_registration_enabled]
+
+  private
+
+  def project_identifier_params: () -> untyped
+
+  def transfer_params: () -> untyped
+
+  def page_params: () -> untyped
+end

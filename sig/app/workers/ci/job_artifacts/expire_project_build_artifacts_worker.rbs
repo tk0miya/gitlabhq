@@ -1,0 +1,9 @@
+module Ci
+  module JobArtifacts
+    class ExpireProjectBuildArtifactsWorker
+      include ApplicationWorker
+
+      def perform: (untyped project_id) -> (nil | untyped)
+    end
+  end
+end

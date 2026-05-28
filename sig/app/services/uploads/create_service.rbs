@@ -1,0 +1,28 @@
+# rubocop:disable Gitlab/BoundedContexts -- Uploads is an existing service namespace, see Uploads::DestroyService
+module Uploads
+  class CreateService
+    @parent: untyped
+
+    @current_user: untyped
+
+    @file: untyped
+
+    include Gitlab::Routing
+
+    def initialize: (untyped parent, untyped user, file: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader parent: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader file: untyped
+
+    def build_response: (untyped uploader) -> { upload: untyped, markdown: untyped, url: untyped, alt: untyped, full_path: untyped }
+
+    def empty_response: () -> { upload: nil, markdown: nil, url: nil, alt: nil, full_path: nil }
+  end
+end

@@ -1,0 +1,29 @@
+module Packages
+  module Protection
+    class UpdateRuleService
+      @package_protection_rule: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      include Gitlab::Allowable
+
+      ALLOWED_ATTRIBUTES: ::Array[:package_name_pattern | :package_type | :minimum_access_level_for_delete | :minimum_access_level_for_push]
+
+      def initialize: (untyped package_protection_rule, current_user: untyped, params: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_protection_rule: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def service_response_error: (message: untyped) -> untyped
+    end
+  end
+end

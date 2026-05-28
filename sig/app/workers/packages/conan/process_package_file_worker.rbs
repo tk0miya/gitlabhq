@@ -1,0 +1,9 @@
+module Packages
+  module Conan
+    class ProcessPackageFileWorker
+      include ApplicationWorker
+
+      def perform: (untyped package_file_id) -> untyped
+    end
+  end
+end

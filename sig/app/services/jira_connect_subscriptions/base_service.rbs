@@ -1,0 +1,17 @@
+module JiraConnectSubscriptions
+  class BaseService < ::BaseService
+    @jira_connect_installation: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_accessor jira_connect_installation: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor params: untyped
+
+    def initialize: (untyped jira_connect_installation, ?untyped? user, ?::Hash[untyped, untyped] params) -> void
+  end
+end

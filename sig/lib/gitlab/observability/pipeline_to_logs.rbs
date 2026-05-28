@@ -1,0 +1,59 @@
+module Gitlab
+  module Observability
+    class PipelineToLogs
+      @integration: untyped
+
+      @pipeline_data: untyped
+
+      @pipeline: untyped
+
+      @builds: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped integration, untyped pipeline_data) -> void
+
+      def convert: () -> (untyped | { resourceLogs: ::Array[{ resource: untyped, scopeLogs: ::Array[{ scope: untyped, logRecords: untyped }] }] })
+
+      private
+
+      attr_reader integration: untyped
+
+      attr_reader pipeline_data: untyped
+
+      attr_reader pipeline: untyped
+
+      attr_reader builds: untyped
+
+      def empty_logs_payload: () -> { resourceLogs: ::Array[untyped] }
+
+      def build_resource: () -> { attributes: untyped }
+
+      def build_scope: () -> { name: "gitlab-ci-logs", version: "1.0.0" }
+
+      def build_log_records: () -> untyped
+
+      def build_pipeline_log: () -> { timeUnixNano: untyped, severityNumber: untyped, severityText: untyped, body: { stringValue: ::String }, attributes: untyped }
+
+      def build_job_log: (untyped build) -> { timeUnixNano: untyped, severityNumber: untyped, severityText: untyped, body: { stringValue: ::String }, attributes: untyped }
+
+      def build_job_attributes: (untyped build) -> untyped
+
+      def build_runner_attributes: (untyped build) -> (::Array[untyped] | untyped)
+
+      def build_environment_attributes: (untyped build) -> (::Array[untyped] | ::Array[{ key: "job.environment.name", value: { stringValue: untyped } } | { key: "job.environment.action", value: { stringValue: untyped } }])
+
+      def build_artifacts_attributes: (untyped build) -> (::Array[untyped] | ::Array[{ key: "job.artifacts.filename", value: { stringValue: untyped } } | { key: "job.artifacts.size", value: { intValue: untyped } }])
+
+      def map_severity: (untyped status) -> untyped
+
+      def map_severity_text: (untyped status) -> untyped
+
+      def service_name: () -> untyped
+
+      def environment: () -> untyped
+
+      def time_to_nanoseconds: (untyped active_support_time_value) -> untyped
+    end
+  end
+end

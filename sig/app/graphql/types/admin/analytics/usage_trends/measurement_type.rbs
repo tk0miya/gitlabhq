@@ -1,0 +1,11 @@
+module Types
+  module Admin
+    module Analytics
+      module UsageTrends
+        class MeasurementType < BaseObject
+          include Gitlab::Graphql::Authorize::AuthorizeResource
+        end
+      end
+    end
+  end
+end

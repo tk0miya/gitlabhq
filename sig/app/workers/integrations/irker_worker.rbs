@@ -1,0 +1,61 @@
+module Integrations
+  class IrkerWorker
+    @project: untyped
+
+    @colors: untyped
+
+    @channels: untyped
+
+    @repo_path: untyped
+
+    @repo_name: untyped
+
+    @committer: untyped
+
+    @branch: untyped
+
+    @socket: untyped
+
+    include ApplicationWorker
+
+    def perform: (untyped project_id, untyped channels, untyped colors, untyped push_data, untyped settings) -> (false | true)
+
+    private
+
+    def start_connection: (untyped irker_server, untyped irker_port) -> (false | true)
+
+    def allow_local_requests?: () -> untyped
+
+    def send_to_irker: (untyped privmsg) -> untyped
+
+    def close_connection: () -> untyped
+
+    def send_branch_updates: (untyped push_data) -> untyped
+
+    def new_branch_message: () -> ::String
+
+    def delete_branch_message: () -> ::String
+
+    def send_commits: (untyped push_data) -> (nil | untyped)
+
+    def before_on_new_branch: (untyped push_data) -> untyped
+
+    def send_commits_count: (untyped push_data) -> untyped
+
+    def compare_url: (untyped sha_before, untyped sha_after) -> untyped
+
+    def send_one_commit: (untyped commit_attrs) -> untyped
+
+    def commit_from_id: (untyped id) -> untyped
+
+    def files_count: (untyped commit) -> untyped
+
+    def colorize_sha: (untyped sha) -> untyped
+
+    def colorize_nb_files: (untyped nb_files) -> untyped
+
+    def colorize_url: (untyped url) -> untyped
+
+    def colorize_commits: (untyped commits) -> untyped
+  end
+end

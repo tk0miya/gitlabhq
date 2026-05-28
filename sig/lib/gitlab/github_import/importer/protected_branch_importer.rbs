@@ -1,0 +1,85 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class ProtectedBranchImporter
+        @protected_branch: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        @user_finder: untyped
+
+        @gitlab_user_id_to_github_user_id: untyped
+
+        @allowed_to_push_gitlab_user_ids: untyped
+
+        include ::Import::PlaceholderReferences::Pusher
+
+        attr_reader project: untyped
+
+        # By default on GitHub, both developers and maintainers can merge
+        # a PR into the protected branch
+        GITHUB_DEFAULT_MERGE_ACCESS_LEVEL: untyped
+
+        # protected_branch - An instance of
+        #   `Gitlab::GithubImport::Representation::ProtectedBranch`.
+        # project - An instance of `Project`
+        # client - An instance of `Gitlab::GithubImport::Client`
+        def initialize: (untyped protected_branch, untyped project, untyped client) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader gitlab_user_id_to_github_user_id: untyped
+
+        attr_reader protected_branch: untyped
+
+        attr_reader user_finder: untyped
+
+        def params: () -> { name: untyped, push_access_levels_attributes: untyped, merge_access_levels_attributes: untyped, allow_force_push: untyped, code_owner_approval_required: untyped, importing: true }
+
+        def allow_force_push?: () -> (false | untyped)
+
+        def code_owner_approval_required?: () -> (false | untyped)
+
+        def default_branch?: () -> untyped
+
+        def update_project_settings: () -> untyped
+
+        def update_setting_for_only_allow_merge_if_all_discussions_are_resolved: () -> (nil | untyped)
+
+        def update_project_push_rule: () -> (nil | untyped)
+
+        def push_access_levels_attributes: () -> (untyped | ::Array[{ access_level: untyped }])
+
+        def merge_access_levels_attributes: () -> ::Array[{ access_level: untyped }]
+
+        def allowed_to_push_gitlab_user_ids: () -> (nil | untyped)
+
+        # Gets the strictest merge_access_level between GitHub and GitLab
+        def merge_access_level: () -> untyped
+
+        # action - :push/:merge
+        def gitlab_access_level_for: (untyped action) -> untyped
+
+        def default_branch_push_access_level: () -> untyped
+
+        def default_branch_merge_access_level: () -> untyped
+
+        def default_branch_protection: () -> untyped
+
+        def protected_on_gitlab?: () -> untyped
+
+        def non_default_branch_access_level_for: (untyped action) -> untyped
+
+        def gitlab_default_access_level_for: (untyped action) -> untyped
+
+        def licensed_feature_available?: (untyped feature) -> untyped
+
+        def project_member_ids: () -> untyped
+      end
+    end
+  end
+end

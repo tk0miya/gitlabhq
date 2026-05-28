@@ -1,0 +1,24 @@
+module Gitlab
+  class UntrustedRegexp
+    # This class implements support for Ruby syntax of regexps
+    # and converts that to RE2 representation:
+    # /<regexp>/<flags>
+    class RubySyntax
+      PATTERN: ::Regexp
+
+      # Checks if pattern matches a regexp pattern
+      # but does not enforce it's validity
+      def self.matches_syntax?: (untyped pattern) -> untyped
+
+      # The regexp can match the pattern `/.../`, but may not be fabricatable:
+      # it can be invalid or incomplete: `/match ( string/`
+      def self.valid?: (untyped pattern) -> untyped
+
+      def self.fabricate: (untyped pattern, ?project: untyped?) -> untyped
+
+      def self.fabricate!: (untyped pattern, ?project: untyped?) -> untyped
+
+      def self.create_untrusted_regexp: (untyped pattern, untyped flags) -> untyped
+    end
+  end
+end

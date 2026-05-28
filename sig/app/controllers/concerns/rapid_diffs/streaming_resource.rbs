@@ -1,0 +1,45 @@
+module RapidDiffs
+  module StreamingResource
+    @server_timings: untyped
+
+    extend ActiveSupport::Concern
+
+    include ActionController::Live
+
+    include DiffHelper
+
+    def diffs_stream: () -> untyped
+
+    def request: () -> untyped
+
+    private
+
+    def server_timings: () -> untyped
+
+    def streaming_diff_options: () -> untyped
+
+    def view: () -> untyped
+
+    def stream_diff_files: (untyped options, untyped view_context) -> (nil | untyped)
+
+    def stream_diff_collection: (untyped options, untyped view_context) -> (untyped | nil)
+
+    attr_reader environment: untyped
+
+    def diff_file_component: (untyped diff_file) -> untyped
+
+    def diff_files_collection: (untyped diff_files) -> untyped
+
+    def stream_diff_blobs: (untyped options, untyped view_context) -> untyped
+
+    def highlight_diff_file: (untyped diff_file) -> (nil | untyped)
+
+    def highlight_diff_files: (untyped diff_files) -> untyped
+
+    def render_empty_state: () -> untyped
+
+    class Request < SimpleDelegator
+      def format: () -> untyped
+    end
+  end
+end

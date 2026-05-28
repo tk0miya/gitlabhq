@@ -1,0 +1,29 @@
+# Module to prepend into finders to specify whether or not the finder requires
+# cross project access
+#
+# This module depends on the finder implementing the following methods:
+#
+# - `#execute` should return an `ActiveRecord::Relation` or the `model` needs to
+#              be defined in the call to `requires_cross_project_access`.
+# - `#current_user` the user that requires access (or nil)
+module FinderWithCrossProjectAccess
+  extend ActiveSupport::Concern
+
+  extend ::Gitlab::Utils::Override
+
+  def execute: (*untyped args, **untyped kwargs) -> untyped
+
+  def find_by!: (*untyped args) -> untyped
+
+  def find_by: (*untyped args) -> untyped
+
+  def find: (*untyped args) -> untyped
+
+  attr_accessor should_skip_cross_project_check: untyped
+
+  def skip_cross_project_check: () { () -> untyped } -> untyped
+
+  def can_read_cross_project?: () -> untyped
+
+  def can_read_project?: (untyped project) -> untyped
+end

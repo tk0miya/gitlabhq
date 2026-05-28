@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module Type
+      class Color < ActiveModel::Type::Value
+        def serialize: (untyped value) -> (untyped | nil)
+
+        def serializable?: (untyped value) -> untyped
+
+        def cast_value: (untyped value) -> untyped
+      end
+    end
+  end
+end

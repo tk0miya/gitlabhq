@@ -1,0 +1,17 @@
+module Repositories
+  class RepositoryRedirectUrlConstraint
+    def matches?: (untyped request) -> untyped
+
+    # Allow /info/refs, /info/refs?service=git-upload-pack, and
+    # /info/refs?service=git-receive-pack, but nothing else.
+    def git_request?: (untyped query) -> untyped
+
+    # Check if the path matches any known repository containers.
+    def container_path?: (untyped path) -> untyped
+
+    private
+
+    # These also cover wikis, since a `.wiki` suffix is valid in project/group paths too.
+    def wiki_path?: (untyped path) -> untyped
+  end
+end

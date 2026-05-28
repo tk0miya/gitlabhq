@@ -1,0 +1,31 @@
+module Packages
+  module Npm
+    class PackageFinder
+      @project: untyped
+
+      @namespace: untyped
+
+      @params: untyped
+
+      include ::Packages::FinderHelper
+
+      def initialize: (?project: untyped?, ?namespace: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader params: untyped
+
+      def base: () -> untyped
+
+      def packages_for_project: () -> untyped
+
+      def packages_for_namespace: () -> untyped
+    end
+  end
+end

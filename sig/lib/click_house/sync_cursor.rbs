@@ -1,0 +1,11 @@
+module ClickHouse
+  class SyncCursor
+    QUERY: "SELECT argMax(primary_key_value, recorded_at) AS primary_key_value\nFROM sync_cursors\nWHERE table_name = {table_name:String}\nLIMIT 1\n"
+
+    INSERT_CURSOR_QUERY: "INSERT INTO sync_cursors\n(primary_key_value, table_name, recorded_at)\nVALUES ({primary_key_value:UInt64}, {table_name:String}, {recorded_at:DateTime64})\n"
+
+    def self.cursor_for: (untyped identifier) -> untyped
+
+    def self.update_cursor_for: (untyped identifier, untyped value) -> untyped
+  end
+end

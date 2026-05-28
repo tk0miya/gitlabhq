@@ -1,0 +1,15 @@
+module Gitlab
+  module Metrics
+    module ThreadNameCardinalityLimiter
+      KNOWN_PUMA_THREAD_NAMES: ::Array["puma wrkr check" | "puma srv" | "puma srv tp reap" | "puma srv tp trim" | "puma stat pld"]
+
+      SIDEKIQ_WORKER_THREAD_NAME: "sidekiq_worker_thread"
+
+      def self.normalize_thread_name: (untyped thread_name) -> untyped
+
+      private
+
+      def self.use_thread_name?: (untyped thread_name) -> untyped
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module SearchArguments
+  extend ActiveSupport::Concern
+
+  include Gitlab::Graphql::Authorize::AuthorizeResource
+
+  def ready?: (**untyped args) -> untyped
+
+  private
+
+  def validate_search_in_params!: (untyped args) -> (nil | untyped)
+
+  def validate_search_rate_limit!: (untyped args) -> (nil | untyped)
+
+  def prepare_finder_params: (untyped args) -> untyped
+
+  def prepare_search_params: (untyped args) -> untyped
+
+  def set_search_optimization_param: (untyped args) -> untyped
+end

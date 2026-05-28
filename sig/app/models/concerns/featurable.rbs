@@ -1,0 +1,43 @@
+module Featurable
+  extend ActiveSupport::Concern
+
+  # Can be enabled only for members, everyone or disabled
+  # Access control is made only for non private containers.
+  #
+  # Permission levels:
+  #
+  # Disabled: not enabled for anyone
+  # Private:  enabled only for team members
+  # Enabled:  enabled for everyone able to access the project
+  # Public:   enabled for everyone (only allowed for pages)
+  DISABLED: 0
+
+  PRIVATE: 10
+
+  ENABLED: 20
+
+  PUBLIC: 30
+
+  STRING_OPTIONS: untyped
+
+  PAGES_ACCESS_LEVELS_BY_PROJECT_VISIBILITY: ::Hash[untyped, ::Array[untyped]]
+
+  def access_level: (untyped feature) -> untyped
+
+  def feature_available?: (untyped feature, ?untyped? user) -> untyped
+
+  def string_access_level: (untyped feature) -> untyped
+
+  private
+
+  def allowed_access_levels: () -> untyped
+
+  # Features that we should exclude from the validation
+  def feature_validation_exclusion: () -> ::Array[untyped]
+
+  def has_permission?: (untyped user, untyped feature) -> untyped
+
+  def member?: (untyped user, untyped feature) -> (false | true | untyped)
+
+  def resource_member?: (untyped user, untyped feature) -> untyped
+end

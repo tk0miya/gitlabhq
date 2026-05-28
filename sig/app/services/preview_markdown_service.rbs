@@ -1,0 +1,27 @@
+# Extracts any quick actions from the text, find any users or suggestions.
+# If a block is provided, then it should return rendered HTML from the
+# Banzai pipeline. If there is no block, then the act of finding users
+# will cause the the pipeline to be invoked.
+class PreviewMarkdownService < BaseContainerService
+  @rendered_html: untyped
+
+  def execute: () ?{ (untyped) -> untyped } -> untyped
+
+  private
+
+  def quick_action_types: () -> ::Array["Issue" | "MergeRequest" | "Commit" | "WorkItem"]
+
+  def explain_quick_actions: (untyped text) -> (::Array[untyped | ::Array[untyped]] | untyped)
+
+  def find_user_references: (untyped text) -> untyped
+
+  def find_suggestions: (untyped text) -> (::Array[untyped] | untyped)
+
+  def preview_sugestions?: () -> untyped
+
+  def find_commands_target: () -> untyped
+
+  def target_type: () -> untyped
+
+  def target_id: () -> untyped
+end

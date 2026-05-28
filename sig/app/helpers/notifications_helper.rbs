@@ -1,0 +1,15 @@
+module NotificationsHelper
+  include IconsHelper
+
+  def notification_icon_class: (untyped level) -> untyped
+
+  def notification_icon_level: (untyped notification_setting, ?bool emails_disabled) -> ("owner_disabled" | untyped)
+
+  def notification_icon: (untyped level) -> ("" | untyped)
+
+  def show_unsubscribe_title?: (untyped noteable) -> untyped
+
+  def can_read_project?: (untyped project) -> untyped
+
+  def notification_dropdown_items: (untyped notification_setting) -> untyped
+end

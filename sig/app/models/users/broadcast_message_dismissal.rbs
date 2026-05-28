@@ -1,0 +1,11 @@
+module Users
+  class BroadcastMessageDismissal < ApplicationRecord
+    BROADCAST_MESSAGE_DISMISSAL_COOKIE_KEY: "hide_broadcast_message_"
+
+    def cookie_key: () -> untyped
+
+    def self.find_or_initialize_dismissal: (untyped user, untyped broadcast_message_id) -> untyped
+
+    def self.get_cookie_key: (untyped broadcast_message_id) -> ::String
+  end
+end

@@ -1,0 +1,31 @@
+module Mcp
+  module Tools
+    module WorkItems
+      class BaseTool < Mcp::Tools::GraphqlTool
+        @resolved_parent: untyped
+
+        @resolved_work_item_id: untyped
+
+        include Mcp::Tools::Concerns::Constants
+
+        include Mcp::Tools::Concerns::ResourceFinder
+
+        include Mcp::Tools::Concerns::UrlParser
+
+        # Returns: { type: :project/:group, full_path: String, record: Project/Group }
+        def resolve_parent: () -> untyped
+
+        # Returns: Work item global ID as String (e.g., "gid://gitlab/WorkItem/123")
+        def resolve_work_item_id: () -> untyped
+
+        def validate_no_quick_actions!: (untyped text, ?field_name: ::String) -> (nil | untyped)
+
+        private
+
+        def resolve_parent_from_id: () -> { type: untyped, full_path: untyped, record: untyped }
+
+        def resolve_work_item_from_params: () -> untyped
+      end
+    end
+  end
+end

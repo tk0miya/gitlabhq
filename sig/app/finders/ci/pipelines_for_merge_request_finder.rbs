@@ -1,0 +1,40 @@
+module Ci
+  # A state object to centralize logic related to merge request pipelines
+  class PipelinesForMergeRequestFinder
+    @merge_request: untyped
+
+    @current_user: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    COMMITS_LIMIT: 100
+
+    def initialize: (untyped merge_request, untyped current_user) -> void
+
+    attr_reader merge_request: untyped
+
+    attr_reader current_user: untyped
+
+    # Fetch all pipelines that the user can read.
+    def execute: () -> untyped
+
+    # Fetch all pipelines without permission check.
+    def all: () -> untyped
+
+    private
+
+    def all_pipelines_for_merge_request: () -> untyped
+
+    # NOTE: this method returns only parent merge request pipelines.
+    # Child merge request pipelines have a different source.
+    def triggered_by_merge_request: () -> untyped
+
+    def triggered_for_branch: () -> untyped
+
+    def sort: (untyped pipelines) -> untyped
+
+    def can_read_pipeline_in_target_project?: () -> untyped
+
+    def can_read_pipeline_in_source_project?: () -> untyped
+  end
+end

@@ -1,0 +1,24 @@
+module Banzai
+  module Filter
+    # HTML filter that "fixes" links to uploads.
+    #
+    # Context options:
+    #   :group
+    #   :only_path
+    #   :project
+    #   :system_note
+    class UploadLinkFilter < BaseRelativeLinkFilter
+      prepend Concerns::PipelineTimingCheck
+
+      def call: () -> untyped
+
+      def process_link_to_upload_attr: (untyped html_attr) -> (nil | untyped)
+
+      def replace_html_attr_value: (untyped html_attr, untyped path) -> untyped
+
+      def preserve_original_link: (untyped html_attr, untyped node) -> (nil | untyped)
+
+      def group: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillOrganizationIdKeys < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def backfill_organization_id: (untyped keys_batch) -> untyped
+
+      def backfill_ssh_keys: (untyped ssh_keys) -> untyped
+
+      def backfill_deploy_keys: (untyped deploy_keys) -> untyped
+
+      def backfill_orphaned_deploy_keys: (untyped orphaned_keys) -> untyped
+    end
+  end
+end

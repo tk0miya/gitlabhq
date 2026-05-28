@@ -1,0 +1,21 @@
+class ClustersFinder
+  @clusterable: untyped
+
+  @user: untyped
+
+  @scope: untyped
+
+  def initialize: (untyped clusterable, untyped user, untyped scope) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  attr_reader clusterable: untyped
+
+  attr_reader user: untyped
+
+  attr_reader scope: untyped
+
+  def filter_by_scope: (untyped clusters) -> untyped
+end

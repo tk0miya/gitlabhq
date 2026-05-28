@@ -1,0 +1,18 @@
+module GoogleApi
+  class AuthorizationsController < ApplicationController
+    include Gitlab::Utils::StrongMemoize
+
+    #
+    # handle the response from google after the user
+    # goes through authentication and authorization process
+    def callback: () -> untyped
+
+    private
+
+    def validate_session_key!: () -> (untyped | nil)
+
+    def redirect_uri_from_session: () -> (untyped | nil)
+
+    def session_key_for_redirect_uri: (untyped state) -> untyped
+  end
+end

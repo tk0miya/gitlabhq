@@ -1,0 +1,60 @@
+module Gitlab
+  module GithubImport
+    module Markdown
+      class Attachment
+        @name: untyped
+
+        @url: untyped
+
+        @web_endpoint: untyped
+
+        MEDIA_TYPES: ::Array["gif" | "jpeg" | "jpg" | "mov" | "mp4" | "png" | "svg" | "webm"]
+
+        DOC_TYPES: ::Array["csv" | "docx" | "fodg" | "fodp" | "fods" | "fodt" | "gz" | "log" | "md" | "odf" | "odg" | "odp" | "ods" | "odt" | "pdf" | "pptx" | "tgz" | "txt" | "xls" | "xlsx" | "zip"]
+
+        # markdown_node - CommonMarker::Node
+        def self.from_markdown: (untyped markdown_node, untyped web_endpoint) -> untyped
+
+        private
+
+        # this checks for any attachment links that appear as plain text without
+        # a filetype suffix e.g. "https://github.com/user-attachments/assets/75334fd4"
+        # each markdown_node will only ever have a single url as embedded media on
+        # GitHub is always on its own line
+        def self.from_markdown_text: (untyped markdown_node, untyped web_endpoint) -> (nil | untyped)
+
+        def self.from_markdown_image: (untyped markdown_node, untyped web_endpoint) -> (nil | untyped)
+
+        def self.from_markdown_link: (untyped markdown_node, untyped web_endpoint) -> (nil | untyped)
+
+        def self.from_inline_html: (untyped markdown_node, untyped web_endpoint) -> (nil | untyped)
+
+        def self.github_url?: (untyped url, untyped web_endpoint, ?docs: bool, ?media: bool) -> (untyped | untyped | nil)
+
+        def self.valid_user_attachment_url?: (untyped url, untyped web_endpoint) -> (true | untyped)
+
+        def self.whitelisted_type?: (untyped url, untyped web_endpoint, ?docs: bool, ?media: bool) -> (true | untyped | untyped | nil)
+
+        public
+
+        attr_reader name: untyped
+
+        attr_reader url: untyped
+
+        attr_reader web_endpoint: untyped
+
+        def initialize: (untyped name, untyped url, untyped web_endpoint) -> void
+
+        def part_of_project_blob?: (untyped import_source) -> untyped
+
+        def doc_belongs_to_project?: (untyped import_source) -> untyped
+
+        def media?: (untyped import_source) -> untyped
+
+        def user_attachment?: () -> untyped
+
+        def inspect: () -> ::String
+      end
+    end
+  end
+end

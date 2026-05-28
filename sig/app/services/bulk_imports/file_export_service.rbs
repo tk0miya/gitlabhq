@@ -1,0 +1,42 @@
+module BulkImports
+  class FileExportService
+    @portable: untyped
+
+    @export_path: untyped
+
+    @relation: untyped
+
+    @user: untyped
+
+    @export_service: untyped
+
+    include Gitlab::ImportExport::CommandLineUtil
+
+    SINGLE_OBJECT_RELATIONS: ::Array[untyped]
+
+    # @param export [BulkImports::Export] the export record providing portable and relation
+    # @param export_path [String] directory path where the exported file will be written
+    # @param user [User] the user performing the export (currently unused)
+    def initialize: (untyped export, untyped export_path, untyped user) -> void
+
+    def execute: (?::Hash[untyped, untyped] options) -> untyped
+
+    def export_batch: (untyped ids) -> untyped
+
+    def exported_filename: () -> ::String
+
+    def exported_objects_count: () -> untyped
+
+    private
+
+    attr_reader export_path: untyped
+
+    attr_reader portable: untyped
+
+    attr_reader relation: untyped
+
+    def export_service: () -> untyped
+
+    def archive_exported_data: () -> untyped
+  end
+end

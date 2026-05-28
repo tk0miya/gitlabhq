@@ -1,0 +1,32 @@
+class ContainerExpirationPolicyWorker
+  include ApplicationWorker
+
+  # rubocop:disable Scalability/CronWorkerContext
+  # This worker does not perform work scoped to a context
+  include CronjobQueue
+
+  include ExclusiveLeaseGuard
+
+  InvalidPolicyError: untyped
+
+  BATCH_SIZE: 1000
+
+  def perform: () -> untyped
+
+  private
+
+  def disable_policies_without_container_repositories: () -> untyped
+
+  def log_counts: () -> untyped
+
+  # data_consistency :delayed not used as this is a cron job and those jobs are
+  # not performed with a delay
+  # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/63635#note_603771207
+  def use_replica_if_available: () { (?) -> untyped } -> untyped
+
+  def process_stale_ongoing_cleanups: () -> untyped
+
+  def lease_timeout: () -> untyped
+
+  def delete_tags_service_timeout: () -> untyped
+end

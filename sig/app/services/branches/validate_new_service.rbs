@@ -1,0 +1,15 @@
+module Branches
+  class ValidateNewService < BaseService
+    @project: untyped
+
+    def initialize: (untyped project) -> void
+
+    def execute: (untyped branch_name, ?force: bool) -> untyped
+
+    private
+
+    def valid_name?: (untyped branch_name) -> untyped
+
+    def branch_exist?: (untyped branch_name) -> untyped
+  end
+end

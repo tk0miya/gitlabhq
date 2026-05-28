@@ -1,0 +1,9 @@
+module Projects
+  module PipelineHelper
+    extend ::Ci::BuildsHelper
+
+    def js_pipeline_tabs_data: (untyped project, untyped pipeline, untyped _user) -> { failed_jobs_count: untyped, project_path: untyped, graphql_resource_etag: untyped, metrics_path: untyped, pipeline_iid: untyped, pipeline_path: untyped, pipeline_project_path: untyped, total_job_count: untyped, summary_endpoint: untyped, suite_endpoint: untyped, blob_path: untyped, has_test_report: untyped, empty_state_image_path: untyped, artifacts_expired_image_path: untyped, tests_count: untyped, manual_variables_count: untyped, can_read_variables: untyped, display_pipeline_variables: untyped }
+
+    def js_pipeline_header_data: (untyped project, untyped pipeline) -> { full_path: untyped, graphql_resource_etag: untyped, pipeline_iid: untyped, pipelines_path: untyped }
+  end
+end

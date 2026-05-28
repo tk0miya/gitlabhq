@@ -1,0 +1,17 @@
+class BulkImports::Failure < ApplicationRecord
+  def relation: () -> (untyped | ::String)
+
+  def exception_message=: (untyped message) -> untyped
+
+  def source_title=: (untyped title) -> untyped
+
+  def source_url=: (untyped url) -> untyped
+
+  def subrelation=: (untyped url) -> untyped
+
+  private
+
+  def pipeline_relation: () -> untyped
+
+  def default_relation: () -> untyped
+end

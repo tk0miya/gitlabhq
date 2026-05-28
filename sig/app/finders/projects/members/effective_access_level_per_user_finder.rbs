@@ -1,0 +1,17 @@
+module Projects
+  module Members
+    class EffectiveAccessLevelPerUserFinder < EffectiveAccessLevelFinder
+      @project: untyped
+
+      @user: untyped
+
+      def initialize: (untyped project, untyped user) -> void
+
+      private
+
+      attr_reader user: untyped
+
+      def apply_scopes: (untyped members) -> untyped
+    end
+  end
+end

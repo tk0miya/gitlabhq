@@ -1,0 +1,11 @@
+module SourcegraphDecorator
+  extend ActiveSupport::Concern
+
+  private
+
+  def push_sourcegraph_gon: () -> (nil | untyped)
+
+  def sourcegraph_enabled?: () -> untyped
+
+  def sourcegraph_enabled_for_project?: () -> (false | untyped | true)
+end

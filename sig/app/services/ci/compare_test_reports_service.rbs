@@ -1,0 +1,13 @@
+module Ci
+  class CompareTestReportsService < CompareReportsBaseService
+    def comparer_class: () -> untyped
+
+    def serializer_class: () -> untyped
+
+    def get_report: (untyped pipeline) -> untyped
+
+    def build_comparer: (untyped base_report, untyped head_report) -> untyped
+
+    def failed_test_cases: (untyped test_reports_comparer) -> untyped
+  end
+end

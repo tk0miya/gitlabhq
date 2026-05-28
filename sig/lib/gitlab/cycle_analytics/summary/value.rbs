@@ -1,0 +1,35 @@
+module Gitlab
+  module CycleAnalytics
+    module Summary
+      class Value
+        attr_reader value: untyped
+
+        def raw_value: () -> untyped
+
+        def to_s: () -> untyped
+
+        class None < ::Gitlab::CycleAnalytics::Summary::Value
+          def raw_value: () -> 0
+
+          def to_i: () -> untyped
+
+          def to_s: () -> "-"
+        end
+
+        class Numeric < ::Gitlab::CycleAnalytics::Summary::Value
+          @value: untyped
+
+          def initialize: (untyped value) -> void
+
+          def to_s: () -> ("0" | untyped)
+
+          def to_i: () -> untyped
+        end
+
+        class PrettyNumeric < Numeric
+          def to_s: () -> untyped
+        end
+      end
+    end
+  end
+end

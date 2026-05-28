@@ -1,0 +1,26 @@
+module Gitlab
+  module Email
+    module ServiceDesk
+      # Doesn't include Gitlab::Email::Common because a custom email doesn't
+      # support all features and methods of ingestable email addresses like
+      # incoming_email and service_desk_email.
+      module CustomEmail
+        EMAIL_REGEXP_WITH_ANCHORS: ::Regexp
+
+        REPLY_ADDRESS_KEY_REGEXP: ::Regexp
+
+        def self.reply_address: (untyped work_item, untyped reply_key) -> (nil | untyped)
+
+        def self.key_from_reply_address: (untyped email) -> (nil | untyped)
+
+        # Checks whether the given email is a custom email and returns
+        # the project's mail key.
+        def self.key_from_settings: (untyped email) -> (nil | untyped)
+
+        private
+
+        def self.find_service_desk_setting_from_reply_address: (untyped email, untyped key) -> (nil | untyped)
+      end
+    end
+  end
+end

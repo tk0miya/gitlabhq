@@ -1,0 +1,19 @@
+module Tags
+  class DestroyService < BaseService
+    def execute: (untyped tag_name, ?skip_find: bool) -> untyped
+
+    def error: (untyped message, ?::Integer return_code) -> untyped
+
+    def success: (untyped message) -> untyped
+
+    private
+
+    def allowed_to_delete?: (untyped tag) -> untyped
+
+    def failed_to_remove_tag_error: () -> untyped
+
+    def destroy_releases: (untyped tag_name) -> untyped
+
+    def unlock_artifacts: (untyped tag_name) -> untyped
+  end
+end

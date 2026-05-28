@@ -1,0 +1,25 @@
+module Gitlab
+  class ChatNameToken
+    @token: untyped
+
+    attr_reader token: untyped
+
+    TOKEN_LENGTH: 50
+
+    EXPIRY_TIME: untyped
+
+    def initialize: (?untyped token) -> void
+
+    def get: () -> untyped
+
+    def store!: (untyped params) -> untyped
+
+    def delete: () -> untyped
+
+    private
+
+    def new_token: () -> untyped
+
+    def redis_shared_state_key: () -> ::String
+  end
+end

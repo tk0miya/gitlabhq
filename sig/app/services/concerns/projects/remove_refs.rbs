@@ -1,0 +1,17 @@
+module Projects
+  module RemoveRefs
+    extend ActiveSupport::Concern
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    LOCK_RETRY: 3
+
+    LOCK_TTL: untyped
+
+    LOCK_SLEEP: untyped
+
+    def serialized_remove_refs: (untyped project_id) { (?) -> untyped } -> untyped
+
+    def lock_params: () -> { ttl: untyped, retries: untyped, sleep_sec: untyped }
+  end
+end

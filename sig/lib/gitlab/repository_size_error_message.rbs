@@ -1,0 +1,28 @@
+module Gitlab
+  class RepositorySizeErrorMessage
+    @checker: untyped
+
+    include ActiveSupport::NumberHelper
+
+    # @param checker [RepositorySizeChecker]
+    def initialize: (untyped checker) -> void
+
+    def commit_error: () -> ::String
+
+    def merge_error: () -> ::String
+
+    def push_error: () -> ::String
+
+    def new_changes_error: () -> ::String
+
+    def more_info_message: () -> "Contact your GitLab administrator for more information."
+
+    def above_size_limit_message: () -> ::String
+
+    private
+
+    def base_message: () -> "because this repository has exceeded the allocated storage for your project"
+
+    def formatted: (untyped number) -> untyped
+  end
+end

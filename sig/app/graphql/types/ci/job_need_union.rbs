@@ -1,0 +1,9 @@
+module Types
+  module Ci
+    class JobNeedUnion < GraphQL::Schema::Union
+      TypeNotSupportedError: untyped
+
+      def self.resolve_type: (untyped object, untyped context) -> untyped
+    end
+  end
+end

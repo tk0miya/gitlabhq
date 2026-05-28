@@ -1,0 +1,27 @@
+module Resolvers
+  class MilestonesResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    include TimeFrameArguments
+
+    include LooksAhead
+
+    NON_STABLE_CURSOR_SORTS: ::Array[:expired_last_due_date_asc | :expired_last_due_date_desc]
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    private
+
+    def preloads: () -> { releases: :releases }
+
+    def milestones_finder_params: (untyped args) -> untyped
+
+    def parent: () -> untyped
+
+    def parent_id_parameters: (untyped args) -> untyped
+
+    def parse_gids: (untyped gids) -> untyped
+
+    def non_stable_cursor_sort?: (untyped sort) -> untyped
+  end
+end

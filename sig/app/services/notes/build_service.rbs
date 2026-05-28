@@ -1,0 +1,19 @@
+module Notes
+  class BuildService < ::BaseService
+    def execute: (?executing_user: untyped?) -> untyped
+
+    private
+
+    def handle_external_author: () -> (nil | untyped)
+
+    def handle_confidentiality_params: () -> untyped
+
+    def new_note: (untyped params, untyped discussion) -> untyped
+
+    def find_discussion: (untyped discussion_id) -> untyped
+
+    def discussion_not_found: () -> untyped
+
+    def system_note_reply_error: () -> untyped
+  end
+end

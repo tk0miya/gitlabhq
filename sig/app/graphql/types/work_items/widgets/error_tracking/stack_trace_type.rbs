@@ -1,0 +1,13 @@
+module Types
+  module WorkItems
+    module Widgets
+      module ErrorTracking
+        # Disabling widget level authorization as it might be too granular
+        # and we already authorize the parent work item
+        # rubocop:disable Graphql/AuthorizeTypes -- reason above
+        class StackTraceType < BaseObject
+        end
+      end
+    end
+  end
+end

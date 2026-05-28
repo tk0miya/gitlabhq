@@ -1,0 +1,15 @@
+module Integrations
+  module Base
+    module Youtrack
+      extend ActiveSupport::Concern
+
+      include Base::IssueTracker
+
+      include Integrations::HasIssueTrackerFields
+
+      include HasAvatar
+
+      FIELDS: ::Array["project_url" | "issues_url"]
+    end
+  end
+end

@@ -1,0 +1,33 @@
+module Import
+  class GithubGroupsController < ApplicationController
+    @client_orgs: untyped
+
+    @client: untyped
+
+    include Import::GithubOauth
+
+    # Same value as ORGANIZATIONS_PER_PAGE in
+    # `app/assets/javascripts/import_entities/import_projects/components/github_organizations_box.vue`
+    PAGE_LENGTH: 25
+
+    def status: () -> untyped
+
+    private
+
+    def serialized_provider_groups: () -> untyped
+
+    def importable_orgs: () -> untyped
+
+    def client_orgs: () -> untyped
+
+    def client: () -> untyped
+
+    def pagination_options: () -> { page: untyped, per_page: untyped }
+
+    def auth_state_key: () -> ::Symbol
+
+    def access_token_key: () -> ::Symbol
+
+    def provider_name: () -> :github
+  end
+end

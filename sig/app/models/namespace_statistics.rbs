@@ -1,0 +1,15 @@
+class NamespaceStatistics < ApplicationRecord
+  include AfterCommitQueue
+
+  def refresh!: (?only: untyped) -> (nil | untyped)
+
+  def update_storage_size: () -> (nil | untyped)
+
+  def update_dependency_proxy_size: () -> (nil | untyped)
+
+  def self.columns_to_refresh: () -> ::Array[:dependency_proxy_size]
+
+  private
+
+  def update_root_storage_statistics: () -> (nil | untyped)
+end

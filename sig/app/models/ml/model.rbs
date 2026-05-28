@@ -1,0 +1,21 @@
+module Ml
+  class Model < ApplicationRecord
+    include Presentable
+
+    include Sortable
+
+    include CacheMarkdownField
+
+    EXPERIMENT_NAME_PREFIX: "[model]"
+
+    def all_packages: () -> untyped
+
+    def valid_default_experiment?: () -> (nil | untyped)
+
+    def self.by_project_id_and_id: (untyped project_id, untyped id) -> untyped
+
+    def self.by_project_id_and_name: (untyped project_id, untyped name) -> untyped
+
+    def self.prefixed_experiment: (untyped string) -> ::String
+  end
+end

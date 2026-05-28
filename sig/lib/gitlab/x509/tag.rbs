@@ -1,0 +1,11 @@
+module Gitlab
+  module X509
+    class Tag < Gitlab::SignedTag
+      include Gitlab::Utils::StrongMemoize
+
+      def self.context_from_tag: (untyped tag) -> untyped
+
+      def signature: () -> untyped
+    end
+  end
+end

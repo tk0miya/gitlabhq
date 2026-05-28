@@ -1,0 +1,25 @@
+module Clusters
+  class DestroyService
+    @current_user: untyped
+
+    @params: untyped
+
+    @response: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (?untyped? user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: (untyped cluster) -> untyped
+
+    private
+
+    def cleanup?: () -> untyped
+
+    def start_cleanup!: (untyped cluster) -> untyped
+
+    def destroy_cluster!: (untyped cluster) -> untyped
+  end
+end

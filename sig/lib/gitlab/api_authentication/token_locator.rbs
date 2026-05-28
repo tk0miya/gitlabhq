@@ -1,0 +1,43 @@
+module Gitlab
+  module APIAuthentication
+    class TokenLocator
+      @location: untyped
+
+      @token_identifier: untyped
+
+      UsernameAndPassword: untyped
+
+      include ActiveModel::Validations
+
+      include ActionController::HttpAuthentication::Basic
+
+      VALID_LOCATIONS: ::Array[:http_basic_auth | :http_token | :http_bearer_token | :http_deploy_token_header | :http_job_token_header | :http_private_token_header | :http_header | :token_param | :private_token_param | :job_token_param | :access_token_param]
+
+      attr_reader location: untyped
+
+      def initialize: (untyped location) -> void
+
+      def extract: (untyped request) -> untyped
+
+      private
+
+      def extract_location: (untyped location) -> untyped
+
+      def extract_from_http_basic_auth: (untyped request) -> (nil | untyped)
+
+      def extract_from_http_token: (untyped request) -> (nil | untyped)
+
+      def extract_from_http_bearer_token: (untyped request) -> (nil | untyped)
+
+      def extract_from_http_deploy_token_header: (untyped request) -> (nil | untyped)
+
+      def extract_from_http_job_token_header: (untyped request) -> (nil | untyped)
+
+      def extract_from_http_private_token_header: (untyped request) -> (nil | untyped)
+
+      def extract_from_http_header: (untyped request) -> (nil | untyped)
+
+      def extract_from_query_param: (untyped request, untyped param_name) -> (nil | untyped)
+    end
+  end
+end

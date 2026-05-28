@@ -1,0 +1,56 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a parent-child or cross-project downstream trigger.
+        #
+        class Trigger < ::Gitlab::Config::Entry::Simplifiable
+          # cross-project
+          class SimpleTrigger < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            def value: () -> { project: untyped }
+          end
+
+          class ComplexTrigger < ::Gitlab::Config::Entry::Simplifiable
+            class CrossProjectTrigger < ::Gitlab::Config::Entry::Node
+              include ::Gitlab::Config::Entry::Validatable
+
+              include ::Gitlab::Config::Entry::Attributable
+
+              include ::Gitlab::Config::Entry::Configurable
+
+              ALLOWED_KEYS: ::Array[:project | :branch | :strategy | :forward | :inputs]
+
+              def value: () -> untyped
+            end
+
+            # parent-child
+            class SameProjectTrigger < ::Gitlab::Config::Entry::Node
+              include ::Gitlab::Config::Entry::Validatable
+
+              include ::Gitlab::Config::Entry::Attributable
+
+              include ::Gitlab::Config::Entry::Configurable
+
+              INCLUDE_MAX_SIZE: 3
+
+              ALLOWED_KEYS: ::Array[:strategy | :include | :forward]
+
+              def value: () -> untyped
+            end
+
+            class UnknownStrategy < ::Gitlab::Config::Entry::Node
+              def errors: () -> ::Array["config must specify either project or include"]
+            end
+          end
+
+          class UnknownStrategy < ::Gitlab::Config::Entry::Node
+            def errors: () -> ::Array[::String]
+          end
+        end
+      end
+    end
+  end
+end

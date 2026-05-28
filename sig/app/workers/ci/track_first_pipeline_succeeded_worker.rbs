@@ -1,0 +1,9 @@
+module Ci
+  class TrackFirstPipelineSucceededWorker
+    include ApplicationWorker
+
+    include Gitlab::InternalEventsTracking
+
+    def perform: (untyped pipeline_id) -> (nil | untyped)
+  end
+end

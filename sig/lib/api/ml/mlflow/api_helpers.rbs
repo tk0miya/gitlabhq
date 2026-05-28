@@ -1,0 +1,71 @@
+module API
+  module Ml
+    module Mlflow
+      module ApiHelpers
+        @experiment: untyped
+
+        @candidate: untyped
+
+        @model: untyped
+
+        OUTER_QUOTES_REGEXP: ::Regexp
+
+        GITLAB_TAG_PREFIX: "gitlab."
+
+        def check_api_read!: () -> (untyped | nil)
+
+        def check_api_write!: () -> (untyped | nil)
+
+        def check_api_model_registry_read!: () -> (untyped | nil)
+
+        def check_api_model_registry_write!: () -> (untyped | nil)
+
+        def resource_not_found!: () -> untyped
+
+        def resource_already_exists!: () -> untyped
+
+        def invalid_parameter!: (?untyped? message) -> untyped
+
+        def update_failed!: () -> untyped
+
+        def experiment_repository: () -> untyped
+
+        def candidate_repository: () -> untyped
+
+        def experiment: () -> untyped
+
+        def candidate: () -> untyped
+
+        def candidates_order_params: (untyped params) -> (untyped | { order_by: untyped, order_by_type: untyped, sort: untyped })
+
+        def model_order_params: (untyped params) -> { order_by: untyped, sort: untyped }
+
+        def model_filter_params: (untyped params) -> (::Hash[untyped, untyped] | { name: untyped })
+
+        def gitlab_tags: () -> (nil | untyped)
+
+        def custom_version: () -> (nil | untyped)
+
+        def find_experiment!: (untyped iid, untyped name) -> untyped
+
+        def find_candidate!: (untyped eid) -> untyped
+
+        def find_model: (untyped project, untyped name) -> untyped
+
+        def find_model_version: (untyped project, untyped name, untyped version) -> untyped
+
+        def find_model_artifact: (untyped project, untyped version, untyped file_path) -> untyped
+
+        def find_run_artifact: (untyped project, untyped version, untyped file_path) -> untyped
+
+        def list_model_artifacts: (untyped project, untyped version) -> untyped
+
+        def list_run_artifacts: (untyped project, untyped version) -> untyped
+
+        def model: () -> untyped
+
+        def candidate_version?: (untyped model_version) -> (false | untyped)
+      end
+    end
+  end
+end

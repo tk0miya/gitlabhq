@@ -1,0 +1,108 @@
+class Label < ApplicationRecord
+  # NOTE: The id pattern only matches when all characters on the expression
+  # are digits, so it will match ~2 but not ~2fa because that's probably a
+  # label name and we want it to be matched as such.
+  self.@reference_pattern: untyped
+
+  include BaseLabel
+
+  include Referable
+
+  include Subscribable
+
+  include OptionallySearch
+
+  include Sortable
+
+  include FromUnion
+
+  include Presentable
+
+  include EachBatch
+
+  include BatchNullifyDependentAssociations
+
+  DESCRIPTION_LENGTH_MAX: untyped
+
+  def self.pluck_titles: () -> untyped
+
+  def self.prioritized: (untyped project) -> untyped
+
+  def self.unprioritized: (untyped project) -> untyped
+
+  def self.left_join_priorities: () -> untyped
+
+  def self.optionally_subscribed_by: (untyped user_id) -> untyped
+
+  def self.reference_prefix: () -> "~"
+
+  #
+  # Pattern used to extract label references from text
+  #
+  # This pattern supports cross-project references.
+  #
+  def self.reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> nil
+
+  def self.ids_on_board: (untyped board_id) -> untyped
+
+  def self.on_project_board?: (untyped project_id, untyped label_id) -> (false | untyped)
+
+  def open_issues_count: (?untyped? user) -> untyped
+
+  def closed_issues_count: (?untyped? user) -> untyped
+
+  def open_merge_requests_count: (?untyped? user) -> untyped
+
+  def prioritize!: (untyped project, untyped value) -> (nil | untyped)
+
+  def unprioritize!: (untyped project) -> untyped
+
+  def unprioritize_all!: () -> (nil | untyped)
+
+  def priority: (untyped project) -> untyped
+
+  #
+  # Returns the String necessary to reference this Label in Markdown
+  #
+  # format - Symbol format to use (default: :id, optional: :name)
+  #
+  # Examples:
+  #
+  #   Label.first.to_reference                                     # => "~1"
+  #   Label.first.to_reference(format: :name)                      # => "~\"bug\""
+  #   Label.first.to_reference(project, target_container: same_namespace_project)    # => "gitlab-foss~1"
+  #   Label.first.to_reference(project, target_container: another_namespace_project) # => "gitlab-org/gitlab-foss~1"
+  #
+  # Returns a String
+  #
+  def to_reference: (?untyped? from, ?target_container: untyped?, ?format: ::Symbol, ?full: bool) -> untyped
+
+  def as_json: (?::Hash[untyped, untyped] options) -> untyped
+
+  def hook_attrs: () -> { id: untyped, title: untyped, color: untyped, project_id: untyped, created_at: untyped, updated_at: untyped, template: untyped, description: untyped, type: untyped, group_id: untyped }
+
+  def present: (?::Hash[untyped, untyped] attributes) -> untyped
+
+  # TODO: Remove when sharding key NOT NULL constraint is validated
+  # This should not happen often, and will only happen once for any record
+  # https://gitlab.com/gitlab-org/gitlab/-/issues/558353
+  def refresh_markdown_cache: () -> untyped
+
+  private
+
+  def sharding_key_columns: () -> ::Array[:project_id | :group_id | :organization_id]
+
+  def validate_description_length?: () -> (false | true | untyped)
+
+  def issues_count: (untyped user, ?::Hash[untyped, untyped] params) -> untyped
+
+  def label_format_reference: (?::Symbol format) -> untyped
+
+  def prevent_locked_label_destroy: () -> (nil | untyped)
+
+  def ensure_lock_on_merge_allowed: () -> (nil | untyped)
+
+  def ensure_single_parent_for_given_type: () -> untyped
+end

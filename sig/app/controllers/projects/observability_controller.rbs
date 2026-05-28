@@ -1,0 +1,25 @@
+module Projects
+  class ObservabilityController < Projects::ApplicationController
+    @data: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def show: () -> untyped
+
+    private
+
+    def observability_setting: () -> untyped
+
+    def highest_accessible_ancestor_group: () -> (nil | untyped)
+
+    def authorize_read_observability!: () -> untyped
+
+    def observability_path: () -> untyped
+
+    def permitted_params: () -> untyped
+
+    def reject_path_traversal!: () -> untyped
+
+    def filtered_query_params: () -> (::Hash[untyped, untyped] | untyped)
+  end
+end

@@ -1,0 +1,27 @@
+module Resolvers
+  module Ci
+    class PipelineAnalyticsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      MAX_SUBGROUP_PATHS: untyped
+
+      alias container object
+
+      def resolve: (lookahead: untyped, ?source: untyped?, ?ref: untyped?, ?from_time: untyped?, ?to_time: untyped?, ?subgroup_full_paths: untyped?) -> untyped
+
+      private
+
+      def call_service: (untyped base_service_args, untyped lookahead, untyped field, untyped service) -> ::Hash[untyped, untyped]
+
+      def legacy_fields: (untyped lookahead) -> (::Hash[untyped, untyped] | untyped)
+
+      def any_field_selected?: (untyped lookahead, *untyped fields) -> untyped
+
+      def selected_status_groups: (untyped aggregate_lookahead) -> (::Array[untyped] | untyped)
+
+      def selected_period_statuses: (untyped lookahead, untyped period) -> (::Array[untyped] | untyped)
+
+      def selected_duration_percentiles: (untyped aggregate_lookahead) -> (::Array[untyped] | untyped)
+    end
+  end
+end

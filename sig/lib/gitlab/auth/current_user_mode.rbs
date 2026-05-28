@@ -1,0 +1,101 @@
+module Gitlab
+  module Auth
+    # Keeps track of the current session user mode
+    #
+    # In order to perform administrative tasks over some interfaces,
+    # an administrator must have explicitly enabled admin-mode
+    # e.g. on web access require re-authentication
+    class CurrentUserMode
+      @user: untyped
+
+      @session: untyped
+
+      @admin_mode_rs_key: untyped
+
+      @admin_mode_requested_rs_key: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      NotRequestedError: untyped
+
+      NonSidekiqEnvironmentError: untyped
+
+      # RequestStore entries
+      CURRENT_REQUEST_BYPASS_SESSION_ADMIN_ID_RS_KEY: { res: :current_user_mode, data: :bypass_session_admin_id }
+
+      CURRENT_REQUEST_ADMIN_MODE_USER_RS_KEY: { res: :current_user_mode, data: :current_admin }
+
+      # SessionStore entries
+      SESSION_STORE_KEY: :current_user_mode
+
+      ADMIN_MODE_START_TIME_KEY: :admin_mode
+
+      ADMIN_MODE_REQUESTED_TIME_KEY: :admin_mode_requested
+
+      MAX_ADMIN_MODE_TIME: untyped
+
+      ADMIN_MODE_REQUESTED_GRACE_PERIOD: untyped
+
+      # Admin mode activation requires storing a flag in the user session. Using this
+      # method when scheduling jobs in sessionless environments (e.g. Sidekiq, API)
+      # will bypass the session check for a user that was already in admin mode
+      #
+      # If passed a block, it will surround the block execution and reset the session
+      # bypass at the end; otherwise you must remember to call '.reset_bypass_session!'
+      def self.bypass_session!: (untyped admin_id) ?{ () -> untyped } -> (nil | untyped)
+
+      def self.reset_bypass_session!: (?untyped? admin_id) -> untyped
+
+      def self.bypass_session_admin_id: () -> untyped
+
+      def self.uncache_admin_mode_state: (?untyped? admin_id) -> untyped
+
+      # Store in the current request the provided user model (only if in admin mode)
+      # and yield
+      def self.with_current_admin: (untyped admin) { () -> untyped } -> untyped
+
+      def self.current_admin: () -> untyped
+
+      # Execute the given block with admin privileges if the user is an admin and admin mode is enabled.
+      # Otherwise, execute the block with regular user permissions.
+      def self.optionally_run_in_admin_mode: (untyped user) { () -> untyped } -> untyped
+
+      def initialize: (untyped user, ?untyped session) -> void
+
+      def admin_mode?: () -> (false | untyped)
+
+      def admin_mode_requested?: () -> (false | untyped)
+
+      def enable_admin_mode!: (?password: untyped?, ?skip_password_validation: bool) -> (false | true)
+
+      def disable_admin_mode!: () -> (nil | untyped)
+
+      def request_admin_mode!: () -> (nil | untyped)
+
+      def current_session_data: () -> untyped
+
+      private
+
+      attr_reader user: untyped
+
+      # RequestStore entry to cache #admin_mode? result
+      def admin_mode_rs_key: () -> untyped
+
+      # RequestStore entry to cache #admin_mode_requested? result
+      def admin_mode_requested_rs_key: () -> untyped
+
+      def session_with_admin_mode?: () -> (true | untyped)
+
+      def admin_mode_requested_in_grace_period?: () -> untyped
+
+      def bypass_session?: () -> untyped
+
+      def reset_request_store_cache_entries: () -> untyped
+
+      # Runtimes which imply shell access get admin mode automatically, see Gitlab::Runtime
+      def privileged_runtime?: () -> untyped
+
+      def audit_user_enable_admin_mode: () -> nil
+    end
+  end
+end

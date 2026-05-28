@@ -1,0 +1,27 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      class Pager < Gitlab::Pagination::Base
+        @request: untyped
+
+        @page: untyped
+
+        attr_reader request: untyped
+
+        def initialize: (untyped request) -> void
+
+        def paginate: (untyped relation, ?::Hash[untyped, untyped] _params) -> untyped
+
+        def finalize: (untyped records) -> untyped
+
+        private
+
+        def apply_headers: (untyped last_record_in_page) -> (nil | untyped)
+
+        def page: () -> untyped
+
+        def validate_order!: (untyped rel) -> untyped
+      end
+    end
+  end
+end

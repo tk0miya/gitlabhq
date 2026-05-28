@@ -1,0 +1,39 @@
+module Gitlab
+  module Graphql
+    module Authorize
+      class FieldExtension < GraphQL::Schema::FieldExtension
+        class Redactor
+          @type: untyped
+
+          @context: untyped
+
+          @resolver: untyped
+
+          include ::Gitlab::Graphql::Laziness
+
+          def initialize: (untyped type, untyped context, untyped resolver) -> void
+
+          def redact: (untyped nodes) -> untyped
+
+          private
+
+          def perform_before_authorize_action: (untyped nodes) -> (nil | untyped)
+
+          def remove_unauthorized: (untyped nodes) -> untyped
+        end
+
+        def after_resolve: (value: untyped, context: untyped, **untyped _rest) -> untyped
+
+        private
+
+        def redact_connection: (untyped conn, untyped context) -> (nil | untyped)
+
+        def redact_list: (untyped list, untyped context) -> (nil | untyped)
+
+        def has_authorization?: (untyped type) -> (false | untyped)
+
+        def set_skip_type_authorization: (untyped context) -> untyped
+      end
+    end
+  end
+end

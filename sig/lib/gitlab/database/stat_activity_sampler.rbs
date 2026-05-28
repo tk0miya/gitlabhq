@@ -1,0 +1,41 @@
+module Gitlab
+  module Database
+    class StatActivitySampler
+      @connection: untyped
+
+      @lease_key: untyped
+
+      include ExclusiveLeaseGuard
+
+      # Lookup the pg_stat_get_activity(-1) function instead of pg_stat_activity table.
+      # This query returns non-null `query` only for users which the connection is authorised to.
+      #
+      # application is either sidekiq or puma
+      # endpoint refers to a worker class or a route
+      # database refers to the configured database field in `config/database.yml`
+      #
+      # This query omits idle tuples from the pg_stat_activity table as it is only concerned with active or idle in
+      # transaction processes.
+      PG_STAT_ACTIVITY_SAMPLER_SQL: "SELECT\n  a.matches[1] AS application,\n  a.matches[2] AS endpoint,\n  a.matches[3] AS database,\n  a.state AS state,\n  COUNT(*) AS count\nFROM (\n  SELECT\n    state,\n    regexp_matches(query, '^\\s*(?:\\/\\*(?:application:(\\w+),?)?(?:correlation_id:[\\w\\-]+,?)?(?:jid:\\w+,?)?(?:endpoint_id:([\\w/\\-\\.:\\#\\s]+),?)?(?:db_config_database:(\\w+),?)?.*?\\*\\/)?\\s*(\\w+)') AS matches\n  FROM\n    pg_stat_get_activity(-1)\n  ) a\nGROUP BY application, endpoint, database, state\n"
+
+      SAMPLING_INTERVAL: 15
+
+      def self.sample: () -> untyped
+
+      attr_reader connection: untyped
+
+      def initialize: (untyped connection) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def lease_timeout: () -> untyped
+
+      # Overrides ExclusiveLeaseGuard to not release lease after the sample to ensure we do not oversample
+      def lease_release?: () -> false
+
+      def sample_pg_stat_activity: () -> untyped
+    end
+  end
+end

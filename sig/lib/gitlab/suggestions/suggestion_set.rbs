@@ -1,0 +1,58 @@
+module Gitlab
+  module Suggestions
+    class SuggestionSet
+      @suggestions: untyped
+
+      @error_message: untyped
+
+      @actions: untyped
+
+      @file_paths: untyped
+
+      @suggestions_per_file: untyped
+
+      attr_reader suggestions: untyped
+
+      def initialize: (untyped suggestions) -> void
+
+      def source_project: () -> untyped
+
+      def target_project: () -> untyped
+
+      def branch: () -> untyped
+
+      def merge_request: () -> untyped
+
+      def valid?: () -> untyped
+
+      def error_message: () -> untyped
+
+      def actions: () -> untyped
+
+      def file_paths: () -> untyped
+
+      def authors: () -> untyped
+
+      private
+
+      def first_suggestion: () -> untyped
+
+      def suggestions_per_file: () -> untyped
+
+      def _suggestions_per_file: () -> untyped
+
+      def _error_message: () -> (untyped | nil)
+
+      def error_for_suggestion: (untyped suggestion) -> (untyped | nil)
+
+      def on_same_branch?: (untyped suggestion) -> untyped
+
+      # Checks whether the latest source branch HEAD matches with
+      # the position HEAD we're using to update the file content. Since
+      # the persisted HEAD is updated async (for MergeRequest),
+      # it's more consistent to fetch this data directly from the
+      # repository.
+      def latest_source_head?: (untyped suggestion) -> untyped
+    end
+  end
+end

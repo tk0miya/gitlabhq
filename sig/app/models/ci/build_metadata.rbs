@@ -1,0 +1,21 @@
+module Ci
+  # The purpose of this class is to store Build related data that can be disposed.
+  # Data that should be persisted forever, should be stored with Ci::Build model.
+  class BuildMetadata < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include Presentable
+
+    include ChronicDurationAttribute
+
+    include Gitlab::Utils::StrongMemoize
+
+    def enable_debug_trace!: () -> true
+
+    private
+
+    def set_build_project: () -> untyped
+
+    def validate_config_options_schema: () -> (nil | untyped)
+  end
+end

@@ -1,0 +1,18 @@
+module Banzai
+  # if you need to render markdown, then you probably need to post_process as well,
+  # such as removing references that the current user doesn't have
+  # permission to make
+  def self.render_and_post_process: (untyped text, ?::Hash[untyped, untyped] context) -> untyped
+
+  def self.render_field_and_post_process: (untyped object, untyped field, ?::Hash[untyped, untyped] context) -> untyped
+
+  def self.render: (untyped text, ?::Hash[untyped, untyped] context) -> untyped
+
+  def self.render_field: (untyped object, untyped field, ?::Hash[untyped, untyped] context) -> untyped
+
+  def self.cache_collection_render: (untyped texts_and_contexts) -> untyped
+
+  def self.render_result: (untyped text, ?::Hash[untyped, untyped] context) -> untyped
+
+  def self.post_process: (untyped html, untyped context) -> untyped
+end

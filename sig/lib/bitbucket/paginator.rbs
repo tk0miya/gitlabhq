@@ -1,0 +1,59 @@
+module Bitbucket
+  class Paginator
+    @connection: untyped
+
+    @type: untyped
+
+    @url: untyped
+
+    @page_number: untyped
+
+    @limit: untyped
+
+    @after_cursor: untyped
+
+    @total: untyped
+
+    @page: untyped
+
+    PAGE_LENGTH: 50
+
+    def initialize: (untyped connection, untyped url, untyped type, ?page_number: untyped?, ?limit: untyped?, ?after_cursor: untyped?) -> void
+
+    def items: () -> untyped
+
+    def page_info: () -> { has_next_page: untyped, start_cursor: untyped, end_cursor: untyped, next_page: untyped }
+
+    private
+
+    attr_reader connection: untyped
+
+    attr_reader page: untyped
+
+    attr_reader url: untyped
+
+    attr_reader type: untyped
+
+    attr_reader page_number: untyped
+
+    attr_reader limit: untyped
+
+    attr_reader after_cursor: untyped
+
+    def has_next_page?: () -> untyped
+
+    def next_url: () -> untyped
+
+    def max_per_page: () -> untyped
+
+    def over_limit?: () -> (false | untyped)
+
+    def fetch_next_page: () -> untyped
+
+    def next_page_cursor: () -> (nil | untyped)
+
+    def next_page_number: () -> (nil | untyped)
+
+    def next_page_query: () -> untyped
+  end
+end

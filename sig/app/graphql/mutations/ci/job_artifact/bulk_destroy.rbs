@@ -1,0 +1,19 @@
+module Mutations
+  module Ci
+    module JobArtifact
+      class BulkDestroy < BaseMutation
+        ArtifactId: untyped
+
+        ProjectId: untyped
+
+        def find_object: (id: untyped) -> untyped
+
+        def resolve: (**untyped args) -> untyped
+
+        private
+
+        def model_ids_of: (untyped global_ids) -> untyped
+      end
+    end
+  end
+end

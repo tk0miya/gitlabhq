@@ -1,0 +1,33 @@
+module Gitlab
+  module SlashCommands
+    class VerifyRequest
+      @integration: untyped
+
+      @chat_name: untyped
+
+      @response_url: untyped
+
+      attr_accessor integration: untyped
+
+      attr_accessor chat_name: untyped
+
+      attr_accessor response_url: untyped
+
+      def initialize: (untyped integration, untyped chat_name, ?untyped? response_url) -> void
+
+      def approve!: () -> untyped
+
+      def valid?: () -> (false | untyped)
+
+      private
+
+      def update_token!: () -> untyped
+
+      def update_source_message: () -> untyped
+
+      def verified_request_body: () -> { "replace_original" => "true", "text" => untyped }
+
+      def headers: () -> { "Content-Type" => "application/json" }
+    end
+  end
+end

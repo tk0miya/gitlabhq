@@ -1,0 +1,25 @@
+module Gitlab
+  module JiraImport
+    module Stage
+      class StartImportWorker
+        @project: untyped
+
+        include ApplicationWorker
+
+        include ProjectStartImport
+
+        include ProjectImportOptions
+
+        include Gitlab::JiraImport::QueueOptions
+
+        attr_reader project: untyped
+
+        def perform: (untyped project_id) -> (nil | untyped)
+
+        private
+
+        def start_import: () -> (false | true)
+      end
+    end
+  end
+end

@@ -1,0 +1,7 @@
+module Environments
+  class AutoRecoverWorker
+    include ApplicationWorker
+
+    def perform: (untyped environment_id, ?::Hash[untyped, untyped] _params) -> untyped
+  end
+end

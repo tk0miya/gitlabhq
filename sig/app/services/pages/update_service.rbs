@@ -1,0 +1,15 @@
+module Pages
+  class UpdateService < BaseService
+    include Gitlab::Allowable
+
+    def execute: () -> untyped
+
+    private
+
+    def update_pages_project_settings!: () -> (nil | untyped)
+
+    def update_pages_https_only!: () -> (nil | untyped)
+
+    def can_update_page_settings?: () -> untyped
+  end
+end

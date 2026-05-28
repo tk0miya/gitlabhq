@@ -1,0 +1,15 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillOrganizationIdOnOauthApplications < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def build_user_owned_applications_relation: (untyped base_relation) -> untyped
+
+      def build_group_owned_applications_relation: (untyped base_relation) -> untyped
+
+      def update_organization_ids: (untyped relation) -> (nil | untyped)
+    end
+  end
+end

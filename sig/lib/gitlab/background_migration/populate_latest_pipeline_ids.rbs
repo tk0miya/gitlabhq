@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class PopulateLatestPipelineIds
+      class ProjectSetting < ActiveRecord::Base
+        include EachBatch
+      end
+
+      def perform: (untyped start_id, untyped end_id) -> nil
+    end
+  end
+end

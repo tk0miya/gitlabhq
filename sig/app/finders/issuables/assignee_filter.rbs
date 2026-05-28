@@ -1,0 +1,27 @@
+module Issuables
+  class AssigneeFilter < BaseFilter
+    include GroupMembersFilterable
+
+    def filter: (untyped issuables) -> untyped
+
+    def includes_user?: (untyped user) -> untyped
+
+    private
+
+    def by_assignee: (untyped issuables) -> untyped
+
+    def by_assignee_union: (untyped issuables) -> untyped
+
+    def by_negated_assignee: (untyped issuables) -> untyped
+
+    def filter_by_no_assignee?: () -> untyped
+
+    def filter_by_any_assignee?: () -> untyped
+
+    def filter_by_assignees: (untyped issuables) -> untyped
+
+    def has_assignee_param?: (untyped specific_params) -> (nil | untyped)
+
+    def assignee_ids: (untyped specific_params) -> (untyped | untyped | untyped | nil)
+  end
+end

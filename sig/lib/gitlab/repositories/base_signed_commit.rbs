@@ -1,0 +1,44 @@
+module Gitlab
+  module Repositories
+    class BaseSignedCommit
+      @commit: untyped
+
+      @signature_data: untyped
+
+      # only update the committer email without re verifying the cached signature
+      @signature: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped commit) -> void
+
+      def signature: () -> untyped
+
+      def update_signature!: (untyped cached_signature) -> untyped
+
+      def signature_text: () -> (untyped | nil)
+
+      def signed_text: () -> (untyped | nil)
+
+      def signer: () -> (untyped | nil)
+
+      def committer_email: () -> (untyped | nil)
+
+      private
+
+      def update_committer_email!: (untyped cached_signature) -> untyped
+
+      def should_update_signature?: (untyped cached_signature) -> untyped
+
+      def committer_email_missing?: (untyped cached_signature) -> untyped
+
+      def verified_system_or_x509?: (untyped cached_signature) -> untyped
+
+      def signature_class: () -> untyped
+
+      def lazy_signature: () -> untyped
+
+      def create_cached_signature!: () -> (nil | untyped)
+    end
+  end
+end

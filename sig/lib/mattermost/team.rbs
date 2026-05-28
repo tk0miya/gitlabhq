@@ -1,0 +1,14 @@
+module Mattermost
+  class Team < Client
+    # Returns all teams that the current user is a member of
+    def all: () -> untyped
+
+    # Creates a team on the linked Mattermost instance, the team admin will be the
+    # `current_user` passed to the Mattermost::Client instance
+    def create: (name: untyped, display_name: untyped, type: untyped) -> untyped
+
+    # The deletion is done async, so the response is fast.
+    # On the mattermost side, this triggers an soft deletion
+    def destroy: (team_id: untyped) -> untyped
+  end
+end

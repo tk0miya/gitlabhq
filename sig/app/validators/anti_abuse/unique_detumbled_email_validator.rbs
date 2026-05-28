@@ -1,0 +1,15 @@
+module AntiAbuse
+  class UniqueDetumbledEmailValidator < ActiveModel::Validator
+    NORMALIZED_EMAIL_ACCOUNT_LIMIT: 5
+
+    def validate: (untyped record) -> (nil | untyped)
+
+    private
+
+    def prevent_banned_user_email_reuse?: (untyped email) -> untyped
+
+    def limit_normalized_email_reuse?: (untyped email) -> untyped
+
+    def log_failed_validation: (untyped record, untyped reason) -> untyped
+  end
+end

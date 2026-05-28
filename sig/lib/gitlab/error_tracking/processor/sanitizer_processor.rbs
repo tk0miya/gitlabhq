@@ -1,0 +1,20 @@
+module Gitlab
+  module ErrorTracking
+    module Processor
+      module SanitizerProcessor
+        SANITIZED_HTTP_HEADERS: ::Array["Authorization" | "Private-Token" | "Job-Token"]
+
+        SANITIZED_ATTRIBUTES: ::Array[:user | :contexts | :extra | :tags]
+
+        # This processor removes sensitive fields or headers from the event
+        # before sending. Sentry versions above 4.0 don't support
+        # sanitized_fields and sanitized_http_headers anymore. The official
+        # document recommends using before_send instead.
+        #
+        # For more information, please visit:
+        # https://docs.sentry.io/platforms/ruby/guides/rails/configuration/filtering/#using-beforesend
+        def self.call: (untyped event) -> untyped
+      end
+    end
+  end
+end

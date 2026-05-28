@@ -1,0 +1,44 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class CollaboratorImporter
+        @collaborator: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        @members_finder: untyped
+
+        attr_reader collaborator: untyped
+
+        attr_reader project: untyped
+
+        attr_reader client: untyped
+
+        attr_reader members_finder: untyped
+
+        # collaborator - An instance of `Gitlab::GithubImport::Representation::Collaborator`
+        # project - An instance of `Project`
+        # client - An instance of `Gitlab::GithubImport::Client`
+        def initialize: (untyped collaborator, untyped project, untyped client) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        # We don't want to create a new membership for a project bot,
+        # as they are not allowed to be members of other groups or projects.
+        def mapped_to_project_bot?: (untyped user_id) -> untyped
+
+        def existing_user_membership: (untyped user_id) -> untyped
+
+        def member_finder_relations: () -> untyped
+
+        def map_access_level: () -> untyped
+
+        def create_membership!: (untyped user_id, untyped access_level) -> untyped
+      end
+    end
+  end
+end

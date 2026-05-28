@@ -1,0 +1,19 @@
+module Authn
+  module TokenField
+    class Digest < Base
+      def token_fields: () -> untyped
+
+      def find_token_authenticatable: (untyped token, ?bool unscoped, ?uniqueness_check: bool) -> (nil | untyped)
+
+      def get_token: (untyped token_owner_record) -> untyped
+
+      def encode: (untyped token) -> untyped
+
+      def set_token: (untyped token_owner_record, untyped token) -> (nil | untyped)
+
+      def token_set?: (untyped token_owner_record) -> untyped
+
+      def token_field_name: () -> ::String
+    end
+  end
+end

@@ -1,0 +1,46 @@
+module Gitlab
+  module Import
+    module AdvanceStage
+      extend ActiveSupport::Concern
+
+      INTERVAL: untyped
+
+      TIMEOUT_DURATION: untyped
+
+      AdvanceStageTimeoutError: untyped
+
+      # The number of seconds to wait (while blocking the thread) before
+      # continuing to the next waiter.
+      BLOCKING_WAIT_TIME: 5
+
+      # project_id - The ID of the project being imported.
+      # waiters - A Hash mapping Gitlab::JobWaiter keys to the number of
+      #           remaining jobs.
+      # next_stage - The name of the next stage to start when all jobs have been
+      #              completed.
+      # timeout_timer - Time the sidekiq worker was first initiated with the current job_count
+      # previous_job_count - Number of jobs remaining on last invocation of this worker
+      def perform: (untyped project_id, untyped waiters, untyped next_stage, ?untyped timeout_timer, ?untyped? previous_job_count) -> (nil | untyped)
+
+      def wait_for_jobs: (untyped waiters) -> untyped
+
+      def find_import_state_jid: (untyped project_id) -> untyped
+
+      def find_import_state: (untyped id) -> untyped
+
+      private
+
+      def proceed_to_next_stage: (untyped import_state_jid, untyped next_stage, untyped project_id) -> untyped
+
+      def handle_timeout: (untyped import_state_jid, untyped next_stage, untyped project_id, untyped new_waiters, untyped new_job_count) -> untyped
+
+      def fail_import_and_log_status: (untyped import_state) -> untyped
+
+      def timeout_reached?: (untyped timeout_timer) -> untyped
+
+      def next_stage_worker: (untyped next_stage) -> untyped
+
+      def clear_waiter_caches: (untyped waiters) -> untyped
+    end
+  end
+end

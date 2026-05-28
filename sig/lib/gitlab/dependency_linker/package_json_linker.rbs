@@ -1,0 +1,15 @@
+module Gitlab
+  module DependencyLinker
+    class PackageJsonLinker < JsonLinker
+      private
+
+      def link_dependencies: () -> untyped
+
+      def link_packages: () -> untyped
+
+      def link_packages_at_key: (untyped key) -> (nil | untyped)
+
+      def package_url: (untyped name) -> ::String
+    end
+  end
+end

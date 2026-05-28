@@ -1,0 +1,64 @@
+module Gitlab
+  class EncryptedConfiguration
+    @content_path: untyped
+
+    @key: untyped
+
+    @previous_keys: untyped
+
+    @config: untyped
+
+    @encryptor: untyped
+
+    # Allows top level keys to be referenced using dot syntax
+    @options: untyped
+
+    attr_reader content_path: untyped
+
+    attr_reader key: untyped
+
+    attr_reader previous_keys: untyped
+
+    CIPHER: "aes-256-gcm"
+
+    SALT: "GitLabEncryptedConfigSalt"
+
+    class MissingKeyError < RuntimeError
+      def initialize: (?::String msg) -> void
+    end
+
+    class InvalidConfigError < RuntimeError
+      def initialize: (?::String msg) -> void
+    end
+
+    def self.generate_key: (untyped base_key) -> untyped
+
+    def initialize: (?content_path: untyped?, ?base_key: untyped?, ?previous_keys: untyped) -> void
+
+    def active?: () -> untyped
+
+    def read: () -> (untyped | "")
+
+    def write: (untyped contents) -> untyped
+
+    def config: () -> untyped
+
+    def change: () { (?) -> untyped } -> untyped
+
+    private
+
+    def writing: (untyped contents) { (untyped) -> untyped } -> untyped
+
+    def encrypt: (untyped contents) -> untyped
+
+    def decrypt: (untyped contents) -> untyped
+
+    def encryptor: () -> untyped
+
+    def options: () -> untyped
+
+    def deserialize: (untyped contents) -> untyped
+
+    def handle_missing_key!: () -> (untyped | nil)
+  end
+end

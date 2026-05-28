@@ -1,0 +1,35 @@
+module Bitbucket
+  module Representation
+    class Issue < Representation::Base
+      CLOSED_STATUS: ::Array["resolved" | "invalid" | "duplicate" | "wontfix" | "closed"]
+
+      def iid: () -> untyped
+
+      def kind: () -> untyped
+
+      def author: () -> untyped
+
+      def author_nickname: () -> untyped
+
+      def description: () -> untyped
+
+      def state: () -> ("closed" | "opened")
+
+      def title: () -> untyped
+
+      def milestone: () -> (untyped | nil)
+
+      def created_at: () -> untyped
+
+      def updated_at: () -> untyped
+
+      def to_s: () -> untyped
+
+      def to_hash: () -> { iid: untyped, title: untyped, description: untyped, state: untyped, author: untyped, author_nickname: untyped, milestone: untyped, created_at: untyped, updated_at: untyped }
+
+      private
+
+      def closed?: () -> untyped
+    end
+  end
+end

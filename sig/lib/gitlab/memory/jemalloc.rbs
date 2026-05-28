@@ -1,0 +1,27 @@
+module Gitlab
+  module Memory
+    module Jemalloc
+      extend ::Gitlab::Memory::Jemalloc
+
+      STATS_FORMATS: { json: { options: "J", extension: "json" }, text: { options: "", extension: "txt" } }
+
+      STATS_DEFAULT_FORMAT: :json
+
+      # Return jemalloc stats as a string.
+      def stats: (?format: untyped) -> untyped
+
+      # Streams jemalloc stats to the given IO object.
+      def dump_stats: (untyped io, ?format: untyped) -> untyped
+
+      private
+
+      def verify_format!: (untyped format) -> (untyped | nil)
+
+      def with_malloc_stats_print: () { (untyped) -> untyped } -> (nil | untyped)
+
+      def malloc_stats_print: () -> untyped
+
+      def write_stats: (untyped stats_print, untyped io, untyped format) -> untyped
+    end
+  end
+end

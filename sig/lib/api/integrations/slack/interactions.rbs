@@ -1,0 +1,11 @@
+module API
+  # This API endpoint handles interaction payloads sent from Slack.
+  # See https://api.slack.com/interactivity/handling.
+  class Integrations
+    module Slack
+      class Interactions < ::API::Base
+        include Slack::Concerns::VerifiesRequest
+      end
+    end
+  end
+end

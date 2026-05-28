@@ -1,0 +1,17 @@
+module Resolvers
+  class TodosResolver < BaseResolver
+    include Gitlab::InternalEventsTracking
+
+    alias target object
+
+    def resolve: (**untyped args) -> untyped
+
+    private
+
+    def todo_finder_params: (untyped args) -> untyped
+
+    def target_params: () -> (::Hash[untyped, untyped] | { type: untyped, target_id: untyped })
+
+    def track_bot_user: () -> untyped
+  end
+end

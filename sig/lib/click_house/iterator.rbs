@@ -1,0 +1,47 @@
+module ClickHouse
+  # This class implements a batch iterator which can be used for ClickHouse database tables.
+  # The batching logic uses fixed id ranges because that's the only way to efficiently batch
+  # over the data. This is similar to the implementation of the Gitlab::Database::BatchCount
+  # utility class.
+  #
+  # Usage:
+  #
+  # connection = ClickHouse::Connection.new(:main)
+  # builder = ClickHouse::Client::QueryBuilder.new('event_authors')
+  # iterator = ClickHouse::Iterator.new(query_builder: builder, connection: connection)
+  # iterator.each_batch(column: :author_id, of: 100000) do |scope|
+  #   puts scope.to_sql
+  #   puts ClickHouse::Client.select(scope.to_sql, :main)
+  # end
+  #
+  # If your database table structure is optimized for a specific filter, you could scan smaller
+  # part of the table by adding more condition to the query builder. Example:
+  #
+  # builder = ClickHouse::Client::QueryBuilder.new('event_authors').where(type: 'some_type')
+  class Iterator
+    @query_builder: untyped
+
+    @connection: untyped
+
+    @min_value: untyped
+
+    @min_max_strategy: untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord -- this is a ClickHouse query builder class usin Arel
+    def initialize: (query_builder: untyped, connection: untyped, ?min_value: untyped?, ?min_max_strategy: ::Symbol) -> void
+
+    def each_batch: (?column: ::Symbol, ?of: ::Integer) { (untyped, untyped, untyped) -> untyped } -> (nil | untyped)
+
+    private
+
+    attr_reader query_builder: untyped
+
+    attr_reader connection: untyped
+
+    attr_reader min_value: untyped
+
+    attr_reader min_max_strategy: untyped
+
+    def min_max: (untyped column) -> untyped
+  end
+end

@@ -1,0 +1,41 @@
+module Discussions
+  class ResolveService < Discussions::BaseService
+    @discussions: untyped
+
+    @follow_up_issue: untyped
+
+    @resolved_count: untyped
+
+    @first_discussion: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped project, ?untyped? user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_accessor discussions: untyped
+
+    attr_accessor follow_up_issue: untyped
+
+    def noteable_is_same?: () -> (true | untyped)
+
+    def resolve_discussion: (untyped discussion) -> (nil | untyped)
+
+    def resolve_user_todos_for: (untyped discussion) -> (nil | untyped)
+
+    def first_discussion: () -> untyped
+
+    def merge_request: () -> untyped
+
+    def after_resolve_cleanup: () -> (nil | untyped)
+
+    def send_graphql_triggers: () -> untyped
+
+    def process_auto_merge: () -> (nil | untyped)
+
+    def discussions_ready_to_merge?: () -> untyped
+  end
+end

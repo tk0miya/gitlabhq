@@ -1,0 +1,15 @@
+module MergeRequests
+  class GetUrlsService < BaseProjectService
+    def execute: (untyped changes) -> (::Array[untyped] | untyped)
+
+    private
+
+    def opened_merge_requests_from_source_branches: (untyped branches) -> untyped
+
+    def get_branches: (untyped changes) -> (::Array[untyped] | untyped)
+
+    def url_for_new_merge_request: (untyped branch_name) -> { branch_name: untyped, url: untyped, new_merge_request: true }
+
+    def url_for_existing_merge_request: (untyped merge_request) -> { branch_name: untyped, url: untyped, new_merge_request: false }
+  end
+end

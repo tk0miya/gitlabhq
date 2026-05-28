@@ -1,0 +1,35 @@
+module Gitlab
+  module ExternalAuthorization
+    class Cache
+      @user: untyped
+
+      @label: untyped
+
+      @access: untyped
+
+      @reason: untyped
+
+      @refreshed_at: untyped
+
+      VALIDITY_TIME: untyped
+
+      def initialize: (untyped user, untyped label) -> void
+
+      def load: () -> ::Array[untyped]
+
+      def store: (untyped new_access, untyped new_reason, untyped new_refreshed_at) -> untyped
+
+      private
+
+      def access: () -> untyped
+
+      def reason: () -> (nil | untyped)
+
+      def refreshed_at: () -> (nil | untyped)
+
+      def cache_key: () -> ::String
+
+      def with_redis: () { (?) -> untyped } -> untyped
+    end
+  end
+end

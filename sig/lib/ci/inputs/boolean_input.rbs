@@ -1,0 +1,11 @@
+module Ci
+  module Inputs
+    class BooleanInput < BaseInput
+      extend ::Gitlab::Utils::Override
+
+      def self.type_name: () -> "boolean"
+
+      def validate_type: (untyped value, untyped default) -> (nil | untyped)
+    end
+  end
+end

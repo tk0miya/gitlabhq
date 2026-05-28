@@ -1,0 +1,21 @@
+module Gitlab
+  module Diff
+    module FileCollection
+      module PaginatedDiffs
+        include Gitlab::Utils::StrongMemoize
+
+        extend ::Gitlab::Utils::Override
+
+        def diffs: () -> untyped
+
+        private
+
+        attr_reader merge_request_diff: untyped
+
+        attr_reader paginated_collection: untyped
+
+        def relation: () -> untyped
+      end
+    end
+  end
+end

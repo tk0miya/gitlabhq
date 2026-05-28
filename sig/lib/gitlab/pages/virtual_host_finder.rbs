@@ -1,0 +1,21 @@
+module Gitlab
+  module Pages
+    class VirtualHostFinder
+      @host: untyped
+
+      def initialize: (untyped host) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader host: untyped
+
+      def by_unique_domain: (untyped name) -> (nil | untyped)
+
+      def by_namespace_domain: (untyped name) -> (nil | untyped)
+
+      def by_custom_domain: (untyped host) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Issues
+  class PlacementWorker
+    include ApplicationWorker
+
+    # Move at most the most recent 100 issues
+    QUERY_LIMIT: 100
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def perform: (untyped params, ?untyped? project_id) -> untyped
+
+    private
+
+    def namespace_from_project_id: (untyped project_id) -> (nil | untyped)
+
+    def find_representative_issue: (untyped namespace) -> untyped
+  end
+end

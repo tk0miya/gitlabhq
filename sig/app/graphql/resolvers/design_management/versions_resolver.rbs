@@ -1,0 +1,25 @@
+module Resolvers
+  module DesignManagement
+    class VersionsResolver < BaseResolver
+      alias design_or_collection object
+
+      VersionID: untyped
+
+      # This resolver has a custom singular resolver
+      def self.single: () -> untyped
+
+      def resolve: (?id: untyped?, ?sha: untyped?) -> untyped
+
+      private
+
+      # Find the most recent version that the client will accept
+      def cutoff: (untyped id, untyped sha) -> (untyped | :unconstrained)
+
+      def specific_version: (untyped gid, untyped sha) -> untyped
+
+      def find: (**untyped params) -> untyped
+
+      def by_id: (untyped gid) -> untyped
+    end
+  end
+end

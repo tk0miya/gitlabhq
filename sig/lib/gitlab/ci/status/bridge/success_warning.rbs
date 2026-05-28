@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Status
+      module Bridge
+        #
+        # Extended status used when the bridge has strategy: mirror.
+        # This will allow the status to be mirrored from the downstream pipeline status.
+        #
+        class SuccessWarning < Status::Extended
+          def self.matches?: (untyped bridge, untyped _user) -> untyped
+
+          def icon: () -> "status_warning"
+
+          def group: () -> "success-with-warnings"
+
+          def label: () -> untyped
+
+          def status_tooltip: () -> ::String
+        end
+      end
+    end
+  end
+end

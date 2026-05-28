@@ -1,0 +1,43 @@
+module Gitlab
+  module Ci
+    module Reports
+      class ReportsComparer
+        @base_report: untyped
+
+        @head_report: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        STATUS_SUCCESS: "success"
+
+        STATUS_FAILED: "failed"
+
+        STATUS_NOT_FOUND: "not_found"
+
+        attr_reader base_report: untyped
+
+        attr_reader head_report: untyped
+
+        def initialize: (untyped base_report, untyped head_report) -> void
+
+        def status: () -> untyped
+
+        def success?: () -> untyped
+
+        def existing_errors: () -> untyped
+
+        def new_errors: () -> untyped
+
+        def resolved_errors: () -> untyped
+
+        def errors_count: () -> untyped
+
+        def resolved_count: () -> untyped
+
+        def total_count: () -> untyped
+
+        def not_found?: () -> untyped
+      end
+    end
+  end
+end

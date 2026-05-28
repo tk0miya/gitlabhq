@@ -1,0 +1,22 @@
+module Gitlab
+  module JiraImport
+    class AdvanceStageWorker
+      include ApplicationWorker
+
+      include QueueOptions
+
+      include ::Gitlab::Import::AdvanceStage
+
+      # The known importer stages and their corresponding Sidekiq workers.
+      STAGES: { labels: untyped, issues: untyped, attachments: untyped, notes: untyped, finish: untyped }
+
+      def find_import_state_jid: (untyped project_id) -> untyped
+
+      def find_import_state: (untyped id) -> untyped
+
+      private
+
+      def next_stage_worker: (untyped next_stage) -> untyped
+    end
+  end
+end

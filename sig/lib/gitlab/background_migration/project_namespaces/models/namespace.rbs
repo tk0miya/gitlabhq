@@ -1,0 +1,12 @@
+module Gitlab
+  module BackgroundMigration
+    module ProjectNamespaces
+      module Models
+        # isolated Namespace model
+        class Namespace < ActiveRecord::Base
+          include EachBatch
+        end
+      end
+    end
+  end
+end

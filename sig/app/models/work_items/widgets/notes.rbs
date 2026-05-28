@@ -1,0 +1,11 @@
+module WorkItems
+  module Widgets
+    class Notes < Base
+      def self.quick_action_commands: () -> ::Array[:lock | :unlock]
+
+      def self.quick_action_params: () -> ::Array[:discussion_locked]
+
+      def declarative_policy_delegate: () -> untyped
+    end
+  end
+end

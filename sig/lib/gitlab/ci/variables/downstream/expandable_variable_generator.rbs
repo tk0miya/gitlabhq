@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Variables
+      module Downstream
+        class ExpandableVariableGenerator < Base
+          def for: (untyped item) -> untyped
+
+          private
+
+          def expanded_var_for: (untyped item) -> { key: untyped, value: untyped }
+
+          def file_var_dependencies_for: (untyped item) -> (::Array[untyped] | untyped)
+        end
+      end
+    end
+  end
+end

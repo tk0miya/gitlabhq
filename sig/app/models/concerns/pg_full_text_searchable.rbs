@@ -1,0 +1,21 @@
+module PgFullTextSearchable
+  extend ActiveSupport::Concern
+
+  VERY_LONG_WORDS_WITH_AT_REGEX: ::Regexp
+
+  LONG_WORDS_REGEX: ::Regexp
+
+  TSVECTOR_MAX_LENGTH: untyped
+
+  TEXT_SEARCH_DICTIONARY: "english"
+
+  XML_TAG_REGEX: ::Regexp
+
+  def update_search_data!: () -> untyped
+
+  private
+
+  def persist_pg_full_text_search_vector: (untyped search_vector) -> untyped
+
+  def tsvector_arel_node: (untyped column, untyped weight) -> (nil | untyped)
+end

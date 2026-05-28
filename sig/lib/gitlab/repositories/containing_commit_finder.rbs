@@ -1,0 +1,41 @@
+module Gitlab
+  module Repositories
+    class ContainingCommitFinder
+      @repository: untyped
+
+      @sha: untyped
+
+      @params: untyped
+
+      NO_LIMIT: 0
+
+      def initialize: (untyped repository, untyped sha, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader repository: untyped
+
+      attr_reader sha: untyped
+
+      attr_reader params: untyped
+
+      def all_refs: () -> untyped
+
+      def find_matching_branches: (?branches_limit: untyped) -> (::Array[untyped] | untyped)
+
+      def find_matching_tags: (?tags_limit: untyped) -> (::Array[untyped] | untyped)
+
+      def type: () -> untyped
+
+      def tag?: () -> untyped
+
+      def branch?: () -> untyped
+
+      def has_limit?: () -> untyped
+
+      def total_limit: () -> untyped
+    end
+  end
+end

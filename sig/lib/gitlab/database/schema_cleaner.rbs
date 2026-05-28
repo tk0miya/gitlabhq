@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    class SchemaCleaner
+      @original_schema: untyped
+
+      attr_reader original_schema: untyped
+
+      def initialize: (untyped original_schema) -> void
+
+      def clean: (untyped io) -> nil
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Groups
+  module Settings
+    class AccessTokensController < Groups::ApplicationController
+      include RenderAccessTokens
+
+      include AccessTokensActions
+
+      alias resource group
+
+      def resource_access_tokens_path: () -> untyped
+
+      private
+
+      def represent: (untyped tokens) -> untyped
+
+      def rotate_service: () -> untyped
+    end
+  end
+end

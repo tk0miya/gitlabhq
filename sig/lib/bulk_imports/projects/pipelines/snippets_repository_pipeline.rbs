@@ -1,0 +1,25 @@
+module BulkImports
+  module Projects
+    module Pipelines
+      class SnippetsRepositoryPipeline
+        include Pipeline
+
+        include HexdigestCacheStrategy
+
+        def transform: (untyped _context, untyped data) -> untyped
+
+        def load: (untyped context, untyped data) -> (nil | untyped)
+
+        private
+
+        def find_matched_snippet: (untyped data) -> untyped
+
+        def oauth2: (untyped url) -> untyped
+
+        def validate_url: (untyped url) -> untyped
+
+        def cleanup_snippet_repository: (untyped snippet) -> untyped
+      end
+    end
+  end
+end

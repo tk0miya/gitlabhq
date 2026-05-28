@@ -1,0 +1,21 @@
+module Gitlab
+  module Tracking
+    module Helpers
+      module SnowplowEventMetricLogger
+        extend ::Gitlab::Utils::Override
+
+        def increment_successful_events_emissions: (untyped value) -> untyped
+
+        def failure_callback: (untyped success_count, untyped failures) -> untyped
+
+        def increment_failed_events_emissions: (untyped value) -> untyped
+
+        def log_failures: (untyped failures) -> untyped
+
+        private
+
+        def hostname: () -> untyped
+      end
+    end
+  end
+end

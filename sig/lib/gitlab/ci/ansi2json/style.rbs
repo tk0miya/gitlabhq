@@ -1,0 +1,43 @@
+module Gitlab
+  module Ci
+    module Ansi2json
+      class Style
+        @fg: untyped
+
+        @bg: untyped
+
+        @mask: untyped
+
+        @formats: untyped
+
+        attr_reader fg: untyped
+
+        attr_reader bg: untyped
+
+        attr_reader mask: untyped
+
+        def initialize: (?fg: untyped?, ?bg: untyped?, ?mask: ::Integer) -> void
+
+        def update: (untyped ansi_commands) -> untyped
+
+        def set?: () -> untyped
+
+        def reset!: () -> untyped
+
+        def ==: (untyped other) -> untyped
+
+        def to_s: () -> ("" | untyped)
+
+        def to_h: () -> { fg: untyped, bg: untyped, mask: untyped }
+
+        private
+
+        def evaluate_stack_command: (untyped ansi_commands) -> (nil | untyped)
+
+        def apply_changes: (untyped changes) -> (nil | untyped)
+
+        def update_formats: () -> untyped
+      end
+    end
+  end
+end

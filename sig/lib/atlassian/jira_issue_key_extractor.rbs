@@ -1,0 +1,13 @@
+module Atlassian
+  class JiraIssueKeyExtractor
+    @text: untyped
+
+    @match_regex: untyped
+
+    def self.has_keys?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def initialize: (*untyped text, ?custom_regex: untyped?) -> void
+
+    def issue_keys: () -> untyped
+  end
+end

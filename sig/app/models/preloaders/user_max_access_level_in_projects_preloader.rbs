@@ -1,0 +1,17 @@
+module Preloaders
+  # This class preloads the max access level (role) for the user within the given projects and
+  # stores the values in requests store via the ProjectTeam class.
+  class UserMaxAccessLevelInProjectsPreloader
+    @projects: untyped
+
+    @user: untyped
+
+    def initialize: (untyped projects, untyped user) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def project_auth_join: () -> untyped
+  end
+end

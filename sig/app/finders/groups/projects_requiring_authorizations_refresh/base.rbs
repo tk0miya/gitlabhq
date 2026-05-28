@@ -1,0 +1,15 @@
+module Groups
+  module ProjectsRequiringAuthorizationsRefresh
+    class Base
+      @group: untyped
+
+      def initialize: (untyped group) -> void
+
+      private
+
+      def ids_of_projects_in_hierarchy_and_project_shares: (untyped group) -> untyped
+
+      def ids_of_projects_shared_with_self_and_descendant_groups: (untyped group, ?batch_size: ::Integer) -> untyped
+    end
+  end
+end

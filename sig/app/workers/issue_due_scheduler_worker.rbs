@@ -1,0 +1,8 @@
+class IssueDueSchedulerWorker
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def perform: () -> untyped
+end

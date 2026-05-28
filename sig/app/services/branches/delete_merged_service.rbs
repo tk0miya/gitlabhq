@@ -1,0 +1,12 @@
+module Branches
+  class DeleteMergedService < BaseService
+    def async_execute: () -> untyped
+
+    def execute: () -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def merge_request_branch_names: () -> untyped
+  end
+end

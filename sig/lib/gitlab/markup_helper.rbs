@@ -1,0 +1,52 @@
+module Gitlab
+  module MarkupHelper
+    extend ::Gitlab::MarkupHelper
+
+    MARKDOWN_EXTENSIONS: ::Array["mdown" | "mkd" | "mkdn" | "md" | "markdown" | "rmd"]
+
+    ASCIIDOC_EXTENSIONS: ::Array["adoc" | "ad" | "asciidoc"]
+
+    OTHER_EXTENSIONS: ::Array["textile" | "rdoc" | "org" | "creole" | "wiki" | "mediawiki" | "rst"]
+
+    EXTENSIONS: untyped
+
+    PLAIN_FILENAMES: ::Array["readme" | "index" | "_index"]
+
+    # Public: Determines if a given filename is compatible with GitHub::Markup.
+    #
+    # filename - Filename string to check
+    #
+    # Returns boolean
+    def markup?: (untyped filename) -> untyped
+
+    # Public: Determines if a given filename is compatible with
+    # GitLab-flavored Markdown.
+    #
+    # filename - Filename string to check
+    #
+    # Returns boolean
+    def gitlab_markdown?: (untyped filename) -> untyped
+
+    # Public: Determines if the given filename has AsciiDoc extension.
+    #
+    # filename - Filename string to check
+    #
+    # Returns boolean
+    def asciidoc?: (untyped filename) -> untyped
+
+    # Public: Determines if the given filename is plain text.
+    #
+    # filename - Filename string to check
+    #
+    # Returns boolean
+    def plain?: (untyped filename) -> untyped
+
+    def previewable?: (untyped filename) -> untyped
+
+    private
+
+    def extension: (untyped filename) -> untyped
+
+    def plain_filename?: (untyped filename) -> untyped
+  end
+end

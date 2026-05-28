@@ -1,0 +1,17 @@
+module WorkItems
+  module SharedFilterArguments
+    extend ActiveSupport::Concern
+
+    extend Gitlab::Utils::Override
+
+    MAX_FIELD_LIMIT: 100
+
+    private
+
+    def prepare_finder_params: (untyped args) -> untyped
+
+    def rewrite_param_name: (untyped params, untyped old_name, untyped new_name) -> (untyped | nil)
+
+    def unpack_parent_filtering_args!: (untyped params) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,32 @@
+class Analytics::CycleAnalytics::Aggregation < ApplicationRecord
+  include FromUnion
+
+  include Analytics::CycleAnalytics::Parentable
+
+  def cursor_for: (untyped mode, untyped model) -> untyped
+
+  def consistency_check_cursor_for: (untyped model) -> (::Hash[untyped, untyped] | ::Hash[:end_event_timestamp | untyped, untyped])
+
+  def refresh_last_run: (untyped mode) -> untyped
+
+  def complete: () -> untyped
+
+  def set_cursor: (untyped mode, untyped model, untyped cursor) -> untyped
+
+  def set_stats: (untyped mode, untyped runtime, untyped processed_records) -> untyped
+
+  def estimated_next_run_at: () -> (nil | untyped)
+
+  def self.safe_create_for_namespace: (untyped target_namespace) -> untyped
+
+  private
+
+  # The aggregation job is scheduled every 10 minutes: */10 * * * *
+  def duration_until_the_next_aggregation_job: () -> untyped
+
+  def average_aggregation_duration: () -> untyped
+
+  def earliest_last_run_at: () -> untyped
+
+  def self.load_batch: (untyped last_run_at, ?::Symbol column_to_query, ?::Integer batch_size) -> untyped
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    class JwtV2
+      class ClaimMapper
+        @pipeline: untyped
+
+        @mapper: untyped
+
+        MAPPER_FOR_CONFIG_SOURCE: { repository_source: untyped, bridge_source: untyped }
+
+        def initialize: (untyped project_config, untyped pipeline) -> void
+
+        def to_h: () -> (untyped | { ci_config_ref_uri: untyped, ci_config_sha: untyped } | ::Hash[untyped, untyped])
+      end
+    end
+  end
+end

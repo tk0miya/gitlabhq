@@ -1,0 +1,13 @@
+module Gitlab
+  module SidekiqMiddleware
+    module SizeLimiter
+      # This midleware is inserted into Sidekiq **client** middleware chain. It
+      # prevents the caller from dispatching a too-large job payload. The job
+      # payload should be small and simple. Read more at:
+      # https://github.com/mperham/sidekiq/wiki/Best-Practices#1-make-your-job-parameters-small-and-simple
+      class Client
+        def call: (untyped worker_class, untyped job, untyped queue, untyped _redis_pool) { () -> untyped } -> untyped
+      end
+    end
+  end
+end

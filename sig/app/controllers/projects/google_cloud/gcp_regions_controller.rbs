@@ -1,0 +1,14 @@
+class Projects::GoogleCloud::GcpRegionsController < Projects::GoogleCloud::BaseController
+  @js_data: untyped
+
+  # filtered list of GCP cloud run locations...
+  #       ...that have domain mapping available
+  # Source https://cloud.google.com/run/docs/locations 2022-01-30
+  AVAILABLE_REGIONS: ::Array["asia-east1" | "asia-northeast1" | "asia-southeast1" | "europe-north1" | "europe-west1" | "europe-west4" | "us-central1" | "us-east1" | "us-east4" | "us-west1"]
+
+  GCP_REGION_CI_VAR_KEY: "GCP_REGION"
+
+  def index: () -> untyped
+
+  def create: () -> untyped
+end

@@ -1,0 +1,15 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class CrmContacts < Base
+        def after_create: () -> (nil | untyped)
+
+        def post_move_cleanup: () -> untyped
+
+        private
+
+        def attributes: (untyped target_work_item, untyped issue_contacts) -> untyped
+      end
+    end
+  end
+end

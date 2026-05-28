@@ -1,0 +1,27 @@
+module Gitlab
+  module Kubernetes
+    class ClusterRoleBinding
+      @name: untyped
+
+      @cluster_role_name: untyped
+
+      @subjects: untyped
+
+      attr_reader name: untyped
+
+      attr_reader cluster_role_name: untyped
+
+      attr_reader subjects: untyped
+
+      def initialize: (untyped name, untyped cluster_role_name, untyped subjects) -> void
+
+      def generate: () -> untyped
+
+      private
+
+      def metadata: () -> { name: untyped }
+
+      def role_ref: () -> { apiGroup: "rbac.authorization.k8s.io", kind: "ClusterRole", name: untyped }
+    end
+  end
+end

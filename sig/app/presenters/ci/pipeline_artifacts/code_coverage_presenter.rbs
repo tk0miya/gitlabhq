@@ -1,0 +1,13 @@
+module Ci
+  module PipelineArtifacts
+    class CodeCoveragePresenter < Gitlab::View::Presenter::Delegated
+      include Gitlab::Utils::StrongMemoize
+
+      def for_files: (untyped filenames) -> { files: untyped }
+
+      private
+
+      def raw_report: () -> untyped
+    end
+  end
+end

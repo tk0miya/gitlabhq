@@ -1,0 +1,58 @@
+module DiffViewer
+  class Base
+    @diff_file: untyped
+
+    @initially_binary: untyped
+
+    # diff_file.collapsed? returns false when the diff is part of a collection with only one diff
+    # and it was auto-expanded by Gitlab::Git::DiffCollection's expand_diff? check
+    @collapsed: untyped
+
+    @too_large: untyped
+
+    PARTIAL_PATH_PREFIX: "projects/diffs/viewers"
+
+    attr_reader diff_file: untyped
+
+    def initialize: (untyped diff_file) -> void
+
+    def self.partial_path: () -> untyped
+
+    def self.rich?: () -> untyped
+
+    def self.simple?: () -> untyped
+
+    def self.binary?: () -> untyped
+
+    def self.text?: () -> untyped
+
+    def self.can_render?: (untyped diff_file, ?verify_binary: bool) -> untyped
+
+    def self.can_render_blob?: (untyped blob, ?verify_binary: bool) -> (true | false)
+
+    def collapsed?: () -> untyped
+
+    def too_large?: () -> untyped
+
+    def expandable?: () -> untyped
+
+    def binary_detected_after_load?: () -> untyped
+
+    def generated?: () -> untyped
+
+    # This method is used on the server side to check whether we can attempt to
+    # render the diff_file at all. The human-readable error message can be
+    # retrieved by #render_error_message.
+    def render_error: () -> (:too_large | nil)
+
+    def render_error_message: () -> (nil | untyped)
+
+    def prepare!: () -> nil
+
+    private
+
+    def render_error_options: () -> untyped
+
+    def render_error_reason: () -> (untyped | nil)
+  end
+end

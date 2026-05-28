@@ -1,0 +1,21 @@
+module BulkImports
+  module Common
+    module Extractors
+      class GraphqlExtractor
+        @query_klass: untyped
+
+        @graphql_client: untyped
+
+        def initialize: (?::Hash[untyped, untyped] options) -> void
+
+        def extract: (untyped context) -> untyped
+
+        private
+
+        attr_reader query_klass: untyped
+
+        def graphql_client: (untyped context) -> untyped
+      end
+    end
+  end
+end

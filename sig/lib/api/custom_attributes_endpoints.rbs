@@ -1,0 +1,7 @@
+module API
+  module CustomAttributesEndpoints
+    extend ActiveSupport::Concern
+
+    ALLOWED_FINDERS: ::Array["find_user" | "find_project" | "find_group"]
+  end
+end

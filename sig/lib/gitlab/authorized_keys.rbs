@@ -1,0 +1,69 @@
+module Gitlab
+  class AuthorizedKeys
+    @logger: untyped
+
+    @file: untyped
+
+    KeyError: untyped
+
+    attr_reader logger: untyped
+
+    # Initializes the class
+    #
+    # @param [Gitlab::Logger] logger
+    def initialize: (?untyped logger) -> void
+
+    # Checks if the file is accessible or not
+    #
+    # @return [Boolean]
+    def accessible?: () -> untyped
+
+    # Creates the authorized_keys file if it doesn't exist
+    #
+    # @return [Boolean]
+    def create: () -> untyped
+
+    # Add id and its key to the authorized_keys file
+    #
+    # @param [String] id identifier of key prefixed by `key-`
+    # @param [String] key public key to be added
+    # @return [Boolean]
+    def add_key: (untyped id, untyped key) -> true
+
+    # Atomically add all the keys to the authorized_keys file
+    #
+    # @param [Array<::Key>] keys list of Key objects to be added
+    # @return [Boolean]
+    def batch_add_keys: (untyped keys) -> untyped
+
+    # Remove key by ID from the authorized_keys file
+    #
+    # @param [String] id identifier of the key to be removed prefixed by `key-`
+    # @return [Boolean]
+    def remove_key: (untyped id) -> untyped
+
+    # Clear the authorized_keys file
+    #
+    # @return [Boolean]
+    def clear: () -> true
+
+    # Read the authorized_keys file and return IDs of each key
+    #
+    # @return [Array<Integer>]
+    def list_key_ids: () -> untyped
+
+    def file: () -> untyped
+
+    private
+
+    def lock: (?::Integer timeout) { () -> untyped } -> untyped
+
+    def open_authorized_keys_file: (untyped mode) { (untyped) -> untyped } -> untyped
+
+    def key_line: (untyped id, untyped key) -> ::String
+
+    def command: (untyped id) -> ::String
+
+    def strip: (untyped key) -> untyped
+  end
+end

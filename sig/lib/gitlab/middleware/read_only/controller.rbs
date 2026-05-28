@@ -1,0 +1,92 @@
+module Gitlab
+  module Middleware
+    class ReadOnly
+      class Controller
+        @app: untyped
+
+        @env: untyped
+
+        @rack_flash: untyped
+
+        @route_hash: untyped
+
+        @request_path: untyped
+
+        DISALLOWED_METHODS: ::Array["POST" | "PATCH" | "PUT" | "DELETE"]
+
+        APPLICATION_JSON: "application/json"
+
+        APPLICATION_JSON_TYPES: ::Array[untyped | "application/vnd.git-lfs+json"]
+
+        READ_ONLY_INSTANCE_ERROR_MESSAGE: "You cannot perform write operations on a read-only instance"
+
+        ALLOWLISTED_GIT_READ_ONLY_ROUTES: { "repositories/git_http" => ::Array["git_upload_pack"] }
+
+        ALLOWLISTED_GIT_LFS_BATCH_ROUTES: { "repositories/lfs_api" => ::Array["batch"] }
+
+        ALLOWLISTED_GIT_REVISION_ROUTES: { "projects/compare" => ::Array["create"] }
+
+        ALLOWLISTED_SESSION_ROUTES: { "sessions" => ::Array["destroy"], "admin/sessions" => ::Array["create" | "destroy"] }
+
+        GRAPHQL_URL: "/api/graphql"
+
+        def initialize: (untyped app, untyped env) -> void
+
+        def call: () -> untyped
+
+        private
+
+        def disallowed_request?: () -> untyped
+
+        # Overridden in EE module
+        def read_only?: () -> untyped
+
+        def json_request?: () -> untyped
+
+        def rack_flash: () -> untyped
+
+        def rack_session: () -> untyped
+
+        def request: () -> untyped
+
+        def last_visited_url: () -> untyped
+
+        def route_hash: () -> untyped
+
+        def request_url: () -> untyped
+
+        def request_path: () -> untyped
+
+        def relative_url: () -> untyped
+
+        # Overridden in EE module
+        def allowlisted_routes: () -> untyped
+
+        # URL for requests passed through gitlab-workhorse to rails-web
+        # https://gitlab.com/gitlab-org/gitlab-workhorse/-/merge_requests/12
+        def workhorse_passthrough_route?: () -> (false | untyped)
+
+        def internal_route?: () -> untyped
+
+        def compare_git_revisions_route?: () -> (false | untyped)
+
+        # Batch upload requests are blocked in:
+        # https://gitlab.com/gitlab-org/gitlab/blob/master/app/controllers/repositories/lfs_api_controller.rb#L106
+        def lfs_batch_route?: () -> (nil | untyped)
+
+        def session_route?: () -> (false | untyped)
+
+        def sidekiq_route?: () -> untyped
+
+        def graphql_query?: () -> untyped
+
+        # overridden in EE module
+        def handle_read_only_error: () -> untyped
+
+        def forbidden_read_only_response: () -> untyped
+
+        def error_response: (untyped status_code, untyped error_message, ?::Hash[untyped, untyped] additional_headers) -> untyped
+      end
+    end
+  end
+end

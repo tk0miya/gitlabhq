@@ -1,0 +1,63 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      class RestrictAllowedSchemas < Base
+        UnsupportedSchemaError: untyped
+
+        DDLNotAllowedError: untyped
+
+        DMLNotAllowedError: untyped
+
+        DMLAccessDeniedError: untyped
+
+        # Re-map schemas observed schemas to a single cluster mode
+        # - symbol:
+        #     The mapped schema indicates that it contains all data in a single-cluster mode
+        # - nil:
+        #     Inidicates that changes made to this schema are ignored and always allowed
+        SCHEMA_MAPPING: { gitlab_shared: nil, gitlab_shared_cell_local: nil, gitlab_internal: nil, gitlab_main_org: :gitlab_main, gitlab_main_cell_local: :gitlab_main, gitlab_main_jh: :gitlab_main, gitlab_ci_cell_local: :gitlab_ci, gitlab_main_cell_setting: :gitlab_main, gitlab_main_user: :gitlab_main }
+
+        def self.enabled?: () -> true
+
+        def self.allowed_gitlab_schemas: () -> untyped
+
+        def self.allowed_gitlab_schemas=: (untyped value) -> untyped
+
+        def self.analyze: (untyped parsed) -> (nil | untyped)
+
+        def self.require_ddl_mode!: (?::String message) -> (nil | untyped)
+
+        def self.require_dml_mode!: (?::String message) -> (nil | untyped)
+
+        private
+
+        def self.restrict_to_ddl_only: (untyped parsed) -> untyped
+
+        def self.restrict_to_dml_only: (untyped parsed) -> untyped
+
+        def self.dml_mode?: () -> untyped
+
+        def self.ddl_mode?: () -> untyped
+
+        # There is a special case where CREATE VIEW DDL statement can include DML statements.
+        # For this case, +select_tables+ should be empty, to avoid false positives.
+        #
+        # @example
+        #          CREATE VIEW issues AS SELECT * FROM tickets
+        def self.dml_tables: (untyped parsed) -> untyped
+
+        def self.dml_from_create_view?: (untyped parsed) -> (nil | untyped)
+
+        def self.dml_schemas: (untyped tables) -> untyped
+
+        def self.map_schemas: (untyped schemas) -> untyped
+
+        def self.raise_dml_not_allowed_error: (untyped message) -> untyped
+
+        def self.raise_ddl_not_allowed_error: (untyped message) -> untyped
+
+        def self.documentation_url: () -> "For more information visit: https://docs.gitlab.com/ee/development/database/migrations_for_multiple_databases.html"
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Notes
+  class NoteMetadata < ApplicationRecord
+    include Notes::WithAssociatedNote
+
+    EMAIL_PARTICIPANT_LENGTH: 255
+
+    private
+
+    def ensure_email_participant_length: () -> (nil | untyped)
+
+    def note_namespace_id: () -> (nil | untyped)
+
+    def namespace_id_for_noteable: () -> (untyped | untyped | nil)
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  class CrossProjectAccess
+    module ClassMethods
+      def requires_cross_project_access: (*untyped args) -> untyped
+
+      def skip_cross_project_access_check: (*untyped args) -> untyped
+
+      private
+
+      def extract_params: (untyped args) -> ::Array[untyped]
+    end
+  end
+end

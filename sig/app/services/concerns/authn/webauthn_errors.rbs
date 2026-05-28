@@ -1,0 +1,19 @@
+#
+# Stores & maps error messages for WebAuthn (2FA device & passkey) errors.
+#
+module Authn
+  module WebauthnErrors
+    extend ActiveSupport::Concern
+
+    def webauthn_error_messages: () -> { "WebAuthn::AttestationStatementVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::AttestedCredentialVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::AuthenticatorDataVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::ChallengeVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::OriginVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::RpIdVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::SignatureVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::SignCountVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::TokenBindingVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::TypeVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::UserPresenceVerificationError" => { webauthn: untyped, passkey: untyped }, "WebAuthn::UserVerifiedVerificationError" => { webauthn: untyped, passkey: untyped } }
+
+    def webauthn_generic_error_messages: () -> { webauthn: untyped, passkey: untyped }
+
+    # Returns a human readable error message, given a webauthn/passkey error class_name.
+    #
+    # Accepts a `WebAuthn::Error` class.name  and an optional keyword argument `passkey: true`
+    # if called from a Passkey bounded context.
+    #
+    def webauthn_human_readable_errors: (untyped error_message_class_name, ?passkey: untyped?) -> (nil | untyped)
+  end
+end

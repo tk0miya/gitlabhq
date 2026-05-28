@@ -1,0 +1,13 @@
+module Gitlab
+  module SQL
+    module Pattern
+      extend ActiveSupport::Concern
+
+      MIN_CHARS_FOR_PARTIAL_MATCHING: 3
+
+      REGEX_QUOTED_TERM: ::Regexp
+
+      def self.split_query_to_search_terms: (untyped query) -> untyped
+    end
+  end
+end

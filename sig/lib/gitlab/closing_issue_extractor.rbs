@@ -1,0 +1,20 @@
+module Gitlab
+  class ClosingIssueExtractor
+    @project: untyped
+
+    @extractor: untyped
+
+    # Rubular: https://rubular.com/r/PqADDyNVtBUpXl
+    # Note that it's not possible to use Gitlab::UntrustedRegexp for LINK_PATTERN,
+    # as `(?<!` is unsupported in `re2`, see https://github.com/google/re2/wiki/Syntax
+    HTTP_LINK_PATTERN: ::Regexp
+
+    ISSUE_CLOSING_REGEX: untyped
+
+    MAX_CLOSING_ISSUES: 500
+
+    def initialize: (untyped project, ?untyped? current_user) -> void
+
+    def closed_by_message: (untyped message) -> (::Array[untyped] | untyped)
+  end
+end

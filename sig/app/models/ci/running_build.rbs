@@ -1,0 +1,8 @@
+module Ci
+  # This model represents metadata for a running build.
+  class RunningBuild < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    def self.upsert_build!: (untyped build) -> untyped
+  end
+end

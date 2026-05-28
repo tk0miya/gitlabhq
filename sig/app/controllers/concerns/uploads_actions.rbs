@@ -1,0 +1,68 @@
+module UploadsActions
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  include SendFileUpload
+
+  # Starting with version 2, Markdown upload URLs use project / group IDs instead of paths
+  ID_BASED_UPLOAD_PATH_VERSION: 2
+
+  UPLOAD_MOUNTS: ::Array["avatar" | "attachment" | "file" | "logo" | "pwa_icon" | "header_logo" | "favicon" | "screenshot"]
+
+  # We need to avoid setting certain formats. For example, using the :js format
+  # would trigger Rails' cross-origin JavaScript protection. To avoid this, we use
+  # the :text format for JS files instead.
+  CUSTOM_REQUEST_FORMAT_MAPPING: { js: :text }
+
+  def create: () -> untyped
+
+  # This should either
+  #   - send the file directly
+  #   - or redirect to its URL
+  #
+  def show: () -> untyped
+
+  def authorize: () -> untyped
+
+  private
+
+  # Based on ActionDispatch::Http::MimeNegotiation. We have an
+  # initializer that monkey-patches this method out (so that repository
+  # paths don't guess a format based on extension), but we do want this
+  # behavior when serving uploads.
+  def set_request_format_from_path_extension: () -> (nil | untyped)
+
+  def content_disposition: () -> ("inline" | "attachment")
+
+  def uploader_class: () -> untyped
+
+  def upload_mount: () -> untyped
+
+  def uploader_mounted?: () -> untyped
+
+  def uploader: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def build_uploader_from_upload: () -> (nil | untyped)
+
+  def build_uploader: () -> (nil | untyped)
+
+  def embeddable?: () -> untyped
+
+  def bypass_auth_checks_on_uploads?: () -> (false | untyped)
+
+  def private_project_with_auth_checks?: () -> untyped
+
+  def upload_version_at_least?: (untyped version) -> (nil | untyped)
+
+  def target_project: () -> nil
+
+  def find_model: () -> nil
+
+  def cache_settings: () -> ::Array[untyped]
+
+  def model: () -> untyped
+
+  def workhorse_authorize_request?: () -> untyped
+end

@@ -1,0 +1,15 @@
+module ClickHouse
+  module Models
+    module Ci
+      class FinishedPipelinesHourly < FinishedPipelinesBase
+        TIME_BUCKETS_LIMIT: untyped
+
+        def self.table_name: () -> "ci_finished_pipelines_hourly"
+
+        def self.time_window_valid?: (untyped from_time, untyped to_time) -> untyped
+
+        def self.validate_time_window: (untyped from_time, untyped to_time) -> (nil | ::String)
+      end
+    end
+  end
+end

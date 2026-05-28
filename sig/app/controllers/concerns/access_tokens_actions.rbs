@@ -1,0 +1,47 @@
+module AccessTokensActions
+  @resource_access_token: untyped
+
+  @scopes: untyped
+
+  @active_access_tokens: untyped
+
+  @active_access_tokens_size: untyped
+
+  @inactive_access_tokens_size: untyped
+
+  extend ActiveSupport::Concern
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def index: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def create: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def revoke: () -> untyped
+
+  def rotate: () -> untyped
+
+  def inactive: () -> untyped
+
+  private
+
+  def validate_scopes_presence: () -> (nil | untyped)
+
+  def check_permission: (untyped action) -> (untyped | nil)
+
+  def create_params: () -> untyped
+
+  def rotate_params: () -> untyped
+
+  def revoke_params: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def set_index_vars: () -> untyped
+
+  def finder: (?::Hash[untyped, untyped] options) -> untyped
+
+  def bot_users: () -> untyped
+
+  def key_identity: () -> ::String
+end

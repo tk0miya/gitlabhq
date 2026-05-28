@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class DimensionDefinition < PartDefinition
+          @association: untyped
+
+          attr_reader association: untyped
+
+          def initialize: (*untyped args, ?association: bool, **untyped kwargs) -> void
+
+          def association?: () -> untyped
+
+          def to_inner_arel: (untyped context) -> untyped
+
+          def to_outer_arel: (untyped context) -> untyped
+
+          def requires_window?: () -> false
+        end
+      end
+    end
+  end
+end

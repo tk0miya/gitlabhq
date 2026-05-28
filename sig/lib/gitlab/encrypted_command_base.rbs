@@ -1,0 +1,24 @@
+# rubocop:disable Rails/Output
+module Gitlab
+  class EncryptedCommandBase
+    DISPLAY_NAME: "Base"
+
+    EDIT_COMMAND_NAME: "base"
+
+    def self.encrypted_secrets: (**untyped args) -> untyped
+
+    def self.write: (untyped contents, ?args: ::Hash[untyped, untyped]) -> untyped
+
+    def self.edit: (?args: ::Hash[untyped, untyped]) -> untyped
+
+    def self.show: (?args: ::Hash[untyped, untyped]) -> untyped
+
+    def self.validate_config: (untyped encrypted) -> (false | true)
+
+    def self.validate_contents: (untyped contents) -> untyped
+
+    def self.encrypted_file_template: () -> untyped
+
+    def self.editor_args: () -> untyped
+  end
+end

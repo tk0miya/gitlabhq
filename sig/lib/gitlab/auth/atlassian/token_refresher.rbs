@@ -1,0 +1,35 @@
+module Gitlab
+  module Auth
+    module Atlassian
+      class TokenRefresher
+        @identity: untyped
+
+        @config: untyped
+
+        attr_reader identity: untyped
+
+        REFRESH_TOKEN_URL: "https://auth.atlassian.com/oauth/token"
+
+        MIN_TIME_ALLOWED_TILL_EXPIRE: untyped
+
+        AtlassianTokenRefreshError: untyped
+
+        def initialize: (untyped identity) -> void
+
+        def needs_refresh?: () -> untyped
+
+        def refresh!: () -> untyped
+
+        def refresh_if_needed!: () -> (untyped | nil)
+
+        private
+
+        def headers: () -> { "Content-Type" => "application/json" }
+
+        def payload: () -> { grant_type: "refresh_token", client_id: untyped, client_secret: untyped, refresh_token: untyped }
+
+        def config: () -> untyped
+      end
+    end
+  end
+end

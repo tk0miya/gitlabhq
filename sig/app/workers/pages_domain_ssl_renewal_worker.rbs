@@ -1,0 +1,7 @@
+class PagesDomainSslRenewalWorker
+  include ApplicationWorker
+
+  include CronjobChildWorker
+
+  def perform: (untyped domain_id) -> (nil | untyped)
+end

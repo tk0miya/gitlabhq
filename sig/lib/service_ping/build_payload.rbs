@@ -1,0 +1,31 @@
+module ServicePing
+  class BuildPayload
+    @raw_payload: untyped
+
+    @permitted_categories: untyped
+
+    @metric_definitions: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def raw_payload: () -> untyped
+
+    def filtered_usage_data: (?untyped payload, ?untyped parents) -> (nil | untyped)
+
+    def include_metric?: (untyped key_path) -> untyped
+
+    def valid_metric_status?: (untyped key_path) -> untyped
+
+    def permitted_categories: () -> untyped
+
+    def permitted_metric?: (untyped key_path) -> untyped
+
+    def has_metric_definition?: (untyped key_path) -> untyped
+
+    def metric_category: (untyped key_path) -> untyped
+
+    def metric_definitions: () -> untyped
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class JobInput < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Ci::Config::Entry::BaseInput
+
+          ALLOWED_KEYS: untyped
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

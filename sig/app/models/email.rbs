@@ -1,0 +1,30 @@
+class Email < ApplicationRecord
+  include Sortable
+
+  include Gitlab::SQL::Pattern
+
+  include Cells::Claimable
+
+  # This module adds async behaviour to Devise emails
+  # and should be added after Devise modules are initialized.
+  include AsyncDeviseEmail
+
+  include ForcedEmailConfirmation
+
+  def email=: (untyped value) -> untyped
+
+  def unique_email: () -> (untyped | nil)
+
+  # once email is confirmed, update the gpg signatures
+  def update_invalid_gpg_signatures: () -> (untyped | nil)
+
+  def user_primary_email?: () -> untyped
+
+  private
+
+  def primary_email_of_another_user?: () -> untyped
+
+  def detumble_email!: () -> untyped
+
+  def unique_attributes: () -> ::Array[:email]
+end

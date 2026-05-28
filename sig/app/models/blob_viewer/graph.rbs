@@ -1,0 +1,19 @@
+module BlobViewer
+  class Graph < Base
+    include Rich
+
+    include ServerSide
+
+    INTERNAL_EXTENSIONS: ::Array["mermaid"]
+
+    PLANTUML_EXTENSIONS: ::Array["plantuml" | "pu" | "puml" | "iuml"]
+
+    KROKI_EXTENSIONS: ::Array["d2" | "dot" | "gv" | "noml" | "plantuml" | "pu" | "puml" | "iuml" | "vg" | "vl"]
+
+    def self.can_render?: (untyped blob, ?verify_binary: bool) -> (false | true)
+
+    def self.graph_format: (untyped blob) -> untyped
+
+    def banzai_render_context: () -> untyped
+  end
+end

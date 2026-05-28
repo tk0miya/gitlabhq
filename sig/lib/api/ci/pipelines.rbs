@@ -1,0 +1,11 @@
+module API
+  module Ci
+    class Pipelines < ::API::Base
+      include ::API::Concerns::McpAccess
+
+      include PaginationParams
+
+      include APIGuard
+    end
+  end
+end

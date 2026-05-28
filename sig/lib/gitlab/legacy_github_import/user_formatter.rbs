@@ -1,0 +1,49 @@
+module Gitlab
+  module LegacyGithubImport
+    class UserFormatter
+      @client: untyped
+
+      @raw: untyped
+
+      @project: untyped
+
+      @source_user_mapper: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader client: untyped
+
+      attr_reader raw: untyped
+
+      attr_reader project: untyped
+
+      attr_reader source_user_mapper: untyped
+
+      GITEA_GHOST_EMAIL: "ghost_user@gitea_import_dummy_email.com"
+
+      def initialize: (untyped client, untyped raw, untyped project, untyped source_user_mapper) -> void
+
+      def id: () -> untyped
+
+      def login: () -> untyped
+
+      def gitlab_id: () -> untyped
+
+      def source_user: () -> (nil | untyped)
+
+      private
+
+      def ghost_user?: () -> untyped
+
+      def gitea_user: () -> untyped
+
+      def find_by_email: () -> (nil | untyped)
+
+      def gitlab_user: () -> (nil | untyped)
+
+      def user_mapping_enabled?: () -> untyped
+
+      def map_to_personal_namespace_owner?: () -> untyped
+    end
+  end
+end

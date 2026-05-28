@@ -1,0 +1,74 @@
+module SystemNotes
+  class CommitService < ::SystemNotes::BaseService
+    NEW_COMMIT_DISPLAY_LIMIT: 10
+
+    # Called when commits are added to a merge request
+    #
+    # new_commits      - Array of Commits added since last push
+    # existing_commits - Array of Commits added in a previous push
+    # oldrev           - Optional String SHA of a previous Commit
+    #
+    # See new_commit_summary and existing_commit_summary.
+    #
+    # Returns the created Note object
+    def add_commits: (untyped new_commits, ?untyped existing_commits, ?untyped? oldrev) -> untyped
+
+    # Called when a commit was tagged
+    #
+    # tag_name  - The created tag name
+    #
+    # Returns the created Note object
+    def tag_commit: (untyped tag_name) -> untyped
+
+    private
+
+    # Build an Array of lines detailing each commit added in a merge request
+    #
+    # new_commits - Array of new Commit objects
+    #
+    # Returns an Array of Strings
+    def new_commits_list: (untyped new_commits) -> untyped
+
+    # Builds an Array of lines describing each commit and truncate them based on the limit
+    # to avoid creating a note with a large number of commits.
+    #
+    # commits - Array of Commit objects
+    #
+    # Returns an Array of Strings
+    #
+    # rubocop: disable CodeReuse/ActiveRecord
+    def new_commit_summary: (untyped commits, untyped start_rev) -> untyped
+
+    # Builds a summary line that describes given truncated commits.
+    #
+    # commits - Array of Commit objects
+    # start_rev - String SHA of a Commit that will be used as the starting SHA of the range
+    #
+    # Returns a String wrapped in 'li' tag.
+    def truncated_new_commits: (untyped commits, untyped start_rev) -> untyped
+
+    # Builds a list of existing and new commits according to existing_commits and
+    # new_commits methods.
+    # Returns a String wrapped in `ul` and `li` tags.
+    def commits_list: (untyped noteable, untyped new_commits, untyped existing_commits, untyped oldrev) -> untyped
+
+    # Build a single line summarizing existing commits being added in a merge
+    # request
+    #
+    # existing_commits - Array of existing Commit objects
+    # oldrev           - Optional String SHA of a previous Commit
+    #
+    # Examples:
+    #
+    #   "* ea0f8418...2f4426b7 - 24 commits from branch `master`"
+    #
+    #   "* ea0f8418..4188f0ea - 15 commits from branch `fork:master`"
+    #
+    #   "* ea0f8418 - 1 commit from branch `feature`"
+    #
+    # Returns a newline-terminated String
+    def existing_commit_summary: (untyped noteable, untyped existing_commits, ?untyped? oldrev) -> ("" | untyped)
+
+    def diff_comparison_path: (untyped merge_request, untyped project, untyped oldrev) -> untyped
+  end
+end

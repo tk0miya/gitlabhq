@@ -1,0 +1,15 @@
+module ScheduleBulkRepositoryShardMovesMethods
+  extend ActiveSupport::Concern
+
+  include BaseServiceUtility
+
+  def execute: (untyped source_storage_name, ?untyped? destination_storage_name) -> untyped
+
+  private
+
+  def repository_klass: () -> untyped
+
+  def container_klass: () -> untyped
+
+  def container_column: () -> untyped
+end

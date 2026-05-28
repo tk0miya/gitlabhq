@@ -1,0 +1,17 @@
+module API
+  module Entities
+    module Ml
+      module MlflowArtifacts
+        class Artifact < Grape::Entity
+          private
+
+          def path: () -> untyped
+
+          def is_dir: () -> false
+
+          def file_size: () -> untyped
+        end
+      end
+    end
+  end
+end

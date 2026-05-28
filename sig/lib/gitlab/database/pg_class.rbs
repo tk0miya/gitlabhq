@@ -1,0 +1,9 @@
+module Gitlab
+  module Database
+    class PgClass < SharedModel
+      def self.for_table: (untyped relname) -> untyped
+
+      def cardinality_estimate: () -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Sidebars
+  module YourWork
+    module Menus
+      class TodosMenu < ::Sidebars::Menu
+        include Gitlab::Utils::StrongMemoize
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "todo-done"
+
+        def render?: () -> untyped
+
+        def active_routes: () -> { path: "dashboard/todos#index" }
+
+        def has_pill?: () -> true
+
+        def pill_count_field: () -> "todos"
+      end
+    end
+  end
+end

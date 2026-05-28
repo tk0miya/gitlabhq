@@ -1,0 +1,57 @@
+module Gitlab
+  module Metrics
+    self.@series_prefix: untyped
+
+    self.@settings: untyped
+
+    # This is memoized since this method is called for every instrumented
+    # method. Loading data from an external cache on every method call slows
+    # things down too much.
+    # in milliseconds
+    self.@method_call_threshold: untyped
+
+    include ::Gitlab::Metrics::Labkit
+
+    # Use ApplicationSlis using the name from before they were moved to Labkit.
+    # This way we don't need to update all uses.
+    Sli: untyped
+
+    EXECUTION_MEASUREMENT_BUCKETS: ::Array[::Float | 1]
+
+    def self.record_duration_for_status?: (untyped status) -> untyped
+
+    def self.server_error?: (untyped status) -> untyped
+
+    # Tracks an event.
+    #
+    # See `Gitlab::Metrics::Transaction#add_event` for more details.
+    def self.add_event: (*untyped args) -> untyped
+
+    # Allow access from other metrics related middlewares
+    def self.current_transaction: () -> untyped
+
+    # Returns the prefix to use for the name of a series.
+    def self.series_prefix: () -> untyped
+
+    def self.settings: () -> untyped
+
+    def self.method_call_threshold: () -> untyped
+
+    # Measures the execution time of a block.
+    #
+    # Example:
+    #
+    #     Gitlab::Metrics.measure(:find_by_username_duration) do
+    #       UserFinder.new(some_username).find_by_username
+    #     end
+    #
+    # name - The name of the field to store the execution time in.
+    #
+    # Returns the value yielded by the supplied block.
+    def self.measure: (untyped name) { () -> untyped } -> untyped
+
+    def self.initialize_slis!: () -> untyped
+
+    def self.preload_sli_modules!: () -> untyped
+  end
+end

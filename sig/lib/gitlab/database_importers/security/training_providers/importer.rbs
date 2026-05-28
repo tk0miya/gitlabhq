@@ -1,0 +1,22 @@
+module Gitlab
+  module DatabaseImporters
+    module Security
+      module TrainingProviders
+        module Importer
+          KONTRA_DATA: { name: "Kontra", description: "Kontra Application Security provides interactive developer security education that\n                          enables engineers to quickly learn security best practices\n                          and fix issues in their code by analysing real-world software security vulnerabilities.", url: "https://application.security/api/webhook/gitlab/exercises/search" }
+
+          SCW_DATA: { name: "Secure Code Warrior", description: "Resolve vulnerabilities faster and confidently with\n                          highly relevant and bite-sized secure coding learning.", url: "https://integration-api.securecodewarrior.com/api/v1/trial" }
+
+          SECUREFLAG_DATA: { name: "SecureFlag", description: "Get remediation advice with example code and recommended hands-on labs in a fully\n                          interactive virtualized environment.", url: "https://knowledge-base-api.secureflag.com/gitlab" }
+
+          module Security
+            class TrainingProvider < ApplicationRecord
+            end
+          end
+
+          def self.upsert_providers: () -> untyped
+        end
+      end
+    end
+  end
+end

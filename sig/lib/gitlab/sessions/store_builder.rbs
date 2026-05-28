@@ -1,0 +1,17 @@
+module Gitlab
+  module Sessions
+    class StoreBuilder
+      @cookie_key: untyped
+
+      @session_cookie_token_prefix: untyped
+
+      attr_reader cookie_key: untyped
+
+      attr_reader session_cookie_token_prefix: untyped
+
+      def initialize: (untyped cookie_key, untyped session_cookie_token_prefix) -> void
+
+      def prepare: () -> ::Array[untyped | { cache: untyped, key: untyped, secure: untyped, httponly: true, path: untyped, session_cookie_token_prefix: untyped }]
+    end
+  end
+end

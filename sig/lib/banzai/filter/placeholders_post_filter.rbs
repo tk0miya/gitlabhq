@@ -1,0 +1,149 @@
+module Banzai
+  module Filter
+    # Replaces previously identified dynamic placeholders with current values.
+    # By performing this as a post-processing filter, we can show current
+    # information.
+    class PlaceholdersPostFilter < HTML::Pipeline::Filter
+      prepend Concerns::TimeoutFilterHandler
+
+      prepend Concerns::PipelineTimingCheck
+
+      # gitlab-glfm-markdown will detect possible placeholder values, and mark them with a
+      # `<span data-placeholder>` for text, or add `data-placeholder` to links or images.
+      # This allows us to specifically search for those nodes.
+      #
+      # The syntax used is `%{PLACEHOLDER}`. Markdown processing ignores
+      # this syntax, so even links with embedded placeholders will get
+      # preserved.
+      CSS: "[data-placeholder]"
+
+      XPATH: untyped
+
+      FILTER_ITEM_LIMIT: 100
+
+      ALLOWED_URI_CONTEXT_ALL: :all
+
+      ALLOWED_URI_CONTEXT_ALL_BUT_HOST: :all_but_host
+
+      # A `PlaceholderReplacer` is an object which knows how to generate a replacement
+      # value for a given placeholder.
+      #
+      # It is initialized with a block, which generates the actual replacement value
+      # given the filter context, as well as metadata which describes how replacements
+      # are to be made in a URI context, such as a link href or image src:
+      #
+      # - allowed_uri_context describes which parts of a URI this placeholder can be
+      #   invoked in.  It is either:
+      #
+      #   * ALLOWED_URI_CONTEXT_ALL, meaning it can appear in any part of a URI
+      #     (host, path, query, or fragment); or,
+      #   * ALLOWED_URI_CONTEXT_ALL_BUT_HOST, meaning it can appear in any part of
+      #     a URI except host; namely path, query, or fragment.
+      #
+      #   If a placeholder is found in an unsupported context, it is left untouched.
+      #
+      # - uri_encode describes whether the replacement result should be
+      #   percent-encoded when substituted into a URI.  This defaults to true, and
+      #   should be overidden to false only when necessary for the placeholder to
+      #   function as expected.
+      #
+      #   For example, "%{project_path}" will yield a replacement value like
+      #   "gitlab-org/gitlab".  Percent-encoding this would yield
+      #   "gitlab-org%2Fgitlab", which -- depending on the target service -- may not
+      #   be desirable.  We may use `uri_encode: false` to allow substitutions like
+      #   "http://%{gitlab_server}/%{project_path}" to work as expected.
+      #
+      #   On the other hand, "%{project_title}" and other free text-like inputs should
+      #   always be kept as the default, `uri_encode: true`, otherwise the input can
+      #   become interpreted incorrectly, and could potentially lead to XSS.
+      #
+      #   When we disable `uri_encode` for any given replacer, we give a rationale to
+      #   help vet the correctness of the decision over time.
+      #
+      class PlaceholderReplacer
+        @allowed_uri_context: untyped
+
+        @uri_encode: untyped
+
+        @block: untyped
+
+        def initialize: (untyped allowed_uri_context, ?uri_encode: bool) { (?) -> untyped } -> void
+
+        attr_reader allowed_uri_context: untyped
+
+        attr_reader uri_encode: untyped
+
+        attr_reader block: untyped
+
+        def generate: (untyped context, in_uri_component: untyped) -> untyped
+
+        private
+
+        def maybe_encode: (untyped result) -> untyped
+      end
+
+      # Variables that can be replaced. We handle them all dynamically in post-process
+      # as the values can change over time.
+      #
+      # All placeholder replacements yield text, not HTML, and must be escaped or set
+      # as a text node's content.
+      #
+      # See PlaceholderReplacer for documentation on the metadata of each.
+      PLACEHOLDER_REPLACERS: { "gitlab_server" => untyped, "gitlab_pages_domain" => untyped, "project_path" => untyped, "project_name" => untyped, "project_id" => untyped, "project_namespace" => untyped, "project_title" => untyped, "group_name" => untyped, "default_branch" => untyped, "current_ref" => untyped, "commit_sha" => untyped, "latest_tag" => untyped }
+
+      PLACEHOLDERS_REGEX: ::Regexp
+
+      PLACEHOLDERS_FULL_ANCHORED_REGEX: ::Regexp
+
+      def call: () -> untyped
+
+      private
+
+      def replace_span_placeholder: (untyped node) -> (nil | untyped)
+
+      def replace_link_placeholders: (untyped node, ?limit: ::Integer) -> untyped
+
+      def replace_image_placeholders: (untyped node, ?limit: ::Integer) -> untyped
+
+      # Do placeholder replacement within a URL as found in an HTML attribute.
+      #
+      # Takes the HTML attribute value as an argument; this should be the DOM value,
+      # i.e. what Nokogiri gives you when you say node['href'] or node['src'].
+      # In particular, this means there will be no HTML entities that aren't actually
+      # spelled out in the text.
+      #
+      # There will still be URI encoded characters, which look like this: %5B.
+      # In particular, if the user enters "[hello](%{something})", the href will be
+      # "%%7Bsomething%7D"; we need to interpret the percent-decodes to get "%{something}".
+      # We can't do this across the string, however, as there are other characters which
+      # (a) have special meaning in the context of a URI, and (b) can be percent-encoded
+      # to avoid that, such as "#" (%23), "?" (%3f), and "/" (%2f).
+      #
+      # Accordingly, we match any of the following within a URI attribute:
+      #
+      # - "%{...}"
+      # - "%%7B...%7D" (case-insensitive; emitted by most CommonMark parsers)
+      # - "%25%7B...%7D" (case-insensitive; canonical valid encoding of "%{...}")
+      #
+      # Replacement values are percent-encoded where necessary according to the actual
+      # placeholder type -- see PlaceholderReplacer documentation comment for more.
+      # We do this regardless of the format of the original match, as a URL may also have
+      # non-percent-encoded "{" and "}" as part of a placeholder, such as when entered
+      # directly in a href in inline HTML in Markdown, such as
+      # "<a href='https://example.com/%{project_path}' data-placeholder>".
+      #
+      # Gives the new DOM value for replacement.
+      def replace_placeholders_within_url_attr: (untyped attr_value, limit: untyped) -> untyped
+
+      def replace_placeholders_within_uri_component: (untyped component, untyped value, limit: untyped) -> untyped
+
+      def adjust_image_node: (untyped node, untyped url, untyped new_url) -> (nil | untyped)
+
+      def link_href: (untyped node) -> untyped
+
+      def img_src: (untyped node) -> untyped
+
+      def sanitize_link: (untyped node) -> untyped
+    end
+  end
+end

@@ -1,0 +1,42 @@
+module Gitlab
+  module Ci
+    class RunnerInstructions
+      @os: untyped
+
+      @arch: untyped
+
+      @errors: untyped
+
+      @environment: untyped
+
+      class ArgumentError < ::ArgumentError
+      end
+
+      include Gitlab::Allowable
+
+      OS: { linux: { human_readable_name: "Linux", download_locations: { amd64: "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64", :"386" => "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-386", arm: "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-arm", arm64: "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-arm64" }, install_script_template_path: "lib/gitlab/ci/runner_instructions/templates/linux/install.sh", runner_executable: "sudo gitlab-runner" }, osx: { human_readable_name: "macOS", download_locations: { amd64: "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64", arm64: "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-arm64" }, install_script_template_path: "lib/gitlab/ci/runner_instructions/templates/osx/install.sh", runner_executable: "gitlab-runner" }, windows: { human_readable_name: "Windows", download_locations: { amd64: "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-windows-amd64.exe", :"386" => "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-windows-386.exe" }, install_script_template_path: "lib/gitlab/ci/runner_instructions/templates/windows/install.ps1", runner_executable: "./gitlab-runner.exe" } }
+
+      OTHER_ENVIRONMENTS: { docker: { human_readable_name: "Docker", installation_instructions_url: "https://docs.gitlab.com/runner/install/docker.html" }, kubernetes: { human_readable_name: "Kubernetes", installation_instructions_url: "https://docs.gitlab.com/runner/install/kubernetes.html" }, aws: { human_readable_name: "AWS" } }
+
+      attr_reader errors: untyped
+
+      def initialize: (os: untyped, arch: untyped) -> void
+
+      def install_script: () -> untyped
+
+      def register_command: () -> untyped
+
+      private
+
+      def with_error_handling: (untyped exceptions) { () -> untyped } -> untyped
+
+      def environment: () -> untyped
+
+      def validate_params: () -> untyped
+
+      def replace_variables: (untyped expression) -> untyped
+
+      def get_file: (untyped path) -> untyped
+    end
+  end
+end

@@ -1,0 +1,86 @@
+module Git
+  class BranchHooksService < ::Git::BaseHooksService
+    include Gitlab::InternalEventsTracking
+
+    extend ::Gitlab::Utils::Override
+
+    JIRA_SYNC_BATCH_SIZE: 20
+
+    JIRA_SYNC_BATCH_DELAY: untyped
+
+    DUO_WORKFLOW_TRAILER: "Duo-Workflow-Definition"
+
+    def execute: () -> untyped
+
+    private
+
+    alias removing_branch? removing_ref?
+
+    def hook_name: () -> :push_hooks
+
+    def limited_commits: () -> untyped
+
+    # Taking limit+1 commits allows us to detect when the limit is in effect
+    def threshold_commits: () -> untyped
+
+    def commits_count: () -> untyped
+
+    def invalidated_file_types: () -> untyped
+
+    def modified_file_types: () -> untyped
+
+    def execute_branch_hooks: () -> untyped
+
+    def branch_create_hooks: () -> untyped
+
+    def branch_change_hooks: () -> untyped
+
+    def branch_remove_hooks: () -> untyped
+
+    def track_ci_config_change_event: () -> (nil | untyped)
+
+    def track_ci_config_creation_event: () -> untyped
+
+    def ci_config_author_source: (untyped commit) -> untyped
+
+    def track_process_commit_limit_overflow: () -> (nil | untyped)
+
+    # Schedules processing of commit messages
+    def enqueue_process_commit_messages: () -> untyped
+
+    def enqueue_jira_connect_sync_messages: () -> (nil | untyped)
+
+    def enqueue_jira_connect_remove_branches: () -> (nil | untyped)
+
+    def filtered_commit_shas: () -> untyped
+
+    def signature_types: () -> ::Array[untyped]
+
+    def unsigned_commit_shas: (untyped commits) -> untyped
+
+    def enqueue_update_signatures: () -> (nil | untyped)
+
+    # It's not sufficient to just check for a blank SHA as it's possible for the
+    # branch to be pushed, but for the `post-receive` hook to never run:
+    # https://gitlab.com/gitlab-org/gitlab-foss/issues/59257
+    def creating_branch?: () -> untyped
+
+    def updating_branch?: () -> untyped
+
+    def creating_default_branch?: () -> untyped
+
+    def default_branch?: () -> untyped
+
+    def branch_name: () -> untyped
+
+    def upstream_commit_ids: (untyped commits) -> untyped
+
+    def commits_changing_ci_config: () -> untyped
+
+    def commits_creating_ci_config: () -> untyped
+
+    def commit_paths: () -> untyped
+
+    def process_commit_worker_delay: () -> untyped
+  end
+end

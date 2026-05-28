@@ -1,0 +1,23 @@
+module Banzai
+  module Filter
+    module Concerns
+      module AssetProxying
+        def validate_asset_proxying: () -> (untyped | nil)
+
+        def asset_proxy_enabled?: () -> untyped
+
+        def asset_proxy_url: (untyped url) -> ::String
+
+        def can_skip_asset_proxy_for_url?: (untyped url) -> (false | true)
+
+        private
+
+        def asset_host_allowed?: (untyped host) -> (untyped | false)
+
+        def asset_url_hash: (untyped url) -> untyped
+
+        def hexencode: (untyped str) -> untyped
+      end
+    end
+  end
+end

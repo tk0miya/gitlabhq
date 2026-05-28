@@ -1,0 +1,9 @@
+module Gitlab
+  module GitalyClient
+    class CommitCollectionWithNextCursor < SimpleDelegator
+      def initialize: (untyped response, untyped repository) -> void
+
+      attr_reader next_cursor: untyped
+    end
+  end
+end

@@ -1,0 +1,8 @@
+module Gitlab
+  module BackgroundMigration
+    # Background migration to sync scan result policies from YAML to DB table by kicking off sync Sidekiq jobs
+    class SyncScanResultPolicies < BatchedMigrationJob
+      def perform: () -> nil
+    end
+  end
+end

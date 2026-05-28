@@ -1,0 +1,43 @@
+module Gitlab
+  module GitalyClient
+    # This is a chokepoint that is meant to help us stop remove all places
+    # where production code (app, config, db, lib) touches Git repositories
+    # directly.
+    class StorageSettings
+      @hash: untyped
+
+      # Support a nil 'path' field because some of the circuit breaker tests use it.
+      @legacy_disk_path: untyped
+
+      extend Gitlab::TemporarilyAllow
+
+      DirectPathAccessError: untyped
+
+      InvalidConfigurationError: untyped
+
+      INVALID_STORAGE_MESSAGE: "Storage is invalid because it has no `gitaly_address` key.\n\nFor source installations, update your config/gitlab.yml Refer to gitlab.yml.example for an updated example.\nIf you're using the GitLab Development Kit, you can update your configuration running `gdk reconfigure`.\n"
+
+      # This class will give easily recognizable NoMethodErrors
+      Deprecated: untyped
+
+      MUTEX: untyped
+
+      ALLOW_KEY: :allow_disk_access
+
+      # If your code needs this method then your code needs to be fixed.
+      def self.allow_disk_access: () { () -> untyped } -> untyped
+
+      def self.disk_access_denied?: () -> untyped
+
+      def initialize: (untyped storage) -> void
+
+      def gitaly_address: () -> untyped
+
+      def legacy_disk_path: () -> untyped
+
+      private
+
+      def method_missing: (untyped msg, *untyped args) { (?) -> untyped } -> untyped
+    end
+  end
+end

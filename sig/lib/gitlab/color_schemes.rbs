@@ -1,0 +1,68 @@
+module Gitlab
+  # Module containing GitLab's syntax color scheme definitions and helper
+  # methods for accessing them.
+  module ColorSchemes
+    # Struct class representing a single Scheme
+    Scheme: untyped
+
+    def self.available_schemes: () -> ::Array[untyped]
+
+    # Convenience method to get a space-separated String of all the color scheme
+    # classes that might be applied to a code block.
+    #
+    # Returns a String
+    def self.body_classes: () -> untyped
+
+    # Get a Scheme by its ID
+    #
+    # If the ID is invalid, returns the default Scheme.
+    #
+    # id - Integer ID
+    #
+    # Returns a Scheme
+    def self.by_id: (untyped id) -> untyped
+
+    # Returns the number of defined Schemes
+    def self.count: () -> untyped
+
+    # Get the default Scheme
+    #
+    # Returns a Scheme
+    def self.default: () -> untyped
+
+    # Get the default dark Scheme
+    #
+    # Returns a Scheme
+    def self.default_dark: () -> untyped
+
+    # Iterate through each Scheme
+    #
+    # Yields the Scheme object
+    def self.each: () { (?) -> untyped } -> untyped
+
+    # Get the Scheme for the specified user, or the default
+    #
+    # user - User record
+    #
+    # Returns a Scheme
+    def self.for_user: (untyped user) -> untyped
+
+    def self.user_prefers_dark_mode?: (untyped user) -> untyped
+
+    # Get the light Scheme for the specified user, or the default
+    #
+    # user - User record
+    #
+    # Returns a Scheme
+    def self.light_for_user: (untyped user) -> untyped
+
+    # Get the dark Scheme for the specified user, or the default
+    #
+    # user - User record
+    #
+    # Returns a Scheme
+    def self.dark_for_user: (untyped user) -> untyped
+
+    def self.valid_ids: () -> untyped
+  end
+end

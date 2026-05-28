@@ -1,0 +1,12 @@
+module SystemCheck
+  # Used by gitlab:ldap:check rake task
+  class LdapCheck < BaseCheck
+    def multi_check: () -> untyped
+
+    private
+
+    def check_ldap: (untyped limit) -> untyped
+
+    def check_ldap_auth: (untyped adapter) -> untyped
+  end
+end

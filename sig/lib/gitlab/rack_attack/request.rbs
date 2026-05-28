@@ -1,0 +1,119 @@
+module Gitlab
+  module RackAttack
+    module Request
+      @logical_path: untyped
+
+      @request_authenticator: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      API_PATH_REGEX: ::Regexp
+
+      FILES_PATH_REGEX: ::Regexp
+
+      GROUP_PATH_REGEX: ::Regexp
+
+      RUNNER_JOBS_PATH_REGEX: ::Regexp
+
+      def unauthenticated?: () -> untyped
+
+      def throttled_identifer: (untyped request_formats) -> (nil | ::String)
+
+      def authenticated_runner_id: () -> untyped
+
+      def api_request?: () -> untyped
+
+      def logical_path: () -> untyped
+
+      def matches?: (untyped regex) -> untyped
+
+      def api_internal_request?: () -> untyped
+
+      def health_check_request?: () -> untyped
+
+      def container_registry_event?: () -> untyped
+
+      def product_analytics_collector_request?: () -> untyped
+
+      def should_be_skipped?: () -> untyped
+
+      def web_request?: () -> untyped
+
+      def protected_path?: () -> untyped
+
+      def get_request_protected_path?: () -> untyped
+
+      def throttle?: (untyped throttle, authenticated: untyped) -> untyped
+
+      def throttle_unauthenticated_api?: () -> untyped
+
+      def throttle_unauthenticated_web?: () -> untyped
+
+      def throttle_authenticated_api?: () -> untyped
+
+      def throttle_authenticated_web?: () -> untyped
+
+      def throttle_unauthenticated_protected_paths?: () -> untyped
+
+      def throttle_authenticated_protected_paths_api?: () -> untyped
+
+      def throttle_authenticated_protected_paths_web?: () -> untyped
+
+      def throttle_unauthenticated_get_protected_paths?: () -> untyped
+
+      def throttle_authenticated_get_protected_paths_api?: () -> untyped
+
+      def throttle_authenticated_get_protected_paths_web?: () -> untyped
+
+      def throttle_unauthenticated_packages_api?: () -> untyped
+
+      def throttle_authenticated_packages_api?: () -> untyped
+
+      def throttle_unauthenticated_git_http?: () -> untyped
+
+      def throttle_authenticated_git_http?: () -> untyped
+
+      def throttle_authenticated_git_lfs?: () -> untyped
+
+      def throttle_unauthenticated_files_api?: () -> untyped
+
+      def throttle_authenticated_files_api?: () -> untyped
+
+      def throttle_unauthenticated_deprecated_api?: () -> untyped
+
+      def throttle_authenticated_deprecated_api?: () -> untyped
+
+      private
+
+      def runner_jobs_api_path?: () -> untyped
+
+      def runner_jobs_request?: () -> untyped
+
+      def authenticated_identifier: (untyped request_formats) -> (nil | { identifier_type: untyped, identifier_id: untyped })
+
+      def request_authenticator: () -> untyped
+
+      def protected_paths: () -> untyped
+
+      def protected_paths_for_get_request: () -> untyped
+
+      def matches_protected_path?: (untyped paths) -> untyped
+
+      def paths_regex: (untyped paths) -> untyped
+
+      def org_scoped_paths_regex: (untyped paths) -> untyped
+
+      def packages_api_path?: () -> untyped
+
+      def git_path?: () -> untyped
+
+      def git_lfs_path?: () -> untyped
+
+      def files_api_path?: () -> untyped
+
+      def frontend_request?: () -> untyped
+
+      def deprecated_api_request?: () -> untyped
+    end
+  end
+end

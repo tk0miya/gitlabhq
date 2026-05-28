@@ -1,0 +1,20 @@
+module FinderMethods
+  # rubocop: disable CodeReuse/ActiveRecord
+  def find_by!: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def find_by: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def find: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  private
+
+  def raise_not_found_unless_authorized: (untyped result) -> untyped
+
+  def if_authorized: (untyped result) -> untyped
+
+  def can_read_object?: (untyped object) -> (true | untyped)
+
+  def to_ability_name: (untyped object) -> untyped
+end

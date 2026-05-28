@@ -1,0 +1,43 @@
+module Gitlab
+  module Tracking
+    class EventValidator
+      @event_name: untyped
+
+      @additional_properties: untyped
+
+      @kwargs: untyped
+
+      UnknownEventError: untyped
+
+      InvalidPropertyError: untyped
+
+      InvalidPropertyTypeError: untyped
+
+      BASE_ADDITIONAL_PROPERTIES: { label: ::Array[untyped], property: ::Array[untyped], value: ::Array[untyped] }
+
+      CUSTOM_PROPERTIES_CLASSES: ::Array[untyped]
+
+      def initialize: (untyped event_name, untyped additional_properties, untyped kwargs) -> void
+
+      def validate!: () -> untyped
+
+      private
+
+      attr_reader event_name: untyped
+
+      attr_reader additional_properties: untyped
+
+      attr_reader kwargs: untyped
+
+      def validate_event_name!: () -> (nil | untyped)
+
+      def validate_properties!: () -> untyped
+
+      def validate_property!: (untyped hash, untyped key, *untyped class_names) -> (nil | untyped)
+
+      def validate_additional_properties!: () -> untyped
+
+      def log_invalid_property: (untyped error) -> untyped
+    end
+  end
+end

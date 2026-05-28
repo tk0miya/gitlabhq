@@ -1,0 +1,41 @@
+# Enforces step-up authentication requirements for namespace access
+#
+# This controller concern ensures users complete step-up authentication
+# before accessing group/namespace resources that require additional authentication.
+# Include this module in group and project controllers to enforce the authentication check.
+#
+# @example
+#   class Groups::ApplicationController < ApplicationController
+#     include EnforcesStepUpAuthenticationForNamespace
+#
+#     before_action :enforce_step_up_auth_for_group
+#
+#     private
+#
+#     def enforce_step_up_auth_for_group
+#       enforce_step_up_auth_for(@group) if @group
+#     end
+#   end
+module EnforcesStepUpAuthenticationForNamespace
+  extend ActiveSupport::Concern
+
+  private
+
+  # Looks up a namespace by ID and enforces step-up authentication
+  # Raises ActiveRecord::RecordNotFound if namespace_id is provided but namespace not found
+  def enforce_step_up_auth_for_namespace_id: (untyped namespace_id) -> untyped
+
+  def enforce_step_up_auth_for: (untyped namespace) -> (nil | untyped)
+
+  def step_up_auth_supported_for_namespace?: (untyped namespace) -> (false | untyped)
+
+  def step_up_auth_required_for_namespace?: (untyped namespace) -> untyped
+
+  def step_up_auth_succeeded_for_namespace?: (untyped namespace) -> untyped
+
+  def handle_failed_step_up_auth_for_namespace: (untyped namespace) -> untyped
+
+  def build_namespace_step_up_auth_notice: () -> untyped
+
+  def documentation_links_for_failed_step_up_auth_providers: (untyped scope) -> untyped
+end

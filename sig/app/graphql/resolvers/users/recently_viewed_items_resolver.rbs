@@ -1,0 +1,21 @@
+module Resolvers
+  module Users
+    class RecentlyViewedItemsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      RecentlyViewedItem: untyped
+
+      def resolve: () -> untyped
+
+      private
+
+      def available_types: () -> untyped
+
+      def wiki_pages_enabled?: () -> untyped
+
+      # This method is overridden in EE to add Epic authorization.
+      # For CE items, we double-check authorization here as a safety layer.
+      def authorized_to_read_item?: (untyped item) -> untyped
+    end
+  end
+end

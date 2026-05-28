@@ -1,0 +1,7 @@
+class NewNoteWorker
+  include ApplicationWorker
+
+  # Keep extra parameter to preserve backwards compatibility with
+  # old `NewNoteWorker` jobs (can remove later)
+  def perform: (untyped note_id, ?::Hash[untyped, untyped] _params) -> untyped
+end

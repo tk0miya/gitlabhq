@@ -1,0 +1,9 @@
+module Ci
+  module JobTokenScope
+    class AddGroupOrProjectService < ::BaseService
+      include EditScopeValidations
+
+      def execute: (untyped target, ?default_permissions: bool, ?policies: untyped) -> untyped
+    end
+  end
+end

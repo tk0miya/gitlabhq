@@ -1,0 +1,17 @@
+module Users
+  class ResetIncomingEmailTokenService < BaseService
+    @current_user: untyped
+
+    @user: untyped
+
+    def initialize: (current_user: untyped, user: untyped) -> void
+
+    def execute!: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    def reset_permitted?: () -> untyped
+  end
+end

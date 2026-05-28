@@ -1,0 +1,36 @@
+module Ci
+  class DeleteObjectsService
+    @batch_size: untyped
+
+    TransactionInProgressError: untyped
+
+    TRANSACTION_MESSAGE: "can't perform network calls inside a database transaction"
+
+    BATCH_SIZE: 100
+
+    RETRY_IN: untyped
+
+    attr_reader batch_size: untyped
+
+    def initialize: (?batch_size: untyped) -> void
+
+    def execute: () -> untyped
+
+    def remaining_batches_count: (max_batch_count: untyped) -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def load_next_batch: () -> untyped
+
+    def next_batch_sql: () -> untyped
+
+    def locked_object_ids_sql: () -> untyped
+
+    def destroy_everything: (untyped objects) -> untyped
+
+    def transaction_open?: () -> untyped
+
+    def delete_object: (untyped object) -> (true | false)
+  end
+end

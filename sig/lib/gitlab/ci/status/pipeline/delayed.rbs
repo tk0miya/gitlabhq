@@ -1,0 +1,15 @@
+module Gitlab
+  module Ci
+    module Status
+      module Pipeline
+        class Delayed < Status::Extended
+          def text: () -> untyped
+
+          def label: () -> untyped
+
+          def self.matches?: (untyped pipeline, untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Namespaces
+  module ServiceAccounts
+    class ProjectDeleteService < BaseDeleteService
+      extend ::Gitlab::Utils::Override
+
+      private
+
+      def user_provisioned_resource: () -> untyped
+    end
+  end
+end

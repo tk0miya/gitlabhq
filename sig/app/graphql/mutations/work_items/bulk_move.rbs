@@ -1,0 +1,19 @@
+module Mutations
+  module WorkItems
+    class BulkMove < BaseMutation
+      include ::Gitlab::Utils::StrongMemoize
+
+      include ResolvesProject
+
+      MAX_WORK_ITEMS: 100
+
+      def ready?: (**untyped args) -> untyped
+
+      def resolve: (ids: untyped, source_full_path: untyped, target_full_path: untyped) -> untyped
+
+      private
+
+      def namespace_for: (untyped full_path) -> untyped
+    end
+  end
+end

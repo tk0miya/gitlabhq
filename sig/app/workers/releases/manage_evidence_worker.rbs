@@ -1,0 +1,15 @@
+module Releases
+  class ManageEvidenceWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    TIMEOUT_EXCEPTIONS: ::Array[untyped]
+
+    def perform: () -> untyped
+
+    private
+
+    def process_release: (untyped release) -> (nil | untyped)
+  end
+end

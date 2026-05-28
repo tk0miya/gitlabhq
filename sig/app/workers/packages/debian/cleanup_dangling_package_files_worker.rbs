@@ -1,0 +1,15 @@
+module Packages
+  module Debian
+    class CleanupDanglingPackageFilesWorker
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      THREE_HOUR: untyped
+
+      BATCH_TIMEOUT: untyped
+
+      def perform: () -> untyped
+    end
+  end
+end

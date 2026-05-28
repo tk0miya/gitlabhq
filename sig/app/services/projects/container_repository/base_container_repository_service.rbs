@@ -1,0 +1,11 @@
+module Projects
+  module ContainerRepository
+    class BaseContainerRepositoryService < ::BaseContainerService
+      include ::Gitlab::Utils::StrongMemoize
+
+      alias container_repository container
+
+      def initialize: (container_repository: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+    end
+  end
+end

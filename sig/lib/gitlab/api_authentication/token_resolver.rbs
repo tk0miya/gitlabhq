@@ -1,0 +1,47 @@
+module Gitlab
+  module APIAuthentication
+    class TokenResolver
+      @token_type: untyped
+
+      include ActiveModel::Validations
+
+      attr_reader token_type: untyped
+
+      UsernameAndPassword: untyped
+
+      def initialize: (untyped token_type) -> void
+
+      def resolve: (untyped raw) -> untyped
+
+      private
+
+      def resolve_personal_access_token_with_username: (untyped raw) -> untyped
+
+      def resolve_job_token_with_username: (untyped raw) -> (nil | untyped)
+
+      def resolve_deploy_token_with_username: (untyped raw) -> untyped
+
+      def resolve_personal_access_token: (untyped raw) -> untyped
+
+      def resolve_job_token: (untyped raw) -> untyped
+
+      def resolve_deploy_token: (untyped raw) -> untyped
+
+      def resolve_personal_access_token_from_jwt: (untyped raw) -> untyped
+
+      def resolve_deploy_token_from_jwt: (untyped raw) -> untyped
+
+      def resolve_job_token_from_jwt: (untyped raw) -> untyped
+
+      def resolve_oauth_token: (untyped raw) -> untyped
+
+      def with_personal_access_token: (untyped raw) { (untyped) -> untyped } -> (nil | untyped)
+
+      def with_deploy_token: (untyped raw) { (untyped) -> untyped } -> (nil | untyped)
+
+      def with_job_token: (untyped raw) { (untyped) -> untyped } -> untyped
+
+      def with_jwt_token: (untyped raw) { (untyped) -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module API
+  module Helpers
+    module Kubernetes
+      module AgentHelpers
+        include Gitlab::Utils::StrongMemoize
+
+        COUNTERS_EVENTS_MAPPING: { "flux_git_push_notifications_total" => "create_flux_git_push_notification", "k8s_api_proxy_request" => "request_api_proxy_access", "k8s_api_proxy_requests_via_ci_access" => "request_api_proxy_access_via_ci", "k8s_api_proxy_requests_via_user_access" => "request_api_proxy_access_via_user", "k8s_api_proxy_requests_via_pat_access" => "request_api_proxy_access_via_pat" }
+
+        def agent_token: () -> untyped
+
+        def agent: () -> untyped
+
+        def check_agent_token: () -> untyped
+
+        def agent_has_access_to_project?: (untyped project) -> untyped
+
+        def increment_unique_events: () -> untyped
+
+        def track_events: () -> (nil | untyped)
+
+        def track_unique_user_events: () -> (nil | untyped)
+
+        def increment_count_events: () -> (nil | untyped)
+
+        def update_configuration: (agent: untyped, config: untyped) -> untyped
+
+        def retrieve_user_from_session_cookie: () -> untyped
+
+        def retrieve_user_from_personal_access_token: () -> (nil | untyped)
+
+        def set_agent_on_context: (agent: untyped) -> untyped
+
+        def access_token: () -> (nil | untyped)
+
+        private
+
+        def load_users_and_projects: (untyped event_lists) -> ::Array[untyped]
+
+        def track_events_for: (untyped event_name, untyped events, untyped users, untyped projects) -> untyped
+      end
+    end
+  end
+end

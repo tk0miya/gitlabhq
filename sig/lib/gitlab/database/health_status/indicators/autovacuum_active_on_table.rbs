@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module HealthStatus
+      module Indicators
+        class AutovacuumActiveOnTable
+          @tables: untyped
+
+          def initialize: (untyped context) -> void
+
+          def evaluate: () -> untyped
+
+          private
+
+          attr_reader tables: untyped
+
+          def enabled?: () -> untyped
+
+          def active_autovacuums_for: (untyped tables) -> untyped
+        end
+      end
+    end
+  end
+end

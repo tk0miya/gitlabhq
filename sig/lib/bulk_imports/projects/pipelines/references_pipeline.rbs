@@ -1,0 +1,29 @@
+module BulkImports
+  module Projects
+    module Pipelines
+      class ReferencesPipeline
+        @tracker_id: untyped
+
+        @counter: untyped
+
+        include Pipeline
+
+        BATCH_SIZE: 100
+
+        DELAY: untyped
+
+        def extract: (untyped context) -> nil
+
+        attr_reader tracker_id: untyped
+
+        private
+
+        def enqueue_ref_workers_for_issues_and_issue_notes: () -> untyped
+
+        def enqueue_ref_workers_for_merge_requests_and_merge_request_notes: () -> untyped
+
+        def delay: () -> untyped
+      end
+    end
+  end
+end

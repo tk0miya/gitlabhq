@@ -1,0 +1,5 @@
+module WorkItems
+  class WorkItemDeletedEvent < Gitlab::EventStore::Event
+    def schema: () -> { "type" => "object", "required" => ::Array["id" | "namespace_id"], "properties" => { "id" => { "type" => "integer" }, "namespace_id" => { "type" => "integer" }, "previous_work_item_parent_id" => { "type" => "integer" } } }
+  end
+end

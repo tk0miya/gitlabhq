@@ -1,0 +1,12 @@
+# The usage of the ReactiveCaching module is documented here:
+# https://docs.gitlab.com/ee/development/reactive_caching.html
+#
+module ReactiveCaching
+  extend ActiveSupport::Concern
+
+  InvalidateReactiveCache: untyped
+
+  ExceededReactiveCacheLimit: untyped
+
+  WORK_TYPE: { no_dependency: untyped, no_dependency_low_urgency: untyped, external_dependency: untyped }
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class FailedUnmetPrerequisites < Status::Extended
+          def illustration: () -> { image: "illustrations/empty-state/empty-job-failed-md.svg", size: "", title: untyped, content: untyped }
+
+          def self.matches?: (untyped build, untyped _) -> untyped
+        end
+      end
+    end
+  end
+end

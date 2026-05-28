@@ -1,0 +1,13 @@
+module Gitlab
+  module SidekiqLogging
+    class DeduplicationLogger
+      include Singleton
+
+      include LogsJobs
+
+      def deduplicated_log: (untyped job, untyped deduplication_type, ?::Hash[untyped, untyped] deduplication_options) -> untyped
+
+      def rescheduled_log: (untyped job) -> untyped
+    end
+  end
+end

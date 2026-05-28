@@ -1,0 +1,38 @@
+module Gitlab
+  module Checks
+    class SnippetCheck < BaseSingleChecker
+      @oldrev: untyped
+
+      @newrev: untyped
+
+      @ref: untyped
+
+      @branch_name: untyped
+
+      @tag_name: untyped
+
+      @default_branch: untyped
+
+      @root_ref: untyped
+
+      @logger: untyped
+
+      ERROR_MESSAGES: { create_delete_branch: "You can not create or delete branches." }
+
+      ATTRIBUTES: ::Array[:oldrev | :newrev | :ref | :branch_name | :tag_name | :logger]
+
+      def initialize: (untyped change, default_branch: untyped, root_ref: untyped, logger: untyped) -> void
+
+      def validate!: () -> untyped
+
+      private
+
+      # If the `root_ref` is not present means that this is the first commit to the
+      # repository and when the default branch is going to be created.
+      # We allow the first branch creation no matter the name because
+      # it can be even an imported snippet from an instance with a different
+      # default branch.
+      def creation?: () -> untyped
+    end
+  end
+end

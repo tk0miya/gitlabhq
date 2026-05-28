@@ -1,0 +1,131 @@
+module Gitlab
+  class SearchResults
+    @current_user: untyped
+
+    @query: untyped
+
+    @limit_projects: untyped
+
+    @default_project_filter: untyped
+
+    @order_by: untyped
+
+    @sort: untyped
+
+    @filters: untyped
+
+    @limited_projects_count: untyped
+
+    @limited_issues_count: untyped
+
+    @limited_merge_requests_count: untyped
+
+    @limited_milestones_count: untyped
+
+    @limited_users_count: untyped
+
+    COUNT_LIMIT: 100
+
+    COUNT_LIMIT_MESSAGE: ::String
+
+    DEFAULT_PAGE: 1
+
+    DEFAULT_PER_PAGE: 20
+
+    attr_reader current_user: untyped
+
+    attr_reader query: untyped
+
+    attr_reader order_by: untyped
+
+    attr_reader sort: untyped
+
+    attr_reader filters: untyped
+
+    # Limit search results by passed projects
+    # It allows us to search only for projects user has access to
+    attr_reader limit_projects: untyped
+
+    # Whether a custom filter is used to restrict scope of projects.
+    # If the default filter (which lists all projects user has access to)
+    # is used, we can skip it when filtering merge requests and optimize the
+    # query
+    attr_reader default_project_filter: untyped
+
+    def initialize: (untyped current_user, untyped query, ?untyped? limit_projects, ?order_by: untyped?, ?sort: untyped?, ?default_project_filter: bool, ?filters: ::Hash[untyped, untyped]) -> void
+
+    def objects: (untyped scope, ?page: untyped?, ?per_page: untyped, ?preload_method: untyped?) -> untyped
+
+    def formatted_count: (untyped scope) -> untyped
+
+    def formatted_limited_count: (untyped count) -> untyped
+
+    def limited_projects_count: () -> untyped
+
+    def limited_issues_count: () -> untyped
+
+    def limited_merge_requests_count: () -> untyped
+
+    def limited_milestones_count: () -> untyped
+
+    def limited_users_count: () -> untyped
+
+    def count_limit: () -> untyped
+
+    def users: () -> untyped
+
+    # highlighting is only performed by Elasticsearch backed results
+    def highlight_map: (*untyped) -> ::Hash[untyped, untyped]
+
+    # aggregations are only performed by Elasticsearch backed results
+    def aggregations: (*untyped) -> ::Array[untyped]
+
+    # direct counts are only performed by Elasticsearch backed results
+    def counts: (*untyped) -> ::Hash[untyped, untyped]
+
+    def failed?: (*untyped) -> false
+
+    def server_error?: () -> false
+
+    def error_type: (*untyped) -> nil
+
+    def error: (*untyped) -> nil
+
+    def work_items: (?::Hash[untyped, untyped] finder_params) -> untyped
+
+    private
+
+    def collection_for: (untyped scope) -> untyped
+
+    # rubocop:disable CodeReuse/ActiveRecord -- scoping search results by type
+    def by_work_item_type_ids: (untyped items) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def apply_sort: (untyped results, ?scope: untyped?) -> untyped
+
+    def projects: () -> untyped
+
+    def issues: (?::Hash[untyped, untyped] finder_params) -> untyped
+
+    def milestones: () -> untyped
+
+    def merge_requests: () -> untyped
+
+    def default_scope: () -> "projects"
+
+    # Filter milestones by authorized projects.
+    # For performance reasons project_id is being plucked
+    # to be used on a smaller query.
+    def filter_milestones_by_project: (untyped milestones) -> untyped
+
+    def project_ids_relation: () -> untyped
+
+    def issuable_params: () -> untyped
+
+    def current_user_authorized_group_ids: () -> untyped
+
+    def current_user_authorized_project_ids: () -> untyped
+
+    def limited_count: (untyped relation) -> untyped
+  end
+end

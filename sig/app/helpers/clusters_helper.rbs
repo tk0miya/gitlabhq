@@ -1,0 +1,29 @@
+module ClustersHelper
+  def display_cluster_agents?: (untyped clusterable) -> untyped
+
+  def js_clusters_list_data: (untyped clusterable) -> { ancestor_help_path: untyped, endpoint: untyped, img_tags: { aws: { path: untyped, text: untyped }, default: { path: untyped, text: untyped }, gcp: { path: untyped, text: untyped } }, clusters_empty_state_image: untyped, empty_state_image: untyped, empty_state_help_text: untyped, add_cluster_path: untyped, new_cluster_docs_path: untyped, can_add_cluster: untyped, can_admin_cluster: untyped, display_cluster_agents: untyped, certificate_based_clusters_enabled: untyped, default_branch_name: untyped, full_path: untyped, is_group: untyped, kas_address: untyped, kas_install_version: untyped, kas_check_version: untyped }
+
+  def js_cluster_form_data: (untyped cluster, untyped can_edit) -> { enabled: untyped, editable: untyped, environment_scope: untyped, base_domain: untyped, auto_devops_help_path: untyped, external_endpoint_help_path: untyped }
+
+  def render_cluster_info_tab_content: (untyped tab, untyped expanded) -> untyped
+
+  def cluster_type_label: (untyped cluster_type) -> untyped
+
+  def has_rbac_enabled?: (untyped cluster) -> untyped
+
+  def project_cluster?: (untyped cluster) -> untyped
+
+  def cluster_created?: (untyped cluster) -> untyped
+
+  def can_admin_cluster?: (untyped user, untyped cluster) -> untyped
+
+  def migration_alert_config: (untyped migration) -> (nil | untyped)
+
+  private
+
+  def default_branch_name: (untyped clusterable) -> (untyped | nil)
+
+  def clusterable_full_path: (untyped clusterable) -> (untyped | nil)
+
+  def migration_alert_configs: () -> { in_progress: { variant: :info, message: untyped }, success: { variant: :success, message: untyped }, error: { variant: :warning, title: untyped, message: untyped, show_help: true } }
+end

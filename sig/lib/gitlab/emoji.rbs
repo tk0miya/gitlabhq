@@ -1,0 +1,21 @@
+module Gitlab
+  module Emoji
+    extend ::Gitlab::Emoji
+
+    # When updating emoji assets increase the version below
+    # and update the version number in `app/assets/javascripts/emoji/index.js`
+    EMOJI_VERSION: 4
+
+    # Return a Pathname to emoji's current versioned folder
+    #
+    # @return [Pathname] Absolute Path to versioned emojis folder in `public`
+    def emoji_public_absolute_path: () -> untyped
+
+    # CSS sprite fallback takes precedence over image fallback
+    # @param [TanukiEmoji::Character] emoji
+    # @param [Hash] options
+    def gl_emoji_tag: (untyped emoji, ?::Hash[untyped, untyped] options) -> (nil | untyped)
+
+    def custom_emoji_tag: (untyped name, untyped image_source) -> untyped
+  end
+end

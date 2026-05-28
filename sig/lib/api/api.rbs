@@ -1,0 +1,39 @@
+module API
+  class API < ::API::Base
+    include APIGuard
+
+    include Helpers::OpenApi
+
+    LOG_FILENAME: untyped
+
+    NO_SLASH_URL_PART_REGEX: untyped
+
+    NAMESPACE_OR_PROJECT_REQUIREMENTS: { id: untyped }
+
+    COMMIT_ENDPOINT_REQUIREMENTS: untyped
+
+    USER_REQUIREMENTS: { user_id: untyped }
+
+    LOG_FILTERS: untyped
+
+    LOG_FILTER_EXCEPTIONS: ::Array["controller" | "action" | "format" | "Content-Type"]
+
+    LOG_FORMATTER: untyped
+
+    LOGGER: untyped
+
+    class MovedPermanentlyError < StandardError
+      @location_url: untyped
+
+      MSG_PREFIX: "This resource has been moved permanently to"
+
+      attr_reader location_url: untyped
+
+      def initialize: (untyped location_url) -> void
+    end
+  end
+
+  class TrackAPIRequestFromPersonalAccessToken < ::Grape::Middleware::Base
+    def after: () -> nil
+  end
+end

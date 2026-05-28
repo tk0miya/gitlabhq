@@ -1,0 +1,19 @@
+class ProjectHook < WebHook
+  include TriggerableHooks
+
+  include Presentable
+
+  include Limitable
+
+  extend ::Gitlab::Utils::Override
+
+  AVAILABLE_HOOKS: ::Array[:confidential_issue_hooks | :confidential_note_hooks | :deployment_hooks | :emoji_hooks | :feature_flag_hooks | :issue_hooks | :job_hooks | :merge_request_hooks | :milestone_hooks | :note_hooks | :pipeline_hooks | :push_hooks | :release_hooks | :resource_access_token_hooks | :resource_deploy_token_hooks | :tag_push_hooks | :wiki_page_hooks]
+
+  def self.available_hooks: () -> untyped
+
+  def pluralized_name: () -> untyped
+
+  def application_context: () -> untyped
+
+  def parent: () -> untyped
+end

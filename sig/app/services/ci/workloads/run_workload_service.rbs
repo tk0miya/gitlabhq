@@ -1,0 +1,46 @@
+module Ci
+  module Workloads
+    # The concept of `Workload` is an abstraction around running arbitrary compute on our `CI::Runners` infrastructure.
+    # Right now this class is simply a wrapper around constructing a `Ci::Pipeline` but we've identified a need in many
+    # parts of the GitLab application to create these workloads. Also see:
+    #   1. https://gitlab.com/gitlab-org/gitlab/-/issues/328489
+    #   2. https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/10811
+    #
+    # In the future it's likely that this class will persist additional models and the concept of a `Workload` may
+    # become first class. For that reason we abstract users from the underlying `Ci::Pipeline` semantics.
+    class RunWorkloadService
+      @project: untyped
+
+      @current_user: untyped
+
+      @source: untyped
+
+      @workload_definition: untyped
+
+      @ref: untyped
+
+      @ci_variables_included: untyped
+
+      @duo_workflow_definition: untyped
+
+      def initialize: (project: untyped, current_user: untyped, source: untyped, workload_definition: untyped, ?ref: untyped?, ?ci_variables_included: untyped, ?duo_workflow_definition: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      # By default a Workload will not get any of the CI variables configured at the project/group/instance level.
+      # Setting ci_included_variables option ensures these named variables will later be made available from the CI
+      # variables configured at the project/group/instance level.
+      def create_included_ci_variables: (untyped workload) -> untyped
+
+      def suspend_options: () -> untyped
+
+      def ci_job_yaml: () -> untyped
+
+      def default_branch: () -> untyped
+
+      def validate_source!: () -> (nil | untyped)
+    end
+  end
+end

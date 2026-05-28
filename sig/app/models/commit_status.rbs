@@ -1,0 +1,89 @@
+class CommitStatus < Ci::ApplicationRecord
+  include Ci::Partitionable
+
+  include Ci::HasStatus
+
+  include Importable
+
+  include AfterCommitQueue
+
+  include Presentable
+
+  include BulkInsertableAssociations
+
+  include Ci::PartitionableFinder
+
+  alias author user
+
+  alias author= user=
+
+  def self.names: () -> untyped
+
+  def self.update_as_processed!: () -> untyped
+
+  def self.locking_enabled?: () -> false
+
+  def locking_enabled?: () -> untyped
+
+  def group_name: () -> untyped
+
+  def supports_canceling?: () -> false
+
+  def supports_force_cancel?: () -> false
+
+  # Time spent running.
+  def duration: () -> untyped
+
+  # Time spent in the pending state.
+  def queued_duration: () -> untyped
+
+  def latest?: () -> untyped
+
+  def playable?: () -> false
+
+  def retryable?: () -> false
+
+  def cancelable?: () -> false
+
+  def force_cancelable?: () -> false
+
+  def archived?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def stuck?: () -> false
+
+  def has_trace?: () -> false
+
+  def all_met_to_become_pending?: () -> true
+
+  def auto_canceled?: () -> untyped
+
+  def detailed_status: (untyped current_user) -> untyped
+
+  def sortable_name: () -> untyped
+
+  def recoverable?: () -> untyped
+
+  def update_older_statuses_retried!: () -> untyped
+
+  def expire_etag_cache!: () -> untyped
+
+  def stage_name: () -> untyped
+
+  # TODO: Temporary technical debt so we can ignore `stage`: https://gitlab.com/gitlab-org/gitlab/-/issues/507579
+  alias stage stage_name
+
+  # Handled only by ci_build
+  def exit_code=: (untyped value) -> nil
+
+  # For AiAction
+  def to_ability_name: () -> "build"
+
+  def test_suite_name: () -> nil
+
+  # For AiAction
+  def resource_parent: () -> untyped
+
+  private
+
+  def unrecoverable_failure?: () -> untyped
+end

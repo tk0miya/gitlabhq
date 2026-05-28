@@ -1,0 +1,37 @@
+module Gitlab
+  module Database
+    module QueryAnalyzers
+      # The purpose of this analyzer is to log query activity that contains `IN` clauses having more that 2500 items
+      # as this type of query can cause performance degradation in the database.
+      #
+      # The feature flag should prevent sampling going above 1% or 0.01% of queries hitting
+      # to avoid performance issues
+      class LogLargeInLists < Base
+        MIN_QUERY_SIZE: 10000
+
+        IN_SIZE_LIMIT: 2500
+
+        REGEX: ::Regexp
+
+        EVENT_NAMES: ::Array["load" | "pluck"]
+
+        EXCLUDE_FROM_TRACE: ::Array["lib/gitlab/database/query_analyzer.rb" | "lib/gitlab/database/query_analyzers/log_large_in_lists.rb"]
+
+        def self.enabled?: () -> untyped
+
+        # Skips queries containing less than 10000 chars or any other events than +load+ and +pluck+
+        def self.requires_tracking?: (untyped parsed) -> (false | untyped)
+
+        def self.analyze: (untyped parsed) -> untyped
+
+        private
+
+        def self.check_argument_size: (untyped raw) -> (::Array[untyped] | untyped)
+
+        def self.log: (untyped result, untyped event_name) -> untyped
+
+        def self.backtrace: () -> untyped
+      end
+    end
+  end
+end

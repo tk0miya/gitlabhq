@@ -1,0 +1,19 @@
+module Groups
+  class RestoreService < ::Namespaces::RestoreBaseService
+    private
+
+    RenamingFailedError: untyped
+
+    DeletionScheduleDestroyingFailedError: untyped
+
+    def remove_permission: () -> :remove_group
+
+    def resource_name: () -> "group"
+
+    def execute_restore: () -> untyped
+
+    def rename_resource!: () -> (nil | untyped)
+
+    def destroy_deletion_schedule!: () -> untyped
+  end
+end

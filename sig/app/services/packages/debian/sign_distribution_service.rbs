@@ -1,0 +1,17 @@
+module Packages
+  module Debian
+    class SignDistributionService
+      @distribution: untyped
+
+      @content: untyped
+
+      @detach: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped distribution, untyped content, ?detach: bool) -> void
+
+      def execute: () -> untyped
+    end
+  end
+end

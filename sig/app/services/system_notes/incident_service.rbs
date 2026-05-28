@@ -1,0 +1,24 @@
+module SystemNotes
+  class IncidentService < ::SystemNotes::BaseService
+    # Called when the severity of an Incident has changed
+    #
+    # Example Note text:
+    #
+    #   "changed the severity to Medium - S3"
+    #
+    # Returns the created Note object
+    def change_incident_severity: () -> untyped
+
+    # Called when the status of an IncidentManagement::IssuableEscalationStatus has changed
+    #
+    # reason - String.
+    #
+    # Example Note text:
+    #
+    #   "changed the incident status to Acknowledged"
+    #   "changed the incident status to Acknowledged by changing the status of ^alert#540"
+    #
+    # Returns the created Note object
+    def change_incident_status: (untyped reason) -> untyped
+  end
+end

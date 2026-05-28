@@ -1,0 +1,29 @@
+module Gitlab
+  module InternalEvents
+    class EventsRouter
+      @event_name: untyped
+
+      @additional_properties: untyped
+
+      @kwargs: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped event_name, untyped additional_properties, untyped kwargs) -> void
+
+      def public_additional_properties: () -> untyped
+
+      def event_definition: () -> untyped
+
+      def extra_tracking_data: (untyped properties) -> untyped
+
+      private
+
+      attr_accessor event_name: untyped
+
+      attr_accessor additional_properties: untyped
+
+      attr_accessor kwargs: untyped
+    end
+  end
+end

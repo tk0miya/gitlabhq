@@ -1,0 +1,79 @@
+module Gitlab
+  module LegacyGithubImport
+    class Client
+      @access_token: untyped
+
+      @host: untyped
+
+      @hostname: untyped
+
+      @api_version: untyped
+
+      @users: untyped
+
+      @wait_for_rate_limit_reset: untyped
+
+      @api: untyped
+
+      @client: untyped
+
+      @has_rate_limit: untyped
+
+      GITHUB_SAFE_REMAINING_REQUESTS: 100
+
+      GITHUB_SAFE_SLEEP_TIME: 500
+
+      attr_reader access_token: untyped
+
+      attr_reader host: untyped
+
+      attr_reader api_version: untyped
+
+      attr_reader wait_for_rate_limit_reset: untyped
+
+      def initialize: (untyped access_token, ?host: untyped?, ?api_version: ::String, ?wait_for_rate_limit_reset: bool, ?hostname: untyped?) -> void
+
+      def api: () -> untyped
+
+      alias octokit api
+
+      def client: () -> untyped
+
+      def authorize_url: (untyped redirect_uri, ?untyped? state) -> untyped
+
+      def get_token: (untyped code) -> untyped
+
+      def method_missing: (untyped method, *untyped args) { (?) -> untyped } -> untyped
+
+      def respond_to?: (untyped method) -> untyped
+
+      def user: (untyped login) -> (nil | untyped)
+
+      def repository: (untyped id) -> untyped
+
+      def repos: () -> untyped
+
+      private
+
+      def api_endpoint: () -> (::String | untyped)
+
+      def web_endpoint: () -> untyped
+
+      def config: () -> untyped
+
+      def github_options: () -> untyped
+
+      def rate_limit: () -> untyped
+
+      def has_rate_limit?: () -> untyped
+
+      def rate_limit_exceed?: () -> untyped
+
+      def rate_limit_sleep_time: () -> untyped
+
+      def request: (untyped method, *untyped args) ?{ (untyped) -> untyped } -> untyped
+
+      def each_response_page: (untyped last_response) { (untyped) -> untyped } -> untyped
+    end
+  end
+end

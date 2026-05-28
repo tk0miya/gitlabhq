@@ -1,0 +1,60 @@
+module Gitlab
+  module SidekiqMiddleware
+    class SkipJobs
+      @metrics: untyped
+
+      @delay: untyped
+
+      @deferred_by: untyped
+
+      DELAY: untyped
+
+      RUN_FEATURE_FLAG_PREFIX: "run_sidekiq_jobs"
+
+      DROP_FEATURE_FLAG_PREFIX: "drop_sidekiq_jobs"
+
+      DatabaseHealthStatusChecker: untyped
+
+      COUNTER: :sidekiq_jobs_skipped_total
+
+      def initialize: () -> void
+
+      # This middleware decides whether a job is dropped, deferred or runs normally.
+      # In short:
+      #   - `drop_sidekiq_jobs_#{worker_name}` FF enabled (disabled by default) --> drops the job
+      #   - `run_sidekiq_jobs_#{worker_name}` FF disabled (enabled by default) --> defers the job
+      #
+      # DROPPING JOBS
+      # A job is dropped when `drop_sidekiq_jobs_#{worker_name}` FF is enabled. This FF is disabled by default for
+      # all workers. Dropped jobs are completely ignored and not requeued for future processing.
+      #
+      # DEFERRING JOBS
+      # Deferred jobs are rescheduled to perform in the future.
+      # There are 2 scenarios under which this middleware defers a job:
+      # 1. When run_sidekiq_jobs_#{worker_name} FF is disabled. This FF is enabled by default
+      #    for all workers.
+      # 2. Gitlab::Database::HealthStatus, on evaluating the db health status if it returns any indicator
+      #    with stop signal, the jobs will be delayed by 'x' seconds (set in worker).
+      #
+      # Dropping jobs takes higher priority over deferring jobs. For example, when `drop_sidekiq_jobs` is enabled and
+      # `run_sidekiq_jobs` is disabled, it results to jobs being dropped.
+      def call: (untyped worker, untyped job, untyped _queue) { () -> untyped } -> (nil | untyped)
+
+      private
+
+      def defer_job?: (untyped worker_class, untyped job) -> (true | true | nil)
+
+      def run_job_by_ff?: (untyped worker_class) -> untyped
+
+      def defer_job_by_database_health_signal?: (untyped job, untyped worker_class) -> (false | untyped)
+
+      def drop_job?: (untyped worker_class) -> untyped
+
+      def drop_job!: (untyped job, untyped worker) -> untyped
+
+      def defer_job!: (untyped job, untyped worker) -> untyped
+
+      def init_metrics: () -> ::Hash[untyped, untyped]
+    end
+  end
+end

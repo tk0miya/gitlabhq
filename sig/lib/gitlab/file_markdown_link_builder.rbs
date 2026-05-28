@@ -1,0 +1,11 @@
+# Builds the markdown link of a file
+# It needs the methods filename and secure_url (final destination url) to be defined.
+module Gitlab
+  module FileMarkdownLinkBuilder
+    include FileTypeDetection
+
+    def markdown_link: () -> (nil | untyped)
+
+    def markdown_name: () -> (nil | untyped)
+  end
+end

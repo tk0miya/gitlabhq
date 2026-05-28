@@ -1,0 +1,145 @@
+class Notify < ApplicationMailer
+  @reason: untyped
+
+  @reply_by_email: untyped
+
+  @unsubscribe_url: untyped
+
+  include ActionDispatch::Routing::PolymorphicRoutes
+
+  include GitlabRoutingHelper
+
+  include EmailsHelper
+
+  include IssuablesHelper
+
+  include Emails::Shared
+
+  include Emails::Issues
+
+  include Emails::MergeRequests
+
+  include Emails::Notes
+
+  include Emails::PagesDomains
+
+  include Emails::Projects
+
+  include Emails::Profile
+
+  include Emails::PipelineSchedules
+
+  include Emails::Pipelines
+
+  include Emails::Members
+
+  include Emails::AutoDevops
+
+  include Emails::RemoteMirrors
+
+  include Emails::Releases
+
+  include Emails::Groups
+
+  include Emails::Reviews
+
+  include Emails::ServiceDesk
+
+  include Emails::AdminNotification
+
+  include Emails::IdentityVerification
+
+  include Emails::Imports
+
+  include Emails::WorkItems
+
+  def test_email: (untyped recipient_email, untyped subject, untyped body) -> untyped
+
+  # Splits "gitlab.corp.company.com" up into "gitlab.corp.company.com",
+  # "corp.company.com" and "company.com".
+  # Respects set tld length so "company.co.uk" won't match "somethingelse.uk"
+  def self.allowed_email_domains: () -> untyped
+
+  def can_send_from_user_email?: (untyped sender) -> untyped
+
+  private
+
+  def determine_layout: () -> untyped
+
+  # Return an email address that displays the name of the sender.
+  # Override sender_email if you want to hard replace the sender address (e.g. custom email for Service Desk)
+  def sender: (untyped sender_id, ?send_from_user_email: bool, ?sender_name: untyped?, ?sender_email: untyped?) -> (nil | untyped)
+
+  # Formats arguments into a String suitable for use as an email subject
+  #
+  # extra - Extra Strings to be inserted into the subject
+  #
+  # Examples
+  #
+  #   >> subject('Lorem ipsum')
+  #   => "Lorem ipsum"
+  #
+  #   # Automatically inserts Project name when @project is set
+  #   >> @project = Project.last
+  #   => #<Project id: 1, name: "Ruby on Rails", path: "ruby_on_rails", ...>
+  #   >> subject('Lorem ipsum')
+  #   => "Ruby on Rails | Lorem ipsum "
+  #
+  #   # Accepts multiple arguments
+  #   >> subject('Lorem ipsum', 'Dolor sit amet')
+  #   => "Lorem ipsum | Dolor sit amet"
+  def subject: (*untyped extra) -> untyped
+
+  # Return a string suitable for inclusion in the 'Message-Id' mail header.
+  #
+  # The message-id is generated from the unique URL to a model object.
+  def message_id: (untyped model) -> ::String
+
+  def mail_thread: (untyped model, ?::Hash[untyped, untyped] headers) -> untyped
+
+  def reply_display_name: (untyped model) -> untyped
+
+  # Send an email that starts a new conversation thread,
+  # with headers suitable for grouping by thread in email clients.
+  #
+  # See: mail_answer_thread
+  def mail_new_thread: (untyped model, ?::Hash[untyped, untyped] headers) -> untyped
+
+  # Send an email that responds to an existing conversation thread,
+  # with headers suitable for grouping by thread in email clients.
+  #
+  # For grouping emails by thread, email clients heuristics require the answers to:
+  #
+  #  * have a subject that begin by 'Re: '
+  #  * have a 'In-Reply-To' or 'References' header that references the original 'Message-ID'
+  #
+  def mail_answer_thread: (untyped model, ?::Hash[untyped, untyped] headers) -> untyped
+
+  def mail_answer_note_thread: (untyped model, untyped note, ?::Hash[untyped, untyped] headers) -> untyped
+
+  def reply_key: () -> untyped
+
+  # This method applies threading headers to the email to identify
+  # the instance we are discussing.
+  #
+  # All model instances must have `#id`, and may implement `#iid`.
+  def add_model_headers: (untyped object) -> untyped
+
+  # To prevent a breaking change we additionally add legacy issue
+  # headers for issue work items.
+  def add_legacy_issue_model_headers: (untyped object) -> (nil | untyped)
+
+  def add_project_headers: () -> (nil | untyped)
+
+  def add_group_headers: () -> (nil | untyped)
+
+  def add_unsubscription_headers_and_links: () -> (nil | untyped)
+
+  def email_with_layout: (to: untyped, subject: untyped, ?layout: ::String) -> untyped
+
+  def check_rate_limit: () -> (nil | untyped)
+
+  def throttled?: (?peek: bool) -> untyped
+
+  def rate_limit_scope: () -> untyped
+end

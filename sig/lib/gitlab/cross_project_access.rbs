@@ -1,0 +1,25 @@
+module Gitlab
+  class CrossProjectAccess
+    self.@instance: untyped
+
+    @checks: untyped
+
+    @cached_checks: untyped
+
+    def self.instance: () -> untyped
+
+    attr_reader checks: untyped
+
+    def initialize: () -> void
+
+    def add_check: (untyped klass, ?actions: ::Hash[untyped, untyped], ?positive_condition: untyped?, ?negative_condition: untyped?, ?skip: bool) -> untyped
+
+    def find_check: (untyped object) -> untyped
+
+    private
+
+    def recalculate_checks_for_class: (untyped klass) -> untyped
+
+    def closest_parent: (untyped classes, untyped subject) -> untyped
+  end
+end

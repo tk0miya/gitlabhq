@@ -1,0 +1,24 @@
+module UserSettings
+  class IdentitiesController < ApplicationController
+    # rubocop:disable CodeReuse/ActiveRecord -- Specific use-case
+    @identity: untyped
+
+    @provider: untyped
+
+    @extern_uid: untyped
+
+    def new: () -> untyped
+
+    def create: () -> untyped
+
+    private
+
+    def verify_state: () -> (untyped | nil)
+
+    def assign_variables_from_session: () -> untyped
+
+    def verify_session_variables: () -> (nil | untyped)
+
+    def delete_session_variables: () -> untyped
+  end
+end

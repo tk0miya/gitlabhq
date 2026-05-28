@@ -1,0 +1,71 @@
+module Gitlab
+  module PDF
+    module Security
+      class VulnerabilitiesBySeverityCount
+        @pdf: untyped
+
+        @data: untyped
+
+        @y: untyped
+
+        include Prawn::View
+
+        GAP: 6
+
+        PADDING: 8
+
+        TITLE_HEIGHT: 16
+
+        TITLE_FONT_SIZE: 12
+
+        COUNT_HEIGHT: 36
+
+        MEDIAN_HEIGHT: 14
+
+        HEIGHT: untyped
+
+        BACKGROUND_COLOR: "F9F9F9"
+
+        DEFAULT_FONT_COLOR: "000000"
+
+        BORDER_RADIUS: 4
+
+        CIRCLE_RADIUS: 4
+
+        CIRCLE_GAP: 4
+
+        SEVERITIES: ::Array[:critical | :high | :medium | :low | :info | :unknown]
+
+        FALLBACK_SEVERITY_COLORS: { critical: "AA1100", high: "C0622A", medium: "C17D10", low: "0070CC", info: "1068BF", unknown: "999999" }
+
+        def self.render: (untyped pdf, ?data: untyped?) -> untyped
+
+        def initialize: (untyped pdf, untyped data) -> void
+
+        def render: () -> untyped
+
+        private
+
+        def draw_severity_box: (untyped x_offset, untyped severity, untyped severity_data) -> untyped
+
+        def draw_severity_circle: (untyped severity, untyped severity_data) -> untyped
+
+        def draw_title: (untyped severity, untyped severity_data) -> untyped
+
+        def draw_count: (untyped severity_data) -> untyped
+
+        def draw_median_age: (untyped severity_data) -> untyped
+
+        def severity_box_width: () -> untyped
+
+        def display_median_age?: (untyped severity_data) -> untyped
+
+        def severity_count: (untyped severity_data) -> untyped
+
+        def median_age_text: (untyped severity_data) -> ::String
+
+        def severity_color: (untyped severity, untyped severity_data) -> untyped
+      end
+    end
+  end
+end

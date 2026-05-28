@@ -1,0 +1,289 @@
+# SystemNoteService
+#
+# Used for creating system notes (e.g., when a user references a merge request
+# from an issue, an issue's assignee changes, an issue is closed, etc.)
+module SystemNoteService
+  extend ::SystemNoteService
+
+  # Called when commits are added to a merge request
+  #
+  # noteable         - Noteable object
+  # container        - Project or Namespace(Group or ProjectNamespace) owning noteable
+  # author           - User performing the change
+  # new_commits      - Array of Commits added since last push
+  # existing_commits - Array of Commits added in a previous push
+  # oldrev           - Optional String SHA of a previous Commit
+  #
+  # Returns the created Note object
+  def add_commits: (untyped noteable, untyped project, untyped author, untyped new_commits, ?untyped existing_commits, ?untyped? oldrev) -> untyped
+
+  # Called when a commit was tagged
+  #
+  # noteable  - Noteable object
+  # container - Project or Namespace(Group or ProjectNamespace) owning noteable
+  # author    - User performing the tag
+  # tag_name  - The created tag name
+  #
+  # Returns the created Note object
+  def tag_commit: (untyped noteable, untyped project, untyped author, untyped tag_name) -> untyped
+
+  def change_assignee: (untyped noteable, untyped project, untyped author, untyped assignee) -> untyped
+
+  def change_issuable_assignees: (untyped issuable, untyped project, untyped author, untyped old_assignees) -> untyped
+
+  def change_issuable_reviewers: (untyped issuable, untyped project, untyped author, untyped old_reviewers) -> untyped
+
+  def request_review: (untyped issuable, untyped project, untyped author, untyped user, untyped has_unapproved) -> untyped
+
+  def change_issuable_contacts: (untyped issuable, untyped project, untyped author, untyped added_count, untyped removed_count) -> untyped
+
+  def relate_issuable: (untyped noteable, untyped noteable_ref, untyped user) -> untyped
+
+  def unrelate_issuable: (untyped noteable, untyped noteable_ref, untyped user) -> untyped
+
+  # Called when the due_date or start_date of a Noteable is changed
+  #
+  # noteable  - Noteable object
+  # project   - Project owning noteable
+  # author    - User performing the change
+  # due_date  - Due date being assigned, or nil
+  #
+  # Example Note text:
+  #
+  #   "removed due date"
+  #
+  #   "changed due date to September 20, 2018 and changed start date to September 25, 2018"
+  #
+  # Returns the created Note object
+  def change_start_date_or_due_date: (untyped noteable, untyped project, untyped author, untyped changed_dates) -> untyped
+
+  # Called when the estimated time of a Noteable is changed
+  #
+  # noteable      - Noteable object
+  # project       - Project owning noteable
+  # author        - User performing the change
+  # time_estimate - Estimated time
+  #
+  # Example Note text:
+  #
+  #   "removed time estimate"
+  #
+  #   "changed time estimate to 3d 5h"
+  #
+  # Returns the created Note object
+  def change_time_estimate: (untyped noteable, untyped project, untyped author) -> untyped
+
+  # Called when the spent time of a Noteable is changed
+  #
+  # noteable   - Noteable object
+  # project    - Project owning noteable
+  # author     - User performing the change
+  # time_spent - Spent time
+  #
+  # Example Note text:
+  #
+  #   "removed time spent"
+  #
+  #   "added 2h 30m of time spent"
+  #
+  # Returns the created Note object
+  def change_time_spent: (untyped noteable, untyped project, untyped author) -> untyped
+
+  # Called when a timelog is added to an issuable
+  #
+  # issuable   - Issuable object (Issue, WorkItem or MergeRequest)
+  # project    - Project owning the issuable
+  # author     - User performing the change
+  # timelog    - Created timelog
+  #
+  # Example Note text:
+  #
+  #   "subtracted 1h 15m of time spent"
+  #
+  #   "added 2h 30m of time spent"
+  #
+  # Returns the created Note object
+  def created_timelog: (untyped issuable, untyped project, untyped author, untyped timelog) -> untyped
+
+  # Called when a timelog is removed from a Noteable
+  #
+  # noteable  - Noteable object
+  # project   - Project owning the noteable
+  # author    - User performing the change
+  # timelog   - The removed timelog
+  #
+  # Example Note text:
+  #   "deleted 2h 30m of time spent from 22-03-2022"
+  #
+  # Returns the created Note object
+  def remove_timelog: (untyped noteable, untyped project, untyped author, untyped timelog) -> untyped
+
+  def close_after_error_tracking_resolve: (untyped issue, untyped project, untyped author) -> untyped
+
+  def change_status: (untyped noteable, untyped project, untyped author, untyped status, ?untyped? source) -> untyped
+
+  # Called when 'merge when checks pass' is executed
+  def merge_when_checks_pass: (untyped noteable, untyped project, untyped author, untyped sha) -> untyped
+
+  # Called when 'auto merge' is canceled
+  def cancel_auto_merge: (untyped noteable, untyped project, untyped author) -> untyped
+
+  # Called when 'auto merge' is aborted
+  def abort_auto_merge: (untyped noteable, untyped project, untyped author, untyped reason) -> untyped
+
+  def handle_merge_request_draft: (untyped noteable, untyped project, untyped author) -> untyped
+
+  def add_merge_request_draft_from_commit: (untyped noteable, untyped project, untyped author, untyped commit) -> untyped
+
+  def resolve_all_discussions: (untyped merge_request, untyped project, untyped author) -> untyped
+
+  def discussion_continued_in_issue: (untyped discussion, untyped project, untyped author, untyped issue) -> untyped
+
+  def diff_discussion_outdated: (untyped discussion, untyped project, untyped author, untyped change_position) -> untyped
+
+  def change_title: (untyped noteable, untyped project, untyped author, untyped old_title) -> untyped
+
+  def change_description: (untyped noteable, untyped project, untyped author) -> untyped
+
+  def change_issue_confidentiality: (untyped issue, untyped project, untyped author) -> untyped
+
+  # Called when a branch in Noteable is changed
+  #
+  # noteable    - Noteable object
+  # container   - Project or Namespace(Group or ProjectNamespace) owning noteable
+  # author      - User performing the change
+  # branch_type - 'source' or 'target'
+  # event_type  - the source of event: 'update' or 'delete'
+  # old_branch  - old branch name
+  # new_branch  - new branch name
+  #
+  # Example Note text is based on event_type:
+  #
+  #   update: "changed target branch from `Old` to `New`"
+  #   delete: "deleted the `Old` branch. This merge request now targets the `New` branch"
+  #
+  # Returns the created Note object
+  def change_branch: (untyped noteable, untyped project, untyped author, untyped branch_type, untyped event_type, untyped old_branch, untyped new_branch) -> untyped
+
+  # Called when a branch in Noteable is added or deleted
+  #
+  # noteable    - Noteable object
+  # container   - Project or Namespace(Group or ProjectNamespace) owning noteable
+  # author      - User performing the change
+  # branch_type - :source or :target
+  # branch      - branch name
+  # presence    - :add or :delete
+  #
+  # Example Note text:
+  #
+  #   "restored target branch `feature`"
+  #
+  # Returns the created Note object
+  def change_branch_presence: (untyped noteable, untyped project, untyped author, untyped branch_type, untyped branch, untyped presence) -> untyped
+
+  # Called when a branch is created from the 'new branch' button on a issue
+  # Example note text:
+  #
+  #   "created branch `201-issue-branch-button`"
+  def new_issue_branch: (untyped issue, untyped project, untyped author, untyped branch, ?branch_project: untyped?) -> untyped
+
+  def new_merge_request: (untyped issue, untyped project, untyped author, untyped merge_request) -> untyped
+
+  def cross_reference: (untyped mentioned, untyped mentioned_in, untyped author) -> untyped
+
+  def cross_reference_exists?: (untyped mentioned, untyped mentioned_in) -> untyped
+
+  def change_task_status: (untyped noteable, untyped project, untyped author, untyped new_task) -> untyped
+
+  def noteable_moved: (untyped noteable, untyped project, untyped noteable_ref, untyped author, direction: untyped) -> untyped
+
+  def noteable_cloned: (untyped noteable, untyped project, untyped noteable_ref, untyped author, direction: untyped, ?created_at: untyped?) -> untyped
+
+  def mark_duplicate_issue: (untyped noteable, untyped project, untyped author, untyped canonical_issue) -> untyped
+
+  def mark_canonical_issue_of_duplicate: (untyped noteable, untyped project, untyped author, untyped duplicate_issue) -> untyped
+
+  def email_participants: (untyped noteable, untyped project, untyped author, untyped body) -> untyped
+
+  def discussion_lock: (untyped issuable, untyped author) -> untyped
+
+  def cross_reference_disallowed?: (untyped mentioned, untyped mentioned_in) -> untyped
+
+  def relate_work_item: (untyped noteable, untyped work_item, untyped user) -> untyped
+
+  def unrelate_work_item: (untyped noteable, untyped work_item, untyped user) -> untyped
+
+  def zoom_link_added: (untyped issue, untyped project, untyped author) -> untyped
+
+  def zoom_link_removed: (untyped issue, untyped project, untyped author) -> untyped
+
+  def auto_resolve_prometheus_alert: (untyped noteable, untyped project, untyped author) -> untyped
+
+  # Parameters:
+  #   - version [DesignManagement::Version]
+  #
+  # Example Note text:
+  #
+  #   "added [1 designs](link-to-version)"
+  #   "changed [2 designs](link-to-version)"
+  #
+  # Returns [Array<Note>]: the created Note objects
+  def design_version_added: (untyped version) -> untyped
+
+  # Called when a new discussion is created on a design
+  #
+  # discussion_note - DiscussionNote
+  #
+  # Example Note text:
+  #
+  #   "started a discussion on screen.png"
+  #
+  # Returns the created Note object
+  def design_discussion_added: (untyped discussion_note) -> untyped
+
+  # Called when the merge request is approved by user
+  #
+  # noteable - Noteable object
+  # user     - User performing approve
+  #
+  # Example Note text:
+  #
+  #   "approved this merge request"
+  #
+  # Returns the created Note object
+  def approve_mr: (untyped noteable, untyped user) -> untyped
+
+  def unapprove_mr: (untyped noteable, untyped user) -> untyped
+
+  def requested_changes: (untyped noteable, untyped user) -> untyped
+
+  def reviewed: (untyped noteable, untyped user) -> untyped
+
+  def change_alert_status: (untyped alert, untyped author, ?untyped? reason) -> untyped
+
+  def new_alert_issue: (untyped alert, untyped issue, untyped author) -> untyped
+
+  def create_new_alert: (untyped alert, untyped monitoring_tool) -> untyped
+
+  def change_incident_severity: (untyped incident, untyped author) -> untyped
+
+  def change_incident_status: (untyped incident, untyped author, ?untyped? reason) -> untyped
+
+  def log_resolving_alert: (untyped alert, untyped monitoring_tool) -> untyped
+
+  def change_issue_type: (untyped issue, untyped author) -> untyped
+
+  def add_timeline_event: (untyped timeline_event) -> untyped
+
+  def edit_timeline_event: (untyped timeline_event, untyped author, was_changed: untyped) -> untyped
+
+  def delete_timeline_event: (untyped noteable, untyped author) -> untyped
+
+  def move_child_to_new_parent: (prev_parent: untyped, child: untyped, new_parent: untyped, author: untyped) -> untyped
+
+  private
+
+  def merge_requests_service: (untyped noteable, untyped project, untyped author) -> untyped
+
+  def incidents_service: (untyped incident) -> untyped
+end

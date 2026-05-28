@@ -1,0 +1,27 @@
+module ContainerExpirationPolicies
+  class CleanupService
+    @repository: untyped
+
+    attr_reader repository: untyped
+
+    SERVICE_RESULT_FIELDS: ::Array[:original_size | :before_truncate_size | :after_truncate_size | :before_delete_size | :deleted_size | :cached_tags_count]
+
+    def initialize: (untyped repository) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def schedule_next_run_if_needed: () -> (nil | untyped)
+
+    def disable_policy!: () -> untyped
+
+    def success: (untyped cleanup_status, untyped service_result) -> untyped
+
+    def policy_params: () -> (::Hash[untyped, untyped] | untyped)
+
+    def policy: () -> untyped
+
+    def project: () -> untyped
+  end
+end

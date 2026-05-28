@@ -1,0 +1,25 @@
+module Emails
+  module Pipelines
+    @project: untyped
+
+    @pipeline: untyped
+
+    @merge_request: untyped
+
+    def pipeline_success_email: (untyped pipeline, untyped recipient) -> untyped
+
+    def pipeline_failed_email: (untyped pipeline, untyped recipient) -> untyped
+
+    def pipeline_fixed_email: (untyped pipeline, untyped recipient) -> untyped
+
+    private
+
+    def pipeline_mail: (untyped pipeline, untyped recipient, untyped status) -> untyped
+
+    def add_headers: () -> untyped
+
+    def add_pipeline_headers: () -> untyped
+
+    def pipeline_subject: (untyped status) -> untyped
+  end
+end

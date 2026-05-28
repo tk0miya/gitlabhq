@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    module Batch
+      class Metrics
+        @timings: untyped
+
+        @affected_rows: untyped
+
+        attr_reader timings: untyped
+
+        attr_reader affected_rows: untyped
+
+        def initialize: () -> void
+
+        def time_operation: (untyped label) { (?) -> untyped } -> untyped
+
+        def instrument_operation: (untyped label, ?instrument_affected_rows: bool) { () -> untyped } -> untyped
+
+        private
+
+        def timings_for_label: (untyped label) -> untyped
+
+        def affected_rows_for_label: (untyped label) -> untyped
+
+        def monotonic_time: () -> untyped
+      end
+    end
+  end
+end

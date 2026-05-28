@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    class ConvertFeatureCategoryToGroupLabel
+      @feature_category: untyped
+
+      STAGES_URL: "https://gitlab.com/gitlab-com/www-gitlab-com/-/raw/master/data/stages.yml"
+
+      def initialize: (untyped feature_category) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader feature_category: untyped
+
+      def stages: () -> untyped
+
+      def feature_categories_map: () -> untyped
+    end
+  end
+end

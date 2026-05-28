@@ -1,0 +1,15 @@
+module Gitlab
+  module GithubImport
+    class ImportPullRequestWorker
+      include ObjectImporter
+
+      def representation_class: () -> untyped
+
+      def importer_class: () -> untyped
+
+      def object_type: () -> :pull_request
+
+      def parallel_import_batch: () -> { size: 200, delay: untyped }
+    end
+  end
+end

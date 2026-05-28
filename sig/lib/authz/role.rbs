@@ -1,0 +1,70 @@
+module Authz
+  class Role
+    self.@cache: untyped
+
+    @role_data: untyped
+
+    @all_permissions: untyped
+
+    @all_direct_permissions: untyped
+
+    @project_permissions: untyped
+
+    @group_permissions: untyped
+
+    @direct_project_permissions: untyped
+
+    @direct_group_permissions: untyped
+
+    BASE_PATH: "config/authz/roles"
+
+    RESOURCE_SCOPES: ::Array[:project | :group]
+
+    VALID_SCOPES: untyped
+
+    def self.get: (untyped role_name) -> untyped
+
+    def self.get_from_access_level: (untyped access_level) -> (nil | untyped)
+
+    def self.reset!: () -> untyped
+
+    private
+
+    def self.load_role_data: (untyped role_name) -> untyped
+
+    public
+
+    def initialize: (untyped role_data) -> void
+
+    # Returns all permissions (project + group) for this role including
+    # permissions from inherited roles. This can be limited to project or group
+    # permissions by supplying the optional scope argument
+    def permissions: (untyped scope) -> untyped
+
+    # Returns only the permissions directly defined in this role's YAML file
+    # for the given scope. Does not include permissions inherited from other roles.
+    def direct_permissions: (untyped scope) -> untyped
+
+    def resolve_permissions: (untyped scope, untyped evaluated_roles) -> untyped
+
+    private
+
+    def raw_permissions: (untyped scope) -> untyped
+
+    def assignable_permissions: (untyped scope) -> untyped
+
+    def expand_assignable_permissions: (untyped scope) -> untyped
+
+    # Returns all project permissions for this role including permissions
+    # from inherited roles.
+    def project_permissions: () -> untyped
+
+    # Returns all group permissions for this role including permissions
+    # from inherited roles.
+    def group_permissions: () -> untyped
+
+    def direct_project_permissions: () -> untyped
+
+    def direct_group_permissions: () -> untyped
+  end
+end

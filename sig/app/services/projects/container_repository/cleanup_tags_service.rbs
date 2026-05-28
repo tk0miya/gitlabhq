@@ -1,0 +1,19 @@
+module Projects
+  module ContainerRepository
+    class CleanupTagsService < BaseContainerRepositoryService
+      def execute: () -> untyped
+
+      private
+
+      def cleanup_tags_service_class: () -> untyped
+
+      def use_gitlab_service?: () -> untyped
+
+      def can_destroy?: () -> (true | untyped)
+
+      def valid_regex?: () -> untyped
+
+      def container_expiration_policy: () -> untyped
+    end
+  end
+end

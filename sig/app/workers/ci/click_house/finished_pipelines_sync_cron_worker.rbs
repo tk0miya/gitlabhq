@@ -1,0 +1,17 @@
+module Ci
+  module ClickHouse
+    class FinishedPipelinesSyncCronWorker
+      include ApplicationWorker
+
+      MEDIUM_WORKERS: 3
+
+      HIGH_WORKERS: 5
+
+      def perform: (*untyped args) -> nil
+
+      private
+
+      def worker_count: (untyped args) -> untyped
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module WorkItems
+  module ClosingMergeRequests
+    class CreateService
+      @current_user: untyped
+
+      @work_item: untyped
+
+      @merge_request_reference: untyped
+
+      @namespace_path: untyped
+
+      ResourceNotAvailable: untyped
+
+      def initialize: (current_user: untyped, work_item: untyped, merge_request_reference: untyped, ?namespace_path: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def merge_request_from_reference: () -> untyped
+
+      def parent_from_path: () -> untyped
+
+      def extractor_params_for: (untyped parent) -> ({ group: untyped } | ::Hash[untyped, untyped])
+    end
+  end
+end

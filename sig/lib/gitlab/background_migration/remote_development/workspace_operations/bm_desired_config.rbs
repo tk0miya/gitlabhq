@@ -1,0 +1,33 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      module WorkspaceOperations
+        class BmDesiredConfig
+          include ActiveModel::Model
+
+          include ActiveModel::Attributes
+
+          include ActiveModel::Validations
+
+          include ActiveModel::Serialization
+
+          include ActiveModel::Serializers::JSON
+
+          # @param [BmDesiredConfig] other
+          # @return [Boolean]
+          def ==: (untyped other) -> (false | true | untyped)
+
+          # @param [BmDesiredConfig] other
+          # @return [Array]
+          def diff: (untyped other) -> untyped
+
+          # @return [Object]
+          def desired_config_validator: () -> untyped
+
+          # @return [Array]
+          def symbolized_desired_config_array: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+module Gitlab
+  module Database
+    module Migrations
+      module ReestablishedConnectionStack
+        # This is workaround for `db:migrate` that switches `ActiveRecord::Base.connection`
+        # depending on execution. This is subject to be removed once proper fix is implemented:
+        # https://gitlab.com/gitlab-org/gitlab/-/issues/362341
+        #
+        # In some cases when we run application code we need to restore application connection stack:
+        # - ApplicationRecord (in fact ActiveRecord::Base): points to main
+        # - Ci::ApplicationRecord: points to ci
+        #
+        # rubocop:disable Database/MultipleDatabases
+        def with_restored_connection_stack: () { (untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end

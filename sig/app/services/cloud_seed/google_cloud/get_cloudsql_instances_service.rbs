@@ -1,0 +1,9 @@
+module CloudSeed
+  module GoogleCloud
+    class GetCloudsqlInstancesService < ::CloudSeed::GoogleCloud::BaseService
+      CLOUDSQL_KEYS: ::Array["GCP_PROJECT_ID" | "GCP_CLOUDSQL_INSTANCE_NAME" | "GCP_CLOUDSQL_VERSION"]
+
+      def execute: () -> untyped
+    end
+  end
+end

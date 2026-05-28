@@ -1,0 +1,33 @@
+module Ci
+  class DestroyOldPipelinesWorker
+    @cleanup_queue: untyped
+
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include LimitedCapacity::Worker
+
+    LIMIT: 250
+
+    RE_ENQUEUE_THRESHOLD: 100
+
+    CONCURRENCY: 10
+
+    def perform_work: (*untyped) -> untyped
+
+    def max_running_jobs: () -> untyped
+
+    def remaining_work_count: (*untyped) -> untyped
+
+    private
+
+    def cleanup_queue: () -> untyped
+
+    def skip_protected_pipelines?: (untyped project) -> untyped
+
+    def skip_locked_pipelines?: (untyped project) -> untyped
+
+    def perform_pipelines_cleanup: (untyped project) -> untyped
+  end
+end

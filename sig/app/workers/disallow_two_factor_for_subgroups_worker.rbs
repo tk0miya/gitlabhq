@@ -1,0 +1,9 @@
+class DisallowTwoFactorForSubgroupsWorker
+  include ApplicationWorker
+
+  include ExceptionBacktrace
+
+  INTERVAL: untyped
+
+  def perform: (untyped group_id) -> (nil | untyped)
+end

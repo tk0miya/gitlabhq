@@ -1,0 +1,29 @@
+module Pages
+  module Domains
+    class ObtainLetsEncryptCertificateService
+      @pages_domain: untyped
+
+      # time for processing validation requests for acme challenges
+      # 5-15 seconds is usually enough
+      CHALLENGE_PROCESSING_DELAY: untyped
+
+      # time LetsEncrypt ACME server needs to generate the certificate
+      # no particular SLA, usually takes 10-15 seconds
+      CERTIFICATE_PROCESSING_DELAY: untyped
+
+      attr_reader pages_domain: untyped
+
+      def initialize: (untyped pages_domain) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def save_certificate: (untyped private_key, untyped api_order) -> untyped
+
+      def save_order_error: (untyped acme_order, untyped acme_error_message) -> untyped
+
+      def log_error: (untyped acme_error_message) -> untyped
+    end
+  end
+end

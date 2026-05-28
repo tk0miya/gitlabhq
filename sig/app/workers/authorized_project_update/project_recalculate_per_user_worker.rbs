@@ -1,0 +1,5 @@
+module AuthorizedProjectUpdate
+  class ProjectRecalculatePerUserWorker < ProjectRecalculateWorker
+    def perform: (untyped project_id, untyped user_id) -> (nil | untyped)
+  end
+end

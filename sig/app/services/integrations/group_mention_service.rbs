@@ -1,0 +1,44 @@
+# GroupMentionService class
+#
+# Used for sending group mention notifications
+#
+# Ex.
+#   Integrations::GroupMentionService.new(mentionable, hook_data: data, is_confidential: true).execute
+#
+module Integrations
+  class GroupMentionService
+    @mentionable: untyped
+
+    @hook_data: untyped
+
+    @is_confidential: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    GROUP_MENTION_LIMIT: 3
+
+    def initialize: (untyped mentionable, hook_data: untyped, is_confidential: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader mentionable: untyped
+
+    attr_reader hook_data: untyped
+
+    attr_reader is_confidential: untyped
+
+    def process: () -> untyped
+
+    def group_mention_hook_data: () -> untyped
+
+    def confidential?: () -> untyped
+
+    def execute_integrations_for?: (untyped group) -> untyped
+
+    def groups: () -> untyped
+
+    def mentionable_without_to_ability_name_service_error: () -> untyped
+  end
+end

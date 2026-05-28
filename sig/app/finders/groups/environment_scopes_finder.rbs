@@ -1,0 +1,32 @@
+# Groups::EnvironmentsScopesFinder
+#
+# Arguments:
+#   group
+#   params:
+#     search: string
+#
+module Groups
+  class EnvironmentScopesFinder
+    @group: untyped
+
+    @params: untyped
+
+    DEFAULT_ENVIRONMENT_SCOPES_LIMIT: 100
+
+    def initialize: (group: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+    EnvironmentScope: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader group: untyped
+
+    attr_reader params: untyped
+
+    def by_name: (untyped group_variables) -> untyped
+
+    def by_search: (untyped group_variables) -> untyped
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module GitalyClient
+    class CircuitBreaker
+      class Metrics
+        self.@requests_total: untyped
+
+        self.@transitions_total: untyped
+
+        def self.track_request: (circuit_state: untyped, result: untyped, ?reason: ::String) -> untyped
+
+        def self.track_state_transition: (endpoint: untyped, storage: untyped, from_state: untyped, to_state: untyped) -> untyped
+
+        def self.requests_total: () -> untyped
+
+        def self.transitions_total: () -> untyped
+      end
+    end
+  end
+end

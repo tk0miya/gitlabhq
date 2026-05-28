@@ -1,0 +1,52 @@
+module Ci
+  #
+  # This domain model is a representation of a group of jobs that are related
+  # to each other, like `rspec 0 1`, `rspec 0 2`.
+  #
+  # It is not persisted in the database.
+  #
+  class Group
+    @project: untyped
+
+    @stage: untyped
+
+    @name: untyped
+
+    @jobs: untyped
+
+    include StaticModel
+
+    include Gitlab::Utils::StrongMemoize
+
+    include GlobalID::Identification
+
+    attr_reader project: untyped
+
+    attr_reader stage: untyped
+
+    attr_reader name: untyped
+
+    attr_reader jobs: untyped
+
+    # Construct a grouping of statuses for this stage.
+    # We allow the caller to pass in statuses for efficiency (avoiding N+1
+    # queries).
+    def self.fabricate: (untyped project, untyped stage, ?untyped? statuses) -> untyped
+
+    def initialize: (untyped project, untyped stage, name: untyped, jobs: untyped) -> void
+
+    def id: () -> ::String
+
+    def ==: (untyped other) -> untyped
+
+    def status: () -> untyped
+
+    def success?: () -> untyped
+
+    def has_warnings?: () -> untyped
+
+    def status_struct: () -> untyped
+
+    def detailed_status: (untyped current_user) -> untyped
+  end
+end

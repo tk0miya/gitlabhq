@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Artifacts
+      module Logger
+        def log_artifacts_filesize: (untyped artifact_file) -> (nil | untyped)
+
+        def log_artifacts_context: (untyped job) -> untyped
+
+        def log_build_dependencies: (size: untyped, ?count: ::Integer) -> untyped
+
+        def self.log_created: (untyped job_artifacts) -> untyped
+
+        def self.log_deleted: (untyped job_artifacts, untyped method) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,30 @@
+# Searches and reads file present on GitLab installation directory
+module Gitlab
+  module Template
+    module Finders
+      class GlobalTemplateFinder < BaseTemplateFinder
+        @categories: untyped
+
+        @extension: untyped
+
+        @include_categories_for_file: untyped
+
+        @excluded_patterns: untyped
+
+        def initialize: (untyped base_dir, untyped extension, ?::Hash[untyped, untyped] categories, ?::Hash[untyped, untyped] include_categories_for_file, ?excluded_patterns: untyped) -> void
+
+        def read: (untyped path) -> untyped
+
+        def find: (untyped key) -> (nil | untyped)
+
+        def list_files_for: (untyped dir) -> untyped
+
+        private
+
+        def excluded?: (untyped file_name) -> untyped
+
+        def select_directory: (untyped file_name) -> untyped
+      end
+    end
+  end
+end

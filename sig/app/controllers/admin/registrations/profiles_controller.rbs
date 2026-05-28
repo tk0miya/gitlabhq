@@ -1,0 +1,37 @@
+module Admin
+  module Registrations
+    class ProfilesController < Admin::ApplicationController
+      @user: untyped
+
+      @user_params: untyped
+
+      include Gitlab::InternalEventsTracking
+
+      def new: () -> untyped
+
+      def update: () -> untyped
+
+      def skip: () -> untyped
+
+      private
+
+      def track_setup_profile_page_view: () -> untyped
+
+      def verify_available!: () -> (untyped | nil)
+
+      def post_onboarding_redirect_path: () -> untyped
+
+      def pop_welcome_project_id: () -> untyped
+
+      def profile_params: () -> untyped
+
+      def user_params: () -> untyped
+
+      def full_name: () -> ::String
+
+      def user_params_attributes: () -> ::Array[:first_name | :last_name | :email | { user_detail_attributes: untyped }]
+
+      def user_detail_params_attributes: () -> ::Array[:company]
+    end
+  end
+end

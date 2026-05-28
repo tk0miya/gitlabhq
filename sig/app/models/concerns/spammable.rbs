@@ -1,0 +1,49 @@
+module Spammable
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  def spam: () -> untyped
+
+  def submittable_as_spam_by?: (untyped current_user) -> untyped
+
+  def submittable_as_spam?: () -> (untyped | false)
+
+  def needs_recaptcha!: () -> untyped
+
+  # Override in Spammable if recaptcha is supported
+  def supports_recaptcha?: () -> false
+
+  #
+  # Indicates if a recaptcha should be rendered before allowing this model to be saved.
+  #
+  def render_recaptcha?: () -> (false | untyped)
+
+  def spam!: () -> untyped
+
+  def clear_spam_flags!: () -> untyped
+
+  def invalidate_if_spam: () -> (untyped | untyped | nil)
+
+  def recaptcha_error!: () -> untyped
+
+  def unrecoverable_spam_error!: () -> untyped
+
+  def spammable_entity_type: () -> untyped
+
+  def spam_title: () -> untyped
+
+  def spam_description: () -> untyped
+
+  def spammable_text: () -> untyped
+
+  # Override in included class if further checks are necessary
+  def check_for_spam?: (*untyped) -> untyped
+
+  def spammable_attribute_changed?: () -> untyped
+
+  def check_for_spam: (user: untyped, action: untyped, ?extra_features: ::Hash[untyped, untyped]) -> untyped
+
+  # Override in included class if you want to allow possible spam under specific circumstances
+  def allow_possible_spam?: (*untyped) -> untyped
+end

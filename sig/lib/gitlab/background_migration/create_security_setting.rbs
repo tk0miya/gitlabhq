@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    # This class doesn't create SecuritySetting
+    # as this feature exists only in EE
+    class CreateSecuritySetting
+      def perform: (untyped _from_id, untyped _to_id) -> nil
+    end
+  end
+end

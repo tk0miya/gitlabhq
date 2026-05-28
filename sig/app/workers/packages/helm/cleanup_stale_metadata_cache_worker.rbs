@@ -1,0 +1,21 @@
+module Packages
+  module Helm
+    class CleanupStaleMetadataCacheWorker
+      include ApplicationWorker
+
+      include ::Packages::CleanupArtifactWorker
+
+      MAX_CAPACITY: 2
+
+      def max_running_jobs: () -> untyped
+
+      private
+
+      def model: () -> untyped
+
+      def log_metadata: (untyped helm_metadata_cache) -> untyped
+
+      def log_cleanup_item: (untyped helm_metadata_cache) -> untyped
+    end
+  end
+end

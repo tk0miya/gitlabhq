@@ -1,0 +1,31 @@
+module Packages
+  module Composer
+    class PackagesPresenter
+      @group: untyped
+
+      @packages: untyped
+
+      @is_v2: untyped
+
+      include API::Helpers::RelatedResourcesHelpers
+
+      def initialize: (untyped group, untyped packages, ?bool is_v2) -> void
+
+      def root: () -> untyped
+
+      def provider: () -> { "providers" => untyped }
+
+      def package_versions: (?untyped packages) -> untyped
+
+      private
+
+      def package_versions_sha: (?untyped packages) -> untyped
+
+      def package_versions_index: (untyped packages) -> untyped
+
+      def providers_map: () -> untyped
+
+      def provider_sha: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,18 @@
+module WikiPages
+  class UpdateService < WikiPages::BaseService
+    # this class is not thread safe!
+    @old_slug: untyped
+
+    UpdateError: untyped
+
+    def execute: (untyped page) -> untyped
+
+    def internal_event_name: () -> "update_wiki_page"
+
+    def external_action: () -> "update"
+
+    def event_action: () -> :updated
+
+    def slug_for_page: (untyped page) -> untyped
+  end
+end

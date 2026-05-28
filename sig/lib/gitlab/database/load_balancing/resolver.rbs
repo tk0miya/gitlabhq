@@ -1,0 +1,27 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      class Resolver
+        @nameserver: untyped
+
+        FAR_FUTURE_TTL: untyped
+
+        UnresolvableNameserverError: untyped
+
+        Response: untyped
+
+        def initialize: (untyped nameserver) -> void
+
+        def resolve: () -> untyped
+
+        private
+
+        def ip_address: () -> untyped
+
+        def ip_address_from_hosts_file: () -> untyped
+
+        def ip_address_from_dns: () -> untyped
+      end
+    end
+  end
+end

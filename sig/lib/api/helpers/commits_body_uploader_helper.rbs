@@ -1,0 +1,15 @@
+module API
+  module Helpers
+    module CommitsBodyUploaderHelper
+      def workhorse_authorize_commits_body_upload!: () ?{ () -> untyped } -> untyped
+
+      def file_params_from_body_upload: () -> untyped
+
+      def check_large_request_rate_limit!: (untyped file_size_bytes) -> untyped
+
+      # Validates that a parameter value is a string if present.
+      # Does not validate presence - use existing blank? checks for that.
+      def validate_string_param!: (untyped params, untyped key, ?prefix: untyped?) -> (nil | untyped)
+    end
+  end
+end

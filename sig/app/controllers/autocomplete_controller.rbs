@@ -1,0 +1,46 @@
+class AutocompleteController < ApplicationController
+  @project: untyped
+
+  include SearchRateLimitable
+
+  def users: () -> untyped
+
+  def user: () -> untyped
+
+  # Displays projects to use for the dropdown when moving a resource from one
+  # project to another.
+  def projects: () -> untyped
+
+  def award_emojis: () -> untyped
+
+  def merge_request_target_branches: () -> untyped
+
+  def merge_request_source_branches: () -> untyped
+
+  def deploy_keys_with_owners: () -> untyped
+
+  private
+
+  def project: () -> untyped
+
+  def user_finder_params: () -> untyped
+
+  def branch_params: () -> untyped
+
+  def users_finder_params: () -> untyped
+
+  def user_serializer_params: () -> untyped
+
+  def group_finder_params: () -> untyped
+
+  def move_to_project_finder_params: () -> untyped
+
+  def project_finder_params: () -> untyped
+
+  # overridden in EE
+  def presented_suggested_users: () -> ::Array[untyped]
+
+  def merge_request_branches: (?source: bool, ?target: bool) -> untyped
+
+  def check_autocomplete_users_rate_limit!: () -> untyped
+end

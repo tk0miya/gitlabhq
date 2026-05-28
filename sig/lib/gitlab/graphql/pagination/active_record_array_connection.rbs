@@ -1,0 +1,44 @@
+# Connection for an array of Active Record instances.
+# Resolvers needs to handle cursors (before and after).
+# This connection will handle (first and last).
+# Supports batch loaded items.
+# Expects the array to use a fixed DESC order. This is similar to
+# ExternallyPaginatedArrayConnection.
+module Gitlab
+  module Graphql
+    module Pagination
+      class ActiveRecordArrayConnection < GraphQL::Pagination::ArrayConnection
+        # note: only first _or_ last can be specified, not both
+        @limit_value: untyped
+
+        @nodes: untyped
+
+        include ::Gitlab::Graphql::ConnectionCollectionMethods
+
+        prepend ::Gitlab::Graphql::ConnectionRedaction
+
+        def nodes: () -> untyped
+
+        def next_page?: () -> untyped
+
+        def previous_page?: () -> untyped
+
+        # see https://graphql-ruby.org/pagination/custom_connections#connection-wrapper
+        alias has_next_page next_page?
+
+        alias has_previous_page previous_page?
+
+        def cursor_for: (untyped item) -> untyped
+
+        # Part of the implied interface for default objects for BatchLoader: objects must be clonable
+        def dup: () -> untyped
+
+        private
+
+        def limit_value: () -> untyped
+
+        def load_nodes: () -> untyped
+      end
+    end
+  end
+end

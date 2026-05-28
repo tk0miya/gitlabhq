@@ -1,0 +1,75 @@
+module Gitlab
+  module Import
+    class SourceUserMapper
+      @namespace: untyped
+
+      @import_type: untyped
+
+      @source_hostname: untyped
+
+      include Gitlab::ExclusiveLeaseHelpers
+
+      LRU_CACHE_SIZE: 100
+
+      LOCK_TTL: untyped
+
+      LOCK_SLEEP: untyped
+
+      LOCK_RETRIES: 100
+
+      DuplicatedUserError: untyped
+
+      def initialize: (namespace: untyped, import_type: untyped, source_hostname: untyped) -> void
+
+      # Finds a source user by the provided `source_user_identifier`.
+      #
+      # This method first checks an in-memory LRU (Least Recently Used) cache,
+      # stored in `SafeRequestStore`, to avoid unnecessary database queries.
+      # If the source user is not present in the cache, it will query the database
+      # and store the result in the cache for future use.
+      #
+      # Since jobs may create source users concurrently, the ActiveRecord query
+      # cache is explicitly disabled when querying the database to ensure that
+      # we always get the latest data.
+      #
+      # @param [String] source_user_identifier The identifier for the source user to find.
+      # @return [Import::SourceUser, nil] The found source user object, or `nil` if no match is found.
+      def find_source_user: (untyped source_user_identifier) -> untyped
+
+      # Finds a source user by the provided `source_user_identifier` or creates a new one
+      def find_or_create_source_user: (source_name: untyped, source_username: untyped, source_user_identifier: untyped, ?cache: bool) -> untyped
+
+      def ghost_user: () -> untyped
+
+      private
+
+      attr_reader namespace: untyped
+
+      attr_reader import_type: untyped
+
+      attr_reader source_hostname: untyped
+
+      def cache_from_request_store: () -> untyped
+
+      def create_source_user: (source_name: untyped, source_username: untyped, source_user_identifier: untyped) -> untyped
+
+      def create_source_user_mapping: (untyped source_name, untyped source_username, untyped source_user_identifier) -> untyped
+
+      def create_placeholder_user: (untyped import_source_user) -> untyped
+
+      def namespace_import_user: () -> untyped
+
+      def placeholder_user_limit_exceeded?: () -> untyped
+
+      def reset_source_user?: (untyped source_user) -> untyped
+
+      def reset_source_user!: (untyped source_user) -> untyped
+
+      def lock_key: (untyped source_user_identifier) -> ::String
+
+      # Check validation errors on User records (placeholder or import users) for non-uniqueness.
+      # rubocop: disable CodeReuse/ActiveRecord -- not ActiveRecord
+      def duplicate_user_errors?: (untyped record) -> untyped
+    end
+  end
+end

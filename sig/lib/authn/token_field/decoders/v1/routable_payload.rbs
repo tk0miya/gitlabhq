@@ -1,0 +1,41 @@
+module Authn
+  module TokenField
+    module Decoders
+      module V1
+        class RoutablePayload
+          @token: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped token) -> void
+
+          def decode: () -> (nil | untyped)
+
+          private
+
+          attr_reader token: untyped
+
+          def routable_token?: () -> untyped
+
+          def with_correct_crc?: () -> untyped
+
+          def payload_size_within_limit?: () -> untyped
+
+          def decoded_payload_hash: () -> untyped
+
+          def formatted_payload: () -> untyped
+
+          def decodable_payload: () -> untyped
+
+          def base64_payload: () -> (nil | untyped)
+
+          def prefixed_encoded_payload: () -> untyped
+
+          def crc: () -> untyped
+
+          def generator_class: () -> untyped
+        end
+      end
+    end
+  end
+end

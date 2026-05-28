@@ -1,0 +1,9 @@
+module Mutations
+  module JiraImport
+    class Start < BaseMutation
+      include FindsProject
+
+      def resolve: (project_path: untyped, jira_project_key: untyped, users_mapping: untyped) -> { jira_import: untyped, errors: untyped }
+    end
+  end
+end

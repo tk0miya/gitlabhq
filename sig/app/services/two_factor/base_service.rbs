@@ -1,0 +1,19 @@
+module TwoFactor
+  class BaseService
+    @current_user: untyped
+
+    @user: untyped
+
+    @group: untyped
+
+    include BaseServiceUtility
+
+    attr_reader current_user: untyped
+
+    attr_reader user: untyped
+
+    attr_reader group: untyped
+
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+  end
+end

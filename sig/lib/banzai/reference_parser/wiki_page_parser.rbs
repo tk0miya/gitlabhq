@@ -1,0 +1,11 @@
+module Banzai
+  module ReferenceParser
+    class WikiPageParser < BaseParser
+      def nodes_visible_to_user: (untyped user, untyped nodes) -> untyped
+
+      private
+
+      def can_read_reference?: (untyped user, untyped project_or_group, untyped _node) -> untyped
+    end
+  end
+end

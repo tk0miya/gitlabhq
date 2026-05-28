@@ -1,0 +1,39 @@
+module Mutations
+  class BaseMutation < GraphQL::Schema::RelayClassicMutation
+    self.@authorization: untyped
+
+    include Gitlab::Graphql::VersionFilter::FutureFieldFallback
+
+    include Gitlab::Graphql::Authz::AuthorizeGranularToken
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    prepend Gitlab::Graphql::CopyFieldDescription
+
+    ERROR_MESSAGE: "You cannot perform write operations on a read-only instance"
+
+    def current_user: () -> untyped
+
+    def api_user?: () -> untyped
+
+    # Returns Array of errors on an ActiveRecord object
+    def errors_on_object: (untyped record) -> untyped
+
+    def ready?: (**untyped args) -> true
+
+    def read_only?: () -> untyped
+
+    def load_application_object: (untyped argument, untyped id, untyped context) -> untyped
+
+    def unauthorized_object: (untyped error) -> untyped
+
+    def self.authorizes_object?: () -> true
+
+    def self.authorized?: (untyped object, untyped context) -> (true | untyped)
+
+    def self.authorization_scopes: () -> ::Array[:api]
+
+    # See: AuthorizeResource#authorized_resource?
+    def self.authorization: () -> untyped
+  end
+end

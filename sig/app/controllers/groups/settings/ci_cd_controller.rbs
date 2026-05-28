@@ -1,0 +1,47 @@
+module Groups
+  module Settings
+    class CiCdController < Groups::ApplicationController
+      @entity: untyped
+
+      @variable_limit: untyped
+
+      @variable: untyped
+
+      @variables: untyped
+
+      def show: () -> untyped
+
+      def update: () -> untyped
+
+      def update_auto_devops: () -> untyped
+
+      private
+
+      def audit_group_cicd_settings_access: () -> untyped
+
+      def authorize_show_cicd_settings!: () -> (nil | untyped)
+
+      def define_variables: () -> untyped
+
+      def define_ci_variables: () -> untyped
+
+      def authorize_admin_group!: () -> (untyped | nil)
+
+      def authorize_update_max_artifacts_size!: () -> (untyped | nil)
+
+      def auto_devops_params: () -> untyped
+
+      def auto_devops_service: () -> untyped
+
+      def update_group_service: () -> untyped
+
+      def update_group_params: () -> untyped
+
+      # Overridden in EE
+      def push_licensed_features: () -> nil
+
+      # Overridden in EE
+      def assign_variables_to_gon: () -> nil
+    end
+  end
+end

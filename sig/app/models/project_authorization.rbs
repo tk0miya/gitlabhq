@@ -1,0 +1,20 @@
+class ProjectAuthorization < ApplicationRecord
+  include EachBatch
+
+  include FromUnion
+
+  def self.select_from_union: (untyped relations) -> untyped
+
+  # This method overrides its ActiveRecord's version in order to work correctly
+  # with composite primary keys and fix the tests for Rails 6.1
+  #
+  # Consider using BulkInsertSafe module instead since we plan to refactor it in
+  # https://gitlab.com/gitlab-org/gitlab/-/issues/331264
+  def self.insert_all: (untyped attributes) -> untyped
+
+  def self.find_or_create_authorization_for: (untyped user_id, untyped project_id, untyped access_level) -> untyped
+
+  private
+
+  def assign_is_unique: () -> untyped
+end

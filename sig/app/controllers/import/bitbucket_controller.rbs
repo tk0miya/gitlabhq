@@ -1,0 +1,63 @@
+class Import::BitbucketController < Import::BaseController
+  @partitioned_repos: untyped
+
+  @oauth_client: untyped
+
+  @client: untyped
+
+  @bitbucket_repos: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include ActionView::Helpers::SanitizeHelper
+
+  PAGE_LENGTH: 25
+
+  WORKSPACE_SLUG_MAX_LENGTH: 62
+
+  def callback: () -> untyped
+
+  def status: () -> untyped
+
+  def create: () -> untyped
+
+  def importable_repos: () -> untyped
+
+  def incompatible_repos: () -> untyped
+
+  def partitioned_repos: () -> untyped
+
+  def provider_url: () -> nil
+
+  def provider_name: () -> :bitbucket
+
+  private
+
+  def page_info: () -> untyped
+
+  def user_role: (untyped _user, untyped namespace) -> untyped
+
+  def oauth_client: () -> untyped
+
+  def provider: () -> untyped
+
+  def client: () -> untyped
+
+  def bitbucket_repos: () -> untyped
+
+  def workspace_paging_info_param: () -> untyped
+
+  def valid_workspace_slug?: (untyped slug) -> untyped
+
+  def options: () -> untyped
+
+  def verify_bitbucket_import_enabled: () -> (untyped | nil)
+
+  def bitbucket_auth: () -> (untyped | nil)
+
+  def go_to_bitbucket_for_permissions: () -> untyped
+
+  def bitbucket_unauthorized: (untyped exception) -> untyped
+
+  def credentials: () -> { token: untyped, expires_at: untyped, expires_in: untyped, refresh_token: untyped }
+end

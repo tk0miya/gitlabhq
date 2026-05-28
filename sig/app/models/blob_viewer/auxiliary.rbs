@@ -1,0 +1,9 @@
+module BlobViewer
+  module Auxiliary
+    extend ActiveSupport::Concern
+
+    include Gitlab::Allowable
+
+    def visible_to?: (untyped current_user, untyped ref) -> true
+  end
+end

@@ -1,0 +1,37 @@
+module Gitlab
+  module FogbugzImport
+    class Interface
+      @options: untyped
+
+      @token: untyped
+
+      # Custom adapter to validate the URL before each request
+      # This way we avoid DNS rebinds or other unsafe requests
+      @http: untyped
+
+      # Custom adapter to validate size of incoming XML before
+      # attempting to parse it.
+      @xml: untyped
+
+      RequestError: untyped
+
+      InitializationError: untyped
+
+      AuthenticationError: untyped
+
+      attr_accessor options: untyped
+
+      attr_accessor http: untyped
+
+      attr_accessor xml: untyped
+
+      attr_accessor token: untyped
+
+      def initialize: (?::Hash[untyped, untyped] options) -> void
+
+      def authenticate: () -> untyped
+
+      def command: (untyped action, ?::Hash[untyped, untyped] parameters) -> untyped
+    end
+  end
+end

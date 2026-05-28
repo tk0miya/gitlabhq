@@ -1,0 +1,103 @@
+# GroupDescendantsFinder
+#
+# Used to find and filter all subgroups and projects of a passed parent group
+# visible to a specified user.
+#
+# Arguments:
+#   current_user: The user for which the children should be visible
+#   parent_group: The group to find children of
+#   params:
+#     Supports all params that the `ProjectsFinder` and `GroupProjectsFinder`
+#     support.
+#
+#     active: boolean - filters for active descendants. When `false`, the search is performed over
+#                       all nested levels of the `parent group` and all inactive ancestors are loaded.
+#     filter: string - aliased to `search` for consistency with the frontend. When a filter is
+#                      passed, the search is performed over all nested levels of the `parent_group`.
+#                      All ancestors for a search result are loaded
+class GroupDescendantsFinder
+  @current_user: untyped
+
+  @parent_group: untyped
+
+  @params: untyped
+
+  @children: untyped
+
+  @paginator: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader current_user: untyped
+
+  attr_reader parent_group: untyped
+
+  attr_reader params: untyped
+
+  def initialize: (parent_group: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def children: () -> untyped
+
+  def paginator: () -> untyped
+
+  def direct_child_groups: () -> untyped
+
+  def descendant_groups: () -> untyped
+
+  # When filtering we want all to preload all the ancestors up to the specified
+  # parent group.
+  #
+  # - root
+  #   - subgroup
+  #     - nested-group
+  #       - project
+  #
+  # So when searching 'project', on the 'subgroup' page we want to preload
+  # 'nested-group' but not 'subgroup' or 'root'
+  def ancestors_of_groups: (untyped base_for_ancestors) -> untyped
+
+  def ancestors_of_filtered_projects: () -> untyped
+
+  def ancestors_of_filtered_subgroups: () -> untyped
+
+  def subgroups: () -> untyped
+
+  def direct_child_projects: () -> untyped
+
+  # Finds all projects nested under `parent_group` or any of its descendant
+  # groups
+  def descendant_projects: () -> untyped
+
+  def projects: () -> untyped
+
+  def sort: () -> untyped
+
+  def paginated_subgroups_without_direct_descendents: () -> untyped
+
+  def paginated_projects_without_direct_descendents: () -> untyped
+
+  def page: () -> untyped
+
+  # Filters group descendants to only include those visible to the current user.
+  #
+  # This method applies visibility filtering based on two criteria:
+  # 1. Groups with visibility level accessible to the current user
+  # 2. Groups where the user has explicit authorization (if authenticated)
+  #
+  # @param descendants [ActiveRecord::Relation<Group>] The collection of group descendants to filter
+  # @return [ActiveRecord::Relation<Group>] Filtered descendants visible to the current user
+  # rubocop: disable CodeReuse/ActiveRecord -- Needs specialized queries for optimization
+  def by_visible_to_users: (untyped descendants) -> untyped
+
+  def by_active: (untyped descendants) -> untyped
+
+  def by_search: (untyped descendants) -> untyped
+
+  def inactive?: () -> untyped
+
+  def search_descendants?: () -> untyped
+end

@@ -1,0 +1,21 @@
+module ResourceEvents
+  class ChangeLabelsService
+    @resource: untyped
+
+    @user: untyped
+
+    attr_reader resource: untyped
+
+    attr_reader user: untyped
+
+    def initialize: (untyped resource, untyped user) -> void
+
+    def execute: (?added_labels: untyped, ?removed_labels: untyped) -> (nil | untyped)
+
+    private
+
+    def resource_column: (untyped resource) -> untyped
+
+    def create_timeline_events_from: (?added_labels: untyped, ?removed_labels: untyped) -> (nil | untyped)
+  end
+end

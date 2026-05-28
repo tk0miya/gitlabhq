@@ -1,0 +1,33 @@
+module Gitlab
+  module Redis
+    class ClusterStore < ::Redis::Cluster
+      @serializer: untyped
+
+      @namespace: untyped
+
+      include ::Redis::Store::Interface
+
+      def initialize: (?::Hash[untyped, untyped] options) -> void
+
+      # copies ::Redis::Store::Ttl implementation in a redis-v5 compatible manner
+      def set: (untyped key, untyped value, ?untyped? options) -> untyped
+
+      # copies ::Redis::Store::Ttl implementation in a redis-v5 compatible manner
+      def setnx: (untyped key, untyped value, ?untyped? options) -> untyped
+
+      private
+
+      def get_ttl: (untyped options) -> (untyped | nil)
+
+      def _remove_unsupported_options: (untyped options) -> untyped
+
+      def _extend_marshalling: () -> (untyped | nil)
+
+      extend ::Redis::Store::Serialization
+
+      def _extend_namespace: (untyped options) -> untyped
+
+      extend ::Redis::Store::Namespace
+    end
+  end
+end

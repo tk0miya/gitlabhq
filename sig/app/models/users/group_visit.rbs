@@ -1,0 +1,11 @@
+module Users
+  class GroupVisit < ApplicationRecord
+    include Users::Visitable
+
+    include PartitionedTable
+
+    MAX_FRECENT_ITEMS: 3
+
+    def self.frecent_groups: (user_id: untyped) -> untyped
+  end
+end

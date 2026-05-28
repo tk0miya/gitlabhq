@@ -1,0 +1,46 @@
+module Projects
+  class BuildArtifactsSizeRefresh < ApplicationRecord
+    include AfterCommitQueue
+
+    include BulkInsertSafe
+
+    STALE_WINDOW: untyped
+
+    # This delay is set to 10 minutes to accommodate any ongoing
+    # deletion that might have happened.
+    # The delete on the database may have been committed before
+    # the refresh completed its batching. If the resulting decrement is
+    # pushed into Redis after the refresh has ended, it would result in net negative value.
+    # The delay is needed to ensure this negative value is ignored.
+    FINALIZE_DELAY: untyped
+
+    COUNTER_ATTRIBUTE_NAME: :build_artifacts_size
+
+    # The refresh of the project statistics counter is performed in 4 stages:
+    # 1. created - The refresh is on the queue to be processed by Projects::RefreshBuildArtifactsSizeStatisticsWorker
+    # 2. running - The refresh is ongoing. The project statistics counter switches to the temporary refresh counter key.
+    #    Counter increments are deduplicated.
+    # 3. pending - The refresh is pending to be picked up by Projects::RefreshBuildArtifactsSizeStatisticsWorker again.
+    # 4. finalizing - The refresh has finished summing existing job artifact size into the refresh counter key.
+    #    The sum will need to be moved into the counter key.
+    STATES: { created: 1, running: 2, pending: 3, finalizing: 4 }
+
+    def self.enqueue_refresh: (untyped projects) -> untyped
+
+    def self.process_next_refresh!: () -> untyped
+
+    def reset_project_statistics!: () -> untyped
+
+    def next_batch: (limit: untyped) -> untyped
+
+    def started?: () -> untyped
+
+    def finalize!: () -> untyped
+
+    def schedule_finalize_worker: () -> untyped
+
+    private
+
+    def schedule_namespace_aggregation_worker: () -> untyped
+  end
+end

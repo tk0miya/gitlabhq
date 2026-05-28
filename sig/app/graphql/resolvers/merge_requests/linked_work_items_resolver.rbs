@@ -1,0 +1,21 @@
+module Resolvers
+  module MergeRequests
+    class LinkedWorkItemsResolver < BaseResolver
+      CLOSES: untyped
+
+      MENTIONED: untyped
+
+      MAX_ISSUES: 500
+
+      def resolve: (?types: untyped?) -> untyped
+
+      private
+
+      def closing_items: () -> untyped
+
+      def mentioned_items: () -> untyped
+
+      def linked_work_items_for: (untyped issues, untyped link_type) -> untyped
+    end
+  end
+end

@@ -1,0 +1,72 @@
+module ClickHouse
+  module SchemaCache
+    class Table
+      @name: untyped
+
+      @engine: untyped
+
+      @engine_full: untyped
+
+      @partition_key: untyped
+
+      @primary_key_raw: untyped
+
+      @sorting_key_raw: untyped
+
+      @sampling_key: untyped
+
+      @settings: untyped
+
+      @columns: untyped
+
+      @primary_key: untyped
+
+      @sorting_key: untyped
+
+      @engine_params: untyped
+
+      @columns_by_name: untyped
+
+      attr_reader name: untyped
+
+      attr_reader engine: untyped
+
+      attr_reader engine_full: untyped
+
+      attr_reader partition_key: untyped
+
+      attr_reader sampling_key: untyped
+
+      attr_reader settings: untyped
+
+      attr_reader columns: untyped
+
+      def initialize: (**untyped attrs) -> void
+
+      def column: (untyped column_name) -> untyped
+
+      def column_names: () -> untyped
+
+      def primary_key: () -> untyped
+
+      def sorting_key: () -> untyped
+
+      def engine_params: () -> untyped
+
+      def to_h: () -> untyped
+
+      private
+
+      def columns_by_name: () -> untyped
+
+      def resolve_key: (untyped raw) -> (::Array[untyped] | untyped)
+
+      def parse_engine_params: () -> (::Array[untyped] | untyped)
+
+      def find_closing_paren: (untyped str) -> untyped
+
+      # resolves complex key like (column1, myFunc1(param1, param2), column2)
+      def split_top_level_commas: (untyped raw) -> untyped
+    end
+  end
+end

@@ -1,0 +1,30 @@
+module Feature
+  class Gitaly
+    PREFIX: "gitaly_"
+
+    # Wrapper for feature flag actor to avoid unnecessarily SQL queries
+    class ActorWrapper
+      @klass: untyped
+
+      @id: untyped
+
+      def initialize: (untyped klass, untyped id) -> void
+
+      def flipper_id: () -> ::String
+    end
+
+    def self.enabled_for_any?: (untyped feature_flag, *untyped actors) -> untyped
+
+    def self.server_feature_flags: (?repository: untyped?, ?user: untyped?, ?project: untyped?, ?group: untyped?) -> (::Hash[untyped, untyped] | untyped)
+
+    def self.user_actor: (?untyped? user) -> untyped
+
+    def self.project_actor: (untyped container) -> untyped
+
+    def self.group_actor: (untyped container) -> untyped
+
+    private
+
+    def self.actor_wrapper: (untyped actor_type, untyped id) -> untyped
+  end
+end

@@ -1,0 +1,17 @@
+class DeviseMailer < Devise::Mailer
+  include Gitlab::Email::SingleRecipientValidator
+
+  # Override devise_mail so that all emails, not just those redefined
+  # here, can only be sent to a single to: address.
+  def devise_mail: (untyped record, untyped action, ?::Hash[untyped, untyped] opts) { (?) -> untyped } -> untyped
+
+  def password_change_by_admin: (untyped record, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def user_admin_approval: (untyped record, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def reset_password_instructions: (untyped record, untyped token, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def email_changed: (untyped record, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def subject_for: (untyped key) -> untyped
+end

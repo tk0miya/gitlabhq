@@ -1,0 +1,85 @@
+module Gitlab
+  module Redis
+    class Wrapper
+      self.@params: untyped
+
+      self.@pool: untyped
+
+      @rails_env: untyped
+
+      def self.params: () -> untyped
+
+      def self.with: () { (untyped) -> untyped } -> untyped
+
+      alias self.then self.with
+
+      def self.version: () -> untyped
+
+      def self.pool: () -> untyped
+
+      def self.pool_size: () -> untyped
+
+      def self.config_file_path: (untyped filename) -> untyped
+
+      # We need this local implementation of Rails.root because MailRoom
+      # doesn't load Rails.
+      def self.rails_root: () -> untyped
+
+      def self.config_file_name: () -> untyped
+
+      def self.redis_yml_path: () -> untyped
+
+      def self.store_name: () -> untyped
+
+      def self.config_fallback: () -> nil
+
+      def self.instrumentation_class: () -> (nil | untyped)
+
+      def self.redis: () -> untyped
+
+      def self.active?: () -> true
+
+      private
+
+      def self.init_redis: (untyped config) -> untyped
+
+      public
+
+      def initialize: (?untyped? rails_env) -> void
+
+      def params: () -> untyped
+
+      def url: () -> untyped
+
+      def db: () -> untyped
+
+      def ssl_params: () -> untyped
+
+      def sentinels: () -> untyped
+
+      def sentinel_password: () -> untyped
+
+      def secret_file: () -> (nil | untyped)
+
+      def sentinels?: () -> untyped
+
+      def store: (?::Hash[untyped, untyped] extras) -> untyped
+
+      def encrypted_secrets: () -> (untyped | nil)
+
+      private
+
+      def redis_store_options: () -> untyped
+
+      def parse_encrypted_config: (untyped encrypted_config) -> untyped
+
+      def parse_redis_url: (untyped config) -> untyped
+
+      def raw_config_hash: () -> ({ url: "" } | { url: untyped } | untyped)
+
+      def fetch_config: () -> untyped
+
+      def read_yaml: (untyped path) -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Packages
+  module Rubygems
+    class ExtractionWorker
+      include ApplicationWorker
+
+      include ::Packages::ErrorHandling
+
+      def perform: (untyped package_file_id) -> untyped
+    end
+  end
+end

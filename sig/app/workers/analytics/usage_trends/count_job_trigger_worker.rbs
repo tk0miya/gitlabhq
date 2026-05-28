@@ -1,0 +1,15 @@
+module Analytics
+  module UsageTrends
+    class CountJobTriggerWorker
+      extend ::Gitlab::Utils::Override
+
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      DEFAULT_DELAY: untyped
+
+      def perform: () -> untyped
+    end
+  end
+end

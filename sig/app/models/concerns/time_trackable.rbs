@@ -1,0 +1,65 @@
+module TimeTrackable
+  @time_spent: untyped
+
+  @time_spent_note_id: untyped
+
+  @time_spent_user: untyped
+
+  @spent_at: untyped
+
+  @summary: untyped
+
+  @original_total_time_spent: untyped
+
+  @category_id: untyped
+
+  @timelog: untyped
+
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  def clear_memoized_total_time_spent: () -> untyped
+
+  def reset: () -> untyped
+
+  def reload: (*untyped args) -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def spend_time: (untyped options) -> (nil | untyped)
+
+  alias spend_time= spend_time
+
+  def total_time_spent: () -> untyped
+
+  def human_total_time_spent: () -> untyped
+
+  def time_change: () -> untyped
+
+  def human_time_change: () -> untyped
+
+  def human_time_estimate: () -> untyped
+
+  def time_estimate=: (untyped val) -> untyped
+
+  def time_estimate: () -> untyped
+
+  def set_time_estimate_default_value: () -> (nil | untyped)
+
+  private
+
+  def reset_spent_time: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def add_or_subtract_spent_time: () -> untyped
+
+  def check_negative_time_spent: () -> (nil | untyped)
+
+  # we need to cache the total time spent so multiple calls to #valid?
+  # doesn't give a false error
+  def original_total_time_spent: () -> untyped
+
+  def check_time_estimate: () -> (nil | untyped)
+
+  def category_id: (untyped category) -> untyped
+end

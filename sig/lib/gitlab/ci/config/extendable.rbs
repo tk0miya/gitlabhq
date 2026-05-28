@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    class Config
+      class Extendable
+        @hash: untyped
+
+        include Enumerable
+
+        ExtensionError: untyped
+
+        def initialize: (untyped hash) -> void
+
+        def each: () { (untyped) -> untyped } -> untyped
+
+        def to_hash: () -> untyped
+      end
+    end
+  end
+end

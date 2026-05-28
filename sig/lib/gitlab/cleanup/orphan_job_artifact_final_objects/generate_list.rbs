@@ -1,0 +1,65 @@
+module Gitlab
+  module Cleanup
+    module OrphanJobArtifactFinalObjects
+      class GenerateList
+        @paginator: untyped
+
+        @force_restart: untyped
+
+        @logger: untyped
+
+        @filename: untyped
+
+        @file: untyped
+
+        include StorageHelpers
+
+        UnsupportedProviderError: untyped
+
+        DEFAULT_FILENAME: "orphan_job_artifact_final_objects.csv"
+
+        LAST_PAGE_MARKER_REDIS_KEY: "orphan-job-artifact-objects-cleanup-last-page-marker"
+
+        PAGINATORS: { google: untyped, aws: untyped, azurerm: untyped }
+
+        def initialize: (?provider: untyped?, ?filename: untyped?, ?force_restart: bool, ?logger: untyped) -> void
+
+        def run!: () -> untyped
+
+        private
+
+        attr_reader paginator: untyped
+
+        attr_reader file: untyped
+
+        attr_reader filename: untyped
+
+        attr_reader force_restart: untyped
+
+        attr_reader logger: untyped
+
+        def initialize_file: () -> untyped
+
+        def determine_paginator!: (untyped provided_provider) -> untyped
+
+        def each_batch: () { (untyped) -> untyped } -> untyped
+
+        def fetch_batch: (untyped marker) -> untyped
+
+        def resume_from_last_page_marker: () -> (nil | untyped)
+
+        def get_last_page_marker: () -> untyped
+
+        def save_last_page_marker: (untyped marker) -> untyped
+
+        def clear_last_page_marker: () -> untyped
+
+        def log_orphan_object: (untyped fog_file) -> untyped
+
+        def add_orphan_object_to_list: (untyped fog_file) -> untyped
+
+        def log_info: (untyped msg) -> untyped
+      end
+    end
+  end
+end

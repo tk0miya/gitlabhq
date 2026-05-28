@@ -1,0 +1,30 @@
+module Groups
+  # Service class for counting and caching the number of open work items of a group.
+  class OpenWorkItemsCountService < Groups::CountService
+    @fast_timeout: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    PUBLIC_COUNT_KEY: "group_public_open_work_items_count"
+
+    TOTAL_COUNT_KEY: "group_total_open_work_items_count"
+
+    OPEN_WORK_ITEMS_CACHE_KEY: "open_work_items"
+
+    def initialize: (*untyped args, ?fast_timeout: bool) -> void
+
+    def clear_all_cache_keys: () -> untyped
+
+    private
+
+    def uncached_count: () -> untyped
+
+    def cache_key_name: () -> untyped
+
+    def public_only?: () -> untyped
+
+    def relation_for_count: () -> untyped
+
+    def issuable_key: () -> untyped
+  end
+end

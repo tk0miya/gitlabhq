@@ -1,0 +1,37 @@
+class ContextCommitsDiff
+  @merge_request: untyped
+
+  @compare: untyped
+
+  @commits: untyped
+
+  include ActsAsPaginatedDiff
+
+  attr_reader merge_request: untyped
+
+  def initialize: (untyped merge_request) -> void
+
+  def empty?: () -> untyped
+
+  def commits_count: () -> untyped
+
+  def diffs: (?untyped? diff_options) -> untyped
+
+  def raw_diffs: (?::Hash[untyped, untyped] options) -> untyped
+
+  def diff_refs: () -> untyped
+
+  def has_encoded_file_paths?: () -> untyped
+
+  def first_diffs_slice: (untyped limit, ?::Hash[untyped, untyped] diff_options) -> untyped
+
+  def diff_stats: () -> (nil | untyped)
+
+  private
+
+  def compare: () -> untyped
+
+  def commits: () -> untyped
+
+  def paths: () -> untyped
+end

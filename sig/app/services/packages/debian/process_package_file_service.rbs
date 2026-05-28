@@ -1,0 +1,72 @@
+module Packages
+  module Debian
+    class ProcessPackageFileService
+      @package_file: untyped
+
+      @distribution_name: untyped
+
+      @component_name: untyped
+
+      include ExclusiveLeaseGuard
+
+      include Gitlab::Utils::StrongMemoize
+
+      SOURCE_FIELD_SPLIT_REGEX: ::Regexp
+
+      # used by ExclusiveLeaseGuard
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      SIMPLE_DEB_FILE_TYPES: ::Array[:deb | :udeb | :ddeb]
+
+      def initialize: (untyped package_file, untyped distribution_name, untyped component_name) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def validate!: () -> untyped
+
+      def changes_file?: () -> untyped
+
+      def validate_changes_file!: () -> untyped
+
+      def validate_package_file!: () -> (nil | untyped)
+
+      def file_metadata: () -> untyped
+
+      def metadata_service_class: () -> untyped
+
+      def distribution: () -> untyped
+
+      def package_distribution: () -> untyped
+
+      def package: () -> untyped
+
+      def temp_package: () -> untyped
+
+      def package_name: () -> untyped
+
+      def package_version: () -> untyped
+
+      def package_name_and_version: () -> ::Array[untyped]
+
+      def rename_package_and_set_version: () -> untyped
+
+      def update_package: () -> (nil | untyped)
+
+      def using_temporary_package?: () -> untyped
+
+      def update_files_metadata: () -> untyped
+
+      def update_file_metadata: () -> untyped
+
+      def cleanup_temp_package: () -> (untyped | nil)
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+    end
+  end
+end

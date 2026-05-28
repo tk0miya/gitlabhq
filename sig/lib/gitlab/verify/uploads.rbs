@@ -1,0 +1,22 @@
+module Gitlab
+  module Verify
+    class Uploads < BatchVerifier
+      def name: () -> "Uploads"
+
+      def describe: (untyped object) -> ::String
+
+      private
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def all_relation: () -> untyped
+
+      def local?: (untyped upload) -> untyped
+
+      def expected_checksum: (untyped upload) -> untyped
+
+      def actual_checksum: (untyped upload) -> untyped
+
+      def remote_object_exists?: (untyped upload) -> untyped
+    end
+  end
+end

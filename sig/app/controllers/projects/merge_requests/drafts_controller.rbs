@@ -1,0 +1,48 @@
+class Projects::MergeRequests::DraftsController < Projects::MergeRequests::ApplicationController
+  @merge_request: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  def index: () -> untyped
+
+  def create: () -> (nil | untyped)
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  def publish: () -> untyped
+
+  def discard: () -> untyped
+
+  private
+
+  def draft_note: (?allow_nil: bool) -> untyped
+
+  def draft_notes: () -> (nil | untyped)
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def merge_request: () -> untyped
+
+  def draft_note_params: () -> untyped
+
+  def create_note_params: () -> untyped
+
+  def draft_note_ids_param: () -> untyped
+
+  def approve_params: () -> untyped
+
+  def reviewer_state_params: () -> untyped
+
+  def prepare_notes_for_rendering: (untyped notes) -> (::Array[untyped] | untyped)
+
+  def render_draft_note: (untyped note) -> untyped
+
+  def authorize_admin_draft!: () -> (untyped | nil)
+
+  def authorize_create_note!: () -> (untyped | nil)
+
+  def merge_request_activity_counter: () -> untyped
+
+  def update_reviewer_state: () -> untyped
+end

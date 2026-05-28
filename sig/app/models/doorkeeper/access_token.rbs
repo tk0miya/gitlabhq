@@ -1,0 +1,7 @@
+module Doorkeeper
+  class AccessToken < ::ApplicationRecord
+    include Doorkeeper::Orm::ActiveRecord::Mixins::AccessToken
+
+    include SafelyChangeColumnDefault
+  end
+end

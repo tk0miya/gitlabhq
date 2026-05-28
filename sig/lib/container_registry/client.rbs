@@ -1,0 +1,67 @@
+module ContainerRegistry
+  class Client < BaseClient
+    @faraday_blob: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_accessor uri: untyped
+
+    attr_reader options: untyped
+
+    attr_reader base_uri: untyped
+
+    REGISTRY_VERSION_HEADER: "gitlab-container-registry-version"
+
+    REGISTRY_FEATURES_HEADER: "gitlab-container-registry-features"
+
+    REGISTRY_TAG_DELETE_FEATURE: "tag_delete"
+
+    REGISTRY_DB_ENABLED_HEADER: "gitlab-container-registry-database-enabled"
+
+    DEFAULT_TAGS_PAGE_SIZE: 10000
+
+    ALLOWED_REDIRECT_SCHEMES: ::Array["http" | "https"]
+
+    REDIRECT_OPTIONS: { clear_authorization_header: true, limit: 3, cookies: ::Array[untyped], callback: untyped }
+
+    def self.supports_tag_delete?: () -> untyped
+
+    def self.registry_info: () -> untyped
+
+    def registry_info: () -> (::Hash[untyped, untyped] | { version: untyped, features: untyped, vendor: untyped, db_enabled: untyped })
+
+    def connected?: () -> untyped
+
+    def repository_tags: (untyped name, ?page_size: untyped) -> untyped
+
+    def repository_manifest: (untyped name, untyped reference) -> untyped
+
+    def repository_tag_digest: (untyped name, untyped reference) -> untyped
+
+    def delete_repository_tag_by_digest: (untyped name, untyped reference) -> untyped
+
+    # Check if the registry supports tag deletion. This is only supported by the
+    # GitLab registry fork. The fastest and safest way to check this is to send
+    # an OPTIONS request to /v2/<name>/manifests/<tag>, using a random
+    # repository name and tag (the registry won't check if they exist).
+    # Registries that support tag deletion will reply with a 200 OK and include
+    # the DELETE method in the Allow header. Others reply with an 404 Not Found.
+    def supports_tag_delete?: () -> untyped
+
+    def upload_raw_blob: (untyped path, untyped blob) -> untyped
+
+    def upload_blob: (untyped name, untyped content, untyped digest) -> untyped
+
+    def generate_empty_manifest: (untyped path) -> (nil | { schemaVersion: 2, mediaType: untyped, config: { mediaType: untyped, size: untyped, digest: untyped } })
+
+    def blob: (untyped name, untyped digest, ?untyped? type) -> untyped
+
+    def delete_blob: (untyped name, untyped digest) -> untyped
+
+    def put_tag: (untyped name, untyped reference, untyped manifest) -> untyped
+
+    private
+
+    def faraday_blob: () -> untyped
+  end
+end

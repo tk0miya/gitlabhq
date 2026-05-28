@@ -1,0 +1,41 @@
+class MilestonesFinder
+  @params: untyped
+
+  include FinderMethods
+
+  include TimeFrameFilter
+
+  include UpdatedAtFilter
+
+  attr_reader params: untyped
+
+  EXPIRED_LAST_SORTS: ::Array[:expired_last_due_date_asc | :expired_last_due_date_desc]
+
+  def initialize: (?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def by_ids_or_title: (untyped items) -> untyped
+
+  def ids_and_title_blank?: () -> untyped
+
+  def only_ids_present?: () -> untyped
+
+  def only_title_present?: () -> untyped
+
+  def by_groups_and_projects: (untyped items) -> untyped
+
+  def by_search_title: (untyped items) -> untyped
+
+  def by_search: (untyped items) -> untyped
+
+  def by_state: (untyped items) -> untyped
+
+  def order: (untyped items) -> untyped
+
+  def sort_by_expired_last?: (untyped sort_by) -> untyped
+
+  def by_iids: (untyped items) -> untyped
+end

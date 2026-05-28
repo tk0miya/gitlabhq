@@ -1,0 +1,33 @@
+# == EnforcesTwoFactorAuthentication
+#
+# Controller concern to enforce two-factor authentication requirements
+#
+# Upon inclusion, adds `check_two_factor_requirement` as a before_action,
+# and makes `two_factor_grace_period_expired?` and `two_factor_skippable?`
+# available as view helpers.
+module EnforcesTwoFactorAuthentication
+  @two_factor_verifier: untyped
+
+  extend ActiveSupport::Concern
+
+  def check_two_factor_requirement: () -> (nil | untyped)
+
+  def two_factor_authentication_required?: () -> untyped
+
+  def current_user_requires_two_factor?: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def execute_action_for_2fa_reason: (untyped actions) -> untyped
+
+  def two_factor_grace_period: () -> untyped
+
+  def two_factor_grace_period_expired?: () -> untyped
+
+  def two_factor_skippable?: () -> untyped
+
+  def skip_two_factor?: () -> untyped
+
+  def two_factor_verifier: () -> untyped
+
+  def mfa_help_page_url: () -> untyped
+end

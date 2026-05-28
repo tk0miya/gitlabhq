@@ -1,0 +1,25 @@
+module Integrations
+  module Base
+    module EmailsOnPush
+      extend ActiveSupport::Concern
+
+      include NotificationBranchSelection
+
+      RECIPIENTS_LIMIT: 750
+
+      def initialize_properties: () -> untyped
+
+      def execute: (untyped push_data) -> (nil | untyped)
+
+      def notify_for_ref?: (untyped push_data) -> (true | untyped)
+
+      def send_from_committer_email?: () -> untyped
+
+      def disable_diffs?: () -> untyped
+
+      private
+
+      def number_of_recipients_within_limit: () -> (nil | untyped)
+    end
+  end
+end

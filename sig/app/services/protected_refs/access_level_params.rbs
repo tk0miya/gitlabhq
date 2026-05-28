@@ -1,0 +1,27 @@
+module ProtectedRefs
+  class AccessLevelParams
+    @type: untyped
+
+    @params: untyped
+
+    attr_reader type: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped type, untyped params, ?with_defaults: bool) -> void
+
+    def access_levels: () -> untyped
+
+    private
+
+    def params_with_default: (untyped params) -> untyped
+
+    def use_default_access_level?: (untyped params) -> (true | untyped)
+
+    def role_based_access_level: () -> (::Array[untyped] | ::Array[{ access_level: untyped }])
+
+    def deploy_key_access_levels: () -> (::Array[untyped] | untyped)
+
+    def deploy_key_entries: (untyped allowed_to_params) -> untyped
+  end
+end

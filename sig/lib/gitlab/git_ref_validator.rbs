@@ -1,0 +1,42 @@
+module Gitlab
+  module GitRefValidator
+    extend ::Gitlab::GitRefValidator
+
+    EXPANDED_PREFIXES: ::Array["refs/heads/" | "refs/remotes/"]
+
+    # Regex pattern for forbidden bytes (works on binary-encoded strings)
+    # - \x00-\x1f: Control characters (bytes 0-31)
+    # - \x7f: DEL character (byte 127)
+    # - Special characters: space, ~, ^, :, ?, *, [, \
+    FORBIDDEN_BYTES_REGEX: ::Regexp
+
+    # Validates a given name against the git reference specification
+    #
+    # Returns true for a valid reference name, false otherwise
+    def validate: (untyped ref_name, ?skip_head_ref_check: bool) -> (false | untyped)
+
+    def validate_merge_request_branch: (untyped ref_name) -> (false | untyped)
+
+    private
+
+    # Custom validation according to git-check-ref-format rules
+    # See: https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-check-ref-format.html
+    #
+    # Works at byte level to handle arbitrary byte sequences (not just valid UTF-8)
+    #
+    # This method validates UNQUALIFIED refs (e.g., "feature/branch") that will be
+    # expanded to qualified refs (e.g., "refs/heads/feature/branch") before Git operations.
+    # Therefore:
+    # - Rule 2 (must contain '/') doesn't apply - enforced at qualified ref level
+    # - Rule 9 (cannot be single '@') doesn't apply - "refs/heads/@" is not a single '@'
+    def valid_ref_name?: (untyped ref_name) -> (false | true)
+
+    # Check for forbidden sequences: '..', '//', '@{'
+    def contains_forbidden_sequences?: (untyped bytes) -> untyped
+
+    # Check path components for:
+    # - Starting with '.' (Rule 1)
+    # - Ending with '.lock' (Rule 1)
+    def has_invalid_path_components?: (untyped bytes) -> untyped
+  end
+end

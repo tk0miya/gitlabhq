@@ -1,0 +1,21 @@
+module Gitlab
+  module MarkdownCache
+    # Knows about the relationship between markdown and html field names, and
+    # stores the rendering contexts for the latter
+    class FieldData
+      @data: untyped
+
+      @html_fields: untyped
+
+      def initialize: () -> void
+
+      def markdown_fields: () -> untyped
+
+      def html_field: (untyped markdown_field) -> ::String
+
+      def html_fields: () -> untyped
+
+      def html_fields_whitelisted: () -> untyped
+    end
+  end
+end

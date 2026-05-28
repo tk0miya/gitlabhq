@@ -1,0 +1,34 @@
+# This class handles the generation and management of various email addresses
+# used by the Service Desk feature, including system-generated addresses,
+# custom addresses, and alias addresses.
+module ServiceDesk
+  class Emails
+    @project: untyped
+
+    @service_desk_setting: untyped
+
+    def initialize: (untyped project) -> void
+
+    def all_addresses: () -> untyped
+
+    def address: () -> untyped
+
+    def system_address: () -> untyped
+
+    def alias_address: () -> (nil | untyped)
+
+    def incoming_address: () -> (nil | untyped)
+
+    def default_subaddress_part: () -> ::String
+
+    private
+
+    attr_reader project: untyped
+
+    def service_desk_setting: () -> untyped
+
+    def custom_address: () -> (nil | untyped)
+
+    def default_service_desk_suffix: () -> ::String
+  end
+end

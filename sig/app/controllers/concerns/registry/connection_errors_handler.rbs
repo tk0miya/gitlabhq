@@ -1,0 +1,22 @@
+module Registry
+  module ConnectionErrorsHandler
+    @invalid_path_error: untyped
+
+    @connection_error: untyped
+
+    extend ActiveSupport::Concern
+
+    private
+
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables
+    # These instance variables are only read by a view helper to pass
+    # them to the frontend
+    # See app/views/projects/registry/repositories/index.html.haml
+    # app/views/groups/registry/repositories/index.html.haml
+    def invalid_registry_path: () -> untyped
+
+    def connection_error: () -> untyped
+
+    def ping_container_registry: () -> untyped
+  end
+end

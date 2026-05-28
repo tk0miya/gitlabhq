@@ -1,0 +1,17 @@
+module Packages
+  module Protection
+    class CreateRuleService < BaseProjectService
+      include Gitlab::InternalEventsTracking
+
+      ALLOWED_ATTRIBUTES: ::Array[:package_name_pattern | :package_type | :minimum_access_level_for_delete | :minimum_access_level_for_push]
+
+      def execute: () -> untyped
+
+      private
+
+      def service_response_error: (message: untyped) -> untyped
+
+      def creation_params_with_defaults: (untyped params) -> untyped
+    end
+  end
+end

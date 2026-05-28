@@ -1,0 +1,21 @@
+module IncidentManagement
+  module TimelineEvents
+    class BaseService
+      include Gitlab::Utils::UsageData
+
+      def allowed?: () -> untyped
+
+      def success: (untyped timeline_event) -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def error_no_permissions: () -> untyped
+
+      def error_in_save: (untyped timeline_event) -> untyped
+
+      def track_timeline_event: (untyped event, untyped project) -> untyped
+
+      def auto_create_predefined_tags: (untyped new_tags) -> untyped
+    end
+  end
+end

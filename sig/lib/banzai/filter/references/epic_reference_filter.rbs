@@ -1,0 +1,14 @@
+module Banzai
+  module Filter
+    module References
+      # The actual filter is implemented in the EE mixin
+      class EpicReferenceFilter < IssuableReferenceFilter
+        def self.object_class: () -> untyped
+
+        private
+
+        def group: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,64 @@
+module Gitlab
+  module Database
+    module BackgroundMigration
+      class BatchedMigrationRunner
+        @connection: untyped
+
+        @migration_wrapper: untyped
+
+        FailedToFinalize: untyped
+
+        def self.finalize: (untyped job_class_name, untyped table_name, untyped column_name, untyped job_arguments, connection: untyped) -> untyped
+
+        def self.execute_migration: (untyped migration, connection: untyped, ?force: bool) -> untyped
+
+        def initialize: (connection: untyped, ?migration_wrapper: untyped) -> void
+
+        # Runs the next batched_job for a batched_background_migration.
+        #
+        # The batch bounds of the next job are calculated at runtime, based on the migration
+        # configuration and the bounds of the most recently created batched_job. Updating the
+        # migration configuration will cause future jobs to use the updated batch sizes.
+        #
+        # The job instance will automatically receive a set of arguments based on the migration
+        # configuration. For more details, see the BatchedMigrationWrapper class.
+        #
+        # Note that this method is primarily intended to called by a scheduled worker.
+        def run_migration_job: (untyped active_migration, ?force: bool) -> untyped
+
+        # Runs all remaining batched_jobs for a batched_background_migration.
+        #
+        # This method is intended to be used in a test/dev environment to execute the background
+        # migration inline. It should NOT be used in a real environment for any non-trivial migrations.
+        def run_entire_migration: (untyped migration) -> untyped
+
+        # Finalize migration for given configuration.
+        #
+        # If the migration is already finished, do nothing. Otherwise change its status to `finalizing`
+        # in order to prevent it being picked up by the background worker. Perform all pending jobs,
+        # then keep running until migration is finished.
+        def finalize: (untyped job_class_name, untyped table_name, untyped column_name, untyped job_arguments) -> untyped
+
+        def execute_migration: (untyped migration, ?force: bool) -> untyped
+
+        private
+
+        attr_reader connection: untyped
+
+        attr_reader migration_wrapper: untyped
+
+        def find_or_create_next_batched_job: (untyped active_migration) -> untyped
+
+        def find_next_batch_range: (untyped active_migration) -> (nil | untyped)
+
+        def clamped_batch_range: (untyped active_migration, untyped next_bounds) -> (nil | ::Array[untyped])
+
+        def finish_active_migration: (untyped active_migration) -> (nil | untyped)
+
+        def run_migration_while: (untyped migration, untyped status, ?force: bool) -> untyped
+
+        def adjust_migration: (untyped active_migration) -> untyped
+      end
+    end
+  end
+end

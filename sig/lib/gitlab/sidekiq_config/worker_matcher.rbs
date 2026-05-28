@@ -1,0 +1,41 @@
+module Gitlab
+  module SidekiqConfig
+    class WorkerMatcher
+      @match_lambda: untyped
+
+      WILDCARD_MATCH: "*"
+
+      QUERY_OR_OPERATOR: "|"
+
+      QUERY_AND_OPERATOR: "&"
+
+      QUERY_CONCATENATE_OPERATOR: ","
+
+      QUERY_TERM_REGEX: ::Regexp
+
+      QUERY_PREDICATES: { worker_name: :to_s, feature_category: :to_sym, has_external_dependencies: untyped, name: :to_s, resource_boundary: :to_sym, tags: :to_sym, urgency: :to_sym, queue_namespace: :to_sym }
+
+      QueryError: untyped
+
+      InvalidTerm: untyped
+
+      UnknownOperator: untyped
+
+      UnknownPredicate: untyped
+
+      def initialize: (untyped query_string) -> void
+
+      def match?: (untyped worker_metadata) -> untyped
+
+      private
+
+      def query_string_to_lambda: (untyped query_string) -> untyped
+
+      def predicate_for_term: (untyped term) -> untyped
+
+      def predicate_for_op: (untyped op, untyped predicate) -> untyped
+
+      def predicate_factory: (untyped lhs, untyped values) -> untyped
+    end
+  end
+end

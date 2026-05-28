@@ -1,0 +1,25 @@
+module Mutations
+  module Ci
+    module Pipeline
+      class Create < BaseMutation
+        include FindsProject
+
+        EXECUTE_OPTIONS: { ignore_skip_ci: true, save_on_errors: false }
+
+        INTERNAL_CREATE_OPERATION_NAME: "internalPipelineCreate"
+
+        def resolve: (project_path: untyped, ref: untyped, ?async: bool, ?variables: ::Hash[untyped, untyped], ?inputs: untyped, ?merge_request_iid: untyped?) -> untyped
+
+        private
+
+        def execute_service: (untyped service, untyped source, untyped async, untyped options) -> untyped
+
+        def source: (?untyped? merge_request) -> ("merge_request_event" | "web" | "api")
+
+        def parse_inputs: (untyped inputs) -> untyped
+
+        def find_merge_request: (untyped project, untyped iid) -> untyped
+      end
+    end
+  end
+end

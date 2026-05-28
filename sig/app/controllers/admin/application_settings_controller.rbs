@@ -1,0 +1,78 @@
+module Admin
+  class ApplicationSettingsController < Admin::ApplicationController
+    @hide_search_settings: untyped
+
+    @integrations: untyped
+
+    @application_setting: untyped
+
+    @plans: untyped
+
+    @service_ping_data: untyped
+
+    include InternalRedirect
+
+    include IntegrationsHelper
+
+    include DefaultBranchProtection
+
+    VALID_SETTING_PANELS: ::Array["general" | "repository" | "ci_cd" | "reporting" | "metrics_and_profiling" | "network" | "preferences"]
+
+    # The current size of a sidekiq job's jid is 24 characters. The size of the
+    # jid is an internal detail of Sidekiq, and they do not guarantee that it'll
+    # stay the same. We chose 50 to give us room in case the size of the jid
+    # increases. The jid is alphanumeric, so 50 is very generous. There is a spec
+    # that ensures that the constant value is more than the size of an actual jid.
+    PARAM_JOB_ID_MAX_SIZE: 50
+
+    def integrations: () -> untyped
+
+    def update: () -> untyped
+
+    def usage_data: () -> untyped
+
+    def reset_registration_token: () -> untyped
+
+    def reset_health_check_token: () -> untyped
+
+    def reset_error_tracking_access_token: () -> untyped
+
+    def reset_vscode_extension_marketplace_extension_host_domain: () -> untyped
+
+    def clear_repository_check_states: () -> untyped
+
+    # Getting ToS url requires `directory` api call to Let's Encrypt
+    # which could result in 500 error/slow rendering on settings page
+    # Because of that we use separate controller action
+    def lets_encrypt_terms_of_service: () -> untyped
+
+    def slack_app_manifest_share: () -> untyped
+
+    def slack_app_manifest_download: () -> untyped
+
+    private
+
+    def set_application_setting: () -> untyped
+
+    def disable_query_limiting: () -> untyped
+
+    def application_setting_params: () -> untyped
+
+    def recheck_user_consent?: () -> (false | untyped)
+
+    def visible_application_setting_attributes: () -> untyped
+
+    def submitted?: () -> untyped
+
+    def perform_update: () -> untyped
+
+    def render_update_error: () -> untyped
+
+    def remove_blank_params_for!: (*untyped keys) -> untyped
+
+    # overridden in EE
+    def valid_setting_panels: () -> untyped
+
+    def prerecorded_service_ping_data: () -> untyped
+  end
+end

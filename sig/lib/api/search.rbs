@@ -1,0 +1,12 @@
+# rubocop:disable API/DescriptionSuccessResponse -- search api responds with multiple entity types
+module API
+  class Search < ::API::Base
+    include PaginationParams
+
+    include APIGuard
+
+    include ::API::Concerns::McpAccess
+
+    SCOPE_ENTITY: { merge_requests: untyped, issues: untyped, work_items: untyped, projects: untyped, milestones: untyped, notes: untyped, commits: untyped, blobs: untyped, wiki_blobs: untyped, snippet_titles: untyped, users: untyped }
+  end
+end

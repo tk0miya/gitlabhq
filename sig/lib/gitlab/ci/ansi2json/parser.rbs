@@ -1,0 +1,142 @@
+# This Parser translates ANSI escape codes into human readable format.
+# It considers color and format changes.
+# Inspired by http://en.wikipedia.org/wiki/ANSI_escape_code
+module Gitlab
+  module Ci
+    module Ansi2json
+      class Parser
+        @command: untyped
+
+        @ansi_stack: untyped
+
+        # keys represent the trailing digit in color changing command (30-37, 40-47, 90-97. 100-107)
+        COLOR: { 0 => "black", 1 => "red", 2 => "green", 3 => "yellow", 4 => "blue", 5 => "magenta", 6 => "cyan", 7 => "white" }
+
+        STYLE_SWITCHES: { bold: 1, italic: 2, underline: 4, conceal: 8, cross: 16 }
+
+        def self.bold?: (untyped mask) -> untyped
+
+        def self.matching_formats: (untyped mask) -> untyped
+
+        def initialize: (untyped command, ?untyped? ansi_stack) -> void
+
+        def changes: () -> untyped
+
+        # rubocop:disable Style/SingleLineMethods
+        def on_0: (untyped _) -> { reset: true }
+
+        def on_1: (untyped _) -> { enable: untyped }
+
+        def on_3: (untyped _) -> { enable: untyped }
+
+        def on_4: (untyped _) -> { enable: untyped }
+
+        def on_8: (untyped _) -> { enable: untyped }
+
+        def on_9: (untyped _) -> { enable: untyped }
+
+        def on_21: (untyped _) -> { disable: untyped }
+
+        def on_22: (untyped _) -> { disable: untyped }
+
+        def on_23: (untyped _) -> { disable: untyped }
+
+        def on_24: (untyped _) -> { disable: untyped }
+
+        def on_28: (untyped _) -> { disable: untyped }
+
+        def on_29: (untyped _) -> { disable: untyped }
+
+        def on_30: (untyped _) -> { fg: untyped }
+
+        def on_31: (untyped _) -> { fg: untyped }
+
+        def on_32: (untyped _) -> { fg: untyped }
+
+        def on_33: (untyped _) -> { fg: untyped }
+
+        def on_34: (untyped _) -> { fg: untyped }
+
+        def on_35: (untyped _) -> { fg: untyped }
+
+        def on_36: (untyped _) -> { fg: untyped }
+
+        def on_37: (untyped _) -> { fg: untyped }
+
+        def on_38: (untyped stack) -> { fg: untyped }
+
+        def on_39: (untyped _) -> { fg: nil }
+
+        def on_40: (untyped _) -> { bg: untyped }
+
+        def on_41: (untyped _) -> { bg: untyped }
+
+        def on_42: (untyped _) -> { bg: untyped }
+
+        def on_43: (untyped _) -> { bg: untyped }
+
+        def on_44: (untyped _) -> { bg: untyped }
+
+        def on_45: (untyped _) -> { bg: untyped }
+
+        def on_46: (untyped _) -> { bg: untyped }
+
+        def on_47: (untyped _) -> { bg: untyped }
+
+        def on_48: (untyped stack) -> { bg: untyped }
+
+        def on_49: (untyped _) -> { bg: nil }
+
+        def on_90: (untyped _) -> { fg: untyped }
+
+        def on_91: (untyped _) -> { fg: untyped }
+
+        def on_92: (untyped _) -> { fg: untyped }
+
+        def on_93: (untyped _) -> { fg: untyped }
+
+        def on_94: (untyped _) -> { fg: untyped }
+
+        def on_95: (untyped _) -> { fg: untyped }
+
+        def on_96: (untyped _) -> { fg: untyped }
+
+        def on_97: (untyped _) -> { fg: untyped }
+
+        def on_99: (untyped _) -> { fg: untyped }
+
+        def on_100: (untyped _) -> { bg: untyped }
+
+        def on_101: (untyped _) -> { bg: untyped }
+
+        def on_102: (untyped _) -> { bg: untyped }
+
+        def on_103: (untyped _) -> { bg: untyped }
+
+        def on_104: (untyped _) -> { bg: untyped }
+
+        def on_105: (untyped _) -> { bg: untyped }
+
+        def on_106: (untyped _) -> { bg: untyped }
+
+        def on_107: (untyped _) -> { bg: untyped }
+
+        def on_109: (untyped _) -> { fg: untyped }
+
+        def fg_color: (untyped color_index, ?untyped? prefix) -> untyped
+
+        def fg_color_256: (untyped command_stack) -> untyped
+
+        def bg_color: (untyped color_index, ?untyped? prefix) -> untyped
+
+        def bg_color_256: (untyped command_stack) -> untyped
+
+        def term_color_class: (untyped color_index, untyped prefix) -> (nil | untyped)
+
+        def xterm_color_class: (untyped command_stack, untyped prefix) -> (nil | untyped)
+
+        def color_class: (untyped segments) -> untyped
+      end
+    end
+  end
+end

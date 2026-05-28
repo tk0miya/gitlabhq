@@ -1,0 +1,9 @@
+module Resolvers
+  module Analytics
+    module CycleAnalytics
+      class BaseIssueResolver < BaseCountResolver
+        def finder_params: () -> { project_id: untyped }
+      end
+    end
+  end
+end

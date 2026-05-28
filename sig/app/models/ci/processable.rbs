@@ -1,0 +1,89 @@
+module Ci
+  # This class is a collection of common features between Ci::Build and Ci::Bridge.
+  # In https://gitlab.com/groups/gitlab-org/-/epics/9991, we aim to clarify class naming conventions.
+  class Processable < ::CommitStatus
+    include Gitlab::Utils::StrongMemoize
+
+    include FromUnion
+
+    include Ci::Metadatable
+
+    extend ::Gitlab::Utils::Override
+
+    ACTIONABLE_WHEN: ::Array["manual" | "delayed"]
+
+    def self.fabricate: (partition_id: untyped, **untyped attrs) -> untyped
+
+    def self.select_with_aggregated_needs: (untyped project) -> untyped
+
+    # Old processables may have scheduling_type as nil,
+    # so we need to ensure the data exists before using it.
+    def self.populate_scheduling_type!: () -> untyped
+
+    def assign_resource_from_resource_group: (untyped processable) -> untyped
+
+    # Scoped user is present when the user creating the pipeline supports composite identity.
+    # For example: a service account like GitLab Duo. The scoped user is used to further restrict
+    # the permissions of the CI job token associated to the `job.user`.
+    def scoped_user: () -> (nil | untyped)
+
+    def retryable?: () -> (false | untyped)
+
+    def archived?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def aggregated_needs_names: () -> untyped
+
+    def schedulable?: () -> untyped
+
+    def action?: () -> untyped
+
+    def can_auto_cancel_pipeline_on_job_failure?: () -> untyped
+
+    def other_manual_actions: () -> untyped
+
+    def when: () -> untyped
+
+    def expanded_environment_name: () -> untyped
+
+    def persisted_environment: () -> untyped
+
+    def all_met_to_become_pending?: () -> untyped
+
+    def with_resource_group?: () -> untyped
+
+    # Overriding scheduling_type enum's method for nil `scheduling_type`s
+    def scheduling_type_dag?: () -> untyped
+
+    # scheduling_type column of previous builds/bridges have not been populated,
+    # so we calculate this value on runtime when we need it.
+    def find_legacy_scheduling_type: () -> untyped
+
+    def needs_attributes: () -> untyped
+
+    def ensure_scheduling_type!: () -> (nil | untyped)
+
+    def dependency_variables: () -> untyped
+
+    def job_dependencies_with_accessible_artifacts: (untyped all_dependencies) -> untyped
+
+    def all_dependencies: () -> untyped
+
+    def manual_job?: () -> untyped
+
+    def manual_confirmation_message: () -> (untyped | nil)
+
+    def redis_state: () -> untyped
+
+    def enqueue_immediately?: () -> untyped
+
+    def set_enqueue_immediately!: () -> untyped
+
+    def source: () -> untyped
+
+    def run_steps: () -> ::Array[untyped]
+
+    private
+
+    def dependencies: () -> untyped
+  end
+end

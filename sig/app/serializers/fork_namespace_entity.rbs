@@ -1,0 +1,13 @@
+class ForkNamespaceEntity < Grape::Entity
+  include ActionView::Helpers::NumberHelper
+
+  include RequestAwareEntity
+
+  include MarkupHelper
+
+  private
+
+  def membership: (untyped user, untyped object, untyped memberships) -> (nil | untyped)
+
+  def markdown_description: (untyped namespace) -> untyped
+end

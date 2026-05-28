@@ -1,0 +1,27 @@
+module Projects
+  module Ml
+    module ExperimentsHelper
+      include ActionView::Helpers::NumberHelper
+
+      def experiment_as_data: (untyped project, untyped experiment) -> untyped
+
+      def candidates_table_items: (untyped candidates, untyped current_user) -> untyped
+
+      def unique_logged_names: (untyped candidates) { (?) -> untyped } -> untyped
+
+      def page_info: (untyped paginator) -> { has_next_page: untyped, has_previous_page: untyped, start_cursor: untyped, end_cursor: untyped }
+
+      def formatted_page_info: (untyped page_info) -> untyped
+
+      def link_to_artifact: (untyped candidate) -> (nil | untyped)
+
+      def link_to_details: (untyped candidate) -> untyped
+
+      def job_info: (untyped candidate, untyped user) -> (nil | { path: untyped, name: untyped })
+
+      def link_to_experiment: (untyped project, untyped experiment) -> untyped
+
+      def user_info: (untyped candidate, untyped current_user) -> (nil | { username: untyped, path: untyped })
+    end
+  end
+end

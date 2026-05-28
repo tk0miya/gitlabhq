@@ -1,0 +1,10 @@
+module Gitlab
+  module Metrics
+    # Mocks ::Prometheus::Client::Metric and all derived metrics
+    class NullMetric
+      include Singleton
+
+      def method_missing: (untyped name, *untyped args) { (?) -> untyped } -> nil
+    end
+  end
+end

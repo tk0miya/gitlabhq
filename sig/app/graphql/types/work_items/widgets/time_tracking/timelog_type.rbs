@@ -1,0 +1,18 @@
+module Types
+  module WorkItems
+    module Widgets
+      module TimeTracking
+        # rubocop:disable Graphql/AuthorizeTypes -- we already authorize the work item itself
+        class TimelogType < BaseObject
+          def user: () -> untyped
+
+          def spent_at: () -> untyped
+
+          private
+
+          def default_ghost: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Diff
+    class Parser
+      @lines: untyped
+
+      include Enumerable
+
+      def parse: (untyped lines, ?diff_file: untyped?) -> (::Array[untyped] | untyped)
+
+      def empty?: () -> untyped
+
+      private
+
+      def filename?: (untyped line) -> untyped
+
+      def identification_type: (untyped line) -> untyped
+    end
+  end
+end

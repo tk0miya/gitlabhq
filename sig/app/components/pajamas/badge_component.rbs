@@ -1,0 +1,43 @@
+module Pajamas
+  class BadgeComponent < Pajamas::Component
+    @text: untyped
+
+    @icon: untyped
+
+    @icon_classes: untyped
+
+    @icon_only: untyped
+
+    @href: untyped
+
+    @variant: untyped
+
+    @html_options: untyped
+
+    VARIANT_OPTIONS: ::Array[:neutral | :info | :success | :warning | :danger | :tier]
+
+    def initialize: (?untyped? text, ?icon: untyped?, ?icon_classes: untyped, ?icon_only: bool, ?href: untyped?, ?variant: ::Symbol, **untyped html_options) -> void
+
+    private
+
+    def badge_classes: () -> untyped
+
+    def icon_classes: () -> untyped
+
+    def icon_aria_label: () -> (nil | "")
+
+    def icon_only?: () -> untyped
+
+    def link?: () -> untyped
+
+    # Determines the rendered text content.
+    # The content slot takes presedence over the text param.
+    def text: () -> untyped
+
+    def has_icon?: () -> untyped
+
+    def circular_icon?: () -> untyped
+
+    def html_options: () -> untyped
+  end
+end

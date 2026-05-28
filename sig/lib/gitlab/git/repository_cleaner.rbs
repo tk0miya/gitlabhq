@@ -1,0 +1,24 @@
+module Gitlab
+  module Git
+    class RepositoryCleaner
+      @repository: untyped
+
+      @gitaly_cleanup_client: untyped
+
+      include Gitlab::Git::WrapsGitalyErrors
+
+      attr_reader repository: untyped
+
+      # 'repository' is a Gitlab::Git::Repository
+      def initialize: (untyped repository) -> void
+
+      def apply_bfg_object_map_stream: (untyped io) { (?) -> untyped } -> untyped
+
+      def rewrite_history: (?blobs: untyped, ?redactions: untyped) -> untyped
+
+      private
+
+      def gitaly_cleanup_client: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module RestrictedSignup
+  extend ActiveSupport::Concern
+
+  private
+
+  def validate_admin_signup_restrictions: (untyped email) -> (nil | untyped)
+
+  def fetch_error_type: (untyped email) -> (:allowlist | :denylist | :restricted | nil)
+
+  def error_message: () -> { admin: { allowlist: untyped, denylist: untyped, restricted: untyped, group_setting: untyped }, nonadmin: { allowlist: untyped, denylist: untyped, restricted: untyped, group_setting: untyped } }
+
+  def error_nonadmin: () -> untyped
+
+  def created_by_key: () -> (:admin | :nonadmin)
+
+  def denied_domain?: (untyped email) -> (false | untyped)
+
+  def allowlist_present?: () -> untyped
+
+  def allowed_domain?: (untyped email) -> untyped
+
+  def restricted_email?: (untyped email) -> (false | untyped)
+
+  def domain_matches?: (untyped email_domains, untyped email) -> untyped
+end

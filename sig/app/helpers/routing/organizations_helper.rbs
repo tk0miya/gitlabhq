@@ -1,0 +1,41 @@
+module Routing
+  module OrganizationsHelper
+    extend ActiveSupport::Concern
+
+    # Provides organization-aware url helpers by automatically switching between
+    # organization-scoped routes (/o/:organization_path/...) and global routes
+    # based on the current organization context.
+    #
+    # This class iterates through existing URL helpers and maps between global
+    # and Organization helpers by matching helper names.
+    class MappedHelpers
+      ORGANIZATION_PATH_PATTERN: "/o/:organization_path"
+
+      ORGANIZATION_PATH_REGEX: ::Regexp
+
+      PATH_SUFFIX: "_path"
+
+      URL_SUFFIX: "_url"
+
+      def self.install: () -> (nil | untyped)
+
+      def self.alias_unscoped: (untyped url_helpers, untyped existing_method) -> (nil | untyped)
+
+      def self.current_organization: () -> untyped
+
+      def self.find_route_pairs: () -> untyped
+
+      # Route name represents an Organization route.
+      def self.organization_route?: (untyped route) -> untyped
+
+      # Build a Hash of global route => Organization route names.
+      def self.build_route_pairs: (untyped organization_routes, untyped global_routes) -> untyped
+
+      # Map organization named route to global route.
+      def self.extract_global_route_name: (untyped org_route_name) -> (nil | untyped)
+
+      # Build a module that overrides URL helpers with organization-aware versions
+      def self.build_override_module: (untyped route_pairs) -> untyped
+    end
+  end
+end

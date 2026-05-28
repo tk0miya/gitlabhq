@@ -1,0 +1,11 @@
+module Gitlab
+  module Metrics
+    module Samplers
+      class StatActivitySampler < BaseSampler
+        DEFAULT_SAMPLING_INTERVAL_SECONDS: 60
+
+        def sample: () -> (nil | untyped)
+      end
+    end
+  end
+end

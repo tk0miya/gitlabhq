@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module Swapping
+        include ::Gitlab::Database::SchemaHelpers
+
+        include ::Gitlab::Database::MigrationHelpers::V2
+
+        def swap_columns: (untyped table, untyped column1, untyped column2) -> untyped
+
+        def swap_columns_default: (untyped table, untyped column1, untyped column2) -> untyped
+
+        def swap_foreign_keys: (untyped table, untyped foreign_key1, untyped foreign_key2) -> untyped
+
+        def swap_indexes: (untyped table, untyped index1, untyped index2, ?schema: untyped?) -> untyped
+      end
+    end
+  end
+end

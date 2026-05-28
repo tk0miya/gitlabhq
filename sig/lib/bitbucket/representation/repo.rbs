@@ -1,0 +1,35 @@
+module Bitbucket
+  module Representation
+    class Repo < Representation::Base
+      @owner_and_slug: untyped
+
+      def owner_and_slug: () -> untyped
+
+      def owner: () -> untyped
+
+      def slug: () -> untyped
+
+      def clone_url: (?untyped? token, ?auth_type: untyped?) -> (nil | untyped)
+
+      def description: () -> untyped
+
+      def full_name: () -> untyped
+
+      def issues_enabled?: () -> untyped
+
+      def name: () -> untyped
+
+      def valid?: () -> untyped
+
+      def has_wiki?: () -> untyped
+
+      def visibility_level: () -> untyped
+
+      def default_branch: () -> untyped
+
+      def to_s: () -> untyped
+
+      def error: () -> untyped
+    end
+  end
+end

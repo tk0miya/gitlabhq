@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateEpicNotesToWorkItems < BatchedMigrationJob
+      NOTES_BATCH_SIZE: 100
+
+      def perform: () -> untyped
+
+      private
+
+      def migrate_epic_notes: (untyped sub_batch) -> untyped
+    end
+  end
+end

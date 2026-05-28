@@ -1,0 +1,14 @@
+module SystemCheck
+  module RakeTask
+    # Used by gitlab:check rake task
+    class GitlabTask
+      extend RakeTaskHelpers
+
+      def self.name: () -> "GitLab"
+
+      def self.manual_run_checks!: () -> untyped
+
+      def self.subtasks: () -> ::Array[untyped]
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module WebIde
+  module DefaultOauthApplication
+    def self.oauth_application: () -> untyped
+
+    def self.oauth_callback_url: () -> untyped
+
+    def self.oauth_application_id: () -> (untyped | nil)
+
+    def self.oauth_application_callback_urls: () -> (::Array[untyped] | untyped)
+
+    def self.reset_oauth_application_settings: () -> (nil | untyped)
+
+    def self.ensure_oauth_application!: () -> (nil | untyped)
+
+    private
+
+    def self.application_settings: () -> untyped
+
+    def self.default_settings: () -> { "name" => "GitLab Web IDE", "redirect_uri" => untyped, "scopes" => ::Array["api"], "trusted" => true, "confidential" => false, "organization" => untyped }
+  end
+end

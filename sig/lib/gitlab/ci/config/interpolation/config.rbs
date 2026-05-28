@@ -1,0 +1,77 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        #
+        # Interpolation::Config represents a configuration artifact that we want to perform interpolation on.
+        #
+        class Config
+          @config: untyped
+
+          @errors: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          #
+          # Loading the YAML below would result in a hash having 12 nodes instead of 9,
+          # because hash values are being counted before we recursively traverse them.
+          #
+          # test:
+          #   spec:
+          #     env: $[[ inputs.env ]]
+          #
+          # $[[ inputs.key ]]:
+          #   name: $[[ inputs.key ]]
+          #   script: my-value
+          #
+          # According to our benchmarks performed when developing this code, the worst-case scenario of processing
+          # a hash with 500_000  nodes takes around 1 second and consumes around 225 megabytes of memory.
+          #
+          # The typical scenario, using just a few interpolations,
+          # takes 250ms and consumes around 20 megabytes of memory.
+          #
+          # Given the above, 500_000 nodes should be an upper limit given that there are additional safeguards
+          # present in other parts of the code.  Typical size of a YAML configuration with 500k nodes
+          # might be around 10 megabytes, which is an order of magnitude higher than
+          # the 1MB limit for loading YAML on GitLab.com
+          #
+          MAX_NODES: 500000
+
+          MAX_NODE_SIZE: untyped
+
+          TooManyNodesError: untyped
+
+          NodeTooLargeError: untyped
+
+          Visitor: untyped
+
+          attr_reader errors: untyped
+
+          def initialize: (untyped hash) -> void
+
+          def to_h: () -> untyped
+
+          #
+          # The replace! method will yield a block and replace each of the hash config nodes with
+          # the return value of the block.
+          #
+          # It returns `nil` if there were errors found during the process.
+          #
+          def replace!: () { (?) -> untyped } -> untyped
+
+          def self.fabricate: (untyped config) -> untyped
+
+          private
+
+          def recursive_replace: (untyped config, untyped visitor) { (untyped) -> untyped } -> untyped
+
+          def recursive_replace_hash: (untyped config, untyped visitor) { (?) -> untyped } -> untyped
+
+          def recursive_replace_array: (untyped config, untyped visitor) { (?) -> untyped } -> untyped
+
+          def insert_array_input_into_existing_array?: (untyped old_array_item, untyped new_array_item) -> untyped
+        end
+      end
+    end
+  end
+end

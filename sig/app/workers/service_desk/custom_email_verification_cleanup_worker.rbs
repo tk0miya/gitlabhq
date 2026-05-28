@@ -1,0 +1,15 @@
+module ServiceDesk
+  # Marks custom email verifications as failed when
+  # verification has started and timeframe to ingest
+  # the verification email has closed.
+  #
+  # This ensures we can finish the verification process and send verification result emails
+  # even when we did not receive any verification email.
+  class CustomEmailVerificationCleanupWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

@@ -1,0 +1,13 @@
+module API
+  class Users < ::API::Base
+    include PaginationParams
+
+    include APIGuard
+
+    include Helpers::CustomAttributes
+
+    def self.request_current_user?: (untyped request) -> untyped
+
+    def self.request_users_read?: (untyped request) -> (false | untyped)
+  end
+end

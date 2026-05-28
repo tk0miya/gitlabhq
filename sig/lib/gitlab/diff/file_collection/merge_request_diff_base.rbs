@@ -1,0 +1,36 @@
+module Gitlab
+  module Diff
+    module FileCollection
+      class MergeRequestDiffBase < Base
+        @merge_request_diff: untyped
+
+        extend ::Gitlab::Utils::Override
+
+        # This is the minimum 'max blob size' we request for each of the diff files
+        # We use the blobs for checking encoding type and LFS pointer
+        # https://gitlab.com/gitlab-org/gitlab/-/blob/ab046ed8500fb691450d565710cad9f7a5257218/lib/gitlab/git/blob.rb#L10
+        MAX_BLOB_SIZE: untyped
+
+        def initialize: (untyped merge_request_diff, diff_options: untyped) -> void
+
+        def diff_files: (?sorted: bool) -> untyped
+
+        def raw_diff_files: (?sorted: bool) -> untyped
+
+        def write_cache: () -> untyped
+
+        def clear_cache: () -> untyped
+
+        def self.max_blob_size: (untyped project) -> untyped
+
+        private
+
+        def highlight_cache: () -> untyped
+
+        def diff_stats_cache: () -> untyped
+
+        def diff_stats_collection: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module Database
+    module Sos
+      class DbLoopStatsActivity < BaseDbStatsHandler
+        QUERIES: { pg_stat_user_tables: "SELECT now() AS timestamp, *\nFROM pg_stat_user_tables;\n", pg_stat_user_indexes: "SELECT now() AS timestamp, *\nFROM pg_stat_user_indexes;\n", pg_statio_user_tables: "SELECT now() AS timestamp, *\nFROM pg_statio_user_tables;\n", pg_statio_user_indexes: "SELECT now() AS timestamp, *\nFROM pg_statio_user_indexes;\n", table_relation_size: untyped, pg_lock_stat_activity: untyped }
+
+        def run: () -> untyped
+      end
+    end
+  end
+end

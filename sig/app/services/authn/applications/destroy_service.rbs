@@ -1,0 +1,27 @@
+module Authn
+  module Applications
+    class DestroyService
+      @current_user: untyped
+
+      @request: untyped
+
+      @application: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader request: untyped
+
+      attr_reader application: untyped
+
+      def initialize: (untyped current_user, untyped request, untyped application) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def authorized?: () -> untyped
+
+      def error_response: () -> untyped
+    end
+  end
+end

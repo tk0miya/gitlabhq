@@ -1,0 +1,23 @@
+module Packages
+  module Nuget
+    module V2
+      class ServiceIndexPresenter
+        @project_or_group: untyped
+
+        include API::Helpers::RelatedResourcesHelpers
+
+        ROOT_ATTRIBUTES: { xmlns: "http://www.w3.org/2007/app", "xmlns:atom" => "http://www.w3.org/2005/Atom" }
+
+        def initialize: (untyped project_or_group) -> void
+
+        def xml: () -> untyped
+
+        private
+
+        attr_reader project_or_group: untyped
+
+        def xml_base: () -> untyped
+      end
+    end
+  end
+end

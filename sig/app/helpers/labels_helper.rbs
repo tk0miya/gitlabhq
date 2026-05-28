@@ -1,0 +1,84 @@
+module LabelsHelper
+  include ActionView::Helpers::TagHelper
+
+  extend ::LabelsHelper
+
+  def show_label_issuables_link?: (untyped label, untyped issuables_type, ?current_user: untyped?) -> (true | untyped)
+
+  # Link to a Label
+  #
+  # label   - LabelPresenter object to link to
+  # type    - The type of item the link will point to (:issue or
+  #           :merge_request). If omitted, defaults to :issue.
+  # block   - An optional block that will be passed to `link_to`, forming the
+  #           body of the link element. If omitted, defaults to
+  #           `render_colored_label`.
+  #
+  # Examples:
+  #
+  #   # Allow the generated link to use the label's own subject
+  #   link_to_label(label)
+  #
+  #   # Force the generated link to use a provided group
+  #   link_to_label(label, subject: Group.last)
+  #
+  #   # Force the generated link to use a provided project
+  #   link_to_label(label, subject: Project.last)
+  #
+  #   # Force the generated link to point to merge requests instead of issues
+  #   link_to_label(label, type: :merge_request)
+  #
+  #   # Customize link body with a block
+  #   link_to_label(label) { "My Custom Label Text" }
+  #
+  # Returns a String containing HTML.
+  def link_to_label: (untyped label, ?type: ::Symbol, ?tooltip: bool, ?css_class: untyped?) ?{ (?) -> untyped } -> untyped
+
+  # Returns a String containing HTML.
+  def render_label: (untyped label, ?link: untyped?, ?tooltip: bool, ?dataset: untyped?, ?tooltip_shows_title: bool) -> untyped
+
+  # Renders a label, with the given suffix HTML.
+  def render_colored_label: (untyped label, ?in_reference: untyped?) -> untyped
+
+  # We need the `label` argument here for EE
+  def wrap_label_html: (untyped label_html, label: untyped) -> untyped
+
+  # Returns a String containing text.
+  def label_tooltip_title: (untyped label, ?tooltip_shows_title: bool) -> untyped
+
+  def suggested_colors: () -> { "#cc338b" => untyped, "#dc143c" => untyped, "#c21e56" => untyped, "#cd5b45" => untyped, "#ed9121" => untyped, "#eee600" => untyped, "#009966" => untyped, "#8fbc8f" => untyped, "#6699cc" => untyped, "#e6e6fa" => untyped, "#9400d3" => untyped, "#330066" => untyped, "#36454f" => untyped, "#808080" => untyped }
+
+  def render_suggested_colors: () -> untyped
+
+  def labels_filter_path_with_defaults: (?only_group_labels: bool, ?include_ancestor_groups: bool, ?include_descendant_groups: bool) -> untyped
+
+  def labels_filter_path: (?::Hash[untyped, untyped] options) -> untyped
+
+  def label_subscription_status: (untyped label, untyped project) -> ("group-level" | "project-level" | "unsubscribed")
+
+  def toggle_subscription_label_path: (untyped label, untyped project) -> untyped
+
+  def label_subscription_toggle_button_text: (untyped label, ?untyped? project) -> untyped
+
+  def create_label_title: (untyped subject) -> untyped
+
+  def view_labels_title: (untyped subject) -> untyped
+
+  def label_status_tooltip: (untyped label, untyped status) -> ::String
+
+  def presented_labels_sorted_by_title: (untyped labels, untyped subject) -> untyped
+
+  def label_dropdown_data: (untyped project, ?::Hash[untyped, untyped] opts) -> untyped
+
+  def labels_function_introduction: () -> untyped
+
+  def show_labels_full_path?: (untyped project, untyped group) -> untyped
+
+  def label_lock_on_merge_help_text: () -> untyped
+
+  private
+
+  def render_label_link: (untyped label_html, link: untyped, title: untyped, dataset: untyped, ?aria_label: untyped?) -> untyped
+
+  def render_label_text: (untyped name, ?in_reference: untyped?, ?css_class: untyped?, ?bg_color: untyped?) -> untyped
+end

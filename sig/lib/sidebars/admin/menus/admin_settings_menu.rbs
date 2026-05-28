@@ -1,0 +1,45 @@
+module Sidebars
+  module Admin
+    module Menus
+      class AdminSettingsMenu < ::Sidebars::Admin::BaseMenu
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "settings"
+
+        def extra_container_html_options: () -> { testid: "admin-settings-menu-link" }
+
+        def separated?: () -> true
+
+        private
+
+        def service_accounts_menu_item: () -> untyped
+
+        def service_accounts_available?: () -> untyped
+
+        def general_settings_menu_item: () -> untyped
+
+        def search_menu_item: () -> untyped
+
+        def integrations_menu_item: () -> untyped
+
+        def repository_menu_item: () -> untyped
+
+        def ci_cd_menu_item: () -> untyped
+
+        def reporting_menu_item: () -> untyped
+
+        def metrics_and_profiling_menu_item: () -> untyped
+
+        def network_settings_menu_item: () -> untyped
+
+        def appearance_menu_item: () -> untyped
+
+        def preferences_menu_item: () -> untyped
+
+        def instance_level_integrations?: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,6 @@
+# Projects::RedirectController is used to resolve the route projects/:id.
+# It's helpful for this to be in its own controller so that the
+# ProjectsController can assume that :namespace_id exists
+class Projects::RedirectController < ::ApplicationController
+  def redirect_from_id: () -> untyped
+end

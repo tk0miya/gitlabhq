@@ -1,0 +1,11 @@
+# #
+# API endpoints for the Helm package registry
+module API
+  class HelmPackages < ::API::Base
+    include ::API::Helpers::Authentication
+
+    PACKAGE_FILENAME: "package.tgz"
+
+    HELM_REQUIREMENTS: { channel: untyped, file_name: untyped }
+  end
+end

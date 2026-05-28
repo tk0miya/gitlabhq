@@ -1,0 +1,8 @@
+module Banzai
+  module ReferenceParser
+    # The actual parser is implemented in the EE mixin
+    class EpicParser < IssuableParser
+      def records_for_nodes: (untyped _nodes) -> ::Hash[untyped, untyped]
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module TemporarilyAllow
+    @temporarily_allow: untyped
+
+    TEMPORARILY_ALLOW_MUTEX: untyped
+
+    def temporarily_allow: (untyped key) { () -> untyped } -> untyped
+
+    def temporarily_allowed?: (untyped key) -> untyped
+
+    private
+
+    def temporarily_allow_ivar: () -> untyped
+
+    def temporarily_allow_request_store: () -> untyped
+
+    def temporarily_allow_add: (untyped key, untyped value) -> untyped
+  end
+end

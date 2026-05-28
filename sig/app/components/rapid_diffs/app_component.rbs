@@ -1,0 +1,41 @@
+module RapidDiffs
+  class AppComponent < ViewComponent::Base
+    @presenter: untyped
+
+    @extra_app_data: untyped
+
+    @extra_prefetch_endpoints: untyped
+
+    attr_reader presenter: untyped
+
+    def initialize: (untyped presenter, ?extra_app_data: untyped?, ?extra_prefetch_endpoints: untyped) -> void
+
+    def diff_collection: () -> (::Array[untyped] | untyped)
+
+    def parallel_view?: () -> untyped
+
+    def app_data: () -> untyped
+
+    def linked_file_data: () -> (nil | { old_path: untyped, new_path: untyped })
+
+    def prefetch_endpoints: () -> untyped
+
+    def update_user_endpoint: () -> untyped
+
+    def show_whitespace?: () -> untyped
+
+    def empty_state_visible?: () -> untyped
+
+    def browser_visible?: () -> untyped
+
+    def initial_browser_width: () -> untyped
+
+    def sidebar_style: () -> untyped
+
+    def root_label: () -> untyped
+
+    def header_label: () -> untyped
+
+    def content_label: () -> untyped
+  end
+end

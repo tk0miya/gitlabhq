@@ -1,0 +1,24 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class SetBuildSources < Chain::Base
+          def perform!: () -> untyped
+
+          def break?: () -> untyped
+
+          private
+
+          # Overridden in EE
+          def pipeline_execution_policy_build?: () -> false
+
+          # Overridden in EE
+          def scan_execution_policy_build?: (untyped _build) -> false
+
+          # Overridden in EE
+          def security_scan_profile_build?: (untyped _build) -> false
+        end
+      end
+    end
+  end
+end

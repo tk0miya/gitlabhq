@@ -1,0 +1,81 @@
+module Organizations
+  module Transfer
+    class GroupsService
+      @group: untyped
+
+      @new_organization: untyped
+
+      @current_user: untyped
+
+      @old_organization: untyped
+
+      @user_transfer_service: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include Organizations::Transfer::Concerns::OrganizationUpdater
+
+      TransferError: untyped
+
+      BATCH_SIZE: 50
+
+      def initialize: (group: untyped, new_organization: untyped, current_user: untyped) -> void
+
+      def async_execute: () -> untyped
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader group: untyped
+
+      attr_reader new_organization: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader old_organization: untyped
+
+      def perform_transfer: () -> untyped
+
+      def transfer_namespaces_and_projects: () -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord -- used only in this service
+      def transfer_fork_networks: (untyped project_ids) -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord -- used only in this service
+      def schedule_pool_repository_disconnections: (untyped batch) -> untyped
+
+      def publish_event: () -> untyped
+
+      def transfer_users: () -> untyped
+
+      def user_transfer_service: () -> untyped
+
+      def schedule_ci_runners_transfer: () -> untyped
+
+      def users: () -> untyped
+
+      def log_transfer_success: () -> untyped
+
+      def log_transfer_error: (untyped error_message) -> untyped
+
+      def log_transfer: (?untyped? error_message) -> untyped
+
+      def can_transfer?: () -> (true | false)
+
+      def transfer_error: () -> untyped
+
+      def group_is_root?: () -> untyped
+
+      def already_transferred?: () -> untyped
+
+      def has_permission?: () -> (false | true)
+
+      def can_transfer_users?: () -> untyped
+
+      def user_transfer_error: () -> untyped
+
+      def localized_error_messages: () -> { group_not_root: untyped, already_transferred: untyped, permission: untyped }
+    end
+  end
+end

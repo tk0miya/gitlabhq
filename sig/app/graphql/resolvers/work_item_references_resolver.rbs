@@ -1,0 +1,27 @@
+module Resolvers
+  class WorkItemReferencesResolver < BaseResolver
+    @container: untyped
+
+    prepend ::WorkItems::LookAheadPreloads
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    REFERENCES_LIMIT: 10
+
+    def ready?: (**untyped args) -> untyped
+
+    def resolve_with_lookahead: (?context_namespace_path: untyped?, ?refs: untyped) -> untyped
+
+    private
+
+    attr_reader container: untyped
+
+    def find_work_items: (untyped references) -> untyped
+
+    def references_extractor: (untyped refs) -> (nil | untyped)
+
+    def find_object: (untyped full_path) -> untyped
+
+    def unconditional_includes: () -> untyped
+  end
+end

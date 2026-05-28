@@ -1,0 +1,41 @@
+module Gitlab
+  module Ci
+    module Tags
+      class BulkInsert
+        @taggables: untyped
+
+        @config: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        TAGGINGS_BATCH_SIZE: 1000
+
+        TAGS_BATCH_SIZE: 500
+
+        attr_reader config: untyped
+
+        def self.bulk_insert_tags!: (untyped taggables, ?config: untyped?) -> untyped
+
+        def initialize: (untyped taggables, ?config: untyped?) -> void
+
+        def insert!: () -> (false | true | untyped)
+
+        private
+
+        attr_reader taggables: untyped
+
+        def tag_list_by_taggable: () -> untyped
+
+        def persist_build_tags!: () -> true
+
+        def create_tags: (untyped tags) -> untyped
+
+        def build_taggings: (untyped tag_records_by_name) -> untyped
+
+        def new_taggings_record: (untyped tag, untyped taggable) -> untyped
+
+        def detect_missing_tags: (untyped tags, untyped tag_records) -> (untyped | ::Array[untyped])
+      end
+    end
+  end
+end

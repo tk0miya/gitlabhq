@@ -1,0 +1,31 @@
+module Gitlab
+  module AlertManagement
+    module Payload
+      # Attribute mapping for alerts via prometheus alerting integration.
+      class Prometheus < Base
+        extend Gitlab::Utils::Override
+
+        METRIC_TIME_WINDOW: untyped
+
+        ADDITIONAL_SEVERITY_MAPPING: { "s1" => :critical, "s2" => :high, "s3" => :medium, "s4" => :low, "s5" => :info, "p1" => :critical, "p2" => :high, "p3" => :medium, "p4" => :low, "p5" => :info, "debug" => :info, "information" => :info, "notice" => :info, "warn" => :low, "warning" => :low, "minor" => :low, "error" => :medium, "major" => :high, "emergency" => :critical, "fatal" => :critical, "alert" => :medium, "page" => :high }
+
+        def monitoring_tool: () -> untyped
+
+        # Parses `g0.expr` from `generatorURL`.
+        #
+        # Example: http://localhost:9090/graph?g0.expr=vector%281%29&g0.tab=1
+        def full_query: () -> untyped
+
+        def has_required_attributes?: () -> untyped
+
+        def source: () -> untyped
+
+        private
+
+        def severity_mapping: () -> untyped
+
+        def plain_gitlab_fingerprint: () -> untyped
+      end
+    end
+  end
+end

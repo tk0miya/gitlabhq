@@ -1,0 +1,27 @@
+module Analytics
+  module Glql
+    # Service for parsing incoming YAML configurations from API::Glql
+    # It is then returned for GLQL processing
+    class ParserService
+      @glql_yaml: untyped
+
+      # Frontmatter format: ---\nconfig\n---\nquery
+      # This regex handles both empty and non-empty config sections
+      FRONTMATTER_REGEX: ::Regexp
+
+      MAX_INPUT_SIZE: 10000
+
+      def initialize: (glql_yaml: untyped) -> void
+
+      def execute: () -> { config: untyped, query: untyped }
+
+      private
+
+      attr_reader glql_yaml: untyped
+
+      def get_frontmatter_yaml: () -> untyped
+
+      def get_standard_yaml: () -> ::Array[untyped]
+    end
+  end
+end

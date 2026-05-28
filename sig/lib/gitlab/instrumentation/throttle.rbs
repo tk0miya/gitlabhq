@@ -1,0 +1,11 @@
+module Gitlab
+  module Instrumentation
+    class Throttle
+      KEY: :instrumentation_throttle_safelist
+
+      def self.safelist: () -> untyped
+
+      def self.safelist=: (untyped name) -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Ci
+  class ParseAnnotationsArtifactService < ::BaseService
+    include ::Gitlab::Utils::StrongMemoize
+
+    include ::Gitlab::EncodingHelper
+
+    SizeLimitError: untyped
+
+    ParserError: untyped
+
+    def execute: (untyped artifact) -> untyped
+
+    private
+
+    def parse!: (untyped artifact) -> untyped
+
+    def annotations_num_limit: () -> untyped
+
+    def annotations_size_limit: () -> untyped
+  end
+end

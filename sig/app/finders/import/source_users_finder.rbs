@@ -1,0 +1,29 @@
+module Import
+  class SourceUsersFinder
+    @namespace: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    def initialize: (untyped namespace, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader namespace: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def authorized?: () -> untyped
+
+    def by_statuses: (untyped collection) -> untyped
+
+    def by_search: (untyped collection) -> untyped
+
+    def sort: (untyped collection) -> untyped
+  end
+end

@@ -1,0 +1,27 @@
+module MergeRequests
+  class ProcessScheduledMergeWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    LOCK_RETRY: 3
+
+    LOCK_TTL: untyped
+
+    DELAY: untyped
+
+    BATCH_SIZE: 500
+
+    def perform: () -> untyped
+
+    private
+
+    def lock_key: () -> untyped
+
+    def lock_params: () -> { ttl: untyped, retries: untyped }
+
+    def enqueue_auto_merge_process_worker: (untyped merge_requests, untyped index) -> untyped
+  end
+end

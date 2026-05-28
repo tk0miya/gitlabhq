@@ -1,0 +1,11 @@
+module Users
+  class DismissibleBannerComponent < Pajamas::BannerComponent
+    @dismiss_options: untyped
+
+    @wrapper_options: untyped
+
+    include UserDismissible
+
+    def initialize: (?::Hash[untyped, untyped] args) -> void
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module Migrations
+      module LockRetryMixin
+        module ActiveRecordMigrationProxyLockRetries
+          def migration_class: () -> untyped
+
+          def migration_connection: () -> untyped
+
+          def with_lock_retries_used!: () -> (nil | untyped)
+
+          def with_lock_retries_used?: () -> (false | untyped)
+        end
+
+        module ActiveRecordMigratorLockRetries
+          # We patch the original method to start a transaction
+          # using the WithLockRetries methodology for the whole migration.
+          def ddl_transaction: (untyped migration) { (?) -> untyped } -> untyped
+        end
+
+        def self.patch!: () -> untyped
+      end
+    end
+  end
+end

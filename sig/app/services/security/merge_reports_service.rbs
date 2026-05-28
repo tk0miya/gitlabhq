@@ -1,0 +1,35 @@
+module Security
+  class MergeReportsService
+    @source_reports: untyped
+
+    @target_report: untyped
+
+    attr_reader source_reports: untyped
+
+    def initialize: (*untyped source_reports) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def target_report: () -> untyped
+
+    def copy_resources_to_target_report: () -> untyped
+
+    def sorted_source_reports: () -> untyped
+
+    def copy_scans_to_target: (untyped source_report) -> untyped
+
+    def copy_scanners_to_target: (untyped source_report) -> untyped
+
+    def copy_identifiers_to_target: (untyped source_report) -> untyped
+
+    def copy_scanned_resources_to_target: (untyped source_report) -> untyped
+
+    def copy_findings_to_target: () -> untyped
+
+    def deduplicated_findings: () -> untyped
+
+    def prioritized_findings: () -> untyped
+  end
+end

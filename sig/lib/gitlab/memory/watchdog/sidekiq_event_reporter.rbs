@@ -1,0 +1,29 @@
+module Gitlab
+  module Memory
+    class Watchdog
+      class SidekiqEventReporter
+        @event_reporter: untyped
+
+        @sidekiq_daemon_monitor: untyped
+
+        @sidekiq_watchdog_running_jobs_counter: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        def initialize: (?logger: untyped) -> void
+
+        def strikes_exceeded: (untyped monitor_name, ?::Hash[untyped, untyped] labels) -> untyped
+
+        private
+
+        attr_reader event_reporter: untyped
+
+        def fetch_running_jobs: () -> untyped
+
+        def increment_worker_counters: (untyped running_jobs) -> untyped
+
+        def init_prometheus_metrics: () -> untyped
+      end
+    end
+  end
+end

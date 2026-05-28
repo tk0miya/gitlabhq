@@ -1,0 +1,66 @@
+module Gitlab
+  module Git
+    class Tree
+      include Gitlab::EncodingHelper
+
+      extend Gitlab::Git::WrapsGitalyErrors
+
+      attr_accessor id: untyped
+
+      attr_accessor type: untyped
+
+      attr_accessor mode: untyped
+
+      attr_accessor commit_id: untyped
+
+      attr_accessor submodule_url: untyped
+
+      attr_accessor ref_type: untyped
+
+      attr_writer name: untyped
+
+      attr_writer path: untyped
+
+      attr_writer flat_path: untyped
+
+      # Get list of tree objects
+      # for repository based on commit sha and path
+      def self.tree_entries: (repository: untyped, sha: untyped, ?path: untyped?, ?recursive: bool, ?skip_flat_paths: bool, ?rescue_not_found: bool, ?pagination_params: untyped?) -> untyped
+
+      private
+
+      # Recursive search of tree id for path
+      #
+      # Ex.
+      #   blog/            # oid: 1a
+      #     app/           # oid: 2a
+      #       models/      # oid: 3a
+      #       views/       # oid: 4a
+      #
+      #
+      # Tree.find_id_by_path(repo, '1a', 'app/models') # => '3a'
+      #
+      def self.find_id_by_path: (untyped repository, untyped root_id, untyped path) -> (nil | untyped)
+
+      public
+
+      def initialize: (untyped options) -> void
+
+      def name: () -> untyped
+
+      def path: () -> untyped
+
+      def flat_path: () -> untyped
+
+      def dir?: () -> untyped
+
+      def file?: () -> untyped
+
+      def submodule?: () -> untyped
+
+      def readme?: () -> untyped
+
+      def contributing?: () -> untyped
+    end
+  end
+end

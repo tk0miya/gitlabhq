@@ -1,0 +1,13 @@
+module Pages
+  class DeactivateExpiredDeploymentsCronWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    MAX_NUM_DELETIONS: 10000
+
+    BATCH_SIZE: 1000
+
+    def perform: () -> untyped
+  end
+end

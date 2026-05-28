@@ -1,0 +1,27 @@
+module ExportCsv
+  class MapExportFieldsService < BaseService
+    @fields: untyped
+
+    @data: untyped
+
+    attr_reader fields: untyped
+
+    attr_reader data: untyped
+
+    def initialize: (untyped fields, untyped data) -> void
+
+    def execute: () -> untyped
+
+    def invalid_fields: () -> untyped
+
+    private
+
+    def selected_fields_to_hash: () -> untyped
+
+    def requested_field?: (untyped field) -> untyped
+
+    def permitted_field?: (untyped field) -> untyped
+
+    def keys: () -> untyped
+  end
+end

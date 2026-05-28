@@ -1,0 +1,35 @@
+class Admin::TopicsController < Admin::ApplicationController
+  @topics: untyped
+
+  @topic: untyped
+
+  include SendFileUpload
+
+  include PreviewMarkdown
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  def edit: () -> nil
+
+  def create: () -> untyped
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  def merge: () -> untyped
+
+  private
+
+  def topic: () -> untyped
+
+  def topic_params: () -> untyped
+
+  def allowed_topic_params: () -> ::Array[:avatar | :description | :name | :title]
+
+  def merge_params: () -> untyped
+
+  def organization_id: () -> untyped
+end

@@ -1,0 +1,26 @@
+module Gitlab
+  # A class that can be wrapped around an expensive method call so it's only
+  # executed when actually needed.
+  #
+  # Usage:
+  #
+  #     object = Gitlab::Lazy.new { some_expensive_work_here }
+  #
+  #     object['foo']
+  #     object.bar
+  class Lazy < BasicObject
+    @block: untyped
+
+    @result: untyped
+
+    def initialize: () { (?) -> untyped } -> void
+
+    def method_missing: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def respond_to_missing?: (untyped name, ?bool include_private) -> untyped
+
+    private
+
+    def __evaluate__: () -> (untyped | nil)
+  end
+end

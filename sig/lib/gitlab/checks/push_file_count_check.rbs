@@ -1,0 +1,29 @@
+module Gitlab
+  module Checks
+    class PushFileCountCheck < BaseSingleChecker
+      @repository: untyped
+
+      @newrev: untyped
+
+      @limit: untyped
+
+      @logger: untyped
+
+      attr_reader repository: untyped
+
+      attr_reader newrev: untyped
+
+      attr_reader limit: untyped
+
+      attr_reader logger: untyped
+
+      LOG_MESSAGES: { diff_content_check: "Validating diff contents being single file..." }
+
+      ERROR_MESSAGES: { upper_limit: "The repository can contain at most %{limit} file(s).", lower_limit: "The repository must contain at least 1 file." }
+
+      def initialize: (untyped change, repository: untyped, limit: untyped, logger: untyped) -> void
+
+      def validate!: () -> untyped
+    end
+  end
+end

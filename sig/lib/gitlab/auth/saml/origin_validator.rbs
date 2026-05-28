@@ -1,0 +1,27 @@
+module Gitlab
+  module Auth
+    module Saml
+      class OriginValidator
+        @session: untyped
+
+        AUTH_REQUEST_SESSION_KEY: "last_authn_request_id"
+
+        def initialize: (untyped session) -> void
+
+        def store_origin: (untyped authn_request) -> untyped
+
+        def gitlab_initiated?: (untyped saml_response) -> (false | untyped)
+
+        private
+
+        attr_reader session: untyped
+
+        def matches?: (untyped saml_response) -> untyped
+
+        def identity_provider_initiated?: (untyped saml_response) -> untyped
+
+        def expected_request_id: () -> untyped
+      end
+    end
+  end
+end

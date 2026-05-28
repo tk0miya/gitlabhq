@@ -1,0 +1,9 @@
+module Projects
+  module ImportExport
+    class RemoveRelationExportUploadWorker
+      include ApplicationWorker
+
+      def perform: (untyped upload_id) -> (nil | untyped)
+    end
+  end
+end

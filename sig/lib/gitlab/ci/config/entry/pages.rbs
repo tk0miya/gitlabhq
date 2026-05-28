@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents the pages path prefix
+        # Entry that represents the pages attributes
+        #
+        class Pages < ::Gitlab::Config::Entry::Node
+          ALLOWED_KEYS: ::Array[:path_prefix | :expire_in | :publish]
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          include ::Gitlab::Config::Entry::Validatable
+        end
+      end
+    end
+  end
+end

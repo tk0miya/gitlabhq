@@ -1,0 +1,13 @@
+module Ci
+  module HasVariable
+    extend ActiveSupport::Concern
+
+    def to_hash_variable: () -> untyped
+
+    private
+
+    def uncached_hash_variable: () -> { key: untyped, value: untyped, public: false, file: untyped }
+
+    def to_hash_variable_cache_key: () -> (nil | ::String)
+  end
+end

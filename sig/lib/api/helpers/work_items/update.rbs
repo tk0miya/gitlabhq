@@ -1,0 +1,17 @@
+module API
+  module Helpers
+    module WorkItems
+      module Update
+        def execute_work_item_update: (untyped work_item) -> untyped
+
+        def render_work_item_update: (untyped result) -> untyped
+
+        private
+
+        def build_update_work_item_params: () -> untyped
+
+        def extract_update_feature_params: (untyped work_item) -> (::Hash[untyped, untyped] | untyped)
+      end
+    end
+  end
+end

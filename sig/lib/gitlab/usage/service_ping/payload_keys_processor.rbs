@@ -1,0 +1,33 @@
+# Process the UsageData payload to get the keys that have a metric defintion
+# Get the missing keys from the payload
+module Gitlab
+  module Usage
+    module ServicePing
+      class PayloadKeysProcessor
+        @old_payload: untyped
+
+        @key_paths: untyped
+
+        @missing_key_paths: untyped
+
+        attr_reader old_payload: untyped
+
+        def initialize: (untyped old_payload) -> void
+
+        def key_paths: () -> untyped
+
+        def missing_instrumented_metrics_key_paths: () -> untyped
+
+        private
+
+        def payload_keys: (?untyped payload, ?untyped parents) -> (nil | untyped)
+
+        def has_metric_definition?: (untyped key, untyped parent_keys) -> untyped
+
+        def metric_definitions: () -> untyped
+
+        def metrics_with_instrumentation: () -> untyped
+      end
+    end
+  end
+end

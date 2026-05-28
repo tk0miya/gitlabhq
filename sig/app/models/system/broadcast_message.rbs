@@ -1,0 +1,51 @@
+module System
+  class BroadcastMessage < ApplicationRecord
+    include CacheMarkdownField
+
+    include Sortable
+
+    ALLOWED_TARGET_ACCESS_LEVELS: ::Array[untyped]
+
+    CACHE_KEY: "broadcast_message_current_json"
+
+    BANNER_CACHE_KEY: "broadcast_message_current_banner_json"
+
+    NOTIFICATION_CACHE_KEY: "broadcast_message_current_notification_json"
+
+    def self.current_banner_messages: (?current_path: untyped?, ?user_access_level: untyped?) -> untyped
+
+    def self.current_show_in_cli_banner_messages: (?user_access_level: untyped?) -> untyped
+
+    def self.current_notification_messages: (?current_path: untyped?, ?user_access_level: untyped?) -> untyped
+
+    def self.current: (?current_path: untyped?, ?user_access_level: untyped?) -> untyped
+
+    def self.cache: () -> untyped
+
+    def self.cache_expires_in: () -> untyped
+
+    private
+
+    def self.fetch_messages: (untyped cache_key, untyped current_path, untyped user_access_level) { (?) -> untyped } -> untyped
+
+    public
+
+    def active?: () -> untyped
+
+    def started?: () -> untyped
+
+    def ended?: () -> untyped
+
+    def now?: () -> untyped
+
+    def future?: () -> untyped
+
+    def now_or_future?: () -> untyped
+
+    def matches_current_user_access_level?: (untyped user_access_level) -> (true | untyped)
+
+    def matches_current_path: (untyped current_path) -> (false | true | untyped)
+
+    def flush_redis_cache: () -> untyped
+  end
+end

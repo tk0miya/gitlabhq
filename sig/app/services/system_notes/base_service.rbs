@@ -1,0 +1,35 @@
+module SystemNotes
+  class BaseService
+    @container: untyped
+
+    @noteable: untyped
+
+    @author: untyped
+
+    @url_helpers: untyped
+
+    @project: untyped
+
+    @group: untyped
+
+    attr_accessor project: untyped
+
+    attr_accessor group: untyped
+
+    attr_reader noteable: untyped
+
+    attr_reader container: untyped
+
+    attr_reader author: untyped
+
+    def initialize: (?container: untyped?, ?noteable: untyped?, ?author: untyped?) -> void
+
+    def create_note: (untyped note_summary, ?skip_touch_noteable: bool) -> untyped
+
+    def content_tag: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def url_helpers: () -> untyped
+
+    def handle_container_type: (untyped container) -> untyped
+  end
+end

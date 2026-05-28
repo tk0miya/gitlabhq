@@ -1,0 +1,141 @@
+class Deployment < ApplicationRecord
+  @commit: untyped
+
+  @manual_actions: untyped
+
+  @scheduled_actions: untyped
+
+  @previous_deployment: untyped
+
+  @stop_action: untyped
+
+  include AtomicInternalId
+
+  include IidRoutes
+
+  include AfterCommitQueue
+
+  include UpdatedAtFilterable
+
+  include Importable
+
+  include Gitlab::Utils::StrongMemoize
+
+  include FastDestroyAll
+
+  include EachBatch
+
+  include FromUnion
+
+  StatusUpdateError: untyped
+
+  StatusSyncError: untyped
+
+  ARCHIVABLE_OFFSET: 50000
+
+  VISIBLE_STATUSES: ::Array[:running | :success | :failed | :canceled | :blocked]
+
+  FINISHED_STATUSES: ::Array[:success | :failed | :canceled]
+
+  UPCOMING_STATUSES: ::Array[:created | :blocked | :running]
+
+  def self.archivables_in: (untyped project, limit: untyped) -> untyped
+
+  def self.last_for_environment: (untyped environment) -> untyped
+
+  # This method returns the *finished deployments* of the *last finished pipeline* for a given environment
+  # e.g., a finished pipeline contains
+  #   - deploy job A (environment: production, status: success)
+  #   - deploy job B (environment: production, status: failed)
+  #   - deploy job C (environment: production, status: canceled)
+  # In the above case, `last_finished_deployment_group_for_environment` returns all deployments
+  def self.last_finished_deployment_group_for_environment: (untyped env) -> untyped
+
+  def self.find_successful_deployment!: (untyped iid) -> untyped
+
+  # It should be used with caution especially on chaining.
+  # Fetching any unbounded or large intermediate dataset could lead to loading too many IDs into memory.
+  # See: https://docs.gitlab.com/ee/development/database/multiple_databases.html#use-disable_joins-for-has_one-or-has_many-through-relations
+  # For safety we default limit to fetch not more than 1000 records.
+  def self.jobs: (?::Integer limit) -> untyped
+
+  def job: () -> (untyped | nil)
+
+  #
+  # FastDestroyAll concerns
+  def self.begin_fast_destroy: () -> untyped
+
+  #
+  # FastDestroyAll concerns
+  def self.finalize_fast_destroy: (untyped params) -> untyped
+
+  def self.latest_for_sha: (untyped sha) -> untyped
+
+  def commit: () -> untyped
+
+  def commit_title: () -> untyped
+
+  def short_sha: () -> untyped
+
+  def execute_hooks: (untyped status, untyped status_changed_at) -> untyped
+
+  def last?: () -> untyped
+
+  def create_ref: () -> untyped
+
+  def invalidate_cache: () -> untyped
+
+  def manual_actions: () -> untyped
+
+  def scheduled_actions: () -> untyped
+
+  def playable_job: () -> (untyped | nil)
+
+  def includes_commit?: (untyped ancestor_sha) -> (false | untyped)
+
+  def older_than_last_successful_deployment?: () -> (false | untyped)
+
+  def update_merge_request_metrics!: () -> (nil | untyped)
+
+  def previous_deployment: () -> untyped
+
+  def stop_action: () -> (nil | untyped)
+
+  def deployed_at: () -> (nil | untyped)
+
+  def formatted_deployment_time: () -> untyped
+
+  def deployed_by: () -> untyped
+
+  def triggered_by?: (untyped user) -> untyped
+
+  def link_merge_requests: (untyped relation) -> untyped
+
+  # Changes the status of a deployment and triggers the corresponding state
+  # machine events.
+  def update_status: (untyped status) -> untyped
+
+  def sync_status_with: (untyped job) -> untyped
+
+  def valid_sha: () -> (nil | untyped)
+
+  def valid_ref: () -> (nil | untyped)
+
+  def ref_path: () -> untyped
+
+  def equal_to?: (untyped params) -> untyped
+
+  def tier_in_yaml: () -> (nil | untyped)
+
+  # default tag limit is 100, 0 means no limit
+  # when refs_by_oid is passed an SHA, returns refs for that commit
+  def tags: (?limit: ::Integer) -> untyped
+
+  private
+
+  def update_status!: (untyped status) -> untyped
+
+  def serialize_params_for_sidekiq!: (untyped perform_params) -> untyped
+
+  def self.last_deployment_group_associations: () -> { deployable: { pipeline: { manual_actions: ::Array[untyped] } } }
+end

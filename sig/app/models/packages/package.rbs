@@ -1,0 +1,65 @@
+module Packages
+  class Package < ApplicationRecord
+    include Sortable
+
+    include Gitlab::SQL::Pattern
+
+    include UsageStatistics
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Packages::Installable
+
+    include Packages::Downloadable
+
+    include EnumInheritance
+
+    DISPLAYABLE_STATUSES: ::Array[:default | :error | :deprecated]
+
+    INSTALLABLE_STATUSES: ::Array[:default | :hidden | :deprecated]
+
+    DETAILED_INFO_STATUSES: ::Array[:default | :deprecated]
+
+    STATUS_MESSAGE_MAX_LENGTH: 255
+
+    def self.inheritance_column: () -> "package_type"
+
+    def self.inheritance_column_to_class_map: () -> { ml_model: "Packages::MlModel::Package", golang: "Packages::Go::Package", rubygems: "Packages::Rubygems::Package", conan: "Packages::Conan::Package", rpm: "Packages::Rpm::Package", debian: "Packages::Debian::Package", composer: "Packages::Composer::Sti::Package", helm: "Packages::Helm::Package", generic: "Packages::Generic::Package", pypi: "Packages::Pypi::Package", terraform_module: "Packages::TerraformModule::Package", nuget: "Packages::Nuget::Package", npm: "Packages::Npm::Package", maven: "Packages::Maven::Package", cargo: "Packages::Cargo::Package" }
+
+    def self.package_type_to_class!: (untyped package_type) -> untyped
+
+    def self.by_name_and_file_name: (untyped name, untyped file_name) -> untyped
+
+    def self.by_file_name_and_sha256: (untyped file_name, untyped sha256) -> untyped
+
+    def self.by_name_and_version!: (untyped name, untyped version) -> untyped
+
+    def self.pluck_names: () -> untyped
+
+    def self.pluck_versions: () -> untyped
+
+    def self.sort_by_attribute: (untyped method) -> untyped
+
+    def self.installable_statuses: () -> untyped
+
+    def versions: () -> untyped
+
+    # Technical debt: to be removed in https://gitlab.com/gitlab-org/gitlab/-/issues/281937
+    def last_build_info: () -> untyped
+
+    # Technical debt: to be removed in https://gitlab.com/gitlab-org/gitlab/-/issues/281937
+    def pipeline: () -> untyped
+
+    def tag_names: () -> untyped
+
+    def package_settings: () -> untyped
+
+    def create_build_infos!: (untyped build) -> (nil | untyped)
+
+    def mark_package_files_for_destruction: () -> (nil | untyped)
+
+    def publish_creation_event: () -> untyped
+
+    def detailed_info?: () -> untyped
+  end
+end

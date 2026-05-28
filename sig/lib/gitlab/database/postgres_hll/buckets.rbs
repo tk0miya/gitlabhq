@@ -1,0 +1,44 @@
+module Gitlab
+  module Database
+    module PostgresHll
+      # @note HyperLogLog is an PROBABILISTIC algorithm that ESTIMATES distinct count of given attribute value for supplied relation
+      #  Like all probabilistic algorithm is has ERROR RATE margin, that can affect values,
+      #  for given implementation no higher value was reported (https://gitlab.com/gitlab-org/gitlab/-/merge_requests/45673#accuracy-estimation) than 5.3%
+      #  for the most of a cases this value is lower. However, if the exact value is necessary other tools has to be used.
+      class Buckets
+        @buckets: untyped
+
+        @estimated_distinct_count: untyped
+
+        TOTAL_BUCKETS: 512
+
+        def initialize: (?::Hash[untyped, untyped] buckets) -> void
+
+        # Based on HyperLogLog structure estimates number of unique elements in analysed set.
+        #
+        # @return [Float] Estimate number of unique elements
+        def estimated_distinct_count: () -> untyped
+
+        # Updates instance underlying HyperLogLog structure by merging it with other HyperLogLog structure
+        #
+        # @param other_buckets_hash hash with HyperLogLog structure representation
+        def merge_hash!: (untyped other_buckets_hash) -> untyped
+
+        # Serialize instance underlying HyperLogLog structure to JSON format, that can be stored in various persistence layers
+        #
+        # @return [String] HyperLogLog data structure serialized to JSON
+        def to_json: (?untyped? _) -> untyped
+
+        private
+
+        attr_accessor buckets: untyped
+
+        # arbitrary values that are present in #estimate_cardinality
+        # are sourced from https://www.sisense.com/blog/hyperloglog-in-pure-sql/
+        # article, they are not representing any entity and serves as tune value
+        # for the whole equation
+        def estimate_cardinality: () -> untyped
+      end
+    end
+  end
+end

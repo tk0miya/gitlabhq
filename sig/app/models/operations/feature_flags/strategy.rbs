@@ -1,0 +1,43 @@
+module Operations
+  module FeatureFlags
+    class Strategy < ApplicationRecord
+      STRATEGY_DEFAULT: "default"
+
+      STRATEGY_GITLABUSERLIST: "gitlabUserList"
+
+      STRATEGY_GRADUALROLLOUTUSERID: "gradualRolloutUserId"
+
+      STRATEGY_FLEXIBLEROLLOUT: "flexibleRollout"
+
+      STRATEGY_USERWITHID: "userWithId"
+
+      STRATEGIES: ::Hash[untyped, ::Array[untyped] | ::Array["groupId" | "percentage"] | ::Array["groupId" | "rollout" | "stickiness"] | ::Array["userIds"]]
+
+      USERID_MAX_LENGTH: 256
+
+      STICKINESS_SETTINGS: ::Array["default" | "userId" | "sessionId" | "random"]
+
+      def user_list_id=: (untyped user_list_id) -> untyped
+
+      private
+
+      def same_project_validation: () -> (untyped | nil)
+
+      def parameters_validations: () -> untyped
+
+      def validate_parameters_type: () -> untyped
+
+      def validate_parameters_keys: () -> untyped
+
+      def validate_parameters_values: () -> untyped
+
+      def within_range?: (untyped value, untyped min, untyped max) -> (false | untyped)
+
+      def gradual_rollout_user_id_parameters_validation: () -> untyped
+
+      def flexible_rollout_parameters_validation: () -> untyped
+
+      def parameters_error: (untyped message) -> false
+    end
+  end
+end

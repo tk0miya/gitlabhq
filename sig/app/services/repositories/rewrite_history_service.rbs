@@ -1,0 +1,24 @@
+# Rewrites repository history via RewriteHistory RPC:
+# - deletes requested blobs in a repository
+# - redacts text strings found in a repository
+module Repositories
+  class RewriteHistoryService < ::BaseService
+    def execute: (?blob_oids: untyped, ?redactions: untyped) -> untyped
+
+    def async_execute: (?blob_oids: untyped, ?redactions: untyped) -> untyped
+
+    private
+
+    def validate_input: (blob_oids: untyped, redactions: untyped) -> untyped
+
+    def allowed?: () -> untyped
+
+    def mark_repository_read_only: () -> untyped
+
+    def rewrite_history: (blob_oids: untyped, redactions: untyped) -> untyped
+
+    def audit_removals: (untyped blob_oids) -> untyped
+
+    def audit_replacements: () -> untyped
+  end
+end

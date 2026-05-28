@@ -1,0 +1,29 @@
+module Security
+  module CiConfiguration
+    class SastCreateService < ::Security::CiConfiguration::BaseCreateService
+      @params: untyped
+
+      @commit_on_default: untyped
+
+      @branch_name: untyped
+
+      attr_reader params: untyped
+
+      def initialize: (untyped project, untyped current_user, untyped params, ?commit_on_default: bool) -> void
+
+      private
+
+      def remove_branch_on_exception: () -> (untyped | nil)
+
+      def action: () -> untyped
+
+      def next_branch: () -> "set-sast-config"
+
+      def message: () -> untyped
+
+      def description: () -> untyped
+
+      def name: () -> "SAST"
+    end
+  end
+end

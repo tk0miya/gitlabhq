@@ -1,0 +1,25 @@
+module Peek
+  module Views
+    class Elasticsearch < DetailedView
+      self.@thresholds: untyped
+
+      DEFAULT_THRESHOLDS: { calls: 5, duration: 1000, individual_call: 1000 }
+
+      THRESHOLDS: { production: { calls: 5, duration: 1000, individual_call: 1000 } }
+
+      def key: () -> "es"
+
+      def self.thresholds: () -> untyped
+
+      private
+
+      def duration: () -> untyped
+
+      def calls: () -> untyped
+
+      def call_details: () -> untyped
+
+      def format_call_details: (untyped call) -> untyped
+    end
+  end
+end

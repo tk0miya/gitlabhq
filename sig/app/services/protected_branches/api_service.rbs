@@ -1,0 +1,15 @@
+module ProtectedBranches
+  class ApiService < ProtectedBranches::BaseService
+    def create: () -> untyped
+
+    def update: (untyped protected_branch) -> untyped
+
+    private
+
+    def protected_branch_params: (?with_defaults: bool) -> untyped
+
+    def access_level_attributes: (untyped type, untyped with_defaults) -> untyped
+
+    def attributes: () -> ::Array[:name | :allow_force_push]
+  end
+end

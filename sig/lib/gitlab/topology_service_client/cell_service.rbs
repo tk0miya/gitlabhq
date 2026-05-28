@@ -1,0 +1,17 @@
+module Gitlab
+  module TopologyServiceClient
+    CellNotFoundError: untyped
+
+    class CellService < BaseService
+      def get_cell_info: () -> untyped
+
+      def cell_sequence_ranges: () -> (nil | untyped)
+
+      private
+
+      def service_class: () -> untyped
+
+      def handle_cell_not_found: () -> untyped
+    end
+  end
+end

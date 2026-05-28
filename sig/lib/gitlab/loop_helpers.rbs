@@ -1,0 +1,10 @@
+module Gitlab
+  module LoopHelpers
+    #
+    # This helper method repeats the same task until it's expired.
+    #
+    # Note: ExpiredLoopError does not happen until the given block finished.
+    #       Please do not use this method for heavy or asynchronous operations.
+    def loop_until: (?timeout: untyped?, ?limit: ::Integer) { () -> untyped } -> (true | false)
+  end
+end

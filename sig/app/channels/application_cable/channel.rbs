@@ -1,0 +1,26 @@
+module ApplicationCable
+  class Channel < ActionCable::Channel::Base
+    self.@action_methods: untyped
+
+    include Logging
+
+    include Gitlab::Auth::AuthFinders
+
+    # See https://gitlab.com/gitlab-org/gitlab/-/work_items/588959
+    def self.action_methods: () -> untyped
+
+    private
+
+    def validate_user_authorization: () -> untyped
+
+    def authorization_scopes: () -> ::Array[:api | :read_api]
+
+    def client_subscribed?: () -> untyped
+
+    def handle_authentication_error: () -> untyped
+
+    def notification_payload: (untyped _) -> untyped
+
+    def request: () -> untyped
+  end
+end

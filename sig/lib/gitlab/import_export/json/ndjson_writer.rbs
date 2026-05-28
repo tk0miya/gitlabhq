@@ -1,0 +1,25 @@
+module Gitlab
+  module ImportExport
+    module Json
+      class NdjsonWriter
+        @dir_path: untyped
+
+        include Gitlab::ImportExport::CommandLineUtil
+
+        def initialize: (untyped dir_path) -> void
+
+        def close: () -> nil
+
+        def write_attributes: (untyped exportable_path, untyped hash) -> untyped
+
+        def write_relation: (untyped exportable_path, untyped relation, untyped value) -> untyped
+
+        def write_relation_array: (untyped exportable_path, untyped relation, untyped items) -> untyped
+
+        private
+
+        def with_file: (*untyped path) { (untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end

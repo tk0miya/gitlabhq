@@ -1,0 +1,138 @@
+class Admin::UsersController < Admin::ApplicationController
+  @sort: untyped
+
+  @users: untyped
+
+  @personal_projects: untyped
+
+  @joined_projects: untyped
+
+  @user_group_members: untyped
+
+  @keys: untyped
+
+  @user: untyped
+
+  @can_impersonate: untyped
+
+  @impersonation_error_text: untyped
+
+  include RoutableActions
+
+  include SortingHelper
+
+  PAGINATION_WITH_COUNT_LIMIT: 1000
+
+  def index: () -> untyped
+
+  def show: () -> nil
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def projects: () -> untyped
+
+  def keys: () -> untyped
+
+  def new: () -> untyped
+
+  def edit: () -> untyped
+
+  def impersonate: () -> untyped
+
+  def approve: () -> untyped
+
+  def reject: () -> untyped
+
+  def activate: () -> untyped
+
+  def deactivate: () -> untyped
+
+  def block: () -> untyped
+
+  def unblock: () -> untyped
+
+  def ban: () -> untyped
+
+  def unban: () -> untyped
+
+  def unlock: () -> untyped
+
+  def trust: () -> untyped
+
+  def untrust: () -> untyped
+
+  def confirm: () -> untyped
+
+  def disable_two_factor: () -> untyped
+
+  def create: () -> untyped
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  def remove_email: () -> untyped
+
+  def paginate_without_count?: () -> untyped
+
+  def users_with_included_associations: (untyped users) -> untyped
+
+  def users_from_search_query: (untyped users) -> untyped
+
+  # Overridden in EE
+  def partial_email_search?: () -> true
+
+  def admin_making_changes_for_another_user?: () -> untyped
+
+  def destroy_params: () -> untyped
+
+  def ensure_destroy_prerequisites_met: () -> (nil | untyped)
+
+  def hard_delete?: () -> untyped
+
+  def user: () -> untyped
+
+  def build_canonical_path: (untyped user) -> untyped
+
+  def redirect_back_or_admin_user: (?::Hash[untyped, untyped] options) -> untyped
+
+  def default_route: () -> ::Array[:admin | untyped]
+
+  def user_params: () -> untyped
+
+  def allowed_user_params: () -> ::Array[:access_level | :avatar | :bio | :bluesky | :can_create_group | :color_mode_id | :color_scheme_id | :discord | :email | :email_otp_required_after | :extern_uid | :external | :force_random_password | :hide_no_password | :hide_no_ssh_key | :key_id | :linkedin | :mastodon | :name | :note | :organization_id | :organization_access_level | :password_expires_at | :private_profile | :projects_limit | :provider | :remember_me | :theme_id | :twitter | :username | :website_url | :github | { organization_users_attributes: ::Array[:id | :organization_id | :access_level] }]
+
+  def update_user: () { (?) -> untyped } -> untyped
+
+  def check_impersonation_availability: () -> (untyped | nil)
+
+  def log_impersonation_event: () -> untyped
+
+  # method overridden in EE
+  def unlock_user: () -> untyped
+
+  private
+
+  def set_shared_view_parameters: () -> untyped
+
+  # method overridden in EE
+  def prepare_user_for_update: (untyped user) -> untyped
+
+  # method overridden in EE
+  def after_successful_create_hook: (untyped user) -> nil
+
+  # method overridden in EE
+  def after_successful_update_hook: (untyped user) -> nil
+
+  def after_successful_create_flash: () -> { notice: untyped }
+
+  def after_successful_update_flash: () -> { notice: untyped }
+
+  def filter_users: () -> untyped
+
+  def safe_params: () -> untyped
+
+  # WARNING: Only use permitted_user_password_params in contexts where password input has been
+  # explicitly provided by an admin through a secure form. Do not call this in contexts
+  # where params could be manipulated or in automated processes.
+  def permitted_user_password_params: () -> untyped
+end

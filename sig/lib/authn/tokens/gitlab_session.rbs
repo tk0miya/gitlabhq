@@ -1,0 +1,35 @@
+module Authn
+  module Tokens
+    class GitlabSession
+      @session_id: untyped
+
+      @revocable: untyped
+
+      @source: untyped
+
+      def self.prefix?: (untyped plaintext) -> untyped
+
+      def self.session_cookie_key_prefix: () -> ::String
+
+      attr_reader revocable: untyped
+
+      attr_reader source: untyped
+
+      attr_reader session_id: untyped
+
+      def initialize: (untyped plaintext, untyped source) -> void
+
+      def present_with: () -> untyped
+
+      def revoke!: (untyped current_user) -> untyped
+
+      private
+
+      def find_session_id: (untyped plaintext) -> untyped
+
+      def find_session: () -> untyped
+
+      def extract_session: (untyped plaintext) -> untyped
+    end
+  end
+end

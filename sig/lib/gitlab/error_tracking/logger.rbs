@@ -1,0 +1,9 @@
+module Gitlab
+  module ErrorTracking
+    class Logger < ::Gitlab::JsonLogger
+      def self.capture_exception: (untyped exception, **untyped context_payload) -> untyped
+
+      def self.file_name_noext: () -> "exceptions_json"
+    end
+  end
+end

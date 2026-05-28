@@ -1,0 +1,77 @@
+module Import
+  module AfterExportStrategies
+    class BaseAfterExportStrategy
+      @options: untyped
+
+      @logger: untyped
+
+      @project: untyped
+
+      @lock_file: untyped
+
+      @current_user: untyped
+
+      extend Gitlab::ImportExport::CommandLineUtil
+
+      include ActiveModel::Validations
+
+      extend Forwardable
+
+      StrategyError: untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader lock_file: untyped
+
+      attr_reader logger: untyped
+
+      public
+
+      def initialize: (?::Hash[untyped, untyped] attributes) -> void
+
+      def method_missing: (untyped method, *untyped _args) -> untyped
+
+      def respond_to_missing?: (untyped method, *untyped args) -> untyped
+
+      def execute: (untyped current_user, untyped project) -> untyped
+
+      def to_json: (?::Hash[untyped, untyped] _options) -> untyped
+
+      def ensure_export_ready!: (untyped current_user, ?max_retries: ::Integer, ?base_delay: ::Integer) -> untyped
+
+      def ensure_lock_files_path!: () -> untyped
+
+      def lock_files_path: () -> untyped
+
+      def archive_path: () -> untyped
+
+      def locks_present?: () -> untyped
+
+      def strategy_execute: () -> untyped
+
+      def delete_export?: () -> true
+
+      private
+
+      def delete_export_file: (untyped current_user) -> (nil | untyped)
+
+      def delete_archive_path: () -> (untyped | nil)
+
+      def create_or_update_after_export_lock: () -> untyped
+
+      def delete_after_export_lock: () -> (untyped | nil)
+
+      def log_validation_errors: () -> untyped
+
+      def log_info: (untyped params) -> untyped
+
+      def log_error: (untyped params) -> untyped
+
+      def log_default_params: () -> { project_name: untyped, project_id: untyped }
+    end
+  end
+end

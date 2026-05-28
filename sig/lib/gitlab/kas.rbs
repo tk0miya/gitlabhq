@@ -1,0 +1,81 @@
+module Gitlab
+  module Kas
+    INTERNAL_API_AGENT_REQUEST_HEADER: "Gitlab-Agent-Api-Request"
+
+    INTERNAL_API_KAS_REQUEST_HEADER: "Gitlab-Kas-Api-Request"
+
+    VERSION_FILE: "GITLAB_KAS_VERSION"
+
+    JWT_ISSUER: "gitlab-kas"
+
+    JWT_AUDIENCE: "gitlab"
+
+    K8S_PROXY_PATH: "k8s-proxy"
+
+    # The name of the cookie that will be used for the KAS cookie
+    COOKIE_KEY: "_gitlab_kas"
+
+    DEFAULT_ENCRYPTED_COOKIE_CIPHER: "aes-256-gcm"
+
+    include JwtAuthenticatable
+
+    def self.verify_api_request: (untyped request_headers) -> untyped
+
+    def self.secret_path: () -> untyped
+
+    def self.ensure_secret!: () -> (nil | untyped)
+
+    # Return GitLab KAS version info for display
+    # This is the version that is displayed on the `frontend`. This is also used to
+    # check if the version of an existing agent does not match the latest agent version.
+    # If the getServerInfo RPC call fails, we fallback to GITLAB_KAS_VERSION file;
+    # If the GITLAB_KAS_VERSION file contains a SHA, we defer instead to the Gitlab version.
+    #
+    # For further details, see: https://gitlab.com/gitlab-org/gitlab/-/merge_requests/149794
+    #
+    # @return [Gitlab::VersionInfo] version_info
+    def self.display_version_info: () -> untyped
+
+    # Return GitLab KAS version info for installation
+    # This is the version used as the image tag when generating the command to install a Gitlab agent.
+    # If the getServerInfo RPC call fails, we fallback to GITLAB_KAS_VERSION file;
+    # If the GITLAB_KAS_VERSION file contains a SHA, we defer instead to the Gitlab version without the patch.
+    # This could mean that it might point to a Gitlab agent version that is several patches behind the latest one.
+    #
+    # Further details: https://gitlab.com/gitlab-org/gitlab/-/merge_requests/149794
+    #
+    # @return [Gitlab::VersionInfo] version_info
+    def self.install_version_info: () -> untyped
+
+    # Return GitLab KAS external_url
+    #
+    # @return [String] external_url
+    def self.external_url: () -> untyped
+
+    def self.tunnel_url: () -> untyped
+
+    def self.tunnel_ws_url: () -> untyped
+
+    # Return GitLab KAS internal_url
+    #
+    # @return [String] internal_url
+    def self.internal_url: () -> untyped
+
+    # Return whether GitLab KAS is enabled
+    #
+    # @return [Boolean] external_url
+    def self.enabled?: () -> untyped
+
+    def self.client_timeout_seconds: () -> untyped
+
+    private
+
+    def self.version_file_content: () -> untyped
+
+    def self.version_info_from_file: () -> untyped
+
+    def self.ssl?: () -> untyped
+
+    def self.ws?: () -> untyped
+  end
+end

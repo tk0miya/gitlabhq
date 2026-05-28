@@ -1,0 +1,21 @@
+module ChatNames
+  class AuthorizeUserService
+    @params: untyped
+
+    @chat_name_token: untyped
+
+    include Gitlab::Routing
+
+    def initialize: (untyped params) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def request_token: () -> untyped
+
+    def chat_name_token: () -> untyped
+
+    def chat_name_params: () -> { team_id: untyped, team_domain: untyped, chat_id: untyped, chat_name: untyped }
+  end
+end

@@ -1,0 +1,19 @@
+# Provides an ActiveRecord-like interface to a model whose data is not persisted to a database.
+module StaticModel
+  extend ActiveSupport::Concern
+
+  # Used by AR for fetching attributes
+  #
+  # Pass it along if we respond to it.
+  def []: (untyped key) -> (untyped | nil)
+
+  def to_param: () -> untyped
+
+  def new_record?: () -> false
+
+  def persisted?: () -> false
+
+  def destroyed?: () -> false
+
+  def ==: (untyped other) -> untyped
+end

@@ -1,0 +1,44 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # A host that wraps the primary database connection.
+      #
+      # This class is used to always enable load balancing as if replicas exist,
+      # without the need for extra database connections. This ensures that code
+      # using the load balancer doesn't have to handle the case where load
+      # balancing is enabled, but no replicas have been configured (= the
+      # default case).
+      class PrimaryHost
+        @load_balancer: untyped
+
+        WAL_ERROR_MESSAGE: untyped
+
+        def initialize: (untyped load_balancer) -> void
+
+        def release_connection: () -> nil
+
+        def enable_query_cache!: () -> nil
+
+        def disable_query_cache!: () -> nil
+
+        def query_cache_enabled: () -> untyped
+
+        def clear_query_cache: () -> nil
+
+        def connection: () -> untyped
+
+        def disconnect!: (?timeout: ::Integer) -> nil
+
+        def offline!: () -> nil
+
+        def online?: () -> true
+
+        def primary_write_location: () -> untyped
+
+        def database_replica_location: () -> untyped
+
+        def caught_up?: (untyped _location) -> true
+      end
+    end
+  end
+end

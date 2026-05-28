@@ -1,0 +1,18 @@
+module IdeHelper
+  # Overridden in EE
+  def ide_data: (project: untyped, fork_info: untyped, workbench_secret: untyped, params: untyped) -> untyped
+
+  def show_web_ide_oauth_callback_mismatch_callout?: () -> untyped
+
+  def web_ide_oauth_application_id: () -> untyped
+
+  private
+
+  def ide_fonts: () -> { fallback_font_family: "monospace", font_faces: ::Array[{ family: "GitLab Mono", display: "block", src: ::Array[{ url: untyped, format: "woff2" }] } | { family: "GitLab Mono", display: "block", style: "italic", src: ::Array[{ url: untyped, format: "woff2" }] }] }
+
+  def ide_code_suggestions_data: () -> ::Hash[untyped, untyped]
+
+  def ide_oauth_data: () -> (::Hash[untyped, untyped] | { "client-id" => untyped, "callback-urls" => untyped })
+
+  def extend_ide_data: (project: untyped) -> untyped
+end

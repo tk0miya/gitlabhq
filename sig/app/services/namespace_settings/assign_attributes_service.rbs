@@ -1,0 +1,35 @@
+module NamespaceSettings
+  class AssignAttributesService
+    @current_user: untyped
+
+    @group: untyped
+
+    @settings_params: untyped
+
+    include ::Gitlab::Allowable
+
+    attr_reader current_user: untyped
+
+    attr_reader group: untyped
+
+    attr_reader settings_params: untyped
+
+    def initialize: (untyped current_user, untyped group, untyped settings) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def handle_default_branch_name: () -> (nil | untyped)
+
+    def handle_default_branch_protection: () -> untyped
+
+    def handle_jwt_ci_cd_job_token_enabled: () -> (nil | untyped)
+
+    def validate_resource_access_token_creation_allowed_param: () -> untyped
+
+    def validate_settings_param_for_admin: (param_key: untyped, user_policy: untyped) -> (nil | untyped)
+
+    def validate_settings_param_for_root_group: (param_key: untyped, user_policy: untyped) -> (nil | untyped)
+  end
+end

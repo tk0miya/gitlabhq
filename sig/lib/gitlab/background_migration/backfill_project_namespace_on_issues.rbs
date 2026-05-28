@@ -1,0 +1,18 @@
+module Gitlab
+  module BackgroundMigration
+    # Back-fills the `issues.namespace_id` by setting it to corresponding project.project_namespace_id
+    class BackfillProjectNamespaceOnIssues < BatchedMigrationJob
+      MAX_UPDATE_RETRIES: 3
+
+      def perform: () -> untyped
+
+      private
+
+      # rubocop:disable Database/RescueQueryCanceled
+      # rubocop:disable Database/RescueStatementTimeout
+      def update_with_retry: (untyped sub_batch) -> untyped
+
+      def update_batch: (untyped sub_batch) -> untyped
+    end
+  end
+end

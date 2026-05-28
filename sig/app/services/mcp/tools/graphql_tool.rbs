@@ -1,0 +1,37 @@
+module Mcp
+  module Tools
+    class GraphqlTool
+      @current_user: untyped
+
+      @params: untyped
+
+      include Mcp::Tools::Concerns::Versionable
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def initialize: (current_user: untyped, params: untyped, ?version: untyped?) -> void
+
+      # Override in subclasses or use version metadata
+      def graphql_operation: () -> untyped
+
+      def operation_name: () -> untyped
+
+      # Can be overridden with version-specific methods
+      def build_variables: () -> untyped
+
+      def icons: () -> untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def execution_context: () -> { current_user: untyped, is_sessionless_user: false }
+
+      def process_result: (untyped result) -> untyped
+
+      def extract_error_messages: (untyped errors) -> untyped
+    end
+  end
+end

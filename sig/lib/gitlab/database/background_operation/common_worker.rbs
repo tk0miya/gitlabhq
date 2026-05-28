@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      module CommonWorker
+        extend ActiveSupport::Concern
+
+        include PartitionedTable
+
+        include FromUnion
+
+        MINIMUM_PAUSE_MS: 100
+
+        PARTITION_DURATION: untyped
+
+        JOB_CLASS_MODULE: "Gitlab::BackgroundOperation"
+
+        BATCH_CLASS_MODULE: "Gitlab::Database::Batch::Strategies"
+
+        MINIMUM_JOBS_FOR_FAILURE_CHECK: 50
+
+        MAXIMUM_FAILURE_RATIO: ::Float
+
+        RETRY_DELAY: untyped
+
+        REQUIRED_COLUMNS: ::Array[:batch_size | :sub_batch_size | :priority | :interval | :job_class_name | :batch_class_name | :table_name | :column_name | :gitlab_schema]
+      end
+    end
+  end
+end

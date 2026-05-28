@@ -1,0 +1,57 @@
+class Projects::WorkItemsController < Projects::ApplicationController
+  @work_item: untyped
+
+  @related_issue: untyped
+
+  @merge_request_to_resolve_discussions_of: untyped
+
+  @discussion_to_resolve: untyped
+
+  @work_items: untyped
+
+  # remove order by since we return just one item anyway. In some cases keeping order by confuses PG planner on which
+  # index to use to return the result.
+  @issuable: untyped
+
+  include WorkhorseAuthorization
+
+  include WorkItemsCollections
+
+  extend Gitlab::Utils::Override
+
+  include IssueBuildParameters
+
+  EXTENSION_ALLOWLIST: untyped
+
+  def import_csv: () -> untyped
+
+  def index: () -> nil
+
+  def new: () -> untyped
+
+  def show: () -> (nil | untyped)
+
+  def edit: () -> untyped
+
+  def calendar: () -> untyped
+
+  def rss: () -> untyped
+
+  private
+
+  def import_params: () -> untyped
+
+  def show_params: () -> untyped
+
+  def authorize_import_access!: () -> (nil | untyped)
+
+  def invalid_file_message: () -> untyped
+
+  def uploader_class: () -> untyped
+
+  def maximum_size: () -> untyped
+
+  def file_extension_allowlist: () -> untyped
+
+  def issuable: () -> untyped
+end

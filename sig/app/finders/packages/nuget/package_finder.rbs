@@ -1,0 +1,27 @@
+module Packages
+  module Nuget
+    class PackageFinder < ::Packages::GroupOrProjectPackageFinder
+      extend ::Gitlab::Utils::Override
+
+      MAX_PACKAGES_COUNT: 300
+
+      FORCE_NORMALIZATION_CLIENT_VERSION: ">= 3"
+
+      def execute: () -> untyped
+
+      private
+
+      def packages: () -> untyped
+
+      def find_by_name: () -> untyped
+
+      def find_by_version: (untyped result) -> untyped
+
+      def group_packages: () -> untyped
+
+      def client_forces_normalized_version?: () -> (true | untyped)
+
+      def packages_class: () -> untyped
+    end
+  end
+end

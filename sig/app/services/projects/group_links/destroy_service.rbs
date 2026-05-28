@@ -1,0 +1,15 @@
+module Projects
+  module GroupLinks
+    class DestroyService < BaseService
+      def execute: (untyped group_link, ?skip_authorization: bool) -> untyped
+
+      private
+
+      def not_found!: () -> untyped
+
+      def allowed_to_destroy_link?: (untyped group_link) -> untyped
+
+      def refresh_project_authorizations_asynchronously: (untyped project) -> untyped
+    end
+  end
+end

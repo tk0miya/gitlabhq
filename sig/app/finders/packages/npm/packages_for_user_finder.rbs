@@ -1,0 +1,21 @@
+module Packages
+  module Npm
+    class PackagesForUserFinder < ::Packages::GroupOrProjectPackageFinder
+      extend ::Gitlab::Utils::Override
+
+      def execute: () -> untyped
+
+      private
+
+      def packages: () -> untyped
+
+      def group_packages: () -> untyped
+
+      # This overrides projects_visible_to_reporters in app/finders/concerns/packages/finder_helper.rb
+      # to implement npm-specific optimizations
+      def projects_visible_to_reporters: (untyped user, within_group: untyped, ?_within_public_package_registry: bool) -> untyped
+
+      def packages_class: () -> untyped
+    end
+  end
+end

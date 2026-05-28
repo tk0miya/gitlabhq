@@ -1,0 +1,37 @@
+module MergeRequests
+  class SquashService
+    @merge_request: untyped
+
+    @target_project: untyped
+
+    @current_user: untyped
+
+    @commit_message: untyped
+
+    include BaseServiceUtility
+
+    include MergeRequests::ErrorLogger
+
+    def initialize: (merge_request: untyped, current_user: untyped, commit_message: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader merge_request: untyped
+
+    attr_reader target_project: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader commit_message: untyped
+
+    def squash!: () -> untyped
+
+    def squash_forbidden?: () -> untyped
+
+    def repository: () -> untyped
+
+    def message: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Gitlab
+  module RepositoryUrlBuilder
+    def self.build: (untyped path, ?protocol: ::Symbol) -> untyped
+
+    private
+
+    def self.ssh_url: (untyped path) -> untyped
+
+    def self.http_url: (untyped path) -> untyped
+  end
+end

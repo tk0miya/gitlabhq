@@ -1,0 +1,13 @@
+module Resolvers
+  module Ci
+    class RunnerGroupsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      include ResolvesGroups
+
+      alias runner object
+
+      def resolve_with_lookahead: (**untyped args) -> (nil | untyped)
+    end
+  end
+end

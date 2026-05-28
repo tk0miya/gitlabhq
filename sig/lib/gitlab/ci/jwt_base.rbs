@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    class JwtBase < ::JSONWebToken::Token
+      @key: untyped
+
+      NoSigningKeyError: untyped
+
+      def self.decode: (untyped token, untyped key) -> untyped
+
+      def encoded: () -> untyped
+
+      private
+
+      def key: () -> untyped
+
+      def kid: () -> untyped
+    end
+  end
+end

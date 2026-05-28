@@ -1,0 +1,33 @@
+module Gitlab
+  module Kas
+    class ServerInfoPresenter < Gitlab::View::Presenter::Delegated
+      GROUP: "gitlab-org/cluster-integration"
+
+      PROJECT: "gitlab-agent"
+
+      def git_ref_for_display: () -> (nil | untyped)
+
+      def git_ref_url: () -> (nil | untyped)
+
+      private
+
+      def build_git_ref_url: () -> untyped
+
+      def commit: () -> (nil | untyped)
+
+      def valid_commit_ref?: () -> untyped
+
+      def tag: () -> (untyped | nil)
+
+      def valid_version_tag?: () -> untyped
+
+      def git_ref_path: () -> (untyped | untyped | nil)
+
+      def build_commit_path: () -> untyped
+
+      def build_tag_path: () -> untyped
+
+      def url_helpers: () -> untyped
+    end
+  end
+end

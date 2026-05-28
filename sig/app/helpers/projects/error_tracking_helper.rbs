@@ -1,0 +1,14 @@
+module Projects::ErrorTrackingHelper
+  def error_tracking_data: (untyped current_user, untyped project) -> { "index-path" => untyped, "user-can-enable-error-tracking" => untyped, "enable-error-tracking-link" => untyped, "error-tracking-enabled" => untyped, "integrated-error-tracking-enabled" => untyped, "project-path" => untyped, "list-path" => untyped, "illustration-path" => untyped, "show-integrated-tracking-disabled-alert" => untyped }
+
+  def error_details_data: (untyped project, untyped issue_id) -> { "issue-id" => untyped, "project-path" => untyped, "issue-update-path" => untyped, "project-issues-path" => untyped, "issue-stack-trace-path" => untyped, "integrated-error-tracking-enabled" => untyped }
+
+  private
+
+  # Should show the alert if the FF was turned off after the integrated client has been configured.
+  def show_integrated_tracking_disabled_alert?: (untyped project) -> (false | untyped)
+
+  def integrated_tracking_enabled?: (untyped project) -> untyped
+
+  def integrated_client_enabled?: (untyped project) -> untyped
+end

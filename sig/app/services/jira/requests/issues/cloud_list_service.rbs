@@ -1,0 +1,24 @@
+# rubocop:disable Gitlab/BoundedContexts -- Parent class ListService already excluded
+module Jira
+  module Requests
+    module Issues
+      class CloudListService < ListService
+        @next_page_token: untyped
+
+        def initialize: (untyped jira_integration, ?::Hash[untyped, untyped] params) -> void
+
+        private
+
+        attr_reader next_page_token: untyped
+
+        def api_version: () -> 3
+
+        def url: () -> untyped
+
+        def build_success_response: (untyped response) -> untyped
+
+        def empty_payload: () -> untyped
+      end
+    end
+  end
+end

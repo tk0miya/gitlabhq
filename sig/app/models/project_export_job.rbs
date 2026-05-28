@@ -1,0 +1,13 @@
+class ProjectExportJob < ApplicationRecord
+  include EachBatch
+
+  include AfterCommitQueue
+
+  EXPIRES_IN: untyped
+
+  STATUS: { queued: 0, started: 1, finished: 2, failed: 3 }
+
+  private
+
+  def audit_project_exported: () -> (nil | untyped)
+end

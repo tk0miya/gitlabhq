@@ -1,0 +1,16 @@
+module Types
+  module Ci
+    module Catalog
+      # rubocop: disable Graphql/AuthorizeTypes
+      class ResourceType < BaseObject
+        def web_path: () -> untyped
+
+        def starrers_path: () -> untyped
+
+        # rubocop: disable GraphQL/ResolverMethodLength -- this will be refactored:
+        # https://gitlab.com/gitlab-org/gitlab/-/issues/510648
+        def topics: () -> untyped
+      end
+    end
+  end
+end

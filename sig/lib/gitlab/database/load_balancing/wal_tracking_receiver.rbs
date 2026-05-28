@@ -1,0 +1,11 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      module WalTrackingReceiver
+        # NOTE: If there's no entry for a load balancer or no WAL locations were passed
+        # we assume the sender does not care about LB and we assume nodes are in-sync.
+        def databases_in_sync?: (untyped wal_locations) -> (true | untyped)
+      end
+    end
+  end
+end

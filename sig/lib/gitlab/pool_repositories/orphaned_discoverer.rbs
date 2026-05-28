@@ -1,0 +1,53 @@
+module Gitlab
+  module PoolRepositories
+    class OrphanedDiscoverer
+      @logger: untyped
+
+      @output_file: untyped
+
+      @verbose: untyped
+
+      @orphaned_pools: untyped
+
+      @csv_writer: untyped
+
+      @discovery_service: untyped
+
+      @storage_scanner: untyped
+
+      POOLS_BATCH_SIZE: 100
+
+      STATEMENT_TIMEOUT: "5min"
+
+      def initialize: (output_file: untyped, ?logger: untyped?, ?verbose: bool, ?csv_writer: untyped?, ?discovery_service: untyped?, ?storage_scanner: untyped?) -> void
+
+      attr_reader orphaned_pools: untyped
+
+      def run!: () -> untyped
+
+      private
+
+      def log: (untyped message) -> untyped
+
+      def discover_orphaned_pools: () -> untyped
+
+      def scan_all_pools: () -> untyped
+
+      def scan_gitaly_pools: () -> untyped
+
+      def check_pool: (untyped pool) -> untyped
+
+      def check_disk_path_mismatch: (untyped pool) -> (untyped | nil)
+
+      def fetch_gitaly_pool: (untyped project) -> untyped
+
+      def paths_match?: (untyped disk_path, untyped relative_path) -> untyped
+
+      def log_orphan: (untyped pool_repository, untyped reasons, ?gitaly_relative_path: untyped?) -> untyped
+
+      def report_results: () -> (nil | untyped)
+
+      def with_extended_statement_timeout: () { () -> untyped } -> untyped
+    end
+  end
+end

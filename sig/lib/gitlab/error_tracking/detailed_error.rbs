@@ -1,0 +1,71 @@
+# This should be in the ErrorTracking namespace. For more details, see:
+# https://gitlab.com/gitlab-org/gitlab/-/issues/323342
+module Gitlab
+  module ErrorTracking
+    class DetailedError
+      include ActiveModel::Model
+
+      include GlobalID::Identification
+
+      attr_accessor count: untyped
+
+      attr_accessor culprit: untyped
+
+      attr_accessor external_base_url: untyped
+
+      attr_accessor external_url: untyped
+
+      attr_accessor first_release_last_commit: untyped
+
+      attr_accessor first_release_short_version: untyped
+
+      attr_accessor first_release_version: untyped
+
+      attr_accessor first_seen: untyped
+
+      attr_accessor frequency: untyped
+
+      attr_accessor gitlab_commit: untyped
+
+      attr_accessor gitlab_commit_path: untyped
+
+      attr_accessor gitlab_issue: untyped
+
+      attr_accessor gitlab_project: untyped
+
+      attr_accessor id: untyped
+
+      attr_accessor integrated: untyped
+
+      attr_accessor last_release_last_commit: untyped
+
+      attr_accessor last_release_short_version: untyped
+
+      attr_accessor last_release_version: untyped
+
+      attr_accessor last_seen: untyped
+
+      attr_accessor message: untyped
+
+      attr_accessor project_id: untyped
+
+      attr_accessor project_name: untyped
+
+      attr_accessor project_slug: untyped
+
+      attr_accessor short_id: untyped
+
+      attr_accessor status: untyped
+
+      attr_accessor tags: untyped
+
+      attr_accessor title: untyped
+
+      attr_accessor type: untyped
+
+      attr_accessor user_count: untyped
+
+      def self.declarative_policy_class: () -> "ErrorTracking::BasePolicy"
+    end
+  end
+end

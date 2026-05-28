@@ -1,0 +1,19 @@
+module Backup
+  module Tasks
+    class Packages < Task
+      @target: untyped
+
+      def self.id: () -> "packages"
+
+      def human_name: () -> untyped
+
+      def destination_path: () -> "packages.tar.gz"
+
+      private
+
+      def target: () -> untyped
+
+      def storage_path: () -> untyped
+    end
+  end
+end

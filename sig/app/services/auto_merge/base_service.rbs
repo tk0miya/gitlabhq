@@ -1,0 +1,43 @@
+module AutoMerge
+  class BaseService < ::BaseService
+    @logger: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include MergeRequests::AssignsMergeParams
+
+    def execute: (untyped merge_request) ?{ () -> untyped } -> untyped
+
+    def process: (untyped _) -> untyped
+
+    def update: (untyped merge_request) -> (:failed | untyped)
+
+    def cancel: (untyped merge_request) ?{ () -> untyped } -> untyped
+
+    def abort: (untyped merge_request, untyped reason) ?{ () -> untyped } -> untyped
+
+    def available_for?: (untyped merge_request) -> untyped
+
+    private
+
+    def availability_details: (untyped merge_request) ?{ () -> untyped } -> untyped
+
+    def skippable_available_for_checks: (untyped merge_request) -> untyped
+
+    # Overridden in child classes
+    def notify: (untyped merge_request) -> nil
+
+    def strategy: () -> untyped
+
+    def register_auto_merge_parameters!: (untyped merge_request) -> untyped
+
+    def clear_auto_merge_parameters!: (untyped merge_request) -> untyped
+
+    # Overridden in EE child classes
+    def clearable_auto_merge_parameters: () -> ::Array["should_remove_source_branch" | "commit_message" | "squash_commit_message" | "auto_merge_strategy"]
+
+    def track_exception: (untyped error, untyped merge_request) -> untyped
+
+    def logger: () -> untyped
+  end
+end

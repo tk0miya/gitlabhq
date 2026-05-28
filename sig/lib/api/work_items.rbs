@@ -1,0 +1,23 @@
+module API
+  module WorkItems
+    WORK_ITEMS_TAGS: ::Array["work_items"]
+
+    GROUP_ONLY_FILTER_PARAMS: ::Array[:include_ancestors | :include_descendants | :include_archived]
+
+    DEFAULT_FIELDS: ::Array[:id | :iid | :global_id | :title]
+
+    FULL_PATH_ID_REQUIREMENT: ::Regexp
+
+    SUBSCRIPTION_STATUS_ENUM: { "EXPLICITLY_SUBSCRIBED" => :explicitly_subscribed, "EXPLICITLY_UNSUBSCRIBED" => :explicitly_unsubscribed }
+
+    FIELD_NAME_LOOKUP: untyped
+
+    ALL_FIELDS: untyped
+
+    FAILURE_RESPONSES: ::Array[{ code: 400, message: "Bad request" } | { code: 401, message: "Unauthorized" } | { code: 403, message: "Forbidden - feature flag disabled" } | { code: 404, message: "Not found" }]
+
+    FEATURE_NAME_LOOKUP: untyped
+
+    FEATURE_SUPPORTED_VALUES: untyped
+  end
+end

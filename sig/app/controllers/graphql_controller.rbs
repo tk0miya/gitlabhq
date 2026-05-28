@@ -1,0 +1,134 @@
+class GraphqlController < ApplicationController
+  @exception_object: untyped
+
+  @permitted_params: untyped
+
+  @query: untyped
+
+  @multiplex_param: untyped
+
+  @context: untyped
+
+  @static_schema: untyped
+
+  @graphql_query_object: untyped
+
+  include Gitlab::Auth::AuthFinders
+
+  extend ::Gitlab::Utils::Override
+
+  ERROR_STATUS_MAP: ::Hash[untyped, { status: :internal } | { status: :unprocessable_entity } | { status: :unauthorized } | { status: :forbidden } | { status: :too_many_requests } | { status: :service_unavailable } | { status: :service_unavailable, custom_message: "Request timed out. Please try a less complex query or a smaller set of records." }]
+
+  # Header can be passed by tests to disable SQL query limits.
+  DISABLE_SQL_QUERY_LIMIT_HEADER: "HTTP_X_GITLAB_DISABLE_SQL_QUERY_LIMIT"
+
+  # Max size of the query text in characters
+  MAX_QUERY_SIZE: 10000
+
+  # Operations temporarily allowed to exceed MAX_QUERY_SIZE during the
+  # work-item widgets => features migration. Remove entries as the migration
+  # completes. Tracked in https://gitlab.com/gitlab-org/gitlab/-/issues/587970
+  EXTENDED_QUERY_SIZE_ALLOWLIST: untyped
+
+  EXTENDED_MAX_QUERY_SIZE: 12000
+
+  # The query string of a standard IntrospectionQuery, used to compare incoming requests for caching
+  CACHED_INTROSPECTION_QUERY_STRING: untyped
+
+  INTROSPECTION_QUERY_OPERATION_NAME: "IntrospectionQuery"
+
+  def execute: () -> untyped
+
+  def handle_internal_error: (untyped exception) -> untyped
+
+  def feature_category: () -> untyped
+
+  private
+
+  def handle_exception: (untyped exception) -> untyped
+
+  def check_dpop!: () -> (nil | untyped)
+
+  def enforce_language_server_restrictions: () -> untyped
+
+  def permitted_params: () -> untyped
+
+  def permitted_standalone_query_params: () -> untyped
+
+  def permitted_multiplex_params: () -> untyped
+
+  def disallow_mutations_for_get: () -> (nil | untyped)
+
+  def limit_query_size: () -> untyped
+
+  def any_mutating_query?: () -> untyped
+
+  def mutation?: (untyped query_string, ?untyped operation_name) -> untyped
+
+  # Tests may mark some GraphQL queries as exempt from SQL query limits
+  def disable_query_limiting: () -> (nil | untyped)
+
+  def set_user_last_activity: () -> (nil | untyped)
+
+  def track_vs_code_usage: () -> untyped
+
+  def track_jetbrains_usage: () -> untyped
+
+  def track_jetbrains_bundled_usage: () -> untyped
+
+  def track_visual_studio_usage: () -> untyped
+
+  def track_neovim_plugin_usage: () -> untyped
+
+  def track_gitlab_cli_usage: () -> untyped
+
+  def track_user_experience_sli_by_operation_name: () { () -> untyped } -> untyped
+
+  def execute_multiplex: () -> untyped
+
+  # SECURITY: This is the single execution hook for non-multiplex queries.
+  # The normalized_query argument is the same string validated by #disallow_mutations_for_get
+  # (via #query which applies #escape_single_quoted_newlines). Subclasses that
+  # override this method MUST use this argument for execution.
+  def execute_single_query: (untyped normalized_query) -> untyped
+
+  def query: () -> untyped
+
+  def multiplex_param: () -> untyped
+
+  def multiplex_queries: () -> untyped
+
+  # When modifying the context, also update GraphqlChannel#context if needed
+  # so that we have similar context when executing queries, mutations, and subscriptions
+  def context: () -> untyped
+
+  def build_variables: (untyped variable_info) -> untyped
+
+  # We support Apollo-style query batching where an array of queries will be in the `_json:` key.
+  # https://graphql-ruby.org/queries/multiplex.html#apollo-query-batching
+  #
+  # Uses raw #params intentionally: this is a routing check, not a data access.
+  # #permitted_params itself calls #multiplex? to decide which permit set to use,
+  # so reading #permitted_params here would create infinite recursion.
+  def multiplex?: () -> untyped
+
+  def authorize_access_api!: () -> (untyped | nil)
+
+  # Overridden from the ApplicationController to make the response look like
+  # a GraphQL response. That is nicely picked up in Graphiql.
+  def render_404: () -> untyped
+
+  def render_error: (untyped message, ?status: ::Integer, ?raised_at: untyped?) -> untyped
+
+  def append_info_to_payload: (untyped payload) -> untyped
+
+  def logs: () -> untyped
+
+  def execute_introspection_query: () -> untyped
+
+  def load_static_schema: () -> untyped
+
+  def introspection_query?: () -> untyped
+
+  def graphql_query_object: () -> untyped
+end

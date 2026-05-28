@@ -1,0 +1,28 @@
+module Todos
+  module Destroy
+    class DestroyedIssuableService
+      @target_id: untyped
+
+      @target_type: untyped
+
+      BATCH_SIZE: 100
+
+      # Since we are moving towards work items, in some instances we create todos with
+      # `target_type: WorkItem` in other instances we still create todos with `target_type: Issue`
+      # So when an issue/work item is deleted, we just make sure to delete todos for both target types
+      BOUND_TARGET_TYPES: ::Array["Issue" | "WorkItem"]
+
+      def initialize: (untyped target_id, untyped target_type) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader target_id: untyped
+
+      attr_reader target_type: untyped
+
+      def invalidate_todos_cache_counts: (untyped user_ids) -> untyped
+    end
+  end
+end

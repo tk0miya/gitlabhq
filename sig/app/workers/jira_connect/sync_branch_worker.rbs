@@ -1,0 +1,7 @@
+module JiraConnect
+  class SyncBranchWorker
+    include ApplicationWorker
+
+    def perform: (untyped project_id, untyped branch_name, untyped commit_shas, untyped update_sequence_id) -> (nil | untyped)
+  end
+end

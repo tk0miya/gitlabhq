@@ -1,0 +1,29 @@
+module ClickHouse
+  module MigrationSupport
+    module Errors
+      class Base < StandardError
+        def initialize: (?untyped? message) -> void
+      end
+
+      class IllegalMigrationNameError < Base
+        def initialize: (?untyped? name) -> void
+      end
+
+      IrreversibleMigration: untyped
+
+      LockError: untyped
+
+      class DuplicateMigrationVersionError < Base
+        def initialize: (?untyped? version) -> void
+      end
+
+      class DuplicateMigrationNameError < Base
+        def initialize: (?untyped? name) -> void
+      end
+
+      class UnknownMigrationVersionError < Base
+        def initialize: (?untyped? version) -> void
+      end
+    end
+  end
+end

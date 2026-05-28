@@ -1,0 +1,19 @@
+module DesignManagement
+  module RunsDesignActions
+    NoActions: untyped
+
+    # This concern requires the following methods to be implemented:
+    #   current_user, target_branch, repository, commit_message
+    #
+    # Before calling `run_actions`, you should ensure the repository exists, by
+    # calling `repository.create_if_not_exists`.
+    #
+    # @raise [NoActions] if actions are empty
+    # @return [DesignManagement::Version]
+    def run_actions: (untyped actions, ?skip_system_notes: bool) -> untyped
+
+    private
+
+    def post_process: (untyped version, untyped skip_system_notes) -> untyped
+  end
+end

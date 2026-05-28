@@ -1,0 +1,24 @@
+# rubocop:disable Scalability/IdempotentWorker -- transfer service itself is not idempotent
+module Namespaces
+  module Groups
+    class TransferWorker
+      include ApplicationWorker
+
+      include Namespaces::TransferWorkerHelper
+
+      LEASE_TIMEOUT: untyped
+
+      def self.lease_key: (untyped group_id) -> ::String
+
+      def perform: (untyped group_id, untyped new_parent_group_id, untyped user_id) -> (nil | untyped)
+
+      private
+
+      def execute_transfer: (untyped group, untyped new_parent_group, untyped user, untyped exclusive_lease) -> untyped
+
+      def handle_lease_conflict: (untyped group, untyped lease_key, untyped exclusive_lease) -> (nil | untyped)
+
+      def cancel_transfer_if_in_progress: (untyped group) -> (untyped | nil)
+    end
+  end
+end

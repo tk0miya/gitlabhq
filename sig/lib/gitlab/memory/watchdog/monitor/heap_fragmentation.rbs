@@ -1,0 +1,27 @@
+module Gitlab
+  module Memory
+    class Watchdog
+      module Monitor
+        # A monitor that observes Ruby heap fragmentation.
+        # See Gitlab::Metrics::Memory for how heap fragmentation is defined.
+        class HeapFragmentation
+          @max_heap_fragmentation: untyped
+
+          attr_reader max_heap_fragmentation: untyped
+
+          # max_heap_fragmentation:
+          #   The degree to which the Ruby heap is allowed to be fragmented. Range [0,1].
+          def initialize: (max_heap_fragmentation: untyped) -> void
+
+          def call: () -> ({ threshold_violated: false, payload: ::Hash[untyped, untyped] } | { threshold_violated: true, payload: untyped })
+
+          private
+
+          def payload: (untyped heap_fragmentation) -> { message: "heap fragmentation limit exceeded", memwd_cur_heap_frag: untyped, memwd_max_heap_frag: untyped }
+
+          def init_frag_limit_metrics: () -> untyped
+        end
+      end
+    end
+  end
+end

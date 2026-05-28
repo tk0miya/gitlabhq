@@ -1,0 +1,51 @@
+module Gitlab
+  module Ci
+    module Build
+      module Prerequisite
+        class ManagedResource < Base
+          @kas_client: untyped
+
+          ManagedResourceError: untyped
+
+          DEFAULT_TEMPLATE_NAME: "default"
+
+          BATCH_SIZE: 100
+
+          def unmet?: () -> (false | untyped)
+
+          def complete!: () -> (nil | untyped)
+
+          private
+
+          def tracked_objects: (untyped objects) -> untyped
+
+          def resource_management_enabled?: () -> (false | untyped)
+
+          def ensure_environment: () -> untyped
+
+          def get_template: () -> untyped
+
+          def template_yaml: () -> untyped
+
+          def get_custom_environment_template: () -> untyped
+
+          def valid_for_managed_resources?: (environment: untyped, build: untyped) -> untyped
+
+          def managed_resources_enabled_in_environment_options?: (build: untyped) -> untyped
+
+          def kas_client: () -> untyped
+
+          def environment: () -> untyped
+
+          def managed_resource: () -> untyped
+
+          def create_managed_resource: () -> untyped
+
+          def format_error_message: (untyped object_errors) -> ::String
+
+          def track_events: (untyped response) -> untyped
+        end
+      end
+    end
+  end
+end

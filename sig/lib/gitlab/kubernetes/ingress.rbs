@@ -1,0 +1,28 @@
+module Gitlab
+  module Kubernetes
+    class Ingress
+      @attributes: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      # Canary Ingress Annotations https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary
+      ANNOTATION_KEY_CANARY: "nginx.ingress.kubernetes.io/canary"
+
+      ANNOTATION_KEY_CANARY_WEIGHT: "nginx.ingress.kubernetes.io/canary-weight"
+
+      def initialize: (?::Hash[untyped, untyped] attributes) -> void
+
+      def canary?: () -> untyped
+
+      def canary_weight: () -> (nil | untyped)
+
+      def name: () -> untyped
+
+      private
+
+      def metadata: () -> untyped
+
+      def annotations: () -> untyped
+    end
+  end
+end

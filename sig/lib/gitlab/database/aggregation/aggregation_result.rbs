@@ -1,0 +1,47 @@
+module Gitlab
+  module Database
+    module Aggregation
+      class AggregationResult
+        @engine: untyped
+
+        @plan: untyped
+
+        @query: untyped
+
+        @options: untyped
+
+        @loaded_results: untyped
+
+        include Enumerable
+
+        def initialize: (untyped engine, untyped plan, untyped query, **untyped options) -> void
+
+        def limit: (untyped limit_value) -> untyped
+
+        def offset: (untyped offset_value) -> untyped
+
+        def count: () -> untyped
+
+        private
+
+        attr_reader engine: untyped
+
+        attr_reader plan: untyped
+
+        attr_reader query: untyped
+
+        attr_reader options: untyped
+
+        def loaded_results: () -> untyped
+
+        def load_data: () -> untyped
+
+        def load_count: () -> untyped
+
+        def format_data: (untyped raw_data) -> untyped
+
+        def transform_keys: (untyped raw_data) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,33 @@
+class UploadsController < ApplicationController
+  include UploadsActions
+
+  include WorkhorseRequest
+
+  UnknownUploadModelError: untyped
+
+  MODEL_CLASSES: ::Hash["user" | "project" | "note" | "group" | "appearance" | "personal_snippet" | "projects/topic" | "alert_management_metric_image" | "achievements/achievement" | "organizations/organization_detail" | "abuse_report" | nil, untyped]
+
+  def self.model_classes: () -> untyped
+
+  def uploader_class: () -> untyped
+
+  def find_model: () -> untyped
+
+  def authorized?: () -> untyped
+
+  def authorize_access!: () -> (untyped | nil)
+
+  def authorize_create_access!: () -> untyped
+
+  def render_unauthorized: () -> untyped
+
+  def cache_settings: () -> untyped
+
+  def secret?: () -> untyped
+
+  def upload_model_class: () -> untyped
+
+  def upload_model_class_has_mounts?: () -> untyped
+
+  def upload_mount_satisfied?: () -> (true | untyped)
+end

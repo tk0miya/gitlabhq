@@ -1,0 +1,22 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces commit range references with links.
+      #
+      # This filter supports cross-project references.
+      class CommitRangeReferenceFilter < AbstractReferenceFilter
+        @commit_map: untyped
+
+        def references_in: (untyped text, ?untyped pattern) { (untyped, untyped, untyped, untyped, untyped) -> untyped } -> untyped
+
+        def initialize: (*untyped args) -> void
+
+        def find_object: (untyped project, untyped id) -> (nil | untyped)
+
+        def url_for_object: (untyped range, untyped project) -> untyped
+
+        def object_link_title: (untyped range, untyped matches) -> nil
+      end
+    end
+  end
+end

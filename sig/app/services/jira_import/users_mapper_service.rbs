@@ -1,0 +1,55 @@
+module JiraImport
+  class UsersMapperService
+    @current_user: untyped
+
+    @project: untyped
+
+    @jira_integration: untyped
+
+    @start_at: untyped
+
+    @jira_users: untyped
+
+    @client: untyped
+
+    @project_member_ids: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    # MAX_USERS must match the pageSize value in app/assets/javascripts/jira_import/utils/constants.js
+    MAX_USERS: 50
+
+    # The class is called from UsersImporter and small batches of users are expected
+    # In case the mapping of a big batch of users is expected to be passed here
+    # the implementation needs to change here and handles the matching in batches
+    def initialize: (untyped current_user, untyped project, untyped start_at) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader project: untyped
+
+    attr_reader jira_integration: untyped
+
+    attr_reader start_at: untyped
+
+    def jira_users: () -> untyped
+
+    def client: () -> untyped
+
+    def url: () -> untyped
+
+    def jira_user_id: (untyped jira_user) -> untyped
+
+    def jira_user_name: (untyped jira_user) -> untyped
+
+    def matched_users: () -> untyped
+
+    def find_gitlab_id: (untyped jira_user) -> untyped
+
+    def project_member_ids: () -> untyped
+  end
+end

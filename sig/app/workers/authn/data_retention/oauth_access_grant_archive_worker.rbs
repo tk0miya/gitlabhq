@@ -1,0 +1,33 @@
+module Authn
+  module DataRetention
+    class OauthAccessGrantArchiveWorker
+      @connection: untyped
+
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      MAX_RUNTIME: untyped
+
+      REQUEUE_DELAY: untyped
+
+      ITERATION_DELAY: ::Float
+
+      BATCH_SIZE: 10000
+
+      SUB_BATCH_SIZE: 1000
+
+      CUTOFF_INTERVAL: untyped
+
+      def perform: (?untyped? cursor) -> (nil | untyped)
+
+      private
+
+      def cutoff_date: () -> untyped
+
+      def connection: () -> untyped
+
+      def log_sub_batch_deleted: (untyped count) -> (nil | untyped)
+    end
+  end
+end

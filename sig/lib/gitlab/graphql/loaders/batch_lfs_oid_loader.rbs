@@ -1,0 +1,21 @@
+module Gitlab
+  module Graphql
+    module Loaders
+      class BatchLfsOidLoader
+        @repository: untyped
+
+        @blob_id: untyped
+
+        def initialize: (untyped repository, untyped blob_id) -> void
+
+        def find: () -> untyped
+
+        private
+
+        attr_reader repository: untyped
+
+        attr_reader blob_id: untyped
+      end
+    end
+  end
+end

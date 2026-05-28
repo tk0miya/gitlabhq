@@ -1,0 +1,38 @@
+module Members
+  class MembersWithParents
+    @group: untyped
+
+    # Avoids an unnecessary SELECT when the group has no parents
+    @source_ids: untyped
+
+    attr_reader group: untyped
+
+    def initialize: (untyped group) -> void
+
+    # Returns all members for group and parents, with no filters
+    def all_members: () -> untyped
+
+    # Returns members based on filter options:
+    #
+    #   - `active_users`. DEPRECATED. If true, returns only members for active users
+    #   - `minimal_access`. Used only in EE (GitLab Premium). If true, returns
+    #      members which has minimal access. If false (default), does not return
+    #      members with minimal access
+    #
+    # NOTE : this method does not return pending invites, nor requests.
+    def members: (?active_users: bool, ?minimal_access: bool) -> untyped
+
+    private
+
+    # NOTE: minimal access is Premium, so in FOSS we will not include minimal access member
+    def filter_invites_and_requests: (untyped members, untyped _minimal_access) -> untyped
+
+    def source_ids: () -> untyped
+
+    def members_from_self_and_ancestors: () -> untyped
+
+    def members_from_self_and_ancestor_group_shares: () -> untyped
+
+    def smallest_value_arel: (untyped args, untyped column_alias) -> untyped
+  end
+end

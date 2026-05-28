@@ -1,0 +1,19 @@
+module Types
+  module Notes
+    # rubocop: disable Graphql/AuthorizeTypes
+    # This is presented through `NoteType` that has its own authorization
+    class DiffPositionType < BaseObject
+      def old_line: () -> (untyped | nil)
+
+      def new_line: () -> (untyped | nil)
+
+      def x: () -> (untyped | nil)
+
+      def y: () -> (untyped | nil)
+
+      def width: () -> (untyped | nil)
+
+      def height: () -> (untyped | nil)
+    end
+  end
+end

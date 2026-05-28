@@ -1,0 +1,19 @@
+module API
+  class MergeRequests < ::API::Base
+    include ::API::Concerns::McpAccess
+
+    include APIGuard
+
+    include PaginationParams
+
+    include Helpers::Unidiff
+
+    CONTEXT_COMMITS_POST_LIMIT: 20
+
+    def self.mr_update?: (untyped request) -> untyped
+
+    def self.mr_create?: (untyped request) -> untyped
+
+    def self.update_params_at_least_one_of: () -> ::Array[:assignee_id | :assignee_ids | :reviewer_ids | :description | :labels | :add_labels | :remove_labels | :milestone_id | :milestone | :remove_source_branch | :allow_collaboration | :allow_maintainer_to_push | :squash | :target_branch | :title | :state_event | :discussion_locked | :merge_after]
+  end
+end

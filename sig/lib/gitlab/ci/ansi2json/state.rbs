@@ -1,0 +1,69 @@
+# In this class we keep track of the state changes that the
+# Converter makes as it scans through the log stream.
+module Gitlab
+  module Ci
+    module Ansi2json
+      class State
+        @offset: untyped
+
+        @inherited_style: untyped
+
+        @open_sections: untyped
+
+        @stream_size: untyped
+
+        @current_line: untyped
+
+        @last_line_offset: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        SIGNATURE_KEY_SALT: "gitlab-ci-ansi2json-state"
+
+        SEPARATOR: "--"
+
+        attr_accessor offset: untyped
+
+        attr_accessor current_line: untyped
+
+        attr_accessor inherited_style: untyped
+
+        attr_accessor open_sections: untyped
+
+        attr_accessor last_line_offset: untyped
+
+        def initialize: (untyped new_state, untyped stream_size) -> void
+
+        def encode: () -> untyped
+
+        def open_section: (untyped section, untyped timestamp, untyped options) -> untyped
+
+        def close_section: (untyped section, untyped timestamp) -> (nil | untyped)
+
+        def section_open?: (untyped section) -> untyped
+
+        def new_line!: (?timestamps: untyped, ?offset: untyped?, ?style: untyped?) -> untyped
+
+        def set_last_line_offset: () -> untyped
+
+        def update_style: (untyped commands) -> untyped
+
+        private
+
+        def restore_state!: (untyped encoded_state) -> (nil | untyped)
+
+        def decode_state: (untyped data) -> (nil | untyped)
+
+        def sign: (untyped message) -> untyped
+
+        def verify: (untyped signed_message) -> (nil | untyped)
+
+        def valid_signature?: (untyped message, untyped signature) -> untyped
+
+        def signature_digest: () -> untyped
+
+        def signature_key: () -> untyped
+      end
+    end
+  end
+end

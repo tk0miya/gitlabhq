@@ -1,0 +1,15 @@
+# RsaKeyValidator
+#
+# Custom validator for RSA private keys.
+#
+#   class Project < ActiveRecord::Base
+#     validates :signing_key, rsa_key: true
+#   end
+#
+class RsaKeyValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+  private
+
+  def valid_rsa_key?: (untyped value) -> untyped
+end

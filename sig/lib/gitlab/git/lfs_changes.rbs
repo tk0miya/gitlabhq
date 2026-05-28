@@ -1,0 +1,15 @@
+module Gitlab
+  module Git
+    class LfsChanges
+      @repository: untyped
+
+      @newrevs: untyped
+
+      def initialize: (untyped repository, ?untyped? newrevs) -> void
+
+      def new_pointers: (?object_limit: untyped?, ?not_in: untyped?, ?dynamic_timeout: untyped?) -> untyped
+
+      def all_pointers: () -> untyped
+    end
+  end
+end

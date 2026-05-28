@@ -1,0 +1,17 @@
+module MergeRequests
+  class UpdateMergeScheduleService
+    @merge_request: untyped
+
+    @merge_after: untyped
+
+    def initialize: (untyped merge_request, merge_after: untyped) -> void
+
+    def execute: () -> (untyped | untyped | nil)
+
+    private
+
+    attr_reader merge_request: untyped
+
+    attr_reader merge_after: untyped
+  end
+end

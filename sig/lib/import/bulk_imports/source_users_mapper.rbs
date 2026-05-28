@@ -1,0 +1,46 @@
+# This class is used by Gitlab::ImportExport::Base::RelationFactory when mapping
+# users from the source to the destination.
+#
+# It is required that Import::SourceUser objects with source_user_identifier exists
+# before executing Gitlab::ImportExport::Base::RelationFactory. The latter class was
+# not modified to create Import::SourceUser if it does not exist since the class is
+# also used by file based imports.
+module Import
+  module BulkImports
+    class SourceUsersMapper
+      @context: untyped
+
+      @map: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      # Gitlab::ImportExport::Base::RelationFactory expects member_mapper#map to
+      # return an object that responds to []. For the other mappers a hash is
+      # returned. In this case SourceUsersMapper#map returns a class that responds
+      # to [].
+      class MockedHash
+        @source_user_mapper: untyped
+
+        @source_ghost_user_id: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped source_user_mapper, untyped source_ghost_user_id) -> void
+
+        def []: (untyped user_identifier) -> untyped
+
+        def ghost_user_id: () -> untyped
+      end
+
+      def initialize: (context: untyped) -> void
+
+      def map: () -> untyped
+
+      def include?: (untyped user_identifier) -> untyped
+
+      private
+
+      attr_reader context: untyped
+    end
+  end
+end

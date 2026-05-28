@@ -1,0 +1,17 @@
+module API
+  module Helpers
+    module SnippetsHelpers
+      extend Grape::API::Helpers
+
+      def content_for: (untyped snippet) -> untyped
+
+      def file_content_for: (untyped snippet) -> untyped
+    end
+
+    def process_create_params: (untyped args) -> untyped
+
+    def process_update_params: (untyped args) -> untyped
+
+    def validate_params_for_multiple_files: (untyped snippet) -> (nil | untyped)
+  end
+end

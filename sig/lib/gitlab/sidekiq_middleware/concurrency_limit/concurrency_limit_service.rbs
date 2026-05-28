@@ -1,0 +1,43 @@
+module Gitlab
+  module SidekiqMiddleware
+    module ConcurrencyLimit
+      class ConcurrencyLimitService
+        @worker_name: untyped
+
+        @queue_manager: untyped
+
+        @worker_execution_tracker: untyped
+
+        @limit_manager: untyped
+
+        REDIS_KEY_PREFIX: "sidekiq:concurrency_limit"
+
+        def initialize: (untyped worker_name) -> void
+
+        def self.add_to_queue!: (untyped job, untyped context) -> untyped
+
+        def self.has_jobs_in_queue?: (untyped worker_name) -> untyped
+
+        def self.resume_processing!: (untyped worker_name) -> untyped
+
+        def self.queue_size: (untyped worker_name) -> untyped
+
+        def self.metadata_key: (untyped worker_name) -> untyped
+
+        def self.cleanup_stale_trackers: (untyped worker_name) -> untyped
+
+        def self.track_execution_start: (untyped worker_name) -> untyped
+
+        def self.track_execution_end: (untyped worker_name) -> untyped
+
+        def self.concurrent_worker_count: (untyped worker_name) -> untyped
+
+        def self.current_limit: (untyped worker_name) -> untyped
+
+        def self.set_current_limit!: (untyped worker_name, limit: untyped) -> untyped
+
+        def self.over_the_limit?: (untyped worker_name) -> (false | untyped)
+      end
+    end
+  end
+end

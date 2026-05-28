@@ -1,0 +1,45 @@
+class ContextCommitsFinder
+  @project: untyped
+
+  @merge_request: untyped
+
+  @search: untyped
+
+  @author: untyped
+
+  @committed_before: untyped
+
+  @committed_after: untyped
+
+  @limit: untyped
+
+  def initialize: (untyped project, untyped merge_request, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  attr_reader project: untyped
+
+  attr_reader merge_request: untyped
+
+  attr_reader search: untyped
+
+  attr_reader author: untyped
+
+  attr_reader committed_before: untyped
+
+  attr_reader committed_after: untyped
+
+  attr_reader limit: untyped
+
+  def init_collection: () -> untyped
+
+  def search_params_present?: () -> untyped
+
+  def filter_existing_commits: (untyped commits) -> untyped
+
+  def search_commits: () -> untyped
+
+  def already_included_ids: () -> untyped
+end

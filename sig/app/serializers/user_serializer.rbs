@@ -1,0 +1,7 @@
+class UserSerializer < BaseSerializer
+  def represent: (untyped resource, ?::Hash[untyped, untyped] opts, ?untyped? entity) -> untyped
+
+  private
+
+  def preload_max_member_access: (untyped project, untyped users) -> untyped
+end

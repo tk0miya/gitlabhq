@@ -1,0 +1,19 @@
+module Resolvers
+  class ContainerRepositoryTagsResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    alias container_repository object
+
+    def resolve: (sort: untyped, **untyped filters) -> untyped
+
+    private
+
+    def parse_pagination_cursor: (untyped result, untyped direction) -> (nil | untyped)
+
+    def map_sort_field: (untyped sort_value) -> (nil | untyped)
+
+    def sort_tags: (untyped to_be_sorted, untyped sort) -> untyped
+
+    def tags: () -> untyped
+  end
+end

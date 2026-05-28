@@ -1,0 +1,19 @@
+module Integrations
+  class BeyondIdentity < Integration
+    def self.title: () -> "Beyond Identity"
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "beyond_identity"
+
+    def self.supported_events: () -> ::Array[untyped]
+
+    def self.activated_for_instance?: () -> untyped
+
+    def self.instance_specific?: () -> true
+
+    def execute: (untyped params) -> untyped
+  end
+end

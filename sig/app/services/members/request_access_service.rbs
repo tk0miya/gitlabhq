@@ -1,0 +1,13 @@
+module Members
+  class RequestAccessService < Members::BaseService
+    include Members::MembershipLockValidation
+
+    def execute: (untyped source) -> untyped
+
+    private
+
+    def default_access_level: () -> untyped
+
+    def can_request_access?: (untyped source) -> untyped
+  end
+end

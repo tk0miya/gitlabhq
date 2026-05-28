@@ -1,0 +1,21 @@
+module Ci
+  module Catalog
+    module Resources
+      # rubocop: disable CodeReuse/ActiveRecord -- Custom queries required
+      # rubocop: disable Database/AvoidUsingPluckWithoutLimit -- plucked relations are limited by the batch size
+      class AggregateLast30DayUsageService
+        BATCH_SIZE: 1000
+
+        def execute: () -> untyped
+
+        private
+
+        def update_component_usage_counts: () -> untyped
+
+        def update_resource_usage_counts: () -> untyped
+
+        def bulk_update: (model: untyped, table_name: untyped, id_column: untyped, update_column: untyped, timestamp_column: untyped, updates: untyped) -> untyped
+      end
+    end
+  end
+end

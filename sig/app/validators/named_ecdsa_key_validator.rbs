@@ -1,0 +1,17 @@
+# NamedEcdsaKeyValidator
+#
+# Custom validator for ecdsa private keys.
+# Golang currently doesn't support explicit curves for ECDSA certificates
+# This validator checks if curve is set by name, not by parameters
+#
+#   class Project < ActiveRecord::Base
+#     validates :certificate_key, named_ecdsa_key: true
+#   end
+#
+class NamedEcdsaKeyValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (untyped | nil)
+
+  private
+
+  def explicit_ec?: (untyped value) -> untyped
+end

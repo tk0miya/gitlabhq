@@ -1,0 +1,78 @@
+module BulkImports
+  class BatchedRelationExportService
+    @user: untyped
+
+    @portable: untyped
+
+    @relation: untyped
+
+    @resolved_relation: untyped
+
+    @jid: untyped
+
+    @offline_export_id: untyped
+
+    @export: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    BATCH_CACHE_KEY: "bulk_imports/batched_relation_export/%{export_id}/%{batch_id}"
+
+    BATCH_SIZE_CACHE_KEY: "bulk_imports/batched_relation_export/%{export_id}/batch_size"
+
+    CACHE_DURATION: untyped
+
+    def self.cache_key: (untyped export_id, untyped batch_id) -> untyped
+
+    def self.batch_size_cache_key: (untyped export_id) -> untyped
+
+    def initialize: (untyped user, untyped portable, untyped relation, untyped jid, ?offline_export_id: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader portable: untyped
+
+    attr_reader relation: untyped
+
+    attr_reader jid: untyped
+
+    attr_reader config: untyped
+
+    attr_reader resolved_relation: untyped
+
+    attr_reader offline_export_id: untyped
+
+    # Returns the batch size for processing relation exports.
+    #
+    # The batch size determines how many records are processed together in each batch
+    # during the export operation. We cache the batch size so that any retried workers
+    # for the same relation export use the same batch size.
+    #
+    # @return [Integer] The number of records to process per batch
+    def batch_size: () -> untyped
+
+    def export: () -> untyped
+
+    def objects_count: () -> untyped
+
+    def batches_count: () -> untyped
+
+    def start_export!: () -> untyped
+
+    def finish_export!: () -> untyped
+
+    def update_export!: (untyped event) -> untyped
+
+    # rubocop:disable Cop/InBatches
+    # rubocop:disable CodeReuse/ActiveRecord
+    def enqueue_batch_exports: () -> untyped
+
+    def find_or_create_batch: (untyped batch_number) -> untyped
+
+    def log_export_restart: () -> untyped
+  end
+end

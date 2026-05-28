@@ -1,0 +1,7 @@
+module Gitlab
+  class LogTimestampFormatter < Logger::Formatter
+    FORMAT: "%s, [%s #%d] %5s -- %s: %s\n"
+
+    def call: (untyped severity, untyped timestamp, untyped program_name, untyped message) -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Import
+  module Offline
+    class ExportWorker
+      include ApplicationWorker
+
+      def perform: (untyped offline_export_id) -> (nil | untyped)
+
+      def perform_failure: (untyped exception, untyped offline_export_id) -> (nil | untyped)
+    end
+  end
+end

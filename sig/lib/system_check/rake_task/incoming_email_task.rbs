@@ -1,0 +1,12 @@
+module SystemCheck
+  module RakeTask
+    # Used by gitlab:incoming_email:check rake task
+    class IncomingEmailTask
+      extend RakeTaskHelpers
+
+      def self.name: () -> "Incoming Email"
+
+      def self.checks: () -> ::Array[untyped]
+    end
+  end
+end

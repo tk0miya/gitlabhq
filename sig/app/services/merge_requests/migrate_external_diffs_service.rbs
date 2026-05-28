@@ -1,0 +1,15 @@
+module MergeRequests
+  class MigrateExternalDiffsService < ::BaseService
+    @diff: untyped
+
+    MAX_JOBS: 1000
+
+    attr_reader diff: untyped
+
+    def self.enqueue!: () -> untyped
+
+    def initialize: (untyped merge_request_diff) -> void
+
+    def execute: () -> untyped
+  end
+end

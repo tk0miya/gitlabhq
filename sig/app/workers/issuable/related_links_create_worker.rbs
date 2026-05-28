@@ -1,0 +1,35 @@
+module Issuable
+  class RelatedLinksCreateWorker
+    @params: untyped
+
+    @user: untyped
+
+    @issuable: untyped
+
+    @links: untyped
+
+    include ApplicationWorker
+
+    def perform: (untyped args) -> untyped
+
+    private
+
+    attr_reader params: untyped
+
+    attr_reader user: untyped
+
+    attr_reader issuable: untyped
+
+    attr_reader links: untyped
+
+    def issuable_class: () -> untyped
+
+    def create_issuable_notes!: () -> (nil | untyped)
+
+    def create_notes: () -> untyped
+
+    def create_system_note: (untyped noteable, untyped references, ?::Symbol method_name) -> (nil | ::String)
+
+    def track_new_links: () -> untyped
+  end
+end

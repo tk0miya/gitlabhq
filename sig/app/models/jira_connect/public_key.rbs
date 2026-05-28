@@ -1,0 +1,27 @@
+module JiraConnect
+  class PublicKey
+    @key: untyped
+
+    @uuid: untyped
+
+    # Public keys are created with JWT tokens via JiraConnect::CreateAsymmetricJwtService
+    # They need to be available for third party applications to verify the token.
+    # This should happen right after the application received the token so public keys
+    # only need to exist for a few minutes.
+    REDIS_EXPIRY_TIME: untyped
+
+    attr_reader key: untyped
+
+    attr_reader uuid: untyped
+
+    def self.create!: (key: untyped) -> untyped
+
+    def self.find: (untyped uuid) -> untyped
+
+    def initialize: (key: untyped, uuid: untyped) -> void
+
+    def save!: () -> self
+
+    def self.redis_key: (untyped uuid) -> ::String
+  end
+end

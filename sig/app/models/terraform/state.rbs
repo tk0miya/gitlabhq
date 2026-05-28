@@ -1,0 +1,47 @@
+module Terraform
+  class State < ApplicationRecord
+    include UsageStatistics
+
+    include AfterCommitQueue
+
+    include Gitlab::InternalEventsTracking
+
+    HEX_REGEXP: ::Regexp
+
+    UUID_LENGTH: 32
+
+    def latest_file: () -> untyped
+
+    def locked?: () -> untyped
+
+    def update_file!: (untyped data, version: untyped, build: untyped) -> untyped
+
+    private
+
+    #
+    # If a Terraform state was created before versioning support was
+    # introduced, it will have a single version record whose file
+    # uses a legacy naming scheme in object storage. To update
+    # these states and versions to use the new behaviour, we must do
+    # the following when creating the next version:
+    #
+    #  * Read the current, non-versioned file from the old location.
+    #  * Update the :versioning_enabled flag, which determines the
+    #    naming scheme
+    #  * Resave the existing file with the updated name and location,
+    #    using a version number one prior to the new version
+    #  * Create the new version as normal
+    #
+    # This migration only needs to happen once for each state, from
+    # then on the state will behave as if it was always versioned.
+    #
+    # The code can be removed in the next major version (14.0), after
+    # which any states that haven't been migrated will need to be
+    # recreated: https://gitlab.com/gitlab-org/gitlab/-/issues/258960
+    def migrate_legacy_version!: (data: untyped, version: untyped, build: untyped) -> untyped
+
+    def create_new_version!: (data: untyped, version: untyped, build: untyped) -> untyped
+
+    def parse_serial: (untyped data) -> untyped
+  end
+end

@@ -1,0 +1,8 @@
+module API
+  # MergeRequestDiff API
+  class MergeRequestDiffs < ::API::Base
+    include PaginationParams
+
+    include Helpers::Unidiff
+  end
+end

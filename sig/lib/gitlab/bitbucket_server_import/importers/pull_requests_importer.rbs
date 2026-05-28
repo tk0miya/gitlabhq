@@ -1,0 +1,39 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      class PullRequestsImporter
+        @repo: untyped
+
+        include ParallelScheduling
+
+        # Cannot exceed BitBucket Server's maximum page limit (1000)
+        # https://confluence.atlassian.com/bitbucketserver/configuration-properties-776640155.html#Configurationproperties-Paging
+        PER_PAGE: 100
+
+        def execute: () -> untyped
+
+        private
+
+        def fetch_missing_commits: (untyped pull_requests) -> untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def collection_method: () -> :pull_requests
+
+        def id_for_already_processed_cache: (untyped object) -> untyped
+
+        def repo: () -> untyped
+
+        def ref_path: (untyped pull_request) -> ::String
+
+        def source_branch_commit: (untyped source_branch_sha, untyped pull_request) -> untyped
+
+        def target_branch_commit: (untyped target_branch_sha) -> untyped
+
+        # To avoid overloading Gitaly, we use a smaller limit for pull requests than the one defined in the
+        # application settings.
+        def concurrent_import_jobs_limit: () -> 50
+      end
+    end
+  end
+end

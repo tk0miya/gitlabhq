@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    module EachDatabase
+      def self.each_connection: (?only: untyped?, ?include_shared: bool) { (untyped, untyped) -> untyped } -> untyped
+
+      def self.each_model_connection: (untyped models, ?only_on: untyped?) { (?) -> untyped } -> untyped
+
+      private
+
+      def self.select_base_models: (untyped names) -> untyped
+
+      def self.with_shared_model_connections: (untyped shared_model, untyped selected_databases) { (untyped, untyped) -> untyped } -> untyped
+
+      def self.with_model_connection: (untyped model, untyped selected_databases) { (untyped, untyped) -> untyped } -> (nil | untyped)
+
+      def self.with_shared_connection: (untyped connection, untyped connection_name) { () -> untyped } -> untyped
+    end
+  end
+end

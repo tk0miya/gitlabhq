@@ -1,0 +1,19 @@
+module Resolvers
+  class UsersResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    def resolve: (**untyped args) -> untyped
+
+    def ready?: (**untyped args) -> untyped
+
+    def authorize!: (untyped usernames) -> (untyped | nil)
+
+    private
+
+    def finder_params: (untyped group, untyped args) -> untyped
+
+    def find_authorized_group!: (untyped group_id) -> untyped
+
+    def parse_gids: (untyped gids) -> untyped
+  end
+end

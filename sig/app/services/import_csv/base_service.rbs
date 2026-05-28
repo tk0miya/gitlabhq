@@ -1,0 +1,70 @@
+module ImportCsv
+  class BaseService
+    @user: untyped
+
+    @project: untyped
+
+    @csv_io: untyped
+
+    @results: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::Allowable
+
+    # The largest CSV export (Work Items EE) has 26 columns.
+    # 50 provides headroom for future additions while bounding
+    # per-row memory allocation from malicious files.
+    MAX_COLUMNS: 50
+
+    # The longest known header line (~26 columns) is under 300 bytes.
+    # 2KB provides ample headroom while rejecting multi-MB malicious
+    # headers before any CSV parsing occurs.
+    MAX_HEADER_LINE_BYTES: untyped
+
+    def initialize: (untyped user, untyped project, untyped csv_io) -> void
+
+    PreprocessError: untyped
+
+    def execute: () -> untyped
+
+    def email_results_to_user: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader project: untyped
+
+    attr_reader csv_io: untyped
+
+    attr_reader results: untyped
+
+    alias current_user user
+
+    def attributes_for: (untyped row) -> untyped
+
+    def validate_headers_presence!: (untyped headers) -> untyped
+
+    def create_object_class: () -> untyped
+
+    def validate_structure!: () -> untyped
+
+    def validate_column_count!: (untyped header_line) -> (nil | untyped)
+
+    def preprocess!: () -> nil
+
+    def process_csv: () -> untyped
+
+    def with_csv_lines: () -> untyped
+
+    def csv_data: () -> untyped
+
+    def detect_col_sep: () -> untyped
+
+    def create_object: (untyped attributes) -> untyped
+
+    # Overidden in subclasses to support specific parameters
+    def extra_create_service_params: () -> ::Hash[untyped, untyped]
+  end
+end

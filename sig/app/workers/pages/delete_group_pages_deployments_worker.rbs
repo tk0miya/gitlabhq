@@ -1,0 +1,11 @@
+module Pages
+  class DeleteGroupPagesDeploymentsWorker
+    include Gitlab::EventStore::Subscriber
+
+    def handle_event: (untyped event) -> (nil | untyped)
+
+    private
+
+    def projects_with_pages: (untyped project_namespaces) -> untyped
+  end
+end

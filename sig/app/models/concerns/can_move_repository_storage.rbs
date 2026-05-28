@@ -1,0 +1,32 @@
+module CanMoveRepositoryStorage
+  extend ActiveSupport::Concern
+
+  RepositoryReadOnlyError: untyped
+
+  # Tries to set repository as read_only, checking for existing Git transfers in
+  # progress beforehand. Setting a repository read-only will fail if it is
+  # already in that state.
+  #
+  # It is assumed that `with_lock` is used here to ensure that no race condition
+  # appears between reading and writing the read-only column.
+  #
+  # @return nil. Failures will raise an exception
+  def set_repository_read_only!: (?skip_git_transfer_check: bool) -> untyped
+
+  # Set repository as writable again. Unlike setting it read-only, this will
+  # succeed if the repository is already writable.
+  def set_repository_writable!: () -> (untyped | nil)
+
+  def git_transfer_in_progress?: () -> untyped
+
+  def reference_counter: (type: untyped) -> untyped
+
+  private
+
+  # Not all resources that can move repositories have the `repository_read_only`
+  # in their table, for example groups. We need these methods to override the
+  # behavior in those classes in order to access the column.
+  def safe_read_repository_read_only_column: () -> untyped
+
+  def update_repository_read_only_column: (untyped value) -> untyped
+end

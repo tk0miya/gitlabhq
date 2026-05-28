@@ -1,0 +1,9 @@
+module EnvironmentHelper
+  def deployment_path: (untyped deployment) -> ::Array[untyped]
+
+  def deployment_link: (untyped deployment, ?text: untyped?) -> (nil | untyped)
+
+  def environments_detail_data: (untyped user, untyped project, untyped environment) -> { name: untyped, id: untyped, project_full_path: untyped, base_path: untyped, external_url: untyped, can_update_environment: untyped, can_destroy_environment: untyped, can_stop_environment: untyped, can_admin_environment: untyped, environments_fetch_path: untyped, environment_edit_path: untyped, environment_stop_path: untyped, environment_delete_path: untyped, environment_cancel_auto_stop_path: untyped, environment_terminal_path: untyped, has_terminals: untyped, is_environment_available: untyped, description_html: untyped, auto_stop_at: untyped, graphql_etag_key: untyped }
+
+  def environments_detail_data_json: (untyped user, untyped project, untyped environment) -> untyped
+end

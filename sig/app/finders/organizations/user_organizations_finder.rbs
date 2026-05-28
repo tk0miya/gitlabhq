@@ -1,0 +1,19 @@
+module Organizations
+  class UserOrganizationsFinder < OrganizationsFinder
+    @target_user: untyped
+
+    def initialize: (untyped current_user, untyped target_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader target_user: untyped
+
+    def base_scope: () -> untyped
+
+    def can_read_user_organizations?: () -> untyped
+  end
+end

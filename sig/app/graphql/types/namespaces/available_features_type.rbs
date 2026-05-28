@@ -1,0 +1,39 @@
+module Types
+  module Namespaces
+    class AvailableFeaturesType < BaseObject
+      include IssuesHelper
+
+      def blocked_issues_enabled?: () -> untyped
+
+      def custom_fields_enabled?: () -> untyped
+
+      def design_management_enabled?: () -> (false | untyped)
+
+      def epics_enabled?: () -> untyped
+
+      def group_bulk_edit_enabled?: () -> untyped
+
+      def issuable_health_status_enabled?: () -> untyped
+
+      def issue_date_filter_enabled?: () -> untyped
+
+      def issue_weights_enabled?: () -> untyped
+
+      def iterations_enabled?: () -> untyped
+
+      def linked_items_epics_enabled?: () -> untyped
+
+      def okrs_enabled?: () -> untyped
+
+      def quality_management_enabled?: () -> untyped
+
+      def scoped_labels_enabled?: () -> untyped
+
+      def subepics_enabled?: () -> untyped
+
+      def work_item_status_enabled?: () -> untyped
+
+      def has_duo_remote_flows_feature_enabled?: () -> untyped
+    end
+  end
+end

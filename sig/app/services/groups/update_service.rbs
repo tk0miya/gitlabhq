@@ -1,0 +1,52 @@
+module Groups
+  class UpdateService < Groups::BaseService
+    @full_path_before: untyped
+
+    @path_before: untyped
+
+    include UpdateVisibilityLevel
+
+    SETTINGS_PARAMS: ::Array[:allow_mfa_for_subgroups]
+
+    def execute: () -> (false | untyped)
+
+    private
+
+    def valid_path_change?: () -> (true | false)
+
+    def before_assignment_hook: (untyped group, untyped params) -> untyped
+
+    def renaming_group_with_container_registry_images?: () -> untyped
+
+    def renaming?: () -> untyped
+
+    def container_images_error: () -> untyped
+
+    def after_update: () -> untyped
+
+    def update_two_factor_requirement_for_subgroups: () -> (nil | untyped)
+
+    def reject_parent_id!: () -> untyped
+
+    # overridden in EE
+    def remove_unallowed_params: () -> untyped
+
+    def handle_changes: () -> untyped
+
+    def handle_settings_update: () -> untyped
+
+    def handle_crm_settings_update: () -> (nil | untyped)
+
+    def allowed_settings_params: () -> untyped
+
+    def valid_share_with_group_lock_change?: () -> (true | false)
+
+    def changing_share_with_group_lock?: () -> (false | untyped)
+
+    def update_shared_runners: () -> (true | false)
+
+    def non_assignable_group_params: () -> ::Array[untyped]
+
+    def publish_path_changed_event: () -> untyped
+  end
+end

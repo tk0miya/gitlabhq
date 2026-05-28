@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Status
+      class Extended < SimpleDelegator
+        @status: untyped
+
+        def initialize: (untyped status) -> void
+
+        def self.matches?: (untyped _subject, untyped _user) -> untyped
+      end
+    end
+  end
+end

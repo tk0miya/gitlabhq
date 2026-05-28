@@ -1,0 +1,59 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class TreeRestorer
+        @user: untyped
+
+        @shared: untyped
+
+        @project: untyped
+
+        @project_attributes: untyped
+
+        @project_members: untyped
+
+        @relation_reader: untyped
+
+        @relation_tree_restorer: untyped
+
+        @members_mapper: untyped
+
+        @reader: untyped
+
+        @import_failure_service: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader user: untyped
+
+        attr_reader shared: untyped
+
+        attr_reader project: untyped
+
+        def initialize: (user: untyped, shared: untyped, project: untyped) -> void
+
+        def restore: () -> untyped
+
+        private
+
+        def relation_reader: () -> untyped
+
+        def relation_tree_restorer: () -> untyped
+
+        def relation_tree_restorer_class: () -> untyped
+
+        def members_mapper: () -> untyped
+
+        def object_builder: () -> untyped
+
+        def relation_factory: () -> untyped
+
+        def reader: () -> untyped
+
+        def import_failure_service: () -> untyped
+
+        def importable_path: () -> "project"
+      end
+    end
+  end
+end

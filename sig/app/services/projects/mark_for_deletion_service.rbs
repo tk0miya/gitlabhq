@@ -1,0 +1,17 @@
+module Projects
+  class MarkForDeletionService < ::Namespaces::MarkForDeletionBaseService
+    private
+
+    def remove_permission: () -> :remove_project
+
+    def notification_method: () -> :project_scheduled_for_deletion
+
+    def resource_name: () -> "project"
+
+    def execute_deletion: () -> untyped
+
+    def update_service_params: () -> { name: untyped, path: untyped, send_move_instructions: false, marked_for_deletion_at: untyped, deleting_user: untyped }
+
+    def post_success: () -> untyped
+  end
+end

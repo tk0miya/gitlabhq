@@ -1,0 +1,25 @@
+module Gitlab
+  module GithubImport
+    module Clients
+      class Proxy
+        @client: untyped
+
+        attr_reader client: untyped
+
+        REPOS_COUNT_CACHE_KEY: "github-importer/provider-repo-count/%{type}/%{user_id}"
+
+        def initialize: (untyped access_token) -> void
+
+        def repos: (untyped search_text, untyped options) -> untyped
+
+        def count_repos_by: (untyped relation_type, untyped user_id) -> untyped
+
+        private
+
+        def fetch_repos_via_graphql: (untyped search_text, untyped options) -> { repos: untyped, page_info: untyped, count: untyped }
+
+        def fetch_and_cache_repos_count_via_graphql: (untyped relation_type, untyped key) -> untyped
+      end
+    end
+  end
+end

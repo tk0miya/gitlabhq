@@ -1,0 +1,11 @@
+module BulkImports
+  class ExportBatch < ApplicationRecord
+    STATE_VALUES: { created: 0, finished: 1, started: 2, failed: -1 }
+
+    BATCH_SIZE: 1000
+
+    TIMEOUT_AFTER_START: untyped
+
+    IN_PROGRESS_STATES: ::Array[:created | :started]
+  end
+end

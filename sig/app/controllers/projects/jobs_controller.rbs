@@ -1,0 +1,88 @@
+class Projects::JobsController < Projects::ApplicationController
+  @build: untyped
+
+  include Ci::AuthBuildTrace
+
+  include SendFileUpload
+
+  include ContinueParams
+
+  include ProjectStatsRefreshConflictsGuard
+
+  def index: () -> nil
+
+  def show: () -> untyped
+
+  def trace: () -> untyped
+
+  def retry: () -> untyped
+
+  def play: () -> untyped
+
+  def cancel: () -> untyped
+
+  def unschedule: () -> untyped
+
+  def erase: () -> untyped
+
+  def raw: () -> untyped
+
+  def viewer: () -> nil
+
+  def test_report_summary: () -> untyped
+
+  def terminal: () -> nil
+
+  # GET .../terminal.ws : implemented in gitlab-workhorse
+  def terminal_websocket_authorize: () -> untyped
+
+  def proxy_websocket_authorize: () -> untyped
+
+  private
+
+  attr_reader build: untyped
+
+  def authorize_read_build_report_results!: () -> (untyped | nil)
+
+  def authorize_update_build!: () -> (untyped | nil)
+
+  def authorize_cancel_build!: () -> (untyped | nil)
+
+  def authorize_erase_build!: () -> (untyped | nil)
+
+  def authorize_use_build_terminal!: () -> (untyped | nil)
+
+  def authorize_create_proxy_build!: () -> (untyped | nil)
+
+  def verify_api_request!: () -> untyped
+
+  def verify_proxy_request!: () -> untyped
+
+  def raw_send_params: () -> { type: "text/plain; charset=utf-8", disposition: "inline" }
+
+  def raw_redirect_params: () -> { query: { "response-content-type" => "text/plain; charset=utf-8", "response-content-disposition" => "inline" } }
+
+  def force_param: () -> untyped
+
+  def play_params: () -> untyped
+
+  def find_job_as_build: () -> untyped
+
+  def find_job_as_processable: () -> untyped
+
+  def build_path: (untyped build) -> untyped
+
+  def raw_trace_content_disposition: (untyped raw_data) -> ("inline" | "attachment")
+
+  def build_service_specification: () -> untyped
+
+  def proxy_subprotocol: () -> untyped
+
+  # This method provides the information to Workhorse
+  # about the service we want to proxy to.
+  # For security reasons, in case this operation is started by JS,
+  # it's important to use only sourced GitLab JS code
+  def proxy_websocket_service: (untyped service) -> untyped
+
+  def push_job_subscription_feature_flag: () -> untyped
+end

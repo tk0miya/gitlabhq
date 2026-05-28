@@ -1,0 +1,21 @@
+module Gitlab
+  module Git
+    class ProcessCommitWorkerPool
+      @jobs_enqueued: untyped
+
+      JOBS_THRESHOLD: 2000
+
+      PROCESS_COMMIT_MAX_JOBS_PER_S: 50
+
+      def initialize: (?jobs_enqueued: ::Integer) -> void
+
+      def get_and_increment_delay: () -> untyped
+
+      private
+
+      # The number of seconds to delay ProcessCommitWorker to ensure a maximum of PROCESS_COMMIT_MAX_JOBS_PER_S jobs
+      # executed per second.
+      def delay: () -> (0 | untyped)
+    end
+  end
+end

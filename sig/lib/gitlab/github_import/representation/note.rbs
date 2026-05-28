@@ -1,0 +1,31 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      class Note
+        @attributes: untyped
+
+        include Representable
+
+        NOTEABLE_TYPE_REGEX: ::Regexp
+
+        # Builds a note from a GitHub API response.
+        #
+        # note - An instance of `Hash` containing the note details.
+        def self.from_api_response: (untyped note, ?::Hash[untyped, untyped] additional_data) -> untyped
+
+        # Builds a new note using a Hash that was built from a JSON payload.
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        # attributes - A Hash containing the raw note details. The keys of this
+        #              Hash must be Symbols.
+        def initialize: (untyped attributes) -> void
+
+        def discussion_id: () -> untyped
+
+        alias issuable_type noteable_type
+
+        def github_identifiers: () -> { note_id: untyped, noteable_iid: untyped, noteable_type: untyped }
+      end
+    end
+  end
+end

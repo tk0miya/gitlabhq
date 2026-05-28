@@ -1,0 +1,17 @@
+module Types
+  module Namespaces
+    class SidebarType < BaseObject
+      alias namespace object
+
+      def open_issues_count: () -> untyped
+
+      def open_merge_requests_count: () -> untyped
+
+      def group_open_issues_count: () -> untyped
+
+      def open_work_items_count: () -> (nil | untyped)
+
+      def group_open_work_items_count: () -> untyped
+    end
+  end
+end

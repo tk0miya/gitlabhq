@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Validate
+          class Repository < Chain::Base
+            include Chain::Helpers
+
+            REFERENCE_NOT_FOUND_MESSAGE: "Reference not found"
+
+            def perform!: () -> untyped
+
+            def break?: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

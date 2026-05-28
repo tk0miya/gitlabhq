@@ -1,0 +1,15 @@
+module Projects
+  class RestoreService < ::Namespaces::RestoreBaseService
+    private
+
+    def remove_permission: () -> :remove_project
+
+    def resource_name: () -> "project"
+
+    def execute_restore: () -> untyped
+
+    def post_success: () -> untyped
+
+    def rename_resource: () -> untyped
+  end
+end

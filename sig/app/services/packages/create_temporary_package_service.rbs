@@ -1,0 +1,11 @@
+module Packages
+  class CreateTemporaryPackageService < ::Packages::CreatePackageService
+    PACKAGE_VERSION: "0.0.0"
+
+    def execute: (untyped packages_class, ?name: ::String) -> untyped
+
+    private
+
+    def version: () -> ::String
+  end
+end

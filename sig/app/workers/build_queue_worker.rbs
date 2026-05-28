@@ -1,0 +1,7 @@
+class BuildQueueWorker
+  include ApplicationWorker
+
+  include PipelineQueue
+
+  def perform: (untyped build_id) -> untyped
+end

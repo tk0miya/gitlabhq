@@ -1,0 +1,27 @@
+module Network
+  class Commit
+    @commit: untyped
+
+    @time: untyped
+
+    @spaces: untyped
+
+    @parent_spaces: untyped
+
+    include ActionView::Helpers::TagHelper
+
+    attr_accessor time: untyped
+
+    attr_accessor spaces: untyped
+
+    attr_accessor parent_spaces: untyped
+
+    def initialize: (untyped raw_commit) -> void
+
+    def method_missing: (untyped msg, *untyped args) { (?) -> untyped } -> untyped
+
+    def space: () -> (untyped | 0)
+
+    def parents: (untyped map) -> untyped
+  end
+end

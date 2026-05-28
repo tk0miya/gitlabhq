@@ -1,0 +1,23 @@
+module Gitlab
+  module Kubernetes
+    module ConfigMaps
+      class AwsNodeAuth
+        @node_role: untyped
+
+        attr_reader node_role: untyped
+
+        def initialize: (untyped node_role) -> void
+
+        def generate: () -> untyped
+
+        private
+
+        def metadata: () -> { "name" => "aws-auth", "namespace" => "kube-system" }
+
+        def data: () -> { "mapRoles" => untyped }
+
+        def instance_role_config: (untyped role) -> untyped
+      end
+    end
+  end
+end

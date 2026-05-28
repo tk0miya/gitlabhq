@@ -1,0 +1,21 @@
+module Sidebars
+  module Groups
+    module Menus
+      class KubernetesMenu < ::Sidebars::Menu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "cloud-gear"
+
+        def render?: () -> untyped
+
+        def extra_container_html_options: () -> { class: "shortcuts-kubernetes" }
+
+        def active_routes: () -> { controller: :clusters }
+
+        def serialize_as_menu_item_args: () -> untyped
+      end
+    end
+  end
+end

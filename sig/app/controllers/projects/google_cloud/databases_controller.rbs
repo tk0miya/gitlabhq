@@ -1,0 +1,37 @@
+module Projects
+  module GoogleCloud
+    class DatabasesController < Projects::GoogleCloud::BaseController
+      @js_data: untyped
+
+      @title: untyped
+
+      def index: () -> untyped
+
+      def new: () -> untyped
+
+      def create: () -> untyped
+
+      private
+
+      def permitted_params_create: () -> untyped
+
+      def enable_service_params: () -> { google_oauth2_token: untyped, gcp_project_id: untyped, environment_name: untyped }
+
+      def create_service_params: () -> { google_oauth2_token: untyped, gcp_project_id: untyped, environment_name: untyped, database_version: untyped, tier: untyped }
+
+      def error_message: (untyped message) -> untyped
+
+      def success_message: () -> untyped
+
+      def validate_product: () -> (untyped | nil)
+
+      def permitted_params: () -> untyped
+
+      def title: (untyped product) -> untyped
+
+      def form_title: (untyped product) -> untyped
+
+      def description: (untyped product) -> untyped
+    end
+  end
+end

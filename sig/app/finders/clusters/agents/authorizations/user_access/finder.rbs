@@ -1,0 +1,47 @@
+module Clusters
+  module Agents
+    module Authorizations
+      module UserAccess
+        class Finder
+          @user: untyped
+
+          @agent: untyped
+
+          @project: untyped
+
+          @limit: untyped
+
+          @preload: untyped
+
+          def initialize: (untyped user, ?agent: untyped?, ?project: untyped?, ?preload: bool, ?limit: untyped?) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader user: untyped
+
+          attr_reader agent: untyped
+
+          attr_reader project: untyped
+
+          attr_reader preload: untyped
+
+          attr_reader limit: untyped
+
+          def project_authorizations: () -> untyped
+
+          def group_authorizations: () -> untyped
+
+          def filter_by_agent: (untyped authorizations) -> untyped
+
+          def filter_by_project: (untyped authorizations) -> untyped
+
+          def apply_limit: (untyped authorizations) -> untyped
+
+          def apply_preload: (untyped authorizations) -> untyped
+        end
+      end
+    end
+  end
+end

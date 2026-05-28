@@ -1,0 +1,24 @@
+module Gitlab::Ci
+  module Badge
+    module Coverage
+      #
+      # Class that describes coverage badge metadata
+      #
+      class Metadata < Badge::Metadata
+        @project: untyped
+
+        @ref: untyped
+
+        @job: untyped
+
+        def initialize: (untyped badge) -> void
+
+        def title: () -> "coverage report"
+
+        def image_url: () -> untyped
+
+        def link_url: () -> untyped
+      end
+    end
+  end
+end

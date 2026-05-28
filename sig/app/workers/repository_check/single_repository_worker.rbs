@@ -1,0 +1,26 @@
+module RepositoryCheck
+  class SingleRepositoryWorker
+    include ApplicationWorker
+
+    include RepositoryCheckQueue
+
+    def perform: (untyped project_id) -> untyped
+
+    private
+
+    def update_repository_check_status: (untyped project, untyped healthy) -> untyped
+
+    def project_healthy?: (untyped project) -> untyped
+
+    def repo_healthy?: (untyped project) -> (true | untyped)
+
+    def wiki_repo_healthy?: (untyped project) -> (true | untyped)
+
+    def git_fsck: (untyped repository) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def has_changes?: (untyped project) -> untyped
+
+    def has_wiki_changes?: (untyped project) -> (false | untyped)
+  end
+end

@@ -1,0 +1,48 @@
+module AuthorizedProjectUpdate
+  # Service for finding the authorized_projects records of a user that needs addition or removal.
+  #
+  # Usage:
+  #
+  #     user = User.find_by(username: 'alice')
+  #     service = AuthorizedProjectUpdate::FindRecordsDueForRefreshService.new(some_user)
+  #     service.execute
+  class FindRecordsDueForRefreshService
+    @user: untyped
+
+    @source: untyped
+
+    @incorrect_auth_found_callback: untyped
+
+    @missing_auth_found_callback: untyped
+
+    @current_authorizations: untyped
+
+    @projects_with_duplicates: untyped
+
+    def initialize: (untyped user, ?source: untyped?, ?incorrect_auth_found_callback: untyped?, ?missing_auth_found_callback: untyped?) -> void
+
+    def execute: () -> ::Array[untyped]
+
+    def needs_refresh?: () -> untyped
+
+    def fresh_access_levels_per_project: () -> untyped
+
+    def current_authorizations_per_project: () -> untyped
+
+    def current_authorizations: () -> untyped
+
+    def fresh_authorizations: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader source: untyped
+
+    attr_reader incorrect_auth_found_callback: untyped
+
+    attr_reader missing_auth_found_callback: untyped
+
+    def projects_with_duplicates: () -> untyped
+  end
+end

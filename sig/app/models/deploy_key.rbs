@@ -1,0 +1,47 @@
+class DeployKey < Key
+  @ghost_user: untyped
+
+  @ghost_user_project: untyped
+
+  include FromUnion
+
+  include PolicyActor
+
+  include Presentable
+
+  include Gitlab::SQL::Pattern
+
+  def private?: () -> untyped
+
+  def orphaned?: () -> untyped
+
+  def almost_orphaned?: () -> untyped
+
+  def destroyed_when_orphaned?: () -> untyped
+
+  def user: () -> untyped
+
+  def audit_details: () -> untyped
+
+  def has_access_to?: (untyped project) -> untyped
+
+  def can_push_to?: (untyped project) -> untyped
+
+  def deploy_keys_project_for: (untyped project) -> untyped
+
+  def self.with_write_access_for_project: (untyped project, ?deploy_key: untyped?) -> untyped
+
+  # This is used for the internal logic of AuditEvents::BuildService.
+  def impersonated?: () -> false
+
+  private
+
+  def reject_deploy_keys_projects?: () -> untyped
+
+  def self.search: (untyped term, ?untyped? field) -> untyped
+
+  def ghost_user: () -> untyped
+
+  # finds first available project so a Ghost user can be identified for this deploy key
+  def ghost_user_project: () -> untyped
+end

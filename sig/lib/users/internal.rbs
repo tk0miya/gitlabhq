@@ -1,0 +1,62 @@
+module Users
+  class Internal
+    @organization: untyped
+
+    @organization_id: untyped
+
+    extend Gitlab::Utils::StrongMemoize
+
+    extend Forwardable
+
+    def self.in_organization: (untyped organization) -> untyped
+
+    # Checks against this bot are now included in every issue and work item
+    # detail and list page rendering and in GraphQL queries (especially for determining
+    # the web_url of an issue/work item).
+    # Because the bot never changes once created, we can memoize it for
+    # the lifetime of the application process. It also doesn't matter that
+    # different nodes may have different object instances of the bot.
+    # We only memoize the id because this is the information we check against.
+    def self.support_bot_id: () -> untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (?organization: untyped?) -> void
+
+    # Return (create if necessary) the ghost user. The ghost user
+    # owns records previously belonging to deleted users.
+    def ghost: () -> untyped
+
+    def alert_bot: () -> untyped
+
+    def security_bot: () -> untyped
+
+    def support_bot: () -> untyped
+
+    def support_bot_id: () -> untyped
+
+    def automation_bot: () -> untyped
+
+    def duo_code_review_bot: () -> untyped
+
+    def admin_bot: () -> untyped
+
+    def bot_avatar: (image: untyped) -> untyped
+
+    private
+
+    def organization: () -> untyped
+
+    # NOTE: This method is patched in spec/spec_helper.rb to allow use of exclusive lease in RSpec's
+    # :before_all scope to keep the specs DRY.
+    def unique_internal: (untyped scope, untyped username, untyped email_pattern) { (?) -> untyped } -> untyped
+
+    def username_with_organization_suffix: (untyped username) -> untyped
+
+    def display_name_with_organization_suffix: (untyped display_name) -> (untyped | ::String)
+
+    def first_organization: () -> untyped
+
+    def create_unique_internal: (untyped scope, untyped username, untyped email_pattern) { (?) -> untyped } -> untyped
+  end
+end

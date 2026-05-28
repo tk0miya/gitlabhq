@@ -1,0 +1,9 @@
+class MergeRequestPollWidgetEntity < Grape::Entity
+  @presenters: untyped
+
+  include RequestAwareEntity
+
+  private
+
+  def presenter: (untyped merge_request) -> untyped
+end

@@ -1,0 +1,45 @@
+module Ci
+  module Observability
+    class ExportService
+      @pipeline: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      OBSERVABILITY_VARIABLE: "GITLAB_OBSERVABILITY_EXPORT"
+
+      VALID_VARIABLE_VALUES: ::Array["traces" | "metrics" | "logs"]
+
+      def initialize: (untyped pipeline) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader pipeline: untyped
+
+      def should_export?: () -> untyped
+
+      def observability_available?: () -> untyped
+
+      def observability_settings: () -> untyped
+
+      def export_types: () -> (::Array[untyped] | untyped)
+
+      def export_data: () -> untyped
+
+      def export_traces: (untyped pipeline_data) -> untyped
+
+      def export_metrics: (untyped pipeline_data) -> untyped
+
+      def export_logs: (untyped pipeline_data) -> untyped
+
+      def integration: () -> untyped
+
+      def exporter: () -> untyped
+
+      def otel_endpoint_url: () -> untyped
+
+      def otel_headers: () -> ::Hash[untyped, untyped]
+    end
+  end
+end

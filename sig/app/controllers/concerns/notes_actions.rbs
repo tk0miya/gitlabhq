@@ -1,0 +1,81 @@
+module NotesActions
+  @note: untyped
+
+  @fresh_discussion: untyped
+
+  @noteable: untyped
+
+  @notes_finder: untyped
+
+  include RendersNotes
+
+  include Gitlab::Utils::StrongMemoize
+
+  extend ActiveSupport::Concern
+
+  # last_fetched_at is an integer number of microseconds, which is the same
+  # precision as PostgreSQL "timestamp" fields.
+  MICROSECOND: 1000000
+
+  MAX_NOTES_LIMIT: 100
+
+  def index: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def create: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def update: () -> (nil | untyped)
+
+  def destroy: () -> untyped
+
+  private
+
+  def gather_all_notes: () -> ::Array[untyped | { last_fetched_at: untyped }]
+
+  def merge_resource_events: (untyped notes) -> untyped
+
+  def note_html: (untyped note) -> untyped
+
+  def note_json: (untyped note) -> untyped
+
+  def diff_discussion_html: (untyped discussion) -> (nil | untyped)
+
+  def discussion_html: (untyped discussion) -> (nil | untyped)
+
+  def authorize_admin_note!: () -> (untyped | nil)
+
+  def create_note_params: () -> untyped
+
+  def update_note_params: () -> untyped
+
+  def set_polling_interval_header: (?interval: ::Integer) -> untyped
+
+  def noteable: () -> untyped
+
+  def require_noteable!: () -> (untyped | nil)
+
+  def require_last_fetched_at_header!: () -> (nil | untyped)
+
+  def last_fetched_at: () -> untyped
+
+  def notes_filter: () -> untyped
+
+  def notes_finder: () -> untyped
+
+  def note_serializer: () -> untyped
+
+  def discussion_serializer: () -> untyped
+
+  def note_project: () -> (nil | untyped)
+
+  def return_discussion?: () -> untyped
+
+  def use_note_serializer?: () -> (false | untyped)
+
+  def use_rapid_diffs_serializer?: () -> untyped
+
+  def rapid_diffs_serializer_options: () -> { request: untyped }
+
+  def errors_on_create: (untyped note) -> untyped
+end

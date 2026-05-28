@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    class RakeTaskHelpers
+      self.@databases: untyped
+
+      TASK_MAPPING: untyped
+
+      def self.execute_migration_task: (untyped task) -> untyped
+
+      private
+
+      def self.for_each_database: () { (untyped) -> untyped } -> untyped
+
+      def self.with_single_dump: () { () -> untyped } -> untyped
+
+      def self.databases: () -> untyped
+
+      def self.rails_tasks_for: (untyped task) -> untyped
+    end
+  end
+end

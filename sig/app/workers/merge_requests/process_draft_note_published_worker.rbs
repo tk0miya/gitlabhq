@@ -1,0 +1,7 @@
+module MergeRequests
+  class ProcessDraftNotePublishedWorker
+    include Gitlab::EventStore::Subscriber
+
+    def handle_event: (untyped event) -> (nil | untyped)
+  end
+end

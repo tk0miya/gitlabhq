@@ -1,0 +1,103 @@
+module Gitlab
+  module ErrorTracking
+    # Exceptions in this group will receive custom Sentry fingerprinting
+    CUSTOM_FINGERPRINTING: ::Array["Acme::Client::Error::BadNonce" | "Acme::Client::Error::NotFound" | "Acme::Client::Error::RateLimited" | "Acme::Client::Error::Timeout" | "Acme::Client::Error::UnsupportedOperation" | "ActiveRecord::ConnectionTimeoutError" | "Gitlab::RequestContext::RequestDeadlineExceeded" | "GRPC::DeadlineExceeded" | "JIRA::HTTPError" | "Rack::Timeout::RequestTimeoutException"]
+
+    PROCESSORS: ::Array[untyped]
+
+    def self.configure: () ?{ (untyped) -> untyped } -> untyped
+
+    # This should be used when you want to passthrough exception handling:
+    # rescue and raise to be caught in upper layers of the application.
+    #
+    # If the exception implements the method `sentry_extra_data` and that method
+    # returns a Hash, then the return value of that method will be merged into
+    # `extra`. Exceptions can use this mechanism to provide structured data
+    # to sentry in addition to their message and back-trace.
+    def self.track_and_raise_exception: (untyped exception, ?::Hash[untyped, untyped] extra, ?::Hash[untyped, untyped] tags) -> untyped
+
+    # This can be used for investigating exceptions that can be recovered from in
+    # code. The exception will still be raised in development and test
+    # environments.
+    #
+    # That way we can track down these exceptions with as much information as we
+    # need to resolve them.
+    #
+    # If the exception implements the method `sentry_extra_data` and that method
+    # returns a Hash, then the return value of that method will be merged into
+    # `extra`. Exceptions can use this mechanism to provide structured data
+    # to sentry in addition to their message and back-trace.
+    #
+    # Provide an issue URL for follow up.
+    # as `issue_url: 'http://gitlab.com/gitlab-org/gitlab/issues/111'`
+    def self.track_and_raise_for_dev_exception: (untyped exception, ?::Hash[untyped, untyped] extra, ?::Hash[untyped, untyped] tags) -> untyped
+
+    # This should be used when you want to track the exception and not raise
+    # with the default trackers (Sentry and Logger).
+    #
+    # If the exception implements the method `sentry_extra_data` and that method
+    # returns a Hash, then the return value of that method will be merged into
+    # `extra`. Exceptions can use this mechanism to provide structured data
+    # to sentry in addition to their message and back-trace.
+    def self.track_exception: (untyped exception, ?::Hash[untyped, untyped] extra, ?::Hash[untyped, untyped] tags) -> untyped
+
+    # This should be used when you only want to log the exception,
+    # but not send it to Sentry or raise.
+    #
+    # If the exception implements the method `sentry_extra_data` and that method
+    # returns a Hash, then the return value of that method will be merged into
+    # `extra`. Exceptions can use this mechanism to provide structured data
+    # to sentry in addition to their message and back-trace.
+    def self.log_exception: (untyped exception, ?::Hash[untyped, untyped] extra) -> untyped
+
+    # This should be used when you want to log the exception and passthrough
+    # exception handling: rescue and raise to be caught in upper layers of
+    # the application.
+    #
+    # If the exception implements the method `sentry_extra_data` and that method
+    # returns a Hash, then the return value of that method will be merged into
+    # `extra`. Exceptions can use this mechanism to provide structured data
+    # to sentry in addition to their message and back-trace.
+    def self.log_and_raise_exception: (untyped exception, ?::Hash[untyped, untyped] extra) -> untyped
+
+    private
+
+    def self.before_send: (untyped event, untyped hint) -> (nil | untyped)
+
+    def self.process_exception: (untyped exception, extra: untyped, ?tags: ::Hash[untyped, untyped], ?trackers: untyped) -> untyped
+
+    def self.default_trackers: () -> untyped
+
+    # Some configuration attributes like `dsn`, and `environment`
+    # can be configured both via `ENV` and `Application Settings`.
+    # The reason being is while GitLab.com uses application_settings
+    # in Geo installations, we can't override values in the primary database.
+    # Setting this value in application_settings would propagate the value
+    # to all Geo nodes, which doesn't solve that particular problem.
+    def self.sentry_dsn: () -> untyped
+
+    def self.sentry_environment: () -> untyped
+
+    def self.database_sentry_dsn: () -> (nil | untyped)
+
+    def self.env_sentry_dsn: () -> (nil | untyped)
+
+    def self.env_sentry_environment: () -> (nil | untyped)
+
+    def self.database_sentry_environment: () -> (nil | untyped)
+
+    def self.database_sentry_enabled?: () -> untyped
+
+    def self.env_sentry_enabled?: () -> untyped
+
+    def self.sentry_configurable?: () -> untyped
+
+    def self.should_raise_for_dev?: () -> untyped
+
+    # Group common, mostly non-actionable exceptions by type and message,
+    # rather than cause
+    def self.custom_fingerprinting: (untyped event, untyped ex) -> untyped
+
+    def self.inject_context_for_exception: (untyped event, untyped ex) -> untyped
+  end
+end

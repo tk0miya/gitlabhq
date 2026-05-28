@@ -1,0 +1,11 @@
+module Mutations
+  module Timelogs
+    class Create < Base
+      def resolve: (issuable_id: untyped, time_spent: untyped, summary: untyped, **untyped args) -> ({ timelog: nil, errors: ::Array[untyped] } | untyped)
+
+      private
+
+      def find_object: (id: untyped) -> untyped
+    end
+  end
+end

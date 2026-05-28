@@ -1,0 +1,52 @@
+module ContainerRegistry
+  #
+  # Class responsible for extracting project and repository name from
+  # image repository path provided by a containers registry API response.
+  #
+  # Example:
+  #
+  # some/group/my_project/my/image ->
+  #   project: some/group/my_project
+  #   repository: my/image
+  #
+  class Path
+    @path: untyped
+
+    @project: untyped
+
+    @components: untyped
+
+    @nodes: untyped
+
+    InvalidRegistryPathError: untyped
+
+    LEVELS_SUPPORTED: 3
+
+    attr_reader project: untyped
+
+    # The 'project' argument is optional.
+    # If provided during initialization, it will limit the path to the specified project,
+    # potentially reducing the need for a database query.
+    def initialize: (untyped path, ?project: untyped?) -> void
+
+    def valid?: () -> untyped
+
+    def components: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def nodes: () -> untyped
+
+    def has_project?: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def has_repository?: () -> (false | untyped)
+
+    def repository_project: () -> untyped
+
+    def repository_name: () -> (nil | untyped)
+
+    def project_path: () -> (nil | untyped)
+
+    def to_s: () -> untyped
+  end
+end

@@ -1,0 +1,17 @@
+class RemoveUnacceptedMemberInvitesWorker
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  EXPIRATION_THRESHOLD: untyped
+
+  BATCH_SIZE: 1000
+
+  def perform: () -> untyped
+
+  private
+
+  def build_destroy_metadata: (untyped batch) -> (::Array[untyped] | untyped)
+
+  def enqueue_bulk_claims: (untyped destroy_metadata) -> (nil | untyped)
+end

@@ -1,0 +1,14 @@
+module Gitlab
+  module BackgroundMigration
+    class DeleteOrphanedPartitionedCiRunnerMachineRecords < BatchedMigrationJob
+      class CiRunner < ::Ci::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      private
+
+      def base_relation: () -> untyped
+    end
+  end
+end

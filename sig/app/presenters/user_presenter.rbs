@@ -1,0 +1,19 @@
+class UserPresenter < Gitlab::View::Presenter::Delegated
+  def group_memberships: () -> untyped
+
+  def project_memberships: () -> untyped
+
+  def preferences_gitpod_path: () -> (untyped | nil)
+
+  def profile_enable_gitpod_path: () -> (untyped | nil)
+
+  def saved_replies: () -> untyped
+
+  private
+
+  def can?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def should_be_private?: () -> untyped
+
+  def application_gitpod_enabled?: () -> untyped
+end

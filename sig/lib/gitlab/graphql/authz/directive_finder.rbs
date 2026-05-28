@@ -1,0 +1,30 @@
+module Gitlab
+  module Graphql
+    module Authz
+      # Finds GranularScope directives by checking field, owner, implementing type, and return type
+      class DirectiveFinder
+        @field: untyped
+
+        include TypeUnwrapper
+
+        def initialize: (untyped field) -> void
+
+        def find_all: (untyped object) -> untyped
+
+        private
+
+        def find_all_on_field: () -> untyped
+
+        def find_all_on_owner: () -> untyped
+
+        def find_all_on_return_type: () -> untyped
+
+        def find_all_on_implementing_type: (untyped object) -> (nil | untyped)
+
+        def resolve_implementing_type: (untyped object) -> untyped
+
+        def find_all_directives: (untyped field_or_type) -> (nil | untyped)
+      end
+    end
+  end
+end

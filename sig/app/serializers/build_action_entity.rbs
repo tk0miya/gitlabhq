@@ -1,0 +1,11 @@
+class BuildActionEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  alias build object
+
+  def playable?: () -> untyped
+
+  def scheduled?: () -> untyped
+end

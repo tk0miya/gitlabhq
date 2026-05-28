@@ -1,0 +1,29 @@
+module Sidebars
+  module Projects
+    module Menus
+      class AnalyticsMenu < ::Sidebars::Menu
+        include Gitlab::Utils::StrongMemoize
+
+        def configure_menu_items: () -> (false | true)
+
+        def link: () -> untyped
+
+        def extra_container_html_options: () -> { class: "shortcuts-analytics" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "chart"
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def ci_cd_analytics_menu_item: () -> untyped
+
+        def repository_analytics_menu_item: () -> untyped
+
+        def cycle_analytics_menu_item: () -> untyped
+      end
+    end
+  end
+end

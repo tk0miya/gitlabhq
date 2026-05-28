@@ -1,0 +1,113 @@
+module Auth
+  class ContainerRegistryAuthenticationService < BaseService
+    @authentication_abilities: untyped
+
+    @scopes: untyped
+
+    @push_protection_unauthorized: untyped
+
+    AUDIENCE: "container_registry"
+
+    REGISTRY_LOGIN_ABILITIES: ::Array[:read_container_image | :create_container_image | :destroy_container_image | :destroy_container_image_tag | :update_container_image | :admin_container_image | :build_read_container_image | :build_create_container_image | :build_destroy_container_image]
+
+    PROTECTED_TAG_ACTIONS: ::Array["push" | "delete"]
+
+    ALLOWED_REGISTRY_SCOPE_NAMES: ::Array["catalog" | "statistics" | "background-migrations"]
+
+    def execute: (authentication_abilities: untyped) -> (untyped | { token: untyped })
+
+    def self.full_access_token: (*untyped names) -> untyped
+
+    def self.pull_access_token: (*untyped names) -> untyped
+
+    def self.pull_nested_repositories_access_token: (untyped name) -> untyped
+
+    def self.push_pull_nested_repositories_access_token: (untyped name, project: untyped) -> untyped
+
+    def self.push_pull_move_repositories_access_token: (untyped name, untyped new_namespace, project: untyped) -> untyped
+
+    def self.statistics_token: () -> untyped
+
+    def self.access_token: (untyped names_and_actions, ?::String type, ?use_key_as_project_path: bool, ?project: untyped?) -> untyped
+
+    def self.token_expire_at: () -> untyped
+
+    def self.access_metadata: (?project: untyped?, ?path: untyped?, ?use_key_as_project_path: bool, ?actions: untyped, ?user: untyped?) -> (untyped | nil)
+
+    private
+
+    def self.access_metadata_with_key_as_project_path: (project: untyped, path: untyped, ?actions: untyped, ?user: untyped?) -> untyped
+
+    def self.patterns_metadata: (untyped project, untyped user, untyped actions) -> { tag_deny_access_patterns: untyped }
+
+    def self.tag_deny_access_patterns: (untyped project, untyped user, untyped actions) -> (nil | untyped)
+
+    def authorized_token: (*untyped accesses) -> untyped
+
+    def user_info_token: () -> untyped
+
+    def scopes: () -> (::Array[untyped] | untyped)
+
+    def process_scope: (untyped scope) -> untyped
+
+    def process_registry_access: (untyped type, untyped name, untyped actions) -> (nil | { type: untyped, name: untyped, actions: ::Array["*"] })
+
+    def process_repository_access: (untyped type, untyped path, untyped actions) -> (nil | { type: untyped, name: untyped, actions: untyped, meta: untyped })
+
+    #
+    # Because we do not have two way communication with registry yet,
+    # we create a container repository image resource when push to the
+    # registry is successfully authorized.
+    #
+    def ensure_container_repository!: (untyped path, untyped actions) -> (nil | untyped)
+
+    # Overridden in EE
+    def find_or_create_repository_from_path: (untyped path) -> untyped
+
+    # Overridden in EE
+    def can_access?: (untyped requested_project, untyped requested_action) -> (false | untyped)
+
+    def build_can_delete?: (untyped requested_project) -> untyped
+
+    def registry: () -> untyped
+
+    def can_user?: (untyped ability, untyped project) -> untyped
+
+    def build_can_pull?: (untyped requested_project) -> untyped
+
+    def user_can_admin?: (untyped requested_project) -> untyped
+
+    def user_can_pull?: (untyped requested_project) -> untyped
+
+    def deploy_token_can_pull?: (untyped requested_project) -> untyped
+
+    def deploy_token_can_push?: (untyped requested_project) -> untyped
+
+    #
+    # We still support legacy pipeline triggers which do not have associated
+    # actor. New permissions model and new triggers are always associated with
+    # an actor. So this should be improved once
+    # https://gitlab.com/gitlab-org/gitlab-foss/issues/37452 is resolved.
+    #
+    def build_can_push?: (untyped requested_project) -> untyped
+
+    def user_can_push?: (untyped requested_project) -> untyped
+
+    def error: (untyped code, status: untyped, ?message: ::String) -> { errors: ::Array[{ code: untyped, message: untyped }], http_status: untyped }
+
+    def has_authentication_ability?: (untyped capability) -> untyped
+
+    def has_registry_ability?: () -> untyped
+
+    def repository_path_push_protected?: () -> (false | untyped)
+
+    def protection_rule_for_push_exists?: (current_user: untyped, project: untyped, repository_path: untyped) -> (untyped | true)
+
+    # Overridden in EE
+    def extra_info: () -> ::Hash[untyped, untyped]
+
+    def deploy_token: () -> (nil | untyped)
+
+    def log_if_actions_denied: (untyped type, untyped requested_project, untyped requested_actions, untyped authorized_actions) -> (nil | untyped)
+  end
+end

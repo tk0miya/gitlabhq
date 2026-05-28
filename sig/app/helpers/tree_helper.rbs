@@ -1,0 +1,57 @@
+module TreeHelper
+  include BlobHelper
+
+  include WebIdeButtonHelper
+
+  # Return an image icon depending on the file type and mode
+  #
+  # type - String type of the tree item; either 'folder' or 'file'
+  # mode - File unix mode
+  # name - File name
+  def tree_icon: (untyped type, untyped mode, untyped name) -> untyped
+
+  # Simple shortcut to File.join
+  def tree_join: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def on_top_of_branch?: (?untyped project, ?untyped ref) -> untyped
+
+  def can_edit_tree?: (?untyped? project, ?untyped? ref) -> (false | untyped)
+
+  def tree_edit_branch: (?untyped project, ?untyped ref) -> (nil | untyped)
+
+  # Generate a patch branch name that should look like:
+  # `username-branchname-patch-epoch`
+  # where `epoch` is the last 5 digits of the time since epoch (in
+  # milliseconds)
+  def patch_branch_name: (untyped ref) -> (nil | ::String)
+
+  def edit_in_new_fork_notice_now: () -> untyped
+
+  def edit_in_new_fork_notice: () -> untyped
+
+  def path_breadcrumbs: (?::Integer max_links) { (untyped, untyped) -> untyped } -> (untyped | nil)
+
+  def selected_branch: () -> untyped
+
+  def relative_url_root: () -> untyped
+
+  def breadcrumb_data_attributes: () -> untyped
+
+  def compare_path: (untyped project, untyped repository, untyped ref) -> (nil | untyped)
+
+  def vue_tree_header_app_data: (untyped project, untyped repository, untyped ref, untyped pipeline, untyped ref_type) -> { project_id: untyped, ref: untyped, ref_type: untyped, root_ref: untyped, breadcrumbs: untyped, project_root_path: untyped, project_path: untyped, compare_path: untyped, web_ide_button_options: untyped, web_ide_button_default_branch: untyped, ssh_url: untyped, http_url: untyped, xcode_url: untyped, download_links: untyped, download_artifacts: untyped, escaped_ref: untyped, show_no_ssh_key_message: untyped, user_settings_ssh_keys_path: untyped }
+
+  def vue_file_list_data: (untyped project, untyped ref) -> { project_path: untyped, project_short_path: untyped, target_branch: untyped, ref: untyped, escaped_ref: untyped, full_name: untyped, ref_type: untyped, has_revs_file: untyped }
+
+  def code_dropdown_ide_data: () -> { gitpod_enabled: untyped, show_web_ide_button: untyped, show_gitpod_button: untyped, web_ide_url: untyped, gitpod_url: untyped }
+
+  def download_links: (untyped project, untyped ref, untyped archive_prefix, untyped ref_type) -> untyped
+
+  def directory_download_links: (untyped project, untyped ref, untyped archive_prefix) -> untyped
+
+  def compact_code_dropdown_data: (untyped project, untyped ref, untyped ref_type) -> { ssh_url: untyped, http_url: untyped, xcode_url: untyped, ide_data: untyped, directory_download_links: untyped, show_no_ssh_key_message: untyped, user_settings_ssh_keys_path: untyped }
+end
+
+class Object
+  def previous_artifacts: (untyped project, untyped ref, untyped builds_with_artifacts) -> untyped
+end

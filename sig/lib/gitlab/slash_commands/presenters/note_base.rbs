@@ -1,0 +1,23 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      module NoteBase
+        GREEN: "#38ae67"
+
+        def color: (untyped _) -> untyped
+
+        def issue: () -> untyped
+
+        def project: () -> untyped
+
+        def author: () -> untyped
+
+        def fields: () -> ::Array[{ title: "Comment", value: untyped }]
+
+        private
+
+        attr_reader resource: untyped
+      end
+    end
+  end
+end

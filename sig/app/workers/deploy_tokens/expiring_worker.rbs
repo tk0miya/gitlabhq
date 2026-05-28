@@ -1,0 +1,35 @@
+module DeployTokens
+  class ExpiringWorker
+    @runtime_limiter: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    include CronjobQueue
+
+    MAX_RUNTIME: untyped
+
+    REQUEUE_DELAY: untyped
+
+    BATCH_SIZE: 100
+
+    def perform: (*untyped args) -> untyped
+
+    private
+
+    attr_reader runtime_limiter: untyped
+
+    def notification_intervals: () -> untyped
+
+    def process_deploy_tokens: (?::Symbol interval) -> untyped
+
+    def notify_users_of_deploy_token: (untyped deploy_token, untyped interval) -> (false | untyped)
+
+    def execute_resource_deploy_token_web_hooks: (untyped deploy_token, untyped interval) -> untyped
+
+    def log_error: (untyped exception, untyped message, untyped deploy_token, untyped project, ?::Hash[untyped, untyped] additional_data) -> untyped
+
+    def notification_service: () -> untyped
+  end
+end

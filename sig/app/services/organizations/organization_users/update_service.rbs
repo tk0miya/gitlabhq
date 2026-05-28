@@ -1,0 +1,31 @@
+module Organizations
+  module OrganizationUsers
+    class UpdateService
+      @organization_user: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      include BaseServiceUtility
+
+      def initialize: (untyped organization_user, current_user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader organization_user: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def allowed?: () -> untyped
+
+      def error_response: () -> untyped
+
+      def error_updating: () -> untyped
+    end
+  end
+end

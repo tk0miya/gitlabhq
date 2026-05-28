@@ -1,0 +1,22 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a set of needs dependencies.
+        #
+        class Needs < ::Gitlab::Config::Entry::ComposableArray
+          include ::Gitlab::Config::Entry::Validatable
+
+          NEEDS_CROSS_PIPELINE_DEPENDENCIES_LIMIT: 5
+
+          def value: () -> untyped
+
+          def number_parallel_build?: () -> (untyped | untyped | nil)
+
+          def composable_class: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module Auth
+    module Otp
+      module Strategies
+        class Base
+          @user: untyped
+
+          def initialize: (untyped user) -> void
+
+          private
+
+          attr_reader user: untyped
+
+          def success: () -> { status: :success }
+
+          def error: (untyped message, ?untyped? http_status) -> untyped
+
+          def error_from_response: (untyped response) -> untyped
+        end
+      end
+    end
+  end
+end

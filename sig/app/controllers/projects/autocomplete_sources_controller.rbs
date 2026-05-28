@@ -1,0 +1,33 @@
+class Projects::AutocompleteSourcesController < Projects::ApplicationController
+  @autocomplete_service: untyped
+
+  include AutocompleteSources::ExpiresIn
+
+  def members: () -> untyped
+
+  def issues: () -> untyped
+
+  def merge_requests: () -> untyped
+
+  def labels: () -> untyped
+
+  def milestones: () -> untyped
+
+  def commands: () -> untyped
+
+  def snippets: () -> untyped
+
+  def contacts: () -> untyped
+
+  def wikis: () -> untyped
+
+  private
+
+  def issuable_serializer: () -> untyped
+
+  def autocomplete_service: () -> untyped
+
+  def target: () -> untyped
+
+  def authorize_read_crm_contact!: () -> (untyped | nil)
+end

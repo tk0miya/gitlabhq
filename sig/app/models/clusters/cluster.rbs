@@ -1,0 +1,115 @@
+module Clusters
+  class Cluster < ApplicationRecord
+    @kube_ingress_domain: untyped
+
+    @instance_domain: untyped
+
+    prepend HasEnvironmentScope
+
+    include Presentable
+
+    include Gitlab::Utils::StrongMemoize
+
+    include FromUnion
+
+    include ReactiveCaching
+
+    include AfterCommitQueue
+
+    DEFAULT_ENVIRONMENT: "*"
+
+    KUBE_INGRESS_BASE_DOMAIN: "KUBE_INGRESS_BASE_DOMAIN"
+
+    MAX_ENVIRONMENT_SCOPE_LENGTH: 255
+
+    def self.has_one_cluster_application: (untyped name) -> untyped
+
+    alias provided_by_user? user?
+
+    def self.ancestor_clusters_for_clusterable: (untyped clusterable, ?hierarchy_order: ::Symbol) -> (::Array[untyped] | untyped)
+
+    def all_projects: () -> untyped
+
+    def status_name: () -> (untyped | :cleanup_ongoing)
+
+    def connection_error: () -> untyped
+
+    def node_connection_error: () -> untyped
+
+    def metrics_connection_error: () -> untyped
+
+    def connection_status: () -> untyped
+
+    def nodes: () -> untyped
+
+    def calculate_reactive_cache: () -> (nil | untyped)
+
+    def on_creation?: () -> untyped
+
+    def knative_pre_installed?: () -> untyped
+
+    def platform_kubernetes_active?: () -> untyped
+
+    def platform_kubernetes_rbac?: () -> untyped
+
+    def provider: () -> (untyped | untyped | nil)
+
+    def platform: () -> (untyped | nil)
+
+    def first_project: () -> untyped
+
+    alias project first_project
+
+    def first_group: () -> untyped
+
+    alias group first_group
+
+    def instance: () -> (untyped | nil)
+
+    def kubeclient: () -> (untyped | nil)
+
+    def kubernetes_namespace_for: (untyped environment, ?deployable: untyped) -> untyped
+
+    def allow_user_defined_namespace?: () -> untyped
+
+    def kube_ingress_domain: () -> untyped
+
+    def predefined_variables: () -> untyped
+
+    def delete_cached_resources!: () -> untyped
+
+    def clusterable: () -> (nil | untyped)
+
+    private
+
+    def unique_management_project_environment_scope: () -> (nil | untyped)
+
+    def unique_environment_scope: () -> (untyped | nil)
+
+    def managed_namespace: (untyped environment) -> untyped
+
+    def ci_configured_namespace: (untyped deployable) -> (nil | untyped)
+
+    def default_namespace: (untyped environment) -> untyped
+
+    def instance_domain: () -> untyped
+
+    def connection_data: () -> untyped
+
+    # To keep backward compatibility with AUTO_DEVOPS_DOMAIN
+    # environment variable, we need to ensure KUBE_INGRESS_BASE_DOMAIN
+    # is set if AUTO_DEVOPS_DOMAIN is set on any of the following options:
+    # ProjectAutoDevops#Domain, project variables or group variables,
+    # as the AUTO_DEVOPS_DOMAIN is needed for CI_ENVIRONMENT_URL
+    #
+    # This method should is scheduled to be removed on
+    # https://gitlab.com/gitlab-org/gitlab-foss/issues/56959
+    def legacy_auto_devops_domain: () -> (untyped | untyped | nil)
+
+    def restrict_modification: () -> (false | true)
+
+    def no_groups: () -> (untyped | nil)
+
+    def no_projects: () -> (untyped | nil)
+  end
+end

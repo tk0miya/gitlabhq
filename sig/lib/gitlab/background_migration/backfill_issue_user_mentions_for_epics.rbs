@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillIssueUserMentionsForEpics < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def backfill_description_mentions: (untyped sub_batch) -> untyped
+
+      def backfill_note_mentions: (untyped sub_batch) -> untyped
+    end
+  end
+end

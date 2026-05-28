@@ -1,0 +1,33 @@
+module RapidDiffs
+  class CommitPresenter < BasePresenter
+    extend ::Gitlab::Utils::Override
+
+    def initialize: (untyped subject, diff_view: untyped, diff_options: untyped, ?request_params: untyped?, ?current_user: untyped?, ?environment: untyped?) -> void
+
+    def diffs_stats_endpoint: () -> untyped
+
+    def diff_files_endpoint: () -> untyped
+
+    def diff_file_endpoint: () -> untyped
+
+    def discussions_endpoint: () -> untyped
+
+    def reload_stream_url: (?offset: untyped?, ?diff_view: untyped?, ?skip_old_path: untyped?, ?skip_new_path: untyped?) -> untyped
+
+    def user_permissions: () -> { can_create_note: untyped }
+
+    def noteable_type: () -> untyped
+
+    def preview_markdown_endpoint: () -> untyped
+
+    def markdown_docs_path: () -> untyped
+
+    def register_path: () -> untyped
+
+    def sign_in_path: () -> untyped
+
+    def report_abuse_path: () -> untyped
+
+    def offset: () -> 5
+  end
+end

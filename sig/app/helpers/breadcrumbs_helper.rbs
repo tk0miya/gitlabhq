@@ -1,0 +1,31 @@
+module BreadcrumbsHelper
+  @breadcrumbs_extra_links: untyped
+
+  @breadcrumb_title: untyped
+
+  @breadcrumb_collapsed_links: untyped
+
+  @schema_breadcrumb_list: untyped
+
+  def add_to_breadcrumbs: (untyped text, untyped link) -> untyped
+
+  def breadcrumb_title_link: () -> untyped
+
+  def breadcrumb_title: (untyped title) -> (nil | untyped)
+
+  def add_to_breadcrumb_collapsed_links: (untyped link, ?location: ::Symbol) -> untyped
+
+  def push_to_schema_breadcrumb: (untyped text, untyped href, ?untyped? avatar) -> untyped
+
+  def schema_breadcrumb_json: () -> untyped
+
+  def breadcrumbs_as_json: () -> untyped
+
+  private
+
+  def schema_breadcrumb_list: () -> untyped
+
+  def build_item_list_elements: () -> untyped
+
+  def ensure_absolute_url: (untyped link) -> untyped
+end

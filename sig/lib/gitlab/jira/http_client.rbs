@@ -1,0 +1,26 @@
+module Gitlab
+  module Jira
+    # Gitlab JIRA HTTP client to be used with jira-ruby gem, this subclasses JIRA::HTTPClient.
+    # Uses Gitlab::HTTP to make requests to JIRA REST API.
+    # The parent class implementation can be found at: https://github.com/sumoheavy/jira-ruby/blob/master/lib/jira/http_client.rb
+    class HttpClient < JIRA::HttpClient
+      @authenticated: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      def request: (*untyped args) -> untyped
+
+      def make_cookie_auth_request: () -> untyped
+
+      def make_request: (untyped http_method, untyped path, ?::String body, ?::Hash[untyped, untyped] headers) -> untyped
+
+      private
+
+      def default_timeout_for: (untyped param) -> untyped
+
+      def auth_params: () -> (::Hash[untyped, untyped] | { basic_auth: { username: untyped, password: untyped } })
+
+      def get_cookies: () -> untyped
+    end
+  end
+end

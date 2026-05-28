@@ -1,0 +1,14 @@
+module Resolvers
+  module Analytics
+    module CycleAnalytics
+      class ValueStreamsResolver < BaseResolver
+        # ignore id in FOSS
+        def resolve: (?id: untyped?) -> untyped
+
+        private
+
+        def service_params: (*untyped) -> { parent: untyped, current_user: untyped, params: ::Hash[untyped, untyped] }
+      end
+    end
+  end
+end

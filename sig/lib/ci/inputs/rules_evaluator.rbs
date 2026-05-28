@@ -1,0 +1,38 @@
+module Ci
+  module Inputs
+    #
+    # Evaluates input rules to determine which options and default values should apply.
+    # Finds the first rule that evaluates to `true` or uses the fallback rule.
+    #
+    #
+    class RulesEvaluator
+      @rules: untyped
+
+      @current_inputs: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      RULE_EXPRESSION_STATEMENT: untyped
+
+      RULE_EXPRESSION_KEY: :if
+
+      def initialize: (untyped rules, untyped current_inputs) -> void
+
+      def resolved_options: () -> untyped
+
+      def resolved_default: () -> untyped
+
+      private
+
+      attr_reader rules: untyped
+
+      attr_reader current_inputs: untyped
+
+      def matching_rule: () -> untyped
+
+      def rule_matches?: (untyped rule) -> (true | untyped)
+
+      def evaluate_condition: (untyped if_clause) -> untyped
+    end
+  end
+end

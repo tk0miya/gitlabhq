@@ -1,0 +1,19 @@
+module Ci
+  module Pipelines
+    class CreatePersistentRefService
+      @pipeline: untyped
+
+      TIMEOUT: untyped
+
+      CACHE_KEY: "pipeline:%{id}:create_persistent_ref_service"
+
+      def initialize: (untyped pipeline) -> void
+
+      def execute: () -> untyped
+
+      attr_reader pipeline: untyped
+
+      def pipeline_persistent_ref_cache_key: () -> untyped
+    end
+  end
+end

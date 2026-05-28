@@ -1,0 +1,19 @@
+module Gitlab
+  module Search
+    module AbuseValidators
+      class NoAbusiveTermLengthValidator < ActiveModel::EachValidator
+        def validate_each: (untyped instance, untyped attribute, untyped value) -> (nil | untyped)
+
+        private
+
+        def term_too_long?: (untyped term) -> untyped
+
+        def url_detected?: (untyped uri_str) -> untyped
+
+        def maximum_for_url: () -> untyped
+
+        def maximum: () -> untyped
+      end
+    end
+  end
+end

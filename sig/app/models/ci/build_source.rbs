@@ -1,0 +1,7 @@
+module Ci
+  class BuildSource < Ci::ApplicationRecord
+    include Ci::Partitionable
+
+    include EachBatch
+  end
+end

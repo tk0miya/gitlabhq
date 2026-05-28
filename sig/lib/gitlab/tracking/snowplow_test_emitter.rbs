@@ -1,0 +1,9 @@
+module Gitlab
+  module Tracking
+    class SnowplowTestEmitter < SnowplowTracker::Emitter
+      extend ::Gitlab::Utils::Override
+
+      def send_requests: (untyped events) -> untyped
+    end
+  end
+end

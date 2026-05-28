@@ -1,0 +1,15 @@
+module Users
+  module UserDismissible
+    include Dismissible
+
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def dismiss_endpoint: () -> untyped
+
+    def callout_class: () -> untyped
+
+    def user_dismissed?: () -> untyped
+  end
+end

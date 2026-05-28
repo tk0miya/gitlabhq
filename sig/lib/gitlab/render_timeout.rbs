@@ -1,0 +1,11 @@
+module Gitlab
+  module RenderTimeout
+    BACKGROUND: untyped
+
+    FOREGROUND: untyped
+
+    def self.timeout: (?background: untyped, ?foreground: untyped) { (?) -> untyped } -> untyped
+
+    def self.banzai_timeout_disabled?: () -> untyped
+  end
+end

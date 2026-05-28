@@ -1,0 +1,37 @@
+module Authz
+  module PermissionGroups
+    class Assignable < Base
+      BASE_PATH: "config/authz/permission_groups/assignable_permissions"
+
+      def self.all_permissions: () -> untyped
+
+      def self.available_permissions: () -> untyped
+
+      def self.for_permission: (untyped permission) -> untyped
+
+      def self.available_for_permission: (untyped permission) -> untyped
+
+      def self.config_path: () -> untyped
+
+      def self.definitions: () -> untyped
+
+      def self.available_definitions: () -> untyped
+
+      def deprecated?: () -> untyped
+
+      def available_for: () -> untyped
+
+      def available_for?: (untyped consumer) -> untyped
+
+      def category: () -> untyped
+
+      def category_name: () -> untyped
+
+      private
+
+      def category_definition: () -> untyped
+
+      def resource_definition: () -> untyped
+    end
+  end
+end

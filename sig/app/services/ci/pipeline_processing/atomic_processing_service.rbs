@@ -1,0 +1,79 @@
+module Ci
+  module PipelineProcessing
+    class AtomicProcessingService
+      @pipeline: untyped
+
+      @observe_processing_delay: untyped
+
+      @collection: untyped
+
+      # Change @new_collection back to local var if `ci_check_needs_processing_using_new_status_collection` reverted
+      @new_collection: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      attr_reader pipeline: untyped
+
+      attr_reader collection: untyped
+
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      BATCH_SIZE: 20
+
+      def initialize: (untyped pipeline) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def process!: () -> true
+
+      def update_stages!: () -> untyped
+
+      def update_stage!: (untyped stage) -> untyped
+
+      def sorted_update_stage!: (untyped stage) -> untyped
+
+      def ordered_jobs: (untyped stage) -> untyped
+
+      def load_jobs_in_batches: (untyped stage) -> untyped
+
+      def load_jobs: (untyped ids) -> untyped
+
+      def sort_jobs: (untyped jobs) -> untyped
+
+      def update_pipeline!: () -> untyped
+
+      def update_jobs_processed!: () -> untyped
+
+      def update_job!: (untyped job) -> (nil | untyped)
+
+      def status_of_previous_jobs: (untyped job) -> untyped
+
+      def observe_processing_delay: (untyped job) -> untyped
+
+      # Gets the jobs that changed from stopped to alive status since the initial status collection
+      # was evaluated. We determine this by checking if their current status is no longer stopped.
+      def new_alive_jobs: () -> (::Array[untyped] | untyped)
+
+      def project: () -> untyped
+
+      def lease_key: () -> ::String
+
+      def lease_timeout: () -> untyped
+
+      def lease_taken_log_level: () -> :info
+
+      def log_running_reset_skipped_jobs_service: (untyped jobs) -> untyped
+
+      # Temporary monitoring to determine if the last pipeline.needs_processing?
+      # can be replaced with new_collection.processing_jobs.any?.
+      # See https://gitlab.com/gitlab-org/gitlab/-/work_items/598584.
+      def log_processing_check_mismatch: (untyped needs_processing) -> (nil | untyped)
+
+      def check_needs_processing_using_new_collection?: () -> untyped
+    end
+  end
+end

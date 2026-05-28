@@ -1,0 +1,27 @@
+module Import
+  module BulkImports
+    module ExportUploadable
+      @config: untyped
+
+      @export_service: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      include ::Import::Offline::ExportUploadable
+
+      def config: () -> untyped
+
+      def export_service: () -> untyped
+
+      def compress_and_upload_export: () -> untyped
+
+      def compress_exported_relation: () -> untyped
+
+      def upload_compressed_file: () -> untyped
+
+      def exported_filepath: () -> untyped
+
+      def compressed_filename: () -> untyped
+    end
+  end
+end

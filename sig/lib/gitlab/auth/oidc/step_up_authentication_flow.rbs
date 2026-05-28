@@ -1,0 +1,91 @@
+module Gitlab
+  module Auth
+    module Oidc
+      class StepUpAuthenticationFlow
+        @session: untyped
+
+        @provider: untyped
+
+        @scope: untyped
+
+        STATE_REQUESTED: :requested
+
+        STATE_SUCCEEDED: :succeeded
+
+        STATE_FAILED: :failed
+
+        STATE_EXPIRED: :expired
+
+        attr_reader session: untyped
+
+        attr_reader provider: untyped
+
+        attr_reader scope: untyped
+
+        def initialize: (session: untyped, provider: untyped, scope: untyped) -> void
+
+        def requested?: () -> untyped
+
+        def succeeded?: () -> (false | untyped)
+
+        def failed?: () -> untyped
+
+        def expired?: () -> (false | untyped)
+
+        def enabled_by_config?: () -> untyped
+
+        def evaluate!: (untyped oidc_id_token_claims) -> untyped
+
+        def request!: () -> untyped
+
+        def succeed!: (?untyped? oidc_id_token_claims) -> untyped
+
+        def fail!: () -> untyped
+
+        # Returns the documentation link for this provider's step-up authentication configuration
+        #
+        # @return [String, nil] the documentation link URL or nil if not configured
+        def documentation_link: () -> untyped
+
+        def expire!: () -> untyped
+
+        # Checks if this step-up authentication session has expired
+        # and automatically transitions to expired state if needed
+        #
+        # @return [Boolean] true if the session has expired, false otherwise
+        def check_and_save_if_step_up_auth_expired!: () -> (nil | untyped)
+
+        private
+
+        def state: () -> untyped
+
+        def provider_scope_session_data: () -> untyped
+
+        def update_session_state: (untyped new_state) -> untyped
+
+        # Updates session with expiration data from OIDC ID token claims
+        #
+        # @param oidc_id_token_claims [Hash] the OIDC ID token claims containing expiration info
+        def update_expiration_data: (untyped oidc_id_token_claims) -> (nil | untyped)
+
+        # Extracts expiration data from OIDC ID token claims
+        #
+        # @param oidc_id_token_claims [Hash] the OIDC ID token claims containing expiration info
+        # @return [Hash] expiration data including exp timestamp
+        def extract_expiration_data: (untyped oidc_id_token_claims) -> (::Hash[untyped, untyped] | { "exp_timestamp" => untyped })
+
+        # Checks if session expiration is enabled for this provider's step-up auth
+        # Defaults to true (expiration enabled) for security
+        #
+        # @return [Boolean] true if expiration should be checked, false otherwise
+        def session_expiration_enabled?: () -> untyped
+
+        def omniauth_step_up_auth_session_data: () -> untyped
+
+        def conditions_fulfilled?: (untyped oidc_id_token_claims) -> untyped
+
+        def validate_scope!: (untyped scope) -> (nil | untyped)
+      end
+    end
+  end
+end

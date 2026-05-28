@@ -1,0 +1,51 @@
+module Gitlab
+  # Module containing GitLab's color mode definitions and helper methods
+  # for accessing them.
+  module ColorModes
+    self.@default_id: untyped
+
+    # Color mode ID used when no `default_color_mode` configuration setting is provided.
+    APPLICATION_DEFAULT: 3
+
+    APPLICATION_LIGHT: 1
+
+    APPLICATION_DARK: 2
+
+    APPLICATION_SYSTEM: 3
+
+    # Struct class representing a single Mode
+    Mode: untyped
+
+    def self.available_modes: () -> ::Array[untyped]
+
+    # Get a Mode by its ID
+    #
+    # If the ID is invalid, returns the default Mode.
+    #
+    # id - Integer ID
+    #
+    # Returns a Mode
+    def self.by_id: (untyped id) -> untyped
+
+    # Get the default Mode
+    #
+    # Returns a Mode
+    def self.default: () -> untyped
+
+    # Iterate through each Mode
+    #
+    # Yields the Mode object
+    def self.each: () { (?) -> untyped } -> untyped
+
+    # Get the Mode for the specified user, or the default
+    #
+    # user - User record
+    #
+    # Returns a Mode
+    def self.for_user: (untyped user) -> untyped
+
+    def self.valid_ids: () -> untyped
+
+    def self.default_id: () -> untyped
+  end
+end

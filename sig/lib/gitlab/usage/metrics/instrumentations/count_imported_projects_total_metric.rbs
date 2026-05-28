@@ -1,0 +1,21 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class CountImportedProjectsTotalMetric < DatabaseMetric
+          IMPORT_TYPES: ::Array["gitlab_project" | "gitlab" | "github" | "bitbucket" | "bitbucket_server" | "gitea" | "git" | "manifest" | "gitlab_migration"]
+
+          def value: () -> untyped
+
+          def to_sql: () -> ::String
+
+          private
+
+          def project_relation: () -> untyped
+
+          def entity_relation: () -> untyped
+        end
+      end
+    end
+  end
+end

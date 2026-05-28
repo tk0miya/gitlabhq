@@ -1,0 +1,34 @@
+class Groups::RunnersController < Groups::ApplicationController
+  @allow_registration_token: untyped
+
+  @group_runner_registration_token: untyped
+
+  @group_new_runner_path: untyped
+
+  @runner: untyped
+
+  # overridden in EE
+  def self.needs_authorize_read_runners: () -> ::Array[:index | :show]
+
+  def index: () -> untyped
+
+  def show: () -> nil
+
+  def edit: () -> nil
+
+  def update: () -> untyped
+
+  def new: () -> nil
+
+  def register: () -> (untyped | nil)
+
+  private
+
+  def runner: () -> untyped
+
+  def runner_params: () -> untyped
+
+  def authorize_update_runner!: () -> (nil | untyped)
+
+  def authorize_create_runners!: () -> (nil | untyped)
+end

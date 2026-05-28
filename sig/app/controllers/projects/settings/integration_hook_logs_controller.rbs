@@ -1,0 +1,19 @@
+module Projects
+  module Settings
+    class IntegrationHookLogsController < Projects::HookLogsController
+      @integration: untyped
+
+      @hook: untyped
+
+      extend Gitlab::Utils::Override
+
+      private
+
+      def after_retry_redirect_path: () -> untyped
+
+      def integration: () -> untyped
+
+      def hook: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Ci
+  class TrackPipelineTriggerEventsWorker
+    include Gitlab::EventStore::Subscriber
+
+    include Gitlab::InternalEventsTracking
+
+    def handle_event: (untyped event) -> (nil | untyped)
+  end
+end

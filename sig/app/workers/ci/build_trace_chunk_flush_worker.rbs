@@ -1,0 +1,9 @@
+module Ci
+  class BuildTraceChunkFlushWorker
+    include ApplicationWorker
+
+    include PipelineBackgroundQueue
+
+    def perform: (untyped id) -> untyped
+  end
+end

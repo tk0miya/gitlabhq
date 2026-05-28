@@ -1,0 +1,21 @@
+# Overrides `#serializable_hash` to raise an exception when called without the `only` option
+# in order to prevent accidentally exposing attributes.
+#
+# An `unsafe: true` option can also be passed in to bypass this check.
+#
+# `#serializable_hash` is used by ActiveModel serializers like `ActiveModel::Serializers::JSON`
+# which overrides `#as_json` and `#to_json`.
+#
+module BlocksUnsafeSerialization
+  extend ActiveSupport::Concern
+
+  extend ::Gitlab::Utils::Override
+
+  UnsafeSerializationError: untyped
+
+  def serializable_hash: (?untyped? options) -> untyped
+
+  private
+
+  def allow_serialization?: (?untyped? options) -> (false | untyped)
+end

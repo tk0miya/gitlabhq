@@ -1,0 +1,27 @@
+module Gitlab
+  module EtagCaching
+    class Store
+      InvalidKeyError: untyped
+
+      EXPIRY_TIME: untyped
+
+      SHARED_STATE_NAMESPACE: "etag:"
+
+      def get: (untyped key) -> untyped
+
+      def touch: (*untyped keys, ?only_if_missing: bool) -> untyped
+
+      private
+
+      def with_redis: () { (?) -> untyped } -> untyped
+
+      def generate_etag: () -> untyped
+
+      def redis_shared_state_key: (untyped key) -> untyped
+
+      def valid_key?: (untyped key) -> (true | untyped)
+
+      def skip_validation?: () -> untyped
+    end
+  end
+end

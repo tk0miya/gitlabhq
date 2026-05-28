@@ -1,0 +1,11 @@
+module MergeRequests
+  module LookAheadPreloads
+    extend ActiveSupport::Concern
+
+    private
+
+    def unconditional_includes: () -> ::Array[:target_project | :author]
+
+    def preloads: () -> { assignees: ::Array[:assignees], award_emoji: { award_emoji: ::Array[:awardable] }, reviewers: ::Array[:reviewers], participants: untyped, author: ::Array[:author], merged_at: ::Array[:metrics], closed_at: ::Array[:metrics], commit_count: ::Array[:metrics], diff_stats_summary: ::Array[:metrics], approved_by: ::Array[:approved_by_users], merge_after: ::Array[:merge_schedule], mergeable: ::Array[:merge_schedule], detailed_merge_status: ::Array[:merge_schedule | :latest_merge_request_diff], mergeability_checks: ::Array[:merge_schedule | :unresolved_notes | { target_project: ::Array[:lfs_file_locks], source_project: ::Array[:route | { namespace: :route }], latest_merge_request_diff: ::Array[:merge_request_diff_commits] }], milestone: ::Array[:milestone | { milestone: ::Array[:project | :group] }], security_auto_fix: ::Array[:author], head_pipeline: ::Array[:merge_request_diff | { head_pipeline: ::Array[:merge_request | :project] }], timelogs: ::Array[:timelogs], pipelines: ::Array[:merge_request_diffs], committers: ::Array[{ merge_request_diff: ::Array[:merge_request_diff_commits] }], suggested_reviewers: ::Array[:predictions], diff_stats: ::Array[{ latest_merge_request_diff: ::Array[:merge_request_diff_commits] }], source_branch_exists: ::Array[:source_project | { source_project: ::Array[:route] }], squash_read_only: { target_project: :project_setting }, web_url: { target_project: ::Array[:route | { namespace: ::Array[:route] }] } }
+  end
+end

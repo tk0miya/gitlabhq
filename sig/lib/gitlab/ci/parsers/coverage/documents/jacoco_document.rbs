@@ -1,0 +1,46 @@
+module Gitlab
+  module Ci
+    module Parsers
+      module Coverage
+        module Documents
+          class JacocoDocument < Nokogiri::XML::SAX::Document
+            @coverage_report: untyped
+
+            @merge_request_file_paths: untyped
+
+            @current_path_array: untyped
+
+            PATH_TAGS: ::Array["group" | "package" | "sourcefile"]
+
+            def initialize: (untyped coverage_report, untyped merge_request_file_paths) -> void
+
+            def error: (untyped error) -> untyped
+
+            def start_element: (untyped node_name, ?untyped attrs) -> (nil | untyped)
+
+            def end_element: (untyped node_name) -> (nil | untyped)
+
+            private
+
+            attr_accessor coverage_report: untyped
+
+            attr_accessor merge_request_file_paths: untyped
+
+            attr_accessor current_path_array: untyped
+
+            def parse_line: (untyped node_attrs) -> untyped
+
+            def current_path: () -> untyped
+
+            # Jacoco reports only provide the relative path
+            # so we need to match the files against the ones changed on the MR
+            # and provide the full path in our reports
+            def matched_full_path: () -> untyped
+
+            def unixify: (untyped path) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

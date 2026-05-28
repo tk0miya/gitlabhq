@@ -1,0 +1,144 @@
+module Gitlab
+  module ImportExport
+    module Group
+      class RelationTreeRestorer
+        @user: untyped
+
+        @shared: untyped
+
+        @importable: untyped
+
+        @relation_reader: untyped
+
+        @members_mapper: untyped
+
+        @object_builder: untyped
+
+        @relation_factory: untyped
+
+        @reader: untyped
+
+        @importable_attributes: untyped
+
+        @importable_path: untyped
+
+        @skip_on_duplicate_iid: untyped
+
+        @import_failure_service: untyped
+
+        @relations: untyped
+
+        @attributes_permitter: untyped
+
+        @importable_override_params: untyped
+
+        @column_name: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        include ::Import::Framework::ProgressTracking
+
+        attr_reader importable: untyped
+
+        def initialize: (user: untyped, shared: untyped, relation_reader: untyped, members_mapper: untyped, object_builder: untyped, relation_factory: untyped, reader: untyped, importable: untyped, importable_attributes: untyped, importable_path: untyped, ?skip_on_duplicate_iid: bool) -> void
+
+        def restore: () -> untyped
+
+        def restore_single_relation: (untyped relation_key, ?extra_track_scope: ::Hash[untyped, untyped]) -> nil
+
+        private
+
+        attr_reader user: untyped
+
+        attr_reader relation_factory: untyped
+
+        alias current_user user
+
+        def bulk_insert_without_cache_or_touch: () { () -> untyped } -> untyped
+
+        def bulk_insert_enabled: () -> false
+
+        def skip_on_duplicate_iid?: () -> untyped
+
+        # Loops through the tree of models defined in import_export.yml and
+        # finds them in the imported JSON so they can be instantiated and saved
+        # in the DB. The structure and relationships between models are guessed from
+        # the configuration yaml file too.
+        # Finally, it updates each attribute in the newly imported project/group.
+        def create_relations!: () -> untyped
+
+        def process_relation!: (untyped relation_key, untyped relation_definition, ?extra_track_scope: ::Hash[untyped, untyped]) -> untyped
+
+        def process_relation_item!: (untyped relation_key, untyped relation_definition, untyped relation_index, untyped data_hash) -> untyped
+
+        def previously_imported?: (untyped relation_object, untyped relation_key) -> untyped
+
+        # Generate the list of existing IIDs as a hash.
+        # { issues: { 1: true, 2: true, ... }}
+        # A hash is used rather than returning the array of IDs because lookup
+        # performance is greatly improved.
+        def existing_iids: (untyped relation_key) -> untyped
+
+        def save_relation_object: (untyped relation_object, untyped relation_key, untyped relation_definition, untyped relation_index) -> untyped
+
+        def import_failure_service: () -> untyped
+
+        def relations: () -> untyped
+
+        def update_params!: () -> untyped
+
+        def after_save_importable: () -> nil
+
+        def filter_attributes: (untyped params) -> untyped
+
+        def attributes_permitter: () -> untyped
+
+        def present_override_params: () -> untyped
+
+        def override_params: () -> untyped
+
+        def importable_override_params: () -> (untyped | ::Hash[untyped, untyped])
+
+        def modify_attributes: () -> untyped
+
+        def enforce_parent_shared_runners_restrictions: () -> (nil | untyped)
+
+        def build_relations: (untyped relation_key, untyped relation_definition, untyped relation_index, untyped data_hashes) -> untyped
+
+        def build_relation: (untyped relation_key, untyped relation_definition, untyped relation_index, untyped data_hash) -> untyped
+
+        # Since we update the data hash in place as we restore relation items,
+        # and since we also de-duplicate items, we might encounter items that
+        # have already been restored in a previous iteration.
+        def already_restored?: (untyped relation_item) -> untyped
+
+        def transform_sub_relations!: (untyped data_hash, untyped sub_relation_key, untyped sub_relation_definition, untyped relation_index) -> (nil | untyped)
+
+        def relation_invalid_for_importable?: (untyped _relation_object) -> false
+
+        def excluded_keys_for_relation: (untyped relation) -> untyped
+
+        def importable_class: () -> untyped
+
+        def importable_class_sym: () -> untyped
+
+        def relation_factory_params: (untyped relation_key, untyped relation_index, untyped data_hash) -> { relation_index: untyped, relation_sym: untyped, relation_hash: untyped, importable: untyped, members_mapper: untyped, object_builder: untyped, user: untyped, excluded_keys: untyped, import_source: untyped }
+
+        # Enable logging of each top-level relation creation when Importing into a Group
+        def log_relation_creation: (untyped importable, untyped relation_key, untyped relation_object) -> (nil | untyped)
+
+        def log_invalid_subrelations: (untyped invalid_subrelations, untyped relation_key) -> untyped
+
+        def log_failed_subrelations: (untyped failed_subrelations, untyped relation_key) -> untyped
+
+        def importable_column_name: () -> untyped
+
+        def external_identifiers: (untyped data_hash) -> untyped
+
+        def persist_relation: (untyped attributes) -> untyped
+
+        def progress_tracking_options: (untyped relation_key, untyped relation_index, untyped extra_track_scope) -> { scope: ::Hash[::String | "relation_key" | untyped, untyped], data: untyped }
+      end
+    end
+  end
+end

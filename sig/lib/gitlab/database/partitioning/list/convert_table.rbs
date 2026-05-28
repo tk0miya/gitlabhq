@@ -1,0 +1,89 @@
+module Gitlab
+  module Database
+    module Partitioning
+      module List
+        class ConvertTable
+          @migration_context: untyped
+
+          @connection: untyped
+
+          @table_name: untyped
+
+          @parent_table_name: untyped
+
+          @partitioning_column: untyped
+
+          @zero_partition_value: untyped
+
+          UnableToPartition: untyped
+
+          SQL_STATEMENT_SEPARATOR: ";\n\n"
+
+          PARTITIONING_CONSTRAINT_NAME: "partitioning_constraint"
+
+          attr_reader partitioning_column: untyped
+
+          attr_reader table_name: untyped
+
+          attr_reader parent_table_name: untyped
+
+          attr_reader zero_partition_value: untyped
+
+          def initialize: (migration_context: untyped, table_name: untyped, parent_table_name: untyped, partitioning_column: untyped, zero_partition_value: untyped) -> void
+
+          def prepare_for_partitioning: (?async: bool) -> untyped
+
+          def revert_preparation_for_partitioning: () -> untyped
+
+          def partition: () -> untyped
+
+          def revert_partitioning: () -> untyped
+
+          private
+
+          attr_reader connection: untyped
+
+          attr_reader migration_context: untyped
+
+          def sql_to_convert_table: () -> untyped
+
+          def table_identifier: () -> ::String
+
+          def assert_existing_constraints_partitionable: () -> (nil | untyped)
+
+          def partitioning_constraint: () -> untyped
+
+          def assert_partitioning_constraint_present: () -> (nil | untyped)
+
+          def add_partitioning_check_constraint: (?async: bool) -> (untyped | nil)
+
+          def validate_partitioning_constraint_synchronously: () -> (untyped | nil)
+
+          def create_parent_table: () -> untyped
+
+          def attach_foreign_keys_to_parent: () -> untyped
+
+          def analyze_parent_table: () -> untyped
+
+          def attach_table_to_parent_statement: () -> ::String
+
+          def alter_sequence_statements: (old_table: untyped, new_table: untyped) -> untyped
+
+          def remove_constraint_statement: () -> ::String
+
+          def table_owner: (untyped table_name) -> untyped
+
+          def current_user_owns_table?: (untyped table_name) -> untyped
+
+          def set_current_user_owns_table_statement: (untyped table_name) -> untyped
+
+          def table_name_for_identifier: (untyped table_identifier) -> untyped
+
+          def redefine_loose_foreign_key_triggers: () ?{ () -> untyped } -> (untyped | untyped | nil)
+
+          def already_partitioned?: () -> untyped
+        end
+      end
+    end
+  end
+end

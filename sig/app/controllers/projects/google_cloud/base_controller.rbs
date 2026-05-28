@@ -1,0 +1,23 @@
+class Projects::GoogleCloud::BaseController < Projects::ApplicationController
+  @authorize_url: untyped
+
+  private
+
+  def admin_project_google_cloud!: () -> (untyped | nil)
+
+  def google_oauth2_enabled!: () -> untyped
+
+  def validate_gcp_token!: () -> (nil | untyped)
+
+  def generate_session_key_redirect: (untyped uri, untyped error_uri) -> untyped
+
+  def token_in_session: () -> untyped
+
+  def expires_at_in_session: () -> untyped
+
+  def track_event: (untyped action, ?untyped? label) -> untyped
+
+  def gcp_projects: () -> untyped
+
+  def refs: () -> untyped
+end

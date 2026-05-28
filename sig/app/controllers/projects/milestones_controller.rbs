@@ -1,0 +1,52 @@
+class Projects::MilestonesController < Projects::ApplicationController
+  @sort: untyped
+
+  @milestones: untyped
+
+  @noteable: untyped
+
+  @milestone: untyped
+
+  @redirect_path: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include MilestoneActions
+
+  REDIRECT_TARGETS: ::Array[:new_release]
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  def edit: () -> untyped
+
+  def show: () -> untyped
+
+  def create: () -> untyped
+
+  def update: () -> untyped
+
+  def promote: () -> untyped
+
+  def flash_notice_for: (untyped milestone, untyped group) -> untyped
+
+  def destroy: () -> untyped
+
+  def redirect_path: () -> untyped
+
+  def project_group: () -> untyped
+
+  def milestones: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def milestone: () -> untyped
+
+  def authorize_admin_milestone!: () -> (untyped | nil)
+
+  def authorize_promote_milestone!: () -> (untyped | nil)
+
+  def milestone_params: () -> untyped
+
+  def search_params: () -> untyped
+end

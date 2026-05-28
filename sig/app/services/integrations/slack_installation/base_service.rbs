@@ -1,0 +1,49 @@
+module Integrations
+  module SlackInstallation
+    class BaseService
+      @current_user: untyped
+
+      @params: untyped
+
+      include Gitlab::Routing
+
+      # Endpoint to initiate the OAuth flow, redirects to Slack's authorization screen
+      # https://api.slack.com/authentication/oauth-v2#asking
+      SLACK_AUTHORIZE_URL: "https://slack.com/oauth/v2/authorize"
+
+      # Endpoint to exchange the temporary authorization code for an access token
+      # https://api.slack.com/authentication/oauth-v2#exchanging
+      SLACK_EXCHANGE_TOKEN_URL: "https://slack.com/api/oauth.v2.access"
+
+      def initialize: (current_user: untyped, params: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def update_installation!: (untyped integration, untyped installation, untyped slack_data) -> untyped
+
+      def duplicate_alias_error?: (untyped exception) -> untyped
+
+      def exchange_slack_token: () -> untyped
+
+      # Due to our modelling (mentioned in epic 9418) we create a SlackIntegration record
+      # for a Slack workspace (team_id) for every GitLab for Slack integration.
+      # The repetition is redundant, and we should more correctly only create
+      # a single record per workspace.
+      #
+      # Records that share a team_id (Slack workspace ID) should have identical bot token
+      # and permission scope data. We currently paper-over the modelling problem
+      # by mass-updating all records that share a team_id so they always reflect the same state.
+      # for this data. This means if we release a new version of the GitLab for Slack app that has
+      # a new required permission scope, the first time the workspace authorizes the new scope
+      # all other records for their workspace will be updated with the latest authorization data
+      # for that workspace.
+      def update_other_installations!: (untyped installation) -> untyped
+    end
+  end
+end

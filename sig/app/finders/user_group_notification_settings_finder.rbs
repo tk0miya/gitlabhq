@@ -1,0 +1,36 @@
+class UserGroupNotificationSettingsFinder
+  @user: untyped
+
+  @groups: untyped
+
+  @loaded_groups_with_ancestors: untyped
+
+  @loaded_notification_settings: untyped
+
+  def initialize: (untyped user, untyped groups) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  attr_reader user: untyped
+
+  attr_reader groups: untyped
+
+  attr_reader loaded_groups_with_ancestors: untyped
+
+  attr_reader loaded_notification_settings: untyped
+
+  def find_notification_setting_for: (untyped group) -> untyped
+
+  def should_copy?: (untyped parent_setting) -> (false | untyped)
+
+  # This method preloads the `emails_enabled` strong memoized method for the given groups.
+  #
+  # For each group, look up the ancestor hierarchy and look for any group where emails_enabled is false.
+  # The lookup is implemented with an EXISTS subquery, so we can look up the ancestor chain for each group individually.
+  # The query will return groups where at least one ancestor has the `emails_disabled` set to true.
+  #
+  # After the query, we set the instance variable.
+  def preload_emails_enabled: () -> untyped
+end

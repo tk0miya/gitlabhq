@@ -1,0 +1,35 @@
+module ResourceEvents
+  class BaseSyntheticNotesBuilderService
+    @resource: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader resource: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped resource, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def apply_common_filters: (untyped events) -> untyped
+
+    def apply_pagination: (untyped events) -> untyped
+
+    def apply_limit: (untyped events) -> untyped
+
+    def apply_last_fetched_at: (untyped events) -> untyped
+
+    def resource_parent: () -> untyped
+
+    def table_name: () -> untyped
+  end
+end

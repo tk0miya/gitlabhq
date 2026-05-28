@@ -1,0 +1,23 @@
+module Resolvers
+  module WorkItems
+    class WorkItemDiscussionsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias notes_widget object
+
+      def resolve: (**untyped args) -> untyped
+
+      def self.calculate_ext_conn_complexity: () -> true
+
+      def self.complexity_multiplier: (untyped args) -> ::Float
+
+      private
+
+      def work_item: () -> untyped
+
+      def params: (untyped args) -> { notes_filter: untyped, sort: untyped, cursor: untyped, per_page: untyped }
+
+      def self.nodes_limit: (untyped args, untyped field, **untyped kwargs) -> untyped
+    end
+  end
+end

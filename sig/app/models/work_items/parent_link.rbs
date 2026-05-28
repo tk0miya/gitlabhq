@@ -1,0 +1,37 @@
+module WorkItems
+  class ParentLink < ApplicationRecord
+    @resolved_type_ids: untyped
+
+    include RelativePositioning
+
+    include EachBatch
+
+    MAX_CHILDREN: 5000
+
+    def self.has_public_children?: (untyped parent_id) -> untyped
+
+    def self.has_confidential_parent?: (untyped id) -> (false | untyped)
+
+    def self.relative_positioning_query_base: (untyped parent_link) -> untyped
+
+    def self.relative_positioning_parent_column: () -> :work_item_parent_id
+
+    def self.for_work_item: (untyped work_item) -> untyped
+
+    private
+
+    def validate_max_children: () -> (nil | untyped)
+
+    def validate_confidentiality: () -> (nil | untyped)
+
+    def validate_hierarchy_restrictions: () -> (nil | untyped)
+
+    def validate_depth: (untyped depth) -> (nil | untyped)
+
+    def resolved_type_id_for: (untyped item) -> untyped
+
+    def validate_cyclic_reference: () -> (nil | untyped)
+
+    def check_existing_related_link: () -> (nil | untyped)
+  end
+end

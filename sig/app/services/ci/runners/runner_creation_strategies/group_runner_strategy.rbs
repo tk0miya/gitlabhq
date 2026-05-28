@@ -1,0 +1,29 @@
+module Ci
+  module Runners
+    module RunnerCreationStrategies
+      class GroupRunnerStrategy
+        @user: untyped
+
+        @params: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (user: untyped, params: untyped) -> void
+
+        def normalize_params: () -> untyped
+
+        def validate_params: () -> (untyped | nil)
+
+        def authorized_user?: () -> untyped
+
+        private
+
+        attr_reader user: untyped
+
+        attr_reader params: untyped
+
+        def scope: () -> untyped
+      end
+    end
+  end
+end

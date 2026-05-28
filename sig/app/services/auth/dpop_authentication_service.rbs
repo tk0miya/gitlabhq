@@ -1,0 +1,25 @@
+module Auth
+  class DpopAuthenticationService < ::BaseContainerService
+    @current_user: untyped
+
+    @personal_access_token_plaintext: untyped
+
+    @request: untyped
+
+    def initialize: (current_user: untyped, personal_access_token_plaintext: untyped, request: untyped) -> void
+
+    def execute: (?enforce_dpop_authentication: bool, ?group_id: untyped?) -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader personal_access_token_plaintext: untyped
+
+    attr_reader request: untyped
+
+    def dpop_enforced_for_group_endpoints?: (untyped group_id) -> (false | untyped)
+
+    def extract_dpop_from_request!: (untyped request) -> untyped
+  end
+end

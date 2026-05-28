@@ -1,0 +1,56 @@
+module Gitlab
+  module Database
+    module Partitioning
+      module Time
+        class BaseStrategy < Gitlab::Database::Partitioning::BaseStrategy
+          @model: untyped
+
+          @partitioning_key: untyped
+
+          @retain_for: untyped
+
+          @retain_non_empty_partitions: untyped
+
+          @analyze_interval: untyped
+
+          attr_reader model: untyped
+
+          attr_reader partitioning_key: untyped
+
+          attr_reader retain_for: untyped
+
+          attr_reader retain_non_empty_partitions: untyped
+
+          attr_reader analyze_interval: untyped
+
+          def initialize: (untyped model, untyped partitioning_key, ?retain_for: untyped?, ?retain_non_empty_partitions: bool, ?analyze_interval: untyped?) -> void
+
+          def current_partitions: () -> untyped
+
+          # Check the currently existing partitions and determine which ones are missing
+          def missing_partitions: () -> untyped
+
+          def extra_partitions: () -> untyped
+
+          def desired_partitions: () -> untyped
+
+          def relevant_range: () -> untyped
+
+          def after_adding_partitions: () -> nil
+
+          def validate_and_fix: () -> nil
+
+          def oldest_active_date: () -> untyped
+
+          def partition_name: (untyped lower_bound) -> untyped
+
+          private
+
+          def partition_for: (upper_bound: untyped, ?lower_bound: untyped?) -> untyped
+
+          def pruning_old_partitions?: () -> untyped
+        end
+      end
+    end
+  end
+end

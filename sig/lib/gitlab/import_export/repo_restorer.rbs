@@ -1,0 +1,39 @@
+module Gitlab
+  module ImportExport
+    class RepoRestorer
+      @path_to_bundle: untyped
+
+      @shared: untyped
+
+      @importable: untyped
+
+      @repository: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      include ::Import::Framework::ProgressTracking
+
+      attr_reader importable: untyped
+
+      def initialize: (importable: untyped, shared: untyped, path_to_bundle: untyped) -> void
+
+      def restore: () -> untyped
+
+      def repository: () -> untyped
+
+      private
+
+      attr_accessor path_to_bundle: untyped
+
+      attr_accessor shared: untyped
+
+      def update_importable_repository_info: () -> nil
+
+      def ensure_repository_does_not_exist!: () -> (untyped | nil)
+
+      def progress_tracking_options: () -> { scope: ::Hash[::String, untyped], data: untyped }
+
+      def basename: () -> untyped
+    end
+  end
+end

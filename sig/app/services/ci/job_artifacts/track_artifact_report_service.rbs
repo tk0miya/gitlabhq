@@ -1,0 +1,13 @@
+module Ci
+  module JobArtifacts
+    class TrackArtifactReportService
+      include Gitlab::Utils::UsageData
+
+      REPORT_TRACKED: ::Array[:test | :coverage]
+
+      def execute: (untyped pipeline) -> untyped
+
+      def event_name: (untyped report) -> ::String
+    end
+  end
+end

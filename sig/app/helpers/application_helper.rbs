@@ -1,0 +1,199 @@
+module ApplicationHelper
+  @already_added_styles: untyped
+
+  @api_startup_calls: untyped
+
+  include ViteHelper
+
+  # See https://docs.gitlab.com/ee/development/ee_features.html#code-in-appviews
+  # rubocop: disable CodeReuse/ActiveRecord
+  # We allow partial to be nil so that collection views can be passed in
+  # `render partial: 'some/view', collection: @some_collection`
+  def render_if_exists: (?untyped? partial, **untyped options) -> (nil | untyped)
+
+  def dispensable_render: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def dispensable_render_if_exists: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def partial_exists?: (untyped partial) -> untyped
+
+  def template_exists?: (untyped template) -> untyped
+
+  def error_css: () -> untyped
+
+  # Check if a particular controller is the current one
+  #
+  # args - One or more controller names to check (using path notation when inside namespaces)
+  #
+  # Examples
+  #
+  #   # On TreeController
+  #   current_controller?(:tree)           # => true
+  #   current_controller?(:commits)        # => false
+  #   current_controller?(:commits, :tree) # => true
+  #
+  #   # On Admin::ApplicationController
+  #   current_controller?(:application)         # => true
+  #   current_controller?('admin/application')  # => true
+  #   current_controller?('gitlab/application') # => false
+  def current_controller?: (*untyped args) -> untyped
+
+  # Check if a particular action is the current one
+  #
+  # args - One or more action names to check
+  #
+  # Examples
+  #
+  #   # On Projects#new
+  #   current_action?(:new)           # => true
+  #   current_action?(:create)        # => false
+  #   current_action?(:new, :create)  # => true
+  def current_action?: (*untyped args) -> untyped
+
+  def admin_section?: () -> untyped
+
+  def last_commit: (untyped project) -> untyped
+
+  # Define whenever show last push event
+  # with suggestion to create MR
+  # rubocop: disable CodeReuse/ActiveRecord
+  def show_last_push_widget?: (untyped event) -> (false | true)
+
+  def hexdigest: (untyped string) -> untyped
+
+  def simple_sanitize: (untyped str) -> untyped
+
+  def body_data: () -> untyped
+
+  def project_data: () -> (::Hash[untyped, untyped] | { project_id: untyped, project: untyped, project_full_path: untyped, group: untyped, group_full_path: untyped, namespace_id: untyped })
+
+  def body_data_page: () -> untyped
+
+  # shortcut for gitlab config
+  def gitlab_config: () -> untyped
+
+  # shortcut for gitlab extra config
+  def extra_config: () -> untyped
+
+  # shortcut for gitlab registry config
+  def registry_config: () -> untyped
+
+  # Render a `time` element with Javascript-based relative date and tooltip
+  #
+  # time       - Time object
+  # placement  - Tooltip placement String (default: "top")
+  # html_class - Custom class for `time` element (default: "time_ago")
+  #
+  # By default also includes a `script` element with Javascript necessary to
+  # initialize the `timeago` jQuery extension. If this method is called many
+  # times, for example rendering hundreds of commits, it's advisable to disable
+  # this behavior using the `skip_js` argument and re-initializing `timeago`
+  # manually once all of the elements have been rendered.
+  #
+  # A `js-timeago` class is always added to the element, even when a custom
+  # `html_class` argument is provided.
+  #
+  # Returns an HTML-safe String
+  def time_ago_with_tooltip: (untyped time, ?placement: ::String, ?html_class: ::String, ?short_format: bool) -> ("" | untyped)
+
+  def edited_time_ago_with_tooltip: (untyped editable_object, ?placement: ::String, ?html_class: ::String, ?exclude_author: bool) -> (nil | untyped)
+
+  # This needs to be used outside of Rails
+  def self.community_forum: () -> "https://forum.gitlab.com"
+
+  def university_url: () -> "https://university.gitlab.com"
+
+  # Convenient method for Rails helper
+  def community_forum: () -> untyped
+
+  def support_url: () -> untyped
+
+  def instance_review_permitted?: () -> untyped
+
+  def static_objects_external_storage_enabled?: () -> untyped
+
+  def external_storage_url_or_path: (untyped path, ?untyped project) -> untyped
+
+  def page_filter_path: (?::Hash[untyped, untyped] options) -> ::String
+
+  def sign_in_with_redirect?: () -> untyped
+
+  def outdated_browser?: () -> untyped
+
+  def path_to_key: (untyped key, ?bool admin) -> untyped
+
+  # While similarly named to Rails's `link_to_if`, this method behaves quite differently.
+  # If `condition` is truthy, a link will be returned with the result of the block
+  # as its body. If `condition` is falsy, only the result of the block will be returned.
+  def conditional_link_to: (untyped condition, untyped options, ?::Hash[untyped, untyped] html_options) { (?) -> untyped } -> untyped
+
+  def page_class: () -> untyped
+
+  def system_message_class: () -> untyped
+
+  # Returns active css class when condition returns true
+  # otherwise returns nil.
+  #
+  # Example:
+  #   %li{ class: active_when(params[:filter] == '1') }
+  def active_when: (untyped condition) -> ("active" | nil)
+
+  def show_callout?: (untyped name) -> untyped
+
+  def linkedin_name: (untyped user) -> untyped
+
+  def linkedin_url: (untyped user) -> ::String
+
+  def twitter_url: (untyped user) -> untyped
+
+  def discord_url: (untyped user) -> ("" | ::String)
+
+  def bluesky_url: (untyped user) -> ("" | untyped)
+
+  def orcid_url: (untyped user) -> ("" | untyped)
+
+  def mastodon_url: (untyped user) -> ("" | untyped)
+
+  def github_url: (untyped user) -> ("" | ::String)
+
+  def collapsed_super_sidebar?: () -> untyped
+
+  def locale_path: () -> untyped
+
+  # Overridden in EE
+  def read_only_message: () -> (nil | untyped)
+
+  def client_class_list: () -> ::String
+
+  def client_js_flags: () -> ::Hash[::Symbol, true]
+
+  def add_page_specific_style: (untyped path) -> (nil | untyped)
+
+  def add_work_items_stylesheet: () -> untyped
+
+  def add_issuable_stylesheet: () -> untyped
+
+  def page_startup_api_calls: () -> untyped
+
+  def add_page_startup_api_call: (untyped api_path, ?options: ::Hash[untyped, untyped]) -> untyped
+
+  def autocomplete_data_sources: (untyped object, untyped noteable_type) -> (::Hash[untyped, untyped] | untyped)
+
+  def asset_to_string: (untyped name) -> untyped
+
+  def gitlab_ui_form_for: (untyped record, *untyped args) { (?) -> untyped } -> untyped
+
+  def gitlab_ui_form_with: (**untyped args) { (?) -> untyped } -> untyped
+
+  def hidden_resource_icon: (untyped resource, ?css_class: untyped?, ?variant: untyped?) -> (nil | untyped)
+
+  def ai_panel_expanded?: () -> untyped
+
+  private
+
+  def browser_id: () -> ("generic" | untyped)
+
+  def platform_id: () -> ("other" | untyped)
+
+  def appearance: () -> untyped
+end

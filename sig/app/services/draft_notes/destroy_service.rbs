@@ -1,0 +1,15 @@
+module DraftNotes
+  class DestroyService < DraftNotes::BaseService
+    # If no `draft` is given it fallsback to all
+    # draft notes of the given merge request and user.
+    def execute: (?untyped? draft) -> untyped
+
+    private
+
+    def after_execute: () -> (nil | untyped)
+
+    def clear_highlight_diffs_cache: (untyped drafts) -> (untyped | nil)
+
+    def unfolded_drafts?: (untyped drafts) -> untyped
+  end
+end

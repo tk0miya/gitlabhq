@@ -1,0 +1,25 @@
+module DraftNotes
+  class PublishService < DraftNotes::BaseService
+    def execute: (?draft: untyped?, ?executing_user: untyped?) -> untyped
+
+    private
+
+    def publish_draft_note: (untyped draft, untyped executing_user) -> untyped
+
+    def create_review: (untyped executing_user) -> (nil | untyped)
+
+    def create_note_from_draft: (untyped draft, untyped executing_user, ?skip_capture_diff_note_position: bool, ?skip_keep_around_commits: bool, ?skip_merge_status_trigger: bool) -> untyped
+
+    def set_discussion_resolve_status: (untyped note, untyped draft_note) -> (nil | untyped)
+
+    def capture_diff_note_positions: (untyped notes) -> (nil | untyped)
+
+    def keep_around_commits: (untyped notes) -> untyped
+
+    def after_publish: () -> untyped
+
+    def handle_notifications: (untyped current_user, untyped merge_request, untyped review) -> untyped
+
+    def create_draft_published_event: (untyped merge_request, untyped current_user, untyped review) -> untyped
+  end
+end

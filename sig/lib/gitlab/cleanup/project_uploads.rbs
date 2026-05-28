@@ -1,0 +1,57 @@
+module Gitlab
+  module Cleanup
+    class ProjectUploads
+      @logger: untyped
+
+      LOST_AND_FOUND: untyped
+
+      attr_reader logger: untyped
+
+      def initialize: (?logger: untyped?) -> void
+
+      def run!: (?dry_run: bool) -> untyped
+
+      private
+
+      def cleanup: (untyped path, untyped upload_path, untyped dry_run) -> (::String | untyped)
+
+      # Accepts a path in the form of "#{hex_secret}/#{filename}"
+      # rubocop: disable CodeReuse/ActiveRecord
+      def find_correct_path: (untyped upload_path) -> untyped
+
+      def move_to_lost_and_found: (untyped path, untyped dry_run) -> untyped
+
+      def move: (untyped path, untyped new_path, untyped prefix, untyped dry_run) -> untyped
+
+      # Yields absolute paths of project upload files that are not in the
+      # uploads table
+      def each_orphan_file: () { (untyped, untyped) -> untyped } -> untyped
+
+      class ProjectUploadPath
+        @full_path: untyped
+
+        @upload_path: untyped
+
+        @project_id: untyped
+
+        PROJECT_FULL_PATH_REGEX: ::Regexp
+
+        attr_reader full_path: untyped
+
+        attr_reader upload_path: untyped
+
+        def initialize: (untyped full_path, untyped upload_path) -> void
+
+        def self.from_path: (untyped path) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def orphan?: () -> (true | untyped)
+
+        private
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def project_id: () -> untyped
+      end
+    end
+  end
+end

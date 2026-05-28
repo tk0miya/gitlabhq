@@ -1,0 +1,11 @@
+module API
+  module Helpers
+    module ResourceEventsHelpers
+      def self.eventable_types: () -> ::Hash[untyped, { feature_category: :team_planning, id_field: "IID" } | { feature_category: :code_review_workflow, id_field: "IID" }]
+
+      def present_resource_state_event_collection: (untyped events, untyped _eventable, untyped _eventable_type) -> untyped
+
+      def present_single_resource_state_event: (untyped event, untyped _eventable, untyped _eventable_type) -> untyped
+    end
+  end
+end

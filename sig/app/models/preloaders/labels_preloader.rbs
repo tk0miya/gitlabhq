@@ -1,0 +1,37 @@
+module Preloaders
+  # This class preloads the `project`, `group`, and subscription associations for the given
+  # labels, user, and project (if provided). A Label can be of type ProjectLabel or GroupLabel
+  # and the preloader supports both.
+  #
+  # Usage:
+  #   labels = Label.where(...)
+  #   Preloaders::LabelsPreloader.new(labels, current_user, @project).preload_all
+  #   labels.first.project # won't fire any query
+  class LabelsPreloader
+    @labels: untyped
+
+    @user: untyped
+
+    @project: untyped
+
+    @group_labels: untyped
+
+    @project_labels: untyped
+
+    attr_reader labels: untyped
+
+    attr_reader user: untyped
+
+    attr_reader project: untyped
+
+    def initialize: (untyped labels, untyped user, ?untyped? project) -> void
+
+    def preload_all: () -> untyped
+
+    private
+
+    def group_labels: () -> untyped
+
+    def project_labels: () -> untyped
+  end
+end

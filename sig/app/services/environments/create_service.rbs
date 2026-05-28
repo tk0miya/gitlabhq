@@ -1,0 +1,11 @@
+module Environments
+  class CreateService < BaseService
+    ALLOWED_ATTRIBUTES: ::Array[:name | :description | :external_url | :tier | :cluster_agent | :kubernetes_namespace | :flux_resource_path | :auto_stop_setting]
+
+    def execute: () -> untyped
+
+    private
+
+    def unauthorized_cluster_agent?: () -> (false | untyped)
+  end
+end

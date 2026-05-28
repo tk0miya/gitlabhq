@@ -1,0 +1,23 @@
+module Import
+  module SourceUsers
+    class AcceptReassignmentService < BaseService
+      @import_source_user: untyped
+
+      @current_user: untyped
+
+      @reassignment_token: untyped
+
+      def initialize: (untyped import_source_user, current_user: untyped, reassignment_token: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader reassignment_token: untyped
+
+      def current_user_matches_reassign_to_user?: () -> (false | untyped)
+
+      def reassignment_token_is_valid?: () -> untyped
+    end
+  end
+end

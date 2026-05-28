@@ -1,0 +1,22 @@
+module Gitlab
+  module Database
+    module Count
+      # This strategy performs an exact count on the model.
+      #
+      # This is guaranteed to be accurate, however it also scans the
+      # whole table. Hence, there are no guarantees with respect
+      # to runtime.
+      #
+      # Note that for very large tables, this may even timeout.
+      class ExactCountStrategy
+        @models: untyped
+
+        attr_reader models: untyped
+
+        def initialize: (untyped models) -> void
+
+        def count: () -> untyped
+      end
+    end
+  end
+end

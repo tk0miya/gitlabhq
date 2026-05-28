@@ -1,0 +1,11 @@
+module Resolvers
+  class BoardResolver
+    alias parent object
+
+    def resolve: (?id: untyped?) -> untyped
+
+    private
+
+    def extract_board_id: (untyped gid) -> untyped
+  end
+end

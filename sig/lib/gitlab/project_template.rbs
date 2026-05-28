@@ -1,0 +1,50 @@
+module Gitlab
+  class ProjectTemplate
+    @name: untyped
+
+    @title: untyped
+
+    @description: untyped
+
+    @preview: untyped
+
+    @logo: untyped
+
+    attr_reader title: untyped
+
+    attr_reader name: untyped
+
+    attr_reader description: untyped
+
+    attr_reader preview: untyped
+
+    attr_reader logo: untyped
+
+    def initialize: (untyped name, untyped title, untyped description, untyped preview, ?::String logo) -> void
+
+    def file: () -> untyped
+
+    def archive_path: () -> untyped
+
+    def archive_filename: () -> ::String
+
+    def clone_url: () -> ::String
+
+    def project_host: () -> (nil | untyped)
+
+    def project_path: () -> untyped
+
+    def uri_encoded_project_path: () -> untyped
+
+    def ==: (untyped other) -> untyped
+
+    # TODO: Review child inheritance of this table (see: https://gitlab.com/gitlab-org/gitlab/-/merge_requests/41699#note_430928221)
+    def self.localized_templates_table: () -> ::Array[untyped]
+
+    def self.all: () -> untyped
+
+    def self.find: (untyped name) -> untyped
+
+    def self.archive_directory: () -> untyped
+  end
+end

@@ -1,0 +1,17 @@
+module Authz
+  module PermissionGroups
+    class Internal < Base
+      @path_regex: untyped
+
+      BASE_PATH: "config/authz/permission_groups/internal"
+
+      def self.config_path: () -> untyped
+
+      def name: () -> ::String
+
+      private
+
+      def path_regex: () -> untyped
+    end
+  end
+end

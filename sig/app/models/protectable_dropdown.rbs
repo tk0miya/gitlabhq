@@ -1,0 +1,32 @@
+class ProtectableDropdown
+  @project: untyped
+
+  @ref_type: untyped
+
+  @ref_names: untyped
+
+  @protectable_ref_names: untyped
+
+  REF_TYPES: ::Array[:branches | :tags]
+
+  REF_NAME_METHODS: { branches: :branch_names, tags: :tag_names }
+
+  def initialize: (untyped project, untyped ref_type, ?ref_names: untyped?) -> void
+
+  # Tags/branches which are yet to be individually protected
+  def protectable_ref_names: () -> (::Array[untyped] | untyped)
+
+  def array: () -> untyped
+
+  private
+
+  attr_reader ref_names: untyped
+
+  def get_ref_names: () -> untyped
+
+  def ref_name_method: () -> untyped
+
+  def protections: () -> untyped
+
+  def non_wildcard_protected_ref_names: () -> untyped
+end

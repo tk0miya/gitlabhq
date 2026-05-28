@@ -1,0 +1,12 @@
+module Gitlab
+  module GitalyClient
+    class HealthCheckService
+      @storage: untyped
+
+      def initialize: (untyped storage) -> void
+
+      # Sends a gRPC health ping to the Gitaly server for the storage shard.
+      def check: () -> untyped
+    end
+  end
+end

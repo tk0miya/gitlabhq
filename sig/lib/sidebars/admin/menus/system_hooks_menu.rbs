@@ -1,0 +1,15 @@
+module Sidebars
+  module Admin
+    module Menus
+      class SystemHooksMenu < ::Sidebars::Admin::BaseMenu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "hook"
+
+        def active_routes: () -> { controller: :hooks }
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Ci
+  class UnlockPipelinesInQueueWorker
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include LimitedCapacity::Worker
+
+    MAX_RUNNING_EXTRA_LOW: 10
+
+    MAX_RUNNING_LOW: 50
+
+    MAX_RUNNING_MEDIUM: 500
+
+    MAX_RUNNING_HIGH: 1500
+
+    def perform_work: (*untyped _) -> untyped
+
+    def remaining_work_count: (*untyped _) -> untyped
+
+    def max_running_jobs: () -> (untyped | untyped | untyped | untyped | 0)
+  end
+end

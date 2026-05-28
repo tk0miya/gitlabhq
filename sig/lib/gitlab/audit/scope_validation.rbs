@@ -1,0 +1,11 @@
+module Gitlab
+  module Audit
+    module ScopeValidation
+      private
+
+      def permitted_scope_classes: () -> ::Array["Project" | "Group" | "User"]
+
+      def validate_scope!: (untyped scope) -> (nil | untyped)
+    end
+  end
+end

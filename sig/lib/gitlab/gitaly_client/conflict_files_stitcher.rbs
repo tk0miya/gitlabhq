@@ -1,0 +1,25 @@
+module Gitlab
+  module GitalyClient
+    class ConflictFilesStitcher
+      @rpc_response: untyped
+
+      @gitaly_repo: untyped
+
+      include Enumerable
+
+      attr_reader gitaly_repo: untyped
+
+      def initialize: (untyped rpc_response, untyped gitaly_repo) -> void
+
+      def each: () { (untyped) -> untyped } -> untyped
+
+      private
+
+      def file_from_gitaly_header: (untyped header) -> untyped
+
+      def conflict_from_gitaly_file_header: (untyped header) -> { ancestor: { path: untyped }, ours: { path: untyped, mode: untyped }, theirs: { path: untyped } }
+
+      def encode_path: (untyped path) -> untyped
+    end
+  end
+end

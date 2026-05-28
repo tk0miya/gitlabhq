@@ -1,0 +1,31 @@
+module Projects
+  module CycleAnalytics
+    class EventsController < Projects::ApplicationController
+      @cycle_analytics: untyped
+
+      include CycleAnalyticsParams
+
+      include GracefulTimeoutHandling
+
+      def issue: () -> untyped
+
+      def plan: () -> untyped
+
+      def code: () -> untyped
+
+      def test: () -> untyped
+
+      def review: () -> untyped
+
+      def staging: () -> untyped
+
+      def production: () -> untyped
+
+      private
+
+      def render_events: (untyped events) -> untyped
+
+      def cycle_analytics: () -> untyped
+    end
+  end
+end

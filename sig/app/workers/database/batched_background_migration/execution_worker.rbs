@@ -1,0 +1,49 @@
+module Database
+  module BatchedBackgroundMigration
+    module ExecutionWorker
+      @lease_key: untyped
+
+      extend ActiveSupport::Concern
+
+      include ExclusiveLeaseGuard
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ApplicationWorker
+
+      include LimitedCapacity::Worker
+
+      INTERVAL_VARIANCE: untyped
+
+      LEASE_TIMEOUT_MULTIPLIER: 3
+
+      def remaining_work_count: (*untyped args) -> 0
+
+      def max_running_jobs: () -> untyped
+
+      def perform_work: (untyped database_name, untyped migration_id) -> (nil | untyped)
+
+      private
+
+      attr_accessor database_name: untyped
+
+      attr_accessor migration: untyped
+
+      def enabled?: () -> (false | untyped)
+
+      def shares_db_config?: () -> untyped
+
+      def base_model: () -> untyped
+
+      def find_migration: (untyped id) -> untyped
+
+      def lease_key: () -> untyped
+
+      def lease_timeout: () -> untyped
+
+      def executable_migration?: () -> untyped
+
+      def run_migration_job: () -> untyped
+    end
+  end
+end

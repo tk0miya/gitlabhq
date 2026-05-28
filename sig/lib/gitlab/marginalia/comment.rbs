@@ -1,0 +1,28 @@
+# Module to support correlation_id and additional job details.
+module Gitlab
+  module Marginalia
+    module Comment
+      @cached_console_hostname: untyped
+
+      private
+
+      def jid: () -> (untyped | nil)
+
+      def job_class: () -> (untyped | nil)
+
+      def correlation_id: () -> untyped
+
+      def bg_job: () -> untyped
+
+      def endpoint_id: () -> untyped
+
+      def db_config_name: () -> untyped
+
+      def db_config_database: () -> untyped
+
+      def console_hostname: () -> (nil | untyped)
+
+      def console_username: () -> (nil | untyped)
+    end
+  end
+end

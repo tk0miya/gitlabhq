@@ -1,0 +1,35 @@
+module Packages
+  module Maven
+    class FindOrCreatePackageService < BaseService
+      SNAPSHOT_TERM: "-SNAPSHOT"
+
+      MAX_FILE_NAME_LENGTH: 5000
+
+      DuplicatePackageError: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def find_or_create_package: () -> untyped
+
+      def duplicate_error?: (untyped package) -> untyped
+
+      def file_name_too_long?: () -> (false | untyped)
+
+      def target_package_is_duplicate?: (untyped package) -> (false | untyped)
+
+      def strip_snapshot_parts: (untyped file_names) -> untyped
+
+      def strip_snapshot_parts_from: (untyped file_name) -> (untyped | nil)
+
+      def snapshot_version?: () -> untyped
+
+      def path: () -> untyped
+
+      def file_name: () -> untyped
+
+      def lease_key: () -> ::String
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Clusters
+  module Providers
+    class Gcp < ApplicationRecord
+      include Clusters::Concerns::ProviderStatus
+
+      include Gitlab::EncryptedAttribute
+
+      def nullify_credentials: () -> untyped
+
+      def assign_operation_id: (untyped operation_id) -> untyped
+
+      def has_rbac_enabled?: () -> untyped
+
+      def knative_pre_installed?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module IssuesHelper
+  include Issues::IssueTypeHelpers
+
+  def show_timeline_view_toggle?: (untyped issue) -> false
+
+  def issue_repositioning_disabled?: () -> (untyped | untyped | nil)
+
+  def confidential_icon: (untyped issue) -> (untyped | nil)
+
+  def issue_hidden?: (untyped issue) -> untyped
+
+  def award_user_list: (untyped awards, untyped current_user, ?limit: ::Integer) -> untyped
+
+  def award_state_class: (untyped awardable, untyped awards, untyped current_user) -> ("disabled" | "selected" | "")
+
+  def awards_sort: (untyped awards) -> untyped
+
+  def link_to_discussions_to_resolve: (untyped merge_request, ?untyped? single_discussion) -> untyped
+
+  def show_new_issue_link?: (untyped project) -> (false | true | untyped)
+
+  def show_new_branch_button?: () -> untyped
+
+  def can_create_confidential_merge_request?: () -> untyped
+
+  def show_moved_service_desk_issue_warning?: (untyped issue) -> (false | untyped)
+
+  def issue_header_actions_data: (untyped project, untyped issuable, untyped current_user, untyped issuable_sidebar) -> { can_create_issue: untyped, can_create_incident: untyped, can_destroy_issue: untyped, can_reopen_issue: untyped, can_report_spam: untyped, can_update_issue: untyped, is_issue_author: untyped, issue_path: untyped, new_issue_path: untyped, project_path: untyped, report_abuse_path: untyped, reported_user_id: untyped, reported_from_url: untyped, submit_as_spam_path: untyped, issuable_email_address: untyped }
+
+  def has_issue_date_filter_feature?: (untyped namespace, untyped current_user) -> (true | untyped)
+
+  def dashboard_issues_list_data: (untyped current_user) -> { autocomplete_award_emojis_path: untyped, autocomplete_users_path: untyped, calendar_path: untyped, dashboard_labels_path: untyped, dashboard_milestones_path: untyped, empty_state_with_filter_svg_path: untyped, empty_state_without_filter_svg_path: untyped, has_issue_date_filter_feature: untyped, initial_sort: untyped, is_public_visibility_restricted: untyped, is_signed_in: untyped, rss_path: untyped }
+
+  def award_emoji_issue_api_path: (untyped issue) -> untyped
+end

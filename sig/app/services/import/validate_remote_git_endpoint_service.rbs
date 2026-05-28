@@ -1,0 +1,31 @@
+module Import
+  class ValidateRemoteGitEndpointService
+    @params: untyped
+
+    @uri: untyped
+
+    @user: untyped
+
+    @password: untyped
+
+    attr_reader uri: untyped
+
+    attr_reader user: untyped
+
+    attr_reader password: untyped
+
+    def initialize: (untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def failure_response: () -> untyped
+
+    def validate_url_security!: () -> untyped
+
+    def dns_rebind_protection?: () -> (false | untyped)
+
+    def ensure_auth_credentials!: () -> (nil | untyped)
+  end
+end

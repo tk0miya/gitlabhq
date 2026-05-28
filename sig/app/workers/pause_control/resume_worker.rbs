@@ -1,0 +1,21 @@
+module PauseControl
+  class ResumeWorker
+    include ApplicationWorker
+
+    # There is no onward scheduling and this cron handles work from across the
+    # application, so there's no useful context to add.
+    include CronjobQueue
+
+    RESCHEDULE_DELAY: untyped
+
+    def perform: () -> untyped
+
+    private
+
+    def jobs_in_the_queue?: (untyped worker) -> untyped
+
+    def resume_processing!: (untyped worker) -> untyped
+
+    def pause_strategies_workers: () -> untyped
+  end
+end

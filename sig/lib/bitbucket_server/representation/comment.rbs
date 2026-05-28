@@ -1,0 +1,86 @@
+module BitbucketServer
+  module Representation
+    # A general comment with the structure:
+    # "comment": {
+    #   "author": {
+    #               "active": true,
+    #               "displayName": "root",
+    #               "emailAddress": "stanhu+bitbucket@gitlab.com",
+    #               "id": 1,
+    #               "links": {
+    #                 "self": [
+    #                   {
+    #                     "href": "http://localhost:7990/users/root"
+    #                   }
+    #                 ]
+    #                },
+    #                "name": "root",
+    #                "slug": "root",
+    #                "type": "NORMAL"
+    #               }
+    #   }
+    # }
+    class Comment < Representation::Base
+      @parent_comment: untyped
+
+      @comments: untyped
+
+      attr_reader parent_comment: untyped
+
+      CommentNode: untyped
+
+      def initialize: (untyped raw, ?parent_comment: untyped?) -> void
+
+      def id: () -> untyped
+
+      def author_name: () -> untyped
+
+      def author_username: () -> untyped
+
+      def author_email: () -> untyped
+
+      def note: () -> untyped
+
+      def created_at: () -> untyped
+
+      def updated_at: () -> untyped
+
+      # Bitbucket Server supports the ability to reply to any comment
+      # and created multiple threads. It represents these as a linked list
+      # of comments within comments. For example:
+      #
+      # "comments": [
+      #    {
+      #       "author" : ...
+      #       "comments": [
+      #          {
+      #             "author": ...
+      #
+      # Since GitLab only supports a single thread, we flatten all these
+      # comments into a single discussion.
+      def comments: () -> untyped
+
+      def to_hash: () -> { id: untyped, author_name: untyped, author_email: untyped, author_username: untyped, note: untyped, created_at: untyped, updated_at: untyped, comments: untyped, parent_comment_note: untyped }
+
+      private
+
+      # In order to provide context for each reply, we need to track
+      # the parent of each comment. This method works as follows:
+      #
+      # 1. Insert the root comment into the workset. The root element is the current note.
+      # 2. For each node in the workset:
+      #    a. Examine if it has replies to that comment. If it does,
+      #       insert that node into the workset.
+      #    b. Parse that note into a Comment structure and add it to a flat list.
+      def flatten_comments: () -> untyped
+
+      def raw_comment: () -> untyped
+
+      def author: () -> untyped
+
+      def created_date: () -> untyped
+
+      def updated_date: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,41 @@
+module Gitlab
+  module Database
+    class AlterCellSequencesRange
+      @minval: untyped
+
+      @maxval: untyped
+
+      @connection: untyped
+
+      @logger: untyped
+
+      @sequence_names: untyped
+
+      MISSING_LIMIT_MSG: "minval and maxval are required to alter sequence range"
+
+      attr_reader minval: untyped
+
+      attr_reader maxval: untyped
+
+      attr_reader connection: untyped
+
+      attr_reader sequence_names: untyped
+
+      attr_reader logger: untyped
+
+      def initialize: (untyped minval, untyped maxval, untyped connection, ?sequence_names: untyped?, ?logger: untyped) -> void
+
+      def execute: () -> (nil | untyped)
+
+      def alter_new_sequences_range_function: () -> ::String
+
+      def alter_new_sequences_range_trigger: () -> "DROP EVENT TRIGGER IF EXISTS alter_new_sequences_range;\n\nCREATE EVENT TRIGGER alter_new_sequences_range ON ddl_command_end\n  WHEN TAG IN ('CREATE TABLE', 'ALTER TABLE', 'CREATE SEQUENCE', 'ALTER SEQUENCE')\nEXECUTE FUNCTION alter_new_sequences_range();\n"
+
+      private
+
+      def sequences: () -> untyped
+
+      def with_lock_retries: () { (?) -> untyped } -> untyped
+    end
+  end
+end

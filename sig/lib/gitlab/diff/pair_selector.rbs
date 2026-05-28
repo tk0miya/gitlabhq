@@ -1,0 +1,22 @@
+module Gitlab
+  module Diff
+    class PairSelector
+      @lines: untyped
+
+      include Enumerable
+
+      # Regex to find a run of deleted lines followed by the same number of added lines
+      LINE_PAIRS_PATTERN: ::Regexp
+
+      def initialize: (untyped lines) -> void
+
+      # Finds pairs of old/new line pairs that represent the same line that changed
+      # rubocop: disable CodeReuse/ActiveRecord
+      def each: () { (untyped) -> untyped } -> untyped
+
+      private
+
+      attr_reader lines: untyped
+    end
+  end
+end

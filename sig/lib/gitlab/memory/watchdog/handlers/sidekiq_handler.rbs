@@ -1,0 +1,25 @@
+module Gitlab
+  module Memory
+    class Watchdog
+      module Handlers
+        class SidekiqHandler
+          @shutdown_timeout_seconds: untyped
+
+          @sleep_time_seconds: untyped
+
+          @alive: untyped
+
+          def initialize: (untyped shutdown_timeout_seconds, untyped sleep_time_seconds) -> void
+
+          def call: () -> true
+
+          def stop: () -> untyped
+
+          private
+
+          def send_signal: (untyped signal, untyped pid, untyped explanation, ?untyped? wait_time) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module GithubImport
+    class ImportIssueEventWorker
+      @import_settings: untyped
+
+      include ObjectImporter
+
+      def representation_class: () -> untyped
+
+      def importer_class: () -> untyped
+
+      def object_type: () -> :issue_event
+
+      def increment_object_counter: (untyped object, untyped project) -> untyped
+
+      def import_settings: () -> untyped
+    end
+  end
+end

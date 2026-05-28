@@ -1,0 +1,15 @@
+module Ci
+  class AbortPipelinesService
+    ABORT_PIPELINE_BATCHING_LIMIT: 100000
+
+    PipelinesAbortLimitExceededError: untyped
+
+    # NOTE: This call fails pipelines in bulk without running callbacks.
+    # Only for pipeline abandonment scenarios (examples: project delete)
+    def execute: (untyped pipelines, untyped failure_reason) -> untyped
+
+    private
+
+    def bulk_fail_for: (untyped klass, untyped pipelines, untyped attributes) -> untyped
+  end
+end

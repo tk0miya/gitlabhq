@@ -1,0 +1,60 @@
+module Sidebars
+  class Panel
+    @context: untyped
+
+    @scope_menu: untyped
+
+    @hidden_menu: untyped
+
+    @menus: untyped
+
+    @renderable_menus: untyped
+
+    @super_sidebar_menu_items: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    include ::Sidebars::Concerns::PositionableList
+
+    attr_reader context: untyped
+
+    attr_reader scope_menu: untyped
+
+    attr_reader hidden_menu: untyped
+
+    def initialize: (untyped context) -> void
+
+    def configure_menus: () -> nil
+
+    def add_menu: (untyped menu) -> untyped
+
+    def insert_menu_before: (untyped before_menu, untyped new_menu) -> untyped
+
+    def insert_menu_after: (untyped after_menu, untyped new_menu) -> untyped
+
+    def replace_menu: (untyped menu_to_replace, untyped new_menu) -> untyped
+
+    def remove_menu: (untyped menu_to_remove) -> untyped
+
+    def set_scope_menu: (untyped scope_menu) -> untyped
+
+    def set_hidden_menu: (untyped hidden_menu) -> untyped
+
+    def aria_label: () -> untyped
+
+    def render?: () -> untyped
+
+    def renderable_menus: () -> untyped
+
+    # Serializes every renderable menu and returns a flattened result
+    def super_sidebar_menu_items: () -> untyped
+
+    def super_sidebar_context_header: () -> untyped
+
+    def container: () -> untyped
+
+    private
+
+    def index_of: (untyped list, untyped element) -> untyped
+  end
+end

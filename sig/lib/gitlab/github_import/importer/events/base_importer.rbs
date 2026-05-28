@@ -1,0 +1,51 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Events
+        # Base class for importing issue events during project import from GitHub
+        class BaseImporter
+          @project: untyped
+
+          @client: untyped
+
+          @user_finder: untyped
+
+          include ::Import::PlaceholderReferences::Pusher
+
+          # project - An instance of `Project`.
+          # client - An instance of `Gitlab::GithubImport::Client`.
+          def initialize: (untyped project, untyped client) -> void
+
+          # issue_event - An instance of `Gitlab::GithubImport::Representation::IssueEvent`.
+          def execute: (untyped issue_event) -> untyped
+
+          private
+
+          attr_reader project: untyped
+
+          attr_reader user_finder: untyped
+
+          attr_reader client: untyped
+
+          def author_id: (untyped issue_event, ?author_key: ::Symbol) -> untyped
+
+          def issuable_db_id: (untyped object) -> untyped
+
+          def issuable_type: (untyped issue_event) -> untyped
+
+          def merge_request_event?: (untyped issue_event) -> untyped
+
+          # `PruneOldEventsWorker` deletes Event records older than a cutoff date.
+          # Before importing Events, check if they would be pruned.
+          def event_outside_cutoff?: (untyped issue_event) -> untyped
+
+          def resource_event_belongs_to: (untyped issue_event) -> ::Hash[untyped, untyped]
+
+          def backticked_username: (untyped user) -> ::String
+
+          def imported_from: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Pages
+  class DeactivatedDeploymentsDeleteCronWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

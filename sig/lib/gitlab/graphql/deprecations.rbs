@@ -1,0 +1,20 @@
+# Concern for handling GraphQL deprecations.
+# https://docs.gitlab.com/ee/development/api_graphql_styleguide.html#deprecating-schema-items
+module Gitlab
+  module Graphql
+    module Deprecations
+      extend ActiveSupport::Concern
+
+      def initialize: (*untyped args, **untyped kwargs) { (?) -> untyped } -> void
+
+      def visible?: (untyped ctx) -> (untyped | true)
+
+      private
+
+      # Set deprecation, mutate the arguments
+      def init_gitlab_deprecation: (untyped kwargs) -> (nil | untyped)
+
+      def update_deprecation_description: () -> (nil | untyped)
+    end
+  end
+end

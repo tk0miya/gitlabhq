@@ -1,0 +1,59 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        #
+        # This class represents an interpolation block. The format supported is:
+        # $[[ <access> | <function1> | <function2> | ... <functionN> ]]
+        #
+        # <access> specifies the value to retrieve (e.g. `inputs.key`).
+        # <function> can be optionally provided with or without arguments to
+        # manipulate the access value. Functions are evaluated in the order
+        # they are presented.
+        class Block
+          @block: untyped
+
+          @data: untyped
+
+          @ctx: untyped
+
+          @errors: untyped
+
+          @value: untyped
+
+          MAX_FUNCTIONS: 3
+
+          SKIP_INTERPOLATION_CONTEXTS: ::Array["matrix"]
+
+          attr_reader data: untyped
+
+          attr_reader ctx: untyped
+
+          attr_reader errors: untyped
+
+          def initialize: (untyped block, untyped data, untyped ctx) -> void
+
+          def valid?: () -> untyped
+
+          def content: () -> untyped
+
+          def value: () -> untyped
+
+          def length: () -> untyped
+
+          def to_s: () -> untyped
+
+          private
+
+          attr_reader block: untyped
+
+          # We expect the block data to be a string with one or more entities delimited by pipes:
+          # <access> | <function1> | <function2> | ... <functionN>
+          def evaluate!: () -> (nil | untyped)
+
+          def skip_interpolation?: (untyped data_access) -> untyped
+        end
+      end
+    end
+  end
+end

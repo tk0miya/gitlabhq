@@ -1,0 +1,5 @@
+module ProjectAuthorizations
+  class AuthorizationsChangedEvent < ::Gitlab::EventStore::Event
+    def schema: () -> { "type" => "object", "required" => ::Array["project_id"], "properties" => { "project_id" => { "type" => "integer" } } }
+  end
+end

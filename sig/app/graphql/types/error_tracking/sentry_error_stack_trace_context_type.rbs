@@ -1,0 +1,10 @@
+module Types
+  module ErrorTracking
+    # rubocop: disable Graphql/AuthorizeTypes
+    class SentryErrorStackTraceContextType < ::Types::BaseObject
+      def line: () -> untyped
+
+      def code: () -> untyped
+    end
+  end
+end

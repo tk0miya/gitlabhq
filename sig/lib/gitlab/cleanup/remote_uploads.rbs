@@ -1,0 +1,13 @@
+module Gitlab
+  module Cleanup
+    class RemoteUploads < RemoteObjectStorage
+      extend ::Gitlab::Utils::Override
+
+      def initialize: (?logger: untyped?) -> void
+
+      private
+
+      def find_tracked_paths: (untyped file_paths) -> untyped
+    end
+  end
+end

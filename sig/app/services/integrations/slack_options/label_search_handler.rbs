@@ -1,0 +1,29 @@
+module Integrations
+  module SlackOptions
+    class LabelSearchHandler
+      @current_user: untyped
+
+      @search_value: untyped
+
+      @view_id: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped current_user, untyped search_value, untyped view_id) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def project: () -> (nil | untyped)
+
+      def build_label_list: (untyped labels) -> (::Array[untyped] | { options: untyped })
+
+      attr_accessor current_user: untyped
+
+      attr_accessor search_value: untyped
+
+      attr_accessor view_id: untyped
+    end
+  end
+end

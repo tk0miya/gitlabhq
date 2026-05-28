@@ -1,0 +1,71 @@
+class PersonalAccessToken < ApplicationRecord
+  include AfterCommitQueue
+
+  include Expirable
+
+  include TokenAuthenticatable
+
+  include Sortable
+
+  include EachBatch
+
+  include CreatedAtFilterable
+
+  include Gitlab::SQL::Pattern
+
+  include SafelyChangeColumnDefault
+
+  include PolicyActor
+
+  extend ::Gitlab::Utils::Override
+
+  NOTIFICATION_INTERVALS: { seven_days: ::Range[::Integer], thirty_days: ::Range[::Integer], sixty_days: ::Range[::Integer] }
+
+  PERSONAL_TOKEN_PREFIX: "glpat-"
+
+  CREATION_SOURCE_UI: "ui"
+
+  CREATION_SOURCE_API: "api"
+
+  CREATION_SOURCE_UNKNOWN: "unknown"
+
+  MAX_PERSONAL_ACCESS_TOKEN_LIFETIME_IN_DAYS_BUFFERED: 400
+
+  MAX_PERSONAL_ACCESS_TOKEN_LIFETIME_IN_DAYS: 365
+
+  def revoke!: () -> (true | untyped)
+
+  def active?: () -> (false | true)
+
+  def self.simple_sorts: () -> untyped
+
+  def self.token_prefix: () -> untyped
+
+  def self.search: (untyped query) -> untyped
+
+  def self.notification_interval: (untyped interval) -> untyped
+
+  def self.scope_for_notification_interval: (untyped interval, ?min_expires_at: untyped?, ?max_expires_at: untyped?) -> untyped
+
+  def self.max_expiration_lifetime_in_days: () -> untyped
+
+  def hook_attrs: () -> untyped
+
+  def legacy?: () -> untyped
+
+  def set_user_type: () -> untyped
+
+  def set_group_id: () -> (untyped | nil)
+
+  def validate_scopes: () -> (untyped | nil)
+
+  def set_default_scopes: () -> (nil | untyped)
+
+  def prefix_from_application_current_settings: () -> untyped
+
+  def allow_expires_at_to_be_empty?: () -> untyped
+
+  def max_expiration_lifetime_in_days: () -> untyped
+
+  def expires_at_before_instance_max_expiry_date: () -> (nil | untyped)
+end

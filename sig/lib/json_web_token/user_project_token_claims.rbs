@@ -1,0 +1,24 @@
+# rubocop:disable Gitlab/BoundedContexts -- Shared ownership
+module JSONWebToken
+  class UserProjectTokenClaims
+    @project: untyped
+
+    @user: untyped
+
+    def initialize: (project: untyped, user: untyped) -> void
+
+    def generate: () -> untyped
+
+    def project_claims: (?key_prefix: ::String) -> untyped
+
+    def user_claims: () -> { user_id: untyped, user_login: untyped, user_email: untyped, user_access_level: untyped }
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader user: untyped
+
+    def user_access_level: () -> (nil | untyped)
+  end
+end

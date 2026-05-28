@@ -1,0 +1,68 @@
+# This class is not backed by a table in the main database.
+# It loads the latest Pipeline for the HEAD of a repository, and caches that
+# in Redis.
+module Gitlab
+  module Cache
+    module Ci
+      class ProjectPipelineStatus
+        @project: untyped
+
+        @sha: untyped
+
+        @ref: untyped
+
+        @status: untyped
+
+        @loaded: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        STATUS_KEY_TTL: untyped
+
+        attr_accessor sha: untyped
+
+        attr_accessor status: untyped
+
+        attr_accessor ref: untyped
+
+        attr_accessor project: untyped
+
+        attr_accessor loaded: untyped
+
+        def self.load_for_project: (untyped project) -> untyped
+
+        def self.load_in_batch_for_projects: (untyped projects) -> untyped
+
+        def self.update_for_pipeline: (untyped pipeline) -> untyped
+
+        def initialize: (untyped project, ?pipeline_info: ::Hash[untyped, untyped], ?loaded_from_cache: untyped?) -> void
+
+        def has_status?: () -> untyped
+
+        def load_status: () -> untyped
+
+        def load_from_project: () -> (nil | untyped)
+
+        # We only cache the status for the HEAD commit of a project
+        # This status is rendered in project lists
+        def store_in_cache_if_needed: () -> (untyped | nil)
+
+        def load_from_cache: () -> untyped
+
+        def store_in_cache: () -> untyped
+
+        def delete_from_cache: () -> untyped
+
+        def has_cache?: () -> untyped
+
+        def loaded?: () -> untyped
+
+        def cache_key: () -> ::String
+
+        def commit: () -> untyped
+
+        def with_redis: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

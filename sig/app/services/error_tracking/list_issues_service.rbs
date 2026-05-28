@@ -1,0 +1,32 @@
+module ErrorTracking
+  class ListIssuesService < ErrorTracking::BaseService
+    DEFAULT_ISSUE_STATUS: "unresolved"
+
+    DEFAULT_LIMIT: 20
+
+    DEFAULT_SORT: "last_seen"
+
+    # Sentry client supports 'muted' and 'assigned' but GitLab does not
+    ISSUE_STATUS_VALUES: ::Array["resolved" | "unresolved" | "ignored"]
+
+    def external_url: () -> untyped
+
+    private
+
+    def perform: () -> untyped
+
+    def parse_response: (untyped response) -> untyped
+
+    def invalid_status_error: () -> untyped
+
+    def valid_status?: () -> untyped
+
+    def issue_status: () -> untyped
+
+    def limit: () -> untyped
+
+    def sort: () -> untyped
+
+    def list_issues: (untyped opts) -> ({ issues: untyped, pagination: untyped } | untyped)
+  end
+end

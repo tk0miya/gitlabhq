@@ -1,0 +1,23 @@
+module AuditEvents
+  module GoogleCloud
+    module LoggingService
+      class Logger
+        @auth: untyped
+
+        WRITE_URL: "https://logging.googleapis.com/v2/entries:write"
+
+        SCOPE: "https://www.googleapis.com/auth/logging.write"
+
+        def initialize: () -> void
+
+        def log: (untyped client_email, untyped private_key, untyped payload) -> untyped
+
+        private
+
+        def build_headers: (untyped access_token) -> { "Authorization" => ::String, "Content-Type" => "application/json" }
+
+        def post: (untyped url, body: untyped, headers: untyped) -> untyped
+      end
+    end
+  end
+end

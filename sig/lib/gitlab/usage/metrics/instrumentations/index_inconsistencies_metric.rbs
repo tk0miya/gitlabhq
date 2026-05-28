@@ -1,0 +1,17 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class IndexInconsistenciesMetric < GenericMetric
+          private
+
+          def database: () -> untyped
+
+          def structure_sql: () -> untyped
+
+          def validators: () -> ::Array[untyped]
+        end
+      end
+    end
+  end
+end

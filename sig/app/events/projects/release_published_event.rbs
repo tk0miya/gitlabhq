@@ -1,0 +1,5 @@
+module Projects
+  class ReleasePublishedEvent < ::Gitlab::EventStore::Event
+    def schema: () -> { "type" => "object", "properties" => { "release_id" => { "type" => "integer" } }, "required" => ::Array["release_id"] }
+  end
+end

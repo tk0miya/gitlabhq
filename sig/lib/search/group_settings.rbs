@@ -1,0 +1,21 @@
+module Search
+  # Generates a list of all available setting sections of a group.
+  # This list is used by the command palette's search functionality.
+  class GroupSettings
+    @group: untyped
+
+    attr_reader group: untyped
+
+    def initialize: (untyped group) -> void
+
+    def all: () -> untyped
+
+    def general_settings: () -> ::Array[{ text: untyped, href: untyped }]
+
+    def repository_settings: () -> ::Array[{ text: untyped, href: untyped }]
+
+    def ci_cd_settings: () -> ::Array[{ text: untyped, href: untyped }]
+
+    def packages_settings: () -> ::Array[{ text: untyped, href: untyped }]
+  end
+end

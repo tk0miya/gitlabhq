@@ -1,0 +1,23 @@
+module Banzai
+  module Filter
+    # HTML that replaces all `lang plantuml` tags with PlantUML img tags.
+    #
+    class PlantumlFilter < HTML::Pipeline::Filter
+      @lang_tag: untyped
+
+      prepend Concerns::PipelineTimingCheck
+
+      prepend Concerns::DiagramService
+
+      def call: () -> untyped
+
+      private
+
+      def lang_tag: () -> untyped
+
+      def self.plantuml_img_tag: (untyped diagram_src) -> untyped
+
+      def self.plantuml_img_src: (untyped diagram_src) -> (nil | untyped)
+    end
+  end
+end

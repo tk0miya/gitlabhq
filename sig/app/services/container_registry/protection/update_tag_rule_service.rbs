@@ -1,0 +1,31 @@
+module ContainerRegistry
+  module Protection
+    class UpdateTagRuleService
+      @container_protection_tag_rule: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      include Gitlab::Allowable
+
+      include ContainerRegistry::Protection::InternalEventsTracking
+
+      ALLOWED_ATTRIBUTES: ::Array[:tag_name_pattern | :minimum_access_level_for_delete | :minimum_access_level_for_push]
+
+      def initialize: (untyped container_protection_tag_rule, current_user: untyped, params: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader container_protection_tag_rule: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def service_response_error: (message: untyped) -> untyped
+    end
+  end
+end

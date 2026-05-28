@@ -1,0 +1,27 @@
+module Gitlab
+  module Search
+    class ParsedQuery
+      @term: untyped
+
+      @filters: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader term: untyped
+
+      attr_reader filters: untyped
+
+      def initialize: (untyped term, untyped filters) -> void
+
+      def filter_results: (untyped results) -> (nil | untyped)
+
+      private
+
+      def including_filters: () -> untyped
+
+      def excluding_filters: () -> untyped
+
+      def processed_filters: (untyped type) -> untyped
+    end
+  end
+end

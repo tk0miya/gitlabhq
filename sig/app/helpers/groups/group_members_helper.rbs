@@ -1,0 +1,35 @@
+module Groups::GroupMembersHelper
+  include AvatarsHelper
+
+  include Gitlab::Utils::StrongMemoize
+
+  AVATAR_SIZE: 40
+
+  # rubocop:disable Metrics/ParameterLists -- all arguments needed
+  def group_members_app_data: (untyped group, members: untyped, invited: untyped, access_requests: untyped, banned: untyped, include_relations: untyped, pending_members_count: untyped, placeholder_users: untyped, ?params: ::Hash[untyped, untyped]) -> { user: untyped, group: untyped, invite: untyped, access_request: untyped, source_id: untyped, can_manage_members: untyped, can_manage_access_requests: untyped, group_name: untyped, group_path: untyped, can_approve_access_requests: true, placeholder: untyped, available_roles: untyped, reassignment_csv_path: untyped, allow_inactive_placeholder_reassignment: untyped, allow_bypass_placeholder_confirmation: untyped }
+
+  def group_member_header_subtext: (untyped group) -> untyped
+
+  # Overridden in ee/app/helpers/ee/groups/group_members_helper.rb
+  def allow_group_owner_enterprise_bypass?: (untyped group) -> false
+
+  private
+
+  def group_members_serialized: (untyped group, untyped members) -> untyped
+
+  def group_group_links_serialized: (untyped source, untyped group_links) -> untyped
+
+  # Overridden in `ee/app/helpers/ee/groups/group_members_helper.rb`
+  def group_members_list_data: (untyped group, untyped members, ?::Hash[untyped, untyped] pagination) -> { members: untyped, pagination: untyped, member_path: untyped }
+
+  def group_group_links: (untyped group, untyped include_relations) -> untyped
+
+  def group_group_links_list_data: (untyped group, untyped include_relations, untyped params) -> { members: untyped, pagination: untyped, member_path: untyped }
+
+  # Overridden in `ee/app/helpers/ee/groups/group_members_helper.rb`
+  def available_group_roles: (untyped group) -> untyped
+
+  def allow_admin_bypass?: () -> untyped
+
+  def allow_bypass_placeholder_confirmation: (untyped group) -> ("admin" | "group_owner" | nil)
+end

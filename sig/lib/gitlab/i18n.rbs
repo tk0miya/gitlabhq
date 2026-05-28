@@ -1,0 +1,48 @@
+module Gitlab
+  module I18n
+    extend ::Gitlab::I18n
+
+    AVAILABLE_LANGUAGES: { "bg" => ::String, "cs_CZ" => ::String, "da_DK" => "Danish - dansk", "de" => "German - Deutsch", "en" => "English", "eo" => "Esperanto - esperanto", "es" => ::String, "fil_PH" => "Filipino", "fr" => ::String, "gl_ES" => "Galician - galego", "ga_IE" => "Irish - Gaeilge", "id_ID" => "Indonesian - Bahasa Indonesia", "it" => "Italian - italiano", "ja" => ::String, "ko" => ::String, "nb_NO" => ::String, "nl_NL" => "Dutch - Nederlands", "pl_PL" => "Polish - polski", "pt_BR" => ::String, "ro_RO" => ::String, "ru" => ::String, "si_LK" => ::String, "tr_TR" => ::String, "uk" => ::String, "zh_CN" => ::String, "zh_HK" => ::String, "zh_TW" => ::String }
+
+    # Languages with less then MINIMUM_TRANSLATION_LEVEL% of available translations will not
+    # be available in the UI.
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/221012
+    MINIMUM_TRANSLATION_LEVEL: 2
+
+    # Currently monthly updated manually by ~group::import PM.
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/18923
+    TRANSLATION_LEVELS: { "bg" => 0, "cs_CZ" => 0, "da_DK" => 13, "de" => 91, "en" => 100, "eo" => 2, "es" => 95, "fil_PH" => 0, "fr" => 96, "gl_ES" => 0, "ga_IE" => 99, "id_ID" => 16, "it" => 96, "ja" => 99, "ko" => 95, "nb_NO" => 12, "nl_NL" => 0, "pl_PL" => 1, "pt_BR" => 96, "ro_RO" => 33, "ru" => 57, "si_LK" => 6, "tr_TR" => 3, "uk" => 25, "zh_CN" => 88, "zh_HK" => 0, "zh_TW" => 78 }
+
+    def selectable_locales: (?untyped minimum_translation_level) -> untyped
+
+    def percentage_translated_for: (untyped code) -> untyped
+
+    def trimmed_language_name: (untyped code) -> (nil | untyped)
+
+    def available_locales: () -> untyped
+
+    def locale: () -> untyped
+
+    def locale=: (untyped locale_string) -> untyped
+
+    def use_default_locale: () -> untyped
+
+    def with_locale: (untyped locale_string) { () -> untyped } -> untyped
+
+    def with_user_locale: (untyped user) { (?) -> untyped } -> untyped
+
+    def with_default_locale: () { (?) -> untyped } -> untyped
+
+    def setup: (domain: untyped, default_locale: untyped) -> untyped
+
+    private
+
+    def custom_pluralization: () -> untyped
+
+    def setup_repositories: (untyped domain) -> untyped
+
+    def po_repository: (untyped domain, untyped path) -> untyped
+
+    def setup_default_locale: (untyped locale) -> untyped
+  end
+end

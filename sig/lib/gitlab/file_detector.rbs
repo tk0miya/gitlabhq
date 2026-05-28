@@ -1,0 +1,29 @@
+module Gitlab
+  # Module that can be used to detect if a path points to a special file such as
+  # a README or a CONTRIBUTING file.
+  module FileDetector
+    PATTERNS_BASENAME: { openapi: ::Array[::Regexp] }
+
+    PATTERNS: { readme: ::Regexp, changelog: ::Regexp, license: ::Regexp, contributing: ::Regexp, version: "version", avatar: ::Regexp, issue_template: ::Regexp, merge_request_template: ::Regexp, xcode_config: ::Regexp, gitignore: ".gitignore", gitlab_ci: untyped, jenkinsfile: ::Regexp, route_map: ".gitlab/route-map.yml", cargo_toml: "Cargo.toml", cartfile: ::Regexp, composer_json: "composer.json", gemfile: ::Regexp, gemfile_lock: "Gemfile.lock", gemspec: ::Regexp, godeps_json: "Godeps.json", go_mod: "go.mod", go_sum: "go.sum", package_json: "package.json", podfile: "Podfile", podspec_json: ::Regexp, podspec: ::Regexp, requirements_txt: ::Regexp, yarn_lock: "yarn.lock" }
+
+    # Returns an Array of file types based on the given paths.
+    #
+    # This method can be used to check if a list of file paths (e.g. of changed
+    # files) involve any special files such as a README or a LICENSE file.
+    #
+    # Example:
+    #
+    #     types_in_paths(%w{README.md foo/bar.txt}) # => [:readme]
+    def self.types_in_paths: (untyped paths) -> untyped
+
+    # Returns the type of a file path, or nil if none could be detected.
+    #
+    # Returned types are Symbols such as `:readme`, `:version`, etc.
+    #
+    # Example:
+    #
+    #     type_of('README.md') # => :readme
+    #     type_of('VERSION') # => :version
+    def self.type_of: (untyped path) -> (untyped | nil)
+  end
+end

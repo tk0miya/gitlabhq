@@ -1,0 +1,13 @@
+module Gitlab
+  module DataBuilder
+    module Milestone
+      extend ::Gitlab::DataBuilder::Milestone
+
+      SAMPLE_DATA: { id: 1, iid: 1, title: "Sample milestone", description: "Sample milestone description", state: "active", created_at: untyped, updated_at: untyped, due_date: untyped, start_date: untyped }
+
+      def build: (untyped milestone, untyped action) -> { object_kind: "milestone", event_type: "milestone", project: untyped, group: untyped, object_attributes: untyped, action: untyped }
+
+      def build_sample: (untyped project) -> untyped
+    end
+  end
+end

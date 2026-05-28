@@ -1,0 +1,17 @@
+module Banzai
+  module ReferenceParser
+    class CommitRangeParser < BaseParser
+      def referenced_by: (untyped nodes, ?::Hash[untyped, untyped] options) -> untyped
+
+      def commit_range_ids_per_project: (untyped nodes) -> untyped
+
+      def find_ranges: (untyped project, untyped range_ids) -> untyped
+
+      def find_object: (untyped project, untyped id) -> (nil | untyped)
+
+      private
+
+      def can_read_reference?: (untyped user, untyped ref_project, untyped node) -> untyped
+    end
+  end
+end

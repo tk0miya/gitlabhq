@@ -1,0 +1,55 @@
+module Gitlab
+  module SQL
+    # Class for easily building CTE statements.
+    #
+    # Example:
+    #
+    #     cte = CTE.new(:my_cte_name)
+    #     ns = Arel::Table.new(:namespaces)
+    #
+    #     cte << Namespace.
+    #       where(ns[:parent_id].eq(some_namespace_id))
+    #
+    #     Namespace
+    #       with(cte.to_arel).
+    #       from(cte.alias_to(ns))
+    #
+    # To skip materialization of the CTE query by passing materialized: false
+    # More context: https://www.postgresql.org/docs/12/queries-with.html
+    #
+    # cte = CTE.new(:my_cte_name, materialized: false)
+    #
+    class CTE
+      @table: untyped
+
+      @query: untyped
+
+      @materialized: untyped
+
+      attr_reader table: untyped
+
+      attr_reader query: untyped
+
+      # name - The name of the CTE as a String or Symbol.
+      def initialize: (untyped name, untyped query, ?materialized: bool) -> void
+
+      # Returns the Arel relation for this CTE.
+      def to_arel: () -> untyped
+
+      # Returns an "AS" statement that aliases the CTE name as the given table
+      # name. This allows one to trick ActiveRecord into thinking it's selecting
+      # from an actual table, when in reality it's selecting from a CTE.
+      #
+      # alias_table - The Arel table to use as the alias.
+      def alias_to: (untyped alias_table) -> untyped
+
+      # Applies the CTE to the given relation, returning a new one that will
+      # query from it.
+      def apply_to: (untyped relation) -> untyped
+
+      private
+
+      def query_as_sql: () -> untyped
+    end
+  end
+end

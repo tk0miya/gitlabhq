@@ -1,0 +1,22 @@
+# Represents Dag pipeline
+module Gitlab
+  module Ci
+    class YamlProcessor
+      class Dag
+        @nodes: untyped
+
+        include TSort
+
+        def initialize: (untyped nodes) -> void
+
+        def self.order: (untyped jobs) -> untyped
+
+        def self.check_circular_dependencies!: (untyped jobs) -> untyped
+
+        def tsort_each_child: (untyped node) { (?) -> untyped } -> (nil | untyped)
+
+        def tsort_each_node: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

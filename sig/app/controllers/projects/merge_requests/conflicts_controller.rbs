@@ -1,0 +1,19 @@
+class Projects::MergeRequests::ConflictsController < Projects::MergeRequests::ApplicationController
+  @conflicts_list: untyped
+
+  include IssuableActions
+
+  def show: () -> untyped
+
+  def conflict_for_path: () -> untyped
+
+  def resolve_conflicts: () -> (untyped | nil)
+
+  private
+
+  alias issuable merge_request
+
+  def authorize_can_resolve_conflicts!: () -> untyped
+
+  def serializer: () -> untyped
+end

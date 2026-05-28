@@ -1,0 +1,10 @@
+module Resolvers
+  module AppConfig
+    class GitlabInstanceFeatureFlagsResolver < BaseResolver
+      # note: Set an arbitrary limit to avoid performance issues
+      MAX_FEATURE_FLAG_NAMES: 20
+
+      def resolve: (names: untyped) -> (::Array[untyped] | untyped)
+    end
+  end
+end

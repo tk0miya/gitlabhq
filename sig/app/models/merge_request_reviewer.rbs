@@ -1,0 +1,7 @@
+class MergeRequestReviewer < ApplicationRecord
+  include MergeRequestReviewerState
+
+  include BulkInsertSafe
+
+  def cache_key: () -> ::Array[untyped]
+end

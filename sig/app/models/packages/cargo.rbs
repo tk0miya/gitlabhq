@@ -1,0 +1,9 @@
+module Packages
+  module Cargo
+    def self.table_name_prefix: () -> "packages_cargo_"
+
+    def self.normalize_name: (untyped package_name) -> untyped
+
+    def self.normalize_version: (untyped package_version) -> untyped
+  end
+end

@@ -1,0 +1,36 @@
+module ClickHouse
+  module Finders
+    module Ci
+      # todo: rename base_model to base_finder: https://gitlab.com/gitlab-org/gitlab/-/issues/559016
+      class FinishedBuildsFinder < ::ClickHouse::Models::BaseModel
+        include ActiveRecord::Sanitization::ClassMethods
+
+        include Concerns::FinishedBuildsAggregations
+
+        def self.table_name: () -> untyped
+
+        def self.model_class: () -> untyped
+
+        def execute: () -> untyped
+
+        def for_project: (untyped project_id) -> untyped
+
+        def select: (*untyped fields) -> (self | untyped)
+
+        def filter_by_job_name: (untyped term) -> untyped
+
+        def apply_finished_at_lower_bound: (untyped from_time) -> untyped
+
+        private
+
+        def add_aggregation_select: (untyped expression, **untyped) -> untyped
+
+        def apply_order: (untyped field, untyped direction) -> untyped
+
+        def apply_group: (*untyped columns) -> untyped
+
+        def apply_pipeline_filter: (untyped pipelines) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab::UsageDataCounters
+  class CiTemplateUniqueCounter
+    PREFIX: "ci_templates"
+
+    def self.track_unique_project_event: (project: untyped, template: untyped, config_source: untyped, user: untyped) -> (nil | untyped)
+
+    def self.ci_templates: (?::String relative_base) -> untyped
+
+    def self.ci_template_event_name: (untyped template_name, untyped config_source) -> ::String
+
+    def self.expand_template_name: (untyped template_name) -> untyped
+
+    private
+
+    def self.template_to_event_name: (untyped template) -> untyped
+  end
+end

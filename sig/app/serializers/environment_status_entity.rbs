@@ -1,0 +1,17 @@
+class EnvironmentStatusEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  def environment: () -> untyped
+
+  def project: () -> untyped
+
+  def current_user: () -> untyped
+
+  def can_read_environment?: () -> untyped
+
+  def can_stop_environment?: () -> untyped
+
+  def can_rollback_environment?: () -> untyped
+end

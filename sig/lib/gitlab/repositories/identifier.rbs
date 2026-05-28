@@ -1,0 +1,55 @@
+module Gitlab
+  module Repositories
+    class Identifier
+      include Gitlab::Utils::StrongMemoize
+
+      InvalidIdentifier: untyped
+
+      def self.parse: (untyped gl_repository) -> untyped
+
+      # The older 2-segment format, where the container is implied.
+      # eg. project-1, wiki-1
+      class TwoPartIdentifier < Identifier
+        @container_id_str: untyped
+
+        @repo_type_name: untyped
+
+        def initialize: (untyped repo_type_name, untyped container_id_str) -> void
+
+        private
+
+        def container_class: () -> untyped
+      end
+
+      # The newer 3-segment format, where the container is explicit
+      # eg. group-1-wiki, project-1-wiki
+      class ThreePartIdentifier < Identifier
+        @container_id_str: untyped
+
+        @container_type: untyped
+
+        @repo_type_name: untyped
+
+        def initialize: (untyped container_type, untyped container_id_str, untyped repo_type_name) -> void
+
+        private
+
+        def container_class: () -> untyped
+      end
+
+      def repo_type: () -> untyped
+
+      def container: () -> untyped
+
+      def valid?: () -> untyped
+
+      private
+
+      attr_reader container_id_str: untyped
+
+      attr_reader repo_type_name: untyped
+
+      def container_id: () -> untyped
+    end
+  end
+end

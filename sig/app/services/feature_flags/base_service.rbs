@@ -1,0 +1,25 @@
+module FeatureFlags
+  class BaseService < ::BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    AUDITABLE_ATTRIBUTES: ::Array["name" | "description" | "active"]
+
+    def success: (**untyped args) -> untyped
+
+    def audit_event: (untyped feature_flag, ?untyped? context) -> (nil | untyped)
+
+    def update_last_feature_flag_updated_at!: () -> untyped
+
+    def sync_to_jira: (untyped feature_flag) -> (nil | untyped)
+
+    def created_strategy_message: (untyped strategy) -> ::String
+
+    def feature_flag_by_name: () -> untyped
+
+    def feature_flag_scope_by_environment_scope: () -> untyped
+
+    private
+
+    def audit_message: (untyped feature_flag) -> untyped
+  end
+end

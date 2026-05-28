@@ -1,0 +1,9 @@
+module Chaos
+  class KillWorker
+    include ApplicationWorker
+
+    include ChaosQueue
+
+    def perform: (untyped signal) -> untyped
+  end
+end

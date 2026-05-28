@@ -1,0 +1,12 @@
+module Ci
+  module Runners
+    class StaleMachinesCleanupCronWorker
+      include ApplicationWorker
+
+      # This worker does not schedule other workers that require context.
+      include CronjobQueue
+
+      def perform: () -> untyped
+    end
+  end
+end

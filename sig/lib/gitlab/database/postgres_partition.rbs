@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    class PostgresPartition < SharedModel
+      LIST_PARTITION_PATTERN: ::Regexp
+
+      def self.partition_exists?: (untyped table_name) -> untyped
+
+      def self.legacy_partition_exists?: (untyped table_name) -> untyped
+
+      def to_s: () -> untyped
+
+      def list_partition_ids: () -> (::Array[untyped] | untyped)
+    end
+  end
+end

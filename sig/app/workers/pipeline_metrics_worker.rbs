@@ -1,0 +1,17 @@
+class PipelineMetricsWorker
+  include ApplicationWorker
+
+  include PipelineQueue
+
+  def perform: (untyped pipeline_id) -> untyped
+
+  private
+
+  def update_metrics_for_active_pipeline: (untyped pipeline) -> untyped
+
+  def update_metrics_for_succeeded_pipeline: (untyped pipeline) -> untyped
+
+  def metrics: (untyped pipeline) -> untyped
+
+  def merge_requests: (untyped pipeline) -> untyped
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module CycleAnalytics
+    class Permissions
+      @user: untyped
+
+      @project: untyped
+
+      @stage_permission_hash: untyped
+
+      STAGE_PERMISSIONS: { issue: :read_issue, code: :read_merge_request, test: :read_build, review: :read_merge_request, staging: :read_build, production: :read_issue }
+
+      def self.get: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def initialize: (user: untyped, project: untyped) -> void
+
+      def get: () -> untyped
+
+      private
+
+      def authorized_stage?: (untyped stage) -> (false | untyped)
+
+      def authorize_project: (untyped permission) -> untyped
+    end
+  end
+end

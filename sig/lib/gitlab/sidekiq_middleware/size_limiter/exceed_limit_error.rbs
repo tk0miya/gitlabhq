@@ -1,0 +1,25 @@
+module Gitlab
+  module SidekiqMiddleware
+    module SizeLimiter
+      # A custom exception for size limiter. It contains worker class and its
+      # size to easier track later
+      class ExceedLimitError < StandardError
+        @worker_class: untyped
+
+        @size: untyped
+
+        @size_limit: untyped
+
+        attr_reader worker_class: untyped
+
+        attr_reader size: untyped
+
+        attr_reader size_limit: untyped
+
+        def initialize: (untyped worker_class, untyped size, untyped size_limit) -> void
+
+        def sentry_extra_data: () -> { worker_class: untyped, size: untyped, size_limit: untyped }
+      end
+    end
+  end
+end

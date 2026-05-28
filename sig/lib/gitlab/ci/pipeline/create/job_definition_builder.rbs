@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Create
+        class JobDefinitionBuilder
+          @pipeline: untyped
+
+          @jobs: untyped
+
+          @project: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped pipeline, untyped jobs) -> void
+
+          def run: () -> untyped
+
+          private
+
+          attr_reader project: untyped
+
+          attr_reader pipeline: untyped
+
+          attr_reader jobs: untyped
+
+          def find_or_insert_job_definitions: () -> untyped
+
+          def jobs_by_checksum: () -> untyped
+        end
+      end
+    end
+  end
+end

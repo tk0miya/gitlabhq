@@ -1,0 +1,19 @@
+module Mutations
+  module Ci
+    module Runner
+      class Update < BaseMutation
+        include Mutations::Ci::Runner::CommonMutationArguments
+
+        RunnerID: untyped
+
+        def resolve: (id: untyped, **untyped runner_attrs) -> untyped
+
+        private
+
+        def associate_runner_projects: (untyped response, untyped runner, untyped associated_project_ids) -> (nil | untyped)
+
+        def update_runner: (untyped response, untyped runner, untyped attrs) -> (nil | untyped)
+      end
+    end
+  end
+end

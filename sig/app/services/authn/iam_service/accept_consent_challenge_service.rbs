@@ -1,0 +1,53 @@
+module Authn
+  module IamService
+    class AcceptConsentChallengeService
+      # rubocop:enable Metrics/ParameterLists
+      @challenge: untyped
+
+      @user: untyped
+
+      @granted_scopes: untyped
+
+      @client_id: untyped
+
+      @client_name: untyped
+
+      @requested_scopes: untyped
+
+      @client_scopes: untyped
+
+      @ip_address: untyped
+
+      @user_agent: untyped
+
+      @client: untyped
+
+      ACCEPT_PATH: "/oauth2/internal/auth/requests/consent/accept"
+
+      # rubocop:disable Metrics/ParameterLists -- all arguments needed
+      def initialize: (challenge: untyped, user: untyped, granted_scopes: untyped, client_id: untyped, client_name: untyped, requested_scopes: untyped, client_scopes: untyped, ?ip_address: untyped?, ?user_agent: untyped?, ?client: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def request_body: () -> { grant_scope: untyped, session: { access_token: { username: untyped }, id_token: { name: untyped, email: untyped } } }
+
+      def persist_consent_record!: () -> untyped
+
+      def log_persistence_failure: (untyped error) -> untyped
+
+      def emit_audit_event: () -> untyped
+
+      def http_error: (untyped response) -> untyped
+
+      def missing_redirect_error: () -> untyped
+
+      def invalid_redirect_error: () -> untyped
+
+      def invalid_body_error: () -> untyped
+
+      def log_failure: (reason: untyped, ?http_status: untyped?) -> untyped
+    end
+  end
+end

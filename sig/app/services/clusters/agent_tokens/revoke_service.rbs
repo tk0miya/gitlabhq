@@ -1,0 +1,25 @@
+module Clusters
+  module AgentTokens
+    class RevokeService
+      @token: untyped
+
+      @current_user: untyped
+
+      attr_reader current_project: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader token: untyped
+
+      def initialize: (token: untyped, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def error_no_permissions: () -> untyped
+
+      def log_activity_event: (untyped token) -> untyped
+    end
+  end
+end

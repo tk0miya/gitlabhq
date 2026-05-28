@@ -1,0 +1,33 @@
+module ExtractsRef
+  class RequestedRef
+    @ref_type: untyped
+
+    @ref: untyped
+
+    @repository: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    SYMBOLIC_REF_PREFIX: ::Regexp
+
+    def initialize: (untyped repository, ref_type: untyped, ref: untyped) -> void
+
+    attr_reader repository: untyped
+
+    attr_reader ref_type: untyped
+
+    attr_reader ref: untyped
+
+    def find: () -> untyped
+
+    private
+
+    def commit_without_ref_type: () -> ({ ref_type: nil, commit: nil } | { ref_type: nil, commit: untyped } | { ref_type: "tags", commit: untyped, ambiguous: untyped } | { ref_type: "heads", commit: untyped } | { ref_type: nil, commit: untyped, ambiguous: untyped })
+
+    def commit: () -> untyped
+
+    def tag: () -> (nil | untyped)
+
+    def branch: () -> (nil | untyped)
+  end
+end

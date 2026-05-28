@@ -1,0 +1,47 @@
+module WebHooks
+  module AutoDisabling
+    @logger: untyped
+
+    extend ActiveSupport::Concern
+
+    include ::Gitlab::Loggable
+
+    ENABLED_HOOK_TYPES: ::Array["ProjectHook"]
+
+    TEMPORARILY_DISABLED_FAILURE_THRESHOLD: 3
+
+    # A webhook will be failing and being temporarily disabled for the max backoff of 1 day (`MAX_BACKOFF`)
+    # for at least 1 month before it becomes permanently disabled on its 40th failure.
+    # Exactly how quickly this happens depends on how frequently it triggers.
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/503733#note_2217234805
+    PERMANENTLY_DISABLED_FAILURE_THRESHOLD: 39
+
+    INITIAL_BACKOFF: untyped
+
+    MAX_BACKOFF: untyped
+
+    BACKOFF_GROWTH_FACTOR: ::Float
+
+    def executable?: () -> (true | untyped)
+
+    def temporarily_disabled?: () -> (false | untyped)
+
+    def permanently_disabled?: () -> (false | untyped)
+
+    def enable!: () -> (nil | untyped)
+
+    # Don't actually back-off until a grace level of TEMPORARILY_DISABLED_FAILURE_THRESHOLD failures have been seen
+    # tracked in the recent_failures counter
+    def backoff!: () -> (nil | untyped)
+
+    def alert_status: () -> (:executable | untyped)
+
+    private
+
+    def logger: () -> untyped
+
+    def next_failure_count: () -> untyped
+
+    def next_backoff: () -> untyped
+  end
+end

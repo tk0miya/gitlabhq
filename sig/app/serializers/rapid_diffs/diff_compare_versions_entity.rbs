@@ -1,0 +1,17 @@
+module RapidDiffs
+  class DiffCompareVersionsEntity < Grape::Entity
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::Routing
+
+    private
+
+    def viewable_target_versions: (untyped merge_request) -> untyped
+
+    def viewable_recent_merge_request_diffs: (untyped merge_request) -> untyped
+
+    def commit_ids: (untyped merge_request) -> untyped
+
+    def commit_neighbors: (untyped merge_request, untyped commit_id) -> ::Array[untyped]
+  end
+end

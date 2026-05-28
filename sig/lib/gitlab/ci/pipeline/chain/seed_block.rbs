@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class SeedBlock < Chain::Base
+          include Chain::Helpers
+
+          include Gitlab::Utils::StrongMemoize
+
+          def perform!: () -> untyped
+
+          def break?: () -> untyped
+        end
+      end
+    end
+  end
+end

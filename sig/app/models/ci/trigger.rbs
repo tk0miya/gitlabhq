@@ -1,0 +1,35 @@
+module Ci
+  class Trigger < Ci::ApplicationRecord
+    include Presentable
+
+    include Limitable
+
+    include Expirable
+
+    include Gitlab::EncryptedAttribute
+
+    include TokenAuthenticatable
+
+    TRIGGER_TOKEN_PREFIX: "glptt-"
+
+    EXPIRED_TOKEN_RETENTION: untyped
+
+    MAX_DESCRIPTION_LENGTH: 2048
+
+    def self.prefix_for_trigger_token: () -> untyped
+
+    def token=: (untyped token_value) -> untyped
+
+    def last_used: () -> untyped
+
+    def short_token: () -> (nil | untyped)
+
+    alias trigger_short_token short_token
+
+    def can_access_project?: () -> untyped
+
+    def token_prefix: () -> untyped
+
+    def expires_at_before_instance_max_expiry_date: () -> (nil | untyped)
+  end
+end

@@ -1,0 +1,54 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      # Arguments:
+      #   stage - an instance of CycleAnalytics::Stage
+      #   params:
+      #     current_user: an instance of User
+      #     from: DateTime
+      #     to: DateTime
+      class DataCollector
+        @stage: untyped
+
+        @params: untyped
+
+        @query_builder: untyped
+
+        @aggregated_data_collector: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        MAX_COUNT: 1001
+
+        def initialize: (stage: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        def records_fetcher: () -> untyped
+
+        def median: () -> untyped
+
+        def average: () -> untyped
+
+        def count: () -> untyped
+
+        attr_reader stage: untyped
+
+        attr_reader params: untyped
+
+        private
+
+        def query: () -> untyped
+
+        def query_builder: () -> untyped
+
+        # Limiting the maximum number of records so the COUNT(*) query stays efficient for large groups.
+        # COUNT = 1001, show 1000+ on the UI
+        # COUNT < 1001, show the actual number on the UI
+        def limit_count: () -> untyped
+
+        def aggregated_data_collector: () -> untyped
+
+        def use_aggregated_data_collector?: () -> untyped
+      end
+    end
+  end
+end

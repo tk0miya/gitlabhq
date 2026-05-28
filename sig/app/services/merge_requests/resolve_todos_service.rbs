@@ -1,0 +1,21 @@
+module MergeRequests
+  class ResolveTodosService
+    @merge_request: untyped
+
+    @user: untyped
+
+    include BaseServiceUtility
+
+    def initialize: (untyped merge_request, untyped user) -> void
+
+    def async_execute: () -> untyped
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader merge_request: untyped
+
+    attr_reader user: untyped
+  end
+end

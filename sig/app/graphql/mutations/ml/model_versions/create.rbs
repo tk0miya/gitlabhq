@@ -1,0 +1,11 @@
+module Mutations
+  module Ml
+    module ModelVersions
+      class Create < BaseMutation
+        include FindsProject
+
+        def resolve: (**untyped args) -> ({ errors: ::Array["Model not found"] } | { model_version: untyped, errors: untyped })
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+class RunnerEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  alias runner object
+
+  def project: () -> untyped
+
+  def current_user: () -> untyped
+
+  # can_admin_all_resources? is used here because the
+  # path exposed is only available to admins
+  def can_admin_runner?: () -> untyped
+end

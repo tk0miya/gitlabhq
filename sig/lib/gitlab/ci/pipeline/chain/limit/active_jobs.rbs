@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Limit
+          class ActiveJobs < Chain::Base
+            include ::Gitlab::Utils::StrongMemoize
+
+            include ::Gitlab::Ci::Pipeline::Chain::Helpers
+
+            LIMIT_NAME: :ci_active_jobs
+
+            MESSAGE: "Project exceeded the allowed number of jobs in active pipelines. Retry later."
+
+            def perform!: () -> (nil | untyped)
+
+            def break?: () -> untyped
+
+            private
+
+            def namespace: () -> untyped
+
+            def limits: () -> untyped
+
+            def count_jobs_in_alive_pipelines: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

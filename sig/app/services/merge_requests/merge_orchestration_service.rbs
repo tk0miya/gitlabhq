@@ -1,0 +1,19 @@
+module MergeRequests
+  class MergeOrchestrationService < ::BaseService
+    @auto_merge_service: untyped
+
+    def execute: (untyped merge_request) -> (nil | untyped)
+
+    def can_merge?: (untyped merge_request) -> untyped
+
+    def preferred_auto_merge_strategy: (untyped merge_request) -> untyped
+
+    private
+
+    def can_merge_immediately?: (untyped merge_request) -> untyped
+
+    def can_merge_automatically?: (untyped merge_request) -> untyped
+
+    def auto_merge_service: () -> untyped
+  end
+end

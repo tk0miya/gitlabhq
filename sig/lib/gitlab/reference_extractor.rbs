@@ -1,0 +1,52 @@
+module Gitlab
+  # Extract possible GFM references from an arbitrary String for further processing.
+  class ReferenceExtractor < Banzai::ReferenceExtractor
+    self.@pattern: untyped
+
+    self.@referrables: untyped
+
+    @project: untyped
+
+    @current_user: untyped
+
+    @references: untyped
+
+    @not_visible_nodes: untyped
+
+    REFERABLES: ::Array[:user | :issue | :work_item | :label | :milestone | :mentioned_user | :mentioned_group | :mentioned_project | :merge_request | :snippet | :commit | :commit_range | :directly_addressed_user | :epic | :vulnerability | :alert]
+
+    attr_accessor project: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor author: untyped
+
+    def initialize: (untyped project, ?untyped? current_user) -> void
+
+    def analyze: (untyped text, ?::Hash[untyped, untyped] context) -> untyped
+
+    def references: (untyped type, ?ids_only: bool) -> untyped
+
+    # this method is stateful, it tracks if all nodes from `references`
+    # calls are visible or not
+    def all_visible?: () -> untyped
+
+    def reset_memoized_values: () -> untyped
+
+    def issues: () -> untyped
+
+    def all: () -> untyped
+
+    def self.references_pattern: () -> untyped
+
+    def self.referrables: () -> untyped
+
+    def has_work_item_references?: () -> untyped
+
+    private
+
+    def update_visible_nodes_set: (untyped all, untyped visible) -> untyped
+
+    def not_visible_nodes: () -> untyped
+  end
+end

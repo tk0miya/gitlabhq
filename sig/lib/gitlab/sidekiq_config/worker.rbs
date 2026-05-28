@@ -1,0 +1,39 @@
+module Gitlab
+  module SidekiqConfig
+    class Worker
+      @klass: untyped
+
+      @ee: untyped
+
+      @jh: untyped
+
+      include Comparable
+
+      attr_reader klass: untyped
+
+      def initialize: (untyped klass, ee: untyped, ?jh: bool) -> void
+
+      def ee?: () -> untyped
+
+      def jh?: () -> untyped
+
+      def ==: (untyped other) -> untyped
+
+      def <=>: (untyped other) -> untyped
+
+      # Put namespaced queues first
+      def to_sort: () -> ::Array[untyped]
+
+      # YAML representation
+      def encode_with: (untyped coder) -> untyped
+
+      def to_yaml: () -> { name: untyped, worker_name: untyped, feature_category: untyped, has_external_dependencies: untyped, urgency: untyped, resource_boundary: untyped, weight: untyped, idempotent: untyped, tags: untyped, queue_namespace: untyped }
+
+      def namespace_and_weight: () -> ::Array[untyped]
+
+      def queue_and_weight: () -> ::Array[untyped]
+
+      def retries: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,54 @@
+module BulkImports
+  module Common
+    module Pipelines
+      class LfsObjectsPipeline
+        @lfs_json: untyped
+
+        @tmpdir: untyped
+
+        @allowed_repository_types: untyped
+
+        include Pipeline
+
+        include IndexCacheStrategy
+
+        def extract: (untyped _context) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def load: (untyped _context, untyped file_path) -> (nil | untyped)
+
+        def after_run: (untyped _) -> untyped
+
+        private
+
+        def download_service: () -> untyped
+
+        def decompression_service: () -> untyped
+
+        def extraction_service: () -> untyped
+
+        def lfs_json: () -> untyped
+
+        def tmpdir: () -> untyped
+
+        def relation: () -> untyped
+
+        def tar_filename: () -> ::String
+
+        def targz_filename: () -> ::String
+
+        def lfs_json_filepath?: (untyped file_path) -> untyped
+
+        def tar_filepath?: (untyped file_path) -> untyped
+
+        def lfs_json_filepath: () -> untyped
+
+        def create_lfs_objects_project: (untyped lfs_object, untyped repository_type) -> (nil | untyped)
+
+        def repository_types: (untyped oid) -> (::Array[untyped] | untyped)
+
+        def allowed_repository_types: () -> untyped
+      end
+    end
+  end
+end

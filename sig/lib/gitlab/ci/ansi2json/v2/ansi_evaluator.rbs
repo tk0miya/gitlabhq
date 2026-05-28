@@ -1,0 +1,50 @@
+module Gitlab
+  module Ci
+    module Ansi2json
+      module V2
+        class AnsiEvaluator
+          @fg: untyped
+
+          @bg: untyped
+
+          @mask: untyped
+
+          STYLE_BOLD: 1
+
+          STYLE_ITALIC: 2
+
+          STYLE_UNDERLINE: 4
+
+          STYLE_CONCEAL: 8
+
+          STYLE_CROSS: 16
+
+          attr_reader fg: untyped
+
+          attr_reader bg: untyped
+
+          attr_reader mask: untyped
+
+          def initialize: (?fg: untyped?, ?bg: untyped?, ?mask: ::Integer) -> void
+
+          def apply_commands: (untyped commands) -> untyped
+
+          def reset!: () -> untyped
+
+          def set?: () -> untyped
+
+          def to_class_string: () -> ("" | untyped)
+
+          def to_h: () -> { fg: untyped, bg: untyped, mask: untyped }
+
+          private
+
+          # rubocop:disable Lint/DuplicateBranch, Metrics/AbcSize, Metrics/CyclomaticComplexity -- intentional
+          def dispatch: (untyped cmd, untyped stack) -> untyped
+
+          def consume_256: (untyped stack, untyped prefix) -> (nil | ::String)
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class InstanceFeatureFlagsMetric < GenericMetric
+          private
+
+          def actors: (untyped ff) -> untyped
+
+          def ff_type: (untyped ff, untyped definitions) -> untyped
+        end
+      end
+    end
+  end
+end

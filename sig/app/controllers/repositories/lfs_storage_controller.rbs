@@ -1,0 +1,27 @@
+module Repositories
+  class LfsStorageController < ::Repositories::GitHttpClientController
+    include LfsRequest
+
+    include WorkhorseRequest
+
+    include SendFileUpload
+
+    def download: () -> untyped
+
+    def upload_authorize: () -> untyped
+
+    def upload_finalize: () -> untyped
+
+    private
+
+    def download_request?: () -> untyped
+
+    def upload_request?: () -> untyped
+
+    def oid: () -> untyped
+
+    def size: () -> untyped
+
+    def uploaded_file: () -> untyped
+  end
+end

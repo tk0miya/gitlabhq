@@ -1,0 +1,25 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      class BmCreateDesiredConfig
+        self.@logger: untyped
+
+        # @param [Integer] workspace_id
+        # @param [Boolean] dry_run
+        # @return [Void]
+        def self.create_and_save: (workspace_id: untyped, ?dry_run: bool) -> untyped
+
+        # rubocop:disable Metrics/MethodLength -- need it big
+        # @param [BackgroundMigration::RemoteDevelopment::Models::BMWorkspace] workspace
+        # @param [BackgroundMigration::RemoteDevelopment::WorkspaceOperations::BMDesiredConfig] desired_config
+        # @param [Gitlab::BackgroundMigration::Logger] logger
+        # @param [Boolean] dry_run
+        # @return [Void]
+        def self.validate_and_create_workspace_agentk_state: (workspace: untyped, desired_config: untyped, logger: untyped, dry_run: untyped) -> (nil | untyped)
+
+        # @return [Gitlab::BackgroundMigration::Logger]
+        def self.logger: () -> untyped
+      end
+    end
+  end
+end

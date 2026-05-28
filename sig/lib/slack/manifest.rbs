@@ -1,0 +1,19 @@
+module Slack
+  module Manifest
+    def self.share_url: () -> ::String
+
+    def self.to_h: () -> { display_information: untyped, features: untyped, oauth_config: untyped, settings: untyped }
+
+    private
+
+    def self.display_information: () -> { name: ::String, description: untyped, background_color: "#171321", long_description: untyped }
+
+    def self.features: () -> { app_home: { home_tab_enabled: true, messages_tab_enabled: false, messages_tab_read_only_enabled: true }, bot_user: { display_name: "GitLab", always_online: true }, slash_commands: ::Array[{ command: "/gitlab", url: untyped, description: untyped, usage_hint: untyped, should_escape: false }] }
+
+    def self.oauth_config: () -> { redirect_urls: ::Array[untyped], scopes: { bot: ::Array["commands" | "chat:write" | "chat:write.public"] } }
+
+    def self.settings: () -> { event_subscriptions: { request_url: untyped, bot_events: ::Array["app_home_opened"] }, interactivity: { is_enabled: true, request_url: untyped, message_menu_options_url: untyped }, org_deploy_enabled: false, socket_mode_enabled: false, token_rotation_enabled: false }
+
+    def self.api_v4: (untyped path) -> ::String
+  end
+end

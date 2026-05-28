@@ -1,0 +1,62 @@
+module IncidentManagement
+  module TimelineEvents
+    # @param timeline_event [IncidentManagement::TimelineEvent]
+    # @param user [User]
+    # @param params [Hash]
+    # @option params [string] note
+    # @option params [datetime] occurred_at
+    class UpdateService < TimelineEvents::BaseService
+      @timeline_event: untyped
+
+      @incident: untyped
+
+      @project: untyped
+
+      @user: untyped
+
+      @note: untyped
+
+      @occurred_at: untyped
+
+      @validation_context: untyped
+
+      @timeline_event_tags: untyped
+
+      VALIDATION_CONTEXT: :user_input
+
+      def initialize: (untyped timeline_event, untyped user, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader timeline_event: untyped
+
+      attr_reader incident: untyped
+
+      attr_reader project: untyped
+
+      attr_reader user: untyped
+
+      attr_reader note: untyped
+
+      attr_reader occurred_at: untyped
+
+      attr_reader validation_context: untyped
+
+      attr_reader timeline_event_tags: untyped
+
+      def update_timeline_event_and_event_tags: (untyped new_tags) -> untyped
+
+      def update_params: () -> untyped
+
+      def add_system_note: (untyped timeline_event) -> (nil | untyped)
+
+      def was_changed: (untyped timeline_event) -> (:occurred_at_and_note | :occurred_at | :note | :none)
+
+      def validate_tags: (untyped new_tags) -> untyped
+
+      def allowed?: () -> untyped
+    end
+  end
+end

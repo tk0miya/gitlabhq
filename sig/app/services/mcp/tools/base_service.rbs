@@ -1,0 +1,49 @@
+module Mcp
+  module Tools
+    class BaseService
+      @name: untyped
+
+      # override this method when renaming tools
+      def self.tool_aliases: () -> ::Array[untyped]
+
+      def initialize: (name: untyped) -> void
+
+      def set_cred: (**untyped) -> untyped
+
+      def description: () -> untyped
+
+      def input_schema: () -> untyped
+
+      def execute: (?request: untyped?, ?params: untyped?) -> untyped
+
+      def to_h: () -> untyped
+
+      def icons: () -> untyped
+
+      # Tool availability check, returns `true` by default.
+      # Tools should override this method if they need to check for specific conditions.
+      def available?: () -> true
+
+      # Returns tool annotations (e.g., readOnly flag for governance controls).
+      # Tools should override this method to provide custom annotations.
+      # Returns empty hash by default, which will be omitted from to_h output.
+      def annotations: () -> ::Hash[untyped, untyped]
+
+      def perform: (?::Hash[untyped, untyped] _arguments, ?::Hash[untyped, untyped] _query) -> untyped
+
+      private
+
+      attr_reader name: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader access_token: untyped
+
+      def validate_arguments!: (untyped arguments) -> (nil | untyped)
+
+      def input_schema_pagination_params: () -> { per_page: { type: "integer", description: "Number of items to list per page. (default: 20)", minimum: 1 }, page: { type: "integer", description: "Page number to retrieve. (default: 1)", minimum: 1 } }
+
+      def version: () -> untyped
+    end
+  end
+end

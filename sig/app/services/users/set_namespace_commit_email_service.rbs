@@ -1,0 +1,41 @@
+module Users
+  class SetNamespaceCommitEmailService
+    @current_user: untyped
+
+    @target_user: untyped
+
+    @namespace: untyped
+
+    @email_id: untyped
+
+    include Gitlab::Allowable
+
+    attr_reader current_user: untyped
+
+    attr_reader target_user: untyped
+
+    attr_reader namespace: untyped
+
+    attr_reader email_id: untyped
+
+    def initialize: (untyped current_user, untyped namespace, untyped email_id, untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def remove_namespace_commit_email: (untyped namespace_commit_email) -> untyped
+
+    def create_namespace_commit_email: (untyped email) -> untyped
+
+    def update_namespace_commit_email: (untyped namespace_commit_email, untyped email) -> untyped
+
+    def save_namespace_commit_email: (untyped namespace_commit_email) -> untyped
+
+    def success: (untyped namespace_commit_email) -> untyped
+
+    def error: (untyped message) -> untyped
+
+    def error_in_save: (untyped namespace_commit_email) -> untyped
+  end
+end

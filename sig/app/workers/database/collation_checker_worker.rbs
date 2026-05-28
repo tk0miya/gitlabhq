@@ -1,0 +1,11 @@
+module Database
+  class CollationCheckerWorker
+    include ApplicationWorker
+
+    COLLATION_CHECK_CACHE_TTL: untyped
+
+    COLLATION_CHECK_CACHE_KEY: "gitlab:database:collation_check:v1"
+
+    def perform: () -> untyped
+  end
+end

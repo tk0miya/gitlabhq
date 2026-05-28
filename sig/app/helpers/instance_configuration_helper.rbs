@@ -1,0 +1,12 @@
+module InstanceConfigurationHelper
+  @instance_configuration_host: untyped
+
+  def instance_configuration_cell_html: (untyped value) ?{ (untyped) -> untyped } -> ("-" | untyped)
+
+  def instance_configuration_host: (untyped host) -> untyped
+
+  # Value must be in bytes
+  def instance_configuration_human_size_cell: (untyped value) -> untyped
+
+  def instance_configuration_disabled_cell_html: (untyped value) -> untyped
+end

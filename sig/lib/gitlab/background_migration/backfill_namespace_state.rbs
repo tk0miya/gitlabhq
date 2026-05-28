@@ -1,0 +1,18 @@
+module Gitlab
+  module BackgroundMigration
+    # rubocop:disable Metrics/ClassLength -- Backfilling from multiple sources increases the length
+    class BackfillNamespaceState < BatchedMigrationJob
+      # State values matching Namespaces::Stateful::STATES
+      STATES: { ancestor_inherited: nil, archived: 1, deletion_scheduled: 2, deletion_in_progress: 4 }
+
+      PRESERVE_EVENTS: { deletion_scheduled: "schedule_deletion", deletion_in_progress: "start_deletion" }
+
+      def perform: () -> untyped
+
+      private
+
+      # rubocop:disable Metrics/MethodLength -- Need to do atomic updates
+      def backfill_namespace_state_and_metadata: (untyped ids_list) -> untyped
+    end
+  end
+end

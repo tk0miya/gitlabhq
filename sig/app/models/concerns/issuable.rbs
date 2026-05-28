@@ -1,0 +1,168 @@
+# == Issuable concern
+#
+# Contains common functionality shared between Issues and MergeRequests
+#
+# Used by Issue, MergeRequest, Epic
+#
+module Issuable
+  @_old_assignees: untyped
+
+  @_old_labels: untyped
+
+  @_old_severity: untyped
+
+  @_old_target_branch: untyped
+
+  @_old_escalation_status: untyped
+
+  @_old_total_time_spent: untyped
+
+  @_old_time_change: untyped
+
+  extend ActiveSupport::Concern
+
+  include Gitlab::SQL::Pattern
+
+  include Redactable
+
+  include CacheMarkdownField
+
+  include Participable
+
+  include Mentionable
+
+  include Milestoneable
+
+  include Subscribable
+
+  include StripAttribute
+
+  include Awardable
+
+  include Taskable
+
+  include Importable
+
+  include Transitionable
+
+  include Editable
+
+  include AfterCommitQueue
+
+  include Sortable
+
+  include CreatedAtFilterable
+
+  include UpdatedAtFilterable
+
+  include ClosedAtFilterable
+
+  include VersionedDescription
+
+  include SortableTitle
+
+  include Exportable
+
+  include ReportableChanges
+
+  include Import::HasImportSource
+
+  TITLE_LENGTH_MAX: 255
+
+  SEARCHABLE_FIELDS: ::Array["title" | "description"]
+
+  MAX_NUMBER_OF_ASSIGNEES_OR_REVIEWERS: 200
+
+  STATE_ID_MAP: untyped
+
+  def state: () -> untyped
+
+  def state=: (untyped value) -> untyped
+
+  def resource_parent: () -> untyped
+
+  def assignee_or_author?: (untyped user) -> untyped
+
+  def assignee?: (untyped user) -> untyped
+
+  def open?: () -> untyped
+
+  def overdue?: () -> (false | untyped)
+
+  def user_notes_count: () -> untyped
+
+  def subscribed_without_subscriptions?: (untyped user, untyped _project) -> untyped
+
+  # rubocop:disable Metrics/PerceivedComplexity -- Related issue: https://gitlab.com/gitlab-org/gitlab/-/issues/437679
+  def hook_association_changes: (untyped old_associations) -> untyped
+
+  def reviewers_hook_attrs: (?re_requested_reviewer_id: untyped?) -> (::Array[untyped] | untyped)
+
+  def hook_reviewer_changes: (untyped old_associations) -> untyped
+
+  def to_hook_data: (untyped user, ?old_associations: ::Hash[untyped, untyped], ?action: untyped?, ?actioned_at: untyped?) -> untyped
+
+  def labels_array: () -> untyped
+
+  def label_names: () -> untyped
+
+  def labels_hook_attrs: () -> untyped
+
+  def allows_scoped_labels?: () -> false
+
+  # Convert this Issuable class name to a format usable by Ability definitions
+  #
+  # Examples:
+  #
+  #   issuable.class           # => MergeRequest
+  #   issuable.to_ability_name # => "merge_request"
+  def to_ability_name: () -> untyped
+
+  # Returns a Hash of attributes to be used for Twitter card metadata
+  def card_attributes: () -> { "Author" => untyped, "Assignee" => untyped }
+
+  def assignee_list: () -> untyped
+
+  def assignee_username_list: () -> untyped
+
+  def system_note_authors: () -> untyped
+
+  def notes_for_participants: () -> untyped
+
+  def notes_with_associations: (?untyped relation) -> untyped
+
+  def updated_tasks: () -> untyped
+
+  #
+  # Method that checks if issuable can be moved to another project.
+  #
+  # Should be overridden if issuable can be moved.
+  #
+  def can_move?: (*untyped) -> false
+
+  #
+  # Override in issuable specialization
+  #
+  def first_contribution?: () -> false
+
+  #
+  # Overridden in MergeRequest
+  #
+  def draftless_title_changed: (untyped old_title) -> untyped
+
+  def supports_health_status?: () -> false
+
+  def old_assignees: (untyped assoc) -> untyped
+
+  def old_labels: (untyped assoc) -> untyped
+
+  def old_severity: (untyped assoc) -> untyped
+
+  def old_target_branch: (untyped assoc) -> untyped
+
+  def old_escalation_status: (untyped assoc) -> untyped
+
+  def old_total_time_spent: (untyped assoc) -> untyped
+
+  def old_time_change: (untyped assoc) -> untyped
+end

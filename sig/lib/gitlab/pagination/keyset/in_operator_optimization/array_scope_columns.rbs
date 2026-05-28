@@ -1,0 +1,31 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      module InOperatorOptimization
+        class ArrayScopeColumns
+          @columns: untyped
+
+          ARRAY_SCOPE_CTE_NAME: "array_cte"
+
+          def initialize: (untyped columns) -> void
+
+          def array_scope_cte_name: () -> untyped
+
+          def array_aggregated_columns: () -> untyped
+
+          def array_aggregated_column_names: () -> untyped
+
+          def arel_columns: () -> untyped
+
+          def array_lookup_expressions_by_position: (untyped table_name) -> untyped
+
+          private
+
+          attr_reader columns: untyped
+
+          def validate_columns!: (untyped columns) -> (untyped | nil)
+        end
+      end
+    end
+  end
+end

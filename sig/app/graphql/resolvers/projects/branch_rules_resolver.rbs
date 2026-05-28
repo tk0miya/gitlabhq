@@ -1,0 +1,26 @@
+module Resolvers
+  module Projects
+    class BranchRulesResolver < BaseResolver
+      include LooksAhead
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      alias project object
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def externally_paginated_array: (untyped page) -> untyped
+
+      # BranchRules for 'All branches' i.e. no associated ProtectedBranch
+      def custom_branch_rules: (untyped args) -> ::Array[untyped]
+
+      def all_branches_rule: () -> untyped
+
+      def branch_rules_page: (untyped args) -> untyped
+
+      def protected_branches: () -> untyped
+    end
+  end
+end

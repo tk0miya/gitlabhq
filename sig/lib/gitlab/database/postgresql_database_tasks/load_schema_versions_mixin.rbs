@@ -1,0 +1,11 @@
+module Gitlab
+  module Database
+    module PostgresqlDatabaseTasks
+      module LoadSchemaVersionsMixin
+        extend ActiveSupport::Concern
+
+        def structure_load: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

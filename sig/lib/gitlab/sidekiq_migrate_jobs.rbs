@@ -1,0 +1,30 @@
+module Gitlab
+  class SidekiqMigrateJobs
+    @mappings: untyped
+
+    @logger: untyped
+
+    LOG_FREQUENCY: 1000
+
+    LOG_FREQUENCY_QUEUES: 10
+
+    attr_reader logger: untyped
+
+    attr_reader mappings: untyped
+
+    # mappings is a hash of WorkerClassName => target_queue_name
+    def initialize: (untyped mappings, ?logger: untyped?) -> void
+
+    # Migrate jobs in SortedSets, i.e. scheduled and retry sets.
+    def migrate_set: (untyped sidekiq_set) -> { scanned: untyped, migrated: untyped }
+
+    # Migrates jobs from queues that are outside the mappings
+    def migrate_queues: () -> untyped
+
+    private
+
+    def migrate_job_in_set: (untyped sidekiq_set, untyped job, untyped score, untyped job_hash) -> untyped
+
+    def queue_length: (untyped queue_name) -> untyped
+  end
+end

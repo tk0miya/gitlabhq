@@ -1,0 +1,13 @@
+module Gitlab
+  module DependencyLinker
+    class PodspecJsonLinker < JsonLinker
+      include Cocoapods
+
+      private
+
+      def link_dependencies: () -> untyped
+
+      def link_packages_at_key: (untyped key, ?untyped root) { (?) -> untyped } -> (nil | untyped)
+    end
+  end
+end

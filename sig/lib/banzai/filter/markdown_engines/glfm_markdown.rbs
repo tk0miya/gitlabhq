@@ -1,0 +1,31 @@
+# Use the gitlab-glfm-markdown gem (https://gitlab.com/gitlab-org/ruby/gems/gitlab-glfm-markdown)
+# to interface with the Rust-based Comrak parser (https://github.com/kivikakk/comrak).
+module Banzai
+  module Filter
+    module MarkdownEngines
+      class GlfmMarkdown < Base
+        # Table of characters that need this special handling. It consists of
+        # the GitLab special reference characters.
+        REFERENCE_CHARS: ::Array["$" | "%" | "#" | "&" | "@" | "!" | "~" | "^" | ":"]
+
+        OPTIONS: { alerts: true, autolink: true, cjk_friendly_emphasis: true, description_lists: true, escaped_char_spans: true, footnotes: true, full_info_string: true, github_pre_lang: true, hardbreaks: false, header_accessibility: true, header_ids: untyped, inapplicable_tasks: true, math_code: true, math_dollars: true, multiline_block_quotes: true, only_escape_chars: untyped, placeholder_detection: true, relaxed_autolinks: true, relaxed_tasklist_character: true, smart: false, sourcepos: true, strikethrough: true, table: true, tagfilter: false, tasklist: true, tasklist_classes: true, tasklist_in_table: true, wikilinks_title_before_pipe: true, unsafe: true }
+
+        def render: (untyped text) -> ("" | untyped)
+
+        private
+
+        def render_options: () -> untyped
+
+        def headers_disabled?: () -> untyped
+
+        def autolink_disabled?: () -> untyped
+
+        def raw_html_disabled?: () -> untyped
+
+        def placeholders_disabled?: () -> (true | untyped)
+
+        def resolve_project: () -> untyped
+      end
+    end
+  end
+end

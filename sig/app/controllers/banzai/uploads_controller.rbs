@@ -1,0 +1,21 @@
+module Banzai
+  class UploadsController < ApplicationController
+    include UploadsActions
+
+    MODEL_CLASSES: { "project" => untyped, "group" => untyped }
+
+    private
+
+    def verify_upload_model_class!: () -> (untyped | nil)
+
+    def authorize_access!: () -> (nil | untyped)
+
+    def upload_model_class: () -> untyped
+
+    def uploader_class: () -> untyped
+
+    def target_project: () -> (untyped | nil)
+
+    def find_model: () -> untyped
+  end
+end

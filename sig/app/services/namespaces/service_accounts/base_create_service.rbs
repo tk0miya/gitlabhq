@@ -1,0 +1,43 @@
+module Namespaces
+  module ServiceAccounts
+    class BaseCreateService < ::Users::ServiceAccounts::CreateService
+      @uniquify_provided_username: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader uniquify_provided_username: untyped
+
+      def initialize: (untyped current_user, ?::Hash[untyped, untyped] params, ?uniquify_provided_username: bool) -> void
+
+      private
+
+      def create_user: () -> untyped
+
+      def resource: () -> untyped
+
+      def resource_type: () -> untyped
+
+      def provisioning_params: () -> untyped
+
+      def root_namespace: () -> untyped
+
+      def username_prefix: () -> ::String
+
+      def username: () -> untyped
+
+      def uniquify_username: (untyped prefix) -> untyped
+
+      def default_user_params: () -> untyped
+
+      def error_messages: () -> untyped
+
+      def can_create_service_account?: () -> (false | true | untyped)
+
+      def skip_owner_check?: () -> false
+
+      def username_unavailable?: (untyped username) -> untyped
+    end
+  end
+end

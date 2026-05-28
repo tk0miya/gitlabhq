@@ -1,0 +1,44 @@
+module Gitlab
+  module Graphql
+    module Pagination
+      # Limitation: Currently, this supports only one order column.
+      class ClickHouseAggregatedConnection < Gitlab::Graphql::Pagination::ClickHouseConnection
+        @has_previous_page_cache: untyped
+
+        # rubocop:disable CodeReuse/ActiveRecord -- requires AR methods to build pagination conditions
+        def cursor_for: (untyped item) -> untyped
+
+        private
+
+        def limited_nodes: () -> untyped
+
+        def sliced_nodes: () -> untyped
+
+        def ensure_stable_ordering: (untyped query) -> untyped
+
+        def after_conditions: () -> untyped
+
+        def before_conditions: () -> untyped
+
+        # currently this method supports only one order
+        def build_cursor_conditions: (untyped cursor_data, direction: untyped) -> (::Array[untyped] | untyped)
+
+        def build_primary_sort_condition: (untyped sort_attr, untyped sort_value, untyped sort_order, untyped direction) -> untyped
+
+        def build_group_field_conditions: (untyped cursor_data, untyped direction, untyped sort_attr, untyped sort_value, untyped sort_field) -> untyped
+
+        def add_previous_field_conditions: (untyped and_conditions, untyped group_fields, untyped current_index, untyped cursor_data, untyped sort_field) -> untyped
+
+        def encode_cursor: (untyped node) -> untyped
+
+        def extract_sort_info: () -> { field: untyped, order: untyped }
+
+        def extract_group_by_fields: () -> (::Array[untyped] | untyped)
+
+        def expression_name: (untyped attr) -> untyped
+
+        def execute_query: (untyped query) -> untyped
+      end
+    end
+  end
+end

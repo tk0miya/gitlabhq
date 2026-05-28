@@ -1,0 +1,12 @@
+module Gitlab
+  module Ci
+    module Status
+      module Bridge
+        class WaitingForApproval < Status::Extended
+          #  Extended in EE
+          def self.matches?: (untyped _bridge, untyped _user) -> false
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Gitlab
+  module Patch
+    module SidekiqJobSetter
+      # Sidekiq::Job::Setter's .perform_in and .perform_async indirectly calls perform_async
+      # so we only need to patch 1 method.
+      def perform_async: (*untyped args) -> untyped
+    end
+  end
+end

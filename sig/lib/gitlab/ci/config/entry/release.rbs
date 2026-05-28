@@ -1,0 +1,26 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a release configuration.
+        #
+        class Release < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Validatable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          ALLOWED_KEYS: ::Array[:tag_name | :tag_message | :name | :description | :ref | :released_at | :milestones | :assets]
+
+          attr_reader released_at: untyped
+
+          def description: () -> untyped
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

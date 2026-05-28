@@ -1,0 +1,12 @@
+module API
+  # Internal access API
+  module Internal
+    class Base < ::API::Base
+      include Gitlab::RackLoadBalancingHelpers
+
+      WORKHORSE_CIRCUIT_BREAKER_HEADER: "Enable-Workhorse-Circuit-Breaker"
+
+      VALID_PAT_SCOPES: untyped
+    end
+  end
+end

@@ -1,0 +1,18 @@
+# This service manages the project deletion process:
+# - Permanently deletes the project if user has sufficient permissions.
+# - Restores the project if user lacks necessary permissions.
+# Note: This service should only be called from a Sidekiq context otherwise,
+# `Gitlab::Auth::CurrentUserMode.optionally_run_in_admin_mode` will raise an error.
+module Projects
+  class AdjournedDeletionService < ::BaseProjectService
+    def execute: () -> untyped
+
+    private
+
+    def can_current_user_remove_project?: () -> (false | untyped)
+
+    def delete_project: () -> untyped
+
+    def restore_project: () -> untyped
+  end
+end

@@ -1,0 +1,34 @@
+module Projects
+  module Settings
+    class OperationsController < Projects::ApplicationController
+      @error_tracking_setting: untyped
+
+      def update: () -> untyped
+
+      def reset_pagerduty_token: () -> untyped
+
+      private
+
+      def track_events: (untyped result) -> (untyped | nil)
+
+      def pagerduty_token_params: () -> { incident_management_setting_attributes: { regenerate_token: true } }
+
+      def render_update_response: (untyped result) -> untyped
+
+      def render_update_html_response: (untyped result) -> untyped
+
+      def render_update_json_response: (untyped result) -> untyped
+
+      def error_tracking_setting: () -> untyped
+
+      def update_params: () -> untyped
+
+      def block_error_tracking_update_if_feature_disabled: () -> (untyped | nil)
+
+      def error_tracking_params_present?: () -> untyped
+
+      # overridden in EE
+      def permitted_project_params: () -> ::Array[{ incident_management_setting_attributes: untyped, error_tracking_setting_attributes: ::Array[:enabled | :integrated | :api_host | :token | { project: ::Array[:slug | :name | :organization_slug | :organization_name | :sentry_project_id] }] }]
+    end
+  end
+end

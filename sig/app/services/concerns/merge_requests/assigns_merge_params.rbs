@@ -1,0 +1,7 @@
+module MergeRequests
+  module AssignsMergeParams
+    def self.included: (untyped klass) -> (untyped | nil)
+
+    def assign_allowed_merge_params: (untyped merge_request, untyped merge_params) -> untyped
+  end
+end

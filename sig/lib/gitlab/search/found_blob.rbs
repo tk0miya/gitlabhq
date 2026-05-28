@@ -1,0 +1,115 @@
+module Gitlab
+  module Search
+    class FoundBlob
+      @id: untyped
+
+      @binary_path: untyped
+
+      @binary_basename: untyped
+
+      @ref: untyped
+
+      @startline: untyped
+
+      @highlight_line: untyped
+
+      @binary_data: untyped
+
+      @per_page: untyped
+
+      @project: untyped
+
+      @group: untyped
+
+      # Some callers (e.g. Elasticsearch) do not have the Project object,
+      # yet they can trigger many calls in one go,
+      # causing duplicated queries.
+      # Allow those to just pass project_id instead.
+      @project_id: untyped
+
+      @group_id: untyped
+
+      @content_match: untyped
+
+      @blob_path: untyped
+
+      @repository: untyped
+
+      @group_level_blob: untyped
+
+      @path: untyped
+
+      @basename: untyped
+
+      @data: untyped
+
+      include EncodingHelper
+
+      include Presentable
+
+      include BlobLanguageFromGitAttributes
+
+      include Gitlab::Utils::StrongMemoize
+
+      include BlobActiveModel
+
+      attr_reader project: untyped
+
+      attr_reader content_match: untyped
+
+      attr_reader blob_path: untyped
+
+      attr_reader highlight_line: untyped
+
+      attr_reader group_level_blob: untyped
+
+      attr_reader group: untyped
+
+      PATH_REGEXP: ::Regexp
+
+      CONTENT_REGEXP: ::Regexp
+
+      def self.preload_blobs: (untyped blobs) -> untyped
+
+      def initialize: (?::Hash[untyped, untyped] opts) -> void
+
+      def id: () -> untyped
+
+      def ref: () -> untyped
+
+      def startline: () -> untyped
+
+      # binary_path is used for running filters on all matches.
+      # For grepped results (which use content_match), we get
+      # the path from the beginning of the grepped result which is faster
+      # than parsing the whole snippet
+      def binary_path: () -> untyped
+
+      def path: () -> untyped
+
+      def basename: () -> untyped
+
+      def data: () -> untyped
+
+      def project_id: () -> untyped
+
+      def present: () -> untyped
+
+      def binary?: () -> false
+
+      def fetch_blob: () -> untyped
+
+      private
+
+      def search_result_path: () -> untyped
+
+      def path_without_extension: (untyped path) -> untyped
+
+      def parsed_content: () -> untyped
+
+      def parse_search_result: () -> { binary_path: untyped, binary_basename: untyped, ref: untyped, startline: untyped, binary_data: untyped, project: untyped }
+
+      def repository: () -> untyped
+    end
+  end
+end

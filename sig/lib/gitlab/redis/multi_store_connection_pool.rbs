@@ -1,0 +1,11 @@
+module Gitlab
+  module Redis
+    class MultiStoreConnectionPool < ::ConnectionPool
+      # We intercept the returned connection and borrow the connections
+      # before yielding the block.
+      def with: () { (untyped) -> untyped } -> untyped
+
+      alias then with
+    end
+  end
+end

@@ -1,0 +1,27 @@
+class MergeRequestWidgetEntity < Grape::Entity
+  @presenters: untyped
+
+  include RequestAwareEntity
+
+  include ProjectsHelper
+
+  include ApplicationHelper
+
+  include ApplicationSettingsHelper
+
+  SUGGEST_PIPELINE: "suggest_pipeline"
+
+  MIGRATE_FROM_JENKINS_BANNER: "migrate_from_jenkins_banner"
+
+  private
+
+  def presenter: (untyped merge_request) -> untyped
+
+  def can_add_ci_config_path?: (untyped merge_request) -> untyped
+
+  def head_pipeline_downloadable_path_for_report_type: (untyped file_type) -> untyped
+
+  def base_pipeline_downloadable_path_for_report_type: (untyped file_type) -> untyped
+
+  def merge_base_pipeline_downloadable_path_for_report_type: (untyped file_type) -> untyped
+end

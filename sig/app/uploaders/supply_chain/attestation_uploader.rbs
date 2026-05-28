@@ -1,0 +1,15 @@
+module SupplyChain
+  class AttestationUploader < GitlabUploader
+    include ObjectStorage::Concern
+
+    def store_dir: () -> untyped
+
+    private
+
+    def dynamic_segment: () -> untyped
+
+    def self.direct_upload_enabled?: () -> false
+
+    def self.default_store: () -> untyped
+  end
+end

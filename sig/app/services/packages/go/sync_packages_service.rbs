@@ -1,0 +1,15 @@
+module Packages
+  module Go
+    class SyncPackagesService < BaseService
+      @ref: untyped
+
+      @path: untyped
+
+      include Gitlab::Golang
+
+      def initialize: (untyped project, untyped ref, ?::String path) -> void
+
+      def execute_async: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Members
+  class InvitationReminderEmailService
+    @invitation: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader invitation: untyped
+
+    MAX_INVITATION_LIFESPAN: ::Float
+
+    REMINDER_RATIO: ::Array[2 | 5 | 10]
+
+    def initialize: (untyped invitation) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def days_after_invitation_sent: () -> untyped
+
+    def days_on_which_to_send_reminders: () -> (::Array[untyped] | untyped)
+
+    def invitation_lifespan_in_days: () -> untyped
+  end
+end

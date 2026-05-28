@@ -1,0 +1,32 @@
+module Gitlab
+  module BitbucketServerImport
+    # ObjectImporter defines the base behaviour for every Sidekiq worker that
+    # imports a single resource such as a note or pull request.
+    module ObjectImporter
+      extend ActiveSupport::Concern
+
+      FAILED_IMPORT_STATES: ::Array["canceled" | "failed"]
+
+      def perform: (untyped project_id, untyped hash, untyped notify_key) -> untyped
+
+      private
+
+      # project - An instance of `Project` to import the data into.
+      # hash - A Hash containing the details of the object to import.
+      def import: (untyped project, untyped hash) -> untyped
+
+      def notify_waiter: (untyped key) -> untyped
+
+      # Returns the class to use for importing the object.
+      def importer_class: () -> untyped
+
+      def info: (untyped project_id, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def log_attributes: (untyped project_id, ?::Hash[untyped, untyped] extra) -> untyped
+
+      def track_exception: (untyped project, untyped exception, ?fail_import: bool) -> untyped
+
+      def track_and_raise_exception: (untyped project, untyped exception, ?fail_import: bool) -> untyped
+    end
+  end
+end

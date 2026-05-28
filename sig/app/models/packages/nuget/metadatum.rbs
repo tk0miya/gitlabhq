@@ -1,0 +1,15 @@
+class Packages::Nuget::Metadatum < ApplicationRecord
+  include Packages::Nuget::VersionNormalizable
+
+  MAX_AUTHORS_LENGTH: 255
+
+  MAX_DESCRIPTION_LENGTH: 4000
+
+  MAX_URL_LENGTH: 255
+
+  private
+
+  def url_validation_enabled?: () -> untyped
+
+  def ensure_valid_urls: () -> untyped
+end

@@ -1,0 +1,38 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # Class for setting up load balancing of a specific model.
+      class Setup
+        @model: untyped
+
+        @configuration: untyped
+
+        @start_service_discovery: untyped
+
+        @load_balancer: untyped
+
+        attr_reader model: untyped
+
+        attr_reader configuration: untyped
+
+        def initialize: (untyped model, ?start_service_discovery: bool) -> void
+
+        def setup: () -> untyped
+
+        def configure_connection: () -> untyped
+
+        def setup_connection_proxy: () -> untyped
+
+        def setup_service_discovery: () -> (nil | untyped)
+
+        def load_balancer: () -> untyped
+
+        private
+
+        def setup_class_attribute: (untyped attribute, untyped value) -> untyped
+
+        def active_record_base?: () -> untyped
+      end
+    end
+  end
+end

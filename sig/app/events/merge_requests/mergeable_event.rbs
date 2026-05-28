@@ -1,0 +1,5 @@
+module MergeRequests
+  class MergeableEvent < Gitlab::EventStore::Event
+    def schema: () -> { "type" => "object", "required" => ::Array["merge_request_id"], "properties" => { "merge_request_id" => { "type" => "integer" } } }
+  end
+end

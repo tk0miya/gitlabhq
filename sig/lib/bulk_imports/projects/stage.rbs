@@ -1,0 +1,13 @@
+module BulkImports
+  module Projects
+    class Stage < ::BulkImports::Stage
+      private
+
+      def config: () -> untyped
+
+      def members_pipeline: () -> (::Hash[untyped, untyped] | { members: { pipeline: untyped, stage: 1 } })
+
+      def migrate_memberships?: () -> untyped
+    end
+  end
+end

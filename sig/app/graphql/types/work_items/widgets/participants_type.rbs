@@ -1,0 +1,11 @@
+module Types
+  module WorkItems
+    module Widgets
+      # Disabling widget level authorization as we scope by `.participants` with user filtering
+      # rubocop:disable Graphql/AuthorizeTypes -- see above
+      class ParticipantsType < BaseObject
+        def participants: () -> untyped
+      end
+    end
+  end
+end

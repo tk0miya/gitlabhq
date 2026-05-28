@@ -1,0 +1,19 @@
+class ProjectMemberPresenter < MemberPresenter
+  def access_level_roles: () -> untyped
+
+  def can_remove?: () -> untyped
+
+  def can_update?: () -> untyped
+
+  def last_owner?: () -> untyped
+
+  private
+
+  def admin_member_permission: () -> :admin_project_member
+
+  def update_member_permission: () -> :update_project_member
+
+  def destroy_member_permission: () -> :destroy_project_member
+
+  def can_manage_owners?: () -> untyped
+end

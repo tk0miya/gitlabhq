@@ -1,0 +1,7 @@
+module Gitlab
+  module Json
+    class RailsEncoder < ActiveSupport::JSON::Encoding::JSONGemEncoder
+      def stringify: (untyped jsonified) -> untyped
+    end
+  end
+end

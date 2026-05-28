@@ -1,0 +1,33 @@
+module Gitlab
+  module Kubernetes
+    module Kubeconfig
+      module Entry
+        class Context
+          @name: untyped
+
+          @cluster: untyped
+
+          @user: untyped
+
+          @namespace: untyped
+
+          attr_reader name: untyped
+
+          def initialize: (name: untyped, cluster: untyped, user: untyped, ?namespace: untyped?) -> void
+
+          def to_h: () -> { name: untyped, context: untyped }
+
+          private
+
+          attr_reader cluster: untyped
+
+          attr_reader user: untyped
+
+          attr_reader namespace: untyped
+
+          def context: () -> untyped
+        end
+      end
+    end
+  end
+end

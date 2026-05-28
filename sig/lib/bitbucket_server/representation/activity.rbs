@@ -1,0 +1,60 @@
+module BitbucketServer
+  module Representation
+    class Activity < Representation::Base
+      @comment: untyped
+
+      def id: () -> untyped
+
+      def comment?: () -> untyped
+
+      def inline_comment?: () -> untyped
+
+      def comment: () -> (nil | untyped)
+
+      # TODO Move this into MergeEvent
+      def merge_event?: () -> untyped
+
+      def committer_user: () -> untyped
+
+      def committer_name: () -> untyped
+
+      def committer_username: () -> untyped
+
+      def committer_email: () -> untyped
+
+      def merge_timestamp: () -> untyped
+
+      def merge_commit: () -> untyped
+
+      def approved_event?: () -> untyped
+
+      def approver_name: () -> untyped
+
+      def approver_username: () -> untyped
+
+      def approver_email: () -> untyped
+
+      def declined_event?: () -> untyped
+
+      def decliner_name: () -> untyped
+
+      def decliner_username: () -> untyped
+
+      def decliner_email: () -> untyped
+
+      def created_at: () -> untyped
+
+      def to_hash: () -> { id: untyped, committer_name: untyped, committer_user: untyped, committer_username: untyped, committer_email: untyped, merge_timestamp: untyped, merge_commit: untyped, approver_name: untyped, approver_username: untyped, approver_email: untyped, decliner_name: untyped, decliner_username: untyped, decliner_email: untyped, created_at: untyped }
+
+      private
+
+      def commit: () -> untyped
+
+      def action: () -> untyped
+
+      def comment_anchor: () -> untyped
+
+      def created_date: () -> untyped
+    end
+  end
+end

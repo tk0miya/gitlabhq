@@ -1,0 +1,17 @@
+module Gitlab
+  module MergeRequests
+    module Mergeability
+      class RedisInterface
+        VERSION: 1
+
+        def save_check: (merge_check: untyped, result_hash: untyped, ttl: untyped) -> untyped
+
+        def retrieve_check: (merge_check: untyped) -> untyped
+
+        def delete_check: (cache_key: untyped) -> untyped
+
+        def with_redis: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

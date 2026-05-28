@@ -1,0 +1,17 @@
+module Resolvers
+  module Projects
+    class SnippetsResolver < BaseResolver
+      include ResolvesSnippets
+
+      alias project object
+
+      def self.complexity_multiplier: (untyped args) -> (0 | ::Float)
+
+      def resolve: (**untyped args) -> untyped
+
+      private
+
+      def snippet_finder_params: (untyped args) -> untyped
+    end
+  end
+end

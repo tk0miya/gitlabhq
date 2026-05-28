@@ -1,0 +1,17 @@
+module Metrics
+  class PatchedFilesWorker
+    include ApplicationWorker
+
+    REDIS_KEY: "patched_files"
+
+    def perform: () -> (nil | untyped)
+
+    private
+
+    def package_name: () -> ("gitlab-ee" | "gitlab-ce")
+
+    def patched_files: () -> untyped
+
+    def take_lines: (untyped string, untyped lines) -> untyped
+  end
+end

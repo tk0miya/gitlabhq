@@ -1,0 +1,43 @@
+module Gitlab
+  module QuickActions
+    module MergeRequestActions
+      @merge_orchestration_service: untyped
+
+      @create_pipeline_service: untyped
+
+      extend ActiveSupport::Concern
+
+      include Gitlab::QuickActions::Dsl
+
+      REBASE_FAILURE_UNMERGEABLE: "This merge request is currently in an unmergeable state, and cannot be rebased."
+
+      REBASE_FAILURE_PROTECTED_BRANCH: "This merge request branch is protected from force push."
+
+      REBASE_FAILURE_REBASE_IN_PROGRESS: "A rebase is already in progress."
+
+      def reviewer_users_sentence: (untyped users) -> untyped
+
+      def reviewers_for_removal: (untyped users) -> untyped
+
+      def reviewers_to_add: (untyped users) -> (nil | untyped)
+
+      def draft_action_message: (untyped verb) -> untyped
+
+      def reviewers_to_remove?: (untyped updates) -> untyped
+
+      def auto_merge_strategy_copy: (untyped _strategy, untyped type) -> untyped
+
+      def merge_orchestration_service: () -> untyped
+
+      def create_pipeline_service: () -> untyped
+
+      def preferred_auto_merge_strategy: (untyped merge_request) -> untyped
+
+      # Overridden in EE
+      def process_reviewer_users: (untyped users) -> untyped
+
+      # Overridden in EE
+      def process_reviewer_users_message: () -> nil
+    end
+  end
+end

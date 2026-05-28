@@ -1,0 +1,9 @@
+module Ci
+  module Slsa
+    class PublishProvenanceWorker
+      include ApplicationWorker
+
+      def perform: (untyped build_id) -> untyped
+    end
+  end
+end

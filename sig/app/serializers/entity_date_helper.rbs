@@ -1,0 +1,23 @@
+module EntityDateHelper
+  include ActionView::Helpers::DateHelper
+
+  include ActionView::Helpers::TagHelper
+
+  def interval_in_words: (untyped diff) -> ("Not started" | untyped)
+
+  # Converts seconds into a hash such as:
+  # { days: 1, hours: 3, mins: 42, seconds: 40 }
+  #
+  # It returns 0 seconds for zero or negative numbers
+  # It rounds to nearest time unit and does not return zero
+  # i.e { min: 1 } instead of { mins: 1, seconds: 0 }
+  def distance_of_time_as_hash: (untyped diff) -> ({ seconds: 0 } | untyped)
+
+  # Generates an HTML-formatted string for remaining dates based on start_date and due_date
+  #
+  # It returns "Past due" for expired entities
+  # It returns "Upcoming" for upcoming entities
+  # If due date is provided, it returns "# days|weeks|months remaining|ago"
+  # If start date is provided and elapsed, with no due date, it returns "# days elapsed"
+  def remaining_days_in_words: (untyped due_date, ?untyped? start_date) -> (untyped | untyped | untyped | untyped | untyped | nil)
+end

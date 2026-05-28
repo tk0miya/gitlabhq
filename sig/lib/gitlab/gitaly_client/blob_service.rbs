@@ -1,0 +1,43 @@
+module Gitlab
+  module GitalyClient
+    class BlobService
+      @gitaly_repo: untyped
+
+      include Gitlab::EncodingHelper
+
+      include WithFeatureFlagActors
+
+      def initialize: (untyped repository) -> void
+
+      def get_blob: (oid: untyped, limit: untyped) -> untyped
+
+      def list_all_blobs: (?limit: untyped?, ?bytes_limit: ::Integer, ?dynamic_timeout: untyped?, ?ignore_alternate_object_directories: bool) -> untyped
+
+      def list_oversized_blobs: (?file_size_limit_megabytes: ::Integer, ?limit: untyped?, ?bytes_limit: ::Integer, ?dynamic_timeout: untyped?, ?ignore_alternate_object_directories: bool) -> untyped
+
+      def list_blobs: (untyped revisions, ?limit: ::Integer, ?bytes_limit: ::Integer, ?with_paths: bool, ?dynamic_timeout: untyped?) -> untyped
+
+      def batch_lfs_pointers: (untyped blob_ids) -> (::Array[untyped] | untyped)
+
+      def get_blobs: (untyped revision_paths, ?::Integer limit) -> (::Array[untyped] | untyped)
+
+      def get_blob_types: (untyped revision_paths, ?::Integer limit) -> (::Hash[untyped, untyped] | untyped)
+
+      def get_new_lfs_pointers: (untyped revisions, untyped limit, untyped not_in, ?untyped? dynamic_timeout) -> untyped
+
+      def get_all_lfs_pointers: () -> untyped
+
+      private
+
+      def list_all_blobs_response: (?limit: untyped?, ?bytes_limit: ::Integer, ?dynamic_timeout: untyped?, ?ignore_alternate_object_directories: bool) -> untyped
+
+      def create_new_lfs_pointers_request: (untyped revisions, untyped limit, untyped not_in) -> untyped
+
+      def consume_blob_response: (untyped response) -> (nil | untyped)
+
+      def map_lfs_pointers: (untyped response) -> untyped
+
+      def map_blob_types: (untyped response) -> untyped
+    end
+  end
+end

@@ -1,0 +1,39 @@
+module Ci
+  module Catalog
+    module Resources
+      # This class represents a CI/CD Catalog resource version.
+      # Only versions which contain valid CI components are included in this table.
+      class Version < ::ApplicationRecord
+        include BulkInsertableAssociations
+
+        include CacheMarkdownField
+
+        include SemanticVersionable
+
+        def self.latest: (?untyped? major, ?untyped? minor) -> untyped
+
+        def self.versions_for_catalog_resources: (untyped catalog_resources) -> untyped
+
+        def name: () -> untyped
+
+        def commit: () -> untyped
+
+        def path: () -> untyped
+
+        def readme: () -> (nil | untyped)
+
+        def sync_with_release!: () -> untyped
+
+        private
+
+        def sync_with_release: () -> untyped
+
+        def update_catalog_resource: () -> untyped
+
+        # We require the published_by to be the same as the release author because
+        # creating a release and publishing a version must be done in a single session via CLI tools.
+        def validate_published_by_is_release_author: () -> (nil | untyped)
+      end
+    end
+  end
+end

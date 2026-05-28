@@ -1,0 +1,80 @@
+module Gitlab
+  self.@_revision: untyped
+
+  extend Forwardable
+
+  def self.version_info: () -> untyped
+
+  def self.current_milestone: () -> ::String
+
+  def self.pre_release?: () -> untyped
+
+  def self.config: () -> untyped
+
+  def self.host_with_port: () -> ::String
+
+  def self.revision: () -> untyped
+
+  APP_DIRS_PATTERN: ::Regexp
+
+  VERSION: untyped
+
+  INSTALLATION_TYPE: untyped
+
+  HTTP_PROXY_ENV_VARS: ::Array["http_proxy" | "https_proxy" | "HTTP_PROXY" | "HTTPS_PROXY"]
+
+  def self.simulate_com?: () -> (false | untyped)
+
+  def self.com?: () -> untyped
+
+  def self.com_except_jh?: () -> untyped
+
+  def self.com: () { () -> untyped } -> (untyped | nil)
+
+  def self.staging?: () -> untyped
+
+  def self.canary?: () -> untyped
+
+  def self.com_and_canary?: () -> untyped
+
+  def self.com_but_not_canary?: () -> untyped
+
+  def self.org?: () -> untyped
+
+  def self.dev_url: () -> "https://dev.gitlab.org"
+
+  def self.community_forum_url: () -> "https://forum.gitlab.com"
+
+  def self.doc_url: () -> "https://docs.gitlab.com"
+
+  def self.promo_host: () -> "about.gitlab.com"
+
+  def self.gl_subdomain?: () -> untyped
+
+  def self.subdomain_regex: () -> ::Regexp
+
+  def self.root_domain: () -> "gitlab.com"
+
+  def self.canary_toggle_com_url: () -> "https://next.gitlab.com"
+
+  def self.staging_com_url: () -> "https://staging.gitlab.com"
+
+  def self.com_url: () -> "https://gitlab.com"
+
+  def self.org_or_com?: () -> untyped
+
+  def self.dev_or_test_env?: () -> untyped
+
+  def self.http_proxy_env?: () -> untyped
+
+  def self.process_name: () -> ("sidekiq" | "console" | "test" | "web")
+
+  def self.maintenance_mode?: () -> (false | untyped)
+
+  # This method will check your environment
+  # (e.g. `ENV['BUNDLE_GEMFILE]`) to determine whether your application is
+  # running with the next set of dependencies or the current set of dependencies.
+  #
+  # @return [Boolean]
+  def self.next_rails?: () -> untyped
+end

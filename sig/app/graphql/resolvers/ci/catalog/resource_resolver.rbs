@@ -1,0 +1,13 @@
+module Resolvers
+  module Ci
+    module Catalog
+      class ResourceResolver < BaseResolver
+        include Gitlab::Graphql::Authorize::AuthorizeResource
+
+        def ready?: (**untyped args) -> untyped
+
+        def resolve: (?id: untyped?, ?full_path: untyped?) -> untyped
+      end
+    end
+  end
+end

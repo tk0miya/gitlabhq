@@ -1,0 +1,15 @@
+class ResourceTimeboxEvent < ResourceEvent
+  include MergeRequestResourceEvent
+
+  include Importable
+
+  def self.issuable_attrs: () -> ::Array[:issue | :merge_request]
+
+  def issuable: () -> untyped
+
+  private
+
+  def for_issue?: () -> untyped
+
+  def issue_usage_metrics: () -> (nil | untyped)
+end

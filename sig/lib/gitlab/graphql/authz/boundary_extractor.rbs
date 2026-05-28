@@ -1,0 +1,61 @@
+module Gitlab
+  module Graphql
+    module Authz
+      # Extracts authorization boundary (Project/Group) from GraphQL field resolution
+      #
+      # Usage in authorization directives:
+      # - `boundary_argument: 'arg_name'` - Extracts boundary from argument (GlobalID or full_path string)
+      # - `boundary: 'method_name'` - Calls method on resolved object, or falls back to :id argument for query fields
+      # - `boundary: 'user'` or `boundary: 'instance'` - For standalone resources without project/group boundaries
+      class BoundaryExtractor
+        @object: untyped
+
+        @arguments: untyped
+
+        @context: untyped
+
+        @directive: untyped
+
+        @boundary_accessor: untyped
+
+        @boundary_proc: untyped
+
+        STANDALONE_BOUNDARIES: ::Array["user" | "instance"]
+
+        VALID_BOUNDARY_ACCESSOR_METHODS: ::Array["project" | "group" | "itself" | "owner"]
+
+        def initialize: (object: untyped, arguments: untyped, context: untyped, directive: untyped, ?boundary_proc: untyped?) -> void
+
+        def extract: () -> (nil | untyped)
+
+        private
+
+        def standalone_boundary?: () -> untyped
+
+        def extract_resource: () -> (untyped | nil)
+
+        def extract_from_argument: (untyped arg_name) -> untyped
+
+        def extract_from_method: () -> untyped
+
+        def object_matches_boundary_type?: (untyped obj) -> untyped
+
+        def resolve_value: (untyped value) -> untyped
+
+        def resolve_global_id: (untyped global_id) -> untyped
+
+        def resolve_path: (untyped path) -> untyped
+
+        def extract_boundary_from_object: (untyped object) -> (untyped | nil)
+
+        def unwrap_object: (untyped object) -> untyped
+
+        def should_use_id_fallback?: () -> (false | untyped)
+
+        def object_responds_to_boundary?: () -> untyped
+
+        def extract_from_id_argument: () -> untyped
+      end
+    end
+  end
+end

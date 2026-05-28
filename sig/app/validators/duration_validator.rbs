@@ -1,0 +1,13 @@
+# DurationValidator
+#
+# Validate the format conforms with ChronicDuration
+#
+# Example:
+#
+#   class ApplicationSetting < ActiveRecord::Base
+#     validates :default_artifacts_expire_in, presence: true, duration: true
+#   end
+#
+class DurationValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> untyped
+end

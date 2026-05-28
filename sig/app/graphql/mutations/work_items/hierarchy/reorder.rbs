@@ -1,0 +1,31 @@
+module Mutations
+  module WorkItems
+    module Hierarchy
+      class Reorder < BaseMutation
+        @work_item: untyped
+
+        @adjacent_item: untyped
+
+        @parent: untyped
+
+        def ready?: (**untyped args) -> untyped
+
+        def resolve: (**untyped args) -> { work_item: untyped, adjacent_work_item: untyped, parent_work_item: untyped, errors: untyped }
+
+        private
+
+        attr_reader work_item: untyped
+
+        attr_reader parent: untyped
+
+        attr_reader adjacent_item: untyped
+
+        def validate_parent!: () -> (nil | untyped)
+
+        def validate_position_args!: (untyped args) -> (nil | untyped)
+
+        def find_object: (id: untyped) -> untyped
+      end
+    end
+  end
+end

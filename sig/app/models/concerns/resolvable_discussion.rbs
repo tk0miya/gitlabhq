@@ -1,0 +1,36 @@
+module ResolvableDiscussion
+  # Set the notes array to the updated notes
+  @notes: untyped
+
+  extend ActiveSupport::Concern
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  def resolved_by_push?: () -> untyped
+
+  def resolvable?: () -> untyped
+
+  def resolved?: () -> untyped
+
+  def first_note: () -> untyped
+
+  def first_note_to_resolve: () -> (nil | untyped)
+
+  def last_resolved_note: () -> (nil | untyped)
+
+  def resolved_notes: () -> untyped
+
+  def to_be_resolved?: () -> untyped
+
+  def can_resolve?: (untyped user) -> untyped
+
+  def resolve!: (untyped current_user) -> (nil | untyped)
+
+  def unresolve!: () -> (nil | untyped)
+
+  def clear_memoized_values: () -> untyped
+
+  private
+
+  def update: () { (untyped) -> untyped } -> untyped
+end

@@ -1,0 +1,15 @@
+module DependencyProxy
+  class RequestTokenService < DependencyProxy::BaseService
+    @image: untyped
+
+    @dependency_proxy_setting: untyped
+
+    def initialize: (image: untyped, dependency_proxy_setting: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def auth_url: () -> untyped
+  end
+end

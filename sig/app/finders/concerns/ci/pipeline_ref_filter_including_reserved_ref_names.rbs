@@ -1,0 +1,30 @@
+module Ci
+  # Extends pipeline reference filtering to include reserved ref names
+  # associated with merge requests that use the given ref as source branch.
+  module PipelineRefFilterIncludingReservedRefNames
+    MERGE_REQUEST_LIMIT: 100
+
+    NAMESPACE_BATCH_SIZE: 100
+
+    PROJECT_BATCH_SIZE: 500
+
+    # Returns an array containing the original ref and any associated reserved refs
+    # from merge requests that use the given ref as source branch.
+    #
+    # @param container [Namespace, Project] The container used for requests
+    # @param ref [String, nil] The git reference to filter by
+    # @param pipeline_sources [Array<String>, String, nil] The pipeline sources to consider
+    # @return [Array<String>] Array of refs including the original and any reserved refs
+    def ref_and_associated_reserved_refs: (untyped container, untyped ref, ?untyped? pipeline_sources) -> (::Array[untyped] | untyped)
+
+    private
+
+    def merge_request_reserved_refs_for_container: (untyped container, untyped ref) -> untyped
+
+    def merge_request_reserved_refs_for_projects: (untyped merge_requests_query, untyped projects) -> untyped
+
+    def merge_request_reserved_refs_for_group: (untyped query, untyped group) -> untyped
+
+    def actor: (untyped container) -> untyped
+  end
+end

@@ -1,0 +1,8 @@
+module Gitlab
+  module BackgroundMigration
+    # rubocop:disable Migration/BatchedMigrationBaseClass -- BackfillOccurrenceIdToVulnerabilityAssociations is a subclass
+    # of BatchedMigrationJob
+    class BackfillOccurrenceIdToMergeRequestLinks < BackfillOccurrenceIdToVulnerabilityAssociations
+    end
+  end
+end

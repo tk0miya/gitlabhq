@@ -1,0 +1,35 @@
+module Mutations
+  module Members
+    class BulkUpdateBase < BaseMutation
+      @updatable_members: untyped
+
+      include ::API::Helpers::MembersHelpers
+
+      MAX_MEMBERS_UPDATE_LIMIT: 50
+
+      MAX_MEMBERS_UPDATE_ERROR: ::String
+
+      INVALID_MEMBERS_ERROR: "Only access level of direct members can be updated."
+
+      def resolve: (**untyped args) -> untyped
+
+      private
+
+      def ready?: (**untyped args) -> untyped
+
+      def find_object: (source_id: untyped) -> untyped
+
+      def only_direct_members: (untyped source, untyped user_ids) -> untyped
+
+      def source_id_param_name: () -> ::Symbol
+
+      def source_members_key: () -> ::Symbol
+
+      def source_name: () -> untyped
+
+      def present_result: (untyped result) -> ::Hash[untyped | :errors, untyped]
+
+      def source_type: () -> untyped
+    end
+  end
+end

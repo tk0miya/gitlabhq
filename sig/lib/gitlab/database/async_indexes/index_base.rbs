@@ -1,0 +1,45 @@
+module Gitlab
+  module Database
+    module AsyncIndexes
+      class IndexBase
+        @async_index: untyped
+
+        include AsyncDdlExclusiveLeaseGuard
+
+        extend ::Gitlab::Utils::Override
+
+        TIMEOUT_PER_ACTION: untyped
+
+        def initialize: (untyped async_index) -> void
+
+        def perform: () -> untyped
+
+        private
+
+        attr_reader async_index: untyped
+
+        def preconditions_met?: () -> untyped
+
+        def action_type: () -> untyped
+
+        def execute_action_with_error_handling: () -> untyped
+
+        def around_execution: () { () -> untyped } -> untyped
+
+        def execute_action: () -> untyped
+
+        def table_exists?: () -> untyped
+
+        def index_exists?: () -> untyped
+
+        def lease_timeout: () -> untyped
+
+        def log_index_info: (untyped message) -> untyped
+
+        def skip_log_message: () -> ::String
+
+        def logging_options: () -> { table_name: untyped, index_name: untyped, class: untyped, connection_name: untyped }
+      end
+    end
+  end
+end

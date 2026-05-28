@@ -1,0 +1,53 @@
+# Use for authentication only, in particular for Rack::Attack.
+# Does not perform authorization of scopes, etc.
+module Gitlab
+  module Auth
+    class RequestAuthenticator
+      @request: untyped
+
+      @route_authentication_setting: untyped
+
+      include AuthFinders
+
+      attr_reader request: untyped
+
+      def initialize: (untyped request) -> void
+
+      def find_authenticated_requester: (untyped request_formats) -> untyped
+
+      def user: (untyped request_formats) -> untyped
+
+      def runner: () -> untyped
+
+      def job_from_token: () -> untyped
+
+      def find_sessionless_user: (untyped request_format) -> untyped
+
+      def can_sign_in_bot?: (untyped user) -> (false | untyped)
+
+      def valid_access_token?: (?scopes: untyped) -> untyped
+
+      def current_token_scopes: () -> untyped
+
+      def granular_access_token?: () -> untyped
+
+      private
+
+      # Use a minimal subset of find_user_from_any_authentication_method
+      # so only token types allowed for GraphQL can authenticate users.
+      # CI_JOB_TOKENs are not allowed for now, since their access is too broad.
+      #
+      # Overridden in EE
+      def find_user_for_graphql_api_request: () -> untyped
+
+      # Overridden in EE
+      def graphql_authorization_scopes: () -> ::Array[:api | :read_api]
+
+      def find_user_from_any_authentication_method: (untyped request_format) -> untyped
+
+      def access_token: () -> untyped
+
+      def route_authentication_setting: () -> untyped
+    end
+  end
+end

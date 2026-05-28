@@ -1,0 +1,9 @@
+module Projects
+  class MlController < ::Projects::ApplicationController
+    include PreviewMarkdown
+
+    private
+
+    def authorize_read_model_registry!: () -> (untyped | nil)
+  end
+end

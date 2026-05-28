@@ -1,0 +1,76 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      # This module contains constants for all the files (default devfile, shell scripts, script fragments, commands,
+      # etc)
+      # that are used in the Remote Development domain. They are pulled out to separate files instead of being hardcoded
+      # via inline HEREDOC or other means, so that they can have full support for
+      # syntax highlighting, refactoring, linting, etc.
+      module BmFiles
+        # @param [String] path - file path relative to domain logic root (this directory, `ee/lib/remote_development`)
+        # @return [String] content of the file
+        def self.read_file: (untyped path) -> untyped
+
+        # @return [String] content of the file
+        def self.default_devfile_yaml: () -> untyped
+
+        # @return [String] content of the file
+        def self.git_credential_store_script: () -> untyped
+
+        # @return [String] content of the file
+        def self.kubernetes_legacy_poststart_hook_command: () -> untyped
+
+        # @return [String] content of the file
+        def self.kubernetes_poststart_hook_command: () -> untyped
+
+        # @return [String] content of the file
+        def self.container_keepalive_command_args: () -> untyped
+
+        # @return [String] content of the file
+        def self.internal_poststart_command_start_vscode_script: () -> untyped
+
+        # @return [String] content of the file
+        def self.internal_poststart_command_sleep_until_workspace_is_running_script: () -> untyped
+
+        # @return [String] content of the file
+        def self.internal_poststart_command_start_sshd_script: () -> untyped
+
+        # @return [String] content of the file
+        def self.internal_poststart_command_clone_project_script: () -> untyped
+
+        # @return [String] content of the file
+        def self.internal_poststart_command_clone_unshallow_script: () -> untyped
+
+        # NOTE: We intentionally duplicate these explicit declaration of constants in addition to dynamically redefining
+        #       them in `reload_constants!` method below. This is because we want them to be resolve-able in IDEs, and
+        #       if
+        #       we only define them dynamically, they will not be recognized by IDEs.
+        DEFAULT_DEVFILE_YAML: untyped
+
+        GIT_CREDENTIAL_STORE_SCRIPT: untyped
+
+        INTERNAL_POSTSTART_COMMAND_CLONE_PROJECT_SCRIPT: untyped
+
+        INTERNAL_POSTSTART_COMMAND_CLONE_UNSHALLOW_SCRIPT: untyped
+
+        INTERNAL_POSTSTART_COMMAND_START_VSCODE_SCRIPT: untyped
+
+        INTERNAL_POSTSTART_COMMAND_SLEEP_UNTIL_WORKSPACE_IS_RUNNING_SCRIPT: untyped
+
+        INTERNAL_POSTSTART_COMMAND_START_SSHD_SCRIPT: untyped
+
+        KUBERNETES_LEGACY_POSTSTART_HOOK_COMMAND: untyped
+
+        KUBERNETES_POSTSTART_HOOK_COMMAND: untyped
+
+        CONTAINER_KEEPALIVE_COMMAND_ARGS: untyped
+
+        # @return [Array]
+        def self.all_expected_file_constants: () -> ::Array[:DEFAULT_DEVFILE_YAML | :GIT_CREDENTIAL_STORE_SCRIPT | :INTERNAL_POSTSTART_COMMAND_CLONE_PROJECT_SCRIPT | :INTERNAL_POSTSTART_COMMAND_CLONE_UNSHALLOW_SCRIPT | :INTERNAL_POSTSTART_COMMAND_START_VSCODE_SCRIPT | :INTERNAL_POSTSTART_COMMAND_SLEEP_UNTIL_WORKSPACE_IS_RUNNING_SCRIPT | :INTERNAL_POSTSTART_COMMAND_START_SSHD_SCRIPT | :KUBERNETES_LEGACY_POSTSTART_HOOK_COMMAND | :KUBERNETES_POSTSTART_HOOK_COMMAND | :CONTAINER_KEEPALIVE_COMMAND_ARGS]
+
+        # @return [void]
+        def self.reload_constants!: () -> untyped
+      end
+    end
+  end
+end

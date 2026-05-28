@@ -1,0 +1,100 @@
+module Gitlab
+  module Git
+    module Finders
+      class BranchesFinder
+        @repository: untyped
+
+        @params: untyped
+
+        @include_commits: untyped
+
+        @next_cursor: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader next_cursor: untyped
+
+        # @param repository [Gitlab::Git::Repository] The Git repository to search in
+        # @param params [Hash] Search and pagination parameters
+        # @option params [String] :search Search pattern (supports ^, $, * operators)
+        # @option params [String] :sort Sort order ('name_asc', 'name_desc', 'updated_asc', 'updated_desc')
+        # @option params [Integer] :per_page Number of results per page
+        # @option params [String] :page_token Opaque cursor for pagination (from previous next_cursor)
+        # @param include_commits [Boolean] Whether to hydrate branches with commit data
+        #
+        # @example Basic search
+        #   BranchesFinder.new(repo, search: "feature").execute
+        #
+        # @example With pagination
+        #   finder = BranchesFinder.new(repo, per_page: 20)
+        #   first_page = finder.execute
+        #   next_page = BranchesFinder.new(repo, per_page: 20, page_token: finder.next_cursor).execute
+        #
+        # @example With commit data for API responses
+        #   BranchesFinder.new(repo, { search: "release" }, include_commits: true).execute
+        def initialize: (untyped repository, ?::Hash[untyped, untyped] params, ?include_commits: bool) -> void
+
+        def execute: (?gitaly_pagination: bool) -> untyped
+
+        def total: () -> untyped
+
+        private
+
+        attr_reader repository: untyped
+
+        attr_reader params: untyped
+
+        attr_reader include_commits: untyped
+
+        def fetch_refs: () -> untyped
+
+        def refs_finder: () -> untyped
+
+        # Builds the complete glob pattern for Gitaly ref listing.
+        # Returns a ready-to-use pattern that RefsFinder passes through as-is
+        # (RefsFinder treats any pattern containing '*' as pre-built).
+        #
+        # NOTE: A literal '*' in a branch name cannot be searched exactly through
+        # this interface - it is always interpreted as a wildcard operator.
+        #
+        # Examples:
+        #   'foo'    => '**/*foo*'  (contains)
+        #   '^foo'   => 'foo*'      (starts with)
+        #   'foo$'   => '**/*foo'   (ends with)
+        #   '^foo$'  =>  N/A        (exact match - handled via ref_names in fetch_refs)
+        #   'f*o'    => '**/*f*o*'  (wildcard)
+        def search_pattern: () -> (nil | ::String)
+
+        def build_branches: (untyped refs) -> (::Array[untyped] | untyped)
+
+        # Promotes the case-insensitive exact match to position 0 for better UX in
+        # autocomplete/dropdown scenarios. This is applied intentionally regardless
+        # of the active sort order (e.g., even with updated_desc sorting).
+        def set_exact_match_as_first_result: (untyped branches) -> untyped
+
+        def operator_search?: () -> untyped
+
+        def exact_match_search?: () -> untyped
+
+        # RefsFinder expects 'name_asc' but callers may pass 'name'
+        def normalized_sort: () -> untyped
+
+        def search: () -> untyped
+
+        def per_page: () -> untyped
+
+        def page_token: () -> untyped
+
+        def page: () -> untyped
+
+        def effective_per_page: () -> untyped
+
+        def offset_page?: () -> untyped
+
+        def offset: () -> untyped
+
+        def target_page_refs: (untyped refs) -> untyped
+      end
+    end
+  end
+end

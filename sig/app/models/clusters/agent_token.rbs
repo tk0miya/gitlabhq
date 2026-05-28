@@ -1,0 +1,19 @@
+module Clusters
+  class AgentToken < ApplicationRecord
+    TOKEN_PREFIX: "glagent-"
+
+    include RedisCacheable
+
+    include TokenAuthenticatable
+
+    def revoke!: () -> untyped
+
+    def to_ability_name: () -> :cluster
+
+    # Instance method required by TokenAuthenticatable for token generation
+    def glagent_prefix: () -> untyped
+
+    # Class method used for token validation and as single source of truth for prefix
+    def self.glagent_prefix: () -> untyped
+  end
+end

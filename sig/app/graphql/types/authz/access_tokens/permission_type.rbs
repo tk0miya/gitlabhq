@@ -1,0 +1,12 @@
+module Types
+  module Authz
+    module AccessTokens
+      # rubocop:disable Graphql/AuthorizeTypes -- Authorization handled in the resolver
+      class PermissionType < BaseObject
+        SCOPES: ::Array[:api | :read_api | :ai_workflows]
+
+        def self.authorization_scopes: () -> untyped
+      end
+    end
+  end
+end

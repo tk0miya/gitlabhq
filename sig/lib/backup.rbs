@@ -1,0 +1,31 @@
+module Backup
+  Error: untyped
+
+  class FileBackupError < Backup::Error
+    @storage_path: untyped
+
+    @backup_tarball: untyped
+
+    attr_reader storage_path: untyped
+
+    attr_reader backup_tarball: untyped
+
+    def initialize: (untyped app_files_dir, untyped backup_tarball) -> void
+
+    def message: () -> ::String
+  end
+
+  class DatabaseBackupError < Backup::Error
+    @config: untyped
+
+    @db_file_name: untyped
+
+    attr_reader config: untyped
+
+    attr_reader db_file_name: untyped
+
+    def initialize: (untyped config, untyped db_file_name) -> void
+
+    def message: () -> ::String
+  end
+end

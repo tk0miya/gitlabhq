@@ -1,0 +1,77 @@
+module Gitlab
+  module UsageDataCounters
+    module HLLRedisCounter
+      self.@known_events: untyped
+
+      KEY_EXPIRY_LENGTH: untyped
+
+      REDIS_SLOT: "hll_counters"
+
+      KEY_OVERRIDES_PATH: untyped
+
+      LEGACY_EVENTS_PATH: untyped
+
+      EventError: untyped
+
+      UnknownEvent: untyped
+
+      UnfinishedEventMigrationError: untyped
+
+      UnknownLegacyEventError: untyped
+
+      extend Gitlab::Utils::UsageData
+
+      extend Gitlab::Usage::TimeFrame
+
+      extend Gitlab::Usage::TimeSeriesStorable
+
+      extend Gitlab::Utils::StrongMemoize
+
+      # Track unique events
+      #
+      # event_name - The event name.
+      # values - One or multiple values counted.
+      # property_name - Name of the values counted.
+      # time - Time of the action, set to Time.current.
+      def self.track_event: (untyped event_name, values: untyped, ?property_name: untyped?, ?time: untyped) -> untyped
+
+      # Count unique events for a given time range.
+      #
+      # event_names - The list of the events to count.
+      # property_names - The list of the values for which the events are to be counted.
+      # start_date  - The start date of the time range.
+      # end_date  - The end date of the time range.
+      def self.unique_events: (event_names: untyped, start_date: untyped, end_date: untyped, ?property_name: untyped?) -> untyped
+
+      def self.known_event?: (untyped event_name) -> untyped
+
+      def self.known_events: () -> untyped
+
+      def self.legacy_event?: (untyped event_name) -> untyped
+
+      private
+
+      def self.track: (untyped values, untyped event_name, property_name: untyped, ?time: untyped) -> untyped
+
+      def self.count_unique_events: (event_names: untyped, start_date: untyped, end_date: untyped, property_name: untyped, ?used_in_aggregate_metric: bool) -> untyped
+
+      def self.events_with_property_names: (untyped event_names, untyped property_name) -> untyped
+
+      def self.event_with_property_name: (untyped event_name, untyped property_name) -> ({ name: untyped, property_name: untyped } | { name: untyped })
+
+      def self.load_events: () -> untyped
+
+      def self.redis_key: (untyped event, untyped time, untyped used_in_aggregate_metric) -> ::String
+
+      def self.redis_key_base: (untyped event, untyped used_in_aggregate_metric) -> untyped
+
+      def self.validate!: (untyped event_name, untyped property_name, untyped used_in_aggregate_metric) -> (nil | untyped)
+
+      def self.formatted_property_name: (untyped property_name) -> untyped
+
+      def self.key_overrides: () -> untyped
+
+      def self.legacy_events: () -> untyped
+    end
+  end
+end

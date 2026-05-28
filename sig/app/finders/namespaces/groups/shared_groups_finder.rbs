@@ -1,0 +1,40 @@
+# SharedGroupsFinder
+#
+# Used to get the list of shared groups where the given group was invited
+#
+# Arguments:
+#   group
+#   current_user
+#   params:
+#     search: string
+#     allow_similarity_sort: boolean
+#
+module Namespaces
+  module Groups
+    class SharedGroupsFinder
+      @group: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      include Namespaces::GroupsFilter
+
+      include Gitlab::Allowable
+
+      attr_reader group: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def initialize: (untyped group, ?untyped? current_user, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def filter_shared_groups: (untyped groups) -> untyped
+    end
+  end
+end

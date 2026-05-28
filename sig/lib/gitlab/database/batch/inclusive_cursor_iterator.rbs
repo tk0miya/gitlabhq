@@ -1,0 +1,46 @@
+module Gitlab
+  module Database
+    module Batch
+      # Wraps Pagination::Keyset::Iterator for callers whose seeded cursor must be treated as
+      # inclusive (>= start_cursor) on the first batch, then strict (> prev_end) on subsequent
+      # batches.
+      #
+      # The standard Iterator emits strict `>` for any seeded cursor. That's correct for keyset
+      # pagination (the seed sits before the next page), but not for callers like cursor-based
+      # batched background migrations where `start_cursor` is the first row to include.
+      #
+      # Leaving `>= start_cursor` in the scope while the Iterator adds `> prev_end` on top causes
+      # Postgres to apply only one row-constructor predicate as the B-tree index range and the
+      # other as a filter, re-scanning each sub-batch from start_cursor (#599681).
+      #
+      # This wrapper runs the first sub-batch as a one-shot inclusive query, then hands phase 2
+      # off to a vanilla Iterator seeded with phase 1's last row.
+      class InclusiveCursorIterator
+        @scope: untyped
+
+        @order: untyped
+
+        @cursor_columns: untyped
+
+        @start_cursor: untyped
+
+        def initialize: (scope: untyped, cursor_columns: untyped, start_cursor: untyped) -> void
+
+        # rubocop: disable CodeReuse/ActiveRecord -- builds keyset where-clause inline
+        def each_batch: (?of: ::Integer, ?load_batch: bool) { (untyped) -> untyped } -> (nil | untyped)
+
+        private
+
+        attr_reader scope: untyped
+
+        attr_reader order: untyped
+
+        attr_reader cursor_columns: untyped
+
+        attr_reader start_cursor: untyped
+
+        def inclusive_start_predicate: () -> untyped
+      end
+    end
+  end
+end

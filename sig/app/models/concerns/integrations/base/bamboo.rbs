@@ -1,0 +1,29 @@
+module Integrations
+  module Base
+    module Bamboo
+      extend ActiveSupport::Concern
+
+      def execute: (untyped data) -> (nil | untyped)
+
+      def avatar_url: () -> untyped
+
+      private
+
+      def get_build_result: (untyped response) -> (nil | untyped)
+
+      def read_build_page: (untyped response) -> untyped
+
+      def read_commit_status: (untyped response) -> (:error | untyped)
+
+      def try_get_path: (untyped path, ?::Hash[untyped, untyped] query_params) -> untyped
+
+      def get_path: (untyped path, ?::Hash[untyped, untyped] query_params) -> untyped
+
+      def build_url: (untyped path) -> untyped
+
+      def build_get_params: (untyped query_params) -> untyped
+
+      def basic_auth: () -> { username: untyped, password: untyped }
+    end
+  end
+end

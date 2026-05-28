@@ -1,0 +1,15 @@
+module Integrations
+  module Base
+    module PipelinesEmail
+      extend ActiveSupport::Concern
+
+      include NotificationBranchSelection
+
+      include NotificationPipelineStatusSelection
+
+      include NotificationPipelineSourceSelection
+
+      RECIPIENTS_LIMIT: 30
+    end
+  end
+end

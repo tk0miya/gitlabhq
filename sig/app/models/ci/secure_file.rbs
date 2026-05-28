@@ -1,0 +1,35 @@
+module Ci
+  class SecureFile < Ci::ApplicationRecord
+    include FileStoreMounter
+
+    include ObjectStorable
+
+    include Limitable
+
+    STORE_COLUMN: :file_store
+
+    FILE_SIZE_LIMIT: untyped
+
+    CHECKSUM_ALGORITHM: "sha256"
+
+    PARSABLE_EXTENSIONS: ::Array["cer" | "p12" | "mobileprovision"]
+
+    def checksum_algorithm: () -> untyped
+
+    def file_extension: () -> untyped
+
+    def metadata_parsable?: () -> untyped
+
+    def metadata_parser: () -> (nil | untyped)
+
+    def update_metadata!: () -> (nil | untyped)
+
+    def local?: () -> untyped
+
+    private
+
+    def assign_checksum: () -> (untyped | nil)
+
+    def generate_key_data: () -> (nil | untyped)
+  end
+end

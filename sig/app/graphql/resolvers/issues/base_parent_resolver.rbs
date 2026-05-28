@@ -1,0 +1,15 @@
+module Resolvers
+  module Issues
+    class BaseParentResolver < Issues::BaseResolver
+      prepend ::Issues::LookAheadPreloads
+
+      include ::Issues::SortArguments
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def resource_parent: () -> untyped
+    end
+  end
+end

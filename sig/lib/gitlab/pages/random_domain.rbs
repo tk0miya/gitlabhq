@@ -1,0 +1,25 @@
+module Gitlab
+  module Pages
+    class RandomDomain
+      @project_path: untyped
+
+      PROJECT_PATH_LIMIT: 56
+
+      def self.generate: (project_path: untyped) -> untyped
+
+      def initialize: (project_path: untyped) -> void
+
+      # Subdomains have a limit of 63 bytes (https://www.freesoft.org/CIE/RFC/1035/9.htm)
+      # For this reason we're limiting each part of the unique subdomain
+      #
+      # The domain is made up of 2 parts, like: projectpath-randomstring
+      # - project path: between 1 and 56 chars
+      # - random hexadecimal: to ensure a random value of length 6
+      def generate: () -> untyped
+
+      private
+
+      attr_reader project_path: untyped
+    end
+  end
+end

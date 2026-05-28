@@ -1,0 +1,37 @@
+module Peek
+  module Views
+    class ExternalHttp < DetailedView
+      self.@thresholds: untyped
+
+      DEFAULT_THRESHOLDS: { calls: 10, duration: 1000, individual_call: 100 }
+
+      THRESHOLDS: { production: { calls: 10, duration: 1000, individual_call: 100 } }
+
+      def key: () -> "external-http"
+
+      def results: () -> untyped
+
+      def self.thresholds: () -> untyped
+
+      def format_call_details: (untyped call) -> untyped
+
+      private
+
+      def duration: () -> untyped
+
+      def calls: () -> untyped
+
+      def call_details: () -> untyped
+
+      def proxy: (untyped call) -> (::String | nil)
+
+      def code: (untyped call) -> (::String | nil)
+
+      def error: (untyped call) -> (::String | nil)
+
+      def generate_path: (untyped call) -> untyped
+
+      def generate_query: (untyped query_string) -> untyped
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Ci
+  class PendingBuild < Ci::ApplicationRecord
+    include EachBatch
+
+    include Ci::Partitionable
+
+    MAX_TAGS_IDS: 50
+
+    TooManyTagsError: untyped
+
+    def self.upsert_from_build!: (untyped build) -> untyped
+
+    def self.upsert_from_args!: (untyped args) -> untyped
+
+    def self.namespace_transfer_params: (untyped namespace) -> { namespace_traversal_ids: untyped, namespace_id: untyped }
+
+    def self.args_from_build: (untyped build) -> untyped
+
+    private
+
+    def self.build_tags_ids: (untyped build) -> untyped
+
+    def self.shared_runners_enabled?: (untyped project) -> untyped
+
+    def self.group_runners_enabled?: (untyped project) -> untyped
+
+    def self.builds_enabled?: (untyped project) -> untyped
+  end
+end

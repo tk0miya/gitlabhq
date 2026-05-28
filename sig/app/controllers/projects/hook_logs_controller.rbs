@@ -1,0 +1,13 @@
+class Projects::HookLogsController < Projects::ApplicationController
+  @hook: untyped
+
+  include WebHooks::HookLogActions
+
+  private
+
+  def hook: () -> untyped
+
+  def after_retry_redirect_path: () -> untyped
+
+  def authorize_admin_hook!: () -> (untyped | nil)
+end

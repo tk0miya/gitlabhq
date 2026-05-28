@@ -1,0 +1,23 @@
+module ObjectStorage
+  module CDN
+    class FileUrl
+      @file: untyped
+
+      @ip_address: untyped
+
+      @redirect_params: untyped
+
+      def initialize: (file: untyped, ip_address: untyped, ?redirect_params: ::Hash[untyped, untyped]) -> void
+
+      def url: () -> untyped
+
+      private
+
+      attr_reader file: untyped
+
+      attr_reader ip_address: untyped
+
+      attr_reader redirect_params: untyped
+    end
+  end
+end

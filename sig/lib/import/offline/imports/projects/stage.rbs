@@ -1,0 +1,13 @@
+module Import
+  module Offline
+    module Imports
+      module Projects
+        class Stage < ::BulkImports::Stage
+          private
+
+          def config: () -> { finisher: { pipeline: untyped, stage: 0 } }
+        end
+      end
+    end
+  end
+end

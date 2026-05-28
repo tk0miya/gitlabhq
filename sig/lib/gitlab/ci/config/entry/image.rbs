@@ -1,0 +1,14 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a Docker image.
+        #
+        class Image < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Ci::Config::Entry::Imageable
+        end
+      end
+    end
+  end
+end

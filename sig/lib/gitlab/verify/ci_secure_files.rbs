@@ -1,0 +1,21 @@
+module Gitlab
+  module Verify
+    class CiSecureFiles < BatchVerifier
+      def name: () -> "CI Secure Files"
+
+      def describe: (untyped object) -> ::String
+
+      private
+
+      def all_relation: () -> untyped
+
+      def local?: (untyped secure_file) -> untyped
+
+      def expected_checksum: (untyped secure_file) -> untyped
+
+      def actual_checksum: (untyped secure_file) -> untyped
+
+      def remote_object_exists?: (untyped secure_file) -> untyped
+    end
+  end
+end

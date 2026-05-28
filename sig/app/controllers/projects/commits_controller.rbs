@@ -1,0 +1,42 @@
+class Projects::CommitsController < Projects::ApplicationController
+  @merge_request: untyped
+
+  @limit: untyped
+
+  @offset: untyped
+
+  @commits: untyped
+
+  include ExtractsPath
+
+  include RendersCommits
+
+  include ParseCommitDate
+
+  include RedirectsForMissingPathOnTree
+
+  include HandlesGitalyErrors
+
+  COMMITS_DEFAULT_LIMIT: 40
+
+  def commits_root: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def show: () -> untyped
+
+  def signatures: () -> untyped
+
+  private
+
+  def validate_ref!: () -> (untyped | nil)
+
+  def validate_path: () -> (nil | untyped)
+
+  def require_auth?: () -> untyped
+
+  def auth_for_path: () -> (untyped | nil)
+
+  def set_commits: () -> untyped
+
+  def permitted_params: () -> untyped
+end

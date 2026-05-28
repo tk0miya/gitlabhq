@@ -1,0 +1,93 @@
+module Import
+  class ReassignPlaceholderUserRecordsService
+    @import_source_user: untyped
+
+    @reassigned_by_user: untyped
+
+    @unavailable_tables: untyped
+
+    @refresh_project_access: untyped
+
+    @reassignment_throttling: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    MEMBER_SELECT_BATCH_SIZE: 100
+
+    MEMBER_DELETE_BATCH_SIZE: 1000
+
+    REFERENCE_DELETE_BATCH_SIZE: 1000
+
+    GROUP_FINDER_MEMBER_RELATIONS: ::Array[:direct | :inherited | :shared_from_groups]
+
+    PROJECT_FINDER_MEMBER_RELATIONS: ::Array[:direct | :inherited | :invited_groups | :shared_into_ancestors]
+
+    RELATION_BATCH_SLEEP: 5
+
+    def initialize: (untyped import_source_user) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_accessor import_source_user: untyped
+
+    attr_accessor reassigned_by_user: untyped
+
+    attr_accessor reassignment_throttling: untyped
+
+    def warn_about_any_risky_reassignments: () -> untyped
+
+    def warn_about_different_contributor_and_importer_hosts: () -> untyped
+
+    def warn_about_reassign_to_admin: () -> untyped
+
+    def warn_about_risky_reassignment: (untyped message) -> untyped
+
+    def contributor_and_importer_hosts_different?: () -> untyped
+
+    def reassign_placeholder_references: () -> (nil | untyped)
+
+    def reassign_placeholder_records_batch: (untyped model_relation, untyped placeholder_references) -> untyped
+
+    def reassign_placeholder_record: (untyped placeholder_reference, untyped user_reference_column) -> untyped
+
+    def delete_remaining_references: () -> untyped
+
+    def log_placeholder_reference_used?: (untyped update_count) -> untyped
+
+    def create_memberships: () -> (nil | untyped)
+
+    def create_membership: (untyped memberable, untyped placeholder_membership) -> untyped
+
+    def find_existing_membership: (untyped memberable) -> untyped
+
+    def existing_project_membership: (untyped project) -> untyped
+
+    def existing_group_membership: (untyped group) -> untyped
+
+    def delete_placeholder_memberships: () -> untyped
+
+    def placeholder_memberships: () -> untyped
+
+    def mark_project_access_changed!: (untyped placeholder_membership) -> (untyped | nil)
+
+    def refresh_project_access?: () -> untyped
+
+    def handle_reschedule_error: (untyped error, untyped reason) -> untyped
+
+    def reschedule_reassignment_response: (untyped message, untyped reason) -> untyped
+
+    def log_create_membership_skipped: (untyped message, untyped placeholder_membership, untyped existing_membership) -> untyped
+
+    def track_reassignment_complete: () -> untyped
+
+    def logger: () -> untyped
+
+    def log_info: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def log_warn: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def logger_params: (untyped message, **untyped params) -> untyped
+  end
+end

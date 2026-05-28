@@ -1,0 +1,25 @@
+module Ci
+  module Pipelines
+    class HookService
+      @pipeline: untyped
+
+      @project: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      HOOK_NAME: :pipeline_hooks
+
+      def initialize: (untyped pipeline) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader pipeline: untyped
+
+      def project: () -> untyped
+
+      def hook_data: () -> untyped
+    end
+  end
+end

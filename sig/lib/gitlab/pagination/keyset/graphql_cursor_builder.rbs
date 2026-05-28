@@ -1,0 +1,20 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      # Translates GraphQL pagination args (`after` / `before`) into a base64
+      # keyset cursor with the direction marker that
+      # Gitlab::Pagination::Keyset::Paginator expects.
+      module GraphqlCursorBuilder
+        Converter: untyped
+
+        FORWARD: untyped
+
+        BACKWARD: untyped
+
+        def self.build: (?after: untyped?, ?before: untyped?) -> (untyped | untyped | nil)
+
+        def self.with_direction: (untyped cursor, untyped direction) -> untyped
+      end
+    end
+  end
+end

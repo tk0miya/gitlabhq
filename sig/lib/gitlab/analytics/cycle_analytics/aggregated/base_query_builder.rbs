@@ -1,0 +1,61 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module Aggregated
+        class BaseQueryBuilder
+          @stage: untyped
+
+          @params: untyped
+
+          @root_ancestor: untyped
+
+          @stage_event_model: untyped
+
+          include StageQueryHelpers
+
+          MODEL_CLASSES: ::Hash[untyped, untyped]
+
+          # Allowed params:
+          # * from - stage end date filter start date
+          # * to - stage end date filter to date
+          # * author_username
+          # * milestone_title
+          # * label_name (array)
+          # * assignee_username (array)
+          # * project_ids (array)
+          def initialize: (stage: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+          def build: () -> untyped
+
+          def build_sorted_query: () -> untyped
+
+          def filter_author: (untyped query) -> untyped
+
+          def filter_milestone_ids: (untyped query) -> untyped
+
+          def filter_label_names: (untyped query) -> untyped
+
+          def filter_assignees: (untyped query) -> untyped
+
+          def filter_by_stage_parent: (untyped query) -> untyped
+
+          def base_query: () -> untyped
+
+          private
+
+          attr_reader stage: untyped
+
+          attr_reader params: untyped
+
+          attr_reader root_ancestor: untyped
+
+          attr_reader stage_event_model: untyped
+
+          def find_milestone: (untyped title) -> untyped
+
+          def find_user: (untyped username) -> untyped
+        end
+      end
+    end
+  end
+end

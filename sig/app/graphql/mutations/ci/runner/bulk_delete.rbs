@@ -1,0 +1,17 @@
+module Mutations
+  module Ci
+    module Runner
+      class BulkDelete < BaseMutation
+        RunnerID: untyped
+
+        def resolve: (**untyped runner_attrs) -> (untyped | { errors: ::Array[untyped] })
+
+        private
+
+        def model_ids_of: (untyped global_ids) -> untyped
+
+        def find_all_runners_by_ids: (untyped ids) -> untyped
+      end
+    end
+  end
+end

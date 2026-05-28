@@ -1,0 +1,19 @@
+module Types
+  module ContainerRegistry
+    class ContainerRepositoryDetailsType < Types::ContainerRegistry::ContainerRepositoryType
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def size: () -> untyped
+
+      def last_published_at: () -> untyped
+
+      def manifest: (reference: untyped) -> untyped
+
+      def tag_details: (name: untyped) -> untyped
+
+      private
+
+      def handling_errors: () { () -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,100 @@
+# handles service desk ticket creation emails with these formats:
+#   incoming+gitlab-org-gitlab-ce-20-issue-@incoming.gitlab.com
+#   incoming+gitlab-org/gitlab-ce@incoming.gitlab.com (legacy)
+module Gitlab
+  module Email
+    module Handler
+      class ServiceDeskHandler < BaseHandler
+        @service_desk_key: untyped
+
+        @project_slug: untyped
+
+        @project_id: untyped
+
+        @project_path: untyped
+
+        @work_item: untyped
+
+        include ReplyProcessing
+
+        include Gitlab::Utils::StrongMemoize
+
+        HANDLER_REGEX: ::Regexp
+
+        HANDLER_REGEX_LEGACY: ::Regexp
+
+        PROJECT_KEY_PATTERN: ::Regexp
+
+        def initialize: (untyped mail, untyped mail_key, ?service_desk_key: untyped?) -> void
+
+        def can_handle?: () -> untyped
+
+        def execute: () -> (nil | untyped)
+
+        def match_project_slug: () -> (nil | untyped)
+
+        def match_legacy_project_slug: () -> (nil | untyped)
+
+        def metrics_event: () -> :receive_email_service_desk
+
+        def project: () -> untyped
+
+        private
+
+        attr_reader project_id: untyped
+
+        attr_reader project_path: untyped
+
+        attr_reader service_desk_key: untyped
+
+        def contains_custom_email_address_verification_subaddress?: () -> (false | untyped)
+
+        def handled_custom_email_address_verification?: () -> (false | true)
+
+        def project_from_key: () -> (nil | untyped)
+
+        def valid_project_key?: (untyped project, untyped slug) -> untyped
+
+        def create_work_item_or_note: () -> untyped
+
+        def work_item_type_id: () -> untyped
+
+        def create_work_item!: () -> (nil | untyped)
+
+        def work_item_from_reply_to: () -> (nil | untyped)
+
+        def reply_email?: () -> untyped
+
+        def create_note_from_reply_email: () -> untyped
+
+        def send_thank_you_email: () -> untyped
+
+        def message_including_template: () -> untyped
+
+        def service_desk_setting: () -> untyped
+
+        def create_template_not_found_note: () -> untyped
+
+        def create_note: (untyped note) -> untyped
+
+        def to_address: () -> untyped
+
+        def cc_addresses: () -> untyped
+
+        def can_handle_legacy_format?: () -> untyped
+
+        def author: () -> untyped
+
+        def add_email_participants: () -> untyped
+
+        def add_external_participants_from_cc: () -> (nil | untyped)
+
+        def service_desk_addresses: () -> untyped
+
+        def ticket_confidential?: () -> (true | untyped)
+
+        def support_bot: () -> untyped
+      end
+    end
+  end
+end

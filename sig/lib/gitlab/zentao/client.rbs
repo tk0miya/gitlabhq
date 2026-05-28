@@ -1,0 +1,53 @@
+module Gitlab
+  module Zentao
+    class Client
+      @integration: untyped
+
+      @issue_ids_cache_key: untyped
+
+      @issue_ids_cache: untyped
+
+      Error: untyped
+
+      ConfigError: untyped
+
+      RequestError: untyped
+
+      CACHE_MAX_SET_SIZE: 5000
+
+      CACHE_TTL: untyped
+
+      attr_reader integration: untyped
+
+      def initialize: (untyped integration) -> void
+
+      def ping: () -> untyped
+
+      def fetch_product: (untyped product_id) -> untyped
+
+      def fetch_issues: (?::Hash[untyped, untyped] params) -> untyped
+
+      def fetch_issue: (untyped issue_id) -> untyped
+
+      private
+
+      def issue_id_pattern: () -> ::Regexp
+
+      def get: (untyped path, ?::Hash[untyped, untyped] params) -> untyped
+
+      def url: (untyped path) -> untyped
+
+      def headers: () -> { :"Content-Type" => "application/json", Token: untyped }
+
+      def zentao_product_xid: () -> untyped
+
+      def issue_ids_cache_key: () -> untyped
+
+      def issue_ids_cache: () -> untyped
+
+      def mark_issues_as_seen_in_product: (untyped issues) -> (nil | untyped)
+
+      def issue_seen_in_product?: (untyped id) -> untyped
+    end
+  end
+end

@@ -1,0 +1,78 @@
+class NotesFinder
+  @project: untyped
+
+  @current_user: untyped
+
+  @params: untyped
+
+  @organization_id: untyped
+
+  @target_type: untyped
+
+  @target: untyped
+
+  FETCH_OVERLAP: untyped
+
+  attr_reader target_type: untyped
+
+  # Used to filter Notes
+  # When used with target_type and target_id this returns notes specifically for the controller
+  #
+  # Arguments:
+  #   current_user - which user check authorizations with
+  #   project - which project to look for notes on
+  #   params:
+  #     target: noteable
+  #     target_type: string
+  #     target_id: integer
+  #     last_fetched_at: time
+  #     search: string
+  #     sort: string
+  #
+  def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  def target: () -> untyped
+
+  private
+
+  def target_given?: () -> untyped
+
+  def use_explicit_target: () -> untyped
+
+  def find_target_by_type_and_ids: () -> untyped
+
+  def noteable_for_type_by_id: (untyped type, untyped id, untyped iid) -> untyped
+
+  def init_collection: () -> untyped
+
+  def notes_of_target_type: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def notes_of_any_type: () -> untyped
+
+  def noteables_for_type: (untyped noteable_type) -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def notes_for_type: (untyped noteable_type) -> untyped
+
+  def notes_on_target: () -> untyped
+
+  # Searches for notes matching the given query.
+  #
+  # This method uses ILIKE on PostgreSQL.
+  #
+  def search: (untyped notes) -> untyped
+
+  # Notes changed since last fetch
+  def since_fetch_at: (untyped notes) -> untyped
+
+  def notes_filter?: () -> untyped
+
+  def sort: (untyped notes) -> untyped
+
+  def redact_internal: (untyped notes) -> untyped
+
+  def without_hidden_notes?: () -> (false | true)
+end

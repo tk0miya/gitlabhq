@@ -1,0 +1,17 @@
+module MergeRequests
+  class CleanupRefWorker
+    include ApplicationWorker
+
+    include Projects::RemoveRefs
+
+    # Even though this worker is de-duplicated we need to acquire lock
+    # on a project to avoid running many concurrent refs removals
+    #
+    # TODO: Once underlying fix is done we can remove `in_lock`
+    #
+    # Related to:
+    # - https://gitlab.com/gitlab-org/gitaly/-/issues/5368
+    # - https://gitlab.com/gitlab-org/gitaly/-/issues/5369
+    def perform: (untyped merge_request_id, untyped only) -> (nil | untyped)
+  end
+end

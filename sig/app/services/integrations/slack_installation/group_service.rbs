@@ -1,0 +1,24 @@
+module Integrations
+  module SlackInstallation
+    class GroupService < BaseService
+      @group: untyped
+
+      def initialize: (untyped group, current_user: untyped, params: untyped) -> void
+
+      private
+
+      attr_reader group: untyped
+
+      def redirect_uri: () -> untyped
+
+      def installation_alias: () -> untyped
+
+      # Returns a fallback alias for the group when the default alias (full_path) is already taken.
+      def fallback_alias: () -> ::String
+
+      def authorized?: () -> untyped
+
+      def find_or_create_integration!: () -> untyped
+    end
+  end
+end

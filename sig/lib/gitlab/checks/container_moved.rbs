@@ -1,0 +1,23 @@
+module Gitlab
+  module Checks
+    class ContainerMoved < PostPushMessage
+      @redirected_path: untyped
+
+      REDIRECT_NAMESPACE: "redirect_namespace"
+
+      def initialize: (untyped repository, untyped user, untyped protocol, untyped redirected_path) -> void
+
+      def message: () -> ::String
+
+      private
+
+      attr_reader redirected_path: untyped
+
+      def self.message_key: (untyped user, untyped repository) -> ::String
+
+      # TODO: Remove in the next release
+      # https://gitlab.com/gitlab-org/gitlab/-/issues/292030
+      def self.legacy_message_key: (untyped user, untyped repository) -> (nil | ::String)
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Reports
+      class TestFailureHistory
+        @failed_junit_tests: untyped
+
+        @project: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped failed_junit_tests, untyped project) -> void
+
+        def load!: () -> untyped
+
+        private
+
+        attr_reader report: untyped
+
+        attr_reader project: untyped
+
+        attr_reader failed_junit_tests: untyped
+
+        def recent_failures_count: () -> untyped
+
+        def build_map: (untyped junit_tests) -> untyped
+      end
+    end
+  end
+end

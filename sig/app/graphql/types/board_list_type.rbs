@@ -1,0 +1,17 @@
+module Types
+  # rubocop: disable Graphql/AuthorizeTypes
+  class BoardListType < BaseObject
+    include Gitlab::Utils::StrongMemoize
+
+    alias list object
+
+    def issues_count: () -> untyped
+
+    def collapsed: () -> untyped
+
+    def metadata: () -> untyped
+
+    # board lists have a data dependency on label - so we batch load them here
+    def title: () -> untyped
+  end
+end

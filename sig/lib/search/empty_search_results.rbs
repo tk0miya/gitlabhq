@@ -1,0 +1,33 @@
+module Search
+  # This class has the same interface as SearchResults except
+  # it is empty and does not do any work.
+  class EmptySearchResults
+    @error: untyped
+
+    @error_type: untyped
+
+    def initialize: (?error: untyped?, ?error_type: untyped?) -> void
+
+    def objects: (*untyped) -> untyped
+
+    def formatted_count: (*untyped) -> "0"
+
+    def highlight_map: (*untyped) -> ::Hash[untyped, untyped]
+
+    def aggregations: (*untyped) -> ::Array[untyped]
+
+    def counts: (*untyped) -> ::Hash[untyped, untyped]
+
+    def error: (*untyped) -> untyped
+
+    def error_type: (*untyped) -> untyped
+
+    def failed?: (*untyped) -> untyped
+
+    def server_error?: () -> false
+
+    def blobs_count: () -> 0
+
+    def file_count: () -> 0
+  end
+end

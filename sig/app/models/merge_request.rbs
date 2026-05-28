@@ -1,0 +1,916 @@
+class MergeRequest < ApplicationRecord
+  self.@reference_pattern: untyped
+
+  self.@link_reference_pattern: untyped
+
+  @context_commits: untyped
+
+  @target_branch_sha: untyped
+
+  @merge_event: untyped
+
+  @closed_event: untyped
+
+  @merge_commit: untyped
+
+  @squash_commit: untyped
+
+  extend Gitlab::Cache::RequestCache
+
+  include AtomicInternalId
+
+  include IidRoutes
+
+  include Issuable
+
+  include Noteable
+
+  include Referable
+
+  include Presentable
+
+  include TimeTrackable
+
+  include ManualInverseAssociation
+
+  include EachBatch
+
+  include ThrottledTouch
+
+  include Gitlab::Utils::StrongMemoize
+
+  include LabelEventable
+
+  include ReactiveCaching
+
+  include FromUnion
+
+  include DeprecatedAssignee
+
+  include ShaAttribute
+
+  include MilestoneEventable
+
+  include StateEventable
+
+  include Approvable
+
+  include IdInOrdered
+
+  include Todoable
+
+  include Spammable
+
+  extend ::Gitlab::Utils::Override
+
+  SORTING_PREFERENCE_FIELD: :merge_requests_sort
+
+  CI_MERGE_REQUEST_DESCRIPTION_MAX_LENGTH: 2700
+
+  MERGE_LEASE_TIMEOUT: untyped
+
+  # method overridden in EE
+  def suggested_reviewer_users: () -> untyped
+
+  # This is the same as latest_merge_request_diff unless:
+  # 1. There are arguments - in which case we might be trying to force-reload.
+  # 2. This association is already loaded.
+  # 3. The latest diff does not exist.
+  # 4. It doesn't have any merge_request_diffs - it returns an empty MergeRequestDiff
+  #
+  # The second one in particular is important - MergeRequestDiff#merge_request
+  # is the inverse of MergeRequest#merge_request_diff, which means it may not be
+  # the latest diff, because we could have loaded any diff from this particular
+  # MR. If we haven't already loaded a diff, then it's fine to load the latest.
+  def merge_request_diff: () -> untyped
+
+  KNOWN_MERGE_PARAMS: ::Array[:auto_merge_strategy | :should_remove_source_branch | :force_remove_source_branch | :commit_message | :squash_commit_message | :sha | :skip_ci]
+
+  # When this attribute is true some MR validation is ignored
+  # It allows us to close or modify broken merge requests
+  attr_accessor allow_broken: untyped
+
+  # When this attribute is true some MR validation is ignored
+  # It allows us to close or modify broken merge requests
+  attr_accessor skip_branch_existence_check: untyped
+
+  # Temporary flag to skip merge_request_diff creation on create.
+  # See https://gitlab.com/gitlab-org/gitlab/-/merge_requests/100390
+  attr_accessor skip_ensure_merge_request_diff: untyped
+
+  # Temporary fields to store compare vars
+  # when creating new merge request
+  attr_accessor can_be_created: untyped
+
+  # Temporary fields to store compare vars
+  # when creating new merge request
+  attr_accessor compare_commits: untyped
+
+  # Temporary fields to store compare vars
+  # when creating new merge request
+  attr_accessor diff_options: untyped
+
+  # Temporary fields to store compare vars
+  # when creating new merge request
+  attr_accessor compare: untyped
+
+  # Flag to skip triggering mergeRequestMergeStatusUpdated GraphQL subscription.
+  attr_accessor skip_merge_status_trigger: untyped
+
+  # Keep states definition to be evaluated before the state_machine block to
+  #   avoid spec failures. If this gets evaluated after, the `merged` and `locked`
+  #   states (which are overridden) can be nil.
+  #
+  def self.available_state_names: () -> untyped
+
+  # NOTE: Batch transition merge_status to unchecked/cannot_be_merged_recheck.
+  # This bypasses state machine callbacks for performance but mimics their behavior.
+  #
+  # Transitions mirror the `mark_as_unchecked` event defined above.
+  # Process batch updates in batches as there can be many target merge requests.
+  def self.batch_mark_as_unchecked: (untyped mr_ids, ?mrs_to_trigger: untyped, ?batch_size: ::Integer) -> (nil | untyped)
+
+  # NOTE: Batch transition merge_status to checking/cannot_be_merged_rechecking.
+  # This bypasses state machine callbacks for performance but mimics their behavior.
+  #
+  # Transitions mirror the `mark_as_checking` event defined above.
+  def self.batch_mark_as_checking: (untyped mr_ids, ?batch_size: ::Integer) -> (nil | untyped)
+
+  def self.batch_clear_merge_error: (untyped mr_ids, ?batch_size: ::Integer) -> (nil | untyped)
+
+  # Returns current merge_status except it returns `cannot_be_merged_rechecking` as `checking`
+  # to avoid exposing unnecessary internal state
+  def public_merge_status: () -> ("checking" | untyped)
+
+  def self.total_time_to_merge: () -> untyped
+
+  alias project target_project
+
+  alias project= target_project=
+
+  alias issuing_parent target_project
+
+  RebaseLockTimeout: untyped
+
+  def self.reference_prefix: () -> "!"
+
+  def self.order_by_metric_column: (untyped metric, untyped direction) -> untyped
+
+  # Returns the top 100 target branches
+  #
+  # The returned value is a Array containing branch names
+  # sort by updated_at of merge request:
+  #
+  #     ['master', 'develop', 'production']
+  #
+  # limit - The maximum number of target branch to return.
+  def self.recent_target_branches: (?limit: ::Integer) -> untyped
+
+  def self.recent_source_branches: (?limit: ::Integer) -> untyped
+
+  def self.distinct_source_branches: () -> untyped
+
+  def self.sort_by_attribute: (untyped method, ?excluded_labels: untyped) -> untyped
+
+  def self.reviewers_subquery: () -> untyped
+
+  def rebase_in_progress?: () -> untyped
+
+  def permits_force_push?: () -> (true | untyped)
+
+  # Use this method whenever you need to make sure the head_pipeline is synced with the
+  # branch head commit, for example checking if a merge request can be merged.
+  # For more information check: https://gitlab.com/gitlab-org/gitlab-foss/issues/40004
+  def diff_head_pipeline: () -> (untyped | nil)
+
+  def merge_pipeline: () -> (untyped | nil)
+
+  def diff_head_pipeline_success?: () -> untyped
+
+  # Pattern used to extract `!123` merge request references from text
+  #
+  # This pattern supports cross-project references.
+  def self.reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> untyped
+
+  def self.reference_valid?: (untyped reference) -> untyped
+
+  def self.project_foreign_key: () -> "target_project_id"
+
+  # Returns all the merge requests from an ActiveRecord:Relation.
+  #
+  # This method uses a UNION as it usually operates on the result of
+  # ProjectsFinder#execute. PostgreSQL in particular doesn't always like queries
+  # using multiple sub-queries especially when combined with an OR statement.
+  # UNIONs on the other hand perform much better in these cases.
+  #
+  # relation - An ActiveRecord::Relation that returns a list of Projects.
+  #
+  # Returns an ActiveRecord::Relation.
+  def self.in_projects: (untyped relation) -> untyped
+
+  # This is used after project import, to reset the IDs to the correct
+  # values. It is not intended to be called without having already scoped the
+  # relation.
+  #
+  # Only set `regular` merge request diffs as latest so `merge_head` diff
+  # won't be considered as `MergeRequest#merge_request_diff`.
+  def self.set_latest_merge_request_diff_ids!: () -> untyped
+
+  DRAFT_REGEX: ::Regexp
+
+  def self.draft?: (untyped title) -> untyped
+
+  def self.draftless_title: (untyped title) -> untyped
+
+  def self.draft_title: (untyped title) -> (untyped | ::String)
+
+  alias self.work_in_progress? self.draft?
+
+  alias self.wipless_title self.draftless_title
+
+  alias self.wip_title self.draft_title
+
+  def self.participant_includes: () -> untyped
+
+  def head_pipeline: () -> untyped
+
+  def recent_commits: (?limit: untyped, ?load_from_gitaly: bool, ?page: untyped?, ?preload_metadata: bool) -> untyped
+
+  def preload_commits_metadata: () -> (nil | untyped)
+
+  def committers: (?with_merge_commits: bool, ?lazy: bool, ?include_author_when_signed: bool) -> untyped
+
+  def committer_ids_to_filter_from_approvers: () -> untyped
+
+  def committers_to_filter_from_approvers: () -> untyped
+
+  # Verifies if title has changed not taking into account Draft prefix
+  # for merge requests.
+  def draftless_title_changed: (untyped old_title) -> untyped
+
+  alias wipless_title_changed draftless_title_changed
+
+  def hook_attrs: () -> untyped
+
+  # `from` argument can be a Namespace or Project.
+  def to_reference: (?untyped? from, ?full: bool) -> ::String
+
+  def context_commits: (?limit: untyped?) -> untyped
+
+  def recent_context_commits: () -> untyped
+
+  def context_commits_count: () -> untyped
+
+  def commits: (?limit: untyped?, ?load_from_gitaly: bool, ?page: untyped?) -> untyped
+
+  def commits_count: () -> (untyped | untyped | 0)
+
+  def commit_shas: (?limit: untyped?, ?bypass_preloaded: bool) -> untyped
+
+  def supports_suggestion?: () -> true
+
+  def supports_lock_on_merge?: () -> (false | untyped)
+
+  # Calls `MergeWorker` to proceed with the merge process and
+  # updates `merge_jid` with the MergeWorker#jid.
+  # This helps tracking enqueued and ongoing merge jobs.
+  def merge_async: (untyped user_id, untyped params) -> untyped
+
+  # Set off a rebase asynchronously, atomically updating the `rebase_jid` of
+  # the MR so that the status of the operation can be tracked.
+  def rebase_async: (untyped user_id, ?skip_ci: bool) -> untyped
+
+  def merge_participants: () -> untyped
+
+  def first_commit: () -> untyped
+
+  def raw_diffs: (*untyped args) -> untyped
+
+  def diffs_for_streaming: (?::Hash[untyped, untyped] diff_options) -> untyped
+
+  def diffs_for_streaming_by_changed_paths: (?::Hash[untyped, untyped] diff_options) { (?) -> untyped } -> untyped
+
+  def diffs: (?::Hash[untyped, untyped] diff_options) -> untyped
+
+  def non_latest_diffs: () -> untyped
+
+  def note_positions_for_paths: (untyped paths, ?untyped? user) -> untyped
+
+  def preloads_discussion_diff_highlighting?: () -> true
+
+  def discussions_diffs: () -> untyped
+
+  def diff_stats: () -> (nil | untyped)
+
+  def diff_size: () -> untyped
+
+  def modified_paths: (?past_merge_request_diff: untyped?, ?fallback_on_overflow: bool) -> untyped
+
+  def changed_paths: () -> untyped
+
+  def new_paths: () -> untyped
+
+  def diff_head_commit: () -> untyped
+
+  def diff_start_sha: () -> untyped
+
+  def diff_base_sha: () -> untyped
+
+  def diff_head_sha: () -> untyped
+
+  def merged_in_repository?: () -> untyped
+
+  def squash_commit_reachable_from_target_branch?: () -> untyped
+
+  # When importing a pull request from GitHub, the old and new branches may no
+  # longer actually exist by those names, but we need to recreate the merge
+  # request diff with the right source and target shas.
+  # We use these attributes to force these to the intended values.
+  attr_writer target_branch_sha: untyped
+
+  # When importing a pull request from GitHub, the old and new branches may no
+  # longer actually exist by those names, but we need to recreate the merge
+  # request diff with the right source and target shas.
+  # We use these attributes to force these to the intended values.
+  attr_writer source_branch_sha: untyped
+
+  def source_branch_ref: (?or_sha: bool) -> (untyped | nil)
+
+  def target_branch_ref: () -> (untyped | nil)
+
+  def source_branch_head: () -> untyped
+
+  def target_branch_head: () -> untyped
+
+  def branch_merge_base_commit: () -> untyped
+
+  def target_branch_sha: () -> untyped
+
+  def source_branch_sha: () -> untyped
+
+  def diff_refs: () -> untyped
+
+  # Instead trying to fetch the
+  # persisted diff_refs, this method goes
+  # straight to the repository to get the
+  # most recent data possible.
+  def repository_diff_refs: () -> untyped
+
+  def branch_merge_base_sha: () -> untyped
+
+  def existing_mrs_targeting_same_branch: () -> untyped
+
+  def validate_branches: () -> (nil | untyped)
+
+  def conflicting_mr_message: (untyped conflicting_mr) -> untyped
+
+  def validate_branch_name: (untyped attr) -> (nil | untyped)
+
+  def validate_branch_existence: () -> (nil | untyped)
+
+  def validate_target_project: () -> (true | untyped)
+
+  def validate_fork: () -> (true | untyped)
+
+  def validate_reviewer_size_length: () -> (true | untyped)
+
+  def merge_ongoing?: () -> (true | untyped)
+
+  def closed_or_merged_without_fork?: () -> untyped
+
+  def source_project_missing?: () -> (false | true | untyped)
+
+  def ensure_merge_request_diff: () -> (nil | untyped)
+
+  def create_merge_request_diff: (?preload_gitaly: bool) -> untyped
+
+  def merge_request_diff_for: (untyped diff_refs_or_sha, ?order_by: ::Symbol) -> untyped
+
+  def previous_diff: () -> untyped
+
+  def version_params_for: (untyped diff_refs) -> ({ diff_id: untyped } | { diff_id: untyped, start_sha: untyped } | nil)
+
+  def clear_memoized_shas: () -> untyped
+
+  def reload_diff_if_branch_changed: () -> (untyped | nil)
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def reload_diff: (?untyped? current_user) -> (nil | untyped)
+
+  def check_mergeability: (?async: bool, ?sync_retry_lease: bool) -> (nil | untyped)
+
+  def diffable_merge_ref?: () -> untyped
+
+  # Returns boolean indicating the merge_status should be rechecked in order to
+  # switch to either can_be_merged or cannot_be_merged.
+  def recheck_merge_status?: () -> untyped
+
+  def merge_event: () -> untyped
+
+  def closed_event: () -> untyped
+
+  def draft?: () -> untyped
+
+  alias work_in_progress? draft?
+
+  def draftless_title: () -> untyped
+
+  alias wipless_title draftless_title
+
+  def draft_title: () -> untyped
+
+  alias wip_title draft_title
+
+  def skipped_auto_merge_checks: (?::Hash[untyped, untyped] options) -> { skip_ci_check: untyped, skip_approved_check: untyped, skip_conflict_check: untyped, skip_draft_check: untyped, skip_blocked_check: untyped, skip_discussions_check: untyped, skip_external_status_check: untyped, skip_requested_changes_check: untyped, skip_locked_paths_check: untyped, skip_jira_check: untyped, skip_locked_lfs_files_check: untyped, skip_security_policy_check: untyped, skip_security_policy_pipeline_check: untyped, skip_merge_time_check: untyped, skip_merge_request_title_check: untyped }
+
+  # Checks whether the merge request is eligible for auto-merge with the given strategy.
+  # Unlike `mergeable?`, this skips checks that the auto-merge process will re-evaluate
+  # later (e.g., CI status, approvals, discussions), focusing only on preconditions that
+  # must be met to accept the auto-merge request.
+  def auto_merge_eligible?: (strategy: untyped, ?check_mergeability_retry_lease: bool, ?use_cache: bool) -> untyped
+
+  # mergeable_state_check_params allows a hash of merge checks to skip or not
+  # skip_ci_check
+  # skip_conflict_check
+  # skip_discussions_check
+  # skip_draft_check
+  # skip_approved_check
+  # skip_blocked_check
+  # skip_external_status_check
+  # skip_requested_changes_check
+  # skip_locked_paths_check
+  # skip_jira_check
+  # skip_locked_lfs_files_check
+  def mergeable?: (?check_mergeability_retry_lease: bool, ?skip_rebase_check: bool, ?skip_conflict_check: bool, ?use_cache: bool, **untyped mergeable_state_check_params) -> (false | untyped)
+
+  def self.mergeable_state_checks: () -> untyped
+
+  # Checks grouped by cost tier for fail-fast optimization.
+  # EE prepends additional checks into each tier via override.
+  # Tiers are executed in order: cheapest first, so we can
+  # fail fast before running the more expensive ones.
+  # Checks within each tier are ordered by P99 latency ascending.
+  #
+  # Thresholds based on production P99 latency:
+  # - trivial: P99 < 0.005s
+  # - light:   P99 0.005s - 0.019s
+  # - heavy:   P99 >= 0.020s
+  def self.mergeable_state_checks_by_tier: () -> { trivial: ::Array[untyped], light: ::Array[untyped], heavy: ::Array[untyped] }
+
+  def self.mergeable_git_state_checks: () -> ::Array[untyped]
+
+  def self.all_mergeability_checks: () -> untyped
+
+  # mergeable_state_check_params allows a hash of merge checks to skip or not
+  # skip_ci_check
+  # skip_discussions_check
+  # skip_draft_check
+  # skip_approved_check
+  # skip_blocked_check
+  # skip_external_status_check
+  # skip_requested_changes_check
+  # skip_jira_check
+  def mergeable_state?: (?use_cache: bool, **untyped params) -> untyped
+
+  # This runs only git related checks
+  def mergeable_git_state?: (?use_cache: bool, **untyped params) -> untyped
+
+  # This runs all the checks
+  def mergeability_checks_pass?: (**untyped params) -> untyped
+
+  def all_mergeability_checks_results: () -> untyped
+
+  def ff_merge_possible?: () -> untyped
+
+  def should_be_rebased?: () -> untyped
+
+  def can_cancel_auto_merge?: (untyped current_user) -> untyped
+
+  def can_remove_source_branch?: (untyped current_user) -> untyped
+
+  def should_remove_source_branch?: () -> untyped
+
+  def force_remove_source_branch?: () -> untyped
+
+  def auto_merge_strategy: () -> (nil | untyped)
+
+  def default_auto_merge_strategy: () -> untyped
+
+  def auto_merge_strategy=: (untyped strategy) -> untyped
+
+  def remove_source_branch?: () -> untyped
+
+  def notify_conflict?: () -> untyped
+
+  def related_notes: () -> untyped
+
+  alias discussion_notes related_notes
+
+  def commit_notes: () -> untyped
+
+  def duo_code_review_progress_note: () -> nil
+
+  def mergeable_discussions_state?: () -> (true | untyped)
+
+  def for_fork?: () -> untyped
+
+  def for_same_project?: () -> untyped
+
+  def cache_closing_issues_after_merge!: (untyped current_user) -> (nil | untyped)
+
+  # If the merge request closes any issues, save this information in the
+  # `MergeRequestsClosingIssues` model. This is a performance optimization.
+  # Calculating this information for a number of merge requests requires
+  # running `ReferenceExtractor` on each of them separately.
+  # This optimization does not apply to issues from external sources.
+  def cache_merge_request_closes_issues!: (?untyped current_user) -> (nil | untyped)
+
+  def visible_closing_issues_for: (?untyped current_user) -> untyped
+
+  # Return the set of issues that will be closed if this merge request is accepted.
+  def closes_issues: (?untyped current_user) -> (untyped | ::Array[untyped])
+
+  def issues_mentioned_but_not_closing: (untyped current_user) -> (::Array[untyped] | untyped)
+
+  def related_issues: (untyped user) -> untyped
+
+  def target_project_path: () -> (untyped | "(removed)")
+
+  def source_project_path: () -> (untyped | "(removed)")
+
+  def source_project_namespace: () -> (untyped | "(removed)")
+
+  def target_project_namespace: () -> (untyped | "(removed)")
+
+  def preload_branches: () -> nil
+
+  def source_branch_exists?: () -> (false | untyped)
+
+  def target_branch_exists?: () -> (false | untyped)
+
+  def default_merge_commit_message: (?include_description: bool, ?user: untyped?) -> untyped
+
+  def default_squash_commit_message: (?user: untyped?) -> untyped
+
+  # Returns the oldest multi-line commit
+  def first_multiline_commit: () -> untyped
+
+  # Returns the description (without the first line/title) of the first multiline commit
+  def first_multiline_commit_description: () -> untyped
+
+  def squash_on_merge?: () -> (true | false | untyped)
+
+  def has_ci?: () -> (false | untyped)
+
+  def branch_missing?: () -> untyped
+
+  def broken?: () -> untyped
+
+  def can_be_merged_by?: (untyped user, ?skip_collaboration_check: bool) -> untyped
+
+  def only_allow_merge_if_pipeline_succeeds?: () -> untyped
+
+  def allow_merge_without_pipeline?: () -> untyped
+
+  def only_allow_merge_if_all_discussions_are_resolved?: () -> untyped
+
+  # We use a heuristic of if there are pipeline created, being created, or a ci integration is setup
+  def has_ci_enabled?: () -> untyped
+
+  def pipeline_creating?: () -> untyped
+
+  def environments_in_head_pipeline: (?deployment_status: untyped?) -> untyped
+
+  def fetch_ref!: () -> untyped
+
+  # Returns the current merge-ref HEAD commit.
+  #
+  def merge_ref_head: () -> untyped
+
+  def ref_path: () -> ::String
+
+  def merge_ref_path: () -> ::String
+
+  def train_ref_path: () -> ::String
+
+  def rebase_on_merge_path: () -> ::String
+
+  def schedule_cleanup_refs: (?only: ::Symbol) -> untyped
+
+  def refs_to_cleanup: (?only: ::Symbol) -> untyped
+
+  def cleanup_refs: (?only: ::Symbol) -> untyped
+
+  def async_cleanup_refs: (?only: ::Symbol) -> untyped
+
+  def self.merge_request_ref?: (untyped ref) -> untyped
+
+  def self.merge_train_ref?: (untyped ref) -> untyped
+
+  def in_locked_state: () { () -> untyped } -> untyped
+
+  def update_and_mark_in_progress_merge_commit_sha: (untyped commit_id) -> untyped
+
+  def diverged_commits_count: () -> untyped
+
+  private
+
+  def compute_diverged_commits_count: () -> (0 | untyped)
+
+  public
+
+  def diverged_from_target_branch?: () -> untyped
+
+  def all_pipelines: () -> untyped
+
+  def update_head_pipeline: () -> untyped
+
+  def has_test_reports?: () -> untyped
+
+  # rubocop: disable Metrics/AbcSize -- Despite being long, this method is quite straightforward. Splitting it in smaller chunks would likely reduce readability.
+  def predefined_variables: () -> untyped
+
+  def compare_test_reports: () -> ({ status: :error, status_reason: "This merge request does not have test reports" } | untyped)
+
+  def has_accessibility_reports?: () -> untyped
+
+  def has_coverage_reports?: () -> untyped
+
+  def has_terraform_reports?: () -> untyped
+
+  def compare_accessibility_reports: () -> ({ status: :error, status_reason: untyped } | untyped)
+
+  # TODO: this method and compare_test_reports use the same
+  # result type, which is handled by the controller's #reports_response.
+  # we should minimize mistakes by isolating the common parts.
+  # issue: https://gitlab.com/gitlab-org/gitlab/issues/34224
+  def find_coverage_reports: () -> ({ status: :error, status_reason: "This merge request does not have coverage reports" } | untyped)
+
+  def has_codequality_mr_diff_report?: () -> untyped
+
+  # TODO: this method and compare_test_reports use the same
+  # result type, which is handled by the controller's #reports_response.
+  # we should minimize mistakes by isolating the common parts.
+  # issue: https://gitlab.com/gitlab-org/gitlab/issues/34224
+  def find_codequality_mr_diff_reports: () -> ({ status: :error, status_reason: "This merge request does not have codequality mr diff reports" } | untyped)
+
+  def has_codequality_reports?: () -> untyped
+
+  def compare_codequality_reports: () -> untyped
+
+  def find_terraform_reports: () -> ({ status: :error, status_reason: "This merge request does not have terraform reports" } | untyped)
+
+  def has_exposed_artifacts?: () -> untyped
+
+  # TODO: this method and compare_test_reports use the same
+  # result type, which is handled by the controller's #reports_response.
+  # we should minimize mistakes by isolating the common parts.
+  # issue: https://gitlab.com/gitlab-org/gitlab/issues/34224
+  def find_exposed_artifacts: () -> ({ status: :error, status_reason: "This merge request does not have exposed artifacts" } | untyped)
+
+  # TODO: consider renaming this as with exposed artifacts we generate reports,
+  # not always compare
+  # issue: https://gitlab.com/gitlab-org/gitlab/issues/34224
+  def compare_reports: (untyped service_class, ?untyped? current_user, ?untyped? report_type, ?::Hash[untyped, untyped] additional_params) -> untyped
+
+  def has_sast_reports?: () -> untyped
+
+  def calculate_reactive_cache: (untyped identifier, ?untyped? current_user_id, ?untyped? report_type, *untyped args) -> untyped
+
+  MAX_RECENT_DIFF_HEAD_SHAS: 100
+
+  def recent_diff_head_shas: (?untyped limit) -> untyped
+
+  def all_commits: () -> untyped
+
+  # Note that this could also return SHA from now dangling commits
+  #
+  def all_commit_shas: () -> untyped
+
+  def merge_commit: () -> (untyped | nil)
+
+  def squash_commit: () -> (untyped | nil)
+
+  def merged_commit_sha: () -> (nil | untyped)
+
+  def short_merged_commit_sha: () -> (untyped | nil)
+
+  # Exists only for merged merge requests
+  def commit_to_revert: () -> (nil | untyped)
+
+  def commit_to_cherry_pick: () -> untyped
+
+  def can_be_reverted?: (untyped current_user) -> (false | untyped)
+
+  def merged_at: () -> untyped
+
+  def can_be_cherry_picked?: () -> untyped
+
+  def has_complete_diff_refs?: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def update_diff_discussion_positions: (old_diff_refs: untyped, new_diff_refs: untyped, ?current_user: untyped?) -> (nil | untyped)
+
+  def keep_around_commit: () -> (nil | untyped)
+
+  def enqueue_keep_around_commit: () -> (nil | untyped)
+
+  def async_keep_around_refs?: () -> untyped
+
+  def has_commits?: () -> untyped
+
+  def has_no_commits?: () -> untyped
+
+  def pipeline_coverage_delta: () -> (untyped | nil)
+
+  def comparison_base_pipeline: (untyped service_class) -> untyped
+
+  def merge_base_pipeline: () -> (nil | untyped)
+
+  def base_pipeline: () -> untyped
+
+  def discussions_rendered_on_frontend?: () -> true
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def invalidate_project_counter_caches: () -> untyped
+
+  def first_contribution?: () -> untyped
+
+  def allow_collaboration: () -> untyped
+
+  alias allow_collaboration? allow_collaboration
+
+  def collaborative_push_possible?: () -> untyped
+
+  def can_allow_collaboration?: (untyped user) -> untyped
+
+  def find_diff_head_pipeline: () -> untyped
+
+  def real_time_notes_enabled?: () -> true
+
+  def recent_visible_deployments: () -> untyped
+
+  def banzai_render_context: (untyped field) -> untyped
+
+  def ensure_metrics!: () -> untyped
+
+  def allows_reviewers?: () -> true
+
+  def allows_multiple_assignees?: () -> untyped
+
+  def allows_multiple_reviewers?: () -> untyped
+
+  def reviewer_auto_assignment_enabled?: () -> untyped
+
+  def supports_assignee?: () -> true
+
+  def find_reviewer: (untyped user) -> untyped
+
+  def merge_request_reviewers_with: (untyped user_ids) -> untyped
+
+  def create_requested_changes: (untyped user) -> nil
+
+  def destroy_requested_changes: (untyped user) -> nil
+
+  def batch_update_reviewer_state: (untyped user_ids, untyped state) -> untyped
+
+  def enabled_reports: () -> { sast: untyped, secret_detection: untyped }
+
+  def includes_ci_config?: () -> (false | untyped)
+
+  def context_commits_diff: () -> untyped
+
+  def target_default_branch?: () -> untyped
+
+  def merge_blocked_by_other_mrs?: () -> false
+
+  def execute_merge_checks: (untyped checks, ?params: ::Hash[untyped, untyped], ?execute_all: bool, ?use_cache: bool) -> untyped
+
+  def can_suggest_reviewers?: () -> false
+
+  def hidden?: () -> untyped
+
+  def diffs_batch_cache_with_max_age?: () -> untyped
+
+  def prepared?: () -> untyped
+
+  def initial_preparation?: () -> untyped
+
+  def check_for_spam?: (*untyped) -> untyped
+
+  def missing_required_squash?: () -> untyped
+
+  def current_patch_id_sha: () -> untyped
+
+  def diff_head_pipeline_considered_in_progress?: () -> (true | false | untyped)
+
+  def temporarily_unapproved?: () -> false
+
+  def has_jira_issue_keys?: () -> (false | untyped)
+
+  def merge_exclusive_lease: () -> untyped
+
+  def source_and_target_branches_exist?: () -> untyped
+
+  def has_diffs?: () -> untyped
+
+  def add_to_locked_set: () -> untyped
+
+  def remove_from_locked_set: () -> untyped
+
+  def first_diffs_slice: (untyped limit, ?::Hash[untyped, untyped] diff_options) -> untyped
+
+  def squash_option: () -> untyped
+
+  def log_approval_deletion_on_merged_or_locked_mr: (source: untyped, current_user: untyped, ?cause: untyped?) -> (nil | untyped)
+
+  def reached_versions_limit?: () -> untyped
+
+  def reached_diff_commits_limit?: () -> untyped
+
+  def diffs_batch_cache_key: () -> (nil | untyped)
+
+  def commit_exists?: (untyped sha) -> (true | untyped)
+
+  def append_merge_params: (untyped params) -> untyped
+
+  def clear_merge_params: (untyped param_keys) -> untyped
+
+  def update_merge_ref_sha: (untyped sha) -> untyped
+
+  def update_merge_jid: (untyped jid) -> untyped
+
+  def ensure_merge_data: () -> untyped
+
+  def viewable_recent_merge_request_diffs: () -> untyped
+
+  def find_viewable_diff_by_id: (untyped diff_id) -> untyped
+
+  def show_context_commits_diff?: (untyped diff_options) -> untyped
+
+  private
+
+  # Returns true when the in-memory state_id no longer matches what the primary
+  # database holds. This can happen because the instance was loaded from a
+  # replica that lagged behind primary, or because another process transitioned
+  # the MR (e.g. lock_mr, mark_as_merged) after this instance was loaded. The
+  # caller uses this to skip reload_diff and avoid writing an empty diff on top
+  # of a valid merged diff.
+  def state_changed_since_load?: () -> untyped
+
+  def publish_code_conflict_event: () -> (nil | untyped)
+
+  def committer_emails_from_diff: () -> (::Array[untyped] | untyped)
+
+  def committer_emails_via_metadata_query: () -> untyped
+
+  def committer_emails_via_direct_query: () -> untyped
+
+  def update_cached_closing_issues_from_description!: (untyped issues_to_close_ids) -> untyped
+
+  def bulk_insert_cached_closing_issues: (untyped issue_ids_to_create) -> untyped
+
+  def merge_data_attributes: () -> { project: untyped, merge_status: untyped, merge_params: untyped, merge_error: untyped, merge_user_id: untyped, merge_jid: untyped, merge_commit_sha: untyped, merged_commit_sha: untyped, merge_ref_sha: untyped, squash_commit_sha: untyped, in_progress_merge_commit_sha: untyped, auto_merge_enabled: untyped, squash: untyped }
+
+  def with_merge_data_sync: (untyped merge_request_block, untyped merge_data_block) -> untyped
+
+  def with_single_transaction_merge_data_sync: (untyped merge_request_block, untyped merge_data_block) -> untyped
+
+  def save_merge_data_changes: () -> (nil | untyped)
+
+  def dual_write_to_merge_data_ff_enabled?: () -> untyped
+
+  def viewable_diffs: (?order_by: ::Symbol) -> untyped
+
+  def target_branch_pipelines_for: (sha: untyped) -> untyped
+
+  def set_draft_status: () -> untyped
+
+  def expire_ancestor_cache: () -> untyped
+
+  def missing_report_error: (untyped report_type) -> { status: :error, status_reason: ::String }
+
+  def with_rebase_lock: () { () -> untyped } -> untyped
+
+  # If the merge request is idle in transaction or has a SELECT FOR
+  # UPDATE, we don't want to block indefinitely or this could cause a
+  # queue of SELECT FOR UPDATE calls. Instead, try to get the lock for
+  # 5 s before raising an error to the user.
+  def with_retried_nowait_lock: () { () -> untyped } -> untyped
+
+  def source_project_variables: () -> untyped
+
+  def expire_etag_cache: () -> (nil | untyped)
+
+  def report_type_enabled?: (untyped report_type) -> untyped
+
+  def truncate_mr_description: () -> (::Array[untyped | "true"] | ::Array[untyped | "false"])
+
+  def pipeline_has_report_in_self_or_descendants?: (untyped report_type) -> untyped
+
+  def all_commit_shas_from_metadata: () -> untyped
+
+  def resolve_diff_version: (?::Hash[untyped, untyped] diff_options) -> untyped
+end

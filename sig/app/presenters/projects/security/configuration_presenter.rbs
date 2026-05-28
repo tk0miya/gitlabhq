@@ -1,0 +1,83 @@
+module Projects
+  module Security
+    class ConfigurationPresenter < Gitlab::View::Presenter::Delegated
+      @root_group: untyped
+
+      include AutoDevopsHelper
+
+      include ::Security::LatestPipelineInformation
+
+      def to_h: () -> { auto_devops_enabled: untyped, auto_devops_help_page_path: untyped, auto_devops_path: untyped, can_enable_auto_devops: untyped, features: untyped, help_page_path: untyped, latest_pipeline_path: untyped, gitlab_ci_present: untyped, gitlab_ci_history_path: untyped, security_training_enabled: untyped, container_scanning_for_registry_enabled: untyped, cvs_for_container_scanning_enabled: untyped, cvs_for_dependency_scanning_enabled: untyped, license_scanning_for_cyclonedx_enabled: untyped, secret_push_protection_available: untyped, secret_push_protection_enforced: untyped, secret_push_protection_enabled: untyped, validity_checks_available: untyped, validity_checks_enabled: untyped, user_is_project_admin: untyped, secret_detection_configuration_path: untyped, license_configuration_source: untyped, vulnerability_training_docs_path: untyped, upgrade_path: untyped, group_full_path: untyped, can_apply_profiles: untyped, can_read_attributes: untyped, can_manage_attributes: untyped, security_scan_profiles_licensed: untyped, group_manage_attributes_path: untyped, max_tracked_refs: untyped, merge_requests_enabled: untyped }
+
+      def to_html_data_attribute: () -> untyped
+
+      private
+
+      def secret_push_protection_available?: () -> untyped
+
+      def security_scan_profiles_licensed?: () -> untyped
+
+      def can_enable_auto_devops?: () -> untyped
+
+      def user_is_project_admin?: () -> untyped
+
+      def gitlab_ci_history_path: () -> ("" | untyped)
+
+      def features: () -> untyped
+
+      def latest_pipeline_path: () -> untyped
+
+      def scan: (untyped type, ?configured: bool) -> { type: untyped, configured: untyped, configuration_path: untyped, available: untyped, can_enable_by_merge_request: untyped, meta_info_path: untyped, on_demand_available: untyped, security_features: untyped, can_user_configure: untyped }
+
+      def scan_types: () -> untyped
+
+      def project_settings: () -> untyped
+
+      def vulnerability_training_docs_path: () -> untyped
+
+      def upgrade_path: () -> untyped
+
+      def group_full_path: () -> (untyped | nil)
+
+      def can_apply_profiles?: () -> (false | untyped)
+
+      def can_read_attributes?: () -> (false | untyped)
+
+      def can_manage_attributes?: () -> (false | untyped)
+
+      def root_group: () -> (untyped | nil)
+
+      def gitlab_com?: () -> nil
+
+      def max_tracked_refs: () -> nil
+
+      def validity_checks_available: () -> nil
+
+      def validity_checks_enabled: () -> nil
+
+      def container_scanning_for_registry_enabled: () -> nil
+
+      def secret_push_protection_enforced: () -> nil
+
+      def cvs_for_container_scanning_enabled: () -> nil
+
+      def cvs_for_dependency_scanning_enabled: () -> nil
+
+      def cvs_for_container_scanning_available: () -> nil
+
+      def cvs_for_dependency_scanning_available: () -> nil
+
+      def license_scanning_for_cyclonedx_available: () -> nil
+
+      def license_scanning_for_cyclonedx_enabled: () -> nil
+
+      def secret_push_protection_enabled: () -> nil
+
+      def secret_detection_configuration_path: () -> nil
+
+      def license_configuration_source: () -> nil
+
+      def group_manage_attributes_path: () -> nil
+    end
+  end
+end

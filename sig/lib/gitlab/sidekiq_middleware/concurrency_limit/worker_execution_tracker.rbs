@@ -1,0 +1,51 @@
+module Gitlab
+  module SidekiqMiddleware
+    module ConcurrencyLimit
+      class WorkerExecutionTracker
+        @worker_name: untyped
+
+        @prefix: untyped
+
+        include ExclusiveLeaseGuard
+
+        TRACKING_KEY_TTL: untyped
+
+        def initialize: (worker_name: untyped, prefix: untyped) -> void
+
+        def track_execution_start: () -> (nil | untyped)
+
+        def track_execution_end: () -> (nil | untyped)
+
+        def cleanup_stale_trackers: () -> untyped
+
+        def concurrent_worker_count: () -> untyped
+
+        private
+
+        attr_reader worker_name: untyped
+
+        def lease_timeout: () -> untyped
+
+        def lease_key: () -> ::String
+
+        def lease_release?: () -> false
+
+        def lease_taken_log_level: () -> :debug
+
+        def with_redis: () { (?) -> untyped } -> untyped
+
+        def worker_executing_hash_key: () -> ::String
+
+        def process_thread_id_key: (untyped pid, untyped tid) -> ::String
+
+        def sidekiq_pid: () -> untyped
+
+        def sidekiq_tid: () -> untyped
+
+        def still_executing?: (untyped ptid, untyped started_at) -> (true | false | untyped)
+
+        def fetch_sidekiq_process_work_hash: (untyped pid, untyped tid) -> untyped
+      end
+    end
+  end
+end

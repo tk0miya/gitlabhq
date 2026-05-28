@@ -1,0 +1,97 @@
+class IssuableFinder
+  class Params < SimpleDelegator
+    @current_user: untyped
+
+    @klass: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    # This is used as a common filter for None / Any / Upcoming / Started
+    FILTER_NONE: "none"
+
+    FILTER_ANY: "any"
+
+    FILTER_STARTED: "started"
+
+    FILTER_UPCOMING: "upcoming"
+
+    # This is used in unassigning users
+    NONE: "0"
+
+    alias params __getobj__
+
+    attr_accessor current_user: untyped
+
+    attr_accessor klass: untyped
+
+    def initialize: (untyped params, untyped current_user, untyped klass) -> void
+
+    def present?: () -> untyped
+
+    def milestones?: () -> untyped
+
+    def filter_by_no_milestone?: () -> untyped
+
+    def filter_by_any_milestone?: () -> untyped
+
+    def filter_by_upcoming_milestone?: () -> untyped
+
+    def filter_by_started_milestone?: () -> untyped
+
+    def filter_by_no_release?: () -> untyped
+
+    def filter_by_any_release?: () -> untyped
+
+    def filter_by_no_reaction?: () -> untyped
+
+    def filter_by_any_reaction?: () -> untyped
+
+    def releases?: () -> untyped
+
+    def project?: () -> untyped
+
+    def group?: () -> untyped
+
+    def related_groups: () -> (untyped | ::Array[untyped] | untyped | ::Array[untyped])
+
+    def project: () -> untyped
+
+    def group: () -> untyped
+
+    def project_id: () -> untyped
+
+    def group_id: () -> untyped
+
+    def projects: () -> untyped
+
+    def milestones: () -> untyped
+
+    def current_user_related?: () -> untyped
+
+    def find_group_projects: () -> untyped
+
+    # We use Hash#merge in a few places, so let's support it
+    def merge: (untyped other) -> untyped
+
+    # Just for symmetry, and in case someone tries to use it
+    def merge!: (untyped other) -> untyped
+
+    def parent: () -> untyped
+
+    def user_can_see_all_issuables?: () -> untyped
+
+    private
+
+    def projects_public_or_visible_to_user: () -> untyped
+
+    def min_access_level: () -> untyped
+
+    def method_missing: (untyped method_name, *untyped args) { (?) -> untyped } -> untyped
+
+    def respond_to_missing?: (untyped method_name, ?bool include_private) -> untyped
+
+    def mr_lookup_by_checking_traversal_ids_on_join?: () -> untyped
+
+    def projects_in_group_hierarchy_by_traversal_join: () -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module Ci
+  module PipelineSchedules
+    class TakeOwnershipService
+      @schedule: untyped
+
+      @user: untyped
+
+      def initialize: (untyped schedule, untyped user) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader schedule: untyped
+
+      attr_reader user: untyped
+
+      def allowed?: () -> untyped
+
+      def forbidden: () -> untyped
+    end
+  end
+end

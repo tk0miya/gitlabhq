@@ -1,0 +1,69 @@
+module Gitlab
+  module Cleanup
+    module OrphanJobArtifactFinalObjects
+      class RollbackDeletedObjects
+        @force_restart: untyped
+
+        @logger: untyped
+
+        @filename: untyped
+
+        @cursor_tracker_key: untyped
+
+        @file: untyped
+
+        include StorageHelpers
+
+        UnsupportedProviderError: untyped
+
+        GOOGLE_PROVIDER: "google"
+
+        DEFAULT_DELETED_LIST_FILENAME: untyped
+
+        CURSOR_TRACKER_REDIS_KEY_PREFIX: "orphan-job-artifact-objects-cleanup-rollback-cursor-tracker--"
+
+        def initialize: (?filename: untyped?, ?force_restart: bool, ?logger: untyped) -> void
+
+        def run!: () -> untyped
+
+        private
+
+        attr_reader file: untyped
+
+        attr_reader filename: untyped
+
+        attr_reader force_restart: untyped
+
+        attr_reader logger: untyped
+
+        attr_reader cursor_tracker_key: untyped
+
+        def build_cursor_tracker_key: () -> ::String
+
+        def ensure_supported_provider!: () -> (nil | untyped)
+
+        def initialize_file: () -> untyped
+
+        def each_fog_file: () { (untyped) -> untyped } -> untyped
+
+        def build_fog_file: (untyped line) -> untyped
+
+        def new_fog_file: (untyped key, untyped generation) -> untyped
+
+        def rollback: (untyped fog_file) -> untyped
+
+        def resume_from_last_cursor_position: () -> (nil | untyped)
+
+        def get_last_cursor_position: () -> untyped
+
+        def save_current_cursor_position: (untyped position) -> untyped
+
+        def clear_last_cursor_position: () -> untyped
+
+        def log_rolled_back_object: (untyped fog_file) -> untyped
+
+        def log_info: (untyped msg) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module WorkItems
+  module Widgets
+    class Hierarchy < Base
+      include Gitlab::Utils::StrongMemoize
+
+      def parent: () -> untyped
+
+      def children: (?state: untyped?) -> untyped
+
+      def ancestors: () -> untyped
+
+      def has_parent?: () -> untyped
+
+      def rolled_up_counts_by_type: () -> untyped
+
+      def depth_limit_reached_by_type: () -> untyped
+
+      def self.quick_action_commands: () -> ::Array[:set_parent | :add_child | :remove_parent | :remove_child]
+
+      def self.quick_action_params: () -> ::Array[:set_parent | :add_child | :remove_parent | :remove_child]
+
+      def self.process_quick_action_param: (untyped param_name, untyped value) -> untyped
+
+      private
+
+      def counts_by_state: (untyped work_item_type) -> { all: untyped, opened: untyped, closed: untyped }
+
+      def counts_by_type_and_state: () -> untyped
+    end
+  end
+end

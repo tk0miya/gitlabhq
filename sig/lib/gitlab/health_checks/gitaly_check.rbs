@@ -1,0 +1,23 @@
+module Gitlab
+  module HealthChecks
+    class GitalyCheck
+      extend BaseAbstractCheck
+
+      METRIC_PREFIX: "gitaly_health_check"
+
+      def self.readiness: () -> untyped
+
+      def self.metrics: () -> untyped
+
+      def self.check: (untyped storage_name) -> untyped
+
+      private
+
+      def self.metric_prefix: () -> untyped
+
+      def self.repository_storages: () -> untyped
+
+      def self.storages: () -> untyped
+    end
+  end
+end

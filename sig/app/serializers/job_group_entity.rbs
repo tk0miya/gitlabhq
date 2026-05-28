@@ -1,0 +1,9 @@
+class JobGroupEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  alias group object
+
+  def detailed_status: () -> untyped
+end

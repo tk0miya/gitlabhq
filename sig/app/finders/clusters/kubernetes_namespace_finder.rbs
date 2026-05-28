@@ -1,0 +1,29 @@
+module Clusters
+  class KubernetesNamespaceFinder
+    @cluster: untyped
+
+    @project: untyped
+
+    @environment_name: untyped
+
+    @allow_blank_token: untyped
+
+    attr_reader cluster: untyped
+
+    attr_reader project: untyped
+
+    attr_reader environment_name: untyped
+
+    def initialize: (untyped cluster, project: untyped, environment_name: untyped, ?allow_blank_token: bool) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader allow_blank_token: untyped
+
+    def find_namespace: (with_environment: untyped) -> untyped
+
+    def namespaces: () -> untyped
+  end
+end

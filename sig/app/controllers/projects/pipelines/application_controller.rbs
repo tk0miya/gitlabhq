@@ -1,0 +1,11 @@
+module Projects
+  module Pipelines
+    class ApplicationController < Projects::ApplicationController
+      include Gitlab::Utils::StrongMemoize
+
+      private
+
+      def pipeline: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,49 @@
+module Gitlab
+  module Git
+    class ChangedPath
+      @status: untyped
+
+      @path: untyped
+
+      @old_mode: untyped
+
+      @new_mode: untyped
+
+      @old_blob_id: untyped
+
+      @new_blob_id: untyped
+
+      @old_path: untyped
+
+      @commit_id: untyped
+
+      attr_reader status: untyped
+
+      attr_reader path: untyped
+
+      attr_reader old_mode: untyped
+
+      attr_reader new_mode: untyped
+
+      attr_reader new_blob_id: untyped
+
+      attr_reader old_blob_id: untyped
+
+      attr_reader old_path: untyped
+
+      attr_reader commit_id: untyped
+
+      def initialize: (status: untyped, path: untyped, old_mode: untyped, new_mode: untyped, ?new_blob_id: untyped?, ?old_blob_id: untyped?, ?old_path: untyped?, ?commit_id: untyped?) -> void
+
+      def new_file?: () -> untyped
+
+      def deleted_file?: () -> untyped
+
+      def renamed_file?: () -> untyped
+
+      def modified_file?: () -> untyped
+
+      def submodule_change?: () -> untyped
+    end
+  end
+end

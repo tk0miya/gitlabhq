@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module SecureFiles
+      class P12
+        @filedata: untyped
+
+        @password: untyped
+
+        @error: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader error: untyped
+
+        def initialize: (untyped filedata, ?untyped? password) -> void
+
+        def certificate_data: () -> untyped
+
+        def metadata: () -> (::Hash[untyped, untyped] | { issuer: untyped, subject: untyped, id: untyped, expires_at: untyped })
+
+        private
+
+        def expires_at: () -> untyped
+
+        def serial: () -> untyped
+
+        def issuer: () -> untyped
+
+        def subject: () -> untyped
+      end
+    end
+  end
+end

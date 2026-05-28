@@ -1,0 +1,43 @@
+module Profiles
+  class PasskeysController < Profiles::ApplicationController
+    @webauthn_error: untyped
+
+    @hide_search_settings: untyped
+
+    @passkey: untyped
+
+    @passkeys: untyped
+
+    include AuthenticatesWithTwoFactor
+
+    include Authn::WebauthnInstrumentation
+
+    def new: () -> untyped
+
+    def create: () -> untyped
+
+    def destroy: () -> untyped
+
+    private
+
+    def check_passkey_authentication_allowed!: () -> (untyped | nil)
+
+    def current_password_required?: () -> untyped
+
+    def validate_current_password: () -> (nil | untyped)
+
+    def setup_passkey_registration_page: () -> untyped
+
+    def get_passkeys: () -> untyped
+
+    def webauthn_options: () -> untyped
+
+    def device_registration_params: () -> untyped
+
+    def destroy_params: () -> untyped
+
+    def validate_password_params: () -> untyped
+
+    def passkey_instrumentation_params: () -> untyped
+  end
+end

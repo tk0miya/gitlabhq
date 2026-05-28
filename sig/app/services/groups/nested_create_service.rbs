@@ -1,0 +1,25 @@
+module Groups
+  class NestedCreateService < Groups::BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    @group_path: untyped
+
+    @visibility_level: untyped
+
+    attr_reader group_path: untyped
+
+    attr_reader visibility_level: untyped
+
+    def initialize: (untyped user, untyped params) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def create_group_path: () -> untyped
+
+    def namespace_or_group: (untyped group_path) -> untyped
+  end
+end

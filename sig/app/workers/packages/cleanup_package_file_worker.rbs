@@ -1,0 +1,27 @@
+module Packages
+  class CleanupPackageFileWorker
+    include ApplicationWorker
+
+    include ::Packages::CleanupArtifactWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    def max_running_jobs: () -> untyped
+
+    private
+
+    def before_destroy: () -> (untyped | nil)
+
+    def after_destroy: () -> (nil | untyped)
+
+    def model: () -> untyped
+
+    def next_item: () -> untyped
+
+    def cleanup_conan_objects: () -> (nil | untyped)
+
+    def log_metadata: (untyped package_file) -> untyped
+
+    def log_cleanup_item: (untyped package_file) -> untyped
+  end
+end

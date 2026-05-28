@@ -1,0 +1,44 @@
+# AcceptingProjectSharesFinder
+#
+# Used to filter Shareable Groups by a set of params
+#
+# Arguments:
+#   current_user - which user is requesting groups
+#   params:
+#     search: string
+module Groups
+  class AcceptingProjectSharesFinder < Base
+    @current_user: untyped
+
+    @params: untyped
+
+    @project_to_be_shared: untyped
+
+    def initialize: (untyped current_user, untyped project_to_be_shared, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader project_to_be_shared: untyped
+
+    attr_reader params: untyped
+
+    def has_admin_access?: () -> untyped
+
+    # rubocop: disable CodeReuse/Finder
+    def groups_with_guest_access_plus: () -> untyped
+
+    def can_share_project?: () -> untyped
+
+    def by_ignorable: (untyped groups) -> untyped
+
+    def by_hierarchy: (untyped groups) -> untyped
+
+    def sharing_outside_hierarchy_allowed?: () -> untyped
+
+    def root_ancestor: () -> untyped
+  end
+end

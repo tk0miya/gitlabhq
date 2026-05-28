@@ -1,0 +1,30 @@
+module Integrations
+  module Test
+    class BaseService
+      @integration: untyped
+
+      @current_user: untyped
+
+      @event: untyped
+
+      include BaseServiceUtility
+
+      attr_accessor integration: untyped
+
+      attr_accessor current_user: untyped
+
+      attr_accessor event: untyped
+
+      # @param integration [Service] The external service that will be called
+      # @param current_user [User] The user calling the service
+      # @param event [String/nil] The event that triggered this
+      def initialize: (untyped integration, untyped current_user, ?untyped? event) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def data: () -> untyped
+    end
+  end
+end

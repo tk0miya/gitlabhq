@@ -1,0 +1,31 @@
+module MergeRequests
+  module Mergeability
+    class DetailedMergeStatusService
+      @merge_request: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      def initialize: (merge_request: untyped) -> void
+
+      def execute: () -> (:preparing | :checking | :unchecked | :approvals_syncing | untyped)
+
+      private
+
+      attr_reader merge_request: untyped
+
+      def preparing?: () -> untyped
+
+      def checking?: () -> untyped
+
+      def unchecked?: () -> untyped
+
+      def check_results: () -> untyped
+
+      def check_params: () -> { skip_ci_check: true }
+
+      def check_ci_results: () -> untyped
+
+      def ci_check_failed_check: () -> (:ci_still_running | untyped)
+    end
+  end
+end

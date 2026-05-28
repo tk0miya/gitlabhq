@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module JobDefinitions
+      class FindOrCreate
+        @project_id: untyped
+
+        @partition_id: untyped
+
+        @job_definitions: untyped
+
+        BATCH_SIZE: 50
+
+        def initialize: (untyped pipeline, ?definitions: untyped) -> void
+
+        def execute: () -> (::Array[untyped] | untyped)
+
+        private
+
+        attr_reader project_id: untyped
+
+        attr_reader partition_id: untyped
+
+        attr_reader job_definitions: untyped
+
+        def fetch_records_for: (untyped definitions) -> untyped
+
+        def insert_missing: (untyped definitions) -> untyped
+      end
+    end
+  end
+end

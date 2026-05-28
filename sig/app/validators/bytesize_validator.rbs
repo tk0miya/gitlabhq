@@ -1,0 +1,16 @@
+# BytesizeValidator
+#
+# Custom validator for verifying that bytesize of a field doesn't exceed the specified limit.
+# It is different from Rails length validator because it takes .bytesize into account instead of .size/.length
+#
+# Example:
+#
+#   class Snippet < ActiveRecord::Base
+#     validates :content, bytesize: { maximum: -> { Gitlab::CurrentSettings.snippet_size_limit } }
+#   end
+#
+# Configuration options:
+# * <tt>maximum</tt> - Proc that evaluates the bytesize limit that cannot be exceeded
+class BytesizeValidator < ActiveModel::EachValidator
+  def validate_each: (untyped record, untyped attr, untyped value) -> (nil | untyped)
+end

@@ -1,0 +1,19 @@
+module Approvable
+  extend ActiveSupport::Concern
+
+  include FromUnion
+
+  def approved_by?: (untyped user) -> (false | untyped)
+
+  def approved?: () -> untyped
+
+  def eligible_for_approval_by?: (untyped user) -> untyped
+
+  def eligible_for_unapproval_by?: (untyped user) -> untyped
+
+  def approvals_for_user_ids: (untyped user_ids) -> untyped
+
+  # Overridden in EE::VisibleApprovable to invalidate the mergeability approval cache.
+  # No-op in CE since the mergeability approval cache only exists in EE.
+  def delete_approval_mergeability_cache: () -> nil
+end

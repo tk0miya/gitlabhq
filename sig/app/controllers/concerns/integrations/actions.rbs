@@ -1,0 +1,27 @@
+module Integrations::Actions
+  @integration: untyped
+
+  extend ActiveSupport::Concern
+
+  def edit: () -> untyped
+
+  def update: () -> untyped
+
+  def test: () -> untyped
+
+  def reset: () -> untyped
+
+  private
+
+  def integration: () -> untyped
+
+  def permitted_params: () -> untyped
+
+  def ensure_integration_enabled: () -> (untyped | nil)
+
+  def success_message: () -> untyped
+
+  def serialize_as_json: () -> untyped
+
+  def integration_test_response: () -> ({ error: true, message: untyped, service_response: untyped, test_failed: true } | untyped)
+end

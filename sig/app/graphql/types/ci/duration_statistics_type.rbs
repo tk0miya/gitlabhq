@@ -1,0 +1,10 @@
+module Types
+  module Ci
+    # rubocop: disable Graphql/AuthorizeTypes -- this represents a hash, from the computed percentiles query
+    class DurationStatisticsType < BaseObject
+      PERCENTILES: untyped
+
+      def mean: () -> untyped
+    end
+  end
+end

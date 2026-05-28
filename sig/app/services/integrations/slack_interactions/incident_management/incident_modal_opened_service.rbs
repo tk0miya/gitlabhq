@@ -1,0 +1,55 @@
+module Integrations
+  module SlackInteractions
+    module IncidentManagement
+      class IncidentModalOpenedService
+        @slack_installation: untyped
+
+        @current_user: untyped
+
+        @team_id: untyped
+
+        @response_url: untyped
+
+        @trigger_id: untyped
+
+        MAX_PROJECTS: 100
+
+        CACHE_EXPIRES_IN: untyped
+
+        def initialize: (untyped slack_installation, untyped current_user, untyped params) -> void
+
+        def execute: () -> untyped
+
+        def self.cache_write: (untyped view_id, untyped project_id) -> untyped
+
+        def self.cache_read: (untyped view_id) -> untyped
+
+        private
+
+        attr_reader slack_installation: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader team_id: untyped
+
+        attr_reader response_url: untyped
+
+        attr_reader trigger_id: untyped
+
+        def self.cache_build_key: (untyped view_id) -> ::String
+
+        def user_projects: () -> untyped
+
+        def post_modal: () -> untyped
+
+        def modal_view: () -> { trigger_id: untyped, view: untyped }
+
+        def modal_payload: () -> untyped
+
+        def project_id: (untyped response) -> untyped
+
+        def view_id: (untyped response) -> untyped
+      end
+    end
+  end
+end

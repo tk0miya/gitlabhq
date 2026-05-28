@@ -1,0 +1,13 @@
+class SnippetInputActionCollection
+  @actions: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader actions: untyped
+
+  def initialize: (?untyped actions, ?allowed_actions: untyped?) -> void
+
+  def to_commit_actions: () -> untyped
+
+  def valid?: () -> untyped
+end

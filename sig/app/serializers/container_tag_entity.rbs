@@ -1,0 +1,11 @@
+class ContainerTagEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  alias tag object
+
+  def project: () -> untyped
+
+  def can_destroy?: () -> untyped
+end

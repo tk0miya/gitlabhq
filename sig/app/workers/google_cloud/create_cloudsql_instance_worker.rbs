@@ -1,0 +1,7 @@
+module GoogleCloud
+  class CreateCloudsqlInstanceWorker
+    include ApplicationWorker
+
+    def perform: (untyped user_id, untyped project_id, ?::Hash[untyped, untyped] params) -> untyped
+  end
+end

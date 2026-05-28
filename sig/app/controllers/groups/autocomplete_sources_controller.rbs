@@ -1,0 +1,25 @@
+class Groups::AutocompleteSourcesController < Groups::ApplicationController
+  @autocomplete_service: untyped
+
+  include AutocompleteSources::ExpiresIn
+
+  def members: () -> untyped
+
+  def issues: () -> untyped
+
+  def merge_requests: () -> untyped
+
+  def labels: () -> untyped
+
+  def commands: () -> untyped
+
+  def milestones: () -> untyped
+
+  private
+
+  def autocomplete_service: () -> untyped
+
+  def issuable_serializer: () -> untyped
+
+  def target: () -> untyped
+end

@@ -1,0 +1,11 @@
+module MergeRequests
+  module Mergeability
+    class CheckMergeTimeService < CheckBaseService
+      def execute: () -> untyped
+
+      def skip?: () -> untyped
+
+      def cacheable?: () -> false
+    end
+  end
+end

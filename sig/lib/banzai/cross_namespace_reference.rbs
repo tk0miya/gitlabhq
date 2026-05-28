@@ -1,0 +1,14 @@
+module Banzai
+  module CrossNamespaceReference
+    # Given a cross-namespace reference string, get the Namespace record.
+    #
+    # Defaults to value of `context[:project]`, or `context[:group]` if:
+    # * No reference is given OR
+    # * Reference given doesn't exist
+    #
+    # ref - String reference.
+    #
+    # Returns a Namespace or Project, or nil if the reference can't be found
+    def parent_from_ref: (untyped ref) -> untyped
+  end
+end

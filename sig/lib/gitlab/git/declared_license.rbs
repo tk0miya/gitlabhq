@@ -1,0 +1,36 @@
+module Gitlab
+  module Git
+    # DeclaredLicense is the software license declared in a LICENSE or COPYING
+    # file in the git repository.
+    class DeclaredLicense
+      @key: untyped
+
+      @name: untyped
+
+      @nickname: untyped
+
+      @url: untyped
+
+      @path: untyped
+
+      # SPDX Identifier for the license
+      attr_reader key: untyped
+
+      # Full name of the license
+      attr_reader name: untyped
+
+      # Nickname of the license (optional, a shorter user-friendly name)
+      attr_reader nickname: untyped
+
+      # Filename of the file containing license
+      attr_accessor path: untyped
+
+      # URL that points to the LICENSE
+      attr_reader url: untyped
+
+      def initialize: (?key: untyped?, ?name: untyped?, ?nickname: untyped?, ?url: untyped?, ?path: untyped?) -> void
+
+      def ==: (untyped other) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,38 @@
+# Determines if an `img` tag references media to be embedded in an `iframe`. The administrator
+# needs to explicitly allow the domain and consider it trusted. The `js-render-iframe` class
+# will get added to allow the frontend to convert into an `iframe`.
+#
+# Before checking the allowlist, URL transforms are applied (e.g. YouTube watch URLs are
+# rewritten to embed URLs). The original user-provided URL is preserved in
+# `data-iframe-canonical-src` for the rich-text editor.
+#
+# Even though the `iframe` src will have been allowed by the administrator, don't insert
+# the `iframe` tag here on the backend - allow the frontend to handle it. This allows for
+# the administrator to remove the domain in the future if it becomes untrusted for some reason.
+# The markdown cache will not need to be cleared as long as the `iframe` is added on the frontend.
+#
+# Elements that receive the `js-render-iframe` class are skipped by AssetProxyFilter and
+# ImageLazyLoadFilter, since proxying and lazy-loading are not applicable to iframe embeds.
+module Banzai
+  module Filter
+    class IframeLinkFilter < PlayableLinkFilter
+      extend ::Gitlab::Utils::Override
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      def call: () -> untyped
+
+      private
+
+      def media_type: () -> "img"
+
+      def safe_media_ext: () -> untyped
+
+      def has_allowed_media?: (untyped element) -> (nil | untyped)
+
+      def transform_urls!: () -> untyped
+
+      def extra_element_attrs: (untyped element) -> untyped
+    end
+  end
+end

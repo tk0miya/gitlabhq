@@ -1,0 +1,19 @@
+module Mutations
+  module WorkItems
+    class Update < BaseMutation
+      include Mutations::SpamProtection
+
+      include Mutations::WorkItems::SharedArguments
+
+      include Mutations::WorkItems::Widgetable
+
+      def self.authorization_scopes: () -> untyped
+
+      def resolve: (id: untyped, **untyped attributes) -> { work_item: untyped, errors: untyped }
+
+      private
+
+      def can_update?: (untyped work_item) -> untyped
+    end
+  end
+end

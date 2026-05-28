@@ -1,0 +1,8 @@
+module Types
+  # rubocop: disable Graphql/AuthorizeTypes -- this type does not need authorization
+  module Ci
+    class JobTokenAccessibleProjectType < BaseObject
+      def avatar_url: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Mutations
+  module ContainerRepositories
+    class DestroyTags < ::Mutations::ContainerRepositories::DestroyBase
+      LIMIT: 20
+
+      TOO_MANY_TAGS_ERROR_MESSAGE: ::String
+
+      def resolve: (id: untyped, tag_names: untyped) -> { errors: untyped, deleted_tag_names: untyped }
+    end
+  end
+end

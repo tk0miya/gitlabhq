@@ -1,0 +1,13 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class MaxIidsSaver < BaseMaxIidsSaver
+        RESOURCE_QUERIES: { issues: untyped, merge_requests: untyped, project_milestones: untyped, ci_pipelines: untyped, design_management_designs: untyped }
+
+        def self.resource_queries: () -> untyped
+
+        def initialize: (project: untyped, shared: untyped) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,36 @@
+module Blobs
+  class UnfoldPresenter < BlobPresenter
+    include ActiveModel::Attributes
+
+    include ActiveModel::AttributeAssignment
+
+    include Gitlab::Utils::StrongMemoize
+
+    alias full? full
+
+    alias bottom? bottom
+
+    alias unfold? unfold
+
+    def initialize: (untyped blob, untyped params) -> void
+
+    # Returns an array of Gitlab::Diff::Line with match line added
+    def diff_lines: (?with_positions_and_indent: bool) -> untyped
+
+    def lines: () -> untyped
+
+    def match_line_text: () -> ("" | ::String)
+
+    private
+
+    def handle_full_or_end!: () -> (nil | untyped)
+
+    def all_lines_size: () -> untyped
+
+    def add_match_line: (untyped diff_lines) -> (nil | untyped)
+
+    def limited_blob_lines: () -> untyped
+
+    def limit: (untyped lines) -> untyped
+  end
+end

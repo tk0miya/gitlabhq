@@ -1,0 +1,31 @@
+module Gitlab
+  module Database
+    module Partitioning
+      module List
+        class LockingConfiguration
+          @migration_context: untyped
+
+          @table_locking_order: untyped
+
+          attr_reader migration_context: untyped
+
+          def initialize: (untyped migration_context, table_locking_order: untyped) -> void
+
+          def locking_statement_for: (untyped tables) -> (nil | ::String)
+
+          # Sorts and subsets `tables` to the tables that were explicitly requested for locking
+          # in the order that that locking was requested.
+          def locking_order_for: (untyped tables) -> untyped
+
+          def lock_timing_configuration: () -> untyped
+
+          def with_lock_retries: () { (?) -> untyped } -> untyped
+
+          private
+
+          def assert_table_names_unqualified!: (untyped table_names) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

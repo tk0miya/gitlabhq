@@ -1,0 +1,264 @@
+module Gitlab
+  module Diff
+    class File
+      @diff: untyped
+
+      @stats: untyped
+
+      @repository: untyped
+
+      @diff_refs: untyped
+
+      @fallback_diff_refs: untyped
+
+      @unique_identifier: untyped
+
+      @max_blob_size: untyped
+
+      @unfolded: untyped
+
+      @linked: untyped
+
+      @new_content_sha: untyped
+
+      @old_content_sha: untyped
+
+      @highlighted_diff_lines: untyped
+
+      @diff_lines: untyped
+
+      @prevent_syntax_highlighting: untyped
+
+      @parallel_diff_lines: untyped
+
+      @simple_viewer: untyped
+
+      @rich_viewer: untyped
+
+      @expanded_to_full: untyped
+
+      @total_lines: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader diff: untyped
+
+      attr_reader repository: untyped
+
+      attr_reader diff_refs: untyped
+
+      attr_reader fallback_diff_refs: untyped
+
+      attr_reader unique_identifier: untyped
+
+      attr_reader max_blob_size: untyped
+
+      attr_accessor linked: untyped
+
+      # Finding a viewer for a diff file happens based only on extension and whether the
+      # diff file blobs are binary or text, which means 1 diff file should only be matched by 1 viewer,
+      # and the order of these viewers doesn't really matter.
+      #
+      # However, when the diff file blobs are LFS pointers, we cannot know for sure whether the
+      # file being pointed to is binary or text. In this case, we match only on
+      # extension, preferring binary viewers over text ones if both exist, since the
+      # large files referred to in "Large File Storage" are much more likely to be
+      # binary than text.
+      RICH_VIEWERS: untyped
+
+      def initialize: (untyped diff, repository: untyped, ?diff_refs: untyped?, ?fallback_diff_refs: untyped?, ?stats: untyped?, ?unique_identifier: untyped?, ?max_blob_size: untyped?) -> void
+
+      def has_renderable?: () -> untyped
+
+      def position: (untyped position_marker, ?position_type: ::Symbol) -> (nil | untyped)
+
+      def line_code: (untyped line) -> untyped
+
+      def line_for_line_code: (untyped code) -> untyped
+
+      def line_for_position: (untyped pos) -> (nil | untyped)
+
+      def position_for_line_code: (untyped code) -> untyped
+
+      def line_code_for_position: (untyped pos) -> untyped
+
+      # Returns the raw diff content up to the given line index
+      def diff_hunk: (untyped diff_line) -> untyped
+
+      def old_sha: () -> untyped
+
+      def new_sha: () -> untyped
+
+      def new_content_sha: () -> (nil | untyped)
+
+      def old_content_sha: () -> (nil | untyped)
+
+      def new_blob: () -> untyped
+
+      def old_blob: () -> untyped
+
+      def new_blob_lines_between: (untyped from_line, untyped to_line) -> (::Array[untyped] | untyped)
+
+      def content_sha: () -> untyped
+
+      def blob: () -> untyped
+
+      def highlighted_diff_lines=: (untyped value) -> untyped
+
+      # Array of Gitlab::Diff::Line objects
+      def diff_lines: () -> untyped
+
+      def viewer_hunks: () -> untyped
+
+      # Changes diff_lines according to the given position. That is,
+      # it checks whether the position requires blob lines into the diff
+      # in order to be presented.
+      def unfold_diff_lines: (untyped position) -> (nil | untyped)
+
+      def unfolded?: () -> untyped
+
+      def highlight_loaded?: () -> untyped
+
+      def highlighted_diff_lines: () -> untyped
+
+      def prevent_syntax_highlighting!: () -> untyped
+
+      # Array[<Hash>] with right/left keys that contains Gitlab::Diff::Line objects which text is highlighted
+      def parallel_diff_lines: () -> untyped
+
+      def raw_diff: () -> untyped
+
+      def next_line: (untyped index) -> untyped
+
+      def prev_line: (untyped index) -> (untyped | nil)
+
+      def paths: () -> untyped
+
+      def file_path: () -> untyped
+
+      def file_hash: () -> untyped
+
+      def short_file_hash: () -> untyped
+
+      def added_lines: () -> untyped
+
+      def removed_lines: () -> untyped
+
+      def file_identifier: () -> ::String
+
+      def file_identifier_hash: () -> untyped
+
+      def code_review_id: () -> untyped
+
+      def diffable?: () -> untyped
+
+      def binary_in_repo?: () -> untyped
+
+      def text_in_repo?: () -> untyped
+
+      def external_storage_error?: () -> untyped
+
+      def stored_externally?: () -> untyped
+
+      def external_storage: () -> untyped
+
+      def content_changed?: () -> (untyped | false)
+
+      def different_type?: () -> untyped
+
+      def size: () -> untyped
+
+      def raw_size: () -> untyped
+
+      def empty?: () -> untyped
+
+      def binary?: () -> untyped
+
+      def text?: () -> untyped
+
+      def viewer: () -> untyped
+
+      def simple_viewer: () -> untyped
+
+      def rich_viewer: () -> untyped
+
+      def alternate_viewer: () -> untyped
+
+      def rendered_as_text?: (?ignore_errors: bool) -> untyped
+
+      # This adds the bottom match line to the array if needed. It contains
+      # the data to load more context lines.
+      def diff_lines_for_serializer: () -> (nil | untyped)
+
+      def diff_lines_with_match_tail: () -> (::Array[untyped] | untyped)
+
+      def fully_expanded?: () -> (true | untyped)
+
+      def rendered: () -> (nil | untyped)
+
+      def rendered?: () -> false
+
+      def ipynb?: () -> untyped
+
+      def add_blobs_to_batch_loader: () -> untyped
+
+      def ai_reviewable?: () -> untyped
+
+      def modified_file?: () -> untyped
+
+      def no_preview?: () -> untyped
+
+      def diffable_text?: () -> untyped
+
+      def whitespace_only?: () -> (false | untyped)
+
+      def image_diff?: () -> (false | untyped)
+
+      # Expands the diff to show the complete file content with changes merged in.
+      # This replicates the frontend convertExpandLines behavior from legacy diffs,
+      # but performs the merging on the backend for rapid diffs rendering.
+      def expand_to_full!: () -> (nil | untyped)
+
+      def manually_expanded?: () -> untyped
+
+      private
+
+      def diffable_by_attribute?: () -> untyped
+
+      # NOTE: Files with unsupported encodings (e.g. UTF-16) are treated as binary by git, but they are recognized as text files during encoding detection. These files have `Binary files a/filename and b/filename differ' as their raw diff content which cannot be used. We need to handle this special case and avoid displaying incorrect diff.
+      def text_with_binary_notice?: () -> untyped
+
+      def fetch_blob: (untyped sha, untyped path) -> (nil | untyped)
+
+      def total_blob_lines: (untyped blob) -> untyped
+
+      # We can't use Object#try because Blob doesn't inherit from Object, but
+      # from BasicObject (via SimpleDelegator).
+      def try_blobs: (untyped meth) -> untyped
+
+      def valid_blobs: () -> untyped
+
+      def text_position_properties: (untyped line) -> { old_line: untyped, new_line: untyped }
+
+      def image_position_properties: (untyped image_point) -> untyped
+
+      def blobs_changed?: () -> untyped
+
+      def new_blob_lazy: () -> untyped
+
+      def old_blob_lazy: () -> untyped
+
+      def blob_id: () -> untyped
+
+      def simple_viewer_class: () -> untyped
+
+      def rich_viewer_class: () -> untyped
+
+      def viewer_class_from: (untyped classes) -> (nil | untyped)
+
+      def alternate_viewer_class: () -> (nil | untyped)
+
+      def find_renderable_viewer_class: (untyped classes) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,12 @@
+module Resolvers
+  class ReleasesResolver < BaseResolver
+    alias project object
+
+    # This resolver has a custom singular resolver
+    def self.single: () -> untyped
+
+    SORT_TO_PARAMS_MAP: { released_at_desc: { order_by: "released_at", sort: "desc" }, released_at_asc: { order_by: "released_at", sort: "asc" }, created_desc: { order_by: "created_at", sort: "desc" }, created_asc: { order_by: "created_at", sort: "asc" } }
+
+    def resolve: (sort: untyped) -> untyped
+  end
+end

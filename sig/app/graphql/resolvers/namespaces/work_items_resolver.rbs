@@ -1,0 +1,18 @@
+module Resolvers
+  module Namespaces
+    # rubocop:disable Graphql/ResolverType -- inherited from Resolvers::WorkItemsResolver
+    class WorkItemsResolver < ::Resolvers::WorkItemsResolver
+      include TimeFrameHelpers
+
+      GROUP_NAMESPACE_ONLY_ARGS: ::Array[:include_ancestors | :include_descendants | :exclude_projects | :timeframe | :exclude_group_work_items | :include_archived]
+
+      def ready?: (**untyped args) -> (false | untyped)
+
+      private
+
+      def finder: (untyped args) -> untyped
+
+      def group_namespace?: () -> untyped
+    end
+  end
+end

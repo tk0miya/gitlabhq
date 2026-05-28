@@ -1,0 +1,33 @@
+module BranchRules
+  class BaseService
+    @branch_rule: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Allowable
+
+    MISSING_METHOD_ERROR: untyped
+
+    attr_reader branch_rule: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped branch_rule, ?untyped? user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: (?skip_authorization: bool) -> untyped
+
+    private
+
+    def execute_on_branch_rule: () -> untyped
+
+    def authorized?: () -> untyped
+
+    def permitted_params: () -> ::Array[untyped]
+
+    def missing_method_error: (untyped method_name) -> untyped
+  end
+end

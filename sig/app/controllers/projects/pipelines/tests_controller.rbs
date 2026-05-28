@@ -1,0 +1,23 @@
+module Projects
+  module Pipelines
+    class TestsController < Projects::Pipelines::ApplicationController
+      @builds: untyped
+
+      def summary: () -> untyped
+
+      def show: () -> untyped
+
+      private
+
+      def validate_test_reports!: () -> (untyped | nil)
+
+      def check_requested_builds!: () -> (untyped | nil)
+
+      def builds: () -> untyped
+
+      def build_ids: () -> (::Array[untyped] | untyped)
+
+      def test_suite: () -> untyped
+    end
+  end
+end

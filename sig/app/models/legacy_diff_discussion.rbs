@@ -1,0 +1,27 @@
+# A discussion on merge request or commit diffs consisting of `LegacyDiffNote` notes.
+#
+# All new diff discussions are of the type `DiffDiscussion`, but any diff discussions created
+# before the introduction of the new implementation still use `LegacyDiffDiscussion`.
+#
+# A discussion of this type is never resolvable.
+class LegacyDiffDiscussion < Discussion
+  @active: untyped
+
+  include DiscussionOnDiff
+
+  def self.note_class: () -> untyped
+
+  def legacy_diff_discussion?: () -> true
+
+  def on_image?: () -> false
+
+  def on_text?: () -> true
+
+  def active?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def collapsed?: () -> untyped
+
+  def merge_request_version_params: () -> (nil | untyped)
+
+  def reply_attributes: () -> untyped
+end

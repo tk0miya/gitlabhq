@@ -1,0 +1,32 @@
+module Ci
+  module Runners
+    class SetRunnerAssociatedProjectsService
+      @runner: untyped
+
+      @current_user: untyped
+
+      @project_ids: untyped
+
+      # @param [Ci::Runner] runner: the project runner to assign/unassign projects from
+      # @param [User] current_user: the user performing the operation
+      # @param [Array<Integer>] project_ids: the IDs of the associated projects to assign the runner to
+      def initialize: (runner: untyped, current_user: untyped, project_ids: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def set_associated_projects: () -> untyped
+
+      def associate_new_projects: (untyped new_project_ids, untyped current_project_ids) -> untyped
+
+      def disassociate_old_projects: (untyped new_project_ids, untyped current_project_ids) -> untyped
+
+      attr_reader runner: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader project_ids: untyped
+    end
+  end
+end

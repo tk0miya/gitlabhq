@@ -1,0 +1,45 @@
+module Gitlab
+  class Highlight
+    @formatter: untyped
+
+    @language: untyped
+
+    @blob_name: untyped
+
+    @blob_content: untyped
+
+    @gitlab_highlight_usage_counter: untyped
+
+    @context: untyped
+
+    @lexer: untyped
+
+    def self.highlight: (untyped blob_name, untyped blob_content, ?language: untyped?, ?plain: bool, ?context: ::Hash[untyped, untyped], ?used_on: ::Symbol) -> untyped
+
+    def self.too_large?: (untyped size) -> untyped
+
+    attr_reader blob_name: untyped
+
+    def initialize: (untyped blob_name, untyped blob_content, ?language: untyped?) -> void
+
+    def highlight: (untyped text, ?continue: bool, ?plain: bool, ?context: ::Hash[untyped, untyped], ?used_on: ::Symbol) -> untyped
+
+    def lexer: () -> untyped
+
+    def self.file_size_limit: () -> untyped
+
+    private
+
+    attr_reader context: untyped
+
+    def custom_language: () -> (nil | untyped)
+
+    def highlight_text: (untyped text, ?continue: bool, ?plain: bool, ?used_on: ::Symbol) -> untyped
+
+    def highlight_plain: (untyped text, ?fix_attributes: bool) -> untyped
+
+    def highlight_rich: (untyped text, ?continue: bool, ?fix_attributes: bool) -> untyped
+
+    def link_dependencies: (untyped text, untyped highlighted_text, ?used_on: ::Symbol) -> untyped
+  end
+end

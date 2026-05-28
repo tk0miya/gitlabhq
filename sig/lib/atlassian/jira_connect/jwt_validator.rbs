@@ -1,0 +1,10 @@
+# rubocop:disable Gitlab/BoundedContexts -- use existing module
+module Atlassian
+  module JiraConnect
+    class JwtValidator
+      MAX_JWT_SIZE: untyped
+
+      def self.valid_token_size?: (untyped token) -> untyped
+    end
+  end
+end

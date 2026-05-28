@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Include
+          class Rules::Rule < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            include ::Gitlab::Config::Entry::Configurable
+
+            include ::Gitlab::Config::Entry::Attributable
+
+            ALLOWED_KEYS: ::Array[:if | :exists | :when | :changes]
+
+            ALLOWED_WHEN: ::Array["never" | "always"]
+
+            def value: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

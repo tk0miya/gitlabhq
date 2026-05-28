@@ -1,0 +1,32 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a configuration of job artifacts.
+        #
+        class Artifacts < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Validatable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          ALLOWED_WHEN: ::Array["on_success" | "on_failure" | "always"]
+
+          ALLOWED_ACCESS: ::Array["none" | "developer" | "maintainer" | "all"]
+
+          ALLOWED_KEYS: ::Array[:name | :untracked | :paths | :reports | :when | :expire_in | :expose_as | :exclude | :public | :access]
+
+          EXPOSE_AS_REGEX: ::Regexp
+
+          EXPOSE_AS_ERROR_MESSAGE: "can contain only letters, digits, '-', '_' and spaces"
+
+          def value: () -> untyped
+
+          def expose_as_present?: () -> (false | untyped)
+        end
+      end
+    end
+  end
+end

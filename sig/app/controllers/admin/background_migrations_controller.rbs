@@ -1,0 +1,41 @@
+module Admin
+  class BackgroundMigrationsController < ApplicationController
+    @relations_by_tab: untyped
+
+    @current_tab: untyped
+
+    @migrations: untyped
+
+    @successful_rows_counts: untyped
+
+    @databases: untyped
+
+    @migration: untyped
+
+    @failed_jobs: untyped
+
+    @selected_database: untyped
+
+    @batched_migration_class: untyped
+
+    def index: () -> untyped
+
+    def show: () -> untyped
+
+    def pause: () -> untyped
+
+    def resume: () -> untyped
+
+    def retry: () -> untyped
+
+    private
+
+    def support_multiple_databases: () { () -> untyped } -> untyped
+
+    def base_model: () -> untyped
+
+    def batched_migration_class: () -> untyped
+
+    def safe_params: () -> untyped
+  end
+end

@@ -1,0 +1,9 @@
+module Ci
+  module JobTokenScope
+    class RemoveGroupService < ::BaseService
+      include EditScopeValidations
+
+      def execute: (untyped target_group) -> untyped
+    end
+  end
+end

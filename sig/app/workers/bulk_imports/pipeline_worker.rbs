@@ -1,0 +1,94 @@
+module BulkImports
+  class PipelineWorker
+    @entity: untyped
+
+    @pipeline_tracker: untyped
+
+    @logger: untyped
+
+    @context: untyped
+
+    @export_status: untyped
+
+    include ApplicationWorker
+
+    include ExclusiveLeaseGuard
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Sidekiq::InterruptionsExhausted
+
+    FILE_EXTRACTION_PIPELINE_PERFORM_DELAY: untyped
+
+    LimitedBatches: untyped
+
+    DEFER_ON_HEALTH_DELAY: untyped
+
+    def self.defer_on_database_health_signal?: () -> untyped
+
+    # Keep _stage parameter for backwards compatibility.
+    def perform: (untyped pipeline_tracker_id, untyped _stage, untyped entity_id) -> untyped
+
+    def perform_failure: (untyped pipeline_tracker_id, untyped entity_id, untyped exception) -> untyped
+
+    private
+
+    attr_reader pipeline_tracker: untyped
+
+    attr_reader entity: untyped
+
+    def run: () -> untyped
+
+    def fail_pipeline: (untyped exception) -> untyped
+
+    def logger: () -> untyped
+
+    def re_enqueue: (?untyped delay) -> untyped
+
+    def context: () -> untyped
+
+    def export_status: () -> untyped
+
+    def file_extraction_pipeline?: () -> untyped
+
+    def export_timeout?: () -> untyped
+
+    def export_failed?: () -> (false | untyped)
+
+    def export_started?: () -> (false | untyped)
+
+    def waiting_on_export?: () -> (false | untyped)
+
+    def retry_tracker: (untyped exception) -> untyped
+
+    def invalid_entity_status?: () -> (untyped | untyped | untyped | false)
+
+    def handle_invalid_status: (untyped status_event, untyped message) -> true
+
+    def log_attributes: (?::Hash[untyped, untyped] extra) -> untyped
+
+    def log_exception: (untyped exception, untyped payload) -> untyped
+
+    def time_since_tracker_created: () -> untyped
+
+    def enqueue_limited_batches: () -> untyped
+
+    def all_batches_enqueued?: () -> untyped
+
+    def next_batch: () -> untyped
+
+    # Calculate the number of batches, up to `batch_limit`, to process in the
+    # next round.
+    def next_batch_count: () -> untyped
+
+    def batch_limit: () -> untyped
+
+    def lease_timeout: () -> 30
+
+    def lease_key: () -> ::String
+
+    def export_failed_error_message: () -> ::String
+
+    def fail_batch_tracker: (untyped batch) -> untyped
+  end
+end

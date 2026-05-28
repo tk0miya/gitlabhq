@@ -1,0 +1,21 @@
+module ResourceEvents
+  class ChangeMilestoneService < BaseChangeTimeboxService
+    @milestone: untyped
+
+    @old_milestone: untyped
+
+    attr_reader milestone: untyped
+
+    attr_reader old_milestone: untyped
+
+    def initialize: (untyped resource, untyped user, old_milestone: untyped) -> void
+
+    private
+
+    def track_event: () -> (nil | untyped)
+
+    def create_event: () -> untyped
+
+    def build_resource_args: () -> untyped
+  end
+end

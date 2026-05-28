@@ -1,0 +1,17 @@
+module ServiceDesk
+  module CustomEmails
+    module Logger
+      private
+
+      def log_warning: (**untyped args) -> untyped
+
+      def log_info: (?error_message: untyped?, ?project: untyped?) -> untyped
+
+      def with_context: (?project: untyped?) { (?) -> untyped } -> untyped
+
+      def log_category: () -> "custom_email"
+
+      def build_log_message: (**untyped args) -> untyped
+    end
+  end
+end

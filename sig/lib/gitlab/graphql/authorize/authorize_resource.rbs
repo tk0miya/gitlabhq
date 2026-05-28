@@ -1,0 +1,23 @@
+module Gitlab
+  module Graphql
+    module Authorize
+      module AuthorizeResource
+        extend ActiveSupport::Concern
+
+        ConfigurationError: untyped
+
+        RESOURCE_ACCESS_ERROR: "The resource that you are attempting to access does not exist or you don't have permission to perform this action"
+
+        def find_object: (id: untyped) -> untyped
+
+        def authorized_find!: (*untyped args, **untyped kwargs) -> untyped
+
+        def authorize!: (untyped object) -> (untyped | nil)
+
+        def authorized_resource?: (untyped object) -> untyped
+
+        def raise_resource_not_available_error!: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    class PostgresIndex < SharedModel
+      include Gitlab::Utils::StrongMemoize
+
+      def reset: () -> untyped
+
+      def bloat_size: () -> untyped
+
+      def relative_bloat_level: () -> untyped
+
+      def to_s: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class UnaryOperator < Lexeme::Operator
+            @operand: untyped
+
+            attr_reader operand: untyped
+
+            def self.type: () -> :unary_operator
+
+            def initialize: (untyped operand) -> void
+
+            def inspect: () -> ::String
+          end
+        end
+      end
+    end
+  end
+end

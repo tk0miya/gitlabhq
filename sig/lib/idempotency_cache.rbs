@@ -1,0 +1,25 @@
+# rubocop:disable Gitlab/NamespacedClass -- generic code
+# rubocop:disable Gitlab/BoundedContexts -- generic code
+class IdempotencyCache
+  @key: untyped
+
+  @ttl: untyped
+
+  # When code is wrapped with ensure_idempotency it won't be
+  # called again within the TTL(time to live) for the same key
+  # if the operation was successful completed
+  #
+  # Example:
+  # IdempotencyCache.ensure_idempotency("tracking_cache:#{build_id}", 5.hours)
+  #   # idempotent within the TTL
+  #   # wont run again if it ran successfully for that build within 5 hours
+  #   track(params)
+  # end
+  def self.ensure_idempotency: (untyped key, untyped ttl) { () -> untyped } -> (nil | untyped)
+
+  def self.already_completed?: (untyped key) -> untyped
+
+  def initialize: (untyped key, untyped ttl) -> void
+
+  def mark_as_completed!: () -> untyped
+end

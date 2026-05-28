@@ -1,0 +1,31 @@
+module Ci
+  module Components
+    class FetchService
+      @address: untyped
+
+      @current_user: untyped
+
+      @logger: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      COMPONENT_PATHS: ::Array[untyped]
+
+      def initialize: (address: untyped, current_user: untyped, ?logger: untyped?) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader address: untyped
+
+      attr_reader logger: untyped
+
+      def component_path_class: () -> untyped
+
+      def error_prefix: () -> ::String
+    end
+  end
+end

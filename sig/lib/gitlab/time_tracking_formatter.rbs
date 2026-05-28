@@ -1,0 +1,20 @@
+module Gitlab
+  module TimeTrackingFormatter
+    extend ::Gitlab::TimeTrackingFormatter
+
+    # We may want to configure it through project settings in a future version.
+    CUSTOM_DAY_AND_MONTH_LENGTH: { hours_per_day: 8, days_per_month: 20 }
+
+    def parse: (untyped string, ?keep_zero: bool) -> (nil | untyped)
+
+    def output: (untyped seconds) -> untyped
+
+    private
+
+    def positive_output: (untyped seconds) -> untyped
+
+    def negative_output: (untyped seconds) -> untyped
+
+    def limit_to_hours_setting: () -> untyped
+  end
+end

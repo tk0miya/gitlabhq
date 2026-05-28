@@ -1,0 +1,19 @@
+module DesignManagement
+  class DesignService < ::BaseService
+    @issue: untyped
+
+    def initialize: (untyped project, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    attr_reader issue: untyped
+
+    def target_branch: () -> untyped
+
+    def collection: () -> untyped
+
+    alias design_collection collection
+
+    def repository: () -> untyped
+
+    def project: () -> untyped
+  end
+end

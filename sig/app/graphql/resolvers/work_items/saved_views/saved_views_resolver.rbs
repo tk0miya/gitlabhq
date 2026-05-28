@@ -1,0 +1,15 @@
+module Resolvers
+  module WorkItems
+    module SavedViews
+      class SavedViewsResolver < BaseResolver
+        include ::LooksAhead
+
+        def resolve_with_lookahead: (**untyped args) -> untyped
+
+        private
+
+        def preloads: () -> { author: ::Array[:author], last_updated_by: ::Array[:updated_by] }
+      end
+    end
+  end
+end

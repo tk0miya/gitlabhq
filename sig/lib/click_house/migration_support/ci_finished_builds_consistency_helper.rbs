@@ -1,0 +1,19 @@
+module ClickHouse
+  module MigrationSupport
+    class CiFinishedBuildsConsistencyHelper
+      MIGRATION_NAME: "BackfillCiFinishedBuildsToClickHouse"
+
+      CACHE_KEY: "ci_finished_builds_backfill_in_progress"
+
+      CACHE_TTL: untyped
+
+      def self.backfill_in_progress?: () -> untyped
+
+      private
+
+      def self.migration_in_progress?: () -> (false | untyped)
+
+      def self.find_migration: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,85 @@
+module Gitlab
+  module ErrorTracking
+    # Data access layer for errors and events related to Error Tracking feature.
+    class ErrorRepository
+      @strategy: untyped
+
+      Pagination: untyped
+
+      # Generic database error
+      DatabaseError: untyped
+
+      # Record was invalid
+      RecordInvalidError: untyped
+
+      # Builds an instance of error repository backed by a strategy.
+      #
+      # @return [self]
+      def self.build: (untyped project) -> untyped
+
+      # @private
+      def initialize: (untyped strategy) -> void
+
+      # Stores an error and the related error event.
+      #
+      # @param name [String] name of the error
+      # @param description [String] description of the error
+      # @param actor [String] culprit (class/method/function) which triggered this error
+      # @param platform [String] platform on which the error occurred
+      # @param environment [String] environment on which the error occurred
+      # @param level [String] severity of this error
+      # @param occurred_at [Time] timestamp when the error occurred
+      # @param payload [Hash] original error payload
+      #
+      # @return [void] nothing
+      #
+      # @raise [RecordInvalidError] if passed attributes were invalid to store an error or error event
+      # @raise [DatabaseError] if generic error occurred
+      def report_error: (name: untyped, description: untyped, actor: untyped, platform: untyped, environment: untyped, level: untyped, ?occurred_at: untyped, ?payload: ::Hash[untyped, untyped]) -> nil
+
+      # Finds an error by +id+.
+      #
+      # @param id [Integer, String] unique error identifier
+      #
+      # @return [Gitlab::ErrorTracking::DetailedError] a detail error
+      def find_error: (untyped id) -> untyped
+
+      # Lists errors.
+      #
+      # @param sort [String] order list by 'first_seen', 'last_seen', or 'frequency'
+      # @param filters [Hash<Symbol, String>] filter list by
+      # @option filters [String] :status error status
+      # @params query [String, nil] free text search
+      # @param limit [Integer, String] limit result
+      # @param cursor [Hash] pagination information
+      #
+      # @return [Array<Array<Gitlab::ErrorTracking::Error>, Pagination>]
+      def list_errors: (?sort: ::String, ?filters: ::Hash[untyped, untyped], ?query: untyped?, ?limit: ::Integer, ?cursor: ::Hash[untyped, untyped]) -> untyped
+
+      # Fetches last event for error +id+.
+      #
+      # @param id [Integer, String] unique error identifier
+      #
+      # @return [Gitlab::ErrorTracking::ErrorEvent]
+      #
+      # @raise [DatabaseError] if generic error occurred
+      def last_event_for: (untyped id) -> untyped
+
+      # Updates attributes of an error.
+      #
+      # @param id [Integer, String] unique error identifier
+      # @param status [String] error status
+      #
+      # @return [true, false] if update was successful
+      #
+      # @raise [DatabaseError] if generic error occurred
+      def update_error: (untyped id, status: untyped) -> untyped
+
+      def dsn_url: (untyped public_key) -> untyped
+
+      private
+
+      attr_reader strategy: untyped
+    end
+  end
+end

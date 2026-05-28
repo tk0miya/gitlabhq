@@ -1,0 +1,31 @@
+module Packages
+  module Conan
+    class SearchService < BaseService
+      WILDCARD: "*"
+
+      MAX_WILDCARD_COUNT: 5
+
+      MAX_SEARCH_TERM_LENGTH: 200
+
+      ERRORS: { search_term_too_long: untyped, too_many_wildcards: untyped }
+
+      def execute: () -> untyped
+
+      private
+
+      def search_results: () -> (::Array[untyped] | untyped)
+
+      def query: () -> untyped
+
+      def ignorecase: () -> untyped
+
+      def wildcard_query?: () -> untyped
+
+      def search_term_too_long?: () -> untyped
+
+      def too_many_wildcards?: () -> untyped
+
+      def search_packages: () -> untyped
+    end
+  end
+end

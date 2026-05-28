@@ -1,0 +1,23 @@
+module Search
+  module Scope
+    ALWAYS_ALLOWED_SCOPES: ::Array["projects" | "milestones"]
+
+    GLOBAL_SCOPES: ::Array["issues" | "merge_requests" | "snippet_titles" | "users"]
+
+    PROJECT_SCOPES: untyped
+
+    SCOPE_TO_SETTING: { blobs: :code, wiki_blobs: :wiki, issues: :work_items }
+
+    def self.global: () -> untyped
+
+    def self.group: () -> untyped
+
+    def self.project: () -> untyped
+
+    private
+
+    def self.global_scopes: () -> untyped
+
+    def self.scope_to_setting: () -> untyped
+  end
+end

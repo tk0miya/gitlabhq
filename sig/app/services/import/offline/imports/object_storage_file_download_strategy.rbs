@@ -1,0 +1,35 @@
+module Import
+  module Offline
+    module Imports
+      class ObjectStorageFileDownloadStrategy < ::Import::BulkImports::FileDownloadStrategy
+        @configuration: untyped
+
+        @object_key: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        # @param offline_configuration [Import::Offline::Configuration] Object storage configuration detail
+        # @param object_key [String] Key for the file to fetch from the object storage bucket.
+        def initialize: (offline_configuration: untyped, object_key: untyped) -> void
+
+        def validate!: () -> untyped
+
+        private
+
+        attr_reader configuration: untyped
+
+        attr_reader object_key: untyped
+
+        def perform_download: (untyped filepath) -> untyped
+
+        def validate_gzip_magic_bytes!: (untyped chunk) -> (nil | untyped)
+
+        def file_size_limit: () -> untyped
+
+        def offline_storage_client: () -> untyped
+
+        def log_error_params: () -> { object_key: untyped, provider: untyped }
+      end
+    end
+  end
+end

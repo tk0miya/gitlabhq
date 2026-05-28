@@ -1,0 +1,8 @@
+module Gitlab
+  module Database
+    class PostgresForeignKey < SharedModel
+      # These values come from the possible confdeltype / confupdtype values in pg_constraint
+      ACTION_TYPES: { restrict: "r", cascade: "c", nullify: "n", set_default: "d", no_action: "a" }
+    end
+  end
+end

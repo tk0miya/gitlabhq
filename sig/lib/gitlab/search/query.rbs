@@ -1,0 +1,33 @@
+module Gitlab
+  module Search
+    class Query < SimpleDelegator
+      @raw_query: untyped
+
+      @filters: untyped
+
+      @filter_options: untyped
+
+      @query: untyped
+
+      include EncodingHelper
+
+      QUOTES_REGEXP: ::Regexp
+
+      TOKEN_WITH_QUOTES_REGEXP: ::Regexp
+
+      def initialize: (untyped query, ?::Hash[untyped, untyped] filter_opts) ?{ (?) -> untyped } -> void
+
+      private
+
+      def filter: (untyped name, **untyped attributes) -> untyped
+
+      def filter_options: (**untyped options) -> untyped
+
+      def extract_filters: () -> ::Array[untyped]
+
+      def parse_filter: (untyped filter, untyped input) -> untyped
+
+      def parse_raw_query: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,52 @@
+module Database
+  module BackgroundOperation
+    class BaseOrchestratorWorker
+      include ExclusiveLeaseGuard
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ApplicationWorker
+
+      include LimitedCapacity::Worker
+
+      INTERVAL_VARIANCE: untyped
+
+      LEASE_TIMEOUT_MULTIPLIER: 3
+
+      # We have to override this one, as we want
+      # arguments passed as is, and not duplicated
+      def self.perform_with_capacity: (untyped args) -> untyped
+
+      def self.max_running_jobs: () -> untyped
+
+      def perform_work: (untyped worker_class, untyped worker_partition, untyped worker_id, untyped database_name) -> (nil | untyped)
+
+      def remaining_work_count: (*untyped _args) -> 0
+
+      def max_running_jobs: () -> untyped
+
+      private
+
+      attr_accessor database_name: untyped
+
+      attr_accessor worker_class: untyped
+
+      attr_accessor worker: untyped
+
+      def base_model: () -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord -- Doesn't have to be a class method on the model
+      def find_worker: (untyped partition, untyped id) -> untyped
+
+      def runnable_worker?: () -> untyped
+
+      def lease_key: () -> untyped
+
+      def lease_timeout: () -> untyped
+
+      def run_operation_job: () -> untyped
+
+      def shares_db_config?: () -> untyped
+    end
+  end
+end

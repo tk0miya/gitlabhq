@@ -1,0 +1,13 @@
+module ActivityPub
+  module Projects
+    class ReleasesFollowService < ReleasesSubscriptionService
+      def execute: () -> (false | true)
+
+      private
+
+      def subscriber_inbox_url: () -> (nil | untyped)
+
+      def enqueue_subscription: (untyped subscription) -> untyped
+    end
+  end
+end

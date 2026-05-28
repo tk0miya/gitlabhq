@@ -1,0 +1,48 @@
+module Projects
+  module Members
+    class EffectiveAccessLevelFinder
+      @project: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      USER_ID_AND_ACCESS_LEVEL: ::Array[:user_id | :access_level]
+
+      BATCH_SIZE: 5
+
+      def initialize: (untyped project) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      def generate_from_statement: (untyped user_ids_and_access_levels) -> ::String
+
+      def no_members?: () -> untyped
+
+      def all_possible_avenues_of_membership: () -> untyped
+
+      # @return [Array<[user_id, access_level]>]
+      def user_ids_and_access_levels_from_all_memberships: () -> untyped
+
+      def authorizable_project_members: () -> untyped
+
+      def authorizable_group_members: () -> untyped
+
+      def members_from_project_group_shares: () -> untyped
+
+      # workaround until we migrate Project#owners to have membership with
+      # OWNER access level
+      def project_owner: () -> untyped
+
+      def include_membership_from_project_group_shares?: () -> untyped
+
+      def user_id_and_access_level_for_project_group_shares: (untyped link) -> ::Array[:user_id | untyped]
+
+      def smallest_value_arel: (untyped args, untyped column_alias) -> untyped
+
+      def apply_scopes: (untyped members) -> untyped
+    end
+  end
+end

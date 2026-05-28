@@ -1,0 +1,26 @@
+module MergeRequests
+  class ReloadDiffsService
+    @merge_request: untyped
+
+    @current_user: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped merge_request, untyped current_user) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader merge_request: untyped
+
+    attr_reader current_user: untyped
+
+    def update_diff_discussion_positions: (untyped old_diff_refs) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def clear_cache: (untyped new_diff) -> untyped
+
+    def cacheable_collection: (untyped diff) -> untyped
+  end
+end

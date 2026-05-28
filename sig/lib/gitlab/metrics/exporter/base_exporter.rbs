@@ -1,0 +1,47 @@
+module Gitlab
+  module Metrics
+    module Exporter
+      class BaseExporter < Daemon
+        @settings: untyped
+
+        @gc_requests: untyped
+
+        @logger: untyped
+
+        @server: untyped
+
+        CERT_REGEX: ::Regexp
+
+        attr_reader server: untyped
+
+        # @param settings [Hash] SettingsLogic hash containing the `*_exporter` config
+        # @param log_enabled [Boolean] whether to log HTTP requests
+        # @param log_file [String] path to where the server log should be located
+        # @param gc_requests [Boolean] whether to run a major GC after each scraper request
+        def initialize: (untyped settings, log_enabled: untyped, log_file: untyped, ?gc_requests: bool, **untyped options) -> void
+
+        def enabled?: () -> untyped
+
+        private
+
+        attr_reader settings: untyped
+
+        attr_reader logger: untyped
+
+        def start_working: () -> untyped
+
+        def run_thread: () -> untyped
+
+        def stop_working: () -> untyped
+
+        def rack_app: () -> untyped
+
+        def ssl_config: () -> { SSLEnable: true, SSLCertificate: untyped, SSLPrivateKey: untyped, SSLStartImmediately: true, SSLExtraChainCert: untyped }
+
+        # In Ruby OpenSSL v3.0.0, this can be replaced by OpenSSL::X509::Certificate.load
+        # https://github.com/ruby/openssl/issues/254
+        def load_ca_certs_bundle: (untyped ca_certs_string) -> (::Array[untyped] | untyped)
+      end
+    end
+  end
+end

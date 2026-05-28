@@ -1,0 +1,99 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        module File
+          class Base
+            @params: untyped
+
+            @context: untyped
+
+            @errors: untyped
+
+            @inputs_only: untyped
+
+            include Gitlab::Utils::StrongMemoize
+
+            attr_reader location: untyped
+
+            attr_reader params: untyped
+
+            attr_reader context: untyped
+
+            attr_reader errors: untyped
+
+            YAML_ALLOWLIST_EXTENSION: ::Regexp
+
+            def initialize: (untyped params, untyped context) -> void
+
+            def inputs_only!: () -> self
+
+            def inputs_only?: () -> untyped
+
+            def matching?: () -> untyped
+
+            def invalid_location_type?: () -> untyped
+
+            def invalid_extension?: () -> untyped
+
+            def valid?: () -> untyped
+
+            def error_message: () -> untyped
+
+            def content: () -> untyped
+
+            def to_hash: () -> untyped
+
+            def include_type: () -> untyped
+
+            def metadata: () -> { type: untyped, context_project: untyped, context_sha: untyped }
+
+            def eql?: (untyped other) -> untyped
+
+            def hash: () -> untyped
+
+            # This method is overridden to load context into the memoized result
+            # or to lazily load context via BatchLoader
+            def preload_context: () -> nil
+
+            def preload_content: () -> untyped
+
+            def validate_location!: () -> (untyped | untyped | nil)
+
+            def validate_context!: () -> untyped
+
+            def validate_content_presence!: () -> (untyped | nil)
+
+            def load_and_validate_expanded_hash!: () -> untyped
+
+            def validate_content_keys!: () -> (nil | untyped)
+
+            def load_uninterpolated_yaml: () -> untyped
+
+            def content_inputs: () -> untyped
+
+            def content_result: () -> untyped
+
+            def yaml_context: () -> untyped
+
+            def yaml_context_attributes: () -> { variables: untyped, component: untyped }
+
+            def expanded_content_hash: () -> (nil | untyped)
+
+            def validate_hash!: () -> (untyped | nil)
+
+            def expand_includes: (untyped hash) -> untyped
+
+            def expand_context_attrs: () -> { parent_file: self }
+
+            def masked_location: () -> untyped
+
+            def log_and_raise_timeout_error: () -> untyped
+
+            def log_gitaly_timeout: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

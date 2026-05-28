@@ -1,0 +1,51 @@
+module ContainerRegistry
+  class BaseClient
+    @base_uri: untyped
+
+    @options: untyped
+
+    @faraday: untyped
+
+    DOCKER_DISTRIBUTION_MANIFEST_V2_TYPE: "application/vnd.docker.distribution.manifest.v2+json"
+
+    DOCKER_DISTRIBUTION_MANIFEST_LIST_V2_TYPE: "application/vnd.docker.distribution.manifest.list.v2+json"
+
+    OCI_DISTRIBUTION_INDEX_TYPE: "application/vnd.oci.image.index.v1+json"
+
+    OCI_MANIFEST_V1_TYPE: "application/vnd.oci.image.manifest.v1+json"
+
+    CONTAINER_IMAGE_V1_TYPE: "application/vnd.docker.container.image.v1+json"
+
+    ACCEPTED_TYPES: ::Array[untyped]
+
+    RETRY_EXCEPTIONS: untyped
+
+    RETRY_OPTIONS: { max: 1, interval: 5, exceptions: untyped }
+
+    ERROR_CALLBACK_OPTIONS: { callback: untyped }
+
+    private
+
+    def self.with_dummy_client: (?return_value_if_disabled: untyped?, ?token_config: ::Hash[untyped, untyped]) { (untyped) -> untyped } -> untyped
+
+    def self.token_from: (untyped config) -> untyped
+
+    public
+
+    def initialize: (untyped base_uri, ?::Hash[untyped, untyped] options) -> void
+
+    private
+
+    def faraday: (?timeout_enabled: bool) -> untyped
+
+    def faraday_base: (?timeout_enabled: bool) { (?) -> untyped } -> untyped
+
+    def initialize_connection: (untyped conn, untyped options) ?{ (untyped) -> untyped } -> untyped
+
+    def response_body: (untyped response) -> (untyped | nil)
+
+    def configure_connection: (untyped conn) -> untyped
+
+    def delete_if_exists: (untyped path) -> untyped
+  end
+end

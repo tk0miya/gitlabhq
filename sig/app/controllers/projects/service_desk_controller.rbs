@@ -1,0 +1,17 @@
+class Projects::ServiceDeskController < Projects::ApplicationController
+  def show: () -> untyped
+
+  def update: () -> untyped
+
+  private
+
+  def cleanup_custom_email_if_disabled: () -> (nil | untyped)
+
+  def setting_params: () -> untyped
+
+  def allowed_update_attributes: () -> ::Array[:issue_template_key | :outgoing_name | :project_key | :reopen_issue_on_external_participant_note | :add_external_participants_from_cc | :tickets_confidential_by_default]
+
+  def service_desk_attributes: () -> { service_desk_address: untyped, service_desk_enabled: untyped, issue_template_key: untyped, template_file_missing: untyped, outgoing_name: untyped, project_key: untyped, reopen_issue_on_external_participant_note: untyped, add_external_participants_from_cc: untyped, tickets_confidential_by_default: untyped }
+
+  def json_response: () -> untyped
+end

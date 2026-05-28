@@ -1,0 +1,74 @@
+# frozen_string_literal: true
+module Gitlab
+  module Lfs
+    # Gitlab::Lfs::Client implements a simple LFS client, designed to talk to
+    # LFS servers as described in these documents:
+    #   * https://github.com/git-lfs/git-lfs/blob/master/docs/api/batch.md
+    #   * https://github.com/git-lfs/git-lfs/blob/master/docs/api/basic-transfers.md
+    class Client
+      @base_url: untyped
+
+      @credentials: untyped
+
+      GIT_LFS_CONTENT_TYPE: "application/vnd.git-lfs+json"
+
+      GIT_LFS_USER_AGENT: ::String
+
+      DEFAULT_HEADERS: { "Accept" => untyped, "Content-Type" => untyped, "User-Agent" => untyped }
+
+      attr_reader base_url: untyped
+
+      def initialize: (untyped base_url, credentials: untyped) -> void
+
+      def batch!: (untyped operation, untyped objects) -> untyped
+
+      def upload!: (untyped object, untyped upload_action, authenticated: untyped) -> untyped
+
+      def verify!: (untyped object, untyped verify_action, authenticated: untyped) -> untyped
+
+      private
+
+      def set_basic_auth_and_extract_lfs_url!: (untyped params, untyped raw_url) -> untyped
+
+      def build_request_headers: (?untyped? extra_headers) -> untyped
+
+      def upload_headers: (untyped object, untyped upload_action) -> untyped
+
+      def lfs_url: (untyped raw_url, untyped strip_userinfo) -> untyped
+
+      attr_reader credentials: untyped
+
+      def batch_url: () -> untyped
+
+      def basic_auth: () -> (nil | { username: untyped, password: untyped })
+
+      class HttpError < StandardError
+        @http_response: untyped
+
+        def initialize: (http_response: untyped) -> void
+
+        def http_error: () -> ::String
+      end
+
+      class BatchSubmitError < HttpError
+        def message: () -> ::String
+      end
+
+      class UnsupportedTransferError < StandardError
+        @transfer: untyped
+
+        def initialize: (?untyped? transfer) -> void
+
+        def message: () -> ::String
+      end
+
+      class ObjectUploadError < HttpError
+        def message: () -> ::String
+      end
+
+      class ObjectVerifyError < HttpError
+        def message: () -> ::String
+      end
+    end
+  end
+end

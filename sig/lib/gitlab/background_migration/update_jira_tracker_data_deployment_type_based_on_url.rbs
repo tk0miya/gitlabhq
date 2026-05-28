@@ -1,0 +1,23 @@
+module Gitlab
+  module BackgroundMigration
+    class UpdateJiraTrackerDataDeploymentTypeBasedOnUrl < Gitlab::BackgroundMigration::BatchedMigrationJob
+      @trackers_data: untyped
+
+      class JiraTrackerData < ActiveRecord::Base
+        include ::Integrations::BaseDataFields
+      end
+
+      # https://rubular.com/r/uwgK7k9KH23efa
+      JIRA_CLOUD_REGEX: ::Regexp
+
+      def perform: () -> untyped
+
+      private
+
+      def update_records: (untyped mappings) -> (nil | untyped)
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def trackers_data: () -> untyped
+    end
+  end
+end

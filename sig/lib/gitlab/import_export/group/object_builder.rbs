@@ -1,0 +1,29 @@
+module Gitlab
+  module ImportExport
+    module Group
+      # Given a class, it finds or creates a new object at group level.
+      #
+      # Example:
+      #   `Group::ObjectBuilder.build(Label, label_attributes)`
+      #    finds or initializes a label with the given attributes.
+      class ObjectBuilder < Base::ObjectBuilder
+        @group: untyped
+
+        def initialize: (untyped klass, untyped attributes) -> void
+
+        private
+
+        attr_reader group: untyped
+
+        def where_clauses: () -> untyped
+
+        # Returns Arel clause `"{table_name}"."group_id" = {group.id}`
+        def where_clause_base: () -> untyped
+
+        def prepare_attributes: () -> untyped
+
+        def group_and_ancestor_ids: () -> untyped
+      end
+    end
+  end
+end

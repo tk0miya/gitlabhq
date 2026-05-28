@@ -1,0 +1,93 @@
+module Gitlab
+  module Auth
+    #
+    # Identity class represents identity which we want to use in authorization policies.
+    #
+    # It decides if an identity is a single or composite identity and finds identity scope.
+    #
+    class Identity
+      @user: untyped
+
+      @request_store: untyped
+
+      @store_key: untyped
+
+      COMPOSITE_IDENTITY_USERS_KEY: "composite_identities"
+
+      COMPOSITE_IDENTITY_KEY_FORMAT: "user:%s:composite_identity"
+
+      COMPOSITE_IDENTITY_SIDEKIQ_ARG: "sqci"
+
+      IdentityError: untyped
+
+      IdentityLinkMismatchError: untyped
+
+      UnexpectedIdentityError: untyped
+
+      TooManyIdentitiesLinkedError: untyped
+
+      MissingCompositeIdentityError: untyped
+
+      MissingServiceAccountError: untyped
+
+      # TODO: why is this called 3 times in doorkeeper_access_spec.rb specs?
+      def self.link_from_oauth_token: (untyped oauth_token) -> untyped
+
+      def self.link_from_job: (untyped job) -> untyped
+
+      def self.link_from_scoped_user_id: (untyped user, untyped scoped_user_id, ?context: ::Symbol) -> (nil | untyped)
+
+      def self.link_from_scoped_user: (untyped user, untyped scoped_user, ?context: ::Symbol) -> untyped
+
+      def self.link_from_web_request: (service_account: untyped, scoped_user: untyped) -> untyped
+
+      def self.sidekiq_restore!: (untyped job) -> (nil | untyped)
+
+      def self.currently_linked: () ?{ (untyped) -> untyped } -> (nil | untyped)
+
+      def self.fabricate: (untyped user) -> (untyped | nil)
+
+      def self.find_primary_user_by_scoped_user_id: (untyped scoped_user_id, ?store: untyped) -> (nil | untyped)
+
+      def self.resolve_composite_identity_actor: (untyped current_user) -> (nil | untyped)
+
+      def initialize: (untyped user, ?store: untyped) -> void
+
+      def composite?: () -> untyped
+
+      def sidekiq_link!: (untyped job) -> untyped
+
+      def link!: (untyped scope_user, ?context: ::Symbol) -> self
+
+      def linked?: () -> untyped
+
+      def valid?: () -> (true | false | untyped)
+
+      def scoped_user: () -> untyped
+
+      def link_context: () -> (nil | untyped)
+
+      def primary_user: () -> untyped
+
+      private
+
+      def scoped_user_id: () -> untyped
+
+      def primary_user_id: () -> untyped
+
+      def validate_link!: (untyped scope_user) -> (nil | untyped)
+
+      def saved_scoped_user_different_from_new_scope_user?: (untyped scope_user) -> untyped
+
+      def store_identity_link!: (untyped scope_user, ?context: ::Symbol) -> untyped
+
+      def append_log!: (untyped scope_user) -> untyped
+
+      def composite_identities: () -> untyped
+
+      def store_key: () -> untyped
+
+      def user_from_link_data: (untyped link_data) -> untyped
+    end
+  end
+end

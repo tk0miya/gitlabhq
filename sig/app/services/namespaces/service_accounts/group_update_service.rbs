@@ -1,0 +1,25 @@
+module Namespaces
+  module ServiceAccounts
+    class GroupUpdateService < BaseUpdateService
+      @_resource: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      private
+
+      def extract_resource_id: (untyped params) -> untyped
+
+      def resource: () -> untyped
+
+      def user_provisioned_resource_id: () -> untyped
+
+      def user_provisioned_resource: () -> untyped
+
+      def skip_confirmation?: () -> (true | untyped)
+
+      def invalid_resource_id_message: () -> untyped
+
+      def resource_not_found_message: () -> untyped
+    end
+  end
+end

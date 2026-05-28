@@ -1,0 +1,27 @@
+module Ci
+  class InstanceVariable < Ci::ApplicationRecord
+    extend Gitlab::ProcessMemoryCache::Helper
+
+    include Ci::NewHasVariable
+
+    include Ci::Maskable
+
+    include Ci::HidableVariable
+
+    include Ci::RawVariable
+
+    include Limitable
+
+    def self.all_cached: () -> untyped
+
+    def self.unprotected_cached: () -> untyped
+
+    private
+
+    def self.cached_data: () -> untyped
+
+    public
+
+    def audit_details: () -> untyped
+  end
+end

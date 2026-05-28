@@ -1,0 +1,17 @@
+module Gitlab
+  module Auth
+    module Atlassian
+      class User < Gitlab::Auth::OAuth::User
+        @auth_hash: untyped
+
+        def self.assign_identity_from_auth_hash!: (untyped identity, untyped auth_hash) -> untyped
+
+        def find_by_uid_and_provider: () -> untyped
+
+        def add_or_update_user_identities: () -> (nil | untyped)
+
+        def auth_hash=: (untyped auth_hash) -> untyped
+      end
+    end
+  end
+end

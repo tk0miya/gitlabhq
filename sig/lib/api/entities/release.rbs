@@ -1,0 +1,13 @@
+module API
+  module Entities
+    class Release < BasicReleaseDetails
+      include ::API::Helpers::Presentable
+
+      private
+
+      def can_read_code?: () -> untyped
+
+      def can_read_milestone?: () -> untyped
+    end
+  end
+end

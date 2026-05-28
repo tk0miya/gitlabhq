@@ -1,0 +1,21 @@
+module Ml
+  class DestroyModelVersionService
+    @model_version: untyped
+
+    @user: untyped
+
+    def initialize: (untyped model_version, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def payload: () -> { model_version: untyped }
+
+    def audit_destroy_event: () -> untyped
+
+    attr_reader model_version: untyped
+
+    attr_reader user: untyped
+  end
+end

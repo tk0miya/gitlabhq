@@ -1,0 +1,21 @@
+module Gitlab
+  module Git
+    class BlobPairsDiffs
+      @repository: untyped
+
+      @raw_repository: untyped
+
+      def initialize: (untyped repository) -> void
+
+      def diffs_by_changed_paths: (untyped diff_refs, ?::Integer offset, ?::Integer batch_size) ?{ (untyped) -> untyped } -> untyped
+
+      private
+
+      def diff_files_by_blob_pairs: (untyped blob_pairs, untyped changed_paths, untyped diff_refs) -> untyped
+
+      def create_diff: (untyped changed_path, untyped diff_refs, ?::Hash[untyped, untyped] options) -> untyped
+
+      def generate_submodule_diff: (untyped changed_path) -> untyped
+    end
+  end
+end

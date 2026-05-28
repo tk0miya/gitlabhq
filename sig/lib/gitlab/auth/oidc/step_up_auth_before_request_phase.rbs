@@ -1,0 +1,27 @@
+module Gitlab
+  module Auth
+    module Oidc
+      # Handles the step-up authentication request phase for OAuth flow
+      #
+      # This module manages the initial phase of step-up authentication,
+      # setting up the session state for admin mode authentication.
+      module StepUpAuthBeforeRequestPhase
+        def self.call: (untyped env) -> (nil | untyped)
+
+        private
+
+        def self.requested_scope_admin_mode?: (untyped scope) -> untyped
+
+        def self.requested_scope_namespace?: (untyped scope) -> untyped
+
+        def self.current_user_from: (untyped env) -> untyped
+
+        def self.current_provider_from: (untyped env) -> untyped
+
+        def self.request_param_step_up_auth_scope_from: (untyped env) -> untyped
+
+        def self.session_from: (untyped env) -> untyped
+      end
+    end
+  end
+end

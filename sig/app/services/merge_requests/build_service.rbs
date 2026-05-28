@@ -1,0 +1,107 @@
+module MergeRequests
+  class BuildService < MergeRequests::BaseService
+    @params_issue_iid: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    # Fetch one more commit than the display limit so we can detect truncation
+    # and show "100+" in the badge when there are more commits than we display.
+    COMPARE_COMMITS_LIMIT: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    attr_accessor merge_request: untyped
+
+    def force_remove_source_branch: () -> untyped
+
+    def filter_id_params: () -> untyped
+
+    def process_params: () -> untyped
+
+    def find_source_project: () -> untyped
+
+    def find_target_project: () -> untyped
+
+    def project_from_params: (untyped param_name) -> untyped
+
+    def set_merge_request_target_branch: () -> untyped
+
+    def get_target_branch: () -> untyped
+
+    def source_branch_specified?: () -> untyped
+
+    def target_branch_specified?: () -> untyped
+
+    def projects_and_branches_valid?: () -> (false | untyped)
+
+    def compare_branches: () -> untyped
+
+    def validate_projects_and_branches: () -> (nil | untyped)
+
+    def add_error: (untyped message) -> untyped
+
+    def branches_present?: () -> untyped
+
+    def same_source_and_target?: () -> untyped
+
+    def source_branch_default?: () -> untyped
+
+    def same_source_and_target_project?: () -> untyped
+
+    def source_branch_exists?: () -> untyped
+
+    def ref_exists_in_gitaly?: () -> (false | true)
+
+    def target_branch_exists?: () -> untyped
+
+    def set_draft_title_if_needed: () -> (nil | untyped)
+
+    # When your branch name starts with an iid followed by a dash this pattern will be
+    # interpreted as the user wants to close that issue on this project.
+    #
+    # For example:
+    # - Issue 112 exists
+    # - title: Emoji don't show up in commit title
+    # - Source branch is: 112-fix-mep-mep
+    #
+    # Will lead to:
+    # - Appending `Closes #112` to the description
+    # - Setting the title as 'Resolves "Emoji don't show up in commit title"' if there is
+    #   more than one commit in the MR
+    #
+    def assign_title_and_description: () -> untyped
+
+    def assign_labels: () -> (nil | untyped)
+
+    def assign_milestone: () -> (nil | untyped)
+
+    def append_closes_description: () -> (nil | untyped)
+
+    def assign_title_from_template: () -> untyped
+
+    def assign_title_and_description_from_commits: () -> (nil | untyped)
+
+    def title_from_issue: () -> (nil | ::String | untyped)
+
+    def branch_name_to_title: (untyped branch_name) -> untyped
+
+    def assign_description_from_repository_template: () -> (nil | untyped)
+
+    def replace_variables_in_description: () -> (nil | untyped)
+
+    def mr_title_template_enabled?: () -> untyped
+
+    # Memoized because it is shared between replace_variables_in_description
+    # (description template) and assign_title_from_template (title template).
+    # Safe to share: for new MRs, merge_user and metrics are nil, so
+    # current_user is always used. Placeholder lambdas read MR attributes
+    # lazily at call time, so ordering of title vs description is safe.
+    def message_generator: () -> untyped
+
+    def issue_iid: () -> untyped
+
+    def issue: () -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module PreviewMarkdown
+  extend ActiveSupport::Concern
+
+  def preview_markdown: () -> untyped
+
+  private
+
+  def resource_parent: () -> untyped
+
+  def projects_filter_params: () -> { issuable_reference_expansion_enabled: true, suggestions_filter_enabled: untyped }
+
+  def timeline_events_filter_params: () -> { issuable_reference_expansion_enabled: true, pipeline: :"incident_management/timeline_event" }
+
+  def wikis_filter_params: () -> { pipeline: :wiki, wiki: untyped, page_slug: untyped, repository: untyped, issuable_reference_expansion_enabled: true }
+
+  def snippets_filter_params: () -> untyped
+
+  def markdown_context_params: () -> untyped
+
+  def no_header_anchors: () -> (true | untyped)
+
+  def preview_markdown_params: () -> untyped
+end

@@ -1,0 +1,18 @@
+module Gitlab
+  module Middleware
+    # By default, all sessions are given the same expiration time configured in
+    # the session store (e.g. 1 week). However, unauthenticated users can
+    # generate a lot of sessions, primarily for CSRF verification. It makes
+    # sense to reduce the TTL for unauthenticated to something much lower than
+    # the default (e.g. 2 hours) to limit Redis memory. In addition, Rails
+    # creates a new session after login, so the short TTL doesn't even need to
+    # be extended.
+    class UnauthenticatedSessionExpiry
+      @app: untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+    end
+  end
+end

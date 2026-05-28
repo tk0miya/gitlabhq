@@ -1,0 +1,9 @@
+module Gitlab
+  module ExternalAuthorization
+    class Logger < ::Gitlab::Logger
+      def self.log_access: (untyped access, untyped project_path) -> untyped
+
+      def self.file_name_noext: () -> "external-policy-access-control"
+    end
+  end
+end

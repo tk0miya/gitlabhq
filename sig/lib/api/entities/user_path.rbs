@@ -1,0 +1,9 @@
+module API
+  module Entities
+    class UserPath < UserBasic
+      include RequestAwareEntity
+
+      include UserStatusTooltip
+    end
+  end
+end

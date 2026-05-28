@@ -1,0 +1,15 @@
+module WorkItems
+  module TypesFramework
+    module SystemDefined
+      class HierarchyRestriction
+        include ActiveRecord::FixedItemsModel::Model
+
+        def self.with_parent_type_id: (untyped parent_type_id) -> untyped
+
+        def self.hierarchy_relationship_allowed?: (parent_type_id: untyped, child_type_id: untyped) -> untyped
+
+        def self.fixed_items: () -> untyped
+      end
+    end
+  end
+end

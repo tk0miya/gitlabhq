@@ -1,0 +1,35 @@
+module Packages
+  module Rpm
+    class ParsePackageService
+      @rpm: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      BUILD_ATTRIBUTES_METHOD_NAMES: ::Array[:changelogs | :requirements | :provides]
+
+      STATIC_ATTRIBUTES: ::Array[:name | :version | :release | :summary | :description | :arch | :license | :sourcerpm | :group | :buildhost | :packager | :vendor]
+
+      CHANGELOGS_RPM_KEYS: ::Array[:changelogtext | :changelogtime]
+
+      REQUIREMENTS_RPM_KEYS: ::Array[:requirename | :requireversion | :requireflags]
+
+      PROVIDES_RPM_KEYS: ::Array[:providename | :provideflags | :provideversion]
+
+      def initialize: (untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader rpm: untyped
+
+      def valid_package?: () -> untyped
+
+      def package_tags: () -> untyped
+
+      def extract_static_attributes: () -> untyped
+
+      def build_hashes: (untyped resource_keys, untyped zipped_data) -> untyped
+    end
+  end
+end

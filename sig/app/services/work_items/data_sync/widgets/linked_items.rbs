@@ -1,0 +1,21 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class LinkedItems < Base
+        def after_create: () -> (nil | untyped)
+
+        # NOTE: No need to override this in EE for legacy ::Epic::RelatedEpicLink records, because
+        # ::Epic::RelatedEpicLink records are built to contain `issue_link_id` FK with ON DELETE CASCADE,
+        # which would delete ::Epic::RelatedEpicLink when corresponding IssueLink records for a given Epic Work Item
+        # are deleted in this method.
+        def post_move_cleanup: () -> untyped
+
+        private
+
+        def recreate_related_items: () -> untyped
+
+        def new_issue_links: (untyped links_batch, reference_attribute: untyped) -> untyped
+      end
+    end
+  end
+end

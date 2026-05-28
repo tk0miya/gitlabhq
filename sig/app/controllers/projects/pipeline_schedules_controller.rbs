@@ -1,0 +1,45 @@
+class Projects::PipelineSchedulesController < Projects::ApplicationController
+  @scope: untyped
+
+  @all_schedules: untyped
+
+  @schedules: untyped
+
+  @schedule: untyped
+
+  include SafeFormatHelper
+
+  def index: () -> untyped
+
+  def new: () -> nil
+
+  def create: () -> untyped
+
+  def edit: () -> nil
+
+  def update: () -> untyped
+
+  def play: () -> untyped
+
+  def take_ownership: () -> untyped
+
+  def destroy: () -> untyped
+
+  private
+
+  def check_play_rate_limit!: () -> (nil | untyped)
+
+  def schedule: () -> untyped
+
+  def schedule_params: () -> untyped
+
+  def new_schedule: () -> untyped
+
+  def authorize_create_pipeline_schedule!: () -> (untyped | nil)
+
+  def authorize_play_pipeline_schedule!: () -> (untyped | nil)
+
+  def authorize_update_pipeline_schedule!: () -> (untyped | nil)
+
+  def authorize_admin_pipeline_schedule!: () -> (untyped | nil)
+end

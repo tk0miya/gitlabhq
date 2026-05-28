@@ -1,0 +1,17 @@
+module BulkImports
+  module Projects
+    module Transformers
+      class ProjectAttributesTransformer
+        include BulkImports::VisibilityLevel
+
+        include BulkImports::PathNormalization
+
+        include BulkImports::Uniquify
+
+        PROJECT_IMPORT_TYPE: "gitlab_project_migration"
+
+        def transform: (untyped context, untyped data) -> untyped
+      end
+    end
+  end
+end

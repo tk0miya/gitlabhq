@@ -1,0 +1,7 @@
+# Stores the authentication data required to access another GitLab instance on
+# behalf of a user, to import Groups and Projects directly from that instance.
+class BulkImports::Configuration < ApplicationRecord
+  include Gitlab::EncryptedAttribute
+
+  def safe_url: () -> ("" | untyped)
+end

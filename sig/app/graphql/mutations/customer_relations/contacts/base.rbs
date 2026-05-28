@@ -1,0 +1,13 @@
+module Mutations
+  module CustomerRelations
+    module Contacts
+      class Base < BaseMutation
+        include ResolvesIds
+
+        include Gitlab::Graphql::Authorize::AuthorizeResource
+
+        def set_organization!: (untyped args) -> (nil | untyped)
+      end
+    end
+  end
+end

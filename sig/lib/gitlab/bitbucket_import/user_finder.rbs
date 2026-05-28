@@ -1,0 +1,25 @@
+module Gitlab
+  module BitbucketImport
+    class UserFinder
+      @project: untyped
+
+      USER_ID_FOR_AUTHOR_CACHE_KEY: "bitbucket-importer/user-finder/%{project_id}/%{author_uuid}"
+
+      CACHE_USER_ID_NOT_FOUND: -1
+
+      attr_reader project: untyped
+
+      def initialize: (untyped project) -> void
+
+      def find_user_id: (untyped author_uuid) -> (nil | untyped)
+
+      def gitlab_user_id: (untyped project, untyped uuid) -> untyped
+
+      private
+
+      def cache: () -> untyped
+
+      def build_cache_key: (untyped author_uuid) -> untyped
+    end
+  end
+end

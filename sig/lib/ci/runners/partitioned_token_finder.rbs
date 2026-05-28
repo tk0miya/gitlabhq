@@ -1,0 +1,19 @@
+module Ci
+  module Runners
+    class PartitionedTokenFinder < Authn::TokenField::Finders::BaseEncryptedPartitioned
+      include Gitlab::Utils::StrongMemoize
+
+      def execute: () -> (nil | untyped)
+
+      def partition_key: () -> untyped
+
+      def partition_scope: () -> untyped
+
+      def skip_fallback?: () -> untyped
+
+      def irrelevant_token?: () -> untyped
+
+      def known_non_runner_token_types: () -> untyped
+    end
+  end
+end

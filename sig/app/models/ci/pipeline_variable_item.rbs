@@ -1,0 +1,45 @@
+module Ci
+  # A virtual model representing a pipeline variable. Used when pipeline
+  # variables are handled in a non-DB storage context (e.g. object storage).
+  class PipelineVariableItem
+    @pipeline: untyped
+
+    include ActiveModel::Model
+
+    include ActiveModel::Attributes
+
+    include ActiveModel::Validations
+
+    include GlobalID::Identification
+
+    include Gitlab::Utils::StrongMemoize
+
+    VARIABLE_TYPES: untyped
+
+    MAX_KEY_LENGTH: 255
+
+    # TODO: Max length TBD, or we may need to add bytesize validation;
+    # see https://gitlab.com/gitlab-org/gitlab/-/issues/520159#note_3001941996
+    MAX_VALUE_LENGTH: 500000000
+
+    alias raw? raw
+
+    # Required for auth check in Types::Ci::PipelineManualVariableType
+    attr_reader pipeline: untyped
+
+    def initialize: (pipeline: untyped, **untyped kwargs) -> void
+
+    def key=: (untyped value) -> untyped
+
+    def variable_type=: (untyped value) -> untyped
+
+    # An ID is required for Types::Ci::PipelineManualVariableType
+    def id: () -> untyped
+
+    def to_hash_variable: () -> { key: untyped, value: untyped, public: false, file: untyped, raw: untyped }
+
+    def file?: () -> untyped
+
+    def hook_attrs: () -> { key: untyped, value: untyped }
+  end
+end

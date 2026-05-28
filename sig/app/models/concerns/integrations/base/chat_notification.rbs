@@ -1,0 +1,108 @@
+module Integrations
+  module Base
+    module ChatNotification
+      @unique_channels: untyped
+
+      extend ActiveSupport::Concern
+
+      extend Gitlab::Utils::Override
+
+      include ChatMessage
+
+      include NotificationBranchSelection
+
+      include NotificationPipelineStatusSelection
+
+      SUPPORTED_EVENTS: ::Array["push" | "issue" | "confidential_issue" | "merge_request" | "note" | "confidential_note" | "tag_push" | "pipeline" | "wiki_page" | "deployment" | "incident" | "work_item" | "confidential_work_item"]
+
+      GROUP_ONLY_SUPPORTED_EVENTS: ::Array["group_mention" | "group_confidential_mention"]
+
+      SUPPORTED_EVENTS_FOR_LABEL_FILTER: ::Array["issue" | "confidential_issue" | "merge_request" | "note" | "confidential_note" | "incident" | "work_item" | "confidential_work_item"]
+
+      EVENT_CHANNEL: untyped
+
+      LABEL_NOTIFICATION_BEHAVIOURS: ::Array[untyped]
+
+      # Supported actions per event type for fine-grained filtering
+      EVENT_ACTIONS: { "merge_request" => ::Array["open" | "close" | "reopen" | "merge" | "approved" | "unapproved"], "issue" => ::Array["open" | "close" | "reopen"] }
+
+      SECRET_MASK: "************"
+
+      def initialize_properties: () -> untyped
+
+      def configurable_events: () -> untyped
+
+      def confidential_issue_channel: () -> untyped
+
+      def confidential_note_channel: () -> untyped
+
+      def fields: () -> untyped
+
+      def execute: (untyped data) -> (false | true)
+
+      def event_channel_names: () -> (::Array[untyped] | untyped)
+
+      def api_field_names: () -> untyped
+
+      def form_fields: () -> untyped
+
+      def default_channel_placeholder: () -> untyped
+
+      def webhook_help: () -> untyped
+
+      # With some integrations the webhook is already tied to a specific channel,
+      # for others the channels are configurable for each event.
+      def configurable_channels?: () -> false
+
+      def event_channel_value: (untyped event) -> untyped
+
+      def channel_limit_per_event: () -> 10
+
+      def mask_configurable_channels?: () -> false
+
+      def sections: () -> ::Array[{ type: untyped, title: untyped, description: untyped }]
+
+      private
+
+      def should_execute?: (untyped object_kind) -> untyped
+
+      def map_work_item_event: (untyped event) -> untyped
+
+      def log_usage: (untyped _, untyped _) -> nil
+
+      def labels_to_be_notified_list: () -> (::Array[untyped] | untyped)
+
+      def notify_label?: (untyped data) -> (true | false | untyped)
+
+      def user_id_from_hook_data: (untyped data) -> untyped
+
+      # every notifier must implement this independently
+      def notify: (untyped message, untyped opts) -> untyped
+
+      def custom_data: (untyped data) -> untyped
+
+      # rubocop:disable Metrics/CyclomaticComplexity -- Legacy use
+      def get_message: (untyped object_kind, untyped data) -> untyped
+
+      def build_event_channels: () -> untyped
+
+      def project_name: () -> untyped
+
+      def project_url: () -> untyped
+
+      def update?: (untyped data) -> untyped
+
+      def should_pipeline_be_notified?: (untyped data) -> untyped
+
+      def notify_for_ref?: (untyped data) -> (true | untyped)
+
+      def channels_for_event: (untyped event) -> (::Array[untyped] | untyped)
+
+      def unique_channels: () -> untyped
+
+      def validate_channel_limit: () -> untyped
+
+      def skip_work_item_incident?: (untyped object_kind, untyped data) -> untyped
+    end
+  end
+end

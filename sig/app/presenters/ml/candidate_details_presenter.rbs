@@ -1,0 +1,36 @@
+module Ml
+  class CandidateDetailsPresenter
+    @candidate: untyped
+
+    @current_user: untyped
+
+    def initialize: (untyped candidate, untyped current_user) -> void
+
+    # rubocop:disable Metrics/AbcSize -- Monoton complexity
+    def present: () -> { candidate: { info: { iid: untyped, eid: untyped, gid: untyped, path_to_artifact: untyped, experiment_name: untyped, path_to_experiment: untyped, path: untyped, status: untyped, ci_job: untyped, created_at: untyped, author_web_url: untyped, author_name: untyped, promote_path: untyped, can_promote: untyped }, params: untyped, metrics: untyped, metadata: untyped, projectPath: untyped, can_write_model_experiments: untyped, markdown_preview_path: untyped, model_gid: untyped, model_name: untyped, latest_version: untyped } }
+
+    def present_as_json: () -> untyped
+
+    private
+
+    attr_reader candidate: untyped
+
+    attr_reader current_user: untyped
+
+    def job_info: () -> (nil | ::Hash[:path | :name | untyped, untyped])
+
+    def user_info: (untyped user) -> (nil | { user: { path: untyped, username: untyped, name: untyped, avatar: untyped } })
+
+    def mr_info: (untyped mr) -> (nil | { merge_request: { path: untyped, iid: untyped, title: untyped } })
+
+    def link_to_artifact: () -> (nil | untyped)
+
+    def link_to_details: () -> untyped
+
+    def link_to_experiment: () -> untyped
+
+    def url_helpers: () -> untyped
+
+    def can_promote: () -> untyped
+  end
+end

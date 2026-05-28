@@ -1,0 +1,42 @@
+module Packages
+  module Maven
+    class GroupsAndProjectsPackageFilesFinder
+      @project_ids: untyped
+
+      @group_ids: untyped
+
+      @path: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      # main client of this finder is the maven virtual registry.
+      # Given the restrictions on the maven upstreams in a registry,
+      # that client will send max 20 ids.
+      MAX_IDS_COUNT: 20
+
+      def initialize: (path: untyped, ?project_ids: untyped, ?group_ids: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader project_ids: untyped
+
+      attr_reader group_ids: untyped
+
+      attr_reader path: untyped
+
+      def valid?: () -> (false | true)
+
+      def packages: () -> untyped
+
+      def group_projects: () -> untyped
+
+      def metadatum_cte: () -> untyped
+
+      def folder_path: () -> untyped
+
+      def filename: () -> untyped
+    end
+  end
+end

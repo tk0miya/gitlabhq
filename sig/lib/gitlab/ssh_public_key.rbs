@@ -1,0 +1,69 @@
+module Gitlab
+  class SSHPublicKey
+    @key_text: untyped
+
+    @key: untyped
+
+    @technology: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    Technology: untyped
+
+    WeakKeyWarning: untyped
+
+    # See https://man.openbsd.org/sshd#AUTHORIZED_KEYS_FILE_FORMAT for the list of
+    # supported algorithms.
+    TECHNOLOGIES: ::Array[untyped]
+
+    def self.technologies: () -> untyped
+
+    def self.technology: (untyped name) -> untyped
+
+    def self.technology_for_key: (untyped key) -> untyped
+
+    def self.supported_types: () -> untyped
+
+    def self.supported_sizes: (untyped name) -> untyped
+
+    def self.supported_algorithms: () -> untyped
+
+    def self.supported_algorithms_for_name: (untyped name) -> untyped
+
+    def self.sanitize: (untyped key_content) -> untyped
+
+    # Extracts the algorithm and key data from a key string, handling optional
+    # hostname/options prefixes (known_hosts or authorized_keys format).
+    # Returns a hash with :prefix, :algorithm, :key_data keys, or nil if no
+    # supported algorithm is found.
+    def self.extract_key_parts: (untyped key_text) -> (nil | { prefix: untyped, algorithm: untyped, key_data: untyped })
+
+    attr_reader key_text: untyped
+
+    attr_reader key: untyped
+
+    def initialize: (untyped key_text) -> void
+
+    def valid?: () -> untyped
+
+    def type: () -> (untyped | nil)
+
+    def fingerprint: () -> (untyped | nil)
+
+    def fingerprint_sha256: () -> (untyped | nil)
+
+    def bits: () -> (nil | untyped)
+
+    def banned?: () -> (false | untyped)
+
+    def weak_key_warning: () -> (nil | untyped)
+
+    private
+
+    def banned_ssh_keys: () -> untyped
+
+    def technology: () -> untyped
+
+    def raise_unsupported_key_type_error: () -> untyped
+  end
+end

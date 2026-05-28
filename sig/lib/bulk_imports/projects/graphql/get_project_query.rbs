@@ -1,0 +1,11 @@
+module BulkImports
+  module Projects
+    module Graphql
+      class GetProjectQuery
+        include Queryable
+
+        def to_s: () -> "          query($full_path: ID!) {\n            project(fullPath: $full_path) {\n              id\n              name\n              visibility\n              created_at: createdAt\n            }\n          }\n"
+      end
+    end
+  end
+end

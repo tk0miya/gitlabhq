@@ -1,0 +1,15 @@
+module Packages
+  module Conan
+    class Package < Packages::Package
+      def latest_recipe_revision_or_default: () -> untyped
+
+      def default_recipe_revision: () -> untyped
+
+      def default_package_revision: () -> untyped
+
+      private
+
+      def valid_conan_package_recipe: () -> (nil | untyped)
+    end
+  end
+end

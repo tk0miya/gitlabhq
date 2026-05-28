@@ -1,0 +1,21 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Aggregates
+        module Sources
+          class PostgresHll
+            def self.save_aggregated_metrics: (metric_name: untyped, time_period: untyped, recorded_at_timestamp: untyped, data: untyped) -> untyped
+
+            private
+
+            def self.read_aggregated_metric: (metric_name: untyped, time_period: untyped, recorded_at: untyped) -> untyped
+
+            def self.redis_key: (metric_name: untyped, time_period: untyped, recorded_at: untyped) -> ::String
+
+            def self.time_period_to_human_name: (untyped time_period) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

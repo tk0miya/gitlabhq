@@ -1,0 +1,29 @@
+module Gitlab
+  module IncidentManagement
+    module PagerDuty
+      class IncidentIssueDescription
+        @incident_payload: untyped
+
+        def initialize: (untyped incident_payload) -> void
+
+        def to_s: () -> untyped
+
+        private
+
+        attr_reader incident_payload: untyped
+
+        def markdown_incident: () -> untyped
+
+        def incident_created_at: () -> untyped
+
+        def markdown_incident_created_at: () -> untyped
+
+        def markdown_assignees: () -> untyped
+
+        def markdown_impacted_service: () -> untyped
+
+        def markdown_link: (untyped label, untyped url) -> (untyped | ::String)
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module BulkImports
+  class ExportService
+    @portable: untyped
+
+    @current_user: untyped
+
+    @batched: untyped
+
+    @offline_export_id: untyped
+
+    # @param portable [Project|Group] A project or a group to export.
+    # @param user [User] A user performing the export.
+    # @param batched [Boolean] Whether to export the data in batches.
+    # @param offline_export_id [Integer] ID of offline transfer to which export is related
+    def initialize: (portable: untyped, user: untyped, ?batched: bool, ?offline_export_id: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader portable: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader batched: untyped
+
+    attr_reader offline_export_id: untyped
+
+    def validate_user_permissions!: () -> untyped
+  end
+end

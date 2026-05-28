@@ -1,0 +1,6 @@
+# Tracks which boards in a specific project a user has visited
+class BoardProjectRecentVisit < ApplicationRecord
+  include BoardRecentVisit
+
+  def self.board_parent_relation: () -> :project
+end

@@ -1,0 +1,13 @@
+class Admin::SystemInfoController < Admin::ApplicationController
+  @cpus: untyped
+
+  @memory: untyped
+
+  @disks: untyped
+
+  EXCLUDED_MOUNT_OPTIONS: ::Array["nobrowse" | "read-only" | "ro"]
+
+  EXCLUDED_MOUNT_TYPES: ::Array["autofs" | "binfmt_misc" | "bpf" | "cgroup" | "cgroup2" | "configfs" | "debugfs" | "devfs" | "devpts" | "devtmpfs" | "efivarfs" | "fuse.gvfsd-fuse" | "fuseblk" | "fusectl" | "hugetlbfs" | "mqueue" | "proc" | "pstore" | "rpc_pipefs" | "securityfs" | "sysfs" | "tmpfs" | "tracefs" | "vfat"]
+
+  def show: () -> untyped
+end

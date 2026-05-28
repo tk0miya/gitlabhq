@@ -1,0 +1,23 @@
+module Resolvers
+  module Ci
+    class RunnerSetupResolver < BaseResolver
+      ACCESS_DENIED: "User is not authorized to register a runner for the specified resource!"
+
+      def resolve: (platform: untyped, architecture: untyped, **untyped args) -> untyped
+
+      private
+
+      def access_denied?: (untyped instructions) -> untyped
+
+      def other_install_instructions: (untyped platform) -> untyped
+
+      def target_param: (untyped args) -> untyped
+
+      def project_param: (untyped project_id) -> (nil | { project: untyped })
+
+      def group_param: (untyped group_id) -> (nil | { group: untyped })
+
+      def find_object: (untyped gid) -> untyped
+    end
+  end
+end

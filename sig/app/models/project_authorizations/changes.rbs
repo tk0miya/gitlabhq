@@ -1,0 +1,86 @@
+module ProjectAuthorizations
+  # How to use this class
+  # authorizations_to_add:
+  # Rows to insert in the form `[{ user_id: user_id, project_id: project_id, access_level: access_level}, ...]
+  #
+  # ProjectAuthorizations::Changes.new do |changes|
+  #   changes.add(authorizations_to_add)
+  #   changes.remove_users_in_project(project, user_ids)
+  #   changes.remove_projects_for_user(user, project_ids)
+  # end.apply!
+  class Changes
+    @authorizations_to_add: untyped
+
+    @affected_project_ids: untyped
+
+    @removed_user_ids: untyped
+
+    @added_user_ids: untyped
+
+    @users_to_remove_in_project: untyped
+
+    @projects_to_remove: untyped
+
+    attr_reader projects_to_remove: untyped
+
+    attr_reader users_to_remove_in_project: untyped
+
+    attr_reader authorizations_to_add: untyped
+
+    BATCH_SIZE: 1000
+
+    EVENTS_BATCH_SIZE: 100
+
+    SLEEP_DELAY: ::Float
+
+    def initialize: () { (untyped) -> untyped } -> void
+
+    def add: (untyped authorizations_to_add) -> untyped
+
+    def remove_users_in_project: (untyped project, untyped user_ids) -> untyped
+
+    def remove_projects_for_user: (untyped user, untyped project_ids) -> untyped
+
+    def apply!: () -> untyped
+
+    private
+
+    def should_add_authorization?: () -> untyped
+
+    def should_delete_authorizations_for_user?: () -> untyped
+
+    def should_delete_authorizations_for_project?: () -> untyped
+
+    def add_authorizations: () -> untyped
+
+    def delete_authorizations_for_user: () -> untyped
+
+    def delete_authorizations_for_project: () -> untyped
+
+    def delete_all_in_batches: (resource: untyped, ids_to_remove: untyped, column_name_of_ids_to_remove: untyped) -> untyped
+
+    def insert_all_in_batches: (untyped attributes) -> untyped
+
+    def add_delay_between_batches?: (entire_size: untyped, batch_size: untyped) -> untyped
+
+    def log_details: (entire_size: untyped, batch_size: untyped) -> untyped
+
+    def perform_delay: () -> untyped
+
+    def user: () -> untyped
+
+    def project_ids: () -> untyped
+
+    def project: () -> untyped
+
+    def user_ids: () -> untyped
+
+    def publish_events: () -> untyped
+
+    def publish_removed_event: () -> (nil | untyped)
+
+    def publish_added_event: () -> (nil | untyped)
+
+    def authorization_added_event: (untyped project_ids, untyped user_ids) -> untyped
+  end
+end

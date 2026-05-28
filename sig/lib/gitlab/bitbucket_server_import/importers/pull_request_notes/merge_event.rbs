@@ -1,0 +1,13 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      module PullRequestNotes
+        class MergeEvent < BaseImporter
+          include ::Gitlab::Import::MergeRequestHelpers
+
+          def execute: (untyped merge_event) -> untyped
+        end
+      end
+    end
+  end
+end

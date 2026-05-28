@@ -1,0 +1,210 @@
+class Member < ApplicationRecord
+  @raw_invite_token: untyped
+
+  @notification_setting: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include EachBatch
+
+  include AfterCommitQueue
+
+  include Sortable
+
+  include Importable
+
+  include CreatedAtFilterable
+
+  include Expirable
+
+  include Gitlab::Access
+
+  include Presentable
+
+  include Gitlab::Utils::StrongMemoize
+
+  include FromUnion
+
+  include UpdateHighestRole
+
+  include RestrictedSignup
+
+  include Gitlab::Experiment::Dsl
+
+  include Ci::PipelineScheduleOwnershipValidator
+
+  include Cells::Claimable
+
+  AVATAR_SIZE: 40
+
+  ACCESS_REQUEST_APPROVERS_TO_BE_NOTIFIED_LIMIT: 10
+
+  STATE_ACTIVE: 0
+
+  STATE_AWAITING: 1
+
+  attr_accessor raw_invite_token: untyped
+
+  def self.seat_assignable?: (user: untyped, ?namespace: untyped?) -> untyped
+
+  def self.seat_assignable_highest_access_level: (user: untyped, ?namespace: untyped?) -> untyped
+
+  def self.seat_assignable_highest_access_levels: (users: untyped, ?namespace: untyped?) -> untyped
+
+  def self.search: (untyped query) -> untyped
+
+  def self.search_invite_email: (untyped query) -> untyped
+
+  def self.filter_by_2fa: (untyped value) -> untyped
+
+  def self.filter_by_user_type: (untyped value) -> (nil | untyped)
+
+  def self.sort_by_attribute: (untyped method) -> untyped
+
+  def self.left_join_users: () -> untyped
+
+  def self.access_for_user_ids: (untyped user_ids) -> untyped
+
+  def self.find_by_invite_token: (untyped raw_invite_token) -> untyped
+
+  def self.valid_email?: (untyped email) -> untyped
+
+  def self.pluck_user_ids: () -> untyped
+
+  def self.coerce_to_no_access: () -> untyped
+
+  def self.shared_members: (untyped group) -> untyped
+
+  def self.null_member_role_id_sql: () -> untyped
+
+  private
+
+  def self.member_columns_for_shared_members: (untyped group) -> untyped
+
+  def self.member_columns_with_no_access: () -> untyped
+
+  def self.smallest_value_arel: (untyped args, untyped column_alias) -> untyped
+
+  def self.no_access_arel: () -> untyped
+
+  # overridden in EE
+  def self.member_role_id: (untyped _group) -> untyped
+
+  public
+
+  def real_source_type: () -> untyped
+
+  def access_field: () -> untyped
+
+  def invite?: () -> untyped
+
+  def request?: () -> untyped
+
+  def pending?: () -> untyped
+
+  def hook_prerequisites_met?: () -> untyped
+
+  def accept_request: (untyped current_user) -> (false | untyped)
+
+  def accept_invite!: (untyped new_user) -> (false | untyped)
+
+  def decline_invite!: () -> (false | untyped)
+
+  def generate_invite_token: () -> untyped
+
+  def generate_invite_token!: () -> untyped
+
+  def resend_invite: () -> (nil | untyped)
+
+  def send_invitation_reminder: (untyped reminder_index) -> (nil | untyped)
+
+  def create_notification_setting: () -> untyped
+
+  def destroy_notification_setting: () -> untyped
+
+  def notification_setting: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def notifiable?: (untyped type, ?::Hash[untyped, untyped] opts) -> (true | untyped)
+
+  # Find the user's group member with a highest access level
+  def highest_group_member: () -> untyped
+
+  def invite_to_unknown_user?: () -> untyped
+
+  def created_by_name: () -> untyped
+
+  def update_two_factor_requirement: () -> (nil | untyped)
+
+  def prevent_role_assignement?: (untyped current_user, untyped params) -> (false | true | untyped)
+
+  private
+
+  # TODO: https://gitlab.com/groups/gitlab-org/-/epics/7054
+  # temporary until we can we properly remove the source columns
+  def set_member_namespace_id: () -> untyped
+
+  def access_level_inclusion: () -> (nil | untyped)
+
+  def user_is_not_placeholder: () -> (untyped | untyped | nil)
+
+  def send_invite: () -> untyped
+
+  def send_request: () -> untyped
+
+  def send_access_granted_notification: () -> (true | untyped)
+
+  def send_access_level_updated_notification: () -> (nil | untyped)
+
+  def post_create_access_request_hook: () -> untyped
+
+  def post_create_member_hook: () -> untyped
+
+  def post_update_hook: () -> untyped
+
+  def post_destroy_member_hook: () -> untyped
+
+  def post_destroy_access_request_hook: () -> untyped
+
+  def log_previous_state_on_update: () -> untyped
+
+  # This method is overridden in the test environment, see stubbed_member.rb
+  def refresh_member_authorized_projects: () -> untyped
+
+  def after_accept_invite: () -> untyped
+
+  def after_decline_invite: () -> untyped
+
+  def after_accept_request: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def system_hook_service: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def notification_service: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def todo_service: () -> untyped
+
+  def notifiable_options: () -> untyped
+
+  def higher_access_level_than_group: () -> (untyped | nil)
+
+  def signup_email_valid?: () -> untyped
+
+  def signup_email_invalid_message: () -> untyped
+
+  def update_highest_role?: () -> (nil | untyped)
+
+  def update_highest_role_attribute: () -> untyped
+
+  def project_bot?: () -> untyped
+
+  def log_invitation_token_cleanup: () -> (true | untyped)
+
+  def event_service: () -> untyped
+
+  def create_organization_user_record: () -> (nil | untyped)
+
+  def accepted_invite_or_request?: () -> untyped
+end

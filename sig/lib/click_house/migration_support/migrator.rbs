@@ -1,0 +1,73 @@
+module ClickHouse
+  module MigrationSupport
+    class Migrator
+      @direction: untyped
+
+      @target_version: untyped
+
+      @step: untyped
+
+      @migrations: untyped
+
+      @schema_migration: untyped
+
+      @logger: untyped
+
+      @migrated_versions: untyped
+
+      attr_accessor logger: untyped
+
+      MAX_RETRY_ATTEMPTS: 3
+
+      BASE_RETRY_SLEEP_SECONDS: 5
+
+      def self.migrations_paths: (untyped database_name) -> untyped
+
+      def initialize: (untyped direction, untyped migrations, untyped schema_migration, ?untyped? target_version, ?untyped? step, ?untyped logger) -> void
+
+      def current_version: () -> untyped
+
+      def current_migration: () -> untyped
+
+      alias current current_migration
+
+      def migrate: () -> untyped
+
+      def runnable: () -> untyped
+
+      def migrations: () -> untyped
+
+      def migrated: () -> untyped
+
+      def load_migrated: () -> untyped
+
+      private
+
+      # Used for running multiple migrations up to or down to a certain value.
+      def migrate_without_lock: () -> untyped
+
+      def ran?: (untyped migration) -> untyped
+
+      # Return true if a valid version is not provided.
+      def invalid_target?: () -> (nil | untyped)
+
+      def execute_migration: (untyped migration) -> untyped
+
+      def target: () -> untyped
+
+      def finish: () -> untyped
+
+      def start: () -> (0 | untyped)
+
+      def validate: (untyped migrations) -> untyped
+
+      def record_version_state_after_migrating: (untyped version) -> untyped
+
+      def with_retry: (untyped migration) { () -> untyped } -> untyped
+
+      def up?: () -> untyped
+
+      def down?: () -> untyped
+    end
+  end
+end

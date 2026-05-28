@@ -1,0 +1,17 @@
+module API
+  module Terraform
+    module Modules
+      module V1
+        class NamespacePackages < ::API::Base
+          include ::API::Helpers::Authentication
+
+          SEMVER_REGEX: untyped
+
+          TERRAFORM_MODULE_REQUIREMENTS: { module_namespace: untyped, module_name: untyped, module_system: untyped }
+
+          TERRAFORM_MODULE_VERSION_REQUIREMENTS: { module_version: untyped }
+        end
+      end
+    end
+  end
+end

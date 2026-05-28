@@ -1,0 +1,18 @@
+module Types
+  module Packages
+    class PackageBaseType < ::Types::BaseObject
+      PROTECTION_RULE_EXISTS_BATCH_SIZE: 20
+
+      def project: () -> untyped
+
+      def protection_rule_exists: () -> untyped
+
+      # NOTE: This method must be kept in sync with the union
+      # type: `Types::Packages::MetadataType`.
+      #
+      # `Types::Packages::MetadataType.resolve_type(metadata, ctx)` must never raise.
+      # rubocop: disable GraphQL/ResolverMethodLength
+      def metadata: () -> untyped
+    end
+  end
+end

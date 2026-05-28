@@ -1,0 +1,45 @@
+module PersonalAccessTokens
+  class CreateService < BaseService
+    @current_user: untyped
+
+    @target_user: untyped
+
+    @params: untyped
+
+    @ip_address: untyped
+
+    @concatenate_errors: untyped
+
+    @organization_id: untyped
+
+    include Gitlab::InternalEventsTracking
+
+    def initialize: (current_user: untyped, target_user: untyped, organization_id: untyped, ?params: ::Hash[untyped, untyped], ?concatenate_errors: bool) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader target_user: untyped
+
+    attr_reader ip_address: untyped
+
+    attr_reader organization_id: untyped
+
+    def personal_access_token_params: () -> { name: untyped, impersonation: untyped, scopes: untyped, expires_at: untyped, organization_id: untyped, description: untyped, granular: untyped }
+
+    def pat_expiration: () -> (untyped | nil)
+
+    def max_expiry_date: () -> untyped
+
+    def creation_permitted?: () -> untyped
+
+    def granular_tokens_enforced?: () -> (false | untyped)
+
+    def log_event: (untyped token) -> untyped
+
+    def track_event: (untyped token) -> (nil | untyped)
+
+    def error_response: (untyped message, ?::Hash[untyped, untyped] payload) -> untyped
+  end
+end

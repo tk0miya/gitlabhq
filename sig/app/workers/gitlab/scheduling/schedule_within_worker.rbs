@@ -1,0 +1,35 @@
+module Gitlab
+  module Scheduling
+    # Schedules another worker within the given time range using random splay.
+    #
+    # worker_class:
+    #     The class name of the worker to be scheduled. REQUIRED.
+    # within_minutes (1..59):
+    #     The maximum number of minutes to wait before scheduling the worker. OPTIONAL.
+    # within_hours (1..23):
+    #     The maximum number of hours to wait before scheduling the worker. OPTIONAL.
+    #
+    # Example:
+    #     # schedules MyWorker to run at a random time within the next 2 hours and 30 minutes
+    #     Gitlab::Scheduling::ScheduleWithinWorker.perform_async({
+    #         'worker_class' => 'MyWorker',
+    #         'within_hours' => 2,
+    #         'within_minutes' => 30
+    #      })
+    class ScheduleWithinWorker
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      def perform: (?::Hash[untyped, untyped] args) -> untyped
+
+      private
+
+      def validate_arguments!: (untyped args) -> untyped
+
+      def valid_minute?: (untyped minute) -> untyped
+
+      def valid_hour?: (untyped hour) -> untyped
+    end
+  end
+end

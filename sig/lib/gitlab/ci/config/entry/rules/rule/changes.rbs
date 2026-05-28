@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        class Rules
+          class Rule
+            class Changes < ::Gitlab::Config::Entry::Simplifiable
+              class SimpleChanges < ::Gitlab::Config::Entry::Node
+                include ::Gitlab::Config::Entry::Validatable
+
+                def value: () -> untyped
+              end
+
+              class ComplexChanges < ::Gitlab::Config::Entry::Node
+                include ::Gitlab::Config::Entry::Validatable
+
+                include ::Gitlab::Config::Entry::Attributable
+
+                ALLOWED_KEYS: ::Array[:paths | :compare_to]
+
+                REQUIRED_KEYS: ::Array[:paths]
+              end
+
+              class UnknownStrategy < ::Gitlab::Config::Entry::Node
+                def errors: () -> ::Array[::String]
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

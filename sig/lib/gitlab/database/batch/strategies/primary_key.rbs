@@ -1,0 +1,36 @@
+module Gitlab
+  module Database
+    module Batch
+      module Strategies
+        # Batches over the given table and column combination, returning the MIN() and MAX()
+        # values for the next batch as an array of array (compatible with composite PK)
+        #
+        # If no more batches exist in the table, returns nil.
+        class PrimaryKey < BaseStrategy
+          include Gitlab::Database::DynamicModelHelpers
+
+          # Finds and returns the next batch in the table.
+          #
+          # table_name - The table to batch over
+          # batch_min_value - The minimum value which the next batch will start at
+          # batch_size - The size of the next batch
+          # job_class - The migration job class
+          def next_batch: (untyped table_name, batch_min_value: untyped, batch_size: untyped, ?job_class: untyped?, ?job_arguments: untyped) -> untyped
+
+          private
+
+          def create_keyset_iterator: (untyped scope, untyped cursor_columns, untyped batch_min_value) -> untyped
+
+          def apply_scope_to: (untyped model_class, untyped job_class, untyped table_name, untyped cursor_columns, untyped job_arguments) -> untyped
+
+          # rubocop:disable Lint/UnreachableLoop -- we need to use each_batch to pull one batch out
+          def extract_batch_bounds: (untyped iterator, untyped batch_size, untyped cursor_columns) -> untyped
+
+          def valid_batch?: (untyped batch) -> untyped
+
+          def build_batch_bounds: (untyped batch, untyped cursor_columns) -> ::Array[untyped]
+        end
+      end
+    end
+  end
+end

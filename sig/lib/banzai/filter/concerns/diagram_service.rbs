@@ -1,0 +1,17 @@
+module Banzai
+  module Filter
+    module Concerns
+      # Common functionality used by filters that interact with diagram services:
+      # check settings, find relevant tags in the DOM.
+      module DiagramService
+        extend ActiveSupport::Concern
+
+        def settings: () -> untyped
+
+        def css_selector_for_code_blocks: (lang: untyped) -> ::String
+
+        def lang_from_code_block: (untyped node) -> untyped
+      end
+    end
+  end
+end

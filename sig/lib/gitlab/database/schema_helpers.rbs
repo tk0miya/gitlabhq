@@ -1,0 +1,45 @@
+module Gitlab
+  module Database
+    module SchemaHelpers
+      def create_trigger_function: (untyped name, ?replace: bool) { () -> untyped } -> untyped
+
+      def reset_trigger_function: (untyped function_name) -> untyped
+
+      def reset_all_trigger_functions: (untyped table_name) -> untyped
+
+      def function_exists?: (untyped name) -> untyped
+
+      def create_trigger: (untyped table_name, untyped name, untyped function_name, fires: untyped, ?replace: bool) ?{ () -> untyped } -> untyped
+
+      def trigger_exists?: (untyped table_name, untyped name, ?untyped? schema) -> untyped
+
+      def drop_function: (untyped name, ?if_exists: bool) -> untyped
+
+      def drop_trigger: (untyped table_name, untyped name, ?if_exists: bool) -> untyped
+
+      def create_comment: (untyped type, untyped name, untyped text) -> untyped
+
+      def tmp_table_name: (untyped base) -> ::String
+
+      def object_name: (untyped table, untyped type) -> ::String
+
+      def assert_not_in_transaction_block: (scope: untyped) -> (nil | untyped)
+
+      def find_all_id_columns_sql: () -> untyped
+
+      private
+
+      def table_for_range_partition: (untyped partition_name) -> ::String
+
+      def table_for_list_partition: (untyped partition_name) -> ::String
+
+      def create_range_partition: (untyped partition_name, untyped table_name, untyped lower_bound, untyped upper_bound) -> untyped
+
+      def create_list_partition: (untyped partition_name, untyped table_name, untyped partition_values) -> untyped
+
+      def optional_clause: (untyped flag, untyped clause) -> (untyped | "")
+
+      def find_table_triggers: (untyped table_name) -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Resolvers
+  class MembersResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    include LooksAhead
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    private
+
+    def preloads: () -> { user: ::Array[:user | :source] }
+
+    def finder_class: () -> nil
+  end
+end

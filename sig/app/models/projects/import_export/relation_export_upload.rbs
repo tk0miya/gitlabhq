@@ -1,0 +1,9 @@
+module Projects
+  module ImportExport
+    class RelationExportUpload < ApplicationRecord
+      include WithUploads
+
+      def uploads_sharding_key: () -> { project_id: untyped }
+    end
+  end
+end

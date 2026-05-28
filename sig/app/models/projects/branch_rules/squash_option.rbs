@@ -1,0 +1,13 @@
+module Projects
+  module BranchRules
+    class SquashOption < ApplicationRecord
+      include ::Projects::SquashOption
+
+      def branch_rule: () -> untyped
+
+      private
+
+      def validate_protected_branch_belongs_to_project: () -> (nil | untyped)
+    end
+  end
+end

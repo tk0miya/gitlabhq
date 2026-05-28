@@ -1,0 +1,15 @@
+module Ci
+  module StuckBuilds
+    class DropScheduledService
+      include DropHelpers
+
+      BUILD_SCHEDULED_OUTDATED_TIMEOUT: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def scheduled_timed_out_builds: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Packages
+  module Debian
+    class Package < Packages::Package
+      def self.incoming_package!: () -> untyped
+
+      def self.existing_packages_with: (name: untyped, version: untyped) -> untyped
+
+      def incoming?: () -> untyped
+
+      private
+
+      def forbidden_changes: () -> (nil | untyped)
+    end
+  end
+end

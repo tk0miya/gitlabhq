@@ -1,0 +1,31 @@
+module Pajamas
+  class ExperimentBadgeComponent < Pajamas::Component
+    @type: untyped
+
+    @popover_placement: untyped
+
+    TYPE_OPTIONS: ::Array[:experiment | :beta]
+
+    POPOVER_PLACEMENT_OPTIONS: ::Array["top" | "bottom" | "left" | "right"]
+
+    # @param type [Symbol] The type of badge (:experiment or :beta)
+    # @param popover_placement [String] The placement of the popover (top, bottom, left, right)
+    def initialize: (?type: ::Symbol, ?popover_placement: ::String) -> void
+
+    private
+
+    def experiment?: () -> untyped
+
+    def badge_text: () -> untyped
+
+    def help_page_url: () -> ::String
+
+    def popover_title: () -> untyped
+
+    def popover_intro: () -> untyped
+
+    def popover_list_title: () -> untyped
+
+    def popover_bullets: () -> ::Array[untyped]
+  end
+end

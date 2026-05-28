@@ -1,0 +1,20 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents the configuration for passing attributes to the downstream pipeline
+        #
+        class Trigger
+          class Forward < ::Gitlab::Config::Entry::Node
+            include ::Gitlab::Config::Entry::Validatable
+
+            include ::Gitlab::Config::Entry::Attributable
+
+            ALLOWED_KEYS: ::Array[:yaml_variables | :pipeline_variables]
+          end
+        end
+      end
+    end
+  end
+end

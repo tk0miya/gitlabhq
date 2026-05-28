@@ -1,0 +1,11 @@
+module Integrations
+  class SlackEventWorker
+    include ApplicationWorker
+
+    EVENTS: { "app_home_opened" => untyped, "app_mention" => untyped }
+
+    def self.event?: (untyped slack_event) -> untyped
+
+    def perform: (untyped args) -> untyped
+  end
+end

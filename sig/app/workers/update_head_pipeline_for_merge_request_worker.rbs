@@ -1,0 +1,7 @@
+class UpdateHeadPipelineForMergeRequestWorker
+  include ApplicationWorker
+
+  include PipelineQueue
+
+  def perform: (untyped merge_request_id) -> untyped
+end

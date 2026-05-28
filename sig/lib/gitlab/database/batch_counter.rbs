@@ -1,0 +1,64 @@
+module Gitlab
+  module Database
+    class BatchCounter
+      @relation: untyped
+
+      @column: untyped
+
+      @operation: untyped
+
+      @operation_args: untyped
+
+      @max_allowed_loops: untyped
+
+      FALLBACK: -1
+
+      MIN_REQUIRED_BATCH_SIZE: 1250
+
+      DEFAULT_SUM_BATCH_SIZE: 1000
+
+      MAX_ALLOWED_LOOPS: 10000
+
+      SLEEP_TIME_IN_SECONDS: ::Float
+
+      ALLOWED_MODES: ::Array[:itself | :distinct]
+
+      FALLBACK_FINISH: 0
+
+      OFFSET_BY_ONE: 1
+
+      # Each query should take < 500ms https://gitlab.com/gitlab-org/gitlab/-/merge_requests/22705
+      DEFAULT_DISTINCT_BATCH_SIZE: 10000
+
+      DEFAULT_BATCH_SIZE: 100000
+
+      def initialize: (untyped relation, ?column: untyped?, ?operation: ::Symbol, ?operation_args: untyped?, ?max_allowed_loops: untyped?) -> void
+
+      def unwanted_configuration?: (untyped finish, untyped batch_size, untyped start) -> untyped
+
+      def count: (?batch_size: untyped?, ?mode: ::Symbol, ?start: untyped?, ?finish: untyped?) -> untyped
+
+      def count_with_timeout: (?batch_size: untyped?, ?mode: ::Symbol, ?start: untyped?, ?finish: untyped?, ?timeout: untyped?, ?partial_results: untyped?) -> ({ status: :bad_config } | { status: :timeout, partial_results: untyped, continue_from: untyped } | { status: :cancelled } | { status: :completed, count: untyped })
+
+      def transaction_open?: () -> untyped
+
+      def merge_results: (untyped results, untyped object) -> untyped
+
+      private
+
+      def build_relation_batch: (untyped start, untyped finish, untyped mode) -> untyped
+
+      def batch_size_for_mode_and_operation: (untyped mode, untyped operation) -> untyped
+
+      def between_condition: (untyped start, untyped finish) -> (untyped | ::Hash[untyped, ::Range[untyped]])
+
+      def actual_start: (untyped start) -> untyped
+
+      def actual_finish: (untyped finish) -> untyped
+
+      def check_mode!: (untyped mode) -> untyped
+
+      def log_canceled_batch_fetch: (untyped batch_start, untyped mode, untyped query, untyped error) -> untyped
+    end
+  end
+end

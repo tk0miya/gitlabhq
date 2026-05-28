@@ -1,0 +1,25 @@
+module Types
+  module DesignManagement
+    module DesignFields
+      include BaseInterface
+
+      def diff_refs: (parent: untyped) -> untyped
+
+      def image: (parent: untyped) -> untyped
+
+      def image_v432x230: (parent: untyped) -> untyped
+
+      def event: (parent: untyped) -> untyped
+
+      def cached_actions_for_version: (untyped version) -> untyped
+
+      def project: () -> untyped
+
+      def issue: () -> untyped
+
+      private
+
+      def lazy_action: (untyped parent) -> untyped
+    end
+  end
+end

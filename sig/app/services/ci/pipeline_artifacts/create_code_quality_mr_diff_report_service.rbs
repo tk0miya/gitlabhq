@@ -1,0 +1,34 @@
+# frozen_string_literal: true
+module Ci
+  module PipelineArtifacts
+    class CreateCodeQualityMrDiffReportService
+      @pipeline: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped pipeline) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader pipeline: untyped
+
+      def artifact_attributes: () -> { pipeline: untyped, file_type: :code_quality_mr_diff, size: untyped, file: untyped, locked: untyped }
+
+      def merge_requests: () -> untyped
+
+      def head_report: () -> untyped
+
+      def base_report: (untyped merge_request) -> untyped
+
+      def mr_diff_report_by_merge_requests: () -> untyped
+
+      def new_errors_introduced?: () -> untyped
+
+      def build_carrierwave_file!: () -> untyped
+
+      def build_quality_mr_diff_report: (untyped mr_diff_report) -> untyped
+    end
+  end
+end

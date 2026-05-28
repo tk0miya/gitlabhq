@@ -1,0 +1,33 @@
+module Gitlab
+  module Pagination
+    # Wraps existing keyset pagination for GraphQL-style pagination
+    # Supports first/last with after/before cursors
+    module GraphqlKeysetPagination
+      extend ActiveSupport::Concern
+
+      private
+
+      def paginate_with_keyset: (untyped scope, ?untyped pagination_params) -> { records: untyped, page_info: untyped }
+
+      def apply_graphql_cursor_conditions: (untyped scope, untyped order, untyped pagination_params) -> untyped
+
+      def apply_cursor_conditions_for_first: (untyped scope, untyped order, untyped after_cursor, untyped before_cursor) -> untyped
+
+      def apply_cursor_conditions_for_last: (untyped scope, untyped order, untyped after_cursor, untyped before_cursor) -> untyped
+
+      def decode_cursor: (untyped cursor) -> untyped
+
+      def encode_keyset_cursor: (untyped attributes) -> untyped
+
+      def build_keyset_page_info: (untyped order, untyped records, untyped has_more, untyped pagination_params) -> (untyped | { has_next_page: untyped, has_previous_page: untyped, start_cursor: untyped, end_cursor: untyped })
+
+      def calculate_has_next_page: (untyped has_more, untyped pagination_params) -> untyped
+
+      def calculate_has_previous_page: (untyped has_more, untyped pagination_params) -> (untyped | untyped | false)
+
+      def empty_keyset_page_info: () -> { has_next_page: false, has_previous_page: false, start_cursor: nil, end_cursor: nil }
+
+      def default_page_limit: () -> untyped
+    end
+  end
+end

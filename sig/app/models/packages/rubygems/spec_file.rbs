@@ -1,0 +1,17 @@
+module Packages
+  module Rubygems
+    class SpecFile < ApplicationRecord
+      include FileStoreMounter
+
+      include ObjectStorable
+
+      include Packages::Destructible
+
+      STORE_COLUMN: :file_store
+
+      private
+
+      def set_object_storage_key: () -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module WorkItems
+    module Instrumentation
+      class EventMappings
+        @work_item: untyped
+
+        @old_associations: untyped
+
+        include EventActions
+
+        ATTRIBUTE_MAPPINGS: ::Array[{ event: untyped, key: "title" } | { event: untyped, key: "description" } | { event: untyped, key: "milestone_id" } | { event: untyped, key: "weight" } | { event: untyped, key: "sprint_id" } | { event: untyped, key: "health_status" } | { event: untyped, key: "start_date" } | { event: untyped, key: "due_date" } | { event: untyped, key: "time_estimate" } | { event: untyped, key: "discussion_locked" }]
+
+        ASSOCIATION_MAPPINGS: ::Array[{ event: untyped, key: :assignees, compare: untyped } | { event: untyped, key: :confidential, compare: untyped } | { event: untyped, key: :labels, compare: untyped } | { event: untyped, key: :total_time_spent, compare: untyped } | { event: untyped, key: :status, compare: untyped, accessor: untyped }]
+
+        def self.events_for: (work_item: untyped, old_associations: untyped) -> untyped
+
+        def initialize: (untyped work_item, untyped old_associations) -> void
+
+        def events_to_track: () -> untyped
+      end
+    end
+  end
+end

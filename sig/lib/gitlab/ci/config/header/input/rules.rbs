@@ -1,0 +1,20 @@
+module Gitlab
+  module Ci
+    class Config
+      module Header
+        class Input
+          #
+          # Input rules define conditional options and defaults based on expressions.
+          #
+          class Rules < ::Gitlab::Config::Entry::ComposableArray
+            include ::Gitlab::Config::Entry::Validatable
+
+            def composable_class: () -> untyped
+
+            def errors: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+# Service class for getting and caching the number of elements of several projects
+# Warning: do not user this service with a really large set of projects
+# because the service use maps to retrieve the project ids.
+module Projects
+  class BatchCountService
+    @projects: untyped
+
+    def initialize: (untyped projects) -> void
+
+    def refresh_cache_and_retrieve_data: () -> untyped
+
+    def project_ids: () -> untyped
+
+    def global_count: (untyped project) -> untyped
+
+    def count_service: () -> untyped
+  end
+end

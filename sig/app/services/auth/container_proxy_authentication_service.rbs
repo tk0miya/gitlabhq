@@ -1,0 +1,58 @@
+# rubocop:disable Gitlab/BoundedContexts -- this is an existing class
+module Auth
+  class ContainerProxyAuthenticationService < BaseService
+    @authentication_abilities: untyped
+
+    AUDIENCE: "dependency_proxy"
+
+    HMAC_KEY: "gitlab-dependency-proxy"
+
+    DEFAULT_EXPIRE_TIME: untyped
+
+    REQUIRED_CI_ABILITIES: ::Array[:build_read_container_image | :build_create_container_image]
+
+    REQUIRED_USER_ABILITIES: ::Array[:read_container_image | :create_container_image]
+
+    REQUIRED_USER_VR_ABILITIES: ::Array[:read_dependency_proxy | :write_dependency_proxy]
+
+    SERVICE_TYPE_VIRTUAL_REGISTRY: "virtual_registry"
+
+    SERVICE_TYPE_DEPENDENCY_PROXY: "dependency_proxy"
+
+    VIRTUAL_REGISTRY_SCOPE_PATTERN: ::Regexp
+
+    def execute: (authentication_abilities: untyped) -> (untyped | { token: untyped })
+
+    extend ::Gitlab::Utils::StrongMemoize
+
+    def self.secret: () -> untyped
+
+    def self.token_expire_at: () -> untyped
+
+    private
+
+    attr_reader authentication_abilities: untyped
+
+    def valid_user_actor?: () -> untyped
+
+    def has_required_abilities?: () -> untyped
+
+    def group_access_token: () -> untyped
+
+    def authorized_token: () -> untyped
+
+    def detect_service_type: () -> untyped
+
+    def scopes: () -> untyped
+
+    def deploy_token: () -> (nil | untyped)
+
+    def raw_token: () -> untyped
+
+    def group_access_token_user?: () -> untyped
+
+    def personal_access_token_user?: () -> untyped
+
+    def composite_scoped_user_id: () -> (nil | untyped)
+  end
+end

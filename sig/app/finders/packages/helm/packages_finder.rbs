@@ -1,0 +1,21 @@
+module Packages
+  module Helm
+    class PackagesFinder
+      @project: untyped
+
+      @channel: untyped
+
+      @with_recent_limit: untyped
+
+      include ::Packages::FinderHelper
+
+      def initialize: (untyped project, untyped channel, ?with_recent_limit: bool) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def max_packages_count: () -> untyped
+    end
+  end
+end

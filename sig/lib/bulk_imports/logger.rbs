@@ -1,0 +1,31 @@
+module BulkImports
+  class Logger < ::Import::Framework::Logger
+    @entity: untyped
+
+    @tracker: untyped
+
+    IMPORTER_NAME: "gitlab_migration"
+
+    # Extract key information from a provided entity and include it in log
+    # entries created from this logger instance.
+    # @param entity [BulkImports::Entity]
+    def with_entity: (untyped entity) -> self
+
+    # Extract key information from a provided tracker and its entity and include
+    # it in log entries created from this logger instance.
+    # @param tracker [BulkImports::Tracker]
+    def with_tracker: (untyped tracker) -> self
+
+    def entity_attributes: () -> (::Hash[untyped, untyped] | { bulk_import_id: untyped, bulk_import_entity_id: untyped, bulk_import_entity_type: untyped, source_full_path: untyped, source_version: untyped })
+
+    def tracker_attributes: () -> (::Hash[untyped, untyped] | { tracker_id: untyped, pipeline_class: untyped, tracker_state: untyped })
+
+    def default_attributes: () -> untyped
+
+    private
+
+    attr_reader entity: untyped
+
+    attr_reader tracker: untyped
+  end
+end

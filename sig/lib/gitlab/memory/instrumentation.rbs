@@ -1,0 +1,29 @@
+# This class uses a custom Ruby patch to allow
+# a per-thread memory allocation tracking in a efficient manner
+#
+# This concept is currently tried to be upstreamed here:
+# - https://github.com/ruby/ruby/pull/3978
+module Gitlab
+  module Memory
+    class Instrumentation
+      KEY_MAPPING: { total_allocated_objects: :mem_objects, total_malloc_bytes: :mem_bytes, total_mallocs: :mem_mallocs }
+
+      MUTEX: untyped
+
+      def self.available?: () -> untyped
+
+      def self.start_thread_memory_allocations: () -> (nil | untyped)
+
+      # This method returns a hash with the following keys:
+      # - mem_objects:     number of allocated heap slots (as reflected by GC)
+      # - mem_mallocs:     number of malloc calls
+      # - mem_bytes:       number of bytes allocated by malloc for objects that did not fit
+      #                    into a heap slot
+      # - mem_total_bytes: number of bytes allocated for both objects consuming an object slot
+      #                    and objects that required a malloc (mem_malloc_bytes)
+      def self.measure_thread_memory_allocations: (untyped previous) -> (nil | untyped)
+
+      def self.with_memory_allocations: () { () -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,53 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class Create < Chain::Base
+          include Chain::Helpers
+
+          include Gitlab::Utils::StrongMemoize
+
+          BULK_INSERT_BATCH_SIZE: 500
+
+          def perform!: () -> untyped
+
+          def break?: () -> untyped
+
+          private
+
+          def with_iid_retry: (?cleanup_on_failure: bool) { () -> untyped } -> untyped
+
+          def validate_records!: (untyped records) -> untyped
+
+          def cleanup_bulk_insert_on_failure!: () -> (nil | untyped)
+
+          def assign_pipeline_references!: (untyped records) -> untyped
+
+          def assign_build_attributes!: (untyped builds) -> untyped
+
+          def bulk_insert_with_pipeline_refs!: (untyped model_class, untyped records, ?returning: ::Array[untyped]) -> (nil | untyped)
+
+          def bulk_insert_stages!: (untyped stages) -> untyped
+
+          def bulk_insert_statuses!: (untyped builds) -> (nil | untyped)
+
+          def bulk_insert_job_definition_instances!: (untyped builds, untyped result) -> (nil | untyped)
+
+          def bulk_insert_needs!: (untyped builds) -> (nil | untyped)
+
+          def bulk_insert_job_sources!: (untyped builds) -> (nil | untyped)
+
+          def bulk_insert_job_environments!: (untyped builds) -> (nil | untyped)
+
+          def insert_records_and_restore_ids: (untyped model_class, untyped records, returning: untyped) -> untyped
+
+          def format_columns: (untyped model_class, untyped columns) -> untyped
+
+          def restore_ids_from_result: (untyped records, untyped result, untyped returning) -> untyped
+
+          def statuses: () -> untyped
+        end
+      end
+    end
+  end
+end

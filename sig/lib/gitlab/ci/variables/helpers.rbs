@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Variables
+      module Helpers
+        def self.merge_variables: (untyped current_vars, untyped new_vars) -> untyped
+
+        def self.transform_to_array: (untyped vars) -> (::Array[untyped] | untyped)
+
+        def self.inherit_yaml_variables: (from: untyped, to: untyped, inheritance: untyped) -> untyped
+
+        private
+
+        def self.apply_inheritance: (untyped variables, untyped inheritance) -> untyped
+      end
+    end
+  end
+end

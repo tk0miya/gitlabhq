@@ -1,0 +1,27 @@
+module Bitbucket
+  module ExponentialBackoff
+    extend ActiveSupport::Concern
+
+    INITIAL_DELAY: untyped
+
+    EXPONENTIAL_BASE: 2
+
+    MAX_RETRIES: 3
+
+    RETRYABLE_HTTP_STATUS_CODES: ::Array[408 | 429]
+
+    RateLimitError: untyped
+
+    def retry_with_exponential_backoff: () { (?) -> untyped } -> untyped
+
+    private
+
+    def run_retry_with_exponential_backoff: () { () -> untyped } -> untyped
+
+    def retryable_error?: (untyped exception) -> (false | untyped)
+
+    def http_status_from: (untyped exception) -> untyped
+
+    def handle_error: (untyped retries, untyped delay, untyped error) -> ::Array[untyped]
+  end
+end

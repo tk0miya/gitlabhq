@@ -1,0 +1,47 @@
+module Packages
+  module Nuget
+    class ServiceIndexPresenter
+      @project_or_group: untyped
+
+      include API::Helpers::RelatedResourcesHelpers
+
+      SERVICE_VERSIONS: { download: ::Array["PackageBaseAddress/3.0.0"], search: ::Array["SearchQueryService" | "SearchQueryService/3.0.0-beta" | "SearchQueryService/3.0.0-rc"], symbol: ::Array["SymbolPackagePublish/4.9.0"], publish: ::Array["PackagePublish/2.0.0"], metadata: ::Array["RegistrationsBaseUrl" | "RegistrationsBaseUrl/3.0.0-beta" | "RegistrationsBaseUrl/3.0.0-rc"] }
+
+      SERVICE_COMMENTS: { download: "Get package content (.nupkg).", search: "Filter and search for packages by keyword.", symbol: "Push symbol packages.", publish: "Push and delete (or unlist) packages.", metadata: "Get package metadata." }
+
+      VERSION: "3.0.0"
+
+      PROJECT_LEVEL_SERVICES: ::Array[:download | :publish | :symbol]
+
+      GROUP_LEVEL_SERVICES: ::Array[:search | :metadata]
+
+      def initialize: (untyped project_or_group) -> void
+
+      def version: () -> untyped
+
+      def resources: () -> untyped
+
+      private
+
+      attr_reader project_or_group: untyped
+
+      def available_services: () -> untyped
+
+      def build_service: (untyped service_type) -> untyped
+
+      def build_service_url: (untyped service_type) -> untyped
+
+      def scope: () -> (:project | untyped)
+
+      def download_service_url: () -> untyped
+
+      def metadata_service_url: () -> untyped
+
+      def search_service_url: () -> untyped
+
+      def publish_service_url: () -> untyped
+
+      def symbol_service_url: () -> untyped
+    end
+  end
+end

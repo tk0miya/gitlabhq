@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+module API
+  class GoProxy < ::API::Base
+    GO_PROXY_TAGS: ::Array["packages"]
+
+    # basic semver, except case encoded (A => !a)
+    MODULE_VERSION_REGEX: ::Regexp
+
+    MODULE_VERSION_REQUIREMENTS: { module_version: untyped }
+  end
+end

@@ -1,0 +1,16 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents an array of file paths.
+        #
+        class Files < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Config::Entry::Validatable
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

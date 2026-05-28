@@ -1,0 +1,13 @@
+module Resolvers
+  class UserStarredProjectsResolver < BaseResolver
+    prepend ::Projects::LookAheadPreloads
+
+    alias user object
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    private
+
+    def finder_params: (untyped args) -> { organization: untyped, search: untyped, sort: untyped, min_access_level: untyped, language_name: untyped, active: untyped }
+  end
+end

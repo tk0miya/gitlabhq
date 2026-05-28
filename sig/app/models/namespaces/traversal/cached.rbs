@@ -1,0 +1,31 @@
+module Namespaces
+  module Traversal
+    module Cached
+      extend ActiveSupport::Concern
+
+      extend Gitlab::Utils::Override
+
+      def self_and_descendant_ids: (?skope: untyped) -> untyped
+
+      def descendant_ids: (?skope: untyped) -> untyped
+
+      def all_project_ids: () -> untyped
+
+      def all_unarchived_project_ids: () -> untyped
+
+      private
+
+      # This method implements an OR based cache lookup using COALESCE, similar what you would do in Ruby:
+      # return cheap_cached_data || expensive_uncached_data
+      def scope_with_cached_ids: (untyped consistent_ids_scope, untyped model, untyped cached_ids_column) -> untyped
+
+      def sync_traversal_ids: () -> untyped
+
+      def sync_traversal_ids_on_create: () -> untyped
+
+      def wrap_sync_traversal_ids: () -> (nil | untyped)
+
+      def invalidate_descendants_cache: () -> (nil | untyped)
+    end
+  end
+end

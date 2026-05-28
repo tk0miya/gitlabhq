@@ -1,0 +1,19 @@
+module Ci
+  class UpdateGroupPendingBuildService
+    @group: untyped
+
+    @update_params: untyped
+
+    BATCH_SIZE: 500
+
+    BATCH_QUIET_PERIOD: untyped
+
+    def initialize: (untyped group, untyped update_params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def update_params_for_group: (untyped group) -> untyped
+  end
+end

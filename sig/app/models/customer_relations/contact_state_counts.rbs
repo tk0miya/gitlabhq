@@ -1,0 +1,29 @@
+module CustomerRelations
+  class ContactStateCounts
+    @current_user: untyped
+
+    @group: untyped
+
+    @params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader group: untyped
+
+    def self.declarative_policy_class: () -> "CustomerRelations::ContactPolicy"
+
+    def initialize: (untyped current_user, untyped group, untyped params) -> void
+
+    def all: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def counts: () -> untyped
+
+    def counts_by_state: () -> untyped
+  end
+end

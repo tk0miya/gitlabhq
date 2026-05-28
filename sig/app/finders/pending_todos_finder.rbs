@@ -1,0 +1,42 @@
+# Finder for retrieving the pending todos of a user, optionally filtered using
+# various fields.
+#
+# While this finder is a bit more verbose compared to use
+# `where(params.slice(...))`, it allows us to decouple the input parameters from
+# the actual column names. For example, if we ever decide to use separate
+# columns for target types (e.g. `issue_id`, `merge_request_id`, etc), we no
+# longer need to change _everything_ that uses this finder. Instead, we just
+# change the various `by_*` methods in this finder, without having to touch
+# everything that uses it.
+class PendingTodosFinder
+  @params: untyped
+
+  # To prevent N+1 queries when fetching the users of the PendingTodos.
+  @preload_user_association: untyped
+
+  attr_reader users: untyped
+
+  attr_reader params: untyped
+
+  # users - The list of users to retrieve the todos for. If nil is passed, it won't filter todos based on users
+  # params - A Hash containing columns and values to use for filtering todos.
+  def initialize: (?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  def by_users: (untyped todos) -> untyped
+
+  def by_project: (untyped todos) -> untyped
+
+  def by_target_id: (untyped todos) -> untyped
+
+  def by_target_type: (untyped todos) -> untyped
+
+  def by_author_id: (untyped todos) -> untyped
+
+  def by_commit_id: (untyped todos) -> untyped
+
+  def by_discussion: (untyped todos) -> untyped
+
+  def by_action: (untyped todos) -> untyped
+end

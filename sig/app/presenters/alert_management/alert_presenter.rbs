@@ -1,0 +1,45 @@
+module AlertManagement
+  class AlertPresenter < Gitlab::View::Presenter::Delegated
+    @alert: untyped
+
+    @project: untyped
+
+    include IncidentManagement::Settings
+
+    MARKDOWN_LINE_BREAK: "  \n"
+
+    HORIZONTAL_LINE: "\n\n---\n\n"
+
+    def initialize: (untyped alert, **untyped attributes) -> void
+
+    def issue_description: () -> untyped
+
+    def start_time: () -> untyped
+
+    def details_url: () -> untyped
+
+    def details: () -> untyped
+
+    def show_incident_issues_link?: () -> untyped
+
+    def incident_issues_link: () -> untyped
+
+    def email_title: () -> untyped
+
+    private
+
+    attr_reader alert: untyped
+
+    attr_reader project: untyped
+
+    def issue_summary_markdown: () -> untyped
+
+    def metadata_list: () -> untyped
+
+    def list_item: (untyped key, untyped value) -> untyped
+
+    def backtick: (untyped value) -> ::String
+
+    def host_links: () -> untyped
+  end
+end

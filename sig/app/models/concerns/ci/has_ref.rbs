@@ -1,0 +1,23 @@
+#
+# We will disable `ref` and `sha` attributes in `Ci::Build` in the future
+# and remove this module in favor of Ci::Processable.
+module Ci
+  module HasRef
+    extend ActiveSupport::Concern
+
+    def branch?: () -> untyped
+
+    def git_ref: () -> (untyped | untyped | untyped | nil)
+
+    def workload?: () -> untyped
+
+    # A slugified version of the build ref, suitable for inclusion in URLs and
+    # domain names. Rules:
+    #
+    #   * Lowercased
+    #   * Anything not matching [a-z0-9-] is replaced with a -
+    #   * Maximum length is 63 bytes
+    #   * First/Last Character is not a hyphen
+    def ref_slug: () -> untyped
+  end
+end

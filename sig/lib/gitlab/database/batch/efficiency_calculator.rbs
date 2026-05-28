@@ -1,0 +1,39 @@
+module Gitlab
+  module Database
+    module Batch
+      class EfficiencyCalculator
+        @worker: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        DEFAULT_NUMBER_OF_JOBS: 20
+
+        DEFAULT_EMA_ALPHA: ::Float
+
+        def initialize: (worker: untyped) -> void
+
+        def optimizer: () -> untyped
+
+        private
+
+        attr_reader worker: untyped
+
+        def smoothed_time_efficiency: (?number_of_jobs: untyped, ?alpha: untyped) -> (nil | untyped)
+
+        def job_records: () -> untyped
+
+        def extract_valid_efficiencies: (untyped jobs) -> untyped
+
+        # Calculates a weighted average where recent jobs count more than older ones (Exponential Moving Average).
+        #
+        # alpha: controls how fast older jobs lose importance (0.4 = recent jobs get 40% more weight)
+        # weight: how much a job counts shrinks for older jobs (e.g., 1.0, 0.6, 0.36, ...)
+        # dividend: running total of each job's efficiency multiplied by its weight
+        # divisor: running total of all weights, used to divide the dividend into an average
+        #
+        # Returns [sum of weighted efficiencies, sum of weights] used to compute the average.
+        def calculate_weighted_sums: (untyped efficiencies, untyped alpha) -> untyped
+      end
+    end
+  end
+end

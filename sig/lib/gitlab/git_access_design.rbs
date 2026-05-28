@@ -1,0 +1,15 @@
+module Gitlab
+  class GitAccessDesign < GitAccess
+    extend ::Gitlab::Utils::Override
+
+    def check: (untyped _cmd, untyped _changes) -> untyped
+
+    def push_ability: () -> :create_design
+
+    private
+
+    def check_protocol!: () -> (untyped | nil)
+
+    def check_can_create_design!: () -> (untyped | nil)
+  end
+end

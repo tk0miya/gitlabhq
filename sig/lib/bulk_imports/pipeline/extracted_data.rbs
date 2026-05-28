@@ -1,0 +1,17 @@
+module BulkImports
+  module Pipeline
+    class ExtractedData
+      @data: untyped
+
+      @page_info: untyped
+
+      attr_reader data: untyped
+
+      def initialize: (?data: untyped?, ?page_info: ::Hash[untyped, untyped]) -> void
+
+      def has_next_page?: () -> untyped
+
+      def next_page: () -> untyped
+    end
+  end
+end

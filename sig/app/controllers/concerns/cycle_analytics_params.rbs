@@ -1,0 +1,29 @@
+module CycleAnalyticsParams
+  @options: untyped
+
+  @request_params: untyped
+
+  extend ActiveSupport::Concern
+
+  def cycle_analytics_project_params: () -> (::Hash[untyped, untyped] | untyped)
+
+  def cycle_analytics_group_params: () -> (::Hash[untyped, untyped] | untyped)
+
+  def options: (untyped params) -> untyped
+
+  private
+
+  def start_date: (untyped params) -> untyped
+
+  def date_range: (untyped params) -> untyped
+
+  def to_utc_time: (untyped field) -> untyped
+
+  def permitted_cycle_analytics_params: () -> untyped
+
+  def all_cycle_analytics_params: () -> untyped
+
+  def request_params: () -> untyped
+
+  def validate_params: () -> (untyped | nil)
+end

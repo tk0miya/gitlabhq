@@ -1,0 +1,36 @@
+module BulkImports
+  class UserContributionsExportMapper
+    @portable_class: untyped
+
+    @portable_id: untyped
+
+    @offline_export_id: untyped
+
+    CACHE_KEY: "offline_export/%{offline_export_id}/%{portable_class}/%{portable_id}/user_contribution_ids"
+
+    # @param portable [Group, Project] the group or project being exported
+    # @param offline_export_id [Integer, nil] when present, scopes the cache key to a single
+    #   offline export, preventing concurrent exports of the same portable from sharing cached data
+    def initialize: (untyped portable, ?offline_export_id: untyped?) -> void
+
+    def cache_user_contributions_on_record: (untyped record) -> (nil | untyped)
+
+    def get_contributing_users: () -> untyped
+
+    def clear_cache: () -> untyped
+
+    private
+
+    attr_reader offline_export_id: untyped
+
+    attr_reader portable_class: untyped
+
+    attr_reader portable_id: untyped
+
+    def generate_cache_key: () -> untyped
+
+    def import_cache: () -> untyped
+
+    def timeout: () -> untyped
+  end
+end

@@ -1,0 +1,10 @@
+module Types
+  module Ci
+    # rubocop: disable Graphql/AuthorizeTypes
+    class StatusActionType < BaseObject
+      def id: (parent: untyped) -> ::String
+
+      def action_method: () -> untyped
+    end
+  end
+end

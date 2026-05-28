@@ -1,0 +1,8 @@
+module Gitlab
+  module Organizations
+    class Isolation
+      # rubocop:disable Gitlab/AvoidCurrentOrganization -- We check if Current.organization is assigned so it is safe
+      def self.enabled?: () -> (false | true)
+    end
+  end
+end

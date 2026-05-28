@@ -1,0 +1,47 @@
+module Gitlab
+  module Metrics
+    module Subscribers
+      # Class for tracking the total time spent in external HTTP
+      # See more at https://gitlab.com/gitlab-org/labkit-ruby/-/blob/v0.14.0/lib/gitlab-labkit.rb#L18
+      class ExternalHttp < ActiveSupport::Subscriber
+        DEFAULT_STATUS_CODE: "undefined"
+
+        DETAIL_STORE: :external_http_detail_store
+
+        COUNTER: :external_http_count
+
+        DURATION: :external_http_duration_s
+
+        SLOW_REQUESTS: :external_http_slow_requests
+
+        THRESHOLD_SLOW_REQUEST_S: ::Float
+
+        MAX_SLOW_REQUESTS: 10
+
+        def self.detail_store: () -> untyped
+
+        def self.duration: () -> untyped
+
+        def self.request_count: () -> untyped
+
+        def self.slow_requests: () -> untyped
+
+        def self.top_slowest_requests: () -> (nil | untyped)
+
+        def self.payload: () -> untyped
+
+        def request: (untyped event) -> untyped
+
+        private
+
+        def current_transaction: () -> untyped
+
+        def add_to_detail_store: (untyped start, untyped payload) -> (nil | untyped)
+
+        def add_to_request_store: (untyped payload) -> (nil | untyped)
+
+        def expose_metrics: (untyped payload) -> (nil | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Backup
+  module Tasks
+    class Database < Task
+      @target: untyped
+
+      def self.id: () -> "db"
+
+      def human_name: () -> untyped
+
+      def destination_path: () -> "db"
+
+      def cleanup_path: () -> "db"
+
+      def pre_restore_warning: () -> (nil | untyped)
+
+      def post_restore_warning: () -> (nil | untyped)
+
+      private
+
+      def target: () -> untyped
+    end
+  end
+end

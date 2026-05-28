@@ -1,0 +1,27 @@
+module Integrations
+  module Base
+    module SlackNotification
+      extend ActiveSupport::Concern
+
+      extend Gitlab::Utils::Override
+
+      include ChatNotification
+
+      SUPPORTED_EVENTS_FOR_USAGE_LOG: ::Array["push" | "issue" | "confidential_issue" | "merge_request" | "note" | "confidential_note" | "tag_push" | "wiki_page" | "deployment"]
+
+      def default_channel_placeholder: () -> untyped
+
+      def get_message: (untyped object_kind, untyped data) -> untyped
+
+      def supported_events: () -> untyped
+
+      def configurable_channels?: () -> true
+
+      private
+
+      def log_usage: (untyped event, untyped user_id) -> (nil | untyped)
+
+      def metrics_key_prefix: () -> untyped
+    end
+  end
+end

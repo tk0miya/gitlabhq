@@ -1,0 +1,31 @@
+module NavHelper
+  @header_links: untyped
+
+  extend ::NavHelper
+
+  def header_links: () -> untyped
+
+  def header_link?: (untyped link) -> untyped
+
+  def page_with_sidebar_class: () -> untyped
+
+  def super_sidebar_loading_state_class: () -> ("super-sidebar-is-icon-only" | "")
+
+  def page_gutter_class: () -> (::Array["page-gutter" | untyped] | ::Array["page-gutter" | "build-sidebar" | "right-sidebar-expanded"] | ::Array["page-gutter" | "has-wiki-sidebar"] | ::Array[untyped])
+
+  def page_has_markdown?: () -> untyped
+
+  def admin_monitoring_nav_links: () -> ::Array["system_info" | "background_migrations" | "background_jobs" | "health_check"]
+
+  private
+
+  def get_header_links: () -> untyped
+
+  def merge_request_sidebar?: () -> untyped
+
+  def work_item_epic_page?: () -> untyped
+
+  def new_issue_look?: () -> untyped
+
+  def skip_right_sidebar_classes?: () -> untyped
+end

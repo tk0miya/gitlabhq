@@ -1,0 +1,20 @@
+module Gitlab
+  # Helper methods for Kroki
+  module Kroki
+    BLOCKDIAG_FORMATS: ::Array["blockdiag" | "seqdiag" | "actdiag" | "nwdiag" | "packetdiag" | "rackdiag"]
+
+    # We used to explicitly remove 'mermaid' from this list, but now we allow Kroki
+    # to preferentially render them, *if* the administrator has explicitly enabled it
+    # --- Mermaid requires a companion server for Kroki.
+    # See https://gitlab.com/gitlab-org/gitlab/-/work_items/498764.
+    DIAGRAMS_FORMATS: untyped
+
+    DIAGRAMS_FORMATS_WO_PLANTUML: untyped
+
+    # Get the list of diagram formats that are currently enabled
+    #
+    # Returns an Array of diagram formats.
+    # If Kroki is not enabled, returns an empty Array.
+    def self.formats: (untyped current_settings) -> (::Array[untyped] | untyped)
+  end
+end

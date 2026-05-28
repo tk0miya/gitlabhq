@@ -1,0 +1,11 @@
+module VersionCheckHelper
+  include Gitlab::Utils::StrongMemoize
+
+  def show_version_check?: () -> (false | untyped)
+
+  def gitlab_version_check: () -> (nil | untyped)
+
+  def show_security_patch_upgrade_alert?: () -> (false | untyped)
+
+  def link_to_version: () -> untyped
+end

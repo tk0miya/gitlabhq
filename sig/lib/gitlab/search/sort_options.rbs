@@ -1,0 +1,13 @@
+module Gitlab
+  module Search
+    module SortOptions
+      SCOPE_ONLY_SORT: { popularity_asc: ::Array["issues"], popularity_desc: ::Array["issues"] }
+
+      DOC_TYPE_ONLY_SORT: { popularity_asc: ::Array["issue" | "work_item"], popularity_desc: ::Array["issue" | "work_item"] }
+
+      SORT_MAPPINGS: ::Hash[::Array["created_at" | "asc"] | ::Array["created_at" | "desc"] | ::Array["updated_at" | "asc"] | ::Array["updated_at" | "desc"] | ::Array["popularity" | "asc"] | ::Array["popularity" | "desc"] | ::Array["milestone_due" | "asc"] | ::Array["milestone_due" | "desc"] | ::Array["weight" | "asc"] | ::Array["weight" | "desc"] | ::Array["health_status" | "asc"] | ::Array["health_status" | "desc"] | ::Array["closed_at" | "asc"] | ::Array["closed_at" | "desc"] | ::Array["due_date" | "asc"] | ::Array["due_date" | "desc"] | ::Array[nil | "created_asc"] | ::Array[nil | "created_desc"] | ::Array[nil | "updated_asc"] | ::Array[nil | "updated_desc"] | ::Array[nil | "popularity_asc"] | ::Array[nil | "popularity_desc"] | ::Array[nil | "milestone_due_asc"] | ::Array[nil | "milestone_due_desc"] | ::Array[nil | "weight_asc"] | ::Array[nil | "weight_desc"] | ::Array[nil | "health_status_asc"] | ::Array[nil | "health_status_desc"] | ::Array[nil | "closed_at_asc"] | ::Array[nil | "closed_at_desc"] | ::Array[nil | "due_date_asc"] | ::Array[nil | "due_date_desc"], :created_at_asc | :created_at_desc | :updated_at_asc | :updated_at_desc | :popularity_asc | :popularity_desc | :milestone_due_asc | :milestone_due_desc | :weight_asc | :weight_desc | :health_status_asc | :health_status_desc | :closed_at_asc | :closed_at_desc | :due_date_asc | :due_date_desc]
+
+      def self?.sort_and_direction: (untyped order_by, untyped sort) -> untyped
+    end
+  end
+end

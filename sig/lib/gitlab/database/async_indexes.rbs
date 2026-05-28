@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module AsyncIndexes
+      DEFAULT_INDEXES_PER_INVOCATION: 2
+
+      def self.create_pending_indexes!: (?how_many: untyped) -> untyped
+
+      def self.pending_indexes_to_create: () -> untyped
+
+      def self.drop_pending_indexes!: (?how_many: untyped) -> untyped
+
+      def self.pending_indexes_to_drop: () -> untyped
+
+      def self.execute_pending_actions!: (?how_many: untyped) -> untyped
+    end
+  end
+end

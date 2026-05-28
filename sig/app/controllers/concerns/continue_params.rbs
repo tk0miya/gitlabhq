@@ -1,0 +1,7 @@
+module ContinueParams
+  include InternalRedirect
+
+  extend ActiveSupport::Concern
+
+  def continue_params: () -> (::Hash[untyped, untyped] | untyped)
+end

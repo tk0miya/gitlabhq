@@ -1,0 +1,7 @@
+# Worker cannot be idempotent: https://gitlab.com/gitlab-org/gitlab/-/issues/218559
+# rubocop:disable Scalability/IdempotentWorker
+class WebHookWorker
+  include ApplicationWorker
+
+  def perform: (untyped hook_id, untyped data, untyped hook_name, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+end

@@ -1,0 +1,36 @@
+# Generated HTML is transformed back to GFM by app/assets/javascripts/behaviors/markdown/nodes/code_block.js
+module Banzai
+  module Filter
+    # HTML Filter to highlight fenced code blocks
+    #
+    class SyntaxHighlightFilter < HTML::Pipeline::Filter
+      prepend Concerns::TimeoutFilterHandler
+
+      prepend Concerns::PipelineTimingCheck
+
+      include Concerns::OutputSafety
+
+      CSS_CLASSES: "code highlight js-syntax-highlight"
+
+      CSS: "pre:not([data-kroki-style]) > code:only-child"
+
+      XPATH: untyped
+
+      def call: () -> untyped
+
+      def highlight_node: (untyped code_node) -> (nil | untyped)
+
+      private
+
+      # Separate method so it can be instrumented.
+      def lex: (untyped lexer, untyped code) -> untyped
+
+      def lexer_for: (untyped language) -> untyped
+
+      # Replace the `pre` element with the entire highlighted block
+      def replace_pre_element: (untyped pre_node, untyped highlighted) -> untyped
+
+      def use_rouge?: (untyped language) -> untyped
+    end
+  end
+end

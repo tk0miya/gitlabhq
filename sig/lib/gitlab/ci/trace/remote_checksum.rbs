@@ -1,0 +1,38 @@
+module Gitlab
+  module Ci
+    class Trace
+      #
+      # RemoteChecksum class is responsible for fetching the MD5 checksum of
+      # an uploaded build trace.
+      #
+      class RemoteChecksum
+        @trace_artifact: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped trace_artifact) -> void
+
+        def md5_checksum: () -> untyped
+
+        private
+
+        attr_reader trace_artifact: untyped
+
+        def fetch_md5_checksum: () -> (nil | untyped)
+
+        def remote_checksum_value: () -> untyped
+
+        def object_store_config: () -> untyped
+
+        def checksum_from_google: () -> untyped
+
+        def checksum_from_aws: () -> untyped
+
+        # Carrierwave caches attributes for the local file and does not replace
+        # them with the ones from object store after the upload completes.
+        # We need to force it to fetch them directly from the object store.
+        def upload_attributes: () -> untyped
+      end
+    end
+  end
+end

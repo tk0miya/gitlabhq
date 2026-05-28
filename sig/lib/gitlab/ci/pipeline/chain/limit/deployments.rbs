@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Limit
+          class Deployments < Chain::Base
+            @limit: untyped
+
+            extend ::Gitlab::Utils::Override
+
+            include ::Gitlab::Ci::Pipeline::Chain::Helpers
+
+            private
+
+            attr_reader limit: untyped
+
+            public
+
+            def initialize: (*untyped) -> void
+
+            def perform!: () -> (nil | untyped)
+
+            def break?: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

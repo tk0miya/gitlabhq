@@ -1,0 +1,9 @@
+module Authz
+  module HasRoles
+    extend ActiveSupport::Concern
+
+    def roles_user_can_assign: (untyped current_user, ?untyped? roles) -> untyped
+
+    def can_assign_role?: (untyped current_user, untyped access_level) -> (true | untyped)
+  end
+end

@@ -1,0 +1,32 @@
+module Gitlab
+  module Diff
+    module FileCollection
+      # Builds a paginated diff file collection and collects pagination
+      # metadata.
+      #
+      # It doesn't handle caching yet as we're not prepared to write/read
+      # separate file keys (https://gitlab.com/gitlab-org/gitlab/issues/30550).
+      #
+      class MergeRequestDiffBatch < MergeRequestDiffBase
+        @paginated_collection: untyped
+
+        @pagination_data: untyped
+
+        include PaginatedDiffs
+
+        DEFAULT_BATCH_PAGE: 1
+
+        DEFAULT_BATCH_SIZE: 30
+
+        attr_reader pagination_data: untyped
+
+        def initialize: (untyped merge_request_diff, untyped batch_page, untyped batch_size, diff_options: untyped) -> void
+
+        private
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def load_paginated_collection: (untyped batch_page, untyped batch_size, untyped diff_options) -> untyped
+      end
+    end
+  end
+end

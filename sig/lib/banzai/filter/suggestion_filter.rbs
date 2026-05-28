@@ -1,0 +1,23 @@
+# Generated HTML is transformed back to GFM by app/assets/javascripts/behaviors/markdown/nodes/code_block.js
+module Banzai
+  module Filter
+    class SuggestionFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      # Class used for tagging elements that should be rendered
+      TAG_CLASS: "js-render-suggestion"
+
+      CSS: "pre.language-suggestion > code"
+
+      XPATH: untyped
+
+      def call: () -> untyped
+
+      def suggestions_filter_enabled?: () -> untyped
+
+      private
+
+      def project: () -> untyped
+    end
+  end
+end

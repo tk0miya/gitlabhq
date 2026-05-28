@@ -1,0 +1,26 @@
+module Glql
+  class BaseController < GraphqlController
+    @project: untyped
+
+    @group: untyped
+
+    # Overrides GraphqlController#execute_single_query to add rate limiting for
+    # GLQL queries.
+    # Uses the shared QueryService for consistent behavior with API::Glql.
+    #
+    # normalized_query is passed explicitly by the parent's execute() to guarantee
+    # the validator (disallow_mutations_for_get) and executor always operate on an
+    # identical string. Do not use permitted_params[:query] here for execution.
+    def execute_single_query: (untyped normalized_query) -> (nil | untyped)
+
+    private
+
+    # When `set_current_context` in app/controllers/application_controller.rb calls
+    # `to_lazy_hash` on Gitlab::ApplicationContext, the meta fields (meta.project and
+    # meta.root_namespace) will be populated using @group or @project variables.
+    def set_namespace_context: () -> untyped
+
+    # Overrides GraphqlController#permitted_params to permit project and group params
+    def permitted_standalone_query_params: () -> untyped
+  end
+end

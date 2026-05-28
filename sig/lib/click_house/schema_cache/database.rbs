@@ -1,0 +1,25 @@
+module ClickHouse
+  module SchemaCache
+    class Database
+      @name: untyped
+
+      @tables_by_name: untyped
+
+      attr_reader name: untyped
+
+      def initialize: (name: untyped, ?tables: untyped) -> void
+
+      def tables: () -> untyped
+
+      def table_names: () -> untyped
+
+      def table: (untyped table_name) -> untyped
+
+      def table?: (untyped table_name) -> untyped
+
+      def columns: (untyped table_name) -> untyped
+
+      def column: (untyped table_name, untyped column_name) -> untyped
+    end
+  end
+end

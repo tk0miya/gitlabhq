@@ -1,0 +1,64 @@
+# This class includes overriding Kernel#format method
+# what makes impossible to use it here
+module Gitlab
+  module GithubImport
+    class MarkdownText
+      @text: untyped
+
+      @author: untyped
+
+      @exists: untyped
+
+      @project: untyped
+
+      @web_endpoint: untyped
+
+      include Gitlab::EncodingHelper
+
+      include Gitlab::Import::UsernameMentionRewriter
+
+      # On github.com we have base url for docs and CDN url for media.
+      # On github EE as far as we can know there is no CDN urls and media is placed on base url.
+      GITHUB_MEDIA_CDN: "https://user-images.githubusercontent.com/"
+
+      ISSUE_REF_MATCHER: "%{github_url}/%{import_source}/issues"
+
+      PULL_REF_MATCHER: "%{github_url}/%{import_source}/pull"
+
+      def self.format: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def self.fetch_attachments: (untyped text, untyped web_endpoint) -> untyped
+
+      private
+
+      def self.extract_attachment: (untyped node, untyped web_endpoint) -> untyped
+
+      public
+
+      # text - The Markdown text as a String.
+      # author - An instance of `Gitlab::GithubImport::Representation::User`
+      # exists - Boolean that indicates the user exists in the GitLab database.
+      # project - An instance of `Project`.
+      def initialize: (untyped text, ?untyped? author, ?bool exists, ?project: untyped?, ?client: untyped?) -> void
+
+      def perform: () -> (nil | untyped)
+
+      private
+
+      attr_reader text: untyped
+
+      attr_reader author: untyped
+
+      attr_reader exists: untyped
+
+      attr_reader project: untyped
+
+      attr_reader web_endpoint: untyped
+
+      def formatted_text: () -> (::String | untyped)
+
+      # Links like `https://domain.github.com/<namespace>/<project>/pull/<iid>` needs to be converted
+      def convert_ref_links: (untyped text, untyped project, untyped web_endpoint) -> untyped
+    end
+  end
+end

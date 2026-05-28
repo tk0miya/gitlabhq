@@ -1,0 +1,21 @@
+module Gitlab
+  module BitbucketServerImport
+    module Loggable
+      def log_debug: (untyped messages) -> untyped
+
+      def log_info: (untyped messages) -> untyped
+
+      def log_warn: (untyped messages) -> untyped
+
+      def log_error: (untyped messages) -> untyped
+
+      private
+
+      def logger: () -> untyped
+
+      def log_data: (untyped messages) -> untyped
+
+      def log_base_data: () -> { class: untyped, project_id: untyped, project_path: untyped }
+    end
+  end
+end

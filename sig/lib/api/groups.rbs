@@ -1,0 +1,9 @@
+module API
+  class Groups < ::API::Base
+    include PaginationParams
+
+    include Helpers::CustomAttributes
+
+    include APIGuard
+  end
+end

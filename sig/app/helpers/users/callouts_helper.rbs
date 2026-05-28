@@ -1,0 +1,65 @@
+module Users
+  module CalloutsHelper
+    GKE_CLUSTER_INTEGRATION: "gke_cluster_integration"
+
+    SUGGEST_POPOVER_DISMISSED: "suggest_popover_dismissed"
+
+    TABS_POSITION_HIGHLIGHT: "tabs_position_highlight"
+
+    FEATURE_FLAGS_NEW_VERSION: "feature_flags_new_version"
+
+    OPENSSL_CALLOUT: "openssl_callout"
+
+    UNFINISHED_TAG_CLEANUP_CALLOUT: "unfinished_tag_cleanup_callout"
+
+    PAGES_MOVED_CALLOUT: "pages_moved_callout"
+
+    REGISTRATION_ENABLED_CALLOUT_ALLOWED_CONTROLLER_PATHS: ::Array[::Regexp]
+
+    SINGLE_ORIGIN_FALLBACK_CALLOUT_ALLOWED_CONTROLLER_PATHS: ::Array[::Regexp]
+
+    SINGLE_ORIGIN_FALLBACK_CALLOUT: "single_origin_fallback_callout"
+
+    WEB_HOOK_DISABLED: "web_hook_disabled"
+
+    BRANCH_RULES_TIP_CALLOUT: "branch_rules_tip_callout"
+
+    TRANSITION_TO_JIHU_CALLOUT: "transition_to_jihu_callout"
+
+    PERIOD_IN_TERRAFORM_STATE_NAME_ALERT: "period_in_terraform_state_name_alert"
+
+    EMAIL_OTP_ENROLLMENT_CALLOUT: "email_otp_enrollment_callout"
+
+    def show_gke_cluster_integration_callout?: (untyped project) -> untyped
+
+    def render_dashboard_ultimate_trial: (untyped user) -> nil
+
+    def show_suggest_popover?: () -> untyped
+
+    def show_feature_flags_new_version?: () -> untyped
+
+    def show_unfinished_tag_cleanup_callout?: () -> untyped
+
+    def show_registration_enabled_user_callout?: () -> untyped
+
+    def show_openssl_callout?: () -> (false | untyped)
+
+    def web_hook_disabled_dismissed?: (untyped object) -> (false | untyped)
+
+    def show_branch_rules_tip?: () -> untyped
+
+    def show_transition_to_jihu_callout?: () -> untyped
+
+    def show_period_in_terraform_state_name_alert_callout?: () -> untyped
+
+    def show_email_otp_enrollment_callout?: () -> (false | untyped)
+
+    def show_single_origin_fallback_callout?: () -> untyped
+
+    private
+
+    def user_dismissed?: (untyped feature_name, ?untyped? ignore_dismissal_earlier_than, ?object: untyped?) -> (false | untyped)
+
+    def dismissed_callout?: (untyped object, untyped query) -> untyped
+  end
+end

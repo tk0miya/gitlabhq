@@ -1,0 +1,18 @@
+module Packages
+  # WARNING: ensure that permissions are verified before using this service.
+  class MarkPackageFilesForDestructionService
+    @package_files: untyped
+
+    BATCH_SIZE: 500
+
+    def initialize: (untyped package_files) -> void
+
+    def execute: (?batch_deadline: untyped?, ?batch_size: untyped) -> untyped
+
+    private
+
+    def response_success: (untyped payload) -> untyped
+
+    def response_error: (untyped payload) -> untyped
+  end
+end

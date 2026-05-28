@@ -1,0 +1,13 @@
+# Display package repository index according to PyPI (PEP 691 JSON)
+# Spec: https://peps.python.org/pep-0691/
+#
+# Generates the JSON body for PyPI simple API index endpoint.
+module Packages
+  module Pypi
+    class SimpleIndexJsonPresenter < SimplePresenterBase
+      API_VERSION: "1.0"
+
+      def body: () -> untyped
+    end
+  end
+end

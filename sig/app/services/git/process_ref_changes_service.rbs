@@ -1,0 +1,37 @@
+module Git
+  class ProcessRefChangesService < BaseService
+    @process_commit_worker_pool: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def process_changes_by_action: (untyped ref_type, untyped changes) -> untyped
+
+    def group_changes_by_action: (untyped changes) -> untyped
+
+    def change_action: (untyped change) -> (:created | :removed | :pushed)
+
+    def execute_project_hooks?: (untyped changes) -> untyped
+
+    def process_changes: (untyped ref_type, untyped action, untyped changes, execute_project_hooks: untyped) -> untyped
+
+    def under_process_limit?: (untyped change) -> (true | untyped)
+
+    def process_limit: () -> untyped
+
+    def warn_if_over_process_limit: (untyped changes) -> (nil | untyped)
+
+    def possible_omitted_pipeline_refs: (untyped changes) -> untyped
+
+    def create_bulk_push_event: (untyped ref_type, untyped action, untyped changes) -> untyped
+
+    def push_service_class_for: (untyped ref_type) -> untyped
+
+    def merge_request_branches_for: (untyped ref_type, untyped changes) -> (::Array[untyped] | untyped)
+
+    def perform_housekeeping: () -> untyped
+
+    def process_commit_worker_pool: () -> untyped
+  end
+end

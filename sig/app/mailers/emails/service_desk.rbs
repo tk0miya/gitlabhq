@@ -1,0 +1,82 @@
+module Emails
+  module ServiceDesk
+    @custom_template_body: untyped
+
+    @note: untyped
+
+    @service_desk_setting: untyped
+
+    @project: untyped
+
+    @verification_token: untyped
+
+    @triggerer: untyped
+
+    @smtp_address: untyped
+
+    @verification: untyped
+
+    @work_item: untyped
+
+    @support_bot: untyped
+
+    @sent_notification: untyped
+
+    @uploads_to_attach: untyped
+
+    # Filepaths we should replace in markdown content
+    @uploads_as_attachments: untyped
+
+    extend ActiveSupport::Concern
+
+    include MarkupHelper
+
+    include ::ServiceDesk::CustomEmails::Logger
+
+    EMAIL_ATTACHMENTS_SIZE_LIMIT: untyped
+
+    def service_desk_thank_you_email: (untyped work_item_id) -> untyped
+
+    def service_desk_new_note_email: (untyped work_item_id, untyped note_id, untyped recipient) -> untyped
+
+    def service_desk_new_participant_email: (untyped issue_id, untyped recipient) -> untyped
+
+    def service_desk_custom_email_verification_email: (untyped service_desk_setting) -> untyped
+
+    def service_desk_verification_triggered_email: (untyped service_desk_setting, untyped recipient) -> untyped
+
+    def service_desk_verification_result_email: (untyped service_desk_setting, untyped recipient) -> untyped
+
+    private
+
+    def setup_service_desk_mail: (untyped work_item_id, ?untyped? issue_email_participant) -> untyped
+
+    def inject_service_desk_custom_email: (?force: bool) -> untyped
+
+    def inject_service_desk_custom_email_reply_address: () -> untyped
+
+    def service_desk_sender_email_address: () -> (nil | untyped)
+
+    def template_content: (untyped email_type) -> untyped
+
+    def substitute_template_replacements: (untyped template_body) -> untyped
+
+    def full_work_item_url: () -> untyped
+
+    def work_item_id: () -> ::String
+
+    def work_item_path: () -> untyped
+
+    def note_text: () -> untyped
+
+    def work_item_description: () -> ("" | untyped)
+
+    def subject_base: () -> ::String
+
+    def setup_service_desk_attachments: () -> (nil | untyped)
+
+    def add_uploads_as_attachments: () -> untyped
+
+    def find_uploaders_for: (untyped note) -> untyped
+  end
+end

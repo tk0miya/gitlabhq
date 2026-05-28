@@ -1,0 +1,14 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillDisplayGitlabCreditsUserDataForNamespaceSetting < BatchedMigrationJob
+      class NamespaceSetting < ::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      private
+
+      def update_namespace_settings: (untyped relation) -> untyped
+    end
+  end
+end

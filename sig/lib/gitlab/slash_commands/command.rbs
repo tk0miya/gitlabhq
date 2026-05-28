@@ -1,0 +1,15 @@
+module Gitlab
+  module SlashCommands
+    class Command < BaseCommand
+      def self.commands: () -> untyped
+
+      def execute: () -> untyped
+
+      def match_command: () -> ::Array[untyped]
+
+      private
+
+      def available_commands: () -> untyped
+    end
+  end
+end

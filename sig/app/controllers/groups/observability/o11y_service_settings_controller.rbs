@@ -1,0 +1,23 @@
+module Groups
+  module Observability
+    class O11yServiceSettingsController < Groups::ApplicationController
+      include Gitlab::Utils::StrongMemoize
+
+      def update: () -> untyped
+
+      def edit: () -> untyped
+
+      def destroy: () -> untyped
+
+      private
+
+      def authorize_o11y_settings_access!: () -> untyped
+
+      def authorize_o11y_destroy_access!: () -> (untyped | nil)
+
+      def settings_params: () -> untyped
+
+      def settings: () -> untyped
+    end
+  end
+end

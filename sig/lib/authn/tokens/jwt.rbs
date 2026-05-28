@@ -1,0 +1,47 @@
+# This class provides methods to encode and decode JWTs using RSA encryption.
+# It is designed to work within the GitLab authentication system, providing
+# secure token generation and verification for various subjects.
+#
+# Key features:
+# - RSA-based encoding and decoding of JWTs
+# - Validation of JWT format and structure
+# - Configurable subject types and global ID parsing
+# - Support for custom token prefixes
+#
+# Usage:
+# - Use `rsa_encode` to create new JWTs with any subjects
+# - Use `rsa_decode` to verify and extract information from existing JWTs
+#
+module Authn
+  module Tokens
+    class Jwt
+      @payload: untyped
+
+      @subject_type: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      InvalidSubjectForTokenError: untyped
+
+      ISSUER: untyped
+
+      AUDIENCE: "gitlab-authz-token"
+
+      VERSION: "0.1.0"
+
+      def self.rsa_encode: (subject: untyped, signing_key: untyped, expire_time: untyped, token_prefix: untyped, ?custom_payload: ::Hash[untyped, untyped]) -> untyped
+
+      def self.rsa_decode: (token: untyped, signing_public_key: untyped, subject_type: untyped, token_prefix: untyped, ?verify_expiration: bool) -> untyped
+
+      def initialize: (payload: untyped, subject_type: untyped) -> void
+
+      def subject: () -> untyped
+
+      def expired?: () -> (false | untyped)
+
+      attr_reader payload: untyped
+
+      attr_reader subject_type: untyped
+    end
+  end
+end

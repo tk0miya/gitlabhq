@@ -1,0 +1,27 @@
+module Packages
+  module Maven
+    module Metadata
+      class BaseCreateXmlService
+        @metadata_content: untyped
+
+        @package: untyped
+
+        @logger: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        INDENT_SPACE: 2
+
+        def initialize: (metadata_content: untyped, package: untyped, ?logger: untyped?) -> void
+
+        private
+
+        attr_reader logger: untyped
+
+        def xml_doc: () -> untyped
+
+        def xml_node: (untyped name, untyped content) -> untyped
+      end
+    end
+  end
+end

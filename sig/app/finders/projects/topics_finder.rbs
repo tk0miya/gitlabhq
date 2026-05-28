@@ -1,0 +1,28 @@
+# Used to filter project topics by a set of params
+#
+# Arguments:
+#   params:
+#     search: string
+module Projects
+  class TopicsFinder
+    @params: untyped
+
+    @organization_id: untyped
+
+    def initialize: (organization_id: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    attr_reader organization_id: untyped
+
+    def by_search: (untyped topics) -> untyped
+
+    def by_without_projects: (untyped topics) -> untyped
+  end
+end

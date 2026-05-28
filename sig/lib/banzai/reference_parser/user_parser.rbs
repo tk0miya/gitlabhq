@@ -1,0 +1,27 @@
+module Banzai
+  module ReferenceParser
+    class UserParser < BaseParser
+      def referenced_by: (untyped nodes, ?::Hash[untyped, untyped] options) -> untyped
+
+      def nodes_visible_to_user: (untyped user, untyped nodes) -> untyped
+
+      def nodes_user_can_reference: (untyped current_user, untyped nodes) -> untyped
+
+      private
+
+      # Check if project belongs to a group which
+      # user can read.
+      def can_read_group_reference?: (untyped node, untyped user, untyped groups) -> untyped
+
+      def can_read_project_reference?: (untyped node) -> untyped
+
+      def find_users: (untyped ids) -> (::Array[untyped] | untyped)
+
+      def find_user_ids_for_groups: (untyped group_ids) -> (::Array[untyped] | untyped)
+
+      def find_user_ids_for_projects: (untyped project_ids) -> (::Array[untyped] | untyped)
+
+      def can_read_reference?: (untyped user, untyped ref_project, untyped node) -> untyped
+    end
+  end
+end

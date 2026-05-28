@@ -1,0 +1,33 @@
+module Packages
+  module Debian
+    class FileEntry
+      include ActiveModel::Model
+
+      DIGESTS: ::Array[:md5 | :sha1 | :sha256]
+
+      FILENAME_REGEX: ::Regexp
+
+      attr_accessor filename: untyped
+
+      attr_accessor size: untyped
+
+      attr_accessor md5sum: untyped
+
+      attr_accessor section: untyped
+
+      attr_accessor priority: untyped
+
+      attr_accessor sha1sum: untyped
+
+      attr_accessor sha256sum: untyped
+
+      attr_accessor package_file: untyped
+
+      def component: () -> ("main" | untyped)
+
+      private
+
+      def valid_package_file_digests: () -> untyped
+    end
+  end
+end

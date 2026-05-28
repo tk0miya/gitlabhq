@@ -1,0 +1,7 @@
+module ProtectedBranches
+  class UpdateService < ProtectedBranches::BaseService
+    def execute: (untyped protected_branch, ?skip_authorization: bool) -> untyped
+
+    def authorized?: (untyped protected_branch) -> untyped
+  end
+end

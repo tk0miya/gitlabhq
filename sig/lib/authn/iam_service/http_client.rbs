@@ -1,0 +1,21 @@
+module Authn
+  module IamService
+    class HttpClient
+      RequestError: untyped
+
+      TIMEOUT_SECONDS: 5
+
+      def put: (path: untyped, ?query_params: ::Hash[untyped, untyped], ?body: ::Hash[untyped, untyped]) -> untyped
+
+      def get: (path: untyped, ?query_params: ::Hash[untyped, untyped]) -> untyped
+
+      private
+
+      def request: (path: untyped, ?query_params: ::Hash[untyped, untyped]) { (untyped, untyped) -> untyped } -> untyped
+
+      def build_url: (path: untyped, ?query_params: ::Hash[untyped, untyped]) -> untyped
+
+      def iam_headers: () -> ::Hash["Content-Type" | untyped, "application/json" | untyped]
+    end
+  end
+end

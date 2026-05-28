@@ -1,0 +1,23 @@
+module Peek
+  module Views
+    class Gitaly < DetailedView
+      self.@thresholds: untyped
+
+      DEFAULT_THRESHOLDS: { calls: 30, duration: 1000, individual_call: 500 }
+
+      THRESHOLDS: { production: { calls: 30, duration: 1000, individual_call: 500 } }
+
+      def self.thresholds: () -> untyped
+
+      private
+
+      def duration: () -> untyped
+
+      def calls: () -> untyped
+
+      def call_details: () -> untyped
+
+      def format_call_details: (untyped call) -> untyped
+    end
+  end
+end

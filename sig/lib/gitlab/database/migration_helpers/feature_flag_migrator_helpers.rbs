@@ -1,0 +1,57 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module FeatureFlagMigratorHelpers
+        @feature_gates: untyped
+
+        @features: untyped
+
+        # Migrates a feature flag to an application setting.
+        #
+        # @param feature_flag_name [Symbol, String] The name of the feature flag to migrate
+        # @param setting_name [Symbol, String] The name of the application setting column to update
+        # @param default_enabled [Boolean] The default value to use if the feature flag is not set
+        # @return [Integer] The number of affected rows for UPDATE statement
+        def up_migrate_to_setting: (feature_flag_name: untyped, setting_name: untyped, default_enabled: untyped) -> untyped
+
+        # Migrates a feature flag to a JSONB application setting.
+        #
+        # @param feature_flag_name[Symbol, String] The name of the feature flag to migrate
+        # @param setting_name [Symbol, String] The name of the application setting to update
+        # @param jsonb_column_name [Symbol, String] The name of the application setting JSONB column to update
+        # @param default_enabled [Boolean] The default value to use if the feature flag is not set
+        # @return [Integer] The number of affected rows for UPDATE statement
+        def up_migrate_to_jsonb_setting: (feature_flag_name: untyped, setting_name: untyped, jsonb_column_name: untyped, default_enabled: untyped) -> untyped
+
+        # Reverts an application setting to its default value during a migration rollback.
+        #
+        # @param setting_name [Symbol, String] The name of the application setting column to revert
+        # @param default_enabled [Boolean] The default value to set for the application setting
+        # @return [Integer] The number of affected rows for UPDATE statement
+        def down_migrate_to_setting: (setting_name: untyped, default_enabled: untyped) -> untyped
+
+        # Reverts a JSONB application setting to its default state during a migration rollback.
+        # This method removes the specified setting from the JSONB column.
+        #
+        # @param setting_name [Symbol, String] The name of the application setting to remove from the JSONB column
+        # @param jsonb_column_name [Symbol, String] The name of the application setting JSONB column to update
+        # @return [Integer] The number of affected rows for UPDATE statement
+        def down_migrate_to_jsonb_setting: (setting_name: untyped, jsonb_column_name: untyped) -> untyped
+
+        private
+
+        def validate_all_arguments_present!: (*untyped args, untyped error_msg) -> (nil | untyped)
+
+        def feature_flag_state: (untyped feature_flag_name, untyped default_enabled) -> untyped
+
+        def feature_gates: () -> untyped
+
+        def features: () -> untyped
+
+        def exists_in_features?: (untyped feature_flag_name) -> untyped
+
+        def set_to_true_in_feature_gates?: (untyped feature_flag_name) -> untyped
+      end
+    end
+  end
+end

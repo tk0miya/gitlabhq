@@ -1,0 +1,19 @@
+module Gitlab
+  module View
+    module Presenter
+      class Delegated < SimpleDelegator
+        @subject: untyped
+
+        extend ::Gitlab::Utils::DelegatorOverride
+
+        # TODO: Stop including auxiliary methods/modules in `Presenter::Base` as
+        # it overrides many methods in the Active Record models.
+        # See https://gitlab.com/gitlab-org/gitlab/-/blob/master/app/presenters/README.md#validate-accidental-overrides
+        # for more information.
+        include Gitlab::View::Presenter::Base
+
+        def initialize: (untyped subject, **untyped attributes) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,67 @@
+module EventsHelper
+  ICON_NAMES_BY_EVENT_TYPE: { "pushed to" => "commit", "pushed new" => "commit", "updated" => "commit", "created" => "status_open", "opened" => "status_open", "closed" => "status_closed", "accepted" => "fork", "commented on" => "comment", "deleted" => "remove", "destroyed" => "remove", "imported" => "import", "joined" => "users", "approved" => "check", "added" => "upload", "removed" => "remove" }
+
+  def localized_action_name_map: () -> untyped
+
+  def localized_push_action_name_map: () -> { :"pushed new" => untyped, deleted: untyped, :"pushed to" => untyped }
+
+  def localized_created_project_action_name_map: () -> { created: untyped, imported: untyped }
+
+  def localized_design_action_names: () -> { added: untyped, updated: untyped, removed: untyped }
+
+  def localized_action_name: (untyped event) -> untyped
+
+  def link_to_author: (untyped event, ?self_added: bool) -> untyped
+
+  def event_action_name: (untyped event) -> untyped
+
+  def event_filter_link: (untyped key, untyped text, untyped tooltip) -> untyped
+
+  def event_filter_visible: (untyped feature_key) -> (untyped | true)
+
+  def designs_visible?: () -> (untyped | untyped | untyped | true)
+
+  def design_activity_enabled?: (untyped project) -> untyped
+
+  def comments_visible?: () -> untyped
+
+  def event_preposition: (untyped event) -> ("in the wiki for" | "in" | "at" | nil)
+
+  def event_feed_title: (untyped event) -> untyped
+
+  def event_feed_url: (untyped event) -> (untyped | untyped | nil | untyped)
+
+  def push_event_feed_url: (untyped event) -> (untyped | untyped | nil)
+
+  def event_feed_summary: (untyped event) -> (untyped | untyped | untyped | untyped | nil)
+
+  def event_note_target_url: (untyped event) -> (untyped | untyped | untyped | untyped | nil | untyped)
+
+  def event_wiki_title_html: (untyped event) -> untyped
+
+  def event_design_title_html: (untyped event) -> untyped
+
+  def event_wiki_page_target_url: (untyped event, ?target: untyped, **untyped options) -> (untyped | nil)
+
+  def event_note_title_html: (untyped event) -> untyped
+
+  def event_commit_title: (untyped message) -> untyped
+
+  def icon_for_event: (untyped note, ?size: ::Integer) -> untyped
+
+  DESIGN_ICONS: { "created" => "upload", "updated" => "pencil", "destroyed" => untyped }
+
+  def design_event_icon: (untyped action, ?size: ::Integer) -> untyped
+
+  def icon_for_profile_event: (untyped event) -> untyped
+
+  def inline_event_icon: (untyped event) -> (untyped | nil)
+
+  def event_user_info: (untyped event) -> (nil | untyped)
+
+  def user_profile_activity_classes: () -> (" gl-font-semibold gl-text-default" | "")
+
+  private
+
+  def design_url: (untyped design, ?::Hash[untyped, untyped] opts) -> untyped
+end

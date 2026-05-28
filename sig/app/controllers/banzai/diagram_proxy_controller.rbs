@@ -1,0 +1,24 @@
+module Banzai
+  # Makes a downstream request to a diagram service (via Workhorse)
+  # when the diagram has been intercepted by Banzai::Filter::DiagramProxyPostFilter.
+  #
+  # See:
+  # * Banzai::Filter::KrokiFilter              (cached)
+  # * Banzai::Filter::PlantumlFilter           (cached)
+  # * Banzai::Filter::DiagramProxyPostFilter   (run during post-process, on every request)
+  class DiagramProxyController < ApplicationController
+    def proxy: () -> untyped
+
+    private
+
+    def request_user_id: () -> untyped
+
+    def request_diagram_type: () -> untyped
+
+    def request_diagram_source: () -> untyped
+
+    def request_data: () -> (nil | untyped)
+
+    def key: () -> untyped
+  end
+end

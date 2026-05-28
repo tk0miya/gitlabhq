@@ -1,0 +1,21 @@
+module Gitlab
+  class GroupSearchResults < SearchResults
+    @group: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    attr_reader group: untyped
+
+    def initialize: (untyped current_user, untyped query, ?untyped? limit_projects, group: untyped, **untyped opts) -> void
+
+    def users: () -> untyped
+
+    def milestones: () -> untyped
+
+    def issuable_params: () -> untyped
+
+    private
+
+    def filter_milestones_by_group: (untyped milestones) -> untyped
+  end
+end

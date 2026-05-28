@@ -1,0 +1,12 @@
+# Add methods used by the groups API
+module GroupAPICompatibility
+  extend ActiveSupport::Concern
+
+  def project_creation_level_str: () -> untyped
+
+  def project_creation_level_str=: (untyped value) -> untyped
+
+  def subgroup_creation_level_str: () -> untyped
+
+  def subgroup_creation_level_str=: (untyped value) -> untyped
+end

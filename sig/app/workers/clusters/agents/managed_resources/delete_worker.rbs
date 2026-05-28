@@ -1,0 +1,13 @@
+module Clusters
+  module Agents
+    module ManagedResources
+      class DeleteWorker
+        include ApplicationWorker
+
+        include ClusterAgentQueue
+
+        def perform: (untyped managed_resource_id, ?untyped? attempt) -> (nil | untyped)
+      end
+    end
+  end
+end

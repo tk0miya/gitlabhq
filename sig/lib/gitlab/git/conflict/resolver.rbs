@@ -1,0 +1,39 @@
+module Gitlab
+  module Git
+    module Conflict
+      class Resolver
+        @target_repository: untyped
+
+        @our_commit_oid: untyped
+
+        @their_commit_oid: untyped
+
+        @allow_tree_conflicts: untyped
+
+        @skip_content: untyped
+
+        @conflicts: untyped
+
+        include Gitlab::Git::WrapsGitalyErrors
+
+        ConflictSideMissing: untyped
+
+        ResolutionError: untyped
+
+        def initialize: (untyped target_repository, untyped our_commit_oid, untyped their_commit_oid, ?allow_tree_conflicts: bool, ?skip_content: bool) -> void
+
+        def conflicts: () -> untyped
+
+        def resolve_conflicts: (untyped source_repository, untyped resolution, source_branch: untyped, target_branch: untyped) -> untyped
+
+        def conflict_for_path: (untyped conflicts, untyped old_path, untyped new_path) -> untyped
+
+        private
+
+        def conflict_files: (untyped repository, untyped index) -> untyped
+
+        def gitaly_conflicts_client: (untyped repository) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,54 @@
+module SortingHelper
+  include SortingTitlesValuesHelper
+
+  include ButtonHelper
+
+  # rubocop: disable Metrics/AbcSize
+  def sort_options_hash: () -> ::Hash[untyped, untyped]
+
+  def projects_sort_options_hash: () -> untyped
+
+  def forks_reverse_sort_options_hash: () -> ::Hash[untyped, untyped]
+
+  def milestones_sort_options_hash: () -> ::Hash[untyped, untyped]
+
+  def branches_sort_options_hash: () -> ::Hash[untyped, untyped]
+
+  def label_sort_options_hash: () -> untyped
+
+  def users_sort_options_hash: () -> ::Hash[untyped, untyped]
+
+  def starrers_sort_options_hash: () -> ::Hash[untyped, untyped]
+
+  def issuable_sort_option_overrides: () -> ::Hash[untyped, untyped]
+
+  def issuable_reverse_sort_order_hash: () -> untyped
+
+  def issuable_sort_options: (untyped viewing_issues, untyped viewing_merge_requests) -> untyped
+
+  def can_sort_by_issue_weight?: (untyped _viewing_issues) -> false
+
+  def can_sort_by_merged_date?: (untyped viewing_merge_requests) -> untyped
+
+  def due_date_option: () -> { value: untyped, text: untyped, href: untyped }
+
+  def popularity_option: () -> { value: untyped, text: untyped, href: untyped }
+
+  def label_priority_option: () -> { value: untyped, text: untyped, href: untyped }
+
+  def merged_option: () -> { value: untyped, text: untyped, href: untyped }
+
+  def relative_position_option: () -> { value: untyped, text: untyped, href: untyped }
+
+  def title_option: () -> { value: untyped, text: untyped, href: untyped }
+
+  def sort_direction_icon: (untyped sort_value) -> untyped
+
+  def sort_direction_button: (untyped reverse_url, untyped reverse_sort, untyped sort_value) -> untyped
+
+  def issuable_sort_direction_button: (untyped sort_value) -> untyped
+
+  def forks_sort_direction_button: (untyped sort_value, ?::Array[untyped] without) -> untyped
+
+  def admin_users_sort_options: (untyped path_params) -> untyped
+end

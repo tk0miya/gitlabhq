@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Status
+      class Running < Status::Core
+        def text: () -> untyped
+
+        def label: () -> untyped
+
+        def icon: () -> "status_running"
+
+        def favicon: () -> "favicon_status_running"
+
+        def details_path: () -> nil
+      end
+    end
+  end
+end

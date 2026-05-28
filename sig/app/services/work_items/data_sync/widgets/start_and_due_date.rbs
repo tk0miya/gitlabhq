@@ -1,0 +1,19 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class StartAndDueDate < Base
+        def after_create: () -> (nil | untyped)
+
+        # NOTE: This method is for cleanup simulation and testing purposes, it is not actually called within the
+        # application yet.
+        #
+        # In the product, the post move cleanup of widget data is going to be implemented later.
+        def post_move_cleanup: () -> untyped
+
+        private
+
+        def build_date_source_attributes: () -> untyped
+      end
+    end
+  end
+end

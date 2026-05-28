@@ -1,0 +1,18 @@
+module Mcp
+  module Tools
+    # See: https://modelcontextprotocol.io/specification/2025-06-18/schema#calltoolresult
+    module Response
+      TEXT_CONTENT: "text"
+
+      def self.success: (untyped formatted_content, ?untyped? data) -> { content: untyped, structuredContent: untyped, isError: false }
+
+      def self.error: (untyped message, ?untyped? details) -> { content: ::Array[{ type: untyped, text: untyped }], structuredContent: untyped, isError: true }
+
+      def self.format_text: (untyped item) -> untyped
+
+      def self.format_content: (untyped data) -> untyped
+
+      def self.format_structured_content: (untyped data) -> untyped
+    end
+  end
+end

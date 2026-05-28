@@ -1,0 +1,29 @@
+module Gitlab
+  module Database
+    # This abstract class is used for models which need to exist in multiple de-composed databases.
+    class SharedModel < ActiveRecord::Base
+      include IgnorableColumns
+
+      SHARED_SCHEMAS: ::Array[:gitlab_shared | :gitlab_shared_org | :gitlab_shared_cell_local]
+
+      def self.using_connection: (untyped connection) { () -> untyped } -> untyped
+
+      def self.ensure_connection_set!: () -> (nil | untyped)
+
+      def self.connection: () -> untyped
+
+      # in case the connection has been switched with using_connection
+      def self.connection_pool: () -> untyped
+
+      private
+
+      def self.overriding_connection: () -> untyped
+
+      def self.overriding_connection=: (untyped connection) -> untyped
+
+      public
+
+      def connection_db_config: () -> untyped
+    end
+  end
+end

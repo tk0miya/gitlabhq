@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    # Migrates instance-level external audit event destinations to new streaming destinations table
+    # Handles corrupted verification tokens by generating new ones when decryption fails
+    class FixIncompleteInstanceExternalAuditDestinationsV2 < BatchedMigrationJob
+      def perform: () -> nil
+    end
+  end
+end

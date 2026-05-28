@@ -1,0 +1,107 @@
+module Gitlab
+  module SidekiqMiddleware
+    class ServerMetrics
+      @metrics: untyped
+
+      @job: untyped
+
+      @labels: untyped
+
+      @queue_duration: untyped
+
+      @job_succeeded: untyped
+
+      @monotonic_time: untyped
+
+      @job_thread_cputime: untyped
+
+      @instrumentation: untyped
+
+      @sli_labels: untyped
+
+      include ::Gitlab::SidekiqMiddleware::MetricsHelper
+
+      # SIDEKIQ_LATENCY_BUCKETS are latency histogram buckets better suited to Sidekiq
+      # timeframes than the DEFAULT_BUCKET definition. Defined in seconds.
+      # This information is better viewed in logs, but these buckets cover
+      # most of the durations for cpu, gitaly, db and elasticsearch
+      SIDEKIQ_LATENCY_BUCKETS: ::Array[::Float | 1]
+
+      # These buckets are only available on self-managed.
+      # We have replaced with Application SLIs on GitLab.com.
+      # https://gitlab.com/groups/gitlab-com/gl-infra/-/epics/700
+      SIDEKIQ_JOB_DURATION_BUCKETS: ::Array[10 | 300]
+
+      SIDEKIQ_QUEUE_DURATION_BUCKETS: ::Array[10 | 60]
+
+      # These labels from Gitlab::SidekiqMiddleware::MetricsHelper are included in SLI metrics
+      SIDEKIQ_SLI_LABELS: ::Array[:worker | :feature_category | :urgency | :external_dependencies | :queue | :destination_shard_redis | :db_config_name]
+
+      extend ::Gitlab::SidekiqMiddleware::MetricsHelper
+
+      def self.metrics: () -> untyped
+
+      def self.initialize_process_metrics: () -> (nil | untyped)
+
+      def initialize: () -> void
+
+      def call: (untyped worker, untyped job, untyped queue) { () -> untyped } -> untyped
+
+      attr_reader metrics: untyped
+
+      def instrument: () { () -> untyped } -> untyped
+
+      private
+
+      attr_reader labels: untyped
+
+      attr_reader job: untyped
+
+      attr_reader queue_duration: untyped
+
+      attr_reader job_succeeded: untyped
+
+      attr_reader monotonic_time: untyped
+
+      attr_reader job_thread_cputime: untyped
+
+      attr_reader instrumentation: untyped
+
+      attr_reader sli_labels: untyped
+
+      def record_resource_usage_counters: () -> (untyped | nil | untyped)
+
+      def record_histograms: () -> untyped
+
+      def record_queueing_sli: () -> (untyped | nil)
+
+      def record_execution_sli: () -> untyped
+
+      def record_db_txn_sli: () -> (nil | untyped)
+
+      def record_gvl_measurements: () -> (nil | untyped)
+
+      def with_load_balancing_settings: (untyped job) { (untyped) -> untyped } -> (nil | untyped)
+
+      def get_thread_cputime: () -> (untyped | 0)
+
+      def get_redis_time: (untyped payload) -> untyped
+
+      def get_redis_calls: (untyped payload) -> untyped
+
+      def get_elasticsearch_time: (untyped payload) -> untyped
+
+      def get_thread_memory_total_allocations: (untyped payload) -> untyped
+
+      def get_elasticsearch_calls: (untyped payload) -> untyped
+
+      def get_gitaly_time: (untyped payload) -> untyped
+
+      def get_gvl_thread_wait_time: (untyped payload) -> untyped
+
+      def get_gvl_process_wait_time: (untyped payload) -> untyped
+
+      def gvl_tools_enabled?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module LocalAndRemoteStorageMigration
+    class BaseMigrater
+      @logger: untyped
+
+      def initialize: (?untyped? logger) -> void
+
+      def migrate_to_remote_storage: () -> untyped
+
+      def migrate_to_local_storage: () -> untyped
+
+      private
+
+      attr_reader logger: untyped
+
+      def batch_size: () -> untyped
+
+      def migrate: (untyped items, untyped store) ?{ (untyped) -> untyped } -> untyped
+
+      def log_success: (untyped item, untyped store) -> untyped
+
+      def log_error: (untyped err, untyped item) -> untyped
+
+      def storage_label: (untyped store) -> ("local" | "object")
+    end
+  end
+end

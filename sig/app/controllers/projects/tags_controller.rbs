@@ -1,0 +1,43 @@
+class Projects::TagsController < Projects::ApplicationController
+  @sort: untyped
+
+  @search: untyped
+
+  @tags: untyped
+
+  @releases: untyped
+
+  @tag_pipeline_statuses: untyped
+
+  @tag: untyped
+
+  @release: untyped
+
+  @commit: untyped
+
+  @pipeline_status: untyped
+
+  @error: untyped
+
+  @message: untyped
+
+  @release_description: untyped
+
+  include SortingHelper
+
+  include HandlesGitalyErrors
+
+  def index: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def show: () -> untyped
+
+  def create: () -> untyped
+
+  def destroy: () -> untyped
+
+  private
+
+  # TODO: remove this with the release creation moved to it's own form https://gitlab.com/gitlab-org/gitlab/-/issues/214245
+  def find_evidence_pipeline: () -> (nil | untyped)
+end

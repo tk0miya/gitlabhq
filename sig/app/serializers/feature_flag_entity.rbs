@@ -1,0 +1,11 @@
+class FeatureFlagEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  def can_update?: (untyped feature_flag) -> untyped
+
+  def can_destroy?: (untyped feature_flag) -> untyped
+
+  def current_user: () -> untyped
+end

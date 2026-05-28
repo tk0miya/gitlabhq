@@ -1,0 +1,64 @@
+module Issuables
+  class LabelFilter < BaseFilter
+    include Gitlab::Utils::StrongMemoize
+
+    extend Gitlab::Cache::RequestCache
+
+    def filter: (untyped issuables) -> untyped
+
+    def label_names_excluded_from_priority_sort: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def label_link_query: (untyped issuables, ?label_ids: untyped?, ?label_names: untyped?) -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def by_label: (untyped issuables) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def by_label_union: (untyped issuables) -> untyped
+
+    def by_negated_label: (untyped issuables) -> untyped
+
+    def filter_by_no_label?: () -> untyped
+
+    def filter_by_any_label?: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def issuables_with_selected_labels: (untyped issuables, untyped label_names) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def issuables_without_selected_labels: (untyped issuables, untyped label_names) -> untyped
+
+    def find_label_ids: (untyped label_names) -> untyped
+
+    # This returns an array of label IDs per label name. It is possible for a label name
+    # to have multiple IDs because we allow labels with the same name if they are on a different
+    # project or group.
+    #
+    # For example, if we pass in `['bug', 'feature']`, this will return something like:
+    # `[ [1, 2], [3] ]`
+    #
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_label_ids_uncached: (untyped label_names) -> (::Array[untyped] | untyped)
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def group_labels_for_root_namespace: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def project_labels_for_root_namespace: () -> untyped
+
+    def target_label_links_query: (untyped _target_model, untyped base_target_model, untyped label_ids) -> untyped
+
+    def label_names_from_params: () -> (nil | untyped)
+
+    def label_names_from_or_params: () -> (nil | untyped)
+
+    def label_names_from_not_params: () -> (nil | untyped)
+
+    def split_label_names: (untyped label_name_param) -> untyped
+
+    def root_namespace: () -> untyped
+  end
+end

@@ -1,0 +1,51 @@
+class Projects::ApplicationController < ApplicationController
+  @project: untyped
+
+  @repository: untyped
+
+  @is_ambiguous_ref: untyped
+
+  include ChecksCollaboration
+
+  include CookiesHelper
+
+  include RoutableActions
+
+  include SafeFormatHelper
+
+  include EnforcesStepUpAuthenticationForNamespace
+
+  private
+
+  def project: () -> (untyped | nil)
+
+  def auth_proc: () -> untyped
+
+  def build_canonical_path: (untyped project) -> untyped
+
+  def repository: () -> untyped
+
+  def authorize_action!: (untyped action) -> (untyped | nil)
+
+  def check_project_feature_available!: (untyped feature) -> (untyped | nil)
+
+  def check_issuables_available!: () -> (untyped | nil)
+
+  def method_missing: (untyped method_sym, *untyped arguments) { (?) -> untyped } -> untyped
+
+  def require_non_empty_project: () -> (untyped | nil)
+
+  def require_branch_head: () -> (untyped | nil)
+
+  def require_pages_enabled!: () -> (untyped | nil)
+
+  def check_issues_available!: () -> (untyped | nil)
+
+  def set_is_ambiguous_ref: () -> untyped
+
+  def handle_update_result: (untyped result) -> untyped
+
+  def enforce_step_up_auth_for_namespace: () -> (untyped | untyped | nil)
+
+  def set_project_markdown_flags: () -> untyped
+end

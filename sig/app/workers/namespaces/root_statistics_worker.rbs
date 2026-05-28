@@ -1,0 +1,11 @@
+module Namespaces
+  class RootStatisticsWorker
+    include ApplicationWorker
+
+    def perform: (untyped namespace_id) -> untyped
+
+    private
+
+    def notify_storage_usage: (untyped namespace) -> nil
+  end
+end

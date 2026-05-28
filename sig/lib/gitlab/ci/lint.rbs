@@ -1,0 +1,84 @@
+module Gitlab
+  module Ci
+    class Lint
+      @project: untyped
+
+      @current_user: untyped
+
+      #
+      # We are deprecating these parameters because we'll replace the `legacy_validate` with the `validate` method.
+      #
+      # If the `sha` is not provided, the default is the project's head commit (or nil). In such case, we
+      # don't need to call `YamlProcessor.verify_project_sha!`, which prevents redundant calls to Gitaly.
+      @legacy_verify_project_sha: untyped
+
+      @legacy_sha: untyped
+
+      class Result
+        @jobs: untyped
+
+        @merged_yaml: untyped
+
+        @errors: untyped
+
+        @warnings: untyped
+
+        @includes: untyped
+
+        attr_reader jobs: untyped
+
+        attr_reader merged_yaml: untyped
+
+        attr_reader errors: untyped
+
+        attr_reader warnings: untyped
+
+        attr_reader includes: untyped
+
+        def initialize: (jobs: untyped, merged_yaml: untyped, errors: untyped, warnings: untyped, includes: untyped) -> void
+
+        def valid?: () -> untyped
+
+        def status: () -> (:valid | :invalid)
+      end
+
+      LOG_MAX_DURATION_THRESHOLD: untyped
+
+      def initialize: (project: untyped, current_user: untyped, ?sha: untyped?, ?verify_project_sha: bool) -> void
+
+      # Our goal is to remove the `sha` dependency and the custom `YamlProcessor` usage from the CI linting logic.
+      # This legacy method is aimed to be removed with https://gitlab.com/gitlab-org/gitlab/-/issues/543727.
+      def legacy_validate: (untyped content, ?dry_run: bool, ?ref: untyped) -> untyped
+
+      def validate: (untyped content, dry_run: untyped, ref: untyped) -> untyped
+
+      private
+
+      attr_accessor project: untyped
+
+      attr_accessor current_user: untyped
+
+      attr_accessor legacy_sha: untyped
+
+      attr_accessor legacy_verify_project_sha: untyped
+
+      def simulate_pipeline_creation: (untyped content, untyped ref) -> untyped
+
+      def lint_pipeline_creation: (untyped content, untyped ref) -> untyped
+
+      def legacy_static_validation: (untyped content) -> untyped
+
+      def yaml_processor_result: (untyped content, untyped logger) -> untyped
+
+      def dry_run_convert_to_jobs: (untyped stages) -> untyped
+
+      def yaml_processor_result_to_jobs: (untyped result) -> untyped
+
+      def build_logger: () -> untyped
+
+      def find_ref: () -> (nil | untyped)
+
+      def allowed_to_write_ref?: (untyped ref) -> untyped
+    end
+  end
+end

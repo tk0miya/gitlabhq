@@ -1,0 +1,37 @@
+class ResourceMilestoneEventFinder
+  @current_user: untyped
+
+  @eventable: untyped
+
+  @events_milestones: untyped
+
+  @parent_availabilities: untyped
+
+  def initialize: (untyped current_user, untyped eventable) -> void
+
+  # Returns the ResourceMilestoneEvents of the eventable
+  # visible to the user.
+  #
+  # @return ResourceMilestoneEvent::ActiveRecord_AssociationRelation
+  def execute: () -> untyped
+
+  private
+
+  attr_reader current_user: untyped
+
+  attr_reader eventable: untyped
+
+  def readable_milestone_ids: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def events_milestones: () -> untyped
+
+  def relevant_milestone_parents: () -> untyped
+
+  def parent_availabilities: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def unique_milestone_ids_from_events: () -> untyped
+
+  def key_for_parent: (untyped parent) -> ::String
+end

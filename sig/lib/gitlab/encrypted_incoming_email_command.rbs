@@ -1,0 +1,11 @@
+module Gitlab
+  class EncryptedIncomingEmailCommand < EncryptedCommandBase
+    DISPLAY_NAME: "INCOMING_EMAIL"
+
+    EDIT_COMMAND_NAME: "gitlab:incoming_email:secret:edit"
+
+    def self.encrypted_secrets: () -> untyped
+
+    def self.encrypted_file_template: () -> "# password: '123'\n# user: 'gitlab-incoming@gmail.com'\n"
+  end
+end

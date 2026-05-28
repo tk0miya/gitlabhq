@@ -1,0 +1,11 @@
+module Ci
+  class RunnerNamespace < Ci::ApplicationRecord
+    include Limitable
+
+    def recent_runners: () -> untyped
+
+    private
+
+    def group_runner_type: () -> (untyped | nil)
+  end
+end

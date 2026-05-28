@@ -1,0 +1,23 @@
+module Gitlab
+  module Kubernetes
+    class Role
+      @name: untyped
+
+      @namespace: untyped
+
+      @rules: untyped
+
+      def initialize: (name: untyped, namespace: untyped, rules: untyped) -> void
+
+      def generate: () -> untyped
+
+      private
+
+      attr_reader name: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader rules: untyped
+    end
+  end
+end

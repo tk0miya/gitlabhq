@@ -1,0 +1,11 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      module ExposeAttribute
+        extend ActiveSupport::Concern
+
+        def []: (untyped key) -> (untyped | nil)
+      end
+    end
+  end
+end

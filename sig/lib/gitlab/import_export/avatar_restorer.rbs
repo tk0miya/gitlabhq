@@ -1,0 +1,27 @@
+module Gitlab
+  module ImportExport
+    class AvatarRestorer
+      @project: untyped
+
+      @shared: untyped
+
+      @avatar_export_file: untyped
+
+      include ::Import::Framework::ProgressTracking
+
+      attr_accessor project: untyped
+
+      def initialize: (project: untyped, shared: untyped) -> void
+
+      def restore: () -> untyped
+
+      private
+
+      def avatar_export_file: () -> untyped
+
+      def avatar_export_path: () -> untyped
+
+      def progress_tracking_options: () -> { scope: { project_id: untyped }, data: "avatar" }
+    end
+  end
+end

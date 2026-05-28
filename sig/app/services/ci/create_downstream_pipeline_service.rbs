@@ -1,0 +1,46 @@
+module Ci
+  # Takes in input a Ci::Bridge job and creates a downstream pipeline
+  # (either multi-project or child pipeline) according to the Ci::Bridge
+  # specifications.
+  class CreateDownstreamPipelineService < ::BaseService
+    @bridge: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Ci::DownstreamPipelineHelpers
+
+    DuplicateDownstreamPipelineError: untyped
+
+    MAX_NESTED_CHILDREN: 2
+
+    def execute: (untyped bridge) -> untyped
+
+    def log_audit_event: (untyped downstream_pipeline) -> nil
+
+    private
+
+    def update_bridge_status!: (untyped bridge, untyped pipeline) -> untyped
+
+    def create_downstream_error_messages: (untyped bridge, untyped messages) -> untyped
+
+    def ensure_preconditions!: (untyped target_ref) -> (false | true)
+
+    def downstream_project_accessible?: () -> untyped
+
+    def can_create_downstream_pipeline?: (untyped target_ref) -> untyped
+
+    def can_write_ref?: (untyped target_ref) -> untyped
+
+    def downstream_project: () -> untyped
+
+    def has_cyclic_dependency?: () -> (false | untyped)
+
+    def has_max_nested_children?: () -> (false | untyped)
+
+    def pipeline_tree_too_large?: () -> (false | untyped)
+
+    def complete_hierarchy_count: () -> untyped
+
+    def config_checksum: (untyped pipeline) -> untyped
+  end
+end

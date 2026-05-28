@@ -1,0 +1,21 @@
+module DependencyProxy
+  class CleanupManifestWorker
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include ::Packages::CleanupArtifactWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    def max_running_jobs: () -> untyped
+
+    private
+
+    def model: () -> untyped
+
+    def log_metadata: (untyped manifest) -> untyped
+
+    def log_cleanup_item: (untyped manifest) -> untyped
+  end
+end

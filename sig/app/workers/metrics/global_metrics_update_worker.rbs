@@ -1,0 +1,17 @@
+module Metrics
+  class GlobalMetricsUpdateWorker
+    include ApplicationWorker
+
+    include ExclusiveLeaseGuard
+
+    # rubocop:disable Scalability/CronWorkerContext
+    # This worker does not perform work scoped to a context
+    include CronjobQueue
+
+    LEASE_TIMEOUT: untyped
+
+    def perform: () -> nil
+
+    def lease_timeout: () -> untyped
+  end
+end

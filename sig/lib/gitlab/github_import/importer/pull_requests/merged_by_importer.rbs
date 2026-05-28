@@ -1,0 +1,51 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module PullRequests
+        class MergedByImporter
+          @pull_request: untyped
+
+          @project: untyped
+
+          @client: untyped
+
+          @merged_by: untyped
+
+          @merge_request: untyped
+
+          @timestamp: untyped
+
+          include ::Import::PlaceholderReferences::Pusher
+
+          # pull_request - An instance of
+          #                `Gitlab::GithubImport::Representation::PullRequest`
+          # project - An instance of `Project`
+          # client - An instance of `Gitlab::GithubImport::Client`
+          def initialize: (untyped pull_request, untyped project, untyped client) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader project: untyped
+
+          attr_reader pull_request: untyped
+
+          attr_reader client: untyped
+
+          attr_reader merged_by: untyped
+
+          def metrics_upsert: (untyped gitlab_user_id) -> untyped
+
+          def add_legacy_note!: () -> untyped
+
+          def merge_request: () -> untyped
+
+          def timestamp: () -> untyped
+
+          def missing_author_note: () -> untyped
+        end
+      end
+    end
+  end
+end

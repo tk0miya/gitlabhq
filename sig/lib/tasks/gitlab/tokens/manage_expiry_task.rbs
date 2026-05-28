@@ -1,0 +1,37 @@
+module Tasks
+  module Gitlab
+    module Tokens
+      class ManageExpiryTask
+        TOTAL_WIDTH: 70
+
+        def analyze: () -> untyped
+
+        def edit: () -> untyped
+
+        private
+
+        def show_pat_expires_at_migration_status: () -> untyped
+
+        def show_most_common_pat_expiration_dates: () -> untyped
+
+        def with_most_common_pat_expiration_dates: () { (untyped) -> untyped } -> untyped
+
+        def prompt_action: () -> untyped
+
+        def extend_expiration_date: () -> untyped
+
+        def remove_expiration_date: () -> (nil | untyped)
+
+        def update_tokens_with_expiration: (untyped old_date, untyped new_date) -> untyped
+
+        def prompt_expiration_date_selection: () -> untyped
+
+        def token_count: (untyped expiration_date) -> untyped
+
+        def print_header: (untyped title, ?untyped total_width) -> untyped
+
+        def print_footer: () -> untyped
+      end
+    end
+  end
+end

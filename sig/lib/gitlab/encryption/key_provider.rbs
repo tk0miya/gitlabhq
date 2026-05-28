@@ -1,0 +1,21 @@
+module Gitlab
+  module Encryption
+    class KeyProvider
+      @providers: untyped
+
+      include Singleton
+
+      KeyProviderBuilder: untyped
+
+      KEY_PROVIDERS: { db_key_base: untyped, db_key_base_32: untyped, db_key_base_truncated: untyped, active_record_encryption_primary_key: untyped, active_record_encryption_deterministic_key: untyped }
+
+      def self.[]: (untyped key_type) -> untyped
+
+      def key_provider_for: (untyped key_type) -> untyped
+
+      private
+
+      def providers: () -> untyped
+    end
+  end
+end

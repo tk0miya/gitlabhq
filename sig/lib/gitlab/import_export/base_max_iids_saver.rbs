@@ -1,0 +1,27 @@
+module Gitlab
+  module ImportExport
+    # Base class for saving max IIDs during export.
+    #
+    # Subclasses must implement:
+    # - .resource_queries: Hash mapping resource keys to lambdas that compute max IID
+    class BaseMaxIidsSaver
+      @exportable: untyped
+
+      @shared: untyped
+
+      include DurationMeasuring
+
+      def self.resource_queries: () -> untyped
+
+      def initialize: (exportable: untyped, shared: untyped) -> void
+
+      def save: () -> untyped
+
+      private
+
+      attr_reader exportable: untyped
+
+      def compute_max_iids: () -> untyped
+    end
+  end
+end

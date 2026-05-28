@@ -1,0 +1,29 @@
+module MergeRequests
+  class RebaseService < MergeRequests::BaseService
+    @merge_request: untyped
+
+    @skip_ci: untyped
+
+    @rebase_error: untyped
+
+    REBASE_ERROR: "Rebase failed: Rebase locally, resolve all conflicts, then push the branch."
+
+    attr_reader merge_request: untyped
+
+    attr_reader rebase_error: untyped
+
+    def validate: (untyped merge_request) -> untyped
+
+    def execute: (untyped merge_request, ?skip_ci: bool) -> untyped
+
+    def rebase: () -> untyped
+
+    private
+
+    def set_rebase_error: (untyped exception) -> untyped
+
+    def user_access: () -> untyped
+
+    def error_response: (untyped message) -> untyped
+  end
+end

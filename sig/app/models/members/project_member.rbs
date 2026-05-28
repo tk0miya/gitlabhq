@@ -1,0 +1,30 @@
+class ProjectMember < Member
+  SOURCE_TYPE: "Project"
+
+  SOURCE_TYPE_FORMAT: ::Regexp
+
+  def self.truncate_teams: (untyped project_ids) -> untyped
+
+  def self.truncate_team: (untyped project) -> untyped
+
+  # For those who get to see a modal with a role dropdown, here are the options presented
+  def self.permissible_access_level_roles: (untyped current_user, untyped project) -> (::Hash[untyped, untyped] | untyped)
+
+  def self.access_level_roles: () -> untyped
+
+  def project: () -> untyped
+
+  def holder_of_the_personal_namespace?: () -> untyped
+
+  private
+
+  def access_level_inclusion: () -> (untyped | nil)
+
+  def refresh_member_authorized_projects: () -> (nil | untyped)
+
+  def execute_project_authorizations_refresh: () -> untyped
+
+  def set_member_namespace_id: () -> untyped
+
+  def post_destroy_member_hook: () -> untyped
+end

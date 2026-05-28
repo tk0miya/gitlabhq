@@ -1,0 +1,23 @@
+module Gitlab
+  module BackgroundMigration
+    # Fixes notes with NULL discussion_ids due to a bug when importing from GitHub
+    # Bug was fixed in https://gitlab.com/gitlab-org/gitlab/-/merge_requests/76517
+    class BackfillNoteDiscussionId
+      SUB_BATCH_SIZE: 300
+
+      # Migration only version of notes model
+      class Note < ApplicationRecord
+        include EachBatch
+
+        # Based on https://gitlab.com/gitlab-org/gitlab/blob/117c14d0c79403e169cf52922b48f69d1dcf6a85/app/models/discussion.rb#L62-74
+        def generate_discussion_id: () -> untyped
+      end
+
+      def perform: (untyped start_id, untyped stop_id) -> untyped
+
+      private
+
+      def update_discussion_ids: (untyped notes) -> untyped
+    end
+  end
+end

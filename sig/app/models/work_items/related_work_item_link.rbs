@@ -1,0 +1,17 @@
+module WorkItems
+  class RelatedWorkItemLink < ApplicationRecord
+    include LinkableItem
+
+    include CreatedAtFilterable
+
+    include UpdatedAtFilterable
+
+    MAX_LINKS_COUNT: 100
+
+    extend ::Gitlab::Utils::Override
+
+    def self.issuable_type: () -> :issue
+
+    def self.issuable_name: () -> "work item"
+  end
+end

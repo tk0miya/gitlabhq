@@ -1,0 +1,15 @@
+module MergeRequests
+  class UpdateReviewersService < UpdateService
+    @attrs: untyped
+
+    def execute: (untyped merge_request) -> untyped
+
+    private
+
+    def reviewer_ids: () -> untyped
+
+    def update_attrs: () -> untyped
+
+    def execute_reviewers_hooks: (untyped merge_request, untyped old_reviewers_hook_attrs) -> untyped
+  end
+end

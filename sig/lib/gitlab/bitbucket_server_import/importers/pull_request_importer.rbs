@@ -1,0 +1,51 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      class PullRequestImporter
+        @project: untyped
+
+        @formatter: untyped
+
+        @user_finder: untyped
+
+        # Object should behave as a object so we can remove object.is_a?(Hash) check
+        # This will be fixed in https://gitlab.com/gitlab-org/gitlab/-/issues/412328
+        @object: untyped
+
+        @reviewer_references: untyped
+
+        include Loggable
+
+        include Gitlab::Import::UsernameMentionRewriter
+
+        include ::Import::PlaceholderReferences::Pusher
+
+        def initialize: (untyped project, untyped hash) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader object: untyped
+
+        attr_reader project: untyped
+
+        attr_reader formatter: untyped
+
+        attr_reader user_finder: untyped
+
+        def description: () -> untyped
+
+        def author_line: () -> ("" | untyped)
+
+        def author_id: (untyped pull_request_data) -> untyped
+
+        def reviewers: () -> (::Array[untyped] | untyped)
+
+        def source_branch_sha: () -> untyped
+
+        def push_reviewer_references: (untyped merge_request) -> untyped
+      end
+    end
+  end
+end

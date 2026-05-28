@@ -1,0 +1,35 @@
+module Gitlab
+  module GitalyClient
+    class ConflictsService
+      @gitaly_repo: untyped
+
+      @repository: untyped
+
+      @our_commit_oid: untyped
+
+      @their_commit_oid: untyped
+
+      include Gitlab::EncodingHelper
+
+      include WithFeatureFlagActors
+
+      MAX_MSG_SIZE: untyped
+
+      PRE_RECEIVE_HOOK_PREFIX: "running pre-receive hooks: "
+
+      FALLBACK_HOOK_FAIL_MESSAGE: "Prevented by server hooks"
+
+      def initialize: (untyped repository, untyped our_commit_oid, untyped their_commit_oid) -> void
+
+      def list_conflict_files: (?allow_tree_conflicts: bool, ?skip_content: bool) -> untyped
+
+      def conflicts?: () -> untyped
+
+      def resolve_conflicts: (untyped target_repository, untyped resolution, untyped source_branch, untyped target_branch) -> untyped
+
+      private
+
+      def resolve_conflicts_request_header: (untyped target_repository, untyped resolution, untyped source_branch, untyped target_branch) -> untyped
+    end
+  end
+end

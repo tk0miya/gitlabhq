@@ -1,0 +1,20 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      class RelationshipExtractor
+        SUPPORTED_ASSOCIATION_TYPES: ::Array[:belongs_to | :has_many | :has_one | :has_and_belongs_to_many | :has_many_attached | :has_one_attached]
+
+        # Returns relationship data
+        def extract: () -> untyped
+
+        private
+
+        # Processes ActiveRecord models and their reflections to build Relationship objects.
+        # Iterates through each model's associations and delegates to appropriate handlers based on association type.
+        def map_to_relationships: (untyped models) -> untyped
+
+        def determine_handler_class: (untyped reflection) -> (untyped | untyped | nil | untyped)
+      end
+    end
+  end
+end

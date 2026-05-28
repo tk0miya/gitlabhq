@@ -1,0 +1,17 @@
+module Members
+  class GroupLinksCollection < SimpleDelegator
+    @pagination_delegate: untyped
+
+    @project_links: untyped
+
+    @group_links: untyped
+
+    extend Forwardable
+
+    def initialize: (untyped links, ?page: untyped?, ?total_count: untyped?, ?per_page: untyped?) -> void
+
+    def project_links: () -> untyped
+
+    def group_links: () -> untyped
+  end
+end

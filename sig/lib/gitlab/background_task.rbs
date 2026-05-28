@@ -1,0 +1,51 @@
+module Gitlab
+  # Used to run small workloads concurrently to other threads in the current process.
+  # This may be necessary when accessing process state, which cannot be done via
+  # Sidekiq jobs.
+  #
+  # Since the given task is put on its own thread, use instances sparingly and only
+  # for fast computations since they will compete with other threads such as Puma
+  # or Sidekiq workers for CPU time and memory.
+  #
+  # Good examples:
+  # - Polling and updating process counters
+  # - Observing process or thread state
+  # - Enforcing process limits at the application level
+  #
+  # Bad examples:
+  # - Running database queries
+  # - Running CPU bound work loads
+  #
+  # As a guideline, aim to yield frequently if tasks execute logic in loops by
+  # making each iteration cheap. If life-cycle callbacks like start and stop
+  # aren't necessary and the task does not loop, consider just using Thread.new.
+  #
+  # rubocop: disable Gitlab/NamespacedClass
+  class BackgroundTask
+    @task: untyped
+
+    @synchronous: untyped
+
+    @name: untyped
+
+    # We use a monitor, not a Mutex, because monitors allow for re-entrant locking.
+    @mutex: untyped
+
+    @state: untyped
+
+    AlreadyStartedError: untyped
+
+    attr_reader name: untyped
+
+    def running?: () -> untyped
+
+    # Possible options:
+    # - name [String] used to identify the task in thread listings and logs (defaults to 'background_task')
+    # - synchronous [Boolean] if true, turns `start` into a blocking call
+    def initialize: (untyped task, **untyped options) -> void
+
+    def start: () -> self
+
+    def stop: () -> untyped
+  end
+end

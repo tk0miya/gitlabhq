@@ -1,0 +1,21 @@
+module Gitlab
+  module LetsEncrypt
+    class Order
+      @acme_order: untyped
+
+      def initialize: (untyped acme_order) -> void
+
+      def new_challenge: () -> untyped
+
+      def request_certificate: (domain: untyped, private_key: untyped) -> untyped
+
+      def challenge_error: () -> untyped
+
+      private
+
+      attr_reader acme_order: untyped
+
+      def authorization: () -> untyped
+    end
+  end
+end

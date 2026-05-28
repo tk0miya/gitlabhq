@@ -1,0 +1,27 @@
+module WorkItems
+  class TaskListReferenceReplacementService
+    @work_item: untyped
+
+    @current_user: untyped
+
+    @work_item_reference: untyped
+
+    @line_number_start: untyped
+
+    @line_number_end: untyped
+
+    @title: untyped
+
+    @lock_version: untyped
+
+    STALE_OBJECT_MESSAGE: "Stale work item. Check lock version"
+
+    def initialize: (work_item: untyped, current_user: untyped, work_item_reference: untyped, line_number_start: untyped, line_number_end: untyped, title: untyped, lock_version: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def remove_additional_lines!: (untyped source_lines) -> (nil | untyped)
+  end
+end

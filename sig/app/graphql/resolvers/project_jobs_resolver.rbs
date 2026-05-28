@@ -1,0 +1,21 @@
+module Resolvers
+  class ProjectJobsResolver < BaseResolver
+    @kind: untyped
+
+    @with_artifacts: untyped
+
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    include LooksAhead
+
+    alias project object
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    private
+
+    def should_preload_artifacts?: () -> untyped
+
+    def preloads: () -> untyped
+  end
+end

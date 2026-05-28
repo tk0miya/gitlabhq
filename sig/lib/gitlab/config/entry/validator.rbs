@@ -1,0 +1,15 @@
+module Gitlab
+  module Config
+    module Entry
+      class Validator < SimpleDelegator
+        include ActiveModel::Validations
+
+        include Entry::Validators
+
+        def messages: () -> untyped
+
+        def self.name: () -> "Validator"
+      end
+    end
+  end
+end

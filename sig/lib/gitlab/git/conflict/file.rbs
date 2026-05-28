@@ -1,0 +1,71 @@
+module Gitlab
+  module Git
+    module Conflict
+      class File
+        @repository: untyped
+
+        @commit_oid: untyped
+
+        @ancestor_path: untyped
+
+        @their_path: untyped
+
+        @our_path: untyped
+
+        @our_mode: untyped
+
+        @raw_content: untyped
+
+        @type: untyped
+
+        @lines: untyped
+
+        @content: untyped
+
+        # REFACTOR NOTE: the source of `commit_oid` used to be
+        # `merge_request.diff_refs.head_sha`. Instead of passing this value
+        # around the new lib structure, I decided to use `@commit_oid` which is
+        # equivalent to `merge_request.source_branch_head.raw.rugged_commit.oid`.
+        # That is what `merge_request.diff_refs.head_sha` is equivalent to when
+        # `merge_request` is not persisted (see `MergeRequest#diff_head_commit`).
+        # I think using the same oid is more consistent anyways, but if Conflicts
+        # start breaking, the change described above is a good place to look at.
+        @our_blob: untyped
+
+        UnsupportedEncoding: untyped
+
+        attr_reader ancestor_path: untyped
+
+        attr_reader their_path: untyped
+
+        attr_reader our_path: untyped
+
+        attr_reader our_mode: untyped
+
+        attr_reader repository: untyped
+
+        attr_reader commit_oid: untyped
+
+        attr_accessor raw_content: untyped
+
+        def initialize: (untyped repository, untyped commit_oid, untyped conflict, untyped raw_content) -> void
+
+        def lines: () -> untyped
+
+        def content: () -> untyped
+
+        def type: () -> untyped
+
+        def our_blob: () -> untyped
+
+        def line_code: (untyped line) -> untyped
+
+        def resolve_lines: (untyped resolution) -> untyped
+
+        def resolve_content: (untyped resolution) -> untyped
+
+        def path: () -> untyped
+      end
+    end
+  end
+end

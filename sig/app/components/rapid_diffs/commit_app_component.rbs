@@ -1,0 +1,13 @@
+module RapidDiffs
+  class CommitAppComponent < ViewComponent::Base
+    @presenter: untyped
+
+    attr_reader presenter: untyped
+
+    def initialize: (untyped presenter) -> void
+
+    def extra_app_data: () -> { user_permissions: untyped, discussions_endpoint: untyped, noteable_type: untyped, preview_markdown_endpoint: untyped, register_path: untyped, sign_in_path: untyped, report_abuse_path: untyped, markdown_docs_path: untyped }
+
+    def extra_prefetch_endpoints: () -> ::Array[untyped]
+  end
+end

@@ -1,0 +1,37 @@
+module RapidDiffs
+  module Viewers
+    module Text
+      class HunkComponent < ViewComponent::Base
+        @diff_hunk: untyped
+
+        @file_hash: untyped
+
+        ICON_NAMES: { up: "expand-up", down: "expand-down", both: "expand" }
+
+        def initialize: (diff_hunk: untyped, file_hash: untyped) -> void
+
+        private
+
+        def line_number: (untyped line, untyped position) -> untyped
+
+        def line_change_type: (untyped line) -> (nil | "meta" | "added" | untyped)
+
+        def line_number_label: (untyped line, untyped position) -> untyped
+
+        def line_number_visible?: (untyped line, untyped position) -> (false | untyped)
+
+        def expand_icon_name: (untyped direction) -> untyped
+
+        def expand_label: (untyped direction) -> untyped
+
+        def expand_buttons: () -> untyped
+
+        def line_number_cell: (untyped line, untyped line_id, untyped change, untyped position) -> untyped
+
+        def line_content_cell: (untyped line, untyped change, untyped position) -> untyped
+
+        def line_coverage: (untyped line, untyped position) -> (nil | untyped)
+      end
+    end
+  end
+end

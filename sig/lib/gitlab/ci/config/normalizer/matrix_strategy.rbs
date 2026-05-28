@@ -1,0 +1,40 @@
+module Gitlab
+  module Ci
+    class Config
+      class Normalizer
+        class MatrixStrategy
+          @job_name: untyped
+
+          @instance: untyped
+
+          @variables: untyped
+
+          @total: untyped
+
+          def self.applies_to?: (untyped config) -> untyped
+
+          def self.build_from: (untyped job_name, untyped initial_config) -> untyped
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def self.expand: (untyped config) -> untyped
+
+          def initialize: (untyped job_name, untyped instance, untyped variables, untyped total) -> void
+
+          def attributes: () -> untyped
+
+          def name: () -> ::String
+
+          private
+
+          attr_reader job_name: untyped
+
+          attr_reader instance: untyped
+
+          attr_reader variables: untyped
+
+          attr_reader total: untyped
+        end
+      end
+    end
+  end
+end

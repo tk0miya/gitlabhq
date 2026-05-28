@@ -1,0 +1,96 @@
+# Representation of a payload of an alert. Defines a constant
+# API so that payloads from various sources can be treated
+# identically. Subclasses should define how to parse payload
+# based on source of alert.
+module Gitlab
+  module AlertManagement
+    module Payload
+      class Base
+        include ActiveModel::Model
+
+        include Gitlab::Utils::StrongMemoize
+
+        include Gitlab::Routing
+
+        attr_accessor project: untyped
+
+        attr_accessor payload: untyped
+
+        attr_accessor integration: untyped
+
+        # Any attribute expected to be specifically read from
+        # or derived from an alert payload should be defined.
+        EXPECTED_PAYLOAD_ATTRIBUTES: ::Array[:alert_markdown | :alert_title | :annotations | :description | :ends_at | :environment | :environment_name | :full_query | :generator_url | :gitlab_fingerprint | :gitlab_y_label | :has_required_attributes? | :hosts | :monitoring_tool | :resolved? | :runbook | :service | :severity | :starts_at | :status | :title]
+
+        EPOCH_MILLISECONDS_DIGIT_COUNT: untyped
+
+        SEVERITY_MAPPING: { "critical" => :critical, "high" => :high, "medium" => :medium, "low" => :low, "info" => :info }
+
+        # Handle an unmapped severity value the same way we treat missing values
+        # so we can fallback to alert's default severity `critical`.
+        UNMAPPED_SEVERITY: nil
+
+        # Defines a method which allows access to a given
+        # value within an alert payload
+        #
+        # @param key [Symbol] Name expected to be used to reference value
+        # @param paths [String, Array<String>, Array<Array<String>>,]
+        #              List of (nested) keys at value can be found, the
+        #              first to yield a result will be used
+        # @param type [Symbol] If value should be converted to another type,
+        #              that should be specified here
+        # @param fallback [Proc] Block to be executed to yield a value if
+        #                 a value cannot be idenitied at any provided paths
+        # Example)
+        #    attribute :title
+        #              paths: [['title'],
+        #                     ['details', 'title']]
+        #              fallback: Proc.new { 'New Alert' }
+        #
+        # The above sample definition will define a method
+        # called #title which will return the value from the
+        # payload under the key `title` if available, otherwise
+        # looking under `details.title`. If neither returns a
+        # value, the return value will be `'New Alert'`
+        def self.attribute: (untyped key, paths: untyped, ?type: untyped?, ?fallback: untyped) -> untyped
+
+        # Attributes of an AlertManagement::Alert as read
+        # directly from a payload. Prefer accessing
+        # AlertManagement::Alert directly for read operations.
+        def alert_params: () -> untyped
+
+        def gitlab_fingerprint: () -> untyped
+
+        def environment: () -> untyped
+
+        def resolved?: () -> untyped
+
+        def has_required_attributes?: () -> true
+
+        def severity: () -> untyped
+
+        def source: () -> untyped
+
+        private
+
+        def plain_gitlab_fingerprint: () -> nil
+
+        def severity_raw: () -> nil
+
+        def severity_mapping: () -> untyped
+
+        def truncate: (untyped value, untyped length) -> untyped
+
+        def truncate_hosts: (untyped hosts) -> untyped
+
+        def value_for_paths: (untyped paths) -> untyped
+
+        def parse_value: (untyped value, untyped type) -> untyped
+
+        def parse_time: (untyped value) -> untyped
+
+        def parse_integer: (untyped value) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillProjectNamespaceDetails < ::Gitlab::BackgroundMigration::BatchedMigrationJob
+      def perform: () -> untyped
+
+      def upsert_project_namespace_details: (untyped relation) -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+class ContainerExpirationPolicy < ApplicationRecord
+  include Schedulable
+
+  include UsageStatistics
+
+  include EachBatch
+
+  POLICY_PARAMS: ::Array["older_than" | "keep_n" | "name_regex" | "name_regex_keep"]
+
+  def self.with_container_repositories: () -> untyped
+
+  def self.without_container_repositories: () -> untyped
+
+  def self.keep_n_options: () -> { 1 => untyped, 5 => untyped, 10 => untyped, 25 => untyped, 50 => untyped, 100 => untyped }
+
+  def self.cadence_options: () -> { :"1d" => untyped, :"7d" => untyped, :"14d" => untyped, :"1month" => untyped, :"3month" => untyped }
+
+  def self.older_than_options: () -> { :"1d" => untyped, :"3d" => untyped, :"7d" => untyped, :"14d" => untyped, :"30d" => untyped, :"60d" => untyped, :"90d" => untyped, :"180d" => untyped, :"365d" => untyped, :"730d" => untyped, :"1095d" => untyped }
+
+  def set_next_run_at: () -> untyped
+
+  def disable!: () -> untyped
+
+  def policy_params: () -> untyped
+end

@@ -1,0 +1,15 @@
+module Resolvers
+  module Ci
+    class ProjectPipelineResolver < BaseResolver
+      include LooksAhead
+
+      alias project object
+
+      def self.resolver_complexity: (untyped args, child_complexity: untyped) -> untyped
+
+      def resolve: (?id: untyped?, ?iid: untyped?, ?sha: untyped?, **untyped args) -> untyped
+
+      def unconditional_includes: () -> ::Array[{ statuses: ::Array[:needs] }]
+    end
+  end
+end

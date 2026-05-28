@@ -1,0 +1,39 @@
+module Projects
+  module Ml
+    class ModelFinder
+      @project: untyped
+
+      @params: untyped
+
+      @models: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      VALID_ORDER_BY: ::Array["name" | "created_at" | "updated_at" | "id"]
+
+      VALID_SORT: ::Array["asc" | "desc"]
+
+      def initialize: (untyped project, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      def count: () -> untyped
+
+      private
+
+      def relation: () -> untyped
+
+      def by_name: () -> untyped
+
+      def ordered: () -> untyped
+
+      def valid_or_default: (untyped value, untyped valid_values, untyped default) -> untyped
+
+      attr_reader params: untyped
+
+      attr_reader project: untyped
+
+      attr_reader models: untyped
+    end
+  end
+end

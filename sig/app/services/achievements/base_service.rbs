@@ -1,0 +1,13 @@
+module Achievements
+  class BaseService < ::BaseContainerService
+    @namespace: untyped
+
+    def initialize: (namespace: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+    private
+
+    def allowed?: () -> untyped
+
+    def error: (untyped message) -> untyped
+  end
+end

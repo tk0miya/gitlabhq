@@ -1,0 +1,39 @@
+module Import
+  module AfterExportStrategies
+    class WebUploadStrategy < BaseAfterExportStrategy
+      @export_file: untyped
+
+      PUT_METHOD: "PUT"
+
+      POST_METHOD: "POST"
+
+      INVALID_HTTP_METHOD: "invalid. Only PUT and POST methods allowed."
+
+      FORBIDDEN_HTTP_STATUS: 403
+
+      def initialize: (url: untyped, ?http_method: untyped) -> void
+
+      def execute: (untyped current_user, untyped project) -> (false | untyped)
+
+      def strategy_execute: () -> (nil | untyped)
+
+      def handle_response_error: (untyped response) -> (nil | untyped)
+
+      def delete_export?: () -> false
+
+      private
+
+      def send_file: () -> untyped
+
+      def upload_project_as_remote_stream: () -> untyped
+
+      def export_file: () -> untyped
+
+      def send_file_options: () -> { body_stream: untyped, headers: untyped }
+
+      def headers: () -> { "Content-Type" => "application/gzip", "Content-Length" => untyped }
+
+      def export_size: () -> untyped
+    end
+  end
+end

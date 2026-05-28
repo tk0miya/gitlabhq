@@ -1,0 +1,25 @@
+module Gitlab
+  module Git
+    class DiffStatsCollection
+      @collection: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include Enumerable
+
+      def initialize: (untyped diff_stats) -> void
+
+      def each: () { (?) -> untyped } -> untyped
+
+      def find_by_path: (untyped path) -> untyped
+
+      def paths: () -> untyped
+
+      def real_size: (?max_files: untyped) -> (::String | untyped)
+
+      private
+
+      def indexed_by_path: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,41 @@
+module Integrations
+  class JiraCloudApp < Integration
+    include HasAvatar
+
+    SERVICE_IDS_REGEX: ::Regexp
+
+    SERVICE_IDS_LIMIT: 100
+
+    ENVIRONMENT_REGEX: ::Regexp
+
+    AVAILABLE_ENVRIONMENT_NAMES: ::Array["production" | "staging" | "testing" | "development"]
+
+    def self.title: () -> untyped
+
+    def self.description: () -> untyped
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "jira_cloud_app"
+
+    def self.supported_events: () -> ::Array[untyped]
+
+    def sections: () -> ::Array[{ type: untyped, title: untyped, description: untyped }]
+
+    def testable?: () -> false
+
+    def manual_activation?: () -> false
+
+    def editable?: () -> untyped
+
+    private
+
+    def validate_service_ids_limit: () -> (nil | untyped)
+
+    def format_deployment_gating_environments: () -> (nil | untyped)
+
+    def validate_deployment_gating_environments: () -> (nil | untyped)
+
+    def validate_valid_deployment_gating_input: () -> (nil | untyped)
+  end
+end

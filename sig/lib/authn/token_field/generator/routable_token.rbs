@@ -1,0 +1,79 @@
+module Authn
+  module TokenField
+    module Generator
+      class RoutableToken
+        @token_owner_record: untyped
+
+        @routing_payload: untyped
+
+        @prefix: untyped
+
+        TOKEN_VERSION: 1
+
+        TOKEN_VERSION_LENGTH: 2
+
+        RANDOM_BYTES_LENGTH: 16
+
+        BASE64_PAYLOAD_LENGTH_HOLDER_BYTES: 2
+
+        CRC_BYTES: 7
+
+        VALID_ROUTING_KEYS: ::Array[:c | :g | :o | :p | :u | :t]
+
+        REQUIRED_ANY_ROUTING_KEYS: ::Array[:c | :o]
+
+        MAXIMUM_SIZE_OF_ROUTING_PAYLOAD: 159
+
+        DEFAULT_ROUTING_PAYLOAD_HASH: { c: untyped }
+
+        PayloadTooLarge: untyped
+
+        MissingRequiredRoutingKeys: untyped
+
+        InvalidRoutingKeys: untyped
+
+        def self.random_bytes: (untyped length) -> untyped
+
+        def self.crc_of: (untyped encoded) -> untyped
+
+        attr_reader token_owner_record: untyped
+
+        attr_reader routing_payload: untyped
+
+        attr_reader prefix: untyped
+
+        def initialize: (untyped token_owner_record, routing_payload: untyped, ?prefix: ::String) -> void
+
+        def generate_token: () -> untyped
+
+        private
+
+        def validate_routing_keys!: () -> untyped
+
+        def routing_hash: () -> untyped
+
+        def build_payload: (untyped routing_hash) -> untyped
+
+        def format_value: (untyped value) -> untyped
+
+        def encode_payload: (untyped payload, untyped random_bytes) -> ::String
+
+        def token_version: () -> untyped
+
+        def append_crc: (untyped encoded_payload) -> ::String
+
+        def check_required_routing_keys!: () -> (nil | untyped)
+
+        def check_invalid_routing_keys!: () -> (nil | untyped)
+
+        def check_payload_size!: (untyped payload) -> untyped
+
+        def missing_required_routing_keys_error_message: () -> ::String
+
+        def invalid_keys_error_message: (untyped invalid_keys) -> ::String
+
+        def payload_size_error_message: (untyped size) -> ::String
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Ci
+  module PipelineArtifacts
+    class CreateQualityReportWorker
+      include ApplicationWorker
+
+      def perform: (untyped pipeline_id) -> untyped
+    end
+  end
+end

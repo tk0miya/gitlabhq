@@ -1,0 +1,13 @@
+module Gitlab
+  module Instrumentation
+    module RedisPayload
+      include ::Gitlab::Utils::StrongMemoize
+
+      def payload: () -> untyped
+
+      private
+
+      def to_lazy_payload: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,73 @@
+module Observability
+  class O11yToken
+    @o11y_settings: untyped
+
+    @http_client: untyped
+
+    AuthenticationError: untyped
+
+    ConfigurationError: untyped
+
+    NetworkError: untyped
+
+    SETUP_BUFFER_MINUTES: 10
+
+    class TokenResponse
+      @access_jwt: untyped
+
+      @refresh_jwt: untyped
+
+      attr_reader access_jwt: untyped
+
+      attr_reader refresh_jwt: untyped
+
+      def self.from_json: (untyped data) -> untyped
+
+      def initialize: (access_jwt: untyped, refresh_jwt: untyped) -> void
+
+      def to_h: () -> { accessJwt: untyped, refreshJwt: untyped }
+    end
+
+    def self.generate_tokens: (untyped o11y_settings) -> untyped
+
+    def initialize: (untyped o11y_settings) -> void
+
+    def generate_tokens: () -> untyped
+
+    private
+
+    attr_reader o11y_settings: untyped
+
+    attr_reader http_client: untyped
+
+    def validate_settings!: () -> untyped
+
+    def authenticate_user: (untyped account_id) -> untyped
+
+    def build_payload: (untyped account_id) -> { email: untyped, password: untyped, orgId: untyped }
+
+    def login_url: () -> untyped
+
+    def api_url: () -> untyped
+
+    def get_account_id: () -> (:provisioning | nil | untyped)
+
+    def context_payload: () -> { email: untyped }
+
+    def account_id_url: () -> untyped
+
+    def parse_response: (untyped response) -> untyped
+
+    def new_settings?: () -> untyped
+
+    class HttpClient
+      def post: (untyped url, untyped payload) -> untyped
+
+      def get: (untyped url, ?::Hash[untyped, untyped] params) -> untyped
+
+      private
+
+      def allow_local_requests?: () -> untyped
+    end
+  end
+end

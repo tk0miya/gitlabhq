@@ -1,0 +1,34 @@
+module Atlassian
+  module JiraConnect
+    module Serializers
+      class FeatureFlagEntity < Grape::Entity
+        @issue_keys: untyped
+
+        include Gitlab::Routing
+
+        alias flag object
+
+        def issue_keys: () -> untyped
+
+        def schema_version: () -> "1.0"
+
+        def update_sequence_id: () -> untyped
+
+        STRATEGY_NAMES: ::Hash[untyped, "All users" | "User List" | "Percent of users" | "Percent rollout" | "User IDs"]
+
+        private
+
+        # The summary does not map very well to our FeatureFlag model.
+        #
+        # We allow feature flags to have multiple strategies, depending
+        # on the environment. Jira expects a single rollout strategy.
+        #
+        # Also, we don't actually support showing a single flag, so we use the
+        # edit path as an interim solution.
+        def summary: (?untyped strategies) -> { url: untyped, lastUpdated: untyped, status: { enabled: untyped, defaultValue: "", rollout: untyped } }
+
+        def details: () -> untyped
+      end
+    end
+  end
+end

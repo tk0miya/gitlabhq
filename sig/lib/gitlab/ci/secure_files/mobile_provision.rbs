@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module SecureFiles
+      class MobileProvision
+        @filedata: untyped
+
+        @error: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader error: untyped
+
+        def initialize: (untyped filedata) -> void
+
+        def decoded_plist: () -> untyped
+
+        def properties: () -> untyped
+
+        def metadata: () -> (::Hash[untyped, untyped] | { id: untyped, expires_at: untyped, platforms: untyped, team_name: untyped, team_id: untyped, app_name: untyped, app_id: untyped, app_id_prefix: untyped, xcode_managed: untyped, entitlements: untyped, devices: untyped, certificate_ids: untyped })
+
+        private
+
+        def id: () -> untyped
+
+        def expires_at: () -> untyped
+
+        def certificate_ids: () -> (::Array[untyped] | untyped)
+
+        def developer_certificates: () -> (nil | untyped)
+      end
+    end
+  end
+end

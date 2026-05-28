@@ -1,0 +1,36 @@
+class AutoMergeService < BaseService
+  include Gitlab::Utils::StrongMemoize
+
+  STRATEGY_MERGE_WHEN_CHECKS_PASS: "merge_when_checks_pass"
+
+  # Only used in EE
+  STRATEGY_ADD_TO_MERGE_TRAIN_WHEN_CHECKS_PASS: "add_to_merge_train_when_checks_pass"
+
+  STRATEGIES: ::Array[untyped]
+
+  def self.all_strategies_ordered_by_preference: () -> untyped
+
+  def self.get_service_class: (untyped strategy) -> (nil | untyped)
+
+  def self.strategy_to_class_map: () -> ::Hash[untyped, untyped]
+
+  def execute: (untyped merge_request, ?untyped? strategy) -> (:failed | untyped)
+
+  def update: (untyped merge_request) -> (:failed | untyped)
+
+  def process: (untyped merge_request) -> (nil | untyped)
+
+  def cancel: (untyped merge_request) -> untyped
+
+  def abort: (untyped merge_request, untyped reason) -> untyped
+
+  def available_strategies: (untyped merge_request) -> untyped
+
+  def preferred_strategy: (untyped merge_request) -> untyped
+
+  private
+
+  def auto_merge_service_instance: (untyped merge_request, untyped strategy) -> untyped
+
+  def perform_method: (untyped merge_request) { (untyped) -> untyped } -> untyped
+end

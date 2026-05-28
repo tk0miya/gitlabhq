@@ -1,0 +1,18 @@
+# This DRYs up some methods used by both the GraphQL and REST milestone APIs
+module API
+  module Concerns
+    module Milestones
+      module GroupProjectParams
+        extend ActiveSupport::Concern
+
+        private
+
+        def project_finder_params: (untyped parent, untyped params) -> ({ project_ids: untyped } | { group_ids: untyped, project_ids: untyped })
+
+        def group_finder_params: (untyped parent, untyped params) -> ({ group_ids: untyped } | { group_ids: untyped, project_ids: untyped })
+
+        def group_projects: (untyped parent) -> untyped
+      end
+    end
+  end
+end

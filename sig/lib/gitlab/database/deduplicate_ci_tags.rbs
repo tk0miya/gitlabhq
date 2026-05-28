@@ -1,0 +1,33 @@
+module Gitlab
+  module Database
+    class DeduplicateCiTags
+      @logger: untyped
+
+      @dry_run: untyped
+
+      TAGGING_BATCH_SIZE: 10000
+
+      TAG_BATCH_SIZE: 10000
+
+      TAGS_INDEX_NAME: "index_tags_on_name"
+
+      def initialize: (logger: untyped, dry_run: untyped) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader logger: untyped
+
+      attr_reader dry_run: untyped
+
+      def deduplicate_ci_tags: (untyped bad_tag_ids, untyped tag_remap) -> untyped
+
+      def deduplicate_ci_taggings: (untyped bad_tag_ids, untyped tag_remap) -> untyped
+
+      def taggings_with_fk: (untyped model_record) -> untyped
+
+      def delete_duplicate_taggings: (untyped tagging_model, untyped tag_remap) -> untyped
+    end
+  end
+end

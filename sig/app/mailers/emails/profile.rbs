@@ -1,0 +1,112 @@
+module Emails
+  module Profile
+    @current_user: untyped
+
+    @target_url: untyped
+
+    @token: untyped
+
+    @user: untyped
+
+    @recipient: untyped
+
+    @name: untyped
+
+    @host: untyped
+
+    @key: untyped
+
+    @gpg_key: untyped
+
+    @token_name: untyped
+
+    @days_to_expire: untyped
+
+    @resource: untyped
+
+    @reason_text: untyped
+
+    @token_names: untyped
+
+    @source: untyped
+
+    @project: untyped
+
+    @user_role: untyped
+
+    @fingerprints: untyped
+
+    @ip: untyped
+
+    @city: untyped
+
+    @country: untyped
+
+    @time: untyped
+
+    @device_name: untyped
+
+    @type: untyped
+
+    @email: untyped
+
+    @achievement: untyped
+
+    @user_achievement: untyped
+
+    @accept_url: untyped
+
+    include SafeFormatHelper
+
+    def new_user_email: (untyped user_id, ?untyped? token) -> untyped
+
+    def instance_access_request_email: (untyped user, untyped recipient) -> untyped
+
+    def user_admin_rejection_email: (untyped name, untyped email) -> untyped
+
+    def user_deactivated_email: (untyped name, untyped email) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def new_ssh_key_email: (untyped key_id) -> (nil | untyped)
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def new_gpg_key_email: (untyped gpg_key_id) -> (nil | untyped)
+
+    # resource owners are sent mail about expiring access tokens which belong to a bot user
+    def bot_resource_access_token_about_to_expire_email: (untyped recipient, untyped resource, untyped token_name, ?::Hash[untyped, untyped] params) -> untyped
+
+    def access_token_created_email: (untyped user, untyped token_name) -> (nil | untyped)
+
+    def access_token_about_to_expire_email: (untyped user, untyped token_names, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+    def access_token_expired_email: (untyped user, ?untyped token_names) -> (nil | untyped)
+
+    def access_token_revoked_email: (untyped user, untyped token_name, ?untyped? source) -> (nil | untyped)
+
+    def access_token_rotated_email: (untyped user, untyped token_name) -> (nil | untyped)
+
+    def deploy_token_about_to_expire_email: (untyped user, untyped token_name, untyped project, ?::Hash[untyped, untyped] params) -> untyped
+
+    def ssh_key_expired_email: (untyped user, untyped fingerprints) -> (nil | untyped)
+
+    def ssh_key_expiring_soon_email: (untyped user, untyped fingerprints) -> (nil | untyped)
+
+    def unknown_sign_in_email: (untyped user, untyped ip, untyped time, ?::Hash[untyped, untyped] request_info) -> untyped
+
+    def two_factor_otp_attempt_failed_email: (untyped user, untyped ip, ?untyped time) -> untyped
+
+    def enabled_two_factor_otp_email: (untyped user) -> (nil | untyped)
+
+    def enabled_two_factor_webauthn_email: (untyped user, untyped device_name, ?::Symbol type) -> (nil | untyped)
+
+    def disabled_two_factor_email: (untyped user) -> (nil | untyped)
+
+    def disabled_two_factor_otp_email: (untyped user) -> (nil | untyped)
+
+    def disabled_two_factor_webauthn_email: (untyped user, untyped device_name, ?::Symbol type) -> (nil | untyped)
+
+    def new_email_address_added_email: (untyped user, untyped email) -> (nil | untyped)
+
+    def new_achievement_email: (untyped user, untyped achievement, untyped user_achievement) -> (nil | untyped)
+  end
+end

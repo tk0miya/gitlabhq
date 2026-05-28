@@ -1,0 +1,13 @@
+module ClickHouse
+  module MigrationSupport
+    class SidekiqMiddleware
+      def call: (untyped worker, untyped job, untyped queue) { () -> untyped } -> untyped
+
+      private
+
+      def worker_id: (untyped job, untyped queue) -> untyped
+
+      def register_worker?: (untyped worker_class) -> untyped
+    end
+  end
+end

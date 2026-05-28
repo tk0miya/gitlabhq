@@ -1,0 +1,48 @@
+module Projects
+  module Prometheus
+    module Alerts
+      class NotifyService < ::BaseProjectService
+        include Gitlab::Utils::StrongMemoize
+
+        include ::AlertManagement::Responses
+
+        # This set of keys identifies a payload as a valid Prometheus
+        # payload and thus processable by this service. See also
+        # https://prometheus.io/docs/alerting/configuration/#webhook_config
+        REQUIRED_PAYLOAD_KEYS: untyped
+
+        SUPPORTED_VERSION: "4"
+
+        # If feature flag :prometheus_notify_max_alerts is enabled truncate
+        # alerts to 100 and process only them.
+        # If feature flag is disabled process any amount of alerts.
+        #
+        # This is to mitigate incident:
+        # https://gitlab.com/gitlab-com/gl-infra/production/-/issues/6086
+        PROCESS_MAX_ALERTS: 100
+
+        def initialize: (untyped project, untyped params) -> void
+
+        def execute: (untyped token, ?untyped? integration) -> untyped
+
+        def self.processable?: (untyped payload) -> (false | untyped)
+
+        private
+
+        def valid_payload_size?: () -> untyped
+
+        def max_alerts_exceeded?: () -> (false | untyped)
+
+        def truncate_alerts!: () -> untyped
+
+        def alerts: () -> untyped
+
+        def valid_alert_manager_token?: (untyped token, untyped integration) -> (false | untyped)
+
+        def compare_token: (untyped expected, untyped actual) -> (nil | untyped)
+
+        def process_prometheus_alerts: (untyped integration) -> untyped
+      end
+    end
+  end
+end

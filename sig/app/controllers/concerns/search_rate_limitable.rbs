@@ -1,0 +1,10 @@
+# This concern is specifically for /search related endpoints(SearchController). Avoid using this for other controllers.
+module SearchRateLimitable
+  extend ActiveSupport::Concern
+
+  private
+
+  def check_search_rate_limit!: () -> untyped
+
+  def safe_search_scope: () -> (untyped | nil)
+end

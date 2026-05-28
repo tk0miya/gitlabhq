@@ -1,0 +1,38 @@
+module BulkImports
+  class ObjectCounter
+    SOURCE_COUNTER: :source
+
+    FETCHED_COUNTER: :fetched
+
+    IMPORTED_COUNTER: :imported
+
+    COUNTER_TYPES: ::Array[untyped]
+
+    CACHE_KEY: "bulk_imports/object_counter/%{tracker_id}"
+
+    TRACKED_OBJECTS_KEY: "bulk_imports/tracked_objects/%{tracker_id}/%{counter_type}"
+
+    def self.increment_by_object: (untyped tracker, untyped counter_type, untyped entry) -> (false | untyped)
+
+    def self.increment: (untyped tracker, untyped counter_type, ?::Integer value) -> (nil | untyped)
+
+    def self.set: (untyped tracker, untyped counter_type, ?::Integer value) -> (nil | untyped)
+
+    def self.summary: (untyped tracker) -> (nil | untyped)
+
+    # Commits counters from redis to the database
+    def self.persist!: (untyped tracker) -> (nil | untyped)
+
+    private
+
+    def self.counter_key: (untyped tracker) -> untyped
+
+    def self.tracked_objects_key: (untyped tracker, untyped counter_type) -> untyped
+
+    def self.valid_input?: (untyped counter_type, untyped value) -> (false | true)
+
+    def self.valid_counter_type?: (untyped counter_type) -> untyped
+
+    def self.empty_response: () -> ::Hash[untyped, 0]
+  end
+end

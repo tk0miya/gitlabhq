@@ -1,0 +1,45 @@
+module Repositories
+  class TreeFinder
+    @project: untyped
+
+    @repository: untyped
+
+    @params: untyped
+
+    @next_cursor: untyped
+
+    @commit: untyped
+
+    CommitMissingError: untyped
+
+    attr_reader next_cursor: untyped
+
+    def initialize: (untyped project, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: (?gitaly_pagination: bool) -> untyped
+
+    def total: () -> untyped
+
+    def commit_exists?: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader repository: untyped
+
+    attr_reader params: untyped
+
+    def commit: () -> untyped
+
+    def ref: () -> untyped
+
+    def path: () -> untyped
+
+    def recursive: () -> untyped
+
+    def rescue_not_found: () -> untyped
+
+    def pagination_params: () -> { limit: untyped, page_token: untyped }
+  end
+end

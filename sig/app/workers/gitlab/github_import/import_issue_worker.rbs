@@ -1,0 +1,15 @@
+module Gitlab
+  module GithubImport
+    class ImportIssueWorker
+      include ObjectImporter
+
+      def representation_class: () -> untyped
+
+      def importer_class: () -> untyped
+
+      def object_type: () -> :issue
+
+      def increment_object_counter?: (untyped object) -> untyped
+    end
+  end
+end

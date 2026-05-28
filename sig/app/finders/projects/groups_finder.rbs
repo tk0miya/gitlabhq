@@ -1,0 +1,43 @@
+# Used to filter ancestor and shared project's Groups by a set of params
+#
+# Arguments:
+#   project
+#   current_user - which user is requesting groups
+#   params:
+#     with_shared: boolean (optional)
+#     shared_visible_only: boolean (optional)
+#     shared_min_access_level: integer (optional)
+#     skip_groups: array of integers (optional)
+#
+module Projects
+  class GroupsFinder < UnionFinder
+    @project: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    def initialize: (project: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def authorized?: () -> untyped
+
+    def all_groups: () -> (::Array[untyped] | untyped)
+
+    def with_shared_groups: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def apply_min_access_level: (untyped groups) -> untyped
+
+    def exclude_group_ids: (untyped groups) -> untyped
+  end
+end

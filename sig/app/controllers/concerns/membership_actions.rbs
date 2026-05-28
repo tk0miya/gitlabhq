@@ -1,0 +1,56 @@
+module MembershipActions
+  include MembersPresentation
+
+  extend ActiveSupport::Concern
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  def request_access: () -> untyped
+
+  def approve_access_request: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def leave: () -> untyped
+
+  def resend_invite: () -> untyped
+
+  def membershipable: () -> untyped
+
+  def membershipable_members: () -> untyped
+
+  def root_params_key: () -> untyped
+
+  def members_page_url: () -> untyped
+
+  def source_type: () -> untyped
+
+  def plain_source_type: () -> untyped
+
+  def source: () -> untyped
+
+  def members_and_requesters: () -> untyped
+
+  def requesters: () -> untyped
+
+  def update_params: () -> untyped
+
+  def requested_relations: (?::Symbol inherited_permissions) -> untyped
+
+  def authenticate_user!: () -> (nil | untyped)
+
+  def already_a_member!: () -> (nil | untyped)
+
+  private
+
+  def update_success_response: (untyped result) -> untyped
+
+  def shared_members_relations: () -> untyped
+
+  def members_requesters_permitted_params: () -> untyped
+
+  def approve_access_request_service_params: () -> untyped
+
+  def destroy_option_params: () -> untyped
+end

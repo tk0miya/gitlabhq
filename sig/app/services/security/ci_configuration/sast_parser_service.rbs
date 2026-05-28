@@ -1,0 +1,49 @@
+module Security
+  module CiConfiguration
+    # This class parses SAST template file and .gitlab-ci.yml to populate default and current values into the JSON
+    # read from app/validators/json_schemas/security_ci_configuration_schemas/sast_ui_schema.json
+    class SastParserService < ::BaseService
+      @project: untyped
+
+      @sast_template_attributes: untyped
+
+      @gitlab_ci_yml_attributes: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      SAST_UI_SCHEMA_PATH: "app/validators/json_schemas/security_ci_configuration_schemas/sast_ui_schema.json"
+
+      def initialize: (untyped project) -> void
+
+      def configuration: () -> untyped
+
+      private
+
+      def sast_template_content: () -> untyped
+
+      def populate_default_value_for: (untyped config, untyped level) -> untyped
+
+      def populate_current_value_for: (untyped config, untyped level) -> untyped
+
+      def fill_current_value_with_default_for: (untyped config, untyped level) -> untyped
+
+      def set_each: (untyped config_attributes, key: untyped, with: untyped) -> untyped
+
+      def fill_current_value_with_default_for_analyzers: (untyped result) -> untyped
+
+      def populate_current_value_for_analyzers: (untyped result) -> untyped
+
+      def analyzer_enabled?: (untyped analyzer_name) -> untyped
+
+      def sast_excluded_analyzers: () -> untyped
+
+      def sast_template_attributes: () -> untyped
+
+      def gitlab_ci_yml_attributes: () -> untyped
+
+      def build_sast_attributes: (untyped content) -> (::Hash[untyped, untyped] | untyped)
+
+      def extract_required_attributes: (untyped yaml_result) -> untyped
+    end
+  end
+end

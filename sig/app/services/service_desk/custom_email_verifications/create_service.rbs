@@ -1,0 +1,29 @@
+module ServiceDesk
+  module CustomEmailVerifications
+    class CreateService < BaseService
+      @verification: untyped
+
+      SMTP_HOST_ERRORS: ::Array[untyped]
+
+      def execute: () -> untyped
+
+      private
+
+      def verification: () -> untyped
+
+      def update_settings: () -> untyped
+
+      def notify_project_owners_and_user_about_verification_start: () -> untyped
+
+      def send_verification_email_and_catch_delivery_errors: () -> untyped
+
+      def assign_and_log_delivery_error: (untyped error_type, untyped error) -> untyped
+
+      def handle_error_case: (untyped ramp_up_error) -> untyped
+
+      def error_settings_missing: () -> untyped
+
+      def error_user_not_authorized: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module API
+  class Issues < ::API::Base
+    include ::API::Concerns::AiWorkflowsAccess
+
+    include ::API::Concerns::McpAccess
+
+    include APIGuard
+
+    include PaginationParams
+  end
+end

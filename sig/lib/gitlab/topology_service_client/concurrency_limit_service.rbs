@@ -1,0 +1,62 @@
+module Gitlab
+  module TopologyServiceClient
+    # This service manages a GLOBAL concurrency limit for the Topology Service.
+    # At any moment in time, there should not be more than the configured limit
+    # of concurrent requests to the Topology Service. This is a cell-wide limit
+    # that applies to ALL requests, regardless of source or type.
+    #
+    # Uses a Redis Hash to track individual requests by process ID and request ID,
+    # similar to Sidekiq's WorkerExecutionTracker. This approach prevents counter
+    # drift when requests fail without proper cleanup.
+    #
+    # Configuration:
+    # - ApplicationSettings stores the limit value (topology_service_concurrency_limit)
+    # - Feature flag controls enforcement mode (log-only vs enforce)
+    class ConcurrencyLimitService
+      REDIS_KEY_EXECUTING: "topology_service:concurrency_limit:executing"
+
+      TRACKING_KEY_TTL: untyped
+
+      # Lua script for atomically checking the concurrency limit and adding a request.
+      # Returns 1 if the request was added (limit not exceeded), 0 if rejected.
+      # Uses Redis server time for consistency with cleanup operations.
+      # KEYS[1]: REDIS_KEY_EXECUTING (hash key)
+      # ARGV[1]: request_id
+      # ARGV[2]: concurrency_limit
+      CHECK_AND_ADD_REQUEST_SCRIPT: "local key, request_id, limit = KEYS[1], ARGV[1], tonumber(ARGV[2])\nlocal current_time = redis.call(\"TIME\")[1]\nlocal current_count = redis.call(\"hlen\", key)\nif current_count >= limit then\n  return 0\nend\nredis.call(\"hset\", key, request_id, current_time)\nreturn 1\n"
+
+      # Get current concurrency limit from ApplicationSettings
+      # @return [Integer] The current limit
+      def self.concurrency_limit: () -> untyped
+
+      # @return [Boolean] true if enforce mode is enabled
+      def self.enforce_mode_enabled?: () -> untyped
+
+      # @return [Integer] The current concurrent request count
+      def self.concurrent_request_count: () -> untyped
+
+      # Track request start by atomically checking the limit and adding an entry to the hash.
+      # Uses a Lua script to ensure the check and increment are atomic, preventing race conditions.
+      # @param grpc_method [String] The gRPC method being called (e.g., '/TopologyService/GetCell')
+      # @return [String, nil] The unique request ID if limit not exceeded, nil if rejected
+      def self.track_request_start: (?grpc_method: untyped?) -> untyped
+
+      # Track request end by removing the entry from the hash
+      # @param request_id [String] The request ID returned by track_request_start
+      def self.track_request_end: (untyped request_id) -> (nil | untyped)
+
+      # Clean up stale request entries that are older than TTL
+      # Called by StaleRequestsCleanupCronWorker on a schedule
+      # @return [Hash, nil] Hash with :removed_count on success, nil if Redis unavailable
+      def self.cleanup_stale_requests: () -> { removed_count: untyped }
+
+      def self.extract_method_name: (untyped grpc_method, ?fallback: ::String) -> untyped
+
+      private
+
+      def self.generate_request_id: (untyped grpc_method) -> ::String
+
+      def self.with_redis_suppressed_errors: () { (?) -> untyped } -> untyped
+    end
+  end
+end

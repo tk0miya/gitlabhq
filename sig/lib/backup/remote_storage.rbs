@@ -1,0 +1,61 @@
+module Backup
+  class RemoteStorage
+    @logger: untyped
+
+    @options: untyped
+
+    @backup_information: untyped
+
+    @backup_filename: untyped
+
+    @object_storage_config: untyped
+
+    @tar_file: untyped
+
+    attr_reader options: untyped
+
+    attr_reader backup_information: untyped
+
+    attr_reader logger: untyped
+
+    def initialize: (logger: untyped, options: untyped) -> void
+
+    def upload: (backup_information: untyped) -> (nil | untyped)
+
+    private
+
+    def remote_target: () -> untyped
+
+    def create_attributes: () -> untyped
+
+    def provider_attributes: () -> (untyped | ::Hash[untyped, untyped])
+
+    def aws_attributes: () -> untyped
+
+    def backup_filename: () -> untyped
+
+    def upload_multipart_chunk_size: () -> untyped
+
+    def aws_encryption_attributes: () -> (untyped | { encryption_key: untyped, encryption: untyped })
+
+    def aws_provider?: () -> untyped
+
+    def connect_to_remote_directory: () -> untyped
+
+    # The remote 'directory' to store your backups. For S3, this would be the bucket name.
+    # @example Configuration setting the S3 bucket name
+    #    remote_directory: 'my.s3.bucket'
+    def remote_directory: () -> untyped
+
+    def object_storage_config: () -> untyped
+
+    # TODO: This is a temporary workaround for bad design in Backup::Manager
+    def tar_file: () -> untyped
+
+    # TODO: This is a temporary workaround for bad design in Backup::Manager
+    def backup_id: () -> (untyped | untyped | ::String)
+
+    # TODO: This is a temporary workaround for bad design in Backup::Manager
+    def backup_path: () -> untyped
+  end
+end

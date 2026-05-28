@@ -1,0 +1,38 @@
+module JiraConnectSubscriptions
+  class CreateService < ::JiraConnectSubscriptions::BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    MERGE_REQUEST_SYNC_BATCH_SIZE: 20
+
+    MERGE_REQUEST_SYNC_BATCH_DELAY: untyped
+
+    BATCH_SIZE: 1000
+
+    def execute: () -> untyped
+
+    private
+
+    def can_administer_jira?: () -> untyped
+
+    def jira_not_an_admin_error_message: () -> untyped
+
+    def create_subscription: () -> untyped
+
+    # We must make all GitLab for Jira app integrations active (or inactive in the DestroyService)
+    # regardless of whether those integration inherit, or have defined their own custom settings.
+    # Unless the group namespace is linked in Jira,
+    # the project integrations do not work, even if they are non-inheriting.
+    #
+    # Using Integration.descendants_from_self_or_ancestors_from we update
+    # all integrations of all subgroups and sub projects to be active.
+    #
+    # We keep their inherit_from_id intact, as they might have custom service_ids fields.
+    # We also still queue a PropagateIntegrationWorker in order to create integrations
+    # (the Integration.descendants_from_self_or_ancestors_from only updates existing ones).
+    def create_jira_cloud_integration!: () -> (nil | untyped)
+
+    def namespace: () -> untyped
+
+    def schedule_sync_project_jobs: () -> untyped
+  end
+end

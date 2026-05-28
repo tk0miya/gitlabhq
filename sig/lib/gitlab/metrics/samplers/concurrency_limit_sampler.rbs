@@ -1,0 +1,68 @@
+module Gitlab
+  module Metrics
+    module Samplers
+      class ConcurrencyLimitSampler < BaseSampler
+        @workers: untyped
+
+        @queue_size_metric: untyped
+
+        @concurrency_metric: untyped
+
+        @limit_metric: untyped
+
+        @current_limit_metric: untyped
+
+        include ExclusiveLeaseGuard
+
+        # Scrape timing explanation:
+        # - Prometheus scrapes occur every 1 minute
+        # - Our sampler lease lasts for 5 minutes
+        # - After writing metrics, we sleep for 30s until lease expires before resetting the metrics to 0.
+        DEFAULT_SAMPLING_INTERVAL_SECONDS: 30
+
+        LEASE_TIMEOUT: 300
+
+        # The sleep ensures that:
+        # 1. Process A runs sampler and takes the lease
+        # 2. Other processes running sampler will not be able to take the lease, so they will be no-ops
+        # 3. While the lease still exists (for 5 minutes):
+        #   a. The sampler writes the metrics
+        #   b. The sampler sleeps for 30s
+        #   c. We hope scrapes happen here (occur every minute), so we expect 4 or 5 scrapes for 1 sampler
+        # 4. Reset metrics to 0
+        # 5. The first other process picks up the lease, goto 1
+        #
+        # Therefore we ensure that on every scrape, 1 process would report the correct data
+        # while the process that previously held lease report 0.
+        def sample: () -> untyped
+
+        private
+
+        # Used by ExclusiveLeaseGuard
+        def lease_timeout: () -> untyped
+
+        def lease_key: () -> ::String
+
+        def lease_taken_log_level: () -> :info
+
+        def report_metrics: () -> untyped
+
+        def reset_metrics: () -> untyped
+
+        def workers: () -> untyped
+
+        def current_queues: () -> untyped
+
+        def concurrent_limit_service: () -> untyped
+
+        def report_queue_size: (untyped worker, untyped queue_size) -> untyped
+
+        def report_concurrent_workers: (untyped worker, untyped concurrent_worker_count) -> untyped
+
+        def report_max_limit: (untyped worker, untyped limit) -> untyped
+
+        def report_current_limit: (untyped worker, untyped limit) -> untyped
+      end
+    end
+  end
+end

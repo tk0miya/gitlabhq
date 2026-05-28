@@ -1,0 +1,60 @@
+module Admin
+  class SetFeatureFlagService
+    @name: untyped
+
+    @target: untyped
+
+    @params: untyped
+
+    @force: untyped
+
+    UnknownOperationError: untyped
+
+    def initialize: (feature_flag_name: untyped, params: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader name: untyped
+
+    attr_reader params: untyped
+
+    attr_reader target: untyped
+
+    attr_reader force: untyped
+
+    # Note: the if expressions in `update_targets` and `update_global` are order dependant.
+    def update_targets: () -> untyped
+
+    def update_global: () -> untyped
+
+    def remove_opt_out: (untyped target) -> untyped
+
+    def enable: (untyped target) -> untyped
+
+    def value: () -> untyped
+
+    def key: () -> untyped
+
+    def numeric_value?: () -> untyped
+
+    def percentage: () -> untyped
+
+    def percentage_of_actors?: () -> untyped
+
+    def percentage_of_time?: () -> (true | untyped | false)
+
+    # Note: `key` is NOT considered - setting to a percentage to 0 is the same as disabling.
+    def disable?: () -> untyped
+
+    # Note: `key` is NOT considered - setting to a percentage to 100 is the same
+    def enable?: () -> untyped
+
+    def opt_out?: () -> untyped
+
+    def remove_opt_out?: () -> untyped
+
+    def validate_feature_flag_name: () -> nil
+  end
+end

@@ -1,0 +1,19 @@
+module Timelogs
+  class BaseService
+    @current_user: untyped
+
+    include BaseServiceUtility
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_accessor current_user: untyped
+
+    def initialize: (untyped user) -> void
+
+    def success: (untyped timelog) -> untyped
+
+    def error: (untyped message, ?untyped? http_status) -> untyped
+
+    def error_in_save: (untyped timelog) -> untyped
+  end
+end

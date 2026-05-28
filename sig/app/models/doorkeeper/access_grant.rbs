@@ -1,0 +1,7 @@
+module Doorkeeper
+  class AccessGrant < ApplicationRecord
+    include ::Doorkeeper::Orm::ActiveRecord::Mixins::AccessGrant
+
+    include SafelyChangeColumnDefault
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Events
+        class CrossReferenced < BaseImporter
+          def execute: (untyped issue_event) -> (nil | untyped)
+
+          private
+
+          def track_activity: (untyped mentioned_in_class, untyped author) -> (nil | untyped)
+
+          def create_note: (untyped issue_event, untyped note_body, untyped user_id) -> untyped
+
+          def mentioned_in_type: (untyped issue_event) -> untyped
+
+          # record_class - Issue/MergeRequest
+          def init_mentioned_in: (untyped record_class, untyped iid) -> (nil | untyped)
+
+          # record_class - Issue/MergeRequest
+          def fetch_mentioned_in_db_id: (untyped record_class, untyped number) -> untyped
+
+          def cross_reference_note_content: (untyped gfm_reference) -> ::String
+        end
+      end
+    end
+  end
+end

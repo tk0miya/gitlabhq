@@ -1,0 +1,13 @@
+module Users
+  class UnblockService < BaseService
+    @current_user: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped user) -> untyped
+
+    private
+
+    def after_unblock_hook: (untyped user) -> untyped
+  end
+end

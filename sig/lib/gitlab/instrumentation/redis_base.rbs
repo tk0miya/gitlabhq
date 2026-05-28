@@ -1,0 +1,112 @@
+module Gitlab
+  module Instrumentation
+    class RedisBase
+      self.@redis_cluster_validation: untyped
+
+      self.@request_counter: untyped
+
+      self.@pipeline_size_histogram: untyped
+
+      # This metric is meant to give a client side view of how the Redis
+      # server is doing. Redis itself does not expose error counts. This
+      # metric can be used for Redis alerting and service health monitoring.
+      self.@exception_counter: untyped
+
+      self.@connection_exception_counter: untyped
+
+      # This metric is meant to give a client side view of how often are commands
+      # redirected to the right node, especially during resharding..
+      # This metric can be used for Redis alerting and service health monitoring.
+      self.@redirection_counter: untyped
+
+      self.@pipeline_redirection_histogram: untyped
+
+      self.@request_latency_histogram: untyped
+
+      DEFAULT_SHARD_KEY: "default"
+
+      extend ::Gitlab::Utils::StrongMemoize
+
+      extend ::Gitlab::Instrumentation::RedisPayload
+
+      # TODO: To be used by https://gitlab.com/gitlab-com/gl-infra/scalability/-/issues/395
+      # as a 'label' alias.
+      # The 2 acceptable formats for a demodulized name are: <storage>_shard_<shard> or <storage>.
+      def self.storage_key: () -> untyped
+
+      def self.shard_key: () -> untyped
+
+      def self.add_duration: (untyped duration) -> untyped
+
+      def self.add_call_details: (untyped duration, untyped commands) -> (nil | untyped)
+
+      def self.increment_request_count: (?::Integer amount) -> untyped
+
+      def self.increment_read_bytes: (untyped num_bytes) -> untyped
+
+      def self.increment_write_bytes: (untyped num_bytes) -> untyped
+
+      def self.increment_cross_slot_request_count: (?::Integer amount) -> untyped
+
+      def self.increment_allowed_cross_slot_request_count: (?::Integer amount) -> untyped
+
+      def self.get_request_count: () -> untyped
+
+      def self.read_bytes: () -> untyped
+
+      def self.write_bytes: () -> untyped
+
+      def self.detail_store: () -> untyped
+
+      def self.get_cross_slot_request_count: () -> untyped
+
+      def self.get_allowed_cross_slot_request_count: () -> untyped
+
+      def self.query_time: () -> untyped
+
+      def self.redis_cluster_validate!: (untyped commands) -> (true | untyped)
+
+      def self.enable_redis_cluster_validation: () -> self
+
+      def self.instance_count_request: (?::Integer amount) -> untyped
+
+      def self.instance_count_pipelined_request: (untyped size) -> untyped
+
+      def self.instance_count_exception: (untyped ex) -> untyped
+
+      def self.instance_count_connection_exception: (untyped ex) -> untyped
+
+      def self.instance_count_cluster_redirection: (untyped ex) -> untyped
+
+      def self.instance_count_cluster_pipeline_redirection: (untyped ex) -> untyped
+
+      def self.instance_observe_duration: (untyped duration) -> untyped
+
+      def self.log_exception: (untyped ex) -> untyped
+
+      private
+
+      def self.storage_labels: () -> { storage: untyped, storage_shard: untyped }
+
+      def self.request_count_key: () -> untyped
+
+      def self.read_bytes_key: () -> untyped
+
+      def self.write_bytes_key: () -> untyped
+
+      def self.call_duration_key: () -> untyped
+
+      def self.call_details_key: () -> untyped
+
+      def self.cross_slots_key: () -> untyped
+
+      def self.allowed_cross_slots_key: () -> untyped
+
+      def self.build_key: (untyped namespace) -> ::String
+
+      def self.decompose_redirection_message: (untyped err_msg) -> { redirection_type: untyped, target_node_key: untyped }
+
+      def self.raise_cross_slot_validation_errors?: () -> untyped
+    end
+  end
+end

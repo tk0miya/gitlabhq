@@ -1,0 +1,25 @@
+module Integrations
+  class Mattermost < Integration
+    include Base::ChatNotification
+
+    include SlackMattermostNotifier
+
+    include SlackMattermostFields
+
+    include HasAvatar
+
+    def self.title: () -> untyped
+
+    def self.description: () -> untyped
+
+    def self.to_param: () -> "mattermost"
+
+    def self.help: () -> untyped
+
+    def default_channel_placeholder: () -> "my-channel"
+
+    def self.webhook_help: () -> "http://mattermost.example.com/hooks/..."
+
+    def configurable_channels?: () -> true
+  end
+end

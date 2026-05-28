@@ -1,0 +1,13 @@
+module Admin
+  class HookLogsController < Admin::ApplicationController
+    @hook: untyped
+
+    include WebHooks::HookLogActions
+
+    private
+
+    def hook: () -> untyped
+
+    def after_retry_redirect_path: () -> untyped
+  end
+end

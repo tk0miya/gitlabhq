@@ -1,0 +1,26 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      module Handlers
+        # Handles has_many :through and has_one :through associations
+        # Examples:
+        #   has_many :users, through: :some_habtm_relation
+        #   has_many :comments, through: :posts
+        #   has_one :profile, through: :user
+        class ThroughAssociationHandler < BaseHandler
+          def relationship_attributes: () -> untyped
+
+          private
+
+          def relationship_type: () -> untyped
+
+          def foreign_key: () -> untyped
+
+          def through_table: () -> untyped
+
+          def through_target_key: () -> untyped
+        end
+      end
+    end
+  end
+end

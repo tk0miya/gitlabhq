@@ -1,0 +1,14 @@
+module Gitlab
+  module Fp
+    module MessageSupport
+      # @param [Class] base
+      # @return void
+      def self.extended: (untyped base) -> untyped
+
+      # @param [Gitlab::Fp::Message] message
+      # @param [Symbol] reason
+      # @return [Hash]
+      def generate_error_response_from_message: (message: untyped, reason: untyped) -> { status: :error, message: untyped, reason: untyped }
+    end
+  end
+end

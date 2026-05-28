@@ -1,0 +1,27 @@
+module Gitlab
+  module Git
+    #
+    # PreReceiveError is special because its message gets displayed to users
+    # in the web UI. Because of this, we:
+    # - Only display errors that have been marked as safe with a prefix.
+    #   This is to prevent leaking of stacktraces, or other sensitive info.
+    # - Sanitize the string of any XSS
+    class PreReceiveError < StandardError
+      @raw_message: untyped
+
+      SAFE_MESSAGE_PREFIXES: ::Array["GitLab:" | "GL-HOOK-ERR:"]
+
+      SAFE_MESSAGE_REGEX: ::Regexp
+
+      attr_reader raw_message: untyped
+
+      def initialize: (?::String message, ?fallback_message: ::String) -> void
+
+      private
+
+      # In gitaly-ruby we override this method to do nothing, so that
+      # sanitization happens in gitlab-rails only.
+      def sanitize: (untyped message) -> untyped
+    end
+  end
+end

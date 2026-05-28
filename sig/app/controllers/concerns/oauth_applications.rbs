@@ -1,0 +1,19 @@
+module OauthApplications
+  @scopes: untyped
+
+  extend ActiveSupport::Concern
+
+  CREATED_SESSION_KEY: :oauth_applications_created
+
+  def prepare_scopes: () -> untyped
+
+  def set_created_session: () -> untyped
+
+  def get_created_session: () -> untyped
+
+  def load_scopes: () -> untyped
+
+  def permitted_params: () -> ::Array[:name | :redirect_uri | :scopes | :confidential | :device_code_enabled]
+
+  def application_params: () -> untyped
+end

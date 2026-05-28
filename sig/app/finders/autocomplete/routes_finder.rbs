@@ -1,0 +1,30 @@
+module Autocomplete
+  # Finder that returns a list of routes that match on the `path` attribute.
+  class RoutesFinder
+    @current_user: untyped
+
+    @search: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader search: untyped
+
+    LIMIT: 20
+
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def routables: () -> untyped
+
+    class NamespacesOnly < ::Autocomplete::RoutesFinder
+      def routables: () -> untyped
+    end
+
+    class ProjectsOnly < ::Autocomplete::RoutesFinder
+      def routables: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,51 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class Identifier
+          @external_id: untyped
+
+          @external_type: untyped
+
+          @name: untyped
+
+          @url: untyped
+
+          @fingerprint: untyped
+
+          attr_reader external_id: untyped
+
+          attr_reader external_type: untyped
+
+          attr_reader fingerprint: untyped
+
+          attr_reader name: untyped
+
+          attr_reader url: untyped
+
+          def initialize: (external_id: untyped, external_type: untyped, name: untyped, ?url: untyped?) -> void
+
+          def key: () -> untyped
+
+          def to_hash: () -> untyped
+
+          def ==: (untyped other) -> untyped
+
+          def type_identifier?: () -> untyped
+
+          def cve?: () -> untyped
+
+          def cwe?: () -> untyped
+
+          def wasc?: () -> untyped
+
+          def vendor: () -> untyped
+
+          private
+
+          def generate_fingerprint: () -> untyped
+        end
+      end
+    end
+  end
+end

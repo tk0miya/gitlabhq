@@ -1,0 +1,35 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module CascadingNamespaceSettings
+        include Gitlab::Database::MigrationHelpers
+
+        # Creates the four required columns that constitutes a single cascading
+        # namespace settings attribute. This helper is only appropriate if the
+        # setting is not already present as a non-cascading attribute.
+        #
+        # Creates the `setting_name` column along with the `lock_setting_name`
+        # column in both `namespace_settings` and `application_settings`.
+        #
+        # This helper is not reversible and must be defined in conjunction with
+        # `remove_cascading_namespace_setting` in separate up and down directions.
+        #
+        # setting_name - The name of the cascading attribute - same as defined
+        #                in `NamespaceSetting` with the `cascading_attr` method.
+        # type - The column type for the setting itself (:boolean, :integer, etc.)
+        # options - Standard Rails column options hash. Accepts keys such as
+        #           `null` and `default`.
+        #
+        # `null` and `default` options will only be applied to the `application_settings`
+        # column. In most cases, a non-null default value should be specified.
+        def add_cascading_namespace_setting: (untyped setting_name, untyped type, **untyped options) -> untyped
+
+        def remove_cascading_namespace_setting: (untyped setting_name) -> untyped
+
+        private
+
+        def check_cascading_namespace_setting_consistency: (untyped setting_name, untyped lock_name) -> (nil | untyped)
+      end
+    end
+  end
+end

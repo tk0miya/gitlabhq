@@ -1,0 +1,86 @@
+module Mcp
+  module Tools
+    class Manager
+      @tools: untyped
+
+      @alias_map: untyped
+
+      @api_tools: untyped
+
+      @aggregated_api_tools: untyped
+
+      include VersionHelper
+
+      class ToolNotFoundError < StandardError
+        @tool_name: untyped
+
+        attr_reader tool_name: untyped
+
+        attr_reader args: untyped
+
+        def initialize: (untyped tool_name) -> void
+      end
+
+      class VersionNotFoundError < StandardError
+        @tool_name: untyped
+
+        @requested_version: untyped
+
+        @available_versions: untyped
+
+        attr_reader tool_name: untyped
+
+        attr_reader requested_version: untyped
+
+        attr_reader available_versions: untyped
+
+        def initialize: (untyped tool_name, untyped requested_version, untyped available_versions) -> void
+      end
+
+      class InvalidVersionFormatError < StandardError
+        @version: untyped
+
+        attr_reader version: untyped
+
+        def initialize: (untyped version) -> void
+      end
+
+      # Registry of all custom tools mapped to their service classes
+      CUSTOM_TOOLS: { "get_mcp_server_version" => untyped, "get_merge_request_conflicts" => untyped }
+
+      GRAPHQL_TOOLS: { "create_workitem_note" => untyped, "get_workitem_notes" => untyped, "get_saved_view_work_items" => untyped, "search_labels" => untyped, "link_work_items" => untyped }
+
+      def initialize: () -> void
+
+      def tools: () -> untyped
+
+      def alias_map: () -> untyped
+
+      def list_tools: () -> untyped
+
+      def get_tool: (name: untyped, ?version: untyped?) -> untyped
+
+      private
+
+      def get_custom_tool: (untyped name, untyped version) -> untyped
+
+      def get_graphql_tool: (untyped name, untyped version) -> untyped
+
+      def get_tool_from_registry: (untyped tool_registry, untyped name, untyped version) -> untyped
+
+      def get_api_tool: (untyped name, untyped version) -> untyped
+
+      def get_aggregated_api_tool: (untyped name, untyped version) -> untyped
+
+      def resolve_alias: (untyped name) -> untyped
+
+      def build_alias_map: () -> untyped
+
+      def build_tools: () -> untyped
+
+      def discover_api_tools: () -> untyped
+
+      def discover_aggregated_api_tools: () -> untyped
+    end
+  end
+end

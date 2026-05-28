@@ -1,0 +1,30 @@
+module Onboarding
+  class StatusPresenter
+    @params: untyped
+
+    @user_return_to: untyped
+
+    @user: untyped
+
+    @members: untyped
+
+    def self.registration_path_params: (params: untyped) -> ::Hash[untyped, untyped]
+
+    def initialize: (untyped params, untyped user_return_to, untyped user) -> void
+
+    def single_invite?: () -> untyped
+
+    def last_invited_member: () -> untyped
+
+    def last_invited_member_source: () -> untyped
+
+    # overridden in EE
+    def registration_omniauth_params: () -> ::Hash[untyped, untyped]
+
+    private
+
+    attr_reader user: untyped
+
+    def members: () -> untyped
+  end
+end

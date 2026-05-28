@@ -1,0 +1,105 @@
+module Gitlab
+  module Observability
+    class PipelineToTraces
+      @integration: untyped
+
+      @pipeline_data: untyped
+
+      @pipeline: untyped
+
+      @builds: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped integration, untyped pipeline_data) -> void
+
+      def convert: () -> (untyped | { resourceSpans: ::Array[{ resource: untyped, scopeSpans: ::Array[{ scope: untyped, spans: untyped }] }] })
+
+      private
+
+      attr_reader integration: untyped
+
+      attr_reader pipeline_data: untyped
+
+      attr_reader pipeline: untyped
+
+      attr_reader builds: untyped
+
+      def empty_traces_payload: () -> { resourceSpans: ::Array[untyped] }
+
+      def build_resource: () -> { attributes: ::Array[{ key: "service.name", value: { stringValue: untyped } } | { key: "service.version", value: { stringValue: "1.0.0" } } | { key: "deployment.environment", value: { stringValue: untyped } } | { key: "gitlab.project.id", value: { intValue: untyped } } | { key: "gitlab.project.name", value: { stringValue: untyped } } | { key: "gitlab.project.path", value: { stringValue: untyped } } | { key: "gitlab.pipeline.id", value: { intValue: untyped } } | { key: "gitlab.pipeline.ref", value: { stringValue: untyped } } | { key: "gitlab.pipeline.source", value: { stringValue: untyped } }] }
+
+      def build_scope: () -> { name: "gitlab-ci-pipeline", version: "1.0.0" }
+
+      def build_spans: () -> untyped
+
+      def build_pipeline_span: () -> { traceId: untyped, spanId: untyped, parentSpanId: "", name: ::String, kind: 1, startTimeUnixNano: untyped, endTimeUnixNano: untyped, status: untyped, attributes: untyped }
+
+      def build_job_span: (untyped build) -> { traceId: untyped, spanId: untyped, parentSpanId: untyped, name: ::String, kind: 1, startTimeUnixNano: untyped, endTimeUnixNano: untyped, status: untyped, attributes: untyped }
+
+      def build_pipeline_status: () -> untyped
+
+      def build_job_status: (untyped build) -> untyped
+
+      def build_status: (untyped status, ?untyped? message) -> untyped
+
+      def build_pipeline_attributes: () -> untyped
+
+      def build_base_pipeline_attributes: () -> ::Array[{ key: "pipeline.id", value: { intValue: untyped } } | { key: "pipeline.iid", value: { intValue: untyped } } | { key: "pipeline.name", value: { stringValue: untyped } } | { key: "pipeline.ref", value: { stringValue: untyped } } | { key: "pipeline.sha", value: { stringValue: untyped } } | { key: "pipeline.status", value: { stringValue: untyped } } | { key: "pipeline.detailed_status", value: { stringValue: untyped } } | { key: "pipeline.duration", value: { intValue: untyped } } | { key: "pipeline.queued_duration", value: { intValue: untyped } } | { key: "pipeline.protected_ref", value: { boolValue: untyped } } | { key: "pipeline.url", value: { stringValue: untyped } }]
+
+      def build_optional_pipeline_attributes: () -> untyped
+
+      def build_pipeline_specific_attributes: () -> untyped
+
+      def build_pipeline_user_attributes: () -> untyped
+
+      def build_pipeline_commit_attributes: () -> untyped
+
+      def build_pipeline_merge_request_attributes: () -> untyped
+
+      def build_pipeline_source_pipeline_attributes: () -> untyped
+
+      def build_job_attributes: (untyped build) -> untyped
+
+      def build_base_job_attributes: (untyped build) -> untyped
+
+      def build_optional_job_attributes: (untyped build) -> untyped
+
+      def build_timestamp_attributes: (untyped build) -> untyped
+
+      def build_user_attributes: (untyped build) -> untyped
+
+      def build_artifacts_attributes: (untyped build) -> untyped
+
+      def build_runner_attributes: (untyped build) -> (::Array[untyped] | untyped)
+
+      def build_base_runner_attributes: (untyped build) -> ::Array[{ key: "job.runner.id", value: { intValue: untyped } } | { key: "job.runner.description", value: { stringValue: untyped } } | { key: "job.runner.tags", value: { arrayValue: { values: untyped } } }]
+
+      def build_optional_runner_attributes: (untyped build) -> untyped
+
+      def runner_type_present?: (untyped build) -> untyped
+
+      def runner_key_present?: (untyped build, untyped key) -> untyped
+
+      def build_runner_type_attribute: (untyped build) -> { key: "job.runner.type", value: { stringValue: untyped } }
+
+      def build_runner_active_attribute: (untyped build) -> { key: "job.runner.active", value: { boolValue: untyped } }
+
+      def build_runner_is_shared_attribute: (untyped build) -> { key: "job.runner.is_shared", value: { boolValue: untyped } }
+
+      def build_environment_attributes: (untyped build) -> (::Array[untyped] | untyped)
+
+      def service_name: () -> untyped
+
+      def environment: () -> untyped
+
+      def time_to_nanoseconds: (untyped active_support_time_value) -> (0 | untyped)
+
+      def pipeline_trace_id: () -> untyped
+
+      def pipeline_span_id: () -> untyped
+
+      def generate_span_id: () -> untyped
+    end
+  end
+end

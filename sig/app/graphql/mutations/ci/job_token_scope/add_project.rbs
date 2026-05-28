@@ -1,0 +1,11 @@
+module Mutations
+  module Ci
+    module JobTokenScope
+      class AddProject < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, target_project_path: untyped, ?direction: untyped?) -> untyped
+      end
+    end
+  end
+end

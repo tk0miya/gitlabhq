@@ -1,0 +1,68 @@
+module Gitlab
+  module MailRoom
+    self.@enabled_configs: untyped
+
+    self.@rails_env: untyped
+
+    self.@yaml: untyped
+
+    self.@application_secrets: untyped
+
+    RAILS_ROOT_DIR: untyped
+
+    DELIVERY_METHOD_SIDEKIQ: "sidekiq"
+
+    DELIVERY_METHOD_WEBHOOK: "webhook"
+
+    INTERNAL_API_REQUEST_HEADER: "Gitlab-Mailroom-Api-Request"
+
+    INTERNAL_API_REQUEST_JWT_ISSUER: "gitlab-mailroom"
+
+    DEFAULT_CONFIG: { enabled: false, port: 143, ssl: false, start_tls: false, mailbox: "inbox", idle_timeout: 60, log_path: untyped, expunge_deleted: false, delivery_method: untyped }
+
+    # Email specific configuration which is merged with configuration
+    # fetched from YML config file.
+    MAILBOX_SPECIFIC_CONFIGS: { incoming_email: { queue: "default", worker: "EmailReceiverWorker" }, service_desk_email: { queue: "default", worker: "ServiceDeskEmailReceiverWorker" } }
+
+    # Default path strings (this is a data duplication
+    # with Settings which is not pulled in - see the service
+    # comment at the top of this file)
+    DEFAULT_PATHS: { shared_path: "shared", encrypted_settings_path: "encrypted_settings", incoming_email: { encrypted_secret_filename: "incoming_email.yaml.enc" }, service_desk_email: { encrypted_secret_filename: "service_desk_email.yaml.enc" } }
+
+    def self.enabled_configs: () -> untyped
+
+    def self.enabled_mailbox_types: () -> untyped
+
+    def self.worker_for: (untyped mailbox_type) -> untyped
+
+    private
+
+    def self.enabled?: (untyped config) -> untyped
+
+    def self.configs: () -> untyped
+
+    def self.fetch_config: (untyped config_key) -> (::Hash[untyped, untyped] | untyped)
+
+    def self.merged_configs: (untyped config_key) -> untyped
+
+    def self.redis_config: () -> untyped
+
+    def self.rails_env: () -> untyped
+
+    def self.config_file: () -> untyped
+
+    def self.load_yaml: () -> untyped
+
+    def self.application_secrets_file: () -> untyped
+
+    def self.application_secrets: () -> untyped
+
+    def self.default_encrypted_secret_filename: (untyped config_key) -> untyped
+
+    def self.encrypted_secret_file: (untyped config_key) -> untyped
+
+    def self.encrypted_configuration_settings: (untyped config_key) -> { content_path: untyped, base_key: untyped, previous_keys: untyped }
+
+    def self.decrypted_secrets: (untyped config_key) -> (nil | untyped)
+  end
+end

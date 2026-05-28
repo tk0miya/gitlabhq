@@ -1,0 +1,5 @@
+class NotePolicy < BasePolicy
+  include Gitlab::Utils::StrongMemoize
+
+  def parent_namespace: () -> untyped
+end

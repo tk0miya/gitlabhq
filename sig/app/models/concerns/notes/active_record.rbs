@@ -1,0 +1,13 @@
+module Notes
+  module ActiveRecord
+    extend ActiveSupport::Concern
+
+    # Alias to make application_helper#edited_time_ago_with_tooltip helper work properly with notes.
+    # See https://gitlab.com/gitlab-org/gitlab-foss/merge_requests/10392/diffs#note_28719102
+    def last_edited_by: () -> untyped
+
+    private
+
+    def validate_created_after: () -> (nil | untyped)
+  end
+end

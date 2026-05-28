@@ -1,0 +1,25 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class LfsObjectsImporter
+        include ParallelScheduling
+
+        RETRY_DELAY: 120
+
+        def importer_class: () -> untyped
+
+        def representation_class: () -> untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def object_type: () -> :lfs_object
+
+        def collection_method: () -> :lfs_objects
+
+        def each_object_to_import: () { (untyped) -> untyped } -> untyped
+
+        def id_for_already_imported_cache: (untyped object) -> untyped
+      end
+    end
+  end
+end

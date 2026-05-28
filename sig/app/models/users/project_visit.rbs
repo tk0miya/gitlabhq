@@ -1,0 +1,11 @@
+module Users
+  class ProjectVisit < ApplicationRecord
+    include Users::Visitable
+
+    include PartitionedTable
+
+    MAX_FRECENT_ITEMS: 5
+
+    def self.frecent_projects: (user_id: untyped) -> untyped
+  end
+end

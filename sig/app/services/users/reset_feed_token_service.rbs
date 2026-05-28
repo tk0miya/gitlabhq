@@ -1,0 +1,29 @@
+module Users
+  class ResetFeedTokenService < BaseService
+    @current_user: untyped
+
+    @user: untyped
+
+    @source: untyped
+
+    VALID_SOURCES: ::Array[:self | :api_admin_token]
+
+    def initialize: (?untyped? current_user, ?user: untyped?, ?source: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader source: untyped
+
+    def error_message: () -> untyped
+
+    def success_message: () -> untyped
+
+    def reset_permitted?: () -> untyped
+
+    def log_event: () -> untyped
+  end
+end

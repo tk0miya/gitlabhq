@@ -1,0 +1,69 @@
+module Gitlab
+  # This class is an artifact of a time when common repository operations were
+  # performed by calling out to scripts in the gitlab-shell project. Now, these
+  # operations are all performed by Gitaly, and are mostly accessible through
+  # the Repository class. Prefer using a Repository to functionality here.
+  #
+  # Legacy code relating to namespaces still relies on Gitlab::Shell; it can be
+  # converted to a module once https://gitlab.com/groups/gitlab-org/-/epics/2320
+  # is completed. https://gitlab.com/gitlab-org/gitlab/-/issues/25095 tracks it.
+  class Shell
+    self.@secret_token: untyped
+
+    self.@version_required: untyped
+
+    self.@version: untyped
+
+    Error: untyped
+
+    API_HEADER: "Gitlab-Shell-Api-Request"
+
+    JWT_ISSUER: "gitlab-shell"
+
+    def self.verify_api_request: (untyped headers) -> untyped
+
+    def self.header_set?: (untyped headers) -> untyped
+
+    # Retrieve GitLab Shell secret token
+    #
+    # @return [String] secret token
+    def self.secret_token: () -> untyped
+
+    # Ensure gitlab shell has a secret token stored in the secret_file
+    # if that was never generated, generate a new one
+    def self.ensure_secret_token!: () -> (nil | untyped)
+
+    # Returns required GitLab shell version
+    #
+    # @return [String] version from the manifest file
+    def self.version_required: () -> untyped
+
+    # Return GitLab shell version
+    #
+    # @return [String] version
+    def self.version: () -> (untyped | nil)
+
+    private
+
+    def self.gitlab_shell_path: () -> untyped
+
+    def self.gitlab_shell_version_file: () -> untyped
+
+    # Create (if necessary) and link the secret token file
+    def self.generate_and_link_secret_token: () -> untyped
+
+    public
+
+    # Check if repository exists on disk
+    #
+    # @example Check if repository exists
+    #   repository_exists?('default', 'gitlab-org/gitlab.git')
+    #
+    # @return [Boolean] whether repository exists or not
+    # @param [String] storage project's storage path
+    # @param [Object] dir_name repository dir name
+    #
+    # @deprecated
+    def repository_exists?: (untyped storage, untyped dir_name) -> untyped
+  end
+end

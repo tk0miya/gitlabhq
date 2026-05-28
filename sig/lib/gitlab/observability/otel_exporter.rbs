@@ -1,0 +1,57 @@
+module Gitlab
+  module Observability
+    class OtelExporter
+      @integration: untyped
+
+      @endpoint_url: untyped
+
+      @headers: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ExportError: untyped
+
+      AuthenticationError: untyped
+
+      NetworkError: untyped
+
+      ENDPOINTS: { traces: "/v1/traces", metrics: "/v1/metrics", logs: "/v1/logs" }
+
+      def initialize: (untyped integration) -> void
+
+      def export_traces: (untyped traces_data) -> untyped
+
+      def export_metrics: (untyped metrics_data) -> untyped
+
+      def export_logs: (untyped logs_data) -> untyped
+
+      private
+
+      attr_reader integration: untyped
+
+      attr_reader endpoint_url: untyped
+
+      attr_reader headers: untyped
+
+      def export_data: (untyped type, untyped data) -> untyped
+
+      def build_endpoint: (untyped type) -> ::String
+
+      def build_payload: (untyped type, untyped data) -> untyped
+
+      def build_traces_payload: (untyped traces_data) -> { resourceSpans: untyped }
+
+      def build_metrics_payload: (untyped metrics_data) -> { resourceMetrics: untyped }
+
+      def build_logs_payload: (untyped logs_data) -> { resourceLogs: untyped }
+
+      def send_request: (untyped endpoint, untyped payload) -> untyped
+
+      def request_headers: () -> untyped
+
+      def handle_response: (untyped response) -> untyped
+
+      def allow_local_requests?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+module Security
+  class ReportSchemaVersionMatcher
+    @report_version: untyped
+
+    @supported_versions: untyped
+
+    def initialize: (report_declared_version: untyped, supported_versions: untyped) -> void
+
+    attr_reader report_version: untyped
+
+    attr_reader supported_versions: untyped
+
+    def call: () -> untyped
+
+    private
+
+    def find_matching_versions: () -> untyped
+
+    def approximate_version: () -> ::String
+
+    def generate_patch_version: () -> untyped
+  end
+end

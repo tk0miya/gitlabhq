@@ -1,0 +1,21 @@
+module Gitlab
+  module SlashCommands
+    class IssueClose < IssueCommand
+      def self.match: (untyped text) -> untyped
+
+      def self.help_message: () -> "issue close <id>"
+
+      def self.allowed?: (untyped project, untyped user) -> untyped
+
+      def execute: (untyped match) -> untyped
+
+      private
+
+      def close_issue: (issue: untyped) -> untyped
+
+      def presenter: (untyped issue) -> untyped
+
+      def not_found: () -> untyped
+    end
+  end
+end

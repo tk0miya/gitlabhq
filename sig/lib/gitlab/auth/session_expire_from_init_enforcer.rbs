@@ -1,0 +1,47 @@
+# code inspired by Devise Timeoutable
+# https://github.com/heartcombo/devise/blob/fec67f98f26fcd9a79072e4581b1bd40d0c7fa1d/lib/devise/hooks/timeoutable.rb#L8
+module Gitlab
+  module Auth
+    class SessionExpireFromInitEnforcer
+      @warden: untyped
+
+      @opts: untyped
+
+      @proxy: untyped
+
+      @session: untyped
+
+      SESSION_NAMESPACE: :sefie
+
+      attr_reader warden: untyped
+
+      attr_reader opts: untyped
+
+      def self.session_expires_at: (?untyped controller_session) -> (0 | untyped)
+
+      def self.enabled?: () -> untyped
+
+      def self.timeout_value: () -> untyped
+
+      def initialize: (untyped warden, untyped opts) -> void
+
+      def enabled?: () -> untyped
+
+      def set_login_time: () -> (nil | untyped)
+
+      def enforce!: () -> (nil | untyped)
+
+      private
+
+      def set_signed_in_at: () -> untyped
+
+      def timeout_value: () -> untyped
+
+      def proxy: () -> untyped
+
+      def scope: () -> untyped
+
+      def session: () -> untyped
+    end
+  end
+end

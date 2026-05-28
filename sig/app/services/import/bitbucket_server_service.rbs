@@ -1,0 +1,70 @@
+module Import
+  class BitbucketServerService < Import::BaseService
+    @repo: untyped
+
+    @project_name: untyped
+
+    @namespace_path: untyped
+
+    @target_namespace: untyped
+
+    @repo_slug: untyped
+
+    @project_key: untyped
+
+    @url: untyped
+
+    @timeout_strategy: untyped
+
+    attr_reader client: untyped
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    # As a basic sanity check to prevent URL injection, restrict project
+    # repository input and repository slugs to allowed characters. For Bitbucket:
+    #
+    # Project keys must start with a letter and may only consist of ASCII letters,
+    # numbers and underscores (A-Z, a-z, 0-9, _).
+    #
+    # Repository names are limited to 128 characters. They must start with a
+    # letter or number and may contain spaces, hyphens, underscores, and periods.
+    # (https://community.atlassian.com/t5/Answers-Developer-Questions/stash-repository-names/qaq-p/499054)
+    #
+    # Bitbucket Server starts personal project names with a tilde.
+    BITBUCKET_PROJECT_KEY_FORMAT: ::Regexp
+
+    BITBUCKET_REPO_SLUG_FORMAT: ::Regexp
+
+    def execute: (untyped credentials) -> untyped
+
+    private
+
+    def create_project: (untyped credentials) -> untyped
+
+    def repo: () -> untyped
+
+    def project_name: () -> untyped
+
+    def namespace_path: () -> untyped
+
+    def target_namespace: () -> untyped
+
+    def repo_slug: () -> untyped
+
+    def project_key: () -> untyped
+
+    def url: () -> untyped
+
+    def timeout_strategy: () -> untyped
+
+    def allow_local_requests?: () -> untyped
+
+    def blocked_url?: () -> untyped
+
+    def log_and_return_error: (untyped message, untyped error_type) -> untyped
+
+    def log_error: (untyped message) -> untyped
+  end
+end

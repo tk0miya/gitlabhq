@@ -1,0 +1,7 @@
+module Types
+  # rubocop: disable Graphql/AuthorizeTypes
+  # Types that use DiffStatsType should have their own authorization
+  class DiffStatsType < BaseObject
+    def path: () -> untyped
+  end
+end

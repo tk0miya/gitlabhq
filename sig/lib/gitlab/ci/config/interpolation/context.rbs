@@ -1,0 +1,48 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        #
+        # Interpolation::Context is a class that represents the data that can be used
+        # when performing string interpolation on a CI configuration.
+        #
+        class Context
+          @data: untyped
+
+          @variables: untyped
+
+          ContextTooComplexError: untyped
+
+          NotSymbolizedContextError: untyped
+
+          MAX_DEPTH: 3
+
+          attr_reader variables: untyped
+
+          def initialize: (untyped data, variables: untyped) -> void
+
+          def valid?: () -> untyped
+
+          #
+          # This method is here because `Context` will be responsible for validating specs, inputs and defaults.
+          #
+          def errors: () -> ::Array[untyped]
+
+          def depth: () -> untyped
+
+          def fetch: (untyped field) -> untyped
+
+          def key?: (untyped name) -> untyped
+
+          def to_h: () -> untyped
+
+          private
+
+          def deep_depth: (untyped data, ?::Integer depth) -> untyped
+
+          def self.fabricate: (untyped context, ?variables: untyped) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module ObjectPool
+  class CreateWorker
+    @pool: untyped
+
+    include ApplicationWorker
+
+    include ObjectPoolQueue
+
+    include ExclusiveLeaseGuard
+
+    attr_reader pool: untyped
+
+    def perform: (untyped pool_id) -> (nil | untyped)
+
+    private
+
+    def perform_pool_creation: () -> untyped
+
+    def lease_key: () -> ::String
+
+    def lease_timeout: () -> untyped
+  end
+end

@@ -1,0 +1,41 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class FindingSignature
+          @algorithm_type: untyped
+
+          @signature_value: untyped
+
+          @qualified_signature: untyped
+
+          include VulnerabilityFindingSignatureHelpers
+
+          attr_accessor algorithm_type: untyped
+
+          attr_accessor signature_value: untyped
+
+          attr_accessor qualified_signature: untyped
+
+          def initialize: (?::Hash[untyped, untyped] params) -> void
+
+          def signature_sha: () -> untyped
+
+          def signature_hex: () -> untyped
+
+          def to_hash: () -> { algorithm_type: untyped, signature_sha: untyped }
+
+          def valid?: () -> untyped
+
+          def eql?: (untyped other) -> untyped
+
+          alias == eql?
+
+          private
+
+          def hex_content: () -> (::String | untyped)
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module Banzai
+  module Filter
+    module Concerns
+      module HtmlWriter
+        extend ActiveSupport::Concern
+
+        # Write an opening tag with the given tag name and attributes.
+        #
+        # The tag name and attribute names must not be user-specified; they are not validated.
+        #
+        # The attribute values are always escaped in the appropriate manner; the contract is that whatever value goes in
+        # is the logical DOM value of the attribute that comes out.
+        #
+        # i.e.:
+        #
+        # ```ruby
+        # html = write_opening_tag(tag, attrs)
+        # doc = Nokogiri::HTML.fragment(html)
+        # element = doc.child
+        # expect(element.to_h).to match(attrs)
+        # ```
+        #
+        # This function should *never be changed*.
+        def write_opening_tag: (untyped tag_name, untyped attributes) -> untyped
+      end
+    end
+  end
+end

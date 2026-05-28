@@ -1,0 +1,31 @@
+module Gitlab
+  module Metrics
+    module Samplers
+      class PumaSampler < BaseSampler
+        @metrics: untyped
+
+        DEFAULT_SAMPLING_INTERVAL_SECONDS: 5
+
+        def metrics: () -> untyped
+
+        def init_metrics: () -> { puma_workers: untyped, puma_running_workers: untyped, puma_stale_workers: untyped, puma_running: untyped, puma_queued_connections: untyped, puma_active_connections: untyped, puma_pool_capacity: untyped, puma_max_threads: untyped, puma_idle_threads: untyped }
+
+        def sample: () -> untyped
+
+        private
+
+        def puma_stats: () -> untyped
+
+        def sample_cluster: (untyped stats) -> untyped
+
+        def sample_single_worker: (untyped stats) -> untyped
+
+        def cluster?: (untyped stats) -> untyped
+
+        def set_master_metrics: (untyped stats) -> untyped
+
+        def set_worker_metrics: (untyped stats, ?::Hash[untyped, untyped] labels) -> untyped
+      end
+    end
+  end
+end

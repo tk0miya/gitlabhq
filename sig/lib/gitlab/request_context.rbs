@@ -1,0 +1,39 @@
+module Gitlab
+  class RequestContext
+    include Gitlab::Utils::StrongMemoize
+
+    include Singleton
+
+    RequestDeadlineExceeded: untyped
+
+    attr_accessor client_ip: untyped
+
+    attr_accessor spam_params: untyped
+
+    attr_accessor start_thread_cpu_time: untyped
+
+    attr_accessor request_start_time: untyped
+
+    attr_accessor thread_memory_allocations: untyped
+
+    attr_accessor gvl_local_timer_start: untyped
+
+    attr_accessor gvl_global_timer_start: untyped
+
+    def self.instance: () -> untyped
+
+    def self.start_request_context: (request: untyped) -> untyped
+
+    def self.start_thread_context: () -> untyped
+
+    def request_deadline: () -> untyped
+
+    def ensure_deadline_not_exceeded!: () -> (nil | untyped)
+
+    private
+
+    def max_request_duration_seconds: () -> untyped
+
+    def enabled?: () -> untyped
+  end
+end

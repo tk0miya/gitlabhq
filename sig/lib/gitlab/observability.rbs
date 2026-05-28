@@ -1,0 +1,15 @@
+module Gitlab
+  module Observability
+    extend ::Gitlab::Observability
+
+    # Returns the GitLab Observability URL
+    #
+    def observability_url: () -> (untyped | "https://observe.staging.gitlab.com" | "https://observe.gitlab.com")
+
+    def observability_ingest_url: () -> (untyped | "https://observe.staging.gitlab.com" | "https://observe.gitlab.com")
+
+    def alerts_url: () -> ::String
+
+    def should_enable_observability_auth_scopes?: (untyped resource) -> (untyped | false)
+  end
+end

@@ -1,0 +1,34 @@
+module Gitlab
+  module Webpack
+    class Manifest
+      # Raised if we can't read our webpack manifest for whatever reason
+      class ManifestLoadError < StandardError
+        def initialize: (untyped message, untyped orig) -> void
+      end
+
+      # Raised if webpack couldn't build one of your entry points
+      class WebpackError < StandardError
+        def initialize: (untyped errors) -> void
+      end
+
+      # Raised if a supplied entry point does not exist in the webpack manifest
+      AssetMissingError: untyped
+
+      extend Gitlab::Utils::StrongMemoize
+
+      def self.entrypoint_paths: (untyped source) -> untyped
+
+      def self.asset_paths: (untyped source) -> untyped
+
+      def self.clear_manifest!: () -> untyped
+
+      private
+
+      def self.manifest_bundled?: () -> untyped
+
+      def self.manifest: () -> untyped
+
+      def self.load_manifest: () -> untyped
+    end
+  end
+end

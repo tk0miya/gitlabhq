@@ -1,0 +1,24 @@
+module Gitlab
+  module Reflections
+    module Models
+      # Map GitLab models to tables and back.
+      class ActiveRecord
+        @models: untyped
+
+        include Singleton
+
+        # Get the table name for a specific model
+        def model_name_to_table_name: (untyped model_name) -> untyped
+
+        # Get all model names that use a specific table by looking up the db/docs catalog
+        def table_name_to_model_names: (untyped table_name) -> (::Array[untyped] | untyped)
+
+        def models: () -> untyped
+
+        private
+
+        def included_model?: (untyped model) -> untyped
+      end
+    end
+  end
+end

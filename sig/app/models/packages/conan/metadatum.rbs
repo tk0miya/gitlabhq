@@ -1,0 +1,17 @@
+class Packages::Conan::Metadatum < ApplicationRecord
+  NONE_VALUE: "_"
+
+  def recipe: () -> ::String
+
+  def recipe_path: () -> untyped
+
+  def self.package_username_from: (full_path: untyped) -> untyped
+
+  def self.full_path_from: (package_username: untyped) -> untyped
+
+  def self.validate_username_and_channel: (untyped username, untyped channel) ?{ () -> untyped } -> (nil | untyped)
+
+  private
+
+  def ensure_username_with_channel: () -> untyped
+end

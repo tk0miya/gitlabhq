@@ -1,0 +1,76 @@
+# rubocop:disable Gitlab/StrongMemoizeAttr
+module Ci
+  module Deployable
+    extend ActiveSupport::Concern
+
+    include Gitlab::Utils::StrongMemoize
+
+    def has_outdated_deployment?: () -> untyped
+
+    # Virtual deployment status depending on the environment status.
+    def deployment_status: () -> (nil | untyped | :failed | :creating)
+
+    def successful_deployment_status: () -> (:last | :out_of_date)
+
+    def link_to_environment: (untyped environment) -> untyped
+
+    def persisted_environment: () -> (nil | untyped)
+
+    def persisted_environment=: (untyped environment) -> untyped
+
+    # If build.persisted_environment is a BatchLoader, we need to remove
+    # the method proxy in order to clone into new item here
+    # https://github.com/exAspArk/batch-loader/issues/31
+    def actual_persisted_environment: () -> untyped
+
+    def environment_options_for_permanent_storage: () -> (::Hash[untyped, untyped] | untyped)
+
+    def expanded_environment_name: () -> (nil | untyped)
+
+    def expanded_kubernetes_namespace: () -> (nil | untyped)
+
+    def environment_auto_stop_in: () -> untyped
+
+    def expanded_auto_stop_in: () -> (nil | untyped)
+
+    def has_environment_keyword?: () -> untyped
+
+    def deployment_job?: () -> untyped
+
+    alias starts_environment? deployment_job?
+
+    def interacts_with_environment?: () -> untyped
+
+    def accesses_environment?: () -> untyped
+
+    def prepares_environment?: () -> untyped
+
+    def verifies_environment?: () -> untyped
+
+    def stops_environment?: () -> untyped
+
+    def environment_action: () -> untyped
+
+    def expanded_deployment_tier: () -> (nil | untyped)
+
+    def environment_tier: () -> untyped
+
+    def environment_url: () -> untyped
+
+    def environment_slug: () -> untyped
+
+    def environment_status: () -> (nil | untyped)
+
+    def on_stop: () -> untyped
+
+    def stop_action_successful?: () -> untyped
+
+    def environment_permanent_metadata: () -> untyped
+
+    private
+
+    # Processing options are only available until a pipeline is archived. To
+    # retrieve options for historical jobs, use `#environment_permanent_metadata`.
+    def environment_processing_metadata: () -> untyped
+  end
+end

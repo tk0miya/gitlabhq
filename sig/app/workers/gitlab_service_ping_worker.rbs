@@ -1,0 +1,27 @@
+class GitlabServicePingWorker
+  LEASE_KEY: "gitlab_service_ping_worker:ping"
+
+  NON_SQL_LEASE_KEY: "gitlab_service_ping_worker:non_sql_ping"
+
+  QUERIES_LEASE_KEY: "gitlab_service_ping_worker:queries_ping"
+
+  LEASE_TIMEOUT: 86400
+
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  include Gitlab::ExclusiveLeaseHelpers
+
+  def perform: (?::Hash[untyped, untyped] options) -> (nil | untyped)
+
+  def usage_data: (untyped organization) -> untyped
+
+  private
+
+  def day_lock: (untyped key) { () -> untyped } -> untyped
+
+  def save_non_sql_data: (untyped organization) -> untyped
+
+  def save_queries_data: (untyped organization) -> untyped
+end

@@ -1,0 +1,7 @@
+module OperationsHelper
+  include IntegrationsHelper
+
+  def alerts_settings_data: (?disabled: bool) -> { "alerts_setup_url" => untyped, "alerts_usage_url" => untyped, "disabled" => untyped, "project_path" => untyped, "multi_integrations" => "false", "templates" => untyped, "create_issue" => untyped, "issue_template_key" => untyped, "send_email" => untyped, "auto_close_incident" => untyped, "pagerduty_reset_key_path" => untyped, "operations_settings_endpoint" => untyped }
+
+  def operations_settings_data: () -> { operations_settings_endpoint: untyped, pagerduty_active: untyped, pagerduty_token: untyped, pagerduty_webhook_url: untyped, pagerduty_reset_key_path: untyped }
+end

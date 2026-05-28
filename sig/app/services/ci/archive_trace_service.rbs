@@ -1,0 +1,28 @@
+module Ci
+  class ArchiveTraceService
+    @failed_archive_counter: untyped
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    EXCLUSIVE_LOCK_KEY: "archive_trace_service:batch_execute:lock"
+
+    LOCK_TIMEOUT: untyped
+
+    LOOP_TIMEOUT: untyped
+
+    LOOP_LIMIT: 2000
+
+    BATCH_SIZE: 100
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def batch_execute: (worker_name: untyped) -> untyped
+
+    def execute: (untyped job, worker_name: untyped) -> untyped
+
+    private
+
+    def failed_archive_counter: () -> untyped
+
+    def archive_error: (untyped error, untyped job, untyped worker_name) -> untyped
+  end
+end

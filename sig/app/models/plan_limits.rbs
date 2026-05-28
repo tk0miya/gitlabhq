@@ -1,0 +1,18 @@
+class PlanLimits < ApplicationRecord
+  include SafelyChangeColumnDefault
+
+  ALLOWED_LIMITS_HISTORY_ATTRIBUTES: ::Array[:notification_limit | :enforcement_limit | :storage_size_limit | :dashboard_limit_enabled_at]
+
+  LimitUndefinedError: untyped
+
+  def exceeded?: (untyped limit_name, untyped subject, ?alternate_limit: ::Integer) -> (false | untyped)
+
+  def limit_for: (untyped limit_name, ?alternate_limit: ::Integer) -> untyped
+
+  # Overridden in EE
+  def dashboard_storage_limit_enabled?: () -> false
+
+  def format_limits_history: (untyped user, untyped new_limits) -> (::Hash[untyped, untyped] | untyped)
+
+  def set_plan_name_uid: () -> (nil | untyped)
+end

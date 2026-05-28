@@ -1,0 +1,43 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module WraparoundVacuumHelpers
+        class WraparoundCheck
+          @migration: untyped
+
+          @table_name: untyped
+
+          @wraparound_vacuum: untyped
+
+          WraparoundError: untyped
+
+          def initialize: (untyped table_name, migration: untyped) -> void
+
+          def execute: () -> (nil | untyped)
+
+          private
+
+          attr_reader table_name: untyped
+
+          def wraparound_vacuum: () -> untyped
+
+          def transform_wraparound_vacuum: () -> untyped
+
+          def raw_wraparound_vacuum: () -> untyped
+
+          def validate_table_existence!: () -> (nil | untyped)
+
+          def quoted_table_name: () -> untyped
+
+          def disabled?: () -> (true | untyped)
+
+          def wraparound_check_allowed?: () -> untyped
+
+          def log: (untyped text, ?title: bool) -> untyped
+        end
+
+        def check_if_wraparound_in_progress: (untyped table_name) -> untyped
+      end
+    end
+  end
+end

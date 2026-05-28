@@ -1,0 +1,5 @@
+class DeletedObjectUploader < GitlabUploader
+  include ObjectStorage::Concern
+
+  def store_dir: () -> untyped
+end

@@ -1,0 +1,11 @@
+module Resolvers
+  module Users
+    class GroupCountResolver < BaseResolver
+      alias user object
+
+      def resolve: (**untyped args) -> (nil | untyped)
+
+      def can_read_group_count?: () -> untyped
+    end
+  end
+end

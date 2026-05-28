@@ -1,0 +1,62 @@
+# rubocop:disable Scalability/IdempotentWorker
+module ObjectStorage
+  class MigrateUploadsWorker
+    @to_store: untyped
+
+    include ApplicationWorker
+
+    include ObjectStorageQueue
+
+    SanityCheckError: untyped
+
+    class MigrationResult
+      @upload: untyped
+
+      @error: untyped
+
+      attr_reader upload: untyped
+
+      attr_accessor error: untyped
+
+      def initialize: (untyped upload, ?untyped? error) -> void
+
+      def success?: () -> untyped
+
+      def to_s: () -> untyped
+    end
+
+    module Report
+      class MigrationFailures < StandardError
+        @errors: untyped
+
+        attr_reader errors: untyped
+
+        def initialize: (untyped errors) -> void
+
+        def message: () -> untyped
+      end
+
+      def report!: (untyped results) -> untyped
+
+      def header: (untyped success, untyped failures) -> untyped
+
+      def failures: (untyped failures) -> untyped
+    end
+
+    include Report
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def self.enqueue!: (untyped uploads, untyped to_store) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def perform: (*untyped args) -> untyped
+
+    private
+
+    def retrieve_applicable_args!: (untyped args) -> untyped
+
+    def migrate: (untyped uploads) -> untyped
+
+    def process_upload: (untyped upload) -> untyped
+  end
+end

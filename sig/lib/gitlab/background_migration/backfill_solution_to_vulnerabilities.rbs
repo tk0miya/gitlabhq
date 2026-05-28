@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillSolutionToVulnerabilities < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def update: (untyped sub_batch) -> untyped
+
+      def update_sql: (untyped sub_batch) -> ::String
+    end
+  end
+end

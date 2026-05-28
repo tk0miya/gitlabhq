@@ -1,0 +1,24 @@
+module Gitlab
+  module Fp
+    module Settings
+      class EnvVarOverrideProcessor
+        # @param [Hash] context
+        # @return [Gitlab::Fp::Result]
+        def self.process: (untyped context) -> untyped
+
+        # @param [String] env_var_name
+        # @param [String] env_var_value_string
+        # @param [Class] setting_type
+        # @return [Object]
+        # @raise [RuntimeError]
+        def self.cast_value: (env_var_name: untyped, env_var_value_string: untyped, setting_type: untyped) -> untyped
+
+        # @param [String] env_var_name
+        # @param [String] value
+        # @return [Object, Array]
+        # @raise [EncodingError]
+        def self.parse_json: (env_var_name: untyped, value: untyped) -> untyped
+      end
+    end
+  end
+end

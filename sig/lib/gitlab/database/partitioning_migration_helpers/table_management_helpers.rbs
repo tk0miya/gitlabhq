@@ -1,0 +1,233 @@
+module Gitlab
+  module Database
+    module PartitioningMigrationHelpers
+      module TableManagementHelpers
+        include ::Gitlab::Database::SchemaHelpers
+
+        include ::Gitlab::Database::MigrationHelpers
+
+        include ::Gitlab::Database::MigrationHelpers::LooseForeignKeyHelpers
+
+        ALLOWED_TABLES: ::Array["group_audit_events" | "project_audit_events" | "instance_audit_events" | "user_audit_events" | "audit_events" | "web_hook_logs" | "merge_request_diff_files" | "merge_request_diff_commits" | "ci_runners" | "ci_runner_machines" | "uploads" | "sent_notifications" | "project_daily_statistics"]
+
+        ERROR_SCOPE: "table partitioning"
+
+        MIGRATION_CLASS_NAME: ::String
+
+        MIGRATION: "BackfillPartitionedTable"
+
+        BATCH_INTERVAL: untyped
+
+        BATCH_SIZE: 50000
+
+        SUB_BATCH_SIZE: 2500
+
+        PARTITION_BUFFER: 6
+
+        MIN_ID: 1
+
+        # Creates a partitioned copy of an existing table, using a RANGE partitioning strategy on a int/bigint column.
+        # One partition is created per partition_size between 1 and MAX(column_name). Also installs a trigger on
+        # the original table to copy writes into the partitioned table. To copy over historic data from before creation
+        # of the partitioned table, use the `enqueue_partitioning_data_migration` helper in a post-deploy migration.
+        # Note: If the original table is empty the system creates 6 partitions in the new table.
+        #
+        # A copy of the original table is required as PG currently does not support partitioning existing tables.
+        #
+        # Example:
+        #
+        #   partition_table_by_int_range :merge_request_diff_commits, :merge_request_diff_id, partition_size: 500, primary_key: ['merge_request_diff_id', 'relative_order']
+        #
+        # Options are:
+        #   :partition_size - a int specifying the partition size
+        #   :primary_key - a array specifying the primary query of the new table
+        #
+        # Note: The system always adds a buffer of 6 partitions.
+        def partition_table_by_int_range: (untyped table_name, untyped column_name, partition_size: untyped, primary_key: untyped) -> untyped
+
+        # Creates a partitioned copy of an existing table, using a RANGE partitioning strategy on a timestamp column.
+        # One partition is created per month between the given `min_date` and `max_date`. Also installs a trigger on
+        # the original table to copy writes into the partitioned table. To copy over historic data from before creation
+        # of the partitioned table, use the `enqueue_partitioning_data_migration` helper in a post-deploy migration.
+        #
+        # A copy of the original table is required as PG currently does not support partitioning existing tables.
+        #
+        # Example:
+        #
+        #   partition_table_by_date :audit_events, :created_at, min_date: Date.new(2020, 1), max_date: Date.new(2020, 6)
+        #
+        # Options are:
+        #   :min_date - a date specifying the lower bounds of the partition range
+        #   :max_date - a date specifying the upper bounds of the partitioning range, defaults to today + 1 month
+        #
+        # Unless min_date is specified explicitly, we default to
+        # 1. The minimum value for the partitioning column in the table
+        # 2. If no data is present yet, the current month
+        def partition_table_by_date: (untyped table_name, untyped column_name, ?min_date: untyped?, ?max_date: untyped?) -> untyped
+
+        # Creates a partitioned copy of an existing table, using a LIST partitioning strategy on a int/bigint column.
+        # One partition is created per column_name value. Also installs a trigger on the original table to copy writes
+        # into the partitioned table.
+        # To copy over historic data from before creation of the partitioned table, use the
+        # `enqueue_partitioning_data_migration` helper in a post-deploy migration.
+        #
+        # A copy of the original table is required as PG currently does not support partitioning existing tables.
+        #
+        # Example:
+        #
+        #   partition_table_by_list :ci_runners, :runner_type, primary_key: ['id', 'runner_type'],
+        #     partition_mappings: { instance_type: 1, group_type: 2, project_type: 3 },
+        #     partition_name_format: "%{partition_name}_%{table_name}",
+        #     create_partitioned_table_fn: ->(name) { create_custom_partitioned_table(name) }
+        #
+        # Options are:
+        #   :primary_key - a array specifying the primary query of the new table
+        #   :partition_name_format - the format to be used when naming partitions.
+        #     The %{table_name} and %{partition_name} variables are made available.
+        #     If not specified, a default is generated
+        #   :partition_mappings - a hash specifying the mappings between partition name and respective column value(s)
+        #   :create_partitioned_table_fn - a lambda allowing a custom function to create the partitioned table
+        #     If not specified, the partitioned table will be created with the same schema as the non-partitioned table
+        #
+        def partition_table_by_list: (untyped table_name, untyped column_name, primary_key: untyped, ?partition_mappings: untyped?, ?partition_name_format: untyped?, ?create_partitioned_table_fn: untyped?, ?sync_trigger: bool) -> untyped
+
+        # Clean up a partitioned copy of an existing table. First, deletes the database function and trigger that were
+        # used to copy writes to the partitioned table, then removes the partitioned table (also removing partitions).
+        #
+        # Example:
+        #
+        #   drop_partitioned_table_for :audit_events
+        #
+        def drop_partitioned_table_for: (untyped table_name) -> untyped
+
+        # Enqueue the background jobs that will backfill data in the partitioned table, by batch-copying records from
+        # original table. This helper should be called from a post-deploy migration.
+        #
+        # Example:
+        #
+        #   enqueue_partitioning_data_migration :audit_events
+        #
+        def enqueue_partitioning_data_migration: (untyped table_name, ?untyped migration, ?batch_min_value: untyped?) -> untyped
+
+        # Cleanup a previously enqueued background migration to copy data into a partitioned table. This will not
+        # prevent the enqueued jobs from executing, but instead cleans up information in the database used to track the
+        # state of the batched background migration. It should be safe to also remove the partitioned table even if the
+        # background jobs are still in-progress, as the absence of the table will cause them to safely exit.
+        #
+        # Example:
+        #
+        #   cleanup_partitioning_data_migration :audit_events
+        #
+        def cleanup_partitioning_data_migration: (untyped table_name, ?untyped migration) -> untyped
+
+        def create_hash_partitions: (untyped table_name, untyped number_of_partitions) -> untyped
+
+        # Executes jobs from previous BatchedBackgroundMigration to backfill the partitioned table by finishing
+        # pending jobs.
+        #
+        # **NOTE** Migrations using this method cannot be scheduled in the same release as the migration that
+        # schedules the background migration using the `enqueue_partitioning_data_migration` helper, or else the
+        # background migration jobs will be force-executed.
+        #
+        # Example:
+        #
+        #   finalize_backfilling_partitioned_table :audit_events
+        #
+        def finalize_backfilling_partitioned_table: (untyped table_name) -> untyped
+
+        # Replaces a non-partitioned table with its partitioned copy. This is the final step in a partitioning
+        # migration, which makes the partitioned table ready for use by the application. The partitioned copy should be
+        # replaced with the original table in such a way that it appears seamless to any database clients. The replaced
+        # table will be renamed to "#{replaced_table}_archived". Partitions and primary key constraints will also be
+        # renamed to match the naming scheme of the parent table.
+        #
+        # **NOTE** This method should only be used after all other migration steps have completed successfully.
+        # There are several limitations to this method that MUST be handled before, or during, the swap migration:
+        #
+        # - Secondary indexes and foreign keys are not automatically recreated on the partitioned table.
+        # - Some types of constraints (UNIQUE and EXCLUDE) which rely on indexes, will not automatically be recreated
+        #   on the partitioned table, since the underlying index will not be present.
+        # - Foreign keys referencing the original non-partitioned table, would also need to be updated to reference the
+        #   partitioned table, but unfortunately this is not supported in PG11.
+        # - Views referencing the original table will not be automatically updated to reference the partitioned table.
+        #
+        # Example:
+        #
+        #   replace_with_partitioned_table :audit_events
+        #
+        def replace_with_partitioned_table: (untyped table_name, ?rename_partitions: bool) -> untyped
+
+        # Rolls back a migration that replaced a non-partitioned table with its partitioned copy. This can be used to
+        # restore the original non-partitioned table in the event of an unexpected issue.
+        #
+        # Example:
+        #
+        #   rollback_replace_with_partitioned_table :audit_events
+        #
+        def rollback_replace_with_partitioned_table: (untyped table_name, ?rename_partitions: bool) -> untyped
+
+        def drop_nonpartitioned_archive_table: (untyped table_name) -> untyped
+
+        def create_trigger_to_sync_tables: (untyped source_table_name, untyped partitioned_table_name, untyped unique_key) -> untyped
+
+        def drop_trigger_to_sync_tables: (untyped source_table_name) -> untyped
+
+        def prepare_constraint_for_list_partitioning: (table_name: untyped, partitioning_column: untyped, parent_table_name: untyped, initial_partitioning_value: untyped, ?async: bool) -> untyped
+
+        def revert_preparing_constraint_for_list_partitioning: (table_name: untyped, partitioning_column: untyped, parent_table_name: untyped, initial_partitioning_value: untyped) -> untyped
+
+        def convert_table_to_first_list_partition: (table_name: untyped, partitioning_column: untyped, parent_table_name: untyped, initial_partitioning_value: untyped, ?lock_tables: untyped) -> untyped
+
+        def revert_converting_table_to_first_list_partition: (table_name: untyped, partitioning_column: untyped, parent_table_name: untyped, initial_partitioning_value: untyped) -> untyped
+
+        private
+
+        def assert_table_is_allowed: (untyped table_name) -> (nil | untyped)
+
+        def make_partitioned_table_name: (untyped table) -> untyped
+
+        def make_archived_table_name: (untyped table) -> ::String
+
+        def make_sync_function_name: (untyped table) -> untyped
+
+        def make_sync_trigger_name: (untyped table) -> untyped
+
+        def find_column_definition: (untyped table, untyped column) -> untyped
+
+        def create_partitioned_copy: (untyped source_table_name, untyped partitioning_type, untyped partitioned_table_name, untyped partition_column, untyped primary_keys, ?untyped? create_partitioned_table_fn) -> (nil | untyped)
+
+        def create_list_partitioned_copy: (untyped source_table_name, untyped partitioned_table_name, untyped partition_column, untyped primary_keys, ?untyped? create_partitioned_table_fn) -> untyped
+
+        def create_range_id_partitioned_copy: (untyped source_table_name, untyped partitioned_table_name, untyped partition_column, untyped primary_keys) -> untyped
+
+        def create_range_partitioned_copy: (untyped source_table_name, untyped partitioned_table_name, untyped partition_column, untyped primary_key) -> (nil | untyped)
+
+        def column_of_type?: (untyped table_name, untyped column, untyped type) -> untyped
+
+        def create_daterange_partitions: (untyped table_name, untyped column_name, untyped min_date, untyped max_date) -> untyped
+
+        def create_list_partitions: (untyped table_name, untyped partition_mappings, ?untyped? partition_name_format) -> untyped
+
+        def create_int_range_partitions: (untyped table_name, untyped partition_size, untyped min_id, untyped max_id) -> untyped
+
+        def to_sql_date_literal: (untyped date) -> untyped
+
+        def create_range_partition_safely: (untyped partition_name, untyped table_name, untyped lower_bound, untyped upper_bound) -> (nil | untyped)
+
+        def create_list_partition_safely: (untyped partition_name, untyped table_name, untyped partition_values) -> (nil | untyped)
+
+        def drop_sync_trigger: (untyped source_table_name) -> untyped
+
+        def create_sync_function: (untyped name, untyped source_table_name, untyped partitioned_table_name, untyped unique_key) -> (nil | untyped)
+
+        def build_temporary_columns_statement: (untyped columns) -> untyped
+
+        def build_set_statements: (untyped column_names, untyped unique_key) -> untyped
+
+        def create_sync_trigger: (untyped table_name, untyped trigger_name, untyped function_name) -> (nil | untyped)
+
+        def replace_table: (untyped original_table_name, untyped replacement_table_name, untyped replaced_table_name, untyped primary_key_name, ?rename_partitions: bool) -> untyped
+      end
+    end
+  end
+end

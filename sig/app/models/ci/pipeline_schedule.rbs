@@ -1,0 +1,67 @@
+module Ci
+  class PipelineSchedule < Ci::ApplicationRecord
+    extend ::Gitlab::Utils::Override
+
+    include Importable
+
+    include StripAttribute
+
+    include CronSchedulable
+
+    include Limitable
+
+    include EachBatch
+
+    include BatchNullifyDependentAssociations
+
+    include Gitlab::Utils::StrongMemoize
+
+    VALID_REF_FORMAT_REGEX: ::Regexp
+
+    SORT_ORDERS: { id_asc: { order_by: "id", sort: "asc" }, id_desc: { order_by: "id", sort: "desc" }, description_asc: { order_by: "description", sort: "asc" }, description_desc: { order_by: "description", sort: "desc" }, ref_asc: { order_by: "ref", sort: "asc" }, ref_desc: { order_by: "ref", sort: "desc" }, next_run_at_asc: { order_by: "next_run_at", sort: "asc" }, next_run_at_desc: { order_by: "next_run_at", sort: "desc" }, created_at_asc: { order_by: "created_at", sort: "asc" }, created_at_desc: { order_by: "created_at", sort: "desc" }, updated_at_asc: { order_by: "updated_at", sort: "asc" }, updated_at_desc: { order_by: "updated_at", sort: "desc" } }
+
+    def self.sort_by_attribute: (untyped method) -> untyped
+
+    def self.grouped_by_active: () -> untyped
+
+    def owned_by?: (untyped current_user) -> untyped
+
+    def own!: (untyped user) -> untyped
+
+    def inactive?: () -> untyped
+
+    def deactivate!: () -> untyped
+
+    def job_variables: () -> untyped
+
+    def set_next_run_at: () -> untyped
+
+    def schedule_next_run!: () -> (nil | untyped)
+
+    def daily_limit: () -> untyped
+
+    def ref_for_display: () -> (nil | untyped)
+
+    def for_tag?: () -> (false | untyped)
+
+    def worker_cron_expression: () -> untyped
+
+    # Using destroy instead of before_destroy as we want nullify_dependent_associations_in_batches
+    # to run first and not in a transaction block. This prevents timeouts for schedules with numerous pipelines
+    def destroy: () -> untyped
+
+    def expand_short_ref: () -> (nil | untyped)
+
+    def inputs_hash: () -> untyped
+
+    def last_pipeline: () -> untyped
+
+    private
+
+    def ambiguous_ref?: () -> untyped
+
+    def cron_or_activation_changed?: () -> untyped
+
+    def allow_next_run_at_update?: () -> untyped
+  end
+end

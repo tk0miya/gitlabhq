@@ -1,0 +1,71 @@
+# This service copies Notes from one Noteable to another.
+#
+# It expects the calling code to have performed the necessary authorization
+# checks in order to allow the copy to happen.
+module WorkItems
+  module DataSync
+    module Handlers
+      module Notes
+        class CopyService
+          @current_user: untyped
+
+          @source_noteable: untyped
+
+          @target_noteable: untyped
+
+          @source_parent: untyped
+
+          @target_parent: untyped
+
+          @new_discussion_ids: untyped
+
+          BATCH_SIZE: 50
+
+          def initialize: (untyped current_user, untyped source_noteable, untyped target_noteable) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader current_user: untyped
+
+          attr_reader source_noteable: untyped
+
+          attr_reader target_noteable: untyped
+
+          attr_reader source_parent: untyped
+
+          attr_reader target_parent: untyped
+
+          attr_reader new_discussion_ids: untyped
+
+          def namespace_id_for: (untyped noteable) -> untyped
+
+          def copy_notes_emoji: (untyped notes_ids_map) -> untyped
+
+          def copy_notes_metadata: (untyped notes_ids_map) -> (nil | untyped)
+
+          def allocate_new_ids: (untyped collection, untyped column_name, untyped sequence_name) -> (::Hash[untyped, untyped] | untyped)
+
+          # rubocop: disable Metrics/AbcSize -- Despite being long, this method is straightforward.
+          def new_notes: (untyped notes_batch, untyped notes_ids_map) -> untyped
+
+          def new_notes_emoji: (untyped notes_emoji, untyped notes_ids_map) -> untyped
+
+          def new_desc_versions: (untyped description_version_ids_map) -> untyped
+
+          # overridden in EE
+          def build_description_version_attributes: (untyped description_version, untyped description_version_ids_map) -> untyped
+
+          def new_notes_metadata: (untyped system_notes_metadata, untyped notes_ids_map, untyped description_version_ids_map) -> untyped
+
+          def copy_notes_user_mentions: (untyped notes_ids_map) -> untyped
+
+          def new_user_mentions: (untyped notes_ids_map) -> untyped
+
+          def sanitized_note_params: (untyped note) -> untyped
+        end
+      end
+    end
+  end
+end

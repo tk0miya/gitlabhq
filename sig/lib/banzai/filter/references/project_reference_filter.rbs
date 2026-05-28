@@ -1,0 +1,57 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces project references with links.
+      class ProjectReferenceFilter < ReferenceFilter
+        @object_reference_pattern: untyped
+
+        @projects: untyped
+
+        # Public: Find `namespace/project>` project references in text
+        #
+        #   references_in(text) do |match_text, project|
+        #     "<a href=...>#{project}></a>"
+        #   end
+        #
+        # text - String text to search.
+        #
+        # Yields the String text match, and the String project name.
+        #
+        # Returns a HTML String with replacements made, or nil if no replacements were made.
+        #
+        # See ReferenceFilter#references_in for a detailed discussion.
+        def references_in: (untyped text, ?untyped pattern) { (untyped, untyped) -> untyped } -> untyped
+
+        private
+
+        def object_reference_pattern: () -> untyped
+
+        # Replace `namespace/project>` project references in text with links to the referenced
+        # project page.
+        #
+        # text - String text to replace references in.
+        # link_content_html - Original HTML content of the link being replaced.
+        #
+        # Returns a String HTML with `namespace/project>` references replaced with links, or nil
+        # if no replacements were made. All links have `gfm` and `gfm-project` class names attached for styling.
+        def object_link_filter: (untyped text, untyped pattern, ?link_content_html: untyped?, ?link_reference: bool) -> untyped
+
+        # Returns a Hash containing all Project objects for the project
+        # references in the current document.
+        #
+        # The keys of this Hash are the project paths, the values the
+        # corresponding Project objects.
+        def projects_hash: () -> untyped
+
+        # Returns all projects referenced in the current document.
+        def projects: () -> untyped
+
+        def urls: () -> untyped
+
+        def link_class: () -> untyped
+
+        def link_to_project: (untyped project, match_text: untyped, link_content_html: untyped) -> untyped
+      end
+    end
+  end
+end

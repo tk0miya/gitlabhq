@@ -1,0 +1,37 @@
+module Packages
+  module Nuget
+    module PresenterHelpers
+      include ::API::Helpers::RelatedResourcesHelpers
+
+      include Packages::Nuget::VersionHelpers
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      PACKAGE_DEPENDENCY_GROUP: "PackageDependencyGroup"
+
+      PACKAGE_DEPENDENCY: "PackageDependency"
+
+      private
+
+      def json_url_for: (untyped package) -> untyped
+
+      def archive_url_for: (untyped package) -> untyped
+
+      def catalog_entry_for: (untyped package) -> { json_url: untyped, dependency_groups: untyped, package_name: untyped, package_version: untyped, archive_url: untyped, tags: untyped, metadatum: untyped, published: untyped }
+
+      def dependency_groups_for: (untyped package) -> untyped
+
+      def dependency_links_grouped_by_target_framework: (untyped package) -> untyped
+
+      def dependencies_for: (untyped nuget_id, untyped dependency_links) -> (::Array[untyped] | untyped)
+
+      def target_framework_nuget_id: (untyped base_nuget_id, untyped target_framework) -> (untyped | ::String)
+
+      def metadatum_for: (untyped package) -> (::Hash[untyped, untyped] | untyped)
+
+      def base_path_for: (untyped package) -> untyped
+
+      def tags_for: (untyped package) -> untyped
+    end
+  end
+end

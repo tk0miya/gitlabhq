@@ -1,0 +1,10 @@
+module RepositoryCheck
+  class ClearWorker
+    include ApplicationWorker
+
+    include RepositoryCheckQueue
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def perform: () -> untyped
+  end
+end

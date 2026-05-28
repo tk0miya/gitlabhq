@@ -1,0 +1,37 @@
+module Gitlab
+  module SidekiqMiddleware
+    module Throttling
+      class Tracker
+        @worker_name: untyped
+
+        INTERVAL_SECONDS: 60
+
+        TTL: untyped
+
+        LOOKUP_KEY_TTL: untyped
+
+        def self.throttled_workers: () -> untyped
+
+        def self.with_redis: () { (?) -> untyped } -> untyped
+
+        def self.lookup_key: () -> "sidekiq:throttling:worker:lookup:throttled"
+
+        def initialize: (untyped worker_name) -> void
+
+        attr_reader worker_name: untyped
+
+        def record: () -> untyped
+
+        def currently_throttled?: () -> untyped
+
+        def remove_from_throttled_list!: () -> untyped
+
+        private
+
+        def period_key: (?untyped time) -> untyped
+
+        def cache_key: (untyped worker_name, untyped period_key) -> ::String
+      end
+    end
+  end
+end

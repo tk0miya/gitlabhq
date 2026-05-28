@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class Stop < Status::Extended
+          def label: () -> "manual stop action"
+
+          def has_action?: () -> untyped
+
+          def action_icon: () -> "stop"
+
+          def action_title: () -> "Stop"
+
+          def action_button_title: () -> untyped
+
+          def action_path: () -> untyped
+
+          def action_method: () -> :post
+
+          def self.matches?: (untyped build, untyped user) -> untyped
+
+          def confirmation_message: () -> untyped
+        end
+      end
+    end
+  end
+end

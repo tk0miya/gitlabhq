@@ -1,0 +1,52 @@
+module Backup
+  module Restore
+    # Class that includes backup compatibility verification logic
+    #
+    # You can either use it as part of the existing backup logic to ensure
+    # a restore is performed only in supported GitLab installation versions
+    #
+    # or standalone to check whether a Backup's version is supported, before
+    # trying to restore it
+    class Preconditions
+      @backup_information: untyped
+
+      @logger: untyped
+
+      attr_reader backup_information: untyped
+
+      attr_reader logger: untyped
+
+      # Check preconditions before restoring a backup task
+      #
+      # @param [Struct] backup_information Backup information
+      # @param [Gitlab::BackupLogger] logger interface
+      def initialize: (backup_information: untyped, logger: untyped) -> void
+
+      # Ensure Backup version is compatible with current GitLab installation
+      #
+      # Currently we only allow restoring a Backup in the same GitLab version it was created
+      #
+      # We do this because restoring from an older version requires migration steps to be executed
+      # and the upgrade path is only checked during GitLab's upgrade process
+      #
+      # Trying to restore a newer backup on an older GitLab installation will always fail
+      def ensure_supported_backup_version!: () -> (untyped | nil)
+
+      # Validate and report whether Backup version is compatible with current GitLab installation
+      def validate_backup_version!: () -> untyped
+
+      private
+
+      # Check whether backup version matches gitlab installation
+      #
+      # @return [Boolean] whether they are the same version
+      def gitlab_backup_same_version?: () -> untyped
+
+      # Display a message for when version mismatches and exit 1
+      def gitlab_version_mismatch!: () -> untyped
+
+      # Display a message for when version matches and exit 0
+      def gitlab_version_matches!: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,65 @@
+module Packages
+  module Maven
+    module Metadata
+      class CreateVersionsXmlService < BaseCreateXmlService
+        XPATH_VERSIONING: "//metadata/versioning"
+
+        XPATH_VERSIONS: "//versions"
+
+        XPATH_VERSION: "//version"
+
+        XPATH_LATEST: "//latest"
+
+        XPATH_RELEASE: "//release"
+
+        XPATH_LAST_UPDATED: "//lastUpdated"
+
+        EMPTY_VERSIONS_PAYLOAD: { changes_exist: true, empty_versions: true }
+
+        def execute: () -> untyped
+
+        private
+
+        def valid_metadata_content?: () -> untyped
+
+        def update_versions_list: () -> (false | true)
+
+        def update_latest: () -> (false | true)
+
+        def latest_coherent?: () -> untyped
+
+        def update_release: () -> (false | true)
+
+        def release_coherent?: () -> untyped
+
+        def update_last_updated_timestamp: () -> untyped
+
+        def versioning_xml_node: () -> untyped
+
+        def versions_xml_node: () -> untyped
+
+        def version_xml_nodes: () -> untyped
+
+        def latest_xml_node: () -> untyped
+
+        def release_xml_node: () -> untyped
+
+        def last_updated_xml_node: () -> untyped
+
+        def versions_from_xml: () -> untyped
+
+        def latest_from_xml: () -> untyped
+
+        def release_from_xml: () -> untyped
+
+        def versions_from_database: () -> untyped
+
+        def latest_from_database: () -> untyped
+
+        def release_from_database: () -> untyped
+
+        def log_malformed_content: (untyped reason) -> untyped
+      end
+    end
+  end
+end

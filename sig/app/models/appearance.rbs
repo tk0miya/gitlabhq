@@ -1,0 +1,34 @@
+class Appearance < ApplicationRecord
+  include CacheableAttributes
+
+  include CacheMarkdownField
+
+  include WithUploads
+
+  ALLOWED_PWA_ICON_SCALER_WIDTHS: ::Array[192 | 512]
+
+  # Overrides CacheableAttributes.current_without_cache
+  def self.current_without_cache: () -> untyped
+
+  def single_appearance_row: () -> (untyped | nil)
+
+  def pwa_icon_path_scaled: (untyped width) -> (nil | untyped)
+
+  def logo_path: () -> untyped
+
+  def pwa_icon_path: () -> untyped
+
+  def header_logo_path: () -> untyped
+
+  def favicon_path: () -> untyped
+
+  def show_header?: () -> untyped
+
+  def show_footer?: () -> untyped
+
+  def uploads_sharding_key: () -> ::Hash[untyped, untyped]
+
+  private
+
+  def logo_system_path: (untyped logo, untyped mount_type) -> untyped
+end

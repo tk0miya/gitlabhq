@@ -1,0 +1,25 @@
+module Ci
+  module Artifactable
+    extend ActiveSupport::Concern
+
+    include ObjectStorable
+
+    include Gitlab::Ci::Artifacts::Logger
+
+    STORE_COLUMN: :file_store
+
+    NotSupportedAdapterError: untyped
+
+    FILE_FORMAT_ADAPTERS: { gzip: untyped, raw: untyped }
+
+    JUNIT_MAX_BYTES: untyped
+
+    def each_blob: () { (?) -> untyped } -> untyped
+
+    private
+
+    def file_format_adapter_class: () -> untyped
+
+    def max_size_for_file_type: () -> untyped
+  end
+end

@@ -1,0 +1,48 @@
+module Packages
+  module Nuget
+    module Symbols
+      class ExtractSignatureAndChecksumService
+        @file: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        # More information about the GUID format can be found here:
+        # https://github.com/dotnet/symstore/blob/main/docs/specs/SSQP_Key_Conventions.md#key-formatting-basic-rules
+        GUID_START_INDEX: 7
+
+        GUID_END_INDEX: 26
+
+        SIGNATURE_LENGTH: 16
+
+        TWENTY_ZEROED_BYTES: untyped
+
+        GUID_PARTS_LENGTHS: ::Array[4 | 2 | 8]
+
+        GUID_AGE_PART: "FFFFFFFF"
+
+        TWO_CHARACTER_HEX_REGEX: ::Regexp
+
+        GUID_CHUNK_SIZE: untyped
+
+        SHA_CHUNK_SIZE: untyped
+
+        def initialize: (untyped file) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader file: untyped
+
+        def signature: () -> (nil | untyped)
+
+        # https://github.com/dotnet/corefx/blob/master/src/System.Reflection.Metadata/specs/PE-COFF.md#portable-pdb-checksum
+        def checksum: () -> untyped
+
+        def pdb_id: () -> (nil | untyped)
+
+        def error_response: () -> untyped
+      end
+    end
+  end
+end

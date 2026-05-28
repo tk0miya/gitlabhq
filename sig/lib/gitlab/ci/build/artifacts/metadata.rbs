@@ -1,0 +1,55 @@
+module Gitlab
+  module Ci
+    module Build
+      module Artifacts
+        class Metadata
+          @stream: untyped
+
+          # Ensure to remove any ./ prefix from the path
+          # so that the pattern matching will work as expected
+          @path: untyped
+
+          @opts: untyped
+
+          @full_version: untyped
+
+          ParserError: untyped
+
+          InvalidStreamError: untyped
+
+          VERSION_PATTERN: ::Regexp
+
+          INVALID_PATH_PATTERN: ::Regexp
+
+          attr_reader stream: untyped
+
+          attr_reader path: untyped
+
+          attr_reader full_version: untyped
+
+          def initialize: (untyped stream, untyped path, **untyped opts) -> void
+
+          def version: () -> untyped
+
+          def errors: () -> untyped
+
+          def find_entries!: () -> untyped
+
+          def to_entry: () -> untyped
+
+          private
+
+          def match_entries: (untyped gz) -> untyped
+
+          def read_version: () -> untyped
+
+          def read_uint32: (untyped gz) -> untyped
+
+          def read_string: (untyped gz) -> (nil | untyped)
+
+          def gzip: () { (untyped) -> untyped } -> untyped
+        end
+      end
+    end
+  end
+end

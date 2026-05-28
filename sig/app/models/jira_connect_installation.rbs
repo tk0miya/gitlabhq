@@ -1,0 +1,30 @@
+class JiraConnectInstallation < ApplicationRecord
+  include Gitlab::Routing
+
+  include Gitlab::EncryptedAttribute
+
+  def client: () -> untyped
+
+  def oauth_authorization_url: () -> untyped
+
+  def audience_url: () -> (nil | untyped)
+
+  def audience_installed_event_url: () -> (nil | untyped)
+
+  def audience_uninstalled_event_url: () -> (nil | untyped)
+
+  def create_branch_url: () -> (nil | untyped)
+
+  def proxy?: () -> untyped
+
+  private
+
+  # Ruby's URI.parse is stricter than Addressable (used by the public_url
+  # validator). Downstream code (e.g. atlassian-jwt) calls URI.parse on the
+  # instance_url, so reject values that will blow up there. Only runs on
+  # change so rows already persisted with a bad value don't fail unrelated
+  # updates - runtime use is guarded by ProxyLifecycleEventService.
+  def instance_url_parseable_by_uri: () -> untyped
+
+  def normalize_instance_url: () -> (nil | untyped)
+end

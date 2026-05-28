@@ -1,0 +1,15 @@
+module Oauth
+  class ProtectedResourceMetadataController < ApplicationController
+    include ::Gitlab::EndpointAttributes
+
+    MCP_RESOURCE_PATHS: { "/api/v4/mcp" => untyped, "/api/v4/orbit/mcp" => untyped }
+
+    def show: () -> untyped
+
+    private
+
+    def resource_metadata: () -> (untyped | { resource: untyped, authorization_servers: ::Array[untyped], scopes_supported: untyped })
+
+    def resource_metadata_for: (untyped path, untyped scope) -> { resource: ::Array[untyped], authorization_servers: ::Array[untyped], scopes_supported: ::Array[untyped] }
+  end
+end

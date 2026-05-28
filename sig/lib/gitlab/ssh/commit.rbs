@@ -1,0 +1,15 @@
+module Gitlab
+  module Ssh
+    class Commit < Gitlab::Repositories::BaseSignedCommit
+      extend ::Gitlab::Utils::Override
+
+      private
+
+      def lazy_signature: () -> untyped
+
+      def signature_class: () -> untyped
+
+      def attributes: () -> { commit_sha: untyped, project: untyped, key_id: untyped, key_fingerprint_sha256: untyped, user_id: untyped, verification_status: untyped, committer_email: untyped }
+    end
+  end
+end

@@ -1,0 +1,33 @@
+module Deployments
+  # Service class for linking merge requests to deployments.
+  class LinkMergeRequestsService
+    @deployment: untyped
+
+    attr_reader deployment: untyped
+
+    # The number of commits per query for which to find merge requests.
+    COMMITS_PER_QUERY: 5000
+
+    def initialize: (untyped deployment) -> void
+
+    def execute: () -> (nil | untyped)
+
+    def link_merge_requests_for_range: (untyped from, untyped to) -> untyped
+
+    def link_all_merged_merge_requests: () -> untyped
+
+    private
+
+    def link_merge_requests_by_merge_commits: (untyped commits) -> untyped
+
+    def link_fast_forward_merge_requests: (untyped commits) -> untyped
+
+    def merge_requests_by_merge_commit_sha: (untyped commits) -> untyped
+
+    def merge_requests_by_squash_commit_sha: (untyped commits) -> untyped
+
+    def merge_requests_by_head_commit_sha: (untyped commits) -> untyped
+
+    def project: () -> untyped
+  end
+end

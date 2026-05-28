@@ -1,0 +1,36 @@
+# Gitlab::EventStore is a simple pub-sub mechanism that lets you publish
+# domain events and use Sidekiq workers as event handlers.
+#
+# It can be used to decouple domains from different bounded contexts
+# by publishing domain events and let any interested parties subscribe
+# to them.
+#
+module Gitlab
+  module EventStore
+    self.@instance: untyped
+
+    Error: untyped
+
+    InvalidEvent: untyped
+
+    InvalidSubscriber: untyped
+
+    SUBSCRIPTION_GROUPS: ::Array[untyped]
+
+    def self.publish: (untyped event) -> untyped
+
+    def self.publish_group: (untyped events) -> untyped
+
+    def self.instance: () -> untyped
+
+    private
+
+    # Define all event subscriptions using a domain-specific subscription group
+    def self.configure!: (untyped store) -> untyped
+
+    def self.register_subscriptions: (untyped store) -> untyped
+
+    # overridden in EE
+    def self.subscription_groups: () -> untyped
+  end
+end

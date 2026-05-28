@@ -1,0 +1,13 @@
+module Import
+  module BulkImports
+    module Common
+      module Graphql
+        class GetUsersQuery
+          def to_s: () -> "              query($ids: [ID!], $cursor: String) {\n                users(ids: $ids, after: $cursor) {\n                  pageInfo {\n                    next_page: endCursor\n                    has_next_page: hasNextPage\n                  }\n                  nodes {\n                    id\n                    name\n                    username\n                  }\n                }\n              }\n"
+
+          def variables: () -> ::Hash[untyped, untyped]
+        end
+      end
+    end
+  end
+end

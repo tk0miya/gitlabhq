@@ -1,0 +1,15 @@
+module Import
+  module AfterExportStrategies
+    class DownloadNotificationStrategy < BaseAfterExportStrategy
+      @notification_service: untyped
+
+      def delete_export?: () -> false
+
+      private
+
+      def strategy_execute: () -> untyped
+
+      def notification_service: () -> untyped
+    end
+  end
+end

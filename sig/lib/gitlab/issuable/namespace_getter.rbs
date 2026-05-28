@@ -1,0 +1,23 @@
+module Gitlab
+  module Issuable
+    class NamespaceGetter
+      @issuable: untyped
+
+      @excluded_issuable_types: untyped
+
+      @allow_nil: untyped
+
+      INVALID_ISSUABLE_ERROR: untyped
+
+      def initialize: (untyped issuable, ?excluded_issuable_types: untyped, ?allow_nil: bool) -> void
+
+      def namespace_id: () -> untyped
+
+      private
+
+      attr_reader issuable: untyped
+
+      def raise_invalid_issuable_error: () -> untyped
+    end
+  end
+end

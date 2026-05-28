@@ -1,0 +1,54 @@
+class Clusters::ClustersController < ::Clusters::BaseController
+  @clusters: untyped
+
+  @user_cluster: untyped
+
+  @has_ancestor_clusters: untyped
+
+  @expires_at_in_session: untyped
+
+  include RoutableActions
+
+  STATUS_POLLING_INTERVAL: 10000
+
+  def index: () -> untyped
+
+  # Overriding ActionController::Metal#status is NOT a good idea
+  def cluster_status: () -> untyped
+
+  def update: () -> untyped
+
+  def destroy: () -> untyped
+
+  def create_user: () -> untyped
+
+  def clear_cache: () -> untyped
+
+  def migrate: () -> untyped
+
+  def update_migration: () -> untyped
+
+  private
+
+  def migrate_params: () -> untyped
+
+  def ensure_feature_enabled!: () -> (untyped | nil)
+
+  def cluster_list: () -> (::Array[untyped] | untyped)
+
+  def destroy_params: () -> untyped
+
+  def base_permitted_cluster_params: () -> ::Array[:enabled | :environment_scope | :managed | :namespace_per_environment]
+
+  def update_params: () -> untyped
+
+  def create_user_cluster_params: () -> untyped
+
+  def user_cluster: () -> untyped
+
+  def token_in_session: () -> untyped
+
+  def expires_at_in_session: () -> untyped
+
+  def safe_params: () -> untyped
+end

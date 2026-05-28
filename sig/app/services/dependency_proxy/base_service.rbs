@@ -1,0 +1,17 @@
+module DependencyProxy
+  class BaseService < ::BaseService
+    class DownloadError < StandardError
+      @http_status: untyped
+
+      attr_reader http_status: untyped
+
+      def initialize: (untyped message, untyped http_status) -> void
+    end
+
+    private
+
+    def registry: () -> untyped
+
+    def auth_headers: () -> { Authorization: ::String }
+  end
+end

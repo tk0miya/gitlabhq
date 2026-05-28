@@ -1,0 +1,41 @@
+module Banzai
+  module Filter
+    # Sanitize HTML produced by AsciiDoc/Asciidoctor.
+    #
+    # Extends Banzai::Filter::BaseSanitizationFilter with specific rules.
+    class AsciiDocSanitizationFilter < Banzai::Filter::BaseSanitizationFilter
+      # Anchor link prefixed by "user-content-" pattern
+      PREFIXED_ID_PATTERN: ::Regexp
+
+      SECTION_HEADINGS: ::Array["h2" | "h3" | "h4" | "h5" | "h6"]
+
+      # Footnote link patterns
+      FOOTNOTE_LINK_ID_PATTERNS: { a: ::Regexp, div: ::Regexp }
+
+      # Classes used by Asciidoctor to style components
+      ADMONITION_CLASSES: ::Array["fa" | "icon-note" | "icon-tip" | "icon-warning" | "icon-caution" | "icon-important"]
+
+      ALIGNMENT_BUILTINS_CLASSES: ::Array["text-center" | "text-left" | "text-right" | "text-justify"]
+
+      CALLOUT_CLASSES: ::Array["conum"]
+
+      CHECKLIST_CLASSES: ::Array["fa" | "fa-check-square-o" | "fa-square-o"]
+
+      LIST_CLASSES: ::Array["checklist" | "none" | "no-bullet" | "unnumbered" | "unstyled"]
+
+      TABLE_FRAME_CLASSES: ::Array["frame-all" | "frame-topbot" | "frame-sides" | "frame-ends" | "frame-none"]
+
+      TABLE_GRID_CLASSES: ::Array["grid-all" | "grid-rows" | "grid-cols" | "grid-none"]
+
+      TABLE_STRIPES_CLASSES: ::Array["stripes-all" | "stripes-odd" | "stripes-even" | "stripes-hover" | "stripes-none"]
+
+      ELEMENT_CLASSES_ALLOWLIST: { span: ::Array["big" | "small" | "underline" | "overline" | "line-through"], div: untyped, td: ::Array["icon"], i: untyped, ul: untyped, ol: untyped, a: ::Array["anchor"], table: untyped }
+
+      def customize_allowlist: (untyped allowlist) -> untyped
+
+      def self.remove_disallowed_ids: () -> untyped
+
+      def self.remove_element_classes: () -> untyped
+    end
+  end
+end

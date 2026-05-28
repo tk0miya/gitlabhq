@@ -1,0 +1,31 @@
+module Gitlab
+  module UsageDataCounters
+    module QuickActionActivityUniqueCounter
+      # List of events that use the current internal events implementation.
+      # Only add internal events for new quick actions.
+      INTERNAL_EVENTS: ::Array["add_email_multiple" | "add_email_single" | "convert_to_ticket" | "remove_email_multiple" | "remove_email_single" | "q" | "status" | "ship" | "run_pipeline" | "approve" | "submit_review" | "unapprove"]
+
+      # Tracks the quick action with name `name`.
+      # `args` is expected to be a single string, will be split internally when necessary.
+      def self.track_unique_action: (untyped name, args: untyped, user: untyped, project: untyped, ?additional_properties: untyped?) -> (nil | untyped)
+
+      private
+
+      def self.prepare_name: (untyped name, untyped args) -> untyped
+
+      def self.prepare_additional_properties: (untyped name, untyped args) -> untyped
+
+      def self.event_name_for_assign: (untyped args) -> untyped
+
+      def self.event_name_for_copy_metadata: (untyped args) -> ("copy_metadata_issue" | "copy_metadata_merge_request")
+
+      def self.event_name_for_spend: (untyped args) -> ("spend_subtract" | "spend_add")
+
+      def self.event_name_for_unassign: (untyped args) -> ("unassign_specific" | "unassign_all")
+
+      def self.event_name_for_unlabel: (untyped args) -> ("unlabel_specific" | "unlabel_all")
+
+      def self.event_name_quantifier: (untyped args) -> ("_single" | "_multiple")
+    end
+  end
+end

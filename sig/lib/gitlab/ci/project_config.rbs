@@ -1,0 +1,35 @@
+module Gitlab
+  module Ci
+    # Locates project CI config
+    class ProjectConfig
+      @config: untyped
+
+      # The order of sources is important:
+      # - EE uses Compliance first since it must be used first if compliance templates are enabled.
+      # - Parameter is used by on-demand security scanning which passes the actual CI YAML to use as argument.
+      # - Bridge is used for downstream pipelines since the config is defined in the bridge job. If lower in priority,
+      #   it would evaluate the project's YAML file instead.
+      # - ProjectSetting takes care of CI config coming defined in a project.
+      #   This can be the project itself, remote or external.
+      # - AutoDevops is used as default option if nothing else is found and if AutoDevops is enabled.
+      # - SecurityScanProfile is used when project has Security Scan Profile attached with a matching pipeline trigger.
+      # - EE uses SecurityPolicyDefault and it should come last. It is only necessary if no other source is available.
+      #   Based on the policy configuration different source can be used.
+      STANDARD_SOURCES: ::Array[untyped]
+
+      FALLBACK_POLICY_SOURCE: untyped
+
+      def initialize: (project: untyped, sha: untyped, ?custom_content: untyped?, ?pipeline_source: untyped?, ?pipeline_source_bridge: untyped?, ?triggered_for_branch: untyped?, ?ref: untyped?, ?source_branch: untyped?, ?pipeline_policy_context: untyped?, ?inputs: untyped?) -> void
+
+      def exists?: () -> untyped
+
+      def external?: () -> untyped
+
+      private
+
+      def find_source: (**untyped args) -> (untyped | nil)
+
+      def standard_sources: () -> untyped
+    end
+  end
+end

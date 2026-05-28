@@ -1,0 +1,21 @@
+module Gitlab
+  module Config
+    module Entry
+      module Validatable
+        @validator: untyped
+
+        extend ActiveSupport::Concern
+
+        def self.included: (untyped node) -> untyped
+
+        def validator: () -> untyped
+
+        def validate: (?untyped? context) -> untyped
+
+        def compose!: (?untyped? deps) { (?) -> untyped } -> untyped
+
+        def errors: () -> untyped
+      end
+    end
+  end
+end

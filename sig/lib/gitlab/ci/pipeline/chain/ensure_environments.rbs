@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class EnsureEnvironments < Chain::Base
+          def perform!: () -> untyped
+
+          def break?: () -> false
+
+          private
+
+          def ensure_environment: (untyped build) -> untyped
+        end
+      end
+    end
+  end
+end

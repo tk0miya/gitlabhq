@@ -1,0 +1,24 @@
+module Users
+  class BannedUserBaseService < BaseService
+    @current_user: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped user) -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    # Overridden in Users::BanService
+    def track_event: (untyped _) -> nil
+
+    def state_error: (untyped user) -> untyped
+
+    def allowed?: () -> untyped
+
+    def permission_error: () -> untyped
+
+    def log_event: (untyped user) -> untyped
+  end
+end

@@ -1,0 +1,35 @@
+module Gitlab
+  module Search
+    class AbuseDetection
+      @raw_params: untyped
+
+      include ActiveModel::Validations
+
+      include AbuseValidators
+
+      MAX_PIPE_SYNTAX_FILTERS: 5
+
+      ABUSIVE_TERM_SIZE: 100
+
+      ALLOWED_CHARS_REGEX: ::Regexp
+
+      READABLE_PARAMS: ::Array[:group_id | :project_id | :project_ref | :query_string | :repository_ref | :scope]
+
+      STOP_WORDS: ::Array["a" | "an" | "and" | "are" | "as" | "at" | "be" | "but" | "by" | "for" | "if" | "in" | "into" | "is" | "it" | "no" | "not" | "of" | "on" | "or" | "such" | "that" | "the" | "their" | "then" | "there" | "these" | "they" | "this" | "to" | "was" | "will" | "with"]
+
+      attr_reader raw_params: untyped
+
+      def initialize: (untyped params) -> void
+
+      def abusive_pipes?: () -> untyped
+
+      private
+
+      def skip_tiny_search_validation?: () -> untyped
+
+      def wildcard_search?: () -> untyped
+
+      def stop_word_search?: () -> untyped
+    end
+  end
+end

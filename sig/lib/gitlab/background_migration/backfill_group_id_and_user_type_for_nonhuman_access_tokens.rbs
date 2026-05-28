@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillGroupIdAndUserTypeForNonhumanAccessTokens < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def update_service_account_access_tokens: (untyped sub_batch) -> untyped
+
+      def update_resource_access_tokens: (untyped sub_batch) -> untyped
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module Database
+    module SchemaValidation
+      class InconsistencyFilter
+        @tables: untyped
+
+        @triggers: untyped
+
+        def initialize: (untyped tables, untyped triggers) -> void
+
+        def to_proc: () -> untyped
+
+        private
+
+        attr_reader tables: untyped
+
+        attr_reader triggers: untyped
+
+        def ignored?: (untyped inconsistency) -> untyped
+
+        def ignored_table?: (untyped name) -> untyped
+
+        def ignored_trigger?: (untyped name) -> untyped
+      end
+    end
+  end
+end

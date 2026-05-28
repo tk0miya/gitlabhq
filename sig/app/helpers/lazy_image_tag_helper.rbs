@@ -1,0 +1,15 @@
+module LazyImageTagHelper
+  include PreferencesHelper
+
+  def self?.placeholder_image: () -> "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+
+  # Override the default ActionView `image_tag` helper to support lazy-loading
+  # accept :auto_dark boolean to enable automatic dark variant of the image
+  # (see: https://gitlab.com/gitlab-org/gitlab-ui/-/merge_requests/2698)
+  # accept :dark_variant path to be used as a source when dark mode is enabled
+  def image_tag: (untyped source, ?::Hash[untyped, untyped] options) -> untyped
+
+  private
+
+  def prepare_dark_variant: (untyped source, untyped options) -> ::Array[untyped]
+end

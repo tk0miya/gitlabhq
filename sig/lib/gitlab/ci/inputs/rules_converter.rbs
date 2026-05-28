@@ -1,0 +1,26 @@
+module Gitlab
+  module Ci
+    module Inputs
+      #
+      # Converts parsed expression AST nodes to JSON format with operator, field, value, and children.
+      #
+      class RulesConverter
+        def convert: (untyped node) -> (nil | untyped)
+
+        private
+
+        def comparison_node: (untyped operator, untyped node) -> { "operator" => untyped, "field" => untyped, "value" => untyped }
+
+        def logical_node: (untyped operator, untyped node, untyped operator_class) -> { "operator" => untyped, "children" => untyped }
+
+        def flatten_children: (untyped node, untyped operator_class) -> untyped
+
+        def collect_children: (untyped node, untyped operator_class, untyped children) -> untyped
+
+        def extract_input_name: (untyped node) -> (nil | untyped)
+
+        def extract_value: (untyped node) -> (nil | untyped)
+      end
+    end
+  end
+end

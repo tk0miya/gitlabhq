@@ -1,0 +1,31 @@
+module Ci
+  class Partition < Ci::ApplicationRecord
+    self.@statuses: untyped
+
+    INITIAL_PARTITION_VALUE: 100
+
+    LAST_STATIC_PARTITION_VALUE: 102
+
+    DEFAULT_PARTITION_VALUES: untyped
+
+    def self.statuses: () -> untyped
+
+    def self.current: () -> untyped
+
+    def self.create_next!: () -> untyped
+
+    def self.next_available: (untyped partition_id) -> untyped
+
+    def self.provisioning: (untyped partition_id) -> untyped
+
+    def all_partitions_exist?: () -> untyped
+
+    def exceed_time_window?: (?untyped time_window) -> (false | untyped)
+
+    private
+
+    def with_ci_connection: () { (?) -> untyped } -> untyped
+
+    def parent_table_names: () -> untyped
+  end
+end

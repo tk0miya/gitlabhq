@@ -1,0 +1,19 @@
+module Mutations
+  module Assignable
+    extend ActiveSupport::Concern
+
+    def resolve: (project_path: untyped, iid: untyped, assignee_usernames: untyped, operation_mode: untyped) -> ::Hash[untyped | :errors, untyped]
+
+    private
+
+    def assign!: (untyped resource, untyped users, untyped operation_mode) -> untyped
+
+    def new_assignees: (untyped resource, untyped usernames) -> untyped
+
+    def assignee_ids: (untyped resource, untyped users, untyped mode) -> untyped
+
+    def current_assignee_ids: (untyped resource) -> untyped
+
+    def transform_list: (untyped mode, untyped resource, untyped new_values) -> untyped
+  end
+end

@@ -1,0 +1,13 @@
+module Mutations
+  module CustomerRelations
+    module Organizations
+      class Create < BaseMutation
+        include ResolvesIds
+
+        include Gitlab::Graphql::Authorize::AuthorizeResource
+
+        def resolve: (untyped args) -> { organization: untyped, errors: untyped }
+      end
+    end
+  end
+end

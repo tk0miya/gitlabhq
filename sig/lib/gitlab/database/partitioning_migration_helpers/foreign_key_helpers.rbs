@@ -1,0 +1,107 @@
+module Gitlab
+  module Database
+    module PartitioningMigrationHelpers
+      module ForeignKeyHelpers
+        include ::Gitlab::Database::SchemaHelpers
+
+        include ::Gitlab::Database::Migrations::LockRetriesHelpers
+
+        include ::Gitlab::Database::MigrationHelpers::Swapping
+
+        ERROR_SCOPE: "foreign keys"
+
+        # Adds a foreign key with only minimal locking on the tables involved.
+        #
+        # In concept it works similarly to add_concurrent_foreign_key, but we have
+        # to add a special helper for partitioned tables for the following reasons:
+        # - add_concurrent_foreign_key sets the constraint to `NOT VALID`
+        #   before validating it
+        # - Setting an FK to NOT VALID is not supported currently in Postgres (up to PG13)
+        # - Also, PostgreSQL will currently ignore NOT VALID constraints on partitions
+        #   when adding a valid FK to the partitioned table, so they have to
+        #   also be validated before we can add the final FK.
+        #
+        # Solution:
+        # - Add the foreign key first to each partition by using
+        #   add_concurrent_foreign_key and validating it
+        # - Once all partitions have a foreign key, add it also to the partitioned
+        #   table (there will be no need for a validation at that level)
+        #
+        # source - The source (partitioned) table containing the foreign key.
+        # target - The target table the key points to.
+        # column - The name of the column to create the foreign key on.
+        # on_delete - The action to perform when associated data is removed,
+        #             defaults to "CASCADE".
+        # on_update - The action to perform when associated data is updated,
+        #             no default value is set.
+        # name - The name of the foreign key.
+        # validate - Flag that controls whether the new foreign key will be validated
+        #            after creation and added to the parent table.
+        #            When true (default): The FK is validated on all partitions and then
+        #            added to the parent partitioned table.
+        #            When false: The FK is added to existing partitions as NOT VALID and
+        #            will only be enforced for new data. The FK will NOT be added to the
+        #            parent table. To complete the process, you must:
+        #            1. Call `prepare_partitioned_async_foreign_key_validation` to schedule
+        #               async validation on all partitions
+        #            2. Call this helper again with `validate: true` after validation completes
+        #               to add the FK to the parent table
+        # reverse_lock_order - Flag that controls whether we should attempt to acquire locks
+        #                      in the reverse order of the ALTER TABLE. This can be useful in
+        #                      situations where the foreign key creation could deadlock with
+        #                      another process.
+        #
+        def add_concurrent_partitioned_foreign_key: (untyped source, untyped target, column: untyped, **untyped options) -> (nil | untyped)
+
+        def validate_partitioned_foreign_key: (untyped source, untyped column, ?name: untyped?) -> untyped
+
+        # Rename the foreign key for partitioned table and its partitions.
+        #
+        # Example:
+        #
+        #     rename_partitioned_foreign_key :users, 'existing_partitioned_fk_name', 'new_fk_name'
+        def rename_partitioned_foreign_key: (untyped table_name, untyped old_foreign_key, untyped new_foreign_key) -> untyped
+
+        # Swap the foreign key names for partitioned table and its partitions.
+        #
+        # Example:
+        #
+        #     swap_partitioned_foreign_keys :users, 'existing_partitioned_fk_name_1', 'existing_partitioned_fk_name_2'
+        def swap_partitioned_foreign_keys: (untyped table_name, untyped old_foreign_key, untyped new_foreign_key) -> untyped
+
+        # Removes a foreign key from a partitioned table and all its partitions.
+        #
+        # This method handles the removal of foreign keys from partitioned tables properly.
+        # Unlike the regular remove_foreign_key method, this method removes the foreign key
+        # from the partitioned table first, then from each partition individually. This is
+        # necessary because PostgreSQL doesn't allow dropping inherited constraints from
+        # partitions while they still exist on the parent table.
+        #
+        # source - The source (partitioned) table containing the foreign key.
+        # target - The target table the key points to (optional if using name parameter).
+        # column - The name of the column with the foreign key (optional if using name parameter).
+        # name - The name of the foreign key constraint (optional if using column parameter).
+        # reverse_lock_order - Flag that controls whether we should attempt to acquire locks in the reverse
+        #                      order of the ALTER TABLE. This can be useful in situations where the foreign
+        #                      key removal could deadlock with another process.
+        #
+        # Example:
+        #
+        #     remove_partitioned_foreign_key :users, :projects, column: :project_id
+        #     remove_partitioned_foreign_key :users, name: 'fk_rails_123456'
+        #
+        def remove_partitioned_foreign_key: (untyped source, ?untyped? target, ?column: untyped?, ?name: untyped?, ?reverse_lock_order: bool) -> untyped
+
+        private
+
+        # Returns the name for a concurrent partitioned foreign key.
+        #
+        # Similar to concurrent_foreign_key_name (Gitlab::Database::MigrationHelpers)
+        # we just keep a separate method in case we want a different behavior
+        # for partitioned tables
+        #
+        def concurrent_partitioned_foreign_key_name: (untyped table, untyped column, ?prefix: ::String) -> ::String
+      end
+    end
+  end
+end

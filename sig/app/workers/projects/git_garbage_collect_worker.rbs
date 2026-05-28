@@ -1,0 +1,21 @@
+module Projects
+  class GitGarbageCollectWorker
+    extend ::Gitlab::Utils::Override
+
+    include GitGarbageCollectMethods
+
+    private
+
+    def find_resource: (untyped id) -> untyped
+
+    def before_gitaly_call: (untyped task, untyped resource) -> (nil | untyped)
+
+    def after_gitaly_call: (untyped task, untyped resource) -> (nil | untyped)
+
+    def cleanup_orphan_lfs_file_references: (untyped resource) -> untyped
+
+    def update_db_repository_statistics: (untyped resource, untyped stats) -> untyped
+
+    def stats: () -> ::Array[:repository_size | :lfs_objects_size]
+  end
+end

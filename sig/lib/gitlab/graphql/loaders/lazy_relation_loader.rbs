@@ -1,0 +1,52 @@
+module Gitlab
+  module Graphql
+    module Loaders
+      class LazyRelationLoader
+        @query_ctx: untyped
+
+        @object: untyped
+
+        @kwargs: untyped
+
+        @loader_cache_key: untyped
+
+        attr_accessor self.model: untyped
+
+        attr_accessor self.association: untyped
+
+        # Automatically register the inheriting
+        # classes to GitlabSchema as lazy objects.
+        def self.inherited: (untyped klass) -> untyped
+
+        def initialize: (untyped query_ctx, untyped object, **untyped kwargs) -> void
+
+        # Returns an instance of `RelationProxy` for the object (parent model).
+        # The returned object behaves like an Active Record relation to support
+        # keyset pagination.
+        def load: () -> untyped
+
+        private
+
+        attr_reader query_ctx: untyped
+
+        attr_reader object: untyped
+
+        attr_reader kwargs: untyped
+
+        # Implement this one if you want to filter the relation
+        def relation: (**untyped) -> untyped
+
+        def loader_cache_key: () -> untyped
+
+        def base_relation: () -> untyped
+
+        # This will only work for HasMany and HasOne associations for now
+        def placeholder_record: () -> untyped
+
+        def reflection: () -> untyped
+
+        def relation_proxy: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module ActivityPub
+  # Serializer for the `Object` ActivityStreams model.
+  # Reference: https://www.w3.org/TR/activitystreams-core/#object
+  class ObjectSerializer < ::BaseSerializer
+    MissingIdentifierError: untyped
+
+    MissingTypeError: untyped
+
+    def represent: (untyped resource, ?::Hash[untyped, untyped] opts, ?untyped? entity_class) -> untyped
+
+    private
+
+    def wrap: (untyped serialized, untyped _opts) -> untyped
+
+    def validate_response: (untyped response, untyped _opts) -> untyped
+  end
+end

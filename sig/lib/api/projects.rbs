@@ -1,0 +1,11 @@
+module API
+  class Projects < ::API::Base
+    include PaginationParams
+
+    include Helpers::CustomAttributes
+
+    include APIGuard
+
+    PROJECT_ATTACHMENT_SIZE_EXEMPT: untyped
+  end
+end

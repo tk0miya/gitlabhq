@@ -1,0 +1,35 @@
+module Ci
+  class CommitStatusesFinder
+    @project: untyped
+
+    @repository: untyped
+
+    @current_user: untyped
+
+    @refs: untyped
+
+    @ref_type: untyped
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped project, untyped repository, untyped current_user, untyped refs, ?ref_type: untyped?) -> void
+
+    def execute: () -> (::Hash[untyped, untyped] | untyped)
+
+    private
+
+    def pipelines: () -> untyped
+
+    def latest_pipeline_per_ref: (untyped pipelines) -> untyped
+
+    attr_reader project: untyped
+
+    attr_reader repository: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader refs: untyped
+
+    attr_reader ref_type: untyped
+  end
+end

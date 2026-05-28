@@ -1,0 +1,17 @@
+module Gitlab
+  class OptimisticLocking
+    self.@retry_lock_logger: untyped
+
+    self.@retry_lock_histogram: untyped
+
+    MAX_RETRIES: 100
+
+    def self.retry_lock: (untyped subject, ?untyped max_retries, name: untyped) { (untyped) -> untyped } -> untyped
+
+    def self.log_optimistic_lock_retries: (name: untyped, retry_attempts: untyped, start_time: untyped) -> (nil | untyped)
+
+    def self.retry_lock_logger: () -> untyped
+
+    def self.retry_lock_histogram: () -> untyped
+  end
+end

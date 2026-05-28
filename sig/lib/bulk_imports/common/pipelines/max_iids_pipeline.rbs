@@ -1,0 +1,19 @@
+module BulkImports
+  module Common
+    module Pipelines
+      class MaxIidsPipeline
+        include Pipeline
+
+        ALLOWED_KEYS: untyped
+
+        MAX_VALID_IID: untyped
+
+        def transform: (untyped _context, untyped data) -> (nil | untyped)
+
+        def load: (untyped _context, untyped data) -> (nil | untyped)
+
+        def after_run: (untyped _context) -> untyped
+      end
+    end
+  end
+end

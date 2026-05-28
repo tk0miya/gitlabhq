@@ -1,0 +1,8 @@
+module Types
+  module Ml
+    # rubocop: disable Graphql/AuthorizeTypes -- authorization in ModelDetailsResolver
+    class CandidateType < ::Types::BaseObject
+      def ci_job: () -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module Gitlab
+  module Database
+    module Count
+      # A tablesample count executes in two phases:
+      # * Estimate table sizes based on reltuples.
+      # * Based on the estimate:
+      #   * If the table is considered 'small', execute an exact relation count.
+      #   * Otherwise, count on a sample of the table using TABLESAMPLE.
+      #
+      # The size of the sample is chosen in a way that we always roughly scan
+      # the same amount of rows (see TABLESAMPLE_ROW_TARGET).
+      #
+      # There are no guarantees with respect to the accuracy of the result or runtime.
+      class TablesampleCountStrategy < ReltuplesCountStrategy
+        EXACT_COUNT_THRESHOLD: 10000
+
+        TABLESAMPLE_ROW_TARGET: 10000
+
+        def count: () -> untyped
+
+        private
+
+        def perform_count: (untyped model, untyped estimate) -> (nil | untyped)
+
+        def where_clause: (untyped model) -> (nil | ::String)
+
+        def tablesample_count: (untyped model, untyped estimate) -> untyped
+      end
+    end
+  end
+end

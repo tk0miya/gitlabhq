@@ -1,0 +1,11 @@
+module Gitlab
+  class ImportFormatter
+    def comment: (untyped author, untyped date, untyped body) -> ::String
+
+    def comments_header: () -> "\n\n\n**Imported comments:**\n"
+
+    def author_line: (untyped author) -> ::String
+
+    def assignee_line: (untyped assignee) -> ::String
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module AsyncIndexes
+      class IndexDestructor < AsyncIndexes::IndexBase
+        private
+
+        def preconditions_met?: () -> untyped
+
+        def action_type: () -> "removal"
+
+        def around_execution: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    module Transaction
+      class Settings
+        ALLOWED_CONFIGS: ::Array["LOCK_TIMEOUT"]
+
+        InvalidConfigError: untyped
+
+        def self.with: (untyped config_name, untyped value, ?untyped connection) { () -> untyped } -> untyped
+
+        def self.set: (untyped config_name, untyped value, ?untyped connection) -> untyped
+
+        def self.get: (untyped config_name, ?untyped connection) -> untyped
+
+        def self.check_allowed!: (untyped config_name) -> (nil | untyped)
+      end
+    end
+  end
+end

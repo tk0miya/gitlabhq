@@ -1,0 +1,35 @@
+module Ci
+  class CloneJobService
+    @job: untyped
+
+    @current_user: untyped
+
+    def initialize: (untyped job, current_user: untyped) -> void
+
+    def execute: (?new_job_variables: untyped, ?new_job_inputs: ::Hash[untyped, untyped]) -> untyped
+
+    private
+
+    attr_reader job: untyped
+
+    attr_reader current_user: untyped
+
+    def clone_accessors: () -> untyped
+
+    def build_base_attributes: () -> untyped
+
+    def add_job_variables_attributes!: (untyped attributes, untyped new_job_variables) -> (nil | untyped)
+
+    def add_job_inputs_attributes!: (untyped attributes, untyped new_job_inputs) -> (nil | untyped)
+
+    def add_job_definition_attributes!: (untyped attributes) -> untyped
+
+    def add_existing_job_definition_attributes!: (untyped attributes) -> untyped
+
+    def add_new_job_definition_attributes!: (untyped attributes) -> untyped
+
+    def find_or_create_job_definition: () -> untyped
+
+    def build_definition_attributes: () -> untyped
+  end
+end

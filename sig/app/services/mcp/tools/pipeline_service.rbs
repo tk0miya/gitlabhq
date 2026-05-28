@@ -1,0 +1,25 @@
+module Mcp
+  module Tools
+    class PipelineService < AggregatedService
+      include Gitlab::Utils::Override
+
+      TOOL_MAPPING: { list: :list_pipelines, create: :create_pipeline, update: :update_pipeline, retry: :retry_pipeline, cancel: :cancel_pipeline, delete: :delete_pipeline }
+
+      OPERATION_ACTIONS: { list: "listed", create: "created", update: "updated", retry: "retried", cancel: "canceled", delete: "deleted" }
+
+      def self.tool_name: () -> "manage_pipeline"
+
+      def perform_default: (?::Hash[untyped, untyped] arguments) -> untyped
+
+      def transform_arguments: (untyped args) -> untyped
+
+      def select_tool: (untyped args) -> untyped
+
+      private
+
+      def execute_tool_with_enhanced_response: (untyped tool, untyped operation) -> untyped
+
+      def detect_operation: (untyped args) -> (:list | :retry | :cancel | :update | :create | :delete | untyped)
+    end
+  end
+end

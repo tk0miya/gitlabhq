@@ -1,0 +1,21 @@
+module Milestones
+  class DestroyService < Milestones::BaseService
+    @update_params: untyped
+
+    BATCH_SIZE: 500
+
+    def execute: (untyped milestone) -> (nil | untyped)
+
+    private
+
+    def update_issues: (untyped milestone) -> untyped
+
+    def publish_events: (untyped milestone, untyped batched_issue_ids) -> untyped
+
+    def update_merge_requests: (untyped milestone) -> untyped
+
+    def update_params: () -> untyped
+
+    def log_destroy_event_for: (untyped milestone) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Organizations
+    class FallbackOrganizationTracker
+      def self.without_tracking: () { () -> untyped } -> untyped
+
+      def self.enable: () -> untyped
+
+      def self.disable: () -> untyped
+
+      def self.enabled?: () -> untyped
+
+      def self.trigger: () -> (nil | untyped)
+
+      private
+
+      def self.current_value: () -> untyped
+
+      def self.set: (untyped value) -> untyped
+    end
+  end
+end

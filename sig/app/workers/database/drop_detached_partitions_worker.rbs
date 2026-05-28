@@ -1,0 +1,9 @@
+module Database
+  class DropDetachedPartitionsWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

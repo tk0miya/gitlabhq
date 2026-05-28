@@ -1,0 +1,19 @@
+module API
+  class Base < Grape::API::Instance
+    include ::Gitlab::EndpointAttributes
+
+    def self.feature_category_for_app: (untyped app) -> untyped
+
+    def self.urgency_for_app: (untyped app) -> untyped
+
+    def self.path_for_app: (untyped app) -> untyped
+
+    def self.endpoint_id_for_route: (untyped route) -> ::String
+
+    def self.route: (untyped methods, ?::Array[untyped] paths, ?::Hash[untyped, untyped] route_options) { (?) -> untyped } -> untyped
+
+    private
+
+    def self.normalize_path: (untyped namespace, untyped path) -> untyped
+  end
+end

@@ -1,0 +1,41 @@
+module SupplyChain
+  class ArtifactsReader
+    @build: untyped
+
+    @metadata: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    MAX_FILES_IN_BUNDLE: 1000
+
+    Error: untyped
+
+    BundleTooLarge: untyped
+
+    NoArtifacts: untyped
+
+    ArtifactTooLarge: untyped
+
+    DiskFull: untyped
+
+    TooManyFiles: untyped
+
+    def initialize: (untyped build) -> void
+
+    def files: () { (untyped, untyped) -> untyped } -> untyped
+
+    def max_artifact_size: () -> untyped
+
+    private
+
+    def artifacts_in_metadata: () -> untyped
+
+    def validate_bundle!: () -> untyped
+
+    def validate_artifact!: (untyped path, untyped metadata_entry) -> (nil | untyped)
+
+    def build_id: () -> ::String
+
+    def bytes_to_human_size: (untyped size) -> untyped
+  end
+end

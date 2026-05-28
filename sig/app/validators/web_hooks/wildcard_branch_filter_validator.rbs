@@ -1,0 +1,18 @@
+# WildcardBranchFilterValidator
+#
+# Custom validator for wildcard branch filter. Squishes whitespace and ignores
+# empty string. This only checks that a string is a valid wildcard git branch
+# like "feature/login" and "feature/*". It doesn't check whether a branch already
+# exists.
+#
+# Example:
+#
+#   class Webhook < ActiveRecord::Base
+#     validates :push_events_branch_filter, "web_hooks/wildcard_branch_filter": true
+#   end
+#
+module WebHooks
+  class WildcardBranchFilterValidator < ActiveModel::EachValidator
+    def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+  end
+end

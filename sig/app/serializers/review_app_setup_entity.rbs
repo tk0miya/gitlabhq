@@ -1,0 +1,9 @@
+class ReviewAppSetupEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  def current_user: () -> untyped
+
+  def project: () -> untyped
+end

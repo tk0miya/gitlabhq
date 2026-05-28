@@ -1,0 +1,5 @@
+class MergeWorker
+  include ApplicationWorker
+
+  def perform: (untyped merge_request_id, untyped current_user_id, untyped params) -> (nil | untyped)
+end

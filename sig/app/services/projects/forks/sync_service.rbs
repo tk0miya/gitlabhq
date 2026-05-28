@@ -1,0 +1,68 @@
+module Projects
+  module Forks
+    # A service for fetching upstream default branch and merging it to the fork's specified branch.
+    class SyncService < BaseService
+      @source_project: untyped
+
+      @target_branch: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ONGOING_MERGE_ERROR: "The synchronization did not happen due to another merge in progress"
+
+      PROJECT_NOT_A_FORK_ERROR: "Project is not a fork"
+
+      SOURCE_PROJECT_MISSING_ERROR: "Source project is missing"
+
+      TARGET_BRANCH_MISSING_ERROR: "Target branch is missing"
+
+      MergeError: untyped
+
+      def initialize: (untyped project, untyped user, untyped target_branch) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader source_project: untyped
+
+      attr_reader target_branch: untyped
+
+      # The method executes multiple steps:
+      #
+      # 1. Gitlab::Git::CrossRepo fetches upstream default branch into a temporary ref and returns new source sha.
+      # 2. New divergence counts are calculated using the source sha.
+      # 3. If the fork is not behind, there is nothing to merge -> exit.
+      # 4. Otherwise, continue with the new source sha.
+      # 5. If Gitlab::Git::CommandError is raised it means that merge couldn't happen due to a merge conflict. The
+      #    details are updated to transfer this error to the user.
+      def execute_service: () -> untyped
+
+      def execute_with_fetched_source: (untyped cross_repo_source_sha, untyped ahead) -> untyped
+
+      def head_sha: () -> untyped
+
+      def details: () -> untyped
+
+      def validate_input!: () -> untyped
+
+      # This method merges the upstream default branch to the fork specified branch.
+      # Depending on whether the fork branch is ahead of upstream or not, a different type of
+      # merge is performed.
+      #
+      # If the fork's branch is not ahead of the upstream (only behind), fast-forward merge is performed.
+      # However, if the fork's branch contains commits that don't exist upstream, a merge commit is created.
+      # In this case, a conflict may happen, which interrupts the merge and returns a message to the user.
+      def perform_merge: (untyped cross_repo_source_sha, untyped ahead) -> untyped
+
+      # This method links the newly merged lfs objects (if any) with the existing ones upstream.
+      # The LfsLinkService service has a limit and may raise an error if there are too many lfs objects to link.
+      # This is the reason why the block is passed:
+      #
+      # 1. Verify that there are not too many lfs objects to link
+      # 2. Execute the block (which basically performs the merge)
+      # 3. Link lfs objects
+      def with_linked_lfs_pointers: (untyped newrev) { () -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module Banzai
+  module Filter
+    class WikiLinkFilter < HTML::Pipeline::Filter
+      class Rewriter
+        @uri: untyped
+
+        @wiki_base_path: untyped
+
+        @slug: untyped
+
+        def initialize: (untyped link_string, wiki: untyped, slug: untyped) -> void
+
+        def apply_rules: () -> untyped
+
+        private
+
+        # Of the form 'file.md'
+        def apply_file_link_rules!: () -> (untyped | nil)
+
+        # Of the form `./link`, `../link`, or similar
+        def apply_hierarchical_link_rules!: () -> (untyped | nil)
+
+        # Any link _not_ of the form `http://example.com/`
+        def apply_relative_link_rules!: () -> (untyped | nil)
+
+        def public_upload?: () -> untyped
+
+        def repository_upload?: () -> untyped
+
+        def prefixed_with_base_path?: (untyped link) -> untyped
+
+        # before we added `/-/` to all our paths
+        def old_wiki_base_path: () -> untyped
+      end
+    end
+  end
+end

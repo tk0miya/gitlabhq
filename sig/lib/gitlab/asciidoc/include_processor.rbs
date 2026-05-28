@@ -1,0 +1,90 @@
+module Gitlab
+  module Asciidoc
+    # Asciidoctor extension for processing includes (macro include::[]) within
+    # documents inside the same repository.
+    class IncludeProcessor < Asciidoctor::IncludeExt::IncludeProcessor
+      @context: untyped
+
+      @repository: untyped
+
+      @max_includes: untyped
+
+      @included: untyped
+
+      @included_content: untyped
+
+      # Note: Asciidoctor calls #freeze on extensions, so we can't set new
+      # instance variables after initialization.
+      @cache: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      NoData: untyped
+
+      def initialize: (untyped context) -> void
+
+      def include_allowed?: (untyped target, untyped reader) -> (false | true)
+
+      def resolve_target_path: (untyped target, untyped reader) -> (nil | untyped)
+
+      def read_lines: (untyped filename, untyped selector) -> untyped
+
+      def unresolved_include!: (untyped target, untyped reader) -> untyped
+
+      private
+
+      attr_reader context: untyped
+
+      attr_reader repository: untyped
+
+      attr_reader cache: untyped
+
+      attr_reader max_includes: untyped
+
+      attr_reader included: untyped
+
+      attr_reader included_content: untyped
+
+      def read_content: (untyped filename) -> untyped
+
+      # Gets a Blob at a path for a specific revision.
+      # This method will check that the Blob exists and contains readable text.
+      #
+      # revision - The String SHA1.
+      # path     - The String file path.
+      #
+      # Returns a string containing the blob content
+      def read_blob: (untyped ref, untyped filename) -> untyped
+
+      def read_uri: (untyped uri) -> untyped
+
+      # Resolves the given relative path of file in repository into canonical
+      # path based on the specified base_path.
+      #
+      # Examples:
+      #
+      #   # File in the same directory as the current path
+      #   resolve_relative_path("users.adoc", "doc/api/README.adoc")
+      #   # => "doc/api/users.adoc"
+      #
+      #   # File in the same directory, which is also the current path
+      #   resolve_relative_path("users.adoc", "doc/api")
+      #   # => "doc/api/users.adoc"
+      #
+      #   # Going up one level to a different directory
+      #   resolve_relative_path("../update/7.14-to-8.0.adoc", "doc/api/README.adoc")
+      #   # => "doc/update/7.14-to-8.0.adoc"
+      #
+      # Returns a String
+      def resolve_relative_path: (untyped path, untyped base_path) -> untyped
+
+      def current_commit: () -> untyped
+
+      def ref: () -> untyped
+
+      def requested_path: () -> untyped
+
+      def uri_type: (untyped path) -> untyped
+    end
+  end
+end

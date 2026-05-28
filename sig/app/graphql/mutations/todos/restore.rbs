@@ -1,0 +1,11 @@
+module Mutations
+  module Todos
+    class Restore < ::Mutations::BaseMutation
+      def resolve: (id: untyped) -> { todo: untyped, errors: untyped }
+
+      private
+
+      def restore: (untyped todo) -> untyped
+    end
+  end
+end

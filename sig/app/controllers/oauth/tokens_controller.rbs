@@ -1,0 +1,26 @@
+class Oauth::TokensController < Doorkeeper::TokensController
+  include EnforcesTwoFactorAuthentication
+
+  include RequestPayloadLogger
+
+  include Gitlab::InternalEventsTracking
+
+  # RFC 7636 Section 4.1 requires PKCE code verifiers to be at least 43 characters.
+  # Track requests that use shorter verifiers to measure how many clients are non-compliant
+  # before enforcing the minimum.
+  PKCE_MIN_CODE_VERIFIER_LENGTH: 43
+
+  def create: () -> untyped
+
+  private
+
+  # In Rails 8 alias_method at class-body level fails when the aliased method
+  # is not yet in the ancestor chain at load time. Define explicitly instead.
+  def auth_user: () -> untyped
+
+  def append_info_to_payload: (untyped payload) -> untyped
+
+  def validate_pkce_for_dynamic_applications: () -> (nil | untyped)
+
+  def track_short_pkce_verifier: () -> (nil | untyped)
+end

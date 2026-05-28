@@ -1,0 +1,31 @@
+module Analytics
+  module CycleAnalytics
+    module ValueStreams
+      class ListService
+        @parent: untyped
+
+        @current_user: untyped
+
+        @params: untyped
+
+        include Gitlab::Allowable
+
+        def initialize: (parent: untyped, current_user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader parent: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader params: untyped
+
+        def success: (untyped value_streams) -> untyped
+
+        def forbidden: () -> untyped
+      end
+    end
+  end
+end

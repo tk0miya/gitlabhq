@@ -1,0 +1,35 @@
+# Projects::BranchesByModeService uses Gitaly page-token pagination
+# in order to optimally fetch branches.
+# The drawback of the page-token pagination is that it doesn't provide
+# an option of going to the previous page of the collection.
+# That's why we need to fall back to offset pagination when previous page
+# is requested.
+class Projects::BranchesByModeService
+  @project: untyped
+
+  @params: untyped
+
+  include Gitlab::Routing
+
+  attr_reader project: untyped
+
+  attr_reader params: untyped
+
+  def initialize: (untyped project, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def mode: () -> untyped
+
+  def by_mode: (untyped branches) -> untyped
+
+  def use_gitaly_pagination?: () -> (false | untyped)
+
+  def fetch_branches_via_offset_pagination: () -> untyped
+
+  def fetch_branches_via_gitaly_pagination: () -> untyped
+
+  def branches_with_links: (untyped branches, last_page: untyped) -> ::Array[untyped]
+end

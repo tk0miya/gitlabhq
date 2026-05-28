@@ -1,0 +1,21 @@
+module Gitlab
+  module WorkItems
+    class WorkItemHierarchy < ObjectHierarchy
+      extend ::Gitlab::Utils::Override
+
+      private
+
+      def middle_table: () -> untyped
+
+      def from_tables: (untyped cte) -> ::Array[untyped]
+
+      def parent_id_column: (untyped cte) -> untyped
+
+      def ancestor_conditions: (untyped cte) -> untyped
+
+      def descendant_conditions: (untyped cte) -> untyped
+
+      def with_type_filter: (untyped conditions, untyped cte) -> untyped
+    end
+  end
+end

@@ -1,0 +1,34 @@
+# LDAP extension for User model
+#
+# * Find or create user from omniauth.auth data
+# * Links LDAP account with existing user
+# * Auth LDAP user with login and password
+#
+module Gitlab
+  module Auth
+    module Ldap
+      class User < Gitlab::Auth::OAuth::User
+        @auth_hash: untyped
+
+        extend ::Gitlab::Utils::Override
+
+        # instance methods
+        def find_user: () -> untyped
+
+        def should_save?: () -> untyped
+
+        def block_after_signup?: () -> untyped
+
+        def allowed?: () -> untyped
+
+        def valid_sign_in?: () -> untyped
+
+        def ldap_config: () -> untyped
+
+        def auth_hash=: (untyped auth_hash) -> untyped
+
+        def protocol_name: () -> "LDAP"
+      end
+    end
+  end
+end

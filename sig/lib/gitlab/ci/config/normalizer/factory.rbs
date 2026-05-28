@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    class Config
+      class Normalizer
+        class Factory
+          @name: untyped
+
+          @config: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped name, untyped config) -> void
+
+          def create: () -> (::Array[untyped] | untyped)
+
+          private
+
+          def strategy: () -> untyped
+
+          def strategies: () -> ::Array[untyped]
+        end
+      end
+    end
+  end
+end

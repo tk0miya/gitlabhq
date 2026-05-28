@@ -1,0 +1,15 @@
+class ResourceMilestoneEvent < ResourceTimeboxEvent
+  include EachBatch
+
+  include Import::HasImportSource
+
+  def milestone_title: () -> untyped
+
+  def milestone_parent: () -> untyped
+
+  def synthetic_note_class: () -> untyped
+
+  private
+
+  def ensure_namespace_id: () -> untyped
+end

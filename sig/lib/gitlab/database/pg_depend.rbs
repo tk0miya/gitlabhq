@@ -1,0 +1,7 @@
+module Gitlab
+  module Database
+    class PgDepend < SharedModel
+      TYPES: { "VIEW" => ::Array["v" | "m"] }
+    end
+  end
+end

@@ -1,0 +1,39 @@
+module ApplicationSettings
+  class UpdateService < ApplicationSettings::BaseService
+    include ValidatesClassificationLabel
+
+    attr_reader params: untyped
+
+    attr_reader application_setting: untyped
+
+    MARKDOWN_CACHE_INVALIDATING_PARAMS: ::Array["asset_proxy_enabled" | "asset_proxy_url" | "asset_proxy_secret_key" | "asset_proxy_whitelist"]
+
+    def execute: () -> untyped
+
+    private
+
+    def update_settings: () -> (false | untyped)
+
+    def usage_stats_updated?: () -> untyped
+
+    def add_to_outbound_local_requests_whitelist: (untyped values) -> (nil | untyped)
+
+    def invalidate_markdown_cache?: () -> untyped
+
+    def update_terms: (untyped terms) -> (nil | untyped)
+
+    def update_legacy_default_branch_protection_defaults: (untyped default_branch_protection) -> (nil | untyped)
+
+    def update_default_branch_protection_defaults: (untyped default_branch_protection_defaults) -> (nil | untyped)
+
+    def process_performance_bar_allowed_group_id: () -> (nil | untyped)
+
+    def bypass_external_auth?: () -> untyped
+
+    def auto_approve_blocked_users: () -> (nil | untyped)
+
+    def should_auto_approve_blocked_users?: () -> (false | untyped)
+
+    def auto_approve_pending_users?: () -> untyped
+  end
+end

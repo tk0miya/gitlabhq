@@ -1,0 +1,135 @@
+class Projects::IssuesController < Projects::ApplicationController
+  @issues: untyped
+
+  @issue: untyped
+
+  @related_branches: untyped
+
+  # The Sortable default scope causes performance issues when used with find_by
+  @issuable: untyped
+
+  @note: untyped
+
+  include ToggleSubscriptionAction
+
+  include IssuableActions
+
+  include ToggleAwardEmoji
+
+  include IssuableCollections
+
+  include IssuesCalendar
+
+  include RecordUserLastActivity
+
+  include IssueBuildParameters
+
+  ISSUES_EXCEPT_ACTIONS: ::Array[:index | :calendar | :new | :create | :bulk_update | :import_csv | :export_csv | :service_desk | :can_create_branch]
+
+  SET_ISSUABLES_INDEX_ONLY_ACTIONS: ::Array[:index | :calendar | :service_desk]
+
+  WORK_ITEM_REDIRECT_EXCEPT_ACTIONS: untyped
+
+  def index: () -> (nil | untyped)
+
+  def calendar: () -> untyped
+
+  def new: () -> untyped
+
+  def show: () -> untyped
+
+  alias designs show
+
+  def edit: () -> untyped
+
+  def create: () -> (nil | untyped)
+
+  def move: () -> untyped
+
+  def reorder: () -> untyped
+
+  def related_branches: () -> untyped
+
+  def can_create_branch: () -> untyped
+
+  def create_merge_request: () -> untyped
+
+  def export_csv: () -> untyped
+
+  def import_csv: () -> untyped
+
+  def service_desk: () -> untyped
+
+  def discussions: () -> untyped
+
+  def track_load_comments_sli: () { () -> untyped } -> untyped
+
+  def index_html_request?: () -> untyped
+
+  def sorting_field: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def issue: () -> untyped
+
+  def log_issue_show: () -> (nil | untyped)
+
+  alias subscribable_resource issue
+
+  alias issuable issue
+
+  alias awardable issue
+
+  alias spammable issue
+
+  def spammable_path: () -> untyped
+
+  def authorize_create_merge_request!: () -> (untyped | nil)
+
+  def render_issue_json: () -> untyped
+
+  def reorder_params: () -> untyped
+
+  def store_uri: () -> (untyped | nil)
+
+  def serializer: () -> untyped
+
+  def update_service: () -> untyped
+
+  def destroy_service: () -> untyped
+
+  def finder_type: () -> untyped
+
+  def disable_query_limiting: () -> untyped
+
+  private
+
+  def disable_show_query_limit!: () -> untyped
+
+  def disable_create_query_limit!: () -> untyped
+
+  def render_by_create_result_error: (untyped result) -> untyped
+
+  def finder_options: () -> untyped
+
+  def service_desk?: () -> untyped
+
+  def add_related_issue: () -> untyped
+
+  # Overridden in EE
+  def create_vulnerability_issue_feedback: (untyped issue) -> nil
+
+  # Overridden in EE
+  def work_item_redirect_except_actions: () -> untyped
+
+  def redirect_if_work_item: () -> (nil | untyped)
+
+  def redirect_index_to_work_items: () -> (nil | untyped)
+
+  # Overridden in EE
+  def work_items_redirect_params: (untyped params) -> untyped
+
+  def require_incident_for_incident_routes: () -> (nil | untyped)
+
+  # Overridden in EE
+  def redirect_if_epic_params: () -> nil
+end

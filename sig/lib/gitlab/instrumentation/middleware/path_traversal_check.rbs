@@ -1,0 +1,15 @@
+module Gitlab
+  module Instrumentation
+    module Middleware
+      class PathTraversalCheck
+        DURATION_LABEL: :path_traversal_check_duration_s
+
+        def self.duration=: (untyped duration) -> (nil | untyped)
+
+        def self.duration: () -> untyped
+
+        def self.payload: () -> ::Hash[untyped, untyped]
+      end
+    end
+  end
+end

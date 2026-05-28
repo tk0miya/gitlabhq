@@ -1,0 +1,163 @@
+class Environment < ApplicationRecord
+  @cluster_prometheus_adapter: untyped
+
+  @prometheus_adapter: untyped
+
+  @name_without_type: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include ReactiveCaching
+
+  include CacheMarkdownField
+
+  include FastDestroyAll::Helpers
+
+  include Presentable
+
+  include NullifyIfBlank
+
+  include FromUnion
+
+  LONG_STOP: untyped
+
+  def self.for_id_and_slug: (untyped id, untyped slug) -> untyped
+
+  def self.max_deployment_id_query: () -> untyped
+
+  def self.pluck_names: () -> untyped
+
+  def self.pluck_unique_names: () -> untyped
+
+  def self.find_or_create_by_name: (untyped name) -> untyped
+
+  def self.valid_states: () -> untyped
+
+  def self.schedule_to_delete: (?untyped at_time) -> untyped
+
+  def self.nested: () -> untyped
+
+  def self.count_by_state: () -> untyped
+
+  def last_deployable: () -> untyped
+
+  def last_finished_deployable: () -> untyped
+
+  def last_finished_pipeline: () -> untyped
+
+  def latest_finished_jobs: () -> untyped
+
+  def last_visible_deployable: () -> untyped
+
+  def last_visible_pipeline: () -> untyped
+
+  def clear_prometheus_reactive_cache!: (untyped query_name) -> untyped
+
+  def cluster_prometheus_adapter: () -> untyped
+
+  def predefined_variables: () -> untyped
+
+  def recently_updated_on_branch?: (untyped ref) -> untyped
+
+  def set_environment_type: () -> untyped
+
+  def includes_commit?: (untyped sha) -> (false | untyped)
+
+  def last_deployed_at: () -> untyped
+
+  def long_stopping?: () -> untyped
+
+  def ref_path: () -> ::String
+
+  def formatted_external_url: () -> (nil | untyped)
+
+  def stop_actions_available?: () -> untyped
+
+  def cancel_deployment_jobs!: () -> untyped
+
+  def wait_for_stop?: () -> untyped
+
+  # TODO: move this method and dependencies into Environments::StopService
+  def stop_with_actions!: () -> (nil | untyped)
+
+  def stop_actions: () -> untyped
+
+  def last_finished_deployment_group: () -> untyped
+
+  def reset_auto_stop: () -> untyped
+
+  def actions_for: (untyped environment) -> (::Array[untyped] | untyped)
+
+  def has_terminals?: () -> untyped
+
+  def terminals: () -> untyped
+
+  def calculate_reactive_cache: () -> (nil | untyped)
+
+  def deployment_namespace: () -> untyped
+
+  def has_opened_alert?: () -> untyped
+
+  def has_running_deployments?: () -> untyped
+
+  def prometheus_adapter: () -> untyped
+
+  def slug: () -> untyped
+
+  def external_url_for: (untyped path, untyped commit_sha) -> (nil | untyped)
+
+  def expire_etag_cache: () -> untyped
+
+  def etag_cache_key: () -> untyped
+
+  def folder_name: () -> untyped
+
+  def name_without_type: () -> untyped
+
+  def deployment_platform: () -> untyped
+
+  def auto_stop_in: () -> (untyped | nil)
+
+  def auto_stop_in=: (untyped value) -> untyped
+
+  def rollout_status: () -> (nil | untyped)
+
+  def ingresses: () -> (nil | untyped)
+
+  def patch_ingress: (untyped ingress, untyped data) -> (nil | untyped)
+
+  def clear_all_caches: () -> untyped
+
+  def should_link_to_merge_requests?: () -> untyped
+
+  def unfoldered?: () -> untyped
+
+  def deploy_freezes: () -> untyped
+
+  def ensure_environment_tier: () -> untyped
+
+  def set_default_auto_stop_setting: () -> untyped
+
+  private
+
+  def run_stop_action!: (untyped job, link_identity: untyped) -> untyped
+
+  # We deliberately avoid using AddressableUrlValidator to allow users to update their environments even if they have
+  # misconfigured `environment:url` keyword. The external URL is presented as a clickable link on UI and not consumed
+  # in GitLab internally, thus we sanitize the URL before the persistence to make sure the rendered link is XSS safe.
+  # See https://gitlab.com/gitlab-org/gitlab/-/issues/337417
+  def safe_external_url: () -> untyped
+
+  def rollout_status_available?: () -> untyped
+
+  def rollout_status_with_reactive_cache: () -> untyped
+
+  def generate_slug: () -> untyped
+
+  def merge_request_not_changed: () -> (untyped | nil)
+
+  # Guessing the tier of the environment if it's not explicitly specified by users.
+  # See https://en.wikipedia.org/wiki/Deployment_environment for industry standard deployment environments
+  # Please keep the table at doc/ci/environments/_index.md in sync with the guessings
+  def guess_tier: () -> untyped
+end

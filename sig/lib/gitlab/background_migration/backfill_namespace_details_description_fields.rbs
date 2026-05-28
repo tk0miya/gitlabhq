@@ -1,0 +1,11 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillNamespaceDetailsDescriptionFields < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def backfill_namespace_details_fields: (untyped relation) -> untyped
+    end
+  end
+end

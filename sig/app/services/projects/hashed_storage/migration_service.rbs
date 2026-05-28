@@ -1,0 +1,23 @@
+module Projects
+  module HashedStorage
+    class MigrationService < BaseService
+      @project: untyped
+
+      @old_disk_path: untyped
+
+      @logger: untyped
+
+      attr_reader logger: untyped
+
+      attr_reader old_disk_path: untyped
+
+      def initialize: (untyped project, untyped old_disk_path, ?logger: untyped?) -> void
+
+      def execute: () -> (false | true)
+
+      private
+
+      def migrate_attachments_service: () -> untyped
+    end
+  end
+end

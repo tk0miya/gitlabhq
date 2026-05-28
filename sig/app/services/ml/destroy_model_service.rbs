@@ -1,0 +1,23 @@
+module Ml
+  class DestroyModelService
+    @model: untyped
+
+    @user: untyped
+
+    def initialize: (untyped model, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def success: () -> untyped
+
+    def error: () -> untyped
+
+    def packages_not_deleted: (untyped error_message) -> untyped
+
+    def payload: () -> { model: untyped }
+
+    def audit_destroy_event: (untyped model) -> untyped
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module HookData
+    class SubgroupBuilder < GroupBuilder
+      private
+
+      def event_data: (untyped event) -> { event_name: untyped }
+
+      def group_data: () -> untyped
+
+      def event_specific_group_data: (untyped event) -> ::Hash[untyped, untyped]
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module BulkImports
+  module Projects
+    module Pipelines
+      class ReleasesPipeline
+        include NdjsonPipeline
+
+        def on_finish: () -> untyped
+
+        private
+
+        def create_release_evidence: (untyped release) -> (nil | untyped)
+      end
+    end
+  end
+end

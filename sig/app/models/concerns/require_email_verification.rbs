@@ -1,0 +1,26 @@
+# == Require Email Verification module
+#
+# Contains functionality to handle email verification
+module RequireEmailVerification
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  MAXIMUM_ATTEMPTS: 3
+
+  UNLOCK_IN: untyped
+
+  # When overridden, do not send Devise unlock instructions when locking access.
+  def lock_access!: (?::Hash[untyped, untyped] opts) -> untyped
+
+  # We cannot override the class methods `maximum_attempts` and `unlock_in`, because we want to
+  # check for 2FA being enabled on the instance. So instead override the Devise Lockable methods
+  # where those values are used.
+  def attempts_exceeded?: () -> untyped
+
+  def lock_expired?: () -> untyped
+
+  private
+
+  def override_devise_lockable?: () -> untyped
+end

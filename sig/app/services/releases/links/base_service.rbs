@@ -1,0 +1,29 @@
+module Releases
+  module Links
+    REASON_BAD_REQUEST: :bad_request
+
+    REASON_NOT_FOUND: :not_found
+
+    REASON_FORBIDDEN: :forbidden
+
+    class BaseService
+      @release: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      attr_accessor release: untyped
+
+      attr_accessor current_user: untyped
+
+      attr_accessor params: untyped
+
+      def initialize: (untyped release, ?untyped? current_user, ?::Hash[untyped, untyped] params) -> void
+
+      private
+
+      def allowed_params: () -> untyped
+    end
+  end
+end

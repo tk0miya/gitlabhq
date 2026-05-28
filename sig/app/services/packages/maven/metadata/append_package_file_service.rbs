@@ -1,0 +1,33 @@
+module Packages
+  module Maven
+    module Metadata
+      class AppendPackageFileService
+        @package: untyped
+
+        @metadata_content: untyped
+
+        XML_CONTENT_TYPE: "application/xml"
+
+        DEFAULT_CONTENT_TYPE: "application/octet-stream"
+
+        MD5_FILE_NAME: ::String
+
+        SHA1_FILE_NAME: ::String
+
+        SHA256_FILE_NAME: ::String
+
+        SHA512_FILE_NAME: ::String
+
+        def initialize: (package: untyped, metadata_content: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def append_metadata_file: (content: untyped, file_name: untyped, ?content_type: untyped, ?sha1: untyped?, ?md5: untyped?, ?sha256: untyped?) -> untyped
+
+        def digest_from: (untyped content, untyped type) -> (nil | untyped)
+      end
+    end
+  end
+end

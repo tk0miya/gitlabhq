@@ -1,0 +1,45 @@
+module Gitlab
+  module Security
+    class ScanConfiguration
+      @user: untyped
+
+      @project: untyped
+
+      @type: untyped
+
+      @configured: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      attr_reader type: untyped
+
+      def initialize: (user: untyped, project: untyped, type: untyped, ?configured: bool) -> void
+
+      def available?: () -> untyped
+
+      def can_user_configure?: () -> (false | untyped)
+
+      def can_enable_by_merge_request?: () -> untyped
+
+      def configured?: () -> untyped
+
+      def configuration_path: () -> nil
+
+      def meta_info_path: () -> nil
+
+      def on_demand_available?: () -> false
+
+      def security_features: () -> untyped
+
+      private
+
+      attr_reader user: untyped
+
+      attr_reader project: untyped
+
+      attr_reader configured: untyped
+
+      def scans_configurable_in_merge_request: () -> ::Array[:sast | :sast_iac | :secret_detection]
+    end
+  end
+end

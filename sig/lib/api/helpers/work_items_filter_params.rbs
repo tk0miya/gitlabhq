@@ -1,0 +1,21 @@
+module API
+  module Helpers
+    class WorkItemsFilterParams
+      @params: untyped
+
+      @resource_parent: untyped
+
+      attr_reader params: untyped
+
+      attr_reader resource_parent: untyped
+
+      def initialize: (untyped params, ?resource_parent: untyped?) -> void
+
+      def transform: () -> (::Hash[untyped, untyped] | untyped)
+
+      private
+
+      def rewrite_param_name: (untyped hash, untyped old_key, untyped new_key) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Clusters
+  module Concerns
+    module ApplicationVersion
+      extend ActiveSupport::Concern
+
+      EXTERNAL_VERSION: "EXTERNALLY_INSTALLED"
+
+      def update_available?: () -> untyped
+    end
+  end
+end

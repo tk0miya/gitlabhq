@@ -1,0 +1,15 @@
+module Gitlab
+  module HookData
+    class GroupMemberBuilder < BaseBuilder
+      alias group_member object
+
+      def build: (untyped event) -> untyped
+
+      private
+
+      def group_member_data: () -> { group_name: untyped, group_path: untyped, group_id: untyped, user_username: untyped, user_name: untyped, user_email: untyped, user_id: untyped, group_access: untyped, expires_at: untyped }
+
+      def event_data: (untyped event) -> { event_name: untyped }
+    end
+  end
+end

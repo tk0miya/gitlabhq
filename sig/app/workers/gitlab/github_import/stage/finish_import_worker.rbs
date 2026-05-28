@@ -1,0 +1,32 @@
+module Gitlab
+  module GithubImport
+    module Stage
+      class FinishImportWorker
+        @project: untyped
+
+        @metrics: untyped
+
+        @placeholder_reference_store: untyped
+
+        include ApplicationWorker
+
+        include StageMethods
+
+        # project - An instance of Project.
+        def import: (untyped _, untyped project) -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        def reference_store_pending?: () -> (false | true)
+
+        def report_import_time: () -> untyped
+
+        def metrics: () -> untyped
+
+        def placeholder_reference_store: () -> untyped
+      end
+    end
+  end
+end

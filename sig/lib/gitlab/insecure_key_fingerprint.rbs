@@ -1,0 +1,20 @@
+module Gitlab
+  #
+  # Calculates the fingerprint of a given key without using
+  # openssh key validations. For this reason, only use
+  # for calculating the fingerprint to find the key with it.
+  #
+  # DO NOT use it for checking the validity of a ssh key.
+  #
+  class InsecureKeyFingerprint
+    @key: untyped
+
+    attr_accessor key: untyped
+
+    # Gets the base64 encoded string representing a rsa or dsa key
+    #
+    def initialize: (untyped key_base64) -> void
+
+    def fingerprint_sha256: () -> untyped
+  end
+end

@@ -1,0 +1,19 @@
+module Backup
+  module Tasks
+    class Uploads < Task
+      @target: untyped
+
+      def self.id: () -> "uploads"
+
+      def human_name: () -> untyped
+
+      def destination_path: () -> "uploads.tar.gz"
+
+      private
+
+      def target: () -> untyped
+
+      def storage_path: () -> untyped
+    end
+  end
+end

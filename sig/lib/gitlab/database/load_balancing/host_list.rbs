@@ -1,0 +1,42 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # A list of database hosts to use for connections.
+      class HostList
+        @hosts: untyped
+
+        @index: untyped
+
+        @mutex: untyped
+
+        # hosts - The list of secondary hosts to add.
+        def initialize: (?untyped hosts) -> void
+
+        def hosts: () -> untyped
+
+        def shuffle: () -> untyped
+
+        def length: () -> untyped
+
+        def host_names_and_ports: () -> untyped
+
+        def hosts=: (untyped hosts) -> untyped
+
+        # Sets metrics before returning next host
+        def next: () -> untyped
+
+        private
+
+        def unsafe_shuffle: () -> untyped
+
+        # Returns the next available host.
+        #
+        # Returns a Gitlab::Database::LoadBalancing::Host instance, or nil if no
+        # hosts were available.
+        def next_host: () -> untyped
+
+        def set_metrics!: () -> untyped
+      end
+    end
+  end
+end

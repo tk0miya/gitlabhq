@@ -1,0 +1,46 @@
+# Renders a Pajamas compliant radio button element
+module Pajamas
+  class RadioTagComponent < Pajamas::Component
+    @name: untyped
+
+    @value: untyped
+
+    @checked: untyped
+
+    @label_argument: untyped
+
+    @help_text_argument: untyped
+
+    @label_options: untyped
+
+    @input_options: untyped
+
+    include Pajamas::Concerns::CheckboxRadioLabelWithHelpText
+
+    include Pajamas::Concerns::CheckboxRadioOptions
+
+    def initialize: (name: untyped, value: untyped, ?checked: bool, ?label: untyped?, ?help_text: untyped?, ?label_options: ::Hash[untyped, untyped], ?radio_options: ::Hash[untyped, untyped]) -> void
+
+    private
+
+    attr_reader name: untyped
+
+    attr_reader value: untyped
+
+    attr_reader checked: untyped
+
+    attr_reader label_argument: untyped
+
+    attr_reader help_text_argument: untyped
+
+    attr_reader label_options: untyped
+
+    attr_reader input_options: untyped
+
+    def label_content: () -> untyped
+
+    def help_text_content: () -> untyped
+
+    def label_for: (untyped name, untyped value) -> ::String
+  end
+end

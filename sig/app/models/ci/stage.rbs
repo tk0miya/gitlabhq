@@ -1,0 +1,41 @@
+module Ci
+  class Stage < Ci::ApplicationRecord
+    @groups: untyped
+
+    include AfterCommitQueue
+
+    include Ci::Partitionable
+
+    include Ci::HasStatus
+
+    include Importable
+
+    include Presentable
+
+    # rubocop: disable Metrics/CyclomaticComplexity -- breaking apart hurts readability, consider refactoring issue #439268
+    def set_status: (untyped new_status) -> untyped
+
+    def groups: () -> untyped
+
+    def has_warnings?: () -> untyped
+
+    def number_of_warnings: () -> untyped
+
+    def detailed_status: (untyped current_user) -> untyped
+
+    def manual_playable?: () -> untyped
+
+    # We only check jobs that are played by `Ci::PlayManualStageService`.
+    def confirm_manual_job?: () -> (false | untyped)
+
+    def play_manual: (untyped current_user) -> untyped
+
+    def ordered_latest_statuses: () -> untyped
+
+    def ordered_retried_statuses: () -> untyped
+
+    private
+
+    def preload_metadata: (untyped statuses) -> untyped
+  end
+end

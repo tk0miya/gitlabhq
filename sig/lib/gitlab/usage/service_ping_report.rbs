@@ -1,0 +1,17 @@
+module Gitlab
+  module Usage
+    class ServicePingReport
+      CACHE_KEY: "usage_data"
+
+      def self.for: (output: untyped, ?cached: bool) -> untyped
+
+      private
+
+      def self.with_instrumentation_classes: (untyped old_payload, untyped output_method) -> untyped
+
+      def self.metrics_queries: () -> untyped
+
+      def self.non_sql_metrics_values: () -> untyped
+    end
+  end
+end

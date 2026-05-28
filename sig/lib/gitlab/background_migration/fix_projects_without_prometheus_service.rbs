@@ -1,0 +1,71 @@
+module Gitlab
+  module BackgroundMigration
+    # This migration creates missing services records
+    # for the projects within the given range of ids
+    class FixProjectsWithoutPrometheusService
+      @logger: untyped
+
+      @migrate_instance_cluster: untyped
+
+      # There is important inconsistency between single query timeout 15s and background migration worker minimum lease 2 minutes
+      # to address that scheduled ids range (for minimum 2 minutes processing) should be inserted in smaller portions to fit under 15s limit.
+      # https://gitlab.com/gitlab-com/gl-infra/infrastructure/issues/9064#note_279857215
+      MAX_BATCH_SIZE: 1000
+
+      DEFAULTS: { "active" => true, "properties" => "'{}'", "type" => "'PrometheusService'", "template" => false, "push_events" => true, "issues_events" => true, "merge_requests_events" => true, "tag_push_events" => true, "note_events" => true, "category" => "'monitoring'", "default" => false, "wiki_page_events" => true, "pipeline_events" => true, "confidential_issues_events" => true, "commit_events" => true, "job_events" => true, "confidential_note_events" => true }
+
+      module Migratable
+        module Applications
+          # Migration model namespace isolated from application code.
+          class Prometheus
+            def self.statuses: () -> { errored: -1, installed: 3, updated: 5 }
+          end
+        end
+
+        # Migration model namespace isolated from application code.
+        class Cluster < ActiveRecord::Base
+          def self.has_prometheus_application?: () -> untyped
+        end
+
+        # Migration model namespace isolated from application code.
+        class PrometheusService < ActiveRecord::Base
+          def self.type: () -> "PrometheusService"
+
+          def self.template: () -> untyped
+
+          def self.values: () -> untyped
+
+          def attributes_for_insert: () -> untyped
+        end
+
+        # Migration model namespace isolated from application code.
+        class Project < ActiveRecord::Base
+        end
+      end
+
+      def perform: (untyped from_id, untyped to_id) -> untyped
+
+      private
+
+      def process_batch: (untyped from_id, untyped to_id) -> untyped
+
+      def create_missing: (untyped from_id, untyped to_id) -> (nil | untyped)
+
+      def update_inconsistent: (untyped from_id, untyped to_id) -> (nil | untyped)
+
+      # there is no uniq constraint on project_id and type pair, which prevents us from using ON CONFLICT
+      def create_sql: (untyped from_id, untyped to_id) -> ::String
+
+      # there is no uniq constraint on project_id and type pair, which prevents us from using ON CONFLICT
+      def update_sql: (untyped from_id, untyped to_id) -> ::String
+
+      def group_cluster_condition: (untyped from_id, untyped to_id) -> ("1 = 1" | ::String)
+
+      def select_insert_values_sql: (untyped from_id, untyped to_id) -> untyped
+
+      def logger: () -> untyped
+
+      def migrate_instance_cluster?: () -> untyped
+    end
+  end
+end

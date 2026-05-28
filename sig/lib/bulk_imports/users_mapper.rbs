@@ -1,0 +1,37 @@
+module BulkImports
+  class UsersMapper
+    @context: untyped
+
+    @user_ids_cache_key: untyped
+
+    @usernames_cache_key: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    SOURCE_USER_IDS_CACHE_KEY: "bulk_imports/%{bulk_import}/%{entity}/source_user_ids"
+
+    SOURCE_USERNAMES_CACHE_KEY: "bulk_imports/%{bulk_import}/%{entity}/source_usernames"
+
+    def initialize: (context: untyped) -> void
+
+    def map: () -> untyped
+
+    def map_usernames: () -> untyped
+
+    def include?: (untyped source_user_id) -> untyped
+
+    def default_user_id: () -> untyped
+
+    def cache_source_user_id: (untyped source_id, untyped destination_id) -> untyped
+
+    def cache_source_username: (untyped source_username, untyped destination_username) -> untyped
+
+    private
+
+    def generate_cache_key: (untyped pattern) -> untyped
+
+    def cached_source_user_ids: () -> untyped
+
+    def cached_source_usernames: () -> untyped
+  end
+end

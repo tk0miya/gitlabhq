@@ -1,0 +1,17 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Events
+        class ChangedAssignee < BaseImporter
+          def execute: (untyped issue_event) -> untyped
+
+          private
+
+          def create_note: (untyped issue_event, untyped note_body, untyped author_id) -> untyped
+
+          def parse_body: (untyped issue_event) -> ::String
+        end
+      end
+    end
+  end
+end

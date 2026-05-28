@@ -1,0 +1,79 @@
+class NotificationRecipient
+  @custom_action: untyped
+
+  @acting_user: untyped
+
+  @target: untyped
+
+  @project: untyped
+
+  @group: untyped
+
+  @user: untyped
+
+  @type: untyped
+
+  @reason: untyped
+
+  @skip_read_ability: untyped
+
+  @notification_setting: untyped
+
+  @notification_level: untyped
+
+  @read_ability: untyped
+
+  @default_ability_for_target: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader user: untyped
+
+  attr_reader type: untyped
+
+  attr_reader reason: untyped
+
+  def initialize: (untyped user, untyped type, ?::Hash[untyped, untyped] opts) -> void
+
+  def notification_setting: () -> untyped
+
+  def notification_level: () -> untyped
+
+  def notifiable?: () -> (false | untyped)
+
+  def suitable_notification_level?: () -> (untyped | false)
+
+  def custom_enabled?: () -> (false | true | untyped)
+
+  def unsubscribed?: () -> (false | untyped)
+
+  def own_activity?: () -> (false | untyped)
+
+  def email_blocked?: () -> untyped
+
+  def has_access?: () -> untyped
+
+  def composite_identity_enforced?: () -> untyped
+
+  def excluded_watcher_action?: () -> (false | untyped)
+
+  private
+
+  # They are disabled if the project or group has disallowed it.
+  # No need to check the group if there is already a project
+  def emails_disabled?: () -> untyped
+
+  def emails_enabled?: () -> untyped
+
+  def read_ability: () -> (nil | untyped)
+
+  def default_ability_for_target: () -> untyped
+
+  def default_project: () -> (nil | untyped)
+
+  def find_notification_setting: () -> untyped
+
+  def participating_custom_action?: () -> untyped
+
+  def participating_or_mention?: () -> untyped
+end

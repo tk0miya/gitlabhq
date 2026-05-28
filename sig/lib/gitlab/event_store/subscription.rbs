@@ -1,0 +1,39 @@
+module Gitlab
+  module EventStore
+    class Subscription
+      @worker: untyped
+
+      @condition: untyped
+
+      @delay: untyped
+
+      @group_size: untyped
+
+      DEFAULT_GROUP_SIZE: 10
+
+      SCHEDULING_BATCH_SIZE: 100
+
+      SCHEDULING_BATCH_DELAY: untyped
+
+      attr_reader worker: untyped
+
+      attr_reader condition: untyped
+
+      attr_reader delay: untyped
+
+      attr_reader group_size: untyped
+
+      def initialize: (untyped worker, untyped condition, untyped delay, untyped group_size) -> void
+
+      def consume_event: (untyped event) -> untyped
+
+      def consume_events: (untyped events) -> untyped
+
+      private
+
+      def condition_met?: (untyped event) -> (true | untyped)
+
+      def events_worker_args: (untyped event_class, untyped events) -> untyped
+    end
+  end
+end

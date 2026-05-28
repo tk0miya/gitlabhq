@@ -1,0 +1,17 @@
+class Projects::Analytics::CycleAnalytics::SummaryController < Projects::ApplicationController
+  @project_level: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include CycleAnalyticsParams
+
+  def show: () -> untyped
+
+  private
+
+  def namespace: () -> untyped
+
+  def project_level: () -> untyped
+
+  def allowed_params: () -> untyped
+end

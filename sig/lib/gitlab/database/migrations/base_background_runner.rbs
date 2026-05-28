@@ -1,0 +1,34 @@
+module Gitlab
+  module Database
+    module Migrations
+      class BaseBackgroundRunner
+        @result_dir: untyped
+
+        @connection: untyped
+
+        attr_reader result_dir: untyped
+
+        attr_reader connection: untyped
+
+        def initialize: (result_dir: untyped, connection: untyped) -> void
+
+        def jobs_by_migration_name: () -> untyped
+
+        def run_job: (untyped job) -> untyped
+
+        def print_job_progress: (untyped batch_name, untyped job) -> nil
+
+        def run_jobs: (for_duration: untyped) -> (nil | untyped)
+
+        private
+
+        # rubocop:disable Rails/Output -- This runs only in pipelines and should output to the pipeline log
+        def run_jobs_for_migration: (migration_name: untyped, jobs: untyped, run_until: untyped) -> (nil | untyped)
+
+        def job_meta: (untyped _job) -> ::Hash[untyped, untyped]
+
+        def observers: () -> untyped
+      end
+    end
+  end
+end

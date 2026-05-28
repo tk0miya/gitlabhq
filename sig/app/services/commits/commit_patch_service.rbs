@@ -1,0 +1,34 @@
+module Commits
+  class CommitPatchService < CreateService
+    @patches: untyped
+
+    # Requires:
+    # - project: `Project` to be committed into
+    # - user: `User` that will be the committer
+    # - params:
+    #   - branch_name: `String` the branch that will be committed into
+    #   - start_branch: `String` the branch that will be started from
+    #   - patches: `Gitlab::Git::Patches::Collection` that contains the patches
+    def initialize: (*untyped args) -> void
+
+    private
+
+    def new_branch?: () -> untyped
+
+    def create_commit!: () -> untyped
+
+    def prepare_branch!: () -> (nil | untyped)
+
+    # Overridden from the Commits::CreateService, to skip some validations we
+    # don't need:
+    # - validate_on_branch!
+    #   Not needed, the patches are applied on top of HEAD if the branch did not
+    #   exist
+    # - validate_branch_existence!
+    #   Not needed because we continue applying patches on the branch if it
+    #   already existed, and create it if it did not exist.
+    def validate!: () -> untyped
+
+    def validate_patches!: () -> (untyped | nil)
+  end
+end

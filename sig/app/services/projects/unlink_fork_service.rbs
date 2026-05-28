@@ -1,0 +1,10 @@
+module Projects
+  class UnlinkForkService < BaseService
+    # Close existing MRs coming from the project and remove it from the fork network
+    def execute: (?refresh_statistics: bool) -> (nil | untyped)
+
+    private
+
+    def refresh_forks_count: (untyped project) -> untyped
+  end
+end

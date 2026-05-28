@@ -1,0 +1,27 @@
+module Gitlab
+  module GithubGistsImport
+    class Status
+      @user_id: untyped
+
+      IMPORT_STATUS_KEY: "gitlab:github-gists-import:%{user_id}"
+
+      EXPIRATION_TIME: untyped
+
+      def initialize: (untyped user_id) -> void
+
+      def start!: () -> untyped
+
+      def fail!: () -> untyped
+
+      def finish!: () -> untyped
+
+      def started?: () -> untyped
+
+      private
+
+      def change_status: (untyped status_name) -> untyped
+
+      def import_status_key: () -> untyped
+    end
+  end
+end

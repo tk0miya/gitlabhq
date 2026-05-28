@@ -1,0 +1,13 @@
+# Interface to the Redis-backed cache store to keep track of complete cache keys
+# for a ReactiveCache resource.
+module Gitlab
+  class ReactiveCacheSetCache < Gitlab::SetCache
+    @expires_in: untyped
+
+    attr_reader expires_in: untyped
+
+    def initialize: (?expires_in: untyped) -> void
+
+    def clear_cache!: (untyped key) -> untyped
+  end
+end

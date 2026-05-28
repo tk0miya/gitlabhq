@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillGroupPushRulesFromPushRulesWithIds < BatchedMigrationJob
+      def perform: () -> untyped
+
+      def backfill_group_push_rules_batch: (untyped sub_batch) -> untyped
+    end
+  end
+end

@@ -1,0 +1,18 @@
+# Provides a way to delete_all in smaller batches, for cases where a large number of associations
+# may be present on a model.
+#
+# This concern allows an ActiveRecord module to delete all its dependent
+# associations in batches. The idea is borrowed from https://github.com/thisismydesign/batch_dependent_associations.
+#
+# The differences here with that gem:
+#
+# 1. We allow excluding certain associations.
+module BatchDeleteDependentAssociations
+  extend ActiveSupport::Concern
+
+  DEPENDENT_ASSOCIATIONS_BATCH_SIZE: 1000
+
+  def dependent_associations_to_delete: () -> untyped
+
+  def delete_dependent_associations_in_batches: (?exclude: untyped, ?batch_size: untyped) -> untyped
+end

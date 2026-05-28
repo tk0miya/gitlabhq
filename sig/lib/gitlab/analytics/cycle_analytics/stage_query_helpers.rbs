@@ -1,0 +1,24 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageQueryHelpers
+        def execute_query: (untyped query) -> untyped
+
+        def zero_interval: () -> untyped
+
+        def round_duration_to_seconds: () -> untyped
+
+        def duration: () -> untyped
+
+        def end_event_timestamp_projection: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def order_by: (untyped query, untyped sort, untyped direction, ?::Array[untyped] extra_columns_to_select) -> untyped
+
+        def requires_grouping?: () -> untyped
+
+        def in_progress?: () -> untyped
+      end
+    end
+  end
+end

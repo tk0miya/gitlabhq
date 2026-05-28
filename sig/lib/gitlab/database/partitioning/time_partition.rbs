@@ -1,0 +1,55 @@
+module Gitlab
+  module Database
+    module Partitioning
+      class TimePartition
+        @table: untyped
+
+        @from: untyped
+
+        @to: untyped
+
+        @partition_name: untyped
+
+        @conn: untyped
+
+        include Comparable
+
+        def self.from_sql: (untyped table, untyped partition_name, untyped definition) -> untyped
+
+        attr_reader table: untyped
+
+        attr_reader from: untyped
+
+        attr_reader to: untyped
+
+        attr_reader partition_name: untyped
+
+        def initialize: (untyped table, untyped from, untyped to, partition_name: untyped) -> void
+
+        def to_create_sql: () -> ::String
+
+        def to_attach_sql: () -> ::String
+
+        def to_detach_sql: () -> ::String
+
+        def ==: (untyped other) -> untyped
+
+        alias eql? ==
+
+        def hash: () -> untyped
+
+        def <=>: (untyped other) -> (nil | untyped)
+
+        def holds_data?: () -> untyped
+
+        private
+
+        def date_or_nil: (untyped obj) -> (nil | untyped)
+
+        def fully_qualified_partition: () -> untyped
+
+        def conn: () -> untyped
+      end
+    end
+  end
+end

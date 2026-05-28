@@ -1,0 +1,87 @@
+module Gitlab
+  module GithubImport
+    class AttachmentsDownloader
+      @file_url: untyped
+
+      @options: untyped
+
+      @file_size_limit: untyped
+
+      @web_endpoint: untyped
+
+      @filename: untyped
+
+      @filepath: untyped
+
+      include ::Gitlab::ImportExport::CommandLineUtil
+
+      include ::BulkImports::FileDownloads::FilenameFetch
+
+      include ::BulkImports::FileDownloads::Validations
+
+      DownloadError: untyped
+
+      NotRetriableError: untyped
+
+      FILENAME_SIZE_LIMIT: 255
+
+      DEFAULT_FILE_SIZE_LIMIT: untyped
+
+      TMP_DIR: untyped
+
+      SUPPORTED_VIDEO_MEDIA_TYPES: ::Array["mov" | "mp4" | "webm"]
+
+      ALLOWED_FILENAME_CHARACTERS: ::Regexp
+
+      REDIRECT_STATUS_CODES: ::Array[301 | 302 | 303 | 307 | 308]
+
+      NON_RETRIABLE_ERROR_CODES: ::Array[403 | 404 | 410]
+
+      SUCCESS_STATUS_CODE: 200
+
+      RATE_LIMIT_STATUS_CODES: ::Array[403 | 429]
+
+      RATE_LIMIT_DEFAULT_RESET_IN: 120
+
+      attr_reader file_url: untyped
+
+      attr_reader filename: untyped
+
+      attr_reader file_size_limit: untyped
+
+      attr_reader options: untyped
+
+      attr_reader web_endpoint: untyped
+
+      def initialize: (untyped file_url, ?options: ::Hash[untyped, untyped], ?file_size_limit: untyped, ?web_endpoint: untyped) -> void
+
+      def perform: () -> untyped
+
+      def delete: () -> untyped
+
+      private
+
+      def sanitize_filename: (untyped filename) -> untyped
+
+      def raise_error: (untyped message) -> untyped
+
+      # Github /assets redirection link will redirect to aws which has its own authorization.
+      # Keeping our bearer token will cause request rejection
+      # eg. Only one auth mechanism allowed; only the X-Amz-Algorithm query parameter,
+      # Signature query string parameter or the Authorization header should be specified.
+      def get_assets_download_redirection_url: () -> untyped
+
+      def github_assets_url_regex: () -> ::Regexp
+
+      def download_from: (untyped url) -> untyped
+
+      def rate_limited?: (untyped response) -> untyped
+
+      def raise_rate_limit_error: (untyped response) -> (nil | untyped)
+
+      def filepath: () -> untyped
+
+      def add_extension_to_file_path: (untyped filename) -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+class Timelog < ApplicationRecord
+  include Importable
+
+  include Sortable
+
+  include EachBatch
+
+  # Gitlab::TimeTrackingFormatter.parse("4y")
+  # Approx. 4 years * 365.25 days/y * 24 hours/d * 60 minutes/h * 60 seconds/m
+  # We need to stay below 2^31 seconds here to avoid IntegerEncodingError in GraphQL:
+  # https://gitlab.com/gitlab-org/gitlab/-/work_items/418226
+  MAX_TOTAL_TIME_SPENT: 126230400
+
+  def issuable: () -> untyped
+
+  def self.sort_by_field: (untyped field) -> untyped
+
+  private
+
+  def check_total_time_spent_is_within_range: () -> untyped
+
+  def set_project: () -> untyped
+
+  def ensure_namespace_id: () -> untyped
+end

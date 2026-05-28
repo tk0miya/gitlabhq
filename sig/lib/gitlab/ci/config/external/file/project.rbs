@@ -1,0 +1,81 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        module File
+          class Project < Base
+            # `Repository#blobs_at` does not support files with the `/` prefix.
+            @location: untyped
+
+            # We are using the same downcase in the `project` method.
+            @project_name: untyped
+
+            @ref_name: untyped
+
+            extend ::Gitlab::Utils::Override
+
+            include Gitlab::Utils::StrongMemoize
+
+            attr_reader project_name: untyped
+
+            attr_reader ref_name: untyped
+
+            def initialize: (untyped params, untyped context) -> void
+
+            def matching?: () -> untyped
+
+            def content: () -> untyped
+
+            def include_type: () -> :file
+
+            def metadata: () -> untyped
+
+            def preload_context: () -> untyped
+
+            def validate_context!: () -> (untyped | untyped | nil)
+
+            def validate_content_presence!: () -> (untyped | untyped | nil)
+
+            private
+
+            def project: () -> untyped
+
+            def can_access_local_content?: () -> (nil | untyped)
+
+            def project_access_allowed?: (untyped user, untyped project) -> untyped
+
+            def sha: () -> (nil | untyped)
+
+            def fetch_local_content: () -> untyped
+
+            def fetch_batch_content: (untyped items, untyped loader, untyped project) -> untyped
+
+            def build_items_with_cache_keys: (untyped items, untyped project) -> untyped
+
+            def fetch_cached_content: (untyped items_with_cache_keys, untyped project) -> untyped
+
+            def load_results: (untyped items, untyped results, untyped loader) -> untyped
+
+            def cache_key: (untyped project, untyped sha_and_path) -> ::String
+
+            def cache_enabled?: () -> untyped
+
+            def expand_context_attrs: () -> untyped
+
+            def masked_project_name: () -> untyped
+
+            def masked_ref_name: () -> untyped
+
+            def masked_blob: () -> (nil | untyped)
+
+            def masked_raw: () -> (nil | untyped)
+
+            # TODO: To be removed after we deprecate usage of array in `project` keyword.
+            # https://gitlab.com/gitlab-org/gitlab/-/issues/365975
+            def get_project_name: (untyped project_name) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

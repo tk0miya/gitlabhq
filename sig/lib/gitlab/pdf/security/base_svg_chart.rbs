@@ -1,0 +1,59 @@
+module Gitlab
+  module PDF
+    module Security
+      class BaseSvgChart
+        @pdf: untyped
+
+        @data: untyped
+
+        @y: untyped
+
+        include Prawn::View
+
+        PADDING: 10
+
+        SPACING: 20
+
+        TITLE_HEIGHT: 20
+
+        TITLE_FONT_SIZE: 14
+
+        DESCRIPTION_HEIGHT: 20
+
+        DESCRIPTION_FONT_SIZE: 10
+
+        BACKGROUND_COLOR: "F9F9F9"
+
+        def self.render: (untyped pdf, ?data: untyped?) -> untyped
+
+        def initialize: (untyped pdf, untyped data) -> void
+
+        def render: () -> (:noop | untyped)
+
+        private
+
+        def total_height: () -> untyped
+
+        def title_text: () -> untyped
+
+        def description_text: () -> untyped
+
+        def css_translations: () -> ::Array[untyped]
+
+        def draw_background: () -> untyped
+
+        def draw_title: () -> untyped
+
+        def draw_description: () -> untyped
+
+        # The SVG dimensions from the frontend vary with the user's screen resolution
+        # We use the aspect ratio to fit it within the available space without distortion.
+        def draw_svg: (untyped available_width, untyped available_height) -> untyped
+
+        def svg_aspect_ratio: () -> (nil | untyped)
+
+        def process_raw: (untyped data) -> (nil | untyped)
+      end
+    end
+  end
+end

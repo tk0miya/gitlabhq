@@ -1,0 +1,49 @@
+# With this validator you can replace parts of the query with custom sql. Examples:
+#   class WorkItems::Statuses::Custom::Status < ActiveRecord::Base
+#     validates :name, custom_uniqueness: { unique_sql: 'TRIM(BOTH FROM lower(?))' }
+#   end
+#
+# This will generate a query like:
+#   SELECT
+#     1 AS one
+#   FROM
+#     "work_item_custom_statuses"
+#   WHERE
+#     TRIM(BOTH FROM lower(work_item_custom_statuses.name)) = TRIM(BOTH FROM lower('Test'))
+#   LIMIT
+#     1
+#
+# rubocop:disable CodeReuse/ActiveRecord -- Validator used in models
+class CustomUniquenessValidator < ActiveModel::EachValidator
+  @unique_sql: untyped
+
+  @scope_values: untyped
+
+  @table_name: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  def initialize: (untyped options) -> void
+
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+  def check_validity!: () -> (nil | untyped)
+
+  private
+
+  attr_reader unique_sql: untyped
+
+  attr_reader table_name: untyped
+
+  attr_reader scope_values: untyped
+
+  def parsed_sql: (untyped attribute) -> untyped
+
+  def column_sql: (untyped attribute) -> untyped
+
+  def record_exists?: (untyped record, untyped attribute, untyped value) -> untyped
+
+  def scope_relation: (untyped record, untyped relation) -> untyped
+
+  def validation_needed?: (untyped record, untyped attribute) -> untyped
+end

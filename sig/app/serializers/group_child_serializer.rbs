@@ -1,0 +1,29 @@
+class GroupChildSerializer < BaseSerializer
+  @hierarchy_root: untyped
+
+  @should_expand_hierarchy: untyped
+
+  include WithPagination
+
+  attr_reader hierarchy_root: untyped
+
+  attr_reader should_expand_hierarchy: untyped
+
+  def expand_hierarchy: (?untyped? hierarchy_root) -> self
+
+  # Represents the resource with optional hierarchy expansion.
+  #
+  # @param resource [ActiveRecord::Relation, Array<GroupDescendant>] The resource(s) to serialize
+  # @param opts [Hash] Serialization options
+  # @option opts [ActiveRecord::Relation] :pagination_resource Resource for pagination metadata
+  #   when different from serialized resource
+  # @option opts [Boolean] :upto_preloaded_ancestors_only Limit to preloaded ancestors only
+  # @param entity_class [Class, nil] Entity class override
+  #
+  # @return [Hash, Array<Hash>] Serialized representation of the resource(s)
+  def represent: (untyped resource, ?::Hash[untyped, untyped] opts, ?untyped? entity_class) -> untyped
+
+  def represent_hierarchies: (untyped children, untyped opts) -> untyped
+
+  def represent_hierarchy: (untyped hierarchy, untyped opts) -> untyped
+end

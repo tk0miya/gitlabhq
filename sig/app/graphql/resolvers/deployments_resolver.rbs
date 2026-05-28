@@ -1,0 +1,11 @@
+module Resolvers
+  class DeploymentsResolver < BaseResolver
+    alias environment object
+
+    def resolve: (**untyped args) -> (nil | untyped)
+
+    private
+
+    def transform_args_for_finder: (**untyped args) -> untyped
+  end
+end

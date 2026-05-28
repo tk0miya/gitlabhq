@@ -1,0 +1,30 @@
+module Banzai
+  module Filter
+    class DiagramProxyPostFilter < HTML::Pipeline::Filter
+      prepend Concerns::TimeoutFilterHandler
+
+      prepend Concerns::PipelineTimingCheck
+
+      prepend Concerns::DiagramService
+
+      CSS: "[data-diagram]"
+
+      XPATH: untyped
+
+      def call: () -> untyped
+
+      DIAGRAM_PROXY_PREFIX: "diagram_proxy"
+
+      DIAGRAM_TTL: untyped
+
+      # Returns the key the data was stored under.
+      def self.store: (untyped value) -> untyped
+
+      def self.getdel: (untyped key) -> untyped
+
+      private
+
+      def self.redis_key: (untyped key) -> ::String
+    end
+  end
+end

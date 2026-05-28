@@ -1,0 +1,70 @@
+# Detected SSH host keys are transiently stored in Redis
+class SshHostKey
+  @project: untyped
+
+  @url: untyped
+
+  @ip: untyped
+
+  @compare_host_keys: untyped
+
+  @fingerprints: untyped
+
+  class Fingerprint < Gitlab::SSHPublicKey
+    @index: untyped
+
+    attr_reader index: untyped
+
+    def initialize: (untyped key, ?index: untyped?) -> void
+
+    def as_json: (*untyped) -> untyped
+
+    private
+
+    def fingerprint_data: () -> untyped
+  end
+
+  include ReactiveCaching
+
+  def self.find_by: (?::Hash[untyped, untyped] opts) -> (nil | untyped)
+
+  def self.fingerprint_host_keys: (untyped data) -> (::Array[untyped] | untyped)
+
+  attr_reader project: untyped
+
+  attr_reader url: untyped
+
+  attr_reader ip: untyped
+
+  attr_reader compare_host_keys: untyped
+
+  def initialize: (project: untyped, url: untyped, ?compare_host_keys: untyped?) -> void
+
+  # Needed for reactive caching
+  def self.primary_key: () -> :id
+
+  def id: () -> untyped
+
+  def as_json: (*untyped) -> { host_keys_changed: untyped, fingerprints: untyped, known_hosts: untyped }
+
+  def known_hosts: () -> untyped
+
+  def fingerprints: () -> untyped
+
+  # Returns true if the known_hosts data differs from the version passed in at
+  # initialization as `compare_host_keys`. Comments, ordering, etc, is ignored
+  def host_keys_changed?: () -> untyped
+
+  def error: () -> untyped
+
+  def calculate_reactive_cache: () -> untyped
+
+  private
+
+  # Remove comments and duplicate entries
+  def cleanup: (untyped data) -> untyped
+
+  def normalize_url: (untyped url) -> untyped
+
+  def allow_local_requests?: () -> untyped
+end

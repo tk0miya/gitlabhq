@@ -1,0 +1,39 @@
+module Integrations
+  module Exclusions
+    class BaseService
+      @user: untyped
+
+      @integration_name: untyped
+
+      @projects: untyped
+
+      @groups: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (current_user: untyped, integration_name: untyped, ?projects: untyped, ?groups: untyped) -> void
+
+      private
+
+      attr_reader user: untyped
+
+      attr_reader integration_name: untyped
+
+      attr_reader projects: untyped
+
+      attr_reader groups: untyped
+
+      def validate: () -> untyped
+
+      def allowed?: () -> untyped
+
+      def instance_specific_integration?: () -> untyped
+
+      def instance_integration: () -> untyped
+
+      def integration_model: () -> untyped
+
+      def integration_type: () -> untyped
+    end
+  end
+end

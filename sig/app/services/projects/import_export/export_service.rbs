@@ -1,0 +1,89 @@
+module Projects
+  module ImportExport
+    class ExportService < BaseService
+      @shared: untyped
+
+      @logger: untyped
+
+      @export_saver: untyped
+
+      @version_saver: untyped
+
+      @avatar_saver: untyped
+
+      @project_tree_saver: untyped
+
+      @uploads_saver: untyped
+
+      @repo_saver: untyped
+
+      @wiki_repo_saver: untyped
+
+      @lfs_saver: untyped
+
+      @snippets_repo_saver: untyped
+
+      @design_repo_saver: untyped
+
+      @max_iids_saver: untyped
+
+      @log_base_data: untyped
+
+      include Gitlab::InternalEventsTracking
+
+      def initialize: (*untyped args) -> void
+
+      def execute: (?untyped? after_export_strategy) -> untyped
+
+      def exporters: () -> ::Array[untyped]
+
+      def extra_attributes_for_measurement: () -> { current_user: untyped, project_full_path: untyped, file_path: untyped }
+
+      private
+
+      attr_accessor shared: untyped
+
+      attr_reader logger: untyped
+
+      def execute_after_export_action: (untyped after_export_strategy) -> (nil | untyped)
+
+      def save_all!: () -> untyped
+
+      def save_exporters: () -> untyped
+
+      def save_export_archive: () -> untyped
+
+      def version_saver: () -> untyped
+
+      def avatar_saver: () -> untyped
+
+      def project_tree_saver: () -> untyped
+
+      def tree_saver_class: () -> untyped
+
+      def uploads_saver: () -> untyped
+
+      def repo_saver: () -> untyped
+
+      def wiki_repo_saver: () -> untyped
+
+      def lfs_saver: () -> untyped
+
+      def snippets_repo_saver: () -> untyped
+
+      def design_repo_saver: () -> untyped
+
+      def max_iids_saver: () -> untyped
+
+      def cleanup: () -> (untyped | nil)
+
+      def notify_error!: () -> untyped
+
+      def log_info: (untyped message) -> untyped
+
+      def notify_error: () -> untyped
+
+      def log_base_data: () -> untyped
+    end
+  end
+end

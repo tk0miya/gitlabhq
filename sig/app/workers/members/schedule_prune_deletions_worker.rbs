@@ -1,0 +1,9 @@
+module Members
+  class SchedulePruneDeletionsWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

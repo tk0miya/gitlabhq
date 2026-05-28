@@ -1,0 +1,56 @@
+module Gitlab
+  module Metrics
+    module GlobalSearchSlis
+      include Gitlab::Metrics::SliConfig
+
+      # The following targets are the 99.95th percentile of code searches
+      # gathered on 25-10-2022
+      # from https://log.gprd.gitlab.net/goto/0c89cd80-23af-11ed-8656-f5f2137823ba (internal only)
+      BASIC_CONTENT_TARGET_S: ::Float
+
+      BASIC_MR_TARGET_S: 15
+
+      BASIC_CODE_TARGET_S: ::Float
+
+      ADVANCED_CONTENT_TARGET_S: ::Float
+
+      ADVANCED_CODE_TARGET_S: ::Float
+
+      ZOEKT_TARGET_S: ::Float
+
+      DEFAULT_TARGET_S: 5
+
+      def self.initialize_slis!: () -> untyped
+
+      def self.record_apdex: (elapsed: untyped, search_type: untyped, search_level: untyped, search_scope: untyped) -> untyped
+
+      def self.record_error_rate: (error: untyped, search_type: untyped, search_level: untyped, search_scope: untyped) -> untyped
+
+      private
+
+      def self.duration_target: (untyped search_type, untyped search_scope) -> untyped
+
+      def self.search_types: () -> untyped
+
+      def self.search_levels: () -> ::Array["project" | "group" | "global"]
+
+      def self.search_scopes: () -> untyped
+
+      def self.endpoint_ids: () -> untyped
+
+      def self.possible_labels: () -> untyped
+
+      def self.autocomplete_labels: () -> (::Array[untyped] | ::Array[{ search_type: nil, search_level: nil, search_scope: nil, endpoint_id: "SearchController#autocomplete" }])
+
+      def self.valid_search_type?: (untyped search_type, untyped search_scope, untyped search_level) -> untyped
+
+      def self.labels: (search_type: untyped, search_level: untyped, search_scope: untyped) -> { search_type: untyped, search_level: untyped, search_scope: untyped, endpoint_id: untyped }
+
+      def self.endpoint_id: () -> untyped
+
+      def self.code_search?: (untyped search_scope) -> untyped
+
+      def self.content_search?: (untyped search_scope) -> untyped
+    end
+  end
+end

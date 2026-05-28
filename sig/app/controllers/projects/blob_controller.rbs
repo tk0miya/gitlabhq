@@ -1,0 +1,131 @@
+# Controller for viewing a file's blame
+class Projects::BlobController < Projects::ApplicationController
+  @path: untyped
+
+  @conflict: untyped
+
+  @content: untyped
+
+  @diff_lines: untyped
+
+  @form: untyped
+
+  @lines: untyped
+
+  @match_line: untyped
+
+  @blob: untyped
+
+  @commit: untyped
+
+  @id: untyped
+
+  @ref: untyped
+
+  @branch_name: untyped
+
+  @file_path: untyped
+
+  @commit_params: untyped
+
+  @last_commit_sha: untyped
+
+  @environment: untyped
+
+  @last_commit: untyped
+
+  @code_navigation_path: untyped
+
+  include ExtractsPath
+
+  include CreatesCommit
+
+  include RendersBlob
+
+  include NotesHelper
+
+  include ActionView::Helpers::SanitizeHelper
+
+  include RedirectsForMissingPathOnTree
+
+  include SourcegraphDecorator
+
+  include DiffHelper
+
+  include ProductAnalyticsTracking
+
+  include HandlesGitalyErrors
+
+  extend ::Gitlab::Utils::Override
+
+  MAX_PREVIEW_CONTENT: untyped
+
+  MAX_EDIT_SIZE: untyped
+
+  def new: () -> (untyped | nil)
+
+  def create: () -> untyped
+
+  def show: () -> untyped
+
+  def edit: () -> untyped
+
+  def update: () -> untyped
+
+  def preview: () -> untyped
+
+  def destroy: () -> untyped
+
+  def diff: () -> untyped
+
+  def diff_lines: () -> untyped
+
+  private
+
+  attr_reader branch_name: untyped
+
+  def blob: () -> (nil | untyped)
+
+  def require_blob: () -> (untyped | nil)
+
+  def redirect_to_project_tree_path: () -> untyped
+
+  def commit: () -> untyped
+
+  def require_commit: () -> (untyped | nil)
+
+  def redirect_renamed_default_branch?: () -> untyped
+
+  def assign_blob_vars: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def after_edit_path: () -> untyped
+
+  def after_delete_path: () -> untyped
+
+  def editor_variables: () -> untyped
+
+  def fetch_file_path: () -> (nil | untyped)
+
+  def validate_diff_params: () -> (nil | untyped)
+
+  def set_last_commit_sha: () -> untyped
+
+  def show_html: () -> untyped
+
+  def show_json: () -> untyped
+
+  def audit_repository_file_access: () -> (nil | untyped)
+
+  def tree_path: () -> untyped
+
+  def diff_params: () -> untyped
+
+  def diff_lines_params: () -> untyped
+
+  def visitor_id: () -> untyped
+
+  alias tracking_project_source project
+
+  def tracking_namespace_source: () -> untyped
+end

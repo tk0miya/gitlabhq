@@ -1,0 +1,21 @@
+module Ci
+  class BuildPresenter < ProcessablePresenter
+    @trigger_variables: untyped
+
+    @detailed_status: untyped
+
+    def status_title: (?untyped status) -> (::String | untyped)
+
+    def trigger_variables: () -> untyped
+
+    def execute_in: () -> untyped
+
+    def failure_message: () -> (untyped | nil)
+
+    private
+
+    def tooltip_for_badge: (untyped status) -> untyped
+
+    def detailed_status: () -> untyped
+  end
+end

@@ -1,0 +1,10 @@
+module Gitlab
+  module LocalAndRemoteStorageMigration
+    module FilePathFixer
+      extend ::Gitlab::LocalAndRemoteStorageMigration::FilePathFixer
+
+      # Fixes the file path if necessary and returns the new path (or nil if nothing changed)
+      def fix_file_path!: (untyped artifact) -> (nil | untyped)
+    end
+  end
+end

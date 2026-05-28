@@ -1,0 +1,7 @@
+module ProtectedRefsHelper
+  include Gitlab::Utils::StrongMemoize
+
+  def protected_access_levels_for_dropdowns: () -> { create_access_levels: untyped, push_access_levels: untyped, merge_access_levels: untyped }
+
+  def protected_access_level_dropdown_roles: () -> { roles: untyped }
+end

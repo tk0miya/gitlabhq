@@ -1,0 +1,15 @@
+module RepositoryStorageMovable
+  extend ActiveSupport::Concern
+
+  include AfterCommitQueue
+
+  def schedule_repository_storage_update_worker: () -> untyped
+
+  def add_error: (untyped message) -> untyped
+
+  private
+
+  def container_repository_writable: () -> (untyped | nil)
+
+  def error_key: () -> untyped
+end

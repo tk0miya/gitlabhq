@@ -1,0 +1,17 @@
+module Resolvers
+  module AlertManagement
+    class IntegrationsResolver < BaseResolver
+      include ::Gitlab::Graphql::Laziness
+
+      alias project object
+
+      def resolve: (?id: untyped?) -> (::Array[untyped] | untyped)
+
+      private
+
+      def integrations_by: (gid: untyped) -> untyped
+
+      def http_integrations: () -> untyped
+    end
+  end
+end

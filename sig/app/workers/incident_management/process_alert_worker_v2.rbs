@@ -1,0 +1,15 @@
+module IncidentManagement
+  class ProcessAlertWorkerV2
+    include ApplicationWorker
+
+    def perform: (untyped alert_id) -> (nil | untyped)
+
+    private
+
+    def find_alert: (untyped alert_id) -> untyped
+
+    def create_issue_for: (untyped alert) -> untyped
+
+    def log_warning: (untyped alert, untyped result) -> untyped
+  end
+end

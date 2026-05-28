@@ -1,0 +1,41 @@
+module Packages
+  module Maven
+    module Metadata
+      class SyncService < BaseContainerService
+        include Gitlab::Utils::StrongMemoize
+
+        alias project container
+
+        MAX_FILE_SIZE: untyped
+
+        def execute: () -> untyped
+
+        private
+
+        def update_versions_xml: () -> untyped
+
+        def update_plugins_xml: () -> untyped
+
+        def update_xml: (kind: untyped, package_file: untyped, service_class: untyped, payload_empty_field: untyped) -> untyped
+
+        def metadata_package_file_for_versions: () -> untyped
+
+        def versionless_package_for_versions: () -> untyped
+
+        def metadata_package_file_for_plugins: () -> (nil | untyped)
+
+        def metadata_package_file_for: (untyped package) -> (nil | untyped)
+
+        def versionless_package_named: (untyped name) -> untyped
+
+        def package_name: () -> untyped
+
+        def package_name_for_plugins: () -> (nil | untyped)
+
+        def error: (untyped message) -> untyped
+
+        def success: (untyped message) -> untyped
+      end
+    end
+  end
+end

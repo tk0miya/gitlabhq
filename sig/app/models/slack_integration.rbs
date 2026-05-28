@@ -1,0 +1,46 @@
+class SlackIntegration < ApplicationRecord
+  @all_scopes: untyped
+
+  include EachBatch
+
+  include Gitlab::EncryptedAttribute
+
+  ALL_FEATURES: ::Array[:commands | :notifications]
+
+  SCOPE_COMMANDS: "commands"
+
+  SCOPE_CHAT_WRITE: "chat:write"
+
+  SCOPE_CHAT_WRITE_PUBLIC: "chat:write.public"
+
+  ORGANIZATION_ALIAS: "gitlab-organization"
+
+  # These scopes are requested when installing the app, additional scopes
+  # will need reauthorization.
+  # https://api.slack.com/authentication/oauth-v2#asking
+  SCOPES: ::Array[untyped]
+
+  DATABASE_ATTRIBUTES: ::Array["team_id" | "team_name" | "user_id" | "bot_user_id" | "encrypted_bot_access_token" | "encrypted_bot_access_token_iv"]
+
+  def self.organization_alias: (untyped organization_id) -> untyped
+
+  def feature_available?: (untyped feature_name) -> untyped
+
+  def upgrade_needed?: () -> untyped
+
+  def all_features_supported?: () -> untyped
+
+  def authorized_scope_names=: (untyped names) -> untyped
+
+  def authorized_scope_names: () -> untyped
+
+  def to_database_hash: () -> untyped
+
+  private
+
+  def update_active_status_of_integration: () -> untyped
+
+  def scoped_to?: (*untyped names) -> (false | untyped)
+
+  def all_scopes: () -> untyped
+end

@@ -1,0 +1,42 @@
+module Gitlab
+  module Ci
+    class Config
+      class Normalizer
+        @jobs_config: untyped
+
+        @errors: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        def initialize: (untyped jobs_config) -> void
+
+        def normalize_jobs: () -> (::Hash[untyped, untyped] | untyped)
+
+        # Deduplicate errors since multiple matrix jobs may generate identical errors
+        # for the same missing matrix variable
+        def errors: () -> untyped
+
+        # Returns a mapping of original job names to their normalized (expanded) names
+        # for jobs that use parallel:matrix or parallel:N
+        # Example: { build: ["build: [aws]", "build: [gcp]"], test: ["test 1/3", "test 2/3", "test 3/3"] }
+        def job_name_mappings: () -> (::Hash[untyped, untyped] | untyped)
+
+        private
+
+        attr_reader project: untyped
+
+        def normalize_job: (untyped job_name, untyped config) -> untyped
+
+        def apply_matrix_interpolation: (untyped job_name, untyped config) -> (nil | untyped)
+
+        def expand_parallelized_job_names: (untyped job_names) -> untyped
+
+        def expand_parallelized_needs: (untyped job_needs) -> untyped
+
+        def parallelized_jobs: () -> untyped
+
+        def parallelize_job_config: (untyped name, untyped config) -> untyped
+      end
+    end
+  end
+end

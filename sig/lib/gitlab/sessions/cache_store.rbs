@@ -1,0 +1,36 @@
+module Gitlab
+  module Sessions
+    class CacheStore < ActionDispatch::Session::CacheStore
+      @session_cookie_token_prefix: untyped
+
+      DELIMITER: "-"
+
+      ORIGINAL_SESSION_KEY: "gitlab.original_session_data"
+
+      LAST_WRITE_AT_KEY: "_gitlab_session_last_write_at"
+
+      WRITE_THROTTLE_INTERVAL: untyped
+
+      attr_reader session_cookie_token_prefix: untyped
+
+      def initialize: (untyped app, ?::Hash[untyped, untyped] options) -> void
+
+      def find_session: (untyped env, untyped sid) -> ::Array[untyped]
+
+      def write_session: (untyped env, untyped sid, untyped session, untyped options) -> untyped
+
+      def generate_sid: () -> untyped
+
+      private
+
+      def session_changed?: (untyped env, untyped sid, untyped session) -> untyped
+
+      def write_throttled?: (untyped session) -> untyped
+
+      # ActionDispatch::Session::CacheStore (superclass) prepends
+      # hardcoded "_session_id:" to the cache key which doesn't match
+      # the previous implementation of Gitlab::Sessions::RedisStore.
+      def cache_key: (untyped id) -> untyped
+    end
+  end
+end

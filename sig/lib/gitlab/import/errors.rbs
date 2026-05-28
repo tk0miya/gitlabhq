@@ -1,0 +1,29 @@
+module Gitlab
+  module Import
+    module Errors
+      # Merges all nested subrelation errors into base errors object.
+      #
+      # @example
+      #   issue = Project.last.issues.new(
+      #     title: 'test',
+      #     author: User.first,
+      #     notes: [Note.new(
+      #               award_emoji: [AwardEmoji.new(name: 'test')]
+      #            )])
+      #
+      #   issue.validate
+      #   issue.errors.full_messages
+      #   => ["Notes is invalid"]
+      #
+      #   Gitlab::Import::Errors.merge_nested_errors(issue)
+      #   issue.errors.full_messages
+      #   => ["Notes is invalid",
+      #       "Award emoji is invalid",
+      #       "Awardable can't be blank",
+      #       "Name is not a valid emoji name",
+      #       ...
+      #      ]
+      def self.merge_nested_errors: (untyped object) -> untyped
+    end
+  end
+end

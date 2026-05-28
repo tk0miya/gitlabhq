@@ -1,0 +1,51 @@
+module Banzai
+  module Filter
+    # HTML Filter for markdown links with spaces in the URLs
+    #
+    # Based on Banzai::Filter::AutolinkFilter
+    #
+    # CommonMark does not allow spaces in the url portion of a link/url.
+    # For example, `[example](page slug)` is not valid.
+    # Neither is `![example](test image.jpg)`. However, particularly
+    # in our wikis, we support (via RedCarpet) this type of link, allowing
+    # wiki pages to be easily linked by their title.  This filter adds that functionality.
+    #
+    # This is a small extension to the CommonMark spec.  If they start allowing
+    # spaces in urls, we could then remove this filter.
+    #
+    # Note: Filter::SanitizationFilter/Filter::SanitizeLinkFilter should always be run sometime
+    # after this filter to prevent XSS attacks
+    #
+    class SpacedLinkFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      include ActionView::Helpers::TagHelper
+
+      # Pattern to match a standard markdown link
+      #
+      # Rubular: http://rubular.com/r/2EXEQ49rg5
+      #
+      # This pattern is vulnerable to malicious inputs, so use Gitlab::UntrustedRegexp
+      # to place bounds on execution time
+      LINK_OR_IMAGE_PATTERN: untyped
+
+      # Text matching LINK_OR_IMAGE_PATTERN inside these elements will not be linked
+      IGNORE_PARENTS: untyped
+
+      # The XPath query to use for finding text nodes to parse.
+      TEXT_QUERY: ::String
+
+      def call: () -> untyped
+
+      private
+
+      def spaced_link_match: (untyped link) -> untyped
+
+      def spaced_link_filter: (untyped text) -> untyped
+
+      def transform_markdown: (untyped match) -> ::String
+
+      def process_match: (untyped match) -> ::Array[untyped]
+    end
+  end
+end

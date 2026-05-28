@@ -1,0 +1,9 @@
+module Ci
+  module JobTokenScope
+    class RemoveProjectService < ::BaseService
+      include EditScopeValidations
+
+      def execute: (untyped target_project, untyped direction) -> untyped
+    end
+  end
+end

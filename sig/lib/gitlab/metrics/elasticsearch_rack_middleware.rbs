@@ -1,0 +1,18 @@
+module Gitlab
+  module Metrics
+    # Rack middleware for tracking Elasticsearch metrics from Grape and Web requests.
+    class ElasticsearchRackMiddleware
+      @app: untyped
+
+      HISTOGRAM_BUCKETS: ::Array[::Float | 1 | 10 | 50]
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def record_metrics: (untyped transaction) -> (nil | untyped)
+    end
+  end
+end

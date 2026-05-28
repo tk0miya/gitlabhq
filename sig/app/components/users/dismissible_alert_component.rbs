@@ -1,0 +1,11 @@
+module Users
+  class DismissibleAlertComponent < Pajamas::AlertComponent
+    @dismiss_options: untyped
+
+    @wrapper_options: untyped
+
+    include UserDismissible
+
+    def initialize: (?::Hash[untyped, untyped] args) -> void
+  end
+end

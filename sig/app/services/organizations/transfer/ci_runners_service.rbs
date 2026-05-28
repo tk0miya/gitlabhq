@@ -1,0 +1,27 @@
+module Organizations
+  module Transfer
+    class CiRunnersService
+      @group: untyped
+
+      @old_organization: untyped
+
+      @new_organization: untyped
+
+      include Organizations::Transfer::Concerns::OrganizationUpdater
+
+      def initialize: (group: untyped, old_organization: untyped, new_organization: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader group: untyped
+
+      attr_reader old_organization: untyped
+
+      attr_reader new_organization: untyped
+
+      def transfer_runners: (untyped runners) -> untyped
+    end
+  end
+end

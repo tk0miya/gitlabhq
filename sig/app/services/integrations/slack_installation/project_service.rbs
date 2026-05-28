@@ -1,0 +1,24 @@
+module Integrations
+  module SlackInstallation
+    class ProjectService < BaseService
+      @project: untyped
+
+      def initialize: (untyped project, current_user: untyped, params: untyped) -> void
+
+      private
+
+      attr_reader project: untyped
+
+      def redirect_uri: () -> untyped
+
+      def installation_alias: () -> untyped
+
+      # Returns a fallback alias for the project when the default alias (full_path) is already taken.
+      def fallback_alias: () -> ::String
+
+      def authorized?: () -> untyped
+
+      def find_or_create_integration!: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,37 @@
+class WikiDirectory
+  @slug: untyped
+
+  @entries: untyped
+
+  include ActiveModel::Validations
+
+  attr_accessor slug: untyped
+
+  attr_accessor entries: untyped
+
+  alias to_param slug
+
+  # Groups a list of wiki pages into a nested collection of WikiPage and WikiDirectory objects,
+  # preserving the order of the passed pages.
+  #
+  # Returns an array with all entries for the toplevel directory.
+  #
+  # @param [Array<WikiPage>] pages
+  # @return [Array<WikiPage, WikiDirectory>]
+  #
+  def self.group_pages: (untyped pages, ?templates: bool) -> untyped
+
+  private
+
+  def self.directory_for_page?: (untyped directory, untyped page) -> untyped
+
+  public
+
+  def initialize: (untyped slug, ?untyped entries) -> void
+
+  def title: () -> untyped
+
+  # Relative path to the partial to be used when rendering collections
+  # of this object.
+  def to_partial_path: () -> "shared/wikis/wiki_directory"
+end

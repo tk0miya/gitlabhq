@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateResourceStateEventsToWorkItems < BatchedMigrationJob
+      RESOURCE_STATE_EVENTS_BATCH_SIZE: 100
+
+      def perform: () -> untyped
+
+      private
+
+      def migrate_resource_state_events: (untyped sub_batch) -> untyped
+    end
+  end
+end

@@ -1,0 +1,217 @@
+# A (partial) implementation of the functional Result type, with naming conventions based on the
+# Rust implementation (https://doc.rust-lang.org/std/result/index.html)
+#
+# Modern Ruby 3+ destructuring and pattern matching are supported.
+#
+# - See "Railway Oriented Programming and the Result Class" in `ee/lib/remote_development/README.md` for details
+#   and example usage.
+# - See `spec/lib/gitlab/fp/result_spec.rb` for detailed executable example usage.
+# - See https://en.wikipedia.org/wiki/Result_type for a general description of the Result pattern.
+# - See https://fsharpforfunandprofit.com/rop/ for how this can be used with Railway Oriented Programming (ROP)
+#   to improve design and architecture
+# - See https://doc.rust-lang.org/std/result/ for the Rust implementation.
+module Gitlab
+  # noinspection RubyClassModuleNamingConvention -- JetBrains is changing this to allow shorter names
+  module Fp
+    class Result
+      @ok: untyped
+
+      @value: untyped
+
+      # The .ok and .err factory class methods are the only way to create a Result
+      #
+      # "self.ok" corresponds to Ok(T) in Rust: https://doc.rust-lang.org/std/result/enum.Result.html#variant.Ok
+      #
+      # @param [Object, #new] ok_value
+      # @return [Result]
+      # noinspection MissingYardParamTag -- RubyMine does not recognize "duck type" Types
+      #                                     (https://rubydoc.info/gems/yard/file/docs/Tags.md#duck-types). This has been
+      #                                     reported to JetBrains - issue link pending
+      def self.ok: (untyped ok_value) -> untyped
+
+      # "self.err" corresponds to Err(E) in Rust: https://doc.rust-lang.org/std/result/enum.Result.html#variant.Err
+      #
+      # @param [Object, #new] err_value
+      # @return [Result]
+      # noinspection MissingYardParamTag -- RubyMine does not recognize "duck type" Types
+      #                                     (https://rubydoc.info/gems/yard/file/docs/Tags.md#duck-types). This has been
+      #                                     reported to JetBrains - issue link pending
+      def self.err: (untyped err_value) -> untyped
+
+      private
+
+      # @param [Object, nil] ok_value
+      # @param [Object, nil] err_value
+      # @return [Object]
+      def initialize: (?ok_value: untyped?, ?err_value: untyped?) -> void
+
+      public
+
+      # "#unwrap" corresponds to "unwrap" in Rust.
+      #
+      # @return [Object]
+      # @raise [RuntimeError] if called on an "err" Result
+      def unwrap: () -> untyped
+
+      # "#unwrap" corresponds to "unwrap" in Rust.
+      #
+      # @return [Object]
+      # @raise [RuntimeError] if called on an "ok" Result
+      def unwrap_err: () -> untyped
+
+      # The `ok?` attribute is true if the Result was constructed with .ok, and false if it was constructed with .err
+      #
+      # "#ok?" corresponds to "is_ok" in Rust.
+      # @return [Boolean]
+      def ok?: () -> untyped
+
+      # The `err?` attribute is false if the Result was constructed with .ok, and true if it was constructed with .err
+      # "#err?" corresponds to "is_err" in Rust.
+      #
+      # @return [Boolean]
+      def err?: () -> untyped
+
+      # `and_then` is a functional way to chain together operations which may succeed or have errors. It is passed
+      # a lambda or class (singleton) method object, and must return a Result object representing "ok"
+      # or "err".
+      #
+      # If the Result object it is called on is "ok", then the passed lambda or singleton method
+      # is called with the value contained in the Result.
+      #
+      # If the Result object it is called on is "err", then it is returned without calling the passed
+      # lambda or method.
+      #
+      # It only supports being passed a lambda, or a class (singleton) method object
+      # which responds to `call` with a single argument (arity of 1). If multiple values are needed,
+      # pass a hash or array. Note that passing `Proc` objects is NOT supported, even though the YARD
+      # annotation contains `Proc` (because the type of a lambda is also `Proc`).
+      #
+      # Passing instance methods to `and_then` is not supported, because the methods in the chain should be
+      # stateless "pure functions", and should not be persisting or referencing any instance state anyway.
+      #
+      # "#and_then" corresponds to "and_then" in Rust: https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then
+      #
+      # @param [Proc, Method] lambda_or_singleton_method
+      # @return [Result]
+      # @raise [TypeError]
+      def and_then: (untyped lambda_or_singleton_method) -> (self | untyped)
+
+      # `map` is similar to `and_then`, but it is used for "single track" methods which always succeed,
+      # and have no possibility of returning an error (but they may still raise exceptions,
+      # which is unrelated to the Result handling). The passed lambda or singleton method must return
+      # a value, not a Result.
+      #
+      # If the Result object it is called on is "ok", then the passed lambda or singleton method
+      # is called with the value contained in the Result.
+      #
+      # If the Result object it is called on is "err", then it is returned without calling the passed
+      # lambda or method.
+      #
+      # "#map" corresponds to "map" in Rust: https://doc.rust-lang.org/std/result/enum.Result.html#method.map
+      #
+      # @param [Proc, Method] lambda_or_singleton_method
+      # @return [Result]
+      # @raise [TypeError]
+      def map: (untyped lambda_or_singleton_method) -> (self | untyped)
+
+      # `map_err` is the inverse of `map`. It behaves identically, but it only processes `err` values
+      # instead of `ok` values.
+      #
+      # "#map_err" corresponds to "map_err" in Rust: https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err
+      #
+      # @param [Proc, Method] lambda_or_singleton_method
+      # @return [Result]
+      # @raise [TypeError]
+      def map_err: (untyped lambda_or_singleton_method) -> (self | untyped)
+
+      # `inspect_ok` is similar to `map`, becuase it receives the wrapped `ok` value, but it does not allow modification
+      # of the value like `map`. The original result is always returned from `inspect_ok`.
+      #
+      # The passed lambda or singleton method must return, `nil`, to enforce the fact that the return value is ignored,
+      # and the original Result is always returned. This corresponds to the `void` type in YARD/RBS type annotations,
+      # and the `unit` type in Rust (https://doc.rust-lang.org/std/primitive.unit.html).
+      #
+      # If the passed method does not return `nil`, an error will be raised.
+      #
+      # "#inspect_ok" corresponds to "inspect" in Rust: https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect
+      #
+      # If enforce_immutability is true, the passed method will not be allowed to mutate the value passed to it.
+      #
+      # Note that we could not call this method `inspect` to match the Rust Result.inspect function, because that
+      # would conflict with the Kernel#inspect method in Ruby.
+      #
+      # @param [Proc, Method] lambda_or_singleton_method
+      # @param [Boolean] enforce_immutability enforces immutability of the value passed to lambda_or_singleton_method
+      # @return [Result]
+      # @raise [TypeError]
+      def inspect_ok: (untyped lambda_or_singleton_method, ?enforce_immutability: bool) -> self
+
+      # `inspect_err` is the inverse of `inspect_ok`. It behaves identically, but it only processes `err` values
+      # instead of `ok` values.
+      #
+      # The passed lambda or singleton method must return, `nil`, to enforce the fact that the return value is ignored,
+      # and the original Result is always returned. This corresponds to the `void` type in YARD/RBS type annotations,
+      # and the `unit` type in Rust (https://doc.rust-lang.org/std/primitive.unit.html).
+      #
+      # If the passed method does not return `nil`, an error will be raised.
+      #
+      # If enforce_immutablity is true, the passed method will not be allowed to mutate the value passed to it.
+      #
+      # "#inspect_err" corresponds to "inspect_err" in Rust: https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect_err
+      #
+      # @param [Proc, Method] lambda_or_singleton_method
+      # @param [Boolean] enforce_immutability enforces immutability of the value passed to lambda_or_singleton_method
+      # @return [Result]
+      # @raise [TypeError]
+      def inspect_err: (untyped lambda_or_singleton_method, ?enforce_immutability: bool) -> self
+
+      # `to_h` supports destructuring of a result object, for example: `result => { ok: }; puts ok`
+      #
+      # @return [Hash]
+      def to_h: () -> ({ ok: untyped } | { err: untyped })
+
+      # `deconstruct_keys` supports pattern matching on a Result object with a `case` statement. See specs for examples.
+      #
+      # @param [Array] keys
+      # @return [Hash]
+      # @raise [ArgumentError]
+      def deconstruct_keys: (untyped keys) -> untyped
+
+      # @param [Result] other
+      # @return [Boolean]
+      def ==: (untyped other) -> untyped
+
+      private
+
+      # The `value` attribute will contain either the ok_value or the err_value
+      #
+      # @return [Object]
+      # noinspection RubyMismatchedReturnType
+      def value: () -> untyped
+
+      # @param [Proc, Method] callee
+      # @param [Symbol] invoking_method
+      # @return [void]
+      # @raise [TypeError]
+      def validate_lambda_or_singleton_method: (callee: untyped, invoking_method: untyped) -> (nil | untyped)
+
+      # @param [Proc, Method] callee
+      # @param [Object] value
+      # @param [Symbol] invoking_method
+      # @param [Boolean] enforce_immutability enforces immutability of the value passed to lambda_or_singleton_method
+      # @return [void]
+      # @raise [RuntimeError]
+      def call_and_optionally_enforce_value_is_not_mutated: (callee: untyped, value: untyped, invoking_method: untyped, enforce_immutability: untyped) -> untyped
+
+      # @param [Object] object
+      # @return [Object]
+      def deep_clone_and_freeze: (untyped object) -> untyped
+
+      # @param [Proc, Method] return_value
+      # @param [Symbol] invoking_method
+      # @return [void]
+      # @raise [TypeError]
+      def validate_return_value_is_void: (return_value: untyped, invoking_method: untyped) -> (nil | untyped)
+    end
+  end
+end

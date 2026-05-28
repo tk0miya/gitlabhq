@@ -1,0 +1,53 @@
+module Banzai
+  # Class for rendering multiple objects (e.g. Note instances) in a single pass,
+  # using +render_field+ to benefit from caching in the database. Rendering and
+  # redaction are both performed.
+  #
+  # The unredacted HTML is generated according to the usual +render_field+
+  # policy, so specify the pipeline and any other context options on the model.
+  #
+  # The *redacted* (i.e., suitable for use) HTML is placed in an attribute
+  # named "redacted_<foo>", where <foo> is the name of the cache field for the
+  # chosen attribute.
+  #
+  # As an example, rendering the attribute `note` would place the unredacted
+  # HTML into `note_html` and the redacted HTML into `redacted_note_html`.
+  class ObjectRenderer
+    @context: untyped
+
+    @redaction_context: untyped
+
+    attr_reader context: untyped
+
+    # default_project - A default Project to use for redacting Markdown.
+    # user - The user viewing the Markdown/HTML documents, if any.
+    # redaction_context - A Hash containing extra attributes to use during redaction
+    def initialize: (?default_project: untyped?, ?user: untyped?, ?redaction_context: ::Hash[untyped, untyped]) -> void
+
+    # Renders and redacts an Array of objects.
+    #
+    # objects - The objects to render.
+    # attribute - The attribute containing the raw Markdown to render.
+    #
+    # Returns the same input objects.
+    def render: (untyped objects, untyped attribute) -> untyped
+
+    private
+
+    def render_documents: (untyped objects, untyped attribute) -> untyped
+
+    def post_process_documents: (untyped documents, untyped objects, untyped attribute) -> untyped
+
+    # Redacts the list of documents.
+    #
+    # Returns an Array containing the redacted documents.
+    def redact_documents: (untyped documents) -> untyped
+
+    # Returns a Banzai context for the given object and attribute.
+    def context_for: (untyped document, untyped object, untyped attribute) -> untyped
+
+    def base_context: () -> { current_user: untyped, skip_redaction: true }
+
+    def save_options: () -> (::Hash[untyped, untyped] | { save_with: untyped })
+  end
+end

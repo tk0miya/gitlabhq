@@ -1,0 +1,20 @@
+module DropdownsHelper
+  def dropdown_data_attr: (?options: ::Hash[untyped, untyped]) -> untyped
+
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def dropdown_tag: (untyped toggle_text, ?options: ::Hash[untyped, untyped]) { (?) -> untyped } -> untyped
+
+  def dropdown_toggle: (untyped toggle_text, untyped data_attr, ?::Hash[untyped, untyped] options) -> untyped
+
+  def dropdown_toggle_link: (untyped toggle_text, untyped data_attr, ?::Hash[untyped, untyped] options) -> untyped
+
+  def dropdown_title: (untyped title, ?options: ::Hash[untyped, untyped]) -> untyped
+
+  def dropdown_filter: (untyped placeholder, ?search_id: untyped?) -> untyped
+
+  def dropdown_content: () { (?) -> untyped } -> untyped
+
+  def dropdown_footer: (?add_content_class: bool) { (?) -> untyped } -> untyped
+
+  def dropdown_loading: () -> untyped
+end

@@ -1,0 +1,35 @@
+module Clusters
+  module Migration
+    class UpdateService
+      @cluster: untyped
+
+      @clusterable: untyped
+
+      @current_user: untyped
+
+      @issue_url: untyped
+
+      @migration: untyped
+
+      attr_reader cluster: untyped
+
+      attr_reader clusterable: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader issue_url: untyped
+
+      def initialize: (untyped cluster, clusterable: untyped, current_user: untyped, issue_url: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def migration: () -> untyped
+
+      def extract_issue_from_url: (untyped url) -> (nil | untyped)
+
+      def error_response: (message: untyped) -> untyped
+    end
+  end
+end

@@ -1,0 +1,94 @@
+# Defines a specific location, identified by paths line numbers and image coordinates,
+# within a specific diff, identified by start, head and base commit ids.
+module Gitlab
+  module Diff
+    class Position
+      @formatter: untyped
+
+      @diff_refs: untyped
+
+      @diff_file: untyped
+
+      @diff_line: untyped
+
+      @line_code: untyped
+
+      @file_hash: untyped
+
+      attr_accessor formatter: untyped
+
+      # A position can belong to a text line or to an image coordinate
+      # it depends of the position_type argument.
+      # Text position will have: new_line and old_line
+      # Image position will have: width, height, x, y
+      def initialize: (?::Hash[untyped, untyped] attrs) -> void
+
+      # `Gitlab::Diff::Position` objects are stored as serialized attributes in
+      # `DiffNote`, which use YAML to encode and decode objects.
+      # `#init_with` and `#encode_with` can be used to customize the en/decoding
+      # behavior. In this case, we override these to prevent memoized instance
+      # variables like `@diff_file` and `@diff_line` from being serialized.
+      def init_with: (untyped coder) -> self
+
+      def encode_with: (untyped coder) -> untyped
+
+      def key: () -> untyped
+
+      def ==: (untyped other) -> untyped
+
+      def to_h: () -> untyped
+
+      def inspect: () -> ::String
+
+      def complete?: () -> untyped
+
+      def to_json: (?untyped? opts) -> untyped
+
+      def as_json: (?untyped? opts) -> untyped
+
+      def type: () -> untyped
+
+      def unfoldable?: () -> untyped
+
+      def unchanged?: () -> untyped
+
+      def added?: () -> untyped
+
+      def removed?: () -> untyped
+
+      def paths: () -> untyped
+
+      def file_path: () -> untyped
+
+      def diff_refs: () -> untyped
+
+      def unfolded_diff?: (untyped repository) -> untyped
+
+      def diff_file: (untyped repository) -> untyped
+
+      def diff_options: () -> { paths: untyped, expanded: true, include_stats: false, ignore_whitespace_change: untyped }
+
+      def diff_line: (untyped repository) -> untyped
+
+      def line_code: (untyped repository) -> untyped
+
+      def file_hash: () -> untyped
+
+      def on_file?: () -> untyped
+
+      def on_image?: () -> untyped
+
+      def on_text?: () -> untyped
+
+      def find_diff_file_from: (untyped diffable) -> untyped
+
+      def multiline?: () -> (nil | untyped)
+
+      private
+
+      def find_diff_file: (untyped repository) -> (nil | untyped)
+
+      def get_formatter_class: (untyped type) -> untyped
+    end
+  end
+end

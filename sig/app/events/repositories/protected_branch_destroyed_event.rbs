@@ -1,0 +1,7 @@
+module Repositories
+  class ProtectedBranchDestroyedEvent < ::Gitlab::EventStore::Event
+    PARENT_TYPES: { group: "group", project: "project" }
+
+    def schema: () -> { "type" => "object", "properties" => { "parent_id" => { "type" => "integer" }, "parent_type" => { "type" => "string", "enum" => untyped } }, "required" => ::Array["parent_id" | "parent_type"] }
+  end
+end

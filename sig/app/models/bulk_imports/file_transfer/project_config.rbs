@@ -1,0 +1,19 @@
+module BulkImports
+  module FileTransfer
+    class ProjectConfig < BaseConfig
+      SKIPPED_RELATIONS: ::Array["project_members" | "group_members"]
+
+      LFS_OBJECTS_RELATION: "lfs_objects"
+
+      REPOSITORY_BUNDLE_RELATION: "repository"
+
+      DESIGN_BUNDLE_RELATION: "design"
+
+      def import_export_yaml: () -> untyped
+
+      def skipped_relations: () -> untyped
+
+      def file_relations: () -> ::Array[untyped]
+    end
+  end
+end

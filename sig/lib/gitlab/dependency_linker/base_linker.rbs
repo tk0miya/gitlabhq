@@ -1,0 +1,58 @@
+module Gitlab
+  module DependencyLinker
+    class BaseLinker
+      @plain_text: untyped
+
+      @highlighted_text: untyped
+
+      @plain_lines: untyped
+
+      @highlighted_lines: untyped
+
+      URL_REGEX: ::Regexp
+
+      GIT_INVALID_URL_REGEX: ::Regexp
+
+      REPO_REGEX: ::Regexp
+
+      def self.support?: (untyped blob_name) -> untyped
+
+      def self.link: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      attr_accessor plain_text: untyped
+
+      attr_accessor highlighted_text: untyped
+
+      def initialize: (untyped plain_text, untyped highlighted_text) -> void
+
+      def link: () -> untyped
+
+      def external_url: (untyped name, untyped external_ref) -> (nil | untyped)
+
+      private
+
+      def package_url: (untyped _name) -> untyped
+
+      def link_dependencies: () -> untyped
+
+      def license_url: (untyped name) -> untyped
+
+      def github_url: (untyped name) -> ::String
+
+      def link_tag: (untyped name, untyped url) -> untyped
+
+      # Links package names based on regex.
+      #
+      # Example:
+      #   link_regex(/(github:|:github =>)\s*['"](?<name>[^'"]+)['"]/)
+      #   # Will link `user/repo` in `github: "user/repo"` or `:github => "user/repo"`
+      def link_regex: (untyped regex) { (untyped) -> untyped } -> untyped
+
+      def plain_lines: () -> untyped
+
+      def highlighted_lines: () -> untyped
+
+      def regexp_for_value: (untyped value, ?default: untyped) -> untyped
+    end
+  end
+end

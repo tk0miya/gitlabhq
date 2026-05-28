@@ -1,0 +1,44 @@
+module PersonalAccessTokens
+  class LastUsedService
+    @personal_access_token: untyped
+
+    @lease_key: untyped
+
+    include ExclusiveLeaseGuard
+
+    include Gitlab::Utils::StrongMemoize
+
+    LEASE_TIMEOUT: untyped
+
+    LAST_USED_IP_TIMEOUT: untyped
+
+    LAST_USED_AT_TIMEOUT: untyped
+
+    NUM_IPS_TO_STORE: 5
+
+    def initialize: (untyped personal_access_token) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def lease_timeout: () -> untyped
+
+    def lease_key: () -> untyped
+
+    def lease_release?: () -> false
+
+    def lease_taken_log_level: () -> :info
+
+    def needs_update?: () -> (false | untyped)
+
+    def update_timestamp: () -> untyped
+
+    # rubocop:disable CodeReuse/ActiveRecord  -- this is specific to this service
+    def update_pat_ip: () -> (nil | untyped)
+
+    def last_used_ip_needs_update?: () -> (false | true | untyped)
+
+    def last_used_at_needs_update?: () -> (true | untyped)
+  end
+end

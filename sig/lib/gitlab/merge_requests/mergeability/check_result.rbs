@@ -1,0 +1,53 @@
+module Gitlab
+  module MergeRequests
+    module Mergeability
+      class CheckResult
+        @status: untyped
+
+        @payload: untyped
+
+        SUCCESS_STATUS: :success
+
+        FAILED_STATUS: :failed
+
+        INACTIVE_STATUS: :inactive
+
+        WARNING_STATUS: :warning
+
+        CHECKING_STATUS: :checking
+
+        attr_reader status: untyped
+
+        attr_reader payload: untyped
+
+        def self.default_payload: () -> { last_run_at: untyped }
+
+        def self.success: (?payload: ::Hash[untyped, untyped]) -> untyped
+
+        def self.failed: (?payload: ::Hash[untyped, untyped]) -> untyped
+
+        def self.checking: (?payload: ::Hash[untyped, untyped]) -> untyped
+
+        def self.inactive: (?payload: ::Hash[untyped, untyped]) -> untyped
+
+        def self.warning: (?payload: ::Hash[untyped, untyped]) -> untyped
+
+        def self.from_hash: (untyped data) -> untyped
+
+        def initialize: (status: untyped, ?payload: ::Hash[untyped, untyped]) -> void
+
+        def to_hash: () -> { status: untyped, payload: untyped }
+
+        def identifier: () -> untyped
+
+        def failed?: () -> untyped
+
+        def success?: () -> untyped
+
+        def checking?: () -> untyped
+
+        def unsuccessful?: () -> untyped
+      end
+    end
+  end
+end

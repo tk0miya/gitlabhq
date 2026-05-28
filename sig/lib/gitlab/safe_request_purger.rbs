@@ -1,0 +1,29 @@
+module Gitlab
+  class SafeRequestPurger
+    @resource_key: untyped
+
+    @resource_ids: untyped
+
+    @resource_data: untyped
+
+    def self.execute: (untyped args) -> untyped
+
+    def initialize: (resource_key: untyped, resource_ids: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader resource_key: untyped
+
+    attr_reader resource_ids: untyped
+
+    attr_reader resource_data: untyped
+
+    def load_resource_data: () -> untyped
+
+    def purge_resource_ids: () -> untyped
+
+    def write_resource_data_to_store: () -> untyped
+  end
+end

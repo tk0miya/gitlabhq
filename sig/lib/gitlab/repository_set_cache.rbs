@@ -1,0 +1,38 @@
+# Interface to the Redis-backed cache store for keys that use a Redis set
+module Gitlab
+  class RepositorySetCache < Gitlab::SetCache
+    @repository: untyped
+
+    @namespace: untyped
+
+    @expires_in: untyped
+
+    attr_reader repository: untyped
+
+    attr_reader namespace: untyped
+
+    attr_reader expires_in: untyped
+
+    def initialize: (untyped repository, ?extra_namespace: untyped?, ?expires_in: untyped) -> void
+
+    def cache_key: (untyped type) -> untyped
+
+    def write: (untyped key, untyped value) -> untyped
+
+    def fetch: (untyped key) { () -> untyped } -> untyped
+
+    # Searches the cache set using SSCAN with the MATCH option. The MATCH
+    # parameter is the pattern argument.
+    # See https://redis.io/commands/scan#the-match-option for more information.
+    # Returns an Enumerator that enumerates all SSCAN hits.
+    def search: (untyped key, untyped pattern) { () -> untyped } -> untyped
+
+    private
+
+    def log_cache_operation: (untyped key) -> untyped
+
+    def cache: () -> untyped
+
+    def with: () { (?) -> untyped } -> untyped
+  end
+end

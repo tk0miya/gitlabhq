@@ -1,0 +1,41 @@
+#
+# This module is for replacing `dependent: :destroy` and `before_destroy` hooks.
+#
+# In general, `destroy_all` is inefficient because it calls each callback with `DELETE` queries i.e. O(n), whereas,
+# `delete_all` is efficient as it deletes all rows with a single `DELETE` query.
+#
+# It's better to use `delete_all` as our best practice, however,
+# if external data (e.g. ObjectStorage, FileStorage or Redis) are associated with database records,
+# it is difficult to accomplish it.
+#
+# This module defines a format to use `delete_all` and delete associated external data.
+# Here is an example
+#
+# Situation
+# - `Project` has many `Ci::BuildTraceChunk` through `Ci::Build`
+# - `Ci::BuildTraceChunk` stores associated data in Redis,
+#    so it relies on `dependent: :destroy` and `before_destroy` for the deletion
+#
+# How to use
+# - Define `use_fast_destroy :build_trace_chunks` in `Project` model.
+# - Define `begin_fast_destroy` and `finalize_fast_destroy(params)` in `Ci::BuildTraceChunk` model.
+# - Use `fast_destroy_all` instead of `destroy` and `destroy_all`
+# - Remove `dependent: :destroy` and `before_destroy` as it's no longer need
+#
+# Expectation
+# - When a project is `destroy`ed, the associated trace_chunks will be deleted by `delete_all`,
+#   and the associated data will be removed, too.
+# - When `fast_destroy_all` is called, it also performns as same.
+module FastDestroyAll
+  extend ActiveSupport::Concern
+
+  ForbiddenActionError: untyped
+
+  module Helpers
+    extend ActiveSupport::Concern
+
+    include AfterCommitQueue
+
+    def perform_fast_destroy: (untyped subject) -> untyped
+  end
+end

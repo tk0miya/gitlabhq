@@ -1,0 +1,39 @@
+module Gitlab
+  module Diff
+    class Suggestion
+      @text: untyped
+
+      @target_line: untyped
+
+      @lines_above: untyped
+
+      @lines_below: untyped
+
+      @diff_file: untyped
+
+      include Suggestible
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader diff_file: untyped
+
+      attr_reader lines_above: untyped
+
+      attr_reader lines_below: untyped
+
+      attr_reader target_line: untyped
+
+      def initialize: (untyped text, line: untyped, above: untyped, below: untyped, diff_file: untyped) -> void
+
+      def to_hash: () -> { from_content: untyped, to_content: untyped, lines_above: untyped, lines_below: untyped }
+
+      def from_content: () -> untyped
+
+      def to_content: () -> ("" | ::String)
+
+      private
+
+      def line_break_chars: (untyped line) -> untyped
+    end
+  end
+end

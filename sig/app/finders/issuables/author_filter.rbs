@@ -1,0 +1,15 @@
+module Issuables
+  class AuthorFilter < BaseFilter
+    include GroupMembersFilterable
+
+    def filter: (untyped issuables) -> untyped
+
+    private
+
+    def by_author: (untyped issuables) -> untyped
+
+    def by_author_union: (untyped issuables) -> untyped
+
+    def by_negated_author: (untyped issuables) -> untyped
+  end
+end

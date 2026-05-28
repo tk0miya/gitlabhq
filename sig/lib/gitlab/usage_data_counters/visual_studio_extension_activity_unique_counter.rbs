@@ -1,0 +1,17 @@
+module Gitlab
+  module UsageDataCounters
+    module VisualStudioExtensionActivityUniqueCounter
+      VISUAL_STUDIO_EXTENSION_API_REQUEST_ACTION: "i_editor_extensions_user_visual_studio_api_request"
+
+      VISUAL_STUDIO_EXTENSION_USER_AGENT_REGEX: ::Regexp
+
+      def self.track_api_request_when_trackable: (user_agent: untyped, user: untyped) -> untyped
+
+      private
+
+      def self.track_unique_action_by_user: (untyped action, untyped user) -> (nil | untyped)
+
+      def self.track_unique_action: (untyped action, untyped value) -> untyped
+    end
+  end
+end

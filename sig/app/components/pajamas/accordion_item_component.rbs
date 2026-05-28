@@ -1,0 +1,23 @@
+# Renders a accordion component
+module Pajamas
+  class AccordionItemComponent < Pajamas::Component
+    @title: untyped
+
+    @state: untyped
+
+    @button_options: untyped
+
+    STATE_OPTIONS: ::Array[:opened | :closed]
+
+    # @param [String] title
+    # @param [Symbol] state
+    # @param [Hash] button_options
+    def initialize: (?title: untyped?, ?state: ::Symbol, ?button_options: ::Hash[untyped, untyped]) -> void
+
+    def icon: () -> ("chevron-down" | "chevron-right")
+
+    def body_class: () -> ({ class: "show" } | ::Hash[untyped, untyped])
+
+    def expanded?: () -> untyped
+  end
+end

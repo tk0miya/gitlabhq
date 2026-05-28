@@ -1,0 +1,34 @@
+# handles unsubscribe emails with these formats:
+#   incoming+1234567890abcdef1234567890abcdef-unsubscribe@incoming.gitlab.com
+#   incoming+1234567890abcdef1234567890abcdef+unsubscribe@incoming.gitlab.com (legacy)
+module Gitlab
+  module Email
+    module Handler
+      class UnsubscribeHandler < BaseHandler
+        @reply_token: untyped
+
+        @sent_notification: untyped
+
+        HANDLER_REGEX_FOR: untyped
+
+        HANDLER_REGEX: untyped
+
+        HANDLER_REGEX_LEGACY: untyped
+
+        def initialize: (untyped mail, untyped mail_key) -> void
+
+        def can_handle?: () -> untyped
+
+        def execute: () -> (nil | untyped)
+
+        def metrics_event: () -> :receive_email_unsubscribe
+
+        private
+
+        attr_reader reply_token: untyped
+
+        def sent_notification: () -> untyped
+      end
+    end
+  end
+end

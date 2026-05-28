@@ -1,0 +1,13 @@
+module Mutations
+  module Admin
+    module SidekiqQueues
+      class DeleteJobs < BaseMutation
+        ADMIN_MESSAGE: "You must be an admin to use this mutation"
+
+        def ready?: (**untyped args) -> untyped
+
+        def resolve: (queue_name: untyped, **untyped args) -> untyped
+      end
+    end
+  end
+end

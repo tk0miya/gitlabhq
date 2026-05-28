@@ -1,0 +1,51 @@
+# This module is used in:
+#  - SingleEndpointDiffNotesImporter
+# if enabled by Gitlab::GithubImport::Settings
+#
+# - SingleEndpointIssueEventsImporter
+# if enabled by Gitlab::GithubImport::Settings
+#
+# Fetches associated objects page by page to each item of parent collection.
+# Currently `associated` is note or event.
+# Currently `parent` is MergeRequest or Issue record.
+#
+# It fetches 1 PR's associated objects at a time using `issue_comments` or
+# `pull_request_comments` endpoint, which is slower than `NotesImporter`
+# but it makes sure all notes are imported, as it can sometimes not be
+# the case for `NotesImporter`, because `issues_comments` endpoint
+# it uses can be limited by GitHub API to not return all available pages.
+module Gitlab
+  module GithubImport
+    module SingleEndpointNotesImporting
+      BATCH_SIZE: 100
+
+      def each_object_to_import: () { (?) -> untyped } -> untyped
+
+      def id_for_already_imported_cache: (untyped associated) -> untyped
+
+      def parent_collection: () -> untyped
+
+      def parent_imported_cache_key: () -> untyped
+
+      def page_keyset_id: (untyped parent) -> untyped
+
+      private
+
+      # Sometimes we need to add some extra info from parent
+      # to associated record that is not available by default
+      # in Github API response object. For example:
+      # lib/gitlab/github_import/importer/single_endpoint_issue_events_importer.rb:26
+      def each_associated: (untyped _parent_record, untyped associated) { (untyped) -> untyped } -> (nil | untyped)
+
+      def each_associated_page: () { (?) -> untyped } -> untyped
+
+      def process_batch: (untyped batch) { (untyped, untyped) -> untyped } -> untyped
+
+      def mark_parent_imported: (untyped parent) -> untyped
+
+      def after_batch_processed: (untyped _parent) -> nil
+
+      def already_imported_parents: () -> untyped
+    end
+  end
+end

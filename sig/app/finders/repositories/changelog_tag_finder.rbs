@@ -1,0 +1,42 @@
+module Repositories
+  # A finder class for getting the tag of the last release before a given
+  # version, used when generating changelogs.
+  #
+  # Imagine a project with the following tags:
+  #
+  # * v1.0.0
+  # * v1.1.0
+  # * v2.0.0
+  #
+  # If the version supplied is 2.1.0, the tag returned will be v2.0.0. And when
+  # the version is 1.1.1, or 1.2.0, the returned tag will be v1.1.0.
+  #
+  # To obtain the tags, this finder requires a regular expression (using the re2
+  # syntax) to be provided. This regex must produce the following named
+  # captures:
+  #
+  # - major (required)
+  # - minor (required)
+  # - patch (required)
+  # - pre
+  # - meta
+  #
+  # If the `pre` group has a value, the tag is ignored. If any of the required
+  # capture groups don't have a value, the tag is also ignored.
+  class ChangelogTagFinder
+    @project: untyped
+
+    @regex: untyped
+
+    def initialize: (untyped project, ?regex: untyped) -> void
+
+    def execute: (untyped new_version) -> untyped
+
+    private
+
+    def matcher: (untyped regex) -> untyped
+
+    # Builds a version string based on regex matcher's output
+    def assemble_version: (untyped matches) -> (nil | untyped)
+  end
+end

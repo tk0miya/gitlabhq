@@ -1,0 +1,20 @@
+module Types
+  module ContainerRegistry
+    class ContainerRepositoryType < BaseObject
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      PROTECTION_RULE_EXISTS_BATCH_SIZE: 20
+
+      def project: () -> untyped
+
+      def tags_count: () -> untyped
+
+      # The migration has now completed and we are cleaning up the migration db columns.
+      # For backward compatibility, we are keeping this field accessible.
+      # This field will be removed in 18.0.
+      def migration_state: () -> ""
+
+      def protection_rule_exists: () -> untyped
+    end
+  end
+end

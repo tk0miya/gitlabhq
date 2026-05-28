@@ -1,0 +1,39 @@
+module Authn
+  module IamService
+    class JwtValidationService
+      @token_string: untyped
+
+      InvalidTokenError: untyped
+
+      InvalidSubjectError: untyped
+
+      # Feature flag for gradual rollout, will be used in SessionController
+      # TODO: remove this reference upon first usage
+      FEATURE_FLAG: :iam_svc_login
+
+      MAX_TOKEN_SIZE_BYTES: 8192
+
+      CLOCK_SKEW_SECONDS: 30
+
+      ALLOWED_ALGORITHM: "RS256"
+
+      attr_reader token_string: untyped
+
+      def initialize: (token: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def decode_and_validate_token: () -> untyped
+
+      def decode_options: () -> { algorithms: ::Array[untyped], jwks: untyped, required_claims: ::Array["sub" | "jti" | "exp" | "iat" | "iss" | "aud" | "scope"], verify_aud: true, aud: untyped, exp_leeway: untyped, verify_iss: true, iss: untyped, verify_iat: true }
+
+      def jwt_error_to_message: (untyped error) -> untyped
+
+      def handle_validation_error: (untyped error_message) -> untyped
+
+      def jwks_client: () -> untyped
+    end
+  end
+end

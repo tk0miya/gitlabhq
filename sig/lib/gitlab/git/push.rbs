@@ -1,0 +1,39 @@
+module Gitlab
+  module Git
+    class Push
+      @project: untyped
+
+      @oldrev: untyped
+
+      @newrev: untyped
+
+      @ref: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader ref: untyped
+
+      attr_reader oldrev: untyped
+
+      attr_reader newrev: untyped
+
+      def initialize: (untyped project, untyped oldrev, untyped newrev, untyped ref) -> void
+
+      def branch_name: () -> untyped
+
+      def branch_added?: () -> untyped
+
+      def branch_removed?: () -> untyped
+
+      def branch_updated?: () -> untyped
+
+      def force_push?: () -> untyped
+
+      def branch_push?: () -> untyped
+
+      def modified_paths: () -> untyped
+
+      def changed_paths: () -> untyped
+    end
+  end
+end

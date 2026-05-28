@@ -1,0 +1,12 @@
+# rubocop: disable Graphql/AuthorizeTypes -- Authorization is handled in the ComplianceViolationType from which this is called
+module Types
+  module AuditEvents
+    class AuditEventType < ::Types::BaseObject
+      def details: () -> (nil | untyped)
+
+      def group: () -> (untyped | nil)
+
+      def project: () -> (untyped | nil)
+    end
+  end
+end

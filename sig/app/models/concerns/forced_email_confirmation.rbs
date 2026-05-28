@@ -1,0 +1,9 @@
+module ForcedEmailConfirmation
+  extend ActiveSupport::Concern
+
+  def force_confirm: (?::Hash[untyped, untyped] args) -> untyped
+
+  # Override, from Devise::Models::Confirmable
+  # Link: https://github.com/heartcombo/devise/blob/main/lib/devise/models/confirmable.rb
+  def confirmation_period_expired?: () -> (false | untyped)
+end

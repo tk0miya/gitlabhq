@@ -1,0 +1,19 @@
+module Gitlab
+  module Database
+    module AsyncIndexes
+      class IndexCreator < AsyncIndexes::IndexBase
+        STATEMENT_TIMEOUT: untyped
+
+        private
+
+        def preconditions_met?: () -> untyped
+
+        def action_type: () -> "creation"
+
+        def around_execution: () { (?) -> untyped } -> untyped
+
+        def set_statement_timeout: () { () -> untyped } -> untyped
+      end
+    end
+  end
+end

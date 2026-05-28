@@ -1,0 +1,95 @@
+# Class to parse and transform the info provided by omniauth
+#
+module Gitlab
+  module Auth
+    module OAuth
+      class AuthHash
+        @auth_hash: untyped
+
+        @errors: untyped
+
+        @uid: untyped
+
+        @provider: untyped
+
+        @name: untyped
+
+        @username: untyped
+
+        @email: untyped
+
+        @password: untyped
+
+        @provider_args: untyped
+
+        @username_and_email: untyped
+
+        attr_reader auth_hash: untyped
+
+        attr_accessor errors: untyped
+
+        def initialize: (untyped auth_hash) -> void
+
+        def uid: () -> untyped
+
+        def provider: () -> untyped
+
+        def name: () -> untyped
+
+        def username: () -> untyped
+
+        def email: () -> untyped
+
+        def password: () -> untyped
+
+        def location: () -> untyped
+
+        def organization: () -> untyped
+
+        def job_title: () -> untyped
+
+        def has_attribute?: (untyped attribute) -> untyped
+
+        private
+
+        def info: () -> untyped
+
+        def coerce_utf8: (untyped value) -> untyped
+
+        def get_info: (untyped key) -> untyped
+
+        def provider_config: () -> untyped
+
+        def provider_args: () -> untyped
+
+        def get_from_auth_hash_or_info: (untyped key) -> untyped
+
+        # Allow for configuring a custom username claim per provider from
+        # the auth hash or use the canonical username or nickname fields
+        def gitlab_username_claim: () -> untyped
+
+        def username_claims: () -> untyped
+
+        def get_username: () -> untyped
+
+        def username_and_email: () -> untyped
+
+        # Get the first part of the email address (before @)
+        # In addition in removes illegal characters
+        # Perform length validation twice:
+        # - Before normalization to prevent normalizing excessively long strings
+        # - After normalization to ensure certain normalized multibyte characters don't exceed length.
+        def generate_username: (untyped email) -> (nil | untyped)
+
+        def generate_temporarily_email: (untyped username) -> ::String
+
+        # RFC 3606 and RFC 2821 restrict total email length to
+        # 254 characters. Do not allow longer emails to be passed in
+        # because unicode normalization can be intensive.
+        def valid_email_username_length?: (untyped email_or_username) -> (true | false)
+
+        def mb_chars_unicode_normalize: (untyped string) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,54 @@
+class ServiceResponse
+  def self.success: (?message: untyped?, ?payload: ::Hash[untyped, untyped], ?http_status: ::Symbol) -> untyped
+
+  def self.error: (message: untyped, ?payload: ::Hash[untyped, untyped], ?http_status: untyped?, ?reason: untyped?) -> untyped
+
+  # This is used to help wrap old service responses that were just hashes
+  def self.from_legacy_hash: (untyped response) -> untyped
+
+  attr_reader status: untyped
+
+  attr_reader message: untyped
+
+  attr_reader http_status: untyped
+
+  attr_reader payload: untyped
+
+  attr_reader reason: untyped
+
+  def initialize: (status: untyped, ?message: untyped?, ?payload: ::Hash[untyped, untyped], ?http_status: untyped?, ?reason: untyped?) -> void
+
+  def log_and_raise_exception: (?as: untyped, **untyped extra_data) -> untyped
+
+  def track_exception: (?as: untyped, **untyped extra_data) -> untyped
+
+  def track_and_raise_exception: (?as: untyped, **untyped extra_data) -> untyped
+
+  def []: (untyped key) -> untyped
+
+  def to_h: () -> untyped
+
+  def deconstruct_keys: (untyped keys) -> untyped
+
+  def success?: () -> untyped
+
+  def error?: () -> untyped
+
+  def errors: () -> (::Array[untyped] | untyped)
+
+  def cause: () -> untyped
+
+  private
+
+  attr_writer status: untyped
+
+  attr_writer message: untyped
+
+  attr_writer http_status: untyped
+
+  attr_writer payload: untyped
+
+  attr_writer reason: untyped
+
+  def error_tracking: (untyped error_klass) { (untyped) -> untyped } -> self
+end

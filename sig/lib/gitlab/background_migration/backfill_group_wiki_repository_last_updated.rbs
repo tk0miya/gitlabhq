@@ -1,0 +1,17 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillGroupWikiRepositoryLastUpdated < BatchedMigrationJob
+      class Shard < ApplicationRecord
+      end
+
+      class GroupWikiRepository < ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      private
+
+      def fetch_commit: (untyped record) -> untyped
+    end
+  end
+end

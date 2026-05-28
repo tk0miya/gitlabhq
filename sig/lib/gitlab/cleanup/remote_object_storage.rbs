@@ -1,0 +1,71 @@
+module Gitlab
+  module Cleanup
+    class RemoteObjectStorage
+      @storage_location_identifier: untyped
+
+      @model_class: untyped
+
+      @logger: untyped
+
+      include ::ObjectStorage::FogHelpers
+
+      attr_reader logger: untyped
+
+      attr_reader model_class: untyped
+
+      attr_reader storage_location_identifier: untyped
+
+      BATCH_SIZE: 100
+
+      def initialize: (untyped storage_location_identifier, untyped model_class, ?logger: untyped?) -> void
+
+      def run!: (?dry_run: bool, ?delete: bool, ?batch_size: untyped) -> (nil | untyped)
+
+      private
+
+      # Default implementation, override in specific cleaner classes if needed
+      def each_orphan_file: (?untyped batch_size) { (untyped) -> untyped } -> untyped
+
+      # @param file_paths [Array<String>] an array of remote file paths
+      # @return [Array<String>] a subset of the input paths that are tracked in the DB
+      def find_tracked_paths: (untyped file_paths) -> untyped
+
+      # @param file_path [String] a remote file path
+      # @return [Boolean] whether or not the file is tracked in the DB. Defaults to "file is tracked" if there is any
+      #   doubt, to AVOID DATA LOSS.
+      def file_tracked_in_the_db?: (untyped file_path) -> (true | untyped)
+
+      # @param args [Hash] log arguments, including at least :file_path and :is_tracked
+      def log_file_tracked: (**untyped args) -> untyped
+
+      # @param file_path [String] a remote file path
+      # @return [Boolean] true if file_path matches the expected format, false otherwise.
+      def valid_file_path_format?: (untyped file_path) -> (true | false)
+
+      # @abstract
+      # @param file_path [String] a remote file path (the format is specific to each bucket, see the Uploader class
+      # for the model being cleaned up for the expected format).
+      # @return [ActiveRecord::Relation, nil] a relation that would match the corresponding row in the DB,
+      #   if it exists, or nil if the file path doesn't match the expected format.
+      def query_for_row_tracking_the_file: (untyped file_path) -> untyped
+
+      # @abstract
+      # @return [Regexp] the expected file path format regexp specific to each cleaner class
+      def expected_file_path_format_regexp: () -> untyped
+
+      # @param file [Fog::Storage::File] the orphan file to handle.
+      # @param dry_run [Boolean] if true, only log what would be done.
+      # @param delete [Boolean] if true, delete the orphan file, otherwise move it to the lost and found directory.
+      # @return [void]
+      def handle_orphan_file: (untyped file, dry_run: untyped, delete: untyped) -> untyped
+
+      def move_to_lost_and_found: (untyped file) -> untyped
+
+      def lost_and_found_dir: () -> "lost_and_found"
+
+      def remote_directory: () -> untyped
+
+      def bucket_prefix: () -> untyped
+    end
+  end
+end

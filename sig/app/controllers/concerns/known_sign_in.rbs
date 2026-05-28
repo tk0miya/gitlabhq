@@ -1,0 +1,27 @@
+module KnownSignIn
+  include Gitlab::Utils::StrongMemoize
+
+  include CookiesHelper
+
+  KNOWN_SIGN_IN_COOKIE: :known_sign_in
+
+  KNOWN_SIGN_IN_COOKIE_EXPIRY: untyped
+
+  private
+
+  def verify_known_sign_in: () -> (nil | untyped)
+
+  def known_remote_ip?: () -> untyped
+
+  def known_device?: () -> untyped
+
+  def update_cookie: () -> untyped
+
+  def sessions: () -> untyped
+
+  def known_ip_addresses: () -> untyped
+
+  def notify_user: () -> untyped
+
+  def log_audit_event_for_unseen_ip: () -> untyped
+end

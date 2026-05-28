@@ -1,0 +1,14 @@
+module API
+  module Entities
+    class Project < ProjectDetails
+      include ::API::Helpers::RelatedResourcesHelpers
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def self.preload_resource: (untyped project) -> untyped
+
+      def self.preload_relation: (untyped projects_relation, ?::Hash[untyped, untyped] options) -> untyped
+
+      def self.execute_batch_counting: (untyped projects_relation) -> untyped
+    end
+  end
+end

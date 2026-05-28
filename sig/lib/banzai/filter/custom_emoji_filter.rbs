@@ -1,0 +1,31 @@
+module Banzai
+  module Filter
+    class CustomEmojiFilter < HTML::Pipeline::Filter
+      @emoji_pattern: untyped
+
+      prepend Concerns::TimeoutFilterHandler
+
+      prepend Concerns::PipelineTimingCheck
+
+      include Gitlab::Utils::StrongMemoize
+
+      IGNORED_ANCESTOR_TAGS: untyped
+
+      def call: () -> untyped
+
+      def custom_emoji_pattern: () -> untyped
+
+      def custom_emoji_name_element_filter: (untyped text) -> untyped
+
+      private
+
+      def has_custom_emoji?: () -> untyped
+
+      def resource_parent: () -> untyped
+
+      def custom_emoji_candidates: () -> untyped
+
+      def all_custom_emoji: () -> untyped
+    end
+  end
+end

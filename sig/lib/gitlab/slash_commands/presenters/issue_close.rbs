@@ -1,0 +1,19 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      class IssueClose < Presenters::Base
+        include Presenters::IssueBase
+
+        def present: () -> untyped
+
+        def already_closed: () -> untyped
+
+        private
+
+        def fallback_message: () -> ::String
+
+        def pretext: () -> ::String
+      end
+    end
+  end
+end

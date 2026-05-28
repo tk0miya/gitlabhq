@@ -1,0 +1,67 @@
+# This has been extracted from https://github.com/github/linguist/blob/master/lib/linguist/blob_helper.rb
+module Gitlab
+  module BlobHelper
+    # Prefer text mime types over binary
+    @_mime_type: untyped
+
+    @lines: untyped
+
+    # rubocop:disable Style/MultilineTernaryOperator
+    # rubocop:disable Style/NestedTernaryOperator
+    @content_type: untyped
+
+    @find_encoding: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def extname: () -> untyped
+
+    def known_extension?: () -> untyped
+
+    def viewable?: () -> untyped
+
+    MEGABYTE: untyped
+
+    def large?: () -> untyped
+
+    def binary_in_repo?: () -> (true | false | true | untyped)
+
+    def text_in_repo?: () -> untyped
+
+    def image?: () -> untyped
+
+    # Internal: Lookup mime type for extension.
+    #
+    # Returns a MIME::Type
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables
+    def _mime_type: () -> untyped
+
+    # Public: Get the actual blob mime type
+    #
+    # Examples
+    #
+    #   # => 'text/plain'
+    #   # => 'text/html'
+    #
+    # Returns a mime type String.
+    def mime_type: () -> (untyped | "text/plain")
+
+    def binary_mime_type?: () -> (untyped | false)
+
+    def lines: () -> untyped
+
+    def content_type: () -> untyped
+
+    def encoded_newlines_re: () -> untyped
+
+    def ruby_encoding: () -> (untyped | nil)
+
+    def encoding: () -> (untyped | nil)
+
+    def empty?: () -> untyped
+
+    private
+
+    def find_encoding: () -> (untyped | nil)
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Middleware
+    class Speedscope
+      @app: untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def rendering_flamegraph?: (untyped request) -> untyped
+
+      def render_flamegraph_json: (untyped graph) -> ::Array[200 | untyped | ::Array[untyped]]
+
+      def render_flamegraph_html: (untyped graph, untyped request) -> ::Array[200 | untyped | ::Array[untyped]]
+
+      def stackprof_mode: (untyped request) -> untyped
+    end
+  end
+end

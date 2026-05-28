@@ -1,0 +1,48 @@
+class CohortsService
+  @counts_by_month: untyped
+
+  MONTHS_INCLUDED: 12
+
+  def execute: () -> { months_included: untyped, cohorts: untyped }
+
+  # Get an array of hashes that looks like:
+  #
+  #     [
+  #       {
+  #         registration_month: Date.new(2017, 3),
+  #         activity_months: [3, 2, 1],
+  #         total: 3
+  #         inactive: 0
+  #      },
+  #      etc.
+  #
+  # The `months` array is always from oldest to newest, so it's always
+  # non-strictly decreasing from left to right.
+  def cohorts: () -> untyped
+
+  private
+
+  # Calculate a running sum of active users, so users active in later months
+  # count as active in this month, too. Start with the most recent month first,
+  # for calculating the running totals, and then reverse for displaying in the
+  # table.
+  #
+  # Each month has a total, and a percentage of the overall total, as keys.
+  def running_totals: (untyped all_months, untyped registration_month) -> untyped
+
+  # Get a hash that looks like:
+  #
+  #     {
+  #       [created_at_month, last_activity_on_month] => count,
+  #       [created_at_month, last_activity_on_month_2] => count_2,
+  #       # etc.
+  #     }
+  #
+  # created_at_month can never be nil, but last_activity_on_month can (when a
+  # user has never logged in, just been created). This covers the last
+  # MONTHS_INCLUDED months.
+  # rubocop: disable CodeReuse/ActiveRecord
+  def counts_by_month: () -> untyped
+
+  def column_to_date: (untyped column) -> ::String
+end

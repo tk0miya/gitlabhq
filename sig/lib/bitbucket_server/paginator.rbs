@@ -1,0 +1,50 @@
+module BitbucketServer
+  class Paginator
+    @connection: untyped
+
+    @type: untyped
+
+    @url: untyped
+
+    @page: untyped
+
+    @page_offset: untyped
+
+    @limit: untyped
+
+    @total: untyped
+
+    # Should be kept in-sync with `BITBUCKET_SERVER_PAGE_LENGTH` in app/assets/javascripts/import_entities/constants.js
+    PAGE_LENGTH: 25
+
+    attr_reader page_offset: untyped
+
+    def initialize: (untyped connection, untyped url, untyped type, ?page_offset: ::Integer, ?limit: untyped?) -> void
+
+    def items: () -> untyped
+
+    def has_next_page?: () -> untyped
+
+    private
+
+    attr_reader connection: untyped
+
+    attr_reader page: untyped
+
+    attr_reader url: untyped
+
+    attr_reader type: untyped
+
+    attr_reader limit: untyped
+
+    def over_limit?: () -> (false | untyped)
+
+    def next_offset: () -> untyped
+
+    def starting_offset: () -> untyped
+
+    def max_per_page: () -> untyped
+
+    def fetch_next_page: () -> untyped
+  end
+end

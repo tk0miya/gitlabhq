@@ -1,0 +1,9 @@
+module Atlassian
+  module JiraConnect
+    module Serializers
+      class PullRequestEntity < BaseEntity
+        STATUS_MAPPING: { "opened" => "OPEN", "locked" => "OPEN", "merged" => "MERGED", "closed" => "DECLINED" }
+      end
+    end
+  end
+end

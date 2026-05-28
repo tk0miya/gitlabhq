@@ -1,0 +1,47 @@
+module Import
+  module Offline
+    module Exports
+      class WriteMetadataService
+        @offline_export: untyped
+
+        include Gitlab::ImportExport::CommandLineUtil
+
+        include Gitlab::Utils::StrongMemoize
+
+        METADATA_FILENAME: "metadata"
+
+        METADATA_EXTENSION: "json"
+
+        TMPDIR_SEGMENT: "offline_exports"
+
+        def initialize: (untyped offline_export) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader offline_export: untyped
+
+        def export_metadata_hash: () -> untyped
+
+        def entities_mapping_hash: () -> untyped
+
+        def map_exported_entity_paths: (untyped included_routes, type: untyped) -> untyped
+
+        def upload_to_object_storage: () -> untyped
+
+        def configuration: () -> untyped
+
+        def compress_metadata_file: () -> untyped
+
+        def json_writer: () -> untyped
+
+        def tmpdir_path: () -> untyped
+
+        def compressed_filename: () -> ::String
+
+        def filename_with_extension: () -> ::String
+      end
+    end
+  end
+end

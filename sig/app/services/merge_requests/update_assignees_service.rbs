@@ -1,0 +1,19 @@
+module MergeRequests
+  class UpdateAssigneesService < UpdateService
+    @attrs: untyped
+
+    # a stripped down service that only does what it must to update the
+    # assignees, and knows that it does not have to check for other updates.
+    # This saves a lot of queries for irrelevant things that cannot possibly
+    # change in the execution of this service.
+    def execute: (untyped merge_request) -> untyped
+
+    private
+
+    def assignee_ids: () -> untyped
+
+    def params: () -> { assignee_ids: untyped }
+
+    def update_attrs: () -> untyped
+  end
+end

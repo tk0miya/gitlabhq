@@ -1,0 +1,221 @@
+module Gitlab
+  module Regex
+    module Packages
+      @cargo_package_name_regex: untyped
+
+      @cargo_package_normalized_name_regex: untyped
+
+      @conan_package_reference_regex: untyped
+
+      @conan_revision_regex: untyped
+
+      # The revision can be one of two types:
+      # - "hash" (default): the checksum hash of the recipe manifest: MD5 Hash 32 Characters
+      # - "scm" or "scm_folder": the commit ID for the repository system (Git or SVN): SHA-1 Hash 40 Characters
+      # according to https://docs.conan.io/2.10/reference/conanfile/attributes.html#revision-mode
+      @conan_revision_regex_v2: untyped
+
+      @conan_revision_regex_combined: untyped
+
+      # https://docs.conan.io/en/latest/reference/conanfile/attributes.html#name
+      @conan_recipe_component_regex: untyped
+
+      # see https://github.com/composer/semver/blob/31f3ea725711245195f62e54ffa402d8ef2fdba9/src/VersionParser.php#L215
+      @composer_package_version_regex: untyped
+
+      @composer_dev_version_regex: untyped
+
+      @maven_file_name_regex: untyped
+
+      @maven_path_regex: untyped
+
+      @maven_app_name_regex: untyped
+
+      @maven_version_regex: untyped
+
+      @nuget_package_name_regex: untyped
+
+      @nuget_version_regex: untyped
+
+      @terraform_module_package_name_regex: untyped
+
+      @pypi_version_regex: untyped
+
+      # See official parser
+      # https://git.dpkg.org/cgit/dpkg/dpkg.git/tree/lib/dpkg/parsehelp.c?id=9e0c88ec09475f4d1addde9cdba1ad7849720356#n122
+      # @debian_package_name_regex ||= %r{\A[a-z0-9][-+\._a-z0-9]*\z}i.freeze
+      # But we prefer a more strict version from Lintian
+      # https://salsa.debian.org/lintian/lintian/-/blob/5080c0068ffc4a9ddee92022a91d0c2ff53e56d1/lib/Lintian/Util.pm#L116
+      @debian_package_name_regex: untyped
+
+      # See official parser: https://git.dpkg.org/cgit/dpkg/dpkg.git/tree/lib/dpkg/parsehelp.c?id=9e0c88ec09475f4d1addde9cdba1ad7849720356#n205
+      @debian_version_regex: untyped
+
+      # See official parser: https://git.dpkg.org/cgit/dpkg/dpkg.git/tree/lib/dpkg/arch.c?id=9e0c88ec09475f4d1addde9cdba1ad7849720356#n43
+      # But we limit to lower case
+      @debian_architecture_regex: untyped
+
+      @debian_distribution_regex: untyped
+
+      @debian_component_regex: untyped
+
+      @debian_direct_upload_filename_regex: untyped
+
+      @helm_channel_regex: untyped
+
+      @helm_package_regex: untyped
+
+      # identical to semver_regex, with optional preceding 'v'
+      @helm_version_regex: untyped
+
+      # The order of the alternatives in <prerelease> are intentionally
+      # reordered to be greedy. Without this change, the unbounded regex would
+      # only partially match "v0.0.0-20201230123456-abcdefabcdef".
+      @unbounded_semver_regex: untyped
+
+      @semver_regex: untyped
+
+      @_semver_major_minor_patch_regex: untyped
+
+      @_semver_major_regex: untyped
+
+      @_semver_minor_regex: untyped
+
+      @_semver_patch_regex: untyped
+
+      @_semver_prerelease_build_regex: untyped
+
+      # identical to semver_regex, except starting with 'v'
+      @prefixed_semver_regex: untyped
+
+      @go_package_regex: untyped
+
+      @generic_package_file_name_regex: untyped
+
+      @sha256_regex: untyped
+
+      @slack_link_regex: untyped
+
+      @helm_index_app_version_quote_regex: untyped
+
+      @conan_name_regex: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      CONAN_RECIPE_FILES: ::Array["conanfile.py" | "conanmanifest.txt" | "conan_sources.tgz" | "conan_export.tgz"]
+
+      CONAN_PACKAGE_FILES: ::Array["conaninfo.txt" | "conanmanifest.txt" | "conan_package.tgz"]
+
+      PYPI_NORMALIZED_NAME_REGEX_STRING: "[-_.]+"
+
+      # see https://github.com/apache/maven/blob/c1dfb947b509e195c75d4275a113598cf3063c3e/maven-artifact/src/main/java/org/apache/maven/artifact/Artifact.java#L46
+      MAVEN_SNAPSHOT_DYNAMIC_PARTS: ::Regexp
+
+      API_PATH_REGEX: ::Regexp
+
+      def cargo_package_name_regex: () -> untyped
+
+      def cargo_package_normalized_name_regex: () -> untyped
+
+      def conan_package_reference_regex: () -> untyped
+
+      def conan_revision_regex: () -> untyped
+
+      def conan_revision_regex_v2: () -> untyped
+
+      # The revision format depends on the Conan protocol version:
+      # - v1: always "0" (revisions not supported)
+      # - v2: either MD5 hash (32 hex chars) or SCM commit ID (40 hex chars)
+      #   per https://docs.conan.io/2.10/reference/conanfile/attributes.html#revision-mode
+      def conan_revision_regex_combined: () -> untyped
+
+      def conan_recipe_user_channel_regex: () -> ::Regexp
+
+      def conan_recipe_component_regex: () -> untyped
+
+      def composer_package_version_regex: () -> untyped
+
+      def composer_dev_version_regex: () -> untyped
+
+      def package_name_regex: (?untyped? other_accepted_chars_package_name) -> untyped
+
+      def maven_file_name_regex: () -> untyped
+
+      def maven_path_regex: () -> untyped
+
+      def maven_app_name_regex: () -> untyped
+
+      def maven_version_regex: () -> untyped
+
+      def maven_app_group_regex: () -> untyped
+
+      def npm_package_name_regex: (?untyped? other_accepted_chars) -> untyped
+
+      def npm_package_name_regex_message: () -> "should be a valid NPM package name: https://github.com/npm/validate-npm-package-name#naming-rules."
+
+      def nuget_package_name_regex: () -> untyped
+
+      def nuget_version_regex: () -> untyped
+
+      def terraform_module_package_name_regex: () -> untyped
+
+      def pypi_version_regex: () -> untyped
+
+      def debian_package_name_regex: () -> untyped
+
+      def debian_version_regex: () -> untyped
+
+      def debian_architecture_regex: () -> untyped
+
+      def debian_distribution_regex: () -> untyped
+
+      def debian_component_regex: () -> untyped
+
+      def debian_direct_upload_filename_regex: () -> untyped
+
+      def helm_channel_regex: () -> untyped
+
+      def helm_package_regex: () -> untyped
+
+      def helm_version_regex: () -> untyped
+
+      def unbounded_semver_regex: () -> untyped
+
+      def semver_regex: () -> untyped
+
+      def semver_regex_message: () -> "should follow SemVer: https://semver.org"
+
+      # These partial semver regexes are intended for use in composing other
+      # regexes rather than being used alone.
+      def _semver_major_minor_patch_regex: () -> untyped
+
+      def _semver_major_regex: () -> untyped
+
+      def _semver_minor_regex: () -> untyped
+
+      def _semver_patch_regex: () -> untyped
+
+      def _semver_prerelease_build_regex: () -> untyped
+
+      def prefixed_semver_regex: () -> untyped
+
+      def go_package_regex: () -> untyped
+
+      def generic_package_version_regex: () -> untyped
+
+      def generic_package_name_regex: () -> untyped
+
+      def generic_package_file_name_regex: () -> untyped
+
+      def sha256_regex: () -> untyped
+
+      def slack_link_regex: () -> untyped
+
+      def helm_index_app_version_quote_regex: () -> untyped
+
+      private
+
+      def conan_name_regex: () -> untyped
+    end
+  end
+end

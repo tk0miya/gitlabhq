@@ -1,0 +1,47 @@
+module Iam
+  class ConsentController < ApplicationController
+    @consent_challenge: untyped
+
+    @consent_data: untyped
+
+    @cached_consent_data: untyped
+
+    CONSENT_DATA_CACHE_TTL: untyped
+
+    CONSENT_DATA_CACHE_KEY_PREFIX: "iam:consent_data"
+
+    UPSTREAM_ERROR_REASONS: untyped
+
+    def show: () -> untyped
+
+    def accept: () -> untyped
+
+    def reject: () -> untyped
+
+    private
+
+    def accept_challenge: (challenge: untyped, client_id: untyped, client_name: untyped, requested_scopes: untyped, granted_scopes: untyped, client_scopes: untyped) -> untyped
+
+    def handle_iam_result: (untyped result) -> untyped
+
+    def cache_consent_data: (challenge: untyped, subject: untyped, client_id: untyped, client_name: untyped, requested_scopes: untyped, client_scopes: untyped) -> untyped
+
+    def require_consent_challenge!: () -> (nil | untyped)
+
+    def load_consent_data: () -> untyped
+
+    def load_cached_consent_data: () -> untyped
+
+    def verify_subject_matches_user!: () -> (nil | untyped)
+
+    def ensure_iam_enabled!: () -> (nil | untyped)
+
+    def verify_confirmed_email!: () -> (nil | untyped)
+
+    def consent_challenge_param: () -> untyped
+
+    def consent_data_cache_key: (untyped challenge) -> ::String
+
+    def fail_consent: (message: untyped, status: untyped, ?reason: untyped?) -> untyped
+  end
+end

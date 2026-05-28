@@ -1,0 +1,75 @@
+module Ci
+  class CollectPipelineAnalyticsServiceBase
+    # rubocop:enable Metrics/ParameterLists
+    @current_user: untyped
+
+    @container: untyped
+
+    @from_time: untyped
+
+    @to_time: untyped
+
+    @status_groups: untyped
+
+    @source: untyped
+
+    @ref: untyped
+
+    @duration_percentiles: untyped
+
+    @subgroup_full_paths: untyped
+
+    include PipelineRefFilterIncludingReservedRefNames
+
+    STATUS_GROUP_TO_STATUSES: { success: ::Array["success"], failed: ::Array["failed"], other: ::Array["canceled" | "skipped"] }
+
+    STATUS_GROUPS: untyped
+
+    STATUS_TO_STATUS_GROUP: untyped
+
+    ALLOWED_PERCENTILES: ::Array[50 | 75 | 90 | 95 | 99]
+
+    MAX_SUBGROUP_PATHS: 10
+
+    attr_reader current_user: untyped
+
+    attr_reader container: untyped
+
+    attr_reader from_time: untyped
+
+    attr_reader to_time: untyped
+
+    attr_reader source: untyped
+
+    attr_reader ref: untyped
+
+    attr_reader status_groups: untyped
+
+    attr_reader duration_percentiles: untyped
+
+    attr_reader subgroup_full_paths: untyped
+
+    # rubocop:disable Metrics/ParameterLists -- All keyword args with defaults
+    def initialize: (current_user: untyped, container: untyped, from_time: untyped, to_time: untyped, ?source: untyped?, ?ref: untyped?, ?status_groups: ::Array[untyped], ?duration_percentiles: untyped, ?subgroup_full_paths: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def allowed?: () -> untyped
+
+    def clickhouse_model: () -> untyped
+
+    def base_query: () -> untyped
+
+    def resolve_subgroups: () -> (::Array[untyped] | untyped)
+
+    def duration_percentile_symbols: () -> untyped
+
+    def selected_statuses: () -> untyped
+
+    def validate_arguments: () -> untyped
+
+    def fetch_response: () -> untyped
+  end
+end

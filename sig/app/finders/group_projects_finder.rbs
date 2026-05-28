@@ -1,0 +1,73 @@
+# GroupProjectsFinder
+#
+# Used to filter Projects  by set of params
+#
+# Arguments:
+#   current_user - which user use
+#   project_ids_relation: int[] - project ids to use
+#   group
+#   options:
+#     exclude_shared: boolean
+#       When true, only projects within the group are included in the result.
+#     only_shared: boolean
+#       When true, only projects arising from group-project shares are included in the result.
+#     limit: integer
+#     include_subgroups: boolean
+#     include_ancestor_groups: boolean
+#   params:
+#     sort: string
+#     visibility_level: int
+#     tags: string[]
+#     personal: boolean
+#     search: string
+#     non_archived: boolean
+#     with_issues_enabled: boolean
+#     with_merge_requests_enabled: boolean
+#     min_access_level: int
+#     owned: boolean
+#
+class GroupProjectsFinder < ProjectsFinder
+  @group: untyped
+
+  @options: untyped
+
+  DEFAULT_PROJECTS_LIMIT: 100
+
+  attr_reader group: untyped
+
+  attr_reader options: untyped
+
+  def initialize: (group: untyped, ?params: ::Hash[untyped, untyped], ?options: ::Hash[untyped, untyped], ?current_user: untyped?, ?project_ids_relation: untyped?) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def filter_projects: (untyped collection) -> untyped
+
+  def limit: (untyped collection) -> untyped
+
+  def init_collection: () -> untyped
+
+  def by_feature_availability: (untyped projects) -> untyped
+
+  def filter_by_visibility: (untyped relation) -> untyped
+
+  def union: (untyped items) -> untyped
+
+  def exclude_shared?: () -> untyped
+
+  def owned_projects?: () -> untyped
+
+  def only_shared?: () -> untyped
+
+  # subgroups are supported only for owned projects not for shared
+  def include_subgroups?: () -> untyped
+
+  # ancestor groups are supported only for owned projects not for shared
+  def include_ancestor_groups?: () -> untyped
+
+  def projects_within_group: () -> untyped
+
+  def shared_projects: () -> untyped
+end

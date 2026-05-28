@@ -1,0 +1,33 @@
+module Gitlab
+  module GithubImport
+    module Clients
+      module SearchRepos
+        def search_repos_by_name_graphql: (untyped name, ?::Hash[untyped, untyped] options) -> untyped
+
+        def count_repos_by_relation_type_graphql: (untyped options) -> untyped
+
+        private
+
+        def graphql_request: (untyped query) -> untyped
+
+        def graphql_search_repos_body: (untyped name, untyped options) -> ::String
+
+        def search_repos_query: (untyped string, ?::Hash[untyped, untyped] options) -> untyped
+
+        def organization_repos_query: (untyped search_string, untyped options) -> (::String | untyped)
+
+        def collaborated_repos_query: (untyped search_string) -> ::String
+
+        def owned_repos_query: (untyped search_string) -> ::String
+
+        def legacy_all_repos_query: (untyped search_string) -> untyped
+
+        def collaborations_subquery: () -> untyped
+
+        def organizations_subquery: () -> untyped
+
+        def count_by_relation_type_query: (untyped options) -> ::String
+      end
+    end
+  end
+end

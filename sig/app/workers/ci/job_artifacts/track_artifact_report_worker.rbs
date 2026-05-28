@@ -1,0 +1,11 @@
+module Ci
+  module JobArtifacts
+    class TrackArtifactReportWorker
+      include ApplicationWorker
+
+      include PipelineBackgroundQueue
+
+      def perform: (untyped pipeline_id) -> untyped
+    end
+  end
+end

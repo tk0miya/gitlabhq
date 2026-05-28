@@ -1,0 +1,10 @@
+# rubocop: disable Gitlab/BoundedContexts -- Not a bounded context
+module Types
+  module CountableConnectionHelper
+    extend ActiveSupport::Concern
+
+    # Performs a limited count on the relation
+    # Returns limit + 1 when count exceeds limit, otherwise returns exact count
+    def limited_count: (untyped relation, untyped limit) -> untyped
+  end
+end

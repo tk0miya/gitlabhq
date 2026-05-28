@@ -1,0 +1,25 @@
+module Gitlab
+  module GitalyClient
+    class RemoteService
+      @repository: untyped
+
+      @gitaly_repo: untyped
+
+      @storage: untyped
+
+      include Gitlab::EncodingHelper
+
+      include WithFeatureFlagActors
+
+      MAX_MSG_SIZE: untyped
+
+      def self.exists?: (untyped remote_url) -> untyped
+
+      def initialize: (untyped repository) -> void
+
+      def find_remote_root_ref: (untyped remote_url, untyped authorization) -> untyped
+
+      def update_remote_mirror: (untyped remote_url, untyped only_branches_matching, ?ssh_key: untyped?, ?known_hosts: untyped?, ?keep_divergent_refs: bool) -> untyped
+    end
+  end
+end

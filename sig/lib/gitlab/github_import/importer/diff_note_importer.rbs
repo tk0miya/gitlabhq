@@ -1,0 +1,70 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class DiffNoteImporter
+        @note: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        @author_id: untyped
+
+        @author_found: untyped
+
+        @note_body: untyped
+
+        @author: untyped
+
+        @merge_request: untyped
+
+        @merge_request_id: untyped
+
+        @user_finder: untyped
+
+        include ::Import::PlaceholderReferences::Pusher
+
+        DiffNoteCreationError: untyped
+
+        # note - An instance of `Gitlab::GithubImport::Representation::DiffNote`
+        # project - An instance of `Project`
+        # client - An instance of `Gitlab::GithubImport::Client`
+        def initialize: (untyped note, untyped project, untyped client) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader note: untyped
+
+        attr_reader project: untyped
+
+        attr_reader client: untyped
+
+        attr_reader author_id: untyped
+
+        attr_reader author_found: untyped
+
+        def build_author_attributes: () -> untyped
+
+        # rubocop:disable Gitlab/BulkInsert
+        def import_with_legacy_diff_note: () -> untyped
+
+        def import_with_diff_note: () -> untyped
+
+        def note_body: () -> untyped
+
+        def author: () -> untyped
+
+        def merge_request: () -> untyped
+
+        # Returns the ID of the merge request this note belongs to.
+        def merge_request_id: () -> untyped
+
+        def user_finder: () -> untyped
+
+        def log_diff_note_creation: (untyped model) -> untyped
+      end
+    end
+  end
+end

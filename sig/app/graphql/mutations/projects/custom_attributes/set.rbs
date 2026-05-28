@@ -1,0 +1,11 @@
+module Mutations
+  module Projects
+    module CustomAttributes
+      class Set < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, key: untyped, value: untyped) -> ({ custom_attribute: nil, errors: untyped } | { custom_attribute: untyped, errors: ::Array[untyped] })
+      end
+    end
+  end
+end

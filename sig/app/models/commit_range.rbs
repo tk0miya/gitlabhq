@@ -1,0 +1,119 @@
+# CommitRange makes it easier to work with commit ranges
+#
+# Examples:
+#
+#   range = CommitRange.new('f3f85602...e86e1013', project)
+#   range.exclude_start?  # => false
+#   range.to_s            # => "f3f85602...e86e1013"
+#
+#   range = CommitRange.new(
+#                           'f3f856029bc5f966c5a7ee24cf7efefdd20e6019..e86e1013709735be5bb767e2b228930c543f25ae',
+#                           project
+#                          )
+#   range.exclude_start?  # => true
+#   range.to_param        # => {
+#                               from: "f3f856029bc5f966c5a7ee24cf7efefdd20e6019^",
+#                               to: "e86e1013709735be5bb767e2b228930c543f25ae"
+#                              }
+#   range.to_s            # => "f3f85602..e86e1013"
+#
+#   # Assuming the specified project has a repository containing both commits:
+#   range.valid_commits? # => true
+#
+class CommitRange
+  self.@reference_pattern: untyped
+
+  self.@link_reference_pattern: untyped
+
+  @project: untyped
+
+  @ref_from: untyped
+
+  @notation: untyped
+
+  @ref_to: untyped
+
+  @commit_from: untyped
+
+  @commit_to: untyped
+
+  @commit_start: untyped
+
+  include ActiveModel::Conversion
+
+  include Referable
+
+  attr_reader commit_from: untyped
+
+  attr_reader notation: untyped
+
+  attr_reader commit_to: untyped
+
+  attr_reader ref_from: untyped
+
+  attr_reader ref_to: untyped
+
+  # The Project model
+  attr_accessor project: untyped
+
+  # The beginning and ending refs can be named or SHAs, and
+  # the range notation can be double- or triple-dot.
+  REF_PATTERN: ::Regexp
+
+  PATTERN: ::Regexp
+
+  # In text references, the beginning and ending refs can only be valid SHAs.
+  STRICT_PATTERN: ::Regexp
+
+  def self.reference_prefix: () -> "@"
+
+  # Pattern used to extract commit range references from text
+  #
+  # This pattern supports cross-project references.
+  def self.reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> untyped
+
+  # Initialize a CommitRange
+  #
+  # range_string - The String commit range.
+  # project      - The Project model.
+  #
+  # Raises ArgumentError if `range_string` does not match `PATTERN`.
+  def initialize: (untyped range_string, untyped project) -> void
+
+  def inspect: () -> ::String
+
+  def to_s: () -> untyped
+
+  alias id to_s
+
+  def to_reference: (?untyped? from, ?full: bool) -> untyped
+
+  def reference_link_text: (?untyped? from) -> untyped
+
+  # Return a Hash of parameters for passing to a URL helper
+  #
+  # See `namespace_project_compare_url`
+  def to_param: () -> { from: untyped, to: untyped }
+
+  def exclude_start?: () -> untyped
+
+  # Check if both the starting and ending commit IDs exist in a project's
+  # repository
+  def valid_commits?: () -> untyped
+
+  def persisted?: () -> true
+
+  def sha_from: () -> (nil | untyped)
+
+  def sha_to: () -> (nil | untyped)
+
+  def sha_start: () -> (nil | untyped)
+
+  def commit_start: () -> (nil | untyped)
+
+  alias sha_end sha_to
+
+  alias commit_end commit_to
+end

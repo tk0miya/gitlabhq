@@ -1,0 +1,31 @@
+module JiraConnectInstallations
+  class UpdateService
+    @installation: untyped
+
+    @jira_user: untyped
+
+    @update_params: untyped
+
+    @skip_jira_admin_check: untyped
+
+    def self.execute: (untyped installation, untyped jira_user, untyped update_params, ?skip_jira_admin_check: bool) -> untyped
+
+    def initialize: (untyped installation, untyped jira_user, untyped update_params, ?skip_jira_admin_check: bool) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def instance_url_changed?: () -> untyped
+
+    def send_uninstalled_hook: () -> (nil | untyped)
+
+    def instance_installation_creation_error: (untyped error_message) -> untyped
+
+    def update_error: () -> untyped
+
+    def forbidden_error: () -> untyped
+
+    def can_administer_jira?: () -> untyped
+  end
+end

@@ -1,0 +1,53 @@
+#
+# JsonSchemaValidator
+#
+# Custom validator for json schema.
+# Create a json schema within the json_schemas directory
+#
+#   class Project < ActiveRecord::Base
+#     validates :data, json_schema: { filename: "file", size_limit: 64.kilobytes }
+#   end
+#
+class JsonSchemaValidator < ActiveModel::EachValidator
+  @base_directory: untyped
+
+  @size_limit: untyped
+
+  @schema: untyped
+
+  FILENAME_ALLOWED: ::Regexp
+
+  FilenameError: untyped
+
+  BASE_DIRECTORY: ::Array["app" | "validators" | "json_schemas"]
+
+  def initialize: (untyped options) -> void
+
+  def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+  def schema: () -> untyped
+
+  private
+
+  attr_reader base_directory: untyped
+
+  attr_reader size_limit: untyped
+
+  def valid_size?: (untyped value) -> untyped
+
+  def json_size: (untyped value) -> untyped
+
+  def size_error_message: () -> untyped
+
+  def format_error_message: (untyped error) -> untyped
+
+  def format_one_of_error: (untyped error) -> untyped
+
+  def valid_schema?: (untyped value) -> untyped
+
+  def schema_path: () -> untyped
+
+  def filename_with_extension: () -> ::String
+
+  def error_message: () -> untyped
+end

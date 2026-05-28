@@ -1,0 +1,47 @@
+module Projects
+  module Settings
+    class DeployKeysPresenter < Gitlab::View::Presenter::Simple
+      @key: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def new_key: () -> untyped
+
+      # It includes:
+      # - The deploy keys enabled in the project.
+      def enabled_keys: () -> untyped
+
+      # NOTE: This method is redundant. Use `available_project_keys` and `available_public_keys` instead.
+      # It includes:
+      # - Enabled deploy keys in projects that can be accessed by the user.
+      # - Instance-level public deploy keys.
+      # It excludes:
+      # - The deploy keys enabled in the project.
+      def available_keys: () -> untyped
+
+      # It includes:
+      # - Enabled deploy keys in projects that can be accessed by the user.
+      # It excludes:
+      # - The deploy keys enabled in the project
+      def available_project_keys: () -> untyped
+
+      # It includes:
+      # - Instance-level public deploy keys.
+      # It excludes:
+      # - The deploy keys enabled in the project.
+      def available_public_keys: () -> untyped
+
+      def as_json: () -> { enabled_keys: untyped, available_project_keys: untyped, public_keys: untyped }
+
+      def form_partial_path: () -> "shared/deploy_keys/project_group_form"
+
+      private
+
+      # Caching all readable project ids for the user that are associated with the queried deploy keys
+      def readable_project_ids: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def user_readable_project_ids: () -> untyped
+    end
+  end
+end

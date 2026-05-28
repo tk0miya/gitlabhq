@@ -1,0 +1,28 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        module Concerns
+          #
+          # Module that provides common validation logic for include entries
+          #
+          # This module is included by:
+          # - Gitlab::Ci::Config::Entry::Include
+          # - Gitlab::Ci::Config::Header::Include
+          #
+          # This module is tested indirectly through the classes that include it.
+          #
+          module BaseInclude
+            extend ActiveSupport::Concern
+
+            COMMON_ALLOWED_KEYS: ::Array[:local | :file | :remote | :project | :ref | :integrity | :cache]
+
+            def skip_config_hash_validation?: () -> true
+
+            def cache_present?: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

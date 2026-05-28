@@ -1,0 +1,20 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      class ServiceDiscovery
+        class Sampler
+          # seed must be set once and consistent
+          # for every invocation of #sample on
+          # the same instance of Sampler
+          @seed: untyped
+
+          @max_replica_pools: untyped
+
+          def initialize: (max_replica_pools: untyped, ?seed: untyped) -> void
+
+          def sample: (untyped addresses) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+# This module has the necessary methods to render
+# menus using a custom partial
+module Sidebars
+  module Concerns
+    module HasPartial
+      def menu_partial: () -> nil
+
+      def menu_partial_options: () -> ::Hash[untyped, untyped]
+
+      def menu_with_partial?: () -> untyped
+    end
+  end
+end

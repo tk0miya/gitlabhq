@@ -1,0 +1,13 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateEpicLabelLinksToWorkItems < BatchedMigrationJob
+      def perform: () -> untyped
+
+      private
+
+      def delete_duplicate_epic_label_links: (untyped sub_batch) -> untyped
+
+      def migrate_epic_label_links: (untyped sub_batch) -> untyped
+    end
+  end
+end

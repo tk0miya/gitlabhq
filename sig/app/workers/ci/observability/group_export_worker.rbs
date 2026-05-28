@@ -1,0 +1,28 @@
+# rubocop:disable Scalability/IdempotentWorker-- Spawns non-idempotent ExportWorker jobs
+module Ci
+  module Observability
+    class GroupExportWorker
+      @collection_window_lookback_days: untyped
+
+      include ApplicationWorker
+
+      COLLECTION_WINDOW_LOOKBACK_DAYS: 10
+
+      def perform: (untyped group_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+      private
+
+      attr_reader collection_window_lookback_days: untyped
+
+      def export_descendant_projects_for_group: (untyped group) -> (nil | untyped)
+
+      def find_descendant_groups_with_observability_settings: (untyped group) -> untyped
+
+      def collect_project_ids_from_groups: (untyped groups) -> untyped
+
+      def find_groups_with_observability_settings: (untyped group_ids) -> untyped
+
+      def enqueue_pipelines_for_project_ids: (untyped project_ids) -> untyped
+    end
+  end
+end

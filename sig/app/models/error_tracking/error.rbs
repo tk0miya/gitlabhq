@@ -1,0 +1,25 @@
+class ErrorTracking::Error < ApplicationRecord
+  include Sortable
+
+  def self.report_error: (name: untyped, description: untyped, actor: untyped, platform: untyped, timestamp: untyped) -> untyped
+
+  def self.sort_by_attribute: (untyped method) -> untyped
+
+  def title: () -> (::String | untyped)
+
+  def title_truncated: () -> untyped
+
+  # For compatibility with sentry integration
+  def to_sentry_error: () -> untyped
+
+  # For compatibility with sentry integration
+  def to_sentry_detailed_error: () -> untyped
+
+  private
+
+  # For compatibility with sentry integration
+  def external_url: () -> untyped
+
+  # For compatibility with sentry integration
+  def external_base_url: () -> untyped
+end

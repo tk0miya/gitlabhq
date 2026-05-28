@@ -1,0 +1,17 @@
+module Ide
+  class SchemasConfigService < ::Ide::BaseConfigService
+    PREDEFINED_SCHEMAS: ::Array[{ uri: "https://json.schemastore.org/gitlab-ci", match: ::Array["*.gitlab-ci.yml"] }]
+
+    def execute: () -> untyped
+
+    private
+
+    def find_schema: (untyped filename, untyped schemas) -> (untyped | nil)
+
+    def predefined_schema_for: (untyped filename) -> untyped
+
+    def predefined_schemas: () -> untyped
+
+    def get_cached: (untyped url) -> untyped
+  end
+end

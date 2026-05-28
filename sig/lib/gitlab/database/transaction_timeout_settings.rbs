@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    class TransactionTimeoutSettings
+      @connection: untyped
+
+      SETTING: "idle_in_transaction_session_timeout"
+
+      def initialize: (untyped connection) -> void
+
+      def disable_timeouts: () -> untyped
+
+      def restore_timeouts: () -> untyped
+    end
+  end
+end

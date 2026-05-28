@@ -1,0 +1,15 @@
+module Resolvers
+  module Ci
+    module Catalog
+      class ResourcesResolver < BaseResolver
+        include LooksAhead
+
+        def resolve_with_lookahead: (scope: untyped, ?search: untyped?, ?sort: untyped?, ?verification_level: untyped?, ?topics: untyped?, ?min_access_level: untyped?, ?group_ids: untyped?) -> untyped
+
+        private
+
+        def preloads: () -> { full_path: { project: ::Array[:route | { namespace: :route }] }, web_path: { project: { namespace: :route } }, readme_html: { project: :route }, archived: { project: { namespace: ::Array[:namespace_settings | :namespace_settings_with_ancestors_inherited_settings] } }, versions: { versions: :components } }
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+class DescriptionVersion < ApplicationRecord
+  include FromUnion
+
+  attr_accessor preloaded_issuable: untyped
+
+  def self.issuable_attrs: () -> ::Array[:issue | :merge_request]
+
+  def issuable: () -> untyped
+
+  private
+
+  def ensure_namespace_id: () -> untyped
+
+  def issuable_id_attrs: () -> untyped
+end

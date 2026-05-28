@@ -1,0 +1,21 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      class LfsObjectsImporter
+        include ParallelScheduling
+
+        def execute: () -> untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def collection_method: () -> :lfs_objects
+
+        def id_for_already_processed_cache: (untyped lfs_download_object) -> untyped
+
+        private
+
+        def queue_workers: (untyped download_service) -> untyped
+      end
+    end
+  end
+end

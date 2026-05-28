@@ -1,0 +1,27 @@
+module Gitlab
+  module Database
+    module SchemaCacheWithRenamedTable
+      @renamed_tables: untyped
+
+      def clear!: () -> untyped
+
+      def clear_data_source_cache!: (untyped pool, untyped table_name) -> untyped
+
+      def primary_keys: (untyped pool, untyped table_name) -> untyped
+
+      def columns: (untyped pool, untyped table_name) -> untyped
+
+      def columns_hash: (untyped pool, untyped table_name) -> untyped
+
+      def indexes: (untyped pool, untyped table_name) -> untyped
+
+      private
+
+      def underlying_table: (untyped pool, untyped table_name) -> untyped
+
+      def renamed_tables_cache: (untyped pool) -> untyped
+
+      def clear_renamed_tables_cache!: () -> untyped
+    end
+  end
+end

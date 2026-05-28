@@ -1,0 +1,42 @@
+# Gitlab::Git::CommitStats counts the additions, deletions, and total changes
+# in a commit.
+module Gitlab
+  module Git
+    class CommitStats
+      @id: untyped
+
+      @additions: untyped
+
+      @deletions: untyped
+
+      @files: untyped
+
+      @total: untyped
+
+      include Gitlab::Git::WrapsGitalyErrors
+
+      attr_reader id: untyped
+
+      attr_reader additions: untyped
+
+      attr_reader deletions: untyped
+
+      attr_reader total: untyped
+
+      attr_reader files: untyped
+
+      # Instantiate a CommitStats object
+      #
+      # Gitaly migration: https://gitlab.com/gitlab-org/gitaly/issues/323
+      def initialize: (untyped repo, untyped commit) -> void
+
+      def ensure_stats_format: (untyped repo) -> untyped
+
+      def fetch_stats: (untyped repo) -> untyped
+
+      private
+
+      def cache_key: (untyped repo) -> ::String
+    end
+  end
+end

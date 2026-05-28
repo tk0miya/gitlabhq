@@ -1,0 +1,33 @@
+module Gitlab
+  module Issuable
+    module Clone
+      class AttributesRewriter
+        @current_user: untyped
+
+        @original_entity: untyped
+
+        @target_parent: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader original_entity: untyped
+
+        attr_reader target_parent: untyped
+
+        def initialize: (untyped current_user, untyped original_entity, untyped target_parent) -> void
+
+        def execute: (?include_milestone: bool) -> untyped
+
+        private
+
+        def cloneable_labels: () -> untyped
+
+        def matching_milestone: (untyped title) -> (nil | untyped)
+
+        def project: () -> (untyped | nil)
+
+        def group: () -> (untyped | untyped | nil)
+      end
+    end
+  end
+end

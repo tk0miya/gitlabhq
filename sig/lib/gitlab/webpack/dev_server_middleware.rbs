@@ -1,0 +1,18 @@
+# :nocov:
+module Gitlab
+  module Webpack
+    class DevServerMiddleware < Rack::Proxy
+      @proxy_host: untyped
+
+      @proxy_port: untyped
+
+      @proxy_path: untyped
+
+      @proxy_scheme: untyped
+
+      def initialize: (?untyped? app, ?::Hash[untyped, untyped] opts) -> void
+
+      def perform_request: (untyped env) -> untyped
+    end
+  end
+end

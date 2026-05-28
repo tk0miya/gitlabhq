@@ -1,0 +1,23 @@
+class SnippetsController < Snippets::ApplicationController
+  @snippet: untyped
+
+  include SnippetsActions
+
+  include PreviewMarkdown
+
+  include ToggleAwardEmoji
+
+  include SpammableActions::AkismetMarkAsSpamAction
+
+  def index: () -> untyped
+
+  def new: () -> untyped
+
+  alias awardable snippet
+
+  alias spammable snippet
+
+  def spammable_path: () -> untyped
+
+  def determine_layout: () -> ("explore" | "snippets")
+end

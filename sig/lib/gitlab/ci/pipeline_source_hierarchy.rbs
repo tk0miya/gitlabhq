@@ -1,0 +1,49 @@
+module Gitlab
+  module Ci
+    # rubocop:disable CodeReuse/ActiveRecord -- we need to build a complicated query here
+    class PipelineSourceHierarchy
+      @pipeline_id: untyped
+
+      @partition_id: untyped
+
+      @options: untyped
+
+      attr_reader pipeline_id: untyped
+
+      attr_reader partition_id: untyped
+
+      attr_reader options: untyped
+
+      def initialize: (untyped pipeline, ?options: ::Hash[untyped, untyped]) -> void
+
+      def all_objects: () -> untyped
+
+      def base_and_ancestors: () -> untyped
+
+      def base_and_descendants: () -> untyped
+
+      private
+
+      def cte_scope: (untyped cte) -> untyped
+
+      def cte_relation: (untyped cte) -> untyped
+
+      def unscoped_model: () -> untyped
+
+      def source_table: () -> untyped
+
+      # Seeds the CTE with a bare literal node rather than a table query,
+      # ensuring the starting pipeline is always present even when it is the
+      # root (i.e. it only appears as source_pipeline_id, never as pipeline_id).
+      def node_seed_query: () -> untyped
+
+      def build_ancestors_cte: () -> untyped
+
+      def build_descendants_cte: () -> untyped
+
+      def project_condition: () -> untyped
+
+      def read_only: (untyped relation) -> untyped
+    end
+  end
+end

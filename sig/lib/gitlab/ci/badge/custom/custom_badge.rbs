@@ -1,0 +1,29 @@
+module Gitlab
+  module Ci
+    module Badge
+      module Custom
+        class CustomBadge < Badge::Base
+          @project: untyped
+
+          @customization: untyped
+
+          @metadata: untyped
+
+          @template: untyped
+
+          attr_reader project: untyped
+
+          attr_reader customization: untyped
+
+          def initialize: (untyped project, ?opts: ::Hash[untyped, untyped]) -> void
+
+          def entity: () -> "custom"
+
+          def metadata: () -> untyped
+
+          def template: () -> untyped
+        end
+      end
+    end
+  end
+end

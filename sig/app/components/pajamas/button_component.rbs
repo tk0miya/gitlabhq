@@ -1,0 +1,88 @@
+module Pajamas
+  class ButtonComponent < Pajamas::Component
+    @category: untyped
+
+    @variant: untyped
+
+    @size: untyped
+
+    @type: untyped
+
+    @disabled: untyped
+
+    @loading: untyped
+
+    @block: untyped
+
+    @label: untyped
+
+    @selected: untyped
+
+    @icon: untyped
+
+    @href: untyped
+
+    @form: untyped
+
+    @target: untyped
+
+    @method: untyped
+
+    @button_options: untyped
+
+    @button_text_classes: untyped
+
+    @icon_classes: untyped
+
+    CATEGORY_OPTIONS: ::Array[:primary | :secondary | :tertiary]
+
+    VARIANT_OPTIONS: ::Array[:default | :confirm | :danger | :link | :reset]
+
+    SIZE_OPTIONS: ::Array[:small | :medium]
+
+    TYPE_OPTIONS: ::Array[:button | :reset | :submit]
+
+    TARGET_OPTIONS: ::Array["_self" | "_blank" | "_parent" | "_top"]
+
+    METHOD_OPTIONS: ::Array[:get | :post | :put | :delete | :patch]
+
+    CATEGORY_CLASSES: { primary: "", secondary: "secondary", tertiary: "tertiary" }
+
+    VARIANT_CLASSES: { default: "btn-default", confirm: "btn-confirm", danger: "btn-danger", link: "btn-link", reset: "btn-gl-reset" }
+
+    NON_CATEGORY_VARIANTS: ::Array[:link | :reset]
+
+    SIZE_CLASSES: { small: "btn-sm", medium: "btn-md" }
+
+    # @param [Symbol] category
+    # @param [Symbol] variant
+    # @param [Symbol] size
+    # @param [Symbol] type
+    # @param [Boolean] disabled
+    # @param [Boolean] loading
+    # @param [Boolean] block
+    # @param [Boolean] label
+    # @param [Boolean] selected
+    # @param [String] icon
+    # @param [String] href
+    # @param [Boolean] form
+    # @param [String] target
+    # @param [Symbol] method
+    # @param [Hash] button_options
+    # @param [String] button_text_classes
+    # @param [String] icon_classes
+    def initialize: (?category: ::Symbol, ?variant: ::Symbol, ?size: ::Symbol, ?type: ::Symbol, ?disabled: bool, ?loading: bool, ?block: bool, ?label: bool, ?selected: bool, ?icon: untyped?, ?href: untyped?, ?form: bool, ?target: untyped?, ?method: untyped?, ?button_options: ::Hash[untyped, untyped], ?button_text_classes: untyped?, ?icon_classes: untyped?) -> void
+
+    private
+
+    def button_class: () -> untyped
+
+    def link?: () -> untyped
+
+    def form?: () -> untyped
+
+    def base_attributes: () -> untyped
+
+    def safe_rel_for_target_blank: () -> untyped
+  end
+end

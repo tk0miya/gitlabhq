@@ -1,0 +1,49 @@
+module WorkItems
+  class ImportCsvService < Issuable::ImportCsv::BaseService
+    @type_errors: untyped
+
+    @available_milestones: untyped
+
+    include Issues::IssueTypeHelpers
+
+    extend ::Gitlab::Utils::Override
+
+    FeatureNotAvailableError: untyped
+
+    NotAuthorizedError: untyped
+
+    def initialize: (*untyped args) -> void
+
+    def execute: () -> untyped
+
+    def email_results_to_user: () -> untyped
+
+    private
+
+    attr_accessor type_errors: untyped
+
+    def create_object: (untyped attributes) -> untyped
+
+    def create_object_class: () -> untyped
+
+    def attributes_for: (untyped row) -> untyped
+
+    def match_work_item_type: (untyped work_item_type) -> untyped
+
+    def available_work_item_types: () -> untyped
+
+    def preprocess!: () -> (nil | untyped)
+
+    def csv_work_item_type_symbol: (untyped row) -> untyped
+
+    def missing?: (untyped work_item_type_name) -> untyped
+
+    def work_item_type_allowed?: (untyped work_item_type) -> untyped
+
+    def preprocess_milestones!: () -> untyped
+
+    def extra_create_service_params: () -> { perform_spam_check: untyped }
+
+    def perform_spam_check?: () -> untyped
+  end
+end

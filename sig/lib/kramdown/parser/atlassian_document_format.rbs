@@ -1,0 +1,112 @@
+module Kramdown
+  module Parser
+    # Parses an Atlassian Document Format (ADF) json into a
+    # Kramdown AST tree, for conversion to another format.
+    # The primary goal is to convert in GitLab Markdown.
+    #
+    # This parser does NOT resolve external resources, such as media/attachments.
+    # A special url is generated for media based on the id, for example
+    #   ![jira-10050-field-description](adf-media://79411c6b-50e0-477f-b4ed-ac3a5887750c)
+    # so that a later filter/process can resolve those.
+    #
+    # @see https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/ ADF Document Structure
+    # @see https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/ ADF Playground
+    # @see https://developer.atlassian.com/cloud/jira/platform/apis/document/viewer/ ADF Viewer
+    class AtlassianDocumentFormat < Kramdown::Parser::Base
+      TOP_LEVEL_BLOCK_NODES: ::Array["blockquote" | "bulletList" | "codeBlock" | "heading" | "mediaGroup" | "mediaSingle" | "orderedList" | "panel" | "paragraph" | "rule" | "table"]
+
+      CHILD_BLOCK_NODES: ::Array["listItem" | "media" | "table_cell" | "table_header" | "table_row"]
+
+      INLINE_NODES: ::Array["emoji" | "hardBreak" | "inlineCard" | "mention" | "text"]
+
+      MARKS: ::Array["code" | "em" | "link" | "strike" | "strong" | "subsup" | "textColor" | "underline"]
+
+      TABLE_CELL_NODES: ::Array["blockquote" | "bulletList" | "codeBlock" | "heading" | "mediaGroup" | "orderedList" | "panel" | "paragraph" | "rule"]
+
+      LIST_ITEM_NODES: ::Array["bulletList" | "codeBlock" | "mediaSingle" | "orderedList" | "paragraph"]
+
+      PANEL_NODES: ::Array["bulletList" | "heading" | "orderedList" | "paragraph"]
+
+      PANEL_EMOJIS: { info: ":information_source:", note: ":notepad_spiral:", warning: ":warning:", success: ":white_check_mark:", error: ":octagonal_sign:" }
+
+      # The default language for code blocks is `java`, as indicated in
+      # You can't change the default in Jira.  There was a comment that indicated
+      # Confluence can set the default language.
+      # @see https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=advanced&_ga=2.5135221.773220073.1591894917-438867908.1591894917
+      # @see https://jira.atlassian.com/browse/JRASERVER-29184?focusedCommentId=832255&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-832255
+      CODE_BLOCK_DEFAULT_LANGUAGE: "java"
+
+      def parse: () -> untyped
+
+      def process_content: (untyped element, untyped ast_node, untyped allowed_types) -> untyped
+
+      def process_blockquote: (untyped element, untyped ast_node) -> untyped
+
+      def process_bullet_list: (untyped element, untyped ast_node) -> untyped
+
+      def process_code_block: (untyped element, untyped ast_node) -> untyped
+
+      def process_emoji: (untyped element, untyped ast_node) -> (nil | untyped)
+
+      def process_hard_break: (untyped element, untyped ast_node) -> untyped
+
+      def process_heading: (untyped element, untyped ast_node) -> untyped
+
+      def process_inline_card: (untyped element, untyped ast_node) -> untyped
+
+      def process_list_item: (untyped element, untyped ast_node) -> untyped
+
+      def process_media: (untyped element, untyped ast_node) -> untyped
+
+      # wraps a single media element.
+      # Currently ignore attrs.layout and attrs.width
+      def process_media_single: (untyped element, untyped ast_node) -> untyped
+
+      # wraps a group media element.
+      # Currently ignore attrs.layout and attrs.width
+      def process_media_group: (untyped element, untyped ast_node) -> untyped
+
+      def process_mention: (untyped element, untyped ast_node) -> untyped
+
+      def process_ordered_list: (untyped element, untyped ast_node) -> untyped
+
+      # since we don't have something similar, then put <hr> around it and
+      # add a bolded status text (eg: "Error:") to the front of it.
+      def process_panel: (untyped element, untyped ast_node) -> (nil | untyped)
+
+      def process_paragraph: (untyped element, untyped ast_node) -> untyped
+
+      def process_rule: (untyped element, untyped ast_node) -> untyped
+
+      def process_table: (untyped element, untyped ast_node) -> untyped
+
+      # we ignore the attributes, attrs.background, attrs.colspan,
+      # attrs.colwidth, and attrs.rowspan
+      def process_table_cell: (untyped element, untyped ast_node) -> untyped
+
+      # we ignore the attributes, attrs.background, attrs.colspan,
+      # attrs.colwidth, and attrs.rowspan
+      def process_table_header: (untyped element, untyped ast_node) -> untyped
+
+      def process_table_row: (untyped element, untyped ast_node) -> untyped
+
+      def process_text: (untyped element, untyped ast_node) -> untyped
+
+      private
+
+      def validate_document: (untyped ast) -> (nil | untyped)
+
+      # ADF marks are an attribute on the node.  For kramdown,
+      # we have to wrap the node with an element for the mark.
+      def apply_marks: (untyped element, untyped ast_node, untyped allowed_types) -> untyped
+
+      def wrap_element: (untyped element, untyped type, *untyped args) -> untyped
+
+      def extract_element_text: (untyped element, untyped raw) -> untyped
+
+      def gather_text: (untyped ast_node) -> untyped
+
+      def method_missing: (untyped method, *untyped args) -> untyped
+    end
+  end
+end

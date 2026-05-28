@@ -1,0 +1,11 @@
+module Projects
+  module LookAheadPreloads
+    extend ActiveSupport::Concern
+
+    private
+
+    def preloads: () -> { namespace: ::Array[:namespace], full_path: ::Array[:route], topics: ::Array[:topics], import_status: ::Array[:import_state], service_desk_address: ::Array[:project_feature | :service_desk_setting], jira_import_status: ::Array[:jira_imports], container_repositories: ::Array[:container_repositories], container_repositories_count: ::Array[:container_repositories], web_url: { namespace: ::Array[:route] }, is_catalog_resource: ::Array[:catalog_resource], open_merge_requests_count: ::Array[:project_feature] }
+
+    def unconditional_includes: () -> untyped
+  end
+end

@@ -1,0 +1,19 @@
+module Issues
+  class ConfidentialityFilter < Issuables::BaseFilter
+    @assignee_filter: untyped
+
+    @related_groups: untyped
+
+    CONFIDENTIAL_ACCESS_LEVEL: untyped
+
+    def initialize: (assignee_filter: untyped, ?related_groups: untyped?, **untyped kwargs) -> void
+
+    def filter: (untyped issues) -> untyped
+
+    private
+
+    def user_can_see_all_confidential_issues?: () -> untyped
+
+    def access_to_parent_exists: (untyped issues) -> untyped
+  end
+end

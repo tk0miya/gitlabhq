@@ -1,0 +1,21 @@
+module Gitlab
+  module MarkdownCache
+    module ActiveRecord
+      module Extension
+        extend ActiveSupport::Concern
+
+        def run_store_mentions!: () -> untyped
+
+        # Always exclude _html fields from attributes (including serialization).
+        # They contain unredacted HTML, which would be a security issue
+        def attributes: () -> untyped
+
+        def write_markdown_field: (untyped field_name, untyped value) -> untyped
+
+        def markdown_field_changed?: (untyped field_name) -> untyped
+
+        def save_markdown: (untyped updates) -> (nil | untyped)
+      end
+    end
+  end
+end

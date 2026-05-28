@@ -1,0 +1,28 @@
+module API
+  module Mcp
+    module Handlers
+      class CallTool
+        @manager: untyped
+
+        def initialize: (untyped manager) -> void
+
+        def invoke: (untyped request, untyped params, ?untyped? current_user, ?tool_name_prefix: untyped?) -> untyped
+
+        private
+
+        attr_reader manager: untyped
+
+        def fetch_tool: (untyped tool_name, untyped session_id, untyped current_user, untyped params) -> untyped
+
+        def configure_tool_credentials: (untyped tool, untyped current_user) -> untyped
+
+        def execute_tool_with_tracking: (untyped tool, untyped request, untyped params, untyped tool_name, untyped session_id, untyped current_user) -> untyped
+
+        # Stub methods for CE - will be overridden in EE
+        def track_start_event: (untyped tool_name, untyped session_id, untyped current_user, ?params: untyped?) -> nil
+
+        def track_finish_event: (untyped tool_name, untyped session_id, untyped current_user, success: untyped, ?error: untyped?, ?params: untyped?) -> nil
+      end
+    end
+  end
+end

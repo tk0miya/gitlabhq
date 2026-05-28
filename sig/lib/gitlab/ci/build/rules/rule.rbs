@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Build
+      class Rules::Rule
+        @clauses: untyped
+
+        @attributes: untyped
+
+        attr_accessor attributes: untyped
+
+        def self.fabricate_list: (untyped list) -> (untyped | nil)
+
+        def initialize: (untyped spec) -> void
+
+        def matches?: (untyped pipeline, untyped context) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,16 @@
+class Admin::DevOpsReportController < Admin::ApplicationController
+  @metric: untyped
+
+  include ProductAnalyticsTracking
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def show: () -> untyped
+
+  def show_adoption?: () -> false
+
+  def should_track_devops_score?: () -> true
+
+  def tracking_namespace_source: () -> nil
+
+  def tracking_project_source: () -> nil
+end

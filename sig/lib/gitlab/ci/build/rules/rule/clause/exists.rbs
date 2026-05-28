@@ -1,0 +1,66 @@
+module Gitlab
+  module Ci
+    module Build
+      class Rules::Rule::Clause::Exists < Rules::Rule::Clause
+        @globs: untyped
+
+        @project_path: untyped
+
+        @ref: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        # The maximum number of patterned glob comparisons that will be
+        # performed before the rule assumes that it has a match
+        MAX_PATTERN_COMPARISONS: 50000
+
+        WILDCARD_NESTED_PATTERN: "**/*"
+
+        def initialize: (untyped clause) -> void
+
+        def satisfied_by?: (untyped _pipeline, untyped context) -> (false | untyped)
+
+        private
+
+        def separate_globs: (untyped expanded_globs) -> untyped
+
+        def expand_globs: (untyped context) -> untyped
+
+        def worktree_paths: (untyped context, untyped top_level_only) -> (::Array[untyped] | untyped)
+
+        def glob_type: (untyped glob) -> (:exact | :extension | :pattern)
+
+        def exact_matches?: (untyped paths, untyped exact_globs) -> untyped
+
+        def matches_extension?: (untyped paths, untyped extension_globs) -> (false | untyped)
+
+        def pattern_matches?: (untyped paths, untyped pattern_globs, untyped context) -> (true | untyped)
+
+        def pattern_match?: (untyped glob, untyped path) -> untyped
+
+        # matches glob patterns that only match files in the top level directory
+        def top_level_glob?: (untyped glob) -> untyped
+
+        # matches glob patterns that have no metacharacters for File#fnmatch?
+        def exact_glob?: (untyped glob) -> untyped
+
+        # matches glob patterns like **/*.js or **/*.so.1 to optimize with path.end_with?('.js')
+        def extension_glob?: (untyped glob) -> untyped
+
+        def without_wildcard_nested_pattern: (untyped glob) -> untyped
+
+        def change_context: (untyped old_context) -> untyped
+
+        def find_context_user: (untyped context) -> untyped
+
+        def find_context_project: (untyped user, untyped context) -> untyped
+
+        def find_context_sha: (untyped project, untyped context) -> untyped
+
+        def mask_context_variables_from: (untyped context, untyped string) -> untyped
+
+        def expand_value_nested: (untyped value, untyped context) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,16 @@
+module BulkImports
+  module Groups
+    module Transformers
+      class GroupAttributesTransformer
+        include BulkImports::VisibilityLevel
+
+        include BulkImports::PathNormalization
+
+        include BulkImports::Uniquify
+
+        # rubocop: disable Style/IfUnlessModifier
+        def transform: (untyped context, untyped data) -> untyped
+      end
+    end
+  end
+end

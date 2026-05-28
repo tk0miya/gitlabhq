@@ -1,0 +1,15 @@
+module Namespaces
+  module ServiceAccounts
+    class ProjectCreateService < BaseCreateService
+      extend ::Gitlab::Utils::Override
+
+      private
+
+      def resource: () -> untyped
+
+      def resource_type: () -> "project"
+
+      def provisioning_params: () -> { provisioned_by_project_id: untyped }
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Groups
+  module Settings
+    class SlacksController < Groups::ApplicationController
+      @integration: untyped
+
+      include ::Integrations::SlackControllerSettings
+
+      private
+
+      def integration: () -> untyped
+
+      def redirect_to_integration_page: () -> untyped
+
+      def installation_service: () -> untyped
+    end
+  end
+end

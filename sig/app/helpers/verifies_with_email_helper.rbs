@@ -1,0 +1,21 @@
+module VerifiesWithEmailHelper
+  include Gitlab::Utils::StrongMemoize
+
+  RESEND_COOLDOWN_PERIOD: untyped
+
+  # Used by frontend to decide if we should render the "skip for now" button
+  def permitted_to_skip_email_otp_in_warning_period?: (untyped user) -> untyped
+
+  def trusted_ip_address?: (untyped user) -> untyped
+
+  def treat_as_locked?: (untyped user) -> untyped
+
+  # Returns a Unix ms timestamp, after which the frontend can show the
+  # "Resend" button. This is not used as a security control or rate
+  # limit.
+  def show_email_otp_resend_after: (untyped user) -> (nil | untyped)
+
+  private
+
+  def in_email_otp_warning_period?: (untyped user) -> (false | untyped)
+end

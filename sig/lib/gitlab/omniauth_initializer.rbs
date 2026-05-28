@@ -1,0 +1,40 @@
+module Gitlab
+  class OmniauthInitializer
+    @devise_config: untyped
+
+    @omniauth_customized_providers: untyped
+
+    OAUTH2_TIMEOUT_SECONDS: 10
+
+    ConfigurationError: untyped
+
+    def initialize: (untyped devise_config) -> void
+
+    def execute: (untyped providers) -> untyped
+
+    def self.default_arguments_for: (untyped provider_name) -> untyped
+
+    def self.full_host: () -> untyped
+
+    private
+
+    def add_provider_to_devise: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def arguments_for: (untyped provider) -> untyped
+
+    def merge_hash_defaults_and_args: (untyped defaults, untyped arguments) -> untyped
+
+    def normalize_hash_arguments: (untyped args) -> untyped
+
+    def verify_saml_cert_arguments!: (untyped provider_name, untyped arguments) -> untyped
+
+    def provider_defaults: (untyped provider) -> untyped
+
+    def omniauth_customized_providers: () -> untyped
+
+    # We override this in EE
+    def build_omniauth_customized_providers: () -> ::Array[:bitbucket | :jwt | :cells_aware_openid_connect]
+
+    def setup_provider: (untyped provider) -> untyped
+  end
+end

@@ -1,0 +1,31 @@
+module Environments
+  # Finder for obtaining the unique environment names of a project or group.
+  #
+  # This finder exists so that the merge requests "environments" filter can be
+  # populated with a unique list of environment names. If we retrieve _just_ the
+  # environments, duplicates may be present (e.g. multiple projects in a group
+  # having a "staging" environment).
+  #
+  # In addition, this finder only produces unfoldered environments. We do this
+  # because when searching for environments we want to exclude review app
+  # environments.
+  class EnvironmentNamesFinder
+    @project_or_group: untyped
+
+    @current_user: untyped
+
+    attr_reader project_or_group: untyped
+
+    attr_reader current_user: untyped
+
+    def initialize: (untyped project_or_group, ?untyped? current_user) -> void
+
+    def execute: () -> untyped
+
+    def all_environments: () -> untyped
+
+    def namespace_environments: () -> untyped
+
+    def project_environments: () -> untyped
+  end
+end

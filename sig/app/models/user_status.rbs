@@ -1,0 +1,13 @@
+class UserStatus < ApplicationRecord
+  include CacheMarkdownField
+
+  DEFAULT_EMOJI: "speech_balloon"
+
+  CLEAR_STATUS_QUICK_OPTIONS: { "30_minutes" => untyped, "3_hours" => untyped, "8_hours" => untyped, "1_day" => untyped, "3_days" => untyped, "7_days" => untyped, "30_days" => untyped }
+
+  def clear_status_after: () -> untyped
+
+  def clear_status_after=: (untyped value) -> untyped
+
+  def customized?: () -> untyped
+end

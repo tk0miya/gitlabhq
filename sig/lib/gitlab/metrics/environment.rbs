@@ -1,0 +1,13 @@
+module Gitlab
+  module Metrics
+    module Environment
+      def self.web?: () -> untyped
+
+      def self.api?: () -> untyped
+
+      def self.git?: () -> untyped
+
+      def self.service?: (untyped name) -> (true | untyped)
+    end
+  end
+end

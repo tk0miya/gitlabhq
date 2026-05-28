@@ -1,0 +1,27 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillAwardEmojiShardingKey < BatchedMigrationJob
+      @award_emoji_columns_for_archive: untyped
+
+      def perform: () -> untyped
+
+      private
+
+      def common_query: (untyped sub_batch, untyped awardable_type) { () -> untyped } -> ::String
+
+      def handle_issue_related_records: (untyped sub_batch) -> untyped
+
+      def handle_merge_request_related_records: (untyped sub_batch) -> untyped
+
+      def handle_epic_related_records: (untyped sub_batch) -> untyped
+
+      def handle_snippet_related_records: (untyped sub_batch) -> untyped
+
+      def handle_note_related_records: (untyped sub_batch) -> untyped
+
+      def delete_and_archive_award_emoji_with_no_sharding_key: (untyped sub_batch) -> untyped
+
+      def award_emoji_columns_for_archive: () -> untyped
+    end
+  end
+end

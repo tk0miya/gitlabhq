@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class Retried < Status::Extended
+          def status_tooltip: () -> untyped
+
+          def self.matches?: (untyped build, untyped user) -> untyped
+        end
+      end
+    end
+  end
+end

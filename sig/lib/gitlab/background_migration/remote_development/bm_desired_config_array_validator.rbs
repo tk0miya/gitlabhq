@@ -1,0 +1,40 @@
+module Gitlab
+  module BackgroundMigration
+    module RemoteDevelopment
+      # rubocop:disable Migration/BatchedMigrationBaseClass -- This is not a migration file class so we do not need to inherit from BatchedMigrationJob
+      class BmDesiredConfigArrayValidator < ActiveModel::EachValidator
+        EXPECTED_SEQUENCE: ::Array[{ kind: "ConfigMap", name_pattern: ::Regexp } | { kind: "Deployment", name_pattern: ::Regexp } | { kind: "Service", name_pattern: ::Regexp } | { kind: "PersistentVolumeClaim", name_pattern: ::Regexp } | { kind: "ServiceAccount", name_pattern: ::Regexp } | { kind: "NetworkPolicy", name_pattern: ::Regexp } | { kind: "ResourceQuota", name_pattern: ::Regexp } | { kind: "Secret", name_pattern: ::Regexp }]
+
+        # @param [RemoteDevelopment::DesiredConfig] record
+        # @param [Symbol] attribute
+        # @param [Array] value
+        # @return [void] The result is stored in the errors param
+        def validate_each: (untyped record, untyped attribute, untyped value) -> (nil | untyped)
+
+        private
+
+        # @param [Array] normalized_config_array
+        # @param [Array] normalized_expected_array
+        # @param [ActiveModel::Errors] errors - stores the validation results
+        # @param [Symbol] attribute_symbol - symbol of the attribute associated with the error
+        # @return [Void]
+        def validate_order: (untyped normalized_config_array, untyped normalized_expected_array, untyped errors, untyped attribute_symbol) -> untyped
+
+        # This method normalizes the expected order of items based on the config array
+        # It creates a mapping of expected positions for each kind/name combination
+        #
+        # @param [Array] config_array The array of configuration items to normalize
+        # @return [Array] An array with expected order of items
+        def normalize_expected_order: (untyped config_array) -> untyped
+
+        # Validates if the given configuration matches the expected value
+        #
+        # @param [String] kind The type of configuration to validate
+        # @param [String] name The name of the configuration item
+        # @param [Object] expected The expected value to match against. See {#EXPECTED_SEQUENCE} above.
+        # @return [Boolean] Returns true if the configuration matches the expected value, false otherwise
+        def matches?: (untyped kind, untyped name, untyped expected) -> untyped
+      end
+    end
+  end
+end

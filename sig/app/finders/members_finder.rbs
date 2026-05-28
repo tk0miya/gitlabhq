@@ -1,0 +1,61 @@
+class MembersFinder
+  @project: untyped
+
+  @group: untyped
+
+  @current_user: untyped
+
+  @params: untyped
+
+  include Members::RoleParser
+
+  RELATIONS: ::Array[:direct | :inherited | :descendants | :invited_groups | :shared_into_ancestors]
+
+  DEFAULT_RELATIONS: ::Array[:direct | :inherited]
+
+  # Params can be any of the following:
+  #   sort:       string
+  #   search:     string
+  #   user_types: [string]
+  attr_reader params: untyped
+
+  def initialize: (untyped project, untyped current_user, ?params: ::Hash[untyped, untyped]) -> void
+
+  def execute: (?include_relations: untyped) -> untyped
+
+  def can?: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  private
+
+  attr_reader project: untyped
+
+  attr_reader current_user: untyped
+
+  attr_reader group: untyped
+
+  def find_members: (untyped include_relations) -> untyped
+
+  def filter_members: (untyped members) -> untyped
+
+  def filter_by_max_role: (untyped members) -> untyped
+
+  def group_union_members: (untyped include_relations) -> untyped
+
+  def direct_group_members: (untyped include_relations) -> untyped
+
+  def project_invited_groups: () -> untyped
+
+  def distinct_union_of_members: (untyped union_members) -> untyped
+
+  def distinct_on: (untyped union) -> ::String
+
+  def member_union_table: () -> "member_union"
+
+  def project_authorization_table: () -> untyped
+
+  def member_columns: () -> untyped
+
+  # Remove me when group project sharing is enabled
+  # https://gitlab.com/gitlab-org/gitlab/-/issues/468329
+  def member_columns_for_invited_members: () -> untyped
+end

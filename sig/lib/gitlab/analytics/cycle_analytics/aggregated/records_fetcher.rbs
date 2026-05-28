@@ -1,0 +1,68 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module Aggregated
+        class RecordsFetcher
+          @stage: untyped
+
+          @query: untyped
+
+          @params: untyped
+
+          @sort: untyped
+
+          @direction: untyped
+
+          @page: untyped
+
+          @per_page: untyped
+
+          @stage_event_model: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          include StageQueryHelpers
+
+          MAX_RECORDS: 50
+
+          MAPPINGS: ::Hash[untyped, { serializer_class: untyped, includes_for_query: { project: { namespace: ::Array[:route] }, author: ::Array[untyped] }, columns_for_select: ::Array[:title | :iid | :id | :created_at | :author_id | :project_id], finder_class: untyped } | { serializer_class: untyped, includes_for_query: { target_project: ::Array[:namespace], author: ::Array[untyped] }, columns_for_select: ::Array[:title | :iid | :id | :created_at | :author_id | :state_id | :target_project_id], finder_class: untyped }]
+
+          def initialize: (stage: untyped, query: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+          def serialized_records: () ?{ (untyped) -> untyped } -> untyped
+
+          # rubocop: disable CodeReuse/ActiveRecord
+          def records_for_graphql: () -> untyped
+
+          def limited_query: () -> untyped
+
+          private
+
+          attr_reader stage: untyped
+
+          attr_reader query: untyped
+
+          attr_reader sort: untyped
+
+          attr_reader direction: untyped
+
+          attr_reader params: untyped
+
+          attr_reader page: untyped
+
+          attr_reader per_page: untyped
+
+          attr_reader stage_event_model: untyped
+
+          def load_issuables: (untyped stage_event_records) -> untyped
+
+          def finder: () -> untyped
+
+          def serializer: () -> untyped
+
+          def preload_associations: (untyped records) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Packages
+  module TerraformModule
+    class ProcessPackageFileService
+      @package_file: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ExtractionError: untyped
+
+      def initialize: (untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_file: untyped
+
+      def valid_package_file?: () -> untyped
+
+      def with_archive_file: () { (?) -> untyped } -> untyped
+
+      def process_as_gzip: (untyped open_file) { (?) -> untyped } -> untyped
+
+      def process_as_zip: (untyped open_file) { (?) -> untyped } -> untyped
+    end
+  end
+end

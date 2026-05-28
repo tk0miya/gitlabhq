@@ -1,0 +1,17 @@
+module LooksAhead
+  extend ActiveSupport::Concern
+
+  def resolve: (**untyped args) -> untyped
+
+  def apply_lookahead: (untyped query) -> untyped
+
+  private
+
+  def unconditional_includes: () -> ::Array[untyped]
+
+  def preloads: () -> ::Hash[untyped, untyped]
+
+  def filtered_preloads: () -> (::Array[untyped] | untyped)
+
+  def node_selection: (?untyped selection) -> untyped
+end

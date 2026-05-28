@@ -1,0 +1,37 @@
+module Bitbucket
+  class ApiConnection
+    @api_version: untyped
+
+    @base_uri: untyped
+
+    @default_query: untyped
+
+    @email: untyped
+
+    @api_token: untyped
+
+    @root_url: untyped
+
+    include Bitbucket::ExponentialBackoff
+
+    attr_reader email: untyped
+
+    attr_reader api_token: untyped
+
+    def initialize: (?::Hash[untyped, untyped] options) -> void
+
+    def get: (untyped path, ?::Hash[untyped, untyped] extra_query) -> untyped
+
+    private
+
+    def logger: () -> untyped
+
+    def build_url: (untyped path) -> (untyped | ::String)
+
+    def root_url: () -> untyped
+
+    def basic_auth: () -> { username: untyped, password: untyped }
+
+    def headers: () -> { "Accept" => "application/json" }
+  end
+end

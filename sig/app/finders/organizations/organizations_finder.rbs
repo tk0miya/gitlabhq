@@ -1,0 +1,32 @@
+# Used to filter Organizations by set of params
+#
+# Arguments:
+#   current_user - which user is requesting organizations
+#   params:
+#     search: string
+#     exclude_default: boolean
+module Organizations
+  class OrganizationsFinder
+    @current_user: untyped
+
+    @params: untyped
+
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    attr_reader params: untyped
+
+    def base_scope: () -> untyped
+
+    def filter_organizations: (untyped organizations) -> untyped
+
+    def by_exclude_default: (untyped items) -> untyped
+
+    def by_search: (untyped items) -> untyped
+  end
+end

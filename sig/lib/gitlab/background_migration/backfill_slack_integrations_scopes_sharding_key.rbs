@@ -1,0 +1,17 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillSlackIntegrationsScopesShardingKey < BatchedMigrationJob
+      @columns_for_archive: untyped
+
+      def perform: () -> untyped
+
+      private
+
+      def update_batch: (untyped sub_batch) -> untyped
+
+      def delete_duplicates: (untyped sub_batch) -> untyped
+
+      def columns_for_archive: () -> untyped
+    end
+  end
+end

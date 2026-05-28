@@ -1,0 +1,21 @@
+module ClickHouse
+  module SchemaCache
+    self.@cache: untyped
+
+    SCHEMA_CACHE_DIR: "db/click_house/schema_cache/%{database}"
+
+    def self.[]: (untyped database) -> untyped
+
+    def self.reset!: () -> untyped
+
+    def self.dump: (untyped connection, untyped database) -> untyped
+
+    def self.schema_cache_path: (untyped database) -> untyped
+
+    def self.table_cache_path: (untyped database, untyped table_name) -> untyped
+
+    private
+
+    def self.cache: () -> untyped
+  end
+end

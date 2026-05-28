@@ -1,0 +1,33 @@
+module Gitlab
+  module Import
+    # PageKeyset can be used to keep track of the last imported page of a
+    # collection, allowing workers to resume where they left off in the event of
+    # an error.
+    class PageKeyset
+      @cache_key: untyped
+
+      attr_reader cache_key: untyped
+
+      # The base cache key to use for storing the last key.
+      CACHE_KEY: "%{import_type}/page-keyset/%{object}/%{collection}"
+
+      def initialize: (untyped object, untyped collection, untyped import_type) -> void
+
+      # Set the key to the given value.
+      #
+      # @param value [String]
+      # @return [String]
+      def set: (untyped value) -> untyped
+
+      # Get the current value from the cache
+      #
+      # @return [String]
+      def current: () -> untyped
+
+      # Expire the key
+      #
+      # @return [Boolean]
+      def expire!: () -> untyped
+    end
+  end
+end

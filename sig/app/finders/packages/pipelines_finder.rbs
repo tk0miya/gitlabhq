@@ -1,0 +1,15 @@
+module Packages
+  class PipelinesFinder
+    @pipeline_ids: untyped
+
+    COLUMNS: ::Array[:id | :iid | :project_id | :sha | :ref | :status | :source | :created_at | :updated_at | :user_id]
+
+    def initialize: (untyped pipeline_ids) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader pipeline_ids: untyped
+  end
+end

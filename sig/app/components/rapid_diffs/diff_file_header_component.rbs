@@ -1,0 +1,43 @@
+module RapidDiffs
+  class DiffFileHeaderComponent < ViewComponent::Base
+    @diff_file: untyped
+
+    @additional_menu_items: untyped
+
+    @environment: untyped
+
+    include ButtonHelper
+
+    include DiffHelper
+
+    def initialize: (diff_file: untyped, ?additional_menu_items: untyped, ?environment: untyped?) -> void
+
+    def file_title_chunks: () -> { path_parts: untyped, filename: untyped }
+
+    def file_link: () -> untyped
+
+    def copy_path_button: () -> untyped
+
+    def menu_items: () -> untyped
+
+    def heading_id: () -> untyped
+
+    def root_label: () -> untyped
+
+    def moved_title_label: () -> untyped
+
+    def stats_label: () -> (false | untyped)
+
+    def pretty_print_bytes: (untyped size) -> untyped
+
+    def view_file_menu_item: () -> { text: untyped, messageData: { commit: untyped }, href: untyped, extraAttrs: { target: "_blank" }, position: 1 }
+
+    def view_full_file_menu_item: () -> (nil | { text: untyped, extraAttrs: { :"data-click" => "showFullFile", :"data-full" => untyped }, position: 50 })
+
+    def expanded?: () -> untyped
+
+    def view_on_environment_menu_item: () -> (nil | { text: untyped, href: untyped, extraAttrs: { target: "_blank", rel: "noopener noreferrer" }, position: 2 })
+
+    def rich_view_toggle: () -> (nil | { text: untyped, extraAttrs: { :"data-click" => "toggleRichView", :"data-rendered" => untyped }, position: 10 })
+  end
+end

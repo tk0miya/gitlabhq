@@ -1,0 +1,38 @@
+module Gitlab
+  module Ci
+    module Matching
+      # #
+      # This class is used to check if a build can be picked by a runner:
+      #
+      # runner = Ci::Runner.find(id)
+      # build  = Ci::Build.find(id)
+      # runner.runner_matcher.matches?(build.build_matcher)
+      #
+      # There are also class level methods to build matchers:
+      #
+      # `project.builds.build_matchers(project)` returns a distinct collection
+      # of build matchers.
+      # `Ci::Runner.runner_matchers` returns a distinct collection of runner matchers.
+      #
+      class RunnerMatcher
+        ATTRIBUTES: ::Array[:runner_ids | :runner_type | :public_projects_minutes_cost_factor | :private_projects_minutes_cost_factor | :run_untagged | :access_level | :tag_list | :allowed_plan_name_uids]
+
+        def initialize: (untyped params) -> void
+
+        def matches?: (untyped build_matcher) -> (false | untyped)
+
+        def instance_type?: () -> untyped
+
+        private
+
+        def ref_protected?: () -> untyped
+
+        def accepting_tags?: (untyped build_matcher) -> untyped
+
+        def decode_pg_array: (untyped value) -> untyped
+
+        def ensure_build_matcher_instance!: (untyped build_matcher) -> (nil | untyped)
+      end
+    end
+  end
+end

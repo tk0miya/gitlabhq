@@ -1,0 +1,30 @@
+module Gitlab
+  module Middleware
+    class BasicHealthCheck
+      @app: untyped
+
+      @ip_whitelist: untyped
+
+      # This can't be frozen because Rails::Rack::Logger wraps the body
+      # rubocop:disable Style/MutableConstant
+      OK_RESPONSE: ::Array[200 | { "Content-Type" => "text/plain" } | ::Array["GitLab OK"]]
+
+      EMPTY_RESPONSE: ::Array[404 | { "Content-Type" => "text/plain" } | ::Array[""]]
+
+      # rubocop:enable Style/MutableConstant
+      HEALTH_PATH: "/-/health"
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      def client_ip_whitelisted?: (untyped request) -> untyped
+
+      def ip_whitelist: () -> untyped
+
+      private
+
+      def compat_ip_whitelist: () -> untyped
+    end
+  end
+end

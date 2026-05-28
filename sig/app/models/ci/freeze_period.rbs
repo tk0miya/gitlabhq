@@ -1,0 +1,35 @@
+module Ci
+  class FreezePeriod < Ci::ApplicationRecord
+    include StripAttribute
+
+    include Ci::NamespacedModelName
+
+    include Gitlab::Utils::StrongMemoize
+
+    STATUS_ACTIVE: :active
+
+    STATUS_INACTIVE: :inactive
+
+    def active?: () -> untyped
+
+    def status: () -> untyped
+
+    def time_start: () -> untyped
+
+    def next_time_start: () -> untyped
+
+    def time_end_from_now: () -> untyped
+
+    def time_end_from_start: () -> untyped
+
+    private
+
+    def within_freeze_period?: () -> untyped
+
+    def freeze_start_parsed_cron: () -> untyped
+
+    def freeze_end_parsed_cron: () -> untyped
+
+    def time_zone_now: () -> untyped
+  end
+end

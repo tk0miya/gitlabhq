@@ -1,0 +1,15 @@
+module MergeRequests
+  class UpdateReviewerStateService < MergeRequests::BaseService
+    def execute: (untyped merge_request, untyped state) -> untyped
+
+    private
+
+    def create_requested_changes: (untyped merge_request) -> untyped
+
+    def destroy_requested_changes: (untyped merge_request) -> untyped
+
+    def create_reviewed_system_note: (untyped merge_request) -> (nil | untyped)
+
+    def can_leave_reviewed_system_note: () -> (true | untyped)
+  end
+end

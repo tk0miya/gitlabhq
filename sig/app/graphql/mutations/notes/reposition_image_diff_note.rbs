@@ -1,0 +1,19 @@
+module Mutations
+  module Notes
+    # This mutation differs from the update note mutations as it checks the
+    # `reposition_note` permission, and doesn't allow updating a note's `body`.
+    class RepositionImageDiffNote < Mutations::Notes::Base
+      def resolve: (note: untyped, position: untyped) -> { note: untyped, errors: untyped }
+
+      private
+
+      # An ImageDiffNote does not exist as a class itself, but is instead
+      # just a `DiffNote` with a particular kind of `Gitlab::Diff::Position`.
+      # In addition to accepting a `DiffNote` Global ID we also need to
+      # perform this check.
+      def pre_update_checks!: (untyped note, untyped _position) -> (untyped | nil)
+
+      def note_params: (untyped old_position, untyped new_position) -> { position: untyped }
+    end
+  end
+end

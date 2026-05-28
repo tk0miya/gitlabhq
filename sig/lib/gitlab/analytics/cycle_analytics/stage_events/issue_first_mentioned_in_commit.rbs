@@ -1,0 +1,17 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      module StageEvents
+        class IssueFirstMentionedInCommit < MetricsBasedStageEvent
+          def self.name: () -> untyped
+
+          def self.identifier: () -> :issue_first_mentioned_in_commit
+
+          def object_type: () -> untyped
+
+          def column_list: () -> ::Array[untyped]
+        end
+      end
+    end
+  end
+end

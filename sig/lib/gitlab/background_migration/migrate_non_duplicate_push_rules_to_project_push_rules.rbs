@@ -1,0 +1,9 @@
+module Gitlab
+  module BackgroundMigration
+    class MigrateNonDuplicatePushRulesToProjectPushRules < BatchedMigrationJob
+      def perform: () -> untyped
+
+      def backfill_none_duplicate_project_push_rules: (untyped sub_batch) -> untyped
+    end
+  end
+end

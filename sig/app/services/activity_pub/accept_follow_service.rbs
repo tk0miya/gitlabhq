@@ -1,0 +1,25 @@
+module ActivityPub
+  class AcceptFollowService
+    @subscription: untyped
+
+    @actor: untyped
+
+    MissingInboxURLError: untyped
+
+    attr_reader subscription: untyped
+
+    attr_reader actor: untyped
+
+    def initialize: (untyped subscription, untyped actor) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def upload_accept_activity: () -> untyped
+
+    def payload: () -> { :@context => "https://www.w3.org/ns/activitystreams", id: ::String, type: "Accept", actor: untyped, object: untyped }
+
+    def headers: () -> { "User-Agent" => ::String, "Content-Type" => "application/ld+json; profile=\"https://www.w3.org/ns/activitystreams\"", "Accept" => "application/ld+json; profile=\"https://www.w3.org/ns/activitystreams\"" }
+  end
+end

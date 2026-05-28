@@ -1,0 +1,15 @@
+module Issuable
+  module Callbacks
+    class Description < Base
+      ALLOWED_PARAMS: ::Array[:description]
+
+      def after_initialize: () -> (nil | untyped)
+
+      def before_update: () -> (nil | untyped)
+
+      private
+
+      def update_description?: () -> untyped
+    end
+  end
+end

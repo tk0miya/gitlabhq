@@ -1,0 +1,17 @@
+module Gitlab
+  module Auth
+    module Saml
+      class AuthHash < Gitlab::Auth::OAuth::AuthHash
+        def groups: () -> untyped
+
+        def azure_group_overage_claim?: () -> untyped
+
+        def authn_context: () -> (nil | untyped)
+
+        private
+
+        def get_raw: (untyped key) -> untyped
+      end
+    end
+  end
+end

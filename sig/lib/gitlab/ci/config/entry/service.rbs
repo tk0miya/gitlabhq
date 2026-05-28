@@ -1,0 +1,22 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a configuration of Docker service.
+        #
+        class Service < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Ci::Config::Entry::Imageable
+
+          ALLOWED_KEYS: ::Array[:command | :alias | :variables]
+
+          def alias: () -> untyped
+
+          def command: () -> (untyped | nil)
+
+          def value: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Gitlab
+  class CodeNavigationPath
+    @project: untyped
+
+    @commit_sha: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Gitlab::Routing
+
+    LATEST_COMMITS_LIMIT: 2
+
+    ARTIFACT_TIMEOUT: untyped
+
+    def initialize: (untyped project, untyped commit_sha) -> void
+
+    def full_json_path_for: (untyped path) -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader commit_sha: untyped
+
+    def with_circuit_breaker: () { () -> untyped } -> untyped
+
+    # Disable CodeNavigation feature for 24 hours after several timeouts caused by a slow SQL query
+    def circuit_breaker_options: () -> { sleep_window: untyped, time_window: untyped, volume_threshold: 5 }
+
+    def build: () -> untyped
+  end
+end

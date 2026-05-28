@@ -1,0 +1,55 @@
+# Namespaces::ProjectsFinder
+#
+# Used to filter Projects by set of params
+#
+# Arguments:
+#   current_user
+#   namespace
+#   params:
+#     sort: string
+#     search: string
+#     include_subgroups: boolean
+#     include_archived: boolean
+#     ids: int[]
+#     with_issues_enabled: boolean
+#     with_merge_requests_enabled: boolean
+#     not_aimed_for_deletion: boolean
+#     include_sibling_projects: boolean
+#     with_namespace_domain_pages: boolean
+#     archived_only: boolean
+#
+module Namespaces
+  class ProjectsFinder
+    @namespace: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    def initialize: (?namespace: untyped?, ?current_user: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader namespace: untyped
+
+    attr_reader params: untyped
+
+    attr_reader current_user: untyped
+
+    def filter_projects: (untyped collection) -> untyped
+
+    def by_ids: (untyped items) -> untyped
+
+    def by_archived: (untyped items) -> untyped
+
+    def by_similarity: (untyped items) -> untyped
+
+    def by_feature_availability: (untyped items) -> untyped
+
+    def should_sort_by_similarity?: () -> untyped
+
+    def sort: (untyped items) -> untyped
+  end
+end

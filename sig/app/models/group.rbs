@@ -1,0 +1,415 @@
+class Group < Namespace
+  include Gitlab::ConfigHelper
+
+  include AfterCommitQueue
+
+  include AccessRequestable
+
+  include Authz::HasRoles
+
+  include Avatarable
+
+  include SelectForProjectAuthorization
+
+  include LoadedInGroupList
+
+  include GroupDescendant
+
+  include TokenAuthenticatable
+
+  include WithUploads
+
+  include Gitlab::Utils::StrongMemoize
+
+  include GroupAPICompatibility
+
+  include EachBatch
+
+  include BulkMemberAccessLoad
+
+  include BulkUsersByEmailLoad
+
+  include ChronicDurationAttribute
+
+  include RunnerTokenExpirationInterval
+
+  include Importable
+
+  include IdInOrdered
+
+  include Members::Enumerable
+
+  extend ::Gitlab::Utils::Override
+
+  README_PROJECT_PATH: "gitlab-profile"
+
+  # TODO: Needs to be renamed for semantic accuracy or removed once we shift to LocalStorage
+  #  under https://gitlab.com/gitlab-org/gitlab/-/work_items/591706
+  SORTING_PREFERENCE_FIELD: :projects_sort
+
+  def self.sti_name: () -> "Group"
+
+  def self.supported_keyset_orderings: () -> { name: ::Array[:asc] }
+
+  alias members group_members
+
+  def self.sort_by_attribute: (untyped method) -> untyped
+
+  # WARNING: This method should never be used on its own
+  # please do make sure the number of rows you are filtering is small
+  # enough for this query
+  def self.public_or_visible_to_user: (untyped user) -> untyped
+
+  def self.select_for_project_authorization: () -> untyped
+
+  def self.without_integration: (untyped integration) -> untyped
+
+  def self.groups_user_can: (untyped groups, untyped user, untyped action, ?same_root: bool) -> untyped
+
+  # This method can be used only if all groups have the same top-level
+  # group
+  def self.preset_root_ancestor_for: (untyped groups) -> untyped
+
+  # Returns the ids of the passed group models where the `emails_enabled`
+  # column is set to false anywhere in the ancestor hierarchy.
+  def self.ids_with_disabled_email: (untyped groups) -> untyped
+
+  def self.get_ids_by_ids_or_paths: (untyped ids, untyped paths) -> untyped
+
+  def self.descendant_groups_counts: () -> untyped
+
+  def self.projects_counts: () -> untyped
+
+  def self.group_members_counts: () -> untyped
+
+  def self.with_api_scopes: () -> untyped
+
+  # Handle project creation permissions based on application setting and group setting. The `default_project_creation`
+  # application setting is the default value and can be overridden by the `project_creation_level` group setting.
+  # `nil` value of namespaces.project_creation_level` means that allowed creation level has not been explicitly set by
+  # the group owner and is a placeholder value for inheriting the value from the ApplicationSetting.
+  def self.project_creation_levels_for_user: (untyped user) -> untyped
+
+  def self.prevent_project_creation?: (untyped user, untyped project_creation_setting) -> (true | false | untyped)
+
+  def self.self_or_ancestors_deletion_schedule_subquery: () -> untyped
+
+  private
+
+  def self.public_to_user_arel: (untyped user) -> untyped
+
+  def self.visible_to_user_arel: (untyped user) -> untyped
+
+  public
+
+  # Overrides notification_settings has_many association
+  # This allows to apply notification settings from parent groups
+  # to child groups and projects.
+  def notification_settings: (?hierarchy_order: untyped?) -> untyped
+
+  def notification_settings_for: (untyped user, ?hierarchy_order: untyped?) -> untyped
+
+  def packages_feature_enabled?: () -> untyped
+
+  def dependency_proxy_feature_available?: () -> untyped
+
+  def notification_email_for: (untyped user) -> untyped
+
+  def dependency_proxy_image_prefix: () -> untyped
+
+  def human_name: () -> untyped
+
+  def to_human_reference: (?untyped? from) -> (nil | untyped)
+
+  def visibility_level_allowed_by_organization?: (?untyped level) -> (true | untyped)
+
+  def visibility_level_allowed_by_parent?: (?untyped level) -> (true | untyped)
+
+  def visibility_level_allowed_by_projects?: (?untyped level) -> untyped
+
+  def visibility_level_allowed_by_sub_groups?: (?untyped level) -> untyped
+
+  def visibility_level_allowed?: (?untyped level) -> untyped
+
+  def lfs_enabled?: () -> (false | untyped)
+
+  def owned_by?: (untyped user) -> (false | untyped)
+
+  def add_members: (untyped users, untyped access_level, ?current_user: untyped?, ?expires_at: untyped?) -> untyped
+
+  def add_member: (untyped user, untyped access_level, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def add_guest: (untyped user, ?untyped? current_user) -> untyped
+
+  def add_planner: (untyped user, ?untyped? current_user) -> untyped
+
+  def add_reporter: (untyped user, ?untyped? current_user) -> untyped
+
+  def add_security_manager: (untyped user, ?untyped? current_user) -> (nil | untyped)
+
+  def add_developer: (untyped user, ?untyped? current_user) -> untyped
+
+  def add_maintainer: (untyped user, ?untyped? current_user) -> untyped
+
+  def add_owner: (untyped user, ?untyped? current_user) -> untyped
+
+  def member?: (untyped user, ?untyped min_access_level) -> (false | untyped)
+
+  def member_of_self_or_descendant?: (untyped user) -> (false | untyped)
+
+  def has_owner?: (untyped user) -> (false | untyped)
+
+  def blocked_owners: () -> untyped
+
+  def has_maintainer?: (untyped user) -> (false | untyped)
+
+  def has_container_repository_including_subgroups?: () -> untyped
+
+  # Check if user is a last owner of the group.
+  # Excludes non-direct owners for top-level group
+  # Excludes project_bots
+  def last_owner?: (untyped user) -> (false | untyped)
+
+  # This is used in BillableMember Entity to
+  # avoid multiple "member_owners_excluding_project_bots_and_service_accounts" calls
+  # for each billable members
+  def last_owner_in_list?: (untyped user, untyped all_owners) -> (false | untyped)
+
+  def service_accounts: () -> untyped
+
+  # Excludes non-direct owners for top-level group
+  # Excludes project_bots
+  # Excludes service accounts
+  def member_owners_excluding_project_bots_and_service_accounts: () -> untyped
+
+  def ldap_synced?: () -> false
+
+  def post_create_hook: () -> untyped
+
+  def post_destroy_hook: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def system_hook_service: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def refresh_members_authorized_projects: (?priority: untyped, ?direct_members_only: bool) -> untyped
+
+  def users_ids_of_direct_members: () -> untyped
+
+  def user_ids_for_project_authorizations: () -> untyped
+
+  def self_and_hierarchy_intersecting_with_user_groups: (untyped user) -> untyped
+
+  def self_and_ancestors_ids: () -> untyped
+
+  def self_and_descendants_ids: () -> untyped
+
+  def self_and_ancestors_asc: () -> untyped
+
+  # Only for direct and not requested members with higher access level than MIMIMAL_ACCESS
+  # It returns true for non-active users
+  def has_user?: (untyped user) -> (false | untyped)
+
+  def direct_members: () -> untyped
+
+  def authorizable_members_with_parents: () -> untyped
+
+  def members_with_parents: (?only_active_users: bool) -> untyped
+
+  def members_with_descendants: () -> untyped
+
+  # Returns all members that are part of the group, it's subgroups, and ancestor groups
+  def hierarchy_members: () -> untyped
+
+  def hierarchy_members_with_inactive: () -> untyped
+
+  def descendant_project_members_with_inactive: () -> untyped
+
+  def users_with_descendants: () -> untyped
+
+  def users_count: () -> untyped
+
+  # Return the highest access level for a user
+  #
+  # A special case is handled here when the user is a GitLab admin
+  # which implies it has "OWNER" access everywhere, but should not
+  # officially appear as a member of a group unless specifically added to it
+  #
+  # @param user [User]
+  # @param only_concrete_membership [Bool] whether require admin concrete membership status
+  def max_member_access_for_user: (untyped user, ?only_concrete_membership: bool) -> untyped
+
+  def mattermost_team_params: () -> { name: untyped, display_name: untyped, type: untyped }
+
+  def member: (untyped user) -> untyped
+
+  def highest_group_member: (untyped user) -> untyped
+
+  def bots: () -> untyped
+
+  def related_group_ids: () -> untyped
+
+  def hashed_storage?: (untyped _feature) -> false
+
+  def refresh_project_authorizations: () -> untyped
+
+  # each existing group needs to have a `runners_token`.
+  # we do this on read since migrating all existing groups is not a feasible
+  # solution.
+  def runners_token: () -> (nil | untyped)
+
+  def project_creation_level: () -> untyped
+
+  def subgroup_creation_level: () -> untyped
+
+  def access_request_approvers_to_be_notified: () -> untyped
+
+  def membership_locked?: () -> false
+
+  def supports_events?: () -> false
+
+  def import_export_upload_by_user: (untyped user) -> untyped
+
+  def export_file_exists?: (untyped user) -> untyped
+
+  def export_file: (untyped user) -> untyped
+
+  def export_archive_exists?: (untyped user) -> untyped
+
+  def execute_hooks: (untyped data, untyped hooks_scope) -> nil
+
+  def find_or_initialize_integration: (untyped integration) -> untyped
+
+  def execute_integrations: (untyped data, untyped hooks_scope) -> untyped
+
+  def preload_shared_group_links: () -> untyped
+
+  def first_owner: () -> untyped
+
+  def default_branch_name: () -> untyped
+
+  def access_level_roles: () -> untyped
+
+  def access_level_values: () -> untyped
+
+  def parent_allows_two_factor_authentication?: () -> (true | untyped)
+
+  def has_project_with_service_desk_enabled?: () -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def open_issues_count: (?untyped? current_user) -> untyped
+
+  # rubocop: disable CodeReuse/ServiceClass
+  def open_merge_requests_count: (?untyped? current_user) -> untyped
+
+  def timelogs: () -> untyped
+
+  def dependency_proxy_image_ttl_policy: () -> untyped
+
+  def dependency_proxy_setting: () -> untyped
+
+  def group_feature: () -> untyped
+
+  def crm_enabled?: () -> untyped
+
+  def shared_with_group_links_visible_to_user: (untyped user) -> untyped
+
+  def enforced_runner_token_expiration_interval: () -> untyped
+
+  def work_item_tasks_on_boards_feature_flag_enabled?: () -> untyped
+
+  def markdown_placeholders_feature_flag_enabled?: () -> untyped
+
+  def glql_load_on_click_feature_flag_enabled?: () -> untyped
+
+  def allow_iframes_in_markdown_feature_flag_enabled?: () -> untyped
+
+  def sscs_malware_detection_feature_flag_enabled?: () -> untyped
+
+  def use_work_item_url?: () -> untyped
+
+  # overridden in EE
+  def has_active_hooks?: (?::Symbol hooks_scope) -> false
+
+  # overridden in EE
+  def enterprise_user_settings_available?: (?untyped? user) -> false
+
+  # SaaS only feature, overridden in EE
+  def mcp_server_setting_available?: () -> false
+
+  def mcp_server_enabled?: () -> untyped
+
+  def supports_lock_on_merge?: () -> untyped
+
+  def usage_quotas_enabled?: () -> untyped
+
+  def supports_saved_replies?: () -> false
+
+  def feature_available?: (untyped feature, ?untyped? user) -> untyped
+
+  def gitlab_deploy_token: () -> untyped
+
+  def packages_policy_subject: () -> untyped
+
+  def dependency_proxy_for_containers_policy_subject: () -> untyped
+
+  def update_two_factor_requirement_for_members: () -> untyped
+
+  def readme_project: () -> untyped
+
+  def notification_group: () -> self
+
+  def group_readme: () -> untyped
+
+  def hook_attrs: () -> { group_name: untyped, group_path: untyped, group_id: untyped, full_path: untyped }
+
+  def crm_group: () -> untyped
+
+  def crm_group?: () -> (true | untyped)
+
+  def has_issues_with_contacts?: () -> untyped
+
+  def delete_contacts: () -> untyped
+
+  def delete_organizations: () -> untyped
+
+  def cluster_agents: () -> untyped
+
+  def active?: () -> untyped
+
+  def pending_delete?: () -> (false | untyped)
+
+  def unarchive_descendants!: () -> untyped
+
+  def unarchive_all_projects!: () -> untyped
+
+  private
+
+  def feature_flag_enabled_for_self_or_ancestor?: (untyped feature_flag, ?type: ::Symbol) -> untyped
+
+  def max_member_access: (untyped user) -> untyped
+
+  def update_two_factor_requirement: () -> (nil | untyped)
+
+  def path_changed_hook: () -> untyped
+
+  def should_validate_visibility_level?: () -> untyped
+
+  def visibility_level_allowed_by_organization: () -> (nil | untyped)
+
+  def visibility_level_allowed_by_parent: () -> (nil | untyped)
+
+  def visibility_level_allowed_by_projects: () -> (nil | untyped)
+
+  def visibility_level_allowed_by_sub_groups: () -> (nil | untyped)
+
+  def two_factor_authentication_allowed: () -> (nil | untyped)
+
+  def runners_token_prefix: () -> untyped
+
+  def top_level_group_name_not_assigned_to_pages_unique_domain: () -> (nil | untyped)
+
+  def ancestors_scheduled_for_deletion: () -> untyped
+
+  def remove_ancestor_inherited_transitions?: () -> untyped
+end

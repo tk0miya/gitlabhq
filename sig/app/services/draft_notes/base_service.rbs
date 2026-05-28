@@ -1,0 +1,27 @@
+module DraftNotes
+  class BaseService < ::BaseService
+    @merge_request: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_accessor merge_request: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor params: untyped
+
+    def initialize: (untyped merge_request, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def merge_request_activity_counter: () -> untyped
+
+    private
+
+    def draft_notes: () -> untyped
+
+    def project: () -> untyped
+  end
+end

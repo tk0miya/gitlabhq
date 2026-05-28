@@ -1,0 +1,17 @@
+module Gitlab
+  module UsageDataCounters
+    module VSCodeExtensionActivityUniqueCounter
+      VS_CODE_API_REQUEST_ACTION: "i_code_review_user_vs_code_api_request"
+
+      VS_CODE_USER_AGENT_REGEX: ::Regexp
+
+      def self.track_api_request_when_trackable: (user_agent: untyped, user: untyped) -> untyped
+
+      private
+
+      def self.track_unique_action_by_user: (untyped action, untyped user) -> (nil | untyped)
+
+      def self.track_unique_action: (untyped action, untyped value) -> untyped
+    end
+  end
+end

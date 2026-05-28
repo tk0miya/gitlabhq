@@ -1,0 +1,19 @@
+class ForkTargetsFinder
+  @project: untyped
+
+  @user: untyped
+
+  def initialize: (untyped project, untyped user) -> void
+
+  def execute: (?::Hash[untyped, untyped] options) -> untyped
+
+  private
+
+  attr_reader project: untyped
+
+  attr_reader user: untyped
+
+  def by_search: (untyped items, untyped options) -> untyped
+
+  def fork_targets: (untyped options) -> untyped
+end

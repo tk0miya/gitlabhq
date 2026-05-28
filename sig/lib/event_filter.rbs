@@ -1,0 +1,57 @@
+# rubocop: disable CodeReuse/ActiveRecord
+class EventFilter
+  @filter: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_accessor filter: untyped
+
+  ALL: "all"
+
+  PUSH: "push"
+
+  MERGED: "merged"
+
+  ISSUE: "issue"
+
+  COMMENTS: "comments"
+
+  TEAM: "team"
+
+  WIKI: "wiki"
+
+  DESIGNS: "designs"
+
+  PROJECT_ONLY_EVENT_TYPES: ::Array[untyped]
+
+  def initialize: (untyped filter) -> void
+
+  def active?: (untyped key) -> untyped
+
+  def apply_filter: (untyped events) -> untyped
+
+  # This method build specialized in-operator optimized queries based on different
+  # filter parameters. All queries will benefit from the index covering the following columns:
+  # * author_id target_type action id
+  # * project_id target_type action id
+  # * group_id target_type action id
+  #
+  # More context: https://docs.gitlab.com/ee/development/database/efficient_in_operator_queries.html#the-inoperatoroptimization-module
+  def in_operator_query_builder_params: (untyped array_data) -> untyped
+
+  private
+
+  def in_operator_params: (array_data: untyped, ?scope: untyped?, ?in_column: untyped?, ?in_values: untyped?, ?order_hint_column: untyped?) -> untyped
+
+  # This method builds the array_ parameters
+  # without in_column parameter: uses one IN filter: author_id
+  # with in_column: two IN filters: author_id, (target_type OR action)
+  # @param array_data [Hash] Must contain the scope_ids, scope_model, mapping_column keys
+  def in_operator_array_params: (scope: untyped, array_data: untyped, ?in_column: untyped?, ?in_values: untyped?) -> untyped
+
+  def wiki_events: (untyped events) -> untyped
+
+  def design_events: (untyped events) -> untyped
+
+  def filters: () -> ::Array[untyped]
+end

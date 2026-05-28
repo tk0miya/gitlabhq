@@ -1,0 +1,32 @@
+# This adapter class makes the new value stream (cycle analytics) backend
+# compatible with the old value stream controller actions.
+module CycleAnalytics
+  class ProjectLevelStageAdapter
+    @stage: untyped
+
+    @options: untyped
+
+    @data_collector: untyped
+
+    ProjectLevelStage: untyped
+
+    def initialize: (untyped stage, untyped options) -> void
+
+    # rubocop: disable CodeReuse/Presenter
+    def as_json: (?serializer: untyped) -> untyped
+
+    def events: () -> untyped
+
+    def median: () -> untyped
+
+    alias project_median median
+
+    private
+
+    attr_reader stage: untyped
+
+    attr_reader options: untyped
+
+    def data_collector: () -> untyped
+  end
+end

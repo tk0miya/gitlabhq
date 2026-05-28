@@ -1,0 +1,37 @@
+# frozen_string_literal: true
+module Gitlab
+  module Database
+    module Partitioning
+      class DetachedPartitionDropper
+        PROCESSING_DELAY: untyped
+
+        def perform: () -> untyped
+
+        def drop_all_detached_partitions!: () -> untyped
+
+        private
+
+        def unmark_partition: (untyped detached_partition) -> untyped
+
+        def drop_partition: (untyped detached_partition) -> untyped
+
+        def remove_foreign_keys: (untyped detached_partition) -> untyped
+
+        # Drops the given foreign key for the given detached partition, but only if another process has not already
+        # detached the partition first. This method must be safe to call even if the associated partition table has already
+        # been detached, as it could be called by multiple processes at once.
+        def drop_foreign_key_if_present: (untyped detached_partition, untyped foreign_key) -> untyped
+
+        def drop_detached_partition: (untyped detached_partition) -> untyped
+
+        def partition_attached?: (untyped partition_identifier) -> untyped
+
+        def try_lock_detached_partition: (untyped id) -> untyped
+
+        def connection: () -> untyped
+
+        def with_lock_retries: () { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

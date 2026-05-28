@@ -1,0 +1,17 @@
+class DiffsEntity < Grape::Entity
+  @commit_ids: untyped
+
+  include DiffHelper
+
+  include RequestAwareEntity
+
+  def merge_request: () -> untyped
+
+  private
+
+  def commit_ids: () -> untyped
+
+  def commit_neighbors: (untyped commit_id) -> ::Array[untyped]
+
+  def commit_options: (untyped options) -> untyped
+end

@@ -1,0 +1,15 @@
+module Banzai
+  module ReferenceParser
+    class ExternalIssueParser < BaseParser
+      def referenced_by: (untyped nodes, ?::Hash[untyped, untyped] options) -> untyped
+
+      def issue_ids_per_project: (untyped nodes) -> untyped
+
+      # we extract only external issue trackers references here, we don't extract cross-project references,
+      # so we don't need to do anything here.
+      def can_read_reference?: (untyped user, untyped ref_project, untyped node) -> true
+
+      def nodes_visible_to_user: (untyped user, untyped nodes) -> untyped
+    end
+  end
+end

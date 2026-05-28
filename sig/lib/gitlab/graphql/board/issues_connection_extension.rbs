@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+module Gitlab
+  module Graphql
+    module Board
+      class IssuesConnectionExtension < GraphQL::Schema::FieldExtension
+        def after_resolve: (value: untyped, object: untyped, context: untyped, **untyped rest) -> untyped
+      end
+    end
+  end
+end

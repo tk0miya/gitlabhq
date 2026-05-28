@@ -1,0 +1,9 @@
+module Import
+  class PlaceholderUserDetail < ApplicationRecord
+    DELETION_RETRY_PERIOD: untyped
+
+    def self.eligible_for_deletion: (?untyped max_attempts) -> untyped
+
+    def increment_deletion_attempt: () -> untyped
+  end
+end

@@ -1,0 +1,5 @@
+module API
+  class NpmGroupPackages < ::API::Base
+    def self.authorization_boundary_options: () -> { boundary_type: :group, boundary: untyped }
+  end
+end

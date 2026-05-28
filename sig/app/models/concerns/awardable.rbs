@@ -1,0 +1,17 @@
+module Awardable
+  extend ActiveSupport::Concern
+
+  def grouped_awards: (?with_thumbs: bool) -> untyped
+
+  def downvotes: () -> untyped
+
+  def upvotes: () -> untyped
+
+  def emoji_awardable?: () -> true
+
+  def user_can_award?: (untyped current_user) -> untyped
+
+  def user_authored?: (untyped current_user) -> untyped
+
+  def awarded_emoji?: (untyped emoji_name, untyped current_user) -> untyped
+end

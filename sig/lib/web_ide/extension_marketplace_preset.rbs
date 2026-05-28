@@ -1,0 +1,28 @@
+module WebIde
+  class ExtensionMarketplacePreset
+    # note: This is effectively a constant so lets memoize
+    self.@open_vsx: untyped
+
+    @key: untyped
+
+    @name: untyped
+
+    @values: untyped
+
+    CUSTOM_KEY: "custom"
+
+    def self.all: () -> ::Array[untyped]
+
+    def self.open_vsx: () -> untyped
+
+    def initialize: (untyped key, untyped name, service_url: untyped, item_url: untyped, resource_url_template: untyped) -> void
+
+    attr_reader key: untyped
+
+    attr_reader name: untyped
+
+    attr_reader values: untyped
+
+    def to_h: () -> { key: untyped, name: untyped, values: untyped }
+  end
+end

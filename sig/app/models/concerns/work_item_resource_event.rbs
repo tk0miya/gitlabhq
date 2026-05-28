@@ -1,0 +1,12 @@
+module WorkItemResourceEvent
+  extend ActiveSupport::Concern
+
+  # System notes are not updated or deleted, so firing just the noteCreated event.
+  def trigger_note_subscription_create: (?events: untyped) -> untyped
+
+  def work_item_synthetic_system_note: (?events: untyped?) -> (nil | untyped)
+
+  # Class used to create the even synthetic note
+  # If the event does not require a synthetic note the method must return false
+  def synthetic_note_class: () -> untyped
+end

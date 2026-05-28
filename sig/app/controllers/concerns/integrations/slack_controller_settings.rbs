@@ -1,0 +1,26 @@
+# Shared concern for controllers to handle editing the GitLab for Slack app
+# integration at project, group and instance-levels.
+#
+# Controllers should define these methods:
+# - `#integration` to return the Integrations::GitLabSlackApplication record.
+# - `#redirect_to_integration_page` to redirect to the integration edit page.
+# - `#installation_service` to return a service class to handle the OAuth flow.
+module Integrations
+  module SlackControllerSettings
+    @slack_integration: untyped
+
+    extend ActiveSupport::Concern
+
+    def slack_auth: () -> untyped
+
+    def destroy: () -> untyped
+
+    private
+
+    def slack_integration: () -> untyped
+
+    def handle_oauth_error: () -> (nil | untyped)
+
+    def check_oauth_state: () -> true
+  end
+end

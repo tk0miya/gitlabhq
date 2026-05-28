@@ -1,0 +1,95 @@
+module Sidebars
+  class Menu
+    @context: untyped
+
+    @items: untyped
+
+    @all_active_routes: untyped
+
+    @renderable_items: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    include ::Gitlab::Routing
+
+    include GitlabRoutingHelper
+
+    include Gitlab::Allowable
+
+    include ::Sidebars::Concerns::HasPill
+
+    include ::Sidebars::Concerns::HasIcon
+
+    include ::Sidebars::Concerns::HasAvatar
+
+    include ::Sidebars::Concerns::PositionableList
+
+    include ::Sidebars::Concerns::Renderable
+
+    include ::Sidebars::Concerns::ContainerWithHtmlOptions
+
+    include ::Sidebars::Concerns::HasActiveRoutes
+
+    include ::Sidebars::Concerns::HasPartial
+
+    attr_reader context: untyped
+
+    def initialize: (untyped context) -> void
+
+    def configure_menu_items: () -> true
+
+    def render?: () -> untyped
+
+    def link: () -> untyped
+
+    # This method normalizes the information retrieved from the submenus and this menu
+    # Value from menus is something like: [{ path: 'foo', path: 'bar', controller: :foo }]
+    # This method filters the information and returns: { path: ['foo', 'bar'], controller: :foo }
+    def all_active_routes: () -> untyped
+
+    # Returns whether the menu has any menu item, no
+    # matter whether it is renderable or not
+    def has_items?: () -> untyped
+
+    # Returns all renderable menu items
+    def renderable_items: () -> untyped
+
+    # Defines whether menu is separated from others with a top separator
+    def separated?: () -> false
+
+    # Returns a tree-like representation of itself and all
+    # renderable menu entries, with additional information
+    # on whether the item(s) have an active route
+    def serialize_for_super_sidebar: () -> untyped
+
+    # Returns an array of renderable menu entries,
+    # with additional information on whether the item
+    # has an active route
+    def serialize_items_for_super_sidebar: () -> untyped
+
+    def pick_into_super_sidebar?: () -> false
+
+    # Returns whether the menu has any renderable menu item
+    def has_renderable_items?: () -> untyped
+
+    def add_item: (untyped item) -> untyped
+
+    def insert_item_before: (untyped before_item, untyped new_item) -> untyped
+
+    def insert_item_after: (untyped after_item, untyped new_item) -> untyped
+
+    def remove_item: (untyped item) -> untyped
+
+    def replace_placeholder: (untyped item) -> untyped
+
+    def container_html_options: () -> untyped
+
+    # Sometimes we want to convert a top-level Menu (e.g. Wiki/Snippets)
+    # to a MenuItem. This serializer is used in order to enable that conversion
+    def serialize_as_menu_item_args: () -> { title: untyped, link: untyped, active_routes: untyped, container_html_options: untyped }
+
+    private
+
+    def index_of: (untyped list, untyped element) -> untyped
+  end
+end

@@ -1,0 +1,27 @@
+module Namespaces
+  class UpdateDenormalizedDescendantsService
+    @namespace_id: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    NAMESPACE_TYPE_MAPPING: { "Project" => :project_namespace_ids, "Group" => :group_ids }
+
+    def initialize: (namespace_id: untyped) -> void
+
+    def execute: () -> untyped
+
+    def execute_with_optimistic_locking: () -> (nil | :not_updated_due_to_lock_timeout | :not_updated_due_to_optimistic_lock | :processed)
+
+    private
+
+    attr_reader namespace_id: untyped
+
+    def update_namespace_descendants_with_low_lock_timeout: (untyped namespace, untyped descendants) -> untyped
+
+    def update_namespace_descendants: (untyped namespace) -> untyped
+
+    def collect_namespace_ids: () -> untyped
+
+    def iterator: () -> untyped
+  end
+end

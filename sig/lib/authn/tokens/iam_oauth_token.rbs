@@ -1,0 +1,74 @@
+module Authn
+  module Tokens
+    class IamOauthToken
+      @user_id: untyped
+
+      @scopes: untyped
+
+      @id: untyped
+
+      @expires_at: untyped
+
+      @issued_at: untyped
+
+      @scope_user_id: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      # Primary public interface for creating validated tokens.
+      def self.from_jwt: (untyped token_string) -> (nil | untyped)
+
+      private
+
+      # Checks if a token string is likely an IAM-issued JWT based on format.
+      # This is a lightweight check before expensive JWT validation.
+      # TODO: Replace with proper token prefix (e.g., 'gliat-') before production
+      def self.iam_issued_jwt?: (untyped token_string) -> untyped
+
+      def self.from_validated_jwt: (untyped validated_data) -> untyped
+
+      def self.extract_scopes: (untyped payload) -> (::Array[untyped] | untyped)
+
+      public
+
+      attr_reader user_id: untyped
+
+      attr_reader scopes: untyped
+
+      attr_reader id: untyped
+
+      attr_reader expires_at: untyped
+
+      attr_reader issued_at: untyped
+
+      attr_reader scope_user_id: untyped
+
+      def initialize: (user_id: untyped, scopes: untyped, id: untyped, expires_at: untyped, issued_at: untyped, ?scope_user_id: untyped?) -> void
+
+      def active?: () -> untyped
+
+      def expired?: () -> untyped
+
+      def reload: () -> self
+
+      # For compatibility with AccessTokenValidationService
+      def resource_owner_id: () -> untyped
+
+      # IAM JWTs are stateless and cannot be revoked individually by default.
+      # TODO: Implement JTI-based revocation list to support token invalidation.
+      def revoked?: () -> false
+
+      # For compatibility with Doorkeeper
+      # Provided by doorkeeper/models/concerns/accessible.rb
+      def accessible?: () -> untyped
+
+      # Extracted scoped user from 'user:X' scope (for composite identity)
+      def scope_user: () -> (nil | untyped)
+
+      def to_s: () -> ::String
+
+      # Lazy load user (follows OAuth token association pattern)
+      def user: () -> untyped
+    end
+  end
+end

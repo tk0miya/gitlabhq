@@ -1,0 +1,19 @@
+module Projects
+  module Settings
+    class AccessTokensController < Projects::ApplicationController
+      include RenderAccessTokens
+
+      include AccessTokensActions
+
+      alias resource project
+
+      def resource_access_tokens_path: () -> untyped
+
+      private
+
+      def represent: (untyped tokens) -> untyped
+
+      def rotate_service: () -> untyped
+    end
+  end
+end

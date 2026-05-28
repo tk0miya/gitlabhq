@@ -1,0 +1,19 @@
+module Banzai
+  module Filter
+    # HTML that replaces all diagrams supported by Kroki with the corresponding img tags.
+    # If the source content is large then the hidden attribute is added to the img tag.
+    class KrokiFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      include Concerns::DiagramService
+
+      MAX_CHARACTER_LIMIT: 2000
+
+      DIAGRAM_FORMAT: "svg"
+
+      def call: () -> untyped
+
+      def self.kroki_image_src: (untyped diagram_type, untyped diagram_src) -> untyped
+    end
+  end
+end

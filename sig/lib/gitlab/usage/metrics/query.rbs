@@ -1,0 +1,40 @@
+module Gitlab
+  module Usage
+    module Metrics
+      class Query
+        def self.for: (untyped operation, untyped relation, ?untyped? column, **untyped extra) -> untyped
+
+        private
+
+        def self.count: (untyped relation, ?untyped? column) -> untyped
+
+        def self.distinct_count: (untyped relation, ?untyped? column) -> untyped
+
+        def self.sum: (untyped relation, untyped column) -> untyped
+
+        def self.average: (untyped relation, untyped column) -> untyped
+
+        def self.estimate_batch_distinct_count: (untyped relation, ?untyped? column) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def self.histogram: (untyped relation, untyped column, buckets: untyped, ?bucket_size: untyped) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def self.raw_count_sql: (untyped relation, untyped column, ?bool distinct) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def self.raw_sum_sql: (untyped relation, untyped column) -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def self.raw_average_sql: (untyped relation, untyped column) -> untyped
+
+        def self.node_to_operate: (untyped relation, untyped column) -> untyped
+
+        def self.join_relation?: (untyped relation) -> untyped
+
+        # checks if the passed column is of format "table.column"
+        def self.joined_column?: (untyped column) -> untyped
+      end
+    end
+  end
+end

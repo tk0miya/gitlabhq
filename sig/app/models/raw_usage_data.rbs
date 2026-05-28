@@ -1,0 +1,7 @@
+class RawUsageData < ApplicationRecord
+  include SafelyChangeColumnDefault
+
+  REPORTING_CADENCE: untyped
+
+  def update_version_metadata!: (usage_data_id: untyped) -> untyped
+end

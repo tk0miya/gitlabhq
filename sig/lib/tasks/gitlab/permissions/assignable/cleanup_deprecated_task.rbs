@@ -1,0 +1,29 @@
+module Tasks
+  module Gitlab
+    module Permissions
+      module Assignable
+        class CleanupDeprecatedTask
+          BBM_DOCS_GLOB: untyped
+
+          POST_MIGRATE_DIR: untyped
+
+          BBM_WORKER_NAMESPACE: "Gitlab::BackgroundMigration"
+
+          def run: () -> (nil | untyped)
+
+          private
+
+          def deletable_files: (untyped current_milestone) -> (::Array[untyped] | untyped)
+
+          def finalized_old_names: (untyped current_milestone) -> untyped
+
+          def bbm_docs_finalized_before: (untyped current_milestone) -> untyped
+
+          def milestone_for_post_migrate: (untyped version) -> (nil | untyped)
+
+          def renames_for_job: (untyped job_class_name) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

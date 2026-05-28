@@ -1,0 +1,47 @@
+module Members
+  module ServiceAccounts
+    class EligibilityChecker
+      @target_project: untyped
+
+      @target_namespace: untyped
+
+      def initialize: (?target_group: untyped?, ?target_project: untyped?) -> void
+
+      # rubocop:disable CodeReuse/ActiveRecord -- required for implementation of the service in multiple spots
+      # Filters a User relation to only include users eligible for membership within target_namespace.
+      def filter_users: (untyped users_relation) -> untyped
+
+      def eligible?: (untyped user) -> (true | untyped)
+
+      private
+
+      attr_reader target_namespace: untyped
+
+      attr_reader target_project: untyped
+
+      def restricted?: (untyped user) -> (false | untyped)
+
+      def build_eligibility_conditions: () -> ::Array[untyped]
+
+      def composite_identity_condition: () -> untyped
+
+      def subgroup_hierarchy_condition: () -> untyped
+
+      def project_provisioning_condition: () -> untyped
+
+      def query_params: () -> { sa_type: untyped, allowed_group_ids: untyped, target_is_project: untyped, target_project_id: untyped }
+
+      # Composite identity restrictions are .com-only.
+      # Overridden in EE via Gitlab::Saas.feature_available?(:service_accounts_invite_restrictions).
+      def composite_identity_restrictions_enabled?: () -> false
+
+      def restricted_by_composite_identity?: (untyped user) -> (false | untyped)
+
+      def restricted_by_subgroup_hierarchy?: (untyped user) -> (false | untyped)
+
+      def in_allowed_hierarchy?: (untyped user) -> untyped
+
+      def restricted_by_project_provisioning?: (untyped user) -> (false | untyped)
+    end
+  end
+end

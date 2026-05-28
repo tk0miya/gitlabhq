@@ -1,0 +1,19 @@
+module Backup
+  module Tasks
+    class Lfs < Task
+      @target: untyped
+
+      def self.id: () -> "lfs"
+
+      def human_name: () -> untyped
+
+      def destination_path: () -> "lfs.tar.gz"
+
+      private
+
+      def target: () -> untyped
+
+      def storage_path: () -> untyped
+    end
+  end
+end

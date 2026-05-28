@@ -1,0 +1,16 @@
+module Gitlab
+  module BackgroundMigration
+    # Back-fill project settings for projects that do not yet have one.
+    class BackfillProjectSettings
+      include Gitlab::Database::DynamicModelHelpers
+
+      def perform: (untyped start_id, untyped end_id, untyped batch_table, untyped batch_column, untyped sub_batch_size, untyped pause_ms) -> untyped
+
+      private
+
+      def connection: () -> untyped
+
+      def relation_scoped_to_range: (untyped source_table, untyped source_key_column, untyped start_id, untyped stop_id) -> untyped
+    end
+  end
+end

@@ -1,0 +1,41 @@
+module Gitlab
+  module Zentao
+    class Query
+      @client: untyped
+
+      @params: untyped
+
+      STATUSES: ::Array["all" | "opened" | "closed"]
+
+      ISSUES_DEFAULT_LIMIT: 20
+
+      ISSUES_MAX_LIMIT: 50
+
+      def initialize: (untyped integration, untyped params) -> void
+
+      def issues: () -> (::Array[untyped] | untyped)
+
+      def issue: () -> untyped
+
+      private
+
+      attr_reader client: untyped
+
+      attr_reader params: untyped
+
+      def query_options: () -> { order: untyped, status: untyped, labels: untyped, page: untyped, limit: untyped, search: untyped }
+
+      def query_page: () -> untyped
+
+      def query_limit: () -> untyped
+
+      def query_search: () -> untyped
+
+      def query_order: () -> ::String
+
+      def query_status: () -> (untyped | "opened")
+
+      def query_labels: () -> untyped
+    end
+  end
+end

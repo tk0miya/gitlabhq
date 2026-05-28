@@ -1,0 +1,27 @@
+module SessionsHelper
+  include Gitlab::Utils::StrongMemoize
+
+  include VerifiesWithEmailHelper
+
+  def unconfirmed_email?: () -> untyped
+
+  def obfuscated_email: (untyped email) -> untyped
+
+  def session_expire_modal_data: () -> { session_timeout: untyped, sign_in_url: untyped }
+
+  def remember_me_enabled?: () -> untyped
+
+  def render_email_otp_fallback_for_totp?: (untyped user) -> untyped
+
+  def verification_data: (untyped user) -> { username: untyped, obfuscated_email: untyped, verify_path: untyped, resend_path: untyped, skip_path: untyped, show_resend_after: untyped }
+
+  def fallback_to_email_otp_permitted?: (untyped user) -> untyped
+
+  def passkey_authentication_data: (untyped params) -> { path: untyped, remember_me: untyped, sign_in_path: untyped }
+
+  def webauthn_authentication_data: (user: untyped, params: untyped, ?admin_mode: bool) -> untyped
+
+  def sign_in_form_app_data: () -> untyped
+
+  def registration_path_params: (untyped invite_email) -> { invite_email: untyped }
+end

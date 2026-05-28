@@ -1,0 +1,29 @@
+module Gitlab
+  module ImportExport
+    module Json
+      class NdjsonReader
+        @dir_path: untyped
+
+        @consumed_relations: untyped
+
+        MAX_JSON_DOCUMENT_SIZE: untyped
+
+        attr_reader dir_path: untyped
+
+        def initialize: (untyped dir_path) -> void
+
+        def exist?: () -> untyped
+
+        def consume_attributes: (untyped importable_path) -> untyped
+
+        def consume_relation: (untyped importable_path, untyped key, ?mark_as_consumed: bool) -> untyped
+
+        private
+
+        def json_decode: (untyped string) -> untyped
+
+        def file_path: (*untyped path) -> untyped
+      end
+    end
+  end
+end

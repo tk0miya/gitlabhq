@@ -1,0 +1,27 @@
+module Types
+  module Packages
+    class PackageDetailsType < PackageType
+      include ::PackagesHelper
+
+      def composer_config_repository_url: () -> untyped
+
+      def composer_url: () -> untyped
+
+      def conan_url: () -> untyped
+
+      def maven_url: () -> untyped
+
+      def npm_url: () -> untyped
+
+      def nuget_url: () -> untyped
+
+      def pypi_setup_url: () -> untyped
+
+      def pypi_url: () -> untyped
+
+      def public_package: () -> untyped
+
+      def dependency_links: () -> untyped
+    end
+  end
+end

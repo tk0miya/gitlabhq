@@ -1,0 +1,31 @@
+module Packages
+  module Maven
+    module Metadata
+      class CreatePluginsXmlService < BaseCreateXmlService
+        XPATH_PLUGIN_ARTIFACT_ID: "//plugin/artifactId"
+
+        XPATH_PLUGINS: "//metadata/plugins"
+
+        EMPTY_PLUGINS_PAYLOAD: { changes_exist: true, empty_plugins: true }
+
+        def execute: () -> untyped
+
+        private
+
+        def update_plugins_list: () -> (false | true)
+
+        def plugins_xml_node: () -> untyped
+
+        def plugin_artifact_ids_from_xml: () -> untyped
+
+        def plugin_artifact_ids_from_database: () -> untyped
+
+        def plugin_node_for: (untyped artifact_id) -> untyped
+
+        # Maven plugin prefix generation from
+        # https://github.com/apache/maven/blob/c3dba0e5ba71ee7cbd62620f669a8c206e71b5e2/maven-plugin-api/src/main/java/org/apache/maven/plugin/descriptor/PluginDescriptor.java#L189
+        def prefix_from: (untyped artifact_id) -> untyped
+      end
+    end
+  end
+end

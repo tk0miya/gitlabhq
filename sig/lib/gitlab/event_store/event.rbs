@@ -1,0 +1,51 @@
+# An Event object represents a domain event that occurred in a bounded context.
+# By publishing events we notify other bounded contexts about something
+# that happened, so that they can react to it.
+#
+# Define new event classes under `app/events/<namespace>/` with a name
+# representing something that happened in the past:
+#
+#   class Projects::ProjectCreatedEvent < Gitlab::EventStore::Event
+#     def schema
+#       {
+#         'type' => 'object',
+#         'properties' => {
+#           'project_id' => { 'type' => 'integer' }
+#         }
+#       }
+#     end
+#   end
+#
+# To publish it:
+#
+#   Gitlab::EventStore.publish(
+#     Projects::ProjectCreatedEvent.new(data: { project_id: project.id })
+#   )
+#
+module Gitlab
+  module EventStore
+    class Event
+      self.@json_schema: untyped
+
+      @data: untyped
+
+      attr_reader data: untyped
+
+      attr_accessor self.json_schema_valid: untyped
+
+      def initialize: (data: untyped) -> void
+
+      def schema: () -> untyped
+
+      private
+
+      def validate_schema!: () -> (nil | untyped)
+
+      def validate_data!: (untyped data) -> untyped
+
+      def validate_data_against_schema!: (untyped data, untyped data_schema) -> untyped
+
+      def self.json_schema: () -> untyped
+    end
+  end
+end

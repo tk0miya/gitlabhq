@@ -1,0 +1,68 @@
+module LooseForeignKeys
+  # rubocop: disable CodeReuse/ActiveRecord
+  class CleanerService
+    @loose_foreign_key_definition: untyped
+
+    @connection: untyped
+
+    @deleted_parent_records: untyped
+
+    @with_skip_locked: untyped
+
+    @logger: untyped
+
+    @arel_table: untyped
+
+    @primary_keys: untyped
+
+    @quoted_table_name: untyped
+
+    DELETE_LIMIT: 1000
+
+    UPDATE_LIMIT: 500
+
+    def initialize: (loose_foreign_key_definition: untyped, connection: untyped, deleted_parent_records: untyped, ?logger: untyped, ?with_skip_locked: bool) -> void
+
+    def execute: () -> { affected_rows: untyped, table: untyped }
+
+    def async_delete?: () -> untyped
+
+    def async_nullify?: () -> untyped
+
+    def update_column_to?: () -> untyped
+
+    private
+
+    attr_reader loose_foreign_key_definition: untyped
+
+    attr_reader connection: untyped
+
+    attr_reader deleted_parent_records: untyped
+
+    attr_reader with_skip_locked: untyped
+
+    attr_reader logger: untyped
+
+    def build_query: () -> ("" | untyped)
+
+    def arel_table: () -> untyped
+
+    def primary_keys: () -> untyped
+
+    def quoted_table_name: () -> untyped
+
+    def delete_query: () -> untyped
+
+    def update_query: () -> untyped
+
+    def update_target_column_query: () -> untyped
+
+    # IN query with one or composite primary key
+    # WHERE (primary_key1, primary_key2) IN (subselect)
+    def add_in_query_with_limit: (untyped query, untyped limit) -> untyped
+
+    # Builds the following sub-query
+    # SELECT primary_keys FROM table WHERE foreign_key IN (1, 2, 3) LIMIT N
+    def in_query_with_limit: (untyped limit) -> untyped
+  end
+end

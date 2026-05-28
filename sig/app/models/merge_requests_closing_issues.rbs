@@ -1,0 +1,15 @@
+class MergeRequestsClosingIssues < ApplicationRecord
+  include BulkInsertSafe
+
+  def self.preload_merge_request_for_authorization: () -> untyped
+
+  def self.preload_issue: () -> untyped
+
+  def self.count_for_collection: (untyped ids, untyped current_user) -> untyped
+
+  def self.count_for_issue: (untyped id, untyped current_user) -> untyped
+
+  private
+
+  def self.closing_merge_requests: (untyped ids, untyped current_user) -> untyped
+end

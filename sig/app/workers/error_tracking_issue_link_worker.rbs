@@ -1,0 +1,42 @@
+# Creates a link in Sentry between a Sentry issue and a GitLab issue.
+# If the link already exists, no changes will occur.
+# If a link to a different GitLab issue exists, a new link
+#   will still be created, but will not be visible in Sentry
+#   until the prior link is deleted.
+class ErrorTrackingIssueLinkWorker
+  @issue: untyped
+
+  include ApplicationWorker
+
+  include ExclusiveLeaseGuard
+
+  include Gitlab::Utils::StrongMemoize
+
+  LEASE_TIMEOUT: untyped
+
+  attr_reader issue: untyped
+
+  def perform: (untyped issue_id) -> (nil | untyped)
+
+  private
+
+  def valid?: () -> untyped
+
+  def error_tracking: () -> untyped
+
+  def sentry_issue_id: () -> untyped
+
+  def sentry_client: () -> untyped
+
+  def integration_id: () -> untyped
+
+  def repo: () -> untyped
+
+  def organization_slug: () -> untyped
+
+  def project_url: () -> untyped
+
+  def lease_key: () -> ::String
+
+  def lease_timeout: () -> untyped
+end

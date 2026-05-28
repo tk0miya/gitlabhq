@@ -1,0 +1,82 @@
+module Gitlab
+  module Conflict
+    class File
+      @raw: untyped
+
+      @merge_request: untyped
+
+      @match_line_headers: untyped
+
+      @lines: untyped
+
+      @sections: untyped
+
+      include Gitlab::Routing
+
+      include IconsHelper
+
+      include Gitlab::Utils::StrongMemoize
+
+      CONTEXT_LINES: 3
+
+      CONFLICT_MARKER_OUR: "conflict_marker_our"
+
+      CONFLICT_MARKER_THEIR: "conflict_marker_their"
+
+      CONFLICT_MARKER_SEPARATOR: "conflict_marker"
+
+      CONFLICT_TYPES: { "old" => "conflict_their", "new" => "conflict_our" }
+
+      attr_reader merge_request: untyped
+
+      # 'raw' holds the Gitlab::Git::Conflict::File that this instance wraps
+      attr_reader raw: untyped
+
+      def initialize: (untyped raw, merge_request: untyped) -> void
+
+      def lines: () -> untyped
+
+      def resolve_lines: (untyped resolution) -> untyped
+
+      def highlight_lines!: () -> untyped
+
+      def diff_lines_for_serializer: () -> untyped
+
+      def sections: () -> untyped
+
+      def line_code: (untyped line) -> untyped
+
+      def create_match_line: (untyped line) -> untyped
+
+      def create_separator_line: (untyped line, untyped type) -> untyped
+
+      # Any line beginning with a letter, an underscore, or a dollar can be used in a
+      # match line header. Only context sections can contain match lines, as match lines
+      # have to exist in both versions of the file.
+      def find_match_line_header: (untyped index) -> untyped
+
+      # Set the match line's text for the current line. A match line takes its start
+      # position and context header (where present) from itself, and its end position from
+      # the line passed in.
+      def update_match_line_text: (untyped match_line, untyped line) -> (nil | untyped)
+
+      def as_json: (?::Hash[untyped, untyped] opts) -> untyped
+
+      def content_path: () -> untyped
+
+      def conflict_type: (?when_renamed: bool) -> (:both_modified | :modified_source_removed_target | :modified_target_removed_source | :both_added | :renamed_same_file | :removed_target_renamed_source | :removed_source_renamed_target)
+
+      private
+
+      def map_raw_lines: (untyped raw_lines) -> untyped
+
+      def their_language: () -> untyped
+
+      def our_language: () -> untyped
+
+      def their_lines: () -> untyped
+
+      def our_lines: () -> untyped
+    end
+  end
+end

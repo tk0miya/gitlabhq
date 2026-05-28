@@ -1,0 +1,22 @@
+class JwksController < Doorkeeper::OpenidConnect::DiscoveryController
+  include ::Gitlab::EndpointAttributes
+
+  DYNAMIC_REGISTRATION_PATH: "/oauth/register"
+
+  OAUTH_PATHS: ::Array["/.well-known/oauth-authorization-server" | "/.well-known/oauth-authorization-server/api/v4/mcp" | "/.well-known/openid-configuration/api/v4/mcp" | "/.well-known/oauth-authorization-server/api/v4/orbit/mcp" | "/.well-known/openid-configuration/api/v4/orbit/mcp"]
+
+  def keys: () -> untyped
+
+  def provider: () -> (nil | untyped)
+
+  private
+
+  def payload: () -> untyped
+
+  # overridden in EE
+  def load_keys: () -> ::Array[untyped]
+
+  def pem_to_jwk: (untyped key_data) -> untyped
+
+  def provider_response: () -> untyped
+end

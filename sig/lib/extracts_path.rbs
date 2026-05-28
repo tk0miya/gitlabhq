@@ -1,0 +1,94 @@
+# Module providing methods for dealing with separating a tree-ish string and a
+# file path string when combined in a request parameter
+# rubocop:disable Gitlab/ModuleWithInstanceVariables -- will be fixed in https://gitlab.com/gitlab-org/gitlab/-/issues/425379
+module ExtractsPath
+  @id: untyped
+
+  @ref: untyped
+
+  @path: untyped
+
+  @repo: untyped
+
+  @commit: untyped
+
+  @fully_qualified_ref: untyped
+
+  @hex_path: untyped
+
+  @logs_path: untyped
+
+  @ref_type: untyped
+
+  @ref_names: untyped
+
+  @ref_extractor: untyped
+
+  InvalidPathError: untyped
+
+  BRANCH_REF_TYPE: untyped
+
+  TAG_REF_TYPE: untyped
+
+  REF_TYPES: untyped
+
+  # Extends the method to handle if there is no path and the ref doesn't
+  # exist in the repo, try to resolve the ref without an '.atom' suffix.
+  # If _that_ ref is found, set the request's format to Atom manually.
+  #
+  # Automatically renders `not_found!` if a valid tree path could not be
+  # resolved (e.g., when a user inserts an invalid path or ref).
+  #
+  # Automatically redirects to the current default branch if the ref matches a
+  # previous default branch that has subsequently been deleted.
+  #
+  # Assignments are:
+  #
+  # - @id     - A string representing the joined ref and path
+  # - @ref    - A string representing the ref (e.g., the branch, tag, or commit SHA)
+  # - @path   - A string representing the filesystem path
+  # - @commit - A Commit representing the commit from the given ref
+  # - @ref_type - The type of ref this is, will attempt to detect if not supplied in params
+  #
+  # If the :id parameter appears to be requesting a specific response format,
+  # that will be handled as well.
+  def assign_ref_vars: () -> untyped
+
+  # Check if Gitaly is available using the health check service.
+  # Raises Gitlab::Git::CommandError if Gitaly is unavailable, which will be
+  # caught by HandlesGitalyErrors and show the graceful degradation message.
+  # Only performs the check if the controller includes HandlesGitalyErrors,
+  # to avoid adding unnecessary Gitaly RPCs to controllers that can't handle the result.
+  def verify_gitaly_availability!: () -> (nil | untyped)
+
+  def ref_type: () -> untyped
+
+  private
+
+  # Override in controllers to determine which actions are subject to the redirect
+  def redirect_renamed_default_branch?: () -> false
+
+  def path_present?: () -> untyped
+
+  def rectify_format!: () -> (nil | untyped)
+
+  # If we have an ID of 'foo.atom' or 'foo.json', and the controller provides
+  # Atom, JSON, and HTML formats, then we have to check if the request was for
+  # the Atom version of the ID without the '.atom' suffix, the JSON version of
+  # the ID without the '.json' suffix, or the HTML version of the ID including
+  # the suffix. We only check this if the version including the suffix doesn't
+  # match, so it is possible to create a branch which has an unroutable Atom
+  # feed or JSON view.
+  def extract_ref_and_format: (untyped id) -> (::Array[untyped | nil] | ::Array[untyped])
+
+  # For GET/HEAD requests, if the ref doesn't exist in the repository, check
+  # whether we're trying to access a renamed default branch. If we are, we can
+  # redirect to the current default branch instead of rendering a 404.
+  def rectify_renamed_default_branch!: () -> (nil | true)
+
+  def ref_names: () -> (::Array[untyped] | untyped)
+
+  def repository_container: () -> untyped
+
+  def ref_extractor: () -> untyped
+end

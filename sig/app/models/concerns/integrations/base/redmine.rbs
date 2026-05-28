@@ -1,0 +1,11 @@
+module Integrations
+  module Base
+    module Redmine
+      extend ActiveSupport::Concern
+
+      include Base::IssueTracker
+
+      include Integrations::HasIssueTrackerFields
+    end
+  end
+end

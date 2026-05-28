@@ -1,0 +1,54 @@
+# Service class for creating push event payloads as stored in the
+# "push_event_payloads" table.
+#
+# Example:
+#
+#     data = Gitlab::DataBuilder::Push.build(...)
+#     event = Event.create(...)
+#
+#     PushEventPayloadService.new(event, data).execute
+class PushEventPayloadService
+  @event: untyped
+
+  @push_data: untyped
+
+  # event - The event this push payload belongs to.
+  # push_data - A Hash produced by `Gitlab::DataBuilder::Push.build` to use for
+  #             building the push payload.
+  def initialize: (untyped event, untyped push_data) -> void
+
+  # Creates and returns a new PushEventPayload row.
+  #
+  # This method will raise upon encountering validation errors.
+  #
+  # Returns an instance of PushEventPayload.
+  def execute: () -> untyped
+
+  # Returns the commit title to use.
+  #
+  # The commit title is limited to the first line and a maximum of 70
+  # characters.
+  def commit_title: () -> (nil | untyped)
+
+  def commit_from_id: () -> (nil | untyped)
+
+  def commit_to_id: () -> (nil | untyped)
+
+  def commit_count: () -> untyped
+
+  def ref: () -> untyped
+
+  def revision_before: () -> untyped
+
+  def revision_after: () -> untyped
+
+  def trimmed_ref: () -> untyped
+
+  def create?: () -> untyped
+
+  def remove?: () -> untyped
+
+  def action: () -> (:created | :removed | :pushed)
+
+  def ref_type: () -> (:tag | :branch)
+end

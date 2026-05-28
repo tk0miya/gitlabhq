@@ -1,0 +1,15 @@
+module Mutations
+  module Ci
+    module PipelineSchedule
+      class Update < Base
+        def resolve: (id: untyped, ?variables: untyped, ?inputs: untyped, **untyped pipeline_schedule_attrs) -> { pipeline_schedule: untyped, errors: untyped }
+
+        private
+
+        # This method transforms the GraphQL argument values for pipeline schedule variables into values that can be
+        # understood by ActiveRecord when performing a nested attributes collection update.
+        def variables_attributes_for: (untyped variables) -> untyped
+      end
+    end
+  end
+end

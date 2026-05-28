@@ -1,0 +1,51 @@
+class FileMover
+  @secret: untyped
+
+  @file_name: untyped
+
+  @from_model: untyped
+
+  @to_model: untyped
+
+  @update_field: untyped
+
+  @uploader: untyped
+
+  @temp_file_uploader: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader secret: untyped
+
+  attr_reader file_name: untyped
+
+  attr_reader from_model: untyped
+
+  attr_reader to_model: untyped
+
+  attr_reader update_field: untyped
+
+  def initialize: (untyped file_path, ?::Symbol update_field, from_model: untyped, to_model: untyped) -> void
+
+  def execute: () -> (nil | untyped)
+
+  private
+
+  def valid?: () -> untyped
+
+  def move: () -> untyped
+
+  def update_markdown: () -> untyped
+
+  def update_upload_model: () -> (nil | untyped)
+
+  def temp_file_path: () -> untyped
+
+  def file_path: () -> untyped
+
+  def uploader: () -> untyped
+
+  def temp_file_uploader: () -> untyped
+
+  def revert: () -> untyped
+end

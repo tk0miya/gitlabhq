@@ -1,0 +1,49 @@
+module Gitlab
+  module Ci
+    module Reports
+      module Security
+        class Scanner
+          @external_id: untyped
+
+          @name: untyped
+
+          @vendor: untyped
+
+          @version: untyped
+
+          @primary_identifiers: untyped
+
+          @sort_keys: untyped
+
+          ANALYZER_ORDER: { "bundler_audit" => 1, "retire.js" => 2, "gemnasium" => 3, "gemnasium-maven" => 3, "gemnasium-python" => 3, "bandit" => 1, "spotbugs" => 1, "semgrep" => 2 }
+
+          attr_accessor external_id: untyped
+
+          attr_accessor name: untyped
+
+          attr_accessor vendor: untyped
+
+          attr_accessor version: untyped
+
+          attr_accessor primary_identifiers: untyped
+
+          alias key external_id
+
+          def initialize: (external_id: untyped, name: untyped, vendor: untyped, version: untyped, ?primary_identifiers: untyped?) -> void
+
+          def to_hash: () -> untyped
+
+          def ==: (untyped other) -> untyped
+
+          def <=>: (untyped other) -> untyped
+
+          def sort_keys: () -> untyped
+
+          private
+
+          def order: () -> untyped
+        end
+      end
+    end
+  end
+end

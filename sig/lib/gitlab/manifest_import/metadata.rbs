@@ -1,0 +1,31 @@
+module Gitlab
+  module ManifestImport
+    class Metadata
+      @user: untyped
+
+      @fallback: untyped
+
+      EXPIRY_TIME: untyped
+
+      KEY_PREFIX: "manifest_import:metadata:user"
+
+      attr_reader user: untyped
+
+      attr_reader fallback: untyped
+
+      def initialize: (untyped user, ?fallback: ::Hash[untyped, untyped]) -> void
+
+      def save: (untyped repositories, untyped group_id) -> untyped
+
+      def repositories: () -> untyped
+
+      def group_id: () -> untyped
+
+      private
+
+      def hashtag_key_for: (untyped field) -> ::String
+
+      def redis_get: (untyped field) -> untyped
+    end
+  end
+end

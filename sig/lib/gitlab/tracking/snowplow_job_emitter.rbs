@@ -1,0 +1,25 @@
+module Gitlab
+  module Tracking
+    # This class replaces SnowplowTracker::AsyncEmitter with a custom implementation
+    # that sends events asynchronously using Gitlab's sidekiq worker
+    class SnowplowJobEmitter < SnowplowTracker::Emitter
+      @options: untyped
+
+      @endpoint: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      attr_reader endpoint: untyped
+
+      attr_reader options: untyped
+
+      def initialize: (endpoint: untyped, ?options: ::Hash[untyped, untyped]) -> void
+
+      def flush: (?bool _async) -> untyped
+
+      private
+
+      def enqueue_worker: (untyped batch) -> untyped
+    end
+  end
+end

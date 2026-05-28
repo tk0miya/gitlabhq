@@ -1,0 +1,7 @@
+module Issues
+  class CloseWorker
+    include ApplicationWorker
+
+    def perform: (untyped project_id, untyped issue_id, untyped issue_type, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+  end
+end

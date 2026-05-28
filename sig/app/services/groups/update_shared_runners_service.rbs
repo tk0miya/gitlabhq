@@ -1,0 +1,19 @@
+module Groups
+  class UpdateSharedRunnersService < Groups::BaseService
+    def execute: () -> untyped
+
+    private
+
+    def validate_params: () -> (untyped | nil)
+
+    def update_shared_runners: () -> untyped
+
+    def update_pending_builds?: () -> untyped
+
+    def update_pending_builds_async: () -> (nil | untyped)
+
+    def set_shared_runners_enabled!: (untyped enabled) -> untyped
+
+    def disable_shared_runners_and_allow_override!: () -> untyped
+  end
+end

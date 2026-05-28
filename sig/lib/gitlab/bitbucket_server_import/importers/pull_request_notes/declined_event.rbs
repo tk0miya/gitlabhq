@@ -1,0 +1,19 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      module PullRequestNotes
+        class DeclinedEvent < BaseImporter
+          include ::Gitlab::Import::MergeRequestHelpers
+
+          def execute: (untyped declined_event) -> (nil | untyped)
+
+          private
+
+          def record_event: (untyped user_id) -> untyped
+
+          def record_state_event: (untyped user_id, untyped declined_event) -> untyped
+        end
+      end
+    end
+  end
+end

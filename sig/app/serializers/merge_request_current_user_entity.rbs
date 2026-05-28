@@ -1,0 +1,9 @@
+class MergeRequestCurrentUserEntity < CurrentUserEntity
+  include RequestAwareEntity
+
+  include BlobHelper
+
+  include TreeHelper
+
+  def project: () -> untyped
+end

@@ -1,0 +1,55 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        module File
+          class Component < Base
+            @location: untyped
+
+            extend ::Gitlab::Utils::Override
+
+            include Gitlab::Utils::StrongMemoize
+
+            def initialize: (untyped params, untyped context) -> void
+
+            def content: () -> (nil | untyped)
+
+            def include_type: () -> :component
+
+            def metadata: () -> untyped
+
+            def validate_location!: () -> (nil | untyped)
+
+            def validate_context!: () -> (nil | untyped)
+
+            def validate_content_presence!: () -> (untyped | nil)
+
+            def load_and_validate_expanded_hash!: () -> (nil | untyped)
+
+            private
+
+            def validate_component_spec!: () -> (nil | untyped)
+
+            attr_reader path: untyped
+
+            attr_reader version: untyped
+
+            def component_result: () -> untyped
+
+            def expand_context_attrs: () -> untyped
+
+            def yaml_context_attributes: () -> untyped
+
+            def masked_blob: () -> (nil | untyped)
+
+            def component_payload: () -> (nil | untyped)
+
+            def component_attrs: () -> (::Hash[untyped, untyped] | { project: untyped, sha: untyped, name: untyped, version: untyped, reference: untyped })
+
+            def component_yaml_context: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

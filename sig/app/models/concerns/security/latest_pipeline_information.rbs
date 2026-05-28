@@ -1,0 +1,21 @@
+module Security
+  module LatestPipelineInformation
+    private
+
+    def scanner_enabled?: (untyped scan_type) -> untyped
+
+    def latest_builds_reports: (?only_successful_builds: bool) -> untyped
+
+    # Because :sast_iac and :sast_advanced reports belong to a report with a name of 'sast',
+    # we have to do extra checking to determine which reports have been included
+    def normalize_for_sast_reports: (untyped reports, untyped builds) -> untyped
+
+    def build_reports: (untyped build) -> untyped
+
+    def latest_security_builds: () -> (::Array[untyped] | untyped)
+
+    def latest_default_branch_pipeline: () -> untyped
+
+    def auto_devops_source?: () -> untyped
+  end
+end

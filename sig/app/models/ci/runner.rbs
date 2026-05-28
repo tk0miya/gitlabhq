@@ -1,0 +1,198 @@
+module Ci
+  class Runner < Ci::ApplicationRecord
+    prepend Ci::BulkInsertableTags
+
+    include Gitlab::SQL::Pattern
+
+    include RedisCacheable
+
+    include ChronicDurationAttribute
+
+    include FromUnion
+
+    include TokenAuthenticatable
+
+    include FeatureGate
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Presentable
+
+    include EachBatch
+
+    include Ci::HasRunnerStatus
+
+    include Ci::Taggable
+
+    extend ::Gitlab::Utils::Override
+
+    # Prefix assigned to runners created from the UI, instead of registered via the command line
+    CREATED_RUNNER_TOKEN_PREFIX: "glrt-"
+
+    REGISTRATION_RUNNER_TOKEN_PREFIX: "glrtr-"
+
+    RUNNER_SHORT_SHA_LENGTH: 8
+
+    # This `ONLINE_CONTACT_TIMEOUT` needs to be larger than
+    #   `RUNNER_QUEUE_EXPIRY_TIME+UPDATE_CONTACT_COLUMN_EVERY`
+    #
+    ONLINE_CONTACT_TIMEOUT: untyped
+
+    # The `RUNNER_QUEUE_EXPIRY_TIME` indicates the longest interval that
+    #   Runner request needs to be refreshed by Rails instead of being handled
+    #   by Workhorse
+    RUNNER_QUEUE_EXPIRY_TIME: untyped
+
+    # The `UPDATE_CONTACT_COLUMN_EVERY` defines how often the Runner DB entry can be updated
+    UPDATE_CONTACT_COLUMN_EVERY: untyped
+
+    # The `STALE_TIMEOUT` constant defines the how far past the last contact or creation date a runner will be considered stale
+    STALE_TIMEOUT: untyped
+
+    # Only allow authentication token to be visible for a short while
+    REGISTRATION_AVAILABILITY_TIME: untyped
+
+    AVAILABLE_TYPES_LEGACY: ::Array["specific" | "shared"]
+
+    AVAILABLE_TYPES: untyped
+
+    DEPRECATED_STATUSES: ::Array["active" | "paused"]
+
+    AVAILABLE_STATUSES: ::Array["online" | "offline" | "never_contacted" | "stale"]
+
+    AVAILABLE_STATUSES_INCL_DEPRECATED: untyped
+
+    AVAILABLE_SCOPES: untyped
+
+    FORM_EDITABLE: ::Array[:description | :tag_list | :active | :run_untagged | :locked | :access_level | :maximum_timeout_human_readable]
+
+    MINUTES_COST_FACTOR_FIELDS: ::Array[:public_projects_minutes_cost_factor | :private_projects_minutes_cost_factor]
+
+    TAG_LIST_MAX_LENGTH: 50
+
+    # Searches for runners matching the given query.
+    #
+    # This method uses ILIKE on PostgreSQL for the description field and performs a full match on tokens.
+    #
+    # query - The search query as a String.
+    #
+    # Returns an ActiveRecord::Relation.
+    def self.search: (untyped query) -> untyped
+
+    def self.online_contact_time_deadline: () -> untyped
+
+    def self.stale_deadline: () -> untyped
+
+    def self.recent_queue_deadline: () -> untyped
+
+    def self.order_by: (untyped order) -> untyped
+
+    def self.arel_tag_names_array: () -> untyped
+
+    def self.runner_matchers: () -> untyped
+
+    def self.taggings_join_model: () -> untyped
+
+    def self.created_runner_prefix: () -> untyped
+
+    def self.ids_with_running_builds: (untyped ids) -> (::Array[untyped] | untyped)
+
+    def runner_matcher: () -> untyped
+
+    def assign_to: (untyped project, ?untyped? current_user) -> (false | untyped)
+
+    def display_name: () -> untyped
+
+    # DEPRECATED
+    # TODO Remove in v5 in favor of `status` for REST calls, see https://gitlab.com/gitlab-org/gitlab/-/issues/344648
+    def deprecated_rest_status: () -> (:stale | untyped)
+
+    def owner: () -> untyped
+
+    def belongs_to_one_project?: () -> untyped
+
+    def belongs_to_more_than_one_project?: () -> untyped
+
+    def match_build_if_online?: (untyped build) -> untyped
+
+    def only_for?: (untyped project) -> untyped
+
+    def short_sha: () -> (nil | untyped)
+
+    def has_tags?: () -> untyped
+
+    def tagging_tag_ids: () -> untyped
+
+    def predefined_variables: () -> untyped
+
+    def tick_runner_queue: () -> untyped
+
+    def ensure_runner_queue_value: () -> untyped
+
+    def runner_queue_value_latest?: (untyped value) -> (untyped | nil)
+
+    def heartbeat: (?creation_state: untyped?) -> untyped
+
+    def pick_build!: (untyped build) -> (untyped | nil)
+
+    def matches_build?: (untyped build) -> untyped
+
+    def uncached_contacted_at: () -> untyped
+
+    def namespace_ids: () -> untyped
+
+    def compute_token_expiration: (**untyped) -> untyped
+
+    def ensure_manager: (untyped system_xid) -> untyped
+
+    def registration_available?: () -> untyped
+
+    # CI_JOB_JWT_V2 that uses this method is deprecated
+    #
+    # On .com all instance runners are hosted so instance_type is used to distingish hosted from non-hosted
+    def dot_com_gitlab_hosted?: () -> untyped
+
+    # false in FOSS
+    def dedicated_gitlab_hosted?: () -> false
+
+    def partition_id: () -> untyped
+
+    private
+
+    def fallback_owner_project: () -> untyped
+
+    def compute_token_expiration_instance: () -> (nil | untyped)
+
+    def compute_token_expiration_group: () -> untyped
+
+    def compute_token_expiration_project: () -> untyped
+
+    def cleanup_runner_queue: () -> untyped
+
+    def runner_queue_key: () -> ::String
+
+    def persist_cached_data?: () -> untyped
+
+    def tag_constraints: () -> untyped
+
+    def no_organization_id: () -> (untyped | nil)
+
+    def no_projects: () -> (untyped | nil)
+
+    def no_groups: () -> (untyped | nil)
+
+    def any_project: () -> (untyped | nil)
+
+    def exactly_one_group: () -> (untyped | nil)
+
+    def no_allowed_plan_name_uids: () -> (untyped | nil)
+
+    def organization_id_matches_owner: () -> (nil | untyped)
+
+    def legacy_partition_id_prefix_in_16_bit_encode: () -> ::String
+
+    def prefix_for_new_and_legacy_runner: () -> untyped
+
+    def memoize_owner: () { () -> untyped } -> untyped
+  end
+end

@@ -1,0 +1,81 @@
+# == Participable concern
+#
+# Contains functionality related to objects that can have participants, such as
+# an author, an assignee and people mentioned in its description or comments.
+#
+# === Participant Permission System
+#
+# Multiple levels of permission checks (in execution order):
+#
+# 1. **Reference Extraction**:
+#    - Group references parsed based on user's group visibility
+#    - User mentions extracted from accessible content
+#    - Processes all accessible sources, relying on final per-participant filtering for security
+#
+# 2. **Confidential Content Handling**:
+#    - Separate extractor for confidential notes
+#    - Additional filtering for users who can read confidential content
+#
+# 3. **Per-Participant Filtering**:
+#    - Final filtering based on project/group read access
+#    - Enhanced filtering for confidential work items using :read_confidential_issues permission
+#    - Base permission requirement ensuring only authorized users appear
+#    - Always applied as the final security layer
+#
+# Usage:
+#
+#     class Issue < ApplicationRecord
+#       include Participable
+#
+#       # ...
+#
+#       participant :author
+#       participant :assignee
+#       participant :notes
+#
+#       participant -> (current_user, ext) do
+#         ext.analyze('...')
+#       end
+#     end
+#
+#     issue = Issue.last
+#     users = issue.participants
+module Participable
+  @all_participants_hash: untyped
+
+  @filtered_participants_hash: untyped
+
+  extend ActiveSupport::Concern
+
+  # Returns the users participating in a discussion.
+  #
+  # This method processes attributes of objects in breadth-first order.
+  #
+  # Returns an Array of User instances.
+  def participants: (?untyped? user) -> untyped
+
+  # Checks if the user is a participant in a discussion.
+  #
+  # This method processes attributes of objects in breadth-first order.
+  #
+  # Returns a Boolean.
+  def participant?: (untyped user) -> untyped
+
+  private
+
+  def all_participants_hash: () -> untyped
+
+  def filtered_participants_hash: () -> untyped
+
+  def raw_participants: (?untyped? current_user) -> untyped
+
+  def skippable_system_notes?: (untyped source, untyped participants) -> untyped
+
+  def use_internal_notes_extractor_for?: (untyped source) -> untyped
+
+  def users_that_can_read_internal_notes: (untyped extractor) -> (::Array[untyped] | untyped)
+
+  def filter_by_ability: (untyped participants) -> (untyped | untyped | untyped | ::Array[untyped])
+
+  def can_read_participable?: (untyped participant) -> untyped
+end

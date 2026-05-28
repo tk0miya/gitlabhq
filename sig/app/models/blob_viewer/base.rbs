@@ -1,0 +1,56 @@
+module BlobViewer
+  class Base
+    @blob: untyped
+
+    @initially_binary: untyped
+
+    @collapsed: untyped
+
+    @too_large: untyped
+
+    PARTIAL_PATH_PREFIX: "projects/blob/viewers"
+
+    attr_reader blob: untyped
+
+    def initialize: (untyped blob) -> void
+
+    def self.partial_path: () -> untyped
+
+    def self.loading_partial_path: () -> untyped
+
+    def self.rich?: () -> untyped
+
+    def self.simple?: () -> untyped
+
+    def self.auxiliary?: () -> untyped
+
+    def self.load_async?: () -> untyped
+
+    def self.binary?: () -> untyped
+
+    def self.text?: () -> untyped
+
+    def self.can_render?: (untyped blob, ?verify_binary: bool) -> (false | true)
+
+    def collapsed?: () -> untyped
+
+    def too_large?: () -> untyped
+
+    def binary_detected_after_load?: () -> untyped
+
+    # This method is used on the server side to check whether we can attempt to
+    # render the blob at all. Human-readable error messages are found in the
+    # `BlobHelper#blob_render_error_reason` helper.
+    #
+    # This method does not and should not load the entire blob contents into
+    # memory, and should not be overridden to do so in order to validate the
+    # format of the blob.
+    #
+    # Prefer to implement a client-side viewer, where the JS component loads the
+    # binary from `blob_raw_path` and does its own format validation and error
+    # rendering, especially for potentially large binary formats.
+    def render_error: () -> (:too_large | :collapsed | nil)
+
+    def prepare!: () -> nil
+  end
+end

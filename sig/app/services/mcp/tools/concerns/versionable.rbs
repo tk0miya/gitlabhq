@@ -1,0 +1,46 @@
+module Mcp
+  module Tools
+    module Concerns
+      module Versionable
+        @requested_version: untyped
+
+        extend ActiveSupport::Concern
+
+        # Semantic version format: MAJOR.MINOR.PATCH (e.g., 1.0.0, 2.1.3)
+        VERSION_FORMAT: ::Regexp
+
+        # rubocop:disable Gitlab/ModuleWithInstanceVariables -- used to initialize only, read is from version method
+        def initialize_version: (?untyped? version) -> (nil | untyped)
+
+        def version: () -> untyped
+
+        def description: () -> untyped
+
+        def input_schema: () -> untyped
+
+        def annotations: () -> untyped
+
+        # GraphQL-specific methods (only called when needed by GraphQL tools)
+        def graphql_operation: () -> untyped
+
+        def operation_name: () -> untyped
+
+        def perform: (?::Hash[untyped, untyped] arguments) -> untyped
+
+        # Default implementation - can be overridden in subclasses
+        def perform_default: (?::Hash[untyped, untyped] _arguments) -> untyped
+
+        # GraphQL-specific
+        def graphql_operation_for_version: () -> untyped
+
+        def build_variables_for_version: () -> untyped
+
+        private
+
+        def version_metadata: () -> untyped
+
+        def version_method_suffix: () -> untyped
+      end
+    end
+  end
+end

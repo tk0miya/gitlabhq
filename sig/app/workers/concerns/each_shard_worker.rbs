@@ -1,0 +1,16 @@
+module EachShardWorker
+  extend ActiveSupport::Concern
+
+  include ::Gitlab::Utils::StrongMemoize
+
+  def each_eligible_shard: () { (untyped) -> untyped } -> untyped
+
+  # override when you want to filter out some shards
+  def eligible_shard_names: () -> untyped
+
+  def healthy_shard_names: () -> untyped
+
+  def healthy_ready_shards: () -> untyped
+
+  def ready_shards: () -> untyped
+end

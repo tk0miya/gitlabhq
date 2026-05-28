@@ -1,0 +1,35 @@
+class ReleasesFinder
+  @parent: untyped
+
+  @current_user: untyped
+
+  @params: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include UpdatedAtFilter
+
+  attr_reader parent: untyped
+
+  attr_reader current_user: untyped
+
+  attr_reader params: untyped
+
+  def initialize: (untyped parent, ?untyped? current_user, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: (?preload: bool) -> untyped
+
+  private
+
+  def get_releases: () -> untyped
+
+  def get_latest_releases: () -> untyped
+
+  def authorized_projects: () -> untyped
+
+  def order_releases: (untyped releases) -> untyped
+
+  def authorized?: (untyped project) -> untyped
+
+  def by_tag: (untyped releases) -> untyped
+end

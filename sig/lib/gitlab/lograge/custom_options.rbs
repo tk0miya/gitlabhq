@@ -1,0 +1,17 @@
+module Gitlab
+  module Lograge
+    module CustomOptions
+      include ::Gitlab::Logging::CloudflareHelper
+
+      include ::Gitlab::Logging::JsonMetadataHelper
+
+      LIMITED_ARRAY_SENTINEL: { key: "truncated", value: "..." }
+
+      IGNORE_PARAMS: untyped
+
+      KNOWN_PAYLOAD_PARAMS: untyped
+
+      def self.call: (untyped event) -> untyped
+    end
+  end
+end

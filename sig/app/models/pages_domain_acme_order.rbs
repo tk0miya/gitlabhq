@@ -1,0 +1,5 @@
+class PagesDomainAcmeOrder < ApplicationRecord
+  include Gitlab::EncryptedAttribute
+
+  def self.find_by_domain_and_token: (untyped domain_name, untyped challenge_token) -> untyped
+end

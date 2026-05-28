@@ -1,0 +1,25 @@
+module Packages
+  module Helm
+    class ExtractFileMetadataService
+      @package_file: untyped
+
+      ExtractionError: untyped
+
+      # Charts must be smaller than 1M because of the storage limitations of Kubernetes objects.
+      # based on https://helm.sh/docs/chart_template_guide/accessing_files/
+      MAX_FILE_SIZE: untyped
+
+      def initialize: (untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def valid_package_file?: () -> untyped
+
+      def metadata: () -> untyped
+
+      def chart_yaml_content: () -> untyped
+    end
+  end
+end

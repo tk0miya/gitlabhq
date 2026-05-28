@@ -1,0 +1,37 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces issue references with links. References to
+      # issues that do not exist are ignored.
+      #
+      # This filter supports cross-project references.
+      #
+      # When external issues tracker like Jira is activated we should not
+      # use issue reference pattern, but we should still be able
+      # to reference issues from other GitLab projects.
+      class IssueReferenceFilter < IssuableReferenceFilter
+        def url_for_object: (untyped issue, untyped _parent) -> untyped
+
+        def parent_records: (untyped parent, untyped ids) -> untyped
+
+        def object_link_content_html_extras: (untyped issue, untyped matches) -> untyped
+
+        def reference_class: (untyped object_sym, ?tooltip: bool) -> untyped
+
+        def data_attributes_for: (untyped original, untyped parent, untyped object, **untyped _attrs) -> untyped
+
+        private
+
+        def additional_object_attributes: (untyped issue) -> { issue_type: untyped }
+
+        def issue_path: (untyped issue) -> untyped
+
+        def issue_url: (untyped issue) -> untyped
+
+        def design_link_extras: (untyped issue, untyped path) -> ::Array[untyped]
+
+        def read_designs?: (untyped issue) -> untyped
+      end
+    end
+  end
+end

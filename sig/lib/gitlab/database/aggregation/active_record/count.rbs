@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ActiveRecord
+        class Count < MetricDefinition
+          def initialize: (?::String name, ?::Symbol type, ?formatter: untyped?, ?description: untyped?) -> void
+
+          def identifier: () -> ::Symbol
+
+          def to_arel: (untyped _context) -> untyped
+        end
+      end
+    end
+  end
+end

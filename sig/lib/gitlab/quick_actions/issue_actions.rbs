@@ -1,0 +1,35 @@
+module Gitlab
+  module QuickActions
+    module IssueActions
+      extend ActiveSupport::Concern
+
+      include Gitlab::QuickActions::Dsl
+
+      private
+
+      def mark_as_duplicate: (untyped canonical_item, ?for_explain: bool) -> (::Array[false | untyped] | ::Array[true | untyped])
+
+      def mark_as_duplicate_message: (untyped canonical_item, untyped for_explain) -> untyped
+
+      def can_mark_as_duplicate?: (untyped canonical_item) -> untyped
+
+      def insufficient_permission_message: (untyped for_explain) -> untyped
+
+      def same_item_message: (untyped for_explain) -> untyped
+
+      def item_not_found_message: (untyped for_explain) -> untyped
+
+      def zoom_link_service: () -> untyped
+
+      def zoom_link_params: () -> "<Zoom URL>"
+
+      def add_zoom_link: (untyped link, untyped _link_text) -> untyped
+
+      def merge_updates: (untyped result, untyped update_hash) -> (untyped | nil)
+
+      def timeline_event_create_service: (untyped event_text, untyped event_date_time) -> untyped
+
+      def fetch_target_container: (untyped target_container_path) -> untyped
+    end
+  end
+end

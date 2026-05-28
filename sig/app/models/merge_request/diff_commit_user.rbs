@@ -1,0 +1,33 @@
+class MergeRequest::DiffCommitUser < ApplicationRecord
+  # Prepares a value to be inserted into a column in the table
+  # `merge_request_diff_commit_users`. Values in this table are limited to
+  # 512 characters.
+  #
+  # We treat empty strings as NULL values, as there's no point in (for
+  # example) storing a row where both the name and Email are an empty
+  # string. In addition, if we treated them differently we could end up with
+  # two rows: one where field X is NULL, and one where field X is an empty
+  # string. This is redundant, so we avoid storing such data.
+  def self.prepare: (untyped value) -> (untyped | nil)
+
+  # Creates a new row, or returns an existing one if a row already exists.
+  def self.find_or_create: (untyped name, untyped email, untyped organization_id) -> untyped
+
+  # Finds many (name, email, organization_id) triples in bulk.
+  def self.bulk_find: (untyped input) -> untyped
+
+  # Finds or creates rows for the given input.
+  #
+  # The input argument must be:
+  # - Array/Set of triples like [[name, email, organization_id], ...]
+  #
+  # This method expects that the names and emails have already been trimmed to
+  # at most 512 characters.
+  #
+  # The return value is a Hash that maps input to instances of this model.
+  def self.bulk_find_or_create: (untyped input) -> untyped
+
+  def self.create_missing_records: (untyped input, untyped mapping) -> (nil | untyped)
+
+  def self.handle_concurrent_inserts: (untyped input, untyped mapping) -> (nil | untyped)
+end

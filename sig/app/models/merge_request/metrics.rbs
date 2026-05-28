@@ -1,0 +1,13 @@
+class MergeRequest::Metrics < ApplicationRecord
+  include Ci::Partitionable::AssociationFinder
+
+  def self.time_to_merge_expression: () -> untyped
+
+  def self.record!: (untyped mr) -> untyped
+
+  private
+
+  def ensure_target_project_id: () -> untyped
+
+  def self.total_time_to_merge: () -> untyped
+end

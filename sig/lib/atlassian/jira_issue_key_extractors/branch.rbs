@@ -1,0 +1,24 @@
+module Atlassian
+  module JiraIssueKeyExtractors
+    class Branch
+      @project: untyped
+
+      @branch_name: untyped
+
+      def self.has_keys?: (untyped project, untyped branch_name) -> untyped
+
+      def initialize: (untyped project, untyped branch_name) -> void
+
+      # Extract Jira issue keys from the branch name and associated open merge request.
+      # Use BatchLoader to load this data without N+1 queries when serializing multiple branches
+      # in `Atlassian::JiraConnect::Serializers::BranchEntity`.
+      def issue_keys: () -> untyped
+
+      private
+
+      attr_reader branch_name: untyped
+
+      attr_reader project: untyped
+    end
+  end
+end

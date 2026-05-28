@@ -1,0 +1,21 @@
+module Gitlab
+  module Repositories
+    class RefCacheUpdateService
+      @repository: untyped
+
+      @changes: untyped
+
+      def initialize: (untyped repository, untyped changes) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader repository: untyped
+
+      attr_reader changes: untyped
+
+      def process_changes: (untyped ref_changes) -> untyped
+    end
+  end
+end

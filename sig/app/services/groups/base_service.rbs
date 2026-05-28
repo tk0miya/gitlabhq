@@ -1,0 +1,23 @@
+module Groups
+  class BaseService < ::BaseService
+    @group: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    attr_accessor group: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor params: untyped
+
+    def initialize: (untyped group, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    private
+
+    def handle_namespace_settings: () -> (nil | untyped)
+
+    def remove_unallowed_params: () -> nil
+  end
+end

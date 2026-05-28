@@ -1,0 +1,11 @@
+module Mutations
+  module Repositories
+    module Tags
+      class Create < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, name: untyped, ref: untyped, message: untyped) -> { tag: untyped, errors: untyped }
+      end
+    end
+  end
+end

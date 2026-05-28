@@ -1,0 +1,43 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      class AccessLogger
+        @pipeline: untyped
+
+        @archived: untyped
+
+        @destination: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        PROVISIONAL_ARCHIVE_VALUE: untyped
+
+        def initialize: (pipeline: untyped, archived: untyped, ?destination: untyped) -> void
+
+        def log: () -> (nil | untyped)
+
+        private
+
+        attr_reader pipeline: untyped
+
+        attr_reader destination: untyped
+
+        def archived?: () -> untyped
+
+        # Tracks interactions with pipelines that are archived or will be archived (90+ days old).
+        # Helps assess impact of archival policies on user workflows before implementation.
+        # Primarily for GitLab.com data collection.
+        #
+        def enabled?: () -> untyped
+
+        def log_access_entry: () -> untyped
+
+        def graphql_operation_names: () -> untyped
+
+        def log_access?: () -> untyped
+
+        def pipeline_will_be_archived?: () -> untyped
+      end
+    end
+  end
+end

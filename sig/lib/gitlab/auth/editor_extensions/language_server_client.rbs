@@ -1,0 +1,27 @@
+module Gitlab
+  module Auth
+    module EditorExtensions
+      class LanguageServerClient
+        @client_version: untyped
+
+        @user_agent: untyped
+
+        USER_AGENT_PATTERN: ::Regexp
+
+        VERSION_PATTERN: untyped
+
+        def initialize: (client_version: untyped, user_agent: untyped) -> void
+
+        def lsp_client?: () -> untyped
+
+        def version: () -> untyped
+
+        private
+
+        attr_reader client_version: untyped
+
+        attr_reader user_agent: untyped
+      end
+    end
+  end
+end

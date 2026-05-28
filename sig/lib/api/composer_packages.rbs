@@ -1,0 +1,10 @@
+# PHP composer support (https://getcomposer.org/)
+module API
+  class ComposerPackages < ::API::Base
+    include ::API::Helpers::Packages::BasicAuthHelpers::Constants
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    COMPOSER_ENDPOINT_REQUIREMENTS: { package_name: untyped }
+  end
+end

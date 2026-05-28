@@ -1,0 +1,54 @@
+module Gitlab
+  module GithubImport
+    # IssuableFinder can be used for caching and retrieving database IDs for
+    # issuable objects such as issues and pull requests. By caching these IDs we
+    # remove the need for running a lot of database queries when importing
+    # GitHub projects.
+    class IssuableFinder
+      @project: untyped
+
+      @object: untyped
+
+      attr_reader project: untyped
+
+      attr_reader object: untyped
+
+      # The base cache key to use for storing/retrieving issuable IDs.
+      CACHE_KEY: "github-import/issuable-finder/%{project}/%{type}/%{iid}"
+
+      CACHE_OBJECT_NOT_FOUND: -1
+
+      # project - An instance of `Project`.
+      # object - The object to look up or set a database ID for.
+      def initialize: (untyped project, untyped object) -> void
+
+      # Returns the database ID for the object.
+      #
+      # This method will return `nil` if no ID could be found.
+      def database_id: () -> (nil | untyped)
+
+      # Associates the given database ID with the current object.
+      #
+      # database_id - The ID of the corresponding database row.
+      def cache_database_id: (untyped database_id) -> untyped
+
+      private
+
+      def cache_key: () -> untyped
+
+      # Returns the identifier to use for cache keys.
+      #
+      # For issues and pull requests this will be "Issue" or "MergeRequest"
+      # respectively. For diff notes this will return "MergeRequest", for
+      # regular notes it will either return "Issue" or "MergeRequest" depending
+      # on what type of object the note belongs to.
+      def cache_key_type: () -> untyped
+
+      def cache_key_iid: () -> untyped
+
+      def timeout: () -> untyped
+
+      def import_settings: () -> untyped
+    end
+  end
+end

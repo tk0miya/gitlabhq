@@ -1,0 +1,15 @@
+module Packages
+  module Helm
+    class CreateMetadataCacheWorker
+      include ApplicationWorker
+
+      CreationFailedError: untyped
+
+      def perform: (untyped project_id, untyped channel) -> untyped
+
+      private
+
+      def log_error: (untyped error, untyped project_id, untyped channel) -> untyped
+    end
+  end
+end

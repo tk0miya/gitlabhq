@@ -1,0 +1,34 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        #
+        # Performs matrix variable interpolation in needs:parallel:matrix configurations.
+        # This interpolator specifically handles the `$[[ matrix.VARIABLE_NAME ]]` syntax
+        # to enable dynamic job dependencies based on matrix values.
+        #
+        class MatrixInterpolator
+          @matrix_variables: untyped
+
+          @errors: untyped
+
+          MATRIX_EXPRESSION_REGEXP: untyped
+
+          attr_reader errors: untyped
+
+          def initialize: (untyped matrix_variables) -> void
+
+          def interpolate: (untyped needs_config) -> untyped
+
+          private
+
+          attr_reader matrix_variables: untyped
+
+          def interpolate_value: (untyped needs_config) -> untyped
+
+          def interpolate_string: (untyped needs_config) -> untyped
+        end
+      end
+    end
+  end
+end

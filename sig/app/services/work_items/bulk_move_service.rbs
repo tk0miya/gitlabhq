@@ -1,0 +1,23 @@
+module WorkItems
+  class BulkMoveService
+    @current_user: untyped
+
+    @work_item_ids: untyped
+
+    @source_namespace: untyped
+
+    @target_namespace: untyped
+
+    def initialize: (current_user: untyped, work_item_ids: untyped, source_namespace: untyped, target_namespace: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def response: (untyped status, ?message: untyped?, ?moved_count: ::Integer) -> untyped
+
+    def can_move_work_item?: (untyped work_item) -> (false | true)
+
+    def scoped_work_items: () -> untyped
+  end
+end

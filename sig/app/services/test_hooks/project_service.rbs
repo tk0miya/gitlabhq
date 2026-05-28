@@ -1,0 +1,18 @@
+module TestHooks
+  class ProjectService < TestHooks::BaseService
+    @project: untyped
+
+    include Integrations::ProjectTestData
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_writer project: untyped
+
+    def project: () -> untyped
+
+    private
+
+    # rubocop:disable Metrics/CyclomaticComplexity -- despite a high count, this isn't that complex
+    def data: () -> untyped
+  end
+end

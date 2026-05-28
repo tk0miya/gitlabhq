@@ -1,0 +1,35 @@
+module Packages
+  class GroupOrProjectPackageFinder
+    @current_user: untyped
+
+    @project_or_group: untyped
+
+    @params: untyped
+
+    include ::Packages::FinderHelper
+
+    def initialize: (untyped current_user, untyped project_or_group, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    def execute!: () -> untyped
+
+    private
+
+    attr_reader params: untyped
+
+    def packages: () -> untyped
+
+    def base: () -> untyped
+
+    def project?: () -> untyped
+
+    def group?: () -> untyped
+
+    def project_packages: () -> untyped
+
+    def group_packages: () -> untyped
+
+    def packages_class: () -> untyped
+  end
+end

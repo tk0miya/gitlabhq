@@ -1,0 +1,38 @@
+module Gitlab
+  module Database
+    class BumpSequences
+      @base_model: untyped
+
+      @gitlab_schema: untyped
+
+      @increase_by: untyped
+
+      SEQUENCE_NAME_MATCHER: ::Regexp
+
+      # gitlab_schema: can be 'gitlab_main', 'gitlab_ci', 'gitlab_main_org', 'gitlab_shared'
+      # increase_by: positive number, to increase the sequence by
+      # base_model: is to choose which connection to use to query the tables
+      def initialize: (untyped gitlab_schema, untyped increase_by, ?untyped base_model) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader base_model: untyped
+
+      attr_reader gitlab_schema: untyped
+
+      attr_reader increase_by: untyped
+
+      def sequences_by_gitlab_schema: (untyped base_model, untyped gitlab_schema) -> untyped
+
+      # This method is going to increase the sequence next_value by:
+      #  - increment_by + 1 if the sequence has the attribute is_called = True (which is the common case)
+      #  - increment_by if the sequence has the attribute is_called = False (for example, a newly created sequence)
+      # It uses ALTER SEQUENCE as a safety mechanism to avoid that no concurrent insertions
+      # will cause conflicts on the sequence.
+      # This is because ALTER SEQUENCE blocks concurrent nextval, currval, lastval, and setval calls.
+      def increment_sequence_by: (untyped connection, untyped sequence_name, untyped increment_by) -> untyped
+    end
+  end
+end

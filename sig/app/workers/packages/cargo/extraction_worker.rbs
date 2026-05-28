@@ -1,0 +1,11 @@
+module Packages
+  module Cargo
+    class ExtractionWorker
+      include ApplicationWorker
+
+      include ::Packages::ErrorHandling
+
+      def perform: (untyped package_file_id, ?::Hash[untyped, untyped] params) -> untyped
+    end
+  end
+end

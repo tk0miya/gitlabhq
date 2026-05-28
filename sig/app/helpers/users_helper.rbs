@@ -1,0 +1,74 @@
+module UsersHelper
+  @current_user_menu_items: untyped
+
+  def admin_users_data_attributes: (untyped users) -> { users: untyped, paths: untyped }
+
+  def user_clear_status_at: (untyped user) -> untyped
+
+  def user_link: (untyped user) -> untyped
+
+  def user_email_help_text: (untyped user) -> untyped
+
+  def profile_actions: (untyped user) -> (::Array[untyped] | ::Array[:overview | :activity] | ::Array[:overview | :activity | :groups | :contributed | :projects | :starred | :snippets | :followers | :following])
+
+  def user_internal_regex_data: () -> { user_internal_regex_pattern: untyped, user_internal_regex_options: untyped }
+
+  def current_user_menu_items: () -> untyped
+
+  def current_user_menu?: (untyped item) -> untyped
+
+  # Used to preload when you are rendering many projects and checking access
+  def load_max_project_member_accesses: (untyped projects) -> untyped
+
+  def max_project_member_access: (untyped project) -> untyped
+
+  def user_status: (untyped user) -> (nil | untyped)
+
+  def impersonation_enabled?: () -> untyped
+
+  def impersonation_tokens_enabled?: () -> untyped
+
+  def can_impersonate_user: (untyped user, untyped impersonation_in_progress) -> untyped
+
+  def impersonation_error_text: (untyped user, untyped impersonation_in_progress) -> untyped
+
+  def user_badges_in_admin_section: (untyped user) -> untyped
+
+  def work_information: (untyped user, ?with_schema_markup: bool) -> (nil | untyped)
+
+  def can_force_email_confirmation?: (untyped user) -> untyped
+
+  def confirm_user_data: (untyped user) -> { path: untyped, method: "put", modal_attributes: untyped, testid: "confirm-user-button" }
+
+  def user_display_name: (untyped user) -> untyped
+
+  def admin_user_actions_data_attributes: (untyped user) -> { user: untyped, paths: untyped }
+
+  def has_contact_info?: (untyped user) -> untyped
+
+  def display_public_email?: (untyped user) -> untyped
+
+  def user_profile_app_data: (untyped user) -> { followees_count: untyped, followers_count: untyped, user_calendar_path: untyped, user_activity_path: untyped, utc_offset: untyped, user_id: untyped, snippets_empty_state: untyped, new_snippet_path: untyped, follow_empty_state: untyped }
+
+  def moderation_status: (untyped user) -> (nil | untyped)
+
+  def user_profile_actions_data: (untyped user) -> untyped
+
+  def email_verification_token_expired?: (email_sent_at: untyped) -> (false | untyped)
+
+  private
+
+  def admin_users_paths: () -> { edit: untyped, approve: untyped, reject: untyped, unblock: untyped, block: untyped, deactivate: untyped, activate: untyped, unlock: untyped, delete: untyped, delete_with_contributions: untyped, admin_user: untyped, ban: untyped, unban: untyped, trust: untyped, untrust: untyped }
+
+  def blocked_user_badge: (untyped user) -> (untyped | { text: untyped, variant: "danger" })
+
+  def get_current_user_menu_items: () -> untyped
+
+  def render_job_title: (untyped job_title, ?with_schema_markup: bool) -> untyped
+
+  def render_organization: (untyped organization, ?with_schema_markup: bool) -> untyped
+
+  def render_job_title_and_organization: (untyped job_title, untyped organization, ?with_schema_markup: bool) -> untyped
+
+  def preload_project_associations: (untyped _) -> nil
+end

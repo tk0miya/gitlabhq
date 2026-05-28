@@ -1,0 +1,7 @@
+module Gitlab
+  module Kubernetes
+    class Logger < ::Gitlab::JsonLogger
+      def self.file_name_noext: () -> "kubernetes"
+    end
+  end
+end

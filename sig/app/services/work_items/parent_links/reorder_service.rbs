@@ -1,0 +1,18 @@
+module WorkItems
+  module ParentLinks
+    class ReorderService < WorkItems::ParentLinks::BaseService
+      private
+
+      def relate_issuables: (untyped work_item) -> untyped
+
+      def reorder: (untyped link, untyped adjacent_work_item, untyped relative_position) -> untyped
+
+      # overridden in EE
+      def move_link: (untyped link, untyped adjacent_work_item, untyped relative_position) -> untyped
+
+      def render_conflict_error?: () -> (false | untyped)
+
+      def linkable?: (untyped work_item) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module GithubImport
+    module Attachments
+      class ImportMergeRequestWorker
+        include ObjectImporter
+
+        def representation_class: () -> untyped
+
+        def importer_class: () -> untyped
+
+        def object_type: () -> :merge_request_attachment
+
+        def increment_object_counter?: (untyped _object) -> false
+      end
+    end
+  end
+end

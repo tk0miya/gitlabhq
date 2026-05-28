@@ -1,0 +1,34 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class LabelsImporter
+        @existing_labels: untyped
+
+        include BulkImporting
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def existing_labels: () -> untyped
+
+        def execute: () -> untyped
+
+        def build_labels: () -> untyped
+
+        def already_imported?: (untyped label) -> untyped
+
+        def build_labels_cache: () -> untyped
+
+        def build_attributes: (untyped label) -> { title: untyped, color: untyped, project_id: untyped, type: "ProjectLabel", created_at: untyped, updated_at: untyped }
+
+        def each_label: () -> untyped
+
+        def object_type: () -> :label
+
+        private
+
+        def model: () -> untyped
+
+        def github_identifiers: (untyped label) -> { title: untyped, object_type: untyped }
+      end
+    end
+  end
+end

@@ -1,0 +1,24 @@
+module Gitlab
+  module Import
+    module MergeRequestHelpers
+      include DatabaseHelpers
+
+      # @param attributes [Hash]
+      # @return MergeRequest::Metrics
+      def create_merge_request_metrics: (untyped attributes) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def create_merge_request_without_hooks: (untyped project, untyped attributes, untyped iid) -> untyped
+
+      def insert_or_replace_git_data: (untyped merge_request, untyped source_branch_sha, untyped target_branch_sha, ?bool already_exists) -> untyped
+
+      def insert_merge_request_reviewers: (untyped merge_request, untyped reviewers) -> (nil | untyped)
+
+      def create_approval!: (untyped project_id, untyped merge_request_id, untyped user_id, untyped submitted_at) -> untyped
+
+      def add_approval_system_note!: (untyped project_id, untyped merge_request_id, untyped user_id, untyped submitted_at) -> untyped
+
+      def create_reviewer!: (untyped merge_request_id, untyped user_id, untyped submitted_at) -> untyped
+    end
+  end
+end

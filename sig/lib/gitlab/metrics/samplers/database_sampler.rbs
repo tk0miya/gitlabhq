@@ -1,0 +1,59 @@
+module Gitlab
+  module Metrics
+    module Samplers
+      class DatabaseSampler < BaseSampler
+        @metrics: untyped
+
+        @extended_metrics: untyped
+
+        DEFAULT_SAMPLING_INTERVAL_SECONDS: 5
+
+        METRIC_PREFIX: "gitlab_database_connection_pool_"
+
+        EXTENDED_METRIC_PREFIX: "gitlab_database_extended_connection_pool_"
+
+        METRIC_DESCRIPTIONS: { size: ::Array["Total connection pool capacity" | :min], connections: ::Array["Current connections in the pool" | :max], busy: ::Array["Connections in use where the owner is still alive" | :max], dead: ::Array["Connections in use where the owner is not alive" | :max], idle: ::Array["Connections not in use" | :max], waiting: ::Array["Threads currently waiting on this queue" | :max] }
+
+        EXTENDED_METRIC_DESCRIPTIONS: { busy: "Connections in use where the owner is still alive, per thread", dead: "Connections in use where the owner is not alive, per thread" }
+
+        def metrics: () -> untyped
+
+        def extended_metrics: () -> untyped
+
+        def sample: () -> (nil | untyped)
+
+        private
+
+        def init_metrics: () -> untyped
+
+        def init_extended_metrics: () -> untyped
+
+        def host_metrics: () -> untyped
+
+        def connection_class_metrics: () -> untyped
+
+        def replica_host_metrics: () -> untyped
+
+        def build_metrics: (untyped base_labels, untyped stats) -> untyped
+
+        def extended_metrics_enabled?: () -> untyped
+
+        def extended_host_metrics: () -> untyped
+
+        def extended_connection_class_metrics: () -> untyped
+
+        def extended_replica_host_metrics: () -> untyped
+
+        def build_extended_metrics: (untyped base_labels, untyped stats) -> untyped
+
+        def split_metric_by_thread_name: (untyped metric, untyped base_labels, untyped values_by_thread_name) -> untyped
+
+        def normalize_counts_by_thread_name: (untyped counts_by_thread_name) -> untyped
+
+        def labels_for_class: (untyped klass) -> { host: untyped, port: untyped, class: untyped, db_config_name: untyped }
+
+        def labels_for_replica_host: (untyped load_balancer, untyped host) -> { host: untyped, port: untyped, class: untyped, db_config_name: untyped }
+      end
+    end
+  end
+end

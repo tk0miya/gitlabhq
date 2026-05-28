@@ -1,0 +1,13 @@
+module GroupLink
+  class GroupLinkEntity < Grape::Entity
+    include RequestAwareEntity
+
+    private
+
+    def can_read_shared_group?: (untyped group_link) -> untyped
+
+    def current_user: () -> untyped
+
+    def direct_member?: (untyped group_link, untyped options) -> untyped
+  end
+end

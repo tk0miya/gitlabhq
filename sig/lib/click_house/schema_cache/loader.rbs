@@ -1,0 +1,19 @@
+module ClickHouse
+  module SchemaCache
+    class Loader
+      @database: untyped
+
+      MissingSchemaCacheError: untyped
+
+      def initialize: (database: untyped) -> void
+
+      def load: () -> untyped
+
+      private
+
+      def build_table: (untyped row) -> untyped
+
+      def build_column: (untyped row, untyped position) -> untyped
+    end
+  end
+end

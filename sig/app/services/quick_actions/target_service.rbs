@@ -1,0 +1,20 @@
+module QuickActions
+  class TargetService < BaseContainerService
+    def execute: (untyped type, untyped type_iid) -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def work_item: (untyped type_iid) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def issue: (untyped type_iid) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def merge_request: (untyped type_iid) -> untyped
+
+    def commit: (untyped type_iid) -> untyped
+
+    def parent_params: () -> ({ group_id: untyped } | { project_id: untyped })
+  end
+end

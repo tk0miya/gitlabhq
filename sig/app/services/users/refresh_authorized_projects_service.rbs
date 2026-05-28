@@ -1,0 +1,59 @@
+module Users
+  # Service for refreshing the authorized projects of a user.
+  #
+  # This particular service class can not be used to update data for the same
+  # user concurrently. Doing so could lead to an incorrect state. To ensure this
+  # doesn't happen a caller must synchronize access (e.g. using
+  # `Gitlab::ExclusiveLease`).
+  #
+  # Usage:
+  #
+  #     user = User.find_by(username: 'alice')
+  #     service = Users::RefreshAuthorizedProjectsService.new(some_user)
+  #     service.execute
+  class RefreshAuthorizedProjectsService
+    @user: untyped
+
+    @source: untyped
+
+    @incorrect_auth_found_callback: untyped
+
+    @missing_auth_found_callback: untyped
+
+    @start_time: untyped
+
+    @duration_statistics: untyped
+
+    attr_reader user: untyped
+
+    attr_reader source: untyped
+
+    LEASE_TIMEOUT: untyped
+
+    # user - The User for which to refresh the authorized projects.
+    def initialize: (untyped user, ?source: untyped?, ?incorrect_auth_found_callback: untyped?, ?missing_auth_found_callback: untyped?) -> void
+
+    def execute: () -> untyped
+
+    # This method returns the updated User object.
+    def execute_without_lease: () -> untyped
+
+    # Updates the list of authorizations for the current user.
+    #
+    # remove - The project IDs of the authorization rows to remove.
+    # add - Rows to insert in the form `[{ user_id: user_id, project_id: project_id, access_level: access_level}, ...]`
+    def update_authorizations: (?untyped remove, ?untyped add) -> untyped
+
+    private
+
+    attr_reader incorrect_auth_found_callback: untyped
+
+    attr_reader missing_auth_found_callback: untyped
+
+    def log_refresh_details: (untyped remove, untyped add) -> untyped
+
+    def current_monotonic_time: () -> untyped
+
+    def reset_timer_and_store_duration: (untyped operation_name) -> untyped
+  end
+end

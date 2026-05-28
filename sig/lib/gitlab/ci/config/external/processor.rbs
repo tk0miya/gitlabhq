@@ -1,0 +1,45 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        class Processor
+          @values: untyped
+
+          @context: untyped
+
+          @external_files: untyped
+
+          @content: untyped
+
+          @logger: untyped
+
+          IncludeError: untyped
+
+          DuplicateInputError: untyped
+
+          attr_reader context: untyped
+
+          attr_reader logger: untyped
+
+          def initialize: (untyped values, untyped context) -> void
+
+          def perform: () -> untyped
+
+          private
+
+          def mapper: () -> untyped
+
+          def validate_external_files!: () -> untyped
+
+          def merge_external_files!: () -> untyped
+
+          def append_inline_content!: () -> untyped
+
+          def remove_include_keyword!: () -> untyped
+
+          def validate!: () -> nil
+        end
+      end
+    end
+  end
+end

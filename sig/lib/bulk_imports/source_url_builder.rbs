@@ -1,0 +1,46 @@
+module BulkImports
+  class SourceUrlBuilder
+    @context: untyped
+
+    @entity: untyped
+
+    @entry: untyped
+
+    @iid: untyped
+
+    @relation: untyped
+
+    @source_instance_url: untyped
+
+    @source_full_path: untyped
+
+    ALLOWED_RELATIONS: ::Array["issues" | "merge_requests" | "epics" | "milestones"]
+
+    attr_reader context: untyped
+
+    attr_reader entity: untyped
+
+    attr_reader entry: untyped
+
+    # @param [BulkImports::Pipeline::Context] context
+    # @param [ApplicationRecord] entry
+    def initialize: (untyped context, untyped entry) -> void
+
+    # Builds a source URL for the given entry if iid is present
+    def url: () -> (nil | untyped)
+
+    private
+
+    def iid: () -> untyped
+
+    def relation: () -> untyped
+
+    def source_instance_url: () -> untyped
+
+    def source_full_path: () -> untyped
+
+    # Group milestone (or epic) url is /groups/:group_path/-/milestones/:iid
+    # Project milestone url is /:project_path/-/milestones/:iid
+    def group_prefix: () -> ("" | untyped)
+  end
+end

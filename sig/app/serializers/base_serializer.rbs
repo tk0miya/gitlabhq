@@ -1,0 +1,17 @@
+class BaseSerializer
+  self.@entity_class: untyped
+
+  @params: untyped
+
+  @request: untyped
+
+  attr_reader params: untyped
+
+  def initialize: (?::Hash[untyped, untyped] params) -> void
+
+  def represent: (untyped resource, ?::Hash[untyped, untyped] opts, ?untyped? entity_class) -> untyped
+
+  attr_reader self.entity_class: untyped
+
+  def self.entity: (untyped entity_class) -> untyped
+end

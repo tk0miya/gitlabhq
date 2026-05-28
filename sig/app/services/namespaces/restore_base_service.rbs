@@ -1,0 +1,44 @@
+module Namespaces
+  class RestoreBaseService < ::BaseService
+    @resource: untyped
+
+    @current_user: untyped
+
+    @params: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    DELETED_SUFFIX_REGEX: ::Regexp
+
+    def initialize: (untyped resource, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader resource: untyped
+
+    def remove_permission: () -> untyped
+
+    def resource_name: () -> untyped
+
+    def preconditions_checks: () -> untyped
+
+    def not_marked_for_deletion_error: () -> untyped
+
+    def deletion_in_progress_error: () -> untyped
+
+    # Can be overridden
+    def post_success: () -> untyped
+
+    def updated_value: (untyped value) -> ::String
+
+    def original_value: (untyped value) -> untyped
+
+    def suffix: () -> (::String | "")
+
+    def original_path_taken?: () -> untyped
+
+    def log_event: () -> untyped
+  end
+end

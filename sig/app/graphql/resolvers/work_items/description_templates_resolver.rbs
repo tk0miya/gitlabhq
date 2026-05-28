@@ -1,0 +1,15 @@
+module Resolvers
+  module WorkItems
+    class DescriptionTemplatesResolver < BaseResolver
+      alias namespace object
+
+      def resolve: (**untyped _args) -> untyped
+
+      private
+
+      def fetch_root_templates_project: (untyped namespace) -> (untyped | untyped | nil)
+
+      def filter_project_templates_for_group: (untyped templates) -> untyped
+    end
+  end
+end

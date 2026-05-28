@@ -1,0 +1,35 @@
+module ClickHouse
+  module SchemaCache
+    class Dumper
+      @connection: untyped
+
+      @database: untyped
+
+      EXCLUDED_ENGINES: ::Array["View" | "MaterializedView" | "LiveView" | "WindowView"]
+
+      def initialize: (connection: untyped, database: untyped) -> void
+
+      def dump: () -> (nil | untyped)
+
+      def tables: () -> untyped
+
+      private
+
+      def writable_target?: (untyped dir) -> untyped
+
+      def prune_stale_files: (untyped dir, untyped current_files) -> untyped
+
+      def fetch_tables: () -> untyped
+
+      def fetch_columns: () -> untyped
+
+      def build_column: (untyped row) -> untyped
+
+      def to_bool: (untyped value) -> untyped
+
+      def parse_settings: (untyped engine_full) -> (::Hash[untyped, untyped] | untyped)
+
+      def scan_settings: (untyped text) -> untyped
+    end
+  end
+end

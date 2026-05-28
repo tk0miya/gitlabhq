@@ -1,0 +1,19 @@
+module Ci
+  class BuildFinishedWorker
+    include ApplicationWorker
+
+    ARCHIVE_TRACES_IN: untyped
+
+    def perform: (untyped build_id) -> (nil | untyped)
+
+    private
+
+    # Processes a single CI build that has finished.
+    #
+    # This logic resides in a separate method so that EE can extend it more
+    # easily.
+    #
+    # @param [Ci::Build] build The build to process.
+    def process_build: (untyped build, untyped pipeline) -> untyped
+  end
+end

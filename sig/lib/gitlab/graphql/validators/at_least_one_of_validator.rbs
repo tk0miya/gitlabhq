@@ -1,0 +1,13 @@
+module Gitlab
+  module Graphql
+    module Validators
+      class AtLeastOneOfValidator < GraphQL::Schema::Validator
+        @at_least_one_of_arg_names: untyped
+
+        def initialize: (untyped at_least_one_of_arg_names, **untyped default_options) -> void
+
+        def validate: (untyped _object, untyped _context, untyped args) -> (nil | ::String)
+      end
+    end
+  end
+end

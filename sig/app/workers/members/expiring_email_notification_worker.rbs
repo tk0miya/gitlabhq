@@ -1,0 +1,13 @@
+module Members
+  class ExpiringEmailNotificationWorker
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    attr_reader member: untyped
+
+    def perform: (untyped member_id) -> (nil | untyped)
+
+    def valid_for_notification?: (untyped member) -> untyped
+  end
+end

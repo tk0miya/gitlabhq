@@ -1,0 +1,15 @@
+module Gitlab
+  module Ci
+    module Build
+      module Policy
+        class Variables < Policy::Specification
+          @expressions: untyped
+
+          def initialize: (untyped expressions) -> void
+
+          def satisfied_by?: (untyped pipeline, untyped context) -> untyped
+        end
+      end
+    end
+  end
+end

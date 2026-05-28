@@ -1,0 +1,32 @@
+module Gitlab
+  module GitalyClient
+    class CleanupService
+      @repository: untyped
+
+      @gitaly_repo: untyped
+
+      @storage: untyped
+
+      include Gitlab::EncodingHelper
+
+      include WithFeatureFlagActors
+
+      attr_reader repository: untyped
+
+      attr_reader gitaly_repo: untyped
+
+      attr_reader storage: untyped
+
+      # 'repository' is a Gitlab::Git::Repository
+      def initialize: (untyped repository) -> void
+
+      def apply_bfg_object_map_stream: (untyped io) { (?) -> untyped } -> untyped
+
+      def rewrite_history: (?blobs: untyped, ?redactions: untyped) -> untyped
+
+      private
+
+      def build_object_map_enum: (untyped io) -> untyped
+    end
+  end
+end

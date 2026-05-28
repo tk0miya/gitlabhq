@@ -1,0 +1,23 @@
+module WorkItems
+  module QuickActions
+    class BaseDependencyService
+      @target: untyped
+
+      @user: untyped
+
+      @project: untyped
+
+      @group: untyped
+
+      def initialize: (untyped target, untyped user, untyped project, ?untyped? group) -> void
+
+      def format_refs: (untyped items) -> untyped
+
+      def format_ref: (untyped item) -> untyped
+
+      private
+
+      def build_extractor: (untyped items) -> untyped
+    end
+  end
+end

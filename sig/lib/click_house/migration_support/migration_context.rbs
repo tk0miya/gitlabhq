@@ -1,0 +1,74 @@
+module ClickHouse
+  module MigrationSupport
+    # MigrationContext sets the context in which a migration is run.
+    #
+    # A migration context requires the path to the migrations is set
+    # in the +migrations_paths+ parameter. Optionally a +schema_migration+
+    # class can be provided. For most applications, +SchemaMigration+ is
+    # sufficient. Multiple database applications need a +SchemaMigration+
+    # per primary database.
+    class MigrationContext
+      @connection: untyped
+
+      @migrations_paths: untyped
+
+      @schema_migration: untyped
+
+      def initialize: (untyped connection, untyped migrations_paths, untyped schema_migration) -> void
+
+      def up: (?untyped? target_version, ?untyped? step) ?{ (?) -> untyped } -> untyped
+
+      def down: (?untyped? target_version, ?::Integer step) ?{ (?) -> untyped } -> untyped
+
+      private
+
+      attr_reader migrations_paths: untyped
+
+      attr_reader schema_migration: untyped
+
+      attr_reader connection: untyped
+
+      def migrate: (untyped direction, untyped selected_migrations, ?untyped? target_version, ?untyped? step) -> untyped
+
+      def migrations: () -> untyped
+
+      def migration_files: () -> untyped
+
+      def parse_migration_filename: (untyped filename) -> untyped
+    end
+
+    # MigrationProxy is used to defer loading of the actual migration classes
+    # until they are needed
+    class MigrationProxy
+      @connection: untyped
+
+      @name: untyped
+
+      @version: untyped
+
+      @filename: untyped
+
+      @scope: untyped
+
+      @migration: untyped
+
+      attr_reader name: untyped
+
+      attr_reader version: untyped
+
+      attr_reader filename: untyped
+
+      attr_reader scope: untyped
+
+      def initialize: (untyped connection, untyped name, untyped version, untyped filename, untyped scope) -> void
+
+      def basename: () -> untyped
+
+      private
+
+      def migration: () -> untyped
+
+      def load_migration: () -> untyped
+    end
+  end
+end

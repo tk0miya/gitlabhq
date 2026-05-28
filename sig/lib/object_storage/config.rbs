@@ -1,0 +1,71 @@
+module ObjectStorage
+  class Config
+    @options: untyped
+
+    @credentials: untyped
+
+    @storage_options: untyped
+
+    @fog_attributes: untyped
+
+    AWS_PROVIDER: "AWS"
+
+    AZURE_PROVIDER: "AzureRM"
+
+    GOOGLE_PROVIDER: "Google"
+
+    LOCATIONS: { agent_plan_content: untyped, ai_catalog: untyped, artifacts: untyped, ci_secure_files: untyped, dependency_proxy: untyped, external_diffs: untyped, lfs: untyped, packages: untyped, pages: untyped, terraform_state: untyped, uploads: untyped }
+
+    attr_reader options: untyped
+
+    def initialize: (untyped options) -> void
+
+    def credentials: () -> untyped
+
+    def storage_options: () -> untyped
+
+    def enabled?: () -> untyped
+
+    def bucket: () -> untyped
+
+    def consolidated_settings?: () -> untyped
+
+    # AWS-specific options
+    def aws?: () -> untyped
+
+    def use_iam_profile?: () -> untyped
+
+    def use_path_style?: () -> untyped
+
+    def server_side_encryption: () -> untyped
+
+    def server_side_encryption_kms_key_id: () -> untyped
+
+    def provider: () -> untyped
+
+    # Begin Azure-specific options
+    def azure_storage_domain: () -> untyped
+
+    # Google-specific options
+    def universe_domain: () -> untyped
+
+    def google?: () -> untyped
+
+    def azure?: () -> untyped
+
+    def fog_attributes: () -> untyped
+
+    def aws_server_side_encryption_enabled?: () -> untyped
+
+    private
+
+    def connection_params: () -> untyped
+
+    # This returns a Hash of HTTP encryption headers to send along to S3.
+    #
+    # They can also be passed in as Fog::AWS::Storage::File attributes, since there
+    # are aliases defined for them:
+    # https://github.com/fog/fog-aws/blob/ab288f29a0974d64fd8290db41080e5578be9651/lib/fog/aws/models/storage/file.rb#L24-L25
+    def aws_server_side_encryption_headers: () -> { "x-amz-server-side-encryption" => untyped, "x-amz-server-side-encryption-aws-kms-key-id" => untyped }
+  end
+end

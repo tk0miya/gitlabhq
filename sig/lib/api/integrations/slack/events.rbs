@@ -1,0 +1,13 @@
+# This API endpoint handles all events sent from Slack once a Slack
+# workspace has installed the GitLab Slack app.
+#
+# See https://api.slack.com/apis/connections/events-api.
+module API
+  class Integrations
+    module Slack
+      class Events < ::API::Base
+        include Slack::Concerns::VerifiesRequest
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+module Banzai
+  module Filter
+    # HTML filter that removes references to records that the current user does
+    # not have permission to view.
+    #
+    # Expected to be run in its own post-processing pipeline.
+    #
+    class ReferenceRedactorFilter < HTML::Pipeline::Filter
+      def call: () -> untyped
+
+      private
+
+      def current_user: () -> untyped
+
+      def project: () -> untyped
+    end
+  end
+end

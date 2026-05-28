@@ -1,0 +1,9 @@
+module Database
+  class CiProjectMirrorsConsistencyCheckWorker
+    include ApplicationWorker
+
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

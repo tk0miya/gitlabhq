@@ -1,0 +1,19 @@
+module ErrorTracking
+  class IssueDetailsService < ErrorTracking::BaseService
+    include Gitlab::Routing
+
+    include Gitlab::Utils::StrongMemoize
+
+    private
+
+    def perform: () -> untyped
+
+    def gitlab_issue_url: () -> untyped
+
+    def gitlab_issue: () -> untyped
+
+    def parse_response: (untyped response) -> { issue: untyped }
+
+    def find_issue_details: (untyped issue_id) -> untyped
+  end
+end

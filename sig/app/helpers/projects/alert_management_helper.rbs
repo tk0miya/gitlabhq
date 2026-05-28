@@ -1,0 +1,9 @@
+module Projects::AlertManagementHelper
+  def alert_management_data: (untyped current_user, untyped project) -> { "project-path" => untyped, "enable-alert-management-path" => untyped, "alerts-help-url" => untyped, "populating-alerts-help-url" => untyped, "empty-alert-svg-path" => untyped, "user-can-enable-alert-management" => untyped, "alert-management-enabled" => untyped, :"text-query" => untyped, :"assignee-username-query" => untyped }
+
+  def alert_management_detail_data: (untyped current_user, untyped project, untyped alert_id) -> { "alert-id" => untyped, "project-path" => untyped, "project-id" => untyped, "project-issues-path" => untyped, "project-alert-management-details-path" => untyped, "page" => "OPERATIONS", "can-update" => untyped }
+
+  private
+
+  def alert_management_enabled?: (untyped project) -> untyped
+end

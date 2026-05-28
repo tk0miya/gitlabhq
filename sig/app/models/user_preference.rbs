@@ -1,0 +1,42 @@
+class UserPreference < ApplicationRecord
+  include IgnorableColumns
+
+  include SafelyChangeColumnDefault
+
+  # We could use enums, but Rails 4 doesn't support multiple
+  # enum options with same name for multiple fields, also it creates
+  # extra methods that aren't really needed here.
+  NOTES_FILTERS: { all_notes: 0, only_comments: 1, only_activity: 2 }
+
+  TIME_DISPLAY_FORMATS: { system: 0, non_iso_format: 1, iso_format: 2 }
+
+  def self.notes_filters: () -> ::Hash[untyped, untyped]
+
+  def set_notes_filter: (untyped filter_id, untyped issuable) -> untyped
+
+  # Returns the current discussion filter for a given issuable
+  # or issuable type.
+  def notes_filter_for: (untyped resource) -> untyped
+
+  def self.time_display_formats: () -> ::Hash[untyped, untyped]
+
+  def extensions_marketplace_opt_in_url: () -> untyped
+
+  def dpop_enabled=: (untyped value) -> untyped
+
+  def text_editor: () -> untyped
+
+  def text_editor=: (untyped value) -> untyped
+
+  def default_text_editor_enabled: () -> untyped
+
+  def default_text_editor_enabled=: (untyped value) -> untyped
+
+  def timezone=: (untyped value) -> untyped
+
+  private
+
+  def notes_filter_field_for: (untyped resource) -> ::String
+
+  def timezone_valid: () -> (nil | untyped)
+end

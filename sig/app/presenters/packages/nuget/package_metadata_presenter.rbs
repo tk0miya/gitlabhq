@@ -1,0 +1,21 @@
+module Packages
+  module Nuget
+    class PackageMetadataPresenter
+      @package: untyped
+
+      include Packages::Nuget::PresenterHelpers
+
+      def initialize: (untyped package) -> void
+
+      def json_url: () -> untyped
+
+      def archive_url: () -> untyped
+
+      def catalog_entry: () -> untyped
+
+      private
+
+      def preload_associations: () -> untyped
+    end
+  end
+end

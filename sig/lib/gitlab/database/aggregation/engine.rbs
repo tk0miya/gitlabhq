@@ -1,0 +1,60 @@
+module Gitlab
+  module Database
+    module Aggregation
+      class Engine
+        self.@transients: untyped
+
+        self.@filters: untyped
+
+        self.@dimensions: untyped
+
+        self.@metrics: untyped
+
+        @context: untyped
+
+        include ActiveModel::Validations
+
+        def self.name: () -> untyped
+
+        def self.metrics_mapping: () -> untyped
+
+        def self.filters_mapping: () -> untyped
+
+        def self.dimensions_mapping: () -> untyped
+
+        def self.build: () { (?) -> untyped } -> untyped
+
+        def self.sql: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def self.transient: (untyped name) { (?) -> untyped } -> untyped
+
+        def self.transients: () -> untyped
+
+        def self.filters: () ?{ (?) -> untyped } -> untyped
+
+        def self.dimensions: () ?{ (?) -> untyped } -> untyped
+
+        def self.metrics: () ?{ (?) -> untyped } -> untyped
+
+        private
+
+        def self.guard_definitions_uniqueness!: (untyped parts) -> (nil | untyped)
+
+        public
+
+        attr_reader context: untyped
+
+        def initialize: (context: untyped) -> void
+
+        # @return [Gitlab::Database::Aggregation::AggregationResult]
+        def execute: (untyped request) -> untyped
+
+        def request_valid?: (untyped request) -> untyped
+
+        private
+
+        def execute_query_plan: (untyped _plan) -> untyped
+      end
+    end
+  end
+end

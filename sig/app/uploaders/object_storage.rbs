@@ -1,0 +1,204 @@
+#
+# This concern should add object storage support
+# to the GitlabUploader class
+#
+module ObjectStorage
+  RemoteStoreError: untyped
+
+  UnknownStoreError: untyped
+
+  ObjectStorageUnavailable: untyped
+
+  MissingFinalStorePathRootId: untyped
+
+  InvalidHashFunction: untyped
+
+  class ExclusiveLeaseTaken < StandardError
+    @lease_key: untyped
+
+    def initialize: (untyped lease_key) -> void
+
+    def message: () -> ::String
+  end
+
+  class DirectUploadStorage < ::CarrierWave::Storage::Fog
+    extend ::Gitlab::Utils::Override
+
+    def store!: (untyped file) -> untyped
+  end
+
+  TMP_UPLOAD_PATH: "tmp/uploads"
+
+  SUPPORTED_HASH_FUNCTIONS: ::Array["md5" | "sha1" | "sha256" | "sha512"]
+
+  SUPPORTED_HASH_FUNCTIONS_FIPS: untyped
+
+  module Store
+    LOCAL: 1
+
+    REMOTE: 2
+  end
+
+  SUPPORTED_STORES: ::Array[untyped]
+
+  module Extension
+    # this extension is the glue between the ObjectStorage::Concern and RecordsUploads::Concern
+    module RecordsUploads
+      extend ActiveSupport::Concern
+
+      def retrieve_from_store!: (untyped identifier) -> untyped
+
+      def build_upload: () -> untyped
+
+      def upload=: (untyped upload) -> (nil | untyped)
+
+      def exclusive_lease_key: () -> ::String
+
+      private
+
+      def current_upload_satisfies?: (untyped paths, untyped model) -> (false | untyped)
+    end
+  end
+
+  module Concern
+    @filename: untyped
+
+    # We use Store::LOCAL as null value indicates the local storage
+    @object_store: untyped
+
+    @storage: untyped
+
+    @fog_attributes: untyped
+
+    @file: untyped
+
+    extend ActiveSupport::Concern
+
+    extend ::Gitlab::Utils::Override
+
+    class OpenFile
+      @file: untyped
+
+      @original_filename: untyped
+
+      extend Forwardable
+
+      def initialize: (untyped file, ?original_filename: untyped?) -> void
+
+      def file_path: () -> untyped
+
+      def original_filename: () -> (untyped | nil)
+    end
+
+    def proxy_download_enabled?: () -> untyped
+
+    def direct_download_enabled?: () -> untyped
+
+    # allow to configure and overwrite the filename
+    def filename: () -> untyped
+
+    def filename=: (untyped filename) -> untyped
+
+    def file_storage?: () -> untyped
+
+    def file_cache_storage?: () -> untyped
+
+    def object_store: () -> untyped
+
+    # rubocop:disable Gitlab/ModuleWithInstanceVariables
+    def object_store=: (untyped value) -> untyped
+
+    # Return true if the current file is part or the model (i.e. is mounted in the model)
+    #
+    def persist_object_store?: () -> untyped
+
+    # Save the current @object_store to the model <mounted_as>_store column
+    def persist_object_store!: () -> (nil | untyped)
+
+    def use_file: () { (?) -> untyped } -> untyped
+
+    def use_open_file: (?unlink_early: bool) { (untyped) -> untyped } -> untyped
+
+    #
+    # Move the file to another store
+    #
+    #   new_store: Enum (Store::LOCAL, Store::REMOTE)
+    #
+    def migrate!: (untyped new_store) -> untyped
+
+    def fog_directory: () -> untyped
+
+    def fog_credentials: () -> untyped
+
+    def fog_attributes: () -> untyped
+
+    # Set ACL of uploaded objects to not-public (fog-aws)[1] or no ACL at all
+    # (fog-google).  Value is ignored by fog-aliyun
+    # [1]: https://github.com/fog/fog-aws/blob/daa50bb3717a462baf4d04d0e0cbfc18baacb541/lib/fog/aws/models/storage/file.rb#L152-L159
+    def fog_public: () -> nil
+
+    # Disable sending x-amz-acl headers entirely. Modern S3 buckets default to
+    # "Bucket Owner Enforced" which disables ACLs and rejects requests that
+    # include an x-amz-acl header with AccessControlListNotSupported.
+    # See https://gitlab.com/gitlab-org/gitlab/-/work_items/396349
+    def fog_acl: () -> false
+
+    def delete_migrated_file: (untyped migrated_file) -> untyped
+
+    def exists?: () -> untyped
+
+    def store_dir: (?untyped? store) -> untyped
+
+    def store_dirs: () -> ::Hash[untyped, untyped]
+
+    def store_path: (*untyped args) -> untyped
+
+    # Returns all the possible paths for an upload.
+    # the `upload.path` is a lookup parameter, and it may change
+    # depending on the `store` param.
+    def upload_paths: (untyped identifier) -> untyped
+
+    def cache!: (?untyped new_file) -> untyped
+
+    def store!: (?untyped? new_file) -> untyped
+
+    def exclusive_lease_key: () -> ::String
+
+    def delete_tmp_file_after_storage: () -> (false | untyped)
+
+    def retrieve_from_store!: (untyped identifier) -> untyped
+
+    private
+
+    def cache_remote_file!: (untyped remote_object_id, untyped original_filename) -> untyped
+
+    # this is a hack around CarrierWave. The #migrate method needs to be
+    # able to force the current file to the migrated file upon success.
+    def file=: (untyped file) -> untyped
+
+    def serialization_column: () -> untyped
+
+    # Returns the column where the 'store' is saved
+    #   defaults to 'store'
+    def store_serialization_column: () -> untyped
+
+    def storage: () -> untyped
+
+    def storage_for: (untyped store) -> untyped
+
+    def with_exclusive_lease: () { (untyped) -> untyped } -> untyped
+
+    #
+    # Move the file to another store
+    #
+    #   new_store: Enum (Store::LOCAL, Store::REMOTE)
+    #
+    def unsafe_migrate!: (untyped new_store) -> untyped
+  end
+
+  def unsafe_use_file: () { (untyped) -> untyped } -> untyped
+
+  def direct_upload_final_path_attribute_name: () -> ::String
+
+  def direct_upload_final_path: () -> untyped
+end

@@ -1,0 +1,91 @@
+module Gitlab
+  module QuickActions
+    class CommandDefinition
+      @name: untyped
+
+      @aliases: untyped
+
+      @description: untyped
+
+      @warning: untyped
+
+      @icon: untyped
+
+      @explanation: untyped
+
+      @execution_message: untyped
+
+      @params: untyped
+
+      @condition_block: untyped
+
+      @parse_params_block: untyped
+
+      @action_block: untyped
+
+      @types: untyped
+
+      @conditional_aliases: untyped
+
+      @conditional_aliases_block: untyped
+
+      ParseError: untyped
+
+      attr_accessor name: untyped
+
+      attr_accessor aliases: untyped
+
+      attr_accessor description: untyped
+
+      attr_accessor explanation: untyped
+
+      attr_accessor execution_message: untyped
+
+      attr_accessor params: untyped
+
+      attr_accessor condition_block: untyped
+
+      attr_accessor parse_params_block: untyped
+
+      attr_accessor action_block: untyped
+
+      attr_accessor warning: untyped
+
+      attr_accessor icon: untyped
+
+      attr_accessor types: untyped
+
+      attr_accessor conditional_aliases: untyped
+
+      attr_accessor conditional_aliases_block: untyped
+
+      def initialize: (untyped name, ?::Hash[untyped, untyped] attributes) -> void
+
+      def all_names: () -> untyped
+
+      def noop?: () -> untyped
+
+      def available?: (untyped context) -> (false | true | untyped)
+
+      def explain: (untyped context, untyped arg) -> (nil | untyped)
+
+      def execute: (untyped context, untyped arg) -> untyped
+
+      def execute_message: (untyped context, untyped arg) -> untyped
+
+      def to_h: (untyped context) -> { name: untyped, aliases: untyped, description: untyped, warning: untyped, icon: untyped, params: untyped }
+
+      private
+
+      def count_commands_executed_in: (untyped context) -> (nil | untyped)
+
+      def execute_block: (untyped block, untyped context, untyped arg) -> (untyped | untyped | nil)
+
+      def parse_params: (untyped arg, untyped context) -> untyped
+
+      def valid_type?: (untyped context) -> untyped
+
+      def conditional_aliases_allowed?: (untyped context) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Parsers
+      module Codequality
+        class CodeClimate
+          def parse!: (untyped json_data, untyped codequality_report, ?::Hash[untyped, untyped] metadata) -> untyped
+
+          private
+
+          def parse_all: (untyped root, untyped codequality_report, untyped metadata) -> (nil | untyped)
+
+          def web_url: (untyped degradation, untyped metadata) -> (nil | ::String)
+        end
+      end
+    end
+  end
+end

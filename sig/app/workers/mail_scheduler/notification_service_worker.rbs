@@ -1,0 +1,22 @@
+module MailScheduler
+  class NotificationServiceWorker
+    include ApplicationWorker
+
+    include MailSchedulerQueue
+
+    def perform: (untyped meth, *untyped args) -> untyped
+
+    def self.perform_async: (*untyped args) -> untyped
+
+    private
+
+    # This is copied over from https://github.com/rails/rails/blob/v6.0.1/activejob/lib/active_job/arguments.rb#L50
+    # because it is declared as a private constant
+    PERMITTED_TYPES: ::Array[untyped]
+
+    # If an argument is in the PERMITTED_TYPES list,
+    # it means the argument cannot be deserialized.
+    # Which means there's something wrong with our code.
+    def check_arguments!: (untyped args) -> untyped
+  end
+end

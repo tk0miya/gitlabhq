@@ -1,0 +1,17 @@
+module Peek
+  module Views
+    class RedisDetailed < DetailedView
+      REDACTED_MARKER: "<redacted>"
+
+      def key: () -> "redis"
+
+      def detail_store: () -> untyped
+
+      private
+
+      def format_call_details: (untyped call) -> untyped
+
+      def format_command: (untyped cmd) -> untyped
+    end
+  end
+end

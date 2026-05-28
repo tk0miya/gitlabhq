@@ -1,0 +1,45 @@
+module Gitlab
+  module ImportExport
+    class LfsSaver
+      @project: untyped
+
+      @shared: untyped
+
+      @lfs_json: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      include DurationMeasuring
+
+      attr_accessor lfs_json: untyped
+
+      attr_accessor project: untyped
+
+      attr_accessor shared: untyped
+
+      BATCH_SIZE: 100
+
+      def initialize: (project: untyped, shared: untyped) -> void
+
+      def save: () -> untyped
+
+      private
+
+      def save_lfs_object: (untyped lfs_object) -> untyped
+
+      def download_file_for_lfs_object: (untyped lfs_object) -> untyped
+
+      def copy_file_for_lfs_object: (untyped lfs_object) -> (nil | untyped)
+
+      def append_lfs_json_for_batch: (untyped lfs_objects_batch) -> untyped
+
+      def write_lfs_json: () -> untyped
+
+      def destination_path_for_object: (untyped lfs_object) -> untyped
+
+      def lfs_export_path: () -> untyped
+
+      def lfs_json_path: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,48 @@
+module WorkItems
+  module DataSync
+    module Handlers
+      class CopyDataHandler
+        @work_item: untyped
+
+        @target_namespace: untyped
+
+        @target_work_item_type: untyped
+
+        @current_user: untyped
+
+        @params: untyped
+
+        @operation: untyped
+
+        @create_params: untyped
+
+        attr_reader work_item: untyped
+
+        attr_reader target_namespace: untyped
+
+        attr_reader target_work_item_type: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader params: untyped
+
+        attr_reader create_params: untyped
+
+        attr_reader operation: untyped
+
+        # rubocop:disable Layout/LineLength -- Keyword arguments are making the line a bit longer
+        def initialize: (work_item: untyped, target_namespace: untyped, target_work_item_type: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped], ?overwritten_params: ::Hash[untyped, untyped]) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def skip_system_notes?: () -> untyped
+
+        def relative_position: () -> (nil | untyped)
+
+        def project: () -> (untyped | nil)
+      end
+    end
+  end
+end

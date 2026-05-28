@@ -1,0 +1,19 @@
+module Backup
+  module Tasks
+    class TerraformState < Task
+      @target: untyped
+
+      def self.id: () -> "terraform_state"
+
+      def human_name: () -> untyped
+
+      def destination_path: () -> "terraform_state.tar.gz"
+
+      private
+
+      def target: () -> untyped
+
+      def storage_path: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module Gitlab
+  class StringRangeMarker
+    @raw_line: untyped
+
+    @rich_line: untyped
+
+    @html_escaped: untyped
+
+    @position_mapping: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_accessor raw_line: untyped
+
+    attr_accessor rich_line: untyped
+
+    attr_accessor html_escaped: untyped
+
+    def initialize: (untyped raw_line, ?untyped? rich_line) -> void
+
+    def mark: (untyped ranges) { (untyped, left: untyped, right: untyped, mode: untyped) -> untyped } -> untyped
+
+    private
+
+    def use_safe_position_mapping?: () -> untyped
+
+    def identity_mapping?: () -> untyped
+
+    def position_mapping: () -> untyped
+
+    def safe_position_mapping: () -> untyped
+
+    def legacy_position_mapping: () -> untyped
+
+    def collapse_ranges: (untyped positions, untyped mode) -> (::Array[untyped] | untyped)
+  end
+end

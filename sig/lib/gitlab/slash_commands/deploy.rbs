@@ -1,0 +1,22 @@
+module Gitlab
+  module SlashCommands
+    class Deploy < BaseCommand
+      DEPLOY_REGEX: ::Regexp
+
+      def self.match: (untyped text) -> (nil | { from: untyped, to: untyped })
+
+      def self.help_message: () -> "deploy <environment> to <target-environment>"
+
+      def self.available?: (untyped project) -> untyped
+
+      def self.allowed?: (untyped project, untyped user) -> untyped
+
+      def execute: (untyped match) -> untyped
+
+      private
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def find_action: (untyped from, untyped to) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module PaginatedCollection
+  extend ActiveSupport::Concern
+
+  private
+
+  def redirect_out_of_range: (untyped collection, ?untyped total_pages) -> (false | untyped)
+
+  def paginate_for_collection: (untyped collection, row_count: untyped) -> { collection: untyped, total_pages: untyped }
+
+  def page_count_for_relation: (untyped relation, untyped row_count) -> (1 | untyped)
+end

@@ -1,0 +1,116 @@
+module ContainerRegistry
+  class Tag
+    @repository: untyped
+
+    @name: untyped
+
+    @from_api: untyped
+
+    @referrers: untyped
+
+    @updated_at: untyped
+
+    @published_at: untyped
+
+    @manifests: untyped
+
+    @platform: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    MANIFEST_ARCHS_TO_SKIP: ::Array[nil | "unknown"]
+
+    attr_reader repository: untyped
+
+    attr_reader name: untyped
+
+    attr_reader updated_at: untyped
+
+    attr_reader referrers: untyped
+
+    attr_reader published_at: untyped
+
+    attr_reader platform: untyped
+
+    attr_reader manifests: untyped
+
+    attr_writer created_at: untyped
+
+    attr_writer manifest_digest: untyped
+
+    attr_writer revision: untyped
+
+    attr_writer total_size: untyped
+
+    attr_accessor media_type: untyped
+
+    def initialize: (untyped repository, untyped name, ?from_api: bool) -> void
+
+    def referrers=: (untyped refs) -> untyped
+
+    def revision: () -> untyped
+
+    def short_revision: () -> (nil | untyped)
+
+    def valid?: () -> untyped
+
+    def latest?: () -> untyped
+
+    def v1?: () -> untyped
+
+    def v2?: () -> untyped
+
+    def manifest: () -> untyped
+
+    def path: () -> ::String
+
+    def location: () -> ::String
+
+    def []: (untyped key) -> (nil | untyped)
+
+    def digest: () -> untyped
+
+    def config_blob: () -> (nil | untyped)
+
+    def config: () -> (nil | untyped)
+
+    def created_at: () -> untyped
+
+    # this function will set and memoize a created_at
+    # to avoid a #config_blob call.
+    def force_created_at_from_iso8601: (untyped string_value) -> untyped
+
+    def updated_at=: (untyped string_value) -> (nil | untyped)
+
+    def published_at=: (untyped string_value) -> (nil | untyped)
+
+    def layers: () -> (nil | untyped)
+
+    def put: (untyped digests) -> untyped
+
+    def total_size: () -> (untyped | nil)
+
+    # Deletes the image associated with this tag
+    # Note this will delete the image and all tags associated with it.
+    # Consider using DeleteTagsService instead.
+    def unsafe_delete: () -> (nil | untyped)
+
+    def protection_rule: () -> untyped
+
+    def protected_for_delete?: (untyped user) -> (true | false | untyped)
+
+    def manifests=: (untyped tag_references) -> (nil | untyped)
+
+    def platform=: (untyped platform_hash) -> untyped
+
+    private
+
+    def from_api?: () -> untyped
+
+    def parse_iso8601_string: (untyped string_value) -> untyped
+
+    def set_highest_protection_rule_access_level: (untyped result, untyped rule) -> untyped
+
+    def create_manifest_from_tag_reference: (untyped ref) -> untyped
+  end
+end

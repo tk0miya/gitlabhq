@@ -1,0 +1,37 @@
+module Projects
+  module ImportExport
+    class WaitRelationExportsWorker
+      @export_job: untyped
+
+      @relation_exports: untyped
+
+      @started_relation_exports: untyped
+
+      @user: untyped
+
+      include ApplicationWorker
+
+      include ExceptionBacktrace
+
+      INTERVAL: untyped
+
+      def perform: (untyped project_export_job_id, untyped user_id, ?::Hash[untyped, untyped] after_export_strategy) -> (nil | untyped)
+
+      private
+
+      def relation_exports_with_status: (untyped status) -> untyped
+
+      def queued_relation_exports: () -> untyped
+
+      def started_relation_exports: () -> untyped
+
+      def all_relation_export_finished?: () -> untyped
+
+      def fail_started_jobs_no_longer_running: () -> untyped
+
+      def fail_and_notify_user: (untyped user_id) -> (nil | untyped)
+
+      def log_error: (untyped payload) -> untyped
+    end
+  end
+end

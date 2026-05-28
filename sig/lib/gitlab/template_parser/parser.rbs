@@ -1,0 +1,23 @@
+module Gitlab
+  module TemplateParser
+    # A parser for a simple template syntax, used for example to generate changelogs.
+    #
+    # As a quick primer on the template syntax, a basic template looks like
+    # this:
+    #
+    #     {% each users %}
+    #     Name: {{name}}
+    #     Age: {{age}}
+    #
+    #     {% if birthday %}
+    #     This user is celebrating their birthday today! Yay!
+    #     {% end %}
+    #     {% end %}
+    #
+    # For more information, refer to the Parslet documentation found at
+    # http://kschiess.github.io/parslet/.
+    class Parser < Parslet::Parser
+      def parse_and_transform: (untyped input) -> untyped
+    end
+  end
+end

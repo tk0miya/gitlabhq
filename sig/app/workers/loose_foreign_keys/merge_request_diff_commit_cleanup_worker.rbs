@@ -1,0 +1,15 @@
+module LooseForeignKeys
+  class MergeRequestDiffCommitCleanupWorker
+    include ApplicationWorker
+
+    include Gitlab::ExclusiveLeaseHelpers
+
+    include CronjobQueue
+
+    def perform: () -> (nil | untyped)
+
+    private
+
+    def vacuum_running_on_merge_request_diff_commits?: () -> untyped
+  end
+end

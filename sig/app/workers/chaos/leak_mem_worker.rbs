@@ -1,0 +1,9 @@
+module Chaos
+  class LeakMemWorker
+    include ApplicationWorker
+
+    include ChaosQueue
+
+    def perform: (untyped memory_mb, untyped duration_s) -> untyped
+  end
+end

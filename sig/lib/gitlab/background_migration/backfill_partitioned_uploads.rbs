@@ -1,0 +1,37 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillPartitionedUploads < BatchedMigrationJob
+      class Upload < ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      private
+
+      def sharding_key_columns: (untyped db_schema) -> (::Array["uploaded_by_user_id"] | ::Array["organization_id" | "namespace_id" | "project_id"])
+
+      def columns: (untyped db_schema) -> untyped
+
+      def tables_and_models: () -> ::Array[::Array["abuse_reports" | "AbuseReport" | ::Array["organization_id"]] | ::Array["achievements" | "Achievements::Achievement" | ::Array["namespace_id"]] | ::Array["ai_vectorizable_files" | "Ai::VectorizableFile" | ::Array["project_id"]] | ::Array["alert_management_alert_metric_images" | "AlertManagement::MetricImage" | ::Array["project_id"]] | ::Array["appearances" | "Appearance" | ::Array[untyped]] | ::Array["bulk_import_export_uploads" | "BulkImports::ExportUpload" | ::Array["group_id" | "project_id"] | ::Array["namespace_id" | "project_id"]] | ::Array["design_management_designs_versions" | "DesignManagement::Action" | ::Array["namespace_id"]] | ::Array["import_export_uploads" | "ImportExportUpload" | ::Array["group_id" | "project_id"] | ::Array["namespace_id" | "project_id"]] | ::Array["issuable_metric_images" | "IssuableMetricImage" | ::Array["namespace_id"]] | ::Array["namespaces" | "Namespace" | ::Array["id"] | ::Array["namespace_id"]] | ::Array["organization_details" | "Organizations::OrganizationDetail" | ::Array["organization_id"] | nil | "organization_id"] | ::Array["project_relation_export_uploads" | "Projects::ImportExport::RelationExportUpload" | ::Array["project_id"]] | ::Array["topics" | "Projects::Topic" | ::Array["organization_id"]] | ::Array["projects" | "Project" | ::Array["id"] | ::Array["project_id"]] | ::Array["snippets" | "Snippet" | ::Array["organization_id"]] | ::Array["user_permission_export_uploads" | "UserPermissionExportUpload" | ::Array["user_id"] | ::Array["uploaded_by_user_id"] | nil | :gitlab_main_user] | ::Array["users" | "User" | ::Array["organization_id"]] | ::Array["dependency_list_exports" | "Dependencies::DependencyListExport" | ::Array["organization_id" | "group_id" | "project_id"] | ::Array["organization_id" | "namespace_id" | "project_id"] | nil | :sec] | ::Array["dependency_list_export_parts" | "Dependencies::DependencyListExport::Part" | ::Array["organization_id"] | nil | :sec] | ::Array["vulnerability_exports" | "Vulnerabilities::Export" | ::Array["organization_id"] | nil | :sec] | ::Array["vulnerability_export_parts" | "Vulnerabilities::Export::Part" | ::Array["organization_id"] | nil | :sec] | ::Array["vulnerability_remediations" | "Vulnerabilities::Remediation" | ::Array["project_id"] | nil | :sec] | ::Array["vulnerability_archive_exports" | "Vulnerabilities::ArchiveExport" | ::Array["project_id"] | nil | :sec]]
+
+      # Back-fill partitioned table `uploads_9ba88c4165`. For each sub-batch execute an
+      # upsert query per model_type, joining with the respective model_table.
+      # This join will exclude uploads belonging to records that no longer exist.
+      #
+      # Arguments are:
+      #   sub_batch -  batch to operate on.
+      #   model_table - table storing the parent model
+      #   model_name - model class name
+      #   source - columns to source the sharding key values from
+      #   targets - sharding key columns to back-fill
+      #   join_key - column to join with the model table, defaults to id
+      #   db_name - database the model table belongs to
+      #   db_schema - database schema the table belongs to
+      def process_upload_type: (untyped sub_batch, untyped model_table, untyped model_name, untyped sources, untyped targets, untyped join_key, untyped db_name, untyped db_schema) -> (nil | untyped)
+
+      def source_columns_sql: (untyped sources, untyped reset_columns, untyped db_schema, ?nullif: bool) -> untyped
+
+      def sec_model_values_cte: (untyped sub_batch, untyped model_name, untyped join_key, untyped sources, untyped model_table) -> (nil | ::String)
+    end
+  end
+end

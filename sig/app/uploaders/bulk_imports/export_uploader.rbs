@@ -1,0 +1,11 @@
+module BulkImports
+  class ExportUploader < ImportExportUploader
+    EXTENSION_ALLOWLIST: ::Array["ndjson.gz" | "tar.gz" | "gz"]
+
+    def mounted_as: () -> untyped
+
+    private
+
+    def dynamic_segment: () -> untyped
+  end
+end

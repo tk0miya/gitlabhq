@@ -1,0 +1,23 @@
+module Gitlab
+  module Kas
+    class UserAccess
+      def self.enabled?: () -> untyped
+
+      def self.encrypt_public_session_id: (untyped data) -> untyped
+
+      def self.decrypt_public_session_id: (untyped data) -> untyped
+
+      def self.valid_authenticity_token?: (untyped session, untyped masked_authenticity_token) -> untyped
+
+      def self.cookie_data: (untyped public_session_id) -> untyped
+
+      private
+
+      def self.encryptor: () -> untyped
+
+      def self.public_session_id_purpose: () -> "kas.user_public_session_id"
+
+      def self.session_cookie_token_prefix: () -> untyped
+    end
+  end
+end

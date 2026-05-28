@@ -1,0 +1,19 @@
+module Gitlab
+  module BackgroundMigration
+    class DeleteNoLongerUsedPlaceholderReferences < BatchedMigrationJob
+      PLACEHOLDER_USER_TYPE: 15
+
+      MODEL_USER_REFERENCE_COLUMN_MAPPING: ::Array[{ model: ::Array["Approval" | "AwardEmoji" | "Ci::Pipeline" | "CommitStatus" | "IssueAssignee" | "MergeRequestAssignee" | "MergeRequestReviewer" | "ProtectedBranch::MergeAccessLevel" | "ProtectedBranch::PushAccessLevel" | "ProtectedTag::CreateAccessLevel" | "ResourceLabelEvent" | "ResourceMilestoneEvent" | "ResourceStateEvent" | "Timelog" | "ApprovalProjectRulesUser" | "ProtectedBranch::UnprotectAccessLevel" | "ProtectedEnvironments::DeployAccessLevel" | "List" | "ResourceIterationEvent"], user_reference_column: "user_id" } | { model: ::Array["DesignManagement::Version" | "DiffNote" | "DiscussionNote" | "Event" | "LegacyDiffNote" | "Note" | "Release" | "Snippet"], user_reference_column: "author_id" } | { model: "Ci::PipelineSchedule", user_reference_column: "owner_id" } | { model: "BoardAssignee", user_reference_column: "assignee_id" } | { model: "Epic", user_reference_column: ::Array["author_id" | "assignee_id" | "last_edited_by_id" | "closed_by_id"] } | { model: "Issue", user_reference_column: ::Array["author_id" | "updated_by_id" | "closed_by_id"] } | { model: "MergeRequest::Metrics", user_reference_column: ::Array["merged_by_id" | "latest_closed_by_id"] } | { model: "MergeRequest", user_reference_column: ::Array["author_id" | "updated_by_id" | "merge_user_id"] } | { model: "Vulnerability", user_reference_column: ::Array["author_id" | "resolved_by_id" | "dismissed_by_id" | "confirmed_by_id"] }]
+
+      def perform: () -> untyped
+
+      private
+
+      def delete_placeholder_references_for_batch: (untyped sub_batch) -> untyped
+
+      def build_or_clauses_query: (untyped sub_batch) -> untyped
+
+      def add_placeholder_user_joins: (untyped query) -> untyped
+    end
+  end
+end

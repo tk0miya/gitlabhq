@@ -1,0 +1,31 @@
+module Clusters
+  module Kubernetes
+    class FetchKubernetesTokenService
+      @kubeclient: untyped
+
+      @service_account_token_name: untyped
+
+      @namespace: untyped
+
+      @token_retry_delay: untyped
+
+      DEFAULT_TOKEN_RETRY_DELAY: untyped
+
+      TOKEN_RETRY_LIMIT: 5
+
+      attr_reader kubeclient: untyped
+
+      attr_reader service_account_token_name: untyped
+
+      attr_reader namespace: untyped
+
+      def initialize: (untyped kubeclient, untyped service_account_token_name, untyped namespace, ?token_retry_delay: untyped) -> void
+
+      def execute: () -> (untyped | nil)
+
+      private
+
+      def get_secret: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Prometheus
+    class Adapter
+      @project: untyped
+
+      @cluster: untyped
+
+      @prometheus_adapter: untyped
+
+      attr_reader project: untyped
+
+      attr_reader cluster: untyped
+
+      def initialize: (untyped project, untyped cluster) -> void
+
+      def prometheus_adapter: () -> untyped
+
+      def find_cluster_prometheus_adapter: () -> untyped
+    end
+  end
+end

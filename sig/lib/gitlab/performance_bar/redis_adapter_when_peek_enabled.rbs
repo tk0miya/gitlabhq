@@ -1,0 +1,15 @@
+# Adapted from https://github.com/peek/peek/blob/master/lib/peek/adapters/redis.rb
+module Gitlab
+  module PerformanceBar
+    module RedisAdapterWhenPeekEnabled
+      def save: (untyped request_id) -> (nil | untyped)
+
+      # schedules a job which parses peek profile data and adds them
+      # to a structured log
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables
+      # rubocop:disable CodeReuse/ActiveRecord -- needed because of `.exists?` method
+      # usage (which is actually not AR method)
+      def enqueue_stats_job: (untyped request_id) -> (nil | untyped)
+    end
+  end
+end

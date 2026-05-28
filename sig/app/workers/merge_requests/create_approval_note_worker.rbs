@@ -1,0 +1,10 @@
+module MergeRequests
+  # Worker is not idempotent: each run creates a system note.
+  # A reviewer can approve multiple times across different commits,
+  # so a note-existence guard is insufficient to prevent duplicates.
+  class CreateApprovalNoteWorker
+    include Gitlab::EventStore::Subscriber
+
+    def handle_event: (untyped event) -> (nil | untyped)
+  end
+end

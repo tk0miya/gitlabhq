@@ -1,0 +1,19 @@
+module Gitlab
+  module Graphql
+    class UxSliByOperationName
+      @operation_name: untyped
+
+      def self.operation_ux_sli_map: () -> ::Hash[untyped, untyped]
+
+      def initialize: (untyped operation_name) -> void
+
+      attr_reader operation_name: untyped
+
+      def track: () { () -> untyped } -> untyped
+
+      private
+
+      def experience_id: () -> untyped
+    end
+  end
+end

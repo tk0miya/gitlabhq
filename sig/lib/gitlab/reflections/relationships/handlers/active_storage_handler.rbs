@@ -1,0 +1,19 @@
+module Gitlab
+  module Reflections
+    module Relationships
+      module Handlers
+        # Handles Active Storage file attachment associations
+        # Examples:
+        #   has_many_attached :images
+        #   has_one_attached :avatar
+        class ActiveStorageHandler < BaseHandler
+          def relationship_attributes: () -> untyped
+
+          private
+
+          def relationship_type: () -> untyped
+        end
+      end
+    end
+  end
+end

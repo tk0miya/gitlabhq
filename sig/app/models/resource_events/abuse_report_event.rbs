@@ -1,0 +1,7 @@
+module ResourceEvents
+  class AbuseReportEvent < ApplicationRecord
+    include AbuseReportEventsHelper
+
+    def success_message: () -> untyped
+  end
+end

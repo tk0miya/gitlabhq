@@ -1,0 +1,29 @@
+module Routing
+  module SnippetsHelper
+    def gitlab_snippet_path: (untyped snippet, *untyped args) -> untyped
+
+    def gitlab_snippet_url: (untyped snippet, *untyped args) -> untyped
+
+    def gitlab_raw_snippet_url: (untyped snippet, *untyped args) -> untyped
+
+    def gitlab_raw_snippet_blob_url: (untyped snippet, untyped path, ?untyped? ref, **untyped options) -> untyped
+
+    def gitlab_snippet_notes_path: (untyped snippet, *untyped args) -> untyped
+
+    def gitlab_snippet_note_path: (untyped snippet, untyped note, *untyped args) -> untyped
+
+    def gitlab_toggle_award_emoji_snippet_note_path: (untyped snippet, untyped note, *untyped args) -> untyped
+
+    def preview_markdown_path: (untyped parent, *untyped args) -> untyped
+
+    def toggle_award_emoji_personal_snippet_path: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def toggle_award_emoji_project_project_snippet_path: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def toggle_award_emoji_project_project_snippet_url: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    private
+
+    def snippet_query_params: (untyped snippet, *untyped args) -> untyped
+  end
+end

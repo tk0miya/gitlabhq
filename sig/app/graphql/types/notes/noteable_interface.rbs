@@ -1,0 +1,11 @@
+module Types
+  module Notes
+    module NoteableInterface
+      include Types::BaseInterface
+
+      def self.resolve_type: (untyped object, untyped context) -> untyped
+
+      def commenters: () -> untyped
+    end
+  end
+end

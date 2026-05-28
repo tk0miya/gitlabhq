@@ -1,0 +1,40 @@
+module RecordsUploads
+  module Concern
+    extend ActiveSupport::Concern
+
+    # This value is stored in `uploads.version`. Increment this value to have
+    # functionality that only applies to certain versions of uploads.
+    VERSION: 2
+
+    attr_accessor upload: untyped
+
+    # After storing an attachment, create a corresponding Upload record
+    #
+    # NOTE: We're ignoring the argument passed to this callback because we want
+    # the `SanitizedFile` object from `CarrierWave::Uploader::Base#file`, not the
+    # `Tempfile` object the callback gets.
+    #
+    # Called `after :store`
+    # rubocop: disable CodeReuse/ActiveRecord
+    def record_upload: (?untyped? _tempfile) -> (nil | untyped)
+
+    def readd_upload: () -> untyped
+
+    def upload_path: () -> untyped
+
+    def filename: () -> untyped
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def uploads: () -> untyped
+
+    def build_upload: () -> untyped
+
+    # Before removing an attachment, destroy any Upload records at the same path
+    #
+    # Called `before :remove`
+    # rubocop: disable CodeReuse/ActiveRecord
+    def destroy_upload: (*untyped args) -> (nil | untyped)
+  end
+end

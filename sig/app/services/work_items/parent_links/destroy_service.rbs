@@ -1,0 +1,41 @@
+module WorkItems
+  module ParentLinks
+    class DestroyService < IssuableLinks::DestroyService
+      @link: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      @parent: untyped
+
+      @child: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      attr_reader link: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader parent: untyped
+
+      attr_reader child: untyped
+
+      attr_reader params: untyped
+
+      def initialize: (untyped link, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+      private
+
+      def create_notes: () -> untyped
+
+      def not_found_message: () -> untyped
+
+      def permission_to_remove_relation?: () -> (true | untyped)
+
+      def after_destroy: () -> untyped
+
+      def skip_policy_check?: () -> untyped
+    end
+  end
+end

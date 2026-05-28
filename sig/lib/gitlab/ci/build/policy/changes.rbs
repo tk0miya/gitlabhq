@@ -1,0 +1,15 @@
+module Gitlab
+  module Ci
+    module Build
+      module Policy
+        class Changes < Policy::Specification
+          @globs: untyped
+
+          def initialize: (untyped globs) -> void
+
+          def satisfied_by?: (untyped pipeline, untyped context) -> (true | untyped)
+        end
+      end
+    end
+  end
+end

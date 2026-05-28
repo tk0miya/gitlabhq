@@ -1,0 +1,31 @@
+module AlertManagement
+  module MetricImages
+    class UploadService < BaseService
+      @alert: untyped
+
+      @file: untyped
+
+      @url: untyped
+
+      @url_text: untyped
+
+      attr_reader alert: untyped
+
+      attr_reader file: untyped
+
+      attr_reader url: untyped
+
+      attr_reader url_text: untyped
+
+      attr_reader metric: untyped
+
+      def initialize: (untyped alert, untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def can_upload_metrics?: () -> untyped
+    end
+  end
+end

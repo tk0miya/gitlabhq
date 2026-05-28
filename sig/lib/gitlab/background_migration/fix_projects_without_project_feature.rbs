@@ -1,0 +1,19 @@
+module Gitlab
+  module BackgroundMigration
+    # This migration creates missing project_features records
+    # for the projects within the given range of ids
+    class FixProjectsWithoutProjectFeature
+      def perform: (untyped from_id, untyped to_id) -> (untyped | nil)
+
+      private
+
+      def create_missing!: (untyped from_id, untyped to_id) -> (0 | untyped)
+
+      def sql: (untyped from_id, untyped to_id) -> ::String
+
+      def pages_access_level: () -> ("10" | "GREATEST(projects.visibility_level, 10)")
+
+      def log: (untyped count, untyped from_id, untyped to_id) -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module BulkImports
+  module FileTransfer
+    class GroupConfig < BaseConfig
+      SKIPPED_RELATIONS: ::Array["members"]
+
+      def import_export_yaml: () -> untyped
+
+      def skipped_relations: () -> untyped
+    end
+  end
+end

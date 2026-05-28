@@ -1,0 +1,26 @@
+module Packages
+  module Rubygems
+    class MetadataExtractionService
+      @package: untyped
+
+      @gemspec: untyped
+
+      def initialize: (untyped package, untyped gemspec) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader gemspec: untyped
+
+      # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/PerceivedComplexity
+      # rubocop:disable Metrics/CyclomaticComplexity
+      def write_metadata: () -> untyped
+
+      def metadatum: () -> untyped
+    end
+  end
+end

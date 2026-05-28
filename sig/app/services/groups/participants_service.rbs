@@ -1,0 +1,17 @@
+module Groups
+  class ParticipantsService < Groups::BaseService
+    @noteable: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    include Users::ParticipableService
+
+    def execute: (untyped noteable) -> untyped
+
+    private
+
+    def participation_object: () -> untyped
+
+    def group_hierarchy_users: () -> (::Array[untyped] | untyped)
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module FormBuilders
+    class GitlabUiFormBuilder < ActionView::Helpers::FormBuilder
+      def submit: (?untyped? value, ?::Hash[untyped, untyped] options) -> untyped
+
+      def gitlab_ui_checkbox_component: (untyped method, ?untyped? label, ?help_text: untyped?, ?checkbox_options: ::Hash[untyped, untyped], ?checked_value: ::String, ?unchecked_value: ::String, ?label_options: ::Hash[untyped, untyped], ?content_wrapper_options: ::Hash[untyped, untyped]) { (?) -> untyped } -> untyped
+
+      def gitlab_ui_radio_component: (untyped method, untyped value, ?untyped? label, ?help_text: untyped?, ?radio_options: ::Hash[untyped, untyped], ?label_options: ::Hash[untyped, untyped]) { (?) -> untyped } -> untyped
+
+      def gitlab_ui_datepicker: (untyped method, ?::Hash[untyped, untyped] options) -> untyped
+
+      private
+
+      def format_options: (untyped options) -> untyped
+    end
+  end
+end

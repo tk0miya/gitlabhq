@@ -1,0 +1,15 @@
+module Admin
+  module Organizations
+    class ApplicationController < Admin::ApplicationController
+      extend Gitlab::Utils::Override
+
+      private
+
+      def authorize_access_organization_admin_area!: () -> (untyped | nil)
+
+      def can_access_instance_admin_area?: () -> untyped
+
+      def set_current_organization: () -> (nil | untyped)
+    end
+  end
+end

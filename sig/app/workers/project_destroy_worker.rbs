@@ -1,0 +1,7 @@
+class ProjectDestroyWorker
+  include ApplicationWorker
+
+  include ExceptionBacktrace
+
+  def perform: (untyped project_id, untyped user_id, untyped params) -> untyped
+end

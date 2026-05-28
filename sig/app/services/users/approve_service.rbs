@@ -1,0 +1,19 @@
+module Users
+  class ApproveService < BaseService
+    @current_user: untyped
+
+    def initialize: (untyped current_user) -> void
+
+    def execute: (untyped user) -> untyped
+
+    private
+
+    attr_reader current_user: untyped
+
+    def after_approve_hook: (untyped user) -> nil
+
+    def allowed?: () -> untyped
+
+    def log_event: (untyped user) -> untyped
+  end
+end

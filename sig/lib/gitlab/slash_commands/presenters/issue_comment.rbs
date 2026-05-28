@@ -1,0 +1,21 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      class IssueComment < Presenters::Base
+        include Presenters::NoteBase
+
+        include ActionView::RecordIdentifier
+
+        def present: () -> untyped
+
+        def resource_url: () -> untyped
+
+        private
+
+        def fallback_message: () -> ::String
+
+        def pretext: () -> ::String
+      end
+    end
+  end
+end

@@ -1,0 +1,24 @@
+module Ci
+  module Partitions
+    class SyncService
+      @partition: untyped
+
+      def initialize: (untyped partition) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader partition: untyped
+
+      def sync_available_partitions_statuses!: () -> untyped
+
+      def next_available_partition: () -> untyped
+
+      # Uses the builds because querying p_ci_pipelines for partition_id = ANY(100, 101, 102)
+      # would time out since we have a single partition that spans those values
+      # gitlab_partitions_dynamic.ci_pipelines FOR VALUES IN ('100', '101', '102')
+      def update_range_id_boundaries: (untyped incoming) -> (nil | untyped)
+    end
+  end
+end

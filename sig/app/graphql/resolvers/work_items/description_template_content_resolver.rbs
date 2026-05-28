@@ -1,0 +1,14 @@
+module Resolvers
+  module WorkItems
+    class DescriptionTemplateContentResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (untyped args) -> untyped
+
+      private
+
+      # Overridden in EE
+      def authorize_template!: (untyped template_project, untyped _) -> untyped
+    end
+  end
+end

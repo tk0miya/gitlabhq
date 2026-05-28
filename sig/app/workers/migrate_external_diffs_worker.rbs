@@ -1,0 +1,5 @@
+class MigrateExternalDiffsWorker
+  include ApplicationWorker
+
+  def perform: (untyped merge_request_diff_id) -> (nil | untyped)
+end

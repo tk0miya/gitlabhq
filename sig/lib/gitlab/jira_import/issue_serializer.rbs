@@ -1,0 +1,64 @@
+module Gitlab
+  module JiraImport
+    class IssueSerializer
+      @jira_issue: untyped
+
+      @project: untyped
+
+      @import_owner_id: untyped
+
+      @work_item_type: untyped
+
+      @params: untyped
+
+      @formatter: untyped
+
+      @logger: untyped
+
+      attr_reader jira_issue: untyped
+
+      attr_reader project: untyped
+
+      attr_reader import_owner_id: untyped
+
+      attr_reader params: untyped
+
+      attr_reader formatter: untyped
+
+      MAX_ADF_DEPTH: 10
+
+      def initialize: (untyped project, untyped jira_issue, untyped import_owner_id, untyped work_item_type, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> { iid: untyped, project_id: untyped, namespace_id: untyped, description: untyped, title: untyped, state_id: untyped, updated_at: untyped, created_at: untyped, author_id: untyped, assignee_ids: untyped, label_ids: untyped, work_item_type_id: untyped, imported_from: untyped }
+
+      private
+
+      def title: () -> ::String
+
+      def description: () -> untyped
+
+      def convert_adf_to_markdown: (untyped adf) -> untyped
+
+      def sanitize_adf: (untyped node) -> untyped
+
+      def convert_adf_to_text: (untyped adf, ?::Integer depth) -> ("" | untyped)
+
+      def extract_text: (untyped node, ?::Integer depth) -> ("" | untyped)
+
+      def map_status: (untyped jira_status_category) -> untyped
+
+      def map_user_id: (untyped jira_user) -> (nil | untyped)
+
+      def reporter: () -> untyped
+
+      def assignees: () -> (nil | ::Array[untyped])
+
+      # We already create labels in Gitlab::JiraImport::LabelsImporter stage but
+      # there is a possibility it may fail or
+      # new labels were created on the Jira in the meantime
+      def label_ids: () -> (nil | untyped)
+
+      def logger: () -> untyped
+    end
+  end
+end

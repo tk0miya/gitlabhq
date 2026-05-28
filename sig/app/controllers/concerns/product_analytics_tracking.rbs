@@ -1,0 +1,13 @@
+module ProductAnalyticsTracking
+  include Gitlab::Tracking::Helpers
+
+  extend ActiveSupport::Concern
+
+  private
+
+  def route_events_to: (untyped destinations, untyped name, untyped action, untyped label) { (?) -> untyped } -> (nil | untyped)
+
+  def track_unique_redis_hll_event: (untyped event_name) ?{ (untyped) -> untyped } -> (nil | untyped)
+
+  def visitor_id: () -> (untyped | nil)
+end

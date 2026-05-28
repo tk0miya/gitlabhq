@@ -1,0 +1,16 @@
+module Gitlab
+  module Serializer
+    module Ci
+      # This serializer could make sure our YAML variables' keys and values
+      # are always strings. This is more for legacy build data because
+      # from now on we convert them into strings before saving to database.
+      module Variables
+        extend ::Gitlab::Serializer::Ci::Variables
+
+        def load: (untyped string) -> (nil | untyped)
+
+        def dump: (untyped object) -> untyped
+      end
+    end
+  end
+end

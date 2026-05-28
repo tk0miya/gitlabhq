@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+module Packages
+  module Rpm
+    class RepositoryFile < ApplicationRecord
+      include EachBatch
+
+      include UpdateProjectStatistics
+
+      include FileStoreMounter
+
+      include Packages::Installable
+
+      INSTALLABLE_STATUSES: ::Array[:default]
+
+      FILELISTS_FILENAME: "filelists.xml"
+
+      FILELISTS_SIZE_LIMITATION: untyped
+
+      FILE_MD5_MAX_LENGTH: untyped
+
+      FILE_SHA1_MAX_LENGTH: untyped
+
+      FILE_SHA256_MAX_LENGTH: untyped
+
+      def self.has_oversized_filelists?: (project_id: untyped) -> untyped
+
+      def self.installable_statuses: () -> untyped
+    end
+  end
+end

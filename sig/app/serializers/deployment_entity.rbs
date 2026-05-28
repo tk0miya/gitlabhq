@@ -1,0 +1,13 @@
+class DeploymentEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  def include_details?: () -> untyped
+
+  def can_create_deployment?: () -> untyped
+
+  def can_read_deployables?: () -> untyped
+
+  def project: () -> untyped
+end

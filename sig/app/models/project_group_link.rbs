@@ -1,0 +1,21 @@
+class ProjectGroupLink < ApplicationRecord
+  include Expirable
+
+  include EachBatch
+
+  include AfterCommitQueue
+
+  alias shared_with_group group
+
+  alias shared_from project
+
+  def self.search: (untyped query) -> untyped
+
+  def human_access: () -> untyped
+
+  def owner_access?: () -> untyped
+
+  private
+
+  def different_group: () -> (nil | untyped)
+end

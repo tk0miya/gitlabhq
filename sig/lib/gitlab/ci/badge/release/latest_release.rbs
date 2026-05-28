@@ -1,0 +1,35 @@
+module Gitlab::Ci
+  module Badge
+    module Release
+      class LatestRelease < Badge::Base
+        @project: untyped
+
+        @customization: untyped
+
+        # In the future, we should support `order_by=semver` for showing the
+        # latest release based on Semantic Versioning.
+        @release: untyped
+
+        @metadata: untyped
+
+        @template: untyped
+
+        attr_reader project: untyped
+
+        attr_reader release: untyped
+
+        attr_reader customization: untyped
+
+        def initialize: (untyped project, untyped current_user, ?opts: ::Hash[untyped, untyped]) -> void
+
+        def entity: () -> "Latest Release"
+
+        def tag: () -> untyped
+
+        def metadata: () -> untyped
+
+        def template: () -> untyped
+      end
+    end
+  end
+end

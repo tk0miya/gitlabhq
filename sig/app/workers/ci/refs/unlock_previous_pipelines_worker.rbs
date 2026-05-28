@@ -1,0 +1,11 @@
+module Ci
+  module Refs
+    class UnlockPreviousPipelinesWorker
+      include ApplicationWorker
+
+      include PipelineBackgroundQueue
+
+      def perform: (untyped ref_id) -> untyped
+    end
+  end
+end

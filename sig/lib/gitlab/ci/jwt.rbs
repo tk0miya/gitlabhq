@@ -1,0 +1,48 @@
+module Gitlab
+  module Ci
+    class Jwt < JwtBase
+      @build: untyped
+
+      @ttl: untyped
+
+      NOT_BEFORE_TIME: 5
+
+      DEFAULT_EXPIRE_TIME: untyped
+
+      def self.for_build: (untyped build) -> untyped
+
+      def initialize: (untyped build, ttl: untyped) -> void
+
+      private
+
+      attr_reader build: untyped
+
+      attr_reader ttl: untyped
+
+      def default_payload: () -> untyped
+
+      def predefined_claims: () -> untyped
+
+      # Claims for the source project of a merge request pipeline,
+      # or else claims of the project where the pipeline is running.
+      def project_claims: () -> untyped
+
+      # Claims related to the project running the job.
+      # These claims match project_claims unless this is
+      # a merge request pipeline for a fork project.
+      def job_project_claims: () -> untyped
+
+      def ci_claims: () -> untyped
+
+      def ref_type: () -> untyped
+
+      def environment: () -> untyped
+
+      def environment_protected?: () -> false
+
+      # Source project of a merge request pipeline,
+      # or else project where the pipeline is running.
+      def source_project: () -> untyped
+    end
+  end
+end

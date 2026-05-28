@@ -1,0 +1,22 @@
+module API
+  module Helpers
+    module MergeRequestsHelpers
+      extend Grape::API::Helpers
+
+      extend ActiveSupport::Concern
+
+      UNPROCESSABLE_ERROR_KEYS: ::Array[:project_access | :branch_conflict | :validate_fork | :base]
+
+      def handle_merge_request_errors!: (untyped merge_request) -> (nil | untyped)
+
+      def self.sort_options: () -> ::Array["created_at" | "label_priority" | "milestone_due" | "popularity" | "priority" | "title" | "updated_at" | "merged_at"]
+
+      def self.sort_options_help: () -> untyped
+
+      def self.create_merge_request_mcp_params: () -> ::Array[:id | :title | :source_branch | :target_branch | :target_project_id | :assignee_ids | :reviewer_ids | :description | :labels | :milestone_id | :milestone]
+
+      # No-op method for CE - EE will override this to apply context exclusion
+      def filter_diffs_for_mcp: (untyped diffs, untyped _project) -> untyped
+    end
+  end
+end

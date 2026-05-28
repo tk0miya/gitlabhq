@@ -1,0 +1,29 @@
+module Projects
+  module Alerting
+    class NotifyService < ::BaseProjectService
+      @integration: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      include ::AlertManagement::AlertProcessing
+
+      include ::AlertManagement::Responses
+
+      def initialize: (untyped project, untyped params) -> void
+
+      def execute: (untyped token, ?untyped? integration) -> untyped
+
+      private
+
+      attr_reader integration: untyped
+
+      alias payload params
+
+      def valid_payload_size?: () -> untyped
+
+      def active_integration?: () -> untyped
+
+      def valid_token?: (untyped token) -> untyped
+    end
+  end
+end

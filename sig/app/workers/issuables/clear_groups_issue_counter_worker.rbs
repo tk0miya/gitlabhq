@@ -1,0 +1,11 @@
+module Issuables
+  class ClearGroupsIssueCounterWorker
+    include ApplicationWorker
+
+    def perform: (?untyped group_ids) -> (nil | untyped)
+
+    private
+
+    def clear_cached_count: (untyped groups) -> untyped
+  end
+end

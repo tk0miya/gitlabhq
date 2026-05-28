@@ -1,0 +1,46 @@
+module ServicePing
+  class SubmitService
+    @organization: untyped
+
+    @payload: untyped
+
+    PRODUCTION_BASE_URL: "https://version.gitlab.com"
+
+    STAGING_BASE_URL: "https://gitlab-org-gitlab-services-version-gitlab-com-staging.version-staging.gitlab.org"
+
+    USAGE_DATA_PATH: "usage_data"
+
+    ERROR_PATH: "usage_ping_errors"
+
+    METADATA_PATH: "usage_ping_metadata"
+
+    SubmissionError: untyped
+
+    def initialize: (organization: untyped, ?payload: untyped?) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader payload: untyped
+
+    attr_reader organization: untyped
+
+    def metadata: (untyped service_ping_payload) -> { metadata: { uuid: untyped, unique_instance_id: untyped, metrics: untyped } }
+
+    def submit_payload: (untyped payload, ?path: untyped) -> untyped
+
+    def submit_usage_data_payload: () -> untyped
+
+    def handle_response: (untyped response) -> untyped
+
+    def submit_error_payload: (untyped error, untyped start_time) -> untyped
+
+    def submit_metadata_payload: () -> untyped
+
+    def save_raw_usage_data: (untyped usage_data) -> untyped
+
+    # See https://gitlab.com/gitlab-org/gitlab/-/issues/233615 for details
+    def base_url: () -> untyped
+  end
+end

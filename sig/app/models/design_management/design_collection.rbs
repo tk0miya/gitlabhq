@@ -1,0 +1,35 @@
+module DesignManagement
+  class DesignCollection
+    @issue: untyped
+
+    @copy_state: untyped
+
+    @versions: untyped
+
+    attr_reader issue: untyped
+
+    def initialize: (untyped issue) -> void
+
+    def ==: (untyped other) -> untyped
+
+    def find_or_create_design!: (filename: untyped) -> untyped
+
+    def versions: () -> untyped
+
+    def repository: () -> untyped
+
+    def designs_by_filename: (untyped filenames) -> untyped
+
+    private
+
+    def update_stored_copy_state!: () -> untyped
+
+    def copy_state_cache_key: () -> ::String
+
+    def get_stored_copy_state: () -> untyped
+
+    def set_stored_copy_state!: () -> untyped
+
+    def unset_store_copy_state!: () -> untyped
+  end
+end

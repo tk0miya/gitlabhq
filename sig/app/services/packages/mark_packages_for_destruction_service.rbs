@@ -1,0 +1,45 @@
+module Packages
+  class MarkPackagesForDestructionService
+    @packages: untyped
+
+    @current_user: untyped
+
+    include BaseServiceUtility
+
+    BATCH_SIZE: 20
+
+    UNAUTHORIZED_RESPONSE: untyped
+
+    ERROR_RESPONSE: untyped
+
+    SUCCESS_RESPONSE: untyped
+
+    # Initialize this service with the given packages and user.
+    #
+    # * `packages`: must be an ActiveRecord relationship.
+    # * `current_user`: an User object. Could be nil.
+    def initialize: (packages: untyped, ?current_user: untyped?) -> void
+
+    def execute: (?batch_size: untyped) -> untyped
+
+    private
+
+    attr_reader packages: untyped
+
+    attr_reader current_user: untyped
+
+    def after_marked_for_destruction: (untyped packages) -> untyped
+
+    def mark_package_files_for_destruction: (untyped packages) -> untyped
+
+    def sync_maven_metadata: (untyped packages) -> untyped
+
+    def sync_npm_metadata: (untyped packages) -> untyped
+
+    def sync_helm_metadata: (untyped packages) -> (nil | untyped)
+
+    def can_destroy_packages?: (untyped packages) -> untyped
+
+    def track_exception: (untyped error, untyped package_ids) -> untyped
+  end
+end

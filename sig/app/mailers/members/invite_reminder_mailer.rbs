@@ -1,0 +1,69 @@
+module Members
+  class InviteReminderMailer < ApplicationMailer
+    @member: untyped
+
+    @token: untyped
+
+    @reminder_index: untyped
+
+    @email_instance: untyped
+
+    include SafeFormatHelper
+
+    def email: (untyped member, untyped token, untyped reminder_index) -> (nil | untyped)
+
+    private
+
+    attr_reader token: untyped
+
+    attr_reader member: untyped
+
+    attr_reader reminder_index: untyped
+
+    attr_reader email_instance: untyped
+
+    def email_klass: () -> { 0 => untyped, 1 => untyped, 2 => untyped }
+
+    def valid_to_email?: () -> (true | false)
+
+    def reminder_common_body_options: (untyped member) -> { project_or_group_name: untyped, project_or_group: untyped, role: untyped }
+
+    class FirstEmail
+      def subject: () -> untyped
+
+      def salutation: () -> untyped
+
+      alias salutation_html salutation
+
+      def body_text: () -> untyped
+
+      def extra_body_options: (untyped _) -> ::Hash[untyped, untyped]
+    end
+
+    class SecondEmail
+      include SafeFormatHelper
+
+      def subject: () -> untyped
+
+      def salutation: () -> untyped
+
+      def salutation_html: () -> untyped
+
+      def body_text: () -> untyped
+
+      def extra_body_options: (untyped _) -> ::Hash[untyped, untyped]
+    end
+
+    class LastEmail
+      def subject: () -> untyped
+
+      def salutation: () -> untyped
+
+      alias salutation_html salutation
+
+      def body_text: () -> untyped
+
+      def extra_body_options: (untyped created_at_date) -> { invitation_age: untyped }
+    end
+  end
+end

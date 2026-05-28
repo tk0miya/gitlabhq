@@ -1,0 +1,27 @@
+module BulkImports
+  class EntitiesFinder
+    @user: untyped
+
+    @bulk_import: untyped
+
+    @params: untyped
+
+    def initialize: (user: untyped, ?bulk_import: untyped?, ?params: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader user: untyped
+
+    attr_reader bulk_import: untyped
+
+    attr_reader status: untyped
+
+    def filter_by_bulk_import: (untyped entities) -> untyped
+
+    def filter_by_status: (untyped entities) -> untyped
+
+    def sort: (untyped entities) -> untyped
+  end
+end

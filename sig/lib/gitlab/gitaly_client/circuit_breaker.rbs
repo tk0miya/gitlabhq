@@ -1,0 +1,63 @@
+module Gitlab
+  module GitalyClient
+    class CircuitBreaker
+      @service: untyped
+
+      @rpc: untyped
+
+      @storage: untyped
+
+      @circuit: untyped
+
+      module State
+        CLOSED: "closed"
+
+        OPEN: "open"
+      end
+
+      module Result
+        ALLOWED: "allowed"
+
+        REJECTED: "rejected"
+
+        ERROR: "error"
+      end
+
+      module Reason
+        RESOURCE_EXHAUSTED: "resource_exhausted"
+      end
+
+      def initialize: (service: untyped, rpc: untyped, storage: untyped) -> void
+
+      def call: () { () -> untyped } -> untyped
+
+      def check!: () -> (nil | untyped)
+
+      private
+
+      attr_reader service: untyped
+
+      attr_reader rpc: untyped
+
+      attr_reader storage: untyped
+
+      def enabled?: () -> untyped
+
+      def circuit: () -> untyped
+
+      def circuit_name: () -> ::String
+
+      def raise_open_circuit_exception!: () -> untyped
+
+      def endpoint_label: () -> ::String
+
+      def authenticated_request?: () -> untyped
+
+      def circuit_options: () -> { exceptions: ::Array[untyped], volume_threshold: 5, error_threshold: 50, sleep_window: 60, time_window: 60 }
+
+      def current_circuit_state: () -> untyped
+
+      def track_state_transition: (untyped previous_state) -> (nil | untyped)
+    end
+  end
+end

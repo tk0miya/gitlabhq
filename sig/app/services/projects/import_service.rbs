@@ -1,0 +1,65 @@
+module Projects
+  class ImportService < BaseService
+    @resolved_address: untyped
+
+    @importer_class: untyped
+
+    Error: untyped
+
+    PermissionError: untyped
+
+    # Returns true if this importer is supposed to perform its work in the
+    # background.
+    #
+    # This method will only return `true` if async importing is explicitly
+    # supported by an importer class (`Gitlab::GithubImport::ParallelImporter`
+    # for example).
+    def async?: () -> untyped
+
+    def execute: () -> untyped
+
+    def extra_attributes_for_measurement: () -> { current_user: untyped, project_full_path: untyped, import_type: untyped, file_path: untyped }
+
+    private
+
+    attr_reader resolved_address: untyped
+
+    def validate_repository_size!: () -> nil
+
+    def after_execute_hook: () -> nil
+
+    def track_start_import: () -> untyped
+
+    # Pre-allocate IIDs for Gitea imports so that records created by users between
+    # project creation and the import completing don't collide with imported IIDs.
+    # Other importers (GitHub, Bitbucket Server, GitLab export) handle pre-allocation
+    # in their own workers/importers.
+    def preallocate_iids: () -> (nil | untyped)
+
+    def add_repository_to_project: () -> (nil | untyped)
+
+    def create_repository: () -> (untyped | nil)
+
+    def import_repository: () -> untyped
+
+    def download_lfs_objects: () -> (nil | untyped)
+
+    def import_data: () -> (nil | untyped)
+
+    def importer_class: () -> untyped
+
+    def has_importer?: () -> untyped
+
+    def importer: () -> untyped
+
+    def unknown_url?: () -> untyped
+
+    def importer_imports_repository?: () -> untyped
+
+    def get_resolved_address: () -> untyped
+
+    def allow_local_requests?: () -> untyped
+
+    def dns_rebind_protection?: () -> (false | untyped)
+  end
+end

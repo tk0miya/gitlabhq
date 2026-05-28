@@ -1,0 +1,430 @@
+module Ci
+  class Build < Ci::Processable
+    @pending_build_args: untyped
+
+    @status_commit_hooks: untyped
+
+    include Ci::Contextable
+
+    include Ci::Deployable
+
+    include TokenAuthenticatable
+
+    include AfterCommitQueue
+
+    include Presentable
+
+    include Importable
+
+    include Ci::HasRef
+
+    include Ci::TrackEnvironmentUsage
+
+    include EachBatch
+
+    include Ci::Taggable
+
+    include ChronicDurationAttribute
+
+    extend ::Gitlab::Utils::Override
+
+    RUNNER_FEATURES: { upload_multiple_artifacts: untyped, refspecs: untyped, artifacts_exclude: untyped, multi_build_steps: untyped, return_exit_code: untyped, fallback_cache_keys: untyped, job_inputs: untyped }
+
+    DEGRADATION_THRESHOLD_VARIABLE_NAME: "DEGRADATION_THRESHOLD"
+
+    RUNNERS_STATUS_CACHE_EXPIRATION: untyped
+
+    DEPLOYMENT_NAMES: ::Array["deploy" | "release" | "rollout"]
+
+    MAX_PIPELINES_TO_SEARCH: 100
+
+    TOKEN_PREFIX: "glcbt-"
+
+    INTEGRATION_TYPES: ::Array["Integrations::Harbor" | "Integrations::AppleAppStore" | "Integrations::GooglePlay" | "Integrations::DiffblueCover"]
+
+    # This is needed for url_for to work,
+    # as the controller is JobsController
+    def self.model_name: () -> untyped
+
+    def self.with_preloads: () -> untyped
+
+    def self.clone_accessors: () -> ::Array[:pipeline | :project | :ref | :tag | :name | :allow_failure | :stage_idx | :when | :environment | :coverage_regex | :description | :tag_list | :protected | :needs_attributes | :job_variables_attributes | :resource_group | :scheduling_type | :timeout | :timeout_source | :debug_trace_enabled | :ci_stage | :partition_id | :execution_config_id | :inputs_attributes]
+
+    def self.supported_keyset_orderings: () -> { id: ::Array[:desc] }
+
+    def self.latest_with_artifacts_for_ref: (untyped project, untyped job_name, untyped ref_name, ?limit: untyped) -> untyped
+
+    def self.retryable_pipeline_keys: (untyped items) -> untyped
+
+    def self.build_matchers: (untyped project) -> untyped
+
+    def self.tag_names_array_query: () -> untyped
+
+    def self.ids_in_merge_request: (untyped merge_request_id) -> untyped
+
+    def self.taggings_join_model: () -> untyped
+
+    def self.keep_artifacts!: () -> untyped
+
+    # TODO: remove this method with `ci_builds_metadata`
+    def self.has_any_job_definition?: () -> untyped
+
+    def self.any_stuck?: (untyped pending_builds) -> (false | untyped)
+
+    def needs_maintainer_role_for_artifact_access?: () -> (false | untyped)
+
+    def trigger_job_status_change_subscription: () -> untyped
+
+    def trigger_stage_subscription: () -> (nil | untyped)
+
+    def ci_job_processed_rate_limited?: () -> untyped
+
+    def trigger_job_processed_subscriptions: () -> (nil | untyped)
+
+    # A Ci::Bridge may transition to `canceling` as a result of strategy: :depend
+    # but only a Ci::Build will transition to `canceling`` via `.cancel`
+    def supports_canceling?: () -> untyped
+
+    def cancel_gracefully?: () -> untyped
+
+    def supports_force_cancel?: () -> true
+
+    def build_matcher: () -> untyped
+
+    def auto_retry_allowed?: () -> untyped
+
+    def auto_retry_expected?: () -> untyped
+
+    def detailed_status: (untyped current_user) -> untyped
+
+    def other_scheduled_actions: () -> untyped
+
+    def pages_generator?: () -> (false | true | untyped)
+
+    def pages: () -> (::Hash[untyped, untyped] | { publish: untyped })
+
+    def runnable?: () -> true
+
+    def degenerated?: () -> untyped
+
+    def degenerate!: () -> untyped
+
+    def playable?: () -> untyped
+
+    def schedulable?: () -> untyped
+
+    def options_scheduled_at: () -> untyped
+
+    def action?: () -> untyped
+
+    def can_auto_cancel_pipeline_on_job_failure?: () -> untyped
+
+    # rubocop: disable CodeReuse/ServiceClass
+    def play: (untyped current_user, ?untyped? job_variables_attributes, ?::Hash[untyped, untyped] job_inputs) -> untyped
+
+    def cancelable?: () -> untyped
+
+    def force_cancelable?: () -> untyped
+
+    def retries_count: () -> untyped
+
+    def all_met_to_become_pending?: () -> untyped
+
+    def any_unmet_prerequisites?: () -> untyped
+
+    def prerequisites: () -> untyped
+
+    def triggered_by?: (untyped current_user) -> untyped
+
+    #
+    # All variables, including persisted environment variables.
+    #
+    def variables: () -> untyped
+
+    def persisted_variables: () -> untyped
+
+    def persisted_environment_variables: () -> untyped
+
+    def deploy_token_variables: () -> untyped
+
+    def dependency_proxy_variables: () -> untyped
+
+    def harbor_variables: () -> (::Array[untyped] | untyped)
+
+    def apple_app_store_variables: () -> (::Array[untyped] | untyped)
+
+    def google_play_variables: () -> (::Array[untyped] | untyped)
+
+    def diffblue_cover_variables: () -> (::Array[untyped] | untyped)
+
+    def pages_variables: () -> untyped
+
+    def base_variables: () -> untyped
+
+    def features: () -> { trace_sections: true, failure_reasons: untyped }
+
+    def merge_request: () -> untyped
+
+    def repo_url: () -> (nil | untyped)
+
+    def allow_git_fetch: () -> untyped
+
+    def update_coverage: () -> untyped
+
+    def trace: () -> untyped
+
+    def has_trace?: () -> untyped
+
+    def has_live_trace?: () -> untyped
+
+    def has_archived_trace?: () -> untyped
+
+    def artifacts_file: () -> untyped
+
+    def artifacts_size: () -> untyped
+
+    def artifacts_metadata: () -> untyped
+
+    def artifacts?: () -> untyped
+
+    def locked_artifacts?: () -> untyped
+
+    # This method is similar to #artifacts? but it includes the artifacts
+    # locking mechanics. A new method was created to prevent breaking existing
+    # behavior and avoid introducing N+1s.
+    def available_artifacts?: () -> untyped
+
+    def artifacts_metadata?: () -> untyped
+
+    def has_job_artifacts?: () -> untyped
+
+    def has_test_reports?: () -> untyped
+
+    def ensure_trace_metadata!: () -> untyped
+
+    def needs_touch?: () -> untyped
+
+    def remove_token!: () -> untyped
+
+    def has_tags?: () -> untyped
+
+    def tag_list: () -> untyped
+
+    def run_steps: () -> untyped
+
+    def any_runners_online?: () -> untyped
+
+    def any_runners_available?: () -> untyped
+
+    def stuck?: () -> untyped
+
+    def execute_hooks: () -> (nil | untyped)
+
+    def browsable_artifacts?: () -> untyped
+
+    def artifacts_public?: () -> (true | untyped)
+
+    def artifacts_no_access?: () -> (false | untyped)
+
+    def artifact_access_setting_in_config: () -> (:public | :private | :maintainer | :none)
+
+    def artifacts_metadata_entry: (untyped path, **untyped options) -> untyped
+
+    def erasable?: () -> untyped
+
+    def erased?: () -> untyped
+
+    def artifacts_expired?: () -> untyped
+
+    def artifacts_expire_in: () -> (untyped | nil)
+
+    def artifacts_expire_in=: (untyped value) -> untyped
+
+    def has_expired_locked_archive_artifacts?: () -> untyped
+
+    def has_expiring_archive_artifacts?: () -> untyped
+
+    def keep_artifacts!: () -> untyped
+
+    def artifact_for_type: (untyped type) -> untyped
+
+    def steps: () -> untyped
+
+    def runtime_hooks: () -> untyped
+
+    def image: () -> untyped
+
+    def services: () -> untyped
+
+    def cache: () -> untyped
+
+    def fallback_cache_keys_defined?: () -> untyped
+
+    def credentials: () -> untyped
+
+    def has_valid_build_dependencies?: () -> untyped
+
+    def invalid_dependencies: () -> untyped
+
+    def valid_dependency?: () -> (false | true)
+
+    def runner_required_feature_names: () -> untyped
+
+    def supported_runner?: (untyped features) -> untyped
+
+    def publishes_artifacts_reports?: () -> untyped
+
+    def supports_artifacts_exclude?: () -> untyped
+
+    def publish_path: () -> (nil | untyped)
+
+    def publish_path_available?: () -> untyped
+
+    def expanded_publish_path: () -> untyped
+
+    def multi_build_steps?: () -> untyped
+
+    def inputs_defined?: () -> untyped
+
+    def hide_secrets: (untyped data, ?untyped metrics) -> (nil | untyped)
+
+    def serializable_hash: (?::Hash[untyped, untyped] options) -> untyped
+
+    def has_terminal?: () -> untyped
+
+    def collect_test_reports!: (untyped test_reports) -> untyped
+
+    def collect_accessibility_reports!: (untyped accessibility_report) -> untyped
+
+    def collect_codequality_reports!: (untyped codequality_report) -> untyped
+
+    def collect_terraform_reports!: (untyped terraform_reports) -> untyped
+
+    def report_artifacts: () -> untyped
+
+    # Consider this object to have an unknown job problem
+    def doom!: () -> untyped
+
+    def degradation_threshold: () -> untyped
+
+    def remove_pending_state!: () -> untyped
+
+    def run_on_status_commit: () { (?) -> untyped } -> untyped
+
+    def max_test_cases_per_report: () -> (500000 | 0)
+
+    def debug_mode?: () -> untyped
+
+    def drop_with_exit_code!: (untyped failure_reason, untyped exit_code) -> untyped
+
+    def exit_codes_defined?: () -> untyped
+
+    attr_reader pending_build_args: untyped
+
+    # Override save to pre-compute pending build args outside the database
+    # transaction. The state_machines-activerecord gem wraps ALL callbacks
+    # (before_transition, after_transition) inside a transaction, so there
+    # is no callback that runs outside it. However, the gem sets
+    # `status_event_transition` on the object *before* calling save (see
+    # TransitionCollection#perform), so we can detect a pending transition
+    # here and pre-compute the expensive args (tag lookups, CI minutes
+    # checks, plan lookups) before `super` enters the transaction. The
+    # args are then read by UpdateBuildQueueService#push inside the
+    # transaction via `build.pending_build_args`.
+    def save: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def save!: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    def create_queuing_entry!: () -> untyped
+
+    #
+    # We can have only one queuing entry or running build tracking entry,
+    # because there is a unique index on `build_id` in each table, but we need
+    # a relation to remove these entries more efficiently in a single statement
+    # without actually loading data.
+    #
+    def all_queuing_entries: () -> untyped
+
+    def all_runtime_metadata: () -> untyped
+
+    def shared_runner_build?: () -> untyped
+
+    def job_variables_attributes: () -> untyped
+
+    def inputs_attributes: () -> untyped
+
+    def allowed_to_fail_with_code?: (untyped exit_code) -> untyped
+
+    def each_report: (untyped report_types) { (untyped, untyped, untyped) -> untyped } -> untyped
+
+    def job_artifact_types: () -> untyped
+
+    def test_suite_name: () -> untyped
+
+    def time_in_queue_seconds: () -> (nil | untyped)
+
+    def token: () -> untyped
+
+    def uses_protected_cache?: () -> (false | untyped)
+
+    def harbor_integration: () -> untyped
+
+    def apple_app_store_integration: () -> untyped
+
+    def google_play_integration: () -> untyped
+
+    def diffblue_cover_integration: () -> untyped
+
+    def run_status_commit_hooks!: () -> untyped
+
+    private
+
+    def with_pending_build_args: () { () -> untyped } -> untyped
+
+    def prepare_pending_build_args: () -> (nil | untyped)
+
+    def apply_jobs_cache_index: (untyped cache) -> untyped
+
+    def apply_cache_protection_suffix: (untyped cache) -> untyped
+
+    def cache_suffix_for: (untyped entry) -> ("non_protected" | "protected")
+
+    def reports_definitions: () -> untyped
+
+    def use_jwt_for_ci_cd_job_token?: () -> untyped
+
+    def encoded_jwt: () -> untyped
+
+    def matrix_build?: () -> untyped
+
+    def stick_build_if_status_changed: () -> (nil | untyped)
+
+    def status_commit_hooks: () -> untyped
+
+    def auto_retry: () -> untyped
+
+    def build_data: () -> untyped
+
+    def job_artifacts_for_types: (untyped report_types) -> untyped
+
+    def has_expiring_artifacts?: () -> untyped
+
+    def job_jwt_variables: () -> untyped
+
+    def id_tokens_variables: () -> untyped
+
+    def expanded_id_token_aud: (untyped aud) -> (nil | untyped)
+
+    def cache_for_online_runners: () { () -> untyped } -> untyped
+
+    def cache_for_available_runners: () { () -> untyped } -> untyped
+
+    def observe_report_types: () -> (nil | untyped)
+
+    def prefix_and_partition_for_token: () -> untyped
+
+    def project_integrations: () -> (::Hash[untyped, untyped] | untyped)
+
+    def read_job_definition_attribute: (untyped key, ?untyped? default_value) -> untyped
+  end
+end

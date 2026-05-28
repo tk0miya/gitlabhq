@@ -1,0 +1,8 @@
+# Worker for updating two factor requirement for all group members
+module Groups
+  class UpdateTwoFactorRequirementForMembersWorker
+    include ApplicationWorker
+
+    def perform: (untyped group_id) -> (nil | untyped)
+  end
+end

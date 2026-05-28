@@ -1,0 +1,18 @@
+# rubocop:disable Scalability/IdempotentWorker -- existing class moved from EE to CE
+# rubocop:disable Gitlab/BoundedContexts -- existing class moved from EE to CE
+# rubocop:disable Gitlab/NamespacedClass -- existing class moved from EE to CE
+class AdjournedGroupDeletionWorker
+  include ::Gitlab::InternalEventsTracking
+
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  INTERVAL: untyped
+
+  def perform: () -> untyped
+
+  private
+
+  def track_event: (untyped group, untyped user) -> untyped
+end

@@ -1,0 +1,9 @@
+module Packages
+  # This module requires a status column.
+  # It also requires a class method `installable_statuses`. This should be
+  # an array that defines which values of the status column are
+  # considered as installable.
+  module Installable
+    extend ActiveSupport::Concern
+  end
+end

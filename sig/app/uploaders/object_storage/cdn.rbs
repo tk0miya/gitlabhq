@@ -1,0 +1,23 @@
+module ObjectStorage
+  module CDN
+    module Concern
+      extend ActiveSupport::Concern
+
+      include Gitlab::Utils::StrongMemoize
+
+      UrlResult: untyped
+
+      def cdn_enabled_url: (untyped ip_address, ?::Hash[untyped, untyped] params) -> untyped
+
+      def use_cdn?: (untyped request_ip) -> (false | untyped)
+
+      def cdn_signed_url: (?::Hash[untyped, untyped] params) -> untyped
+
+      private
+
+      def cdn_provider: () -> untyped
+
+      def cdn_options: () -> (::Hash[untyped, untyped] | untyped)
+    end
+  end
+end

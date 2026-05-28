@@ -1,0 +1,14 @@
+module Analytics
+  module UsageTrends
+    class Measurement < ApplicationRecord
+      def self.identifier_query_mapping: () -> ::Hash[untyped, untyped]
+
+      # Customized min and max calculation, in some cases using the original scope is too slow.
+      def self.identifier_min_max_queries: () -> ::Hash[untyped, { minimum_query: untyped, maximum_query: untyped }]
+
+      def self.measurement_identifier_values: () -> untyped
+
+      def self.find_latest_or_fallback: (untyped identifier) -> untyped
+    end
+  end
+end

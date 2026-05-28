@@ -1,0 +1,16 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        class Mapper
+          # Filters locations according to rules
+          class Filter < Base
+            private
+
+            def process_without_instrumentation: (untyped locations) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

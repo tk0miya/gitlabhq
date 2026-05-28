@@ -1,0 +1,33 @@
+module Gitlab
+  module GithubImport
+    class Settings
+      @project: untyped
+
+      OPTIONAL_STAGES: { single_endpoint_notes_import: { selected: false }, attachments_import: { selected: false }, collaborators_import: { selected: true } }
+
+      def self.stages_array: (untyped _current_user) -> untyped
+
+      def self.stage_label: (untyped stage_name) -> untyped
+
+      def self.stage_details: (untyped stage_name) -> untyped
+
+      def initialize: (untyped project) -> void
+
+      def write: (untyped user_settings) -> untyped
+
+      def enabled?: (untyped stage_name) -> untyped
+
+      def disabled?: (untyped stage_name) -> untyped
+
+      def user_mapping_enabled?: () -> untyped
+
+      def map_to_personal_namespace_owner?: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      def fetch_stages_from_params: (untyped user_settings) -> untyped
+    end
+  end
+end

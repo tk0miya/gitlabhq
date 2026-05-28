@@ -1,0 +1,27 @@
+module Gitlab
+  module Seeders
+    module Ci
+      class DailyBuildGroupReportResult
+        @project: untyped
+
+        @last_pipeline: untyped
+
+        DEFAULT_BRANCH: "master"
+
+        COUNT_OF_DAYS: 5
+
+        def initialize: (untyped project) -> void
+
+        def seed: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader last_pipeline: untyped
+
+        def create_report: (untyped date) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Security
+  module CiConfiguration
+    class SastIacBuildAction < BaseBuildAction
+      private
+
+      def update_existing_content!: () -> untyped
+
+      def template: () -> ("Auto-DevOps.gitlab-ci.yml" | "Security/SAST-IaC.latest.gitlab-ci.yml")
+    end
+  end
+end

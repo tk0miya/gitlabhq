@@ -1,0 +1,28 @@
+module Gitlab
+  module TenantContainerLifecycle
+    module Stateful
+      # Shared deletion-related state machine callbacks.
+      # Shared between Namespaces::Stateful and Organizations::Stateful.
+      #
+      # Including classes must implement `stateful_detail` (private) to return
+      # the associated detail model (e.g. namespace_details or organization_detail).
+      module TransitionCallbacks
+        private
+
+        def update_state_metadata: (untyped transition, ?error: untyped?) -> untyped
+
+        def set_deletion_schedule_data: (untyped transition) -> untyped
+
+        def clear_deletion_schedule_data: (untyped _transition) -> untyped
+
+        def set_deletion_error_data: (untyped transition) -> untyped
+
+        def update_state_metadata_on_failure: (untyped transition) -> untyped
+
+        def build_transition_error_message: (untyped transition) -> untyped
+
+        def stateful_detail: () -> untyped
+      end
+    end
+  end
+end

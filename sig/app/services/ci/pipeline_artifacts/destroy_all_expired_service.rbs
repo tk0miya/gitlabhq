@@ -1,0 +1,39 @@
+module Ci
+  module PipelineArtifacts
+    class DestroyAllExpiredService
+      @removed_artifacts_count: untyped
+
+      @start_at: untyped
+
+      include ::Gitlab::ExclusiveLeaseHelpers
+
+      include ::Gitlab::LoopHelpers
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      BATCH_SIZE: 100
+
+      LOOP_LIMIT: 1000
+
+      LOOP_TIMEOUT: untyped
+
+      LOCK_TIMEOUT: untyped
+
+      EXCLUSIVE_LOCK_KEY: "expired_pipeline_artifacts:destroy:lock"
+
+      def initialize: () -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def destroy_unlocked_pipeline_artifacts: () -> untyped
+
+      def destroy_batch: (untyped artifacts) -> true
+
+      def increment_stats: (untyped size) -> untyped
+
+      def destroyed_artifacts_counter: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Projects
+  module ContainerRepository
+    module ThirdParty
+      class DeleteTagsService
+        @container_repository: untyped
+
+        @tag_names: untyped
+
+        include BaseServiceUtility
+
+        def initialize: (untyped container_repository, untyped tag_names) -> void
+
+        # Replace a tag on the registry with a dummy tag.
+        # This is a hack as the registry doesn't support deleting individual
+        # tags. This code effectively pushes a dummy image and assigns the tag to it.
+        # This way when the tag is deleted only the dummy image is affected.
+        # This is used to preserve compatibility with third-party registries that
+        # don't support fast delete.
+        # See https://gitlab.com/gitlab-org/gitlab/issues/15737 for a discussion
+        def execute: () -> untyped
+
+        private
+
+        # update the manifests of the tags with the new dummy image
+        def replace_tag_manifests: (untyped dummy_manifest) -> untyped
+      end
+    end
+  end
+end

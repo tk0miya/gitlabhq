@@ -1,0 +1,17 @@
+module Gitlab
+  module JiraImport
+    class ImportIssueWorker
+      include ApplicationWorker
+
+      include Gitlab::JiraImport::QueueOptions
+
+      include Gitlab::Import::NotifyUponDeath
+
+      def perform: (untyped project_id, untyped jira_issue_id, untyped issue_attributes, untyped waiter_key) -> untyped
+
+      private
+
+      def create_issue: (untyped project, untyped issue_attributes) -> untyped
+    end
+  end
+end

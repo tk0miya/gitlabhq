@@ -1,0 +1,75 @@
+class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
+  @otp_error: untyped
+
+  @account_string: untyped
+
+  @webauthn_registration: untyped
+
+  @qr_code: untyped
+
+  @webauthn_error: untyped
+
+  @error: untyped
+
+  @registrations: untyped
+
+  @passkeys: untyped
+
+  include SafeFormatHelper
+
+  include BaseServiceUtility
+
+  include AuthHelper
+
+  include AuthenticatesWithTwoFactor
+
+  def show: () -> untyped
+
+  def create: () -> untyped
+
+  def create_webauthn: () -> untyped
+
+  def codes: () -> untyped
+
+  def destroy: () -> untyped
+
+  def destroy_otp: () -> untyped
+
+  def destroy_webauthn: () -> untyped
+
+  def skip: () -> untyped
+
+  private
+
+  def show_view_variables: () -> ::Hash[untyped, untyped]
+
+  def update_current_user_otp!: () -> untyped
+
+  def validate_current_password: () -> (nil | untyped)
+
+  def build_qr_code: () -> untyped
+
+  def account_string: () -> ::String
+
+  def issuer_host: () -> untyped
+
+  def device_registration_params: () -> untyped
+
+  def setup_webauthn_registration: () -> untyped
+
+  def second_factor_webauthn_registrations: () -> untyped
+
+  def get_passkeys: () -> untyped
+
+  def webauthn_options: () -> untyped
+
+  def groups_notification: (untyped groups) -> untyped
+
+  def ensure_verified_primary_email: () -> (untyped | nil)
+
+  def setup_show_page: () -> untyped
+
+  def append_configure_2fa_later: (untyped message) -> untyped
+
+  def notify_on_success: (untyped type, ?::Hash[untyped, untyped] options) -> untyped
+end

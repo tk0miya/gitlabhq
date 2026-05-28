@@ -1,0 +1,85 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class RelationFactory < Base::RelationFactory
+        @object: untyped
+
+        @work_item_type: untyped
+
+        @missing_work_item_type_name: untyped
+
+        @relation_hash: untyped
+
+        OVERRIDES: { snippets: :project_snippets, commit_notes: "Note", ci_pipelines: "Ci::Pipeline", pipelines: "Ci::Pipeline", stages: "Ci::Stage", statuses: "commit_status", triggers: "Ci::Trigger", pipeline_schedules: "Ci::PipelineSchedule", builds: "Ci::Build", bridges: "Ci::Bridge", runners: "Ci::Runner", pipeline_metadata: "Ci::PipelineMetadata", external_pull_request: "Ci::ExternalPullRequest", external_pull_requests: "Ci::ExternalPullRequest", hooks: "ProjectHook", merge_access_levels: "ProtectedBranch::MergeAccessLevel", push_access_levels: "ProtectedBranch::PushAccessLevel", create_access_levels: "ProtectedTag::CreateAccessLevel", design: "DesignManagement::Design", designs: "DesignManagement::Design", design_management_repository: "DesignManagement::Repository", design_management_repository_state: "Geo::DesignManagementRepositoryState", design_versions: "DesignManagement::Version", actions: "DesignManagement::Action", labels: :project_labels, priorities: :label_priorities, auto_devops: :project_auto_devops, label: :project_label, custom_attributes: "ProjectCustomAttribute", project_badges: "Badge", metrics: "MergeRequest::Metrics", ci_cd_settings: "ProjectCiCdSetting", error_tracking_setting: "ErrorTracking::ProjectErrorTrackingSetting", links: "Releases::Link", commit_author: "MergeRequest::DiffCommitUser", committer: "MergeRequest::DiffCommitUser", merge_request_commits_metadata: "MergeRequest::CommitsMetadata", merge_request_diff_commits: "MergeRequestDiffCommit", user_contributions: "User", squash_option: "Projects::BranchRules::SquashOption" }
+
+        BUILD_MODELS: ::Array[:"Ci::Build" | :"Ci::Bridge" | :commit_status | :generic_commit_status]
+
+        GROUP_REFERENCES: ::Array["group_id"]
+
+        PROJECT_REFERENCES: ::Array["project_id" | "source_project_id" | "target_project_id"]
+
+        EXISTING_OBJECT_RELATIONS: ::Array[:milestone | :milestones | :label | :labels | :project_label | :project_labels | :group_label | :group_labels | :project_feature | :merge_request | :epic | :ProjectCiCdSetting | :container_expiration_policy | :"Ci::ExternalPullRequest" | :"DesignManagement::Design" | :"MergeRequest::DiffCommitUser" | :"MergeRequest::CommitsMetadata" | :MergeRequestDiffCommit]
+
+        RELATIONS_WITH_REWRITABLE_USERNAMES: ::Array[:milestones | :milestone | :merge_requests | :merge_request | :issues | :issue | :notes | :note | :epics | :epic | :snippets | :snippet]
+
+        def create: () -> untyped
+
+        private
+
+        attr_reader relation_hash: untyped
+
+        attr_reader user: untyped
+
+        def invalid_relation?: () -> untyped
+
+        def setup_models: () -> (nil | untyped)
+
+        def generate_imported_object: () -> untyped
+
+        def update_project_references: () -> untyped
+
+        def same_source_and_target?: () -> untyped
+
+        def update_group_references: () -> (nil | untyped)
+
+        def setup_build: () -> untyped
+
+        def setup_diff: () -> untyped
+
+        def setup_pipeline: () -> untyped
+
+        def setup_work_item: () -> untyped
+
+        def resolve_work_item_type: (untyped provider, untyped work_item_type_hash, untyped issue_type) -> untyped
+
+        def attach_missing_work_item_type_label: () -> (nil | untyped)
+
+        def setup_release: () -> (untyped | nil)
+
+        def setup_pipeline_schedule: () -> untyped
+
+        def setup_merge_request: () -> untyped
+
+        def setup_approval: () -> (untyped | nil)
+
+        def setup_event: () -> (untyped | nil)
+
+        def setup_protected_ref_access_level: () -> (nil | untyped)
+
+        def root_group_owner?: () -> (false | untyped)
+
+        def setup_merge_approval_protected_branch: () -> untyped
+
+        def setup_design_management_version: () -> untyped
+
+        def find_or_create_object!: () -> untyped
+
+        def legacy_trigger?: () -> untyped
+
+        def transform_status: (untyped status) -> ("canceled" | untyped)
+
+        def preload_keys: (untyped object, untyped references, untyped value) -> untyped
+      end
+    end
+  end
+end

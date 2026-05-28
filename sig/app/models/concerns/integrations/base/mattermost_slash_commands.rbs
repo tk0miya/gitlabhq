@@ -1,0 +1,9 @@
+module Integrations
+  module Base
+    module MattermostSlashCommands
+      extend ActiveSupport::Concern
+
+      MATTERMOST_URL: "%{ORIGIN}/%{TEAM}/channels/%{CHANNEL}"
+    end
+  end
+end

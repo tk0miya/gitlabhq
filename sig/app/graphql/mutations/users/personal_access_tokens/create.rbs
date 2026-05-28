@@ -1,0 +1,35 @@
+module Mutations
+  module Users
+    module PersonalAccessTokens
+      class Create < BaseMutation
+        @granular_scopes: untyped
+
+        attr_reader granular_scopes: untyped
+
+        def resolve: (**untyped args) -> ({ errors: untyped } | { token: untyped, errors: ::Array[untyped] })
+
+        private
+
+        def build_granular_scopes: (untyped inputs) -> untyped
+
+        def prepare_granular_scope_attrs: (untyped input) -> untyped
+
+        def batch_load: (untyped gids, ?untyped preloads) -> untyped
+
+        def build_resource_scopes: (untyped resources, untyped scope_attrs) -> untyped
+
+        def boundary!: (untyped resource) -> untyped
+
+        def validate_no_privilege_escalation!: (untyped new_scopes, untyped calling_token) -> untyped
+
+        def calling_token_covers_scope?: (untyped token_scopes, untyped scope) -> (true | untyped)
+
+        def scopes_for_scope: (untyped token_scopes, untyped scope) -> untyped
+
+        def covers_personal_projects?: (untyped token_scope, untyped new_scope) -> untyped
+
+        def covers_selected_memberships?: (untyped token_scope, untyped ancestor_ids) -> untyped
+      end
+    end
+  end
+end

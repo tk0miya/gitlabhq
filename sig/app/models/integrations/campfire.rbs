@@ -1,0 +1,42 @@
+module Integrations
+  class Campfire < Integration
+    @base_uri: untyped
+
+    # use a dummy password, as explained in the Campfire API doc:
+    # https://github.com/basecamp/campfire-api#authentication
+    @auth: untyped
+
+    include HasAvatar
+
+    SUBDOMAIN_REGEXP: ::Regexp
+
+    def self.title: () -> "Campfire"
+
+    def self.description: () -> "Send notifications about push events to Campfire chat rooms."
+
+    def self.help: () -> untyped
+
+    def self.to_param: () -> "campfire"
+
+    def self.supported_events: () -> ::Array["push"]
+
+    def execute: (untyped data) -> (nil | untyped)
+
+    private
+
+    def base_uri: () -> untyped
+
+    def auth: () -> untyped
+
+    # Post a message into a room, returns the message Hash in case of success.
+    # Returns nil otherwise.
+    # https://github.com/basecamp/campfire-api/blob/master/sections/messages.md#create-message
+    def speak: (untyped room_name, untyped message, untyped auth) -> (nil | untyped)
+
+    # Returns a list of rooms, or [].
+    # https://github.com/basecamp/campfire-api/blob/master/sections/rooms.md#get-rooms
+    def rooms: (untyped auth) -> untyped
+
+    def create_message: (untyped push) -> untyped
+  end
+end

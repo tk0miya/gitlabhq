@@ -1,0 +1,53 @@
+module Ci
+  module HasStatus
+    extend ActiveSupport::Concern
+
+    DEFAULT_STATUS: "created"
+
+    BLOCKED_STATUS: ::Array["manual" | "scheduled"]
+
+    AVAILABLE_STATUSES: ::Array["created" | "waiting_for_resource" | "preparing" | "waiting_for_callback" | "pending" | "running" | "success" | "failed" | "canceling" | "canceled" | "skipped" | "manual" | "scheduled"]
+
+    STARTED_STATUSES: ::Array["running" | "success" | "failed"]
+
+    ACTIVE_STATUSES: ::Array["waiting_for_resource" | "preparing" | "waiting_for_callback" | "pending" | "running"]
+
+    COMPLETED_STATUSES: ::Array["success" | "failed" | "canceled" | "skipped"]
+
+    COMPLETED_WITH_MANUAL_STATUSES: untyped
+
+    STOPPED_STATUSES: untyped
+
+    ORDERED_STATUSES: ::Array["failed" | "preparing" | "pending" | "running" | "waiting_for_callback" | "waiting_for_resource" | "manual" | "scheduled" | "canceling" | "canceled" | "success" | "skipped" | "created"]
+
+    PASSED_WITH_WARNINGS_STATUSES: untyped
+
+    IGNORED_STATUSES: untyped
+
+    EXECUTING_STATUSES: ::Array["running" | "canceling"]
+
+    ALIVE_STATUSES: untyped
+
+    CANCELABLE_STATUSES: untyped
+
+    STATUSES_ENUM: { created: 0, pending: 1, running: 2, success: 3, failed: 4, canceled: 5, skipped: 6, manual: 7, scheduled: 8, preparing: 9, waiting_for_resource: 10, waiting_for_callback: 11, canceling: 12 }
+
+    UnknownStatusError: untyped
+
+    def started?: () -> untyped
+
+    def active?: () -> untyped
+
+    def complete?: () -> untyped
+
+    def complete_or_manual?: () -> untyped
+
+    def incomplete?: () -> untyped
+
+    def blocked?: () -> untyped
+
+    private
+
+    def calculate_duration: (untyped start_time, untyped end_time) -> (nil | untyped)
+  end
+end

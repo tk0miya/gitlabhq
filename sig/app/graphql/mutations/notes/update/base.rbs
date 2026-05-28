@@ -1,0 +1,17 @@
+module Mutations
+  module Notes
+    module Update
+      # This is a Base class for the Note update mutations and is not
+      # mounted as a GraphQL mutation itself.
+      class Base < Mutations::Notes::Base
+        def resolve: (untyped args) -> { note: untyped, errors: untyped, quick_actions_status: untyped }
+
+        private
+
+        def pre_update_checks!: (untyped _note, untyped _args) -> untyped
+
+        def note_params: (untyped _note, untyped args) -> untyped
+      end
+    end
+  end
+end

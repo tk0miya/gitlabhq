@@ -1,0 +1,15 @@
+module Mutations
+  module WorkItems
+    class Convert < BaseMutation
+      include Mutations::SpamProtection
+
+      def resolve: (untyped attributes) -> { work_item: untyped, errors: untyped }
+
+      private
+
+      def find_work_item_type!: (untyped gid, untyped work_item) -> untyped
+
+      def authorize_work_item_type!: (untyped work_item, untyped work_item_type) -> (nil | untyped)
+    end
+  end
+end

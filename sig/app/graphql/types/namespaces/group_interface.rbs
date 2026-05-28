@@ -1,0 +1,20 @@
+module Types
+  module Namespaces
+    # This inteface sets [authorize: :read_group] (field-level authorization via
+    # GroupBaseField) for all defined fields to ensure implementing types don't
+    # expose inherited fields without proper authorization.
+    #
+    # Implementing types can opt-out from this field-level auth and use
+    # type-level auth by re-defining the field without the authorize argument.
+    # For example, GroupType uses :read_group type-level auth and redefines all
+    # fields in this interface to opt-out while GroupMinimalAccessType uses
+    # :read_group_metadata type-level auth to expose a set of defined fields and
+    # leaves inherited fields it does not want to expose to use field-level auth
+    # using :read_group.
+    module GroupInterface
+      include BaseInterface
+
+      def self.resolve_type: (untyped _object, untyped _context) -> untyped
+    end
+  end
+end

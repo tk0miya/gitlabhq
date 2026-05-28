@@ -1,0 +1,23 @@
+module Gitlab
+  module Kubernetes
+    module Kubeconfig
+      module Entry
+        class User
+          @name: untyped
+
+          @token: untyped
+
+          attr_reader name: untyped
+
+          def initialize: (name: untyped, token: untyped) -> void
+
+          def to_h: () -> { name: untyped, user: { token: untyped } }
+
+          private
+
+          attr_reader token: untyped
+        end
+      end
+    end
+  end
+end

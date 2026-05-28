@@ -1,0 +1,73 @@
+# This module makes it possible to handle items as a list, where the order of items can be easily altered
+# Requirements:
+#
+# The model must have the following named columns:
+#  - id: integer
+#  - relative_position: integer
+#
+# The model must support a concept of siblings via a child->parent relationship,
+# to enable rebalancing and `GROUP BY` in queries.
+# - example: project -> issues, project is the parent relation (issues table has a parent_id column)
+#
+# Two class methods must be defined when including this concern:
+#
+#     include RelativePositioning
+#
+#     # base query used for the position calculation
+#     def self.relative_positioning_query_base(issue)
+#       where(deleted: false)
+#     end
+#
+#     # column that should be used in GROUP BY
+#     def self.relative_positioning_parent_column
+#       :project_id
+#     end
+#
+# The following class methods may be overridden to customize positioning behaviour,
+# for example when the underlying column has been migrated to bigint:
+#
+#     def self.relative_positioning_min_position = Gitlab::Database::MIN_BIGINT_VALUE
+#     def self.relative_positioning_max_position = Gitlab::Database::MAX_BIGINT_VALUE
+#
+module RelativePositioning
+  extend ActiveSupport::Concern
+
+  include ::Gitlab::RelativePositioning
+
+  # To be overridden on child classes whenever
+  # blocking position updates is necessary.
+  def check_repositioning_allowed!: () -> nil
+
+  def move_between: (untyped before, untyped after) -> untyped
+
+  def move_after: (?untyped before) -> untyped
+
+  def move_before: (?untyped after) -> untyped
+
+  def move_to_end: () -> untyped
+
+  def move_to_start: () -> untyped
+
+  def next_object_by_relative_position: (?ignoring: untyped?, ?order: ::Symbol) -> untyped
+
+  def relative_positioning_scoped_items: (?ignoring: untyped?) -> untyped
+
+  # This method is used during rebalancing - override it to customise the update
+  # logic:
+  def update_relative_siblings: (untyped relation, untyped range, untyped delta) -> untyped
+
+  # This method is used to exclude the current self (or another object)
+  # from a relation. Customize this if `id <> :id` is not sufficient
+  def exclude_self: (untyped relation, ?excluded: untyped) -> untyped
+
+  # Override if you want to be notified of failures to move
+  def could_not_move: (untyped exception) -> nil
+
+  # Override if the implementing class is not a simple application record, for
+  # example if the record is loaded from a union.
+  def reset_relative_position: () -> untyped
+
+  # Override if the model class needs a more complicated computation (e.g. the
+  # object is a member of a union).
+  def model_class: () -> untyped
+end

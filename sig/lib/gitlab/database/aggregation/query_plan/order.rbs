@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module Aggregation
+      class QueryPlan
+        class Order < BasePart
+          @plan_part: untyped
+
+          @configuration: untyped
+
+          @query_plan: untyped
+
+          attr_reader plan_part: untyped
+
+          def initialize: (untyped plan_part, untyped configuration, ?query_plan: untyped?) -> void
+
+          def definition: () -> untyped
+
+          def instance_key: () -> untyped
+
+          def direction: () -> untyped
+        end
+      end
+    end
+  end
+end

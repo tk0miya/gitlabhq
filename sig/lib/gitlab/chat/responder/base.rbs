@@ -1,0 +1,26 @@
+module Gitlab
+  module Chat
+    module Responder
+      class Base
+        @build: untyped
+
+        attr_reader build: untyped
+
+        # build - The `Ci::Build` that was executed.
+        def initialize: (untyped build) -> void
+
+        def pipeline: () -> untyped
+
+        def project: () -> untyped
+
+        def success: (*untyped) -> untyped
+
+        def failure: () -> untyped
+
+        def send_response: (untyped output) -> untyped
+
+        def scheduled_output: () -> untyped
+      end
+    end
+  end
+end

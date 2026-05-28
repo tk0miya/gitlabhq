@@ -1,0 +1,33 @@
+module Import
+  module PlaceholderReferences
+    module Pusher
+      @type: untyped
+
+      @user_mapper: untyped
+
+      def push_reference: (untyped project, untyped record, untyped attribute, untyped source_user_identifier) -> (nil | untyped)
+
+      # This is used for records created using legacy_bulk_insert which can
+      # return the ids of records created, but not the records themselves
+      def push_references_by_ids: (untyped project, untyped ids, untyped model, untyped attribute, untyped source_user_identifier) -> (nil | untyped)
+
+      # Pushes a placeholder reference using a composite key.
+      # This is used when the record requires a composite key for the reference.
+      def push_reference_with_composite_key: (untyped project, untyped record, untyped attribute, untyped composite_key, untyped source_user_identifier) -> (nil | untyped)
+
+      def user_mapping_enabled?: (untyped project) -> untyped
+
+      def map_to_personal_namespace_owner?: (untyped project) -> untyped
+
+      private
+
+      def allowed_to_push?: (untyped project, untyped source_user_identifier) -> untyped
+
+      def import_type: () -> untyped
+
+      def source_user_mapped_to_human?: (untyped record, untyped attribute, untyped source_user) -> untyped
+
+      def source_user_mapper: (untyped project) -> untyped
+    end
+  end
+end

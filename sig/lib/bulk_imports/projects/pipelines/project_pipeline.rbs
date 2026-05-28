@@ -1,0 +1,13 @@
+module BulkImports
+  module Projects
+    module Pipelines
+      class ProjectPipeline
+        include Pipeline
+
+        include HexdigestCacheStrategy
+
+        def load: (untyped context, untyped data) -> untyped
+      end
+    end
+  end
+end

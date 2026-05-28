@@ -1,0 +1,8 @@
+module Types
+  module Ci
+    # rubocop: disable Graphql/AuthorizeTypes -- this type is authorized by the resolver
+    class AnalyticsPeriodType < BaseObject
+      def count: (status: untyped) -> untyped
+    end
+  end
+end

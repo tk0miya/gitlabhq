@@ -1,0 +1,15 @@
+module Gitlab
+  module HealthChecks
+    class DbCheck
+      extend SimpleAbstractCheck
+
+      private
+
+      def self.metric_prefix: () -> "db_ping"
+
+      def self.successful?: (untyped result) -> untyped
+
+      def self.check: () -> untyped
+    end
+  end
+end

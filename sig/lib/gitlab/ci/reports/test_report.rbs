@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Reports
+      class TestReport
+        @test_suites: untyped
+
+        attr_reader test_suites: untyped
+
+        def initialize: () -> void
+
+        def get_suite: (untyped suite_name) -> untyped
+
+        def total_time: () -> untyped
+
+        def total_count: () -> untyped
+
+        def total_status: () -> untyped
+
+        def with_attachment!: () -> self
+
+        def suite_errors: () -> untyped
+      end
+    end
+  end
+end

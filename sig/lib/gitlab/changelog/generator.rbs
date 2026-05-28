@@ -1,0 +1,25 @@
+module Gitlab
+  module Changelog
+    # Parsing and generating of Markdown changelogs.
+    class Generator
+      @lines: untyped
+
+      @locations: untyped
+
+      # The regex used to parse a release header.
+      RELEASE_REGEX: ::Regexp
+
+      # The `input` argument must be a `String` containing the existing
+      # changelog Markdown. If no changelog exists, this should be an empty
+      # `String`.
+      def initialize: (?::String input) -> void
+
+      # Generates the Markdown for the given release and returns the new
+      # changelog Markdown content.
+      #
+      # The `release` argument must be an instance of
+      # `Gitlab::Changelog::Release`.
+      def add: (untyped release) -> untyped
+    end
+  end
+end

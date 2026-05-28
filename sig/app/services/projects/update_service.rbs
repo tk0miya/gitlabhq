@@ -1,0 +1,109 @@
+module Projects
+  class UpdateService < BaseService
+    @send_move_instructions: untyped
+
+    # Used in EE. Can't be cached in override due to Gitlab/ModuleWithInstanceVariables cop
+    @previous_topics: untyped
+
+    include UpdateVisibilityLevel
+
+    include ValidatesClassificationLabel
+
+    include ::Ci::JobToken::InternalEventsTracking
+
+    ValidationError: untyped
+
+    ApiError: untyped
+
+    def initialize: (untyped project, ?untyped? user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () ?{ () -> untyped } -> untyped
+
+    def run_auto_devops_pipeline?: () -> (false | untyped)
+
+    private
+
+    def update_project!: () -> untyped
+
+    def ensure_ci_cd_settings: () -> (untyped | nil)
+
+    def add_pages_unique_domain: () -> (nil | untyped)
+
+    def validate!: () -> untyped
+
+    def validate_ci_inbound_job_token_scope_change: () -> (nil | untyped)
+
+    def validate_restrict_user_defined_variables_change: () -> (nil | untyped)
+
+    def validate_default_branch_change: () -> (nil | untyped)
+
+    def validate_renaming_project_with_tags: () -> (nil | untyped)
+
+    def validate_pages_primary_domain: () -> (nil | untyped)
+
+    def validate_pages_access_level: () -> (nil | untyped)
+
+    def resolve_pages_access_level: () -> untyped
+
+    def validate_public_pages_restriction: (untyped pages_access_level) -> (nil | untyped)
+
+    def validate_project_pages_restriction: (untyped pages_access_level) -> (nil | untyped)
+
+    def ambiguous_head_documentation_link: () -> untyped
+
+    # See issue: https://gitlab.com/gitlab-org/gitlab/-/issues/381731
+    def has_custom_head_branch?: () -> untyped
+
+    def after_default_branch_change: (untyped previous_default_branch) -> nil
+
+    # overridden by EE module
+    def audit_topic_change: (from: untyped) -> nil
+
+    # overridden by EE module
+    def remove_unallowed_params: () -> untyped
+
+    def after_update: () -> untyped
+
+    def after_rename_service: (untyped project) -> untyped
+
+    def raise_validation_error: (untyped message) -> untyped
+
+    def raise_api_error: (untyped message) -> untyped
+
+    def update_failed!: () -> untyped
+
+    def renaming_project_with_container_registry_tags?: () -> untyped
+
+    def changing_default_branch?: () -> untyped
+
+    def changing_restrict_user_defined_variables?: () -> (false | untyped)
+
+    def changing_pipeline_variables_minimum_override_role?: () -> (false | untyped)
+
+    def enabling_wiki?: () -> (false | untyped)
+
+    def ensure_wiki_exists: () -> (nil | untyped)
+
+    def changing_repository_storage?: () -> untyped
+
+    def build_topics: () -> untyped
+
+    def update_pending_builds: () -> untyped
+
+    def shared_runners_settings_toggled?: () -> untyped
+
+    def group_runners_settings_toggled?: () -> (false | untyped)
+
+    def runners_settings_toggled?: () -> untyped
+
+    def group_runner_traversal_ids: () -> (untyped | ::Array[untyped])
+
+    def publish_events: () -> untyped
+
+    def publish_project_features_changed_event: () -> (nil | untyped)
+
+    def publish_project_visibility_changed_event: () -> (nil | untyped)
+
+    def non_assignable_project_params: () -> ::Array[:default_branch]
+  end
+end

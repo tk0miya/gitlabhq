@@ -1,0 +1,11 @@
+module Gitlab
+  module Tracking
+    class SnowplowTimeoutEmitter < SnowplowTracker::AsyncEmitter
+      extend ::Gitlab::Utils::Override
+
+      HTTP_TIMEOUT: 30
+
+      def http_post: (untyped payload) -> untyped
+    end
+  end
+end

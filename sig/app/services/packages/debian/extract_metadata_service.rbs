@@ -1,0 +1,41 @@
+module Packages
+  module Debian
+    class ExtractMetadataService
+      @package_file: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ExtractionError: untyped
+
+      # 10MB limit: accommodates largest metadata files
+      # https://gitlab.com/gitlab-org/gitlab/-/issues/385913#note_2546795745
+      MAX_METADATA_FILE_SIZE: untyped
+
+      def initialize: (untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package_file: untyped
+
+      def valid_package_file?: () -> untyped
+
+      def invalid_metadata_file_size?: () -> untyped
+
+      def file_type_basic: () -> (untyped | nil)
+
+      def file_type_source: () -> (:source | nil)
+
+      def file_type: () -> untyped
+
+      def file_type_debian?: () -> untyped
+
+      def file_type_meta?: () -> untyped
+
+      def fields: () -> (untyped | untyped | nil)
+
+      def extract_metadata: () -> { file_type: untyped, architecture: untyped, fields: untyped }
+    end
+  end
+end

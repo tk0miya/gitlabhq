@@ -1,0 +1,41 @@
+module Ci
+  module JobArtifacts
+    class UpdateUnknownLockedStatusService
+      @removed_count: untyped
+
+      @locked_count: untyped
+
+      @start_at: untyped
+
+      include ::Gitlab::ExclusiveLeaseHelpers
+
+      include ::Gitlab::LoopHelpers
+
+      BATCH_SIZE: 100
+
+      LOOP_TIMEOUT: untyped
+
+      LOOP_LIMIT: 100
+
+      EXCLUSIVE_LOCK_KEY: "unknown_status_job_artifacts:update:lock"
+
+      LOCK_TIMEOUT: untyped
+
+      def initialize: () -> void
+
+      def execute: () -> { removed: untyped, locked: untyped }
+
+      private
+
+      def update_locked_status_on_unknown_artifacts: () -> untyped
+
+      def update_unknown_artifacts: (untyped build_ids, untyped locked_value) -> (0 | untyped)
+
+      def batch_destroy_artifacts: (untyped build_ids) -> untyped
+
+      def expired_locked_unknown_artifacts: () -> untyped
+
+      def safely_ordered_ci_job_artifacts_locked_unknown_relation: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,56 @@
+module Gitlab
+  module ExternallyStoredField
+    @external_storage_uploader: untyped
+
+    extend ActiveSupport::Concern
+
+    def externally_stored_field?: (untyped field_name) -> untyped
+
+    def reload: (*untyped) -> untyped
+
+    # `read_attribute` is the public API called by `[]`, while `_read_attribute` is called by AR's
+    # generated readers (e.g. `record.content`) and by internal dirty-tracking comparisons. They
+    # independently call `@attributes.fetch_value` so we must hook both to ensure lazy loading
+    # fires on every path.
+    def read_attribute: (untyped attr_name) -> untyped
+
+    def _read_attribute: (untyped attr_name) -> untyped
+
+    private
+
+    attr_accessor external_fields_loaded: untyped
+
+    def ensure_externally_stored_fields_loaded: (untyped attr_name) -> (untyped | nil)
+
+    def load_externally_stored_fields: () -> (nil | untyped)
+
+    def external_storage_uploader: () -> untyped
+
+    def read_external_payload: () -> untyped
+
+    def build_external_payload: () -> untyped
+
+    # When called with `updates:`, performs a read-merge-write against the stored payload.
+    # This path is only reachable from `ExternalStorage::Extension#save_markdown` (i.e.
+    # `refresh_markdown_cache!`), which is rare. Concurrent calls updating different fields
+    # on the same record could clobber each other; there is no locking.
+    def persist_external_payload: (?updates: untyped?) -> untyped
+
+    # Set `file_store` as part of the normal AR save so it's committed atomically with
+    # the rest of the record. The actual blob is written later in `after_commit`, so if
+    # the process crashes between the DB commit and the blob upload, `file_store` will
+    # reflect the intended storage backend even though the blob doesn't exist yet.
+    #
+    # We use the same predicate `ObjectStorage::Concern#store!` uses to decide where the
+    # blob will land (`direct_upload_to_object_store?`). Reading `object_store` from the
+    # uploader instead would defeat the point of this callback on first save, since
+    # `object_store` defaults to `LOCAL` when the column hasn't been set yet.
+    def set_file_store_from_uploader_config: () -> (nil | untyped)
+
+    def persist_externally_stored_fields: () -> (nil | untyped)
+
+    def remove_externally_stored_fields: () -> untyped
+
+    def clear_cached_uploader: () -> (untyped | nil)
+  end
+end

@@ -1,0 +1,9 @@
+class Projects::TodosController < Projects::ApplicationController
+  include Gitlab::Utils::StrongMemoize
+
+  include TodosActions
+
+  private
+
+  def issuable: () -> untyped
+end

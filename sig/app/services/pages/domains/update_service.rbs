@@ -1,0 +1,13 @@
+module Pages
+  module Domains
+    class UpdateService < BaseService
+      def execute: (untyped domain) -> (nil | false | true)
+
+      private
+
+      def authorized?: () -> untyped
+
+      def publish_event: (untyped domain) -> untyped
+    end
+  end
+end

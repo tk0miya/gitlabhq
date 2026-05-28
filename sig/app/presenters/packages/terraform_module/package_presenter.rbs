@@ -1,0 +1,25 @@
+module Packages
+  module TerraformModule
+    class PackagePresenter
+      @package: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      PIPELINE_ATTRIBUTES: ::Array[:created_at | :id | :sha | :ref]
+
+      def initialize: (untyped package) -> void
+
+      def as_json: (?::Hash[untyped, untyped] options) -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      def package_files: () -> untyped
+
+      def pipelines: (untyped object) -> untyped
+
+      def project_pipeline_urls: (untyped pipeline) -> { "name" => untyped, "web_url" => untyped, "pipeline_url" => untyped, "commit_url" => untyped }
+    end
+  end
+end

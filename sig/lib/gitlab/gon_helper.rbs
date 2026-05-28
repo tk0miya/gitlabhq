@@ -1,0 +1,50 @@
+module Gitlab
+  module GonHelper
+    include WebpackHelper
+
+    include ::Organizations::OrganizationHelper
+
+    def add_gon_variables: () -> untyped
+
+    def add_gon_user_specific: () -> (nil | untyped)
+
+    # Initialize gon.features with any flags that should be
+    # made globally available to the frontend
+    def add_gon_feature_flags: () -> untyped
+
+    # Exposes the state of a feature flag to the frontend code.
+    #
+    # name - The name of the feature flag, e.g. `my_feature`.
+    # args - Any additional arguments to pass to `Feature.enabled?`. This allows
+    #        you to check if a flag is enabled for a particular user.
+    def push_frontend_feature_flag: (untyped name, *untyped args, **untyped kwargs) -> untyped
+
+    def push_frontend_ability: (ability: untyped, user: untyped, ?resource: ::Symbol) -> untyped
+
+    # Exposes the state of a feature flag to the frontend code.
+    # Can be used for more complex feature flag checks.
+    #
+    # name - The name of the feature flag, e.g. `my_feature`.
+    # enabled - Boolean to be pushed directly to the frontend. Should be fetched by checking a feature flag.
+    def push_force_frontend_feature_flag: (untyped name, untyped enabled) -> untyped
+
+    def push_application_setting: (untyped key) -> (nil | untyped)
+
+    def push_namespace_setting: (untyped key, untyped object) -> (nil | untyped)
+
+    def push_to_gon_attributes: (untyped key, untyped name, untyped enabled) -> untyped
+
+    def default_avatar_url: () -> untyped
+
+    # `::Current.organization` is only valid within the context of a request,
+    # but it can be called from everywhere. So how do we avoid accidentally
+    # calling it outside of the context of a request? We banned it with
+    # Rubocop.
+    #
+    # This method is acceptable because it is only included by controllers.
+    # This method intentionally looks like Devise's `current_user` method,
+    # which has similar properties.
+    # rubocop:disable Gitlab/AvoidCurrentOrganization -- This method follows the spirit of the rule
+    def current_organization: () -> (nil | untyped)
+  end
+end

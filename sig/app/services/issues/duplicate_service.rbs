@@ -1,0 +1,13 @@
+module Issues
+  class DuplicateService < Issues::BaseService
+    def execute: (untyped duplicate_issue, untyped canonical_issue) -> (nil | untyped)
+
+    private
+
+    def create_issue_duplicate_note: (untyped duplicate_issue, untyped canonical_issue) -> untyped
+
+    def create_issue_canonical_note: (untyped canonical_issue, untyped duplicate_issue) -> untyped
+
+    def relate_two_issues: (untyped duplicate_issue, untyped canonical_issue) -> untyped
+  end
+end

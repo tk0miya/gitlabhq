@@ -1,0 +1,9 @@
+module RapidDiffs
+  class DiffsStatsEntity < Grape::Entity
+    private
+
+    def overflow_safe?: (untyped diff_collection) -> untyped
+
+    def visible_count: (untyped diffs_resource) -> untyped
+  end
+end

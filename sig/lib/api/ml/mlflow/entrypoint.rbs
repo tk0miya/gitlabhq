@@ -1,0 +1,13 @@
+module API
+  # MLFlow integration API, replicating the Rest API https://www.mlflow.org/docs/latest/rest-api.html#rest-api
+  module Ml
+    module Mlflow
+      class Entrypoint < ::API::Base
+        include APIGuard
+
+        # The first part of the url is the namespace, the second part of the URL is what the MLFlow client calls
+        MLFLOW_API_PREFIX: ":id/ml/mlflow/api/2.0/mlflow/"
+      end
+    end
+  end
+end

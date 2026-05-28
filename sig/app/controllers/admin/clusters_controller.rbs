@@ -1,0 +1,9 @@
+class Admin::ClustersController < ::Clusters::ClustersController
+  @clusterable: untyped
+
+  include EnforcesAdminAuthentication
+
+  private
+
+  def clusterable: () -> untyped
+end

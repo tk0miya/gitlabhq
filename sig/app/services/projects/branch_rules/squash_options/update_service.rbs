@@ -1,0 +1,41 @@
+module Projects
+  module BranchRules
+    module SquashOptions
+      class UpdateService
+        @branch_rule: untyped
+
+        @squash_option: untyped
+
+        @current_user: untyped
+
+        AUTHORIZATION_ERROR_MESSAGE: "Not authorized"
+
+        NOT_SUPPORTED_ERROR_MESSAGE: "Updating BranchRule not supported"
+
+        def initialize: (untyped branch_rule, squash_option: untyped, current_user: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader branch_rule: untyped
+
+        attr_reader squash_option: untyped
+
+        attr_reader current_user: untyped
+
+        def execute_on_all_branches_rule: () -> untyped
+
+        def execute_on_branch_rule: () -> untyped
+
+        def success_response: () -> untyped
+
+        def project: () -> untyped
+
+        def protected_branch: () -> untyped
+
+        def authorized?: () -> untyped
+      end
+    end
+  end
+end

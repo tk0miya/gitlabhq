@@ -1,0 +1,17 @@
+module Projects
+  module ImportExport
+    class PruneExpiredExportJobsService
+      BATCH_SIZE: 1000
+
+      def self.execute: () -> untyped
+
+      private
+
+      def self.delete_expired_jobs: (untyped prunable_before) -> untyped
+
+      def self.delete_uploads_for_expired_jobs: (untyped prunable_before) -> untyped
+
+      def self.uploads_for_expired_jobs: (untyped prunable_jobs) -> untyped
+    end
+  end
+end

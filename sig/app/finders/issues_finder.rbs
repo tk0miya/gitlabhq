@@ -1,0 +1,101 @@
+# Finders::Issues class
+#
+# Used to filter Issues collections by set of params
+#
+# Arguments:
+#   current_user - which user use
+#   params:
+#     scope: 'created_by_me' or 'assigned_to_me' or 'all'
+#     state: 'opened' or 'closed' or 'all'
+#     group_id: integer
+#     project_id: integer
+#     milestone_title: string (cannot be simultaneously used with milestone_wildcard_id)
+#     milestone_wildcard_id: 'none', 'any', 'upcoming', 'started' (cannot be simultaneously used with milestone_title)
+#     assignee_id: integer
+#     closed_by_id: integer
+#     search: string
+#     in: 'title', 'description', or a string joining them with comma
+#     label_name: string
+#     sort: string
+#     my_reaction_emoji: string
+#     due_date: date or '0', '', 'overdue', 'week', or 'month'
+#     due_after: datetime
+#     due_before: datetime
+#     created_after: datetime
+#     created_before: datetime
+#     updated_after: datetime
+#     updated_before: datetime
+#     confidential: boolean
+#     issue_types: array of strings (one of ::WorkItems::TypesFramework::Provider.unfiltered_base_types)
+#
+class IssuesFinder < IssuableFinder
+  self.@scalar_params: untyped
+
+  extend ::Gitlab::Utils::Override
+
+  include Gitlab::Utils::StrongMemoize
+
+  # Both short (created_desc) and long (created_at_desc) formats are needed because
+  # the GraphQL API uses short format while the REST API uses long format.
+  ROOT_TRAVERSAL_IDS_SORTING_OPTIONS: ::Array["updated_asc" | "updated_desc" | "created_asc" | "created_desc" | "updated_at_asc" | "updated_at_desc" | "created_at_asc" | "created_at_desc"]
+
+  def self.scalar_params: () -> untyped
+
+  def klass: () -> untyped
+
+  def params_class: () -> untyped
+
+  def use_cte_for_search?: () -> (false | untyped)
+
+  def use_full_text_search?: () -> (false | untyped)
+
+  private
+
+  def use_minimum_char_limit?: () -> (false | untyped)
+
+  def by_parent: (untyped items) -> untyped
+
+  def filter_by_projects: (untyped items) -> untyped
+
+  # If the state filter is not present in the params we manually add it to filter all available states
+  # This is needed because state_id is required for index utilization
+  # See: https://gitlab.com/gitlab-org/gitlab/-/issues/562319
+  def ensure_state_filter_for_index: (untyped items) -> untyped
+
+  def use_namespace_traversal_ids_filtering?: () -> (false | true | untyped)
+
+  def include_subgroups_or_descendants?: () -> untyped
+
+  def user_can_access_all_subgroup_items?: () -> (false | untyped)
+
+  def ancestor_group: () -> untyped
+
+  def state_filter_passed?: () -> untyped
+
+  def sorting_covered_by_index?: () -> (true | untyped)
+
+  def filter_items: (untyped items) -> untyped
+
+  # Negates all params found in `negatable_params`
+  def filter_negated_items: (untyped items) -> untyped
+
+  def filter_by_full_text_search: (untyped items) -> untyped
+
+  def by_confidential: (untyped items) -> untyped
+
+  def by_due_after_or_before: (untyped items) -> untyped
+
+  def by_due_date: (untyped items) -> untyped
+
+  def by_issue_types: (untyped items) -> untyped
+
+  def types_filter: () -> untyped
+
+  def by_service_desk: (untyped items) -> untyped
+
+  def support_bot_username?: (untyped username) -> (false | untyped)
+
+  def by_negated_issue_types: (untyped items) -> untyped
+
+  def by_negated_work_item_type_ids: (untyped items) -> untyped
+end

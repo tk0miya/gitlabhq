@@ -1,0 +1,22 @@
+module Ci
+  class UnlockArtifactsService < ::BaseService
+    BATCH_SIZE: 100
+
+    def execute: (untyped ci_ref, ?untyped? before_pipeline) -> untyped
+
+    # rubocop:disable CodeReuse/ActiveRecord
+    def unlock_job_artifacts_query: (untyped pipeline_ids) -> untyped
+
+    # rubocop:disable CodeReuse/ActiveRecord
+    def unlock_pipelines_query: (untyped ci_ref, untyped before_pipeline) -> untyped
+
+    private
+
+    def unlock_job_artifacts: (untyped pipelines) -> (nil | untyped)
+
+    # rubocop:disable CodeReuse/ActiveRecord
+    def unlock_pipeline_artifacts: (untyped pipelines) -> (0 | untyped)
+
+    def unlock_pipelines: (untyped ci_ref, untyped before_pipeline) -> untyped
+  end
+end

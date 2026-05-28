@@ -1,0 +1,21 @@
+module Gitlab
+  module BackgroundMigration
+    # Backfills the new `issue_search_data` table, which contains
+    # the tsvector from the issue title and description.
+    class BackfillIssueSearchData
+      @logger: untyped
+
+      include Gitlab::Database::DynamicModelHelpers
+
+      def perform: (untyped start_id, untyped stop_id, untyped batch_table, untyped batch_column, untyped sub_batch_size, untyped pause_ms) -> untyped
+
+      private
+
+      def update_search_data: (untyped relation) -> untyped
+
+      def update_search_data_individually: (untyped relation, untyped pause_ms) -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

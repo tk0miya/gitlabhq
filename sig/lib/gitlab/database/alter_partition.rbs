@@ -1,0 +1,75 @@
+module Gitlab
+  module Database
+    class AlterPartition
+      @partition_name: untyped
+
+      @mode: untyped
+
+      @target_database: untyped
+
+      @logger: untyped
+
+      @allowed_partitions: untyped
+
+      def initialize: (untyped partition_name, untyped mode, ?target_database: untyped?, ?logger: untyped) -> void
+
+      def execute: () -> (false | untyped)
+
+      private
+
+      attr_reader partition_name: untyped
+
+      attr_reader mode: untyped
+
+      attr_reader target_database: untyped
+
+      attr_reader logger: untyped
+
+      def allowed_partitions: () -> untyped
+
+      def allowed_partition?: () -> untyped
+
+      def partition_config: () -> untyped
+
+      def detach?: () -> untyped
+
+      def reattach?: () -> untyped
+
+      def valid_for_mode?: (untyped partition_data, untyped database_name) -> (false | true)
+
+      def valid_attachment_state?: (untyped partition_data, untyped database_name) -> (true | false)
+
+      def valid_constraints?: (untyped partition_data, untyped database_name) -> (false | true)
+
+      def alter_partition: (untyped connection, untyped database_name, untyped partition_data) -> untyped
+
+      def detach_partition: (untyped connection, untyped partition_info) -> untyped
+
+      def pending_detach?: (untyped connection, untyped partition_info) -> untyped
+
+      def attach_partition: (untyped connection, untyped partition_info) -> untyped
+
+      def finalize_detach: (untyped connection, untyped partition_info) -> untyped
+
+      def execute_with_lock_retries: (untyped connection, untyped sql) -> untyped
+
+      def build_detach_sql: (untyped connection, untyped partition_info) -> ::String
+
+      def build_finalize_sql: (untyped connection, untyped partition_info) -> ::String
+
+      def build_attach_sql: (untyped connection, untyped partition_info) -> ::String
+
+      def locking_configuration: (untyped connection) -> untyped
+
+      def lock_tables: () -> untyped
+
+      def quoted_table_name: (untyped connection, untyped partition_info) -> ::String
+
+      def quoted_partition_name: (untyped connection, untyped partition_info) -> ::String
+
+      def build_partition_info: (untyped partition_data) -> { partition_name: untyped, bounds_clause: untyped, parent_schema: untyped, parent_table: untyped, target_schema: untyped, target_partition: untyped }
+
+      def log: (untyped message) -> untyped
+    end
+  end
+end

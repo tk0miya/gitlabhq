@@ -1,0 +1,9 @@
+module Ci
+  class RunnerPresenter < Gitlab::View::Presenter::Delegated
+    def locked?: () -> untyped
+
+    alias locked locked?
+
+    def paused: () -> untyped
+  end
+end

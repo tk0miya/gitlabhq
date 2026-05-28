@@ -1,0 +1,61 @@
+module Backup
+  # Backup and restores repositories using gitaly-backup
+  #
+  # gitaly-backup can work in parallel and accepts a list of repositories
+  # through input pipe using a specific json format for both backup and restore
+  class GitalyBackup
+    @progress: untyped
+
+    @max_parallelism: untyped
+
+    @storage_parallelism: untyped
+
+    @incremental: untyped
+
+    @server_side: untyped
+
+    @input_stream: untyped
+
+    @thread: untyped
+
+    @out_reader: untyped
+
+    # @param [StringIO] progress IO interface to output progress
+    # @param [Integer] max_parallelism max parallelism when running backups
+    # @param [Integer] storage_parallelism max parallelism per storage (is affected by max_parallelism)
+    # @param [Boolean] incremental if incremental backups should be created.
+    # @param [Boolean] server_side if server-side backups should be used.
+    def initialize: (untyped progress, ?max_parallelism: untyped?, ?storage_parallelism: untyped?, ?incremental: bool, ?server_side: bool) -> void
+
+    def start: (untyped type, untyped backup_repos_path, ?backup_id: untyped?, ?remove_all_repositories: untyped?) -> untyped
+
+    def finish!: () -> (nil | untyped)
+
+    def enqueue: (untyped container, untyped repo_type) -> untyped
+
+    private
+
+    def incremental?: () -> untyped
+
+    def server_side?: () -> untyped
+
+    def gitaly_backup_args: (untyped type, untyped backup_repos_path, untyped backup_id, untyped remove_all_repositories) -> untyped
+
+    # Schedule a new backup job through a non-blocking JSON based pipe protocol
+    #
+    # @see https://gitlab.com/gitlab-org/gitaly/-/blob/master/doc/gitaly-backup.md
+    def schedule_backup_job: (untyped repository, always_create: untyped) -> untyped
+
+    def gitaly_servers: () -> untyped
+
+    def gitaly_servers_encoded: () -> untyped
+
+    def build_env: () -> untyped
+
+    def current_env: () -> untyped
+
+    def started?: () -> untyped
+
+    def bin_path: () -> untyped
+  end
+end

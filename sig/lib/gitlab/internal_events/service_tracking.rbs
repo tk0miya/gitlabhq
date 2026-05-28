@@ -1,0 +1,74 @@
+module Gitlab
+  module InternalEvents
+    # Declarative helper for Internal Events tracking in services.
+    #
+    # Usage:
+    #
+    #   class MyService
+    #     include Gitlab::InternalEvents::ServiceTracking
+    #
+    #     track_internal_event 'thing_created', on: :success
+    #     track_internal_event 'thing_creation_failed', on: :error
+    #
+    #     def execute
+    #       # ... returns ServiceResponse or ActiveRecord model
+    #     end
+    #
+    #     private
+    #
+    #     # Optional overrides - defaults extract project/namespace from
+    #     # Hash payload values automatically (e.g. `{ board: board }`
+    #     # will find `board.project` and `board.group`).
+    #     def tracking_project_source(result)
+    #       result&.payload&.dig(:board)&.project
+    #     end
+    #
+    #     def tracking_namespace_source(result)
+    #       result&.payload&.dig(:board)&.group
+    #     end
+    #   end
+    #
+    # The `on:` option accepts:
+    #   :success  - fires when the result is a successful ServiceResponse, a
+    #               persisted ActiveRecord object, or any other truthy value.
+    #   :error    - fires when the result is an error ServiceResponse, a
+    #               non-persisted ActiveRecord object, or a falsy value.
+    #   :always   - fires unconditionally after execute.
+    #   Proc      - custom callable: `on: ->(result) { result.valid? }`
+    #   Symbol    - instance method name: `on: :custom_check?`
+    #
+    # The `conditions:` option accepts a Symbol (method name), Proc, or Array of
+    # either. All conditions must be truthy for the event to fire.
+    #
+    # The `additional_properties:` option accepts a Hash or a Proc that receives
+    # the tracking result and returns a Hash.
+    module ServiceTracking
+      extend ActiveSupport::Concern
+
+      # Wraps `execute` to capture the result and fire tracking calls.
+      module ExecuteWrapper
+        def execute: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+      end
+
+      private
+
+      def fire_tracking_event: (untyped config, untyped result) -> (nil | untyped)
+
+      def should_track?: (untyped on_option, untyped result) -> untyped
+
+      def success_result?: (untyped result) -> untyped
+
+      def conditions_met?: (untyped conditions) -> untyped
+
+      def resolve_additional_properties: (untyped additional_properties, untyped result) -> (untyped | untyped | ::Hash[untyped, untyped])
+
+      def tracking_user_source: () -> (untyped | nil)
+
+      def tracking_project_source: (untyped result) -> untyped
+
+      def tracking_namespace_source: (untyped result) -> untyped
+
+      def extract_from_payload: (untyped result) { (untyped) -> untyped } -> (untyped | nil)
+    end
+  end
+end

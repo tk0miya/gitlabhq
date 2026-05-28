@@ -1,0 +1,37 @@
+module Gitlab
+  module Memory
+    class Watchdog
+      class EventReporter
+        @logger: untyped
+
+        @counter_violations: untyped
+
+        @counter_violations_handled: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        attr_reader logger: untyped
+
+        def initialize: (?logger: untyped) -> void
+
+        def started: (?::Hash[untyped, untyped] labels) -> untyped
+
+        def stopped: (?::Hash[untyped, untyped] labels) -> untyped
+
+        def threshold_violated: (untyped monitor_name) -> untyped
+
+        def strikes_exceeded: (untyped monitor_name, ?::Hash[untyped, untyped] labels) -> untyped
+
+        private
+
+        def log_labels: (?::Hash[untyped, untyped] extra) -> untyped
+
+        def process_rss_bytes: () -> untyped
+
+        def worker_id: () -> untyped
+
+        def init_prometheus_metrics: () -> untyped
+      end
+    end
+  end
+end

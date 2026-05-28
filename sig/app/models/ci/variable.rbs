@@ -1,0 +1,19 @@
+module Ci
+  class Variable < Ci::ApplicationRecord
+    include Ci::HasVariable
+
+    include Ci::Maskable
+
+    include Ci::RawVariable
+
+    include Ci::HidableVariable
+
+    include Limitable
+
+    include Presentable
+
+    prepend HasEnvironmentScope
+
+    def audit_details: () -> untyped
+  end
+end

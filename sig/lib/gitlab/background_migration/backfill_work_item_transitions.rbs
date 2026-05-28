@@ -1,0 +1,14 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillWorkItemTransitions < BatchedMigrationJob
+      class WorkItemTransition < ::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+
+      private
+
+      def backfill_work_item_transitions_for_batch: (untyped issues_batch) -> untyped
+    end
+  end
+end

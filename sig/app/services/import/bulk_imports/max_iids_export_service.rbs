@@ -1,0 +1,36 @@
+module Import
+  module BulkImports
+    class MaxIidsExportService
+      @portable: untyped
+
+      @export_path: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      RELATION: "max_iids"
+
+      # Matches the constructor signature of TreeExportService and FileExportService
+      # for compatibility with ExportUploadable#export_service.
+      # @param export [BulkImports::Export] the export record; only portable is used
+      # @param export_path [String] directory path where the exported file will be written
+      # @param_user [User] unused, accepted for interface compatibility
+      def initialize: (untyped export, untyped export_path, ?untyped? _user) -> void
+
+      def execute: () -> untyped
+
+      def exported_filename: () -> ::String
+
+      def exported_objects_count: () -> 1
+
+      private
+
+      attr_reader portable: untyped
+
+      attr_reader export_path: untyped
+
+      def compute_max_iids: () -> untyped
+
+      def resource_queries: () -> untyped
+    end
+  end
+end

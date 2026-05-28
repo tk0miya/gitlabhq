@@ -1,0 +1,152 @@
+class SessionsController < Devise::SessionsController
+  @login_counter: untyped
+
+  @redirect_to: untyped
+
+  @provider_path: untyped
+
+  @invite_email: untyped
+
+  include InternalRedirect
+
+  include AuthenticatesWithTwoFactor
+
+  include CheckInitialSetup
+
+  include Devise::Controllers::Rememberable
+
+  include Recaptcha::Adapters::ViewMethods
+
+  include Recaptcha::Adapters::ControllerMethods
+
+  include RendersLdapServers
+
+  include KnownSignIn
+
+  include Gitlab::Utils::StrongMemoize
+
+  include OneTrustCSP
+
+  include BizibleCSP
+
+  include VerifiesWithEmail
+
+  include PreferredLanguageSwitcher
+
+  include SkipsAlreadySignedInMessage
+
+  include AcceptsPendingInvitations
+
+  include SynchronizeBroadcastMessageDismissals
+
+  extend ::Gitlab::Utils::Override
+
+  CAPTCHA_HEADER: "X-GitLab-Show-Login-Captcha"
+
+  MAX_FAILED_LOGIN_ATTEMPTS: 5
+
+  PRESERVE_COOKIES: ::Array["current_signin_tab" | "preferred_language"]
+
+  def new: () -> untyped
+
+  def new_passkey: () -> untyped
+
+  def create: () -> untyped
+
+  def destroy: () -> untyped
+
+  def sign_in_path: () -> untyped
+
+  def after_sign_in_path_for: (untyped resource) -> untyped
+
+  private
+
+  # TODO: Replace !Group.exists? with a cookie-based approach in a follow-up MR.
+  # See issue #579942 / epic #19488 for the onboarding presenter plan.
+  # Overridden in EE to add SaaS guard.
+  def should_redirect_to_sm_onboarding?: (untyped resource) -> untyped
+
+  # Overridden in EE
+  def determine_sign_in_path: () -> nil
+
+  def after_pending_invitations_hook: () -> untyped
+
+  def captcha_enabled?: () -> untyped
+
+  def captcha_on_login_required?: () -> untyped
+
+  # From https://github.com/plataformatec/devise/wiki/How-To:-Use-Recaptcha-with-Devise#devisepasswordscontroller
+  def check_captcha: () -> (nil | untyped)
+
+  def increment_failed_login_captcha_counter: () -> untyped
+
+  def increment_successful_login_captcha_counter: () -> untyped
+
+  #
+  # We do have some duplication between lib/gitlab/auth/activity.rb here, but
+  # leaving this method here because of backwards compatibility.
+  #
+  def login_counter: () -> untyped
+
+  def log_failed_login: () -> untyped
+
+  def action_new_and_failed_login?: () -> untyped
+
+  def save_failed_login: () -> untyped
+
+  def failed_login?: () -> untyped
+
+  # counting sessions per IP lets us check if there are associated multiple
+  # anonymous sessions with one IP and prevent situations when there are
+  # multiple attempts of logging in
+  def store_unauthenticated_sessions: () -> (nil | untyped)
+
+  # Handle an "initial setup" state, where there's only one user, it's an admin,
+  # and they require a password change.
+  def check_initial_setup: () -> (nil | untyped)
+
+  def ensure_password_authentication_enabled!: () -> (untyped | nil)
+
+  def password_based_login?: () -> untyped
+
+  def user_params: () -> untyped
+
+  def passwordless_passkey_params: () -> untyped
+
+  def find_user: () -> untyped
+
+  def stored_redirect_uri: () -> untyped
+
+  def store_redirect_uri: () -> (true | untyped)
+
+  def two_factor_enabled?: () -> untyped
+
+  def auto_sign_in_with_provider: () -> (nil | untyped)
+
+  def valid_otp_attempt?: (untyped user) -> (true | untyped)
+
+  def audit_event_name_for_authentication_method: (untyped method) -> untyped
+
+  def log_audit_event: (untyped user, untyped resource, ?::Hash[untyped, untyped] options) -> untyped
+
+  def log_user_activity: (untyped user) -> untyped
+
+  def load_recaptcha: () -> untyped
+
+  def unverified_anonymous_user?: () -> untyped
+
+  def exceeded_failed_login_attempts?: () -> untyped
+
+  def exceeded_anonymous_sessions?: () -> untyped
+
+  def authentication_method: () -> untyped
+
+  def set_invite_params: () -> untyped
+
+  def store_login_challenge: () -> (nil | untyped)
+
+  def iam_login_enabled?: () -> untyped
+
+  # overridden by EE module
+  def onboarding_status_tracking_label: () -> nil
+end

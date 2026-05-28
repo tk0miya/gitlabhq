@@ -1,0 +1,11 @@
+module Gitlab
+  module DataBuilder
+    module Alert
+      extend ::Gitlab::DataBuilder::Alert
+
+      def build: (untyped alert) -> { object_kind: "alert", object_attributes: untyped }
+
+      def hook_attrs: (untyped alert) -> { title: untyped, url: untyped, severity: untyped, events: untyped, status: untyped, started_at: untyped }
+    end
+  end
+end

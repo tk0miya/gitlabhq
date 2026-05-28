@@ -1,0 +1,32 @@
+module ReleasesHelper
+  IMAGE_PATH: "illustrations/rocket-launch-md.svg"
+
+  # This needs to be kept in sync with the constant in
+  # app/assets/javascripts/releases/constants.js
+  DEFAULT_SORT: "RELEASED_AT_DESC"
+
+  def illustration: () -> untyped
+
+  def data_for_releases_page: () -> untyped
+
+  # For simplicity, only optimize non-paginated requests
+  def use_startup_query_for_index_page?: () -> untyped
+
+  def index_page_startup_query_variables: () -> { fullPath: untyped, sort: untyped, first: 1 }
+
+  def data_for_show_page: () -> { project_id: untyped, project_path: untyped, tag_name: untyped, deployments: untyped }
+
+  def data_for_edit_release_page: () -> untyped
+
+  def data_for_new_release_page: () -> untyped
+
+  def group_milestone_project_releases_available?: (untyped project) -> false
+
+  private
+
+  def new_edit_pages_shared_data: () -> { project_id: untyped, group_id: untyped, group_milestones_available: untyped, project_path: untyped, markdown_preview_path: untyped, markdown_docs_path: untyped, release_assets_docs_path: untyped, manage_milestones_path: untyped, new_milestone_path: untyped, edit_release_docs_path: untyped, upcoming_release_docs_path: untyped }
+
+  def deployments_for_release: () -> (::Array[untyped] | untyped)
+
+  def triggerer_data: (untyped deployment) -> (nil | { name: untyped, web_url: untyped, avatar_url: untyped })
+end

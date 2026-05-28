@@ -1,0 +1,23 @@
+class RepositoryImportWorker
+  @project: untyped
+
+  include ApplicationWorker
+
+  include ExceptionBacktrace
+
+  include ProjectStartImport
+
+  include Sidekiq::InterruptionsExhausted
+
+  def perform: (untyped project_id) -> (nil | untyped)
+
+  def perform_failure: (untyped project_id) -> untyped
+
+  private
+
+  attr_reader project: untyped
+
+  def start_import?: () -> (true | false)
+
+  def fail_import: (untyped message) -> untyped
+end

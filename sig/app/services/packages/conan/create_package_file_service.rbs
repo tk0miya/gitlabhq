@@ -1,0 +1,37 @@
+module Packages
+  module Conan
+    class CreatePackageFileService
+      @package: untyped
+
+      @file: untyped
+
+      @params: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped package, untyped file, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader file: untyped
+
+      attr_reader params: untyped
+
+      def package_reference_id: () -> (nil | untyped)
+
+      def recipe_revision_id: () -> (nil | untyped)
+
+      def package_revision_id: () -> (nil | untyped)
+
+      def recipe_revision_status: () -> (:processing | :default)
+
+      def update_revision_status: () -> untyped
+
+      def recipe_file?: () -> untyped
+    end
+  end
+end

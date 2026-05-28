@@ -1,0 +1,5 @@
+class LfsFileLock < ApplicationRecord
+  def self.for_path!: (untyped path) -> untyped
+
+  def can_be_unlocked_by?: (untyped current_user, ?bool forced) -> (false | true | untyped)
+end

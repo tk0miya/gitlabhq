@@ -1,0 +1,11 @@
+module Gitlab
+  module Database
+    module AsyncConstraints
+      DEFAULT_ENTRIES_PER_INVOCATION: 2
+
+      def self.validate_pending_entries!: (?how_many: untyped) -> untyped
+
+      def self.pending_entries: () -> untyped
+    end
+  end
+end

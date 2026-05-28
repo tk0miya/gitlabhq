@@ -1,0 +1,17 @@
+module Gitlab
+  module Instrumentation
+    class RateLimitingGates
+      GATES: :rate_limiting_gates
+
+      def self.track: (untyped key) -> (untyped | nil)
+
+      def self.gates: () -> untyped
+
+      def self.payload: () -> ::Hash[untyped, untyped]
+
+      private
+
+      def self.gates_set: () -> untyped
+    end
+  end
+end

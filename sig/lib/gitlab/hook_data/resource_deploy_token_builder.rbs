@@ -1,0 +1,11 @@
+module Gitlab
+  module HookData
+    class ResourceDeployTokenBuilder < BaseBuilder
+      SAFE_HOOK_ATTRIBUTES: ::Array[:id | :name | :username | :expires_at | :created_at | :revoked | :deploy_token_type]
+
+      alias resource_deploy_token object
+
+      def build: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Authz
+  class Resource
+    include Authz::Concerns::YamlPermission
+
+    BASE_PATH: "config/authz/permissions"
+
+    def self.config_path: () -> untyped
+
+    private
+
+    def self.resource_identifier: (untyped _, untyped file_path) -> untyped
+
+    public
+
+    def name: () -> untyped
+
+    def resource_name: () -> untyped
+
+    def feature_category: () -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+module Resolvers
+  module DesignManagement
+    class DesignResolver < BaseResolver
+      def resolve: (?filename: untyped?, ?id: untyped?) -> untyped
+
+      def self.single: () -> self
+
+      private
+
+      def issue: () -> untyped
+
+      def build_finder: (untyped params) -> untyped
+
+      def error: (untyped msg) -> untyped
+
+      def parse_args: (untyped filename, untyped id) -> untyped
+
+      def parse_gid: (untyped gid) -> untyped
+    end
+  end
+end

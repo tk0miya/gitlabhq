@@ -1,0 +1,13 @@
+module Ci
+  class RefDeleteUnlockArtifactsWorker
+    include ApplicationWorker
+
+    include PipelineBackgroundQueue
+
+    def perform: (untyped project_id, untyped user_id, untyped ref_path) -> untyped
+
+    private
+
+    def enqueue_pipelines_to_unlock: (untyped ci_ref) -> untyped
+  end
+end

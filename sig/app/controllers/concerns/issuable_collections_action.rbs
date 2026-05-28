@@ -1,0 +1,39 @@
+module IssuableCollectionsAction
+  @merge_requests: untyped
+
+  @issuable_meta_data: untyped
+
+  @search_timeout_occurred: untyped
+
+  @issues: untyped
+
+  extend ActiveSupport::Concern
+
+  include IssuableCollections
+
+  include IssuesCalendar
+
+  def issues: () -> untyped
+
+  def work_items: () -> untyped
+
+  def work_items_calendar: () -> untyped
+
+  # -- Instance variables needed to pass data to views
+  def merge_requests: () -> untyped
+
+  def issues_calendar: () -> untyped
+
+  private
+
+  def sorting_field: () -> untyped
+
+  def finder_type: () -> untyped
+
+  def finder_options: () -> untyped
+
+  # rubocop:disable Gitlab/ModuleWithInstanceVariables
+  def render_merge_requests: () -> untyped
+
+  def render_issues_atom_feed: () -> untyped
+end

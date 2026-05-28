@@ -1,0 +1,35 @@
+module Ci
+  module Catalog
+    # This class represents a project that contains one or more CI/CD components.
+    # It is responsible for resolving component paths and retrieving catalog component data.
+    class ComponentsProject
+      @project: untyped
+
+      @sha: untyped
+
+      TEMPLATES_DIR: "templates"
+
+      TEMPLATE_PATH_REGEX: "^templates\\/[\\w-]+(?:\\/template)?\\.yml$"
+
+      COMPONENTS_LIMIT: 100
+
+      ComponentData: untyped
+
+      def initialize: (untyped project, ?untyped sha) -> void
+
+      def fetch_component_paths: (untyped ref, ?limit: untyped) -> untyped
+
+      def extract_component_name: (untyped path) -> (nil | untyped)
+
+      def extract_spec: (untyped blob, untyped path) -> untyped
+
+      def find_catalog_components: (untyped component_names) -> (::Array[untyped] | untyped)
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader sha: untyped
+    end
+  end
+end

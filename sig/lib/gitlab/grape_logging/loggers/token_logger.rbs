@@ -1,0 +1,9 @@
+module Gitlab
+  module GrapeLogging
+    module Loggers
+      class TokenLogger < ::GrapeLogging::Loggers::Base
+        def parameters: (untyped _request, untyped _) -> (::Hash[untyped, untyped] | untyped)
+      end
+    end
+  end
+end

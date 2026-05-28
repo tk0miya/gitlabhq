@@ -1,0 +1,9 @@
+module Keys
+  class RevokeService < ::Keys::DestroyService
+    def execute: (untyped key) -> untyped
+
+    private
+
+    def unverify_associated_signatures: (untyped key) -> untyped
+  end
+end

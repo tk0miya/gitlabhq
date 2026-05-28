@@ -1,0 +1,23 @@
+class SearchServicePresenter < Gitlab::View::Presenter::Delegated
+  @search_objects: untyped
+
+  include RendersCommits
+
+  include RendersProjectsList
+
+  SCOPE_PRELOAD_METHOD: { projects: :with_web_entity_associations, issues: :with_web_entity_associations, work_items: :with_web_entity_associations, merge_requests: :with_web_entity_associations, epics: :with_web_entity_associations, notes: :with_web_entity_associations, milestones: :with_web_entity_associations, commits: :with_web_entity_associations, blobs: :with_web_entity_associations }
+
+  SORT_ENABLED_SCOPES: ::Array["issues" | "work_items" | "merge_requests" | "epics"]
+
+  def search_objects: () -> untyped
+
+  def show_sort_dropdown?: () -> untyped
+
+  def show_results_status?: () -> untyped
+
+  def without_count?: () -> untyped
+
+  def advanced_search_enabled?: () -> false
+
+  def zoekt_enabled?: () -> false
+end

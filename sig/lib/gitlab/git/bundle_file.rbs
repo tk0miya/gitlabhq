@@ -1,0 +1,24 @@
+module Gitlab
+  module Git
+    class BundleFile
+      @filename: untyped
+
+      # All git bundle files start with one of these strings
+      #
+      # https://github.com/git/git/blob/v2.50.1/bundle.c#L24
+      MAGIC: "# v2 git bundle\n"
+
+      MAGIC_V3: "# v3 git bundle\n"
+
+      InvalidBundleError: untyped
+
+      attr_reader filename: untyped
+
+      def self.check!: (untyped filename) -> untyped
+
+      def initialize: (untyped filename) -> void
+
+      def check!: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,80 @@
+class Upload < ApplicationRecord
+  include Checksummable
+
+  include EachBatch
+
+  include ObjectStorable
+
+  STORE_COLUMN: :store
+
+  # Upper limit for foreground checksum processing
+  CHECKSUM_THRESHOLD: untyped
+
+  #
+  # FastDestroyAll concerns
+  def self.begin_fast_destroy: () -> ::Hash[untyped, untyped]
+
+  #
+  # FastDestroyAll concerns
+  def self.finalize_fast_destroy: (untyped items_to_remove) -> untyped
+
+  def self.destroy_for_associations!: (untyped records, ?untyped uploader) -> (nil | untyped)
+
+  def absolute_path: () -> untyped
+
+  def relative_path: () -> untyped
+
+  def calculate_checksum!: () -> (nil | untyped)
+
+  # Initialize the associated Uploader class with current model
+  #
+  # @param [String] mounted_as
+  # @return [GitlabUploader] one of the subclasses, defined at the model's uploader attribute
+  def build_uploader: (?untyped? mounted_as) -> untyped
+
+  # Initialize the associated Uploader class with current model and
+  # retrieve existing file from the store to a local cache
+  #
+  # @param [String] mounted_as
+  # @return [GitlabUploader] one of the subclasses, defined at the model's uploader attribute
+  def retrieve_uploader: (?untyped? mounted_as) -> untyped
+
+  # This checks for existence of the upload on storage
+  #
+  # @return [Boolean] whether upload exists on storage
+  def exist?: () -> untyped
+
+  def uploader_context: () -> untyped
+
+  def local?: () -> untyped
+
+  # Returns whether generating checksum is needed
+  #
+  # This takes into account whether file exists, if any checksum exists
+  # or if the storage has checksum generation code implemented
+  #
+  # @return [Boolean] whether generating a checksum is needed
+  def needs_checksum?: () -> untyped
+
+  def filename: () -> untyped
+
+  private
+
+  def delete_file!: () -> untyped
+
+  def foreground_checksummable?: () -> untyped
+
+  def schedule_checksum: () -> untyped
+
+  def relative_path?: () -> untyped
+
+  def uploader_class: () -> untyped
+
+  def mount_point: () -> untyped
+
+  def project?: () -> untyped
+
+  def update_project_statistics: () -> untyped
+
+  def ensure_sharding_key: () -> (nil | untyped)
+end

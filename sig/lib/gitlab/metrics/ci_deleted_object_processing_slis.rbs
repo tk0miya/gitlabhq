@@ -1,0 +1,27 @@
+module Gitlab
+  module Metrics
+    module CiDeletedObjectProcessingSlis
+      self.@deletions_counter: untyped
+
+      include Gitlab::Metrics::SliConfig
+
+      CATEGORY_LABEL: { feature_category: :continuous_integration }
+
+      POSSIBLE_LABELS: ::Array[untyped]
+
+      ACCEPTABLE_DELAY: untyped
+
+      def self.initialize_slis!: () -> untyped
+
+      def self.record_error: (error: untyped) -> untyped
+
+      def self.track_deletion: (untyped object) -> untyped
+
+      private
+
+      def self.age_bucket_label: (untyped age_seconds) -> untyped
+
+      def self.deletions_counter: () -> untyped
+    end
+  end
+end

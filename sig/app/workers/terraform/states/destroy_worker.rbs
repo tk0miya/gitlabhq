@@ -1,0 +1,9 @@
+module Terraform
+  module States
+    class DestroyWorker
+      include ApplicationWorker
+
+      def perform: (untyped terraform_state_id) -> (untyped | nil)
+    end
+  end
+end

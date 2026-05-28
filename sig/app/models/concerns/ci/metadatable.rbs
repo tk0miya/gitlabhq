@@ -1,0 +1,72 @@
+module Ci
+  #
+  # This module implements methods that need to read and write
+  # metadata for CI/CD entities.
+  #
+  module Metadatable
+    extend ActiveSupport::Concern
+
+    include Gitlab::Utils::StrongMemoize
+
+    def has_exposed_artifacts?: () -> untyped
+
+    def degenerated?: () -> untyped
+
+    def degenerate!: () ?{ () -> untyped } -> untyped
+
+    def options: () -> untyped
+
+    def yaml_variables: () -> untyped
+
+    def interruptible: () -> untyped
+
+    def id_tokens: () -> untyped
+
+    def id_tokens?: () -> untyped
+
+    def debug_trace_enabled?: () -> (untyped | true)
+
+    def enable_debug_trace!: () -> untyped
+
+    def timeout_human_readable_value: () -> untyped
+
+    def timeout_value: () -> untyped
+
+    # This method is called from within a Ci::Build state transition;
+    # it returns nil/true (success) or false (failure)
+    def update_timeout_state: () -> (nil | untyped)
+
+    # metadata has `unknown_timeout_source` as default
+    def timeout_source_value: () -> untyped
+
+    def artifacts_exposed_as: () -> untyped
+
+    def artifacts_exposed_paths: () -> untyped
+
+    def downstream_errors: () -> untyped
+
+    def scoped_user_id: () -> untyped
+
+    def exit_code: () -> untyped
+
+    def exit_code=: (untyped value) -> (nil | untyped)
+
+    # Should be removed when the column is dropped from p_ci_builds
+    # allows deleting data for `degenerate!`
+    def options=: (untyped value) -> untyped
+
+    # Should be removed when the column is dropped from p_ci_builds
+    # allows deleting data for `degenerate!`
+    def yaml_variables=: (untyped value) -> untyped
+
+    def interruptible=: (untyped _value) -> untyped
+
+    def id_tokens=: (untyped _value) -> untyped
+
+    def secrets=: (untyped _value) -> untyped
+
+    private
+
+    def read_metadata_attribute: (untyped legacy_key, untyped metadata_key, untyped job_definition_key, ?untyped? default_value) -> untyped
+  end
+end

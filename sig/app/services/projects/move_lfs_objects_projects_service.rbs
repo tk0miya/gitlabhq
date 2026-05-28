@@ -1,0 +1,14 @@
+module Projects
+  class MoveLfsObjectsProjectsService < BaseMoveRelationsService
+    def execute: (untyped source_project, ?remove_remaining_elements: bool) -> (nil | untyped)
+
+    private
+
+    def move_lfs_objects_projects: () -> untyped
+
+    def remove_remaining_lfs_objects_project: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def non_existent_lfs_objects_projects: () -> untyped
+  end
+end

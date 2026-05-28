@@ -1,0 +1,29 @@
+module LooseForeignKeys
+  class ModificationTracker
+    @delete_count_by_table: untyped
+
+    @update_count_by_table: untyped
+
+    @start_time: untyped
+
+    @deletes_counter: untyped
+
+    @updates_counter: untyped
+
+    def initialize: () -> void
+
+    def max_runtime: () -> untyped
+
+    def max_deletes: () -> 100000
+
+    def max_updates: () -> 50000
+
+    def add_deletions: (untyped table, untyped count) -> untyped
+
+    def add_updates: (untyped table, untyped count) -> untyped
+
+    def over_limit?: () -> untyped
+
+    def stats: () -> { over_limit: untyped, delete_count_by_table: untyped, update_count_by_table: untyped, delete_count: untyped, update_count: untyped }
+  end
+end

@@ -1,0 +1,41 @@
+class IdeController < ApplicationController
+  @fork_info: untyped
+
+  @workbench_secret: untyped
+
+  @project: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  include WebIdeCSP
+
+  include RoutableActions
+
+  include StaticObjectExternalStorageCSP
+
+  include ProductAnalyticsTracking
+
+  def index: () -> untyped
+
+  def oauth_redirect: () -> untyped
+
+  private
+
+  def authorize_read_project!: () -> untyped
+
+  def auth_proc: () -> untyped
+
+  def ensure_web_ide_oauth_application!: () -> untyped
+
+  def set_coop_header: () -> untyped
+
+  def fork_info: (untyped project, untyped branch) -> (nil | untyped)
+
+  def generate_workbench_secret: () -> untyped
+
+  def project: () -> (nil | untyped)
+
+  def tracking_namespace_source: () -> untyped
+
+  def tracking_project_source: () -> untyped
+end

@@ -1,0 +1,39 @@
+module Gitlab
+  module Cleanup
+    class OrphanLfsObjects
+      @dry_run: untyped
+
+      @logger: untyped
+
+      attr_reader dry_run: untyped
+
+      attr_reader logger: untyped
+
+      BATCH_SIZE: 1000
+
+      PROGRESS_INTERVAL: 1000
+
+      def initialize: (?dry_run: bool, ?logger: untyped?) -> void
+
+      def run!: () -> untyped
+
+      private
+
+      def each_missing_lfs_object: () { (untyped) -> untyped } -> untyped
+
+      def file_exists?: (untyped lfs_object) -> untyped
+
+      def process_missing_objects: () -> (nil | untyped)
+
+      def remove_lfs_object: (untyped lfs_object, untyped linked_project_ids, untyped affected_project_ids) -> untyped
+
+      def update_project_statistics: (untyped project_ids) -> untyped
+
+      def log_summary: (untyped count) -> untyped
+
+      def log_info: (untyped msg) -> untyped
+
+      def log_progress: (untyped checked_count, untyped missing_count) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,42 @@
+# The BulkImport model links all models required for a bulk import of groups and
+# projects to a GitLab instance. It associates the import with the responsible
+# user.
+class BulkImport < ApplicationRecord
+  include AfterCommitQueue
+
+  MIN_MAJOR_VERSION: 14
+
+  MIN_MINOR_VERSION_FOR_PROJECT: 4
+
+  PURGE_CONFIGURATION_DELAY: untyped
+
+  def source_version_info: () -> untyped
+
+  def self.min_gl_version_for_project_migration: () -> untyped
+
+  def self.min_gl_version_for_migration_in_batches: () -> untyped
+
+  def self.all_human_statuses: () -> untyped
+
+  def update_has_failures: () -> (nil | untyped)
+
+  def propagate_cancel: () -> (nil | untyped)
+
+  def supports_batched_export?: () -> untyped
+
+  def completed?: () -> untyped
+
+  def send_completion_notification: () -> untyped
+
+  def destination_group_roots: () -> untyped
+
+  def namespaces_with_unassigned_placeholders: () -> untyped
+
+  def source_url: () -> untyped
+
+  def source_equals_destination?: () -> (false | untyped)
+
+  def schedule_configuration_purge: () -> (nil | untyped)
+
+  def offline?: () -> untyped
+end

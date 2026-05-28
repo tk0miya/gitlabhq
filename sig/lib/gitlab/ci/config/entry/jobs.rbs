@@ -1,0 +1,22 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a set of jobs.
+        #
+        class Jobs < ::Gitlab::Config::Entry::ComposableHash
+          include ::Gitlab::Config::Entry::Validatable
+
+          def composable_class: (untyped name, untyped config) -> untyped
+
+          TYPES: ::Array[untyped]
+
+          def self.all_types: () -> untyped
+
+          def self.find_type: (untyped name, untyped config) -> untyped
+        end
+      end
+    end
+  end
+end

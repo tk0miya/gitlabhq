@@ -1,0 +1,41 @@
+module Gitlab
+  module GithubGistsImport
+    module Representation
+      class Gist
+        @attributes: untyped
+
+        include Gitlab::GithubImport::Representation::ToHash
+
+        include Gitlab::GithubImport::Representation::ExposeAttribute
+
+        attr_reader attributes: untyped
+
+        # Builds a gist from a GitHub API response.
+        #
+        # gist - An instance of `Hash` containing the gist
+        #         details.
+        def self.from_api_response: (untyped gist, ?::Hash[untyped, untyped] additional_data) -> untyped
+
+        # Builds a new gist using a Hash that was built from a JSON payload.
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        # attributes - A hash containing the raw gist details. The keys of this
+        #              Hash (and any nested hashes) must be symbols.
+        def initialize: (untyped attributes) -> void
+
+        # Gist description can be an empty string, so we returning nil to use first file
+        # name as a title in such case on snippet creation
+        # Gist description has a limit of 256, while the snippet's title can be up to 255
+        def truncated_title: () -> untyped
+
+        def visibility_level: () -> untyped
+
+        def first_file: () -> { file_name: untyped, file_content: untyped }
+
+        def github_identifiers: () -> { id: untyped }
+
+        def total_files_size: () -> untyped
+      end
+    end
+  end
+end

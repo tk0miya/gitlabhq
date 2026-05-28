@@ -1,0 +1,23 @@
+module Gitlab
+  module ImportExport
+    class VersionSaver
+      @shared: untyped
+
+      include Gitlab::ImportExport::CommandLineUtil
+
+      include DurationMeasuring
+
+      def initialize: (shared: untyped) -> void
+
+      def save: () -> untyped
+
+      private
+
+      def gitlab_version_file: () -> untyped
+
+      def gitlab_revision_file: () -> untyped
+
+      def version_file: () -> untyped
+    end
+  end
+end

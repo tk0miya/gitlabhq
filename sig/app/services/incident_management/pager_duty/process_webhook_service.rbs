@@ -1,0 +1,43 @@
+module IncidentManagement
+  module PagerDuty
+    class ProcessWebhookService < ::BaseProjectService
+      @payload: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include IncidentManagement::Settings
+
+      # https://developer.pagerduty.com/docs/webhooks/webhook-behavior/#size-limit
+      PAGER_DUTY_PAYLOAD_SIZE_LIMIT: untyped
+
+      # https://developer.pagerduty.com/docs/db0fa8c8984fc-overview#event-types
+      PAGER_DUTY_PROCESSABLE_EVENT_TYPES: ::Array["incident.triggered"]
+
+      def initialize: (untyped project, untyped payload) -> void
+
+      def execute: (untyped token) -> untyped
+
+      private
+
+      attr_reader payload: untyped
+
+      def process_incidents: () -> (nil | untyped)
+
+      def pager_duty_processable_event: () -> untyped
+
+      def webhook_setting_active?: () -> untyped
+
+      def valid_token?: (untyped token) -> untyped
+
+      def valid_payload_size?: () -> untyped
+
+      def accepted: () -> untyped
+
+      def forbidden: () -> untyped
+
+      def unauthorized: () -> untyped
+
+      def bad_request: () -> untyped
+    end
+  end
+end

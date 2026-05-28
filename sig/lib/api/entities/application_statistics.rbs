@@ -1,0 +1,9 @@
+module API
+  module Entities
+    class ApplicationStatistics < Grape::Entity
+      include ActionView::Helpers::NumberHelper
+
+      include CountHelper
+    end
+  end
+end

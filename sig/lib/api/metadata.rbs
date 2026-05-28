@@ -1,0 +1,9 @@
+module API
+  class Metadata < ::API::Base
+    include APIGuard
+
+    METADATA_TAGS: ::Array["metadata"]
+
+    METADATA_QUERY: "{\n  metadata {\n    version\n    revision\n    kas {\n      enabled\n      externalUrl\n      externalK8sProxyUrl\n      version\n    }\n    enterprise\n  }\n}\n"
+  end
+end

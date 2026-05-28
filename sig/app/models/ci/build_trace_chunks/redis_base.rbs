@@ -1,0 +1,29 @@
+module Ci
+  module BuildTraceChunks
+    class RedisBase
+      CHUNK_REDIS_TTL: untyped
+
+      LUA_APPEND_CHUNK: ::String
+
+      def data: (untyped model) -> untyped
+
+      def set_data: (untyped model, untyped new_data) -> untyped
+
+      def append_data: (untyped model, untyped new_data, untyped offset) -> untyped
+
+      def size: (untyped model) -> untyped
+
+      def delete_data: (untyped model) -> untyped
+
+      def keys: (untyped relation) -> untyped
+
+      def delete_keys: (untyped keys) -> (nil | untyped)
+
+      private
+
+      def key: (untyped model) -> untyped
+
+      def key_raw: (untyped build_id, untyped chunk_index) -> ::String
+    end
+  end
+end

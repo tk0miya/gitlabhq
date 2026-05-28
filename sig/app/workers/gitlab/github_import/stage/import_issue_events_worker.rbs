@@ -1,0 +1,15 @@
+module Gitlab
+  module GithubImport
+    module Stage
+      class ImportIssueEventsWorker
+        include ApplicationWorker
+
+        include StageMethods
+
+        # client - An instance of Gitlab::GithubImport::Client.
+        # project - An instance of Project.
+        def import: (untyped client, untyped project) -> untyped
+      end
+    end
+  end
+end

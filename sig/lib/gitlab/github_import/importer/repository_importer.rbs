@@ -1,0 +1,49 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class RepositoryImporter
+        @project: untyped
+
+        @client: untyped
+
+        @wiki_formatter: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader project: untyped
+
+        attr_reader client: untyped
+
+        attr_reader wiki_formatter: untyped
+
+        def initialize: (untyped project, untyped client) -> void
+
+        # Returns true if we should import the wiki for the project.
+        # rubocop: disable CodeReuse/ActiveRecord
+        def import_wiki?: () -> untyped
+
+        # Imports the repository data.
+        #
+        # This method will return true if the data was imported successfully or
+        # the repository had already been imported before.
+        def execute: () -> untyped
+
+        def import_repository: () -> true
+
+        def import_wiki_repository: () -> untyped
+
+        def wiki_url: () -> untyped
+
+        def update_clone_time: () -> untyped
+
+        private
+
+        def default_branch: () -> untyped
+
+        def client_repository: () -> untyped
+
+        def validate_repository_size!: () -> nil
+      end
+    end
+  end
+end

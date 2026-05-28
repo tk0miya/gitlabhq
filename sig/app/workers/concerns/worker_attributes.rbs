@@ -1,0 +1,27 @@
+module WorkerAttributes
+  extend ActiveSupport::Concern
+
+  include Gitlab::ClassAttributes
+
+  # Resource boundaries that workers can declare through the
+  # `resource_boundary` attribute
+  VALID_RESOURCE_BOUNDARIES: ::Array[:memory | :cpu | :unknown]
+
+  # Urgencies that workers can declare through the `urgencies` attribute
+  VALID_URGENCIES: ::Array[:high | :low | :throttled]
+
+  # Ordered in increasing restrictiveness
+  VALID_DATA_CONSISTENCIES: ::Array[:delayed | :sticky | :always]
+
+  LOAD_BALANCED_DATA_CONSISTENCIES: ::Array[:delayed | :sticky]
+
+  DEFAULT_DATA_CONSISTENCY: :always
+
+  DEFAULT_DATA_CONSISTENCY_PER_DB: untyped
+
+  NAMESPACE_WEIGHTS: untyped
+
+  DEFAULT_DEFER_DELAY: untyped
+
+  DEFAULT_CONCURRENCY_LIMIT_PERCENTAGE_BY_URGENCY: { high: ::Float, low: ::Float, throttled: ::Float }
+end

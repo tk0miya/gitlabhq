@@ -1,0 +1,128 @@
+# Projects::TransferService class
+#
+# Used to transfer a project to another namespace
+#
+# Ex.
+#   # Move project to namespace by user
+#   Projects::TransferService.new(project, user).execute(namespace)
+#
+module Projects
+  class TransferService < BaseService
+    @new_namespace: untyped
+
+    @owner_of_personal_project_before_transfer: untyped
+
+    @old_path: untyped
+
+    @old_group: untyped
+
+    @new_path: untyped
+
+    @old_namespace: untyped
+
+    include Gitlab::ShellAdapter
+
+    TransferError: untyped
+
+    # Shorter lock retry timing for Sidekiq context (~2 minutes worst case).
+    # Default WithLockRetries config retries for ~40 minutes which is too long.
+    LOCK_RETRY_TIMING: ::Array[::Array[untyped]]
+
+    attr_reader error: untyped
+
+    def log_project_transfer_success: (untyped project, untyped new_namespace) -> untyped
+
+    def log_project_transfer_error: (untyped project, untyped new_namespace, untyped error_message) -> untyped
+
+    def schedule_async_transfer: (untyped new_namespace) -> untyped
+
+    def execute: (untyped new_namespace) -> untyped
+
+    private
+
+    attr_reader old_path: untyped
+
+    attr_reader new_path: untyped
+
+    attr_reader new_namespace: untyped
+
+    attr_reader old_namespace: untyped
+
+    def log_transfer: (untyped project, untyped new_namespace, ?untyped? error_message) -> untyped
+
+    # Note: There is a small window where a worker could acquire the lease between
+    # the lease check and cancel_transfer!. This is acceptable because the worker's own
+    # cancel_stale_transfer_state handles this as a safety net.
+    def cancel_stale_transfer_state: (untyped project_namespace) -> (nil | untyped)
+
+    def ensure_allowed_transfer: (untyped namespace) -> nil
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def transfer: (untyped project) -> untyped
+
+    def verify_if_container_registry_tags_can_be_handled: (untyped project) -> (nil | untyped)
+
+    def raise_error_due_to_tags_if_transfer_is_not_allowed: () -> (nil | untyped)
+
+    def raise_error_due_to_tags_if_not_in_same_root: (untyped project) -> (nil | untyped)
+
+    def raise_error_due_to_tags_if_transfer_dry_run_fails: (untyped project) -> (nil | untyped)
+
+    def new_namespace_has_same_root?: (untyped project) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def conflicting_project_namespace_from_pending_deletion?: () -> untyped
+
+    def proceed_to_transfer: () -> untyped
+
+    def transfer_project_path_in_registry: (untyped old_project_path, untyped new_namespace_path, project: untyped, dry_run: untyped) -> untyped
+
+    # Overridden in EE
+    def post_update_hooks: (untyped project, untyped _old_group) -> untyped
+
+    # Overridden in EE
+    def remove_paid_features: () -> nil
+
+    def invalidate_personal_projects_counts: () -> untyped
+
+    def transfer_missing_group_resources: (untyped group) -> untyped
+
+    def allowed_transfer_project?: (untyped current_user, untyped project) -> untyped
+
+    def allowed_to_transfer_to_namespace?: (untyped current_user, untyped namespace) -> untyped
+
+    def update_namespace_and_visibility: (untyped to_namespace) -> untyped
+
+    def update_repository_configuration: () -> untyped
+
+    def ensure_personal_project_owner_membership: (untyped project) -> (nil | untyped)
+
+    def refresh_permissions: () -> untyped
+
+    def rollback_side_effects: () -> untyped
+
+    def execute_system_hooks: () -> untyped
+
+    def move_project_uploads: (untyped project) -> (nil | untyped)
+
+    def old_wiki_repo_path: () -> ::String
+
+    def new_wiki_repo_path: () -> ::String
+
+    def old_design_repo_path: () -> ::String
+
+    def new_design_repo_path: () -> ::String
+
+    def update_integrations: () -> untyped
+
+    def update_pending_builds: () -> untyped
+
+    def pending_builds_params: () -> untyped
+
+    def remove_issue_contacts: () -> (nil | untyped)
+
+    def publish_event: () -> untyped
+
+    def project_has_namespaced_npm_packages?: () -> untyped
+  end
+end

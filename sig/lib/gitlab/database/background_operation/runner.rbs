@@ -1,0 +1,39 @@
+module Gitlab
+  module Database
+    module BackgroundOperation
+      class Runner
+        @connection: untyped
+
+        @executor: untyped
+
+        def initialize: (connection: untyped, ?executor: untyped) -> void
+
+        def run_operation_job: (untyped worker) -> untyped
+
+        private
+
+        attr_reader connection: untyped
+
+        attr_reader executor: untyped
+
+        def execute_job_and_handle_failure: (untyped worker, untyped job) -> (nil | untyped)
+
+        def find_or_create_next_job: (untyped worker) -> untyped
+
+        def find_next_batch_range: (untyped worker) -> (nil | untyped)
+
+        def batching_strategy_for: (untyped worker) -> untyped
+
+        def clamped_batch_range: (untyped worker, untyped next_bounds) -> (nil | ::Array[untyped])
+
+        def finish_active_operation: (untyped worker) -> (nil | untyped)
+
+        def cursor_greater_than_or_equal?: (untyped cursor1, untyped cursor2) -> untyped
+
+        def cursor_min: (untyped cursor1, untyped cursor2) -> untyped
+
+        def adjust_operation: (untyped worker) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+class Board < ApplicationRecord
+  @resource_parent: untyped
+
+  include EachBatch
+
+  RECENT_BOARDS_SIZE: 4
+
+  def project_needed?: () -> untyped
+
+  def resource_parent: () -> untyped
+
+  def group_board?: () -> untyped
+
+  def project_board?: () -> untyped
+
+  def scoped?: () -> false
+
+  def self.to_type: () -> untyped
+
+  def to_type: () -> untyped
+
+  def disabled_for?: (untyped current_user) -> untyped
+end

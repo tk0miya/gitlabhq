@@ -1,0 +1,19 @@
+module Ci
+  module BuildTraceChunks
+    class Database
+      def keys: (untyped relation) -> ::Array[untyped]
+
+      def delete_keys: (untyped keys) -> nil
+
+      def data: (untyped model) -> untyped
+
+      def set_data: (untyped model, untyped new_data) -> untyped
+
+      def append_data: (untyped model, untyped new_data, untyped offset) -> untyped
+
+      def size: (untyped model) -> untyped
+
+      def delete_data: (untyped model) -> (untyped | nil)
+    end
+  end
+end

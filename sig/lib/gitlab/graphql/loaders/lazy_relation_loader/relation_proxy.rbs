@@ -1,0 +1,36 @@
+module Gitlab
+  module Graphql
+    module Loaders
+      class LazyRelationLoader
+        # Proxies all the method calls to Registry instance.
+        # The main purpose of having this is that calling load
+        # on an instance of this class will only return the records
+        # associated with the main Active Record model.
+        class RelationProxy
+          @object: untyped
+
+          @registry: untyped
+
+          def initialize: (untyped object, untyped registry) -> void
+
+          def load: () -> untyped
+
+          alias to_a load
+
+          def last: (?::Integer limit) -> untyped
+
+          private
+
+          attr_reader registry: untyped
+
+          attr_reader object: untyped
+
+          # Delegate everything to registry
+          def method_missing: (untyped method_name, *untyped, **untyped) ?{ (?) -> untyped } -> (self | untyped)
+
+          def respond_to_missing?: (untyped method_name, ?bool include_private) -> untyped
+        end
+      end
+    end
+  end
+end

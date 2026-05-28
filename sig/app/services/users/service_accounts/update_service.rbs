@@ -1,0 +1,41 @@
+module Users
+  module ServiceAccounts
+    class UpdateService < BaseService
+      @current_user: untyped
+
+      @user: untyped
+
+      @params: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader user: untyped
+
+      attr_reader params: untyped
+
+      ALLOWED_PARAMS: ::Array[:username | :name | :email]
+
+      def initialize: (untyped current_user, untyped user, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def can_update_service_account?: () -> untyped
+
+      def email_changed?: () -> untyped
+
+      def skip_confirmation?: () -> (nil | untyped)
+
+      def update_params: () -> untyped
+
+      def update_user: () -> untyped
+
+      def error: (untyped message, untyped reason) -> untyped
+
+      def success: () -> untyped
+
+      def error_messages: () -> { no_permission: untyped, not_service_account: untyped }
+    end
+  end
+end

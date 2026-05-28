@@ -1,0 +1,17 @@
+module Repositories
+  module CanHousekeepRepository
+    extend ActiveSupport::Concern
+
+    def pushes_since_gc: () -> untyped
+
+    def increment_pushes_since_gc: () -> untyped
+
+    def reset_pushes_since_gc: () -> untyped
+
+    def git_garbage_collect_worker_klass: () -> untyped
+
+    private
+
+    def pushes_since_gc_redis_shared_state_key: () -> ::String
+  end
+end

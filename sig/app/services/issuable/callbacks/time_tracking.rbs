@@ -1,0 +1,19 @@
+module Issuable
+  module Callbacks
+    class TimeTracking < Base
+      ALLOWED_PARAMS: ::Array[:time_estimate | :spend_time | :timelog]
+
+      def after_initialize: () -> (nil | untyped)
+
+      private
+
+      def parse_timelog_data: () -> untyped
+
+      def parse_time_estimate_data: () -> untyped
+
+      def invalid_time_spent_format: (untyped argument_name) -> untyped
+
+      def time_spent_must_start_with_number: (untyped argument_name) -> untyped
+    end
+  end
+end

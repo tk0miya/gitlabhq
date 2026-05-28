@@ -1,0 +1,23 @@
+class MergeRequestsFinder
+  class Params < IssuableFinder::Params
+    def filter_by_no_reviewer?: () -> untyped
+
+    def filter_by_any_reviewer?: () -> untyped
+
+    def reviewer: () -> untyped
+
+    def ignored_reviewer: () -> (nil | untyped)
+
+    def assigned_user: () -> untyped
+
+    def merge_user: () -> untyped
+
+    def assigned_review_states: () -> (nil | untyped)
+
+    def reviewer_review_states: () -> (nil | untyped)
+
+    def review_state: () -> (untyped | untyped | nil)
+
+    def not_review_states: () -> (nil | untyped)
+  end
+end

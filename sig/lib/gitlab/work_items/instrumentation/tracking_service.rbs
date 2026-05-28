@@ -1,0 +1,33 @@
+module Gitlab
+  module WorkItems
+    module Instrumentation
+      class TrackingService
+        @work_item: untyped
+
+        @current_user: untyped
+
+        @event: untyped
+
+        @old_associations: untyped
+
+        extend Gitlab::InternalEventsTracking
+
+        include Gitlab::InternalEventsTracking
+
+        include EventActions
+
+        def self.track: (event: untyped, properties: untyped) -> untyped
+
+        def initialize: (work_item: untyped, current_user: untyped, ?event: untyped?, ?old_associations: untyped?) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def event_properties: () -> { user: untyped, namespace: untyped, project: untyped, additional_properties: { label: untyped, property: untyped } }
+
+        def valid_params?: (untyped work_item, untyped current_user, untyped event, untyped old_associations) -> (false | true)
+      end
+    end
+  end
+end

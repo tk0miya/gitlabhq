@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module Partitioning
+      class PartitionMonitoring
+        @gauge_present: untyped
+
+        @gauge_missing: untyped
+
+        @gauge_extra: untyped
+
+        def report_metrics_for_model: (untyped model) -> untyped
+
+        private
+
+        def gauge_present: () -> untyped
+
+        def gauge_missing: () -> untyped
+
+        def gauge_extra: () -> untyped
+      end
+    end
+  end
+end

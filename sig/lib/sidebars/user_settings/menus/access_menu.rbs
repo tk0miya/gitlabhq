@@ -1,0 +1,31 @@
+module Sidebars
+  module UserSettings
+    module Menus
+      class AccessMenu < ::Sidebars::Menu
+        include ::Sidebars::Concerns::RenderIfLoggedIn
+
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "key"
+
+        private
+
+        def password_and_authentication_menu_item: () -> untyped
+
+        def access_tokens_menu_item: () -> untyped
+
+        def ssh_keys_menu_item: () -> untyped
+
+        def gpg_keys_menu_item: () -> untyped
+
+        def applications_menu_item: () -> untyped
+
+        def authentication_log_menu_item: () -> untyped
+
+        def active_sessions_menu_item: () -> untyped
+      end
+    end
+  end
+end

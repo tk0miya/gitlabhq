@@ -1,0 +1,19 @@
+module Releases
+  class CreateEvidenceService
+    @release: untyped
+
+    @pipeline: untyped
+
+    def initialize: (untyped release, ?pipeline: untyped?) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader release: untyped
+
+    attr_reader pipeline: untyped
+
+    def evidence_options: () -> ::Hash[untyped, untyped]
+  end
+end

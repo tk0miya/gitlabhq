@@ -1,0 +1,27 @@
+module Pages
+  class DeploymentsFinder
+    @parent: untyped
+
+    @params: untyped
+
+    attr_reader params: untyped
+
+    def initialize: (untyped parent, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def by_parent: (untyped deployments) -> untyped
+
+    def by_project: (untyped deployments) -> untyped
+
+    def by_namespace: (untyped deployments) -> untyped
+
+    def by_active_status: (untyped deployments) -> untyped
+
+    def find_versioned: (untyped deployments) -> untyped
+
+    def sort: (untyped deployments) -> untyped
+  end
+end

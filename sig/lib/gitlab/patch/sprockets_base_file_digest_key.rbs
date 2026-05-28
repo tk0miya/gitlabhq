@@ -1,0 +1,10 @@
+# This monkey patch prevent cache ballooning when caching tmp/cache/assets/sprockets
+# on the CI. See https://github.com/rails/sprockets/issues/563 and
+# https://github.com/rails/sprockets/compare/3.x...jmreid:no-mtime-for-digest-key.
+module Gitlab
+  module Patch
+    module SprocketsBaseFileDigestKey
+      def file_digest: (untyped path) -> (untyped | nil)
+    end
+  end
+end

@@ -1,0 +1,54 @@
+module Packages
+  class PackageFile < ApplicationRecord
+    include AfterCommitQueue
+
+    include UpdateProjectStatistics
+
+    include FileStoreMounter
+
+    include ObjectStorable
+
+    include Packages::Installable
+
+    include Packages::Destructible
+
+    STORE_COLUMN: :file_store
+
+    INSTALLABLE_STATUSES: ::Array[:default]
+
+    ENCODED_SLASH: "%2F"
+
+    SORTABLE_COLUMNS: ::Array["id" | "file_name" | "created_at"]
+
+    FILE_MD5_MAX_LENGTH: untyped
+
+    FILE_SHA1_MAX_LENGTH: untyped
+
+    FILE_SHA256_MAX_LENGTH: untyped
+
+    def self.most_recent!: () -> untyped
+
+    # Returns the most recent installable package file for each package in the given set,
+    # filtered by Helm channel.
+    #
+    # Uses DISTINCT ON to select only the newest file per package (by package file ID).
+    # Results are ordered by package_id descending.
+    def self.most_recent_for_helm_with_channel: (untyped packages, untyped channel) -> untyped
+
+    def self.installable_statuses: () -> untyped
+
+    def download_path: () -> untyped
+
+    def file_name_for_download: () -> untyped
+
+    private
+
+    def update_size_from_file: () -> untyped
+
+    def execute_move_in_object_storage?: () -> untyped
+
+    def move_in_object_storage: () -> untyped
+
+    def ensure_unique_conan_file_name: () -> (nil | untyped)
+  end
+end

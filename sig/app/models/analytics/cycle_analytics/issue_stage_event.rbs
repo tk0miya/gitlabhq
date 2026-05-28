@@ -1,0 +1,21 @@
+module Analytics
+  module CycleAnalytics
+    class IssueStageEvent < ApplicationRecord
+      include StageEventModel
+
+      def self.project_column: () -> :project_id
+
+      def self.issuable_id_column: () -> :issue_id
+
+      def self.issuable_model: () -> untyped
+
+      def self.select_columns: () -> untyped
+
+      def self.column_list: () -> untyped
+
+      def self.insert_column_list: () -> untyped
+
+      def self.assignees_model: () -> untyped
+    end
+  end
+end

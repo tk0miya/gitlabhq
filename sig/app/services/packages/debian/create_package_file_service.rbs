@@ -1,0 +1,25 @@
+module Packages
+  module Debian
+    class CreatePackageFileService
+      @package: untyped
+
+      @current_user: untyped
+
+      @params: untyped
+
+      def initialize: (package: untyped, current_user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader package: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      def end_of_new_upload?: () -> untyped
+    end
+  end
+end

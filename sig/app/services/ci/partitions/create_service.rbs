@@ -1,0 +1,19 @@
+module Ci
+  module Partitions
+    class CreateService
+      @partition: untyped
+
+      HEADROOM_PARTITIONS: 1
+
+      def initialize: (untyped partition) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      attr_reader partition: untyped
+
+      def headroom_available?: () -> untyped
+    end
+  end
+end

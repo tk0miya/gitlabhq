@@ -1,0 +1,36 @@
+module Resolvers
+  module DesignManagement
+    module Version
+      # Resolver for a DesignAtVersion object given an implicit version context
+      class DesignAtVersionResolver < BaseResolver
+        DesignAtVersionID: untyped
+
+        DesignID: untyped
+
+        include Gitlab::Graphql::Authorize::AuthorizeResource
+
+        def self.single: () -> self
+
+        def resolve: (?design_id: untyped?, ?filename: untyped?, ?design_at_version_id: untyped?) -> (nil | untyped)
+
+        private
+
+        def validate_arguments: (untyped design_id, untyped filename, untyped design_at_version_id) -> (nil | untyped)
+
+        def specific_design_at_version: (untyped id) -> (nil | untyped)
+
+        # Test that the DAV found by ID actually belongs on this version, and
+        # that it is visible at this version.
+        def consistent?: (untyped dav) -> (false | untyped)
+
+        def find: (untyped gid, untyped filename) -> untyped
+
+        def issue: () -> untyped
+
+        def version: () -> untyped
+
+        def make: (untyped design) -> untyped
+      end
+    end
+  end
+end

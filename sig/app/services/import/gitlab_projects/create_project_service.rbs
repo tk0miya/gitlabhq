@@ -1,0 +1,55 @@
+# Creates a new project with an associated project export file to be imported
+# The associated project export file might be associated with different strategies
+# to acquire the file to be imported, the default file_acquisition_strategy
+# is uploading a file (Import::GitlabProjects::FileAcquisitionStrategies::FileUpload)
+module Import
+  module GitlabProjects
+    class CreateProjectService
+      @current_user: untyped
+
+      @params: untyped
+
+      @strategy: untyped
+
+      @project: untyped
+
+      include ActiveModel::Validations
+
+      include ::Services::ReturnServiceResponses
+
+      # Creates a new CreateProjectService.
+      #
+      # @param [User] current_user
+      # @param [Hash] :params
+      # @param [Import::GitlabProjects::FileAcquisitionStrategies::*] :file_acquisition_strategy
+      def initialize: (untyped current_user, params: untyped, ?file_acquisition_strategy: untyped) -> void
+
+      # Creates a project with the strategy parameters
+      #
+      # @return [Services::ServiceResponse]
+      def execute: () -> untyped
+
+      # Cascade the validation to strategy
+      def valid?: () -> untyped
+
+      # Merge with strategy's errors
+      def errors: () -> untyped
+
+      def read_attribute_for_validation: (untyped key) -> untyped
+
+      private
+
+      attr_reader current_user: untyped
+
+      attr_reader params: untyped
+
+      attr_reader strategy: untyped
+
+      def error: (untyped messages) -> untyped
+
+      def project: () -> untyped
+
+      def project_params: () -> untyped
+    end
+  end
+end

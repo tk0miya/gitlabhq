@@ -1,0 +1,11 @@
+module Transitionable
+  extend ActiveSupport::Concern
+
+  attr_accessor transitioning: untyped
+
+  def transitioning?: () -> untyped
+
+  def enable_transitioning: () -> untyped
+
+  def disable_transitioning: () -> untyped
+end

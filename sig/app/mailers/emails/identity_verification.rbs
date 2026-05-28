@@ -1,0 +1,21 @@
+module Emails
+  module IdentityVerification
+    @token: untyped
+
+    @expires_in_minutes: untyped
+
+    @password_link: untyped
+
+    @two_fa_link: untyped
+
+    @account_settings_link: untyped
+
+    @user_secondary_email: untyped
+
+    include Gitlab::Email::SingleRecipientValidator
+
+    def verification_instructions_email: (untyped email, token: untyped) -> untyped
+
+    def verification_instructions_sent_to_secondary_email: (untyped primary_email, untyped secondary_email) -> untyped
+  end
+end

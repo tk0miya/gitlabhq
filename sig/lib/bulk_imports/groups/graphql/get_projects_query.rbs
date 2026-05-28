@@ -1,0 +1,29 @@
+module BulkImports
+  module Groups
+    module Graphql
+      class GetProjectsQuery
+        @context: untyped
+
+        attr_reader context: untyped
+
+        def initialize: (context: untyped) -> void
+
+        def to_s: () -> ::String
+
+        def variables: () -> { full_path: untyped, cursor: untyped, per_page: untyped }
+
+        def base_path: () -> ::Array["data" | "group" | "projects"]
+
+        def data_path: () -> untyped
+
+        def page_info_path: () -> untyped
+
+        private
+
+        def source_version: () -> untyped
+
+        def not_aimed_for_deletion: () -> (nil | "notAimedForDeletion: true, ")
+      end
+    end
+  end
+end

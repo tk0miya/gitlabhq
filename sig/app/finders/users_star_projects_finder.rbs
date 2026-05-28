@@ -1,0 +1,23 @@
+class UsersStarProjectsFinder
+  @params: untyped
+
+  @project: untyped
+
+  @current_user: untyped
+
+  include CustomAttributesFilter
+
+  attr_accessor params: untyped
+
+  def initialize: (untyped project, ?::Hash[untyped, untyped] params, ?current_user: untyped?) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def by_search: (untyped items) -> untyped
+
+  def by_project: (untyped items) -> untyped
+
+  def filter_visible_profiles: (untyped items) -> untyped
+end

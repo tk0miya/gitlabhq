@@ -1,0 +1,17 @@
+module Resolvers
+  module Projects
+    class JiraProjectsResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (?name: untyped?, **untyped args) -> untyped
+
+      private
+
+      alias jira_integration object
+
+      def project: () -> untyped
+
+      def jira_projects: (name: untyped) -> untyped
+    end
+  end
+end

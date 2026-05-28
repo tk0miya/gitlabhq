@@ -1,0 +1,73 @@
+# This is the CI Linter component that runs the syntax validations
+# while parsing the YAML config into a data structure that is
+# then presented to the caller as result object.
+# After syntax validations (done by Ci::Config), this component also
+# runs logical validation on the built data structure.
+module Gitlab
+  module Ci
+    class YamlProcessor
+      @config_content: untyped
+
+      @opts: untyped
+
+      @ci_config: untyped
+
+      @stages: untyped
+
+      @jobs: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ValidationError: untyped
+
+      def initialize: (untyped config_content, ?::Hash[untyped, untyped] opts) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader opts: untyped
+
+      def ci_config_opts: () -> untyped
+
+      def project: () -> untyped
+
+      def sha: () -> untyped
+
+      def verify_project_sha?: () -> untyped
+
+      def run_logical_validations!: () -> untyped
+
+      # Overridden in EE
+      def validate_job!: (untyped name, untyped job) -> untyped
+
+      def validate_job_stage!: (untyped name, untyped job) -> (nil | untyped)
+
+      def validate_job_dependencies!: (untyped name, untyped job) -> (nil | untyped)
+
+      def validate_dynamic_child_pipeline_dependencies!: (untyped name, untyped job) -> (nil | untyped)
+
+      def validate_job_needs!: (untyped name, untyped job) -> untyped
+
+      def validate_needs_specification!: (untyped name, untyped needs) -> (nil | untyped)
+
+      def validate_job_dependency!: (untyped name, untyped dependency, ?::String dependency_type, ?optional: bool) -> (nil | untyped)
+
+      def stage_index: (untyped name) -> untyped
+
+      def validate_job_environment!: (untyped name, untyped job) -> (nil | untyped)
+
+      def validate_on_stop_job!: (untyped name, untyped environment, untyped on_stop) -> (nil | untyped)
+
+      def validate_job_pages_publish!: (untyped name, untyped job) -> (nil | untyped)
+
+      def check_circular_dependencies: () -> untyped
+
+      def error!: (untyped message) -> untyped
+
+      def verify_project_sha!: () -> (nil | untyped)
+
+      def project_ref_contains_sha?: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module ChatNames
+  class FindUserService
+    @team_id: untyped
+
+    @user_id: untyped
+
+    def initialize: (untyped team_id, untyped user_id) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader team_id: untyped
+
+    attr_reader user_id: untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def find_chat_name: () -> untyped
+
+    def record_chat_activity: (untyped chat_name) -> untyped
+  end
+end

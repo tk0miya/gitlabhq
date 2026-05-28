@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+class DraftNoteEntity < Grape::Entity
+  include RequestAwareEntity
+
+  private
+
+  def current_user: () -> untyped
+end

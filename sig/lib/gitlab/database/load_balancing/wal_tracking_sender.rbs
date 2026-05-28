@@ -1,0 +1,15 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      module WalTrackingSender
+        def wal_locations_by_db_name: () -> untyped
+
+        def wal_location_for: (untyped load_balancer) -> (nil | untyped)
+
+        def wal_location_sources_by_db_name: () -> untyped
+
+        def wal_location_source: (untyped lb) -> untyped
+      end
+    end
+  end
+end

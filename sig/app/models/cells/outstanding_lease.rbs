@@ -1,0 +1,11 @@
+module Cells
+  class OutstandingLease < ApplicationRecord
+    def self.claim_service: () -> untyped
+
+    def self.create_from_request!: (create_records: untyped, destroy_records: untyped, ?deadline: untyped?) -> untyped
+
+    def send_commit_update!: (?deadline: untyped?) -> untyped
+
+    def send_rollback_update!: (?deadline: untyped?) -> (nil | untyped)
+  end
+end

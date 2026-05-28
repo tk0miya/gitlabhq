@@ -1,0 +1,43 @@
+module Gitlab
+  class AvatarCache
+    # Increment this if a breaking change requires
+    # immediate cache expiry of all avatar caches.
+    #
+    # @return [Integer]
+    VERSION: 2
+
+    # @return [Symbol]
+    BASE_KEY: :avatar_cache
+
+    # @return [ActiveSupport::Duration]
+    DEFAULT_EXPIRY: untyped
+
+    # Look up cached avatar data by email address.
+    # This accepts a block to provide the value to be
+    # cached in the event nothing is found.
+    #
+    # Multiple calls in the same request will be served from the
+    # request store.
+    #
+    # @param email [String]
+    # @param additional_keys [*Object] all must respond to `#to_s`
+    # @param expires_in [ActiveSupport::Duration, Integer]
+    # @yield [email, *additional_keys] yields the supplied params back to the block
+    # @return [String]
+    def self.by_email: (untyped email, *untyped additional_keys, ?expires_in: untyped) { (untyped, untyped) -> untyped } -> untyped
+
+    # Remove one or more emails from the cache
+    #
+    # @param emails [String] one or more emails to delete
+    # @return [Integer] the number of keys deleted
+    def self.delete_by_email: (*untyped emails) -> (0 | untyped)
+
+    private
+
+    # @param email [String]
+    # @return [String]
+    def self.email_key: (untyped email) -> ::String
+
+    def self.with: () { (?) -> untyped } -> untyped
+  end
+end

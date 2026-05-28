@@ -1,0 +1,39 @@
+module Analytics
+  module CycleAnalytics
+    module Stages
+      class BaseService
+        @parent: untyped
+
+        @current_user: untyped
+
+        @params: untyped
+
+        @value_stream: untyped
+
+        include Gitlab::Allowable
+
+        DEFAULT_VALUE_STREAM_NAME: "default"
+
+        def initialize: (parent: untyped, current_user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader parent: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader params: untyped
+
+        def success: (untyped stage, ?::Symbol http_status) -> untyped
+
+        def forbidden: () -> untyped
+
+        def build_default_stages: () -> untyped
+
+        def value_stream: () -> untyped
+      end
+    end
+  end
+end

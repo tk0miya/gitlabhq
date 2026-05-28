@@ -1,0 +1,49 @@
+module Gitlab
+  module InternalEvents
+    SNOWPLOW_EMITTER_BUFFER_SIZE: 100
+
+    DEFAULT_BUFFER_SIZE: 1
+
+    KEY_EXPIRY_LENGTH: untyped
+
+    extend Gitlab::Tracking::Helpers
+
+    extend Gitlab::Utils::StrongMemoize
+
+    extend Gitlab::UsageDataCounters::RedisCounter
+
+    extend Gitlab::UsageDataCounters::RedisSum
+
+    extend Gitlab::UsageDataCounters::RedisHashCounter
+
+    def self.track_event: (untyped event_name, ?category: untyped?, ?additional_properties: ::Hash[untyped, untyped], **untyped kwargs) -> untyped
+
+    private
+
+    def self.track_analytics_event: (untyped event_name, untyped send_snowplow_event, ?category: untyped?, ?additional_properties: ::Hash[untyped, untyped], **untyped kwargs) -> (nil | untyped)
+
+    def self.update_redis_values: (untyped event_name, untyped additional_properties, untyped kwargs) -> (nil | untyped)
+
+    def self.custom_additional_properties: (untyped additional_properties) -> untyped
+
+    def self.update_total_counter: (untyped event_selection_rule) -> untyped
+
+    def self.update_sums: (untyped event_selection_rule, untyped properties) -> (nil | untyped)
+
+    def self.update_unique_hash_totals_counter: (untyped event_selection_rule, untyped properties) -> (nil | untyped)
+
+    def self.update_unique_counter: (untyped event_selection_rule, untyped properties) -> (nil | untyped)
+
+    def self.trigger_snowplow_event: (untyped event_name, untyped category, untyped base_additional_properties, untyped extra, untyped kwargs) -> untyped
+
+    def self.track_struct_event: (untyped event_name, untyped category, contexts: untyped, additional_properties: untyped) -> untyped
+
+    def self.send_application_instrumentation_event: (untyped event_name, untyped additional_properties, untyped kwargs) -> (nil | untyped)
+
+    def self.gitlab_sdk_client: () -> nil
+
+    def self.base_additional_properties_keys: () -> untyped
+
+    def self.extract_additional_properties!: (untyped event_name, untyped additional_properties, untyped kwargs) -> (nil | untyped)
+  end
+end

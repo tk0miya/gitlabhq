@@ -1,0 +1,17 @@
+module Events
+  class DestroyService
+    @project: untyped
+
+    BATCH_SIZE: 50
+
+    def initialize: (untyped project) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    def delete_events_in_batches: () -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+module Gitlab
+  module BitbucketImport
+    module Stage
+      class ImportRepositoryWorker
+        include StageMethods
+
+        MAX_IID_CACHE_KEY: "bitbucket-importer/max-iid/%{project_id}/%{usage}"
+
+        private
+
+        def import: (untyped project) -> untyped
+
+        def preallocate_iids!: (untyped project) -> (nil | untyped)
+
+        def fetch_last_iid: (untyped resource_type, untyped project) { () -> untyped } -> untyped
+
+        def log_iid_fetch_error: (untyped resource_type, untyped project, **untyped extra) -> untyped
+
+        def cache_max_iid: (untyped project, untyped usage, untyped max_iid) -> untyped
+
+        def iid_allocated?: (untyped project, untyped usage) -> untyped
+
+        def importer_class: () -> untyped
+
+        def abort_on_failure: () -> true
+      end
+    end
+  end
+end

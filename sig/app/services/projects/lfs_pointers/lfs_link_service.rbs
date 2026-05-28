@@ -1,0 +1,25 @@
+# Given a list of oids, this services links the existent Lfs Objects to the project
+module Projects
+  module LfsPointers
+    class LfsLinkService < BaseService
+      TooManyOidsError: untyped
+
+      MAX_OIDS: untyped
+
+      def self.batch_size: () -> untyped
+
+      # Accept an array of oids to link
+      #
+      # Returns an array with the oid of the existent lfs objects
+      def execute: (untyped oids) ?{ () -> untyped } -> (::Array[untyped] | untyped)
+
+      private
+
+      def validate!: (untyped oids) -> (nil | untyped)
+
+      def link_existing_lfs_objects: (untyped oids) -> untyped
+
+      def log_lfs_link_results: (untyped lfs_objects_linked_count, untyped iterations) -> untyped
+    end
+  end
+end

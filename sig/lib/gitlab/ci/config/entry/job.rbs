@@ -1,0 +1,46 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a concrete CI/CD job.
+        #
+        class Job < ::Gitlab::Config::Entry::Node
+          include ::Gitlab::Ci::Config::Entry::Processable
+
+          ALLOWED_WHEN: ::Array["on_success" | "on_failure" | "always" | "manual" | "delayed"]
+
+          ALLOWED_KEYS: ::Array[:tags | :script | :image | :services | :start_in | :artifacts | :cache | :dependencies | :before_script | :after_script | :hooks | :coverage | :retry | :parallel | :timeout | :inputs | :release | :id_tokens | :publish | :pages | :manual_confirmation | :run]
+
+          PUBLIC_DIR: "public"
+
+          def self.matching?: (untyped name, untyped config) -> untyped
+
+          def self.visible?: () -> true
+
+          def delayed?: () -> untyped
+
+          def value: () -> untyped
+
+          def parsed_timeout: () -> (nil | untyped)
+
+          def ignored?: () -> untyped
+
+          def pages_job?: () -> (true | untyped)
+
+          def artifacts_with_pages_publish_path: () -> untyped
+
+          def self.allowed_keys: () -> untyped
+
+          private
+
+          def allow_failure_criteria: () -> (untyped | nil)
+
+          def static_allow_failure: () -> (false | untyped)
+
+          def pages_publish_path: () -> untyped
+        end
+      end
+    end
+  end
+end

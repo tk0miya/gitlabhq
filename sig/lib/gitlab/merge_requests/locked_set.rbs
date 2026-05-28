@@ -1,0 +1,21 @@
+# This class is responsible for adding, removing and listing items in a Redis
+# set that contains IDs of locked MRs. This set will be used to query the MRs
+# that are possibly stuck in locked state and will be unstuck when the
+# `StuckMergeJobsWorker` gets scheduled.
+module Gitlab
+  module MergeRequests
+    class LockedSet
+      KEY: "locked_merge_requests"
+
+      def self.add: (untyped item_or_collection, ?rescue_connection_error: bool) -> untyped
+
+      def self.remove: (untyped item_or_collection) -> untyped
+
+      def self.each_batch: (untyped batch_size) { (untyped) -> untyped } -> untyped
+
+      def self.all: () -> untyped
+
+      def self.with: (?rescue_connection_error: bool) { (?) -> untyped } -> untyped
+    end
+  end
+end

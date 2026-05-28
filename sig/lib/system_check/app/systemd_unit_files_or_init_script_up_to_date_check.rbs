@@ -1,0 +1,25 @@
+module SystemCheck
+  module App
+    class SystemdUnitFilesOrInitScriptUpToDateCheck < SystemCheck::BaseCheck
+      SCRIPT_PATH: "/etc/init.d/gitlab"
+
+      UNIT_PATHS: ::Array["/usr/local/lib/systemd/system/gitlab-gitaly.service" | "/usr/local/lib/systemd/system/gitlab-mailroom.service" | "/usr/local/lib/systemd/system/gitlab-puma.service" | "/usr/local/lib/systemd/system/gitlab-sidekiq.service" | "/usr/local/lib/systemd/system/gitlab.slice" | "/usr/local/lib/systemd/system/gitlab.target" | "/usr/local/lib/systemd/system/gitlab-workhorse.service"]
+
+      def skip?: () -> (true | untyped)
+
+      def check?: () -> untyped
+
+      def show_error: () -> untyped
+
+      private
+
+      def init_file_exists?: () -> untyped
+
+      def unit_files_exist?: () -> untyped
+
+      def init_file_up_to_date?: () -> untyped
+
+      def unit_files_up_to_date?: () -> untyped
+    end
+  end
+end

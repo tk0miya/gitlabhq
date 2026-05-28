@@ -1,0 +1,25 @@
+module Gitlab
+  module HookData
+    class BaseBuilder
+      @object: untyped
+
+      attr_accessor object: untyped
+
+      MARKDOWN_SIMPLE_IMAGE: ::String
+
+      def initialize: (untyped object) -> void
+
+      private
+
+      def event_data: (untyped event) -> { event_name: untyped }
+
+      def timestamps_data: () -> { created_at: untyped, updated_at: untyped }
+
+      def absolute_image_urls: (untyped markdown_text) -> untyped
+
+      def uploads_prefix: () -> (::String | "")
+
+      def project: () -> (nil | untyped)
+    end
+  end
+end

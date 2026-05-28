@@ -1,0 +1,9 @@
+module Gitlab
+  module Diff
+    class InlineDiffMarkdownMarker < Gitlab::StringRangeMarker
+      MARKDOWN_SYMBOLS: { addition: "+", deletion: "-" }
+
+      def mark: (untyped line_inline_diffs) -> untyped
+    end
+  end
+end

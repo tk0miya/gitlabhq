@@ -1,0 +1,29 @@
+module Ml
+  class CreateModelService
+    @project: untyped
+
+    @name: untyped
+
+    @description: untyped
+
+    @metadata: untyped
+
+    @user: untyped
+
+    def initialize: (untyped project, untyped name, ?untyped? user, ?untyped? description, ?untyped metadata) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def success: (untyped model) -> untyped
+
+    def error: (untyped reason) -> untyped
+
+    def add_metadata: (untyped model, untyped metadata_key_value) -> (nil | untyped)
+
+    def experiment_name: () -> untyped
+
+    def audit_creation_event: (untyped model) -> untyped
+  end
+end

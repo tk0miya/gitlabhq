@@ -1,0 +1,17 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class Preparing < Status::Extended
+          #
+          # TODO: image is shared with 'pending'
+          # until we get a dedicated one
+          #
+          def illustration: () -> { image: "illustrations/empty-state/empty-job-not-triggered-md.svg", size: "", title: untyped, content: untyped }
+
+          def self.matches?: (untyped build, untyped _) -> untyped
+        end
+      end
+    end
+  end
+end

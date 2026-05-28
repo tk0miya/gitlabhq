@@ -1,0 +1,19 @@
+module Mutations
+  module WorkItems
+    module CSV
+      class Import < BaseMutation
+        include FindsProject
+
+        EXTENSION_ALLOWLIST: untyped
+
+        def resolve: (untyped args) -> ({ message: nil, errors: ::Array[untyped] } | { message: untyped, errors: ::Array[untyped] })
+
+        private
+
+        def file_is_valid?: (untyped file) -> (false | untyped)
+
+        def invalid_file_message: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,49 @@
+module Projects
+  class InactiveProjectsDeletionCronWorker
+    @start_time: untyped
+
+    @admin_bots: untyped
+
+    include ApplicationWorker
+
+    include Gitlab::Utils::StrongMemoize
+
+    include CronjobQueue
+
+    # This cron worker is executed at an interval of 10 minutes.
+    # Maximum run time is kept as 4 minutes to avoid breaching maximum allowed execution latency of 5 minutes.
+    MAX_RUN_TIME: untyped
+
+    LAST_PROCESSED_INACTIVE_PROJECT_REDIS_KEY: "last_processed_inactive_project_id"
+
+    TimeoutError: untyped
+
+    def perform: () -> untyped
+
+    private
+
+    def grace_period_is_over?: (untyped deletion_warning_email_sent_on) -> untyped
+
+    def grace_months_after_deletion_notification: () -> untyped
+
+    def deletion_date: () -> untyped
+
+    def delete_project: (untyped project, untyped user) -> untyped
+
+    def send_notification: (untyped project) -> untyped
+
+    def log_audit_event: (untyped _project, untyped _user) -> nil
+
+    def over_time?: () -> untyped
+
+    def save_last_processed_project_id: (untyped project_id) -> untyped
+
+    def last_processed_project_id: () -> untyped
+
+    def reset_last_processed_project_id: () -> untyped
+
+    def with_redis: () { (?) -> untyped } -> untyped
+
+    def admin_bot_for_organization_id: (untyped organization_id) -> untyped
+  end
+end

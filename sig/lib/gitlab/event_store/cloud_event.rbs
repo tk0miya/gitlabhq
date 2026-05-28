@@ -1,0 +1,45 @@
+module Gitlab
+  module EventStore
+    class CloudEvent < Event
+      extend ::Gitlab::Utils::Override
+
+      include Gitlab::Utils::StrongMemoize
+
+      include Gitlab::ClassAttributes
+
+      def self.event_category: (untyped value) -> untyped
+
+      def self.event_type: (untyped value) -> untyped
+
+      def self.get_event_category: () -> untyped
+
+      def self.get_event_type: () -> untyped
+
+      def self.build_cloud_event: (source: untyped, subject: untyped, current_user: untyped, organization: untyped, ?event_data: ::Hash[untyped, untyped]) -> untyped
+
+      def current_user: () -> untyped
+
+      def id: () -> untyped
+
+      def organization: () -> untyped
+
+      def event_data: () -> untyped
+
+      def event_category: () -> untyped
+
+      def event_type: () -> untyped
+
+      def schema: () -> { "type" => "object", "properties" => { "specversion" => { "type" => "string" }, "type" => { "type" => "string" }, "source" => { "type" => "string" }, "id" => { "type" => "string" }, "gitlab_user_id" => { "type" => "number" }, "gitlab_user_username" => { "type" => "string" }, "gitlab_organization_id" => { "type" => "number" }, "time" => { "type" => "string", "format" => "date-time" }, "datacontenttype" => { "type" => "string" }, "dataschema" => { "type" => "string", "format" => "uri" }, "subject" => { "type" => "string" }, "data" => { "type" => "object" } }, "required" => untyped }
+
+      # This is to be overridden by CloudEvent classes.
+      # It's meant for the `data` attribute of the CloudEvent spec
+      def data_schema: () -> untyped
+
+      private
+
+      def validate_data!: (untyped data) -> untyped
+
+      def validate_event_specific_data!: (untyped data) -> untyped
+    end
+  end
+end

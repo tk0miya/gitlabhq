@@ -1,0 +1,163 @@
+module Gitlab
+  module ImportExport
+    module Base
+      class RelationFactory
+        @relation_sym: untyped
+
+        @relation_name: untyped
+
+        @relation_index: untyped
+
+        @relation_hash: untyped
+
+        @members_mapper: untyped
+
+        @object_builder: untyped
+
+        @user: untyped
+
+        @importable: untyped
+
+        @import_source: untyped
+
+        @imported_object_retries: untyped
+
+        @original_user: untyped
+
+        @original_users_map: untyped
+
+        @rewrite_mentions: untyped
+
+        @relation_class: untyped
+
+        @attributes_permitter: untyped
+
+        # Only find existing records to avoid mapping tables such as milestones
+        # Otherwise always create the record, skipping the extra SELECT clause.
+        @existing_or_new_object: untyped
+
+        @existing_object: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        include Import::UsernameMentionRewriter
+
+        IMPORTED_OBJECT_MAX_RETRIES: 5
+
+        OVERRIDES: { user_contributions: :user, merge_schedule: "MergeRequests::MergeSchedule", merge_data: "MergeRequests::MergeData" }
+
+        EXISTING_OBJECT_RELATIONS: ::Array[untyped]
+
+        # This represents all relations that have unique key on `project_id` or `group_id`
+        UNIQUE_RELATIONS: ::Array[untyped]
+
+        USER_REFERENCES: ::Array["author_id" | "assignee_id" | "updated_by_id" | "merged_by_id" | "latest_closed_by_id" | "user_id" | "created_by_id" | "last_edited_by_id" | "merge_user_id" | "resolved_by_id" | "closed_by_id" | "owner_id"]
+
+        TOKEN_RESET_MODELS: ::Array[:Project | :Namespace | :Group | :"Ci::Trigger" | :"Ci::Build" | :"Ci::Runner" | :ProjectHook | :"ErrorTracking::ProjectErrorTrackingSetting"]
+
+        attr_reader relation_name: untyped
+
+        attr_reader relation_hash: untyped
+
+        attr_reader importable: untyped
+
+        def self.create: (*untyped args, **untyped kwargs) -> untyped
+
+        def self.relation_class: (untyped relation_name) -> untyped
+
+        # rubocop:disable Metrics/ParameterLists -- Keyword arguments are not adding complexity to initializer
+        def initialize: (relation_sym: untyped, relation_index: untyped, relation_hash: untyped, members_mapper: untyped, object_builder: untyped, user: untyped, importable: untyped, import_source: untyped, ?excluded_keys: untyped, ?original_users_map: untyped?, ?rewrite_mentions: bool) -> void
+
+        # Creates an object from an actual model with name "relation_sym" with params from
+        # the relation_hash, updating references with new object IDs, mapping users using
+        # the "members_mapper" object, also updating notes if required.
+        def create: () -> (untyped | nil)
+
+        def self.overrides: () -> untyped
+
+        def self.existing_object_relations: () -> untyped
+
+        private
+
+        def invalid_relation?: () -> false
+
+        def predefined_relation?: () -> untyped
+
+        def author_relation?: () -> untyped
+
+        def setup_models: () -> untyped
+
+        def unique_relations: () -> untyped
+
+        def setup_base_models: () -> untyped
+
+        def update_user_references: () -> untyped
+
+        # When an assignee (or any other listed association) did not exist in the members mapper, the importer is
+        # assigned. We only need to assign each user once.
+        def remove_duplicate_assignees: () -> untyped
+
+        def generate_imported_object: () -> untyped
+
+        def reset_tokens!: () -> (nil | untyped)
+
+        def remove_encrypted_attributes!: () -> (nil | untyped)
+
+        def relation_class: () -> untyped
+
+        def importable_column_name: () -> untyped
+
+        def importable_class_name: () -> untyped
+
+        def imported_object: () -> untyped
+
+        def parsed_relation_hash: () -> untyped
+
+        def attributes_permitter: () -> untyped
+
+        def use_attributes_permitter?: () -> true
+
+        def existing_or_new_object: () -> untyped
+
+        def attribute_hash_for: (untyped attributes) -> untyped
+
+        def existing_object: () -> untyped
+
+        def unique_relation_object: () -> untyped
+
+        def find_or_create_object!: () -> untyped
+
+        def setup_note: () -> untyped
+
+        def setup_merge_request_note: () -> (nil | untyped)
+
+        def remove_compare_link: (untyped content) -> untyped
+
+        def setup_diff_note: () -> (nil | untyped)
+
+        def update_diff_note_position: (untyped position) -> (nil | untyped)
+
+        # Sets the author for a note. If the user importing the project
+        # has admin access, an actual mapping with new project members
+        # will be used. Otherwise, a note stating the original author name
+        # is left.
+        def set_note_author: () -> untyped
+
+        def missing_author_note: (untyped updated_at, untyped author_name) -> ::String
+
+        def existing_object?: () -> untyped
+
+        def unique_relation?: () -> (nil | untyped)
+
+        def has_unique_index_on_importable_fk?: () -> untyped
+
+        # Avoid unnecessary DB requests
+        def cached_has_unique_index_on_importable_fk: () -> untyped
+
+        def uses_importable_fk_as_primary_key?: () -> untyped
+
+        def importable_foreign_key: () -> untyped
+      end
+    end
+  end
+end

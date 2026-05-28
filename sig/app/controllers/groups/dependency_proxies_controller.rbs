@@ -1,0 +1,13 @@
+module Groups
+  class DependencyProxiesController < Groups::ApplicationController
+    @dependency_proxy: untyped
+
+    include ::DependencyProxy::GroupAccess
+
+    private
+
+    def dependency_proxy: () -> untyped
+
+    def verify_dependency_proxy_enabled!: () -> (untyped | nil)
+  end
+end

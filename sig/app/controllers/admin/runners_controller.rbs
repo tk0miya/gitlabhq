@@ -1,0 +1,41 @@
+class Admin::RunnersController < Admin::ApplicationController
+  @runner: untyped
+
+  @projects: untyped
+
+  include RunnerSetupScripts
+
+  TAGS_LIMIT: 20
+
+  def index: () -> nil
+
+  def show: () -> nil
+
+  def edit: () -> untyped
+
+  def new: () -> nil
+
+  def register: () -> (untyped | nil)
+
+  def update: () -> untyped
+
+  def tag_list: () -> untyped
+
+  def runner_setup_scripts: () -> untyped
+
+  private
+
+  def runner: () -> untyped
+
+  def runner_params: () -> untyped
+
+  def permitted_attrs: () -> untyped
+
+  def assign_projects: () -> untyped
+
+  def page_params: () -> untyped
+
+  def search_params: () -> untyped
+
+  def ci_runner_finder_params: () -> untyped
+end

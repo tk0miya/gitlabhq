@@ -1,0 +1,13 @@
+module ProtectedRef
+  extend ActiveSupport::Concern
+
+  include Gitlab::Utils::StrongMemoize
+
+  include Importable
+
+  def commit: () -> untyped
+
+  private
+
+  def ref_matcher: () -> untyped
+end

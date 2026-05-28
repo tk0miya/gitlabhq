@@ -1,0 +1,5 @@
+class MergeRequests::ResolveTodosWorker
+  include ApplicationWorker
+
+  def perform: (untyped merge_request_id, untyped user_id) -> (nil | untyped)
+end

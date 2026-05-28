@@ -1,0 +1,27 @@
+module Gitlab
+  module Repositories
+    class WikiRepository < Gitlab::Repositories::RepoType
+      include Singleton
+
+      extend Gitlab::Utils::Override
+
+      def name: () -> :wiki
+
+      def suffix: () -> :wiki
+
+      def access_checker_class: () -> untyped
+
+      def guest_read_ability: () -> :download_wiki_code
+
+      def container_class: () -> untyped
+
+      def project_for: (untyped wiki) -> untyped
+
+      private
+
+      def repository_resolver: (untyped container) -> untyped
+
+      def check_container: (untyped container) -> nil
+    end
+  end
+end

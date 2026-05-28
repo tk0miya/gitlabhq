@@ -1,0 +1,15 @@
+module Gitlab
+  module Auth
+    module Crowd
+      class Authentication < Gitlab::Auth::OAuth::Authentication
+        def login: (untyped login, untyped password) -> (nil | untyped)
+
+        private
+
+        def config: () -> untyped
+
+        def user_info_from_authentication: (untyped login, untyped password) -> untyped
+      end
+    end
+  end
+end

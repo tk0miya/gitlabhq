@@ -1,0 +1,43 @@
+module Gitlab
+  module GithubGistsImport
+    module Importer
+      class GistsImporter
+        @user: untyped
+
+        @client: untyped
+
+        @already_imported_cache_key: untyped
+
+        attr_reader user: untyped
+
+        attr_reader client: untyped
+
+        attr_reader already_imported_cache_key: untyped
+
+        ALREADY_IMPORTED_CACHE_KEY: "github-gists-importer/already-imported/%{user}"
+
+        RESULT_CONTEXT: untyped
+
+        def initialize: (untyped user, untyped token) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        def spread_parallel_import: () -> untyped
+
+        def fetch_gists_to_import: () -> untyped
+
+        def gists_from: (untyped page) -> untyped
+
+        def schedule_bulk_perform: (untyped worker_arguments) -> untyped
+
+        def already_imported?: (untyped gist) -> untyped
+
+        def mark_as_imported: (untyped gist) -> untyped
+
+        def expire_already_imported_cache!: () -> untyped
+      end
+    end
+  end
+end

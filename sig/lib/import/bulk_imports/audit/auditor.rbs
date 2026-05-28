@@ -1,0 +1,33 @@
+module Import
+  module BulkImports
+    module Audit
+      class Auditor
+        @event_name: untyped
+
+        @event_message: untyped
+
+        @current_user: untyped
+
+        @scope: untyped
+
+        attr_reader event_name: untyped
+
+        attr_reader event_message: untyped
+
+        attr_reader current_user: untyped
+
+        attr_reader scope: untyped
+
+        def initialize: (event_name: untyped, event_message: untyped, current_user: untyped, scope: untyped) -> void
+
+        def execute: () -> (nil | untyped)
+
+        private
+
+        def silent_admin_export?: () -> untyped
+
+        def export_event?: () -> untyped
+      end
+    end
+  end
+end

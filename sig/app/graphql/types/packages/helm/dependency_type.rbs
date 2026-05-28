@@ -1,0 +1,11 @@
+module Types
+  module Packages
+    module Helm
+      # rubocop: disable Graphql/AuthorizeTypes
+      class DependencyType < BaseObject
+        # field :alias` conflicts with a built-in method
+        def resolve_alias: () -> untyped
+      end
+    end
+  end
+end

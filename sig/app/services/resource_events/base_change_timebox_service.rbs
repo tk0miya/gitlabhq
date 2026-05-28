@@ -1,0 +1,23 @@
+module ResourceEvents
+  class BaseChangeTimeboxService
+    @resource: untyped
+
+    @user: untyped
+
+    attr_reader resource: untyped
+
+    attr_reader user: untyped
+
+    def initialize: (untyped resource, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def track_event: () -> nil
+
+    def create_event: () -> untyped
+
+    def build_resource_args: () -> ::Hash[:user_id | :created_at | untyped, untyped]
+  end
+end

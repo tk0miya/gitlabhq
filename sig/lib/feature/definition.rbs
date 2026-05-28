@@ -1,0 +1,68 @@
+module Feature
+  class Definition
+    self.@paths: untyped
+
+    # We lazily load all definitions
+    # The hot reloading might request a feature flag
+    # before we can properly call `load_all!`
+    self.@definitions: untyped
+
+    @path: untyped
+
+    @attributes: untyped
+
+    include ::Feature::Shared
+
+    attr_reader path: untyped
+
+    attr_reader attributes: untyped
+
+    VALID_FEATURE_NAME: ::Regexp
+
+    def initialize: (untyped path, ?::Hash[untyped, untyped] opts) -> void
+
+    def key: () -> untyped
+
+    def validate!: () -> untyped
+
+    def validate_default_enabled!: () -> untyped
+
+    def valid_usage!: (type_in_code: untyped) -> (nil | untyped)
+
+    def to_h: () -> untyped
+
+    def for_upcoming_milestone?: () -> (false | untyped)
+
+    def force_log_state_changes?: () -> untyped
+
+    def self.paths: () -> untyped
+
+    def self.definitions: () -> untyped
+
+    def self.get: (untyped key) -> untyped
+
+    def self.reload!: () -> untyped
+
+    def self.has_definition?: (untyped key) -> untyped
+
+    def self.log_states?: (untyped key) -> (false | untyped)
+
+    def self.valid_usage!: (untyped key, type: untyped) -> (untyped | untyped | untyped | nil | untyped)
+
+    def self.default_enabled?: (untyped key, ?default_enabled_if_undefined: untyped?) -> (untyped | untyped | false)
+
+    def self.register_hot_reloader!: () -> untyped
+
+    private
+
+    def self.load_all!: () -> untyped
+
+    def self.load_from_file: (untyped path) -> untyped
+
+    def self.load_all_from_path!: (untyped definitions, untyped glob_path) -> untyped
+
+    def self.reload_files: () -> ::Array[untyped]
+
+    def self.reload_directories: () -> untyped
+  end
+end

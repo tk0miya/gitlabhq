@@ -1,0 +1,55 @@
+module Packages
+  module Helm
+    class ProcessFileService
+      @channel: untyped
+
+      @package_file: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      ExtractionError: untyped
+
+      ProtectedPackageError: untyped
+
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      def initialize: (untyped channel, untyped package_file) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader channel: untyped
+
+      attr_reader package_file: untyped
+
+      def package_protected?: () -> untyped
+
+      def rename_package_and_set_version: () -> untyped
+
+      def rename_package_file_and_set_metadata: () -> untyped
+
+      def cleanup_temp_package: () -> (untyped | nil)
+
+      def temp_package: () -> untyped
+
+      def package: () -> untyped
+
+      def metadata: () -> untyped
+
+      def chart_name: () -> untyped
+
+      def chart_version: () -> untyped
+
+      def file_name: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+    end
+  end
+end

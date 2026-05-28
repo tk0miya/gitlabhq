@@ -1,0 +1,16 @@
+module Gitlab
+  module BackgroundMigration
+    # Set `project_settings.legacy_open_source_license_available` to false for inactive, public projects
+    class DisableLegacyOpenSourceLicenseForInactivePublicProjects < ::Gitlab::BackgroundMigration::BatchedMigrationJob
+      PUBLIC: 20
+
+      LAST_ACTIVITY_DATE: "2021-07-01"
+
+      # Migration only version of `project_settings` table
+      class ProjectSetting < ApplicationRecord
+      end
+
+      def perform: () -> untyped
+    end
+  end
+end

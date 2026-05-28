@@ -1,0 +1,13 @@
+module Gitlab
+  module Ci
+    module Status
+      module Pipeline
+        class Factory < Status::Factory
+          def self.extended_statuses: () -> ::Array[::Array[untyped]]
+
+          def self.common_helpers: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,24 @@
+module HasUserType
+  extend ActiveSupport::Concern
+
+  USER_TYPES: untyped
+
+  BOT_USER_TYPES: ::Array["alert_bot" | "project_bot" | "support_bot" | "visual_review_bot" | "security_bot" | "automation_bot" | "security_policy_bot" | "admin_bot" | "service_account" | "duo_code_review_bot"]
+
+  # `service_account` allows instance/namespaces to configure a user for external integrations/automations
+  # `service_user` is an internal, `gitlab-com`-specific user type for integrations like suggested reviewers
+  # Changes to these types might have billing implications, https://docs.gitlab.com/ee/subscriptions/gitlab_com/#billable-users
+  NON_INTERNAL_USER_TYPES: ::Array["human" | "project_bot" | "service_user" | "service_account"]
+
+  INTERNAL_USER_TYPES: untyped
+
+  def bot?: () -> untyped
+
+  def internal?: () -> untyped
+
+  def redacted_name: (untyped viewing_user) -> untyped
+
+  def resource_bot_resource: () -> (nil | untyped)
+
+  def resource_bot_owners_and_maintainers: () -> (::Array[untyped] | untyped)
+end

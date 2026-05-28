@@ -1,0 +1,13 @@
+module Resolvers
+  module Clusters
+    class AgentsResolver < BaseResolver
+      include LooksAhead
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def preloads: () -> { activity_events: { activity_events: ::Array[{ user: ::Array[:user_detail | :user_preference] } | { agent_token: :agent }] }, tokens: :active_agent_tokens }
+    end
+  end
+end

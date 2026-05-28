@@ -1,0 +1,32 @@
+module MergeRequests
+  # PostMergeService class
+  #
+  # Mark existing merge request as merged
+  # and execute all hooks and notifications
+  #
+  class PostMergeService < MergeRequests::BaseService
+    include RemovesRefs
+
+    MAX_RETARGET_MERGE_REQUESTS: 4
+
+    BATCH_SIZE: 100
+
+    def execute: (untyped merge_request, ?untyped? source) -> (nil | untyped)
+
+    def create_note: (untyped merge_request, untyped source) -> untyped
+
+    private
+
+    def close_issues: (untyped merge_request) -> (nil | untyped)
+
+    def close_issue: (untyped issue, untyped merge_request, ?bool skip_authorization, ?delay: ::Integer) -> (nil | untyped | untyped)
+
+    def delete_non_latest_diffs: (untyped merge_request) -> untyped
+
+    def create_merge_event: (untyped merge_request, untyped current_user) -> untyped
+
+    def create_event: (untyped merge_request) -> untyped
+
+    def cancel_auto_merges_targeting_source_branch: (untyped merge_request) -> (nil | untyped)
+  end
+end

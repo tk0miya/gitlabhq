@@ -1,0 +1,43 @@
+# handles issue creation emails with these formats:
+#   incoming+gitlab-org-gitlab-ce-20-Author_Token12345678-issue@incoming.gitlab.com
+#   incoming+gitlab-org/gitlab-ce+Author_Token12345678@incoming.gitlab.com (legacy)
+module Gitlab
+  module Email
+    module Handler
+      class CreateIssueHandler < BaseHandler
+        @project_slug: untyped
+
+        @project_id: untyped
+
+        @incoming_email_token: untyped
+
+        @project_path: untyped
+
+        @author: untyped
+
+        include ReplyProcessing
+
+        HANDLER_REGEX: ::Regexp
+
+        HANDLER_REGEX_LEGACY: ::Regexp
+
+        def initialize: (untyped mail, untyped mail_key) -> void
+
+        def can_handle?: () -> untyped
+
+        def execute: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def author: () -> untyped
+
+        def metrics_event: () -> :receive_email_create_issue
+
+        private
+
+        def create_issue: () -> untyped
+
+        def can_handle_legacy_format?: () -> untyped
+      end
+    end
+  end
+end

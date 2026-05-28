@@ -1,0 +1,41 @@
+module Packages
+  module Cleanup
+    class DeleteOrphanedDependenciesWorker
+      @start_time: untyped
+
+      include ApplicationWorker
+
+      include CronjobQueue
+
+      # This cron worker is executed at an interval of 10 minutes and should not run for
+      # more than 2 minutes nor process more than 10 batches.
+      MAX_RUN_TIME: untyped
+
+      MAX_BATCHES: 10
+
+      BATCH_SIZE: 100
+
+      LAST_PROCESSED_PACKAGES_DEPENDENCY_REDIS_KEY: "last_processed_packages_dependency_id"
+
+      REDIS_EXPIRATION_TIME: untyped
+
+      def perform: () -> untyped
+
+      private
+
+      def start_time: () -> untyped
+
+      def over_time?: () -> untyped
+
+      def save_last_processed_dependency_id: (untyped dependency_id) -> untyped
+
+      def last_processed_dependency_id: () -> untyped
+
+      def reset_last_processed_dependency_id: () -> untyped
+
+      def with_redis: () { (?) -> untyped } -> untyped
+
+      def log_extra_metadata: (untyped deleted_rows_count) -> untyped
+    end
+  end
+end

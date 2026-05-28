@@ -1,0 +1,47 @@
+module Ci
+  class PipelinePresenter < Gitlab::View::Presenter::Delegated
+    include Gitlab::Utils::StrongMemoize
+
+    include SafeFormatHelper
+
+    # We use a class method here instead of a constant, allowing EE to redefine
+    # the returned `Hash` more easily.
+    def self.failure_reasons: () -> { unknown_failure: "The reason for the pipeline failure is unknown.", config_error: "The pipeline failed due to an error on the CI/CD configuration file.", external_validation_failure: "The external pipeline validation failed.", user_not_verified: "The pipeline failed due to the user not being verified.", size_limit_exceeded: "The pipeline size limit was exceeded.", job_activity_limit_exceeded: "The pipeline job activity limit was exceeded.", deployments_limit_exceeded: "The pipeline deployments limit was exceeded.", project_deleted: "The project associated with this pipeline was deleted.", filtered_by_rules: untyped, filtered_by_workflow_rules: untyped, composite_identity_forbidden: "This pipeline did not run because the code should be reviewed by a non-AI user first. Verify that all changes in this merge request are safe before running a new pipeline.", pipeline_ref_creation_failure: "Failed to create pipeline ref.", filtered_by_no_pipeline: "The pipeline did not run. The commit was pushed with the `ci.no_pipeline` option." }
+
+    def failed_builds: () -> (::Array[untyped] | untyped)
+
+    def failure_reason: () -> (nil | untyped)
+
+    def status_title: () -> (::String | nil)
+
+    def localized_names: () -> { merge_train: untyped, merged_result: untyped, detached: untyped }
+
+    def event_type_name: () -> untyped
+
+    def coverage: () -> (nil | untyped)
+
+    def ref_text: () -> (untyped | untyped | untyped | untyped | untyped | nil)
+
+    def link_to_pipeline_ref: () -> untyped
+
+    def link_to_merge_request: () -> (nil | untyped)
+
+    def link_to_merge_request_source_branch: () -> untyped
+
+    def link_to_merge_request_target_branch: () -> untyped
+
+    def downloadable_path_for_report_type: (untyped file_type) -> (untyped | nil)
+
+    def triggered_by_path: () -> (untyped | "")
+
+    private
+
+    def plain_ref_name: () -> untyped
+
+    def merge_request_presenter: () -> untyped
+
+    def all_related_merge_request_links: () -> untyped
+
+    def all_related_merge_requests: () -> untyped
+  end
+end

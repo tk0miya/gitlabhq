@@ -1,0 +1,11 @@
+module Import
+  module BulkImports
+    class SourceUsersAttributesWorker
+      include ApplicationWorker
+
+      PERFORM_DELAY: untyped
+
+      def perform: (untyped bulk_import_id) -> (nil | untyped)
+    end
+  end
+end

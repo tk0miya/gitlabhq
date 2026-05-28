@@ -1,0 +1,27 @@
+module Gitlab
+  module ImportExport
+    class Config
+      @config: untyped
+
+      @hash: untyped
+
+      @ee_hash: untyped
+
+      def initialize: (?config: untyped) -> void
+
+      # Returns a Hash of the YAML file, including EE specific data if EE is
+      # used.
+      def to_h: () -> untyped
+
+      private
+
+      def deep_merge: (untyped hash_a, untyped hash_b) -> untyped
+
+      def normalize_tree: (untyped item) -> untyped
+
+      def merge_ee?: () -> untyped
+
+      def parse_yaml: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Gitlab
+  module UsageDataCounters
+    module RedisHashCounter
+      def hash_increment: (untyped redis_counter_key, untyped hash_key, ?expiry: untyped?) -> untyped
+
+      def get_hash: (untyped redis_counter_key) -> untyped
+    end
+  end
+end

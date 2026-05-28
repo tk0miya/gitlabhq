@@ -1,0 +1,11 @@
+class AutoMergeProcessWorker
+  include ApplicationWorker
+
+  PROJECT_MR_LIMIT: 30
+
+  def perform: (?::Hash[untyped, untyped] params) -> untyped
+
+  private
+
+  def all_merge_requests: (untyped params) -> untyped
+end

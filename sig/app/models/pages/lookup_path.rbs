@@ -1,0 +1,51 @@
+module Pages
+  class LookupPath
+    @deployment: untyped
+
+    @project: untyped
+
+    @root_namespace_id: untyped
+
+    @domain: untyped
+
+    @trim_prefix: untyped
+
+    @access_control: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (deployment: untyped, root_namespace_id: untyped, ?domain: untyped?, ?trim_prefix: untyped?, ?access_control: bool) -> void
+
+    attr_accessor access_control: untyped
+
+    def project_id: () -> untyped
+
+    def https_only: () -> untyped
+
+    def source: () -> (nil | { type: "zip", path: untyped, global_id: untyped, sha256: untyped, file_size: untyped, file_count: untyped })
+
+    def prefix: () -> untyped
+
+    def unique_host: () -> (nil | untyped)
+
+    def root_directory: () -> (nil | untyped)
+
+    def primary_domain: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader root_namespace_id: untyped
+
+    attr_reader deployment: untyped
+
+    attr_reader trim_prefix: untyped
+
+    attr_reader domain: untyped
+
+    def prefix_value: () -> untyped
+
+    def ensure_leading_and_trailing_slash: (untyped value) -> untyped
+  end
+end

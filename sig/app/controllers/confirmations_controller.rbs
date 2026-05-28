@@ -1,0 +1,37 @@
+class ConfirmationsController < Devise::ConfirmationsController
+  include AcceptsPendingInvitations
+
+  include GitlabRecaptcha
+
+  include OneTrustCSP
+
+  def almost_there: () -> untyped
+
+  # modified from Devise::ConfirmationsController
+  # https://github.com/heartcombo/devise/blob/e9c534d363cc9d552662049b38582eead87bedd6/app/controllers/devise/confirmations_controller.rb#L22
+  # since we must accept a user_id sharding param and use it in the lookup
+  # for Email confirmations, but User confirmations should remain unchanged
+  #
+  # this override can be removed once emails table is re-sharded to organization_id
+  # and we've refactored to override Email.confirm_by_token instead
+  # https://gitlab.com/gitlab-org/gitlab/-/work_items/585903
+  def show: () -> untyped
+
+  def email_confirmation_params: () -> untyped
+
+  # modified from Devise::Confirmable module to use user_id in query
+  # https://github.com/heartcombo/devise/blob/c8a64b549c8b37e494eaca7be2def136a7e1b236/lib/devise/models/confirmable.rb#L329
+  def confirm_email_by_token: (untyped user_id, untyped confirmation_token) -> untyped
+
+  def after_resending_confirmation_instructions_path_for: (untyped resource) -> untyped
+
+  def after_confirmation_path_for: (untyped _resource_name, untyped resource) -> untyped
+
+  def sign_in_path: (untyped _user) -> untyped
+
+  def check_recaptcha: () -> (nil | untyped)
+
+  def after_sign_in: (untyped resource) -> untyped
+
+  def context_user: () -> untyped
+end

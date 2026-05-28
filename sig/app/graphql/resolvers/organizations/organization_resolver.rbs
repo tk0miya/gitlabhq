@@ -1,0 +1,9 @@
+module Resolvers
+  module Organizations
+    class OrganizationResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      def resolve: (?id: untyped?) -> untyped
+    end
+  end
+end

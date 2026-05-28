@@ -1,0 +1,13 @@
+module Resolvers
+  module Projects
+    class CommitReferencesResolver < BaseResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias project object
+
+      def resolve: (commit_sha: untyped) -> untyped
+
+      def find_object: (oid: untyped) -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Import
+  module Offline
+    class ConfigurationPurgeWorker
+      include ApplicationWorker
+
+      def perform: (untyped configuration_id) -> (nil | untyped)
+    end
+  end
+end

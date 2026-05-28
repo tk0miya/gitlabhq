@@ -1,0 +1,27 @@
+module Packages
+  module Nuget
+    class Symbol < ApplicationRecord
+      include FileStoreMounter
+
+      include ObjectStorable
+
+      include ShaAttribute
+
+      include Packages::Destructible
+
+      include UpdateProjectStatistics
+
+      STORE_COLUMN: :file_store
+
+      FILE_SHA256_MAX_LENGTH: untyped
+
+      def self.find_by_project_and_signature_and_file_and_checksum: (signature: untyped, file_name: untyped, checksums: untyped, project_ids: untyped) -> untyped
+
+      private
+
+      def set_object_storage_key: () -> (nil | untyped)
+
+      def unique_signature_and_file_path_when_installable_package: () -> (nil | untyped)
+    end
+  end
+end

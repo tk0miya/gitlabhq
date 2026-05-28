@@ -1,0 +1,15 @@
+module Projects
+  module MergeRequests
+    class DiffsStreamController < Projects::MergeRequests::ApplicationController
+      include RapidDiffs::StreamingResource
+
+      private
+
+      def diff_file_component: (untyped diff_file) -> untyped
+
+      def diff_files_collection: (untyped diff_files) -> untyped
+
+      def streaming_diff_options: () -> untyped
+    end
+  end
+end

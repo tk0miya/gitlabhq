@@ -1,0 +1,52 @@
+class Explore::ProjectsController < Explore::ApplicationController
+  @projects: untyped
+
+  @topics: untyped
+
+  @topic: untyped
+
+  @sort: untyped
+
+  include ParamsBackwardCompatibility
+
+  include RendersMemberAccess
+
+  include RendersProjectsList
+
+  include SortingHelper
+
+  include SortingPreference
+
+  MIN_SEARCH_LENGTH: 3
+
+  RSS_ENTRIES_LIMIT: 20
+
+  def index: () -> nil
+
+  def trending: () -> untyped
+
+  def topics: () -> untyped
+
+  def topic: () -> untyped
+
+  private
+
+  def load_projects: () -> untyped
+
+  def load_topics: () -> untyped
+
+  def load_topic: () -> (nil | untyped)
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def preload_associations: (untyped projects) -> untyped
+
+  def set_sorting: () -> untyped
+
+  def default_sort_order: () -> untyped
+
+  def sorting_field: () -> untyped
+
+  def show_alert_if_search_is_disabled: () -> (nil | untyped)
+
+  def current_organization: () -> untyped
+end

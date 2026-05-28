@@ -1,0 +1,9 @@
+module Chaos
+  class DbSleepWorker
+    include ApplicationWorker
+
+    include ChaosQueue
+
+    def perform: (untyped duration_s) -> untyped
+  end
+end

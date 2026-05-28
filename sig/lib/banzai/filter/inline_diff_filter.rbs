@@ -1,0 +1,22 @@
+# Generated HTML is transformed back to GFM by app/assets/javascripts/behaviors/markdown/marks/inline_diff.js
+module Banzai
+  module Filter
+    class InlineDiffFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      IGNORED_ANCESTOR_TAGS: untyped
+
+      INLINE_DIFF_DELETION_UNTRUSTED: "(?:\\[\\-(.*?)\\-\\]|\\{\\-(.*?)\\-\\})"
+
+      INLINE_DIFF_DELETION_UNTRUSTED_REGEX: untyped
+
+      INLINE_DIFF_ADDITION_UNTRUSTED: "(?:\\[\\+(.*?)\\+\\]|\\{\\+(.*?)\\+\\})"
+
+      INLINE_DIFF_ADDITION_UNTRUSTED_REGEX: untyped
+
+      def call: () -> untyped
+
+      def inline_diff_filter: (untyped text) -> untyped
+    end
+  end
+end

@@ -1,0 +1,39 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class PullRequestsImporter
+        @repository_updates_counter: untyped
+
+        include ParallelScheduling
+
+        def importer_class: () -> untyped
+
+        def representation_class: () -> untyped
+
+        def sidekiq_worker_class: () -> untyped
+
+        def id_for_already_imported_cache: (untyped pr) -> untyped
+
+        def object_type: () -> :pull_request
+
+        def each_object_to_import: () { (untyped) -> untyped } -> untyped
+
+        def update_repository: () -> untyped
+
+        def update_repository?: (untyped pr) -> (false | untyped)
+
+        def commit_exists?: (untyped sha) -> untyped
+
+        def collection_method: () -> :pull_requests
+
+        def collection_options: () -> { state: "all", sort: "created", direction: "asc" }
+
+        # To avoid overloading Gitaly, we use a smaller limit for pull requests than the one defined in the
+        # application settings.
+        def parallel_import_batch: () -> { size: 200, delay: untyped }
+
+        def repository_updates_counter: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  class ChangesList
+    @raw_changes: untyped
+
+    @changes: untyped
+
+    include Enumerable
+
+    attr_reader raw_changes: untyped
+
+    def initialize: (untyped changes) -> void
+
+    def each: () { (?) -> untyped } -> untyped
+
+    def changes: () -> untyped
+  end
+end

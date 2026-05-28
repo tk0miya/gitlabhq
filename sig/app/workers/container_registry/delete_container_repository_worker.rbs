@@ -1,0 +1,35 @@
+module ContainerRegistry
+  class DeleteContainerRepositoryWorker
+    include ApplicationWorker
+
+    include CronjobChildWorker
+
+    include LimitedCapacity::Worker
+
+    include Gitlab::Utils::StrongMemoize
+
+    extend ::Gitlab::Utils::Override
+
+    MAX_CAPACITY: 2
+
+    CLEANUP_TAGS_SERVICE_PARAMS: { "name_regex_delete" => ".*", "keep_latest" => false, "container_expiration_policy" => true, "skip_protected_tags" => true }
+
+    def perform_work: () -> untyped
+
+    def remaining_work_count: () -> untyped
+
+    def max_running_jobs: () -> untyped
+
+    private
+
+    def update_next_container_repository_status: () -> (nil | untyped)
+
+    def delete_tags: () -> untyped
+
+    def next_container_repository: () -> untyped
+
+    def log_delete_tags_service_result: (untyped container_repository, untyped delete_tags_service_result) -> untyped
+
+    def audit_event: (untyped repository) -> nil
+  end
+end

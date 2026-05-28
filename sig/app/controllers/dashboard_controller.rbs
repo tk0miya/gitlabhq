@@ -1,0 +1,35 @@
+class DashboardController < Dashboard::ApplicationController
+  @homepage_app_data: untyped
+
+  @events: untyped
+
+  @show_full_reference: untyped
+
+  @no_filters_set: untyped
+
+  include IssuableCollectionsAction
+
+  include FiltersEvents
+
+  include HomepageData
+
+  include ::Gitlab::InternalEventsTracking
+
+  def home: () -> untyped
+
+  def activity: () -> untyped
+
+  def search_merge_requests: () -> untyped
+
+  def load_events: () -> untyped
+
+  def load_user_events: (untyped user) -> untyped
+
+  def load_project_events: () -> untyped
+
+  def set_show_full_reference: () -> untyped
+
+  def check_filters_presence!: () -> (nil | untyped)
+
+  def redirect_to_work_items_dashboard: (?format: untyped?) -> untyped
+end

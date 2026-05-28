@@ -1,0 +1,35 @@
+module CrossDatabaseModification
+  extend ActiveSupport::Concern
+
+  class TransactionStackTrackRecord
+    self.@logger: untyped
+
+    @subject: untyped
+
+    @gitlab_schema: untyped
+
+    @done: untyped
+
+    DEBUG_STACK: untyped
+
+    LOG_FILENAME: untyped
+
+    EXCLUDE_DEBUG_TRACE: ::Array["lib/gitlab/database/query_analyzer" | "app/models/concerns/cross_database_modification.rb"]
+
+    def self.logger: () -> untyped
+
+    def self.log_gitlab_transactions_stack: (?action: untyped?, ?example: untyped?) -> (nil | untyped)
+
+    def initialize: (untyped subject, untyped gitlab_schema) -> void
+
+    def done!: () -> true
+
+    def trigger_transactional_callbacks?: () -> false
+
+    def before_committed!: () -> nil
+
+    def rolledback!: (?force_restore_state: bool, ?should_run_callbacks: bool) -> untyped
+
+    def committed!: (?should_run_callbacks: bool) -> untyped
+  end
+end

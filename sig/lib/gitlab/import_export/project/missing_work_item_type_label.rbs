@@ -1,0 +1,36 @@
+module Gitlab
+  module ImportExport
+    module Project
+      # Finds or creates a label for issues that were imported with a custom
+      # work item type name that could not be resolved in the target namespace.
+      #
+      # During import, when a work item type cannot be resolved by name (either
+      # the name does not match any type, or the matched type is not usable in
+      # the target context), the issue is assigned the default issue type and
+      # tagged with this label so users can identify these records post-import.
+      #
+      # The label ID is cached in Redis per (project, type_name) to keep
+      # per-issue lookups O(1) within a single import run.
+      class MissingWorkItemTypeLabel
+        @project: untyped
+
+        CACHE_KEY: "import-export/missing-work-item-type-label/%{project_id}/%{name}"
+
+        CACHE_TIMEOUT: untyped
+
+        def initialize: (untyped project) -> void
+
+        # Returns the Label#id for the given missing type name, find-or-creating
+        # the label if necessary. Caches the resolved ID in Redis for CACHE_TIMEOUT.
+        def id_for: (untyped type_name) -> (untyped | nil)
+
+        private
+
+        def label_title: (untyped type_name) -> ::String
+
+        # This cannot be defined as a constant because translations are fetched in runtime
+        def label_description: () -> untyped
+      end
+    end
+  end
+end

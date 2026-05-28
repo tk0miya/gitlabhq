@@ -1,0 +1,11 @@
+module Resolvers
+  module MergeRequests
+    class StackResolver < BaseResolver
+      prepend ::MergeRequests::LookAheadPreloads
+
+      alias merge_request object
+
+      def resolve_with_lookahead: () -> untyped
+    end
+  end
+end

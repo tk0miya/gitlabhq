@@ -1,0 +1,31 @@
+module Gitlab
+  module Auth
+    class IpRateLimiter
+      @ip: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      attr_reader ip: untyped
+
+      def initialize: (untyped ip) -> void
+
+      def reset!: () -> (nil | untyped)
+
+      def register_fail!: () -> (false | untyped)
+
+      def banned?: () -> (false | untyped)
+
+      def trusted_ip?: () -> untyped
+
+      private
+
+      def skip_rate_limit?: () -> untyped
+
+      def enabled?: () -> untyped
+
+      def config: () -> untyped
+
+      def trusted_ips: () -> untyped
+    end
+  end
+end

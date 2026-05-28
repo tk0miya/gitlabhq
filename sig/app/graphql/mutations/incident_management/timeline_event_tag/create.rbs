@@ -1,0 +1,11 @@
+module Mutations
+  module IncidentManagement
+    module TimelineEventTag
+      class Create < Base
+        include FindsProject
+
+        def resolve: (project_path: untyped, **untyped args) -> untyped
+      end
+    end
+  end
+end

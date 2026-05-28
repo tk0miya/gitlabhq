@@ -1,0 +1,45 @@
+module Environments
+  class ScheduleToDeleteReviewAppsService < ::BaseService
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    EXCLUSIVE_LOCK_KEY_BASE: "environments:delete_review_apps:lock"
+
+    LOCK_TIMEOUT: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def key: () -> ::String
+
+    def dry_run?: () -> (true | untyped)
+
+    def validate: () -> (nil | untyped)
+
+    def mark_deletable_environments: () -> untyped
+
+    def unsafe_mark_deletable_environments: () -> untyped
+
+    def mark_for_deletion: (untyped deletable_environments) -> untyped
+
+    class Result
+      attr_accessor scheduled_entries: untyped
+
+      attr_accessor unprocessable_entries: untyped
+
+      attr_accessor error_message: untyped
+
+      attr_accessor status: untyped
+
+      def initialize: (?scheduled_entries: untyped, ?unprocessable_entries: untyped, ?error_message: untyped?, ?status: untyped?) -> void
+
+      def success?: () -> untyped
+
+      def set_status: (untyped status, ?error_message: untyped?) -> untyped
+
+      def set_scheduled_entries: (untyped entries) -> untyped
+
+      def set_unprocessable_entries: (untyped entries) -> untyped
+    end
+  end
+end

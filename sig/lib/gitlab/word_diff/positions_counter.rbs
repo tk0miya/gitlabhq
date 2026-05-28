@@ -1,0 +1,26 @@
+# Responsible for keeping track of line numbers and created Gitlab::Diff::Line objects
+module Gitlab
+  module WordDiff
+    class PositionsCounter
+      @pos_old: untyped
+
+      @pos_new: untyped
+
+      @line_obj_index: untyped
+
+      def initialize: () -> void
+
+      attr_reader pos_old: untyped
+
+      attr_reader pos_new: untyped
+
+      attr_reader line_obj_index: untyped
+
+      def increase_pos_num: () -> untyped
+
+      def increase_obj_index: () -> untyped
+
+      def set_pos_num: (old: untyped, new: untyped) -> untyped
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module Gitlab
+  module Database
+    module Partitioning
+      # Wrapper for Gitlab::Database::WithLockRetries.
+      #
+      # It sets lock_timeout to a max of 1 second per transaction. It doesn't holds the execution more than 27 seconds
+      class WithPartitioningLockRetries < ::Gitlab::Database::WithLockRetries
+        LOCK_RETRIES_TIMING_CONFIGURATION: untyped
+
+        def initialize: (**untyped args) -> void
+      end
+    end
+  end
+end

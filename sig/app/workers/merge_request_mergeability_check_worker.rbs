@@ -1,0 +1,9 @@
+class MergeRequestMergeabilityCheckWorker
+  @logger: untyped
+
+  include ApplicationWorker
+
+  def logger: () -> untyped
+
+  def perform: (untyped merge_request_id) -> (nil | untyped)
+end

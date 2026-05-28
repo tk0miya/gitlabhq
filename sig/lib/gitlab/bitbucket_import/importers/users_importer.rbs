@@ -1,0 +1,39 @@
+module Gitlab
+  module BitbucketImport
+    module Importers
+      class UsersImporter
+        @project: untyped
+
+        @project_id: untyped
+
+        @client: untyped
+
+        @page_counter: untyped
+
+        include Loggable
+
+        include Gitlab::Import::UserFromMention
+
+        BATCH_SIZE: 100
+
+        def initialize: (untyped project) -> void
+
+        attr_reader project: untyped
+
+        attr_reader project_id: untyped
+
+        def execute: () -> untyped
+
+        private
+
+        def cache_users: (untyped users) -> untyped
+
+        def client: () -> untyped
+
+        def workspace_key: () -> untyped
+
+        def page_counter: () -> untyped
+      end
+    end
+  end
+end

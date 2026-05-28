@@ -1,0 +1,19 @@
+module Gitlab
+  module HealthChecks
+    module SimpleAbstractCheck
+      include BaseAbstractCheck
+
+      def readiness: () -> untyped
+
+      def metrics: () -> (nil | ::Array[untyped])
+
+      private
+
+      def metric_prefix: () -> untyped
+
+      def successful?: (untyped result) -> untyped
+
+      def check: () -> untyped
+    end
+  end
+end

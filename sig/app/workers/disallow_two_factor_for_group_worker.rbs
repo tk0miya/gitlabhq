@@ -1,0 +1,7 @@
+class DisallowTwoFactorForGroupWorker
+  include ApplicationWorker
+
+  include ExceptionBacktrace
+
+  def perform: (untyped group_id) -> (nil | untyped)
+end

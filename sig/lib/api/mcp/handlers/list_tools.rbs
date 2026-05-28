@@ -1,0 +1,24 @@
+module API
+  module Mcp
+    module Handlers
+      # See: https://modelcontextprotocol.io/specification/2025-06-18/schema#listtoolsrequest
+      class ListTools
+        @manager: untyped
+
+        def initialize: (untyped manager) -> void
+
+        # allowed_tools: optional array of tool name strings to filter the response.
+        # When nil or empty, all available tools are returned (default agentic chat behaviour).
+        # When provided, only tools whose names are in the list are returned, ensuring the
+        # agent's LLM sees exactly the toolset that was configured for it.
+        def invoke: (untyped current_user, ?allowed_tools: untyped?, ?tool_name_prefix: untyped?) -> { tools: untyped }
+
+        private
+
+        def tool_available?: (untyped tool, untyped current_user) -> (true | untyped)
+
+        attr_reader manager: untyped
+      end
+    end
+  end
+end

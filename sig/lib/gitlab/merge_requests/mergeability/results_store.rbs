@@ -1,0 +1,23 @@
+module Gitlab
+  module MergeRequests
+    module Mergeability
+      class ResultsStore
+        @interface: untyped
+
+        @merge_request: untyped
+
+        def initialize: (merge_request: untyped, ?interface: untyped) -> void
+
+        def read: (merge_check: untyped) -> (nil | untyped)
+
+        def write: (merge_check: untyped, result_hash: untyped, ttl: untyped) -> untyped
+
+        def delete: (merge_check: untyped) -> untyped
+
+        private
+
+        attr_reader interface: untyped
+      end
+    end
+  end
+end

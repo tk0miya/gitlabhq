@@ -1,0 +1,15 @@
+module Gitlab
+  module Graphql
+    module Present
+      class FieldExtension < ::GraphQL::Schema::FieldExtension
+        SAFE_CONTEXT_KEYS: ::Array[:current_user]
+
+        def resolve: (object: untyped, arguments: untyped, context: untyped) { (untyped, untyped) -> untyped } -> untyped
+
+        private
+
+        def safe_context_values: (untyped context) -> untyped
+      end
+    end
+  end
+end

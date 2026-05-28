@@ -1,0 +1,9 @@
+module Mutations
+  module SavedReplies
+    class Base < BaseMutation
+      private
+
+      def present_result: (untyped result) -> ({ saved_reply: untyped, errors: ::Array[untyped] } | { saved_reply: nil, errors: untyped })
+    end
+  end
+end

@@ -1,0 +1,25 @@
+class PipelineScheduleWorker
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  include ::Gitlab::ExclusiveLeaseHelpers
+
+  LOCK_RETRY: 3
+
+  LOCK_TTL: untyped
+
+  DELAY: untyped
+
+  BATCH_SIZE: 500
+
+  def perform: () -> untyped
+
+  private
+
+  def lock_key: () -> untyped
+
+  def lock_params: () -> { ttl: untyped, retries: untyped }
+
+  def enqueue_run_pipeline_schedule_worker: (untyped schedules, untyped index) -> untyped
+end

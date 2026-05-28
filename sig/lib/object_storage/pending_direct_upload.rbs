@@ -1,0 +1,51 @@
+module ObjectStorage
+  class PendingDirectUpload
+    @redis_key: untyped
+
+    @storage_location_identifier: untyped
+
+    @object_storage_path: untyped
+
+    @timestamp: untyped
+
+    include ObjectStorage::FogHelpers
+
+    KEY: "pending_direct_uploads"
+
+    MAX_UPLOAD_DURATION: untyped
+
+    def self.prepare: (untyped location_identifier, untyped object_storage_path) -> untyped
+
+    def self.with_pending_only: (untyped location_identifier, untyped object_storage_paths) -> untyped
+
+    def self.exists?: (untyped location_identifier, untyped object_storage_path) -> untyped
+
+    def self.complete: (untyped location_identifier, untyped object_storage_path) -> untyped
+
+    def self.redis_key: (untyped location_identifier, untyped object_storage_path) -> untyped
+
+    def self.count: () -> untyped
+
+    def self.each: () { (untyped) -> untyped } -> untyped
+
+    def self.with_redis: () { (?) -> untyped } -> untyped
+
+    def self.log_event: (untyped event, untyped redis_key) -> untyped
+
+    def initialize: (redis_key: untyped, storage_location_identifier: untyped, object_storage_path: untyped, timestamp: untyped) -> void
+
+    def stale?: () -> untyped
+
+    def delete: () -> untyped
+
+    private
+
+    attr_reader redis_key: untyped
+
+    attr_reader storage_location_identifier: untyped
+
+    attr_reader object_storage_path: untyped
+
+    attr_reader timestamp: untyped
+  end
+end

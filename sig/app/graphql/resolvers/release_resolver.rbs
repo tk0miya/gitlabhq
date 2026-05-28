@@ -1,0 +1,9 @@
+module Resolvers
+  class ReleaseResolver < BaseResolver
+    alias project object
+
+    def self.single: () -> self
+
+    def resolve: (tag_name: untyped) -> untyped
+  end
+end

@@ -1,0 +1,9 @@
+module Packages
+  class SsrfProtection
+    def self.params_for: (untyped package) -> (::Hash[untyped, untyped] | { ssrf_filter: true, allow_localhost: untyped, allowed_endpoints: untyped })
+
+    def self.allow_localhost?: () -> untyped
+
+    def self.package_feature_enabled?: (untyped package) -> untyped
+  end
+end

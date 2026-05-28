@@ -1,0 +1,15 @@
+module MergeRequests
+  module Refresh
+    class PipelineService < MergeRequests::Refresh::BaseService
+      @push: untyped
+
+      attr_reader push: untyped
+
+      def execute: (untyped oldrev, untyped newrev, untyped ref) -> untyped
+
+      private
+
+      def refresh_pipelines: () -> untyped
+    end
+  end
+end

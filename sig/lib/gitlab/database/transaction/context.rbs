@@ -1,0 +1,81 @@
+module Gitlab
+  module Database
+    module Transaction
+      class Context
+        @context: untyped
+
+        @requests_count: untyped
+
+        @requests_duration: untyped
+
+        attr_reader context: untyped
+
+        LOG_SAVEPOINTS_THRESHOLD: 1
+
+        LOG_DURATION_S_THRESHOLD: 120
+
+        LOG_EXTERNAL_HTTP_COUNT_THRESHOLD: 50
+
+        LOG_EXTERNAL_HTTP_DURATION_S_THRESHOLD: 1
+
+        LOG_THROTTLE_DURATION: 1
+
+        def initialize: () -> void
+
+        def set_start_time: () -> untyped
+
+        def set_depth: (untyped depth) -> untyped
+
+        def increment_savepoints: () -> untyped
+
+        def increment_rollbacks: () -> untyped
+
+        def increment_releases: () -> untyped
+
+        def track_sql: (untyped sql) -> untyped
+
+        def track_backtrace: (untyped backtrace) -> untyped
+
+        def initialize_external_http_tracking: () -> untyped
+
+        def duration: () -> (nil | untyped)
+
+        def savepoints_threshold_exceeded?: () -> untyped
+
+        def duration_threshold_exceeded?: () -> untyped
+
+        def external_http_requests_threshold_exceeded?: () -> untyped
+
+        def should_log?: () -> (false | untyped)
+
+        def commit: () -> untyped
+
+        def rollback: () -> untyped
+
+        def backtraces: () -> untyped
+
+        def external_http_requests_count: () -> untyped
+
+        def external_http_requests_duration: () -> untyped
+
+        private
+
+        def queries: () -> untyped
+
+        def current_timestamp: () -> untyped
+
+        def logged_already?: () -> (false | untyped)
+
+        def set_last_log_timestamp: () -> untyped
+
+        def log: (untyped operation) -> (nil | untyped)
+
+        def application_info: (untyped attributes) -> untyped
+
+        def external_http_requests_count_total: () -> untyped
+
+        def external_http_requests_duration_total: () -> untyped
+      end
+    end
+  end
+end

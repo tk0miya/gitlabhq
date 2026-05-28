@@ -1,0 +1,27 @@
+module Gitlab
+  module Email
+    class AttachmentUploader
+      @message: untyped
+
+      attr_accessor message: untyped
+
+      def initialize: (untyped message) -> void
+
+      def execute: (upload_parent: untyped, uploader_class: untyped, ?author: untyped?) -> untyped
+
+      private
+
+      # If this is a signed message (e.g. S/MIME or PGP), remove the signature
+      # from the uploaded attachments
+      def filter_signature_attachments: (untyped message) -> untyped
+
+      # normalizes mime-type ignoring case and removing extra data
+      # also removes potential "x-" prefix from subtype, since some MUAs mix them
+      # e.g. "application/x-pkcs7-signature" with "application/pkcs7-signature"
+      def normalize_mime: (untyped content_type) -> untyped
+
+      # https://gitlab.com/gitlab-org/gitlab/-/issues/239343
+      def sanitize_exif_if_needed: (untyped content, untyped path) -> untyped
+    end
+  end
+end

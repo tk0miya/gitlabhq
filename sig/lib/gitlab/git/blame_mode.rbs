@@ -1,0 +1,23 @@
+module Gitlab
+  module Git
+    class BlameMode
+      @project: untyped
+
+      @params: untyped
+
+      def initialize: (untyped project, untyped params) -> void
+
+      def streaming?: () -> untyped
+
+      def pagination?: () -> (false | true)
+
+      def full?: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      attr_reader params: untyped
+    end
+  end
+end

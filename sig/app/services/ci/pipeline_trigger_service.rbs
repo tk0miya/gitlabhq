@@ -1,0 +1,39 @@
+module Ci
+  class PipelineTriggerService < BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    include Services::ReturnServiceResponses
+
+    include Ci::DownstreamPipelineHelpers
+
+    def execute: () -> untyped
+
+    private
+
+    PAYLOAD_VARIABLE_KEY: "TRIGGER_PAYLOAD"
+
+    PAYLOAD_VARIABLE_HIDDEN_PARAMS: ::Array[:token]
+
+    def create_pipeline_from_trigger: (untyped trigger) -> (nil | untyped)
+
+    def pipeline_service_response: (untyped pipeline) -> untyped
+
+    def trigger_from_token: () -> untyped
+
+    def create_pipeline_from_job: (untyped job) -> (nil | untyped)
+
+    def job_from_token: () -> untyped
+
+    def inputs: () -> untyped
+
+    def variables: () -> untyped
+
+    def param_variables: () -> untyped
+
+    def payload_variable: () -> { key: untyped, value: untyped, variable_type: :file, raw: true }
+
+    def set_application_context_from_trigger: (untyped trigger) -> untyped
+
+    def set_application_context_from_job: (untyped job) -> untyped
+  end
+end

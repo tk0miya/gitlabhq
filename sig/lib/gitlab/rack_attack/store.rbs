@@ -1,0 +1,23 @@
+module Gitlab
+  module RackAttack
+    class Store
+      InvalidAmount: untyped
+
+      # The increment method gets called very often. The implementation below
+      # aims to minimize the number of Redis calls we make.
+      def increment: (untyped key, ?::Integer amount, ?::Hash[untyped, untyped] options) -> untyped
+
+      def read: (untyped key, ?::Hash[untyped, untyped] _options) -> untyped
+
+      def write: (untyped key, untyped value, ?::Hash[untyped, untyped] options) -> untyped
+
+      def delete: (untyped key, ?::Hash[untyped, untyped] _options) -> untyped
+
+      private
+
+      def with: () { (?) -> untyped } -> untyped
+
+      def namespace: (untyped key) -> ::String
+    end
+  end
+end

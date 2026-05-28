@@ -1,0 +1,23 @@
+module Gitlab
+  module Auth
+    module Otp
+      module Strategies
+        module FortiAuthenticator
+          class ManualOtp < Base
+            @otp_code: untyped
+
+            def validate: (untyped otp_code) -> untyped
+
+            private
+
+            def auth_url: () -> ::String
+
+            def body: () -> { username: untyped, token_code: untyped }
+
+            def api_credentials: () -> { username: untyped, password: untyped }
+          end
+        end
+      end
+    end
+  end
+end

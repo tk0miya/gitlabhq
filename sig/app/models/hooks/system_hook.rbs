@@ -1,0 +1,20 @@
+class SystemHook < WebHook
+  extend ::Gitlab::Utils::Override
+
+  include TriggerableHooks
+
+  AVAILABLE_HOOKS: ::Array[:repository_update_hooks | :push_hooks | :tag_push_hooks | :merge_request_hooks]
+
+  def self.available_hooks: () -> untyped
+
+  # Allow urls pointing localhost and the local network
+  def allow_local_requests?: () -> untyped
+
+  def pluralized_name: () -> untyped
+
+  def help_path: () -> untyped
+
+  def validate_public_url?: () -> false
+
+  def application_context: () -> untyped
+end

@@ -1,0 +1,15 @@
+class ProjectWiki < Wiki
+  alias project container
+
+  def disk_path: (*untyped args) { (?) -> untyped } -> untyped
+
+  def create_wiki_repository: () -> untyped
+
+  def after_wiki_activity: () -> untyped
+
+  def after_post_receive: () -> untyped
+
+  private
+
+  def track_wiki_repository: () -> (nil | untyped)
+end

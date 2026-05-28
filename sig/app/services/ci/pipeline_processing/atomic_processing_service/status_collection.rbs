@@ -1,0 +1,69 @@
+module Ci
+  module PipelineProcessing
+    class AtomicProcessingService
+      class StatusCollection
+        @pipeline: untyped
+
+        @observe_processing_delay: untyped
+
+        @stage_jobs: untyped
+
+        @prior_stage_jobs: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader pipeline: untyped
+
+        def initialize: (untyped pipeline, ?observe_processing_delay: bool) -> void
+
+        # This method updates internal status for given ID
+        def set_job_status: (untyped id, untyped status, untyped lock_version, untyped finished_at) -> (nil | untyped)
+
+        # This methods gets composite status of all jobs
+        def status_of_all: () -> untyped
+
+        # This methods gets composite status for jobs at a given stage
+        def status_of_stage: (untyped stage_position) -> untyped
+
+        # This methods gets composite status for jobs with given names
+        def status_of_jobs: (untyped names) -> untyped
+
+        # This methods gets composite status for jobs before given stage
+        def status_of_jobs_prior_to_stage: (untyped stage_position) -> untyped
+
+        # This methods gets a list of jobs for a given stage
+        def created_job_ids_in_stage: (untyped stage_position) -> untyped
+
+        # This method returns a list of all job, that are to be processed
+        def processing_jobs: () -> untyped
+
+        def max_finished_at_of_jobs: (untyped names) -> untyped
+
+        def max_finished_at_prior_to_stage: (untyped stage_position) -> untyped
+
+        # This method returns the names of jobs that have a stopped status
+        def stopped_job_names: () -> untyped
+
+        private
+
+        JOB_ATTRS: ::Array[:id | :name | :status | :allow_failure | :stage_idx | :processed | :lock_version]
+
+        JOB_ATTRS_WITH_FINISHED_AT: untyped
+
+        # We use these columns to perform an efficient calculation of a status
+        def job_attrs: () -> untyped
+
+        def status_for_array: (untyped jobs, ?dag: bool) -> untyped
+
+        def all_jobs_grouped_by_stage_position: () -> untyped
+
+        def all_jobs_by_id: () -> untyped
+
+        def all_jobs_by_name: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def all_jobs: () -> untyped
+      end
+    end
+  end
+end

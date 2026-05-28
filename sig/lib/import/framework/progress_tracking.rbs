@@ -1,0 +1,19 @@
+module Import
+  module Framework
+    module ProgressTracking
+      CACHE_EXPIRATION: untyped
+
+      def with_progress_tracking: (scope: untyped, data: untyped) { () -> untyped } -> (true | untyped)
+
+      def save_processed_entry: (scope: untyped, data: untyped) -> untyped
+
+      def processed_entry?: (scope: untyped, data: untyped) -> untyped
+
+      private
+
+      def cache_key: (untyped scope) -> ::String
+
+      def scope_string: (untyped scope) -> untyped
+    end
+  end
+end

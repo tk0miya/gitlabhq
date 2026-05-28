@@ -1,0 +1,31 @@
+class Namespace::RootStorageStatistics < ApplicationRecord
+  SNIPPETS_SIZE_STAT_NAME: "snippets_size"
+
+  STATISTICS_ATTRIBUTES: ::Array["storage_size" | "repository_size" | "wiki_size" | "lfs_objects_size" | "build_artifacts_size" | "packages_size" | ::String | "pipeline_artifacts_size" | "uploads_size"]
+
+  def recalculate!: () -> untyped
+
+  def self.namespace_statistics_attributes: () -> ::Array["storage_size" | "dependency_proxy_size"]
+
+  private
+
+  def merged_attributes: () -> untyped
+
+  def attributes_for_container_registry_size: () -> untyped
+
+  def attributes_for_forks_statistics: () -> untyped
+
+  def for_forks_statistics: () -> untyped
+
+  def attributes_from_project_statistics: () -> untyped
+
+  def from_project_statistics: () -> untyped
+
+  def attributes_from_personal_snippets: () -> (::Hash[untyped, untyped] | untyped)
+
+  def from_personal_snippets: () -> untyped
+
+  def from_namespace_statistics: () -> untyped
+
+  def attributes_from_namespace_statistics: () -> (::Hash[untyped, untyped] | untyped)
+end

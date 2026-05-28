@@ -1,0 +1,15 @@
+module Sidebars
+  module Admin
+    module Menus
+      class ApplicationsMenu < ::Sidebars::Admin::BaseMenu
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "applications"
+
+        def active_routes: () -> { controller: :applications }
+      end
+    end
+  end
+end

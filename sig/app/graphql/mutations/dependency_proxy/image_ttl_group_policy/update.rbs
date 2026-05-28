@@ -1,0 +1,15 @@
+module Mutations
+  module DependencyProxy
+    module ImageTtlGroupPolicy
+      class Update < Mutations::BaseMutation
+        include Mutations::ResolvesGroup
+
+        def resolve: (group_path: untyped, **untyped args) -> { dependency_proxy_image_ttl_policy: untyped, errors: untyped }
+
+        private
+
+        def find_object: (group_path: untyped) -> untyped
+      end
+    end
+  end
+end

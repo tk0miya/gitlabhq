@@ -1,0 +1,33 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      class IssueEvent
+        @attributes: untyped
+
+        include Representable
+
+        # attributes - A Hash containing the event details. The keys of this
+        #              Hash (and any nested hashes) must be symbols.
+        def initialize: (untyped attributes) -> void
+
+        def github_identifiers: () -> { id: untyped, issuable_iid: untyped, event: untyped }
+
+        def issuable_type: () -> ("MergeRequest" | "Issue")
+
+        def issuable_id: () -> untyped
+
+        # Builds an event from a GitHub API response.
+        #
+        # event - An instance of `Hash` containing the event details.
+        def self.from_api_response: (untyped event, ?::Hash[untyped, untyped] additional_data) -> untyped
+
+        # Builds an event using a Hash that was built from a JSON payload.
+        def self.from_json_hash: (untyped raw_hash) -> untyped
+
+        private
+
+        def self.user_representation: (untyped data, ?source: ::Symbol) -> (nil | untyped)
+      end
+    end
+  end
+end

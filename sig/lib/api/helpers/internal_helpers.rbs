@@ -1,0 +1,82 @@
+module API
+  module Helpers
+    module InternalHelpers
+      @actor: untyped
+
+      @container: untyped
+
+      @project: untyped
+
+      @repo_type: untyped
+
+      @redirected_path: untyped
+
+      @repository: untyped
+
+      attr_reader redirected_path: untyped
+
+      UNKNOWN_CHECK_RESULT_ERROR: "Unknown check result"
+
+      def actor: () -> untyped
+
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables
+      def repo_type: () -> untyped
+
+      def project: () -> untyped
+
+      def container: () -> untyped
+
+      def access_check_result: () -> untyped
+
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables
+      def access_check!: (untyped actor, untyped params) -> untyped
+
+      def access_checker_for: (untyped actor, untyped protocol) -> untyped
+
+      def access_checker_klass: () -> untyped
+
+      def ssh_authentication_abilities: () -> ::Array[:read_project | :download_code | :push_code]
+
+      def parse_env: () -> untyped
+
+      def log_user_activity: (untyped actor) -> (nil | untyped)
+
+      def redis_ping: () -> untyped
+
+      def response_with_status: (?code: ::Integer, ?success: bool, ?message: untyped?, **untyped extra_options) -> untyped
+
+      def unsuccessful_response?: (untyped response) -> untyped
+
+      def with_admin_mode_bypass!: (untyped actor_id) { () -> untyped } -> untyped
+
+      def send_git_audit_streaming_event: (untyped msg) -> nil
+
+      def need_git_audit_event?: () -> false
+
+      def include_ip_address_in_audit_event?: (untyped ip_address) -> untyped
+
+      private
+
+      def gitaly_context: (untyped params) -> untyped
+
+      def repository_path: () -> (::String | ::String | nil)
+
+      # rubocop:disable Gitlab/ModuleWithInstanceVariables
+      def parse_repo_path: () -> untyped
+
+      # Repository id to pass between components that don't share/don't have
+      # access to the same filesystem mounts
+      def gl_repository: () -> untyped
+
+      def gl_repository_path: () -> untyped
+
+      # Return the repository for the detected type and container
+      #
+      # @returns [Repository]
+      def repository: () -> untyped
+
+      # Return the Gitaly Address if it is enabled
+      def gitaly_payload: (untyped action) -> (nil | { repository: untyped, address: untyped, token: untyped, features: untyped, retry_config: untyped })
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Integrations
+  class CreateExternalCrossReferenceWorker
+    include ApplicationWorker
+
+    def perform: (untyped project_id, untyped external_issue_id, untyped mentionable_type, untyped mentionable_id, untyped author_id) -> (nil | untyped)
+
+    private
+
+    def find_mentionable: (untyped mentionable_type, untyped mentionable_id, untyped project) -> (nil | untyped)
+  end
+end

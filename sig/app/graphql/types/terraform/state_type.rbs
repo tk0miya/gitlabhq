@@ -1,0 +1,11 @@
+module Types
+  module Terraform
+    class StateType < BaseObject
+      PROTECTION_RULE_EXISTS_BATCH_SIZE: 20
+
+      def protection_rule_exists: () -> (false | untyped)
+
+      def locked_by_user: () -> untyped
+    end
+  end
+end

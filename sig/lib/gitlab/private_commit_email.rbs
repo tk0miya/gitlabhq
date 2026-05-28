@@ -1,0 +1,13 @@
+module Gitlab
+  module PrivateCommitEmail
+    TOKEN: "_private"
+
+    def self.regex: () -> untyped
+
+    def self.user_id_for_email: (untyped email) -> (nil | untyped)
+
+    def self.user_ids_for_emails: (untyped emails) -> untyped
+
+    def self.for_user: (untyped user) -> ::String
+  end
+end

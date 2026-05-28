@@ -1,0 +1,17 @@
+class Projects::GoogleCloud::DeploymentsController < Projects::GoogleCloud::BaseController
+  @js_data: untyped
+
+  def index: () -> untyped
+
+  def cloud_run: () -> untyped
+
+  def cloud_storage: () -> untyped
+
+  private
+
+  def cloud_run_mr_params: (untyped branch_name) -> { title: untyped, description: untyped, source_project_id: untyped, target_project_id: untyped, source_branch: untyped, target_branch: untyped }
+
+  def cloud_run_mr_title: () -> "Enable deployments to Cloud Run"
+
+  def cloud_run_mr_description: (untyped branch_name) -> ::String
+end

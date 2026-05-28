@@ -1,0 +1,45 @@
+module Packages
+  module Debian
+    class UpdateDistributionService
+      @distribution: untyped
+
+      @params: untyped
+
+      @components: untyped
+
+      @architectures: untyped
+
+      @errors: untyped
+
+      def initialize: (untyped distribution, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader distribution: untyped
+
+      attr_reader params: untyped
+
+      attr_reader components: untyped
+
+      attr_reader architectures: untyped
+
+      attr_reader errors: untyped
+
+      def append_errors: (untyped record, ?::String prefix) -> (nil | untyped)
+
+      def update_distribution: () -> untyped
+
+      def update_components: () -> untyped
+
+      def update_architectures: () -> untyped
+
+      def update_objects: (untyped objects, untyped object_names_from_params, error_label: untyped) -> untyped
+
+      def success: () -> untyped
+
+      def error: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,80 @@
+module Gitlab
+  module QueryLimiting
+    class Transaction
+      @action: untyped
+
+      @count: untyped
+
+      @sql_executed: untyped
+
+      THREAD_KEY: :__gitlab_query_counts_transaction
+
+      attr_accessor count: untyped
+
+      # The name of the action (e.g. `UsersController#show`) that is being
+      # executed.
+      attr_accessor action: untyped
+
+      # The maximum number of SQL queries that can be executed in a request. For
+      # the sake of keeping things simple we hardcode this value here, it's not
+      # supposed to be changed very often anyway.
+      def self.default_threshold: () -> 100
+
+      # Deprecated, use default_threshold
+      def self.threshold: () -> untyped
+
+      # Error that is raised whenever exceeding the maximum number of queries.
+      ThresholdExceededError: untyped
+
+      def self.current: () -> untyped
+
+      # Starts a new transaction and returns it and the blocks' return value.
+      #
+      # Example:
+      #
+      #     transaction, retval = Transaction.run do
+      #       10
+      #     end
+      #
+      #     retval # => 10
+      def self.run: () { () -> untyped } -> untyped
+
+      def initialize: () -> void
+
+      # Sends a notification based on the number of executed SQL queries.
+      def act_upon_results: () -> (nil | untyped)
+
+      def increment: (?untyped? sql) -> (untyped | nil)
+
+      GEO_NODES_LOAD: "SELECT 1 AS one FROM \"geo_nodes\" LIMIT 1"
+
+      LICENSES_LOAD: "SELECT \"licenses\".* FROM \"licenses\" ORDER BY \"licenses\".\"id\""
+
+      SCHEMA_INTROSPECTION: ::Regexp
+
+      SAVEPOINT: ::Regexp
+
+      SET: ::Regexp
+
+      SHOW: ::Regexp
+
+      # queries can be safely ignored if they are amoritized in regular usage
+      # (i.e. only requested occasionally and otherwise cached).
+      def ignorable?: (untyped sql) -> (true | false)
+
+      def executed_sql: (untyped sql) -> (nil | untyped)
+
+      def raise_error?: () -> untyped
+
+      def threshold: () -> untyped
+
+      def log_threshold: () -> untyped
+
+      def threshold_exceeded?: () -> untyped
+
+      def error_message: () -> untyped
+
+      def enabled?: () -> untyped
+    end
+  end
+end

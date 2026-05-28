@@ -1,0 +1,193 @@
+module Gitlab
+  module Pagination
+    module Keyset
+      # This class stores information for one column (or SQL expression) which can be used in an
+      # ORDER BY SQL clasue.
+      # The goal of this class is to encapsulate all the metadata in one place which are needed to
+      # make keyset pagination work in a generalized way.
+      #
+      # == Arguments
+      #
+      # **order expression** (Arel::Nodes::Node | String)
+      #
+      # The actual SQL expression for the ORDER BY clause.
+      #
+      # Examples:
+      #   # Arel column order definition
+      #   Project.arel_table[:id].asc # ORDER BY projects.id ASC
+      #
+      #   # Arel expression, calculated order definition
+      #   Arel::Nodes::NamedFunction.new("COALESCE", [Project.arel_table[:issue_count].asc, 0]).asc # ORDER BY COALESCE(projects.issue_count, 0)
+      #
+      #   # Another Arel expression
+      #   Arel::Nodes::Multiplication(Issue.arel_table[:weight], Issue.arel_table[:time_spent]).desc
+      #
+      #   # Raw string order definition
+      #   'issues.type DESC NULLS LAST'
+      #
+      # **column_expression** (Arel::Nodes::Node | String)
+      #
+      # Expression for the database column or an expression. This value will be used with logical operations (>, <, =, !=)
+      # when building the database query for the next page.
+      #
+      # Examples:
+      #   # Arel column reference
+      #   Issue.arel_table[:title]
+      #
+      #   # Calculated value
+      #   Arel::Nodes::Multiplication(Issue.arel_table[:weight], Issue.arel_table[:time_spent])
+      #
+      # **attribute_name** (String | Symbol)
+      #
+      # An attribute on the loaded ActiveRecord model where the value can be obtained.
+      #
+      # Examples:
+      #   # Simple attribute definition
+      #   attribute_name = :title
+      #
+      #   # Later on this attribute will be used like this:
+      #   my_record = Issue.find(x)
+      #   value = my_record[attribute_name] # reads data from the title column
+      #
+      #   # Calculated value based on an Arel or raw SQL expression
+      #
+      #   attribute_name = :lowercase_title
+      #
+      #   # `lowercase_title` is not is not a table column therefore we need to make sure it's available in the `SELECT` clause
+      #
+      #   my_record = Issue.select(:id, 'LOWER(title) as lowercase_title').last
+      #   value = my_record[:lowercase_title]
+      #
+      # **nullable** (:not_nullable | :nulls_last | :nulls_first)
+      #
+      # Tells us whether the database column is nullable or not. This information can be
+      # obtained from the DB schema.
+      #
+      # If the column is not nullable, set this attribute to :not_nullable.
+      #
+      # If the column is nullable, then additional information is needed. Based on the ordering, the null values
+      # will show up at the top or at the bottom of the resultset.
+      #
+      # Examples:
+      #     # Nulls are showing up at the top (for example: ORDER BY column ASC):
+      #     nullable = :nulls_first
+      #
+      #     # Nulls are showing up at the bottom (for example: ORDER BY column DESC):
+      #     nullable = :nulls_last
+      #
+      # **order_direction**
+      #
+      # :asc or :desc
+      #
+      # Note: this is an optional attribute, the value will be inferred from the order_expression.
+      # Sometimes it's not possible to infer the order automatically. In this case an exception will be
+      # raised (when the query is executed). If the reverse order cannot be computed, it must be provided explicitly.
+      #
+      # **reversed_order_expression**
+      #
+      # The reversed version of the order_expression.
+      #
+      # A ColumnOrderDefinition object is able to reverse itself which is used when paginating backwards.
+      # When a complex order_expression is provided (raw string), then reversing the order automatically
+      # is not possible. In this case an exception will be raised.
+      #
+      # Example:
+      #
+      #   order_expression = Project.arel_table[:id].asc
+      #   reversed_order_expression = Project.arel_table[:id].desc
+      #
+      # **add_to_projections**
+      #
+      # Set to true if the column is not part of the queried table. (Not part of SELECT *)
+      #
+      #  Example:
+      #
+      #  - When the order is a calculated expression or the column is in another table (JOIN-ed)
+      #
+      #  If the add_to_projections is true, the query builder will automatically add the column to the SELECT values
+      #
+      #  **sql_type**
+      #
+      # The SQL type of the column or SQL expression. This is an optional field which is only required when using the
+      # column with the InOperatorOptimization class.
+      #
+      # Example: When the order expression is a calculated SQL expression.
+      #
+      #  {
+      #    attribute_name: 'id_times_count',
+      #    order_expression: Arel.sql('(id * count)').asc,
+      #    sql_type: 'integer' # the SQL type here must match with the type of the produced data by the order_expression. Putting 'text' here would be incorrect.
+      #  }
+      #
+      class ColumnOrderDefinition
+        @attribute_name: untyped
+
+        @order_expression: untyped
+
+        @column_expression: untyped
+
+        @reversed_order_expression: untyped
+
+        @nullable: untyped
+
+        @order_direction: untyped
+
+        @sql_type: untyped
+
+        @add_to_projections: untyped
+
+        REVERSED_ORDER_DIRECTIONS: { asc: :desc, desc: :asc }
+
+        REVERSED_NULL_POSITIONS: { nulls_first: :nulls_last, nulls_last: :nulls_first }
+
+        AREL_ORDER_CLASSES: ::Hash[untyped, :asc | :desc]
+
+        ALLOWED_NULLABLE_VALUES: ::Array[:not_nullable | :nulls_first | :nulls_last]
+
+        attr_reader attribute_name: untyped
+
+        attr_reader column_expression: untyped
+
+        attr_reader order_expression: untyped
+
+        attr_reader add_to_projections: untyped
+
+        attr_reader order_direction: untyped
+
+        def initialize: (attribute_name: untyped, order_expression: untyped, ?column_expression: untyped?, ?reversed_order_expression: untyped?, ?nullable: ::Symbol, ?order_direction: untyped?, ?sql_type: untyped?, ?add_to_projections: bool) -> void
+
+        def reverse: () -> untyped
+
+        def ascending_order?: () -> untyped
+
+        def descending_order?: () -> untyped
+
+        def nulls_first?: () -> untyped
+
+        def nulls_last?: () -> untyped
+
+        def not_nullable?: () -> untyped
+
+        def nullable?: () -> untyped
+
+        def order_direction_as_sql_string: () -> untyped
+
+        def sql_type: () -> untyped
+
+        private
+
+        attr_reader reversed_order_expression: untyped
+
+        attr_reader nullable: untyped
+
+        def calculate_reversed_order: (untyped order_expression) -> untyped
+
+        def calculate_column_expression: (untyped order_expression) -> untyped
+
+        def parse_order_direction: (untyped order_expression, untyped order_direction) -> untyped
+
+        def parse_nullable: (untyped nullable) -> untyped
+      end
+    end
+  end
+end

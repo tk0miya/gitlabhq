@@ -1,0 +1,15 @@
+module MergeRequests
+  module Refresh
+    class WebHooksService < MergeRequests::Refresh::BaseService
+      @push: untyped
+
+      attr_reader push: untyped
+
+      def execute: (untyped oldrev, untyped newrev, untyped ref) -> untyped
+
+      private
+
+      def execute_web_hooks: () -> untyped
+    end
+  end
+end

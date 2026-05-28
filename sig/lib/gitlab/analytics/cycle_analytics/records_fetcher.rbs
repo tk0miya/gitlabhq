@@ -1,0 +1,63 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      class RecordsFetcher
+        @stage: untyped
+
+        @query: untyped
+
+        @params: untyped
+
+        @sort: untyped
+
+        @direction: untyped
+
+        @page: untyped
+
+        @per_page: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        include StageQueryHelpers
+
+        include Gitlab::CycleAnalytics::MetricsTables
+
+        MAX_RECORDS: untyped
+
+        MAPPINGS: untyped
+
+        def initialize: (stage: untyped, query: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        def serialized_records: () ?{ (untyped) -> untyped } -> untyped
+
+        def records_for_graphql: () -> untyped
+
+        private
+
+        attr_reader stage: untyped
+
+        attr_reader query: untyped
+
+        attr_reader params: untyped
+
+        attr_reader sort: untyped
+
+        attr_reader direction: untyped
+
+        attr_reader page: untyped
+
+        attr_reader per_page: untyped
+
+        def columns: () -> untyped
+
+        def serializer: () -> untyped
+
+        def ordered_and_limited_query: () -> untyped
+
+        def preload_associations: (untyped records) -> untyped
+
+        def time_columns: () -> ::Array[untyped]
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module ContainerRegistry
+  module Protection
+    class DeleteTagRuleService
+      @container_protection_tag_rule: untyped
+
+      @current_user: untyped
+
+      include Gitlab::Allowable
+
+      include ContainerRegistry::Protection::InternalEventsTracking
+
+      def initialize: (untyped container_protection_tag_rule, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader container_protection_tag_rule: untyped
+
+      attr_reader current_user: untyped
+
+      def service_response_error: (message: untyped) -> untyped
+    end
+  end
+end

@@ -1,0 +1,20 @@
+module Onboarding
+  class Component < ViewComponent::Base
+    private
+
+    # Filter a given value against a list of allowed values
+    # If no value is given or value is not allowed return default one
+    #
+    # @param [Object] value
+    # @param [Enumerable] allowed_values
+    # @param [Object] default
+    def filter_attribute: (untyped value, untyped allowed_values, ?default: untyped?) -> untyped
+
+    # Add CSS classes and additional options to an existing options hash
+    #
+    # @param [Hash] options
+    # @param [Array] css_classes
+    # @param [Hash] additional_option
+    def format_options: (options: untyped, ?css_classes: untyped, ?additional_options: ::Hash[untyped, untyped]) -> untyped
+  end
+end

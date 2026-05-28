@@ -1,0 +1,18 @@
+# - rendering by using data purely from Elasticsearch and does not trigger Gitaly calls.
+# - allows policy check
+module Gitlab
+  module Search
+    class FoundWikiPage < SimpleDelegator
+      @wiki: untyped
+
+      attr_reader wiki: untyped
+
+      def self.declarative_policy_class: () -> "WikiPagePolicy"
+
+      # @param found_blob [Gitlab::Search::FoundBlob]
+      def initialize: (untyped found_blob) -> void
+
+      def to_ability_name: () -> "wiki_page"
+    end
+  end
+end

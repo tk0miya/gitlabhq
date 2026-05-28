@@ -1,0 +1,27 @@
+module Keys
+  class ExpiryNotificationService < ::Keys::BaseService
+    @keys: untyped
+
+    @expiring_soon: untyped
+
+    attr_accessor keys: untyped
+
+    attr_accessor expiring_soon: untyped
+
+    def initialize: (untyped user, untyped params) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def allowed?: () -> untyped
+
+    def trigger_expiring_soon_notification: () -> untyped
+
+    def trigger_expired_notification: () -> untyped
+
+    def create_expiring_soon_todos: () -> untyped
+
+    def create_expired_todos: () -> untyped
+  end
+end

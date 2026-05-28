@@ -1,0 +1,51 @@
+module Routing
+  module PseudonymizationHelper
+    PSEUDONOMIZED_NAMESPACE: "namespace"
+
+    PSEUDONOMIZED_PROJECT: "project"
+
+    PSEUDONOMIZED_USERNAME: "username"
+
+    PSEUDONOMIZED_GROUP: "group"
+
+    PSEUDONOMIZED_ID: "id"
+
+    PSEUDONOMIZED_ORGANIZATION: "organization"
+
+    class MaskHelper
+      @request: untyped
+
+      @group: untyped
+
+      @project: untyped
+
+      @organization: untyped
+
+      QUERY_PARAMS_TO_NOT_MASK: ::Array["scope" | "severity" | "sortBy" | "sortDesc" | "state" | "tab" | "glm_source" | "glm_content" | "_gl" | "utm_medium" | "utm_source" | "utm_campaign" | "utm_content" | "utm_budget"]
+
+      def initialize: (untyped request_object, untyped group, untyped project, untyped organization) -> void
+
+      def mask_params: () -> untyped
+
+      private
+
+      def mask_id: (untyped value) -> untyped
+
+      def has_maskable_params?: () -> untyped
+
+      def masked_query_params: () -> (::Hash[untyped, untyped] | untyped)
+    end
+
+    def masked_page_url: (group: untyped, project: untyped) -> untyped
+
+    def masked_referrer_url: (untyped url) -> untyped
+
+    def mask_additional_params: (untyped params) -> untyped
+
+    def masked_query_params: (untyped uri) -> (nil | untyped)
+
+    def referrer_params: (untyped url) -> untyped
+
+    def get_organization: () -> (nil | untyped)
+  end
+end

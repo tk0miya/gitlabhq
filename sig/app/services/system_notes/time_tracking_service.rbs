@@ -1,0 +1,67 @@
+module SystemNotes
+  class TimeTrackingService < ::SystemNotes::BaseService
+    #   "changed start date to September 20, 2018 and changed due date to September 25, 2018"
+    #
+    # Returns the created Note object
+    def change_start_date_or_due_date: (?::Hash[untyped, untyped] changed_dates) -> (nil | untyped)
+
+    # Called when the estimated time of a Noteable is changed
+    #
+    # time_estimate - Estimated time
+    #
+    # Example Note text:
+    #
+    #   "removed time estimate"
+    #
+    #   "changed time estimate to 3d 5h"
+    #
+    # Returns the created Note object
+    def change_time_estimate: () -> untyped
+
+    # Called when the spent time of a Noteable is changed
+    #
+    # time_spent - Spent time
+    #
+    # Example Note text:
+    #
+    #   "removed time spent"
+    #
+    #   "added 2h 30m of time spent"
+    #
+    # Returns the created Note object
+    def change_time_spent: () -> untyped
+
+    # Called when a timelog is added to an issuable
+    #
+    # timelog - Added timelog
+    #
+    # Example Note text:
+    #
+    #   "subtracted 1h 15m of time spent"
+    #
+    #   "added 2h 30m of time spent"
+    #
+    # Returns the created Note object
+    def created_timelog: (untyped timelog) -> untyped
+
+    def remove_timelog: (untyped timelog) -> untyped
+
+    private
+
+    def update_activity_counter: () -> (nil | untyped)
+
+    def formatted_spent_at: (untyped spent_at) -> untyped
+
+    def time_spent_note: (untyped time_spent, untyped spent_at) -> untyped
+
+    def changed_date_body: (untyped changed_dates) -> untyped
+
+    def message_for_changed_date: (untyped changed_dates, untyped date_key) -> untyped
+
+    def issue_activity_counter: () -> untyped
+
+    def work_item_activity_counter: () -> untyped
+
+    def time_estimate_system_note: () -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module Ci
+    module Status
+      module Bridge
+        module Common
+          def label: () -> untyped
+
+          def has_details?: () -> untyped
+
+          def details_path: () -> (nil | untyped)
+
+          def has_action?: () -> false
+
+          private
+
+          def downstream_pipeline: () -> untyped
+
+          def downstream_project: () -> untyped
+        end
+      end
+    end
+  end
+end

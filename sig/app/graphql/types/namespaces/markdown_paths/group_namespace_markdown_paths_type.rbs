@@ -1,0 +1,15 @@
+module Types
+  module Namespaces
+    module MarkdownPaths
+      class GroupNamespaceMarkdownPathsType < BaseObject
+        alias group object
+
+        def uploads_path: () -> untyped
+
+        def markdown_preview_path: (?iid: untyped?) -> untyped
+
+        def autocomplete_sources_path: (?iid: untyped?, ?work_item_type_id: untyped?) -> { members: untyped, issues: untyped, mergeRequests: untyped, labels: untyped, milestones: untyped, commands: untyped }
+      end
+    end
+  end
+end

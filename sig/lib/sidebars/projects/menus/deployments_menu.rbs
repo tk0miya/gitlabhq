@@ -1,0 +1,27 @@
+module Sidebars
+  module Projects
+    module Menus
+      class DeploymentsMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> true
+
+        def extra_container_html_options: () -> { class: "shortcuts-deployments" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "deployments"
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def feature_flags_menu_item: () -> untyped
+
+        def environments_menu_item: () -> untyped
+
+        def releases_menu_item: () -> untyped
+
+        def pages_menu_item: () -> untyped
+      end
+    end
+  end
+end

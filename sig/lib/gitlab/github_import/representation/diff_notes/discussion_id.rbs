@@ -1,0 +1,37 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      module DiffNotes
+        class DiscussionId
+          @note: untyped
+
+          @matches: untyped
+
+          NOTEABLE_TYPE: "MergeRequest"
+
+          DISCUSSION_CACHE_REGEX: ::Regexp
+
+          DISCUSSION_CACHE_KEY: "github-importer/discussion-id-map/%{project}/%{noteable_id}/%{original_note_id}"
+
+          def initialize: (untyped note) -> void
+
+          def find_or_generate: () -> untyped
+
+          private
+
+          attr_reader note: untyped
+
+          attr_reader matches: untyped
+
+          def generate_discussion_id: () -> untyped
+
+          def cache_discussion_id: (untyped discussion_id) -> untyped
+
+          def current_discussion_id: () -> untyped
+
+          def discussion_id_cache_key: (untyped id) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,44 @@
+module Gitlab
+  module SlashCommands
+    module Presenters
+      class Base
+        @resource: untyped
+
+        include Gitlab::Routing
+
+        def initialize: (?untyped? resource) -> void
+
+        def display_errors: () -> untyped
+
+        private
+
+        attr_reader resource: untyped
+
+        def header_with_list: (untyped header, untyped items) -> untyped
+
+        def ephemeral_response: (untyped message) -> untyped
+
+        def in_channel_response: (untyped message) -> untyped
+
+        def format_response: (untyped response) -> untyped
+
+        # Convert Markdown to slacks format
+        def format: (untyped string) -> untyped
+
+        def resource_url: () -> untyped
+
+        def project_link: () -> ::String
+
+        def author_profile_link: () -> ::String
+
+        def response_message: (?custom_pretext: untyped) -> { attachments: ::Array[{ title: ::String, title_link: untyped, author_name: untyped, author_icon: untyped, fallback: untyped, pretext: untyped, text: untyped, color: untyped, fields: untyped, mrkdwn_in: untyped }] }
+
+        def pretext: () -> ""
+
+        def text: () -> ""
+
+        def fields_with_markdown: () -> ::Array[:title | :pretext | :fields]
+      end
+    end
+  end
+end

@@ -1,0 +1,63 @@
+class GroupMembersFinder < UnionFinder
+  @group: untyped
+
+  @user: untyped
+
+  @params: untyped
+
+  include CreatedAtFilter
+
+  include Members::RoleParser
+
+  RELATIONS: ::Array[:direct | :inherited | :descendants | :shared_from_groups]
+
+  DEFAULT_RELATIONS: ::Array[:direct | :inherited]
+
+  INVALID_RELATION_TYPE_ERROR_MSG: ::String
+
+  RELATIONS_DESCRIPTIONS: { direct: "Members in the group itself", inherited: "Members in the group's ancestor groups", descendants: "Members in the group's subgroups", shared_from_groups: "Invited group's members" }
+
+  # Params can be any of the following:
+  #   two_factor: string. 'enabled' or 'disabled' are returning different set of data, other values are not effective.
+  #   sort:       string
+  #   search:     string
+  #   created_after: datetime
+  #   created_before: datetime
+  #   non_invite:      boolean
+  #   with_custom_role: boolean
+  attr_reader params: untyped
+
+  def initialize: (untyped group, ?untyped? user, ?params: ::Hash[untyped, untyped]) -> void
+
+  def execute: (?include_relations: untyped) -> untyped
+
+  private
+
+  attr_reader user: untyped
+
+  attr_reader group: untyped
+
+  def groups_by_relations: (untyped include_relations) -> untyped
+
+  def filter_members: (untyped members) -> untyped
+
+  def can_manage_members: () -> untyped
+
+  def group_members_list: () -> untyped
+
+  def all_group_members: (untyped groups) -> untyped
+
+  def shared_members: (untyped shared_from_groups) -> ::Array[untyped]
+
+  def members_of_groups: (untyped groups) -> untyped
+
+  def check_relation_arguments!: (untyped include_relations) -> (nil | untyped)
+
+  def filter_by_user_type: (untyped members) -> untyped
+
+  def filter_by_max_role: (untyped members) -> untyped
+
+  def apply_additional_filters: (untyped members) -> untyped
+
+  def static_roles_only?: () -> true
+end

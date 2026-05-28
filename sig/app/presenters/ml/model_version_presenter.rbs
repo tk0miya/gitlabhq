@@ -1,0 +1,17 @@
+module Ml
+  class ModelVersionPresenter < Gitlab::View::Presenter::Delegated
+    include ::API::Helpers::RelatedResourcesHelpers
+
+    def display_name: () -> ::String
+
+    def author: () -> untyped
+
+    def path: () -> untyped
+
+    def package_path: () -> (nil | untyped)
+
+    def import_path: () -> (nil | untyped)
+
+    def artifacts_count: () -> untyped
+  end
+end

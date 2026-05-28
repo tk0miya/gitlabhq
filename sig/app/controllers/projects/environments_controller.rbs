@@ -1,0 +1,83 @@
+class Projects::EnvironmentsController < Projects::ApplicationController
+  @project: untyped
+
+  @folder: untyped
+
+  @environment: untyped
+
+  # Currently, this acts as a hint to load the terminal details into the cache
+  # if they aren't there already. In the future, users will need these details
+  # to choose between terminals to connect to.
+  @terminals: untyped
+
+  @search_environments: untyped
+
+  include ProductAnalyticsTracking
+
+  include KasCookie
+
+  MIN_SEARCH_LENGTH: 3
+
+  ACTIVE_STATES: ::Array[:available | :stopping]
+
+  SCOPES_TO_STATES: { "active" => untyped, "stopped" => ::Array[:stopped] }
+
+  def index: () -> untyped
+
+  # Returns all environments for a given folder
+  # rubocop: disable CodeReuse/ActiveRecord
+  def folder: () -> untyped
+
+  def show: () -> nil
+
+  def new: () -> untyped
+
+  def edit: () -> nil
+
+  def k8s: () -> untyped
+
+  def create: () -> untyped
+
+  def update: () -> untyped
+
+  def stop: () -> untyped
+
+  def cancel_auto_stop: () -> untyped
+
+  def terminal: () -> untyped
+
+  # GET .../terminal.ws : implemented in gitlab-workhorse
+  def terminal_websocket_authorize: () -> untyped
+
+  def search: () -> untyped
+
+  private
+
+  def deployments: () -> untyped
+
+  def verify_api_request!: () -> untyped
+
+  def expire_etag_cache: () -> untyped
+
+  def allowed_environment_attributes: () -> untyped
+
+  def environment_params: () -> untyped
+
+  def environment: () -> untyped
+
+  def search_environments: (?type: untyped?) -> untyped
+
+  def include_all_dashboards?: () -> untyped
+
+  def search_environment_names: () -> (::Array[untyped] | untyped)
+
+  def serialize_environments: (untyped request, untyped response, ?bool nested) -> untyped
+
+  def serialize_review_app: () -> untyped
+
+  def authorize_stop_environment!: () -> (untyped | nil)
+
+  def authorize_update_environment!: () -> (untyped | nil)
+
+  def ensure_certificate_based_clusters_enabled!: () -> (untyped | nil)
+end

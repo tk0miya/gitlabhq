@@ -1,0 +1,19 @@
+class ResourceEvent < ApplicationRecord
+  include Gitlab::Utils::StrongMemoize
+
+  include Importable
+
+  include IssueResourceEvent
+
+  include WorkItemResourceEvent
+
+  def discussion_id: () -> untyped
+
+  def issuable: () -> untyped
+
+  private
+
+  def discussion_id_key: () -> ::Array[untyped]
+
+  def issuable_id_attrs: () -> untyped
+end

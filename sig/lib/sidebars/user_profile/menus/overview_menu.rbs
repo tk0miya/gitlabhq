@@ -1,0 +1,27 @@
+module Sidebars
+  module UserProfile
+    module Menus
+      class OverviewMenu < ::Sidebars::UserProfile::BaseMenu
+        include ::UsersHelper
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def avatar: () -> untyped
+
+        def avatar_shape: () -> "circle"
+
+        def entity_id: () -> untyped
+
+        def active_routes: () -> { path: "users#show" }
+
+        private
+
+        def user: () -> untyped
+
+        def user_name: () -> untyped
+      end
+    end
+  end
+end

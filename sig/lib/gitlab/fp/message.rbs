@@ -1,0 +1,26 @@
+module Gitlab
+  module Fp
+    # A message's content can be a hash containing any object that is relevant to the message. It will be
+    # used to provide content when the final Result from the chain is pattern matched
+    # on the message type and returned to the user.
+    # The content is required to be a hash so that it can be destructured and type-checked with
+    # rightward assignment.
+    class Message
+      @content: untyped
+
+      attr_reader content: untyped
+
+      # @param [Hash] content
+      # @return [Message]
+      # raise [ArgumentError] if content is not a Hash
+      def initialize: (?::Hash[untyped, untyped] content) -> void
+
+      # @param [Gitlab::Fp::Message] other
+      # @return [TrueClass, FalseClass]
+      def ==: (untyped other) -> untyped
+
+      # @return [String]
+      def to_s: () -> untyped
+    end
+  end
+end

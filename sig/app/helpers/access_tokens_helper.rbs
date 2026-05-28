@@ -1,0 +1,23 @@
+module AccessTokensHelper
+  include AccountsHelper
+
+  include ApplicationHelper
+
+  def scope_description: (untyped prefix) -> untyped
+
+  def tokens_app_data: () -> untyped
+
+  def filter_sort_scopes: (untyped scopes, untyped sources) -> untyped
+
+  def personal_access_token_data: (untyped token, ?untyped user) -> { access_token: ::Hash[untyped | :available_scopes | :name | :description | :scopes | :create | :table_url | :granular_new | :legacy_new | :revoke | :rotate | :show | :granular_tokens_enforced, untyped | ::String] }
+
+  def expires_at_field_data: () -> { min_date: untyped, max_date: untyped, max_expiration_days: untyped, pat_expiration_required: untyped }
+
+  private
+
+  def max_date_allowed: () -> (nil | untyped)
+
+  def max_expiration_days: () -> (nil | untyped)
+
+  def granular_tokens_enforced?: (untyped user) -> (false | untyped)
+end

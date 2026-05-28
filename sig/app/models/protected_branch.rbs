@@ -1,0 +1,48 @@
+class ProtectedBranch < ApplicationRecord
+  include ProtectedRef
+
+  include Gitlab::SQL::Pattern
+
+  include FromUnion
+
+  include EachBatch
+
+  include Presentable
+
+  def self.get_ids_by_name: (untyped name) -> untyped
+
+  def self.protected_ref_accessible_to?: (untyped ref, untyped user, project: untyped, action: untyped, ?protected_refs: untyped?) -> (true | untyped)
+
+  # overridden in EE
+  def self.can_update_security_orchestration_policy_project?: (untyped user, untyped project) -> false
+
+  # Check if branch name is marked as protected in the system
+  def self.protected?: (untyped project, untyped ref_name) -> (true | false | untyped)
+
+  def self.allow_force_push?: (untyped project, untyped ref_name) -> untyped
+
+  def self.any_protected?: (untyped project, untyped ref_names) -> untyped
+
+  def self.protected_refs: (untyped project) -> untyped
+
+  # overridden in EE
+  def self.branch_requires_code_owner_approval?: (untyped project, untyped branch_name) -> false
+
+  def self.by_name: (untyped query) -> untyped
+
+  def self.downcase_humanized_name: () -> untyped
+
+  def self.default_branch_for: (untyped project) -> (nil | untyped)
+
+  def default_branch?: () -> (false | untyped)
+
+  def group_level?: () -> untyped
+
+  def project_level?: () -> untyped
+
+  def entity: () -> untyped
+
+  private
+
+  def validate_not_subgroup: () -> (nil | untyped)
+end

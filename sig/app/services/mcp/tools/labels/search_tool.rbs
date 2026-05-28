@@ -1,0 +1,27 @@
+module Mcp
+  module Tools
+    module Labels
+      class SearchTool < Mcp::Tools::GraphqlTool
+        include Mcp::Tools::Concerns::Constants
+
+        def self.build_query: () -> "query searchLabels($fullPath: ID!, $search: String, $isProject: Boolean = false) {\n  group(fullPath: $fullPath) @skip(if: $isProject) {\n    id\n    labels(\n      searchTerm: $search\n      includeAncestorGroups: true\n      includeDescendantGroups: true\n    ) {\n      nodes {\n        ... on Label {\n          id\n          title\n        }\n      }\n    }\n  }\n  project(fullPath: $fullPath) @include(if: $isProject) {\n    id\n    labels(searchTerm: $search, includeAncestorGroups: true) {\n      nodes {\n        ... on Label {\n          id\n          title\n        }\n      }\n    }\n  }\n}\n"
+
+        def build_variables: () -> untyped
+
+        def operation_name: () -> ("project" | "group")
+
+        def build_variables_0_1_0: () -> untyped
+
+        private
+
+        def process_result: (untyped result) -> untyped
+
+        def extract_labels: (untyped structured_content) -> untyped
+
+        def resource_not_found?: (untyped result) -> untyped
+
+        def resource_not_found_error: () -> untyped
+      end
+    end
+  end
+end

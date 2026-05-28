@@ -1,0 +1,26 @@
+module Gitlab
+  module Cluster
+    class RackTimeoutObserver
+      @counter: untyped
+
+      include ActionView::Helpers::SanitizeHelper
+
+      TRANSITION_STATES: ::Array[:ready | :active]
+
+      def initialize: () -> void
+
+      # returns the Proc to be used as the observer callback block
+      def callback: () -> untyped
+
+      private
+
+      def log_timeout_exception: (untyped env) -> (nil | untyped)
+
+      def labels: (untyped info, untyped env) -> { controller: untyped, action: untyped, route: untyped, state: untyped }
+
+      def controller_params: (untyped env) -> untyped
+
+      def grape_params: (untyped env) -> (nil | { "route" => untyped })
+    end
+  end
+end

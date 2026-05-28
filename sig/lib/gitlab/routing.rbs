@@ -1,0 +1,33 @@
+module Gitlab
+  module Routing
+    self.@url_helpers: untyped
+
+    extend ActiveSupport::Concern
+
+    class LegacyRedirector
+      @path_type: untyped
+
+      # @params path_type [symbol] type of path to do "-" redirection
+      # https://gitlab.com/gitlab-org/gitlab/-/issues/16854
+      def initialize: (untyped path_type) -> void
+
+      def call: (untyped _params, untyped request) -> untyped
+
+      private
+
+      def ensure_valid_uri!: (untyped request) -> untyped
+    end
+
+    def self.includes_helpers: (untyped klass) -> untyped
+
+    # Returns the URL helpers Module.
+    #
+    # This method caches the output as Rails' "url_helpers" method creates an
+    # anonymous module every time it's called.
+    #
+    # Returns a Module.
+    def self.url_helpers: () -> untyped
+
+    def self.redirect_legacy_paths: (untyped router, *untyped paths) -> untyped
+  end
+end

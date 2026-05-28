@@ -1,0 +1,27 @@
+module Gitlab
+  module Golang
+    @gitlab_prefix: untyped
+
+    PseudoVersion: untyped
+
+    extend ::Gitlab::Golang
+
+    def local_module_prefix: () -> untyped
+
+    def semver_tag?: (untyped tag) -> (false | untyped)
+
+    def pseudo_version?: (untyped version) -> (false | untyped)
+
+    def parse_pseudo_version: (untyped semver) -> untyped
+
+    def validate_pseudo_version: (untyped project, untyped version, ?untyped? commit) -> untyped
+
+    def parse_semver: (untyped str) -> untyped
+
+    def go_path: (untyped project, ?untyped? path) -> ::String
+
+    def pkg_go_dev_url: (untyped name, ?untyped? version) -> ::String
+
+    def package_url: (untyped name, ?untyped? version) -> (nil | untyped | ::String)
+  end
+end

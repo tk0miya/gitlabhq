@@ -1,0 +1,9 @@
+module Ci
+  class DeleteExpiredTriggerTokenWorker
+    include ApplicationWorker
+
+    BATCH_SIZE: 100
+
+    def perform: () -> untyped
+  end
+end

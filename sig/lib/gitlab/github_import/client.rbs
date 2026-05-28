@@ -1,0 +1,173 @@
+module Gitlab
+  module GithubImport
+    # HTTP client for interacting with the GitHub API.
+    #
+    # This class is basically a fancy wrapped around Octokit while adding some
+    # functionality to deal with rate limiting and parallel imports. Usage is
+    # mostly the same as Octokit, for example:
+    #
+    #     client = GithubImport::Client.new('hunter2')
+    #
+    #     client.labels.each do |label|
+    #       puts label.name
+    #     end
+    class Client
+      @host: untyped
+
+      @octokit: untyped
+
+      @parallel: untyped
+
+      @github_omniauth_provider: untyped
+
+      @rate_limit_counter: untyped
+
+      @request_counter: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      include ::Gitlab::GithubImport::Clients::SearchRepos
+
+      attr_reader octokit: untyped
+
+      SEARCH_MAX_REQUESTS_PER_MINUTE: 30
+
+      DEFAULT_PER_PAGE: 100
+
+      CLIENT_CONNECTION_ERROR: untyped
+
+      # A single page of data and the corresponding URL.
+      Page: untyped
+
+      # The minimum number of requests we want to keep available.
+      #
+      # We don't use a value of 0 as multiple threads may be using the same
+      # token in parallel. This could result in all of them hitting the GitHub
+      # rate limit at once. The threshold is put in place to not hit the limit
+      # in most cases.
+      RATE_LIMIT_THRESHOLD: 50
+
+      SEARCH_RATE_LIMIT_THRESHOLD: 3
+
+      # token - The GitHub API token to use.
+      #
+      # host - The GitHub hostname. If nil, github.com will be used.
+      #
+      # per_page - The number of objects that should be displayed per page.
+      #
+      # parallel - When set to true hitting the rate limit will result in a
+      #            dedicated error being raised. When set to `false` we will
+      #            instead just `sleep()` until the rate limit is reset. Setting
+      #            this value to `true` for parallel importing is crucial as
+      #            otherwise hitting the rate limit will result in a thread
+      #            being blocked in a `sleep()` call for up to an hour.
+      def initialize: (untyped token, ?host: untyped?, ?per_page: untyped, ?parallel: bool) -> void
+
+      def parallel?: () -> untyped
+
+      # Returns the details of a GitHub user.
+      # 304 (Not Modified) status means the user is cached - API won't return user data.
+      #
+      # @param username[String] the username of the user.
+      # @param options[Hash] the optional parameters.
+      def user: (untyped username, ?::Hash[untyped, untyped] options) -> untyped
+
+      def pull_request_reviews: (untyped repo_name, untyped iid) -> untyped
+
+      def pull_request_review_requests: (untyped repo_name, untyped iid) -> untyped
+
+      def repos: (?::Hash[untyped, untyped] options) -> untyped
+
+      # Returns the details of a GitHub repository.
+      #
+      # name - The path (in the form `owner/repository`) of the repository.
+      def repository: (untyped name) -> untyped
+
+      def pull_request: (untyped repo_name, untyped iid) -> untyped
+
+      def labels: (*untyped args) -> untyped
+
+      def milestones: (*untyped args) -> untyped
+
+      def releases: (*untyped args) -> untyped
+
+      def branches: (*untyped args) -> untyped
+
+      def collaborators: (*untyped args) -> untyped
+
+      def branch_protection: (untyped repo_name, untyped branch_name) -> untyped
+
+      # Fetches data from the GitHub API and yields a Page object for every page
+      # of data, without loading all of them into memory.
+      #
+      # @param method [Symbol] The Octokit method to use for getting the data
+      # @param resume_url [String, nil] The GitHub link header URL to resume pagination.
+      #   When nil, the method will be invoked from the first page
+      # @param args [Array] Arguments to pass to the Octokit method
+      # @yield [Page] Each page of data from the API
+      # @return [Enumerator] When no block is given
+      #
+      # rubocop: disable GitlabSecurity/PublicSend
+      def each_page: (untyped method, untyped resume_url, *untyped args) ?{ (untyped) -> untyped } -> untyped
+
+      # Iterates over all of the objects for the given method (e.g. `:labels`).
+      #
+      # method - The method to send to Octokit for querying data.
+      # args - Any arguments to pass to the Octokit method.
+      def each_object: (untyped method, *untyped args) ?{ (untyped) -> untyped } -> untyped
+
+      # Yields the supplied block, responding to any rate limit errors.
+      #
+      # The exact strategy used for handling rate limiting errors depends on
+      # whether we are running in parallel mode or not. For more information see
+      # `#rate_or_wait_for_rate_limit`.
+      def with_rate_limit: () { () -> untyped } -> untyped
+
+      # Returns `true` if we're still allowed to perform API calls.
+      # Search API has rate limit of 30, use lowered threshold when search is used.
+      def requests_remaining?: () -> untyped
+
+      def remaining_requests: () -> untyped
+
+      def requests_limit: () -> untyped
+
+      def raise_or_wait_for_rate_limit: (untyped message) -> untyped
+
+      def rate_limit_resets_in: () -> untyped
+
+      def rate_limiting_enabled?: () -> untyped
+
+      def api_endpoint: () -> untyped
+
+      def web_endpoint: () -> untyped
+
+      def custom_api_endpoint: () -> untyped
+
+      def custom_web_endpoint: () -> (nil | untyped)
+
+      def default_api_endpoint: () -> untyped
+
+      def verify_ssl: () -> untyped
+
+      def github_omniauth_provider: () -> untyped
+
+      def rate_limit_counter: () -> untyped
+
+      def request_count_counter: () -> untyped
+
+      private
+
+      def formatted_api_endpoint: () -> untyped
+
+      def formatted_web_endpoint: () -> untyped
+
+      def api_endpoint_host: () -> untyped
+
+      def valid_next_url?: (untyped next_url) -> untyped
+
+      def with_retry: () { () -> untyped } -> untyped
+
+      def on_retry: () -> untyped
+    end
+  end
+end

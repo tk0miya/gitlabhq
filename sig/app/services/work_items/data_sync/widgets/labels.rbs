@@ -1,0 +1,24 @@
+module WorkItems
+  module DataSync
+    module Widgets
+      class Labels < Base
+        include Gitlab::Utils::StrongMemoize
+
+        def after_create: () -> (nil | untyped)
+
+        # overwritten in EE
+        def post_move_cleanup: () -> untyped
+
+        private
+
+        def new_work_item_label_links: (untyped label_links_batch) -> untyped
+
+        def handle_changed_labels_system_notes: (untyped label_links_batch) -> (nil | untyped)
+
+        def cloneable_labels: () -> untyped
+
+        def group: () -> (untyped | untyped | nil)
+      end
+    end
+  end
+end

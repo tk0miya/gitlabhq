@@ -1,0 +1,33 @@
+class ImportExportCleanUpService
+  @mmin: untyped
+
+  @path: untyped
+
+  @logger: untyped
+
+  LAST_MODIFIED_TIME_IN_MINUTES: 1440
+
+  DIR_DEPTH: 5
+
+  attr_reader mmin: untyped
+
+  attr_reader path: untyped
+
+  def initialize: (?untyped mmin) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def execute_cleanup: () -> untyped
+
+  def clean_up_export_files: () -> untyped
+
+  def clean_up_export_object_files: () -> untyped
+
+  def old_directories: () { (untyped) -> untyped } -> untyped
+
+  def directories_cmd: () -> ::Array["find" | ::String | "-mindepth" | "-maxdepth" | "-type" | "d" | "-not" | "-path" | "-mmin"]
+
+  def logger: () -> untyped
+end

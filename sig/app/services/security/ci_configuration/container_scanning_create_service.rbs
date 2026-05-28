@@ -1,0 +1,17 @@
+module Security
+  module CiConfiguration
+    class ContainerScanningCreateService < ::Security::CiConfiguration::BaseCreateService
+      private
+
+      def action: () -> untyped
+
+      def next_branch: () -> "set-container-scanning-config"
+
+      def message: () -> untyped
+
+      def description: () -> untyped
+
+      def name: () -> "Container Scanning"
+    end
+  end
+end

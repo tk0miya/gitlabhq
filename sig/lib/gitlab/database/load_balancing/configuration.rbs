@@ -1,0 +1,54 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # Configuration settings for a single LoadBalancer instance.
+      class Configuration
+        @max_replication_difference: untyped
+
+        @max_replication_lag_time: untyped
+
+        @replica_check_interval: untyped
+
+        @model: untyped
+
+        @hosts: untyped
+
+        @service_discovery: untyped
+
+        attr_accessor hosts: untyped
+
+        attr_accessor max_replication_difference: untyped
+
+        attr_accessor max_replication_lag_time: untyped
+
+        attr_accessor replica_check_interval: untyped
+
+        attr_accessor service_discovery: untyped
+
+        # Creates a configuration object for the given ActiveRecord model.
+        def self.for_model: (untyped model) -> untyped
+
+        def initialize: (untyped model, ?untyped hosts) -> void
+
+        def db_config_name: () -> untyped
+
+        def connection_specification_name: () -> untyped
+
+        def db_config: () -> untyped
+
+        def pool_size: () -> untyped
+
+        # Returns `true` if the use of load balancing replicas should be
+        # enabled.
+        #
+        # This is disabled for Rake tasks to ensure e.g. database migrations
+        # always produce consistent results.
+        def load_balancing_enabled?: () -> (false | untyped)
+
+        # This is disabled for Rake tasks to ensure e.g. database migrations
+        # always produce consistent results.
+        def service_discovery_enabled?: () -> (false | untyped)
+      end
+    end
+  end
+end

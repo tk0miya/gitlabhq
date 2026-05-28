@@ -1,0 +1,12 @@
+module Gitlab
+  module Ci
+    module Status
+      module Build
+        class WaitingForApproval < Status::Extended
+          #  Extended in EE
+          def self.matches?: (untyped build, untyped user) -> false
+        end
+      end
+    end
+  end
+end

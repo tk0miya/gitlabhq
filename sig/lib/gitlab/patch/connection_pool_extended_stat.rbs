@@ -1,0 +1,11 @@
+module Gitlab
+  module Patch
+    module ConnectionPoolExtendedStat
+      def extended_stat: () -> untyped
+
+      private
+
+      def thread_connection_counts: (untyped connections) -> untyped
+    end
+  end
+end

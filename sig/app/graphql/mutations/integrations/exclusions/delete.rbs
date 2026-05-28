@@ -1,0 +1,17 @@
+module Mutations
+  module Integrations
+    module Exclusions
+      class Delete < BaseMutation
+        include ResolvesIds
+
+        def resolve: (integration_name: untyped, ?project_ids: untyped, ?group_ids: untyped) -> { exclusions: untyped, errors: untyped }
+
+        private
+
+        def projects: (untyped project_ids) -> (::Array[untyped] | untyped)
+
+        def groups: (untyped group_ids) -> (::Array[untyped] | untyped)
+      end
+    end
+  end
+end

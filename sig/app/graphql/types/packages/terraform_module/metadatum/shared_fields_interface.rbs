@@ -1,0 +1,15 @@
+module Types
+  module Packages
+    module TerraformModule
+      module Metadatum
+        module SharedFieldsInterface
+          include ::Types::BaseInterface
+
+          prepend Gitlab::Graphql::MarkdownField
+
+          def readme_html_resolver: () -> untyped
+        end
+      end
+    end
+  end
+end

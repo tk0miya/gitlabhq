@@ -1,0 +1,60 @@
+class Projects::RepositoriesController < Projects::ApplicationController
+  @repo_params: untyped
+
+  @archive_metadata: untyped
+
+  @archive_header_builder: untyped
+
+  @append_sha: untyped
+
+  @ref: untyped
+
+  @filename: untyped
+
+  include ExtractsPath
+
+  include StaticObjectExternalStorage
+
+  include HotlinkInterceptor
+
+  include Gitlab::RepositoryArchiveRateLimiter
+
+  def create: () -> untyped
+
+  def archive: () -> untyped
+
+  private
+
+  def ref: () -> untyped
+
+  def repo_params: () -> untyped
+
+  def set_cache_headers: () -> untyped
+
+  def archive_not_modified?: () -> untyped
+
+  def archive_metadata: () -> untyped
+
+  def set_archive_content_headers: () -> untyped
+
+  def archive_header_builder: () -> untyped
+
+  def cache_max_age: (untyped commit_id) -> untyped
+
+  def assign_append_sha: () -> untyped
+
+  def assign_archive_vars: () -> untyped
+
+  # path can be of the form:
+  # master
+  # master/first.zip
+  # master/first/second.tar.gz
+  # master/first/second/third.zip
+  #
+  # In the archive case, we know that the last value is always the filename, so we
+  # do a greedy match to extract the ref. This avoid having to pull all ref names
+  # from Redis.
+  def extract_ref_and_filename: (untyped id) -> untyped
+
+  def check_archive_rate_limiting!: () -> untyped
+end

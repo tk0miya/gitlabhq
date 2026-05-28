@@ -1,0 +1,23 @@
+class DiffFileBaseEntity < Grape::Entity
+  include RequestAwareEntity
+
+  include BlobHelper
+
+  include DiffHelper
+
+  include TreeHelper
+
+  include ChecksCollaboration
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  def memoized_submodule_links: (untyped diff_file, untyped options) -> untyped
+
+  def current_user: () -> untyped
+
+  def edit_project_branch_options: (untyped merge_request) -> ::Array[untyped]
+
+  def has_edit_path?: (untyped merge_request) -> untyped
+end

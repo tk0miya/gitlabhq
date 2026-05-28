@@ -1,0 +1,61 @@
+module BulkImports
+  class PipelineBatchWorker
+    @batch: untyped
+
+    @tracker: untyped
+
+    @entity: untyped
+
+    @pending_retry: untyped
+
+    @context: untyped
+
+    @logger: untyped
+
+    include ApplicationWorker
+
+    include ExclusiveLeaseGuard
+
+    include Sidekiq::InterruptionsExhausted
+
+    DEFER_ON_HEALTH_DELAY: untyped
+
+    def self.defer_on_database_health_signal?: () -> untyped
+
+    def perform: (untyped batch_id) -> untyped
+
+    def perform_failure: (untyped batch_id, untyped exception) -> (nil | untyped)
+
+    private
+
+    attr_reader batch: untyped
+
+    attr_reader tracker: untyped
+
+    attr_reader pending_retry: untyped
+
+    attr_reader entity: untyped
+
+    def run: () -> untyped
+
+    def fail_batch: (untyped exception) -> untyped
+
+    def context: () -> untyped
+
+    def retry_batch: (untyped exception) -> untyped
+
+    def lease_timeout: () -> 30
+
+    def lease_key: () -> ::String
+
+    def re_enqueue: (?untyped delay) -> untyped
+
+    def process_batch?: () -> untyped
+
+    def logger: () -> untyped
+
+    def log_attributes: (?::Hash[untyped, untyped] extra) -> untyped
+
+    def cancel_batch: () -> untyped
+  end
+end

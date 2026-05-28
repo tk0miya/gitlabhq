@@ -1,0 +1,39 @@
+module Members
+  # We allow the current user to see the invited private group when the current user is a member of the shared group to
+  # allow better collaboration between the two groups even though the current user is not a member of the invited group.
+  # We don't allow the current user to see the source of membership i.e. the group name, path, and other group info as
+  # it's sensitive information if the current user is not an owner of the group or at least maintainer of the project.
+  # This class deals with setting `is_source_accessible_to_current_user` which is used to hide or show the source of
+  # memberships as per the above cases.
+  class InvitedPrivateGroupAccessibilityAssigner
+    @members: untyped
+
+    @source: untyped
+
+    @current_user: untyped
+
+    include Gitlab::Allowable
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped members, source: untyped, current_user: untyped) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader members: untyped
+
+    attr_reader source: untyped
+
+    attr_reader current_user: untyped
+
+    def authorized_groups: () -> (::Array[untyped] | untyped)
+
+    def private_invited_group_members: () -> untyped
+
+    def source_traversal_ids: () -> untyped
+
+    def can_manage_group_link?: () -> untyped
+  end
+end

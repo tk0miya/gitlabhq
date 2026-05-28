@@ -1,0 +1,25 @@
+module Bitbucket
+  class Connection
+    @options: untyped
+
+    @connection: untyped
+
+    DEFAULT_API_VERSION: "2.0"
+
+    DEFAULT_BASE_URI: "https://api.bitbucket.org/"
+
+    DEFAULT_QUERY: ::Hash[untyped, untyped]
+
+    attr_reader options: untyped
+
+    def initialize: (?::Hash[untyped, untyped] options) -> void
+
+    def connection: () -> untyped
+
+    def get: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    private
+
+    def api_connection?: () -> untyped
+  end
+end

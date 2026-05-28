@@ -1,0 +1,95 @@
+module Gitlab
+  module Database
+    module Partitioning
+      class PartitionManager
+        @model: untyped
+
+        @connection: untyped
+
+        @connection_name: untyped
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        include ::Gitlab::Database::MigrationHelpers::LooseForeignKeyHelpers
+
+        UnsafeToDetachPartitionError: untyped
+
+        LEASE_TIMEOUT: untyped
+
+        STATEMENT_TIMEOUT: untyped
+
+        MANAGEMENT_LEASE_KEY: "database_partition_management_%s"
+
+        RETAIN_DETACHED_PARTITIONS_FOR: untyped
+
+        MAX_PARTITION_SIZE: untyped
+
+        def initialize: (untyped model, ?connection: untyped?) -> void
+
+        def execute: (untyped sql) -> untyped
+
+        def sync_partitions: (?analyze: bool) -> untyped
+
+        private
+
+        attr_reader model: untyped
+
+        attr_reader connection: untyped
+
+        # Create all partition tables (doesn't take any lock on parent)
+        def create_partition_tables: (untyped partitions) -> untyped
+
+        # Attach all partitions (takes SHARE UPDATE EXCLUSIVE lock)
+        def attach_partition_tables: (untyped partitions) -> untyped
+
+        def process_created_partition: (untyped partition) -> untyped
+
+        def missing_partitions: () -> (::Array[untyped] | untyped)
+
+        def extra_partitions: () -> (::Array[untyped] | untyped)
+
+        def only_with_exclusive_lease: (untyped model, lease_key: untyped) { () -> untyped } -> untyped
+
+        def create: (untyped partitions) -> untyped
+
+        def detach: (untyped partitions) -> untyped
+
+        def detach_one_partition: (untyped partition) -> untyped
+
+        def assert_partition_detachable!: (untyped partition) -> untyped
+
+        def with_lock_retries: () { (?) -> untyped } -> untyped
+
+        def table_partitioned?: () -> untyped
+
+        def skip_syncing_partitions: () -> untyped
+
+        def run_analyze_on_partitioned_table: () -> (nil | untyped)
+
+        def ineligible_for_analyzing?: () -> untyped
+
+        def last_analyzed_at_within_interval?: () -> untyped
+
+        def first_model_partition: () -> untyped
+
+        def analyze_interval: () -> untyped
+
+        def primary_transaction: (?statement_timeout: untyped?) { () -> untyped } -> untyped
+
+        def should_lock_for_writes?: () -> untyped
+
+        def lock_partitions_for_writes: (untyped partition) -> untyped
+
+        def attach_loose_foreign_key_trigger: (untyped partition) -> (nil | untyped)
+
+        def parent_table_has_loose_foreign_key?: () -> untyped
+
+        def schedule_detached_partition_cleanup: (untyped partition) -> untyped
+
+        def above_threshold?: (untyped identifier) -> untyped
+
+        def identifier: (untyped partition) -> ::String
+      end
+    end
+  end
+end

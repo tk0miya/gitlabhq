@@ -1,0 +1,25 @@
+module Gitlab
+  module HealthChecks
+    class Server < Daemon
+      @address: untyped
+
+      @port: untyped
+
+      @server: untyped
+
+      def initialize: (address: untyped, port: untyped, **untyped options) -> void
+
+      private
+
+      def start_working: () -> true
+
+      def run_thread: () -> untyped
+
+      def stop_working: () -> untyped
+
+      def rack_app: () -> untyped
+
+      def new_probe: () -> untyped
+    end
+  end
+end

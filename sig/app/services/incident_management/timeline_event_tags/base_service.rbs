@@ -1,0 +1,15 @@
+module IncidentManagement
+  module TimelineEventTags
+    class BaseService
+      def allowed?: () -> untyped
+
+      def success: (untyped timeline_event_tag) -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def error_no_permissions: () -> untyped
+
+      def error_in_save: (untyped timeline_event_tag) -> untyped
+    end
+  end
+end

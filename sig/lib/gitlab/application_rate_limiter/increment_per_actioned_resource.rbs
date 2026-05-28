@@ -1,0 +1,17 @@
+module Gitlab
+  module ApplicationRateLimiter
+    class IncrementPerActionedResource < BaseStrategy
+      @resource_key: untyped
+
+      def initialize: (untyped resource_key) -> void
+
+      def increment: (untyped cache_key, untyped expiry) -> untyped
+
+      def read: (untyped cache_key) -> untyped
+
+      private
+
+      attr_accessor resource_key: untyped
+    end
+  end
+end

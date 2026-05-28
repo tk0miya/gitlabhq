@@ -1,0 +1,54 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        module File
+          class Local < Base
+            # `Repository#blobs_at` does not support files with the `/` prefix.
+            @location: untyped
+
+            extend ::Gitlab::Utils::Override
+
+            include Gitlab::Utils::StrongMemoize
+
+            include Gitlab::Loggable
+
+            def initialize: (untyped params, untyped context) -> void
+
+            def content: () -> untyped
+
+            def include_type: () -> :local
+
+            def metadata: () -> untyped
+
+            def validate_context!: () -> (nil | untyped)
+
+            def validate_content_presence!: () -> (untyped | untyped | nil)
+
+            private
+
+            def extra_params: () -> untyped
+
+            def fetch_local_content: () -> untyped
+
+            def expand_context_attrs: () -> untyped
+
+            def masked_blob: () -> (nil | untyped)
+
+            def masked_raw: () -> (nil | untyped)
+
+            def log_ci_config_blob_request: (untyped project, untyped requested_paths) -> (nil | untyped)
+
+            def log_ci_config_blob_response: (untyped project, untyped returned_paths, untyped missing_paths) -> untyped
+
+            def log_grpc_error: (untyped error) -> untyped
+
+            def log_missing_local_file: () -> untyped
+
+            def verbose_logging_enabled?: (untyped project) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

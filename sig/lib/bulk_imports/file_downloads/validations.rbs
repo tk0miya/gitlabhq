@@ -1,0 +1,23 @@
+module BulkImports
+  module FileDownloads
+    module Validations
+      def raise_error: (untyped message) -> untyped
+
+      def filepath: () -> untyped
+
+      def file_size_limit: () -> untyped
+
+      def response_headers: () -> untyped
+
+      private
+
+      def validate_filepath: () -> untyped
+
+      def validate_content_type: () -> untyped
+
+      def validate_symlink: () -> (nil | untyped)
+
+      def validate_size!: (untyped size) -> (nil | untyped)
+    end
+  end
+end

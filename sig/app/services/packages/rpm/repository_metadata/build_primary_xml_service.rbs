@@ -1,0 +1,31 @@
+# frozen_string_literal: true
+module Packages
+  module Rpm
+    module RepositoryMetadata
+      class BuildPrimaryXmlService < BuildXmlBaseService
+        ROOT_TAG: "metadata"
+
+        ROOT_ATTRIBUTES: { xmlns: "http://linux.duke.edu/metadata/common", :"xmlns:rpm" => "http://linux.duke.edu/metadata/rpm", packages: "0" }
+
+        # Nodes that have only text without attributes
+        BASE_ATTRIBUTES: ::Array[:name | :arch | :summary | :description | :url | :packager]
+
+        FORMAT_NODE_BASE_ATTRIBUTES: ::Array[:license | :vendor | :group | :buildhost | :sourcerpm]
+
+        def execute: () -> untyped
+
+        private
+
+        def build_base_attributes: (untyped xml) -> untyped
+
+        def build_format_node: (untyped xml) -> untyped
+
+        def build_base_format_attributes: (untyped xml) -> untyped
+
+        def build_requires_node: (untyped xml) -> untyped
+
+        def build_provides_node: (untyped xml) -> untyped
+      end
+    end
+  end
+end

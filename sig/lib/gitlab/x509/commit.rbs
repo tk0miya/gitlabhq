@@ -1,0 +1,11 @@
+module Gitlab
+  module X509
+    class Commit < Gitlab::Repositories::BaseSignedCommit
+      private
+
+      def signature_class: () -> untyped
+
+      def attributes: () -> (nil | { commit_sha: untyped, project: untyped, x509_certificate_id: untyped, verification_status: untyped, committer_email: untyped })
+    end
+  end
+end

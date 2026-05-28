@@ -1,0 +1,60 @@
+module Issues
+  class CreateService < Issues::BaseService
+    @extra_params: untyped
+
+    @perform_spam_check: untyped
+
+    @build_service: untyped
+
+    # We should not initialize the callback classes during the build service execution because these will be
+    # initialized when we call #create below
+    @issue: untyped
+
+    @add_related_issue: untyped
+
+    include ResolveDiscussions
+
+    prepend RateLimitedService
+
+    include ::Services::ReturnServiceResponses
+
+    def initialize: (container: untyped, ?current_user: untyped?, ?params: ::Hash[untyped, untyped], ?build_service: untyped?, ?perform_spam_check: bool) -> void
+
+    def execute: (?skip_system_notes: bool) -> untyped
+
+    def external_author: () -> untyped
+
+    def before_create: (untyped issue) -> untyped
+
+    # Add new items to Issues::AfterCreateService if they can be performed in Sidekiq
+    def after_create: (untyped issue) -> untyped
+
+    def publish_event: (untyped issue) -> untyped
+
+    def handle_changes: (untyped issue, untyped options) -> untyped
+
+    def handle_assignee_changes: (untyped issue, untyped old_assignees) -> (nil | untyped)
+
+    def resolve_discussions_with_issue: (untyped issue) -> (nil | untyped)
+
+    private
+
+    def authorization_action: () -> :create_issue
+
+    attr_reader perform_spam_check: untyped
+
+    attr_reader extra_params: untyped
+
+    def create_timeline_event: (untyped issue) -> (nil | untyped)
+
+    def user_agent_detail_service: () -> untyped
+
+    def handle_add_related_issue: (untyped issue) -> (nil | untyped)
+
+    def try_to_associate_contacts: (untyped issue) -> (nil | untyped)
+
+    def assign_description_from_template: () -> (nil | untyped)
+
+    def after_commit_tasks: (untyped user, untyped issue) -> untyped
+  end
+end

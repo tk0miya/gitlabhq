@@ -1,0 +1,30 @@
+module Members
+  class UnassignIssuablesService
+    @user: untyped
+
+    @requesting_user: untyped
+
+    @entity: untyped
+
+    attr_reader user: untyped
+
+    attr_reader entity: untyped
+
+    attr_reader requesting_user: untyped
+
+    # @param [User] user user whose membership is being deleted from entity
+    # @param [Group, Project] entity
+    # @param [User] requesting_user user who initiated the membership deletion of `user`
+    def initialize: (untyped user, untyped entity, untyped requesting_user) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    def unassign_from_issues: (untyped project_ids) -> untyped
+
+    def unassign_from_merge_requests: (untyped project_ids) -> untyped
+
+    def new_assignee_ids: (untyped issuable) -> untyped
+  end
+end

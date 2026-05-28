@@ -1,0 +1,9 @@
+module Resolvers
+  class GroupResolver < BaseResolver
+    def self.target_type: () -> "group"
+
+    include FullPathResolver
+
+    def resolve: (full_path: untyped) -> untyped
+  end
+end

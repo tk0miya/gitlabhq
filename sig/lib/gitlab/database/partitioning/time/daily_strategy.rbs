@@ -1,0 +1,30 @@
+module Gitlab
+  module Database
+    module Partitioning
+      module Time
+        class DailyStrategy < BaseStrategy
+          HEADROOM: untyped
+
+          PARTITION_SUFFIX: "%Y%m%d"
+
+          def current_partitions: () -> untyped
+
+          # Check the currently existing partitions and determine which ones are missing
+          def missing_partitions: () -> untyped
+
+          def extra_partitions: () -> untyped
+
+          def desired_partitions: () -> untyped
+
+          def relevant_range: () -> ::Array[untyped]
+
+          # no explicit connection needed since no queries are executed (pure date math on static value)
+          def oldest_active_date: () -> untyped
+
+          # no explicit connection needed since no queries are executed (pure string formatting on static value)
+          def partition_name: (untyped lower_bound) -> ::String
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Mutations
+  module Users
+    class SetNamespaceCommitEmail < BaseMutation
+      def resolve: (untyped args) -> { namespace_commit_email: untyped, errors: untyped }
+
+      private
+
+      def find_object: (untyped id) -> untyped
+    end
+  end
+end

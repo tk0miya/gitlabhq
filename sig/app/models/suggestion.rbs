@@ -1,0 +1,44 @@
+class Suggestion < ApplicationRecord
+  include Importable
+
+  include Suggestible
+
+  include Notes::WithAssociatedNote
+
+  def diff_file: () -> untyped
+
+  def source_project: () -> untyped
+
+  def target_project: () -> untyped
+
+  def branch: () -> untyped
+
+  def file_path: () -> untyped
+
+  # `from_line_index` and `to_line_index` represents diff/blob line numbers in
+  # index-like way (N-1).
+  def from_line_index: () -> untyped
+
+  def to_line_index: () -> untyped
+
+  def appliable?: (?cached: bool) -> untyped
+
+  def inapplicable_reason: (?cached: bool) -> untyped
+
+  # Overwrites outdated column
+  def outdated?: (?cached: bool) -> (untyped | true)
+
+  def single_line?: () -> untyped
+
+  def target_line: () -> untyped
+
+  private
+
+  def different_content?: () -> untyped
+
+  def outdated_reason: () -> untyped
+
+  def skip_namespace_validation?: () -> untyped
+
+  def note_namespace_id: () -> untyped
+end

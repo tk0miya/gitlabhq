@@ -1,0 +1,9 @@
+module Gitlab
+  module Graphql
+    module Extensions
+      class ExternallyPaginatedArrayExtension < GraphQL::Schema::Field::ConnectionExtension
+        def resolve: (object: untyped, arguments: untyped, context: untyped) { (untyped, untyped, untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end

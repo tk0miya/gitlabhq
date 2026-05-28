@@ -1,0 +1,15 @@
+module Gitlab
+  module ImportExport
+    class WikiRepoSaver < RepoSaver
+      @repository: untyped
+
+      extend ::Gitlab::Utils::Override
+
+      def repository: () -> untyped
+
+      private
+
+      def bundle_filename: () -> untyped
+    end
+  end
+end

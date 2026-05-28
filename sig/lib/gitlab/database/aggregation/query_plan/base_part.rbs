@@ -1,0 +1,33 @@
+module Gitlab
+  module Database
+    module Aggregation
+      class QueryPlan
+        class BasePart
+          @definition: untyped
+
+          @configuration: untyped
+
+          @query_plan: untyped
+
+          include ActiveModel::Validations
+
+          attr_reader definition: untyped
+
+          attr_reader configuration: untyped
+
+          attr_reader query_plan: untyped
+
+          def initialize: (untyped definition, untyped configuration, query_plan: untyped) -> void
+
+          def instance_key: () -> untyped
+
+          def matches?: (untyped reference_config) -> untyped
+
+          private
+
+          def validate_definition_presence: () -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

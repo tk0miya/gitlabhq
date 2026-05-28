@@ -1,0 +1,11 @@
+module Clusters
+  module Agents
+    class NotifyGitPushWorker
+      include ApplicationWorker
+
+      include ClusterAgentQueue
+
+      def perform: (untyped project_id) -> (nil | untyped)
+    end
+  end
+end

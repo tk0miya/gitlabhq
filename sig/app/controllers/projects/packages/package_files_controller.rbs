@@ -1,0 +1,11 @@
+module Projects
+  module Packages
+    class PackageFilesController < ApplicationController
+      include PackagesAccess
+
+      include SendFileUpload
+
+      def download: () -> untyped
+    end
+  end
+end

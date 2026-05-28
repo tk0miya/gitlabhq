@@ -1,0 +1,63 @@
+module Ci
+  # Cancel a pipelines cancelable jobs and optionally it's child pipelines cancelable jobs
+  class CancelPipelineService
+    @pipeline: untyped
+
+    @current_user: untyped
+
+    @cascade_to_children: untyped
+
+    @auto_canceled_by_pipeline: untyped
+
+    @execute_async: untyped
+
+    @safe_cancellation: untyped
+
+    include Gitlab::Allowable
+
+    #
+    # @cascade_to_children - if true cancels all related child pipelines for parent child pipelines
+    # @auto_canceled_by_pipeline - store the pipeline_id of the pipeline that triggered cancellation
+    # @execute_async - if true cancel the children asyncronously
+    # @safe_cancellation - if true only cancel interruptible:true jobs
+    def initialize: (pipeline: untyped, current_user: untyped, ?cascade_to_children: bool, ?auto_canceled_by_pipeline: untyped?, ?execute_async: bool, ?safe_cancellation: bool) -> void
+
+    def execute: () -> untyped
+
+    # This method should be used only when we want to always cancel the pipeline without
+    # checking whether the current_user has permissions to do so, or when we don't have
+    # a current_user available in the context.
+    def force_execute: () -> untyped
+
+    private
+
+    attr_reader pipeline: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader auto_canceled_by_pipeline: untyped
+
+    def log_pipeline_being_canceled: () -> untyped
+
+    def update_auto_canceled_pipeline_attributes: () -> (nil | untyped)
+
+    def cascade_to_children?: () -> untyped
+
+    def execute_async?: () -> untyped
+
+    def cancel_jobs: (untyped cancelable_jobs) -> untyped
+
+    def build_preloads: () -> ::Array[:project | :pipeline | :deployment | :taggings]
+
+    def cancel_job: (untyped job) -> untyped
+
+    def permission_error_response: () -> untyped
+
+    # We don't handle the case when `cascade_to_children` is `true` and `safe_cancellation` is `true`
+    # because `safe_cancellation` is passed as `true` only when `cascade_to_children` is `false`
+    # from `CancelRedundantPipelinesService`.
+    # In the future, when "safe cancellation" is implemented as a regular cancellation feature,
+    # we need to handle this case.
+    def cancel_children: () -> untyped
+  end
+end

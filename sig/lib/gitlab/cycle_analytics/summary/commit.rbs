@@ -1,0 +1,25 @@
+module Gitlab
+  module CycleAnalytics
+    module Summary
+      class Commit < Base
+        @value: untyped
+
+        @commits_count: untyped
+
+        @ref: untyped
+
+        def identifier: () -> :commits
+
+        def title: () -> untyped
+
+        def value: () -> untyped
+
+        private
+
+        def commits_count: () -> (nil | untyped)
+
+        def ref: () -> untyped
+      end
+    end
+  end
+end

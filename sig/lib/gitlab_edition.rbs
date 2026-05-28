@@ -1,0 +1,21 @@
+module GitlabEdition
+  self.@is_ee: untyped
+
+  self.@is_jh: untyped
+
+  def self.root: () -> untyped
+
+  def self.path_glob: (untyped path) -> ::String
+
+  def self.extension_path_prefixes: () -> ("" | ::String)
+
+  def self.extensions: () -> (::Array["ee" | "jh"] | ::Array["ee"] | ::Array[untyped])
+
+  def self.ee?: () -> untyped
+
+  def self.jh?: () -> untyped
+
+  def self.ee: () { () -> untyped } -> (untyped | nil)
+
+  def self.jh: () { () -> untyped } -> (untyped | nil)
+end

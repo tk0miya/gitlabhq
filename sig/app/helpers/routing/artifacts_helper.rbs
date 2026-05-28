@@ -1,0 +1,16 @@
+module Routing
+  module ArtifactsHelper
+    # /*namespace_id/:project_id/-/jobs/:job_id/artifacts/download(.:format)
+    def fast_download_project_job_artifacts_path: (untyped project, untyped job, ?::Hash[untyped, untyped] params) -> untyped
+
+    # /*namespace_id/:project_id/-/jobs/:job_id/artifacts/keep(.:format)
+    def fast_keep_project_job_artifacts_path: (untyped project, untyped job) -> untyped
+
+    #  /*namespace_id/:project_id/-/jobs/:job_id/artifacts/browse(/*path)
+    def fast_browse_project_job_artifacts_path: (untyped project, untyped job) -> untyped
+
+    def expose_fast_artifacts_path: (untyped project, untyped job, untyped action, ?::Hash[untyped, untyped] params) -> untyped
+
+    def artifacts_action_path: (untyped path, untyped project, untyped build) -> untyped
+  end
+end

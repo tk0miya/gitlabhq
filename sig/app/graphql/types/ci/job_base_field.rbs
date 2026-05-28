@@ -1,0 +1,18 @@
+module Types
+  module Ci
+    # JobBaseField ensures that only allow-listed fields can be returned without a permission check.
+    # All other fields go through a permissions check based on the :job_field_authorization value passed in the context.
+    # rubocop: disable Graphql/AuthorizeTypes
+    class JobBaseField < ::Types::BaseField
+      @if_unauthorized: untyped
+
+      PUBLIC_FIELDS: ::Array[:allow_failure | :duration | :id | :kind | :status | :created_at | :finished_at | :queued_at | :queued_duration | :updated_at | :runner]
+
+      attr_accessor if_unauthorized: untyped
+
+      def initialize: (**untyped kwargs) { (?) -> untyped } -> void
+
+      def authorized?: (untyped object, untyped args, untyped ctx) -> (untyped | false)
+    end
+  end
+end

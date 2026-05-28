@@ -1,0 +1,19 @@
+module Banzai
+  module Filter
+    module MarkdownEngines
+      class Base
+        @context: untyped
+
+        attr_reader context: untyped
+
+        def initialize: (untyped context) -> void
+
+        def render: (untyped text) -> untyped
+
+        private
+
+        def sourcepos_disabled?: () -> untyped
+      end
+    end
+  end
+end

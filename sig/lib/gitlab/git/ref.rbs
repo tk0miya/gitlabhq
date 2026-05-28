@@ -1,0 +1,34 @@
+module Gitlab
+  module Git
+    class Ref
+      @name: untyped
+
+      @dereferenced_target: untyped
+
+      @target: untyped
+
+      include Gitlab::EncodingHelper
+
+      # Branch or tag name
+      # without "refs/tags|heads" prefix
+      attr_reader name: untyped
+
+      # Target sha.
+      # Usually it is commit sha but in case
+      # when tag reference on other tag it can be tag sha
+      attr_reader target: untyped
+
+      # Dereferenced target
+      # Commit object to which the Ref points to
+      attr_reader dereferenced_target: untyped
+
+      # Extract branch name from full ref path
+      #
+      # Ex.
+      #   Ref.extract_branch_name('refs/heads/master') #=> 'master'
+      def self.extract_branch_name: (untyped str) -> untyped
+
+      def initialize: (untyped repository, untyped name, untyped target, untyped dereferenced_target) -> void
+    end
+  end
+end

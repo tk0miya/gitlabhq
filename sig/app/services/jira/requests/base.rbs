@@ -1,0 +1,67 @@
+module Jira
+  module Requests
+    class Base
+      @project: untyped
+
+      @jira_integration: untyped
+
+      @client: untyped
+
+      include SafeFormatHelper
+
+      JIRA_API_VERSION: 2
+
+      # Limit the size of the JSON error message we will attempt to parse, as the JSON is external input.
+      JIRA_ERROR_JSON_SIZE_LIMIT: 5000
+
+      ERRORS: { connection: ::Array[untyped], jira_ruby: untyped, ssl: untyped, timeout: ::Array[untyped], uri: ::Array[untyped], url_blocked: untyped }
+
+      ALL_ERRORS: untyped
+
+      def initialize: (untyped jira_integration, ?::Hash[untyped, untyped] params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader jira_integration: untyped
+
+      attr_reader project: untyped
+
+      # We have to add the context_path here because the Jira client is not taking it into account
+      def base_api_url: () -> ::String
+
+      def context_path: () -> untyped
+
+      # override this method in the specific request class implementation if a differnt API version is required
+      def api_version: () -> untyped
+
+      def client: () -> untyped
+
+      def request: () -> untyped
+
+      def auth_docs_link_start: () -> untyped
+
+      def config_docs_link_start: () -> untyped
+
+      def config_integration_link_start: () -> untyped
+
+      def link_start: (untyped url) -> untyped
+
+      def error_message: (untyped error) -> untyped
+
+      # Returns a user-facing error message if possible, otherwise `nil`.
+      def reportable_error_message: (untyped error) -> untyped
+
+      # Returns a user-facing error message for a `JIRA::HTTPError` if possible,
+      # otherwise `nil`.
+      def reportable_jira_ruby_error_message: (untyped error) -> untyped
+
+      def jira_ruby_json_error_message: (untyped error_message) -> (nil | untyped)
+
+      def url: () -> untyped
+
+      def build_service_response: (untyped response) -> untyped
+    end
+  end
+end

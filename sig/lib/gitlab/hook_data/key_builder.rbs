@@ -1,0 +1,15 @@
+module Gitlab
+  module HookData
+    class KeyBuilder < BaseBuilder
+      alias key object
+
+      def build: (untyped event) -> untyped
+
+      private
+
+      def key_data: () -> { key: untyped, id: untyped }
+
+      def user_data: () -> (::Hash[untyped, untyped] | { username: untyped })
+    end
+  end
+end

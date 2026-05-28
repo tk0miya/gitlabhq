@@ -1,0 +1,16 @@
+module Gitlab
+  module BitbucketImport
+    module Stage
+      class ImportIssuesNotesWorker
+        include StageMethods
+
+        private
+
+        # project - An instance of Project.
+        def import: (untyped project) -> untyped
+
+        def importer_class: () -> untyped
+      end
+    end
+  end
+end

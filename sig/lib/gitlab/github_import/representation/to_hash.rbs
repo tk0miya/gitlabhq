@@ -1,0 +1,15 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      module ToHash
+        # Converts the current representation to a Hash. The keys of this Hash
+        # will be Symbols.
+        def to_hash: () -> untyped
+
+        # This method allow objects to be safely passed directly to Sidekiq without errors.
+        # It returns JSON datatypes: string, integer, float, boolean, null(nil), array and hash.
+        def convert_value_for_to_hash: (untyped value) -> untyped
+      end
+    end
+  end
+end

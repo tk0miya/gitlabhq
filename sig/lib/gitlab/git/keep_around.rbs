@@ -1,0 +1,32 @@
+# Makes sure a commit is kept around when Git garbage collection runs.
+# Git GC will delete commits from the repository that are no longer in any
+# branches or tags, but we want to keep some of these commits around, for
+# example if they have comments or CI builds.
+#
+# For Geo's sake, pass in multiple shas rather than calling it multiple times,
+# to avoid unnecessary syncing.
+module Gitlab
+  module Git
+    class KeepAround
+      @repository: untyped
+
+      @keeparound_requested_counter: untyped
+
+      @keeparound_created_counter: untyped
+
+      def self.execute: (untyped repository, untyped shas, source: untyped) -> untyped
+
+      def initialize: (untyped repository) -> void
+
+      def execute: (untyped shas, source: untyped) -> (nil | untyped)
+
+      def kept_around?: (untyped sha) -> (true | untyped)
+
+      private
+
+      def disabled?: () -> untyped
+
+      def keep_around_ref_name: (untyped sha) -> ::String
+    end
+  end
+end

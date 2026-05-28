@@ -1,0 +1,15 @@
+module FeatureFlags
+  class CreateService < FeatureFlags::BaseService
+    def execute: () -> untyped
+
+    private
+
+    def audit_context: (untyped feature_flag) -> { name: "feature_flag_created", message: untyped, author: untyped, scope: untyped, target: untyped }
+
+    def audit_message: (untyped feature_flag) -> untyped
+
+    def can_create?: () -> untyped
+
+    def valid_version?: () -> untyped
+  end
+end

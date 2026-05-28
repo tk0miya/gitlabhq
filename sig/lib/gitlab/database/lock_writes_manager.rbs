@@ -1,0 +1,72 @@
+module Gitlab
+  module Database
+    class LockWritesManager
+      @table_name: untyped
+
+      @connection: untyped
+
+      @database_name: untyped
+
+      @logger: untyped
+
+      @dry_run: untyped
+
+      @force: untyped
+
+      @with_retries: untyped
+
+      @table_name_without_schema: untyped
+
+      TRIGGER_FUNCTION_NAME: "gitlab_schema_prevent_write"
+
+      # Triggers to block INSERT / UPDATE / DELETE
+      # Triggers on TRUNCATE are not added to the information_schema.triggers
+      # See https://www.postgresql.org/message-id/16934.1568989957%40sss.pgh.pa.us
+      EXPECTED_TRIGGER_RECORD_COUNT: 3
+
+      # table_name can include schema name as a prefix. For example: 'gitlab_partitions_static.events_03',
+      # otherwise, it will default to current used schema, for example 'public'.
+      def initialize: (table_name: untyped, connection: untyped, database_name: untyped, ?with_retries: bool, ?logger: untyped?, ?dry_run: bool, ?force: bool) -> void
+
+      def table_locked_for_writes?: () -> untyped
+
+      def lock_writes: () -> untyped
+
+      def unlock_writes: () -> untyped
+
+      private
+
+      attr_reader table_name: untyped
+
+      attr_reader connection: untyped
+
+      attr_reader database_name: untyped
+
+      attr_reader logger: untyped
+
+      attr_reader dry_run: untyped
+
+      attr_reader force: untyped
+
+      attr_reader table_name_without_schema: untyped
+
+      attr_reader with_retries: untyped
+
+      def table_exist?: () -> untyped
+
+      def process_query: (untyped sql, untyped action) -> ::String
+
+      def execute_sql_statement: (untyped sql) -> untyped
+
+      def run_with_retries: (untyped connection) { () -> untyped } -> untyped
+
+      def with_statement_timeout_retries: (?::Integer times) { () -> untyped } -> untyped
+
+      def with_lock_retries: (untyped connection) { (?) -> untyped } -> untyped
+
+      def write_trigger_name: () -> ::String
+
+      def result_hash: (action: untyped) -> { action: untyped, database: untyped, table: untyped, dry_run: untyped }
+    end
+  end
+end

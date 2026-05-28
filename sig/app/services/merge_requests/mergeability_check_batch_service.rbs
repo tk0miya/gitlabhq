@@ -1,0 +1,17 @@
+module MergeRequests
+  class MergeabilityCheckBatchService
+    @merge_requests: untyped
+
+    @user: untyped
+
+    def initialize: (untyped merge_requests, untyped user) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    attr_reader merge_requests: untyped
+
+    attr_reader user: untyped
+  end
+end

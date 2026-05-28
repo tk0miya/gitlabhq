@@ -1,0 +1,42 @@
+module Gitlab
+  module Database
+    module Reindexing
+      # This is a >= PG12 reindexing strategy based on `REINDEX CONCURRENTLY`
+      class ReindexConcurrently
+        @index: untyped
+
+        @logger: untyped
+
+        @connection: untyped
+
+        ReindexError: untyped
+
+        TEMPORARY_INDEX_PATTERN: "\\_cc(new|old)[0-9]*"
+
+        STATEMENT_TIMEOUT: untyped
+
+        PG_MAX_INDEX_NAME_LENGTH: 63
+
+        attr_reader index: untyped
+
+        attr_reader logger: untyped
+
+        def initialize: (untyped index, ?logger: untyped) -> void
+
+        def perform: () -> untyped
+
+        private
+
+        def with_logging: () { () -> untyped } -> untyped
+
+        def cleanup_dangling_indexes: () -> untyped
+
+        def remove_index: (untyped index) -> untyped
+
+        def set_statement_timeout: () { () -> untyped } -> untyped
+
+        def connection: () -> untyped
+      end
+    end
+  end
+end

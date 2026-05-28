@@ -1,0 +1,35 @@
+class Projects::CycleAnalyticsController < Projects::ApplicationController
+  @cycle_analytics: untyped
+
+  @request_params: untyped
+
+  include ActionView::Helpers::DateHelper
+
+  include ActionView::Helpers::TextHelper
+
+  include CycleAnalyticsParams
+
+  include GracefulTimeoutHandling
+
+  include ProductAnalyticsTracking
+
+  include Gitlab::Utils::StrongMemoize
+
+  extend ::Gitlab::Utils::Override
+
+  def show: () -> untyped
+
+  private
+
+  def all_cycle_analytics_params: () -> untyped
+
+  def value_stream: () -> untyped
+
+  def cycle_analytics_json: () -> { summary: untyped, stats: untyped, permissions: untyped }
+
+  def namespace: () -> untyped
+
+  def tracking_namespace_source: () -> untyped
+
+  def tracking_project_source: () -> untyped
+end

@@ -1,0 +1,15 @@
+module Authn
+  module TokenField
+    module Finders
+      class BaseEncryptedPartitioned < BaseEncrypted
+        def execute: () -> (untyped | nil)
+
+        def skip_fallback?: () -> false
+
+        def partition_key: () -> untyped
+
+        def partition_scope: () -> untyped
+      end
+    end
+  end
+end

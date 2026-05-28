@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+module Backup
+  module Dump
+    class Postgres
+      include Backup::Helper
+
+      # Owner can read/write, group no permission, others no permission
+      FILE_PERMISSION: 384
+
+      # Triggers PgDump and outputs to the provided file path
+      #
+      # @param [String] output_file_path full path to the output destination
+      # @param [Gitlab::Backup::Cli::Utils::PgDump] pg_dump
+      # @return [Boolean] whether pg_dump finished with success
+      def dump: (untyped output_file_path, untyped pg_dump) -> untyped
+    end
+  end
+end

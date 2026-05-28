@@ -1,0 +1,29 @@
+module WorkItems
+  class ExportCsvService < ExportCsv::BaseService
+    include GitlabRoutingHelper
+
+    NotAvailableError: untyped
+
+    def email: (untyped mail_to_user) -> untyped
+
+    private
+
+    def associations_to_preload: () -> untyped
+
+    def widget_preloads: () -> ::Array[:assignees | :work_item_parent | :milestone | :dates_source | :labels | :timelogs]
+
+    def header_to_value_hash: () -> untyped
+
+    def base_metadata: () -> { "State" => untyped, "Confidential" => untyped, "Locked" => untyped, "Milestone" => untyped, "Labels" => untyped }
+
+    def author_and_assignees_data: () -> { "Author" => "author_name", "Author Username" => untyped, "Assignee" => untyped, "Assignee Username" => untyped }
+
+    def dates_data: () -> { "Created At (UTC)" => untyped, "Updated At (UTC)" => untyped, "Closed At (UTC)" => untyped, "Due Date" => untyped, "Start Date" => untyped }
+
+    def parent_item_data: () -> { "Parent ID" => untyped, "Parent IID" => untyped, "Parent Title" => untyped }
+
+    def time_tracking_data: () -> { "Time Estimate" => untyped, "Time Spent" => untyped }
+
+    def widget_value_for: (untyped work_item, untyped widget_name, ?untyped? attr) -> (nil | untyped)
+  end
+end

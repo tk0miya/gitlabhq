@@ -1,0 +1,31 @@
+module MergeRequests
+  class CreatePipelineService < MergeRequests::BaseService
+    def execute: (untyped merge_request) -> untyped
+
+    def execute_async: (untyped merge_request) -> untyped
+
+    def create_merge_request_pipeline: (untyped merge_request) -> untyped
+
+    def allowed?: (untyped merge_request) -> untyped
+
+    def allow_duplicate: () -> untyped
+
+    private
+
+    def can_create_pipeline_for?: (untyped merge_request) -> (false | true)
+
+    def user_can_run_pipeline?: (untyped merge_request) -> untyped
+
+    def pipeline_project: (untyped merge_request) -> untyped
+
+    def pipeline_project_and_ref: (untyped merge_request) -> ::Array[untyped]
+
+    def can_create_pipeline_in_target_project?: (untyped merge_request) -> (false | true | untyped)
+
+    def can_update_source_branch_in_target_project?: (untyped merge_request) -> untyped
+
+    def check_duplicate_pipeline: (untyped merge_request) -> (nil | untyped)
+
+    def cannot_create_pipeline_error: (untyped reason, ?retriable: bool) -> untyped
+  end
+end

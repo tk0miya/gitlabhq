@@ -1,0 +1,7 @@
+class ProjectDailyStatistic < ApplicationRecord
+  include CounterAttribute
+
+  include PartitionedTable
+
+  def self.find_or_create_project_daily_statistic: (untyped project_id, untyped date) -> untyped
+end

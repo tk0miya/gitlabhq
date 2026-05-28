@@ -1,0 +1,28 @@
+# Base module for ChatOps integrations
+module Integrations
+  module Base
+    module SlashCommands
+      extend ActiveSupport::Concern
+
+      CACHE_KEY: "slash-command-requests:%{secret}"
+
+      CACHE_EXPIRATION_TIME: untyped
+
+      def trigger: (untyped params) -> (nil | untyped)
+
+      def valid_token?: (untyped token) -> untyped
+
+      def testable?: () -> false
+
+      private
+
+      def find_chat_user: (untyped params) -> untyped
+
+      def authorize_chat_name_url: (untyped params) -> untyped
+
+      def unknown_user_message: (untyped params) -> untyped
+
+      def cache_slash_commands_request!: (untyped params) -> untyped
+    end
+  end
+end

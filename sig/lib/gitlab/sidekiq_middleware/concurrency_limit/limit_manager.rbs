@@ -1,0 +1,39 @@
+module Gitlab
+  module SidekiqMiddleware
+    module ConcurrencyLimit
+      class LimitManager
+        @worker_name: untyped
+
+        @prefix: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        TTL: untyped
+
+        attr_reader worker_name: untyped
+
+        def initialize: (worker_name: untyped, prefix: untyped) -> void
+
+        # Reads the current limit value in Redis.
+        # Falls back on the max limit value set by default in `worker.get_concurrency_limit`
+        # if no limit is set in Redis.
+        # @return [Integer] The current limit value, or 0 if no limit is set
+        def current_limit: () -> (0 | untyped)
+
+        # Updates the current limit value in Redis
+        # @param value [Integer] The new limit value to set
+        def set_current_limit!: (untyped value) -> untyped
+
+        private
+
+        def worker_klass: () -> untyped
+
+        def default_limit: () -> (untyped | 0)
+
+        def with_redis: () { (?) -> untyped } -> untyped
+
+        def current_limit_key: () -> ::String
+      end
+    end
+  end
+end

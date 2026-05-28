@@ -1,0 +1,7 @@
+class PipelineHooksWorker
+  include ApplicationWorker
+
+  include PipelineQueue
+
+  def perform: (untyped pipeline_id) -> (nil | untyped)
+end

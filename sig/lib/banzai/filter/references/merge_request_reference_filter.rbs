@@ -1,0 +1,33 @@
+module Banzai
+  module Filter
+    module References
+      # HTML filter that replaces merge request references with links. References
+      # to merge requests that do not exist are ignored.
+      #
+      # This filter supports cross-project references.
+      class MergeRequestReferenceFilter < IssuableReferenceFilter
+        @all_commits: untyped
+
+        def url_for_object: (untyped mr, untyped project) -> untyped
+
+        def object_link_content_html_extras: (untyped object, untyped matches) -> untyped
+
+        def parent_records: (untyped parent, untyped ids) -> untyped
+
+        def reference_class: (untyped object_sym, ?tooltip: bool) -> untyped
+
+        def data_attributes_for: (untyped original, untyped parent, untyped object, **untyped _attrs) -> untyped
+
+        private
+
+        def object_link_commit_ref: (untyped object, untyped matches) -> untyped
+
+        def object_link_commit: (untyped object, untyped matches) -> (nil | untyped)
+
+        def find_commit_by_sha: (untyped object, untyped commit_sha) -> untyped
+
+        def preloaded_all_commits: (untyped object) -> untyped
+      end
+    end
+  end
+end

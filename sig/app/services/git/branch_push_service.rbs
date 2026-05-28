@@ -1,0 +1,45 @@
+module Git
+  class BranchPushService < ::BaseService
+    include Gitlab::Access
+
+    include Gitlab::Utils::StrongMemoize
+
+    include ChangeParams
+
+    # This method will be called after each git update
+    # and only if the provided user and project are present in GitLab.
+    #
+    # All callbacks for post receive action should be placed here.
+    #
+    # Next, this method:
+    #  1. Creates the push event
+    #  2. Updates merge requests
+    #  3. Recognizes cross-references from commit messages
+    #  4. Executes the project's webhooks
+    #  5. Executes the project's services
+    #  6. Checks if the project's main language has changed
+    #
+    def execute: () -> (nil | true)
+
+    # Update merge requests that may be affected by this push. A new branch
+    # could cause the last commit of a merge request to change.
+    def enqueue_update_mrs: () -> (nil | untyped)
+
+    def enqueue_detect_repository_languages: () -> (nil | untyped)
+
+    def enqueue_record_project_target_platforms: () -> (nil | untyped)
+
+    # Only stop environments if the ref is a branch that is being deleted
+    def stop_environments: () -> (nil | untyped)
+
+    def unlock_artifacts: () -> (nil | untyped)
+
+    def execute_related_hooks: () -> untyped
+
+    def removing_branch?: () -> untyped
+
+    def branch_name: () -> untyped
+
+    def default_branch?: () -> untyped
+  end
+end

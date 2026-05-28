@@ -1,0 +1,18 @@
+module Resolvers
+  class BoardListIssuesResolver < BaseResolver
+    prepend ::Issues::LookAheadPreloads
+
+    include BoardItemFilterable
+
+    alias list object
+
+    def resolve_with_lookahead: (**untyped args) -> untyped
+
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/235681
+    def self.complexity_multiplier: (untyped args) -> ::Float
+
+    private
+
+    def mutually_exclusive_milestone_args!: (untyped filters) -> (untyped | nil)
+  end
+end

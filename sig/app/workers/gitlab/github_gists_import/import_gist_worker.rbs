@@ -1,0 +1,37 @@
+module Gitlab
+  module GithubGistsImport
+    class ImportGistWorker
+      @user: untyped
+
+      include ApplicationWorker
+
+      GISTS_ERRORS_BY_ID: "gitlab:github-gists-import:%{user_id}:errors"
+
+      def perform: (untyped user_id, untyped gist_hash, untyped notify_key) -> untyped
+
+      def perform_failure: (untyped user_id, untyped gist_hash, untyped exception_class, untyped exception_message, ?untyped? correlation_id) -> untyped
+
+      private
+
+      def user: (untyped user_id) -> untyped
+
+      def importer_class: () -> untyped
+
+      def representation_class: () -> untyped
+
+      def with_logging: (untyped user_id, untyped github_identifiers) { () -> untyped } -> untyped
+
+      def track_gist_import: (untyped status, untyped user_id) -> untyped
+
+      def log_and_track_error: (untyped user_id, untyped exception, untyped github_identifiers) -> untyped
+
+      def error: (untyped user_id, untyped error_message, untyped github_identifiers) -> untyped
+
+      def info: (untyped user_id, untyped message, untyped gist_id) -> untyped
+
+      def cache_error_for_email: (untyped user_id, untyped gist_id, untyped error_message) -> untyped
+
+      def persist_failure: (untyped user_id, untyped exception_class, untyped exception_message, untyped github_identifiers, ?untyped? correlation_id) -> untyped
+    end
+  end
+end

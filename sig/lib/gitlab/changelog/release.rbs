@@ -1,0 +1,30 @@
+module Gitlab
+  module Changelog
+    # A release to add to a changelog.
+    class Release
+      @version: untyped
+
+      @date: untyped
+
+      @config: untyped
+
+      @entries: untyped
+
+      attr_reader version: untyped
+
+      def initialize: (version: untyped, date: untyped, config: untyped) -> void
+
+      def add_entry: (title: untyped, commit: untyped, category: untyped, ?author: untyped?, ?merge_request: untyped?) -> untyped
+
+      def to_markdown: () -> ::String
+
+      def header_start_pattern: () -> ::Regexp
+
+      private
+
+      def release_date: () -> untyped
+
+      def entries_for_template: () -> untyped
+    end
+  end
+end

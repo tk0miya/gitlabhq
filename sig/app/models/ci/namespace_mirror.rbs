@@ -1,0 +1,9 @@
+module Ci
+  # This model represents a record in a shadow table of the main database's namespaces table.
+  # It allows us to navigate the namespace hierarchy on the ci database without resorting to a JOIN.
+  class NamespaceMirror < ApplicationRecord
+    include FromUnion
+
+    def self.sync!: (untyped event) -> untyped
+  end
+end

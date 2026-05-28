@@ -1,0 +1,14 @@
+# Extend this module to bypass the database load balancer entirely.
+# When extended, the model's `lease_connection` and `with_connection` will
+# delegate to the original Rails implementations instead of the load-balancer wrappers.
+#
+# Example:
+#   class FlipperRecord < ActiveRecord::Base
+#     extend SkipLoadBalancer
+#
+#     self.abstract_class = true
+#     ...
+#   end
+module SkipLoadBalancer
+  def self.extended: (untyped klass) -> untyped
+end

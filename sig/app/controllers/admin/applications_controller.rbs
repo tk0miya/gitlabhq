@@ -1,0 +1,41 @@
+class Admin::ApplicationsController < Admin::ApplicationController
+  @applications: untyped
+
+  @applications_total_count: untyped
+
+  @application: untyped
+
+  @created: untyped
+
+  include OauthApplications
+
+  def index: () -> untyped
+
+  def show: () -> nil
+
+  def new: () -> untyped
+
+  def edit: () -> nil
+
+  def create: () -> untyped
+
+  def update: () -> untyped
+
+  def renew: () -> untyped
+
+  def destroy: () -> untyped
+
+  def reset_web_ide_oauth_application_settings: () -> untyped
+
+  private
+
+  def set_application: () -> untyped
+
+  def permitted_params: () -> untyped
+
+  def application_params: () -> untyped
+
+  def pagination_params: () -> untyped
+
+  def applications_finder_params: () -> untyped
+end

@@ -1,0 +1,70 @@
+module Packages
+  module Debian
+    class GenerateDistributionService
+      @distribution: untyped
+
+      @oldest_kept_generated_at: untyped
+
+      @sha256: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      ONE_HOUR: untyped
+
+      # used by ExclusiveLeaseGuard
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      # From https://salsa.debian.org/ftp-team/dak/-/blob/991aaa27a7f7aa773bb9c0cf2d516e383d9cffa0/setup/core-init.d/080_metadatakeys#L9
+      # Additionally using "Build-Ids" (not used by dak, which is used to generate archives)
+      METADATA_KEYS: ::Array["Package" | "Source" | "Binary" | "Version" | "Essential" | "Installed-Size" | "Maintainer" | "Uploaders" | "Original-Maintainer" | "Build-Depends" | "Build-Depends-Indep" | "Build-Conflicts" | "Build-Conflicts-Indep" | "Architecture" | "Standards-Version" | "Format" | "Files" | "Dm-Upload-Allowed" | "Vcs-Browse" | "Vcs-Hg" | "Vcs-Darcs" | "Vcs-Svn" | "Vcs-Git" | "Vcs-Browser" | "Vcs-Arch" | "Vcs-Bzr" | "Vcs-Mtn" | "Vcs-Cvs" | "Checksums-Sha256" | "Checksums-Sha1" | "Replaces" | "Provides" | "Depends" | "Pre-Depends" | "Recommends" | "Suggests" | "Enhances" | "Conflicts" | "Breaks" | "Description" | "Origin" | "Bugs" | "Multi-Arch" | "Homepage" | "Tag" | "Package-Type" | "Installer-Menu-Item" | "Build-Ids"]
+
+      GenerateDistributionError: untyped
+
+      def initialize: (untyped distribution) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def generate_component_files: () -> untyped
+
+      def generate_component_file: (untyped component, untyped component_file_type, untyped architecture, untyped package_file_type) -> untyped
+
+      def package_stanza_from_fields: (untyped package_file) -> untyped
+
+      def package_file_extra_fields: (untyped package_file) -> ::Array[untyped]
+
+      def package_dirname: (untyped package_file) -> ::String
+
+      def pool_prefix: (untyped package_file) -> untyped
+
+      def reuse_or_create_component_file: (untyped component, untyped component_file_type, untyped architecture, untyped content) -> untyped
+
+      def generate_release: () -> untyped
+
+      def release_content: () -> untyped
+
+      def release_header: () -> untyped
+
+      def release_date: () -> untyped
+
+      def release_sums: () -> untyped
+
+      def rfc822_field: (untyped name, untyped value, ?bool condition) -> (nil | ::String)
+
+      def valid_until_field: () -> (nil | untyped)
+
+      def destroy_old_component_files: () -> (nil | untyped)
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+
+      def generate_distribution_key: () -> untyped
+    end
+  end
+end

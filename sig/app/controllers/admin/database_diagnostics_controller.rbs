@@ -1,0 +1,21 @@
+module Admin
+  class DatabaseDiagnosticsController < Admin::ApplicationController
+    WORKER_CONFIGS: { collation: { worker: untyped, cache_key: untyped }, schema: { worker: untyped, cache_key: untyped } }
+
+    def index: () -> nil
+
+    def run_collation_check: () -> untyped
+
+    def run_schema_check: () -> untyped
+
+    def collation_check_results: () -> untyped
+
+    def schema_check_results: () -> untyped
+
+    private
+
+    def run_check: (untyped check_type) -> untyped
+
+    def check_results: (untyped check_type) -> untyped
+  end
+end

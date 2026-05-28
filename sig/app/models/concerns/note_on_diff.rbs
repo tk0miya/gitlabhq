@@ -1,0 +1,16 @@
+# Contains functionality shared between `DiffNote` and `LegacyDiffNote`.
+module NoteOnDiff
+  extend ActiveSupport::Concern
+
+  def diff_note?: () -> true
+
+  def diff_file: () -> untyped
+
+  def diff_line: () -> untyped
+
+  def original_line_code: () -> untyped
+
+  def active?: (?untyped? diff_refs) -> untyped
+
+  def created_at_diff?: (untyped diff_refs) -> false
+end

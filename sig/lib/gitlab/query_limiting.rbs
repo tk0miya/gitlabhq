@@ -1,0 +1,33 @@
+module Gitlab
+  module QueryLimiting
+    self.@suppressed: untyped
+
+    # Returns true if we should enable tracking of query counts.
+    #
+    # This is only enabled in development and test to ensure we don't produce
+    # any errors that users of other environments can't do anything about themselves.
+    def self.enabled_for_env?: () -> untyped
+
+    def self.enabled?: () -> untyped
+
+    def self.threshold: () -> untyped
+
+    # Skips the query limiting middleware for all requests within the block
+    def self.with_suppressed: () { () -> untyped } -> untyped
+
+    # Allows the current request to execute a higher number of SQL queries.
+    #
+    # This method should _only_ be used when there's a corresponding issue to
+    # reduce the number of queries.
+    #
+    # The issue URL is only meant to push developers into creating an issue
+    # instead of blindly disabling for offending blocks of code.
+    #
+    # The new_threshold is so that we don't allow unlimited number of SQL
+    # queries while the issue is being fixed.
+    def self.disable!: (untyped issue_url, ?new_threshold: ::Integer) -> untyped
+
+    # Enables query limiting for the request.
+    def self.enable!: () -> untyped
+  end
+end

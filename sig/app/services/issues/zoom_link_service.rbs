@@ -1,0 +1,39 @@
+module Issues
+  class ZoomLinkService < Issues::BaseService
+    @issue: untyped
+
+    @added_meeting: untyped
+
+    def initialize: (container: untyped, current_user: untyped, params: untyped) -> void
+
+    def add_link: (untyped link) -> untyped
+
+    def remove_link: () -> untyped
+
+    def can_add_link?: () -> untyped
+
+    def can_remove_link?: () -> untyped
+
+    def parse_link: (untyped link) -> untyped
+
+    private
+
+    attr_reader issue: untyped
+
+    def track_meeting_added_event: () -> untyped
+
+    def track_meeting_removed_event: () -> untyped
+
+    def add_zoom_meeting: (untyped link) -> untyped
+
+    def new_zoom_meeting: (untyped link) -> untyped
+
+    def remove_zoom_meeting: () -> untyped
+
+    def success: (message: untyped, ?payload: untyped?) -> untyped
+
+    def error: (message: untyped) -> untyped
+
+    def can_change_link?: () -> untyped
+  end
+end

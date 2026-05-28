@@ -1,0 +1,101 @@
+module Ci
+  class UpdateBuildStateService
+    @build: untyped
+
+    @params: untyped
+
+    @metrics: untyped
+
+    @logger: untyped
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    Result: untyped
+
+    InvalidTraceError: untyped
+
+    ACCEPT_TIMEOUT: untyped
+
+    attr_reader build: untyped
+
+    attr_reader params: untyped
+
+    attr_reader metrics: untyped
+
+    attr_reader logger: untyped
+
+    def initialize: (untyped build, untyped params, ?untyped metrics, ?untyped logger) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def ensure_pending_state!: () -> untyped
+
+    def process_build_state!: () -> untyped
+
+    def accept_build_state!: () -> untyped
+
+    def validate_build_trace!: () -> (nil | untyped)
+
+    def update_build_state!: () -> untyped
+
+    def handle_build_failure!: () -> untyped
+
+    def should_create_failure_message?: () -> untyped
+
+    def create_failure_message!: () -> untyped
+
+    def discard_build_trace!: () -> untyped
+
+    def accept_available?: () -> untyped
+
+    def live_chunks_pending?: () -> untyped
+
+    def has_chunks?: () -> untyped
+
+    def pending_state_outdated?: () -> untyped
+
+    def pending_state_duration: () -> untyped
+
+    def pending_state_seconds: () -> untyped
+
+    def build_state: () -> untyped
+
+    def has_checksum?: () -> untyped
+
+    def build_running?: () -> untyped
+
+    def trace_checksum: () -> untyped
+
+    def trace_bytesize: () -> untyped
+
+    def pending_state: () -> untyped
+
+    def ensure_pending_state: () -> untyped
+
+    def failure_reason: () -> (nil | untyped)
+
+    #
+    # This method is releasing an exclusive lock on a build trace the moment we
+    # conclude that build status has been written and the build state update
+    # has been committed to the database.
+    #
+    # Because a build state machine schedules a bunch of workers to run after
+    # build status transition to complete, we do not want to keep the lease
+    # until all the workers are scheduled because it opens a possibility of
+    # race conditions happening.
+    #
+    # Instead of keeping the lease until the transition is fully done and
+    # workers are scheduled, we immediately release the lock after the database
+    # commit happens.
+    #
+    def in_build_trace_lock: () { () -> untyped } -> untyped
+
+    def chunks_migration_enabled?: () -> untyped
+
+    def log_invalid_chunks?: () -> untyped
+  end
+end

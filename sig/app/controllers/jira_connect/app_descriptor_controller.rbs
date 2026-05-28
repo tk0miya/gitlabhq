@@ -1,0 +1,33 @@
+class JiraConnect::AppDescriptorController < JiraConnect::ApplicationController
+  HOME_URL: "https://gitlab.com"
+
+  DOC_URL: "https://docs.gitlab.com/ee/integration/jira/"
+
+  def show: () -> untyped
+
+  private
+
+  def modules: () -> untyped
+
+  def logo_url: () -> untyped
+
+  # See https://developer.atlassian.com/cloud/jira/software/modules/development-tool/
+  def development_tool_module: () -> { jiraDevelopmentTool: { actions: untyped, key: "gitlab-development-tool", application: { value: untyped }, name: { value: untyped }, url: untyped, logoUrl: untyped, capabilities: ::Array["branch" | "commit" | "pull_request"] } }
+
+  # See: https://developer.atlassian.com/cloud/jira/software/modules/deployment/
+  def deployment_information_module: () -> { jiraDeploymentInfoProvider: untyped }
+
+  # see: https://developer.atlassian.com/cloud/jira/software/modules/feature-flag/
+  def feature_flag_module: () -> { jiraFeatureFlagInfoProvider: untyped }
+
+  # See: https://developer.atlassian.com/cloud/jira/software/modules/build/
+  def build_information_module: () -> { jiraBuildInfoProvider: untyped }
+
+  def common_module_properties: () -> { homeUrl: untyped, logoUrl: untyped, documentationUrl: untyped }
+
+  def relative_to_base_path: (untyped full_path) -> untyped
+
+  def create_branch_params: () -> ::String
+
+  def actions: () -> { createBranch: { templateUrl: ::String }, searchConnectedWorkspaces: { templateUrl: untyped }, searchRepositories: { templateUrl: untyped }, associateRepository: { templateUrl: untyped } }
+end

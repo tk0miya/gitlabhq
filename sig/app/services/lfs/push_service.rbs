@@ -1,0 +1,35 @@
+module Lfs
+  # Lfs::PushService pushes the LFS objects associated with a project to a
+  # remote URL
+  class PushService < BaseService
+    include Gitlab::Utils::StrongMemoize
+
+    # Match the canonical LFS client's batch size:
+    # https://github.com/git-lfs/git-lfs/blob/master/tq/transfer_queue.go#L19
+    BATCH_SIZE: 100
+
+    def execute: () -> untyped
+
+    private
+
+    def extra_context: () -> untyped
+
+    # Currently we only set repository_type for design repository objects, so
+    # push mirroring must send objects with a `nil` repository type - but if the
+    # wiki repository uses LFS, its objects will also be sent. This will be
+    # addressed by https://gitlab.com/gitlab-org/gitlab/-/issues/250346
+    def lfs_objects_relation: () -> untyped
+
+    def push_objects!: (untyped objects) -> untyped
+
+    def upload_object!: (untyped object, untyped spec) -> (nil | untyped)
+
+    def verify_object!: (untyped object, untyped spec) -> untyped
+
+    def url: () -> untyped
+
+    def credentials: () -> untyped
+
+    def lfs_client: () -> untyped
+  end
+end

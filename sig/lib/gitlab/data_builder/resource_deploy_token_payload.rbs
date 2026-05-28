@@ -1,0 +1,13 @@
+module Gitlab
+  module DataBuilder
+    module ResourceDeployTokenPayload
+      extend ::Gitlab::DataBuilder::ResourceDeployTokenPayload
+
+      def build: (untyped resource_deploy_token, untyped event, untyped resource, ?::Hash[untyped, untyped] data) -> untyped
+
+      private
+
+      def event_data: (untyped event) -> untyped
+    end
+  end
+end

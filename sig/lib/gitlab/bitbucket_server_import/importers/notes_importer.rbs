@@ -1,0 +1,41 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      class NotesImporter
+        include ParallelScheduling
+
+        # Cannot exceed BitBucket Server's maximum page limit (500)
+        # https://confluence.atlassian.com/bitbucketserver/configuration-properties-776640155.html#Configurationproperties-Paging
+        PER_PAGE: 100
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        def import_notes_individually: () -> untyped
+
+        def process_comment: (untyped merge_request, untyped activity) -> untyped
+
+        def enqueue_comment_import: (untyped merge_request, untyped comment_type, untyped comment) -> (nil | untyped)
+
+        def id_for_already_processed_cache: (untyped object) -> untyped
+
+        def generate_activity_key: (untyped object) -> ::String
+
+        def collection_method: () -> :notes
+
+        def merge_request_processed_cache_key: () -> ::String
+
+        def mark_merge_request_processed: (untyped merge_request) -> untyped
+
+        def already_processed_merge_requests: () -> untyped
+
+        def merge_request_collection: () -> untyped
+
+        def page_counter_id: (untyped merge_request) -> ::String
+      end
+    end
+  end
+end

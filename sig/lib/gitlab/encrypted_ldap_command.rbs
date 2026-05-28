@@ -1,0 +1,11 @@
+module Gitlab
+  class EncryptedLdapCommand < EncryptedCommandBase
+    DISPLAY_NAME: "LDAP"
+
+    EDIT_COMMAND_NAME: "gitlab:ldap:secret:edit"
+
+    def self.encrypted_secrets: () -> untyped
+
+    def self.encrypted_file_template: () -> "# main:\n#   password: '123'\n#   bind_dn: 'gitlab-adm'\n"
+  end
+end

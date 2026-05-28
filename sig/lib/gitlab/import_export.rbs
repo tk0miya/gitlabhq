@@ -1,0 +1,62 @@
+module Gitlab
+  module ImportExport
+    extend ::Gitlab::ImportExport
+
+    # For every version update the version history in these docs must be kept up to date:
+    # - development/import_export.md
+    # - user/project/settings/import_export.md
+    VERSION: "0.2.4"
+
+    FILENAME_LIMIT: 50
+
+    def export_path: (relative_path: untyped) -> untyped
+
+    def storage_path: () -> untyped
+
+    def import_upload_path: (filename: untyped) -> untyped
+
+    def project_filename: () -> "project.json"
+
+    def project_bundle_filename: () -> "project.bundle"
+
+    def lfs_objects_filename: () -> "lfs-objects.json"
+
+    def lfs_objects_storage: () -> "lfs-objects"
+
+    def wiki_repo_bundle_filename: () -> "project.wiki.bundle"
+
+    def design_repo_bundle_filename: () -> "project.design.bundle"
+
+    def snippet_repo_bundle_dir: () -> "snippets"
+
+    def snippets_repo_bundle_path: (untyped absolute_path) -> untyped
+
+    def snippet_repo_bundle_filename_for: (untyped snippet) -> ::String
+
+    def config_file: () -> untyped
+
+    def version_filename: () -> "VERSION"
+
+    def gitlab_version_filename: () -> "GITLAB_VERSION"
+
+    def gitlab_revision_filename: () -> "GITLAB_REVISION"
+
+    def export_filename: (exportable: untyped) -> ::String
+
+    def version: () -> untyped
+
+    def reset_tokens?: () -> true
+
+    def group_filename: () -> "group.json"
+
+    def legacy_group_config_file: () -> untyped
+
+    def group_config_file: () -> untyped
+
+    def group_wiki_repo_bundle_filename: (untyped group_id) -> ::String
+
+    def group_wiki_repo_bundle_path: (untyped shared, untyped filename) -> untyped
+
+    def group_wiki_repo_bundle_full_path: (untyped shared, untyped group_id) -> untyped
+  end
+end

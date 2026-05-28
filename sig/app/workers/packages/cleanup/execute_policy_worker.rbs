@@ -1,0 +1,25 @@
+module Packages
+  module Cleanup
+    class ExecutePolicyWorker
+      include ApplicationWorker
+
+      include CronjobChildWorker
+
+      include LimitedCapacity::Worker
+
+      include Gitlab::Utils::StrongMemoize
+
+      COUNTS_KEYS: ::Array[:marked_package_files_total_count | :unique_package_id_and_file_name_total_count]
+
+      def perform_work: () -> (nil | untyped)
+
+      def remaining_work_count: () -> untyped
+
+      def max_running_jobs: () -> untyped
+
+      private
+
+      def next_policy: () -> untyped
+    end
+  end
+end

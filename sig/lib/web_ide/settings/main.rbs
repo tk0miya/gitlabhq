@@ -1,0 +1,14 @@
+module WebIde
+  module Settings
+    class Main
+      include Messages
+
+      extend Gitlab::Fp::MessageSupport
+
+      # @param [Hash] context
+      # @return [Hash]
+      # @raise [Gitlab::Fp::UnmatchedResultError]
+      def self.get_settings: (untyped context) -> untyped
+    end
+  end
+end

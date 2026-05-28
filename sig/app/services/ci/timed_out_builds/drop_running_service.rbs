@@ -1,0 +1,14 @@
+module Ci
+  module TimedOutBuilds
+    class DropRunningService
+      include StuckBuilds::DropHelpers
+
+      MINUTE_BUFFER: untyped
+
+      def execute: () -> untyped
+
+      # rubocop:disable CodeReuse/ActiveRecord -- We want to avoid misusage of this query
+      def timed_out_builds: (untyped partition) -> untyped
+    end
+  end
+end

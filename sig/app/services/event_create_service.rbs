@@ -1,0 +1,92 @@
+# EventCreateService class
+#
+# Used for creating events feed on dashboard after certain user action
+#
+# Ex.
+#   EventCreateService.new.new_issue(issue, current_user)
+#
+class EventCreateService
+  include Gitlab::InternalEventsTracking
+
+  IllegalActionError: untyped
+
+  DEGIGN_EVENT_LABEL: "usage_activity_by_stage_monthly.create.action_monthly_active_users_design_management"
+
+  MR_EVENT_LABEL: "usage_activity_by_stage_monthly.create.merge_requests_users"
+
+  MR_EVENT_PROPERTY: "merge_request_action"
+
+  def open_issue: (untyped issue, untyped current_user) -> untyped
+
+  def close_issue: (untyped issue, untyped current_user) -> untyped
+
+  def reopen_issue: (untyped issue, untyped current_user) -> untyped
+
+  def open_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def close_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def reopen_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def merge_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  def open_milestone: (untyped milestone, untyped current_user) -> untyped
+
+  def close_milestone: (untyped milestone, untyped current_user) -> untyped
+
+  def reopen_milestone: (untyped milestone, untyped current_user) -> untyped
+
+  def destroy_milestone: (untyped milestone, untyped current_user) -> untyped
+
+  def leave_note: (untyped note, untyped current_user) -> untyped
+
+  def join_source: (untyped source, untyped current_user) -> (nil | untyped)
+
+  def leave_project: (untyped project, untyped current_user) -> untyped
+
+  def expired_leave_project: (untyped project, untyped current_user) -> untyped
+
+  def create_project: (untyped project, untyped current_user) -> untyped
+
+  def push: (untyped project, untyped current_user, untyped push_data) -> untyped
+
+  def bulk_push: (untyped project, untyped current_user, untyped push_data) -> untyped
+
+  def save_designs: (untyped current_user, ?create: untyped, ?update: untyped) -> (::Array[untyped] | untyped)
+
+  def destroy_designs: (untyped designs, untyped current_user) -> (::Array[untyped] | untyped)
+
+  # Create a new wiki page event
+  #
+  # @param [WikiPage::Meta] wiki_page_meta The event target
+  # @param [User] author The event author
+  # @param [Symbol] action One of the Event::WIKI_ACTIONS
+  # @param [String] fingerprint The de-duplication fingerprint
+  #
+  # The fingerprint, if provided, should be sufficient to find duplicate events.
+  # Suitable values would be, for example, the current page SHA.
+  #
+  # @return [Event] the event
+  def wiki_event: (untyped wiki_page_meta, untyped author, untyped action, untyped fingerprint) -> untyped
+
+  def approve_mr: (untyped merge_request, untyped current_user) -> untyped
+
+  private
+
+  def create_record_event: (untyped record, untyped current_user, untyped status, ?untyped? fingerprint) -> untyped
+
+  # If creating several events, this method will insert them all in a single
+  # statement
+  #
+  # @param [[Eventable, Symbol, String]] a list of tuples of records, a valid status, and fingerprint
+  # @param [User] the author of the event
+  def create_record_events: (untyped tuples, untyped current_user) -> untyped
+
+  def create_push_event: (untyped service_class, untyped project, untyped current_user, untyped push_data) -> untyped
+
+  def create_event: (untyped resource_parent, untyped current_user, untyped status, ?::Hash[untyped, untyped] attributes) -> untyped
+
+  def parent_attrs: (untyped resource_parent, untyped current_user) -> (untyped | ::Hash[untyped, untyped])
+
+  def track_snowplow_event: (action: untyped, project: untyped, user: untyped, label: untyped, property: untyped) -> untyped
+end

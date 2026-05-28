@@ -1,0 +1,74 @@
+module Issues
+  class SetCrmContactsService < ::BaseContainerService
+    @issue: untyped
+
+    @errors: untyped
+
+    @existing_ids: untyped
+
+    @added_count: untyped
+
+    @removed_count: untyped
+
+    MAX_ADDITIONAL_CONTACTS: 6
+
+    # Replacing contacts by email is not currently supported
+    def execute: (untyped issue) -> untyped
+
+    private
+
+    attr_accessor issue: untyped
+
+    attr_accessor errors: untyped
+
+    attr_accessor existing_ids: untyped
+
+    attr_accessor added_count: untyped
+
+    attr_accessor removed_count: untyped
+
+    def determine_changes: () -> untyped
+
+    def add: () -> untyped
+
+    def add_by_email: () -> untyped
+
+    def emails: (untyped key) -> untyped
+
+    def add_by_id: (untyped contact_ids) -> untyped
+
+    def remove: () -> untyped
+
+    def remove_by_email: () -> untyped
+
+    def remove_by_id: (untyped contact_ids) -> untyped
+
+    def extract_email_from_request_param: (untyped email_param) -> untyped
+
+    def allowed?: () -> untyped
+
+    def valid_params?: () -> untyped
+
+    def set_present?: () -> untyped
+
+    def add_or_remove_present?: () -> untyped
+
+    def add_present?: () -> untyped
+
+    def remove_present?: () -> untyped
+
+    def too_many?: () -> untyped
+
+    def too_many_ids?: () -> untyped
+
+    def too_many_emails?: () -> untyped
+
+    def create_system_note: () -> untyped
+
+    def error_no_permissions: () -> untyped
+
+    def error_invalid_params: () -> untyped
+
+    def error_too_many: () -> untyped
+  end
+end

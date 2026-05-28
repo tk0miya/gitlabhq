@@ -1,0 +1,14 @@
+module BulkImports
+  module VisibilityLevel
+    private
+
+    # Calculates visbility level based on the source and the destination namespace visbility levels
+    # If there are visibility_level restrictions on the destination instance,
+    # the highest allowed level less than the calculated level is returned
+    def visibility_level: (untyped entity, untyped namespace, untyped visibility_string) -> untyped
+
+    def requested_visibility_level: (untyped entity, untyped visibility_string) -> untyped
+
+    def closet_allowed_level: (untyped level) -> untyped
+  end
+end

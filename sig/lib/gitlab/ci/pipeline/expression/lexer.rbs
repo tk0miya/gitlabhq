@@ -1,0 +1,33 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        class Lexer
+          @scanner: untyped
+
+          @max_tokens: untyped
+
+          include ::Gitlab::Utils::StrongMemoize
+
+          SyntaxError: untyped
+
+          LEXEMES: ::Array[untyped]
+
+          def self.lexemes: () -> untyped
+
+          MAX_TOKENS: 100
+
+          def initialize: (untyped statement, ?max_tokens: untyped) -> void
+
+          def tokens: () -> untyped
+
+          def lexemes: () -> untyped
+
+          private
+
+          def tokenize: () -> untyped
+        end
+      end
+    end
+  end
+end

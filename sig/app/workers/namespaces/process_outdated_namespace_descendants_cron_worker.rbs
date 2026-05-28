@@ -1,0 +1,16 @@
+module Namespaces
+  class ProcessOutdatedNamespaceDescendantsCronWorker
+    BATCH_SIZE: 50
+
+    include ApplicationWorker
+
+    include LoopWithRuntimeLimit
+
+    MAX_RUNTIME: untyped
+
+    # rubocop:disable Scalability/CronWorkerContext -- This worker does not perform work scoped to a context
+    include CronjobQueue
+
+    def perform: () -> untyped
+  end
+end

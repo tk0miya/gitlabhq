@@ -1,0 +1,19 @@
+module Gitlab
+  module Metrics
+    module Samplers
+      class ActionCableSampler < BaseSampler
+        @action_cable: untyped
+
+        @metrics: untyped
+
+        DEFAULT_SAMPLING_INTERVAL_SECONDS: 5
+
+        def initialize: (?action_cable: untyped, **untyped options) -> void
+
+        def metrics: () -> untyped
+
+        def sample: () -> untyped
+      end
+    end
+  end
+end

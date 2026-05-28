@@ -1,0 +1,15 @@
+class DiffNotePosition < ApplicationRecord
+  include Notes::WithAssociatedNote
+
+  attr_accessor line_range: untyped
+
+  def position: () -> untyped
+
+  def position=: (untyped position) -> untyped
+
+  def self.create_or_update_for: (untyped note, untyped params) -> untyped
+
+  def self.position_to_attrs: (untyped position) -> untyped
+
+  def note_namespace_id: () -> untyped
+end

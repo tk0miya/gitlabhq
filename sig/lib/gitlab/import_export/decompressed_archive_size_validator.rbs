@@ -1,0 +1,29 @@
+module Gitlab
+  module ImportExport
+    class DecompressedArchiveSizeValidator
+      @archive_path: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      ServiceError: untyped
+
+      def initialize: (archive_path: untyped) -> void
+
+      def valid?: () -> untyped
+
+      private
+
+      def validate: () -> untyped
+
+      def validate_archive_path: () -> untyped
+
+      def command: () -> ::Array[::Array["gzip" | "-dc" | untyped] | ::Array["wc" | "-c"]]
+
+      def log_error: (untyped error, ?decompressed_size: untyped?) -> untyped
+
+      def timeout: () -> untyped
+
+      def max_bytes: () -> untyped
+    end
+  end
+end

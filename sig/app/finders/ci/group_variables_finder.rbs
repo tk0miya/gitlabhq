@@ -1,0 +1,23 @@
+module Ci
+  class GroupVariablesFinder
+    @project: untyped
+
+    @params: untyped
+
+    SORT_TO_PARAMS_MAP: { created_desc: { order_by: "created_at", sort: "desc" }, created_asc: { order_by: "created_at", sort: "asc" }, key_desc: { order_by: "key", sort: "desc" }, key_asc: { order_by: "key", sort: "asc" } }
+
+    def initialize: (untyped project, ?untyped? sort_key) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def sort_to_params_map: (untyped sort_key) -> untyped
+
+    def sort: (untyped variables) -> untyped
+
+    attr_reader project: untyped
+
+    attr_reader params: untyped
+  end
+end

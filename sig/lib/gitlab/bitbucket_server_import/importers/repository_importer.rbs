@@ -1,0 +1,23 @@
+module Gitlab
+  module BitbucketServerImport
+    module Importers
+      class RepositoryImporter
+        @project: untyped
+
+        include Loggable
+
+        def initialize: (untyped project) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        def update_clone_time: () -> untyped
+
+        def validate_repository_size!: () -> nil
+      end
+    end
+  end
+end

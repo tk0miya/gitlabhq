@@ -1,0 +1,49 @@
+module Ci
+  module JobToken
+    class Allowlist
+      @source_project: untyped
+
+      @direction: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped source_project, ?direction: ::Symbol) -> void
+
+      def includes_project?: (untyped target_project) -> untyped
+
+      def includes_group?: (untyped target_project) -> untyped
+
+      def nearest_scope_for_target_project: (untyped target_project) -> untyped
+
+      def projects: () -> untyped
+
+      def groups: () -> untyped
+
+      def add!: (untyped target_project, user: untyped, ?default_permissions: bool, ?policies: untyped) -> untyped
+
+      def add_group!: (untyped target_group, user: untyped, ?default_permissions: bool, ?policies: untyped) -> untyped
+
+      def project_link_traversal_ids: () -> untyped
+
+      def group_link_traversal_ids: () -> untyped
+
+      def autopopulated_project_global_ids: () -> untyped
+
+      def autopopulated_group_global_ids: () -> untyped
+
+      def project_links: () -> untyped
+
+      def group_links: () -> untyped
+
+      def bulk_add_groups!: (untyped target_groups, user: untyped, ?policies: untyped) -> untyped
+
+      private
+
+      def group_links_for_target: (untyped target_project) -> untyped
+
+      def target_project_ids: () -> untyped
+
+      def target_projects: () -> ::Array[untyped]
+    end
+  end
+end

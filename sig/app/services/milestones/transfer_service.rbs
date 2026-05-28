@@ -1,0 +1,45 @@
+# Milestones::TransferService class
+#
+# Used for recreating the missing group milestones at project level when
+# transferring a project to a new namespace
+#
+module Milestones
+  class TransferService
+    @current_user: untyped
+
+    @old_group: untyped
+
+    @project: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader old_group: untyped
+
+    attr_reader project: untyped
+
+    def initialize: (untyped current_user, untyped old_group, untyped project) -> void
+
+    def execute: () -> (nil | untyped)
+
+    private
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def milestones_to_transfer: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def group_milestones_applied_to_issues: () -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def group_milestones_applied_to_merge_requests: () -> untyped
+
+    def find_or_create_milestone: (untyped milestone) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_issues_milestone: (untyped old_milestone, untyped new_milestone) -> untyped
+
+    # rubocop: disable CodeReuse/ActiveRecord
+    def update_merge_requests_milestone: (untyped old_milestone_id, untyped new_milestone_id) -> untyped
+
+    def delete_milestone_counts_caches: (untyped milestone) -> (nil | untyped)
+  end
+end

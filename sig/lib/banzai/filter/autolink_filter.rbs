@@ -1,0 +1,82 @@
+# This filter handles autolinking when a pipeline does not
+# use the MarkdownFilter, which handles it's own autolinking.
+# This happens in particular for the SingleLinePipeline and the
+# CommitDescriptionPipeline.
+#
+# rubocop:disable Rails/OutputSafety -- this is legacy/unused, no need fixing.
+# rubocop:disable Gitlab/NoCodeCoverageComment -- no coverage needed for a legacy filter
+# :nocov: undercoverage
+module Banzai
+  module Filter
+    # HTML Filter for auto-linking URLs in HTML.
+    #
+    # Based on HTML::Pipeline::AutolinkFilter
+    #
+    # Context options:
+    #   :autolink  - Boolean, skips all processing done by this filter when false
+    #   :link_attr - Hash of attributes for the generated links
+    #
+    class AutolinkFilter < HTML::Pipeline::Filter
+      @link_count: untyped
+
+      @link_options: untyped
+
+      include ActionView::Helpers::TagHelper
+
+      include Gitlab::Utils::SanitizeNodeLink
+
+      # Pattern to match text that should be autolinked.
+      #
+      # A URI scheme begins with a letter and may contain letters, numbers,
+      # plus, period and hyphen. Schemes are case-insensitive but we're being
+      # picky here and allowing only lowercase for autolinks.
+      #
+      # See http://en.wikipedia.org/wiki/URI_scheme
+      #
+      # Trailing punctuation characters (?!.,: ) are excluded from the end of
+      # the matched URL. This matches the behaviour of Rinku 2.0.1:
+      # https://github.com/vmg/rinku/blob/v2.0.1/ext/rinku/autolink.c#L65
+      #
+      # The original pattern used a negative lookbehind `(?<!\?|!|\.|,|:)` to
+      # strip trailing punctuation, but that caused timeouts
+      # on long inputs because Ruby's regex engine would retry the
+      # bounded `{1,2000}` quantifier up to 2000 times per position when the
+      # match ended in punctuation. The rewritten pattern avoids this by
+      # consuming up to 1999 arbitrary non-whitespace/non-> chars followed by
+      # exactly one char that is also not in the trailing-punctuation set,
+      # making the match unambiguous and backtrack-free.
+      #
+      # Rubular: https://rubular.com/r/LT0TSJCmrnPN1o
+      LINK_PATTERN: ::Regexp
+
+      ENTITY_UNTRUSTED: "((?:&[\\w#]+;)+)\\z"
+
+      ENTITY_UNTRUSTED_REGEX: untyped
+
+      # Text matching LINK_PATTERN inside these elements will not be linked
+      IGNORE_PARENTS: untyped
+
+      # The XPath query to use for finding text nodes to parse.
+      TEXT_QUERY: ::String
+
+      PUNCTUATION_PAIRS: { "'" => "'", "\"" => "\"", ")" => "(", "]" => "[", "}" => "{" }
+
+      # Maximum length of a text node to process for autolinking.
+      # Longer text nodes are skipped to avoid O(N) position mapping
+      # overhead in StringRangeMarker. See https://gitlab.com/gitlab-org/gitlab/-/issues/598970
+      TEXT_LENGTH_LIMIT: untyped
+
+      def call: () -> untyped
+
+      private
+
+      def autolink_match: (untyped match) -> untyped
+
+      def autolink_filter: (untyped text) -> untyped
+
+      def link_options: () -> untyped
+
+      def links: (untyped regex_marker) -> untyped
+    end
+  end
+end

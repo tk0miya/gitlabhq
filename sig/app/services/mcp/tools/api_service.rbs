@@ -1,0 +1,29 @@
+module Mcp
+  module Tools
+    class ApiService < BaseService
+      @access_token: untyped
+
+      extend Gitlab::Utils::Override
+
+      def set_cred: (?current_user: untyped?, ?access_token: untyped?) -> untyped
+
+      def execute: (?request: untyped?, ?params: untyped?) -> untyped
+
+      def http_get: (untyped oauth_token, untyped path, ?::Hash[untyped, untyped] query) -> untyped
+
+      def http_post: (untyped oauth_token, untyped path, ?::Hash[untyped, untyped] body) -> untyped
+
+      private
+
+      def format_response_content: (untyped _response) -> untyped
+
+      def api_url: (untyped path) -> untyped
+
+      def validate_path!: (untyped path) -> untyped
+
+      def request_options: (untyped oauth_token) -> untyped
+
+      def handle_response: (untyped response) -> untyped
+    end
+  end
+end

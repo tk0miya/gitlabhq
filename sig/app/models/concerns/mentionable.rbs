@@ -1,0 +1,84 @@
+# == Mentionable concern
+#
+# Contains functionality related to objects that can mention Users, Issues, MergeRequests, Commits or Snippets by
+# GFM references.
+#
+# Used by Issue, Note, MergeRequest, and Commit.
+#
+module Mentionable
+  @extractors: untyped
+
+  extend ActiveSupport::Concern
+
+  # Returns the text used as the body of a Note when this object is referenced
+  #
+  # By default this will be the class name and the result of calling
+  # `to_reference` on the object.
+  def gfm_reference: (?untyped? from) -> ::String
+
+  # The GFM reference to this Mentionable, which shouldn't be included in its #references.
+  def local_reference: () -> self
+
+  def all_references: (?untyped? current_user, ?extractor: untyped?) -> untyped
+
+  def extractors: () -> untyped
+
+  def mentioned_users: (?untyped? current_user) -> untyped
+
+  def referenced_users: () -> untyped
+
+  def referenced_projects: (?untyped? current_user) -> untyped
+
+  def referenced_groups: (?untyped? current_user) -> untyped
+
+  def referenced_group_users: (?untyped? current_user) -> untyped
+
+  def directly_addressed_users: (?untyped? current_user) -> untyped
+
+  # Extract GFM references to other Mentionables from this Mentionable. Always excludes its #local_reference.
+  def referenced_mentionables: (?untyped current_user) -> (::Array[untyped] | untyped)
+
+  # Uses regex to quickly determine if mentionables might be referenced
+  # Allows heavy processing to be skipped
+  def matches_cross_reference_regex?: () -> untyped
+
+  # Create a cross-reference Note for each GFM reference to another Mentionable found in the +mentionable_attrs+.
+  def create_cross_references!: (?untyped author, ?untyped without) -> untyped
+
+  # When a mentionable field is changed, creates cross-reference notes that
+  # don't already exist
+  def create_new_cross_references!: (?untyped author) -> (nil | untyped)
+
+  def user_mention_class: () -> untyped
+
+  # Identifier for the user mention that is parsed from model description rather then its related notes.
+  # Models that have a description attribute like Issue, MergeRequest, Epic, Snippet may have such a user mention.
+  # Other mentionable models like DesignManagement::Design, will never have such record as those do not have
+  # a description attribute.
+  def user_mention_identifier: () -> ::Hash[untyped | :note_id, untyped | nil]
+
+  private
+
+  def extracted_mentionables: (untyped refs) -> untyped
+
+  # Returns a Hash of changed mentionable fields
+  #
+  # Preference is given to the `changes` Hash, but falls back to
+  # `previous_changes` if it's empty (i.e., the changes have already been
+  # persisted).
+  #
+  # See ActiveModel::Dirty.
+  #
+  # Returns a Hash.
+  def detect_mentionable_changes: () -> untyped
+
+  # Determine whether or not a cross-reference Note has already been created between this Mentionable and
+  # the specified target.
+  def cross_reference_exists?: (untyped target) -> untyped
+
+  def skip_project_check?: () -> false
+
+  def mentionable_params: () -> ::Hash[untyped, untyped]
+
+  def user_mention_association: () -> untyped
+end

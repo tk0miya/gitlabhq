@@ -1,0 +1,73 @@
+module Search
+  class Params
+    @raw_params: untyped
+
+    @query_string: untyped
+
+    @detect_abuse: untyped
+
+    @abuse_detection: untyped
+
+    @search_terms: untyped
+
+    include ActiveModel::Validations
+
+    SEARCH_CHAR_LIMIT: 4096
+
+    SEARCH_TERM_LIMIT: 64
+
+    MIN_TERM_LENGTH: 2
+
+    BOOLEAN_PARAMS: ::Array[:confidential | :exclude_forks | :include_archived]
+
+    LEGACY_SCOPE_MAP: { "issues" => "work_items" }
+
+    attr_reader raw_params: untyped
+
+    attr_reader query_string: untyped
+
+    attr_reader abuse_detection: untyped
+
+    alias search query_string
+
+    alias term query_string
+
+    def initialize: (untyped params, ?detect_abuse: bool) -> void
+
+    def []: (untyped key) -> untyped
+
+    def slice: (*untyped keys) -> untyped
+
+    def abusive?: () -> untyped
+
+    def valid_query_length?: () -> (true | untyped)
+
+    def valid_terms_count?: () -> (true | untyped)
+
+    def email_lookup?: () -> untyped
+
+    def validate: () -> untyped
+
+    private
+
+    def legacy_scope_map: () -> untyped
+
+    def detect_abuse?: () -> untyped
+
+    def search_terms: () -> untyped
+
+    def not_too_many_terms: () -> (nil | untyped)
+
+    def strip_surrounding_whitespace: (untyped obj) -> untyped
+
+    def process_params: (untyped params) -> untyped
+
+    def convert_legacy_scope: (untyped params) -> untyped
+
+    def convert_not_params: (untyped params) -> untyped
+
+    def convert_all_boolean_params: (untyped params) -> untyped
+
+    def convert_type_to_ids: (untyped params) -> untyped
+  end
+end

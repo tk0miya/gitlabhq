@@ -1,0 +1,18 @@
+module WithUploads
+  extend ActiveSupport::Concern
+
+  include FastDestroyAll::Helpers
+
+  # Currently there is no simple way how to select only not-mounted
+  # uploads, it should be all FileUploaders so we select them by
+  # `uploader` class
+  FILE_UPLOADERS: ::Array["PersonalFileUploader" | "NamespaceFileUploader" | "FileUploader"]
+
+  def retrieve_upload: (untyped _identifier, untyped paths) -> untyped
+
+  private
+
+  def capture_mounted_remote_uploaders: () -> (nil | untyped)
+
+  def uploads_cascade_deleted_on_destroy?: () -> (false | untyped)
+end

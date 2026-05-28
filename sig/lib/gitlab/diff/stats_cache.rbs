@@ -1,0 +1,30 @@
+module Gitlab
+  module Diff
+    class StatsCache
+      @cachable_key: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      EXPIRATION: untyped
+
+      # The DiffStats#as_json representation is tied to the Gitaly protobuf version
+      VERSION: untyped
+
+      def initialize: (cachable_key: untyped) -> void
+
+      def read: () -> untyped
+
+      def write_if_empty: (untyped stats) -> (nil | untyped)
+
+      def clear: () -> untyped
+
+      private
+
+      attr_reader cachable_key: untyped
+
+      def cache: () -> untyped
+
+      def key: () -> untyped
+    end
+  end
+end

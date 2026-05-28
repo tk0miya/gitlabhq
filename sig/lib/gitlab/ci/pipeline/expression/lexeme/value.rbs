@@ -1,0 +1,19 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Expression
+        module Lexeme
+          class Value < Lexeme::Base
+            @value: untyped
+
+            def self.type: () -> :value
+
+            attr_reader value: untyped
+
+            def initialize: (untyped value) -> void
+          end
+        end
+      end
+    end
+  end
+end

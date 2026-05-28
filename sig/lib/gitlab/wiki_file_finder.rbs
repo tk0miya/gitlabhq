@@ -1,0 +1,23 @@
+module Gitlab
+  class WikiFileFinder < FileFinder
+    @project: untyped
+
+    @ref: untyped
+
+    @repository: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    attr_reader repository: untyped
+
+    def initialize: (untyped project, untyped ref) -> void
+
+    private
+
+    def search_paths: (untyped query) -> untyped
+
+    def find_by_content: (untyped query, untyped options) -> untyped
+
+    def valid_format_wiki_file?: (untyped path) -> untyped
+  end
+end

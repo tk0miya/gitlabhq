@@ -1,0 +1,18 @@
+module Gitlab
+  module DependencyLinker
+    class GoModLinker < BaseLinker
+      include Gitlab::Golang
+
+      private
+
+      SEMVER: untyped
+
+      NAME: untyped
+
+      REGEX: untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def link_dependencies: () -> untyped
+    end
+  end
+end

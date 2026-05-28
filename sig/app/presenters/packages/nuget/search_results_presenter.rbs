@@ -1,0 +1,21 @@
+module Packages
+  module Nuget
+    class SearchResultsPresenter
+      @search: untyped
+
+      include Packages::Nuget::PresenterHelpers
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped search) -> void
+
+      def data: () -> (::Array[untyped] | untyped)
+
+      private
+
+      def grouped_packages: () -> untyped
+
+      def extract_package_details: (untyped packages) -> ::Array[untyped]
+    end
+  end
+end

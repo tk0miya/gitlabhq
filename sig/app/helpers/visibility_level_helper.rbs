@@ -1,0 +1,61 @@
+module VisibilityLevelHelper
+  def visibility_level_color: (untyped level) -> untyped
+
+  # Return the description for the +level+ argument.
+  #
+  # +level+       One of the Gitlab::VisibilityLevel constants
+  # +form_model+  Either a model object (Project, Snippet, etc.) or the name of
+  #               a Project or Snippet class.
+  def visibility_level_description: (untyped level, untyped form_model) -> untyped
+
+  def visibility_icon_description: (untyped form_model) -> (untyped | untyped | nil)
+
+  def visibility_level_label: (untyped level) -> untyped
+
+  def restricted_visibility_levels: (?bool show_all) -> (::Array[untyped] | untyped)
+
+  def disallowed_visibility_level?: (untyped form_model, untyped level) -> (false | untyped)
+
+  def disallowed_visibility_level_by_organization?: (untyped form_model, untyped level) -> (false | untyped)
+
+  def disallowed_visibility_level_by_parent?: (untyped form_model, untyped level) -> (false | untyped)
+
+  def disallowed_visibility_level_by_projects?: (untyped form_model, untyped level) -> (false | untyped)
+
+  def disallowed_visibility_level_by_sub_groups?: (untyped form_model, untyped level) -> (false | untyped)
+
+  # Visibility level can be restricted in two ways:
+  #
+  # 1. The group permissions (e.g. a subgroup is private, which requires
+  # all projects to be private)
+  # 2. The global allowed visibility settings, set by the admin
+  def selected_visibility_level: (untyped form_model, untyped requested_level) -> untyped
+
+  def all_visibility_levels: () -> untyped
+
+  def available_visibility_levels: (untyped form_model) -> untyped
+
+  def disabled_visibility_level?: (untyped form_model, untyped level) -> untyped
+
+  def restricted_visibility_level?: (untyped level) -> untyped
+
+  def snippets_selected_visibility_level: (untyped visibility_levels, untyped selected) -> untyped
+
+  def multiple_visibility_levels_restricted?: () -> untyped
+
+  private
+
+  def max_allowed_visibility_level: (untyped form_model) -> untyped
+
+  def max_allowed_visibility_level_by_model: (untyped form_model) -> untyped
+
+  def project_visibility_level_description: (untyped level) -> untyped
+
+  def group_visibility_level_description: (untyped level, ?untyped? group) -> untyped
+
+  def group_public_visibility_description: (untyped _group) -> untyped
+
+  def project_visibility_icon_description: (untyped level) -> ::String
+
+  def group_visibility_icon_description: (untyped level) -> ::String
+end

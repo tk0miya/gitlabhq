@@ -1,0 +1,23 @@
+# Takes in an incoming request and extracts contextual information such as location.
+#
+# Information about country and city of the request is taken from its headers set by Cloudflare WAF.
+# See: https://developers.cloudflare.com/rules/transform/managed-transforms/reference/#add-visitor-location-headers
+#
+module Gitlab
+  module Auth
+    class VisitorLocation
+      @request: untyped
+
+      attr_reader request: untyped
+
+      HEADERS: { country: "Cf-Ipcountry", city: "Cf-Ipcity" }
+
+      # @param [ActionDispatch::Request] request
+      def initialize: (untyped request) -> void
+
+      def country: () -> untyped
+
+      def city: () -> untyped
+    end
+  end
+end

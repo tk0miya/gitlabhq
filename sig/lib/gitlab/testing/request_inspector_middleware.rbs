@@ -1,0 +1,35 @@
+module Gitlab
+  module Testing
+    class RequestInspectorMiddleware
+      @@log_requests: untyped
+
+      @@logged_requests: untyped
+
+      @@inject_headers: untyped
+
+      @app: untyped
+
+      Request: untyped
+
+      # Resets the current request log and starts logging requests
+      def self.log_requests!: (?::Hash[untyped, untyped] headers) -> untyped
+
+      # Stops logging requests
+      def self.stop_logging!: () -> untyped
+
+      def self.requests: () -> untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> (untyped | ::Array[untyped])
+
+      private
+
+      def env_http_headers: (untyped env) -> untyped
+
+      def http_headers_env: (untyped headers) -> untyped
+
+      def log_request: (untyped response) -> untyped
+    end
+  end
+end

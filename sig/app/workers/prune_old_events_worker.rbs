@@ -1,0 +1,16 @@
+class PruneOldEventsWorker
+  include ApplicationWorker
+
+  # rubocop:disable Scalability/CronWorkerContext
+  # This worker does not perform work scoped to a context
+  include CronjobQueue
+
+  DELETE_LIMIT: 10000
+
+  # Contribution calendar shows maximum 12 months of events, we retain 3 years for data integrity.
+  CUTOFF_DATE: untyped
+
+  def self.pruning_enabled?: () -> untyped
+
+  def perform: () -> untyped
+end

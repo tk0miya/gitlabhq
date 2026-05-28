@@ -1,0 +1,61 @@
+module Issues
+  class BaseService < ::IssuableBaseService
+    extend ::Gitlab::Utils::Override
+
+    include IncidentManagement::UsageData
+
+    include IssueTypeHelpers
+
+    include Gitlab::Utils::StrongMemoize
+
+    EpicAssignmentError: untyped
+
+    def available_callbacks: () -> untyped
+
+    def hook_data: (untyped issue, untyped action, ?old_associations: ::Hash[untyped, untyped]) -> untyped
+
+    def reopen_service: () -> untyped
+
+    def close_service: () -> untyped
+
+    NO_REBALANCING_NEEDED: untyped
+
+    def rebalance_if_needed: (untyped issue) -> (nil | untyped)
+
+    def execute_hooks: (untyped issue, ?::String action, ?old_associations: ::Hash[untyped, untyped]) -> untyped
+
+    private
+
+    # overriding this because IssuableBaseService#constructor_container_arg returns { project: value }
+    # Issues::ReopenService constructor signature is different now, it takes container instead of project also
+    # IssuableBaseService#change_state dynamically picks one of the `Issues::ReopenService`,
+    # MergeRequests::ReopenService, so we need this method to return { }container: value } for Issues::ReopenService
+    def self.constructor_container_arg: (untyped value) -> { container: untyped }
+
+    def filter_params: (untyped issue) -> untyped
+
+    def handle_move_between_ids: (untyped issue) -> untyped
+
+    def handle_escalation_status_change: (untyped issue) -> (nil | untyped)
+
+    def issuable_for_positioning: (untyped id, untyped positioning_scope) -> (nil | untyped)
+
+    def create_assignee_note: (untyped issue, untyped old_assignees) -> untyped
+
+    # We can remove this code after proposal in
+    # https://gitlab.com/gitlab-org/gitlab/-/issues/367550#proposal is updated.
+    def execute_incident_hooks: (untyped issue, untyped issue_data) -> untyped
+
+    def execute_group_mention_hooks: (untyped issue, untyped issue_data) -> (nil | untyped)
+
+    def update_project_counter_caches?: (untyped issue) -> untyped
+
+    def log_audit_event: (untyped issue, untyped user, untyped event_type, untyped message) -> nil
+
+    def iid_param_allowed?: () -> untyped
+
+    def filter_timestamp_params: () -> (nil | untyped)
+
+    def work_item_type_provider: () -> untyped
+  end
+end

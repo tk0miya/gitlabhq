@@ -1,0 +1,25 @@
+module Projects
+  module GroupLinks
+    class UpdateService < BaseService
+      @group_link: untyped
+
+      def initialize: (untyped group_link, ?untyped? user) -> void
+
+      def execute: (untyped group_link_params) -> untyped
+
+      private
+
+      attr_reader group_link: untyped
+
+      def permitted_attributes: () -> ::Array[:group_access | :expires_at]
+
+      def filter_params: (untyped params) -> untyped
+
+      def allowed_to_update?: () -> untyped
+
+      def refresh_authorizations: () -> untyped
+
+      def requires_authorization_refresh?: (untyped params) -> untyped
+    end
+  end
+end

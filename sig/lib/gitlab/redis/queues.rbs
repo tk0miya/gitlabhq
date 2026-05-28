@@ -1,0 +1,28 @@
+module Gitlab
+  module Redis
+    class Queues < ::Gitlab::Redis::Wrapper
+      self.@sidekiq_redis: untyped
+
+      self.@instances: untyped
+
+      SIDEKIQ_NAMESPACE: "resque:gitlab"
+
+      MAILROOM_NAMESPACE: "mail_room:gitlab"
+
+      SIDEKIQ_MAIN_SHARD_INSTANCE_NAME: "main"
+
+      def self.shard_name: () -> untyped
+
+      def self.sidekiq_redis: () -> untyped
+
+      # extra instances need to have the queues_shard_ prefix
+      def self.instances: () -> untyped
+
+      private
+
+      def self.load_shard_config: () -> (::Hash[untyped, untyped] | untyped)
+
+      def self.create_shard_class: (untyped shard_name, untyped shard_config) -> untyped
+    end
+  end
+end

@@ -1,0 +1,5 @@
+class CreateCommitSignatureWorker
+  include ApplicationWorker
+
+  def perform: (untyped commit_shas, untyped project_id) -> (nil | untyped)
+end

@@ -1,0 +1,46 @@
+module Gitlab
+  module Git
+    # This class behaves like a struct with fields :blob_id, :blob_size, :operation, :old_path, :new_path
+    # All those fields are (binary) strings or integers
+    class RawDiffChange
+      @blob_id: untyped
+
+      @blob_size: untyped
+
+      @old_path: untyped
+
+      @new_path: untyped
+
+      @operation: untyped
+
+      @raw_operation: untyped
+
+      attr_reader blob_id: untyped
+
+      attr_reader blob_size: untyped
+
+      attr_reader old_path: untyped
+
+      attr_reader new_path: untyped
+
+      attr_reader operation: untyped
+
+      def initialize: (untyped raw_change) -> void
+
+      private
+
+      # Input data has the following format:
+      #
+      # When a file has been modified:
+      # 7e3e39ebb9b2bf433b4ad17313770fbe4051649c 669 M\tfiles/ruby/popen.rb
+      #
+      # When a file has been renamed:
+      # 85bc2f9753afd5f4fc5d7c75f74f8d526f26b4f3 107 R060\tfiles/js/commit.js.coffee\tfiles/js/commit.coffee
+      def parse: (untyped raw_change) -> untyped
+
+      def extract_paths: (untyped file_path) -> untyped
+
+      def extract_operation: () -> (:unknown | untyped)
+    end
+  end
+end

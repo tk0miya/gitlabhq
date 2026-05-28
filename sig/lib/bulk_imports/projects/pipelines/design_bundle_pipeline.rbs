@@ -1,0 +1,33 @@
+module BulkImports
+  module Projects
+    module Pipelines
+      class DesignBundlePipeline
+        @tmpdir: untyped
+
+        include Pipeline
+
+        include IndexCacheStrategy
+
+        def extract: (untyped _context) -> untyped
+
+        def load: (untyped _context, untyped bundle_path) -> (nil | untyped)
+
+        def after_run: (untyped _) -> untyped
+
+        private
+
+        def download_service: () -> untyped
+
+        def decompression_service: () -> untyped
+
+        def extraction_service: () -> untyped
+
+        def tar_filename: () -> ::String
+
+        def targz_filename: () -> ::String
+
+        def tmpdir: () -> untyped
+      end
+    end
+  end
+end

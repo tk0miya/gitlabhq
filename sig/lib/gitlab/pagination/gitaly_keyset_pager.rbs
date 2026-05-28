@@ -1,0 +1,45 @@
+module Gitlab
+  module Pagination
+    class GitalyKeysetPager
+      @request_context: untyped
+
+      @project: untyped
+
+      attr_reader request_context: untyped
+
+      attr_reader project: untyped
+
+      def initialize: (untyped request_context, untyped project) -> void
+
+      # It is expected that the given finder will respond to `execute` method with `gitaly_pagination:` option
+      # and supports pagination via gitaly.
+      def paginate: (untyped finder) -> untyped
+
+      private
+
+      def no_pagination?: (untyped finder) -> untyped
+
+      def keyset_pagination_enabled?: (untyped finder) -> (false | untyped)
+
+      def first_page?: () -> untyped
+
+      def paginate_with_offset_headers?: (untyped finder) -> untyped
+
+      # Paginates via Gitaly and builds offset-style headers manually.
+      # The finder is expected to return only the records for the requested page.
+      # For Gitlab::Git::Finders::BranchesFinder, it over-fetches from Gitaly
+      # and slices internally; other finders return page 1 records directly.
+      def paginate_with_offset_headers: (untyped finder) -> untyped
+
+      def build_offset_headers: (untyped finder) -> untyped
+
+      def paginate_via_gitaly: (untyped finder) -> untyped
+
+      def apply_headers: (untyped records, untyped next_cursor) -> (untyped | nil)
+
+      def total_count: (untyped finder) -> untyped
+
+      def query_params_for: (untyped next_cursor) -> { page_token: untyped }
+    end
+  end
+end

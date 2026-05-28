@@ -1,0 +1,45 @@
+class AuditEvent < ApplicationRecord
+  include AfterCommitQueue
+
+  include CreatedAtFilterable
+
+  include BulkInsertSafe
+
+  include EachBatch
+
+  include PartitionedTable
+
+  PARALLEL_PERSISTENCE_COLUMNS: ::Array[:author_name | :entity_path | :target_details | :target_type | :target_id]
+
+  def self.supported_keyset_orderings: () -> { id: ::Array[:desc] }
+
+  def self.order_by: (untyped method) -> untyped
+
+  def initialize_details: () -> (nil | untyped)
+
+  def author_name: () -> untyped
+
+  def formatted_details: () -> untyped
+
+  def author: () -> untyped
+
+  def lazy_author: () -> untyped
+
+  def as_json: (?::Hash[untyped, untyped] options) -> untyped
+
+  def target_type: () -> untyped
+
+  def target_id: () -> untyped
+
+  def target_details: () -> untyped
+
+  private
+
+  def sanitize_message: () -> (nil | untyped)
+
+  def default_author_value: () -> untyped
+
+  def parallel_persist: () -> untyped
+
+  def self.find_user_id: (untyped username) -> untyped
+end

@@ -1,0 +1,27 @@
+module Sidebars
+  module Projects
+    module Menus
+      class MergeRequestsMenu < ::Sidebars::Menu
+        def link: () -> untyped
+
+        def extra_container_html_options: () -> { class: "shortcuts-merge_requests" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "merge-request"
+
+        def render?: () -> untyped
+
+        def has_pill?: () -> true
+
+        def pill_count_field: () -> "openMergeRequestsCount"
+
+        def pill_html_options: () -> { class: "merge_counter js-merge-counter" }
+
+        def active_routes: () -> ({ controller: ::Array["projects/merge_requests" | :conflicts] } | { controller: ::Array["projects/merge_requests" | :milestones | :conflicts] })
+
+        def serialize_as_menu_item_args: () -> untyped
+      end
+    end
+  end
+end

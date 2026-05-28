@@ -1,0 +1,10 @@
+module Gitlab
+  module BackgroundMigration
+    # This BBM inserts ProjectRepository records when Projects are missing one, and fills the new records with data
+    # from the project. The object_format is kept as default to avoid checking the actual repository,
+    # which is acceptable because the vast majority (99.98%) of project repositories use the default value.
+    class BackfillMissingProjectRepositories < BatchedMigrationJob
+      def perform: () -> untyped
+    end
+  end
+end

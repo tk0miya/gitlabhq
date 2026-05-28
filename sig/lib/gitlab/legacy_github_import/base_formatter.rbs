@@ -1,0 +1,44 @@
+module Gitlab
+  module LegacyGithubImport
+    class BaseFormatter
+      @project: untyped
+
+      @raw_data: untyped
+
+      @client: untyped
+
+      @formatter: untyped
+
+      @source_user_mapper: untyped
+
+      attr_reader client: untyped
+
+      attr_reader formatter: untyped
+
+      attr_reader project: untyped
+
+      attr_reader raw_data: untyped
+
+      attr_reader source_user_mapper: untyped
+
+      def initialize: (untyped project, untyped raw_data, ?untyped? client, ?untyped? source_user_mapper) -> void
+
+      def create!: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord -- Existing legacy code
+      def create_record: () -> untyped
+
+      def push_placeholder_references: (untyped record, ?contributing_users: untyped?) -> untyped
+
+      def push_placeholder_reference: (untyped record, untyped user_reference_column, untyped source_user) -> (nil | untyped)
+
+      def url: () -> untyped
+
+      def imported_from: () -> untyped
+
+      # A hash of user_reference_columns and its corresponding UserFormatter objects must be defined on each formatter
+      # in order to save it using #create!
+      def contributing_user_formatters: () -> untyped
+    end
+  end
+end

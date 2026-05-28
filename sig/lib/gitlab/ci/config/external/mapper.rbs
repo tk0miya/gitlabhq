@@ -1,0 +1,37 @@
+module Gitlab
+  module Ci
+    class Config
+      module External
+        class Mapper
+          @locations: untyped
+
+          @context: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          Error: untyped
+
+          AmbigiousSpecificationError: untyped
+
+          TooManyIncludesError: untyped
+
+          TooMuchDataInPipelineTreeError: untyped
+
+          InvalidTypeError: untyped
+
+          def initialize: (untyped values, untyped context) -> void
+
+          def process: () -> (::Array[untyped] | untyped)
+
+          private
+
+          attr_reader context: untyped
+
+          def process_without_instrumentation: () -> untyped
+
+          def get_files_and_verify_locations: (untyped locations) -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Mutations
+  module MergeRequests
+    class SetDraft < Base
+      def resolve: (project_path: untyped, iid: untyped, ?draft: untyped?) -> { merge_request: untyped, errors: untyped }
+
+      private
+
+      def wip_event: (untyped draft) -> ("draft" | "ready")
+    end
+  end
+end

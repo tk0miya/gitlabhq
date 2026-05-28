@@ -1,0 +1,12 @@
+module Analytics
+  module CycleAnalytics
+    class StageEventHash < ApplicationRecord
+      # Creates or queries the id of the corresponding stage event hash code
+      def self.record_id_by_hash_sha256: (untyped organization_id, untyped hash) -> untyped
+
+      def self.cleanup_if_unused: (untyped id) -> untyped
+
+      def self.unused_hashes_for: (untyped id) -> untyped
+    end
+  end
+end

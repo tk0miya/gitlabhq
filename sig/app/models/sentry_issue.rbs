@@ -1,0 +1,9 @@
+class SentryIssue < ApplicationRecord
+  include Importable
+
+  def self.for_project_and_identifier: (untyped project, untyped identifier) -> untyped
+
+  def ensure_sentry_issue_identifier_is_unique_per_project: () -> (untyped | nil)
+
+  def enqueue_sentry_sync_job: () -> untyped
+end

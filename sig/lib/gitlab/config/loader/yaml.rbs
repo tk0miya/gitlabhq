@@ -1,0 +1,45 @@
+module Gitlab
+  module Config
+    module Loader
+      class Yaml
+        @raw: untyped
+
+        @config: untyped
+
+        @symbolized_config: untyped
+
+        DataTooLargeError: untyped
+
+        NotHashError: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        attr_reader raw: untyped
+
+        def initialize: (untyped config, ?additional_permitted_classes: untyped, ?filename: untyped?) -> void
+
+        def valid?: () -> untyped
+
+        def load_raw!: () -> untyped
+
+        def load!: () -> untyped
+
+        def blank?: () -> untyped
+
+        private
+
+        def hash?: () -> untyped
+
+        def too_big?: () -> untyped
+
+        def html_content?: (untyped content) -> untyped
+
+        def utf8?: (untyped content) -> untyped
+
+        def content_too_large?: () -> untyped
+
+        def deep_size: () -> untyped
+      end
+    end
+  end
+end

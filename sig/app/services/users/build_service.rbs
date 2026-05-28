@@ -1,0 +1,102 @@
+module Users
+  class BuildService < BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    @organization_params: untyped
+
+    @identity_params: untyped
+
+    @user_params: untyped
+
+    # We'll declaratively initialize the user_detail here due to possibility of assignment to user_detail
+    # in a delegation or otherwise in the assignment of attributes.
+    # This will allow our after_initialize call at the model layer to not wipe those values out and will
+    # also allow use to remove the model layer `user_detail` override eventually.
+    # Any future calls outside of this class on User.new can still wipe out set user_detail values, but
+    # once we remove the model layer override, it will be caught during test and that area, if not using
+    # this class will have to build_user_detail as well.
+    @user: untyped
+
+    @reset_token: untyped
+
+    ALLOWED_USER_TYPES: ::Array[:project_bot | :security_policy_bot | :placeholder | :service_account]
+
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader identity_params: untyped
+
+    attr_reader user_params: untyped
+
+    attr_reader user: untyped
+
+    attr_reader organization_params: untyped
+
+    def organization_attributes: () -> untyped
+
+    def identity_attributes: () -> ::Array[:extern_uid | :provider]
+
+    def build_user: () -> untyped
+
+    def admin?: () -> (false | untyped)
+
+    def admin_build_user: () -> untyped
+
+    def standard_build_user: () -> untyped
+
+    def build_user_params_for_admin: () -> untyped
+
+    def init_user: () -> untyped
+
+    def organization_access_level: () -> untyped
+
+    def assign_organization: () -> (nil | untyped)
+
+    def assign_personal_namespace: () -> untyped
+
+    def assign_common_user_params: () -> untyped
+
+    def set_external_param?: () -> untyped
+
+    def should_enrol_in_email_otp?: () -> untyped
+
+    def user_external?: () -> untyped
+
+    def allowed_user_type?: () -> untyped
+
+    def service_account?: () -> untyped
+
+    def password_reset: () -> untyped
+
+    def validate_access!: () -> (nil | untyped)
+
+    def can_create_user?: () -> untyped
+
+    def build_user_params_for_non_admin: () -> untyped
+
+    def assign_skip_confirmation_from_settings?: () -> untyped
+
+    def skip_user_confirmation_email_from_setting: () -> untyped
+
+    def use_fallback_name?: () -> untyped
+
+    def fallback_name: () -> ::String
+
+    def build_identity: () -> (nil | untyped)
+
+    # Allowed params for creating a user (admins only)
+    def admin_create_params: () -> ::Array[:access_level | :admin | :avatar | :bio | :bot_namespace | :can_create_group | :color_mode_id | :color_scheme_id | :discord | :email | :external | :force_random_password | :hide_no_password | :hide_no_ssh_key | :linkedin | :location | :name | :note | :company | :password | :password_automatically_set | :password_expires_at | :private_profile | :projects_limit | :provisioned_by_group_id | :provisioned_by_project_id | :public_email | :remember_me | :skip_ai_prefix_validation | :skip_confirmation | :theme_id | :twitter | :user_type | :username | :view_diffs_file_by_file | :website_url | :github]
+
+    def admin_organization_attributes: () -> ::Array[:organization_id | :organization_access_level]
+
+    # Allowed params for user signup
+    def signup_params: () -> ::Array[:email | :name | :password | :password_automatically_set | :preferred_language | :username | :user_type | :first_name | :last_name]
+
+    def signup_organization_attributes: () -> ::Array[:organization_id]
+  end
+end

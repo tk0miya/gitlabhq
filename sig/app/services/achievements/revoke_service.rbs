@@ -1,0 +1,27 @@
+module Achievements
+  class RevokeService
+    @current_user: untyped
+
+    @user_achievement: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader user_achievement: untyped
+
+    def initialize: (untyped current_user, untyped user_achievement) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def allowed?: (untyped achievement) -> untyped
+
+    def error_no_permissions: () -> untyped
+
+    def error_already_revoked: () -> untyped
+
+    def error_awarding: () -> untyped
+
+    def error: (untyped message) -> untyped
+  end
+end

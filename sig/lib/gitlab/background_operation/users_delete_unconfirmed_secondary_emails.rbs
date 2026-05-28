@@ -1,0 +1,15 @@
+module Gitlab
+  module BackgroundOperation
+    class UsersDeleteUnconfirmedSecondaryEmails < BaseOperationWorker
+      def perform: () -> untyped
+
+      private
+
+      def cells_claims_enabled?: () -> untyped
+
+      def schedule_bulk_claims_destroy: (untyped records) -> (nil | untyped)
+
+      def created_cut_off: () -> untyped
+    end
+  end
+end

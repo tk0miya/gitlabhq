@@ -1,0 +1,13 @@
+module Types
+  module Packages
+    class PackageFileType < BaseObject
+      # NOTE: This method must be kept in sync with the union
+      # type: `Types::Packages::FileMetadataType`.
+      #
+      # `Types::Packages::FileMetadataType.resolve_type(metadata, ctx)` must never raise.
+      def file_metadata: () -> untyped
+
+      def file_name: () -> untyped
+    end
+  end
+end

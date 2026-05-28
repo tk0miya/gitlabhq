@@ -1,0 +1,19 @@
+module Gitlab
+  module BackgroundMigration
+    class DeleteNoLongerUsedCiPipelinePlaceholderReferences < BatchedMigrationJob
+      PLACEHOLDER_USER_TYPE: 15
+
+      MODEL_USER_REFERENCE_COLUMN_MAPPING: ::Array[{ model: ::Array["Ci::Bridge" | "Ci::Build" | "GenericCommitStatus"], user_reference_column: ::Array["user_id"] } | { model: ::Array["ProjectSnippet"], user_reference_column: ::Array["author_id"] } | { model: ::Array["WorkItem"], user_reference_column: ::Array["author_id" | "updated_by_id" | "closed_by_id"] }]
+
+      def perform: () -> untyped
+
+      private
+
+      def delete_placeholder_references_for_batch: (untyped sub_batch) -> untyped
+
+      def build_or_clauses_query: (untyped sub_batch) -> untyped
+
+      def add_placeholder_user_joins: (untyped query) -> untyped
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Gitlab
+  module Search
+    module AbuseValidators
+      class NoAbusiveCoercionFromStringValidator < ActiveModel::EachValidator
+        def validate_each: (untyped instance, untyped attribute, untyped value) -> (untyped | nil)
+      end
+    end
+  end
+end

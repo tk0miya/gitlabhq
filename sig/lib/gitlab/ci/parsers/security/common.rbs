@@ -1,0 +1,109 @@
+module Gitlab
+  module Ci
+    module Parsers
+      module Security
+        class Common
+          @json_data: untyped
+
+          @report: untyped
+
+          @project: untyped
+
+          @validate: untyped
+
+          @signatures_enabled: untyped
+
+          @schema_validator: untyped
+
+          @report_data: untyped
+
+          @report_version: untyped
+
+          @top_level_scanner_data: untyped
+
+          @scan_data: untyped
+
+          @analyzer_data: untyped
+
+          SecurityReportParserError: untyped
+
+          def self.parse!: (untyped json_data, untyped report, ?signatures_enabled: bool, ?validate: bool) -> untyped
+
+          def initialize: (untyped json_data, untyped report, ?signatures_enabled: bool, ?validate: bool) -> void
+
+          def parse!: () -> untyped
+
+          private
+
+          attr_reader json_data: untyped
+
+          attr_reader report: untyped
+
+          attr_reader validate: untyped
+
+          attr_reader project: untyped
+
+          # PostgreSQL can not save texts with unicode null character
+          # that's why we are escaping that character.
+          def sanitize_json_data: () -> (nil | untyped)
+
+          def valid?: () -> (true | untyped)
+
+          def schema_validator: () -> untyped
+
+          # New Oj parsers are not thread safe, therefore,
+          # we need to initialize them for each thread.
+          def introspect_parser: () -> untyped
+
+          def report_data: () -> untyped
+
+          def report_version: () -> untyped
+
+          def top_level_scanner_data: () -> untyped
+
+          def scan_data: () -> untyped
+
+          def analyzer_data: () -> untyped
+
+          def tracking_data: (untyped data) -> untyped
+
+          def create_findings: () -> (untyped | nil)
+
+          def create_finding: (untyped data, ?untyped remediations) -> untyped
+
+          def create_signatures: (untyped tracking) -> untyped
+
+          def create_scan: () -> (nil | untyped)
+
+          def set_report_version: () -> untyped
+
+          def create_analyzer: () -> (nil | untyped)
+
+          def create_scanner: (untyped scanner_data) -> (nil | untyped)
+
+          # TODO: primary_identifiers should be initialized on the
+          # scan itself but we do not currently parse scans through `MergeReportsService`
+          def create_scan_primary_identifiers: () -> (nil | untyped)
+
+          def create_identifiers: (untyped identifiers) -> (::Array[untyped] | untyped)
+
+          def create_identifier: (untyped identifier) -> (nil | untyped)
+
+          def create_flags: (untyped flags) -> (::Array[untyped] | untyped)
+
+          def create_flag: (untyped flag) -> (nil | untyped)
+
+          def create_links: (untyped links) -> (::Array[untyped] | untyped)
+
+          def create_link: (untyped link) -> (nil | untyped)
+
+          def create_location: (untyped location_data) -> untyped
+
+          def create_evidence: (untyped evidence_data) -> (nil | untyped)
+
+          def finding_name: (untyped data, untyped identifiers, untyped location) -> untyped
+        end
+      end
+    end
+  end
+end

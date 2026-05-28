@@ -1,0 +1,10 @@
+module Types
+  module Ci
+    module PipelineCreation
+      # rubocop:disable Graphql/AuthorizeTypes -- Authorization is handled in the `ProjectType#ci_pipeline_creation_request` field
+      class RequestType < BaseObject
+        def pipeline: () -> (nil | untyped)
+      end
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Ml
+  class Candidate < ApplicationRecord
+    include Sortable
+
+    include Presentable
+
+    include AtomicInternalId
+
+    PACKAGE_PREFIX: "candidate_"
+
+    alias artifact package
+
+    alias artifact= package=
+
+    alias iid= internal_id=
+
+    def artifact_root: () -> ::String
+
+    def package_version: () -> (untyped | ::String)
+
+    def from_ci?: () -> untyped
+
+    def for_model?: () -> untyped
+
+    def self.with_project_id_and_eid: (untyped project_id, untyped eid) -> (nil | untyped)
+
+    def self.with_project_id_and_iid: (untyped project_id, untyped iid) -> (nil | untyped)
+
+    def self.with_project_id_and_id: (untyped project_id, untyped id) -> (nil | untyped)
+
+    private
+
+    def check_model_version: () -> (nil | untyped)
+  end
+end

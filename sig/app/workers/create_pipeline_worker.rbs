@@ -1,0 +1,22 @@
+class CreatePipelineWorker
+  include ApplicationWorker
+
+  include PipelineQueue
+
+  # Raised when a pipeline creation fails due to a ref not being found.
+  # This can be a user error, but is also known to happen
+  # transiently on Praefect-backed storage due to replication delay.
+  ReferenceNotFoundError: untyped
+
+  def perform: (untyped project_id, untyped user_id, untyped ref, untyped source, ?::Hash[untyped, untyped] execute_options, ?::Hash[untyped, untyped] creation_params) -> (nil | untyped)
+
+  def perform_failure: (untyped project_id, untyped ref, untyped exception, ?::Hash[untyped, untyped] creation_params) -> (nil | untyped)
+
+  private
+
+  def log_pipeline_errors: (untyped error_message, untyped project, **untyped creation_params) -> untyped
+
+  def sanitized_pipeline_params: (**untyped creation_params) -> untyped
+
+  def raise_reference_not_found_error!: (untyped response, untyped project, **untyped creation_params) -> (nil | untyped)
+end

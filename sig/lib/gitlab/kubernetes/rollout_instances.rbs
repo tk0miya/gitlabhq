@@ -1,0 +1,33 @@
+module Gitlab
+  module Kubernetes
+    class RolloutInstances
+      @deployments: untyped
+
+      @pods: untyped
+
+      include ::Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped deployments, untyped pods) -> void
+
+      def pod_instances: () -> untyped
+
+      private
+
+      attr_reader deployments: untyped
+
+      attr_reader pods: untyped
+
+      def matching_pods: () -> untyped
+
+      def extra_pending_pods: () -> untyped
+
+      def sum_hashes: (untyped hashes) -> untyped
+
+      def subtract_hashes: (untyped hash_a, untyped hash_b) -> untyped
+
+      def pending_pod_for: (untyped track) -> untyped
+
+      def to_hash: (untyped pod) -> { status: untyped, pod_name: untyped, tooltip: ::String, track: untyped, stable: untyped }
+    end
+  end
+end

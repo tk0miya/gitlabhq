@@ -1,0 +1,25 @@
+module Atlassian
+  module JiraConnect
+    class JiraUser
+      @data: untyped
+
+      ADMIN_GROUPS: ::Array["site-admins" | "org-admins"]
+
+      def initialize: (untyped data) -> void
+
+      def jira_admin?: () -> untyped
+
+      # Returns a human-readable explanation of why the admin check
+      # failed, including the user's actual group memberships.
+      def not_an_admin_error_message: () -> (nil | untyped)
+
+      private
+
+      def groups: () -> untyped
+
+      def user_group_names: () -> untyped
+
+      def matched_admin_groups: () -> untyped
+    end
+  end
+end

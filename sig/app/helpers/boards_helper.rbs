@@ -1,0 +1,40 @@
+module BoardsHelper
+  @current_board_parent: untyped
+
+  @current_board_namespace: untyped
+
+  def board: () -> untyped
+
+  def board_data: () -> { board_id: untyped, disabled: untyped, root_path: untyped, full_path: untyped, can_update: untyped, can_admin_list: untyped, can_admin_board: untyped, time_tracking_limit_to_hours: untyped, parent: untyped, group_id: untyped, labels_filter_base_path: untyped, labels_fetch_path: untyped, labels_manage_path: untyped, releases_fetch_path: untyped, board_type: untyped, has_missing_boards: untyped, multiple_boards_available: untyped, board_base_url: untyped, wi: untyped }
+
+  def board_namespace: () -> untyped
+
+  def group_id: () -> untyped
+
+  def full_path: () -> untyped
+
+  def build_issue_link_base: () -> ("/:project_path/-/issues" | untyped)
+
+  def labels_fetch_path: () -> untyped
+
+  def labels_manage_path: () -> untyped
+
+  def releases_fetch_path: () -> untyped
+
+  def board_base_url: () -> untyped
+
+  def multiple_boards_available?: () -> untyped
+
+  # Boards are hidden when extra boards were created but the license does not allow multiple boards
+  def has_missing_boards?: () -> untyped
+
+  def current_board_parent: () -> untyped
+
+  def current_board_namespace: () -> untyped
+
+  def can_update?: () -> untyped
+
+  def can_admin_list?: () -> untyped
+
+  def can_admin_board?: () -> untyped
+end

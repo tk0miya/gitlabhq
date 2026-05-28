@@ -1,0 +1,42 @@
+module Packages
+  module Helm
+    class CreateMetadataCacheService
+      @project: untyped
+
+      @channel: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      include ExclusiveLeaseGuard
+
+      # used by ExclusiveLeaseGuard
+      DEFAULT_LEASE_TIMEOUT: untyped
+
+      def initialize: (untyped project, untyped channel) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader channel: untyped
+
+      attr_reader project: untyped
+
+      def after_cache_update: (untyped metadata_cache) -> nil
+
+      def metadata_content: () -> untyped
+
+      def double_quote_app_version: (untyped yaml_content) -> untyped
+
+      def packages: () -> untyped
+
+      def metadata: () -> untyped
+
+      # used by ExclusiveLeaseGuard
+      def lease_key: () -> ::String
+
+      # used by ExclusiveLeaseGuard
+      def lease_timeout: () -> untyped
+    end
+  end
+end

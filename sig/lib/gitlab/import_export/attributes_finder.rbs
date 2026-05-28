@@ -1,0 +1,57 @@
+module Gitlab
+  module ImportExport
+    class AttributesFinder
+      @tree: untyped
+
+      @included_attributes: untyped
+
+      @excluded_attributes: untyped
+
+      @methods: untyped
+
+      @preloads: untyped
+
+      @export_reorders: untyped
+
+      @include_if_exportable: untyped
+
+      @import_only_tree: untyped
+
+      attr_reader tree: untyped
+
+      attr_reader included_attributes: untyped
+
+      attr_reader excluded_attributes: untyped
+
+      attr_reader methods: untyped
+
+      attr_reader preloads: untyped
+
+      attr_reader export_reorders: untyped
+
+      attr_reader import_only_tree: untyped
+
+      def initialize: (config: untyped) -> void
+
+      def find_root: (untyped model_key) -> untyped
+
+      def find_relations_tree: (untyped model_key, ?include_import_only_tree: bool) -> untyped
+
+      def find_excluded_keys: (untyped klass_name) -> untyped
+
+      def find_included_keys: (untyped klass_name) -> untyped
+
+      private
+
+      def find: (untyped model_key, untyped model_tree) -> untyped
+
+      def resolve_preloads: (untyped model_key, untyped model_tree) -> untyped
+
+      def resolve_preload: (untyped parent_model_key, untyped model_key, untyped model_tree) -> (nil | ::Array[untyped])
+
+      def resolve_model_tree: (untyped model_tree) -> (nil | untyped)
+
+      def resolve_model: (untyped model_key, untyped model_tree) -> ::Hash[untyped, untyped]
+    end
+  end
+end

@@ -1,0 +1,38 @@
+module Gitlab
+  module ExclusiveLeaseHelpers
+    # Wrapper around ExclusiveLease that adds retry logic
+    class SleepingLock
+      @lease: untyped
+
+      @delay: untyped
+
+      @attempts: untyped
+
+      @uuid: untyped
+
+      MAX_ATTEMPTS: 65
+
+      DEFAULT_ATTEMPTS: 10
+
+      def initialize: (untyped key, timeout: untyped, delay: untyped) -> void
+
+      def obtain: (?untyped max_attempts) -> untyped
+
+      def retried?: () -> untyped
+
+      private
+
+      attr_reader delay: untyped
+
+      attr_reader attempts: untyped
+
+      def held?: () -> untyped
+
+      def try_obtain: () -> untyped
+
+      def first_attempt?: () -> untyped
+
+      def sleep_sec: () -> untyped
+    end
+  end
+end

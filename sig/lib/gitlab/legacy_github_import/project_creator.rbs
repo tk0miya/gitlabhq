@@ -1,0 +1,46 @@
+module Gitlab
+  module LegacyGithubImport
+    class ProjectCreator
+      @repo: untyped
+
+      @name: untyped
+
+      @namespace: untyped
+
+      @current_user: untyped
+
+      @session_data: untyped
+
+      @type: untyped
+
+      attr_reader repo: untyped
+
+      attr_reader name: untyped
+
+      attr_reader namespace: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader session_data: untyped
+
+      attr_reader type: untyped
+
+      def initialize: (untyped repo, untyped name, untyped namespace, untyped current_user, ?type: ::Symbol, **untyped session_data) -> void
+
+      def execute: (?::Hash[untyped, untyped] extra_attrs) -> untyped
+
+      private
+
+      def import_url: () -> untyped
+
+      def visibility_level: () -> untyped
+
+      #
+      # If the GitHub project repository has wiki, we should not create the
+      # default wiki. Otherwise the GitHub importer will fail because the wiki
+      # repository already exist.
+      #
+      def skip_wiki: () -> untyped
+    end
+  end
+end

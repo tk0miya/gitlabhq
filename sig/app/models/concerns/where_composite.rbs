@@ -1,0 +1,11 @@
+module WhereComposite
+  extend ActiveSupport::Concern
+
+  class TooManyIds < ArgumentError
+    LIMIT: 100
+
+    def initialize: (untyped no_of_ids) -> void
+
+    def self.guard: (untyped collection) -> untyped
+  end
+end

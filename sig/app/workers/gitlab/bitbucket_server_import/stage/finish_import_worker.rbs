@@ -1,0 +1,18 @@
+module Gitlab
+  module BitbucketServerImport
+    module Stage
+      class FinishImportWorker
+        include StageMethods
+
+        PLACEHOLDER_WAIT_INTERVAL: untyped
+
+        private
+
+        # @param project [Project]
+        def import: (untyped project) -> (nil | untyped)
+
+        def reschedule: (untyped project) -> untyped
+      end
+    end
+  end
+end

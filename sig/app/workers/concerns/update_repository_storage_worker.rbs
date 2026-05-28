@@ -1,0 +1,15 @@
+module UpdateRepositoryStorageWorker
+  extend ActiveSupport::Concern
+
+  include ApplicationWorker
+
+  LEASE_TIMEOUT: untyped
+
+  def perform: (untyped repository_storage_move_id) -> untyped
+
+  private
+
+  def find_repository_storage_move: (untyped repository_storage_move_id) -> untyped
+
+  def update_repository_storage: (untyped repository_storage_move) -> untyped
+end

@@ -1,0 +1,85 @@
+module Users
+  class UpdateService < BaseService
+    @current_user: untyped
+
+    @validation_password: untyped
+
+    @user: untyped
+
+    @status_params: untyped
+
+    @identity_params: untyped
+
+    @params: untyped
+
+    include NewUserNotifier
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader user: untyped
+
+    attr_reader identity_params: untyped
+
+    ATTRS_REQUIRING_PASSWORD_CHECK: ::Array["email"]
+
+    BATCH_SIZE: 100
+
+    ORGANIZATION_USERS_LIMIT: 1
+
+    def initialize: (untyped current_user, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: (?validate: bool, ?check_password: bool) ?{ (untyped) -> untyped } -> untyped
+
+    def execute!: (*untyped args, **untyped kargs) { (?) -> untyped } -> true
+
+    private
+
+    def organization_users_attributes: () -> untyped
+
+    def error_message: (untyped content) -> untyped
+
+    def organization_ids_invalid_error: () -> untyped
+
+    def organization_permission_error: () -> untyped
+
+    def organization_users_limit_exceeded_error: () -> untyped
+
+    def organization_ids_invalid?: () -> untyped
+
+    def organization_users_limit_exceeded?: () -> untyped
+
+    def organization_users_error: () -> (nil | untyped)
+
+    def organization_ids: () -> untyped
+
+    def require_password_check?: () -> (false | untyped)
+
+    def reset_unconfirmed_email: () -> (nil | untyped)
+
+    def update_status: () -> (true | untyped)
+
+    def notify_success: (untyped user_exists) -> (untyped | nil)
+
+    def discard_read_only_attributes: () -> untyped
+
+    def discard_synced_attributes: () -> untyped
+
+    def synced_attributes: () -> (untyped | ::Array[untyped])
+
+    def append_extension_marketplace_attributes: () -> (nil | untyped)
+
+    def assign_attributes: () -> (untyped | nil)
+
+    def assign_identity: () -> (nil | untyped)
+
+    def identity_attributes: () -> ::Array[:provider | :extern_uid]
+
+    def provider_attributes: () -> ::Array[:provider]
+
+    def provider_params: () -> untyped
+
+    def after_update: (untyped user_exists) -> untyped
+
+    def remove_followers_and_followee!: () -> (false | untyped)
+  end
+end

@@ -1,0 +1,66 @@
+module Gitlab
+  module Ci
+    module Ansi2json
+      module V2
+        class Converter
+          @lines: untyped
+
+          @state: untyped
+
+          @has_timestamps: untyped
+
+          @scanner: untyped
+
+          TIMESTAMP_HEADER_REGEX: untyped
+
+          TIMESTAMP_HEADER_DATETIME_LENGTH: untyped
+
+          TIMESTAMP_HEADER_LENGTH: untyped
+
+          SECTION_REGEX: untyped
+
+          CRLF_REGEX: ::Regexp
+
+          PLAIN_TEXT_RUN: ::Regexp
+
+          def convert: (untyped stream, untyped new_state) -> untyped
+
+          private
+
+          def process_stream_with_lookahead: (untyped stream) -> untyped
+
+          def handle_line: (untyped line, untyped next_line, untyped current_line_buffer) -> (nil | untyped)
+
+          def consume_line: (untyped line) -> untyped
+
+          def consume_token: (untyped scanner) -> (nil | untyped)
+
+          def consume_plain_text: (untyped scanner) -> (nil | untyped)
+
+          # Cursor-based CSI parser. Only \e[...m sequences trigger style
+          # updates; other escapes are silently consumed (matches v1).
+          # Branches kept inline to avoid helper dispatch overhead on the
+          # per-byte hot path.
+          # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity -- intentional
+          def consume_escape: (untyped scanner) -> (nil | untyped)
+
+          # Cheaper than re-running the timestamp regex per line: a manual
+          # check on the bytes that must be present in an RFC3339 timestamp.
+          def try_consume_timestamp: (untyped scanner) -> (false | true)
+
+          def handle_section: (untyped scanner) -> untyped
+
+          def handle_section_start: (untyped scanner, untyped section, untyped section_timestamp, untyped options) -> untyped
+
+          def handle_section_end: (untyped scanner, untyped section, untyped section_timestamp) -> (nil | untyped)
+
+          def flush_current_line: (?bool hard_flush) -> untyped
+
+          def sanitize_section_name: (untyped section) -> untyped
+
+          def parse_section_options: (untyped raw_options) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

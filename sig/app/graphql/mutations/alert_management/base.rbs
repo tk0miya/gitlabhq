@@ -1,0 +1,13 @@
+module Mutations
+  module AlertManagement
+    class Base < BaseMutation
+      include Gitlab::Utils::UsageData
+
+      private
+
+      def find_object: (project_path: untyped, **untyped args) -> (nil | untyped)
+
+      def track_alert_events: (untyped event, untyped alert) -> untyped
+    end
+  end
+end

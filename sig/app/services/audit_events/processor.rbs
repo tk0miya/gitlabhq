@@ -1,0 +1,20 @@
+module AuditEvents
+  class Processor
+    def self.fetch: (?audit_event_id: untyped?, ?audit_event_json: untyped?, ?model_class: untyped?) -> untyped
+
+    def self.fetch_from_id: (untyped audit_event_id, untyped model_class) -> untyped
+
+    def self.fetch_from_json: (untyped audit_event_json) -> untyped
+
+    def self.determine_audit_model_entity: (untyped audit_event_json) -> untyped
+
+    # Fallback method for stream_only events that use entity_type/entity_id format
+    # instead of the scoped *_id fields (e.g., project_id, group_id, user_id).
+    # Note: ActiveRecord::RecordNotFound exceptions bubble up to fetch_from_json's rescue block.
+    def self.determine_from_entity_type: (untyped audit_event_json) -> (::Array[untyped | :instance] | untyped)
+
+    def self.create_scoped_audit_event: (untyped model_class, untyped audit_event_json) -> untyped
+
+    def self.add_scoped_id_from_entity: (untyped model_class, untyped filtered_json, untyped audit_event_json) -> untyped
+  end
+end

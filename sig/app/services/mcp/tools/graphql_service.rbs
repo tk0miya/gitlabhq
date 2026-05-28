@@ -1,0 +1,28 @@
+# rubocop:disable Mcp/UseApiService -- does not depend directly on REST API
+module Mcp
+  module Tools
+    class GraphqlService < BaseService
+      @current_user: untyped
+
+      include Mcp::Tools::Concerns::Versionable
+
+      extend Gitlab::Utils::Override
+
+      def initialize: (name: untyped, ?version: untyped?) -> void
+
+      def set_cred: (?current_user: untyped?, ?access_token: untyped?) -> untyped
+
+      def execute: (?request: untyped?, ?params: untyped?) -> untyped
+
+      # Subclasses should override this to return their GraphQL tool class
+      def graphql_tool_class: () -> untyped
+
+      # Default implementation - can be overridden in subclasses
+      def perform_default: (?::Hash[untyped, untyped] _arguments) -> untyped
+
+      private
+
+      def execute_graphql_tool: (untyped arguments) -> untyped
+    end
+  end
+end

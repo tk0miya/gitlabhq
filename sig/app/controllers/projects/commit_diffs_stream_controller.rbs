@@ -1,0 +1,9 @@
+module Projects
+  class CommitDiffsStreamController < Projects::CommitController
+    include RapidDiffs::StreamingResource
+
+    private
+
+    def streaming_diff_options: () -> untyped
+  end
+end

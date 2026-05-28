@@ -1,0 +1,17 @@
+class ChatNotificationWorker
+  include ApplicationWorker
+
+  TimeoutExceeded: untyped
+
+  RESCHEDULE_INTERVAL: untyped
+
+  RESCHEDULE_TIMEOUT: untyped
+
+  def perform: (untyped build_id, ?::Integer reschedule_count) -> untyped
+
+  def send_response: (untyped build) -> untyped
+
+  private
+
+  def timeout_exceeded?: (untyped reschedule_count) -> untyped
+end

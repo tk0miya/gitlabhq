@@ -1,0 +1,13 @@
+module Gitlab
+  module Email
+    module ServiceDeskEmail
+      extend Gitlab::Email::Common
+
+      def self.config: () -> untyped
+
+      def self.key_from_address: (untyped address) -> (nil | untyped)
+
+      def self.address_for_key: (untyped key) -> (nil | untyped)
+    end
+  end
+end

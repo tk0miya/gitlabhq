@@ -1,0 +1,27 @@
+class Import::GitlabProjectsController < Import::BaseController
+  @namespace: untyped
+
+  @path: untyped
+
+  @project: untyped
+
+  include SafeFormatHelper
+
+  include WorkhorseAuthorization
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  private
+
+  def verify_gitlab_project_import_enabled: () -> (untyped | nil)
+
+  def project_params: () -> untyped
+
+  def disable_query_limiting: () -> untyped
+
+  def uploader_class: () -> untyped
+
+  def maximum_size: () -> untyped
+end

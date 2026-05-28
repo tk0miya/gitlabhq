@@ -1,0 +1,27 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        module Helpers
+          def error: (untyped message, ?failure_reason: untyped?) -> untyped
+
+          def warning: (untyped message) -> untyped
+
+          private
+
+          def sanitize_message: (untyped message) -> untyped
+
+          def handle_pipeline_failure: (untyped failure_reason) -> untyped
+
+          def should_persist_pipeline_failure?: (untyped failure_reason) -> untyped
+
+          def drop_pipeline_with_persistence!: (untyped failure_reason) -> untyped
+
+          # This method results in no pipeline being created, but errors are recorded
+          # in Ci::PipelineCreation::Requests for tracking purposes
+          def mark_pipeline_as_failed: (untyped failure_reason) -> untyped
+        end
+      end
+    end
+  end
+end

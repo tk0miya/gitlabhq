@@ -1,0 +1,13 @@
+module PaginationHelper
+  # total_pages will be inferred from the collection if nil. It is ignored if
+  # the collection is a Kaminari::PaginatableWithoutCount
+  def paginate_collection: (untyped collection, ?remote: untyped?, ?total_pages: untyped?, ?event_tracking: untyped?) -> (untyped | untyped | nil)
+
+  def paginate_without_count: (untyped collection, ?event_tracking: untyped?) -> untyped
+
+  def paginate_with_count: (untyped collection, ?remote: untyped?, ?total_pages: untyped?) -> untyped
+
+  def page_size: () -> untyped
+
+  def paginate_event_tracking_data_attributes: (?event_tracking: untyped?, ?event_label: untyped?) -> (::Hash[untyped, untyped] | { event_tracking: untyped, event_label: untyped })
+end

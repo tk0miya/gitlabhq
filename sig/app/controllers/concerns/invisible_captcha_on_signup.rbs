@@ -1,0 +1,17 @@
+module InvisibleCaptchaOnSignup
+  @invisible_captcha_honeypot_counter: untyped
+
+  @invisible_captcha_timestamp_counter: untyped
+
+  extend ActiveSupport::Concern
+
+  def on_honeypot_spam_callback: () -> (nil | untyped)
+
+  def on_timestamp_spam_callback: () -> (nil | untyped)
+
+  def invisible_captcha_honeypot_counter: () -> untyped
+
+  def invisible_captcha_timestamp_counter: () -> untyped
+
+  def log_request: (untyped message) -> untyped
+end

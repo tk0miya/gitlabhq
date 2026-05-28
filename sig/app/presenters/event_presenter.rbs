@@ -1,0 +1,22 @@
+class EventPresenter < Gitlab::View::Presenter::Delegated
+  @visible_to_user_cache: untyped
+
+  def initialize: (untyped event, **untyped attributes) -> void
+
+  def visible_to_user?: (?untyped? user) -> untyped
+
+  # implement cache here
+  def resource_parent_name: () -> untyped
+
+  def target_link_options: () -> untyped
+
+  def target_type_name: () -> untyped
+
+  def note_target_type_name: () -> (nil | untyped)
+
+  def push_activity_description: () -> (nil | untyped)
+
+  def batch_push?: () -> untyped
+
+  def linked_to_reference?: () -> (false | untyped)
+end

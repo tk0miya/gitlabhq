@@ -1,0 +1,14 @@
+# PyPI Package Manager Client API
+#
+# These API endpoints are not meant to be consumed directly by users. They are
+# called by the PyPI package manager client when users run commands
+# like `pip install` or `twine upload`.
+module API
+  class PypiPackages < ::API::Base
+    include ::API::Helpers::Packages::BasicAuthHelpers::Constants
+
+    PEP_691_JSON_CONTENT_TYPE: "application/vnd.pypi.simple.v1+json"
+
+    PEP_691_LATEST_JSON_CONTENT_TYPE: "application/vnd.pypi.simple.latest+json"
+  end
+end

@@ -1,0 +1,43 @@
+module BulkImports
+  module Common
+    module Pipelines
+      class MembersPipeline
+        @graphql_extractor: untyped
+
+        @finder: untyped
+
+        include Pipeline
+
+        include HexdigestCacheStrategy
+
+        include ::Gitlab::Utils::StrongMemoize
+
+        GROUP_MEMBER_RELATIONS: ::Array[:direct | :inherited | :shared_from_groups]
+
+        PROJECT_MEMBER_RELATIONS: ::Array[:direct | :inherited | :invited_groups | :shared_into_ancestors]
+
+        def extract: (untyped context) -> untyped
+
+        def load: (untyped _context, untyped data) -> (nil | untyped)
+
+        private
+
+        def can_create_members?: () -> untyped
+
+        def create_member: (untyped data) -> (nil | untyped)
+
+        def create_placeholder_membership: (untyped data) -> (nil | untyped)
+
+        def graphql_extractor: () -> untyped
+
+        def existing_user_membership: (untyped user_id) -> untyped
+
+        def finder: () -> untyped
+
+        def execute_finder: () -> untyped
+
+        def finder_relations: () -> untyped
+      end
+    end
+  end
+end

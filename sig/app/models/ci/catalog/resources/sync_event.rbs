@@ -1,0 +1,27 @@
+module Ci
+  module Catalog
+    module Resources
+      # This table is used as a queue of catalog resources that need to be synchronized with `projects`.
+      # A PG trigger adds a SyncEvent when the associated `projects` record of a catalog resource
+      # updates any of the relevant columns referenced in `Ci::Catalog::Resource#sync_with_project`
+      # (DB function name: `insert_catalog_resource_sync_event`).
+      class SyncEvent < ::ApplicationRecord
+        include PartitionedTable
+
+        PARTITION_DURATION: untyped
+
+        def self.mark_records_processed: (untyped records) -> untyped
+
+        def self.enqueue_worker: () -> untyped
+
+        def self.upper_bound_count: () -> untyped
+
+        private
+
+        # You must use .select_with_partition before calling this method
+        # as it requires the partition to be explicitly selected.
+        def self.update_by_partition: (untyped records) { (untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end

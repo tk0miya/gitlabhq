@@ -1,0 +1,23 @@
+module Ci
+  class EnqueueJobService
+    @job: untyped
+
+    @current_user: untyped
+
+    @variables: untyped
+
+    @inputs: untyped
+
+    attr_accessor job: untyped
+
+    attr_accessor current_user: untyped
+
+    attr_accessor variables: untyped
+
+    attr_accessor inputs: untyped
+
+    def initialize: (untyped job, current_user: untyped, ?variables: untyped?, ?inputs: ::Hash[untyped, untyped]) -> void
+
+    def execute: () -> untyped
+  end
+end

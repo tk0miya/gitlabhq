@@ -1,0 +1,21 @@
+module Gitlab
+  module ImportExport
+    class StatisticsRestorer
+      @project: untyped
+
+      @shared: untyped
+
+      include ::Import::Framework::ProgressTracking
+
+      attr_reader project: untyped
+
+      def initialize: (project: untyped, shared: untyped) -> void
+
+      def restore: () -> untyped
+
+      private
+
+      def progress_tracking_options: () -> { scope: { project_id: untyped }, data: "statistics_refresh" }
+    end
+  end
+end

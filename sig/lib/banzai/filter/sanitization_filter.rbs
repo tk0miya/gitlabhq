@@ -1,0 +1,67 @@
+module Banzai
+  module Filter
+    # Sanitize HTML produced by Markdown.
+    #
+    # Extends Banzai::Filter::BaseSanitizationFilter with specific rules.
+    class SanitizationFilter < Banzai::Filter::BaseSanitizationFilter
+      # Styles used by Markdown for table alignment
+      TABLE_ALIGNMENT_PATTERN: ::Regexp
+
+      ALLOWED_IDIFF_CLASSES: ::Array["idiff" | "left" | "right" | "deletion" | "addition"]
+
+      HEADER_NODE_NAMES: ::Array["h1" | "h2" | "h3" | "h4" | "h5" | "h6"]
+
+      TASK_LIST_ITEM_CHECKBOX_PARENTS: ::Array["li" | "td" | "th"]
+
+      JSON_TABLE_FIELD_KEYS: untyped
+
+      def customize_allowlist: (untyped allowlist) -> untyped
+
+      private
+
+      def allow_table_alignment: (untyped allowlist) -> untyped
+
+      def allow_json_table_attributes: (untyped allowlist) -> untyped
+
+      def allow_sourcepos_and_escaped_char: (untyped allowlist) -> untyped
+
+      def allow_id_attributes: (untyped allowlist) -> untyped
+
+      def allow_class_attributes: (untyped allowlist) -> untyped
+
+      def allow_section_footnotes: (untyped allowlist) -> untyped
+
+      def allow_anchor_data_heading_content: (untyped allowlist) -> untyped
+
+      def allow_tasklists: (untyped allowlist) -> untyped
+
+      def self.remove_unsafe_table_style: (untyped env) -> (nil | untyped)
+
+      def self.remove_unsafe_classes: (untyped env) -> (nil | untyped)
+
+      def self.remove_link_class?: (untyped node) -> untyped
+
+      def self.remove_div_class?: (untyped node) -> untyped
+
+      def self.remove_p_class?: (untyped node) -> untyped
+
+      def self.remove_span_class?: (untyped node) -> (true | untyped)
+
+      def self.remove_code_class?: (untyped node) -> untyped
+
+      def self.remove_ul_ol_class?: (untyped node) -> untyped
+
+      def self.remove_li_class?: (untyped node) -> untyped
+
+      def self.remove_th_td_class?: (untyped node) -> untyped
+
+      def self.remove_input_class?: (untyped node) -> untyped
+
+      def self.remove_id_attributes: (untyped env) -> (nil | untyped)
+
+      def self.remove_non_tasklist_inputs: (untyped env) -> (nil | untyped)
+
+      def self.filter_json_table_fields: (untyped env) -> (nil | untyped)
+    end
+  end
+end

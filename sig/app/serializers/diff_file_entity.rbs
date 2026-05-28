@@ -1,0 +1,21 @@
+class DiffFileEntity < DiffFileBaseEntity
+  include DiffFileConflictType
+
+  include CommitsHelper
+
+  include IconsHelper
+
+  include Gitlab::Utils::StrongMemoize
+
+  private
+
+  def whitespace_only_change?: (untyped diff_file) -> untyped
+
+  def display_highlighted_diffs?: (untyped diff_file, untyped options) -> untyped
+
+  def parallel_diff_view?: (untyped options) -> untyped
+
+  def inline_diff_view?: (untyped options) -> untyped
+
+  def diff_view: (untyped options) -> untyped
+end

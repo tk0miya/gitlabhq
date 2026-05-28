@@ -1,0 +1,15 @@
+module Packages
+  module Helm
+    class CreatePackageFileService < ::Packages::CreatePackageFileService
+      def execute: () -> untyped
+
+      private
+
+      def extract_chart_name: (untyped package_file) -> untyped
+
+      def package_protected?: (untyped chart_name) -> untyped
+
+      def handle_error: (untyped message, untyped reason) -> untyped
+    end
+  end
+end

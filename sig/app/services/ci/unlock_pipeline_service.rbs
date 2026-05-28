@@ -1,0 +1,59 @@
+module Ci
+  class UnlockPipelineService
+    @pipeline: untyped
+
+    @already_leased: untyped
+
+    @already_unlocked: untyped
+
+    @exec_timeout: untyped
+
+    @unlocked_job_artifacts_count: untyped
+
+    @unlocked_pipeline_artifacts_count: untyped
+
+    include BaseServiceUtility
+
+    include ::Gitlab::ExclusiveLeaseHelpers
+
+    ExecutionTimeoutError: untyped
+
+    BATCH_SIZE: 100
+
+    MAX_EXEC_DURATION: untyped
+
+    LOCK_TIMEOUT: untyped
+
+    def initialize: (untyped pipeline) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader pipeline: untyped
+
+    attr_reader already_leased: untyped
+
+    attr_reader already_unlocked: untyped
+
+    attr_reader exec_timeout: untyped
+
+    attr_reader unlocked_job_artifacts_count: untyped
+
+    attr_reader unlocked_pipeline_artifacts_count: untyped
+
+    def unlock_pipeline_exclusively: () -> untyped
+
+    def lock_key: () -> ::String
+
+    def unlock_pipeline: () -> untyped
+
+    def unlock_job_artifacts: () -> untyped
+
+    # All the partitionable entities connected to a pipeline
+    # belong to the same partition where the pipeline is.
+    def partition_id: () -> untyped
+
+    def unlock_pipeline_artifacts: () -> untyped
+  end
+end

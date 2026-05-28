@@ -1,0 +1,74 @@
+module Gitlab
+  module Pagination
+    module Offset
+      # rubocop: disable CodeReuse/ActiveRecord -- Generic code for pagination
+      #
+      # This class can build optimized offset queries where we try to force the DB to use
+      # index-only-scan for skipping the OFFSET rows by selecting the columns in the ORDER BY clause explicitly.
+      # The selected rows will be fully loaded from the table using a LATERAL SELECT.
+      #
+      # The class can be used with any ActiveRecord scope however, the optimization will be only applied when:
+      # - `ORDER BY` clause is present
+      # - The columns in an `ORDER BY` point to one distinct record -> the `ORDER BY` clause can be keyset paginated
+      #
+      # Usage:
+      #
+      # scope = Issue.where(project_id: 1).order(:id)
+      #
+      # records = PaginationWithIndexOnlyScan.new(scope: scope, page: 5, per_page: 100).paginate_with_kaminari
+      # puts records.to_a
+      # puts records.total_count
+      class PaginationWithIndexOnlyScan
+        @scope: untyped
+
+        @page: untyped
+
+        @per_page: untyped
+
+        @model: untyped
+
+        @original_order_values: untyped
+
+        @keyset_aware_scope: untyped
+
+        @keyset_order: untyped
+
+        CTE_NAME: :index_only_scan_pagination_cte
+
+        SUBQUERY_NAME: :index_only_scan_subquery
+
+        def initialize: (scope: untyped, page: untyped, per_page: untyped) -> void
+
+        def paginate_with_kaminari: () -> untyped
+
+        private
+
+        attr_reader scope: untyped
+
+        attr_reader page: untyped
+
+        attr_reader per_page: untyped
+
+        attr_reader model: untyped
+
+        attr_reader original_order_values: untyped
+
+        def build_module_for_load: () -> untyped
+
+        def build_optimized_scope: () -> untyped
+
+        def select_rows_from_cte: () -> untyped
+
+        def build_cte: () -> untyped
+
+        def keyset_aware_scope: () -> untyped
+
+        def keyset_order: () -> untyped
+
+        def keyset_order_by_columns: () -> untyped
+
+        def original_order_by_columns: () -> untyped
+      end
+    end
+  end
+end

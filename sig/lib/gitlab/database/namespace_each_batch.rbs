@@ -1,0 +1,130 @@
+module Gitlab
+  module Database
+    # This class implements an iterator over the namespace hierarchy which uses a recursive
+    # depth-first algorithm.
+    # You can read more about the algorithm here:
+    # https://docs.gitlab.com/ee/development/database/poc_tree_iterator.html
+    #
+    # With the class, you can iterate over the whole hierarchy including subgroups and project namespaces
+    # or just iterate over the subgroups.
+    #
+    # Usage:
+    #
+    # # To invoke the iterator, you can take any group id.
+    # # Build the cursor object that will be used for tracking our position in the tree hierarchy.
+    # cursor = { current_id: 9970, depth: [9970] }
+    #
+    # # Instantiate the object to iterate over all namespaces.
+    # iterator = Gitlab::Database::NamespaceEachBatch.new(namespace_class: Namespace, cursor: cursor)
+    #
+    # iterator.each_batch(of: 100) do |ids|
+    #   # return namespace ids which can be Group id or Namespaces::ProjectNamespace id
+    #   puts ids
+    # end
+    #
+    # # When you need to break out of the iteration and continue later, you can yield the cursor as a second parameter:
+    # iterator.each_batch(of: 100) do |ids, new_cursor|
+    #   save_cursor(new_cursor) && break if limit_reached?
+    #   puts ids
+    # end
+    #
+    # You can build a new iterator later and resume the processing.
+    #
+    # # Building an iterator that only returns groups:
+    # iterator = Gitlab::Database::NamespaceEachBatch.new(namespace_class: Group, cursor: cursor)
+    #
+    # # Building an iterator that only returns project namespaces:
+    # iterator = Gitlab::Database::NamespaceEachBatch.new(namespace_class: Namespaces::ProjectNamespace, cursor: cursor)
+    class NamespaceEachBatch
+      @namespace_class: untyped
+
+      @type: untyped
+
+      @cursor: untyped
+
+      PROJECTIONS: ::Array["current_id" | "depth" | "ids" | "count" | "index"]
+
+      TYPE_MAPPING: { "Namespaces::ProjectNamespace" => "Project" }
+
+      def initialize: (namespace_class: untyped, cursor: untyped) -> void
+
+      def each_batch: (?of: ::Integer) { (untyped, untyped) -> untyped } -> untyped
+
+      private
+
+      attr_reader namespace_class: untyped
+
+      attr_reader cursor: untyped
+
+      attr_reader namespace_id: untyped
+
+      attr_reader type: untyped
+
+      def derive_namespace_class: (untyped klass) -> untyped
+
+      def derive_type: (untyped klass) -> untyped
+
+      def load_batch: (cursor: untyped, of: untyped, ?first_iteration: bool) -> (::Array[untyped] | ::Array[{ current_id: untyped, depth: untyped } | untyped])
+
+      # rubocop: disable Style/AsciiComments -- Rendering a graph
+      # The depth-first algorithm is implemented here. Consider the following group hierarchy:
+      #
+      #               ┌──┐
+      #               │10│
+      #          ┌────┴──┴────┐
+      #          │            │
+      #        ┌─┴┐          ┌┴─┐
+      #        │41│          │72│
+      #        └─┬┘          └──┘
+      #          │
+      #        ┌─┴┐
+      #   ┌────┤32├─────┐
+      #   │    └─┬┘     │
+      #   │      │      │
+      # ┌─┴┐   ┌─┴┐    ┌┴─┐
+      # │11│   │12│    │18│
+      # └──┘   └──┘    └──┘
+      #
+      # 1. Start with node 10 and look up the left-hand child nodes until reaching the leaf. (walk_down)
+      # 2. While walking down, record the depth in an array and also store them in the ids array.
+      # 3. depth: 10, 41, 32, 11 | ids: 10, 41, 32, 11
+      # 4. Start collecting the ids by looking at the nodes on the deepest level. (next_elements)
+      # 5. This gives us the rest of the nodes on the same level (parent_id = 32 AND id > 11)
+      # 6. depth: 10, 41, 32, 11 | ids: 10, 41, 32, 11, 12, 18
+      # 7. When done, move one level up and pop the last value from the depth. (up_one_level)
+      # 8. depth: 10, 41, 32 | ids: 10, 41, 32, 11, 12, 18
+      # 9. Do the same, look at the nodes on the same level: no records, 32 was already collected
+      # 10. depth: 10, 41, 32 | ids: 10, 41, 32, 11, 12, 18
+      # 11. Move one level up again and look at the nodes on the same level.
+      # 12. depth: 10, 41 | ids: 10, 41, 32, 11, 12, 18, 72
+      # 13. Move one level up again, we reached the root node, iteration is done.
+      # 14. depth: 10 | ids: 10, 41, 32, 11, 12, 18, 72
+      #
+      # By tracking the currently accessed node and the depth we can stop and restore the processing of
+      # the hierarchy at any point.
+      #
+      # rubocop: enable Style/AsciiComments
+      def build_recursive_query: (untyped cursor, untyped of, untyped first_iteration) -> untyped
+
+      def namespace_exists_query: () -> untyped
+
+      def initial_ids_expression: (untyped current_id, untyped first_iteration) -> ("ARRAY[]::bigint[]" | untyped)
+
+      def type_filtered_ids_append: (?untyped table_alias) -> ::String
+
+      def lateral_query_columns: () -> (::Array[:id] | ::Array[:id | :type])
+
+      def walk_down: () -> untyped
+
+      def next_elements: () -> untyped
+
+      def up_one_level: () -> untyped
+
+      def base_namespace_class: () -> untyped
+
+      def base_namespace_table: () -> untyped
+
+      def set_cursor!: (untyped original_cursor) -> untyped
+    end
+  end
+end

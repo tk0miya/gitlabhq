@@ -1,0 +1,17 @@
+module Packages
+  module Npm
+    class CreateTemporaryPackageService < ::Packages::CreateTemporaryPackageService
+      CONTENT_TYPE: "application/json"
+
+      ERRORS: { unauthorized: untyped }
+
+      def execute: () -> untyped
+
+      private
+
+      def name: () -> untyped
+
+      def file_params: () -> { build: untyped, file: untyped, file_name: ::String, file_sha1: untyped, size: untyped, content_type: untyped, status: :processing }
+    end
+  end
+end

@@ -1,0 +1,53 @@
+module Backup
+  class DatabaseConnection
+    @custom_config: untyped
+
+    @database_configuration: untyped
+
+    @backup_model: untyped
+
+    @snapshot_id: untyped
+
+    class CustomConfig < ApplicationRecord
+    end
+
+    attr_reader database_configuration: untyped
+
+    attr_reader snapshot_id: untyped
+
+    # Initializes a database connection
+    #
+    # @param [String] connection_name the key from `database.yml` for multi-database connection configuration
+    # @param [Hash] custom_config optional custom database configuration hash (bypasses database.yml lookup)
+    #   Example: {
+    #     host: 'localhost', port: 5432, database: 'my_db', username: 'user', password: 'pass', adapter: 'postgresql'
+    #   }
+    def initialize: (untyped connection_name, ?custom_config: untyped?) -> void
+
+    # Start a new transaction and run pg_export_snapshot()
+    # Returns the snapshot identifier
+    #
+    # @return [String] snapshot identifier
+    def export_snapshot!: () -> untyped
+
+    # Rollback the transaction to release the effects of pg_export_snapshot()
+    def release_snapshot!: () -> (nil | untyped)
+
+    def disable_timeouts!: () -> untyped
+
+    def restore_timeouts!: () -> untyped
+
+    def tables: () -> untyped
+
+    def functions: () -> untyped
+
+    private
+
+    def configure_backup_model: () -> (nil | untyped)
+
+    # Creates a disposable model to be used to host the Backup connection only
+    def backup_model: () -> untyped
+
+    def transaction_timeout_settings: () -> untyped
+  end
+end

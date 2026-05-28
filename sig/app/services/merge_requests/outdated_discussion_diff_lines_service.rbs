@@ -1,0 +1,29 @@
+module MergeRequests
+  class OutdatedDiscussionDiffLinesService
+    @project: untyped
+
+    @note: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader project: untyped
+
+    attr_reader note: untyped
+
+    OVERFLOW_LINES_COUNT: 2
+
+    def initialize: (project: untyped, note: untyped) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def position: () -> untyped
+
+    def repository: () -> untyped
+
+    def diff_file: () -> untyped
+
+    def diff_lines: () -> untyped
+  end
+end

@@ -1,0 +1,115 @@
+class Milestone < ApplicationRecord
+  # NOTE: The iid pattern only matches when all characters on the expression
+  # are digits, so it will match %2 but not %2.1 because that's probably a
+  # milestone name and we want it to be matched as such.
+  self.@reference_pattern: untyped
+
+  self.@link_reference_pattern: untyped
+
+  include AtomicInternalId
+
+  include Sortable
+
+  include Timebox
+
+  include Milestoneish
+
+  include FromUnion
+
+  include Importable
+
+  include IidRoutes
+
+  include UpdatedAtFilterable
+
+  include EachBatch
+
+  include Spammable
+
+  include AfterCommitQueue
+
+  class Predefined
+    ALL: ::Array[untyped]
+  end
+
+  def hook_attrs: () -> untyped
+
+  # Searches for timeboxes with a matching title.
+  #
+  # This method uses ILIKE on PostgreSQL
+  #
+  # query - The search query as a String
+  #
+  # Returns an ActiveRecord::Relation.
+  def self.search_title: (untyped query) -> untyped
+
+  def self.min_chars_for_partial_matching: () -> 2
+
+  def self.reference_prefix: () -> "%"
+
+  def self.reference_pattern: () -> untyped
+
+  def self.link_reference_pattern: () -> untyped
+
+  def self.upcoming_ids: (untyped projects, untyped groups, ?legacy_filtering_logic: bool) -> untyped
+
+  def self.with_web_entity_associations: () -> untyped
+
+  def participants: () -> untyped
+
+  def self.sort_by_attribute: (untyped method) -> untyped
+
+  def self.sort_with_expired_last: (untyped method) -> untyped
+
+  def self.states_count: (untyped projects, ?untyped? groups) -> { opened: untyped, closed: untyped, all: untyped }
+
+  def for_display: () -> self
+
+  def author_id: () -> nil
+
+  # TODO: remove after all code paths use `timebox_id`
+  # https://gitlab.com/gitlab-org/gitlab/-/issues/215688
+  alias milestoneish_id timebox_id
+
+  def group_milestone?: () -> untyped
+
+  def project_milestone?: () -> untyped
+
+  def resource_parent: () -> untyped
+
+  def parent: () -> untyped
+
+  def subgroup_milestone?: () -> untyped
+
+  def merge_requests_enabled?: () -> (true | untyped | nil)
+
+  #
+  # Returns the String necessary to reference a milestone in Markdown. Group
+  # milestones only support name references, and do not support cross-project
+  # references.
+  #
+  # format - Symbol format to use (default: :iid, optional: :name)
+  #
+  # Examples:
+  #
+  #   Milestone.first.to_reference                           # => "%1"
+  #   Milestone.first.to_reference(cross_namespace_project)  # => "gitlab-org/gitlab-foss%1"
+  #   Milestone.first
+  #     .to_reference(project, full: true, absolute_path: true) # => "/gitlab-org/gitlab-foss%1"
+  #
+  def to_reference: (?untyped? from, ?format: ::Symbol, ?full: bool, ?absolute_path: bool) -> untyped
+
+  def check_for_spam?: (*untyped) -> untyped
+
+  private
+
+  def timebox_format_reference: (?::Symbol format) -> untyped
+
+  # Milestone should be either a project milestone or a group milestone
+  def parent_type_check: () -> (nil | untyped)
+
+  def issues_finder_params: () -> untyped
+
+  # milestone titles must be unique across project and group milestones
+  def uniqueness_of_title: () -> untyped
+end

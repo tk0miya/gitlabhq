@@ -1,0 +1,64 @@
+module Gitlab
+  module TopologyServiceClient
+    # Instrumentation for topology service gRPC metrics
+    # Implements standard OpenTelemetry gRPC metrics as Prometheus equivalents
+    class Metrics
+      @cell_id: untyped
+
+      @topology_service_address: untyped
+
+      extend Gitlab::Utils::StrongMemoize
+
+      # Histogram buckets for duration measurements (seconds)
+      # Focuses on latency SLOs
+      DURATION_BUCKETS: ::Array[::Float | 1 | 5]
+
+      # Histogram buckets for size measurements (bytes)
+      # Uses exponential buckets for variable sizes
+      SIZE_BUCKETS: ::Array[100 | 500 | 1000 | 5000 | 10000 | 50000 | 100000 | 500000 | 1000000]
+
+      def self.metric: (untyped name, untyped desc, type: untyped, ?buckets: untyped?, ?extra_labels: ::Hash[untyped, untyped]) -> untyped
+
+      def self.rpc_duration_histogram: () -> untyped
+
+      def self.request_size_histogram: () -> untyped
+
+      def self.response_size_histogram: () -> untyped
+
+      def self.rpc_calls_total_counter: () -> untyped
+
+      def self.failed_calls_total_counter: () -> untyped
+
+      def initialize: (cell_id: untyped, topology_service_address: untyped) -> void
+
+      # Record RPC call duration
+      def observe_rpc_duration: (labels: untyped, duration_seconds: untyped) -> untyped
+
+      # Record RPC request size
+      def observe_request_size: (labels: untyped, size_bytes: untyped) -> untyped
+
+      # Record RPC response size
+      def observe_response_size: (labels: untyped, size_bytes: untyped) -> untyped
+
+      # Increment total RPC calls counter
+      def increment_rpc_calls_total: (labels: untyped) -> untyped
+
+      # Increment failed RPC calls counter
+      def increment_failed_calls_total: (labels: untyped, ?error_type: untyped?) -> untyped
+
+      # Build labels hash for metrics
+      # This method is public to allow interceptor to build labels once and reuse them
+      def build_labels: (service: untyped, method: untyped, status_code: untyped) -> { rpc_service: untyped, rpc_method: untyped, rpc_status: untyped, rpc_system: "grpc", cell_id: untyped, topology_service_address: untyped }
+
+      private
+
+      attr_reader cell_id: untyped
+
+      attr_reader topology_service_address: untyped
+
+      def status_code_to_label: (untyped status_code) -> untyped
+
+      def log_metric_error: (untyped message, untyped error) -> untyped
+    end
+  end
+end

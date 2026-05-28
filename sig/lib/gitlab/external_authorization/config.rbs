@@ -1,0 +1,29 @@
+module Gitlab
+  module ExternalAuthorization
+    module Config
+      extend ::Gitlab::ExternalAuthorization::Config
+
+      def timeout: () -> untyped
+
+      def service_url: () -> untyped
+
+      def enabled?: () -> untyped
+
+      def perform_check?: () -> untyped
+
+      def client_cert: () -> untyped
+
+      def client_key: () -> untyped
+
+      def client_key_pass: () -> untyped
+
+      def has_tls?: () -> untyped
+
+      def allow_deploy_tokens_and_deploy_keys?: () -> (true | untyped)
+
+      private
+
+      def application_settings: () -> untyped
+    end
+  end
+end

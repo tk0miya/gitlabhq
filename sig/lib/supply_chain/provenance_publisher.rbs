@@ -1,0 +1,49 @@
+module SupplyChain
+  class ProvenancePublisher
+    @build: untyped
+
+    @logger: untyped
+
+    @logger_base_args: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    HASH_READ_CHUNK_SIZE: untyped
+
+    Error: untyped
+
+    JwtGenerationError: untyped
+
+    AttestationFailure: untyped
+
+    InvalidInput: untyped
+
+    def initialize: (untyped build) -> void
+
+    private
+
+    def id_token: () -> (nil | untyped)
+
+    def log: (**untyped args) -> untyped
+
+    def predicate: () -> untyped
+
+    def ci_server_url: () -> untyped
+
+    def successful_attestation?: (untyped hash) -> (true | false)
+
+    def cosign_attest_blob: (hash: untyped, ?blob_name: untyped?) -> (::Array[untyped] | untyped)
+
+    def persist_attestation!: (status: untyped, subject_digest: untyped, ?bundle_file: untyped?) -> untyped
+
+    def persist_error_attestation: (subject_digest: untyped) -> untyped
+
+    def validate_id_token!: (untyped id_token) -> untyped
+
+    def validate_hash!: (untyped hash) -> (untyped | nil)
+
+    def validate_blob_name!: (untyped blob_name) -> untyped
+
+    def optional_arguments: () -> (::Array[untyped] | untyped)
+  end
+end

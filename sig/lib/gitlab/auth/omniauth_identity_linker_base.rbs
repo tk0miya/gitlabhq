@@ -1,0 +1,48 @@
+module Gitlab
+  module Auth
+    class OmniauthIdentityLinkerBase
+      @current_user: untyped
+
+      @oauth: untyped
+
+      @changed: untyped
+
+      @session: untyped
+
+      @identity: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader oauth: untyped
+
+      attr_reader session: untyped
+
+      def initialize: (untyped current_user, untyped oauth, ?::Hash[untyped, untyped] session) -> void
+
+      def link: () -> (untyped | nil)
+
+      def changed?: () -> untyped
+
+      def failed?: () -> untyped
+
+      # Require user authorization to link identity.
+      # False by default, enabled in specific subclasses.
+      def authorization_required?: () -> false
+
+      def error_message: () -> untyped
+
+      def provider: () -> untyped
+
+      def uid: () -> untyped
+
+      private
+
+      def save: () -> untyped
+
+      def unlinked?: () -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def identity: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Gitlab
+  module Auth
+    module Otp
+      module Strategies
+        module FortiAuthenticator
+          class PushOtp < Base
+            def validate: () -> untyped
+
+            private
+
+            def auth_url: () -> ::String
+
+            def body: () -> { username: untyped }
+
+            def api_credentials: () -> { username: untyped, password: untyped }
+          end
+        end
+      end
+    end
+  end
+end

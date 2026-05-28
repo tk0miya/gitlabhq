@@ -1,0 +1,91 @@
+module BulkImports
+  module FileTransfer
+    class BaseConfig
+      @portable: untyped
+
+      @export_path: untyped
+
+      @portable_relations_tree: untyped
+
+      @config: untyped
+
+      @portable_class: untyped
+
+      @portable_class_sym: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      UPLOADS_RELATION: "uploads"
+
+      SELF_RELATION: "self"
+
+      USER_CONTRIBUTIONS_RELATION: "user_contributions"
+
+      MAX_IIDS_RELATION: "max_iids"
+
+      def initialize: (untyped portable) -> void
+
+      def portable_tree: () -> untyped
+
+      def top_relation_tree: (untyped relation) -> untyped
+
+      def relation_excluded_keys: (untyped relation) -> untyped
+
+      def relation_included_keys: (untyped relation) -> untyped
+
+      def export_path: () -> untyped
+
+      def portable_relations: () -> untyped
+
+      def batchable_relations: () -> untyped
+
+      def batchable_relation?: (untyped relation) -> untyped
+
+      def self_relation?: (untyped relation) -> untyped
+
+      def max_iids_relation?: (untyped relation) -> untyped
+
+      def tree_relation?: (untyped relation) -> untyped
+
+      def file_relation?: (untyped relation) -> untyped
+
+      def relation_has_user_contributions?: (untyped relation) -> untyped
+
+      def user_contributions_relation?: (untyped relation) -> untyped
+
+      def tree_relation_definition_for: (untyped relation) -> (nil | untyped)
+
+      def portable_relations_tree: () -> untyped
+
+      # Returns an export service class for the given relation.
+      # @return TreeExportService if a relation is serializable and is listed in import_export.yml
+      # @return FileExportService if a relation is a file (uploads, lfs objects, git repository, etc.)
+      # @return MaxIidsExportService if the relation is max_iids metadata
+      def export_service_for: (untyped relation) -> untyped
+
+      private
+
+      attr_reader portable: untyped
+
+      def attributes_finder: () -> untyped
+
+      def import_export_config: () -> untyped
+
+      def portable_class: () -> untyped
+
+      def portable_class_sym: () -> untyped
+
+      def import_export_yaml: () -> untyped
+
+      def tree_relations: () -> untyped
+
+      def file_relations: () -> ::Array[untyped]
+
+      def skipped_relations: () -> ::Array[untyped]
+
+      def self_relation: () -> ::Array[untyped]
+
+      def max_iids_relation: () -> ::Array[untyped]
+    end
+  end
+end

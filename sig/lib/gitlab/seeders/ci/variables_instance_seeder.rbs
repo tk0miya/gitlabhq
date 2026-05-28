@@ -1,0 +1,27 @@
+module Gitlab
+  module Seeders
+    module Ci
+      class VariablesInstanceSeeder
+        @seed_count: untyped
+
+        @prefix: untyped
+
+        DEFAULT_SEED_COUNT: 10
+
+        DEFAULT_PREFIX: "INSTANCE_VAR_"
+
+        def initialize: (?::Hash[untyped, untyped] params) -> void
+
+        def seed: () -> untyped
+
+        private
+
+        attr_reader prefix: untyped
+
+        attr_reader seed_count: untyped
+
+        def create_ci_variable: (untyped id) -> (nil | untyped)
+      end
+    end
+  end
+end

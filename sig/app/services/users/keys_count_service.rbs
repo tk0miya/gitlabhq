@@ -1,0 +1,17 @@
+module Users
+  # Service class for getting the number of SSH keys that belong to a user.
+  class KeysCountService < BaseCountService
+    @user: untyped
+
+    attr_reader user: untyped
+
+    # user - The User for which to get the number of SSH keys.
+    def initialize: (untyped user) -> void
+
+    def relation_for_count: () -> untyped
+
+    def raw?: () -> true
+
+    def cache_key: () -> ::String
+  end
+end

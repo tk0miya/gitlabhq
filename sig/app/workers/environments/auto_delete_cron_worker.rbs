@@ -1,0 +1,21 @@
+module Environments
+  class AutoDeleteCronWorker
+    include ApplicationWorker
+
+    include ::Gitlab::LoopHelpers
+
+    include CronjobQueue
+
+    LOOP_TIMEOUT: untyped
+
+    LOOP_LIMIT: 1000
+
+    BATCH_SIZE: 100
+
+    def perform: () -> untyped
+
+    private
+
+    def destroy_in_batch: () -> (false | untyped)
+  end
+end

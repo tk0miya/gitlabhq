@@ -1,0 +1,61 @@
+module Tasks
+  module Gitlab
+    module EmailOtp
+      class ManageEnrollment
+        @dry_run: untyped
+
+        @enrol_at: untyped
+
+        @existing_enrol_at: untyped
+
+        @batch_size: untyped
+
+        @batch_sleep: untyped
+
+        @action_operation: untyped
+
+        BATCH_SIZE: 1000
+
+        # BATCH_SLEEP can be increased if replication lag becomes an issue.
+        # This script is safe to interrupt. Re-run to resume.
+        # See https://docs.gitlab.com/administration/postgresql/replication_and_failover/#check-replication-status
+        BATCH_SLEEP: ::Float
+
+        def initialize: (?dry_run: bool, ?enrol_at: untyped?, ?existing_enrol_at: untyped?, ?batch_size: untyped, ?batch_sleep: untyped) -> void
+
+        # Set an Email OTP enrollment date for all relevant users who
+        # do not yet have one set, or shift/revert an existing cohort.
+        # Relevant: human, active, with a password, and no MFA.
+        def enrol: () -> untyped
+
+        def enforce: () -> (nil | untyped)
+
+        def unenforce: () -> (nil | untyped)
+
+        private
+
+        # Build and execute materialized CTE query; return count or affected rows
+        def execute_batch_query: (untyped batch) -> untyped
+
+        # Use a CTE (Common Table Expression) for cohort updates.
+        # Targets users with a password and no existing 2FA
+        def build_new_enrollment_query: (untyped batch_sql) -> ::String
+
+        # Use a CTE (Common Table Expression) for cohort updates
+        # Cannot be memoized as it contains batch_sql which shifts its
+        # window with each batch
+        def build_cohort_update_query: (untyped batch_sql) -> ::String
+
+        # Memoize the action SQL (SELECT or COUNT) as it wont change
+        # per batch
+        def action_operation: () -> untyped
+
+        def log: (untyped str) -> untyped
+
+        def confirm_settings: () -> (nil | untyped)
+
+        def update_mfa_requirement_setting: (untyped required) -> untyped
+      end
+    end
+  end
+end

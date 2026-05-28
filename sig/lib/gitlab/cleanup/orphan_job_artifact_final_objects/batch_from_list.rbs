@@ -1,0 +1,41 @@
+module Gitlab
+  module Cleanup
+    module OrphanJobArtifactFinalObjects
+      class BatchFromList
+        @entries: untyped
+
+        @logger: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        include StorageHelpers
+
+        GOOGLE_PROVIDER: "google"
+
+        def initialize: (untyped entries, ?logger: untyped) -> void
+
+        def orphan_objects: () -> (::Array[untyped] | untyped)
+
+        private
+
+        attr_reader entries: untyped
+
+        attr_reader logger: untyped
+
+        def each_fog_file: () { (untyped) -> untyped } -> untyped
+
+        def build_fog_file: (untyped path, untyped size) -> untyped
+
+        def google_provider?: () -> untyped
+
+        def path_without_bucket_prefix: (untyped path) -> untyped
+
+        def paths_with_job_artifact_records: (untyped paths) -> untyped
+
+        def log_skipping_no_artifact_record: (untyped path) -> untyped
+
+        def log_skipping_non_existent_object: (untyped path) -> untyped
+      end
+    end
+  end
+end

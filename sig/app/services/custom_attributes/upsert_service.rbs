@@ -1,0 +1,35 @@
+# rubocop: disable Gitlab/BoundedContexts -- Custom attributes are a cross-cutting concern for Users, Projects, and Groups
+module CustomAttributes
+  class UpsertService
+    @resource: untyped
+
+    @current_user: untyped
+
+    @key: untyped
+
+    @value: untyped
+
+    include BaseServiceUtility
+
+    ALLOWED_RESOURCES: ::Array[untyped]
+
+    def initialize: (untyped resource, current_user: untyped, key: untyped, value: untyped) -> void
+
+    # rubocop: disable CodeReuse/ActiveRecord -- Custom attribute CRUD is simple enough to not need a separate abstraction
+    def execute: () -> untyped
+
+    private
+
+    attr_reader resource: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader key: untyped
+
+    attr_reader value: untyped
+
+    def authorized?: () -> untyped
+
+    def validate_resource_type!: () -> (nil | untyped)
+  end
+end

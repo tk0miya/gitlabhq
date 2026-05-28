@@ -1,0 +1,35 @@
+module Ci
+  module Components
+    module Usages
+      class CreateService
+        @catalog_components: untyped
+
+        @used_by_project: untyped
+
+        @current_date: untyped
+
+        ValidationError: untyped
+
+        def initialize: (untyped catalog_components, used_by_project: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader catalog_components: untyped
+
+        attr_reader used_by_project: untyped
+
+        attr_reader current_date: untyped
+
+        def fetch_existing_usages: () -> untyped
+
+        def partition_usage_records: (untyped existing_usages) -> ::Array[untyped]
+
+        def build_usage_record: (untyped component) -> { component_id: untyped, used_by_project_id: untyped, catalog_resource_id: untyped, component_project_id: untyped, last_used_date: untyped }
+
+        def persist_usage_records: (untyped records_to_update, untyped records_to_insert) -> untyped
+      end
+    end
+  end
+end

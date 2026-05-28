@@ -1,0 +1,25 @@
+module Gitlab
+  # Chaos methods for GitLab.
+  # See https://docs.gitlab.com/ee/development/chaos_endpoints.html for more details.
+  class Chaos
+    # leak_mem will retain the specified amount of memory and sleep.
+    # On return, the memory will be released.
+    def self.leak_mem: (untyped memory_mb, untyped duration_s) -> untyped
+
+    # cpu_spin will consume all CPU on a single core for the specified duration
+    def self.cpu_spin: (untyped duration_s) -> (nil | untyped)
+
+    # db_spin will query the database in a tight loop for the specified duration
+    def self.db_spin: (untyped duration_s, untyped interval_s) -> untyped
+
+    # sleep will sleep for the specified duration
+    def self.sleep: (untyped duration_s) -> untyped
+
+    def self.db_sleep: (untyped duration_s) -> untyped
+
+    # Kill will send the given signal to the current process.
+    def self.kill: (untyped signal) -> untyped
+
+    def self.run_gc: () -> untyped
+  end
+end

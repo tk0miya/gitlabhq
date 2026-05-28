@@ -1,0 +1,20 @@
+# Generated HTML is transformed back to GFM by app/assets/javascripts/behaviors/markdown/nodes/code_block.js
+module Banzai
+  module Filter
+    class MermaidFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      include Concerns::AssetProxying
+
+      include Gitlab::Utils::SanitizeNodeLink
+
+      CSS: "pre[data-canonical-lang=\"mermaid\"] > code"
+
+      XPATH: untyped
+
+      def call: () -> untyped
+
+      def validate: () -> untyped
+    end
+  end
+end

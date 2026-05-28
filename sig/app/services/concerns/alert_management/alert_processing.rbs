@@ -1,0 +1,60 @@
+module AlertManagement
+  # Module to support the processing of new alert payloads
+  # from various sources. Payloads may be for new alerts,
+  # existing alerts, or acting as a resolving alert.
+  #
+  # Performs processing-related tasks, such as creating system
+  # notes, creating or resolving related issues, and notifying
+  # stakeholders of the alert.
+  #
+  # Requires #project [Project] and #payload [Hash] methods
+  # to be defined.
+  module AlertProcessing
+    @logger: untyped
+
+    include BaseServiceUtility
+
+    include Gitlab::Utils::StrongMemoize
+
+    include ::IncidentManagement::Settings
+
+    # Updates or creates alert from payload for project
+    # including system notes
+    def process_alert: () -> untyped
+
+    # Creates or closes issue for alert and notifies stakeholders
+    def complete_post_processing_tasks: () -> untyped
+
+    def process_existing_alert: () -> untyped
+
+    def process_resolved_alert: () -> untyped
+
+    def process_firing_alert: () -> untyped
+
+    def close_issue: (untyped issue_id) -> (nil | untyped)
+
+    def process_new_alert: () -> untyped
+
+    def process_incident_issues: () -> (nil | untyped)
+
+    def send_alert_email: () -> untyped
+
+    def incoming_payload: () -> untyped
+
+    def alert: () -> untyped
+
+    def find_existing_alert: () -> (nil | untyped)
+
+    def build_new_alert: () -> untyped
+
+    def refind_and_increment_alert: () -> untyped
+
+    def resolving_alert?: () -> untyped
+
+    def notifying_alert?: () -> untyped
+
+    def alert_source: () -> untyped
+
+    def logger: () -> untyped
+  end
+end

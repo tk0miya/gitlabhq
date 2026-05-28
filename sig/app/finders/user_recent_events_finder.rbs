@@ -1,0 +1,53 @@
+# Get user activity feed for projects common for a user and a logged in user
+#
+# - current_user: The user viewing the events
+#                 WARNING: does not consider project feature visibility!
+# - user: The user for which to load the events
+# - params:
+#   - limit: Number of items that to be returned. Defaults to 20 and limited to 100.
+#   - offset: The page of events to return
+class UserRecentEventsFinder
+  @current_user: untyped
+
+  @target_user: untyped
+
+  @params: untyped
+
+  @event_filter: untyped
+
+  prepend FinderWithCrossProjectAccess
+
+  include FinderMethods
+
+  include Gitlab::Allowable
+
+  attr_reader current_user: untyped
+
+  attr_reader target_user: untyped
+
+  attr_reader params: untyped
+
+  attr_reader event_filter: untyped
+
+  DEFAULT_LIMIT: 20
+
+  MAX_LIMIT: 100
+
+  def initialize: (untyped current_user, untyped target_user, untyped event_filter, ?::Hash[untyped, untyped] params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  def execute_single: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def execute_multi: () -> untyped
+
+  # rubocop: disable CodeReuse/ActiveRecord
+  def target_events: () -> untyped
+
+  def limit: () -> untyped
+
+  def offset: () -> (0 | untyped)
+end

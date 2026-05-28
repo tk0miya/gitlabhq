@@ -1,0 +1,27 @@
+module Gitlab
+  module Database
+    module Aggregation
+      class Request
+        @filters: untyped
+
+        @dimensions: untyped
+
+        @metrics: untyped
+
+        @order: untyped
+
+        attr_reader filters: untyped
+
+        attr_reader dimensions: untyped
+
+        attr_reader metrics: untyped
+
+        attr_reader order: untyped
+
+        def initialize: (metrics: untyped, ?filters: untyped, ?dimensions: untyped, ?order: untyped) -> void
+
+        def to_query_plan: (untyped engine) -> untyped
+      end
+    end
+  end
+end

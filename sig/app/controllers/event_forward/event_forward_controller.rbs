@@ -1,0 +1,33 @@
+module EventForward
+  class EventForwardController < BaseActionController
+    @logger: untyped
+
+    @suffix: untyped
+
+    include SessionlessAuthentication
+
+    DEDICATED_SUFFIX: "dedicated"
+
+    SELF_MANAGED_SUFFIX: "sm"
+
+    EDITOR_TELEMETRY_HEADER: "HTTP_X_GITLAB_EDITOR_TELEMETRY"
+
+    def forward: () -> untyped
+
+    private
+
+    def authenticate_sessionless_user!: () -> untyped
+
+    def process_events: () -> untyped
+
+    def editor_extension_request?: () -> untyped
+
+    def update_app_id: (untyped event) -> (nil | untyped)
+
+    def enrich_with_standard_context: (untyped event) -> (nil | untyped)
+
+    def logger: () -> untyped
+
+    def suffix: () -> untyped
+  end
+end

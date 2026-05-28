@@ -1,0 +1,17 @@
+module Resolvers
+  module Import
+    class SourceUsersResolver < BaseResolver
+      include ::LooksAhead
+
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      alias namespace object
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def preloads: () -> { reassign_to_user: ::Array[:reassign_to_user], placeholder_user: ::Array[:placeholder_user], reassigned_by_user: ::Array[:reassigned_by_user] }
+    end
+  end
+end

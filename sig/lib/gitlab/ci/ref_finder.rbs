@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    class RefFinder
+      @project: untyped
+
+      def initialize: (untyped project) -> void
+
+      def find_by_sha: (untyped sha) -> (nil | untyped)
+
+      private
+
+      attr_reader project: untyped
+
+      def project_sha_branch_name: (untyped sha) -> untyped
+
+      def project_sha_tag_name: (untyped sha) -> untyped
+
+      def project_sha_exists?: (untyped sha) -> untyped
+    end
+  end
+end

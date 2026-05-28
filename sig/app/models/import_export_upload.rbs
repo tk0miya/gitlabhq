@@ -1,0 +1,19 @@
+class ImportExportUpload < ApplicationRecord
+  include EachBatch
+
+  include WithUploads
+
+  def retrieve_upload: (untyped _identifier, untyped paths) -> untyped
+
+  def export_file_exists?: () -> untyped
+
+  # This checks if the export archive is actually stored on disk. It
+  # requires a HEAD request if object storage is used.
+  def export_archive_exists?: () -> untyped
+
+  def uploads_sharding_key: () -> { project_id: untyped, namespace_id: untyped }
+
+  private
+
+  def carrierwave_export_file: () -> untyped
+end

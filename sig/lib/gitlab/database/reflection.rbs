@@ -1,0 +1,72 @@
+module Gitlab
+  module Database
+    # A class for reflecting upon a database and its settings, such as the
+    # adapter name, PostgreSQL version, and the presence of tables or columns.
+    class Reflection
+      @model: untyped
+
+      @version: untyped
+
+      attr_reader model: untyped
+
+      def initialize: (untyped model) -> void
+
+      def config: () -> untyped
+
+      def username: () -> untyped
+
+      def database_name: () -> untyped
+
+      def adapter_name: () -> untyped
+
+      def human_adapter_name: () -> ("PostgreSQL" | "Unknown")
+
+      def postgresql?: () -> untyped
+
+      # Check whether the server is in recovery mode (recovering from a backup or archive)
+      def recovery?: () -> untyped
+
+      def primary?: () -> untyped
+
+      def version: () -> untyped
+
+      def database_version: () -> untyped
+
+      def postgresql_minimum_supported_version?: () -> untyped
+
+      # In cases where the application has just booted, load balancing replicas might
+      # be assumed online, but not yet checked. In that case, schema_cache.columns_hash()
+      # might throw an error if the selected replica is offline.
+      #
+      # For any method called directly on `connection`, this is fine - LoadBalancer#read
+      # catches the error and reroutes to a new replica. However, schema_cache.columns_hash
+      # delays querying the connection until the `.columns_hash` call and
+      # therefore the error "escapes" the rescue block in `LoadBalancer#read`.
+      #
+      # Only wrap in LoadBalancer#read if the load balancer has been set up.
+      def cached_column_exists?: (untyped column_name) -> untyped
+
+      # In cases where the application has just booted, load balancing replicas might
+      # be assumed online, but not yet checked. In that case, schema_cache.data_source_exists()
+      # might throw an error if the selected replica is offline.
+      #
+      # For any method called directly on `connection`, this is fine - LoadBalancer#read
+      # catches the error and reroutes to a new replica. However, schema_cache.data_source_exists
+      # delays querying the connection until the `.data_source_exists` call and
+      # therefore the error "escapes" the rescue block in `LoadBalancer#read`.
+      #
+      # Only wrap in LoadBalancer#read if the load balancer has been set up.
+      def cached_table_exists?: () -> (false | untyped)
+
+      def exists?: () -> untyped
+
+      def system_id: () -> untyped
+
+      def flavor: () -> (untyped | nil)
+
+      private
+
+      def connection: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+class ActiveHookFilter
+  @hook: untyped
+
+  def initialize: (untyped hook) -> void
+
+  def matches?: (untyped hooks_scope, untyped data) -> (true | untyped)
+
+  private
+
+  def matches_branch?: (untyped data) -> (true | untyped)
+end

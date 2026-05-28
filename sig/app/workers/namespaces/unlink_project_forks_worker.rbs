@@ -1,0 +1,7 @@
+module Namespaces
+  class UnlinkProjectForksWorker
+    include ApplicationWorker
+
+    def perform: (untyped group_id, untyped user_id) -> (nil | untyped)
+  end
+end

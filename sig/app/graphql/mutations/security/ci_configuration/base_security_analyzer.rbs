@@ -1,0 +1,17 @@
+module Mutations
+  module Security
+    module CiConfiguration
+      class BaseSecurityAnalyzer < BaseMutation
+        include FindsProject
+
+        def resolve: (project_path: untyped, **untyped args) -> untyped
+
+        private
+
+        def configure_analyzer: (untyped project, **untyped args) -> untyped
+
+        def prepare_response: (untyped result) -> { branch: untyped, success_path: untyped, errors: untyped }
+      end
+    end
+  end
+end

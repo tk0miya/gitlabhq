@@ -1,0 +1,53 @@
+module Gitlab
+  module Cleanup
+    class OrphanJobArtifactFilesBatch
+      @batch_size: untyped
+
+      @dry_run: untyped
+
+      @logger: untyped
+
+      @artifact_files: untyped
+
+      BatchFull: untyped
+
+      class ArtifactFile
+        @path: untyped
+
+        attr_accessor path: untyped
+
+        def initialize: (untyped path) -> void
+
+        def artifact_id: () -> untyped
+      end
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader batch_size: untyped
+
+      attr_reader dry_run: untyped
+
+      attr_accessor artifact_files: untyped
+
+      def initialize: (batch_size: untyped, ?dry_run: bool, ?logger: untyped) -> void
+
+      def clean!: () -> (nil | untyped)
+
+      def full?: () -> untyped
+
+      def <<: (untyped artifact_path) -> untyped
+
+      def lost_and_found: () -> untyped
+
+      private
+
+      def clean_one!: (untyped artifact_file) -> untyped
+
+      def remove_file!: (untyped artifact_file) -> untyped
+
+      def log_info: (untyped msg, ?::Hash[untyped, untyped] params) -> untyped
+
+      def log_debug: (untyped msg, ?::Hash[untyped, untyped] params) -> untyped
+    end
+  end
+end

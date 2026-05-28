@@ -1,0 +1,25 @@
+module Gitlab
+  module Checks
+    module FileSizeCheck
+      class AnyOversizedBlobs
+        @project: untyped
+
+        @newrevs: untyped
+
+        @file_size_limit_megabytes: untyped
+
+        def initialize: (project: untyped, changes: untyped, file_size_limit_megabytes: untyped) -> void
+
+        def find: (?timeout: untyped?) -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader newrevs: untyped
+
+        attr_reader file_size_limit_megabytes: untyped
+      end
+    end
+  end
+end

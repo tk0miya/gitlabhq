@@ -1,0 +1,33 @@
+module Authn
+  module Applications
+    class UpdateService
+      @current_user: untyped
+
+      @request: untyped
+
+      @application: untyped
+
+      @params: untyped
+
+      IMMUTABLE_ATTRIBUTES: ::Array["redirect_uri" | "confidential"]
+
+      attr_reader current_user: untyped
+
+      attr_reader request: untyped
+
+      attr_reader application: untyped
+
+      attr_reader params: untyped
+
+      def initialize: (untyped current_user, untyped request, untyped application, untyped params) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def authorized?: () -> untyped
+
+      def error_response: () -> untyped
+    end
+  end
+end

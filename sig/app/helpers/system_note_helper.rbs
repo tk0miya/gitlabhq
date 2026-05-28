@@ -1,0 +1,9 @@
+module SystemNoteHelper
+  ICON_NAMES_BY_ACTION: { "approved" => "check", "unapproved" => "unapproval", "cherry_pick" => "cherry-pick-commit", "commit" => "commit", "description" => "pencil", "merged" => "merge", "merge" => "merge", "opened" => "work-item-issue", "closed" => "issue-close", "time_tracking" => "timer", "assignee" => "user", "reviewer" => "user", "title" => "pencil", "task" => "todo-done", "label" => "label", "cross_reference" => "comment-dots", "branch" => "fork", "confidential" => "eye-slash", "visible" => "eye", "milestone" => "milestone", "discussion" => "comment", "moved" => "arrow-right", "outdated" => "pencil", "pinned_embed" => "thumbtack", "duplicate" => "duplicate", "locked" => "lock", "unlocked" => "lock-open", "due_date" => "calendar", "start_date_or_due_date" => "calendar", "health_status" => "status-health", "designs_added" => "doc-image", "designs_modified" => "doc-image", "designs_removed" => "doc-image", "designs_discussion_added" => "doc-image", "status" => "status", "alert_issue_added" => "work-item-issue", "new_alert_added" => "warning", "severity" => "information-o", "cloned" => "documents", "issue_type" => "pencil", "contact" => "users", "timeline_event" => "clock", "relate_to_child" => "link", "unrelate_from_child" => "link", "relate_to_parent" => "link", "unrelate_from_parent" => "link", "requested_changes" => "error", "override" => "review-warning", "reviewed" => "comment-lines" }
+
+  def system_note_icon_name: (untyped note) -> ("merge-request-close" | "mr-system-note-empty" | untyped)
+
+  def icon_for_system_note: (untyped note) -> untyped
+
+  extend ::SystemNoteHelper
+end

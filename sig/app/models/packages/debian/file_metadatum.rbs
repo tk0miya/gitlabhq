@@ -1,0 +1,17 @@
+module Packages
+  module Debian
+    class FileMetadatum < ApplicationRecord
+      include UpdatedAtFilterable
+
+      private
+
+      def valid_debian_package_type: () -> (nil | untyped)
+
+      def requires_architecture?: () -> untyped
+
+      def requires_component?: () -> untyped
+
+      def requires_fields?: () -> untyped
+    end
+  end
+end

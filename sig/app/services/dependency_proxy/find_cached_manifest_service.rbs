@@ -1,0 +1,25 @@
+module DependencyProxy
+  class FindCachedManifestService < DependencyProxy::BaseService
+    @group: untyped
+
+    @image: untyped
+
+    @tag: untyped
+
+    @token: untyped
+
+    @file_name: untyped
+
+    @manifest: untyped
+
+    def initialize: (untyped group, untyped image, untyped tag, untyped token) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def cached_manifest_matches?: (untyped head_result) -> (false | untyped)
+
+    def respond: (?from_cache: bool) -> untyped
+  end
+end

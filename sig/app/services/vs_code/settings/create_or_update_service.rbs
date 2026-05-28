@@ -1,0 +1,29 @@
+module VsCode
+  module Settings
+    class CreateOrUpdateService
+      @current_user: untyped
+
+      @settings_context_hash: untyped
+
+      @params: untyped
+
+      include ::VsCode::Settings
+
+      def initialize: (current_user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def remove_duplicate_settings: (settings: untyped) -> (nil | untyped)
+
+      def create_or_update: (setting: untyped, ?additional_params: ::Hash[untyped, untyped]) -> untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader settings_context_hash: untyped
+
+      attr_reader params: untyped
+    end
+  end
+end

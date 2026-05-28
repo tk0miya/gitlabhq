@@ -1,0 +1,52 @@
+module Import
+  module SourceUsers
+    class ReassignService < BaseService
+      @import_source_user: untyped
+
+      @current_user: untyped
+
+      @assignee_user: untyped
+
+      @root_namespace: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped import_source_user, untyped assignee_user, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader assignee_user: untyped
+
+      attr_reader root_namespace: untyped
+
+      def reassign_user: () -> untyped
+
+      def error_namespace_type: () -> untyped
+
+      def invalid_namespace_message: () -> untyped
+
+      # overridden in EE
+      def run_validations: () -> untyped
+
+      def error_invalid_assignee: () -> untyped
+
+      def invalid_assignee_message: () -> untyped
+
+      # Overridden in EE
+      def valid_assignee?: () -> (false | untyped)
+
+      def valid_human_assignee?: () -> (false | untyped)
+
+      def allow_mapping_to_admins?: () -> untyped
+
+      # Overridden in EE
+      def skip_reassignment_confirmation?: () -> untyped
+
+      def admin_skip_reassignment_confirmation?: () -> untyped
+
+      def project_bot_reassignment?: () -> untyped
+    end
+  end
+end

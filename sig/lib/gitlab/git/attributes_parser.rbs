@@ -1,0 +1,44 @@
+module Gitlab
+  module Git
+    # Class for parsing Git attribute files and extracting the attributes for
+    # file patterns.
+    class AttributesParser
+      @data: untyped
+
+      @patterns: untyped
+
+      def initialize: (?::String attributes_data) -> void
+
+      # Returns all the Git attributes for the given path.
+      #
+      # file_path - A path to a file for which to get the attributes.
+      #
+      # Returns a Hash.
+      def attributes: (untyped file_path) -> (untyped | ::Hash[untyped, untyped])
+
+      # Returns a Hash containing the file patterns and their attributes.
+      def patterns: () -> untyped
+
+      # Parses an attribute string.
+      #
+      # These strings can be in the following formats:
+      #
+      #     text      # => { "text" => true }
+      #     -text     # => { "text" => false }
+      #     key=value # => { "key" => "value" }
+      #
+      # string - The string to parse.
+      #
+      # Returns a Hash containing the attributes and their values.
+      def parse_attributes: (untyped string) -> untyped
+
+      # Iterates over every line in the attributes file.
+      def each_line: () { (untyped) -> untyped } -> untyped
+
+      private
+
+      # Parses the Git attributes file contents.
+      def parse_data: () -> untyped
+    end
+  end
+end

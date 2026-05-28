@@ -1,0 +1,29 @@
+class GroupMember < Member
+  include FromUnion
+
+  include CreatedAtFilterable
+
+  SOURCE_TYPE: "Namespace"
+
+  SOURCE_TYPE_FORMAT: ::Regexp
+
+  attr_accessor last_owner: untyped
+
+  # For those who get to see a modal with a role dropdown, here are the options presented
+  def self.permissible_access_level_roles: (untyped _, untyped _) -> untyped
+
+  def self.access_level_roles: () -> untyped
+
+  def self.max_access_members: (untyped group_ids, untyped user) -> untyped
+
+  def group: () -> untyped
+
+  # Because source_type is `Namespace`...
+  def real_source_type: () -> untyped
+
+  def last_owner_of_the_group?: () -> (false | untyped)
+
+  private
+
+  def refresh_member_authorized_projects: () -> (nil | untyped)
+end

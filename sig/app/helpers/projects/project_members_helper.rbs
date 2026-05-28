@@ -1,0 +1,24 @@
+module Projects::ProjectMembersHelper
+  include Groups::GroupMembersHelper
+
+  def project_members_app_data_json: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def project_member_header_subtext: (untyped project) -> untyped
+
+  private
+
+  def project_members_app_data: (untyped project, members: untyped, invited: untyped, links: untyped, access_requests: untyped, pending_members_count: untyped) -> { user: untyped, group: untyped, invite: untyped, access_request: untyped, source_id: untyped, can_manage_members: untyped, can_manage_access_requests: untyped, group_name: untyped, group_path: untyped, project_path: untyped, can_approve_access_requests: true, available_roles: untyped }
+
+  def share_project_description: (untyped project) -> untyped
+
+  def project_members_serialized: (untyped project, untyped members) -> untyped
+
+  def project_group_links_serialized: (untyped project, untyped group_links) -> untyped
+
+  def project_members_list_data: (untyped project, untyped members, ?::Hash[untyped, untyped] pagination) -> { members: untyped, pagination: untyped, member_path: untyped }
+
+  def project_group_links_list_data: (untyped project, untyped links) -> { members: untyped, pagination: untyped, member_path: untyped }
+
+  # Overridden in `ee/app/helpers/ee/projects/project_members_helper.rb`
+  def available_project_roles: (untyped _) -> untyped
+end

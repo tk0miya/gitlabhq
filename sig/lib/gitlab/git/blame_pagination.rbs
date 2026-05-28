@@ -1,0 +1,45 @@
+module Gitlab
+  module Git
+    class BlamePagination
+      @blob: untyped
+
+      @blame_mode: untyped
+
+      @params: untyped
+
+      @blob_lines_count: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      PAGINATION_PER_PAGE: 1000
+
+      STREAMING_FIRST_PAGE_SIZE: 200
+
+      STREAMING_PER_PAGE: 2000
+
+      def initialize: (untyped blob, untyped blame_mode, untyped params) -> void
+
+      def page: () -> (1 | untyped)
+
+      def per_page: () -> untyped
+
+      def total_pages: () -> untyped
+
+      def total_extra_pages: () -> untyped
+
+      def paginator: () -> (nil | untyped)
+
+      def blame_range: () -> (nil | ::Range[::Integer] | ::Range[untyped])
+
+      private
+
+      attr_reader blob: untyped
+
+      attr_reader blame_mode: untyped
+
+      attr_reader params: untyped
+
+      def blob_lines_count: () -> untyped
+    end
+  end
+end

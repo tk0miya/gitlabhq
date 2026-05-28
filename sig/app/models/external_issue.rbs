@@ -1,0 +1,37 @@
+class ExternalIssue
+  @issue_identifier: untyped
+
+  @project: untyped
+
+  include Referable
+
+  attr_reader project: untyped
+
+  def initialize: (untyped issue_identifier, untyped project) -> void
+
+  def to_s: () -> untyped
+
+  def id: () -> untyped
+
+  def iid: () -> untyped
+
+  def title: () -> ::String
+
+  def web_url: () -> untyped
+
+  def ==: (untyped other) -> untyped
+
+  alias eql? ==
+
+  def hash: () -> untyped
+
+  def project_id: () -> untyped
+
+  def to_reference: (?untyped? _from, ?full: untyped?) -> untyped
+
+  def reference_link_text: (?untyped? from) -> (::String | untyped)
+
+  def supports_time_tracking?: () -> false
+
+  def notes: () -> untyped
+end

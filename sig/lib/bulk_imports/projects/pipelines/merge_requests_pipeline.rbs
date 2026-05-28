@@ -1,0 +1,13 @@
+module BulkImports
+  module Projects
+    module Pipelines
+      class MergeRequestsPipeline
+        include NdjsonPipeline
+
+        def delete_existing_records: (untyped entry) -> (nil | untyped)
+
+        def on_finish: () -> untyped
+      end
+    end
+  end
+end

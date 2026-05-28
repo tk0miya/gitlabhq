@@ -1,0 +1,20 @@
+module Ci
+  module ResourceGroups
+    class AssignResourceFromResourceGroupService < ::BaseService
+      include Gitlab::InternalEventsTracking
+
+      RESPAWN_WAIT_TIME: untyped
+
+      def execute: (untyped resource_group) -> (nil | untyped)
+
+      private
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def enqueue_upcoming_processables: (untyped free_resources, untyped resource_group) -> untyped
+
+      def enqueue_upcoming: (untyped upcoming) -> untyped
+
+      def release_resource_from_stale_jobs: (untyped resource_group) -> untyped
+    end
+  end
+end

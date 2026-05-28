@@ -1,0 +1,11 @@
+module Ci
+  class RunnerProject < Ci::ApplicationRecord
+    include EachBatch
+
+    include Limitable
+
+    def self.existing_project_ids: (untyped project_ids) -> (::Array[untyped] | untyped)
+
+    def recent_runners: () -> untyped
+  end
+end

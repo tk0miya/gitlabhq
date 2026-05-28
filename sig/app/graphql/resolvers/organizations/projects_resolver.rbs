@@ -1,0 +1,13 @@
+module Resolvers
+  module Organizations
+    class ProjectsResolver < Resolvers::ProjectsResolver
+      include Gitlab::Graphql::Authorize::AuthorizeResource
+
+      private
+
+      alias organization object
+
+      def finder_params: (untyped args) -> untyped
+    end
+  end
+end

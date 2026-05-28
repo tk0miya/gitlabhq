@@ -1,0 +1,8 @@
+module Types
+  module Ci
+    # rubocop: disable Graphql/AuthorizeTypes -- Authentication at another location
+    class PipelineManualVariableType < BaseObject
+      def value: () -> (nil | untyped)
+    end
+  end
+end

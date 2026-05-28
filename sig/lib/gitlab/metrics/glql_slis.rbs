@@ -1,0 +1,23 @@
+module Gitlab
+  module Metrics
+    module GlqlSlis
+      include Gitlab::Metrics::SliConfig
+
+      ERROR_TYPES: ::Array[:query_aborted | :other | nil]
+
+      ENDPOINTS: ::Array["Glql::BaseController#execute"]
+
+      FEATURE_CATEGORIES: ::Array[:code_review_workflow | :not_owned | :portfolio_management | :team_planning | :wiki]
+
+      def self.initialize_slis!: () -> untyped
+
+      def self.record_apdex: (labels: untyped, success: untyped) -> untyped
+
+      def self.record_error: (labels: untyped, error: untyped) -> untyped
+
+      private
+
+      def self.possible_glql_labels: () -> (::Array[untyped] | untyped)
+    end
+  end
+end

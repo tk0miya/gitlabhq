@@ -1,0 +1,13 @@
+module Gitlab
+  module GitalyClient
+    class ListBlobsAdapter
+      @rpc_response: untyped
+
+      include Enumerable
+
+      def initialize: (untyped rpc_response) -> void
+
+      def each: () { (untyped) -> untyped } -> untyped
+    end
+  end
+end

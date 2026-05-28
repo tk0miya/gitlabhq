@@ -1,0 +1,21 @@
+module Projects
+  module ContainerRepository
+    class DestroyService < BaseService
+      CLEANUP_TAGS_SERVICE_PARAMS: { "name_regex_delete" => ".*", "container_expiration_policy" => true, "keep_latest" => false }
+
+      def execute: (untyped container_repository, ?disable_timeout: bool) -> untyped
+
+      private
+
+      def delete_tags: (untyped container_repository, untyped disable_timeout) -> (true | false)
+
+      def destroy_container_repository: (untyped container_repository) -> (true | false)
+
+      def can_destroy?: () -> (true | untyped)
+
+      def error_message: (untyped container_repository, untyped message) -> ::String
+
+      def skip_permission_check?: () -> untyped
+    end
+  end
+end

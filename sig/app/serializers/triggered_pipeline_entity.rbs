@@ -1,0 +1,17 @@
+class TriggeredPipelineEntity < Grape::Entity
+  include RequestAwareEntity
+
+  MAX_EXPAND_DEPTH: 3
+
+  private
+
+  alias pipeline object
+
+  def can_read_details?: () -> untyped
+
+  def detailed_status: () -> untyped
+
+  def expand?: (untyped opts) -> untyped
+
+  def expand_for_path?: (untyped opts) -> untyped
+end

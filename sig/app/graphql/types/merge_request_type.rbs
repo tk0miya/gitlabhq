@@ -1,0 +1,48 @@
+module Types
+  class MergeRequestType < BaseObject
+    def self.authorization_scopes: () -> untyped
+
+    def diff_stats: (?path: untyped?) -> untyped
+
+    def diff_stats_summary: () -> untyped
+
+    def source_branch_protected: () -> untyped
+
+    def discussion_locked: () -> untyped
+
+    def default_merge_commit_message: () -> untyped
+
+    def default_squash_commit_message: () -> untyped
+
+    def available_auto_merge_strategies: () -> untyped
+
+    def closed_at: () -> untyped
+
+    def commits: () -> untyped
+
+    def commits_without_merge_commits: () -> untyped
+
+    def security_auto_fix: () -> untyped
+
+    def merge_user: () -> untyped
+
+    def merge_after: () -> untyped
+
+    def detailed_merge_status: () -> untyped
+
+    # This is temporary to fix a bug where `committers` is already loaded and memoized
+    # and calling it again with a certain GraphQL query can cause the Rails to to throw
+    # a ActiveRecord::UnmodifiableRelation error
+    def committers: () -> untyped
+
+    def web_path: () -> untyped
+
+    def resolvable_discussions_count: () -> untyped
+
+    def resolved_discussions_count: () -> untyped
+
+    def notes_count_for_collection: (untyped key) { (untyped) -> untyped } -> untyped
+
+    def pipeline_creation_requests: () -> untyped
+  end
+end

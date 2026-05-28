@@ -1,0 +1,29 @@
+module Gitlab
+  module Tracking
+    class ServicePingContext
+      @payload: untyped
+
+      SCHEMA_URL: "iglu:com.gitlab/gitlab_service_ping/jsonschema/1-0-1"
+
+      REDISHLL_SOURCE: :redis_hll
+
+      REDIS_SOURCE: :redis
+
+      ALLOWED_SOURCES: ::Array[untyped]
+
+      def initialize: (data_source: untyped, ?event: untyped?) -> void
+
+      def to_context: () -> untyped
+
+      def to_h: () -> { schema: untyped, data: untyped }
+
+      private
+
+      attr_reader payload: untyped
+
+      def check_configuration: (untyped data_source, untyped event) -> (nil | untyped)
+
+      def configuration_error: (untyped message) -> untyped
+    end
+  end
+end

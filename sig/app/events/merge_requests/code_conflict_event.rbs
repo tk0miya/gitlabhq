@@ -1,0 +1,13 @@
+module MergeRequests
+  class CodeConflictEvent < Gitlab::EventStore::CloudEvent
+    def self.build: (merge_request: untyped) -> (nil | untyped)
+
+    private
+
+    def self.generate_event_data: (untyped merge_request) -> { merge_request_id: untyped, merge_request_iid: untyped, project_id: untyped }
+
+    public
+
+    def data_schema: () -> { "type" => "object", "properties" => { "merge_request_iid" => { "type" => "integer" }, "merge_request_id" => { "type" => "integer" }, "project_id" => { "type" => "integer" } }, "required" => ::Array["merge_request_iid" | "merge_request_id" | "project_id"] }
+  end
+end

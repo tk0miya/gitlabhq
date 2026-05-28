@@ -1,0 +1,39 @@
+module Gitlab
+  module Database
+    module Migrations
+      module Observers
+        class BatchDetails < MigrationObserver
+          @started_at: untyped
+
+          @finished_at: untyped
+
+          @time_spent: untyped
+
+          FILE_NAME: "batch-details.json"
+
+          def before: () -> untyped
+
+          def after: () -> untyped
+
+          def record: () -> untyped
+
+          private
+
+          attr_reader started_at: untyped
+
+          attr_reader finished_at: untyped
+
+          def file_contents: () -> untyped
+
+          def get_time: () -> untyped
+
+          def time_spent: () -> untyped
+
+          def path: () -> untyped
+
+          def job_meta: () -> (::Hash[untyped, untyped] | untyped)
+        end
+      end
+    end
+  end
+end

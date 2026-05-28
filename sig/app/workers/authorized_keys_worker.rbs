@@ -1,0 +1,11 @@
+class AuthorizedKeysWorker
+  @authorized_keys: untyped
+
+  include ApplicationWorker
+
+  def perform: (untyped action, *untyped args) -> (nil | untyped)
+
+  private
+
+  def authorized_keys: () -> untyped
+end

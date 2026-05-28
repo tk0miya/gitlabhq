@@ -1,0 +1,41 @@
+module Gitlab
+  class GitPostReceive
+    @container: untyped
+
+    @identifier: untyped
+
+    @changes: untyped
+
+    @push_options: untyped
+
+    @gitaly_context: untyped
+
+    include Gitlab::Identifier
+
+    attr_reader container: untyped
+
+    attr_reader identifier: untyped
+
+    attr_reader changes: untyped
+
+    attr_reader push_options: untyped
+
+    attr_reader gitaly_context: untyped
+
+    def initialize: (untyped container, untyped identifier, untyped changes, ?::Hash[untyped, untyped] push_options, ?::Hash[untyped, untyped] gitaly_context) -> void
+
+    def identify: () -> untyped
+
+    def includes_branches?: () -> untyped
+
+    def includes_tags?: () -> untyped
+
+    def includes_default_branch?: () -> (true | untyped)
+
+    private
+
+    def parse_changes: (untyped changes) -> untyped
+
+    def utf8_encode_changes: (untyped changes) -> untyped
+  end
+end

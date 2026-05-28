@@ -1,0 +1,75 @@
+module Gitlab
+  module Git
+    class Tag < Ref
+      @repository: untyped
+
+      @raw_tag: untyped
+
+      @name: untyped
+
+      @target: untyped
+
+      @message: untyped
+
+      @target_commit: untyped
+
+      extend Gitlab::EncodingHelper
+
+      include Gitlab::Utils::StrongMemoize
+
+      attr_reader object_sha: untyped
+
+      attr_reader repository: untyped
+
+      MAX_TAG_MESSAGE_DISPLAY_SIZE: untyped
+
+      SERIALIZE_KEYS: ::Array[:name | :target | :target_commit | :message]
+
+      def self.get_message: (untyped repository, untyped tag_id) -> untyped
+
+      def self.get_messages: (untyped repository, untyped tag_ids) -> untyped
+
+      def self.extract_signature_lazily: (untyped repository, untyped tag_id, ?timeout: untyped) -> untyped
+
+      def self.batch_signature_extraction: (untyped repository, untyped tag_ids, ?timeout: untyped?) -> untyped
+
+      def initialize: (untyped repository, untyped raw_tag) -> void
+
+      def init_from_hash: () -> untyped
+
+      def init_from_gitaly: () -> untyped
+
+      def message: () -> untyped
+
+      def user_name: () -> (untyped | nil)
+
+      def user_email: () -> (untyped | nil)
+
+      def date: () -> (untyped | nil)
+
+      def has_signature?: () -> untyped
+
+      def signature_type: () -> untyped
+
+      def signature: () -> untyped
+
+      def lazy_cached_signature: () -> untyped
+
+      def signed_tag: () -> (nil | untyped)
+
+      def can_use_lazy_cached_signature?: () -> (false | untyped)
+
+      def cache_key: () -> untyped
+
+      private
+
+      def tagger: () -> untyped
+
+      def render_gpg?: () -> untyped
+
+      def message_from_gitaly_tag: () -> untyped
+
+      def full_message_fetched_from_gitaly?: () -> untyped
+    end
+  end
+end

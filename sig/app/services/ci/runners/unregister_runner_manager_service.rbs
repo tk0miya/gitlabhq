@@ -1,0 +1,28 @@
+module Ci
+  module Runners
+    class UnregisterRunnerManagerService
+      @runner: untyped
+
+      @author: untyped
+
+      @system_id: untyped
+
+      attr_reader runner: untyped
+
+      attr_reader author: untyped
+
+      attr_reader system_id: untyped
+
+      # @param [Ci::Runner] runner the runner to unregister/destroy
+      # @param [User, authentication token String] author the user or the authentication token authorizing the removal
+      # @param [String] system_id ID of the system being unregistered
+      def initialize: (untyped runner, untyped author, system_id: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def system_id_missing_error: () -> untyped
+    end
+  end
+end

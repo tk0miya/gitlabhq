@@ -1,0 +1,20 @@
+# A discussion on merge request or commit diffs consisting of `DiffNote` notes.
+#
+# A discussion of this type can be resolvable.
+class DiffDiscussion < Discussion
+  include DiscussionOnDiff
+
+  def self.note_class: () -> untyped
+
+  def legacy_diff_discussion?: () -> false
+
+  def merge_request_version_params: () -> (nil | untyped)
+
+  def reply_attributes: () -> untyped
+
+  def cache_key: () -> untyped
+
+  private
+
+  def get_params: () -> (::Hash[untyped, untyped] | untyped)
+end

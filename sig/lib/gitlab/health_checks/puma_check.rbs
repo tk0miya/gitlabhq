@@ -1,0 +1,16 @@
+module Gitlab
+  module HealthChecks
+    # This check can only be run on Puma `master` process
+    class PumaCheck
+      extend SimpleAbstractCheck
+
+      private
+
+      def self.metric_prefix: () -> "puma_check"
+
+      def self.successful?: (untyped result) -> untyped
+
+      def self.check: () -> untyped
+    end
+  end
+end

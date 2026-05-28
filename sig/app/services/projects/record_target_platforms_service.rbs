@@ -1,0 +1,27 @@
+module Projects
+  class RecordTargetPlatformsService < BaseService
+    @project: untyped
+
+    @detector_service: untyped
+
+    @project_setting: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped project, untyped detector_service) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader project: untyped
+
+    attr_reader detector_service: untyped
+
+    def target_platforms: () -> untyped
+
+    def record_target_platforms: () -> (nil | untyped)
+
+    def project_setting: () -> untyped
+  end
+end

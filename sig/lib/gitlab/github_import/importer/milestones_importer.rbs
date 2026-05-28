@@ -1,0 +1,38 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class MilestonesImporter
+        @existing_milestones: untyped
+
+        include BulkImporting
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def existing_milestones: () -> untyped
+
+        def execute: () -> untyped
+
+        def build_milestones: () -> untyped
+
+        def already_imported?: (untyped milestone) -> untyped
+
+        def build_milestones_cache: () -> untyped
+
+        def build_attributes: (untyped milestone) -> { iid: untyped, title: untyped, description: untyped, project_id: untyped, state: untyped, due_date: untyped, created_at: untyped, updated_at: untyped }
+
+        def description_for: (untyped milestone) -> untyped
+
+        def state_for: (untyped milestone) -> (:active | :closed)
+
+        def each_milestone: () -> untyped
+
+        def object_type: () -> :milestone
+
+        private
+
+        def model: () -> untyped
+
+        def github_identifiers: (untyped milestone) -> { iid: untyped, title: untyped, object_type: untyped }
+      end
+    end
+  end
+end

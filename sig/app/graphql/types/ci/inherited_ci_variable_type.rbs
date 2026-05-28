@@ -1,0 +1,10 @@
+module Types
+  module Ci
+    # rubocop: disable Graphql/AuthorizeTypes
+    class InheritedCiVariableType < BaseObject
+      include Gitlab::Utils::StrongMemoize
+
+      def group_ci_cd_settings_path: () -> (nil | untyped)
+    end
+  end
+end

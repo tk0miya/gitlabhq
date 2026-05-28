@@ -1,0 +1,13 @@
+module HasWiki
+  extend ActiveSupport::Concern
+
+  def create_wiki: () -> untyped
+
+  def wiki: () -> untyped
+
+  def wiki_repository_exists?: () -> untyped
+
+  private
+
+  def check_wiki_path_conflict: () -> (nil | untyped)
+end

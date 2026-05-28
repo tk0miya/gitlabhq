@@ -1,0 +1,38 @@
+module MergeRequests
+  # Performs the merge between source SHA and the target branch or the specified first parent ref. Instead
+  # of writing the result to the MR target branch, it targets the `target_ref`.
+  #
+  # Ideally this should leave the `target_ref` state with the same state the
+  # target branch would have if we used the regular `MergeService`, but without
+  # every side-effect that comes with it (MR updates, mails, source branch
+  # deletion, etc). This service should be kept idempotent (i.e. can
+  # be executed regardless of the `target_ref` current state).
+  #
+  class MergeToRefService < MergeRequests::MergeBaseService
+    @merge_request: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    def execute: (untyped merge_request) -> untyped
+
+    private
+
+    def source: () -> untyped
+
+    def error_check!: () -> (untyped | nil)
+
+    #
+    # The parameter `target_ref` is where the merge result will be written.
+    # Default is the merge ref i.e. `refs/merge-requests/:iid/merge`.
+    def target_ref: () -> untyped
+
+    #
+    # The parameter `first_parent_ref` is the main line of the merge commit.
+    # Default is the target branch ref of the merge request.
+    def first_parent_ref: () -> untyped
+
+    def commit_message: () -> untyped
+
+    def extracted_merge_to_ref: () -> untyped
+  end
+end

@@ -1,0 +1,31 @@
+module Projects
+  class CreateFromTemplateService < BaseService
+    @current_user: untyped
+
+    @params: untyped
+
+    @template_name: untyped
+
+    @project: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    attr_reader template_name: untyped
+
+    def initialize: (untyped user, untyped params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def validate_template!: () -> (true | untyped | false)
+
+    def built_in_template_allowed?: () -> true
+
+    def built_in_template: () -> untyped
+
+    def sample_data_template: () -> untyped
+
+    def project: () -> untyped
+  end
+end

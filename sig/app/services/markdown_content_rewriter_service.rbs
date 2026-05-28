@@ -1,0 +1,58 @@
+# This service passes Markdown content through our GFM rewriter classes
+# which rewrite references to GitLab objects and uploads within the content
+# based on their visibility by the `target_parent`.
+class MarkdownContentRewriterService
+  @current_user: untyped
+
+  @source_parent: untyped
+
+  @target_parent: untyped
+
+  @object: untyped
+
+  @field: untyped
+
+  @content: untyped
+
+  @html_field: untyped
+
+  @content_html: untyped
+
+  @rewriters: untyped
+
+  @result: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  REWRITERS: ::Array[untyped]
+
+  def initialize: (untyped current_user, untyped object, untyped field, untyped source_parent, untyped target_parent) -> void
+
+  def execute: () -> untyped
+
+  def safe_to_copy_markdown?: () -> untyped
+
+  private
+
+  def validate_parameters!: () -> (untyped | nil)
+
+  attr_reader current_user: untyped
+
+  attr_reader content: untyped
+
+  attr_reader source_parent: untyped
+
+  attr_reader target_parent: untyped
+
+  attr_reader rewriters: untyped
+
+  attr_reader content_html: untyped
+
+  attr_reader field: untyped
+
+  attr_reader html_field: untyped
+
+  attr_reader object: untyped
+
+  attr_reader result: untyped
+end

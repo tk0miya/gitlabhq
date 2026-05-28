@@ -1,0 +1,13 @@
+module Gitlab
+  module GithubImport
+    class ImportNoteWorker
+      include ObjectImporter
+
+      def representation_class: () -> untyped
+
+      def importer_class: () -> untyped
+
+      def object_type: () -> :note
+    end
+  end
+end

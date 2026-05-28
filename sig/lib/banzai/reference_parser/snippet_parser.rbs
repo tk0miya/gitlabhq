@@ -1,0 +1,14 @@
+module Banzai
+  module ReferenceParser
+    class SnippetParser < BaseParser
+      def references_relation: () -> untyped
+
+      # Returns all the nodes that are visible to the given user.
+      def nodes_visible_to_user: (untyped user, untyped nodes) -> untyped
+
+      private
+
+      def can_read_reference?: (untyped user, untyped snippet) -> untyped
+    end
+  end
+end

@@ -1,0 +1,7 @@
+class RemoveExpiredGroupLinksWorker
+  include ApplicationWorker
+
+  include CronjobQueue
+
+  def perform: () -> untyped
+end

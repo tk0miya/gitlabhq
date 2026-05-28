@@ -1,0 +1,41 @@
+module Sidebars
+  module Projects
+    module Menus
+      class WorkItemsMenu < ::Sidebars::Menu
+        include Gitlab::Utils::StrongMemoize
+
+        def configure_menu_items: () -> (false | true)
+
+        def extra_container_html_options: () -> { class: "shortcuts-issues" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "issues"
+
+        def active_routes: () -> { path: ::Array["projects/issues#index" | "projects/issues#show" | "projects/issues#new" | "projects/work_items#index" | "projects/work_items#show" | "projects/work_items#new"] }
+
+        def has_pill?: () -> untyped
+
+        def pill_count_field: () -> "openWorkItemsCount"
+
+        def pill_html_options: () -> { class: "issue_counter" }
+
+        def serialize_as_menu_item_args: () -> untyped
+
+        private
+
+        def show_issues_menu_items?: () -> untyped
+
+        def multi_issue_boards?: () -> untyped
+
+        def list_menu_item: () -> untyped
+
+        def boards_menu_item: () -> untyped
+
+        def service_desk_menu_item: () -> untyped
+
+        def milestones_menu_item: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,5 @@
+class MergeRequests::HandleAssigneesChangeWorker
+  include ApplicationWorker
+
+  def perform: (untyped merge_request_id, untyped user_id, untyped old_assignee_ids, ?::Hash[untyped, untyped] options) -> (nil | untyped)
+end

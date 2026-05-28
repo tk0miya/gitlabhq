@@ -1,0 +1,9 @@
+class ApplicationSetting
+  class Term < ApplicationRecord
+    include CacheMarkdownField
+
+    def self.latest: () -> untyped
+
+    def accepted_by_user?: (untyped user) -> (true | untyped)
+  end
+end

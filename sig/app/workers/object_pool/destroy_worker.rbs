@@ -1,0 +1,9 @@
+module ObjectPool
+  class DestroyWorker
+    include ApplicationWorker
+
+    include ObjectPoolQueue
+
+    def perform: (untyped pool_repository_id) -> (nil | untyped)
+  end
+end

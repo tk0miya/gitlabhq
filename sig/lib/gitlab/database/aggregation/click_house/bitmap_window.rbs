@@ -1,0 +1,51 @@
+module Gitlab
+  module Database
+    module Aggregation
+      module ClickHouse
+        class BitmapWindow < MetricDefinition
+          @over_dimension: untyped
+
+          @operation: untyped
+
+          @lag_offset: untyped
+
+          attr_reader over_dimension: untyped
+
+          attr_reader operation: untyped
+
+          attr_reader lag_offset: untyped
+
+          VALID_OPERATIONS: ::Array[:lag | :intersection]
+
+          def initialize: (untyped name, ?::Symbol type, ?untyped? expression, operation: untyped, over: untyped, ?lag_offset: ::Integer, **untyped kwargs) -> void
+
+          # Definition-time validation: called by the engine after all metrics and dimensions
+          # are registered, so we can assert the over_dimension exists in the engine.
+          def validate_definition!: (untyped engine_class) -> (nil | untyped)
+
+          def validate_part: (untyped part) -> (nil | untyped)
+
+          def identifier: () -> ::Symbol
+
+          def to_inner_arel: (untyped _context) -> untyped
+
+          def to_outer_arel: (untyped context) -> untyped
+
+          def requires_window?: () -> true
+
+          def build_window_sql: (untyped _context, untyped bitmap_alias, ?over_alias: untyped, ?partition_aliases: untyped) -> untyped
+
+          def finalization_sql: (untyped alias_name) -> untyped
+
+          private
+
+          def partition_clause: (untyped partition_aliases) -> ("" | ::String)
+
+          def build_lag_sql: (untyped bitmap_alias, untyped over_alias, ?untyped partition_aliases) -> untyped
+
+          def build_intersection_sql: (untyped bitmap_alias, untyped over_alias, ?untyped partition_aliases) -> untyped
+        end
+      end
+    end
+  end
+end

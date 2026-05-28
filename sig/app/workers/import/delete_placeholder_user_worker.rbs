@@ -1,0 +1,15 @@
+module Import
+  class DeletePlaceholderUserWorker
+    include ApplicationWorker
+
+    def perform: (untyped placeholder_user_id, ?::Hash[untyped, untyped] _params) -> (nil | untyped)
+
+    private
+
+    def find_placeholder_user: (untyped id) -> (nil | untyped)
+
+    def log_placeholder_user_not_deleted: (untyped placeholder_user_id) -> untyped
+
+    def placeholder_user_referenced?: (untyped placeholder_user_id) -> untyped
+  end
+end

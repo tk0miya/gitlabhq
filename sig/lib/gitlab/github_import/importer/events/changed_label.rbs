@@ -1,0 +1,19 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Events
+        class ChangedLabel < BaseImporter
+          def execute: (untyped issue_event) -> untyped
+
+          private
+
+          def create_event: (untyped issue_event) -> untyped
+
+          def label_finder: () -> untyped
+
+          def action: (untyped event_type) -> ("remove" | "add")
+        end
+      end
+    end
+  end
+end

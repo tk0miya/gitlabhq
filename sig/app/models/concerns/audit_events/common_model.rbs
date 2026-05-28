@@ -1,0 +1,41 @@
+module AuditEvents
+  module CommonModel
+    extend ActiveSupport::Concern
+
+    PARALLEL_PERSISTENCE_COLUMNS: ::Array[:author_name | :entity_path | :target_details | :target_type | :target_id]
+
+    TRUNCATED_FIELDS: { entity_path: 5500, target_details: 5500 }
+
+    def initialize_details: () -> (nil | untyped)
+
+    def author_name: () -> untyped
+
+    def formatted_details: () -> untyped
+
+    def author: () -> untyped
+
+    def lazy_author: () -> untyped
+
+    def as_json: (?::Hash[untyped, untyped] options) -> untyped
+
+    def target_type: () -> untyped
+
+    def target_id: () -> untyped
+
+    def target_details: () -> untyped
+
+    def entity_path: () -> untyped
+
+    def ip_address: () -> untyped
+
+    private
+
+    def sanitize_message: () -> (nil | untyped)
+
+    def default_author_value: () -> untyped
+
+    def parallel_persist: () -> untyped
+
+    def truncate_fields: () -> untyped
+  end
+end

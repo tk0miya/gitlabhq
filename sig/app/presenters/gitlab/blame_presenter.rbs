@@ -1,0 +1,60 @@
+module Gitlab
+  class BlamePresenter < Gitlab::View::Presenter::Simple
+    @commits: untyped
+
+    @groups: untyped
+
+    @project_duration: untyped
+
+    include ActionView::Helpers::TranslationHelper
+
+    include ActionView::Context
+
+    include AvatarsHelper
+
+    include BlameHelper
+
+    include CommitsHelper
+
+    include ApplicationHelper
+
+    include TreeHelper
+
+    include IconsHelper
+
+    CommitData: untyped
+
+    def initialize: (untyped blame, **untyped attributes) -> void
+
+    def first_line: () -> untyped
+
+    def groups: () -> untyped
+
+    def commit_data: (untyped commit, ?untyped? previous_path) -> untyped
+
+    def groups_commit_data: () -> untyped
+
+    private
+
+    # Huge source files with a high churn rate (e.g. 'locale/gitlab.pot') could have
+    # 10x times more blame groups than unique commits across all the groups.
+    # That means we could cache per-commit data we need
+    # to avoid recalculating it multiple times.
+    # For such files, it could significantly improve the performance of the Blame.
+    def precalculate_data_by_commit!: () -> untyped
+
+    def get_commit_data: (untyped commit, ?untyped? previous_path) -> untyped
+
+    def project_blame_link: (untyped commit, ?untyped? previous_path) -> (nil | untyped)
+
+    def project_duration: () -> untyped
+
+    def link_to: (*untyped args) { (?) -> untyped } -> untyped
+
+    def mail_to: (*untyped args) { (?) -> untyped } -> untyped
+
+    def project: () -> untyped
+
+    def page: () -> (untyped | nil)
+  end
+end

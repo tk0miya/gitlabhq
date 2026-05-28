@@ -1,0 +1,17 @@
+module API
+  module Helpers
+    module ImportGithubHelpers
+      @client: untyped
+
+      def client: () -> untyped
+
+      def access_params: () -> { github_access_token: untyped }
+
+      def provider: () -> :github
+
+      def provider_unauthorized: () -> untyped
+
+      def too_many_requests: () -> untyped
+    end
+  end
+end

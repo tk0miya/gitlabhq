@@ -1,0 +1,52 @@
+module Gitlab
+  module Middleware
+    class Multipart
+      @app: untyped
+
+      RACK_ENV_KEY: "HTTP_GITLAB_WORKHORSE_MULTIPART_FIELDS"
+
+      JWT_PARAM_SUFFIX: ".gitlab-workhorse-upload"
+
+      JWT_PARAM_FIXED_KEY: "upload"
+
+      REWRITTEN_FIELD_NAME_MAX_LENGTH: 10000
+
+      class Handler
+        @request: untyped
+
+        @rewritten_fields: untyped
+
+        @open_files: untyped
+
+        def initialize: (untyped env, untyped message) -> void
+
+        def with_open_files: () { () -> untyped } -> untyped
+
+        # This function calls itself recursively
+        def decorate_params_value: (untyped hash_path, untyped value_hash) -> untyped
+
+        def open_file: (untyped params) -> untyped
+
+        # update_params ensures that both rails controllers and rack middleware can find
+        # workhorse accelerate files in the request
+        def update_param: (untyped key, untyped value) -> untyped
+
+        private
+
+        def extract_upload_params_from: (untyped params, ?with_prefix: ::String) -> untyped
+
+        def valid_field_name?: (untyped name) -> (false | true)
+
+        def package_allowed_paths: () -> ::Array[untyped]
+
+        def allow_packages_storage_path?: (untyped packages_config) -> (false | true)
+
+        def allowed_paths: () -> untyped
+      end
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+    end
+  end
+end

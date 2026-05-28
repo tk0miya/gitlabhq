@@ -1,0 +1,136 @@
+module Gitlab
+  module Database
+    module LoadBalancing
+      # A single database host used for load balancing.
+      class Host
+        @host: untyped
+
+        @port: untyped
+
+        @load_balancer: untyped
+
+        @pool: untyped
+
+        @online: untyped
+
+        @last_checked_at: untyped
+
+        @lag_time: untyped
+
+        @lag_size: untyped
+
+        @intervals: untyped
+
+        @latest_lsn_query: untyped
+
+        attr_reader pool: untyped
+
+        attr_reader last_checked_at: untyped
+
+        attr_reader intervals: untyped
+
+        attr_reader load_balancer: untyped
+
+        attr_reader host: untyped
+
+        attr_reader port: untyped
+
+        CONNECTION_ERRORS: ::Array[untyped]
+
+        # This query checks that the current user has permissions before we try and query logical replication status. We
+        # also only allow >= PG14 because these views are only accessible to superuser before PG14 even if the
+        # has_table_privilege says otherwise.
+        CAN_TRACK_LOGICAL_LSN_QUERY: untyped
+
+        # The following is necessary to handle a mix of logical and physical replicas. We assume that if they have
+        # pg_replication_origin_status then they are a logical replica. In a logical replica we need to use
+        # `remote_lsn` rather than `pg_last_wal_replay_lsn` in order for our LSN to be comparable to the source
+        # cluster. This logic would be broken if we have 2 logical subscriptions or if we have a logical subscription
+        # in the source primary cluster. Read more at https://gitlab.com/gitlab-org/gitlab/-/merge_requests/121621
+        LATEST_LSN_WITH_LOGICAL_QUERY: untyped
+
+        LATEST_LSN_WITHOUT_LOGICAL_QUERY: untyped
+
+        REPLICATION_LAG_QUERY: untyped
+
+        # host - The address of the database.
+        # load_balancer - The LoadBalancer that manages this Host.
+        def initialize: (untyped host, untyped load_balancer, ?port: untyped?) -> void
+
+        def connection: () -> untyped
+
+        # Disconnects the pool, once all connections are no longer in use.
+        #
+        # timeout - The time after which the pool should be forcefully
+        #           disconnected.
+        def disconnect!: (?timeout: ::Integer) -> (nil | untyped)
+
+        # Attempt to disconnect the pool if all connections are no longer in use.
+        # Returns true if the pool was disconnected, false if not.
+        def try_disconnect: () -> (true | false)
+
+        def force_disconnect!: () -> untyped
+
+        def pool_disconnect!: () -> untyped
+
+        def offline!: () -> untyped
+
+        # Returns true if the host is online.
+        def online?: () -> untyped
+
+        def refresh_status: () -> untyped
+
+        def check_replica_status?: () -> untyped
+
+        def replica_is_up_to_date?: () -> untyped
+
+        def replication_lag_below_threshold?: () -> (false | true)
+
+        # Returns true if the replica has replicated enough data to be useful.
+        def data_is_recent_enough?: () -> (untyped | false)
+
+        # Returns the replication lag time of this secondary in seconds as a
+        # float.
+        #
+        # This method will return nil if no lag time could be calculated.
+        def replication_lag_time: () -> untyped
+
+        # Returns the number of bytes this secondary is lagging behind the
+        # primary.
+        #
+        # This method will return nil if no lag size could be calculated.
+        def replication_lag_size: (?untyped location) -> untyped
+
+        def primary_write_location: () -> untyped
+
+        def database_replica_location: () -> untyped
+
+        # Returns true if this host has caught up to the given transaction
+        # write location.
+        #
+        # location - The transaction write location as reported by a primary.
+        def caught_up?: (untyped location) -> untyped
+
+        def query_and_release: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def query_and_release_old: (untyped sql) -> untyped
+
+        def query_and_release_fast_timeout: (untyped sql) -> untyped
+
+        private
+
+        def can_track_logical_lsn?: () -> untyped
+
+        # The LATEST_LSN_WITH_LOGICAL query requires permissions that may not be present in self-managed configurations.
+        # We fallback gracefully to the query that does not correctly handle logical replicas for such configurations.
+        def latest_lsn_query: () -> untyped
+
+        def ignore_replication_lag_time?: () -> untyped
+
+        def double_replication_lag_time?: () -> untyped
+
+        def low_timeout_for_host_queries?: () -> untyped
+      end
+    end
+  end
+end

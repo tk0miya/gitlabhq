@@ -1,0 +1,31 @@
+module Namespaces
+  module Groups
+    class ArchiveService < ::Groups::BaseService
+      include ::Namespaces::Groups::ArchiveEvents
+
+      NotAuthorizedError: untyped
+
+      AlreadyArchivedError: untyped
+
+      AncestorAlreadyArchivedError: untyped
+
+      ScheduledDeletionError: untyped
+
+      Error: untyped
+
+      UpdateError: untyped
+
+      def execute: () -> untyped
+
+      private
+
+      def archive_group: () -> untyped
+
+      def after_archive: () -> untyped
+
+      def unlink_project_forks: () -> untyped
+
+      def error_response: (untyped message) -> untyped
+    end
+  end
+end

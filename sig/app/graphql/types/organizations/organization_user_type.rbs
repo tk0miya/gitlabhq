@@ -1,0 +1,11 @@
+module Types
+  module Organizations
+    class OrganizationUserType < BaseObject
+      include ::UsersHelper
+
+      alias organization_user object
+
+      def badges: () -> untyped
+    end
+  end
+end

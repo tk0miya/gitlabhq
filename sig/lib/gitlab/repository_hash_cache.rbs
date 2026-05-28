@@ -1,0 +1,96 @@
+module Gitlab
+  class RepositoryHashCache
+    @repository: untyped
+
+    @namespace: untyped
+
+    @expires_in: untyped
+
+    @counter: untyped
+
+    @histogram: untyped
+
+    attr_reader repository: untyped
+
+    attr_reader namespace: untyped
+
+    attr_reader expires_in: untyped
+
+    RepositoryHashCacheError: untyped
+
+    InvalidKeysProvidedError: untyped
+
+    InvalidHashProvidedError: untyped
+
+    # @param repository [Repository]
+    # @param extra_namespace [String]
+    # @param expires_in [Integer] expiry time for hash store keys
+    def initialize: (untyped repository, ?extra_namespace: untyped?, ?expires_in: untyped) -> void
+
+    # @param type [String]
+    # @return [String]
+    def cache_key: (untyped type) -> ::String
+
+    # @param keys [String] one or multiple keys to delete
+    # @return [Integer] the number of keys successfully deleted
+    def delete: (*untyped keys) -> (0 | untyped)
+
+    # Check if the provided hash key exists in the hash.
+    #
+    # @param key [String]
+    # @param h_key [String] the key to check presence in Redis
+    # @return [True, False]
+    def key?: (untyped key, untyped h_key) -> untyped
+
+    # Read the values of a set of keys from the hash store, and return them
+    # as a hash of those keys and their values.
+    #
+    # @param key [String]
+    # @param hash_keys [Array<String>] an array of keys to retrieve from the store
+    # @return [Hash] a Ruby hash of the provided keys and their values from the store
+    def read_members: (untyped key, ?untyped hash_keys) -> untyped
+
+    # Write a hash to the store. All keys and values will be strings when stored.
+    #
+    # @param key [String]
+    # @param hash [Hash] the hash to be written to Redis
+    # @return [Boolean] whether all operations were successful or not
+    def write: (untyped key, untyped hash) -> untyped
+
+    # A variation on the `fetch` pattern of other cache stores. This method
+    # allows you to attempt to fetch a group of keys from the hash store, and
+    # for any keys that are missing values a block is then called to provide
+    # those values, which are then written back into Redis. Both sets of data
+    # are then combined and returned as one hash.
+    #
+    # @param key [String]
+    # @param h_keys [Array<String>] the keys to fetch or add to the cache
+    # @yieldparam missing_keys [Array<String>] the keys missing from the cache
+    # @yieldparam new_values [Hash] the hash to be populated by the block
+    # @return [Hash] the amalgamated hash of cached and uncached values
+    def fetch_and_add_missing: (untyped key, untyped h_keys) { (untyped, untyped) -> untyped } -> untyped
+
+    private
+
+    def cache: () -> untyped
+
+    def with: () { (?) -> untyped } -> untyped
+
+    # Take a hash and convert both keys and values to strings, for insertion into Redis.
+    #
+    # @param hash [Hash]
+    # @return [Hash] the stringified hash
+    def standardize_hash: (untyped hash) -> untyped
+
+    # Record metrics in Prometheus.
+    #
+    # @param key [String] the basic key, e.g. :merged_branch_names. Not record-specific.
+    # @param cache_values [Hash] the hash response from the cache read
+    # @param missing_keys [Array<String>] the array of missing keys from the cache read
+    def record_metrics: (untyped key, untyped cache_values, untyped missing_keys) -> untyped
+
+    def metrics_hit_counter: () -> untyped
+
+    def metrics_hit_histogram: () -> untyped
+  end
+end

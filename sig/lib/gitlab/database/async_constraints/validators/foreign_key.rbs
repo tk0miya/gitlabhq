@@ -1,0 +1,13 @@
+module Gitlab
+  module Database
+    module AsyncConstraints
+      module Validators
+        class ForeignKey < Base
+          private
+
+          def constraint_exists?: () -> untyped
+        end
+      end
+    end
+  end
+end

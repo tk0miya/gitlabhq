@@ -1,0 +1,15 @@
+module Ci
+  class CollectAggregatePipelineAnalyticsService < CollectPipelineAnalyticsServiceBase
+    extend ::Gitlab::Utils::Override
+
+    private
+
+    def fetch_response: () -> untyped
+
+    def calculate_aggregate_count: (untyped query, untyped result) -> (nil | untyped)
+
+    def calculate_aggregate_status_group_counts: (untyped query, untyped result) -> (nil | untyped)
+
+    def calculate_aggregate_duration_percentiles: (untyped query, untyped result) -> (nil | untyped)
+  end
+end

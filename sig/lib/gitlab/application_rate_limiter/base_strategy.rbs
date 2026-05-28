@@ -1,0 +1,16 @@
+module Gitlab
+  module ApplicationRateLimiter
+    class BaseStrategy
+      # Increment the rate limit count and return the new count value
+      def increment: (untyped cache_key, untyped expiry) -> untyped
+
+      # Return the rate limit count.
+      # Should be 0 if there is no data in the cache.
+      def read: (untyped cache_key) -> untyped
+
+      private
+
+      def with_redis: () { (?) -> untyped } -> untyped
+    end
+  end
+end

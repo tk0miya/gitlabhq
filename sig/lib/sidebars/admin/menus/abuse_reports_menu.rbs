@@ -1,0 +1,21 @@
+module Sidebars
+  module Admin
+    module Menus
+      class AbuseReportsMenu < ::Sidebars::Admin::BaseMenu
+        @pill_count: untyped
+
+        def link: () -> untyped
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "slight-frown"
+
+        def has_pill?: () -> true
+
+        def pill_count: () -> untyped
+
+        def active_routes: () -> { controller: :abuse_reports }
+      end
+    end
+  end
+end

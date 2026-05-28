@@ -1,0 +1,23 @@
+module Gitlab
+  module Database
+    module MigrationHelpers
+      module RestrictGitlabSchema
+        extend ActiveSupport::Concern
+
+        def exec_migration: (untyped conn, untyped direction) -> (nil | untyped)
+
+        private
+
+        def migration_skipped: () -> untyped
+
+        def validator_class: () -> untyped
+
+        def connection_validator_class: () -> untyped
+
+        def unmatched_schemas: () -> untyped
+
+        def allowed_schemas_for_connection: () -> untyped
+      end
+    end
+  end
+end

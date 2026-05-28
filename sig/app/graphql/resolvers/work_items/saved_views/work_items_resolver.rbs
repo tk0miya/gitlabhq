@@ -1,0 +1,11 @@
+module Resolvers
+  module WorkItems
+    module SavedViews
+      class WorkItemsResolver < BaseResolver
+        include ::WorkItems::LookAheadPreloads
+
+        def resolve: (**untyped pagination_args) -> nil
+      end
+    end
+  end
+end

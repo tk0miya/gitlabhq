@@ -1,0 +1,23 @@
+module Projects
+  module ImportExport
+    class RelationExportWorker
+      include ApplicationWorker
+
+      include ExceptionBacktrace
+
+      include Sidekiq::InterruptionsExhausted
+
+      MAX_INTERRUPTIONS_ERROR_MESSAGE: "Relation export process reached the maximum number of interruptions"
+
+      def self.find_relation_export: (untyped project_relation_export_id) -> untyped
+
+      def perform: (untyped project_relation_export_id, untyped user_id, ?::Hash[untyped, untyped] params) -> (nil | untyped)
+
+      def mark_relation_export_failed!: (untyped relation_export, untyped message, ?exception: untyped?) -> untyped
+
+      private
+
+      def user_banned?: (untyped user, untyped user_id, untyped relation_export) -> (false | true)
+    end
+  end
+end

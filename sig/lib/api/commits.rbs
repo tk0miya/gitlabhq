@@ -1,0 +1,11 @@
+module API
+  class Commits < ::API::Base
+    include ::API::Concerns::AiWorkflowsAccess
+
+    include APIGuard
+
+    include PaginationParams
+
+    include Helpers::Unidiff
+  end
+end

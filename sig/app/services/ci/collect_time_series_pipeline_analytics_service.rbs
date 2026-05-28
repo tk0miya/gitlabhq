@@ -1,0 +1,45 @@
+module Ci
+  class CollectTimeSeriesPipelineAnalyticsService < CollectPipelineAnalyticsServiceBase
+    @time_series_period: untyped
+
+    extend ::Gitlab::Utils::Override
+
+    include Gitlab::InternalEventsTracking
+
+    VALID_TIME_SERIES_PERIODS: ::Array[:day | :week | :month]
+
+    attr_reader time_series_period: untyped
+
+    def initialize: (from_time: untyped, to_time: untyped, ?time_series_period: ::Symbol, **untyped kwargs) -> void
+
+    private
+
+    def validate_arguments: () -> untyped
+
+    def fetch_response: () -> untyped
+
+    def timespan_bin_query_function: (untyped query) -> untyped
+
+    def calculate_time_series_count: (untyped query, untyped time_series) -> (nil | untyped)
+
+    def calculate_time_series_status_group_counts: (untyped query, untyped time_series) -> (nil | untyped)
+
+    def calculate_time_series_duration_percentiles: (untyped query, untyped time_series) -> (nil | untyped)
+
+    def beginning_of_time_window: () -> untyped
+
+    def next_time_window_period: (untyped time) -> untyped
+
+    def create_empty_time_series: () -> untyped
+
+    def round_percentiles: (untyped percentiles_by_date) -> untyped
+
+    def to_utc: (untyped timestamp) -> untyped
+
+    def group_and_sum_counts: (untyped counts_by_status_and_time) -> untyped
+
+    def execute_select_query: (untyped query) -> untyped
+
+    def collect_metrics: () -> (nil | untyped)
+  end
+end

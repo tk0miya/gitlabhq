@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Seed
+        module Processable
+          class ResourceGroup < Seed::Base
+            @processable: untyped
+
+            @resource_group_key: untyped
+
+            include Gitlab::Utils::StrongMemoize
+
+            attr_reader processable: untyped
+
+            attr_reader resource_group_key: untyped
+
+            def initialize: (untyped processable, untyped resource_group_key) -> void
+
+            def to_resource: () -> (nil | untyped)
+
+            private
+
+            def expanded_resource_group_key: () -> untyped
+
+            def variables: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

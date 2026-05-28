@@ -1,0 +1,13 @@
+module Onboarding
+  module Redirectable
+    extend ActiveSupport::Concern
+
+    private
+
+    def after_sign_up_path: () -> untyped
+
+    def path_for_signed_in_user: () -> untyped
+
+    def last_member_source_path: () -> untyped
+  end
+end

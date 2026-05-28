@@ -1,0 +1,45 @@
+# Instrumentation for cache efficiency metrics
+module Gitlab
+  module Cache
+    class Metrics
+      @cache_metadata: untyped
+
+      @counter: untyped
+
+      @histogram: untyped
+
+      @base_labels: untyped
+
+      DEFAULT_BUCKETS: ::Array[0 | 1 | 5]
+
+      def initialize: (untyped cache_metadata) -> void
+
+      # Increase cache hit counter
+      #
+      def increment_cache_hit: (?::Hash[untyped, untyped] labels) -> untyped
+
+      # Increase cache miss counter
+      #
+      def increment_cache_miss: (?::Hash[untyped, untyped] labels) -> untyped
+
+      # Measure the duration of cacheable action
+      #
+      # @example
+      #   observe_cache_generation do
+      #     cacheable_action
+      #   end
+      #
+      def observe_cache_generation: (?::Hash[untyped, untyped] labels) { () -> untyped } -> untyped
+
+      private
+
+      attr_reader cache_metadata: untyped
+
+      def counter: () -> untyped
+
+      def histogram: () -> untyped
+
+      def base_labels: () -> untyped
+    end
+  end
+end

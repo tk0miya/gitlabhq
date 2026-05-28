@@ -1,0 +1,17 @@
+module CustomerRelations
+  module Contacts
+    class BaseService < ::BaseGroupService
+      private
+
+      def allowed?: () -> untyped
+
+      def error: (untyped message) -> untyped
+
+      def organization_valid?: () -> untyped
+
+      def error_organization_invalid: () -> untyped
+
+      def error_no_permissions: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module WorkItems
+  class RollupableDates
+    @source: untyped
+
+    @can_rollup: untyped
+
+    include ::Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped source, can_rollup: untyped) -> void
+
+    def fixed?: () -> (true | false)
+
+    def start_date: () -> untyped
+
+    def start_date_fixed: () -> untyped
+
+    def due_date: () -> untyped
+
+    def due_date_fixed: () -> untyped
+
+    private
+
+    attr_reader source: untyped
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module GitalyClient
+    class PraefectInfoService
+      @repository: untyped
+
+      @gitaly_repo: untyped
+
+      @storage: untyped
+
+      include WithFeatureFlagActors
+
+      def initialize: (untyped repository) -> void
+
+      def replicas: () -> untyped
+    end
+  end
+end

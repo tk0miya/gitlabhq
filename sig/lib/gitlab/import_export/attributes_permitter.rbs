@@ -1,0 +1,75 @@
+# AttributesPermitter builds a hash of permitted attributes for
+# every model defined in import_export.yml that is used to validate and
+# filter out any attributes that are not permitted when doing Project/Group Import
+#
+# Each model's list includes:
+#   - attributes defined under included_attributes section
+#   - associations defined under project/group tree
+#   - methods defined under methods section
+#
+# Given the following import_export.yml example:
+# ```
+#   tree:
+#     project:
+#       - labels:
+#         - :priorities
+#   included_attributes:
+#     labels:
+#       - :title
+#       - :description
+#    methods:
+#      labels:
+#        - :type
+# ```
+#
+# Produces a list of permitted attributes:
+# ```
+#   Gitlab::ImportExport::AttributesPermitter.new.permitted_attributes
+#
+#   => { labels: [:priorities, :title, :description, :type] }
+# ```
+#
+# Filters out any other attributes from specific relation hash:
+# ```
+#   Gitlab::ImportExport::AttributesPermitter.new.permit(:labels, {id: 5, type: 'opened', description: 'test', sensitive_attribute: 'my_sensitive_attribute'})
+#
+#   => {:type=>"opened", :description=>"test"}
+# ```
+module Gitlab
+  module ImportExport
+    class AttributesPermitter
+      @config: untyped
+
+      @attributes_finder: untyped
+
+      @permitted_attributes: untyped
+
+      attr_reader permitted_attributes: untyped
+
+      # We want to use AttributesCleaner for these relations instead, in the future this should be removed to make sure
+      # we are using AttributesPermitter for every imported relation.
+      DISABLED_RELATION_NAMES: ::Array[:author | :issuable_sla]
+
+      def initialize: (?config: untyped) -> void
+
+      def permit: (untyped relation_sym, untyped relation_hash) -> untyped
+
+      def permitted_attributes_for: (untyped relation_sym) -> untyped
+
+      def permitted_attributes_defined?: (untyped relation_sym) -> untyped
+
+      private
+
+      def build_permitted_attributes: () -> untyped
+
+      # Deep traverse relations tree to build a list of allowed model relations
+      def build_associations: () -> untyped
+
+      def build_attributes: () -> untyped
+
+      def build_methods: () -> untyped
+
+      def add_permitted_attributes: (untyped model_name, untyped attributes) -> untyped
+    end
+  end
+end

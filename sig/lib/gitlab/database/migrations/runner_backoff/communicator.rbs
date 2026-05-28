@@ -1,0 +1,43 @@
+module Gitlab
+  module Database
+    module Migrations
+      module RunnerBackoff
+        class Communicator
+          @migration: untyped
+
+          @logger: untyped
+
+          @exclusive_lease: untyped
+
+          EXPIRY: untyped
+
+          KEY: "gitlab/database/migration/runner/backoff"
+
+          def self.execute_with_lock: (untyped migration) { (?) -> untyped } -> untyped
+
+          def self.backoff_runner?: () -> (false | untyped)
+
+          def initialize: (untyped migration, ?logger: untyped) -> void
+
+          def execute_with_lock: () ?{ () -> untyped } -> untyped
+
+          private
+
+          attr_reader logger: untyped
+
+          attr_reader migration: untyped
+
+          def set_lock: () -> untyped
+
+          def remove_lock: () -> untyped
+
+          def exclusive_lease: () -> untyped
+
+          def log: (untyped params) -> untyped
+
+          def log_params: () -> { class: untyped }
+        end
+      end
+    end
+  end
+end

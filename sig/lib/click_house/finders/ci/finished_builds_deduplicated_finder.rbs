@@ -1,0 +1,78 @@
+module ClickHouse
+  module Finders
+    module Ci
+      class FinishedBuildsDeduplicatedFinder
+        @inner_query: untyped
+
+        @query_builder: untyped
+
+        @selected_fields: untyped
+
+        include ActiveRecord::Sanitization::ClassMethods
+
+        include Concerns::FinishedBuildsAggregations
+
+        SUBQUERY_ALIAS: "finished_builds"
+
+        TABLE_NAME: "ci_finished_builds"
+
+        DEFAULT_ARG_MAX_COLUMNS: ::Array[:project_id | :pipeline_id | :status | :duration | :name | :stage_name | :group_name]
+
+        attr_reader query_builder: untyped
+
+        def initialize: (?inner_query: untyped?, ?outer_query: untyped?, ?selected_fields: bool) -> void
+
+        def execute: () -> untyped
+
+        # rubocop: disable CodeReuse/ActiveRecord -- this is a ClickHouse query builder class using Arel
+        def for_project: (untyped project_id) -> untyped
+
+        def where: (untyped conditions) -> untyped
+
+        def select: (*untyped fields) -> (self | untyped)
+
+        def filter_by_job_name: (untyped term) -> untyped
+
+        def filter_deleted: (?include_deleted: bool) -> (self | untyped)
+
+        def apply_finished_at_lower_bound: (untyped from_time) -> untyped
+
+        def limit: (untyped count) -> untyped
+
+        def offset: (untyped count) -> untyped
+
+        def final_query: () -> untyped
+
+        private
+
+        attr_reader inner_query: untyped
+
+        attr_reader outer_query: untyped
+
+        attr_reader selected_fields: untyped
+
+        def base_inner_query: () -> untyped
+
+        def base_outer_query: () -> untyped
+
+        def default_inner_query: () -> untyped
+
+        def with_inner_query: (untyped new_inner) -> untyped
+
+        def with_outer_query: (untyped new_outer) -> untyped
+
+        def with_queries: (inner_query: untyped, outer_query: untyped, selected_fields: untyped) -> untyped
+
+        def fields_with_arg_max: (*untyped fields) -> untyped
+
+        def add_aggregation_select: (untyped expression, ?requires_fields: untyped) -> untyped
+
+        def apply_order: (untyped field, untyped direction) -> untyped
+
+        def apply_group: (*untyped columns) -> untyped
+
+        def apply_pipeline_filter: (untyped pipelines) -> untyped
+      end
+    end
+  end
+end

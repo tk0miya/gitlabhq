@@ -1,0 +1,39 @@
+class GitRefsFinder
+  @repository: untyped
+
+  @params: untyped
+
+  @next_cursor: untyped
+
+  include Gitlab::Utils::StrongMemoize
+
+  attr_reader next_cursor: untyped
+
+  def initialize: (untyped repository, ?::Hash[untyped, untyped] params) -> void
+
+  attr_reader repository: untyped
+
+  attr_reader params: untyped
+
+  def by_search: (untyped refs) -> untyped
+
+  def search: () -> untyped
+
+  def sort: () -> untyped
+
+  def pagination_params: () -> { limit: untyped, page_token: untyped }
+
+  def per_page: () -> (nil | untyped)
+
+  def filter_refs: (untyped refs, untyped term) -> untyped
+
+  def set_exact_match_as_first_result: (untyped matches, untyped term) -> untyped
+
+  def find_exact_match_index: (untyped matches, untyped term) -> untyped
+
+  def regex_search?: () -> untyped
+
+  def unescape_regex_operators: (untyped regex_string) -> untyped
+
+  def set_next_cursor: (untyped records) -> (nil | untyped)
+end

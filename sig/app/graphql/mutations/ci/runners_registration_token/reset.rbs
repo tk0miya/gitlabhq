@@ -1,0 +1,17 @@
+module Mutations
+  module Ci
+    module RunnersRegistrationToken
+      class Reset < BaseMutation
+        ScopeID: untyped
+
+        def resolve: (type: untyped, ?id: untyped?) -> { token: untyped, errors: untyped }
+
+        private
+
+        def find_object: (type: untyped, ?id: untyped?) -> untyped
+
+        def reset_token: (untyped scope) -> (nil | untyped)
+      end
+    end
+  end
+end

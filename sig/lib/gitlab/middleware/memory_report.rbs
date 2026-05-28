@@ -1,0 +1,17 @@
+module Gitlab
+  module Middleware
+    class MemoryReport
+      @app: untyped
+
+      def initialize: (untyped app) -> void
+
+      def call: (untyped env) -> untyped
+
+      private
+
+      def rendering_memory_profiler?: (untyped request) -> untyped
+
+      def report_to_string: (untyped report) -> untyped
+    end
+  end
+end

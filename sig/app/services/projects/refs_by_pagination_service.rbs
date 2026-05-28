@@ -1,0 +1,31 @@
+# Optimally fetches project refs (branches/tags)
+# using Gitaly page-token pagination (efficient, forward-only)
+module Projects
+  class RefsByPaginationService
+    @protected_ref: untyped
+
+    @project: untyped
+
+    @params: untyped
+
+    include Gitlab::Routing
+
+    def initialize: (untyped protected_ref, untyped project, ?::Hash[untyped, untyped] params) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader protected_ref: untyped
+
+    attr_reader project: untyped
+
+    attr_reader params: untyped
+
+    def ref_type: () -> untyped
+
+    def refs_with_links: (untyped refs, next_cursor: untyped) -> ::Array[untyped]
+
+    def refs_filtered_path: (?::Hash[untyped, untyped] options) -> (untyped | untyped | nil)
+  end
+end

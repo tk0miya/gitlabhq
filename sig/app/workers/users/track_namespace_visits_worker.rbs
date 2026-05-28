@@ -1,0 +1,11 @@
+module Users
+  class TrackNamespaceVisitsWorker
+    include ApplicationWorker
+
+    GROUPS: "groups"
+
+    PROJECTS: "projects"
+
+    def perform: (untyped entity_type, untyped entity_id, untyped user_id, untyped time) -> (nil | untyped)
+  end
+end

@@ -1,0 +1,54 @@
+module Gitlab
+  module X509
+    class Certificate
+      @key: untyped
+
+      @cert: untyped
+
+      @ca_certs: untyped
+
+      CERT_REGEX: ::Regexp
+
+      attr_reader key: untyped
+
+      attr_reader cert: untyped
+
+      attr_reader ca_certs: untyped
+
+      def key_string: () -> untyped
+
+      def cert_string: () -> untyped
+
+      def ca_certs_string: () -> (untyped | nil)
+
+      extend ::Gitlab::Utils::StrongMemoize
+
+      def self.default_cert_dir: () -> untyped
+
+      def self.default_cert_file: () -> untyped
+
+      def self.from_strings: (untyped key_string, untyped cert_string, ?untyped? ca_certs_string) -> untyped
+
+      def self.from_files: (untyped key_path, untyped cert_path, ?untyped? ca_certs_path) -> untyped
+
+      # Returns all top-level, readable files in the default CA cert directory
+      def self.ca_certs_paths: () -> untyped
+
+      # Returns a concatenated array of Strings, each being a PEM-coded CA certificate.
+      def self.ca_certs_bundle: () -> untyped
+
+      def self.reset_ca_certs_bundle: () -> untyped
+
+      def self.reset_default_cert_paths: () -> untyped
+
+      # Returns an array of OpenSSL::X509::Certificate objects, empty array if none found
+      #
+      # Ruby OpenSSL::X509::Certificate.new will only load the first
+      # certificate if a bundle is presented, this allows to parse multiple certs
+      # in the same file
+      def self.load_ca_certs_bundle: (untyped ca_certs_string) -> (::Array[untyped] | untyped)
+
+      def initialize: (untyped key, untyped cert, ?untyped? ca_certs) -> void
+    end
+  end
+end

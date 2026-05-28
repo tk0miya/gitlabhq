@@ -1,0 +1,21 @@
+module Gitlab
+  module TopologyServiceClient
+    class ClaimService < BaseService
+      include Singleton
+
+      def begin_update: (?create_records: untyped, ?destroy_records: untyped, ?deadline: untyped?) -> untyped
+
+      def commit_update: (untyped uuid, ?deadline: untyped?) -> untyped
+
+      def rollback_update: (untyped uuid, ?deadline: untyped?) -> untyped
+
+      def list_leases: (?cursor: untyped?, ?limit: untyped?, ?deadline: untyped?) -> untyped
+
+      def list_records: (?source_type: untyped?, ?bucket_types: untyped?, ?source_id_gt: untyped?, ?source_id_lte: untyped?, ?deadline: untyped?) -> untyped
+
+      private
+
+      def service_class: () -> untyped
+    end
+  end
+end

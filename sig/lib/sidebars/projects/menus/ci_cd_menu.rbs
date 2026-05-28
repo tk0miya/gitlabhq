@@ -1,0 +1,35 @@
+module Sidebars
+  module Projects
+    module Menus
+      class CiCdMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> (nil | untyped)
+
+        def extra_container_html_options: () -> { class: "shortcuts-pipelines" }
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "rocket"
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def pipelines_menu_item: () -> untyped
+
+        def pipelines_routes: () -> ::Array["pipelines#index" | "pipelines#show" | "pipelines#new" | "pipelines#dag" | "pipelines#failures" | "pipelines#builds" | "pipelines#test_report"]
+
+        def pipelines_editor_menu_item: () -> untyped
+
+        def jobs_menu_item: () -> untyped
+
+        def artifacts_menu_item: () -> untyped
+
+        def pipeline_schedules_menu_item: () -> untyped
+
+        def attestations_menu_item: () -> untyped
+
+        def show_attestations_menu?: () -> untyped
+      end
+    end
+  end
+end

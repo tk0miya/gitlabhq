@@ -1,0 +1,51 @@
+class LicenseTemplate
+  @key: untyped
+
+  @name: untyped
+
+  @project: untyped
+
+  @category: untyped
+
+  @content: untyped
+
+  @nickname: untyped
+
+  @url: untyped
+
+  @meta: untyped
+
+  PROJECT_TEMPLATE_REGEX: ::Regexp
+
+  YEAR_TEMPLATE_REGEX: ::Regexp
+
+  FULLNAME_TEMPLATE_REGEX: ::Regexp
+
+  attr_reader key: untyped
+
+  attr_reader name: untyped
+
+  attr_reader project: untyped
+
+  attr_reader category: untyped
+
+  attr_reader nickname: untyped
+
+  attr_reader url: untyped
+
+  attr_reader meta: untyped
+
+  def initialize: (key: untyped, name: untyped, project: untyped, category: untyped, content: untyped, ?nickname: untyped?, ?url: untyped?, ?meta: ::Hash[untyped, untyped]) -> void
+
+  def project_id: () -> untyped
+
+  def popular?: () -> untyped
+
+  alias featured? popular?
+
+  # Returns the text of the license
+  def content: () -> untyped
+
+  # Populate placeholders in the LicenseTemplate content
+  def resolve!: (?project_name: untyped?, ?fullname: untyped?, ?year: untyped) -> self
+end

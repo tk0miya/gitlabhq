@@ -1,0 +1,49 @@
+module RapidDiffs
+  module Viewers
+    class NoPreviewComponent < ViewerComponent
+      include Gitlab::Utils::StrongMemoize
+
+      def self.viewer_name: () -> "no_preview"
+
+      def virtual_rendering_params: () -> (nil | { paragraphs_count: untyped })
+
+      private
+
+      def mode_changed?: () -> untyped
+
+      def change_description: () -> untyped
+
+      def mode_changed_description: () -> (nil | untyped)
+
+      def has_description?: () -> untyped
+
+      def no_preview_reason: () -> untyped
+
+      def matched_no_preview_reason: () -> (nil | :too_large | :generated_collapsed | :collapsed | :not_diffable | :whitespace_only | untyped)
+
+      def no_preview_reasons: () -> { too_large: untyped, generated_collapsed: untyped, collapsed: untyped, not_diffable: untyped, whitespace_only: untyped, file_type: untyped }
+
+      def generated_collapsed_message: () -> untyped
+
+      def expandable_inline?: () -> untyped
+
+      def expandable?: () -> untyped
+
+      def file_changed?: () -> untyped
+
+      def important?: () -> untyped
+
+      def old_blob_path: () -> untyped
+
+      def new_blob_path: () -> untyped
+
+      def blob_path: () -> untyped
+
+      def action_button: (**untyped args) { () -> untyped } -> untyped
+
+      def project: () -> untyped
+
+      def paragraphs_count: () -> untyped
+    end
+  end
+end

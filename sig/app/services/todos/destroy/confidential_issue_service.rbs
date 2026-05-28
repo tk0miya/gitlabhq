@@ -1,0 +1,32 @@
+module Todos
+  module Destroy
+    # Service class for deleting todos that belongs to confidential issues.
+    # It deletes todos for users that are not at least planners, issue author or assignee.
+    #
+    # Accepts issue_id or project_id as argument.
+    # When issue_id is passed it deletes matching todos for one confidential issue.
+    # When project_id is passed it deletes matching todos for all confidential issues of the project.
+    class ConfidentialIssueService < ::Todos::Destroy::BaseService
+      @issues: untyped
+
+      attr_reader issues: untyped
+
+      def initialize: (?issue_id: untyped?, ?project_id: untyped?) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def delete_todos: () -> untyped
+
+      def project_confidential_issues: (untyped project_id) -> untyped
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def todos: () -> untyped
+
+      def todos_to_remove?: () -> untyped
+
+      def project_ids: () -> untyped
+    end
+  end
+end

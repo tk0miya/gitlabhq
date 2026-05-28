@@ -1,0 +1,32 @@
+module Gitlab
+  module Analytics
+    module CycleAnalytics
+      class Median
+        @stage: untyped
+
+        @query: untyped
+
+        @params: untyped
+
+        include StageQueryHelpers
+
+        def initialize: (stage: untyped, query: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        # rubocop: disable CodeReuse/ActiveRecord
+        def seconds: () -> untyped
+
+        def days: () -> (untyped | nil)
+
+        private
+
+        attr_reader stage: untyped
+
+        attr_reader params: untyped
+
+        def percentile_cont: () -> untyped
+
+        def median_duration_in_seconds: () -> untyped
+      end
+    end
+  end
+end

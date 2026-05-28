@@ -1,0 +1,79 @@
+module Gitlab
+  module Usage
+    module Metrics
+      module Instrumentations
+        class DatabaseMetric < BaseMetric
+          self.@metric_start: untyped
+
+          self.@metric_finish: untyped
+
+          self.@metric_relation: untyped
+
+          self.@metric_options: untyped
+
+          self.@metric_timestamp_column: untyped
+
+          self.@metric_operation: untyped
+
+          self.@column: untyped
+
+          self.@metric_operation_block: untyped
+
+          self.@cache_key: untyped
+
+          UnimplementedOperationError: untyped
+
+          IMPLEMENTED_OPERATIONS: ::Array[:count | :distinct_count | :estimate_batch_distinct_count | :sum | :average]
+
+          def self.start: () ?{ (?) -> untyped } -> untyped
+
+          def self.finish: () ?{ (?) -> untyped } -> untyped
+
+          def self.relation: (?untyped? relation_proc) { (?) -> untyped } -> (nil | untyped)
+
+          def self.metric_options: () ?{ (?) -> untyped } -> untyped
+
+          def self.timestamp_column: (untyped symbol) -> untyped
+
+          def self.operation: (untyped symbol, ?column: untyped?) ?{ (?) -> untyped } -> untyped
+
+          def self.cache_start_and_finish_as: (untyped cache_key) -> untyped
+
+          attr_reader self.metric_operation: untyped
+
+          attr_reader self.metric_relation: untyped
+
+          attr_reader self.metric_start: untyped
+
+          attr_reader self.metric_finish: untyped
+
+          attr_reader self.metric_operation_block: untyped
+
+          attr_reader self.column: untyped
+
+          attr_reader self.cache_key: untyped
+
+          attr_reader self.metric_timestamp_column: untyped
+
+          def value: () -> untyped
+
+          def to_sql: () -> untyped
+
+          def instrumentation: () -> untyped
+
+          private
+
+          def start: () -> untyped
+
+          def finish: () -> untyped
+
+          def relation: () -> untyped
+
+          def time_constraints: () -> untyped
+
+          def get_or_cache_batch_ids: () -> ::Array[untyped]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Gitlab
+  module Redis
+    class RepositoryCache < ::Gitlab::Redis::Wrapper
+      self.@cache_store: untyped
+
+      # We create a subclass only for the purpose of differentiating between different stores in cache metrics
+      RepositoryCacheStore: untyped
+
+      # The data we store on RepositoryCache used to be stored on Cache.
+      def self.config_fallback: () -> untyped
+
+      def self.cache_store: () -> untyped
+    end
+  end
+end

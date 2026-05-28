@@ -1,0 +1,13 @@
+module SendsBlob
+  extend ActiveSupport::Concern
+
+  def send_blob: (untyped repository, untyped blob, ?inline: bool, ?allow_caching: bool) -> (nil | untyped | untyped)
+
+  private
+
+  def cached_blob?: (untyped blob, ?allow_caching: bool) -> untyped
+
+  def send_lfs_object: (untyped blob, untyped project) -> untyped
+
+  def find_lfs_object: (untyped blob) -> untyped
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module SubscriptionPortal
+    def self.registration_validation_form_id: () -> "cc_registration_validation"
+
+    def self.subscription_portal_admin_email: () -> untyped
+
+    def self.subscription_portal_admin_token: () -> untyped
+
+    def self.renewal_service_email: () -> "renewals-service@customers.gitlab.com"
+
+    def self.default_staging_customer_portal_url: () -> "https://customers.staging.gitlab.com"
+
+    def self.default_production_customer_portal_url: () -> "https://customers.gitlab.com"
+  end
+end
+
+Gitlab::SubscriptionPortal::RENEWAL_SERVICE_EMAIL: untyped
+
+Gitlab::SubscriptionPortal::REGISTRATION_VALIDATION_FORM_ID: untyped
+
+Gitlab::SubscriptionPortal::SUBSCRIPTION_PORTAL_ADMIN_EMAIL: untyped
+
+Gitlab::SubscriptionPortal::SUBSCRIPTION_PORTAL_ADMIN_TOKEN: untyped

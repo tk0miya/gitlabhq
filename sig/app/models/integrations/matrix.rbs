@@ -1,0 +1,25 @@
+module Integrations
+  class Matrix < Integration
+    include Base::ChatNotification
+
+    MATRIX_HOSTNAME: "%{hostname}/_matrix/client/v3/rooms/%{roomId}/send/m.room.message/"
+
+    def self.title: () -> "Matrix notifications"
+
+    def self.description: () -> untyped
+
+    def self.to_param: () -> "matrix"
+
+    def self.help: () -> untyped
+
+    def self.supported_events: () -> untyped
+
+    private
+
+    def set_webhook: () -> (nil | untyped)
+
+    def notify: (untyped message, untyped _opts) -> untyped
+
+    def custom_data: (untyped data) -> untyped
+  end
+end

@@ -1,0 +1,18 @@
+module Gitlab
+  module Database
+    module BackgroundMigration
+      module RakeTask
+        def connection_and_id_from_params: (untyped migration_id) -> ::Array[untyped]
+
+        # rubocop:disable Rails/Output -- We do want to write to stdout
+        def print_error: (untyped msg, ?force_exit: bool) -> untyped
+
+        def print_message: (untyped msg, ?force_exit: bool) -> untyped
+
+        def print_table: (untyped data, ?headers: bool) -> (nil | untyped)
+
+        def print_row: (untyped row, untyped column_widths) -> untyped
+      end
+    end
+  end
+end

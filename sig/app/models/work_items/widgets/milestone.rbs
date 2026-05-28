@@ -1,0 +1,11 @@
+module WorkItems
+  module Widgets
+    class Milestone < Base
+      def self.quick_action_commands: () -> ::Array[:milestone | :remove_milestone]
+
+      def self.quick_action_params: () -> ::Array[:milestone_id]
+
+      def self.sorting_keys: () -> { milestone_due_asc: { description: "Milestone due date by ascending order." }, milestone_due_desc: { description: "Milestone due date by descending order." } }
+    end
+  end
+end

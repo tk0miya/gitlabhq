@@ -1,0 +1,37 @@
+module Gitlab
+  module Ci
+    module Artifacts
+      class DecompressedArtifactSizeValidator
+        @file: untyped
+
+        @file_path: untyped
+
+        @file_format: untyped
+
+        @max_bytes: untyped
+
+        DEFAULT_MAX_BYTES: untyped
+
+        FILE_FORMAT_VALIDATORS: { gzip: untyped }
+
+        FileDecompressionError: untyped
+
+        def initialize: (file: untyped, file_format: untyped, ?max_bytes: untyped) -> void
+
+        def validate!: () -> (nil | untyped)
+
+        private
+
+        attr_reader file_path: untyped
+
+        attr_reader file: untyped
+
+        attr_reader file_format: untyped
+
+        attr_reader max_bytes: untyped
+
+        def valid_on_storage?: (untyped validator_class) -> untyped
+      end
+    end
+  end
+end

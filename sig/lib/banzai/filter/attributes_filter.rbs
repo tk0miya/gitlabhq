@@ -1,0 +1,33 @@
+module Banzai
+  module Filter
+    # Looks for attributes that are specified for an element.  Follows the basic syntax laid out
+    # in https://github.com/jgm/commonmark-hs/blob/master/commonmark-extensions/test/attributes.md
+    # For example,
+    #   ![](http://example.com/image.jpg){width=50%}
+    #
+    # However we currently have the following limitations:
+    # - only support images
+    # - only support the `width` and `height` attributes
+    # - attributes can not span multiple lines
+    # - unsupported attributes are thrown away
+    class AttributesFilter < HTML::Pipeline::Filter
+      prepend Concerns::PipelineTimingCheck
+
+      CSS: "img"
+
+      XPATH: untyped
+
+      ATTRIBUTES_PATTERN: ::Regexp
+
+      WIDTH_HEIGHT_REGEX: ::Regexp
+
+      VALID_SIZE_REGEX: ::Regexp
+
+      def call: () -> untyped
+
+      private
+
+      def valid_size?: (untyped size) -> untyped
+    end
+  end
+end

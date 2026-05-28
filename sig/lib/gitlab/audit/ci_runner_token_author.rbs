@@ -1,0 +1,24 @@
+module Gitlab
+  module Audit
+    class CiRunnerTokenAuthor < Gitlab::Audit::NullAuthor
+      @entity_type: untyped
+
+      @entity_path: untyped
+
+      attr_reader entity_type: untyped
+
+      attr_reader entity_path: untyped
+
+      # Represents a CI Runner token (registration or authentication)
+      #
+      # @param ["gitlab_instance", "Group", "Project"] entity_type type of the scope that the token applies to
+      # @param [String] entity_path full path to the scope that the token applies to
+      # @param [String] runner_authentication_token authentication token used in a runner registration/un-registration
+      #   operation
+      # @param [String] runner_registration_token authentication token used in a runner registration operation
+      def initialize: (entity_type: untyped, entity_path: untyped, ?runner_authentication_token: untyped?, ?runner_registration_token: untyped?) -> void
+
+      def full_path: () -> untyped
+    end
+  end
+end

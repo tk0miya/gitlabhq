@@ -1,0 +1,57 @@
+class Groups::ApplicationController < ApplicationController
+  @group: untyped
+
+  @projects: untyped
+
+  @group_projects_with_subgroups: untyped
+
+  @group_projects_sort: untyped
+
+  include RoutableActions
+
+  include EnforcesStepUpAuthenticationForNamespace
+
+  include ControllerWithCrossProjectAccessCheck
+
+  include SortingHelper
+
+  include SortingPreference
+
+  private
+
+  def group: () -> untyped
+
+  def group_projects: () -> untyped
+
+  def group_projects_with_subgroups: () -> untyped
+
+  def authorize_admin_group!: () -> (untyped | nil)
+
+  def authorize_create_deploy_token!: () -> (untyped | nil)
+
+  def authorize_destroy_deploy_token!: () -> (untyped | nil)
+
+  def authorize_admin_group_member!: () -> (untyped | nil)
+
+  def authorize_billings_page!: () -> (untyped | nil)
+
+  def authorize_read_group_member!: () -> (untyped | nil)
+
+  def build_canonical_path: (untyped group) -> untyped
+
+  def set_sorting: () -> (untyped | nil)
+
+  def has_project_list?: () -> false
+
+  def validate_crm_group!: () -> (untyped | nil)
+
+  def authorize_action!: (untyped action) -> (untyped | nil)
+
+  def respond_to_missing?: (untyped method, *untyped args) -> untyped
+
+  def method_missing: (untyped method_sym, *untyped arguments) { (?) -> untyped } -> untyped
+
+  def enforce_step_up_auth_for_namespace: () -> untyped
+
+  def set_group_markdown_flags: () -> untyped
+end

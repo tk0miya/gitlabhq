@@ -1,0 +1,19 @@
+module API
+  module Helpers
+    # Helpers module for API::Integrations
+    #
+    # The data structures inside this model are returned using class methods,
+    # allowing EE to extend them where necessary.
+    module IntegrationsHelpers
+      def self.chat_notification_channels: () -> ::Array[{ required: false, name: :push_channel, type: untyped, desc: "The name of the channel to receive push_events notifications" } | { required: false, name: :issue_channel, type: untyped, desc: "The name of the channel to receive issues_events notifications" } | { required: false, name: :incident_channel, type: untyped, desc: "The name of the channel to receive incident_events notifications" } | { required: false, name: :alert_channel, type: untyped, desc: "The name of the channel to receive alert_events notifications" } | { required: false, name: :confidential_issue_channel, type: untyped, desc: "The name of the channel to receive confidential_issues_events notifications" } | { required: false, name: :merge_request_channel, type: untyped, desc: "The name of the channel to receive merge_requests_events notifications" } | { required: false, name: :note_channel, type: untyped, desc: "The name of the channel to receive note_events notifications" } | { required: false, name: :confidential_note_channel, type: untyped, desc: "The name of the channel to receive confidential_note_events notifications" } | { required: false, name: :tag_push_channel, type: untyped, desc: "The name of the channel to receive tag_push_events notifications" } | { required: false, name: :deployment_channel, type: untyped, desc: "The name of the channel to receive deployment_events notifications" } | { required: false, name: :pipeline_channel, type: untyped, desc: "The name of the channel to receive pipeline_events notifications" } | { required: false, name: :wiki_page_channel, type: untyped, desc: "The name of the channel to receive wiki_page_events notifications" }]
+
+      def self.integrations: () -> { "apple-app-store" => untyped, "asana" => untyped, "assembla" => untyped, "bamboo" => untyped, "bugzilla" => untyped, "buildkite" => untyped, "campfire" => untyped, "confluence" => untyped, "custom-issue-tracker" => untyped, "datadog" => untyped, "diffblue-cover" => untyped, "discord" => untyped, "drone-ci" => untyped, "emails-on-push" => untyped, "external-wiki" => untyped, "gitlab-slack-application" => untyped, "google-play" => untyped, "hangouts-chat" => untyped, "harbor" => untyped, "irker" => untyped, "jenkins" => untyped, "jira" => untyped, "jira-cloud-app" => untyped, "linear" => untyped, "matrix" => untyped, "mattermost-slash-commands" => untyped, "packagist" => untyped, "phorge" => untyped, "pipelines-email" => untyped, "pivotaltracker" => untyped, "pumble" => untyped, "pushover" => untyped, "redmine" => untyped, "ewm" => untyped, "youtrack" => untyped, "clickup" => untyped, "slack" => untyped, "microsoft-teams" => untyped, "mattermost" => untyped, "teamcity" => untyped, "telegram" => untyped, "unify-circuit" => untyped, "webex-teams" => untyped, "zentao" => untyped, "squash-tm" => untyped }
+
+      def self.integration_classes: () -> ::Array[untyped]
+
+      def self.development_integration_classes: () -> ::Array[untyped]
+
+      def self.inheritance_field: () -> { required: false, name: :use_inherited_settings, type: untyped, desc: "Indicates whether to inherit the default settings. Defaults to `false`." }
+    end
+  end
+end

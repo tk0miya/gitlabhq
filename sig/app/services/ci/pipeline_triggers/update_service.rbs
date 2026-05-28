@@ -1,0 +1,27 @@
+module Ci
+  module PipelineTriggers
+    class UpdateService
+      @current_user: untyped
+
+      @description: untyped
+
+      @trigger: untyped
+
+      include Gitlab::Allowable
+
+      attr_reader current_user: untyped
+
+      attr_reader description: untyped
+
+      attr_reader trigger: untyped
+
+      def initialize: (user: untyped, trigger: untyped, description: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      def update_params: () -> { description: untyped }
+    end
+  end
+end

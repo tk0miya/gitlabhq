@@ -1,0 +1,41 @@
+class KeysFinder
+  @params: untyped
+
+  InvalidFingerprint: untyped
+
+  GitLabAccessDeniedError: untyped
+
+  FINGERPRINT_ATTRIBUTES: { "sha256" => "fingerprint_sha256", "md5" => "fingerprint" }
+
+  def initialize: (untyped params) -> void
+
+  def execute: () -> untyped
+
+  private
+
+  attr_reader params: untyped
+
+  def by_key_type: () -> untyped
+
+  def sort: (untyped keys) -> untyped
+
+  def by_users: (untyped keys) -> untyped
+
+  def by_created_before: (untyped keys) -> untyped
+
+  def by_created_after: (untyped keys) -> untyped
+
+  def by_expires_before: (untyped keys) -> untyped
+
+  def by_expires_after: (untyped keys) -> untyped
+
+  def by_fingerprint: (untyped keys) -> untyped
+
+  def valid_fingerprint_param?: () -> (untyped | false)
+
+  def fingerprint_query: () -> untyped
+
+  def fingerprint_type: () -> ("sha256" | "md5")
+
+  def fingerprint: () -> untyped
+end

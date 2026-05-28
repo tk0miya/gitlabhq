@@ -1,0 +1,29 @@
+module Gitlab
+  module CycleAnalytics
+    module Summary
+      class Issue < Base
+        @project: untyped
+
+        @options: untyped
+
+        @current_user: untyped
+
+        @value: untyped
+
+        def initialize: (project: untyped, options: untyped, current_user: untyped) -> void
+
+        def identifier: () -> :issues
+
+        def title: () -> untyped
+
+        def value: () -> untyped
+
+        private
+
+        def issues_count: () -> untyped
+
+        def finder_params: () -> untyped
+      end
+    end
+  end
+end

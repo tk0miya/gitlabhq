@@ -1,0 +1,70 @@
+module Gitlab
+  module Middleware
+    # InternalApiAuthenticator provides authentication support to JsonValidation middleware
+    #   - verifies internal API authentication before JSON body parsing occurs
+    #   - routes the requests to appropriate verification methods.
+    class InternalApiAuthenticator
+      @request: untyped
+
+      @path: untyped
+
+      @headers: untyped
+
+      INTERNAL_AUTH_ROUTES: ::Array[{ description: "GitLab Subscriptions - CustomersDot", patterns: ::Array[::Regexp], verifier: :verify_subscriptions } | { description: "AppSec::Dast::SiteValidations", patterns: ::Array[::Regexp], verifier: :verify_dast_job } | { description: "Search::Zoekt", patterns: ::Array[::Regexp], verifier: :verify_shell } | { description: "Observability", patterns: ::Array[::Regexp], verifier: :verify_workhorse } | { description: "Secrets Manager", patterns: ::Array[::Regexp], verifier: :verify_openbao } | { description: "CI::JobRouter", patterns: ::Array[::Regexp], verifier: :verify_kas } | { description: "Internal Base Access", patterns: ::Array[::Regexp], verifier: :verify_shell } | { description: "Error Tracking Service", patterns: ::Array[::Regexp], verifier: :verify_error_tracking } | { description: "Kubernetes(KAS)", patterns: ::Array[::Regexp], verifier: :verify_kas } | { description: "Mail Room", patterns: ::Array[::Regexp], verifier: :verify_mailroom } | { description: "Shellhorse", patterns: ::Array[::Regexp], verifier: :verify_shell_or_workhorse } | { description: "Workhorse", patterns: ::Array[::Regexp], verifier: :verify_workhorse } | { description: "Coverage(Coverband)", patterns: ::Array[::Regexp], verifier: :verify_coverage }]
+
+      def self.verify!: (untyped request) -> untyped
+
+      def initialize: (untyped request) -> void
+
+      def verify!: () -> untyped
+
+      # Gitlab Subscriptions
+      def verify_subscriptions: () -> untyped
+
+      # Kubernetes
+      def verify_kas: () -> untyped
+
+      # Observability + Workhorse
+      def verify_workhorse: () -> untyped
+
+      # InternalBase/Search Zoekt
+      def verify_shell: () -> untyped
+
+      def verify_shell_or_workhorse: () -> untyped
+
+      # Openbao auth logic - from API::Internal::SecretsManager#openbao_authentication_token_secret
+      # TODO - refactor into a helper to be used by api endpoint and here
+      def verify_openbao: () -> untyped
+
+      # Dast::SiteValidations
+      def verify_dast_job: () -> untyped
+
+      def verify_mailroom: () -> untyped
+
+      def verify_error_tracking: () -> untyped
+
+      # API::Internal::Coverage
+      def verify_coverage: () -> true
+
+      private
+
+      attr_reader request: untyped
+
+      attr_reader path: untyped
+
+      attr_reader headers: untyped
+
+      def relative_url: () -> untyped
+
+      # This matches the way gems/grape-2.0.0/lib/grape/request.rb#headers works
+      # this helper method is used to extract headers for JWT auth for internal apis
+      def normalize_headers: (untyped env) -> untyped
+
+      # Openbao auth logic - from API::Internal::SecretsManager#openbao_authentication_token_secret
+      # TODO - refactor into a helper to be used by api endpoint and here
+      def read_openbao_secret_token: () -> untyped
+
+      def log_auth_failure_info: (untyped error) -> untyped
+    end
+  end
+end

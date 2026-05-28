@@ -1,0 +1,14 @@
+module Boards
+  module Lists
+    # This class is used by issue and epic board lists
+    # for destroying a single list
+    class BaseDestroyService < Boards::BaseService
+      def execute: (untyped list) -> untyped
+
+      private
+
+      # rubocop: disable CodeReuse/ActiveRecord
+      def decrement_higher_lists: (untyped list) -> untyped
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Gitlab
+  module Database
+    class UnidirectionalCopyTrigger
+      @table_name: untyped
+
+      @connection: untyped
+
+      @quoted_table_name: untyped
+
+      def self.on_table: (untyped table_name, connection: untyped) -> untyped
+
+      def name: (untyped from_column_names, untyped to_column_names) -> untyped
+
+      def create: (untyped from_column_names, untyped to_column_names, ?trigger_name: untyped?) -> untyped
+
+      def drop: (untyped trigger_name) -> untyped
+
+      private
+
+      attr_reader table_name: untyped
+
+      attr_reader connection: untyped
+
+      def initialize: (untyped table_name, untyped connection) -> void
+
+      def quoted_table_name: () -> untyped
+
+      def check_column_names!: (untyped from_column_names, untyped to_column_names) -> ::Array[untyped]
+
+      def unchecked_name: (untyped from_column_names, untyped to_column_names) -> untyped
+
+      def assignment_clauses_for_columns: (untyped from_column_names, untyped to_column_names) -> (nil | untyped)
+    end
+  end
+end

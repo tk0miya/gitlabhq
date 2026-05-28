@@ -1,0 +1,11 @@
+module Subscriptions
+  module Ci
+    module Jobs
+      class StatusUpdated < ::Subscriptions::BaseSubscription
+        include Gitlab::Graphql::Laziness
+
+        def authorized?: (job_id: untyped) -> untyped
+      end
+    end
+  end
+end

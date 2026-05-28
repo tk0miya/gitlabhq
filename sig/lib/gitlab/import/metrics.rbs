@@ -1,0 +1,55 @@
+module Gitlab
+  module Import
+    class Metrics
+      @importer: untyped
+
+      @project: untyped
+
+      @duration: untyped
+
+      @issues_counter: untyped
+
+      @merge_requests_counter: untyped
+
+      @duration_histogram: untyped
+
+      @projects_counter: untyped
+
+      include Gitlab::Utils::UsageData
+
+      IMPORT_DURATION_BUCKETS: ::Array[::Float | 1 | 3 | 5 | 10 | 60 | 120 | 240 | 360 | 720 | 1440]
+
+      attr_reader importer: untyped
+
+      attr_reader duration: untyped
+
+      def initialize: (untyped importer, untyped project) -> void
+
+      def track_start_import: () -> (nil | untyped)
+
+      def track_finished_import: () -> untyped
+
+      def track_failed_import: () -> (nil | untyped)
+
+      def track_canceled_import: () -> (nil | untyped)
+
+      def issues_counter: () -> untyped
+
+      def merge_requests_counter: () -> untyped
+
+      private
+
+      attr_reader project: untyped
+
+      def duration_histogram: () -> untyped
+
+      def projects_counter: () -> untyped
+
+      def observe_histogram: () -> untyped
+
+      def track_finish_metric: () -> (nil | untyped)
+
+      def track_import_state: (untyped type, untyped category) -> untyped
+    end
+  end
+end

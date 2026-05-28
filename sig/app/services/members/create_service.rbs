@@ -1,0 +1,96 @@
+module Members
+  class CreateService < Members::BaseService
+    @errors: untyped
+
+    @http_status: untyped
+
+    @invites: untyped
+
+    @source: untyped
+
+    @members: untyped
+
+    @member_created_namespace_id: untyped
+
+    BlankInvitesError: untyped
+
+    TooManyInvitesError: untyped
+
+    MembershipLockedError: untyped
+
+    SeatLimitExceededError: untyped
+
+    DEFAULT_INVITE_LIMIT: 100
+
+    attr_reader membership_locked: untyped
+
+    attr_reader http_status: untyped
+
+    def initialize: (*untyped args) -> void
+
+    def execute: () -> untyped
+
+    def single_member: () -> untyped
+
+    private
+
+    attr_reader source: untyped
+
+    attr_reader errors: untyped
+
+    attr_reader invites: untyped
+
+    attr_reader member_created_namespace_id: untyped
+
+    attr_reader members: untyped
+
+    def adding_at_least_one_owner: () -> untyped
+
+    def cannot_assign_owner_responsibilities_to_member_in_project?: () -> untyped
+
+    def invites_from_params: () -> untyped
+
+    def param_to_array: (untyped param) -> untyped
+
+    def validate_source_type!: () -> (untyped | nil)
+
+    def validate_invite_source!: () -> (untyped | nil)
+
+    def validate_invitable!: () -> (nil | untyped)
+
+    def blank_invites_message: () -> untyped
+
+    def add_members: () -> untyped
+
+    def creator_service: () -> untyped
+
+    def create_params: () -> { expires_at: untyped, current_user: untyped }
+
+    def process_result: (untyped member) -> untyped
+
+    # overridden
+    def add_error_for_member: (untyped member, untyped existing_errors) -> untyped
+
+    def all_member_errors: (untyped member, untyped existing_errors) -> untyped
+
+    def after_add_hooks: () -> nil
+
+    def after_execute: (member: untyped) -> untyped
+
+    def track_invite_source: (untyped member) -> untyped
+
+    def invite_source: () -> untyped
+
+    def tracking_property: (untyped member) -> ("net_new_user" | "existing_user")
+
+    def user_limit: () -> untyped
+
+    def at_least_one_member_created?: () -> untyped
+
+    def result: (?::Hash[untyped, untyped] pass_back) -> untyped
+
+    def formatted_errors: () -> untyped
+
+    def publish_event!: () -> (nil | untyped)
+  end
+end

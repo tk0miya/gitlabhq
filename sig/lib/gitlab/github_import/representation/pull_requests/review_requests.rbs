@@ -1,0 +1,26 @@
+module Gitlab
+  module GithubImport
+    module Representation
+      module PullRequests
+        class ReviewRequests
+          @attributes: untyped
+
+          include Representable
+
+          # Builds a list of requested reviewers from a GitHub API response.
+          #
+          # review_requests - An instance of `Hash` containing the review requests details.
+          def self.from_api_response: (untyped review_requests, ?::Hash[untyped, untyped] _additional_data) -> untyped
+
+          alias self.from_json_hash self.from_api_response
+
+          # attributes - A Hash containing the review details. The keys of this
+          #              Hash (and any nested hashes) must be symbols.
+          def initialize: (untyped attributes) -> void
+
+          def github_identifiers: () -> { merge_request_iid: untyped, requested_reviewers: untyped }
+        end
+      end
+    end
+  end
+end

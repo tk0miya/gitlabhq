@@ -1,0 +1,58 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module PullRequests
+        class ReviewImporter
+          @review: untyped
+
+          @project: untyped
+
+          @client: untyped
+
+          @merge_request: untyped
+
+          @user_finder: untyped
+
+          @submitted_at: untyped
+
+          include ::Gitlab::Import::MergeRequestHelpers
+
+          include ::Import::PlaceholderReferences::Pusher
+
+          # review - An instance of `Gitlab::GithubImport::Representation::PullRequestReview`
+          # project - An instance of `Project`
+          # client - An instance of `Gitlab::GithubImport::Client`
+          def initialize: (untyped review, untyped project, untyped client) -> void
+
+          def execute: (?::Hash[untyped, untyped] options) -> untyped
+
+          private
+
+          attr_reader review: untyped
+
+          attr_reader merge_request: untyped
+
+          attr_reader project: untyped
+
+          attr_reader client: untyped
+
+          attr_reader user_finder: untyped
+
+          def add_review_note!: (untyped author_id) -> (nil | untyped)
+
+          def review_note_content: () -> untyped
+
+          def add_note!: (untyped author_id, untyped note) -> untyped
+
+          def note_attributes: (untyped author_id, untyped note, ?::Hash[untyped, untyped] extra) -> untyped
+
+          def add_approval!: (untyped user_id) -> (nil | untyped)
+
+          def add_reviewer!: (untyped user_id) -> (nil | untyped)
+
+          def submitted_at: () -> untyped
+        end
+      end
+    end
+  end
+end

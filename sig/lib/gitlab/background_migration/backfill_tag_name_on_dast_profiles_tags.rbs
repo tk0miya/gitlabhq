@@ -1,0 +1,10 @@
+module Gitlab
+  module BackgroundMigration
+    class BackfillTagNameOnDastProfilesTags < BatchedMigrationJob
+      class Tag < ::Ci::ApplicationRecord
+      end
+
+      def perform: () -> untyped
+    end
+  end
+end

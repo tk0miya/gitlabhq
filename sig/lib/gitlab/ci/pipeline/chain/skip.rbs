@@ -1,0 +1,25 @@
+module Gitlab
+  module Ci
+    module Pipeline
+      module Chain
+        class Skip < Chain::Base
+          include ::Gitlab::Utils::StrongMemoize
+
+          SKIP_PATTERN: ::Regexp
+
+          def perform!: () -> (nil | untyped)
+
+          def break?: () -> untyped
+
+          private
+
+          def skipped?: () -> untyped
+
+          def commit_message_skips_ci?: () -> (false | untyped)
+
+          def config_exists?: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,53 @@
+module Gitlab
+  module Ci
+    class Config
+      module Interpolation
+        class Access
+          @content: untyped
+
+          @ctx: untyped
+
+          @errors: untyped
+
+          @objects: untyped
+
+          @value: untyped
+
+          attr_reader content: untyped
+
+          attr_reader errors: untyped
+
+          MAX_ACCESS_OBJECTS: 5
+
+          MAX_ACCESS_BYTESIZE: 1024
+
+          MAX_ACCESS_ARRAY_DEPTH: 5
+
+          ARRAY_INDEX_PATTERN: ::Regexp
+
+          ANY_BRACKET_CONTENT_PATTERN: ::Regexp
+
+          VALID_INDEXED_SEGMENT_PATTERN: ::Regexp
+
+          def initialize: (untyped access, untyped ctx) -> void
+
+          def valid?: () -> untyped
+
+          def objects: () -> untyped
+
+          def value: () -> untyped
+
+          private
+
+          def evaluate!: () -> untyped
+
+          def evaluate_key_segment: (untyped memo, untyped segment) -> (nil | untyped)
+
+          def evaluate_indexed_segment: (untyped memo, untyped segment) -> (nil | untyped)
+
+          def parse_indexed_segment: (untyped segment) -> ({ error: ::String } | { base_key: untyped, indices: untyped, error: nil })
+        end
+      end
+    end
+  end
+end

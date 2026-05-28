@@ -1,0 +1,15 @@
+module Import
+  module UserMapping
+    class AdminBypassAuthorizer
+      @reassigning_user: untyped
+
+      def initialize: (untyped reassigning_user) -> void
+
+      def allowed?: () -> (false | untyped)
+
+      private
+
+      attr_reader reassigning_user: untyped
+    end
+  end
+end

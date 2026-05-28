@@ -1,0 +1,27 @@
+module Gitlab
+  module SidekiqSharding
+    module Validator
+      UnroutedSidekiqApiError: untyped
+
+      module Client
+        extend ActiveSupport::Concern
+      end
+
+      # Used to allow Sidekiq API or Sidekiq.redis for spec set-ups and components
+      # that does not require sharding such as CronJobs (performed using Sidekiq.redis).
+      def self.allow_unrouted_sidekiq_calls: () { () -> untyped } -> untyped
+
+      # This allows us to perform validation within the scope of GitLab application logic
+      # without needing to modify/patch Sidekiq internals such as job fetching, cron-polling, and housekeeping.
+      def self.enabled: () { () -> untyped } -> untyped
+
+      # This is used to patch the Sidekiq::RedisClientAdapter to validate all Redis commands are routed
+      # rubocop:disable Style/MissingRespondToMissing -- already defined in the module we are patching
+      def method_missing: (*untyped args) { (?) -> untyped } -> untyped
+
+      private
+
+      def validate!: () -> (nil | untyped)
+    end
+  end
+end

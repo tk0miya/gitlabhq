@@ -1,0 +1,47 @@
+module MergeRequests
+  class CleanupRefsService
+    @merge_request: untyped
+
+    @repository: untyped
+
+    @ref_path: untyped
+
+    @ref_head_sha: untyped
+
+    @merge_ref_sha: untyped
+
+    include BaseServiceUtility
+
+    TIME_THRESHOLD: untyped
+
+    attr_reader merge_request: untyped
+
+    def self.schedule: (untyped merge_request) -> untyped
+
+    def initialize: (untyped merge_request) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    attr_reader repository: untyped
+
+    attr_reader ref_path: untyped
+
+    attr_reader ref_head_sha: untyped
+
+    attr_reader merge_ref_sha: untyped
+
+    def scheduled?: () -> untyped
+
+    def eligible?: () -> untyped
+
+    def met_time_threshold?: (untyped attr) -> untyped
+
+    def cache_merge_ref_sha: () -> (true | untyped)
+
+    def delete_refs: () -> untyped
+
+    def update_schedule: () -> untyped
+  end
+end

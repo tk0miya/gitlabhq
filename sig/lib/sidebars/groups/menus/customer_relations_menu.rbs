@@ -1,0 +1,23 @@
+module Sidebars
+  module Groups
+    module Menus
+      class CustomerRelationsMenu < ::Sidebars::Menu
+        def configure_menu_items: () -> true
+
+        def title: () -> untyped
+
+        def sprite_icon: () -> "users"
+
+        def render?: () -> untyped
+
+        def serialize_as_menu_item_args: () -> nil
+
+        private
+
+        def contacts_menu_item: () -> untyped
+
+        def can_read_contact?: () -> untyped
+      end
+    end
+  end
+end

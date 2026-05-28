@@ -1,0 +1,49 @@
+module Integrations
+  module Base
+    module Discord
+      extend ActiveSupport::Concern
+
+      include Integrations::Base::ChatNotification
+
+      ATTACHMENT_REGEX: untyped
+
+      DISCORD_URI_REGEX: ::Regexp
+
+      WEBHOOK_ADDRESSABLE_URL_OPTIONS: { schemes: ::Array["https"] }
+
+      SUPPORTED_EVENTS: ::Array["push" | "issue" | "confidential_issue" | "work_item" | "confidential_work_item" | "merge_request" | "note" | "confidential_note" | "tag_push" | "pipeline" | "wiki_page" | "deployment"]
+
+      GROUP_SUPPORTED_EVENTS: ::Array["group_mention" | "group_confidential_mention"]
+
+      ALL_SUPPORTED_EVENTS: untyped
+
+      def default_channel_placeholder: () -> untyped
+
+      def configurable_channels?: () -> true
+
+      def channel_limit_per_event: () -> 1
+
+      def mask_configurable_channels?: () -> true
+
+      # Prevents breaking changes for users with existing, active, and invalid discord webhooks or event
+      # webhook override URLs that were otherwise working for the user. This validation does not run on blank
+      # URL fields because presence validation will be done via the `required: true` on each field.
+      def validate_discord_url_field?: (?::String url_field) -> (false | true | untyped)
+
+      private
+
+      def build_embed: (untyped message) -> untyped
+
+      COLOR_OVERRIDES: { "good" => "#0d532a", "warning" => "#703800", "danger" => "#8d1300" }
+
+      def embed_color: (untyped message) -> untyped
+
+      # Expands the short notation to the full colorcode notation
+      # 123456 -> 123456
+      # 123    -> 112233
+      def normalize_color: (untyped color) -> untyped
+
+      def custom_data: (untyped data) -> untyped
+    end
+  end
+end

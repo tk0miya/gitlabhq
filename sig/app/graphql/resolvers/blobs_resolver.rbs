@@ -1,0 +1,47 @@
+module Resolvers
+  class BlobsResolver < BaseResolver
+    include Gitlab::Graphql::Authorize::AuthorizeResource
+
+    include LooksAhead
+
+    include ActiveSupport::NumberHelper
+
+    include Gitlab::Utils::StrongMemoize
+
+    DATA_FIELDS: ::Array[:raw_blob | :base64_encoded_blob | :raw_text_blob | :plain_data]
+
+    TOTAL_BLOB_DATA_SIZE_LIMIT: untyped
+
+    HUMAN_LIMIT: untyped
+
+    SIZE_LIMIT_EXCEEDED_ERROR: ::String
+
+    alias repository object
+
+    # We fetch blobs from Gitaly efficiently but it still scales O(N) with the
+    # number of paths being fetched, so apply a scaling limit to that.
+    def self.resolver_complexity: (untyped args, child_complexity: untyped) -> untyped
+
+    private
+
+    def resolve_with_lookahead: (paths: untyped, ref: untyped, ref_type: untyped) -> (::Array[untyped] | untyped)
+
+    def validate_ref!: (untyped ref) -> (nil | untyped)
+
+    def build_ref_path_pairs: (untyped paths, untyped ref, untyped ref_type) -> untyped
+
+    def validate_blob_data_size?: (untyped paths) -> untyped
+
+    def data_fields_requested?: () -> untyped
+
+    def validate_blob_data_size_within_limit!: (untyped ref_path_pairs) -> (nil | untyped)
+
+    def selected_fields: () -> (::Array[untyped] | untyped)
+
+    def nodes_field_selections: () -> untyped
+
+    def edges_node_field_selections: () -> untyped
+
+    def selections_for: (*untyped fields) -> untyped
+  end
+end

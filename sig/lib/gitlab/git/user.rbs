@@ -1,0 +1,39 @@
+module Gitlab
+  module Git
+    class User
+      @username: untyped
+
+      @name: untyped
+
+      @email: untyped
+
+      @gl_id: untyped
+
+      @timezone: untyped
+
+      attr_reader username: untyped
+
+      attr_reader name: untyped
+
+      attr_reader email: untyped
+
+      attr_reader gl_id: untyped
+
+      attr_reader timezone: untyped
+
+      def self.from_gitlab: (untyped gitlab_user) -> untyped
+
+      def self.from_gitaly: (untyped gitaly_user) -> untyped
+
+      def initialize: (untyped username, untyped name, untyped email, untyped gl_id, untyped timezone) -> void
+
+      def ==: (untyped other) -> untyped
+
+      def to_gitaly: () -> untyped
+
+      def convert_timezone: (untyped timezone) -> untyped
+
+      def system_timezone: () -> untyped
+    end
+  end
+end

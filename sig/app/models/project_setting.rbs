@@ -1,0 +1,56 @@
+class ProjectSetting < ApplicationRecord
+  include ::Gitlab::Utils::StrongMemoize
+
+  include EachBatch
+
+  include CascadingProjectSettingAttribute
+
+  include Projects::SquashOption
+
+  include Gitlab::EncryptedAttribute
+
+  include AfterCommitQueue
+
+  include SafelyChangeColumnDefault
+
+  REVIEWER_ASSIGNMENT_STRATEGIES: { disabled: 0, code_owners: 1 }
+
+  ALLOWED_TARGET_PLATFORMS: ::Array["ios" | "osx" | "tvos" | "watchos" | "android"]
+
+  HUMANIZED_ATTRIBUTES: { mr_default_title_template: "Merge request default title template" }
+
+  def self.human_attribute_name: (untyped attribute, *untyped options) -> untyped
+
+  # Checks if a given domain is already assigned to any existing project
+  def self.unique_domain_exists?: (untyped domain) -> untyped
+
+  def target_platforms=: (untyped val) -> untyped
+
+  def show_diff_preview_in_email?: () -> untyped
+
+  def runner_registration_enabled: () -> untyped
+
+  def emails_enabled?: () -> untyped
+
+  def pages_primary_domain=: (untyped value) -> untyped
+
+  def branch_rule: () -> untyped
+
+  def reviewer_auto_assignment_available?: () -> false
+
+  def reviewer_auto_assignment_enabled?: () -> untyped
+
+  private
+
+  def presence_of_merge_request_title_regex_settings: () -> (untyped | nil)
+
+  def mr_default_title_template_no_newlines: () -> (nil | untyped)
+
+  def validates_mr_default_target_self: () -> (untyped | nil)
+
+  def enqueue_auto_merge_workers: () -> untyped
+
+  def require_unique_domain?: () -> untyped
+
+  def pages_unique_domain_availability: () -> (nil | untyped)
+end

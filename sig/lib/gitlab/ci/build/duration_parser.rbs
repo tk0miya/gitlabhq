@@ -1,0 +1,31 @@
+module Gitlab
+  module Ci
+    module Build
+      class DurationParser
+        @value: untyped
+
+        def self.validate_duration: (untyped value) -> untyped
+
+        def initialize: (untyped value) -> void
+
+        def validate_duration: () -> (true | untyped)
+
+        def seconds_from_now: () -> untyped
+
+        private
+
+        attr_reader value: untyped
+
+        def cached_parse: () -> untyped
+
+        def safe_parse: () -> untyped
+
+        def parse: () -> (nil | untyped)
+
+        def validation_cache: () -> untyped
+
+        def never?: () -> untyped
+      end
+    end
+  end
+end

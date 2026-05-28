@@ -1,0 +1,24 @@
+module Gitlab
+  module Database
+    module Type
+      # Extends Rails' ActiveRecord::Type::Json data type to remove JSON
+      # encooded nullbytes `\u0000` to prevent PostgreSQL errors like
+      # `PG::UntranslatableCharacter: ERROR: unsupported Unicode escape
+      # sequence`.
+      #
+      # Example:
+      #
+      #   class SomeModel < ApplicationRecord
+      #     # some_model.a_field is of type `jsonb`
+      #     attribute :a_field, Gitlab::Database::Type::JsonPgSafe.new
+      #   end
+      class JsonPgSafe < ActiveRecord::Type::Json
+        @replace_with: untyped
+
+        def initialize: (?replace_with: ::String) -> void
+
+        def serialize: (untyped value) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Resolvers
+  class GroupMergeRequestsResolver < MergeRequestsResolver
+    def self.issuable_collection_name: () -> "merge requests"
+
+    include GroupIssuableResolver
+
+    alias group object
+
+    def project: () -> nil
+
+    def mr_parent: () -> untyped
+
+    def no_results_possible?: (untyped args) -> untyped
+  end
+end

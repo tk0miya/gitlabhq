@@ -1,0 +1,10 @@
+module Gitlab
+  module Usage
+    module TimeSeriesStorable
+      # requires a #redis_key(event, date, used_in_aggregate_metric) method to be defined
+      def keys_for_aggregation: (events: untyped, start_date: untyped, end_date: untyped, ?used_in_aggregate_metric: bool) -> untyped
+
+      def apply_time_aggregation: (untyped key, untyped time) -> ::String
+    end
+  end
+end

@@ -1,0 +1,11 @@
+class Dashboard::ApplicationController < ApplicationController
+  @projects: untyped
+
+  include ControllerWithCrossProjectAccessCheck
+
+  include RecordUserLastActivity
+
+  private
+
+  def projects: () -> untyped
+end

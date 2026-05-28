@@ -1,0 +1,41 @@
+module Gitlab
+  module Database
+    module BackgroundMigration
+      class BatchedMigrationWrapper
+        @connection: untyped
+
+        @metrics: untyped
+
+        def initialize: (connection: untyped, ?metrics: untyped) -> void
+
+        # Wraps the execution of a batched_background_migration.
+        #
+        # Updates the job's tracking records with the status of the migration
+        # when starting and finishing execution, and optionally saves batch_metrics
+        # the migration provides, if any are given.
+        #
+        # @info The job's batch_metrics are serialized to JSON for storage.
+        #
+        # @info Track exceptions that could happen when processing sub-batches
+        #       through +Gitlab::BackgroundMigration::SubBatchTimeoutException+
+        def perform: (untyped batch_tracking_record) -> untyped
+
+        private
+
+        attr_reader connection: untyped
+
+        attr_reader metrics: untyped
+
+        def start_tracking_execution: (untyped tracking_record) -> untyped
+
+        def execute_batch: (untyped tracking_record) -> untyped
+
+        def execute_job: (untyped tracking_record) -> untyped
+
+        def execute_batched_migration_job: (untyped job_class, untyped tracking_record) -> untyped
+
+        def fetch_feature_category: (untyped job_class) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Gitlab
+  module Database
+    module HealthStatus
+      class Context
+        @status_checker: untyped
+
+        @connection: untyped
+
+        @tables: untyped
+
+        attr_reader status_checker: untyped
+
+        attr_reader connection: untyped
+
+        attr_reader tables: untyped
+
+        # status_checker: the caller object which checks for database health status
+        #                 eg: BackgroundMigration::BatchedMigration or DeferJobs::DatabaseHealthStatusChecker
+        def initialize: (untyped status_checker, untyped connection, untyped tables) -> void
+
+        def status_checker_info: () -> { status_checker_id: untyped, status_checker_type: untyped, job_class_name: untyped }
+      end
+    end
+  end
+end

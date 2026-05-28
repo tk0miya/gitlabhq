@@ -1,0 +1,63 @@
+module Atlassian
+  module JiraConnect
+    module Serializers
+      class DeploymentEntity < Grape::Entity
+        @issue_keys: untyped
+
+        include Gitlab::Routing
+
+        include Gitlab::Utils::StrongMemoize
+
+        COMMITS_LIMIT: 2000
+
+        ISSUE_KEY_LIMIT: 500
+
+        ASSOCIATION_LIMIT: 500
+
+        ISSUE_KEYS_ASSOCIATION_TYPE: :issueKeys
+
+        def issue_keys: () -> untyped
+
+        def associations: () -> untyped
+
+        private
+
+        alias deployment object
+
+        alias build deployable
+
+        def display_name: () -> ::String
+
+        def label: () -> ::String
+
+        def description: () -> ::String
+
+        def url: () -> (untyped | nil)
+
+        def state: () -> untyped
+
+        def schema_version: () -> "1.0"
+
+        def pipeline_entity: () -> (untyped | nil)
+
+        def environment_entity: () -> untyped
+
+        def update_sequence_id: () -> untyped
+
+        def pipeline?: () -> untyped
+
+        def issue_keys_from_pipeline: () -> (::Array[untyped] | untyped)
+
+        # Extract Jira issue keys from commits made to the deployment's branch or tag
+        # since the last successful deployment was made to the environment.
+        def issue_keys_from_commits_since_last_deploy: () -> untyped
+
+        def service_ids_from_integration_configuration: () -> (::Array[untyped] | ::Array[{ associationType: "serviceIdOrKeys", values: untyped }])
+
+        def generate_deployment_commands_from_integration_configuration: () -> (nil | ::Array[{ command: "initiate_deployment_gating" }])
+
+        def commits_since_last_deploy: () -> untyped
+      end
+    end
+  end
+end

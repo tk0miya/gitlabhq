@@ -1,0 +1,38 @@
+module Gitlab
+  class PushOptions
+    @options: untyped
+
+    VALID_OPTIONS: untyped
+
+    MULTI_VALUE_OPTIONS: ::Array[::Array["ci" | "input"] | ::Array["ci" | "variable"] | ::Array["merge_request" | "label"] | ::Array["merge_request" | "unlabel"] | ::Array["merge_request" | "assign"] | ::Array["merge_request" | "unassign"]]
+
+    NAMESPACE_ALIASES: untyped
+
+    OPTION_MATCHER: untyped
+
+    CI_SKIP: "ci.skip"
+
+    attr_reader options: untyped
+
+    def initialize: (?untyped options) -> void
+
+    def get: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+    # Allow #to_json serialization
+    def as_json: (*untyped _args) -> untyped
+
+    private
+
+    def parse_options: (untyped raw_options) -> untyped
+
+    def store_option_info: (untyped options, untyped namespace, untyped key, untyped value) -> untyped
+
+    def option_multi_value?: (untyped namespace, untyped key) -> untyped
+
+    def parse_option: (untyped option) -> (nil | ::Array[untyped])
+
+    def extract_match: (untyped parts, untyped key) -> untyped
+
+    def valid_option?: (untyped namespace, untyped key) -> untyped
+  end
+end

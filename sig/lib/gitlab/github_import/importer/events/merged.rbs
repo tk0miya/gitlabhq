@@ -1,0 +1,19 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module Events
+        class Merged < BaseImporter
+          def execute: (untyped issue_event) -> untyped
+
+          private
+
+          def create_event: (untyped issue_event) -> (nil | untyped)
+
+          def create_state_event: (untyped issue_event) -> untyped
+
+          def create_note: (untyped issue_event) -> untyped
+        end
+      end
+    end
+  end
+end

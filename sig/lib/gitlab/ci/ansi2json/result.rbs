@@ -1,0 +1,38 @@
+# Convertion result object class
+module Gitlab
+  module Ci
+    module Ansi2json
+      class Result
+        @lines: untyped
+
+        @state: untyped
+
+        @append: untyped
+
+        @truncated: untyped
+
+        @offset: untyped
+
+        @size: untyped
+
+        @total: untyped
+
+        attr_reader lines: untyped
+
+        attr_reader state: untyped
+
+        attr_reader append: untyped
+
+        attr_reader truncated: untyped
+
+        attr_reader offset: untyped
+
+        attr_reader size: untyped
+
+        attr_reader total: untyped
+
+        def initialize: (lines: untyped, state: untyped, append: untyped, truncated: untyped, offset: untyped, stream: untyped) -> void
+      end
+    end
+  end
+end

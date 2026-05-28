@@ -1,0 +1,21 @@
+module Discussions
+  class UnresolveService < Discussions::BaseService
+    @discussion: untyped
+
+    @user: untyped
+
+    @all_discussions_resolved_before: untyped
+
+    include Gitlab::Utils::StrongMemoize
+
+    def initialize: (untyped discussion, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def merge_request: () -> (untyped | nil)
+
+    def send_graphql_triggers: () -> (nil | untyped)
+  end
+end

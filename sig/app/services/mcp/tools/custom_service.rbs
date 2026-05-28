@@ -1,0 +1,31 @@
+# rubocop:disable Mcp/UseApiService -- Tool does not depend on REST API
+module Mcp
+  module Tools
+    class CustomService < BaseService
+      @current_user: untyped
+
+      include Mcp::Tools::Concerns::Versionable
+
+      include ::Mcp::Tools::Concerns::ResourceFinder
+
+      extend ::Gitlab::Utils::Override
+
+      def initialize: (name: untyped, ?version: untyped?) -> void
+
+      def set_cred: (?current_user: untyped?, ?access_token: untyped?) -> untyped
+
+      def execute: (?request: untyped?, ?params: untyped?) -> untyped
+
+      def authorize!: (untyped params) -> (nil | untyped)
+
+      def auth_ability: () -> untyped
+
+      def auth_target: (untyped _params) -> untyped
+
+      def perform: (?::Hash[untyped, untyped] arguments) -> untyped
+
+      # Default implementation - can be overridden in subclasses
+      def perform_default: (?::Hash[untyped, untyped] _arguments) -> untyped
+    end
+  end
+end

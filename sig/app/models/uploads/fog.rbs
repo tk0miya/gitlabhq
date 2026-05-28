@@ -1,0 +1,15 @@
+module Uploads
+  class Fog < Base
+    include ::ObjectStorage::FogHelpers
+
+    extend ::Gitlab::Utils::Override
+
+    def keys: (untyped relation) -> (::Array[untyped] | untyped)
+
+    def delete_keys: (untyped keys) -> untyped
+
+    private
+
+    def storage_location_identifier: () -> :uploads
+  end
+end

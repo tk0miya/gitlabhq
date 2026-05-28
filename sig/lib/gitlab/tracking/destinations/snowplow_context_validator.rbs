@@ -1,0 +1,17 @@
+module Gitlab
+  module Tracking
+    module Destinations
+      class SnowplowContextValidator
+        def validate!: (untyped context) -> untyped
+
+        private
+
+        def validate_against_schema: (untyped schema_url, untyped data) -> (nil | untyped)
+
+        def fetch_schema_from_iglu: (untyped schema_url) -> untyped
+
+        def fetch_schema_from_iglu_without_cache: (untyped schema_url) -> untyped
+      end
+    end
+  end
+end

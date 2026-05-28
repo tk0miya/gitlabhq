@@ -1,0 +1,31 @@
+module Notes
+  class UpdateService < BaseService
+    @_updated_by_user: untyped
+
+    def execute: (untyped note) -> untyped
+
+    private
+
+    attr_accessor old_note_body: untyped
+
+    def updated_by_user: () -> untyped
+
+    def update_note: (untyped note, untyped only_commands) -> (nil | untyped)
+
+    def delete_note: (untyped note, untyped message) -> untyped
+
+    def update_suggestions: (untyped note) -> (nil | untyped)
+
+    def update_todos: (untyped note, untyped old_mentioned_users) -> (nil | untyped)
+
+    def notify_added_mentions: (untyped note, untyped old_mentioned_users) -> (nil | untyped)
+
+    def track_note_edit_usage_for_issues: (untyped note) -> untyped
+
+    def execute_note_webhook: (untyped note) -> (nil | untyped)
+
+    def track_note_edit_usage_for_merge_requests: (untyped note) -> untyped
+
+    def track_work_item_note_update: (untyped work_item) -> untyped
+  end
+end

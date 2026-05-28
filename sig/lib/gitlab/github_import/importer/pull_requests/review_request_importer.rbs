@@ -1,0 +1,31 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      module PullRequests
+        class ReviewRequestImporter
+          @review_request: untyped
+
+          @project: untyped
+
+          @user_finder: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          include ::Import::PlaceholderReferences::Pusher
+
+          def initialize: (untyped review_request, untyped project, untyped client) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader review_request: untyped
+
+          attr_reader project: untyped
+
+          attr_reader user_finder: untyped
+        end
+      end
+    end
+  end
+end

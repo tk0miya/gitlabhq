@@ -1,0 +1,67 @@
+module MergeRequests
+  module MergeStrategies
+    # FromSourceBranch performs a git merge from a merge request's source branch
+    # to the target branch, including a squash if needed.
+    class FromSourceBranch
+      @merge_request: untyped
+
+      @current_user: untyped
+
+      @project: untyped
+
+      @merge_params: untyped
+
+      @options: untyped
+
+      @logger: untyped
+
+      @merge_request_info: untyped
+
+      include Gitlab::Utils::StrongMemoize
+
+      def initialize: (untyped merge_request, untyped current_user, ?merge_params: ::Hash[untyped, untyped], ?options: ::Hash[untyped, untyped]) -> void
+
+      def validate!: () -> (nil | untyped)
+
+      def execute_git_merge!: () -> untyped
+
+      private
+
+      attr_reader merge_request: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader merge_params: untyped
+
+      attr_reader options: untyped
+
+      attr_reader project: untyped
+
+      # We only want to use the service when we can not directly fast_forward
+      # and when ff merge must be possible
+      def use_create_ref_service?: () -> untyped
+
+      def source_sha: () -> untyped
+
+      def squash_sha!: () -> untyped
+
+      def fast_forward!: (untyped src_sha) -> { commit_sha: untyped }
+
+      def merge_commit!: () -> { commit_sha: untyped, merge_commit_sha: untyped }
+
+      def merge_commit_message: () -> untyped
+
+      def mergeable?: () -> untyped
+
+      def raise_error: (untyped message) -> untyped
+
+      def logger: () -> untyped
+
+      def log_payload: (untyped message) -> untyped
+
+      def log_info: (untyped message) -> untyped
+
+      def merge_request_info: () -> untyped
+    end
+  end
+end

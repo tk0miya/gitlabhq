@@ -1,0 +1,21 @@
+module Gitlab
+  module Ci
+    module Build
+      module Context
+        class Global < Base
+          @yaml_variables: untyped
+
+          include Gitlab::Utils::StrongMemoize
+
+          def initialize: (untyped pipeline, yaml_variables: untyped, logger: untyped) -> void
+
+          def variables: () -> untyped
+
+          private
+
+          def stub_build: () -> untyped
+        end
+      end
+    end
+  end
+end

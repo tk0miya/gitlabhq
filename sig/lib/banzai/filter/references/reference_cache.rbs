@@ -1,0 +1,78 @@
+module Banzai
+  module Filter
+    module References
+      class ReferenceCache
+        @filter: untyped
+
+        @context: untyped
+
+        @result: untyped
+
+        @cache_loaded: untyped
+
+        @references_per_parent: untyped
+
+        @per_reference: untyped
+
+        @_records_per_project: untyped
+
+        include Gitlab::Utils::StrongMemoize
+
+        include RequestStoreReferenceCache
+
+        def initialize: (untyped filter, untyped context, untyped result) -> void
+
+        def load_reference_cache: (untyped nodes) -> untyped
+
+        def references_per_parent: () -> untyped
+
+        def parent_per_reference: () -> untyped
+
+        def records_per_parent: () -> untyped
+
+        def current_parent_path: () -> untyped
+
+        def current_project_namespace_path: () -> untyped
+
+        def full_project_path: (untyped namespace, untyped project_ref, ?untyped? matches) -> untyped
+
+        def full_group_path: (untyped group_ref) -> untyped
+
+        def full_namespace_path: (untyped matches) -> untyped
+
+        def cache_loaded?: () -> untyped
+
+        private
+
+        attr_accessor filter: untyped
+
+        attr_accessor context: untyped
+
+        attr_accessor result: untyped
+
+        # Loads all object references (e.g. issue IDs) per
+        # project/group they belong to.
+        def load_references_per_parent: (untyped nodes) -> untyped
+
+        # Returns a Hash containing referenced projects grouped per their full
+        # path.
+        def load_parent_per_reference: () -> untyped
+
+        def load_records_per_parent: () -> untyped
+
+        # Returns projects for the given paths.
+        def find_for_paths: (untyped paths, ?bool absolute_path) -> (::Array[untyped] | untyped)
+
+        def cached_objects_for_paths: (untyped paths, untyped absolute_path) -> untyped
+
+        def objects_for_paths: (untyped paths, untyped absolute_path) -> untyped
+
+        def refs_cache: () -> untyped
+
+        def prepare_doc_for_scan: () -> untyped
+
+        def html_content: () -> untyped
+      end
+    end
+  end
+end

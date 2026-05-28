@@ -1,0 +1,38 @@
+module Gitlab
+  module GithubImport
+    module Importer
+      class LabelLinksImporter
+        @issue: untyped
+
+        @project: untyped
+
+        @client: untyped
+
+        @label_finder: untyped
+
+        attr_reader issue: untyped
+
+        attr_reader project: untyped
+
+        attr_reader client: untyped
+
+        attr_reader label_finder: untyped
+
+        # issue - An instance of `Gitlab::GithubImport::Representation::Issue`
+        # project - An instance of `Project`
+        # client - An instance of `Gitlab::GithubImport::Client`
+        def initialize: (untyped issue, untyped project, untyped client) -> void
+
+        def execute: () -> untyped
+
+        def create_labels: () -> (nil | untyped)
+
+        def find_target_id: () -> untyped
+
+        private
+
+        def track_error: (untyped exception, untyped label_link) -> untyped
+      end
+    end
+  end
+end

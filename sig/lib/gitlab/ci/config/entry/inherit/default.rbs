@@ -1,0 +1,32 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # This class represents a default inherit entry
+        #
+        class Inherit
+          class Default < ::Gitlab::Config::Entry::Simplifiable
+            class BooleanStrategy < ::Gitlab::Config::Entry::Boolean
+              def inherit?: (untyped _key) -> untyped
+            end
+
+            class ArrayStrategy < ::Gitlab::Config::Entry::Node
+              include ::Gitlab::Config::Entry::Validatable
+
+              ALLOWED_VALUES: untyped
+
+              def inherit?: (untyped key) -> untyped
+            end
+
+            class UnknownStrategy < ::Gitlab::Config::Entry::Node
+              def errors: () -> ::Array[::String]
+
+              def inherit?: (untyped key) -> false
+            end
+          end
+        end
+      end
+    end
+  end
+end

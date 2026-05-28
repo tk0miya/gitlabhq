@@ -1,0 +1,67 @@
+module Gitlab
+  module ErrorTracking
+    class ErrorRepository
+      class OpenApiStrategy
+        @project: untyped
+
+        def initialize: (untyped project) -> void
+
+        def report_error: (name: untyped, description: untyped, actor: untyped, platform: untyped, environment: untyped, level: untyped, occurred_at: untyped, payload: untyped) -> untyped
+
+        def find_error: (untyped id) -> untyped
+
+        def list_errors: (filters: untyped, query: untyped, sort: untyped, limit: untyped, cursor: untyped) -> untyped
+
+        def last_event_for: (untyped id) -> untyped
+
+        def update_error: (untyped id, **untyped attributes) -> untyped
+
+        def dsn_url: (untyped public_key) -> ::String
+
+        private
+
+        def event_for: (untyped id, sort: untyped) -> untyped
+
+        def newest_event_for: (untyped id) -> untyped
+
+        def oldest_event_for: (untyped id) -> untyped
+
+        def to_sentry_error: (untyped error) -> untyped
+
+        def to_sentry_detailed_error: (untyped error) -> untyped
+
+        def to_sentry_error_event: (untyped event, untyped error) -> untyped
+
+        def pagination_from_headers: (untyped headers) -> untyped
+
+        LINK_PATTERN: ::Regexp
+
+        def parse_pagination_link: (untyped content) -> (nil | ::Array[untyped])
+
+        def build_stacktrace: (untyped event) -> (::Array[untyped] | untyped)
+
+        def parse_json: (untyped payload) -> untyped
+
+        def release_from: (untyped event) -> (nil | untyped)
+
+        def project_id: () -> untyped
+
+        def open_api: () -> untyped
+
+        # For compatibility with sentry integration
+        def external_url: (untyped id) -> untyped
+
+        # For compatibility with sentry integration
+        def external_base_url: () -> untyped
+
+        def configured_api_url: () -> untyped
+
+        def api_key: () -> untyped
+
+        def build_api_client: () -> untyped
+
+        def log_exception: (untyped exception) -> untyped
+      end
+    end
+  end
+end

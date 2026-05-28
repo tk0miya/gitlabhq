@@ -1,0 +1,31 @@
+module Timelogs
+  class CreateService < Timelogs::BaseService
+    @issuable: untyped
+
+    @time_spent: untyped
+
+    @spent_at: untyped
+
+    @summary: untyped
+
+    attr_accessor issuable: untyped
+
+    attr_accessor time_spent: untyped
+
+    attr_accessor spent_at: untyped
+
+    attr_accessor summary: untyped
+
+    def initialize: (untyped issuable, untyped time_spent, untyped spent_at, untyped summary, untyped user) -> void
+
+    def execute: () -> untyped
+
+    private
+
+    def issuable_base_service: () -> untyped
+
+    def timelogs_not_supported_error: () -> untyped
+
+    def timelogs_supported?: () -> untyped
+  end
+end

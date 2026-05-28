@@ -1,0 +1,23 @@
+module Types
+  module WorkItems
+    module SavedViews
+      class SavedViewType < BaseObject
+        def filters: () -> untyped
+
+        def filter_warnings: () -> untyped
+
+        def subscribed: () -> untyped
+
+        def sort: () -> untyped
+
+        def share_url: () -> untyped
+
+        private
+
+        def validated_result: () -> untyped
+
+        def batch_load_subscriptions: (untyped saved_view_ids, untyped loader, untyped user_id) -> untyped
+      end
+    end
+  end
+end

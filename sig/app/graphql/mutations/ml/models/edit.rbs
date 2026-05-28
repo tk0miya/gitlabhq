@@ -1,0 +1,11 @@
+module Mutations
+  module Ml
+    module Models
+      class Edit < Base
+        include FindsProject
+
+        def resolve: (project_path: untyped, name: untyped, model_id: untyped, description: untyped) -> untyped
+      end
+    end
+  end
+end

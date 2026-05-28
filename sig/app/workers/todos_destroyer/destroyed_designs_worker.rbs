@@ -1,0 +1,9 @@
+module TodosDestroyer
+  class DestroyedDesignsWorker
+    include ApplicationWorker
+
+    include TodosDestroyerQueue
+
+    def perform: (untyped design_ids) -> untyped
+  end
+end

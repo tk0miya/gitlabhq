@@ -1,0 +1,29 @@
+module Namespaces
+  class RandomizedSuffixPath
+    @path: untyped
+
+    @count: untyped
+
+    MAX_TRIES: 4
+
+    LEADING_ZEROS: ::Regexp
+
+    def initialize: (untyped path) -> void
+
+    def call: (untyped new_count) -> untyped
+
+    def to_s: () -> ::String
+
+    private
+
+    attr_reader count: untyped
+
+    attr_reader path: untyped
+
+    def randomized_suffix: () -> untyped
+
+    def offset: () -> untyped
+
+    def suffix: () -> (nil | untyped)
+  end
+end

@@ -1,0 +1,26 @@
+module Ci
+  module Maskable
+    extend ActiveSupport::Concern
+
+    # * Single line
+    # * No escape characters
+    # * No variables
+    # * No spaces
+    # * Minimal length of 8 characters
+    # * Characters must be from the Base64 alphabet (RFC4648) with the addition of '@', ':', '.', and '~'
+    # * Absolutely no fun is allowed
+    REGEX: ::Regexp
+
+    # * Single line
+    # * No spaces
+    # * Minimal length of 8 characters
+    # * Some fun is allowed
+    MASK_AND_RAW_REGEX: ::Regexp
+
+    def masked_and_raw?: () -> (false | untyped)
+
+    def masked_and_expanded?: () -> untyped
+
+    def to_hash_variable: () -> untyped
+  end
+end

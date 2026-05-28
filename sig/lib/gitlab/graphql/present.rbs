@@ -1,0 +1,18 @@
+module Gitlab
+  module Graphql
+    module Present
+      # @object belongs to Schema::Object, which does not expose a writer.
+      @object: untyped
+
+      extend ActiveSupport::Concern
+
+      def unpresented: () -> untyped
+
+      def present: (untyped object_type, untyped attrs) -> (nil | untyped)
+
+      private
+
+      attr_accessor unwrapped: untyped
+    end
+  end
+end

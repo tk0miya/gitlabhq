@@ -1,0 +1,48 @@
+module Gitlab
+  module Repositories
+    # Builds HTTP headers for repository archive responses.
+    # Used by both the API and web controller to ensure consistent
+    # Content-Type and Content-Disposition headers for HEAD and GET requests.
+    class ArchiveHeaderBuilder
+      @repository: untyped
+
+      @ref: untyped
+
+      @format: untyped
+
+      @append_sha: untyped
+
+      @path: untyped
+
+      @metadata: untyped
+
+      def initialize: (untyped repository, ref: untyped, format: untyped, append_sha: untyped, ?path: untyped?) -> void
+
+      def metadata: () -> untyped
+
+      def filename: () -> ::String
+
+      # Returns the MIME type for the archive format.
+      # Aligned with Workhorse behavior (workhorse/internal/git/archive.go):
+      # - ZIP files get 'application/zip'
+      # - All other formats get 'application/octet-stream'
+      def content_type: () -> ("application/zip" | "application/octet-stream")
+
+      def content_disposition: () -> untyped
+
+      private
+
+      attr_reader repository: untyped
+
+      attr_reader ref: untyped
+
+      attr_reader format: untyped
+
+      attr_reader append_sha: untyped
+
+      attr_reader path: untyped
+
+      def validate_metadata!: () -> (untyped | nil)
+    end
+  end
+end

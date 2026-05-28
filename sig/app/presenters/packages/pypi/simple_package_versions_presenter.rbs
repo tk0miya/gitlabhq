@@ -1,0 +1,18 @@
+# Display package version data according to PyPI
+# Simple API: https://warehouse.pypa.io/api-reference/legacy/#simple-project-api
+# Generates the HTML body for PyPI simple API.
+# Basically a list of package download links for a specific
+# package
+module Packages
+  module Pypi
+    class SimplePackageVersionsPresenter < SimplePresenterBase
+      private
+
+      def links: () -> untyped
+
+      def build_pypi_package_file_path: (untyped file) -> untyped
+
+      def body_name: () -> untyped
+    end
+  end
+end

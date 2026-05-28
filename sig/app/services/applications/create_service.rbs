@@ -1,0 +1,22 @@
+module Applications
+  class CreateService
+    @current_user: untyped
+
+    @request: untyped
+
+    @params: untyped
+
+    @application: untyped
+
+    attr_reader current_user: untyped
+
+    attr_reader request: untyped
+
+    attr_reader params: untyped
+
+    # EE would override and use `request` arg
+    def initialize: (untyped current_user, untyped request, untyped params) -> void
+
+    def execute: () -> untyped
+  end
+end

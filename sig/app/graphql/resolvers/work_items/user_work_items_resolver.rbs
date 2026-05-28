@@ -1,0 +1,21 @@
+module Resolvers
+  module WorkItems
+    class UserWorkItemsResolver < BaseResolver
+      prepend ::WorkItems::LookAheadPreloads
+
+      include SearchArguments
+
+      include ::WorkItems::SharedFilterArguments
+
+      NON_FILTER_ARGUMENTS: ::Array[:sort | :lookahead]
+
+      def ready?: (**untyped args) -> untyped
+
+      def resolve_with_lookahead: (**untyped args) -> untyped
+
+      private
+
+      def filter_provided?: (untyped args) -> untyped
+    end
+  end
+end

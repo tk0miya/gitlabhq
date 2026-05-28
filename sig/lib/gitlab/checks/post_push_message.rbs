@@ -1,0 +1,29 @@
+module Gitlab
+  module Checks
+    class PostPushMessage
+      @repository: untyped
+
+      @user: untyped
+
+      @protocol: untyped
+
+      def initialize: (untyped repository, untyped user, untyped protocol) -> void
+
+      def self.fetch_message: (untyped user, untyped repository) -> untyped
+
+      def add_message: () -> (nil | untyped)
+
+      def message: () -> untyped
+
+      attr_reader repository: untyped
+
+      attr_reader user: untyped
+
+      attr_reader protocol: untyped
+
+      def self.message_key: (untyped user, untyped repository) -> untyped
+
+      def url_to_repo: () -> untyped
+    end
+  end
+end

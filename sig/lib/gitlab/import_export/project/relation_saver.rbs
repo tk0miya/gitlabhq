@@ -1,0 +1,51 @@
+module Gitlab
+  module ImportExport
+    module Project
+      class RelationSaver
+        @project: untyped
+
+        @relation: untyped
+
+        @shared: untyped
+
+        @user: untyped
+
+        @params: untyped
+
+        @serializer: untyped
+
+        @reader: untyped
+
+        @json_writer: untyped
+
+        def initialize: (project: untyped, shared: untyped, relation: untyped, user: untyped, ?params: ::Hash[untyped, untyped]) -> void
+
+        def save: () -> untyped
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader relation: untyped
+
+        attr_reader shared: untyped
+
+        attr_reader user: untyped
+
+        attr_reader params: untyped
+
+        def serializer: () -> untyped
+
+        def presented_project_for_export: () -> untyped
+
+        def root_relation?: () -> untyped
+
+        def relation_schema: () -> untyped
+
+        def reader: () -> untyped
+
+        def json_writer: () -> untyped
+      end
+    end
+  end
+end

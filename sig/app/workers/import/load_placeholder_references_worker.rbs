@@ -1,0 +1,13 @@
+module Import
+  class LoadPlaceholderReferencesWorker
+    include ApplicationWorker
+
+    def perform: (untyped import_source, untyped import_uid, ?::Hash[untyped, untyped] _params) -> untyped
+
+    def perform_failure: (untyped exception, untyped import_source, untyped import_uid) -> untyped
+
+    def log_failure: (untyped exception, untyped import_source, untyped import_uid) -> untyped
+
+    def clear_placeholder_reference_store: (untyped import_source, untyped import_uid) -> untyped
+  end
+end

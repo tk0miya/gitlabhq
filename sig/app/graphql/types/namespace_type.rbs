@@ -1,0 +1,19 @@
+module Types
+  class NamespaceType < BaseObject
+    def self.authorization_scopes: () -> untyped
+
+    def achievements_path: () -> (nil | untyped)
+
+    def timelog_categories: () -> (untyped | nil)
+
+    def can_push_initial_commit: () -> (false | untyped)
+
+    def cross_project_pipeline_available?: () -> untyped
+
+    def merge_requests_enabled: () -> (untyped | true)
+
+    def root_storage_statistics: () -> untyped
+
+    def subscribed_saved_view_limit: () -> untyped
+  end
+end

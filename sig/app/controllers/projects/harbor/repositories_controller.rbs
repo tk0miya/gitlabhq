@@ -1,0 +1,11 @@
+module Projects
+  module Harbor
+    class RepositoriesController < ::Projects::Harbor::ApplicationController
+      include ::Harbor::Repository
+
+      private
+
+      def container: () -> untyped
+    end
+  end
+end

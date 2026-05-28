@@ -1,0 +1,21 @@
+module Gitlab
+  module CycleAnalytics
+    module Summary
+      class Base
+        @project: untyped
+
+        @options: untyped
+
+        include Gitlab::CycleAnalytics::Summary::Defaults
+
+        def initialize: (project: untyped, options: untyped) -> void
+
+        private
+
+        attr_reader project: untyped
+
+        attr_reader options: untyped
+      end
+    end
+  end
+end

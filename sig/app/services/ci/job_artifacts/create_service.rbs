@@ -1,0 +1,73 @@
+module Ci
+  module JobArtifacts
+    class CreateService < ::BaseService
+      @job: untyped
+
+      @project: untyped
+
+      @pipeline: untyped
+
+      include Gitlab::Utils::UsageData
+
+      LSIF_ARTIFACT_TYPE: "lsif"
+
+      SCIP_ARTIFACT_TYPE: "scip"
+
+      ARTIFACT_HASH_FUNCTIONS: ::Array["sha256"]
+
+      OBJECT_STORAGE_ERRORS: ::Array[untyped]
+
+      def initialize: (untyped job) -> void
+
+      def authorize: (artifact_type: untyped, ?filesize: untyped?) -> untyped
+
+      def execute: (untyped artifacts_file, untyped params, ?metadata_file: untyped?) -> untyped
+
+      private
+
+      attr_reader job: untyped
+
+      attr_reader project: untyped
+
+      attr_reader pipeline: untyped
+
+      def validate_requirements: (artifact_type: untyped, filesize: untyped) -> untyped
+
+      def too_large?: (untyped type, untyped size) -> (untyped | nil)
+
+      def lsif?: (untyped type) -> untyped
+
+      def scip?: (untyped type) -> untyped
+
+      def max_size: (untyped type) -> untyped
+
+      def scip_not_enabled?: (untyped type) -> untyped
+
+      def too_large_error: () -> untyped
+
+      def scip_not_enabled_error: () -> untyped
+
+      def build_artifact: (untyped artifacts_file, untyped params, untyped metadata_file) -> untyped
+
+      def build_metadata_artifact: (untyped job_artifact, untyped metadata_file) -> untyped
+
+      def expire_in: (untyped params) -> untyped
+
+      def accessibility: (untyped params) -> untyped
+
+      def parse_artifact: (untyped artifact) -> untyped
+
+      def persist_artifact: (untyped artifact, untyped artifact_metadata) -> untyped
+
+      def sha256_matches_existing_artifact?: (untyped artifact_type, untyped artifacts_file) -> (false | untyped)
+
+      def track_exception: (untyped error, untyped artifact_type) -> untyped
+
+      def track_artifact_uploader: (untyped _artifact) -> nil
+
+      def parse_dotenv_artifact: (untyped artifact) -> untyped
+
+      def parse_annotations_artifact: (untyped artifact) -> untyped
+    end
+  end
+end

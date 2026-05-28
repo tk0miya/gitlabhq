@@ -1,0 +1,23 @@
+module Gitlab
+  # The SidekiqMiddleware class is responsible for configuring the
+  # middleware stacks used in the client and server middlewares
+  module SidekiqMiddleware
+    class Client
+      def self.middlewares: () -> ::Array[untyped]
+
+      # The result of this method should be passed to
+      # Sidekiq's `config.client_middleware` method
+      # eg: `config.client_middleware(&Gitlab::SidekiqMiddleware::Client.configurator)`
+      def self.configurator: () -> untyped
+    end
+
+    class Server
+      def self.middlewares: (?metrics: bool, ?arguments_logger: bool, ?skip_jobs: bool) -> untyped
+
+      # The result of this method should be passed to
+      # Sidekiq's `config.server_middleware` method
+      # eg: `config.server_middleware(&Gitlab::SidekiqMiddleware::Server.configurator)`
+      def self.configurator: (?metrics: bool, ?arguments_logger: bool, ?skip_jobs: bool) -> untyped
+    end
+  end
+end

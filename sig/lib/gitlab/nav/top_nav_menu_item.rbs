@@ -1,0 +1,12 @@
+module Gitlab
+  module Nav
+    class TopNavMenuItem
+      # We want to have all keyword arguments for type safety.
+      # Ordinarily we could introduce a params object, but that's kind of what
+      # this is already :/. We could also take a hash and manually check every
+      # entry, but it's much more maintainable to do rely on native Ruby.
+      # rubocop: disable Metrics/ParameterLists
+      def self.build: (id: untyped, title: untyped, ?active: bool, ?icon: ::String, ?href: ::String, ?view: ::String, ?css_class: untyped?, ?partial: untyped?, ?component: untyped?) -> { id: untyped, type: :item, title: untyped, active: untyped, icon: untyped, href: untyped, view: untyped, css_class: untyped, partial: untyped, component: untyped }
+    end
+  end
+end

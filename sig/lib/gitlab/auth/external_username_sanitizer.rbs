@@ -1,0 +1,18 @@
+module Gitlab
+  module Auth
+    class ExternalUsernameSanitizer
+      @external_username: untyped
+
+      attr_reader external_username: untyped
+
+      def initialize: (untyped external_username) -> void
+
+      def sanitize: () -> untyped
+
+      # decomposed from Namespace.clean_path
+      def unique_by_namespace: (untyped slug) -> untyped
+
+      def validated_path: (untyped path) -> untyped
+    end
+  end
+end

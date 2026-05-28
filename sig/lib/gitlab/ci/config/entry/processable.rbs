@@ -1,0 +1,38 @@
+module Gitlab
+  module Ci
+    class Config
+      module Entry
+        #
+        # Entry that represents a CI/CD Processable (a job)
+        #
+        module Processable
+          extend ActiveSupport::Concern
+
+          include ::Gitlab::Config::Entry::Configurable
+
+          include ::Gitlab::Config::Entry::Attributable
+
+          include ::Gitlab::Config::Entry::Inheritable
+
+          PROCESSABLE_ALLOWED_KEYS: ::Array[:extends | :stage | :only | :except | :rules | :variables | :inherit | :allow_failure | :when | :needs | :resource_group | :environment | :interruptible]
+
+          MAX_NESTING_LEVEL: 10
+
+          def compose!: (?untyped? deps) ?{ () -> untyped } -> untyped
+
+          def validate_against_warnings: () -> (nil | untyped)
+
+          def name: () -> untyped
+
+          def overwrite_entry: (untyped deps, untyped key, untyped current_entry) -> (nil | untyped)
+
+          def value: () -> untyped
+
+          def root_variables_inheritance: () -> untyped
+
+          def manual_action?: () -> untyped
+        end
+      end
+    end
+  end
+end

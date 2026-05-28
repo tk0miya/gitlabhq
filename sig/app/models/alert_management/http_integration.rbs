@@ -1,0 +1,28 @@
+module AlertManagement
+  class HttpIntegration < ApplicationRecord
+    include ::Gitlab::Routing
+
+    include Gitlab::EncryptedAttribute
+
+    LEGACY_IDENTIFIERS: ::Array["legacy" | "legacy-prometheus"]
+
+    def url: () -> untyped
+
+    def legacy?: () -> untyped
+
+    private
+
+    def self.generate_token: () -> untyped
+
+    def name_slug: () -> untyped
+
+    # Blank token assignment triggers token reset
+    def prevent_token_assignment: () -> (untyped | nil)
+
+    def ensure_token: () -> (untyped | nil)
+
+    def prevent_endpoint_identifier_assignment: () -> (untyped | nil)
+
+    def ensure_payload_example_not_nil: () -> untyped
+  end
+end

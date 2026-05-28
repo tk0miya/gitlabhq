@@ -1,0 +1,19 @@
+module Gitlab
+  module SidekiqLogging
+    class JSONFormatter
+      TIMESTAMP_FIELDS: ::Array["created_at" | "scheduled_at" | "enqueued_at" | "started_at" | "retried_at" | "failed_at" | "completed_at" | "concurrency_limit_buffered_at"]
+
+      def call: (untyped severity, untyped timestamp, untyped progname, untyped data) -> untyped
+
+      private
+
+      def convert_to_iso8601!: (untyped payload) -> untyped
+
+      def format_time: (untyped timestamp) -> untyped
+
+      def convert_retry_to_integer!: (untyped payload) -> untyped
+
+      def process_args!: (untyped payload) -> (nil | untyped)
+    end
+  end
+end

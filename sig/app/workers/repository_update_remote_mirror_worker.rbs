@@ -1,0 +1,21 @@
+class RepositoryUpdateRemoteMirrorWorker
+  UpdateError: untyped
+
+  include ApplicationWorker
+
+  include Gitlab::ExclusiveLeaseHelpers
+
+  LOCK_WAIT_TIME: untyped
+
+  MAX_TRIES: 3
+
+  def perform: (untyped remote_mirror_id, untyped scheduled_time, ?::Integer tries) -> untyped
+
+  private
+
+  def update_mirror: (untyped mirror, untyped tries) -> untyped
+
+  def remote_mirror_update_lock: (untyped mirror_id) -> untyped
+
+  def schedule_retry: (untyped mirror, untyped tries) -> untyped
+end

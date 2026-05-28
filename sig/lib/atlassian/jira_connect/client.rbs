@@ -1,0 +1,74 @@
+module Atlassian
+  module JiraConnect
+    class Client
+      @base_uri: untyped
+
+      @shared_secret: untyped
+
+      ASSOCIATION_VALUES_LIMIT: 500
+
+      AssociationsTruncatedError: untyped
+
+      def self.generate_update_sequence_id: () -> untyped
+
+      def initialize: (untyped base_uri, untyped shared_secret) -> void
+
+      def send_info: (project: untyped, ?update_sequence_id: untyped?, **untyped args) -> untyped
+
+      # Fetch user information for the given account.
+      # https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-users/#api-rest-api-3-user-get
+      def user_info: (untyped account_id) -> untyped
+
+      private
+
+      def get: (untyped path, untyped query_params) -> untyped
+
+      def store_ff_info: (project: untyped, feature_flags: untyped, **untyped opts) -> (nil | untyped)
+
+      def store_deploy_info: (project: untyped, deployments: untyped, **untyped opts) -> (nil | untyped)
+
+      def store_build_info: (project: untyped, pipelines: untyped, ?update_sequence_id: untyped?) -> (nil | untyped)
+
+      def store_dev_info: (project: untyped, ?commits: untyped?, ?branches: untyped?, ?merge_requests: untyped?, ?update_sequence_id: untyped?) -> untyped
+
+      def remove_branch_info: (project: untyped, remove_branch_info: untyped, ?update_sequence_id: untyped?) -> untyped
+
+      def post: (untyped path, untyped payload) -> untyped
+
+      def delete: (untyped path) -> untyped
+
+      def headers: (untyped uri, ?::String http_method) -> { "Authorization" => ::String, "Content-Type" => "application/json", "Accept" => "application/json" }
+
+      def metadata: () -> { providerMetadata: { product: ::String } }
+
+      def handle_response: (untyped response, untyped name) { (untyped) -> untyped } -> untyped
+
+      def parse_jira_error_messages: (untyped data) -> untyped
+
+      def errors: (untyped data, untyped key, untyped response) -> { "errorMessages" => untyped, "responseCode" => untyped, "requestBody" => untyped }
+
+      def request_body_schema: (untyped response) -> untyped
+
+      def user_notes_count: (untyped merge_requests) -> (nil | untyped)
+
+      # Jira caps total association values per deployment at
+      # ASSOCIATION_VALUES_LIMIT across all associationTypes combined.
+      # Splitting a deployment into multiple POSTs does not accumulate
+      # associations: verified against Jira Cloud, requests with the same
+      # deployment identity and equal updateSequenceNumber are dropped, and
+      # requests with a higher updateSequenceNumber wholesale replace the
+      # previous data. So when a deployment produces more than the limit,
+      # we truncate to the limit and track the excess so we can monitor
+      # customer impact.
+      def truncate_associations_if_needed: (untyped deployment_hash) -> untyped
+
+      # Coarse, low-cardinality tags so Sentry can aggregate the truncation
+      # distribution. `extra:` data is not aggregatable in Discover.
+      def truncation_tags: (untyped dropped_values) -> { dropped_bucket: untyped, truncation_severity: untyped }
+
+      def jwt_token: (untyped http_method, untyped uri) -> untyped
+
+      def logger: () -> untyped
+    end
+  end
+end

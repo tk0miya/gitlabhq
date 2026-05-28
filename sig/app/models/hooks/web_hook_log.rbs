@@ -1,0 +1,50 @@
+class WebHookLog < ApplicationRecord
+  include Presentable
+
+  include DeleteWithLimit
+
+  include CreatedAtFilterable
+
+  include PartitionedTable
+
+  OVERSIZE_REQUEST_DATA: { "oversize" => true }
+
+  MAX_RECENT_DAYS: 7
+
+  attr_accessor interpolated_url: untyped
+
+  def self.recent: (?::Integer number_of_days) -> untyped
+
+  def self.created_between: (untyped start_time, untyped end_time) -> untyped
+
+  # Delete a batch of log records. Returns true if there may be more remaining.
+  def self.delete_batch_for: (untyped web_hook, batch_size: untyped) -> untyped
+
+  def self.max_recent_days_ago: () -> untyped
+
+  def success?: () -> untyped
+
+  def internal_error?: () -> untyped
+
+  def oversize?: () -> untyped
+
+  def request_headers: () -> untyped
+
+  def request_headers_list: () -> untyped
+
+  def response_headers_list: () -> untyped
+
+  def idempotency_key: () -> untyped
+
+  def url_current?: () -> (true | untyped)
+
+  private
+
+  def obfuscate_basic_auth: () -> untyped
+
+  def redact_user_emails: () -> untyped
+
+  def set_url_hash: () -> untyped
+
+  def list_headers: (untyped headers_hash) -> (::Array[untyped] | untyped)
+end

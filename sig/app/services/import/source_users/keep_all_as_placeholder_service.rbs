@@ -1,0 +1,19 @@
+module Import
+  module SourceUsers
+    class KeepAllAsPlaceholderService < BaseService
+      @namespace: untyped
+
+      @current_user: untyped
+
+      BATCH_SIZE: 1000
+
+      def initialize: (untyped namespace, current_user: untyped) -> void
+
+      def execute: () -> untyped
+
+      private
+
+      attr_reader namespace: untyped
+    end
+  end
+end
