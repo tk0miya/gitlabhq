@@ -1,0 +1,27 @@
+module ActiveContext
+  class BulkProcessor
+    @failures: untyped
+
+    @adapter: untyped
+
+    @logger: untyped
+
+    attr_reader failures: untyped
+
+    attr_reader adapter: untyped
+
+    def initialize: () -> void
+
+    def process: (untyped ref) -> (untyped | nil)
+
+    def flush: () -> untyped
+
+    private
+
+    def send_bulk: () -> self
+
+    def try_send_bulk: () -> untyped
+
+    def logger: () -> untyped
+  end
+end

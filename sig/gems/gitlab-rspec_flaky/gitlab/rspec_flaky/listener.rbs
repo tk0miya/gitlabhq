@@ -1,0 +1,37 @@
+module Gitlab
+  module RspecFlaky
+    class Listener
+      @flaky_examples: untyped
+
+      @suite_flaky_examples: untyped
+
+      @new_flaky_examples: untyped
+
+      # - suite_flaky_examples: contains all the currently tracked flacky example
+      #   for the whole RSpec suite
+      # - flaky_examples: contains the examples detected as flaky during the
+      #   current RSpec run
+      attr_reader suite_flaky_examples: untyped
+
+      # - suite_flaky_examples: contains all the currently tracked flacky example
+      #   for the whole RSpec suite
+      # - flaky_examples: contains the examples detected as flaky during the
+      #   current RSpec run
+      attr_reader flaky_examples: untyped
+
+      def initialize: (?untyped? suite_flaky_examples_json) -> void
+
+      def example_passed: (untyped notification) -> (nil | untyped)
+
+      def dump_summary: (untyped _) -> (nil | untyped)
+
+      private
+
+      def new_flaky_examples: () -> untyped
+
+      def init_suite_flaky_examples: (?untyped? suite_flaky_examples_json) -> (untyped | ::Hash[untyped, untyped] | untyped)
+
+      def rails_logger_warn: (untyped text) -> untyped
+    end
+  end
+end

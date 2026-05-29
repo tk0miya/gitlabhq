@@ -1,0 +1,50 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      module Indexer
+        @options: untyped
+
+        @client: untyped
+
+        @refs: untyped
+
+        attr_reader options: untyped
+
+        attr_reader client: untyped
+
+        attr_reader refs: untyped
+
+        def initialize: (untyped options, untyped client) -> void
+
+        def all_refs: () -> untyped
+
+        # Adds a reference to the refs array
+        #
+        # @param ref [Object] The reference to add
+        # @return [Boolean] True if bulk processing should be forced, e.g., when a size threshold is reached
+        def add_ref: (untyped ref) -> untyped
+
+        # Checks if nothing should be processed
+        #
+        # @return [Boolean] True if bulk processing should be skipped
+        def empty?: () -> untyped
+
+        # Performs bulk processing on the refs array
+        #
+        # @return [Object] The result of bulk processing
+        def bulk: () -> untyped
+
+        # Processes errors from bulk operation
+        #
+        # @param result [Object] The result from the bulk operation
+        # @return [Array] Any failures that occurred during bulk processing
+        def process_bulk_errors: (untyped _result) -> untyped
+
+        # Resets the adapter to a clean state
+        def reset: () -> untyped
+
+        def extract_identifier: (untyped string) -> untyped
+      end
+    end
+  end
+end

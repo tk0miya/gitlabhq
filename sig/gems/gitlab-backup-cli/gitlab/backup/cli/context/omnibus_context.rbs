@@ -1,0 +1,27 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Context
+        class OmnibusContext < SourceContext
+          @omnibus_config: untyped
+
+          OMNIBUS_CONFIG_ENV: "GITLAB_BACKUP_CLI_CONFIG_FILE"
+
+          # Is the tool running in an Omnibus installation?
+          #
+          # @return [Boolean]
+          def self.available?: () -> untyped
+
+          # @return [Pathname|Nillable]
+          def self.omnibus_config_filepath: () -> untyped
+
+          private
+
+          def omnibus_config: () -> untyped
+
+          def build_gitlab_config: () -> untyped
+        end
+      end
+    end
+  end
+end

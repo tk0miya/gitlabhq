@@ -1,0 +1,13 @@
+module Gitlab
+  module Utils
+    module ErrorMessage
+      extend ::Gitlab::Utils::ErrorMessage
+
+      UF_ERROR_PREFIX: "UF"
+
+      def to_user_facing: (untyped message) -> untyped
+
+      def prefixed_error_message: (untyped message, untyped prefix) -> ::String
+    end
+  end
+end

@@ -1,0 +1,58 @@
+module Gitlab
+  module GrapeOpenapi
+    module Models
+      class Parameter
+        @options: untyped
+
+        @name: untyped
+
+        # From https://spec.openapis.org/oas/v3.2.0.html#common-fixed-fields: "If the parameter
+        # location is 'path', this property is REQUIRED and its value MUST be true.
+        @required: untyped
+
+        @description: untyped
+
+        @schema: untyped
+
+        @in_value: untyped
+
+        @example: untyped
+
+        @default: untyped
+
+        @style: untyped
+
+        @explode: untyped
+
+        # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#parameter-object
+        attr_reader name: untyped
+
+        # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#parameter-object
+        attr_reader required: untyped
+
+        # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#parameter-object
+        attr_reader in_value: untyped
+
+        # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#parameter-object
+        attr_reader description: untyped
+
+        # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#parameter-object
+        attr_reader options: untyped
+
+        # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#parameter-object
+        attr_reader schema: untyped
+
+        # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#parameter-object
+        attr_reader example: untyped
+
+        attr_accessor style: untyped
+
+        attr_accessor explode: untyped
+
+        def initialize: (untyped name, options: untyped, schema: untyped, in_value: untyped) -> void
+
+        def to_h: () -> untyped
+      end
+    end
+  end
+end

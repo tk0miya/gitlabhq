@@ -1,0 +1,23 @@
+module NextFoundInstanceOf
+  ERROR_MESSAGE: "NextFoundInstanceOf mock helpers can only be used with ActiveRecord targets"
+
+  HELPER_METHOD_PATTERN: ::Regexp
+
+  def method_missing: (untyped method_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def respond_to_missing?: (untyped method_name, *untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def expect_next_found_instance_of: (untyped klass) { (?) -> untyped } -> untyped
+
+  def expect_next_found_instances_of: (untyped klass, untyped number) { (?) -> untyped } -> untyped
+
+  def allow_next_found_instance_of: (untyped klass) { (?) -> untyped } -> untyped
+
+  def allow_next_found_instances_of: (untyped klass, untyped number) { (?) -> untyped } -> untyped
+
+  private
+
+  def check_if_active_record!: (untyped klass) -> (untyped | nil)
+
+  def stub_allocate: (untyped target, untyped klass, untyped number) { (untyped) -> untyped } -> untyped
+end

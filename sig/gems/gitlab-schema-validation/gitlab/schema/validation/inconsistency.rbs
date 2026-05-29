@@ -1,0 +1,47 @@
+module Gitlab
+  module Schema
+    module Validation
+      class Inconsistency
+        @validator_class: untyped
+
+        @structure_sql_object: untyped
+
+        @database_object: untyped
+
+        @details: untyped
+
+        attr_reader details: untyped
+
+        def initialize: (untyped validator_class, untyped structure_sql_object, untyped database_object, ?details: ::Hash[untyped, untyped]) -> void
+
+        def error_message: () -> untyped
+
+        def type: () -> untyped
+
+        def object_type: () -> untyped
+
+        def table_name: () -> untyped
+
+        def object_name: () -> untyped
+
+        def diff: () -> untyped
+
+        def to_h: () -> { type: untyped, object_type: untyped, table_name: untyped, object_name: untyped, structure_sql_statement: untyped, database_statement: untyped }
+
+        def display: () -> ::String
+
+        def structure_sql_statement: () -> (nil | ::String)
+
+        def database_statement: () -> (nil | ::String)
+
+        private
+
+        attr_reader validator_class: untyped
+
+        attr_reader structure_sql_object: untyped
+
+        attr_reader database_object: untyped
+      end
+    end
+  end
+end

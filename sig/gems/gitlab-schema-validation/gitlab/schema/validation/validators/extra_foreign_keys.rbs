@@ -1,0 +1,13 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Validators
+        class ExtraForeignKeys < Base
+          ERROR_MESSAGE: "The foreign key %s is present in the database, but not in the structure.sql file"
+
+          def execute: () -> untyped
+        end
+      end
+    end
+  end
+end

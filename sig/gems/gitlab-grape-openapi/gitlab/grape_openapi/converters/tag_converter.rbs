@@ -1,0 +1,23 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      class TagConverter
+        @api_class: untyped
+
+        @tag_registry: untyped
+
+        attr_reader api_class: untyped
+
+        attr_reader tag_registry: untyped
+
+        def initialize: (untyped api_class, untyped tag_registry) -> void
+
+        def convert: () -> untyped
+
+        private
+
+        def build_tags: (untyped api_class) -> untyped
+      end
+    end
+  end
+end

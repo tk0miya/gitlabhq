@@ -1,0 +1,14 @@
+module IpynbDiff
+  # Notebook that was transformed into md, including location of source cells
+  class TransformedNotebook
+    @blocks: untyped
+
+    attr_reader blocks: untyped
+
+    def as_text: () -> untyped
+
+    private
+
+    def initialize: (?untyped lines, ?::Hash[untyped, untyped] symbol_map) -> void
+  end
+end

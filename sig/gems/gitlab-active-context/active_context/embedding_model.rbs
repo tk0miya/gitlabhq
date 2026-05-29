@@ -1,0 +1,45 @@
+module ActiveContext
+  class EmbeddingModel
+    @field: untyped
+
+    @model_ref: untyped
+
+    @model_type: untyped
+
+    @dimensions: untyped
+
+    @llm_class: untyped
+
+    @llm_params: untyped
+
+    Error: untyped
+
+    attr_reader field: untyped
+
+    attr_reader model_ref: untyped
+
+    attr_reader model_type: untyped
+
+    attr_reader dimensions: untyped
+
+    attr_reader llm_class: untyped
+
+    attr_reader llm_params: untyped
+
+    def initialize: (field: untyped, model_ref: untyped, model_type: untyped, llm_class: untyped, ?llm_params: ::Hash[untyped, untyped], ?dimensions: untyped?) -> void
+
+    def generate_embeddings: (untyped content, ?user: untyped?) -> untyped
+
+    def model_key: () -> ::String
+
+    private
+
+    def build_embedding_llm: (untyped contents, untyped user) -> untyped
+
+    def validate_respond_to_execute: (untyped embedding_llm) -> untyped
+
+    def validate_llm_params: () -> (nil | untyped)
+
+    def log_embeddings_generation: () { () -> untyped } -> untyped
+  end
+end

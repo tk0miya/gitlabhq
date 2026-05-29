@@ -1,0 +1,33 @@
+module ActiveContext
+  module Concerns
+    module BulkAsyncProcess
+      RESCHEDULE_INTERVAL: untyped
+
+      LOCK_TTL: untyped
+
+      LOCK_RETRIES: 10
+
+      LOCK_SLEEP_SECONDS: 1
+
+      extend ActiveSupport::Concern
+
+      def perform: (*untyped args) -> untyped
+
+      private
+
+      def enqueue_all_shards: () -> untyped
+
+      def process_shard: (untyped queue, untyped shard) -> untyped
+
+      def re_enqueue_shard: (untyped queue, untyped shard) -> untyped
+
+      def should_re_enqueue?: (untyped queue, untyped records_count, untyped failures_count) -> (false | untyped)
+
+      def log: (untyped message) -> untyped
+
+      def logger: () -> untyped
+
+      def lock_key: (untyped queue, untyped shard) -> ::String
+    end
+  end
+end

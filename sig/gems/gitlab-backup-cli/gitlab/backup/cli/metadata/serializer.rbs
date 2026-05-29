@@ -1,0 +1,35 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Metadata
+        # Defines value parsing and formatting routines for backup metadata JSON
+        module Serializer
+          extend ::Gitlab::Backup::Cli::Metadata::Serializer
+
+          # Given a metadata value, prepare and format the value as a
+          # JSON primitive type before serializing
+          #
+          # @param [Symbol] type
+          # @param [String|Time|Integer] value
+          # @return [Integer, String] the converted JSON primitive value
+          def serialize_value: (type: untyped, value: untyped) -> untyped
+
+          # Serialize the integer value
+          #
+          # @return [Integer]
+          def serialize_integer: (untyped value) -> untyped
+
+          # Serialize the String value
+          #
+          # @return [String]
+          def serialize_string: (untyped value) -> untyped
+
+          # Serialize the Time value using ISO8601 format
+          #
+          # @return [String]
+          def serialize_time: (untyped value) -> untyped
+        end
+      end
+    end
+  end
+end

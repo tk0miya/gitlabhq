@@ -1,0 +1,31 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      module QueryResult
+        @result: untyped
+
+        @collection: untyped
+
+        @user: untyped
+
+        @authorized_results: untyped
+
+        include Enumerable
+
+        attr_reader user: untyped
+
+        def initialize: (result: untyped, collection: untyped, user: untyped) -> void
+
+        def authorized_results: () -> untyped
+
+        def each: () -> untyped
+
+        private
+
+        attr_reader result: untyped
+
+        attr_reader collection: untyped
+      end
+    end
+  end
+end

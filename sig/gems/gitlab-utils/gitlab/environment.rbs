@@ -1,0 +1,13 @@
+module Gitlab
+  module Environment
+    extend ::Gitlab::Utils::StrongMemoize
+
+    def self.hostname: () -> untyped
+
+    # Check whether codebase is going through static verification
+    # in order to skip executing parts of the codebase
+    #
+    # @return [Boolean] Is the code going through static verification?
+    def self.static_verification?: () -> untyped
+  end
+end

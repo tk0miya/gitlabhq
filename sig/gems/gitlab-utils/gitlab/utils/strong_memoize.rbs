@@ -1,0 +1,57 @@
+module Gitlab
+  module Utils
+    module StrongMemoize
+      # Instead of writing patterns like this:
+      #
+      #     def trigger_from_token
+      #       return @trigger if defined?(@trigger)
+      #
+      #       @trigger = Ci::Trigger.find_by_token(params[:token].to_s)
+      #     end
+      #
+      # We could write it like:
+      #
+      #     include Gitlab::Utils::StrongMemoize
+      #
+      #     def trigger_from_token
+      #       Ci::Trigger.find_by_token(params[:token].to_s)
+      #     end
+      #     strong_memoize_attr :trigger_from_token
+      #
+      #     def enabled?
+      #       Feature.enabled?(:some_feature)
+      #     end
+      #     strong_memoize_attr :enabled?
+      #
+      def strong_memoize: (untyped name) { () -> untyped } -> untyped
+
+      # Works the same way as "strong_memoize" but takes
+      # a second argument - expire_in. This allows invalidate
+      # the data after specified number of seconds
+      def strong_memoize_with_expiration: (untyped name, untyped expire_in) { () -> untyped } -> untyped
+
+      def strong_memoize_with: (untyped name, *untyped args) { () -> untyped } -> untyped
+
+      def strong_memoized?: (untyped name) -> untyped
+
+      def clear_memoization: (untyped name) -> untyped
+
+      module StrongMemoizeClassMethods
+        def strong_memoize_attr: (untyped method_name) -> untyped
+      end
+
+      def self.included: (untyped base) -> untyped
+
+      private
+
+      # Convert `"name"`/`:name` into `:@name`
+      #
+      # Depending on a type ensure that there's a single memory allocation
+      def ivar: (untyped name) -> untyped
+
+      def self.normalize_key: (untyped key) -> untyped
+
+      def self.do_strong_memoize: (untyped klass, untyped method_name, untyped member_name) -> untyped
+    end
+  end
+end

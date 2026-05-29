@@ -1,0 +1,54 @@
+module ActiveContext
+  class Query
+    @type: untyped
+
+    @value: untyped
+
+    @children: untyped
+
+    ALLOWED_TYPES: ::Array[:all | :filter | :prefix | :limit | :knn | :and | :or | :missing | :exists]
+
+    SPACES_PER_INDENT: 2
+
+    # Class methods to start the chain
+    def self.all: () -> untyped
+
+    def self.filter: (**untyped conditions) -> untyped
+
+    def self.prefix: (**untyped conditions) -> untyped
+
+    def self.or: (*untyped queries) -> untyped
+
+    def self.and: (*untyped queries) -> untyped
+
+    def self.missing: (untyped field) -> untyped
+
+    def self.exists: (untyped field) -> untyped
+
+    def self.knn: (k: untyped, ?target: untyped?, ?vector: untyped?, ?content: untyped?) -> untyped
+
+    def self.validate_and_build_knn_params: (target: untyped, vector: untyped, content: untyped, k: untyped) -> untyped
+
+    attr_reader type: untyped
+
+    attr_reader value: untyped
+
+    attr_reader children: untyped
+
+    def initialize: (type: untyped, ?value: untyped?, ?children: untyped) -> void
+
+    def or: (*untyped other_queries) -> untyped
+
+    def and: (*untyped other_queries) -> untyped
+
+    def limit: (untyped count) -> untyped
+
+    def knn: (k: untyped, ?target: untyped?, ?vector: untyped?, ?content: untyped?) -> untyped
+
+    def missing: (untyped field) -> untyped
+
+    def exists: (untyped field) -> untyped
+
+    def inspect_ast: (?::Integer indent) -> untyped
+  end
+end

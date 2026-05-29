@@ -1,0 +1,24 @@
+# Inspired by https://github.com/ljkbennett/stub_env/blob/master/lib/stub_env/helpers.rb
+module StubENV
+  # Stub ENV variables
+  #
+  # You can provide either a key and value as separate params or both in a Hash format
+  #
+  # Keys and values will always be converted to String, to comply with how ENV behaves
+  #
+  # @param key_or_hash [String, Hash<String,String>]
+  # @param value [String]
+  def stub_env: (untyped key_or_hash, ?untyped? value) -> untyped
+
+  private
+
+  STUBBED_KEY: "__STUBBED__"
+
+  def add_stubbed_value: (untyped key, untyped value) -> untyped
+
+  def env_stubbed?: () -> untyped
+
+  def init_stub: () -> untyped
+
+  def ensure_env_type: (untyped value) -> untyped
+end

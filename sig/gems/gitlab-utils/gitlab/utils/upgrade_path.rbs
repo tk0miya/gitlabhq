@@ -1,0 +1,33 @@
+module Gitlab
+  module Utils
+    class UpgradePath
+      @upgrade_path: untyped
+
+      @version_info: untyped
+
+      SCHEDULED_STOPS: ::Array[2 | 5 | 8 | 11]
+
+      attr_reader upgrade_path: untyped
+
+      attr_reader version_info: untyped
+
+      def initialize: (untyped upgrade_path, untyped version_info) -> void
+
+      def last_required_stop: () -> untyped
+
+      def next_required_stop: () -> untyped
+
+      def required_stop?: () -> untyped
+
+      private
+
+      # We want this to return a list of scheduled stops for the current major version, and the first
+      # stop in the next major version.
+      def scheduled_stops: () -> untyped
+
+      def recorded_stops: () -> untyped
+
+      def all_stops: () -> untyped
+    end
+  end
+end

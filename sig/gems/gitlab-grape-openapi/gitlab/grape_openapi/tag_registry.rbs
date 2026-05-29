@@ -1,0 +1,19 @@
+module Gitlab
+  module GrapeOpenapi
+    class TagRegistry
+      @tags: untyped
+
+      attr_reader tags: untyped
+
+      def initialize: () -> void
+
+      def register: (untyped tag) -> (nil | untyped)
+
+      def to_h: () -> { tags: untyped }
+
+      private
+
+      def tag_exists?: (untyped tag) -> untyped
+    end
+  end
+end

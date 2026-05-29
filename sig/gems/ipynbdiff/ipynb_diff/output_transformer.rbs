@@ -1,0 +1,30 @@
+module IpynbDiff
+  # Transforms Jupyter output data into markdown
+  class OutputTransformer
+    @hide_images: untyped
+
+    include SymbolizedMarkdownHelper
+
+    HIDDEN_IMAGE_OUTPUT: "    [Hidden Image Output]"
+
+    ORDERED_KEYS: { "execute_result" => ::Array["image/png" | "image/svg+xml" | "image/jpeg" | "text/markdown" | "text/latex" | "text/plain"], "display_data" => ::Array["image/png" | "image/svg+xml" | "image/jpeg" | "text/markdown" | "text/latex"], "stream" => ::Array["text"] }
+
+    def initialize: (?bool hide_images) -> void
+
+    def transform: (untyped output, untyped symbol) -> untyped
+
+    def transform_error: (untyped traceback, untyped symbol) -> untyped
+
+    def transform_non_error: (untyped accepted_keys, untyped elements, untyped symbol) -> untyped
+
+    def transform_element: (untyped output_type, untyped output_element, untyped symbol_prefix) -> untyped
+
+    def transform_image: (untyped image_type, untyped image_content, untyped symbol) -> untyped
+
+    def transform_text: (untyped text_content, untyped symbol) -> untyped
+
+    private
+
+    def sanitize_text_line: (untyped line, ?rstrip: bool) -> untyped
+  end
+end

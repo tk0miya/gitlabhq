@@ -1,0 +1,126 @@
+module ErrorTrackingOpenAPI
+  class ApiClient
+    @@default: untyped
+
+    @config: untyped
+
+    @user_agent: untyped
+
+    @default_headers: untyped
+
+    # The Configuration object holding settings to be used in the API client.
+    attr_accessor config: untyped
+
+    # Defines the headers to be used in HTTP requests of all API calls by default.
+    #
+    # @return [Hash]
+    attr_accessor default_headers: untyped
+
+    # Initializes the ApiClient
+    # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
+    def initialize: (?untyped config) -> void
+
+    def self.default: () -> untyped
+
+    # Call an API with given options.
+    #
+    # @return [Array<(Object, Integer, Hash)>] an array of 3 elements:
+    #   the data deserialized from response body (could be nil), response status code and response headers.
+    def call_api: (untyped http_method, untyped path, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+    # Builds the HTTP request
+    #
+    # @param [String] http_method HTTP method/verb (e.g. POST)
+    # @param [String] path URL path (e.g. /account/new)
+    # @option opts [Hash] :header_params Header parameters
+    # @option opts [Hash] :query_params Query parameters
+    # @option opts [Hash] :form_params Query parameters
+    # @option opts [Object] :body HTTP body (JSON/XML)
+    # @return [Typhoeus::Request] A Typhoeus Request
+    def build_request: (untyped http_method, untyped path, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Builds the HTTP request body
+    #
+    # @param [Hash] header_params Header parameters
+    # @param [Hash] form_params Query parameters
+    # @param [Object] body HTTP body (JSON/XML)
+    # @return [String] HTTP body data in the form of string
+    def build_request_body: (untyped header_params, untyped form_params, untyped body) -> untyped
+
+    # Save response body into a file in (the defined) temporary folder, using the filename
+    # from the "Content-Disposition" header if provided, otherwise a random filename.
+    # The response body is written to the file in chunks in order to handle files which
+    # size is larger than maximum Ruby String or even larger than the maximum memory a Ruby
+    # process can use.
+    #
+    # @see Configuration#temp_folder_path
+    def download_file: (untyped request) -> untyped
+
+    # Check if the given MIME is a JSON MIME.
+    # JSON MIME examples:
+    #   application/json
+    #   application/json; charset=UTF8
+    #   APPLICATION/JSON
+    #   */*
+    # @param [String] mime MIME
+    # @return [Boolean] True if the MIME is application/json
+    def json_mime?: (untyped mime) -> untyped
+
+    # Deserialize the response to the given return type.
+    #
+    # @param [Response] response HTTP response
+    # @param [String] return_type some examples: "User", "Array<User>", "Hash<String, Integer>"
+    def deserialize: (untyped response, untyped return_type) -> (untyped | nil)
+
+    # Convert data to the given return type.
+    # @param [Object] data Data to be converted
+    # @param [String] return_type Return type
+    # @return [Mixed] Data in a particular type
+    def convert_to_type: (untyped data, untyped return_type) -> (nil | untyped)
+
+    # Sanitize filename by removing path.
+    # e.g. ../../sun.gif becomes sun.gif
+    #
+    # @param [String] filename the filename to be sanitized
+    # @return [String] the sanitized filename
+    def sanitize_filename: (untyped filename) -> untyped
+
+    def build_request_url: (untyped path, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Update header and query params based on authentication settings.
+    #
+    # @param [Hash] header_params Header parameters
+    # @param [Hash] query_params Query parameters
+    # @param [String] auth_names Authentication scheme name
+    def update_params_for_auth!: (untyped header_params, untyped query_params, untyped auth_names) -> untyped
+
+    # Sets user agent in HTTP header
+    #
+    # @param [String] user_agent User agent (e.g. openapi-generator/ruby/1.0.0)
+    def user_agent=: (untyped user_agent) -> untyped
+
+    # Return Accept header based on an array of accepts provided.
+    # @param [Array] accepts array for Accept
+    # @return [String] the Accept header (e.g. application/json)
+    def select_header_accept: (untyped accepts) -> (nil | untyped)
+
+    # Return Content-Type header based on an array of content types provided.
+    # @param [Array] content_types array for Content-Type
+    # @return [String] the Content-Type header  (e.g. application/json)
+    def select_header_content_type: (untyped content_types) -> (nil | untyped)
+
+    # Convert object (array, hash, object, etc) to JSON string.
+    # @param [Object] model object to be converted into JSON string
+    # @return [String] JSON string representation of the object
+    def object_to_http_body: (untyped model) -> untyped
+
+    # Convert object(non-array) to hash.
+    # @param [Object] obj object to be converted into JSON string
+    # @return [String] JSON string representation of the object
+    def object_to_hash: (untyped obj) -> untyped
+
+    # Build parameter value according to the given collection format.
+    # @param [String] collection_format one of :csv, :ssv, :tsv, :pipes and :multi
+    def build_collection_param: (untyped param, untyped collection_format) -> untyped
+  end
+end

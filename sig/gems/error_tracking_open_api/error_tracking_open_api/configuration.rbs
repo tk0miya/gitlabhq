@@ -1,0 +1,207 @@
+module ErrorTrackingOpenAPI
+  class Configuration
+    @@default: untyped
+
+    @scheme: untyped
+
+    @host: untyped
+
+    @base_path: untyped
+
+    @server_index: untyped
+
+    @server_operation_index: untyped
+
+    @server_variables: untyped
+
+    @server_operation_variables: untyped
+
+    @api_key: untyped
+
+    @api_key_prefix: untyped
+
+    @client_side_validation: untyped
+
+    @verify_ssl: untyped
+
+    @verify_ssl_host: untyped
+
+    @cert_file: untyped
+
+    @key_file: untyped
+
+    @timeout: untyped
+
+    @params_encoding: untyped
+
+    @debugging: untyped
+
+    @inject_format: untyped
+
+    @force_ending_format: untyped
+
+    @logger: untyped
+
+    # Defines url scheme
+    attr_accessor scheme: untyped
+
+    # Defines url host
+    attr_accessor host: untyped
+
+    # Defines url base path
+    attr_accessor base_path: untyped
+
+    # Define server configuration index
+    attr_accessor server_index: untyped
+
+    # Define server operation configuration index
+    attr_accessor server_operation_index: untyped
+
+    # Default server variables
+    attr_accessor server_variables: untyped
+
+    # Default server operation variables
+    attr_accessor server_operation_variables: untyped
+
+    # Defines API keys used with API Key authentications.
+    #
+    # @return [Hash] key: parameter name, value: parameter value (API key)
+    #
+    # @example parameter name is "api_key", API key is "xxx" (e.g. "api_key=xxx" in query string)
+    #   config.api_key['api_key'] = 'xxx'
+    attr_accessor api_key: untyped
+
+    # Defines API key prefixes used with API Key authentications.
+    #
+    # @return [Hash] key: parameter name, value: API key prefix
+    #
+    # @example parameter name is "Authorization", API key prefix is "Token" (e.g. "Authorization: Token xxx" in headers)
+    #   config.api_key_prefix['api_key'] = 'Token'
+    attr_accessor api_key_prefix: untyped
+
+    # Defines the username used with HTTP basic authentication.
+    #
+    # @return [String]
+    attr_accessor username: untyped
+
+    # Defines the password used with HTTP basic authentication.
+    #
+    # @return [String]
+    attr_accessor password: untyped
+
+    # Defines the access token (Bearer) used with OAuth2.
+    attr_accessor access_token: untyped
+
+    # Set this to enable/disable debugging. When enabled (set to true), HTTP request/response
+    # details will be logged with `logger.debug` (see the `logger` attribute).
+    # Default to false.
+    #
+    # @return [true, false]
+    attr_accessor debugging: untyped
+
+    # Defines the logger used for debugging.
+    # Default to `Rails.logger` (when in Rails) or logging to STDOUT.
+    #
+    # @return [#debug]
+    attr_accessor logger: untyped
+
+    # Defines the temporary folder to store downloaded files
+    # (for API endpoints that have file response).
+    # Default to use `Tempfile`.
+    #
+    # @return [String]
+    attr_accessor temp_folder_path: untyped
+
+    # The time limit for HTTP request in seconds.
+    # Default to 0 (never times out).
+    attr_accessor timeout: untyped
+
+    # Set this to false to skip client side validation in the operation.
+    # Default to true.
+    # @return [true, false]
+    attr_accessor client_side_validation: untyped
+
+    # # TLS/SSL setting
+    # Set this to false to skip verifying SSL certificate when calling API from https server.
+    # Default to true.
+    #
+    # @note Do NOT set it to false in production code, otherwise you would face multiple types of cryptographic attacks.
+    #
+    # @return [true, false]
+    attr_accessor verify_ssl: untyped
+
+    # # TLS/SSL setting
+    # Set this to false to skip verifying SSL host name
+    # Default to true.
+    #
+    # @note Do NOT set it to false in production code, otherwise you would face multiple types of cryptographic attacks.
+    #
+    # @return [true, false]
+    attr_accessor verify_ssl_host: untyped
+
+    # # TLS/SSL setting
+    # Set this to customize the certificate file to verify the peer.
+    #
+    # @return [String] the path to the certificate file
+    #
+    # @see The `cainfo` option of Typhoeus, `--cert` option of libcurl. Related source code:
+    # https://github.com/typhoeus/typhoeus/blob/master/lib/typhoeus/easy_factory.rb#L145
+    attr_accessor ssl_ca_cert: untyped
+
+    # # TLS/SSL setting
+    # Client certificate file (for client certificate)
+    attr_accessor cert_file: untyped
+
+    # # TLS/SSL setting
+    # Client private key file (for client certificate)
+    attr_accessor key_file: untyped
+
+    # Set this to customize parameters encoding of array parameter with multi collectionFormat.
+    # Default to nil.
+    #
+    # @see The params_encoding option of Ethon. Related source code:
+    # https://github.com/typhoeus/ethon/blob/master/lib/ethon/easy/queryable.rb#L96
+    attr_accessor params_encoding: untyped
+
+    attr_accessor inject_format: untyped
+
+    attr_accessor force_ending_format: untyped
+
+    def initialize: () ?{ (untyped) -> untyped } -> void
+
+    # The default Configuration object.
+    def self.default: () -> untyped
+
+    def configure: () ?{ (untyped) -> untyped } -> (untyped | nil)
+
+    def scheme=: (untyped scheme) -> untyped
+
+    def host=: (untyped host) -> untyped
+
+    def base_path=: (untyped base_path) -> untyped
+
+    # Returns base URL for specified operation based on server settings
+    def base_url: (?untyped? operation) -> untyped
+
+    # Gets API key (with prefix if set).
+    # @param [String] param_name the parameter name of API key auth
+    def api_key_with_prefix: (untyped param_name, ?untyped? param_alias) -> untyped
+
+    # Gets Basic Auth token string
+    def basic_auth_token: () -> untyped
+
+    # Returns Auth Settings hash for api client.
+    def auth_settings: () -> { "internalToken" => { type: "api_key", in: "header", key: "Gitlab-Error-Tracking-Token", value: untyped } }
+
+    # Returns an array of Server setting
+    def server_settings: () -> ::Array[{ url: "https://localhost/errortracking/api/v1", description: "No description provided" } | { url: "http://localhost/errortracking/api/v1", description: "No description provided" }]
+
+    def operation_server_settings: () -> ::Hash[untyped, untyped]
+
+    # Returns URL based on server settings
+    #
+    # @param index array index of the server settings
+    # @param variables hash of variable and the corresponding value
+    def server_url: (untyped index, ?::Hash[untyped, untyped] variables, ?untyped? servers) -> untyped
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module HTTP_V2
+    class DomainAllowlistEntry
+      @domain: untyped
+
+      @port: untyped
+
+      attr_reader domain: untyped
+
+      attr_reader port: untyped
+
+      def initialize: (untyped domain, ?port: untyped?) -> void
+
+      def match?: (untyped requested_domain, ?untyped? requested_port) -> (false | true | untyped)
+    end
+  end
+end

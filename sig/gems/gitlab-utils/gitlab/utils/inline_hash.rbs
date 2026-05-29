@@ -1,0 +1,40 @@
+module Gitlab
+  module Utils
+    module InlineHash
+      extend ::Gitlab::Utils::InlineHash
+
+      # Transforms a Hash into an inline Hash by merging its nested keys.
+      #
+      # Input
+      #
+      #  {
+      #    'root_param' => 'Root',
+      #    12 => 'number',
+      #    symbol: 'symbol',
+      #    nested_param: {
+      #      key: 'Value'
+      #    },
+      #    'very' => {
+      #      'deep' => {
+      #        'nested' => {
+      #          12 => 'Deep nested value'
+      #        }
+      #      }
+      #    }
+      #  }
+      #
+      #
+      # Result
+      #
+      #  {
+      #    'root_param' => 'Root',
+      #     12 => 'number',
+      #     symbol: symbol,
+      #    'nested_param.key' => 'Value',
+      #    'very.deep.nested.12' => 'Deep nested value'
+      #  }
+      #
+      def merge_keys: (untyped hash, ?prefix: untyped?, ?connector: ::String) -> untyped
+    end
+  end
+end

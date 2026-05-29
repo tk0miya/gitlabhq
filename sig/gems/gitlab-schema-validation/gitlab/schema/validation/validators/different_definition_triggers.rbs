@@ -1,0 +1,13 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Validators
+        class DifferentDefinitionTriggers < Base
+          ERROR_MESSAGE: "The %s trigger has a different statement between structure.sql and database"
+
+          def execute: () -> untyped
+        end
+      end
+    end
+  end
+end

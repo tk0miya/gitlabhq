@@ -1,0 +1,94 @@
+module ActiveRecord
+  module FixedItemsModel
+    RecordNotFound: untyped
+
+    UnknownAttribute: untyped
+
+    # Includes handy AR-like methods to models that have a fixed set
+    # of items that are stored in code instead of the database.
+    #
+    # See ActiveRecord::FixedItemsModel::HasOne for reference
+    # on how to build associations.
+    #
+    # A minimal example of such a model is:
+    #
+    # class StaticModel
+    #   include ActiveRecord::FixedItemsModel::Model
+    #
+    #   ITEMS = [
+    #     { id: 1, name: 'To do' }
+    #   ].freeze
+    #
+    #   attribute :name, :string
+    # end
+    #
+    # Or items can also be a method, as
+    #
+    # class StaticModel
+    #   include ActiveRecord::FixedItemsModel::Model
+    #
+    #   def self.fixed_items
+    #     [
+    #       { id: 1, name: 'To do' }
+    #     ]
+    #   end
+    #
+    #   attribute :name, :string
+    # end
+    #
+    # Usage:
+    #
+    # StaticModel.find(1)
+    # StaticModel.where(name: 'To do')
+    # StaticModel.find_by(name: 'To do')
+    # StaticModel.all
+    #
+    module Model
+      @errors: untyped
+
+      extend ActiveSupport::Concern
+
+      include ActiveModel::Model
+
+      include ActiveModel::Attributes
+
+      def as_json: (?::Hash[untyped, untyped] options) -> untyped
+
+      alias serializable_hash as_json
+
+      def to_json: (?::Hash[untyped, untyped] options) -> untyped
+
+      def matches?: (untyped conditions) -> untyped
+
+      def has_attribute?: (untyped key) -> untyped
+
+      def read_attribute: (untyped key) -> (nil | untyped)
+
+      def inspect: () -> ::String
+
+      def ==: (untyped other) -> untyped
+
+      alias eql? ==
+
+      def hash: () -> untyped
+
+      def marked_for_destruction?: () -> false
+
+      def persisted?: () -> true
+
+      def new_record?: () -> false
+
+      def destroyed?: () -> false
+
+      def _destroy: () -> false
+
+      def _destroy=: (untyped value) -> nil
+
+      def readonly?: () -> true
+
+      def changed?: () -> false
+
+      def errors: () -> untyped
+    end
+  end
+end

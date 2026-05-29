@@ -1,0 +1,65 @@
+module ActiveContext
+  module Databases
+    module Postgresql
+      class Processor
+        @collection: untyped
+
+        @model: untyped
+
+        @user: untyped
+
+        @base_relation: untyped
+
+        include ActiveContext::Databases::Concerns::Processor
+
+        # Transforms a query node into a PostgreSQL query using ActiveRecord
+        def self.transform: (collection: untyped, node: untyped, user: untyped) -> untyped
+
+        def initialize: (collection: untyped, model: untyped, user: untyped) -> void
+
+        # Processes a query node and returns the corresponding ActiveRecord relation
+        def process: (untyped node) -> untyped
+
+        private
+
+        attr_reader collection: untyped
+
+        attr_reader model: untyped
+
+        attr_reader user: untyped
+
+        attr_reader base_relation: untyped
+
+        def process_all: () -> untyped
+
+        def process_filter: (untyped conditions) -> untyped
+
+        def process_prefix: (untyped conditions) -> untyped
+
+        def process_missing: (untyped node) -> untyped
+
+        def process_exists: (untyped node) -> untyped
+
+        def process_and: (untyped children) -> untyped
+
+        def process_or: (untyped children) -> untyped
+
+        def contains_knn?: (untyped children) -> untyped
+
+        def process_and_with_knn: (untyped children) -> untyped
+
+        def process_or_with_knn: (untyped children) -> untyped
+
+        def process_simple_or: (untyped children) -> untyped
+
+        def process_knn: (untyped node, ?untyped relation) -> untyped
+
+        def process_limit: (untyped node) -> untyped
+
+        def quote_column: (untyped column) -> ::String
+
+        def sql_placeholders: (untyped values) -> untyped
+      end
+    end
+  end
+end

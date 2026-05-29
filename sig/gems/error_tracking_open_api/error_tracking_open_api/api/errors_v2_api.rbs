@@ -1,0 +1,61 @@
+module ErrorTrackingOpenAPI
+  class ErrorsV2Api
+    @api_client: untyped
+
+    attr_accessor api_client: untyped
+
+    def initialize: (?untyped api_client) -> void
+
+    # Stats of events received for the group
+    # @param group_id [Integer] ID of the group
+    # @param [Hash] opts the optional parameters
+    # @return [Array<StatsObject>]
+    def get_stats_v2: (untyped group_id, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Stats of events received for the group
+    # @param group_id [Integer] ID of the group
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Array<StatsObject>, Integer, Hash)>] Array<StatsObject> data, response status code and response headers
+    def get_stats_v2_with_http_info: (untyped group_id, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+    # List of errors(V2)
+    # @param project [Array<Integer>] ID of the project where the error was created
+    # @param group_id [Integer] ID of the group
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :status  (default to 'unresolved')
+    # @option opts [String] :query 
+    # @option opts [String] :start Optional start of the stat period in format 2006-01-02T15:04:05
+    # @option opts [String] :_end Optional end of the stat period in format 2006-01-02T15:04:05
+    # @option opts [String] :environment 
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @option opts [String] :sort Optional sorting column of the entries (default to 'date')
+    # @return [Array<ErrorV2>]
+    def list_errors_v2: (untyped project, untyped group_id, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # List of errors(V2)
+    # @param project [Array<Integer>] ID of the project where the error was created
+    # @param group_id [Integer] ID of the group
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :status  (default to 'unresolved')
+    # @option opts [String] :query 
+    # @option opts [String] :start Optional start of the stat period in format 2006-01-02T15:04:05
+    # @option opts [String] :_end Optional end of the stat period in format 2006-01-02T15:04:05
+    # @option opts [String] :environment 
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @option opts [String] :sort Optional sorting column of the entries (default to 'date')
+    # @return [Array<(Array<ErrorV2>, Integer, Hash)>] Array<ErrorV2> data, response status code and response headers
+    def list_errors_v2_with_http_info: (untyped project, untyped group_id, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+    # List of projects
+    # @param group_id [Integer] ID of the group
+    # @param [Hash] opts the optional parameters
+    # @return [Array<Project>]
+    def list_projects: (untyped group_id, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # List of projects
+    # @param group_id [Integer] ID of the group
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Array<Project>, Integer, Hash)>] Array<Project> data, response status code and response headers
+    def list_projects_with_http_info: (untyped group_id, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+  end
+end

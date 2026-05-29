@@ -1,0 +1,25 @@
+module Gitlab
+  module Schema
+    module Validation
+      module SchemaObjects
+        class Base
+          @parsed_stmt: untyped
+
+          @statement: untyped
+
+          def initialize: (untyped parsed_stmt) -> void
+
+          def name: () -> untyped
+
+          def table_name: () -> untyped
+
+          def statement: () -> untyped
+
+          private
+
+          attr_reader parsed_stmt: untyped
+        end
+      end
+    end
+  end
+end

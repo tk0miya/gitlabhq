@@ -1,0 +1,44 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Models
+        class RepositoryStorage
+          @container: untyped
+
+          @prefix: untyped
+
+          @disk_hash: untyped
+
+          attr_accessor container: untyped
+
+          REPOSITORY_PATH_PREFIX: "@hashed"
+
+          GROUP_REPOSITORY_PATH_PREFIX: "@groups"
+
+          SNIPPET_REPOSITORY_PATH_PREFIX: "@snippets"
+
+          POOL_PATH_PREFIX: "@pools"
+
+          def initialize: (untyped container, prefix: untyped) -> void
+
+          # Base directory
+          #
+          # @return [String] directory where repository is stored
+          def base_dir: () -> (::String | nil)
+
+          # Disk path is used to build repository path on disk
+          #
+          # @return [String] combination of base_dir and the repository own name
+          # without `.git`, `.wiki.git`, or any other extension
+          def disk_path: () -> (::String | nil)
+
+          private
+
+          # Generates the hash for the repository path and name on disk
+          # If you need to refer to the repository on disk, use the `#disk_path`
+          def disk_hash: () -> (untyped | nil)
+        end
+      end
+    end
+  end
+end

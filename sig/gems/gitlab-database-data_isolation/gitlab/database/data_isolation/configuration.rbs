@@ -1,0 +1,21 @@
+module Gitlab
+  module Database
+    module DataIsolation
+      class Configuration
+        @current_sharding_key_value: untyped
+
+        @sharding_key_map: untyped
+
+        @strategy: untyped
+
+        attr_accessor current_sharding_key_value: untyped
+
+        attr_accessor sharding_key_map: untyped
+
+        attr_accessor strategy: untyped
+
+        def initialize: () -> void
+      end
+    end
+  end
+end

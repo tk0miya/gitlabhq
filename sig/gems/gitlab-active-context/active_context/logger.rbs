@@ -1,0 +1,27 @@
+module ActiveContext
+  class Logger
+    ANONYMOUS: "<Anonymous>"
+
+    def self.debug: (**untyped kwargs) -> untyped
+
+    def self.info: (**untyped kwargs) -> untyped
+
+    def self.warn: (**untyped kwargs) -> untyped
+
+    def self.error: (**untyped kwargs) -> untyped
+
+    def self.fatal: (**untyped kwargs) -> untyped
+
+    def self.exception: (untyped exception, **untyped kwargs) -> untyped
+
+    def self.retryable_exception: (untyped exception, **untyped kwargs) -> untyped
+
+    def self.skippable_exception: (untyped exception, **untyped kwargs) -> untyped
+
+    private
+
+    def self.log: (untyped severity, **untyped kwargs) -> (nil | untyped)
+
+    def self.build_structured_payload: (**untyped params) -> untyped
+  end
+end

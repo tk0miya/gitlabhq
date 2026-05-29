@@ -1,0 +1,57 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      module Adapter
+        @connection: untyped
+
+        @options: untyped
+
+        @prefix: untyped
+
+        @client: untyped
+
+        @indexer: untyped
+
+        @executor: untyped
+
+        attr_reader connection: untyped
+
+        attr_reader options: untyped
+
+        attr_reader prefix: untyped
+
+        attr_reader client: untyped
+
+        attr_reader indexer: untyped
+
+        attr_reader executor: untyped
+
+        DEFAULT_PREFIX: "gitlab_active_context"
+
+        DEFAULT_SEPARATOR: "_"
+
+        def initialize: (untyped connection, options: untyped) -> void
+
+        def name: () -> untyped
+
+        def client_klass: () -> untyped
+
+        def indexer_klass: () -> untyped
+
+        def executor_klass: () -> untyped
+
+        def full_collection_name: (untyped name) -> untyped
+
+        def collection_name_without_prefix: (untyped collection_name) -> untyped
+
+        def separator: () -> untyped
+
+        def indexer_connection_options: () -> untyped
+
+        private
+
+        def normalize_urls: (untyped urls) -> untyped
+      end
+    end
+  end
+end

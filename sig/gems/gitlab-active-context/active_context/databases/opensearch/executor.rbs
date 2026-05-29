@@ -1,0 +1,19 @@
+module ActiveContext
+  module Databases
+    module Opensearch
+      class Executor
+        include ActiveContext::Databases::Concerns::ElasticExecutor
+
+        # These constants match the defaults on Elasticsearch
+        # to ensure we have similar results on OpenSearch and Elasticsearch
+        EF_CONSTRUCTION: 100
+
+        M: 16
+
+        def vector_field_mapping: (untyped field) -> { type: "knn_vector", dimension: untyped, method: { name: "hnsw", engine: "lucene", space_type: "cosinesimil", parameters: { ef_construction: untyped, m: untyped } } }
+
+        def settings: (untyped fields) -> untyped
+      end
+    end
+  end
+end

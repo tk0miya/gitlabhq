@@ -1,0 +1,40 @@
+module Gitlab
+  module GrapeOpenapi
+    module Models
+      # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#response-object
+      class Response
+        @status_code: untyped
+
+        @description: untyped
+
+        @entity_class: untyped
+
+        @headers: untyped
+
+        @content_type: untyped
+
+        @example: untyped
+
+        @examples: untyped
+
+        attr_reader status_code: untyped
+
+        attr_reader description: untyped
+
+        attr_reader entity_class: untyped
+
+        attr_reader headers: untyped
+
+        attr_reader content_type: untyped
+
+        def initialize: (status_code: untyped, description: untyped, entity_class: untyped, ?headers: ::Hash[untyped, untyped], ?content_type: ::String, ?example: untyped?, ?examples: untyped?) -> void
+
+        def to_h: (untyped schema_registry) -> untyped
+
+        private
+
+        def schema_ref: (untyped schema_registry) -> ::String
+      end
+    end
+  end
+end

@@ -1,0 +1,12 @@
+module Gitlab
+  module Utils
+    module Gsub
+      extend ::Gitlab::Utils::Gsub
+
+      # This performs the same basic function as a `gsub`. However this version
+      # allows us to break out of the replacement loop when the limit is reached.
+      # This is the same algorithm used for Gitlab::UntrustedRegexp.replace_gsub
+      def gsub_with_limit: (untyped text, untyped pattern, limit: untyped) ?{ (untyped) -> untyped } -> untyped
+    end
+  end
+end

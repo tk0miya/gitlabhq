@@ -1,0 +1,85 @@
+module ErrorTrackingOpenAPI
+  class ErrorsApi
+    @api_client: untyped
+
+    attr_accessor api_client: untyped
+
+    def initialize: (?untyped api_client) -> void
+
+    # Get information about the error
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param fingerprint [Integer] ID of the error that needs to be updated deleted
+    # @param [Hash] opts the optional parameters
+    # @return [Error]
+    def get_error: (untyped project_id, untyped fingerprint, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Get information about the error
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param fingerprint [Integer] ID of the error that needs to be updated deleted
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Error, Integer, Hash)>] Error data, response status code and response headers
+    def get_error_with_http_info: (untyped project_id, untyped fingerprint, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+    # List of errors
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :sort  (default to 'last_seen_desc')
+    # @option opts [String] :status  (default to 'unresolved')
+    # @option opts [String] :query 
+    # @option opts [String] :cursor Base64 encoded information for pagination
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @option opts [String] :stats_period  (default to '24h')
+    # @option opts [String] :query_period  (default to '30d')
+    # @return [Array<Error>]
+    def list_errors: (untyped project_id, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # List of errors
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :sort  (default to 'last_seen_desc')
+    # @option opts [String] :status  (default to 'unresolved')
+    # @option opts [String] :query 
+    # @option opts [String] :cursor Base64 encoded information for pagination
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @option opts [String] :stats_period  (default to '24h')
+    # @option opts [String] :query_period  (default to '30d')
+    # @return [Array<(Array<Error>, Integer, Hash)>] Array<Error> data, response status code and response headers
+    def list_errors_with_http_info: (untyped project_id, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+    # Get information about the events related to the error
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param fingerprint [Integer] ID of the error within the project
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :sort  (default to 'occurred_at_asc')
+    # @option opts [String] :cursor Base64 encoded information for pagination
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @return [Array<ErrorEvent>]
+    def list_events: (untyped project_id, untyped fingerprint, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Get information about the events related to the error
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param fingerprint [Integer] ID of the error within the project
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :sort  (default to 'occurred_at_asc')
+    # @option opts [String] :cursor Base64 encoded information for pagination
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @return [Array<(Array<ErrorEvent>, Integer, Hash)>] Array<ErrorEvent> data, response status code and response headers
+    def list_events_with_http_info: (untyped project_id, untyped fingerprint, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+    # Update the status of the error
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param fingerprint [Integer] ID of the error that needs to be updated deleted
+    # @param body [ErrorUpdatePayload] Error update object with the new values
+    # @param [Hash] opts the optional parameters
+    # @return [Error]
+    def update_error: (untyped project_id, untyped fingerprint, untyped body, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Update the status of the error
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param fingerprint [Integer] ID of the error that needs to be updated deleted
+    # @param body [ErrorUpdatePayload] Error update object with the new values
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Error, Integer, Hash)>] Error data, response status code and response headers
+    def update_error_with_http_info: (untyped project_id, untyped fingerprint, untyped body, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+  end
+end

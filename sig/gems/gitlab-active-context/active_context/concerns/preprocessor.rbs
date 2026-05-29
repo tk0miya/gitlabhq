@@ -1,0 +1,17 @@
+module ActiveContext
+  module Concerns
+    module Preprocessor
+      @preprocessors: untyped
+
+      def preprocessors: () -> untyped
+
+      def add_preprocessor: (untyped name) { (?) -> untyped } -> untyped
+
+      def preprocess: (untyped refs, **untyped options) -> untyped
+
+      def with_per_ref_handling: (untyped refs, ?retry_error_types: ::Array[untyped], ?skip_error_types: untyped) { (untyped) -> untyped } -> ({ successful: ::Array[untyped], failed: ::Array[untyped] } | { successful: untyped, failed: untyped })
+
+      def with_batch_handling: (untyped refs, ?error_types: ::Array[untyped], ?infinite_retry_error_types: untyped) { (untyped) -> untyped } -> ({ successful: ::Array[untyped], failed: ::Array[untyped], retryable: ::Array[untyped] } | untyped)
+    end
+  end
+end

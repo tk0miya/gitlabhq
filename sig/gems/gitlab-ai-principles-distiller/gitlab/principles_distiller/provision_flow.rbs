@@ -1,0 +1,68 @@
+module Gitlab
+  module PrinciplesDistiller
+    class ProvisionFlow
+      @dry_run: untyped
+
+      @host: untyped
+
+      @flow_name: untyped
+
+      @token: untyped
+
+      @project_path: untyped
+
+      @graphql_client: untyped
+
+      DEFAULT_HOST: "https://gitlab.com"
+
+      DEFAULT_FLOW_NAME: "Agent Principles Distiller"
+
+      FLOW_DESCRIPTION: "Distill GitLab development principles from SSOT documentation under doc/development/ into actionable, agent-loadable checklist files."
+
+      PROMPT_PATH: ".ai/principles/distillation_prompt.md"
+
+      DRY_RUN_FLOW_GID: "dry-run-flow-gid"
+
+      # Read-only allowlist; names match
+      # ee/lib/ai/catalog/built_in_tool_definitions.rb. We curate here
+      # rather than rely on agent-side guardrails.
+      TOOL_NAMES: ::Array["find_files" | "grep" | "list_dir" | "read_file" | "read_files"]
+
+      def self.run: () -> untyped
+
+      def self.parse_options: () -> untyped
+
+      def initialize: (untyped options) -> void
+
+      def execute: () -> (nil | untyped)
+
+      private
+
+      def load_distillation_prompt: () -> untyped
+
+      # Single AgentComponent running our distillation prompt; goal is
+      # passed at workflow-create time.
+      def build_flow_yaml: (untyped system_prompt) -> ::String
+
+      def indent_block: (untyped text, untyped spaces) -> untyped
+
+      def graphql_client: () -> untyped
+
+      # One-shot provisioner: any error here is unrecoverable, so abort
+      # cleanly rather than retry (contrast Workflow#graphql).
+      def graphql: (untyped query, ?::Hash[untyped, untyped] variables) -> untyped
+
+      def find_project_gid!: (untyped full_path) -> untyped
+
+      def find_flow: () -> untyped
+
+      def create_flow: (untyped project_gid, untyped yaml_definition) -> ({ "id" => untyped, "latestVersion" => nil } | untyped)
+
+      def reconcile_flow_version: (untyped flow, untyped desired_yaml) -> (nil | untyped)
+
+      def ensure_item_consumer: (untyped flow, untyped project_gid) -> (nil | untyped)
+
+      def diff_summary: (untyped old_text, untyped new_text) -> untyped
+    end
+  end
+end

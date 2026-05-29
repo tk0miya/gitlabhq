@@ -1,0 +1,25 @@
+module Gitlab
+  module Backup
+    module Cli
+      class BaseExecutor
+        @backup_bucket: untyped
+
+        @registry_bucket: untyped
+
+        @wait_for_completion: untyped
+
+        @service_account_file: untyped
+
+        attr_reader backup_bucket: untyped
+
+        attr_reader wait_for_completion: untyped
+
+        attr_reader registry_bucket: untyped
+
+        attr_reader service_account_file: untyped
+
+        def initialize: (backup_bucket: untyped, wait_for_completion: untyped, registry_bucket: untyped, service_account_file: untyped) -> void
+      end
+    end
+  end
+end

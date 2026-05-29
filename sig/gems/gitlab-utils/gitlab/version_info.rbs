@@ -1,0 +1,57 @@
+module Gitlab
+  class VersionInfo
+    @major: untyped
+
+    @minor: untyped
+
+    @patch: untyped
+
+    @suffix_s: untyped
+
+    @suffix: untyped
+
+    include Comparable
+
+    attr_reader major: untyped
+
+    attr_reader minor: untyped
+
+    attr_reader patch: untyped
+
+    VERSION_REGEX: ::Regexp
+
+    MILESTONE_REGEX: ::Regexp
+
+    # To mitigate ReDoS, limit the length of the version string we're
+    # willing to check
+    MAX_VERSION_LENGTH: 128
+
+    InvalidMilestoneError: untyped
+
+    def self.parse_from_milestone: (untyped str) -> untyped
+
+    def self.parse: (untyped str, ?parse_suffix: bool) -> untyped
+
+    def initialize: (?::Integer major, ?::Integer minor, ?::Integer patch, ?untyped? suffix) -> void
+
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
+    def <=>: (untyped other) -> (nil | untyped)
+
+    def to_s: () -> (untyped | "Unknown")
+
+    def to_json: (*untyped _args) -> untyped
+
+    def suffix: () -> untyped
+
+    def valid?: () -> untyped
+
+    def hash: () -> untyped
+
+    def eql?: (untyped other) -> untyped
+
+    def same_minor_version?: (untyped other) -> untyped
+
+    def without_patch: () -> untyped
+  end
+end

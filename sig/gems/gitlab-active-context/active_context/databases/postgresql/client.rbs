@@ -1,0 +1,58 @@
+module ActiveContext
+  module Databases
+    module Postgresql
+      class Client
+        @options: untyped
+
+        @connection_pool: untyped
+
+        include ActiveContext::Databases::Concerns::Client
+
+        attr_accessor self.default_connection_pool: untyped
+
+        BULK_OPERATIONS: ::Array[:upsert | :delete]
+
+        attr_reader connection_pool: untyped
+
+        attr_reader options: untyped
+
+        def initialize: (untyped options) -> void
+
+        # source_fields is accepted for interface compatibility but not used.
+        # PG queries use SELECT * and column filtering is handled at the SQL level.
+        def search: (user: untyped, collection: untyped, query: untyped, ?source_fields: untyped?) -> untyped
+
+        def bulk_process: (untyped operations) -> untyped
+
+        # Provides raw PostgreSQL connection
+        def with_raw_connection: () { (?) -> untyped } -> untyped
+
+        # Provides Rails-wrapped connection for using ActiveRecord methods
+        def with_connection: () { (?) -> untyped } -> untyped
+
+        def with_model_for: (untyped table_name) { (untyped) -> untyped } -> untyped
+
+        private
+
+        def handle_connection: (?raw_connection: bool) { (untyped) -> untyped } -> untyped
+
+        def handle_error: (untyped error) -> untyped
+
+        def setup_connection_pool: () -> untyped
+
+        def create_connection_model: () -> untyped
+
+        def build_database_config: () -> untyped
+
+        def close: () -> untyped
+
+        # rubocop:disable Rails/SkipsModelValidations -- bulk_upsert is more performant and we don't have validations
+        def perform_bulk_operation: (untyped operation_type, untyped model, untyped collection_name, untyped operations) -> untyped
+
+        def prepare_upsert_data: (untyped data) -> untyped
+
+        def prepare_delete_data: (untyped data) -> untyped
+      end
+    end
+  end
+end

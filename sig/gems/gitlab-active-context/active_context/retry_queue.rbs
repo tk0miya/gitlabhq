@@ -1,0 +1,9 @@
+module ActiveContext
+  class RetryQueue
+    include Concerns::Queue
+
+    def self.number_of_shards: () -> 1
+
+    def self.preprocess_options: () -> { skip_missing_content: true }
+  end
+end

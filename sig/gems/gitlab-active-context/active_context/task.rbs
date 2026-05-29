@@ -1,0 +1,39 @@
+module ActiveContext
+  module Task
+    class V1_0
+      self.@batched: untyped
+
+      @task_record: untyped
+
+      TaskError: untyped
+
+      MissingParamError: untyped
+
+      def self.batched!: () -> untyped
+
+      def self.batched?: () -> untyped
+
+      attr_reader task_record: untyped
+
+      def initialize: (?untyped? task_record) -> void
+
+      def execute!: () -> untyped
+
+      def completed?: () -> true
+
+      def params: () -> untyped
+
+      def required_params: () -> ::Array[untyped]
+
+      def connection: () -> untyped
+
+      private
+
+      def adapter: () -> untyped
+
+      def validate_params!: () -> (nil | untyped)
+    end
+
+    def self.[]: (untyped version) -> untyped
+  end
+end

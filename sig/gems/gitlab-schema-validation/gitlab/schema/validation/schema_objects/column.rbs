@@ -1,0 +1,23 @@
+module Gitlab
+  module Schema
+    module Validation
+      module SchemaObjects
+        class Column
+          @adapter: untyped
+
+          def initialize: (untyped adapter) -> void
+
+          attr_reader adapter: untyped
+
+          def name: () -> untyped
+
+          def table_name: () -> untyped
+
+          def partition_key?: () -> untyped
+
+          def statement: () -> untyped
+        end
+      end
+    end
+  end
+end

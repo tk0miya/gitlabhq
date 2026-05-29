@@ -1,0 +1,18 @@
+module Gitlab
+  module GrapeOpenapi
+    module Models
+      class PathItem
+        @operations: untyped
+
+        # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#path-item-object
+        attr_reader operations: untyped
+
+        def initialize: () -> void
+
+        def add_operation: (untyped method, untyped operation) -> (nil | untyped)
+
+        def to_h: () -> untyped
+      end
+    end
+  end
+end

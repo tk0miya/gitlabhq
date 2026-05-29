@@ -1,0 +1,45 @@
+module Gitlab
+  module Utils
+    # This class estimates the JSON blob byte size of a ruby object using as
+    # little allocations as possible.
+    # The estimation should be quite accurate when using simple objects.
+    #
+    # Example:
+    #
+    # Gitlab::Utils::JsonSizeEstimator.estimate(["a", { b: 12, c: nil }])
+    class JsonSizeEstimator
+      ARRAY_BRACKETS_SIZE: 2
+
+      OBJECT_BRACKETS_SIZE: 2
+
+      DOUBLEQUOTE_SIZE: 2
+
+      COLON_SIZE: 1
+
+      MINUS_SIGN_SIZE: 1
+
+      NULL_SIZE: 4
+
+      # Returns: integer (number of bytes)
+      def self.estimate: (untyped object) -> untyped
+
+      private
+
+      def self.estimate_hash: (untyped hash) -> untyped
+
+      def self.estimate_array: (untyped array) -> untyped
+
+      def self.estimate_string: (untyped string) -> untyped
+
+      def self.estimate_float: (untyped float) -> untyped
+
+      def self.estimate_integer: (untyped integer) -> (untyped | untyped | 1)
+
+      def self.estimate_time: (untyped time) -> untyped
+
+      def self.integer_string_size: (untyped integer) -> untyped
+
+      def self.comma_count: (untyped item_count) -> (0 | untyped)
+    end
+  end
+end

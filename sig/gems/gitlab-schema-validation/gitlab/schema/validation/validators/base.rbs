@@ -1,0 +1,29 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Validators
+        class Base
+          @structure_sql: untyped
+
+          @database: untyped
+
+          ERROR_MESSAGE: "A schema inconsistency has been found"
+
+          def self.all_validators: () -> ::Array[untyped]
+
+          def initialize: (untyped structure_sql, untyped database) -> void
+
+          def execute: () -> untyped
+
+          private
+
+          attr_reader structure_sql: untyped
+
+          attr_reader database: untyped
+
+          def build_inconsistency: (untyped validator_class, untyped structure_sql_object, untyped database_object, ?details: ::Hash[untyped, untyped]) -> untyped
+        end
+      end
+    end
+  end
+end

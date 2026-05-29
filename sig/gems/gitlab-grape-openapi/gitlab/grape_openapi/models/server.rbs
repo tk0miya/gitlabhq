@@ -1,0 +1,28 @@
+module Gitlab
+  module GrapeOpenapi
+    module Models
+      # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#server-object
+      class Server
+        @url: untyped
+
+        @description: untyped
+
+        @variables: untyped
+
+        attr_reader url: untyped
+
+        attr_reader description: untyped
+
+        attr_reader variables: untyped
+
+        def initialize: (url: untyped, ?description: untyped?, ?variables: untyped?) -> void
+
+        def to_h: () -> untyped
+
+        private
+
+        def variables_to_h: () -> untyped
+      end
+    end
+  end
+end

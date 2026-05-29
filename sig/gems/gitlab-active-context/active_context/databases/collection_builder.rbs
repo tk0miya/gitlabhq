@@ -1,0 +1,58 @@
+module ActiveContext
+  module Databases
+    class CollectionBuilder
+      @fields: untyped
+
+      attr_reader fields: untyped
+
+      def initialize: () -> void
+
+      def bigint: (untyped name, ?index: bool) -> untyped
+
+      def integer: (untyped name, ?index: bool) -> untyped
+
+      def smallint: (untyped name, ?index: bool) -> untyped
+
+      def boolean: (untyped name, ?index: bool) -> untyped
+
+      def keyword: (untyped name) -> untyped
+
+      def text: (untyped name) -> untyped
+
+      def vector: (untyped name, dimensions: untyped, ?index: bool) -> untyped
+    end
+
+    class Field
+      @name: untyped
+
+      @options: untyped
+
+      attr_reader name: untyped
+
+      attr_reader options: untyped
+
+      def initialize: (untyped name, **untyped options) -> void
+
+      class Bigint < Field
+      end
+
+      class Integer < Field
+      end
+
+      class Smallint < Field
+      end
+
+      class Boolean < Field
+      end
+
+      class Keyword < Field
+      end
+
+      class Text < Field
+      end
+
+      class Vector < Field
+      end
+    end
+  end
+end

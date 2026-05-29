@@ -1,0 +1,43 @@
+module Gitlab
+  module Utils
+    class DeepSize
+      @root: untyped
+
+      @max_size: untyped
+
+      @max_depth: untyped
+
+      @size: untyped
+
+      @depth: untyped
+
+      Error: untyped
+
+      TooMuchDataError: untyped
+
+      DEFAULT_MAX_SIZE: untyped
+
+      DEFAULT_MAX_DEPTH: 100
+
+      def initialize: (untyped root, ?max_size: untyped, ?max_depth: untyped) -> void
+
+      def valid?: () -> untyped
+
+      private
+
+      def evaluate: () -> untyped
+
+      def too_big?: () -> untyped
+
+      def too_deep?: () -> untyped
+
+      def add_object: (untyped object) -> untyped
+
+      def add_array: (untyped object) -> untyped
+
+      def add_hash: (untyped object) -> untyped
+
+      def with_nesting: () { () -> untyped } -> untyped
+    end
+  end
+end

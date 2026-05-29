@@ -1,0 +1,13 @@
+module Gitlab
+  module GrapeOpenapi
+    module Concerns
+      module LimitResolver
+        private
+
+        def limit_for: (untyped validations) -> untyped
+
+        def apply_limit!: (untyped schema, untyped validations) -> (nil | untyped)
+      end
+    end
+  end
+end

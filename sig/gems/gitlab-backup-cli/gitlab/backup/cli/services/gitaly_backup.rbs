@@ -1,0 +1,58 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Services
+        class GitalyBackup
+          @context: untyped
+
+          @input_stream: untyped
+
+          @thread: untyped
+
+          @out_reader: untyped
+
+          # Backup and restores repositories using gitaly-backup
+          #
+          # gitaly-backup can work in parallel and accepts a list of repositories
+          # through input pipe using a specific json format for both backup and restore
+          attr_reader context: untyped
+
+          def initialize: (untyped context) -> void
+
+          def start: (untyped type, untyped backup_repos_path, ?backup_id: untyped?, ?remove_all_repositories: untyped?) -> untyped
+
+          def finish!: () -> (nil | untyped)
+
+          def enqueue: (untyped container, ?always_create: bool) -> untyped
+
+          private
+
+          def gitaly_backup_args: (untyped type, untyped backup_repos_path, untyped backup_id, untyped remove_all_repositories) -> untyped
+
+          # Schedule a new backup job through a non-blocking JSON based pipe protocol
+          #
+          # @see https://gitlab.com/gitlab-org/gitaly/-/blob/master/doc/gitaly-backup.md
+          def schedule_backup_job: (untyped storage, untyped relative_path, untyped gl_project_path, untyped always_create) -> untyped
+
+          def gitaly_servers: () -> untyped
+
+          def gitaly_servers_encoded: () -> untyped
+
+          # These variables will be moved to a config file via
+          # https://gitlab.com/gitlab-org/gitlab/-/issues/500437
+          def default_cert_dir: () -> untyped
+
+          def default_cert_file: () -> untyped
+
+          def build_env: () -> untyped
+
+          def current_env: () -> untyped
+
+          def started?: () -> untyped
+
+          def bin_path: () -> untyped
+        end
+      end
+    end
+  end
+end

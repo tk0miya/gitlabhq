@@ -1,0 +1,11 @@
+module ActiveContext
+  module Concerns
+    module Chunker
+      extend ActiveSupport::Concern
+
+      attr_accessor content: untyped
+
+      def chunks: () -> untyped
+    end
+  end
+end

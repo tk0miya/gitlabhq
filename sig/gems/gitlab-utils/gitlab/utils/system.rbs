@@ -1,0 +1,87 @@
+module Gitlab
+  module Utils
+    # Module for gathering system/process statistics such as the memory usage.
+    #
+    # This module relies on the /proc filesystem being available. If /proc is
+    # not available the methods of this module will be stubbed.
+    module System
+      extend ::Gitlab::Utils::System
+
+      PROC_STAT_PATH: "/proc/self/stat"
+
+      PROC_STATUS_PATH: "/proc/%s/status"
+
+      PROC_SMAPS_ROLLUP_PATH: "/proc/%s/smaps_rollup"
+
+      PROC_LIMITS_PATH: "/proc/self/limits"
+
+      PROC_FD_GLOB: "/proc/self/fd/*"
+
+      PROC_MEM_INFO: "/proc/meminfo"
+
+      PRIVATE_PAGES_PATTERN: ::Regexp
+
+      PSS_PATTERN: ::Regexp
+
+      RSS_TOTAL_PATTERN: ::Regexp
+
+      RSS_ANON_PATTERN: ::Regexp
+
+      RSS_FILE_PATTERN: ::Regexp
+
+      MAX_OPEN_FILES_PATTERN: ::Regexp
+
+      MEM_TOTAL_PATTERN: ::Regexp
+
+      def summary: () -> { version: untyped, gc_stat: untyped, memory_rss: untyped, memory_uss: untyped, memory_pss: untyped, time_cputime: untyped, time_realtime: untyped, time_monotonic: untyped }
+
+      # Returns the given process' RSS (resident set size) in bytes.
+      def memory_usage_rss: (?pid: ::String) -> untyped
+
+      # Returns the given process' USS/PSS (unique/proportional set size) in bytes.
+      def memory_usage_uss_pss: (?pid: ::String) -> untyped
+
+      def memory_total: () -> untyped
+
+      def file_descriptor_count: () -> untyped
+
+      def max_open_file_descriptors: () -> untyped
+
+      def cpu_time: () -> untyped
+
+      # Returns the current real time in a given precision.
+      #
+      # Returns the time as a Float for precision = :float_second.
+      def real_time: (?::Symbol precision) -> untyped
+
+      # Returns the current monotonic clock time as seconds with microseconds precision.
+      #
+      # Returns the time as a Float.
+      def monotonic_time: () -> untyped
+
+      def thread_cpu_time: () -> (nil | untyped)
+
+      def thread_cpu_duration: (untyped start_time) -> (nil | untyped)
+
+      # Returns the total time the current process has been running in seconds.
+      def process_runtime_elapsed_seconds: () -> untyped
+
+      private
+
+      # Given a path to a file in /proc and a hash of (metric, pattern) pairs,
+      # sums up all values found for those patterns under the respective metric.
+      def sum_matches: (untyped proc_file, **untyped patterns) -> untyped
+
+      def parse_metric_value: (untyped line, untyped pattern) -> (0 | untyped)
+
+      def proc_stat_entries: () -> untyped
+
+      def safe_yield_procfile: (untyped path) { (?) -> untyped } -> untyped
+
+      # Equivalent to reading /proc/uptime on Linux 2.6+.
+      #
+      # Returns 0 if not supported, e.g. on Darwin.
+      def uptime: () -> untyped
+    end
+  end
+end

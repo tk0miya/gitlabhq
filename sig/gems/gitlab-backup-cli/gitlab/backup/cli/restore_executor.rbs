@@ -1,0 +1,56 @@
+module Gitlab
+  module Backup
+    module Cli
+      # This is responsible for executing a Restore operation
+      #
+      # A Restore Executor handles the creation and deletion of
+      # temporary environment necessary for a restoration to happen
+      #
+      class RestoreExecutor < BaseExecutor
+        @context: untyped
+
+        @backup_id: untyped
+
+        @workdir: untyped
+
+        @archive_directory: untyped
+
+        @metadata: untyped
+
+        attr_reader context: untyped
+
+        attr_reader backup_id: untyped
+
+        attr_reader workdir: untyped
+
+        attr_reader archive_directory: untyped
+
+        # @param [Context::SourceContext|Context::OmnibusContext] context
+        # @param [String] backup_id
+        def initialize: (context: untyped, ?backup_id: untyped?, ?backup_bucket: untyped?, ?wait_for_completion: untyped?, ?registry_bucket: untyped?, ?service_account_file: untyped?) -> void
+
+        def execute: () -> untyped
+
+        def metadata: () -> untyped
+
+        # At the end of a successful restore, call this to release temporary resources
+        def release!: () -> untyped
+
+        private
+
+        def initialize_database_connection!: () -> untyped
+
+        def execute_all_tasks: () -> untyped
+
+        def read_metadata!: () -> untyped
+
+        # @return [Pathname] temporary directory
+        def create_temporary_workdir!: () -> untyped
+
+        def measure_duration: () { () -> untyped } -> untyped
+
+        def wait_for_task: (untyped task) -> untyped
+      end
+    end
+  end
+end

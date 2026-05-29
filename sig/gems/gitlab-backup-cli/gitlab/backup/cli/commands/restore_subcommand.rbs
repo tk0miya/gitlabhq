@@ -1,0 +1,17 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Commands
+        class RestoreSubcommand < Command
+          def all: (untyped backup_id) -> untyped
+
+          private
+
+          def build_context: () -> untyped
+
+          def measure_duration: () { () -> untyped } -> untyped
+        end
+      end
+    end
+  end
+end

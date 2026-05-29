@@ -1,0 +1,84 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Sources
+        class Database
+          @connection: untyped
+
+          @schemas: untyped
+
+          @trigger_map: untyped
+
+          @table_map: untyped
+
+          @sequence_map: untyped
+
+          @index_map: untyped
+
+          @foreign_key_map: untyped
+
+          STATIC_PARTITIONS_SCHEMA: "gitlab_partitions_static"
+
+          def initialize: (untyped connection) -> void
+
+          def fetch_index_by_name: (untyped index_name) -> untyped
+
+          def fetch_trigger_by_name: (untyped trigger_name) -> untyped
+
+          def fetch_foreign_key_by_name: (untyped foreign_key_name) -> untyped
+
+          def fetch_table_by_name: (untyped table_name) -> untyped
+
+          def fetch_sequence_by_name: (untyped sequence_name) -> untyped
+
+          def index_exists?: (untyped index_name) -> (false | true)
+
+          def trigger_exists?: (untyped trigger_name) -> (false | true)
+
+          def foreign_key_exists?: (untyped foreign_key_name) -> (false | true)
+
+          def table_exists?: (untyped table_name) -> (false | true)
+
+          def sequence_exists?: (untyped sequence_name) -> untyped
+
+          def indexes: () -> untyped
+
+          def triggers: () -> untyped
+
+          def foreign_keys: () -> untyped
+
+          def tables: () -> untyped
+
+          def sequences: () -> untyped
+
+          private
+
+          attr_reader connection: untyped
+
+          def schemas: () -> untyped
+
+          def trigger_map: () -> untyped
+
+          def fetch_triggers: () -> untyped
+
+          def table_map: () -> untyped
+
+          def sequence_map: () -> untyped
+
+          def fetch_tables: () -> untyped
+
+          def fetch_indexes: () -> untyped
+
+          def index_map: () -> untyped
+
+          def foreign_key_map: () -> untyped
+
+          def fetch_fks: () -> untyped
+
+          # Fetch all the sequences
+          def fetch_sequences: () -> untyped
+        end
+      end
+    end
+  end
+end

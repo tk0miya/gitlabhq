@@ -1,0 +1,35 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      module Executor
+        @adapter: untyped
+
+        attr_reader adapter: untyped
+
+        def initialize: (untyped adapter) -> void
+
+        def create_collection: (untyped name, number_of_partitions: untyped, ?options: ::Hash[untyped, untyped]) ?{ (untyped) -> untyped } -> untyped
+
+        def drop_collection: (untyped name) -> (nil | untyped)
+
+        def add_field: (untyped collection_name) ?{ (untyped) -> untyped } -> untyped
+
+        def nullify_field: (untyped collection_name, untyped field_name, batch_size: untyped) -> untyped
+
+        private
+
+        def create_collection_record: (untyped name, untyped number_of_partitions, untyped options) -> untyped
+
+        def drop_collection_record: (untyped collection) -> untyped
+
+        def do_create_collection: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def do_drop_collection: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def do_add_field: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+        def do_nullify_field: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

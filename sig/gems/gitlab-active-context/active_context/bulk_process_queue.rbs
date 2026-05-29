@@ -1,0 +1,47 @@
+module ActiveContext
+  class BulkProcessQueue
+    @queue: untyped
+
+    @shard: untyped
+
+    @bulk_processor: untyped
+
+    @logger: untyped
+
+    def self.process!: (untyped queue, untyped shard) -> untyped
+
+    attr_reader queue: untyped
+
+    attr_reader shard: untyped
+
+    def initialize: (untyped queue, untyped shard) -> void
+
+    def process!: () -> untyped
+
+    def process: (untyped redis) -> (::Array[0] | ::Array[untyped])
+
+    private
+
+    def collect_specs_from_queue: (untyped redis, untyped specs_buffer, untyped scores) -> untyped
+
+    def process_refs: (untyped refs, untyped failures, untyped retryable) -> ::Array[untyped]
+
+    def cleanup_processed_refs: (untyped redis, untyped scores, untyped start_time, untyped failures_count, untyped retryable_count) -> untyped
+
+    def log_indexing_start: (untyped set_key, untyped refs_count, untyped first_score, untyped last_score) -> untyped
+
+    def log_indexer_flushed: (untyped duration_s) -> untyped
+
+    def log_indexing_end: (untyped set_key, untyped count, untyped first_score, untyped last_score, untyped failures_count, untyped retryable_count, untyped start_time) -> untyped
+
+    def deserialize_all: (untyped specs) -> untyped
+
+    def bulk_processor: () -> untyped
+
+    def logger: () -> untyped
+
+    def current_time: () -> untyped
+
+    def track_failures!: (untyped failures, untyped retryable) -> (nil | untyped)
+  end
+end

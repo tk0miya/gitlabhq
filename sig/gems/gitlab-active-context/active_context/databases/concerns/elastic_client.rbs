@@ -1,0 +1,11 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      module ElasticClient
+        include ActiveContext::Databases::Concerns::Client
+
+        def add_source_fields: (untyped query, untyped source_fields) -> untyped
+      end
+    end
+  end
+end

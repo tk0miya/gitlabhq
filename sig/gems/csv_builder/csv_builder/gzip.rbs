@@ -1,0 +1,14 @@
+module CsvBuilder
+  class Gzip < CsvBuilder::Builder
+    # Writes the CSV file compressed and yields the written tempfile and rows written.
+    #
+    #
+    # Example:
+    # > CsvBuilder::Gzip.new(Issue, { title: -> (row) { row.title.upcase }, id: :id }).render do |tempfile, rows|
+    # >   puts tempfile.path
+    # >   puts `zcat #{tempfile.path}`
+    # >   puts rows
+    # > end
+    def render: () { (untyped, untyped) -> untyped } -> untyped
+  end
+end

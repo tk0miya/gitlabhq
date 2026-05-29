@@ -1,0 +1,15 @@
+module ActiveContext
+  module Databases
+    module Postgresql
+      class QueryResult
+        include ActiveContext::Databases::Concerns::QueryResult
+
+        def each: () ?{ (untyped) -> untyped } -> untyped
+
+        def count: () -> untyped
+
+        def clear: () -> (untyped | nil)
+      end
+    end
+  end
+end

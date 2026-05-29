@@ -1,0 +1,13 @@
+module ActiveRecord
+  module GitlabPatches
+    module Partitioning
+      module Reflection
+        module AbstractReflection
+          extend ActiveSupport::Concern
+
+          def join_scope: (untyped table, untyped foreign_table, untyped foreign_klass) -> untyped
+        end
+      end
+    end
+  end
+end

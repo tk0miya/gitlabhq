@@ -1,0 +1,21 @@
+module ActiveContext
+  module Databases
+    class PartitionStrategy
+      @name: untyped
+
+      @number_of_partitions: untyped
+
+      def initialize: (name: untyped, number_of_partitions: untyped) -> void
+
+      def partition_names: () -> untyped
+
+      def collection_name: () -> untyped
+
+      def generate_partition_name: (untyped index) -> ::String
+
+      def fully_exists?: () { (?) -> untyped } -> untyped
+
+      def each_partition: () { (untyped) -> untyped } -> untyped
+    end
+  end
+end

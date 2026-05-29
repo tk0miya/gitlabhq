@@ -1,0 +1,21 @@
+module Gitlab
+  class UUID
+    self.@default_namespace_id: untyped
+
+    DEFAULT_NAMESPACE_ID: "a143e9e2-41b3-47bc-9a19-081d089229f4"
+
+    UUID_PATTERN: ::Regexp
+
+    UUID_V5_PATTERN: ::Regexp
+
+    attr_writer self.default_namespace_id: untyped
+
+    def self.default_namespace_id: () -> untyped
+
+    def self.urn: () -> ::String
+
+    def self.v5: (untyped name, ?namespace_id: untyped) -> untyped
+
+    def self.uuid?: (untyped string) -> untyped
+  end
+end

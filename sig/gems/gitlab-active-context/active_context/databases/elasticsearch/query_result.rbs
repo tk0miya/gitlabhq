@@ -1,0 +1,11 @@
+module ActiveContext
+  module Databases
+    module Elasticsearch
+      class QueryResult
+        include ActiveContext::Databases::Concerns::QueryResult
+
+        def each: () ?{ (untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end

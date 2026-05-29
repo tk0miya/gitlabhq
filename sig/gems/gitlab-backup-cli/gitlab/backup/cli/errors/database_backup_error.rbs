@@ -1,0 +1,23 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Errors
+        class DatabaseBackupError < StandardError
+          @config: untyped
+
+          @db_file_name: untyped
+
+          attr_reader config: untyped
+
+          attr_reader db_file_name: untyped
+
+          def initialize: (untyped config, untyped db_file_name) -> void
+
+          private
+
+          def build_message: () -> ::String
+        end
+      end
+    end
+  end
+end

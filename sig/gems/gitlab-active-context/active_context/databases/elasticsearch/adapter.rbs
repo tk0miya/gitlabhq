@@ -1,0 +1,19 @@
+module ActiveContext
+  module Databases
+    module Elasticsearch
+      class Adapter
+        include ActiveContext::Databases::Concerns::Adapter
+
+        def name: () -> "elasticsearch"
+
+        def client_klass: () -> untyped
+
+        def indexer_klass: () -> untyped
+
+        def executor_klass: () -> untyped
+
+        def indexer_connection_options: () -> { url: untyped }
+      end
+    end
+  end
+end

@@ -1,0 +1,42 @@
+module Gitlab
+  module Utils
+    module DelegatorOverride
+      class Validator
+        @delegator_class: untyped
+
+        @target_classes: untyped
+
+        @allowed_method_names: untyped
+
+        UnexpectedDelegatorOverrideError: untyped
+
+        attr_reader delegator_class: untyped
+
+        attr_reader target_classes: untyped
+
+        OVERRIDE_ERROR_MESSAGE: "We've detected that the delegator is overriding a specific method(s) on the target class.\nPlease make sure if it's intentional and handle this error accordingly.\nSee https://gitlab.com/gitlab-org/gitlab/-/blob/master/app/presenters/README.md#validate-accidental-overrides for more information.\n"
+
+        def initialize: (untyped delegator_class) -> void
+
+        def add_allowlist: (untyped names) -> untyped
+
+        def allowed_method_names: () -> untyped
+
+        def add_target: (untyped target_class) -> (nil | untyped)
+
+        # This will make sure allowlist we put into ancestors are all included
+        def expand_on_ancestors: (untyped validators) -> untyped
+
+        def validate_overrides!: () -> (nil | untyped)
+
+        private
+
+        def generate_error: (untyped method_name, untyped target_class, untyped delegator_class) -> untyped
+
+        def extract_location: (untyped klass, untyped method_name) -> untyped
+
+        def allowlist: () -> untyped
+      end
+    end
+  end
+end

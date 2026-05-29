@@ -1,0 +1,15 @@
+module Gitlab
+  module HTTP_V2
+    class UrlAllowlist
+      def self.ip_allowed?: (untyped ip_string, untyped allowlist, ?port: untyped?) -> (false | untyped)
+
+      def self.domain_allowed?: (untyped domain_string, untyped allowlist, ?port: untyped?) -> (false | untyped)
+
+      private
+
+      def self.outbound_local_requests_allowlist_arrays: (untyped allowlist) -> (::Array[::Array[untyped]] | untyped)
+
+      def self.parse_addr_and_port: (untyped str) -> ::Array[untyped]
+    end
+  end
+end

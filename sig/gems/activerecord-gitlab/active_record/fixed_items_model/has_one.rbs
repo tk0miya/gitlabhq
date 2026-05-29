@@ -1,0 +1,30 @@
+module ActiveRecord
+  module FixedItemsModel
+    # Realizes a has one association with a fixed items model.
+    #
+    # See ActiveRecord::FixedItemsModel::Model for reference
+    # for such a fixed items model.
+    #
+    # A minimal example is:
+    #
+    # class MyModel < ApplicationRecord
+    #   include ActiveRecord::FixedItemsModel::HasOne
+    #
+    #   belongs_to_fixed_items :static_model, fixed_items_class: StaticModel
+    # end
+    #
+    # The attribute `static_model_id` must exist for the model.
+    #
+    # Usage:
+    #
+    # m = MyModel.last
+    # m.static_model # Returns fixed items model instance
+    # m.static_model = StaticModel.find(1)
+    # m.static_model_id = 1 # still possible
+    # m.static_model? # Bool
+    #
+    module HasOne
+      extend ActiveSupport::Concern
+    end
+  end
+end

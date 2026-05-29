@@ -1,0 +1,50 @@
+module CsvBuilder
+  class Builder
+    @header_to_value_hash: untyped
+
+    @collection: untyped
+
+    @truncated: untyped
+
+    @rows_written: untyped
+
+    @associations_to_preload: untyped
+
+    @replace_newlines: untyped
+
+    @order_hint: untyped
+
+    @headers: untyped
+
+    @attributes: untyped
+
+    UNSAFE_EXCEL_PREFIX: ::Regexp
+
+    attr_reader rows_written: untyped
+
+    def initialize: (untyped collection, untyped header_to_value_hash, ?untyped associations_to_preload, ?replace_newlines: bool, ?order_hint: ::Symbol) -> void
+
+    # Renders the csv to a string
+    def render: (?untyped? truncate_after_bytes) ?{ (untyped) -> untyped } -> untyped
+
+    def truncated?: () -> untyped
+
+    def rows_expected: () -> untyped
+
+    def status: () -> { truncated: untyped, rows_written: untyped, rows_expected: untyped }
+
+    def each: () { (?) -> untyped } -> untyped
+
+    private
+
+    def headers: () -> untyped
+
+    def attributes: () -> untyped
+
+    def row: (untyped object) -> untyped
+
+    def write_csv: (untyped csv, until_condition: untyped) -> untyped
+
+    def excel_sanitize: (untyped line) -> untyped
+  end
+end

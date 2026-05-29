@@ -1,0 +1,49 @@
+module ActiveContext
+  module Databases
+    module Postgresql
+      class Executor
+        include ActiveContext::Databases::Concerns::Executor
+
+        RESERVED_FIELDS: ::Array["id" | "partition_id" | "ref_id" | "ref_version"]
+
+        private
+
+        def do_create_collection: (name: untyped, number_of_partitions: untyped, fields: untyped, ?options: ::Hash[untyped, untyped]) -> (nil | untyped)
+
+        def create_parent_table: (untyped name, untyped fields, ?::Hash[untyped, untyped] options) -> untyped
+
+        def sort_fields_by_size: (untyped fields) -> ::Array[untyped]
+
+        def add_column_from_field: (untyped table, untyped field) -> (nil | untyped)
+
+        def add_column_from_definition: (untyped table, untyped column_def, untyped _connection) -> untyped
+
+        def create_partition_table: (untyped partition_name, untyped parent_name, untyped partition_id) -> untyped
+
+        def create_indices: (untyped strategy, untyped fields) -> untyped
+
+        def create_standard_index: (untyped table_name, untyped field) -> untyped
+
+        def create_vector_index: (untyped table_name, untyped field) -> untyped
+
+        def index_exists?: (untyped table_name, untyped field) -> untyped
+
+        def index_name_for: (untyped table_name, untyped field) -> ::String
+
+        def collection_exists?: (untyped strategy) -> untyped
+
+        def table_exists?: (untyped name) -> untyped
+
+        def get_partition_remainder: (untyped partition_name) -> untyped
+
+        def do_drop_collection: (untyped collection) -> untyped
+
+        def do_add_field: (untyped collection, untyped field) -> (nil | untyped)
+
+        def do_nullify_field: (untyped collection, untyped field_name, batch_size: untyped) -> untyped
+
+        def add_column_to_existing_table: (untyped connection, untyped table_name, untyped field) -> (nil | untyped)
+      end
+    end
+  end
+end

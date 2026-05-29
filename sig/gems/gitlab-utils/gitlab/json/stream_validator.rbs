@@ -1,0 +1,127 @@
+module Gitlab
+  module Json
+    # See https://www.rubydoc.info/gems/oj/Oj/ScHandler for required methods
+    class StreamValidator < ::Oj::ScHandler
+      @options: untyped
+
+      @depth: untyped
+
+      @array_counts: untyped
+
+      @hash_counts: untyped
+
+      @body_bytesize: untyped
+
+      @total_elements: untyped
+
+      @stack: untyped
+
+      @result: untyped
+
+      @max_depth_reached: untyped
+
+      @max_array_count: untyped
+
+      @max_hash_count: untyped
+
+      LimitExceededError: untyped
+
+      DepthLimitError: untyped
+
+      ArraySizeLimitError: untyped
+
+      ElementCountLimitError: untyped
+
+      HashSizeLimitError: untyped
+
+      BodySizeExceededError: untyped
+
+      InvalidJsonError: untyped
+
+      NumericValueTooLargeError: untyped
+
+      # Match integers, floats, and scientific notation with reasonable size limits
+      # Supports: 123, -123, 12.3, -12.3, 1.23e10, -1.23E-10
+      # Limits: max 15 digits for integer part, max 15 digits for fractional part, max 3 digits for exponent
+      NUMERIC_REGEX: ::Regexp
+
+      MAX_NUMERIC_BIT_LENGTH: 3321
+
+      attr_reader result: untyped
+
+      attr_reader options: untyped
+
+      # We want to hide the limits configured, but still show what type
+      def self.user_facing_error_message: (untyped exception) -> untyped
+
+      def initialize: (untyped options) -> void
+
+      # This method validates the JSON input against configured size limits.
+      # It uses Oj's streaming parser for efficient processing of large JSON
+      # documents while enforcing safety limits.
+      #
+      # @param body [String] the JSON string to parse
+      # @return [nil] returns nil after successful validation or when skipping primitive values
+      # @raise [Oj::ParseError] when the JSON is malformed or invalid
+      # @raise [EncodingError] when the JSON is malformed or invalid
+      # @raise [::Gitlab::Json::StreamValidator::LimitExceededError] when parsing limits (depth, array size, etc.)
+      # are exceeded
+      #
+      # @example Parse a simple JSON string
+      #   validator = Gitlab::Json::StreamValidator.new(max_json_size_bytes: 1024)
+      #   validator.validate!('{"key": "value"}') #=> nil
+      #
+      # @example Handle size limit exceeded
+      #   validator = Gitlab::Json::StreamValidator.new(max_json_size_bytes: 10)
+      #   validator.validate!('{"very": "long json string"}')
+      #   # raises BodySizeExceededError
+      def validate!: (untyped body) -> nil
+
+      # Called when a hash starts
+      def hash_start: () -> untyped
+
+      # Called when a hash ends
+      def hash_end: () -> untyped
+
+      # Called for each key in a hash
+      def hash_key: (untyped key) -> untyped
+
+      # Called when a key/value pair is complete
+      def hash_set: (untyped hash, untyped key, untyped value) -> untyped
+
+      # Called when an array starts
+      def array_start: () -> untyped
+
+      # Called when an array ends
+      def array_end: () -> untyped
+
+      def array_append: (untyped array, untyped value) -> untyped
+
+      # Called for root values (when not in a hash or array)
+      def add_value: (untyped value) -> untyped
+
+      # Returns metadata about the parsed JSON structure
+      def metadata: () -> { body_bytesize: untyped, total_elements: untyped, max_array_count: untyped, max_hash_count: untyped, max_depth: untyped }
+
+      private
+
+      def simple_json_string?: (untyped body) -> untyped
+
+      def validate_simple_string!: (untyped body) -> untyped
+
+      def check_body_size!: () -> (nil | untyped)
+
+      def check_depth!: () -> (nil | untyped)
+
+      def check_array_size!: (untyped current_size) -> (nil | untyped)
+
+      def check_hash_size!: (untyped current_size) -> (nil | untyped)
+
+      def check_element_size!: () -> (nil | untyped)
+
+      def check_numeric_size!: (untyped value) -> (nil | untyped)
+
+      def increment_element_count!: () -> untyped
+    end
+  end
+end

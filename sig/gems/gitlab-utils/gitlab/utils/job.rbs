@@ -1,0 +1,15 @@
+module Gitlab
+  module Utils
+    module Job
+      # [\b\s:] -> whitespace or column
+      # (\[.*\])|(\d+[\s:\/\\]+\d+) -> variables/matrix or parallel-jobs numbers
+      # {1,3} -> number of times that matches the variables/matrix or parallel-jobs numbers
+      #          we limit this to 3 because of possible abuse
+      PARALLEL_VARIANT_REGEX: ::Regexp
+
+      def self.group_name: (untyped job_name) -> untyped
+
+      def self.parallel_suffix: (untyped job_name) -> untyped
+    end
+  end
+end

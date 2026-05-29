@@ -1,0 +1,26 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Context
+        class OmnibusConfig
+          @source: untyped
+
+          @config: untyped
+
+          extend Forwardable
+
+          # @param [String|Pathname] source
+          def initialize: (untyped source) -> void
+
+          def loaded?: () -> untyped
+
+          def to_h: () -> untyped
+
+          private
+
+          def load!: () -> untyped
+        end
+      end
+    end
+  end
+end

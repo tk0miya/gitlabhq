@@ -1,0 +1,39 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Sources
+        class AdapterNotSupportedError < StandardError
+          @adapter: untyped
+
+          def initialize: (untyped adapter) -> void
+
+          def message: () -> ::String
+
+          private
+
+          attr_reader adapter: untyped
+        end
+
+        class Connection
+          @connection_adapter: untyped
+
+          CONNECTION_ADAPTERS: { "Gitlab::Database::LoadBalancing::ConnectionProxy" => untyped, "ActiveRecord::ConnectionAdapters::PostgreSQLAdapter" => untyped, "PG::Connection" => untyped }
+
+          def initialize: (untyped connection) -> void
+
+          def current_schema: () -> untyped
+
+          def select_rows: (untyped sql, ?untyped schemas) -> untyped
+
+          def exec_query: (untyped sql, ?untyped schemas) -> untyped
+
+          private
+
+          attr_reader connection_adapter: untyped
+
+          def fetch_adapter: (untyped connection) -> untyped
+        end
+      end
+    end
+  end
+end

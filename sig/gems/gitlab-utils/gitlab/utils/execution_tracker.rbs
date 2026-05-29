@@ -1,0 +1,23 @@
+module Gitlab
+  module Utils
+    class ExecutionTracker
+      @start_time: untyped
+
+      @max_runtime: untyped
+
+      MAX_RUNTIME: untyped
+
+      ExecutionTimeOutError: untyped
+
+      def initialize: (?untyped max_runtime) -> void
+
+      def over_limit?: () -> untyped
+
+      private
+
+      attr_reader start_time: untyped
+
+      attr_reader max_runtime: untyped
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module RspecFlaky
+    # This class is responsible for loading/saving JSON reports, and pruning
+    # outdated examples.
+    class Report < SimpleDelegator
+      @flaky_examples: untyped
+
+      OUTDATED_DAYS_THRESHOLD: 7
+
+      attr_reader flaky_examples: untyped
+
+      def self.load: (untyped file_path) -> untyped
+
+      def self.load_json: (untyped json) -> untyped
+
+      def initialize: (untyped flaky_examples) -> void
+
+      def write: (untyped file_path) -> (nil | untyped)
+
+      def prune_outdated: (?days: untyped) -> untyped
+    end
+  end
+end

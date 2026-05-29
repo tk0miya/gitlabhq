@@ -1,0 +1,20 @@
+module Gitlab
+  module Utils
+    class SafeInlineHash
+      @hash: untyped
+
+      # Validates the hash size using `Gitlab::Utils::DeepSize` before merging keys using `Gitlab::Utils::InlineHash`
+      def initialize: (untyped hash, ?prefix: untyped?, ?connector: ::String) -> void
+
+      def self.merge_keys!: (untyped hash, ?prefix: untyped?, ?connector: ::String) -> untyped
+
+      def merge_keys!: (prefix: untyped, connector: untyped) -> untyped
+
+      private
+
+      attr_reader hash: untyped
+
+      def valid?: () -> untyped
+    end
+  end
+end

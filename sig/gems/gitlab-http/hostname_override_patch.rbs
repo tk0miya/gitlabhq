@@ -1,0 +1,24 @@
+class OpenSSL::SSL::SSLContext
+  attr_accessor hostname_override: untyped
+end
+
+class OpenSSL::SSL::SSLSocket
+  module HostnameOverride
+    # rubocop: disable Gitlab/ModuleWithInstanceVariables
+    def hostname=: (untyped hostname) -> untyped
+
+    def post_connection_check: (untyped hostname) -> untyped
+  end
+
+  prepend HostnameOverride
+end
+
+class Net::HTTP
+  attr_accessor hostname_override: untyped
+
+  module HostnameOverride
+    def addr_port: () -> untyped
+  end
+
+  prepend HostnameOverride
+end

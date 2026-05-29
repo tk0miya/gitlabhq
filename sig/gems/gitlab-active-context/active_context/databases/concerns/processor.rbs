@@ -1,0 +1,25 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      # Concern for processors that transform Query AST nodes into database-specific queries.
+      #
+      # @example Implementation
+      #   class MyProcessor
+      #     include ActiveContext::Databases::Concerns::Processor
+      #
+      #     def self.transform(collection:, node:, user:)
+      #       new.process(node)
+      #     end
+      #
+      #     def process(node)
+      #       # Transform the node into a database-specific query
+      #     end
+      #   end
+      module Processor
+        extend ActiveSupport::Concern
+
+        def get_embeddings: (untyped content, untyped embedding_model) -> untyped
+      end
+    end
+  end
+end

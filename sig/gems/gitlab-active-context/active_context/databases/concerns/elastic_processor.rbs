@@ -1,0 +1,202 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      # Transforms ActiveContext::Query objects into Elasticsearch/Opensearch query DSL format.
+      #
+      # This processor handles the conversion of various query types into their corresponding
+      # Elasticsearch/Opensearch query structures, including:
+      # - Term queries for exact matches (single values)
+      # - Terms queries for multiple value matches (array values)
+      # - Prefix queries for starts-with matches
+      # - Missing queries for field absence checks
+      # - Exists queries for field presence checks
+      # - Bool queries for AND/OR combinations
+      # - KNN queries for vector similarity search
+      #
+      # KNN queries are handled specially to ensure they work with Elasticsearch/Opensearch requirements:
+      # - Basic KNN queries are placed at the root level under the 'knn' key
+      # - When combining KNN with filters, the filters are included inside the KNN query under 'filter'
+      # - OR conditions with KNN maintain the KNN at root level with other conditions under 'query'
+      #
+      # @example Basic filter query with term
+      #   query = ActiveContext::Query.filter(status: 'active')
+      #   processor = Processor.new
+      #   processor.process(query)
+      #   # => { query: { bool: { must: [{ term: { status: 'active' } }] } } }
+      #
+      # @example Filter query with terms
+      #   query = ActiveContext::Query.filter(status: ['active', 'pending'])
+      #   processor = Processor.new
+      #   processor.process(query)
+      #   # => { query: { bool: { must: [{ terms: { status: ['active', 'pending'] } }] } } }
+      #
+      # @example KNN with filter
+      #   query = ActiveContext::Query.filter(status: 'active').knn(
+      #     target: 'embedding',
+      #     vector: [0.1, 0.2],
+      #     k: 5
+      #   )
+      #   processor = Processor.new
+      #   processor.process(query)
+      #   # => {
+      #   #      knn: {
+      #   #        field: 'embedding',
+      #   #        query_vector: [0.1, 0.2],
+      #   #        k: 5,
+      #   #        num_candidates: 50,
+      #   #        filter: { bool: { must: [{ term: { status: 'active' } }] } }
+      #   #      }
+      #   #    }
+      module ElasticProcessor
+        @collection: untyped
+
+        @user: untyped
+
+        include ActiveContext::Databases::Concerns::Processor
+
+        def initialize: (collection: untyped, user: untyped) -> void
+
+        # Processes a query node and returns the corresponding Elasticsearch query
+        #
+        # @param node [ActiveContext::Query] The query node to process
+        # @return [Hash] The Elasticsearch query DSL
+        # @raise [ArgumentError] If the query type is not supported
+        def process: (untyped node) -> untyped
+
+        private
+
+        attr_reader collection: untyped
+
+        attr_reader user: untyped
+
+        def process_all: () -> { query: { match_all: ::Hash[untyped, untyped] } }
+
+        # Processes filter conditions into term or terms queries
+        #
+        # @param conditions [Hash] The filter conditions where keys are fields and values are the terms
+        # @return [Hash] A bool query with term/terms clauses in the must array
+        # @example Single value (term)
+        #   process_filter(status: 'active')
+        #   # => { query: { bool: { must: [{ term: { status: 'active' } }] } } }
+        # @example Array value (terms)
+        #   process_filter(status: ['active', 'pending'])
+        #   # => { query: { bool: { must: [{ terms: { status: ['active', 'pending'] } }] } } }
+        def process_filter: (untyped conditions) -> untyped
+
+        # Processes prefix conditions into prefix queries
+        #
+        # @param conditions [Hash] The prefix conditions where keys are fields and values are the prefixes
+        # @return [Hash] A bool query with prefix clauses in the must array
+        # @example
+        #   process_prefix(name: 'test', path: 'foo/')
+        #   # => { query: { bool: { must: [
+        #   #      { prefix: { name: 'test' } },
+        #   #      { prefix: { path: 'foo/' } }
+        #   #    ] } } }
+        def process_prefix: (untyped conditions) -> untyped
+
+        # Processes missing field conditions into must_not exists queries
+        #
+        # @param node [ActiveContext::Query] The missing query node
+        # @return [Hash] A bool query with must_not exists clause
+        # @example
+        #   process_missing(node)
+        #   # => { query: { bool: { must_not: { exists: { field: 'embedding' } } } } }
+        # @example With filter
+        #   query = ActiveContext::Query.filter(type: 1).missing('embedding')
+        #   # => { query: { bool: { must: [{ term: { type: 1 } }], must_not: { exists: { field: 'embedding' } } } } }
+        def process_missing: (untyped node) -> untyped
+
+        # Processes exists field conditions into exists queries
+        #
+        # @param node [ActiveContext::Query] The exists query node
+        # @return [Hash] A bool query with exists clause
+        # @example
+        #   process_exists(node)
+        #   # => { query: { bool: { must: [{ exists: { field: 'embedding' } }] } } }
+        def process_exists: (untyped node) -> untyped
+
+        # Processes OR queries, with special handling for KNN
+        #
+        # @param node [ActiveContext::Query] The OR query node
+        # @return [Hash] Either:
+        #   - A bool query with should clauses for simple OR conditions
+        #   - A combined structure with KNN at root level and other conditions under 'query' for OR with KNN
+        # @see #process_simple_or
+        # @see #process_or_with_knn
+        def process_or: (untyped node) -> untyped
+
+        # Processes simple OR conditions (without KNN)
+        #
+        # @param children [Array<ActiveContext::Query>] The child queries to OR together
+        # @return [Hash] A bool query with should clauses and minimum_should_match: 1
+        # @example
+        #   process_simple_or([filter_query, prefix_query])
+        #   # => { query: { bool: {
+        #   #      should: [...],
+        #   #      minimum_should_match: 1
+        #   #    } } }
+        def process_simple_or: (untyped children) -> untyped
+
+        # Processes OR conditions that include a KNN query
+        def process_or_with_knn: (untyped _) -> untyped
+
+        # Processes AND conditions
+        #
+        # @param children [Array<ActiveContext::Query>] The child queries to AND together
+        # @return [Hash] A bool query with must clauses
+        # @example
+        #   process_and([filter_query, prefix_query])
+        #   # => { query: { bool: { must: [...] } } }
+        def process_and: (untyped children) -> untyped
+
+        # Processes KNN query, combining with optional filter conditions
+        def process_knn: (untyped _) -> untyped
+
+        # Processes limit by adding size parameter
+        #
+        # @param node [ActiveContext::Query] The limit query node
+        # @return [Hash] The query with size parameter added
+        # @example
+        #   # With size 10:
+        #   # => { query: {...}, size: 10 }
+        def process_limit: (untyped node) -> untyped
+
+        # Checks if node contains a KNN query
+        #
+        # @param node [ActiveContext::Query] The query node to check
+        # @return [Boolean] true if any child is a KNN query
+        def contains_knn?: (untyped node) -> untyped
+
+        # Finds the KNN child in a query node
+        #
+        # @param node [ActiveContext::Query] The query node to search
+        # @return [ActiveContext::Query, nil] The KNN query node if found
+        def find_knn_child: (untyped node) -> untyped
+
+        # Builds OR conditions excluding KNN query
+        #
+        # @param node [ActiveContext::Query] The query node to process
+        # @param knn_child [ActiveContext::Query] The KNN child to exclude
+        # @return [Hash] A bool query with the remaining conditions
+        def build_or_conditions: (untyped node, untyped knn_child) -> (::Hash[untyped, untyped] | untyped)
+
+        # Helper to build bool queries consistently
+        #
+        # @param type [:must, :should] The bool query type
+        # @param minimum_should_match [Integer, nil] Optional minimum matches for should clauses
+        # @yield [Array] Yields an array to add query clauses to
+        # @return [Hash] The constructed bool query
+        def build_bool_query: (untyped type, ?minimum_should_match: untyped?) { (untyped) -> untyped } -> { query: untyped }
+
+        # Safely extracts query part from processed result
+        #
+        # @param processed [Hash] The processed query result
+        # @return [Hash] The query part
+        def extract_query: (untyped processed) -> untyped
+
+        def knn_node_values: (untyped node) -> { k: untyped, field: untyped, vector: untyped }
+      end
+    end
+  end
+end

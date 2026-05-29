@@ -1,0 +1,23 @@
+module ActiveContext
+  module Databases
+    module Opensearch
+      class Adapter
+        include ActiveContext::Databases::Concerns::Adapter
+
+        def name: () -> "opensearch"
+
+        def client_klass: () -> untyped
+
+        def indexer_klass: () -> untyped
+
+        def executor_klass: () -> untyped
+
+        def indexer_connection_options: () -> untyped
+
+        private
+
+        def aws_connection_options: () -> (::Hash[untyped, untyped] | untyped)
+      end
+    end
+  end
+end

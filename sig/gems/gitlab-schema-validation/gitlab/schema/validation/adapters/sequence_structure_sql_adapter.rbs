@@ -1,0 +1,51 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Adapters
+        class SequenceStructureSqlAdapter
+          @sequence_name: untyped
+
+          @schema_name: untyped
+
+          @owner_table: untyped
+
+          @owner_column: untyped
+
+          @owner_schema: untyped
+
+          attr_reader sequence_name: untyped
+
+          attr_reader schema_name: untyped
+
+          attr_accessor owner_table: untyped
+
+          attr_accessor owner_column: untyped
+
+          attr_accessor owner_schema: untyped
+
+          def initialize: (sequence_name: untyped, ?schema_name: untyped?, ?owner_table: untyped?, ?owner_column: untyped?, ?owner_schema: untyped?) -> void
+
+          # Fully qualified sequence name (schema.sequence_name)
+          def name: () -> ::String
+
+          # Just the column name
+          def column_name: () -> untyped
+
+          def table_name: () -> untyped
+
+          # Fully qualified column reference (schema.table.column)
+          def column_owner: () -> (nil | ::String)
+
+          # Get the schema this sequence belongs to
+          def schema: () -> untyped
+
+          def column_schema: () -> untyped
+
+          def to_s: () -> ::String
+
+          def inspect: () -> ::String
+        end
+      end
+    end
+  end
+end

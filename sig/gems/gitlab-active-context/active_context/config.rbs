@@ -1,0 +1,41 @@
+module ActiveContext
+  class Config
+    self.@instance: untyped
+
+    @config_block: untyped
+
+    QueueClassError: untyped
+
+    Cfg: untyped
+
+    def self.configure: () { (?) -> untyped } -> untyped
+
+    def self.current: () -> untyped
+
+    def self.enabled?: () -> untyped
+
+    def self.migrations_path: () -> untyped
+
+    def self.connection_model: () -> untyped
+
+    def self.collection_model: () -> untyped
+
+    def self.logger: () -> untyped
+
+    def self.indexing_enabled?: () -> (false | untyped)
+
+    def self.re_enqueue_indexing_workers?: () -> untyped
+
+    def self.queue_classes: () -> untyped
+
+    private
+
+    def self.validate_queue_classes: () -> (nil | untyped)
+
+    public
+
+    def initialize: (untyped config_block) -> void
+
+    def config: () -> untyped
+  end
+end

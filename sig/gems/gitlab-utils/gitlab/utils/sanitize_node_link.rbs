@@ -1,0 +1,36 @@
+module Gitlab
+  module Utils
+    module SanitizeNodeLink
+      UNSAFE_PROTOCOLS: ::Array["data" | "javascript" | "vbscript"]
+
+      ATTRS_TO_SANITIZE: ::Array["href" | "src" | "data-src" | "data-canonical-src"]
+
+      # sanitize 6.0 requires only a context argument. Do not add any default
+      # arguments to this method.
+      def sanitize_unsafe_links: (untyped env) -> untyped
+
+      def remove_unsafe_links: (untyped env, ?remove_invalid_links: bool, ?sanitize_children: bool) -> (nil | untyped)
+
+      # Remove all invalid scheme characters before checking against the
+      # list of unsafe protocols.
+      #
+      # See https://www.rfc-editor.org/rfc/rfc3986#section-3.1
+      #
+      def safe_protocol?: (untyped scheme) -> (false | untyped)
+
+      # Matches the canonical Ruby message for invalid UTF-8 byte sequences
+      # raised from `String#gsub` (and other regex/string operations) when
+      # the input contains bytes that are not valid UTF-8. Ruby raises a
+      # plain `ArgumentError` here -- neither Addressable nor stdlib wraps
+      # it -- so we match by message to avoid swallowing unrelated
+      # `ArgumentError`s.
+      INVALID_UTF8_BYTE_SEQUENCE_MESSAGE: "invalid byte sequence in UTF-8"
+
+      def permit_url?: (untyped url, ?remove_invalid_links: bool) -> untyped
+
+      private
+
+      def sanitize_node: (node: untyped, ?remove_invalid_links: bool) -> untyped
+    end
+  end
+end

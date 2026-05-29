@@ -1,0 +1,21 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Tasks
+        class TerraformState < Task
+          def self.id: () -> "terraform_state"
+
+          def human_name: () -> "Terraform States"
+
+          def destination_path: () -> "terraform_state.tar.gz"
+
+          private
+
+          def local: () -> untyped
+
+          def storage_path: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,53 @@
+module ErrorTrackingOpenAPI
+  class EventsApi
+    @api_client: untyped
+
+    attr_accessor api_client: untyped
+
+    def initialize: (?untyped api_client) -> void
+
+    # Get information about the events related to the error
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param fingerprint [Integer] ID of the error within the project
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :sort  (default to 'occurred_at_asc')
+    # @option opts [String] :cursor Base64 encoded information for pagination
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @return [Array<ErrorEvent>]
+    def list_events: (untyped project_id, untyped fingerprint, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Get information about the events related to the error
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param fingerprint [Integer] ID of the error within the project
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :sort  (default to 'occurred_at_asc')
+    # @option opts [String] :cursor Base64 encoded information for pagination
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @return [Array<(Array<ErrorEvent>, Integer, Hash)>] Array<ErrorEvent> data, response status code and response headers
+    def list_events_with_http_info: (untyped project_id, untyped fingerprint, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+    # Ingestion endpoint for error events sent from client SDKs
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param [Hash] opts the optional parameters
+    # @return [ErrorEvent]
+    def projects_api_project_id_envelope_post: (untyped project_id, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Ingestion endpoint for error events sent from client SDKs
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(ErrorEvent, Integer, Hash)>] ErrorEvent data, response status code and response headers
+    def projects_api_project_id_envelope_post_with_http_info: (untyped project_id, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+
+    # Ingestion endpoint for error events sent from client SDKs
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param [Hash] opts the optional parameters
+    # @return [ErrorEvent]
+    def projects_api_project_id_store_post: (untyped project_id, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # Ingestion endpoint for error events sent from client SDKs
+    # @param project_id [Integer] ID of the project where the error was created
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(ErrorEvent, Integer, Hash)>] ErrorEvent data, response status code and response headers
+    def projects_api_project_id_store_post_with_http_info: (untyped project_id, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+  end
+end

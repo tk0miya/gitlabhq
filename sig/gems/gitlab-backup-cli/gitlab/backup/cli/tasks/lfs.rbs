@@ -1,0 +1,21 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Tasks
+        class Lfs < Task
+          def self.id: () -> "lfs"
+
+          def human_name: () -> "LFS Objects"
+
+          def destination_path: () -> "lfs.tar.gz"
+
+          private
+
+          def local: () -> untyped
+
+          def storage_path: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module ActiveContext
+  module Databases
+    module Elasticsearch
+      class Client
+        @options: untyped
+
+        include ActiveContext::Databases::Concerns::ElasticClient
+
+        OPEN_TIMEOUT: 5
+
+        NO_RETRY: 0
+
+        DEFAULT_ADAPTER: :typhoeus
+
+        def initialize: (untyped options) -> void
+
+        def search: (user: untyped, collection: untyped, query: untyped, ?source_fields: untyped?) -> untyped
+
+        def client: () -> untyped
+
+        private
+
+        def elasticsearch_config: () -> untyped
+      end
+    end
+  end
+end

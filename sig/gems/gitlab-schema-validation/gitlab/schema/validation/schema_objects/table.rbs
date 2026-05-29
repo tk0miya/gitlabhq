@@ -1,0 +1,31 @@
+module Gitlab
+  module Schema
+    module Validation
+      module SchemaObjects
+        class Table
+          @name: untyped
+
+          @columns: untyped
+
+          def initialize: (untyped name, untyped columns) -> void
+
+          attr_reader name: untyped
+
+          attr_reader columns: untyped
+
+          def table_name: () -> untyped
+
+          def statement: () -> untyped
+
+          def fetch_column_by_name: (untyped column_name) -> untyped
+
+          def column_exists?: (untyped column_name) -> (false | true)
+
+          private
+
+          def columns_statement: () -> untyped
+        end
+      end
+    end
+  end
+end

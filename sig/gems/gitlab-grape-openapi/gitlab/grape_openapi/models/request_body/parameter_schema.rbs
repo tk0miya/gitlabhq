@@ -1,0 +1,73 @@
+module Gitlab
+  module GrapeOpenapi
+    module Models
+      module RequestBody
+        class ParameterSchema
+          @route: untyped
+
+          @key: untyped
+
+          @param_options: untyped
+
+          @validations: untyped
+
+          include Converters::CoercerResolver
+
+          include Concerns::Serializable
+
+          include Concerns::LimitResolver
+
+          include Concerns::FailFastAnnotatable
+
+          include Concerns::RegexConverter
+
+          def initialize: (route: untyped, key: untyped, param_options: untyped) -> void
+
+          def build: () -> untyped
+
+          private
+
+          attr_reader route: untyped
+
+          attr_reader key: untyped
+
+          attr_reader param_options: untyped
+
+          attr_reader validations: untyped
+
+          def annotated_description: () -> untyped
+
+          # Handles schema building for types that cannot safely be passed through TypeResolver
+          def build_raw_type_schema: () -> untyped
+
+          # Handles schema building for types that have been resolved through TypeResolver
+          def build_resolved_schema: (untyped object_type, untyped object_format) -> untyped
+
+          def build_coerced_schema_with_description: (untyped mapping) -> untyped
+
+          def build_simple_array_from_bracket_notation: () -> untyped
+
+          def build_file_schema: () -> untyped
+
+          def build_union_type_schema: () -> { oneOf: untyped }
+
+          def build_range_schema: (untyped object_type) -> untyped
+
+          def build_enum_schema: (untyped object_type) -> untyped
+
+          def build_array_schema: () -> untyped
+
+          def build_nested_array_schema: () -> untyped
+
+          def build_nested_hash_schema: () -> untyped
+
+          def build_basic_schema: (untyped object_type, untyped object_format) -> untyped
+
+          def validations_for: (untyped attribute) -> untyped
+
+          def apply_allow_blank: (untyped schema) -> (untyped | nil | untyped)
+        end
+      end
+    end
+  end
+end

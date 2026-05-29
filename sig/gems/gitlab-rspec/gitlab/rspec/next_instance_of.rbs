@@ -1,0 +1,13 @@
+module NextInstanceOf
+  def expect_next_instance_of: (untyped klass, *untyped new_args) { (?) -> untyped } -> untyped
+
+  def expect_next_instances_of: (untyped klass, untyped number, ?bool ordered, *untyped new_args) { (?) -> untyped } -> untyped
+
+  def allow_next_instance_of: (untyped klass, *untyped new_args) { (?) -> untyped } -> untyped
+
+  def allow_next_instances_of: (untyped klass, untyped number, ?bool ordered, *untyped new_args) { (?) -> untyped } -> untyped
+
+  private
+
+  def stub_new: (untyped target, untyped number, ?bool ordered, *untyped new_args) { (?) -> untyped } -> untyped
+end

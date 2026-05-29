@@ -1,0 +1,15 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Models
+        class Project < Base
+          @storage: untyped
+
+          def storage: () -> untyped
+
+          def disk_path: () -> ::String
+        end
+      end
+    end
+  end
+end

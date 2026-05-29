@@ -1,0 +1,23 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Adapters
+        class ForeignKeyDatabaseAdapter
+          @query_result: untyped
+
+          def initialize: (untyped query_result) -> void
+
+          def name: () -> ::String
+
+          def table_name: () -> untyped
+
+          def statement: () -> untyped
+
+          private
+
+          attr_reader query_result: untyped
+        end
+      end
+    end
+  end
+end

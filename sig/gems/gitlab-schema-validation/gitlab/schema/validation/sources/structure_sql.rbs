@@ -1,0 +1,112 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Sources
+        class StructureSql
+          @structure_file_path: untyped
+
+          @schema_name: untyped
+
+          @table_map: untyped
+
+          @index_map: untyped
+
+          @trigger_map: untyped
+
+          @foreign_key_map: untyped
+
+          @indexes: untyped
+
+          @triggers: untyped
+
+          @sequences: untyped
+
+          @foreign_keys: untyped
+
+          @tables: untyped
+
+          @statements: untyped
+
+          @parsed_structure_file: untyped
+
+          DEFAULT_SCHEMA: "public"
+
+          def initialize: (untyped structure_file_path, ?untyped schema_name) -> void
+
+          def fetch_index_by_name: (untyped index_name) -> untyped
+
+          def fetch_trigger_by_name: (untyped trigger_name) -> untyped
+
+          def fetch_foreign_key_by_name: (untyped foreign_key_name) -> untyped
+
+          def fetch_table_by_name: (untyped table_name) -> untyped
+
+          def fetch_sequence_by_name: (untyped sequence_name) -> untyped
+
+          def index_exists?: (untyped index_name) -> untyped
+
+          def trigger_exists?: (untyped trigger_name) -> untyped
+
+          def foreign_key_exists?: (untyped foreign_key_name) -> untyped
+
+          def table_exists?: (untyped table_name) -> untyped
+
+          def sequence_exists?: (untyped sequence_name) -> untyped
+
+          def indexes: () -> untyped
+
+          def triggers: () -> untyped
+
+          def sequences: () -> untyped
+
+          def sequence_map: () -> untyped
+
+          def foreign_keys: () -> untyped
+
+          def tables: () -> untyped
+
+          private
+
+          attr_reader structure_file_path: untyped
+
+          attr_reader schema_name: untyped
+
+          attr_reader table_map: untyped
+
+          attr_reader index_map: untyped
+
+          attr_reader trigger_map: untyped
+
+          attr_reader foreign_key_map: untyped
+
+          def to_map: (untyped array) -> untyped
+
+          def index_statements: () -> untyped
+
+          def trigger_statements: () -> untyped
+
+          def table_statements: () -> untyped
+
+          def foreign_key_statements: () -> untyped
+
+          # Filter constraint statement nodes
+          #
+          # @param constraint_type [Symbol] node type. One of CONSTR_PRIMARY, CONSTR_CHECK, CONSTR_EXCLUSION,
+          #        CONSTR_UNIQUE or CONSTR_FOREIGN.
+          def constraint_statements: (untyped constraint_type) -> untyped
+
+          # Filter alter table statement nodes
+          #
+          # @param subtype [Symbol] node subtype +AT_AttachPartition+, +AT_ColumnDefault+ or +AT_AddConstraint+
+          def alter_table_statements: (untyped subtype) -> untyped
+
+          def statements: () -> untyped
+
+          def parsed_structure_file: () -> untyped
+
+          def map_with_default_schema: (untyped statements, untyped validation_class) -> untyped
+        end
+      end
+    end
+  end
+end

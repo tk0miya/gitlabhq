@@ -1,0 +1,106 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      class EntityConverter
+        @entity_class: untyped
+
+        @schema_registry: untyped
+
+        attr_reader entity_class: untyped
+
+        attr_reader schema_registry: untyped
+
+        OBJECT_TYPE: "object"
+
+        ARRAY_TYPE: "array"
+
+        DEFAULT_TYPE: "string"
+
+        REF_KEY: "$ref"
+
+        SCHEMA_PATH_PREFIX: "#/components/schemas/"
+
+        def self.register: (untyped entity, untyped schema_registry) -> untyped
+
+        def self.grape_entity?: (untyped klass) -> untyped
+
+        def initialize: (untyped entity_class, untyped schema_registry) -> void
+
+        def convert: (?register: bool) -> untyped
+
+        private
+
+        def build_schema: () -> untyped
+
+        def build_properties: () -> untyped
+
+        def inlineable_merge_exposure?: (untyped exposure) -> (false | untyped)
+
+        def inline_merged_properties!: (untyped properties, untyped exposure) -> (nil | untyped)
+
+        # Build the merged entity's schema without registering it as a
+        # standalone component. Entities only reached through `merge: true` are
+        # inlined into their parents and do not need their own component entry.
+        # `convert` still returns an already-registered schema when one exists
+        # (for entities also reached via a regular `using:` elsewhere), and
+        # `build_schema` still walks nested `using:` exposures, so any schema
+        # actually referenced by `$ref` remains registered.
+        def build_or_fetch_nested_schema: (untyped nested_class) -> untyped
+
+        def build_property: (untyped exposure) -> untyped
+
+        def extract_basic_attributes: (untyped exposure) -> untyped
+
+        def multiple_types?: (untyped type) -> untyped
+
+        def build_one_of_property: (untyped types, untyped documentation, untyped default_value) -> { oneOf: untyped, description: untyped, default: untyped, example: untyped }
+
+        def build_single_type_property: (untyped type, untyped documentation, untyped default_value) -> { type: untyped, description: untyped, format: untyped, default: untyped, example: untyped }
+
+        def build_type_schema: (untyped type, untyped documentation) -> untyped
+
+        def apply_type_specific_attributes!: (untyped property, untyped exposure) -> (nil | untyped)
+
+        def handle_array_property!: (untyped property, untyped exposure) -> untyped
+
+        def handle_entity_reference!: (untyped property, untyped exposure) -> untyped
+
+        # Ensure schemas reachable from a route via nested `using:` exposures are
+        # registered too, so dropping the over-broad `Grape::Entity.descendants`
+        # seed in the generator does not leave dangling `$ref`s.
+        def register_nested_entity: (untyped exposure) -> (nil | untyped)
+
+        def set_array_primitive_property!: (untyped property) -> untyped
+
+        def build_primitive_items: (untyped property, untyped item_type) -> untyped
+
+        def set_array_property!: (untyped property, untyped reference) -> untyped
+
+        def set_reference_property!: (untyped property, untyped reference) -> untyped
+
+        def build_reference: (untyped exposure) -> ::String
+
+        def normalize_entity_name: (untyped entity_name) -> untyped
+
+        def root_exposures: () -> untyped
+
+        def exposure_documentation: (untyped exposure) -> untyped
+
+        # Grape Entity stores the `:default` option in `@default_value` but
+        # does not expose a public reader for it. Reaching for the ivar is the
+        # only way to read it without going through `send(:options)`, which the
+        # `GitlabSecurity/PublicSend` rule disallows.
+        def exposure_default: (untyped exposure) -> untyped
+
+        def nested_entity?: (untyped exposure) -> untyped
+
+        # Only `RepresentExposure` instances (i.e. exposures declared with
+        # `using:`) expose a `using_class_name` reader; for any other exposure
+        # type there is no nested entity to reference.
+        def nested_entity_class: (untyped exposure) -> (nil | untyped)
+
+        def array_exposure?: (untyped exposure) -> untyped
+      end
+    end
+  end
+end

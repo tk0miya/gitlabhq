@@ -1,0 +1,17 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Sources
+        module ConnectionAdapters
+          class ActiveRecordAdapter < Base
+            extend Forwardable
+
+            def exec_query: (untyped sql, untyped schemas) -> untyped
+
+            def select_rows: (untyped sql, untyped schemas) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Errors
+        class GitalyBackupError < StandardError
+          @error_message: untyped
+
+          attr_reader error_message: untyped
+
+          def initialize: (?::String error_message) -> void
+
+          private
+
+          def build_message: () -> ::String
+        end
+      end
+    end
+  end
+end

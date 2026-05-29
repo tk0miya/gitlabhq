@@ -1,0 +1,103 @@
+module Gitlab
+  module PrinciplesDistiller
+    class Sync
+      # Manifest loading, validation, frontmatter handling, affected-principle
+      # detection, AGENTS.md / SKILL.md generation, and prerequisite-note
+      # injection. Owns the SSOT file_cache.
+      #
+      # `@data` is not synchronized; callers must load before forking (see
+      # `Sync#parallel_distill`'s assertion).
+      class Manifest
+        @file_cache: untyped
+
+        @file_cache_mutex: untyped
+
+        @data: untyped
+
+        MANIFEST_PATH: ".ai/principles/manifest.yml"
+
+        PRINCIPLES_DIR: ".ai/principles/distilled"
+
+        CLAUDE_SKILL_DIR: ".claude/skills/gitlab-coding-principles"
+
+        CLAUDE_SKILL_PATH: ::String
+
+        AUTO_MR_REQUIRED_KEYS: ::Array["branch_prefix" | "title_template" | "labels" | "remove_source_branch"]
+
+        def initialize: () -> void
+
+        attr_reader file_cache: untyped
+
+        # The parsed YAML hash. The writer is a public test seam: specs
+        # can inject fixtures without a manifest.yml on disk, bypassing
+        # validate_principles!. Production code only reaches `data` via
+        # `load`, where validation runs.
+        attr_writer data: untyped
+
+        def data: () -> untyped
+
+        def loaded?: () -> untyped
+
+        def load: () -> untyped
+
+        def principles: () -> untyped
+
+        def static_entries: () -> untyped
+
+        def principle_config: (untyped name) -> untyped
+
+        # No hardcoded fallbacks: missing keys fail fast rather than
+        # masking misconfig with stale defaults.
+        def auto_mr_config: () -> untyped
+
+        def principles_path: (untyped name) -> untyped
+
+        def build_diff_hint: (untyped sha, untyped source_paths) -> untyped
+
+        def load_frontmatter_data: () -> untyped
+
+        def extract_frontmatter: (untyped content) -> (nil | untyped)
+
+        def strip_frontmatter: (untyped content) -> untyped
+
+        def compute_checksum: (untyped config) -> untyped
+
+        def affected_principles: (?force: bool, ?only: untyped?) -> untyped
+
+        def read_repo_file: (untyped path) -> untyped
+
+        def collect_ssot_docs: (untyped config) -> untyped
+
+        def sources_footer: (untyped config) -> ("" | ::String)
+
+        # Writes the gitlab-coding-principles SKILL.md to both .agents/
+        # (OpenCode) and .claude/ (Claude Code).
+        def generate_principles_skill: () -> untyped
+
+        # Refreshes the generated OpenCode-context section in AGENTS.md (and
+        # copies the result to CLAUDE.md for parity).
+        def generate_agents_md_context_loading: () -> (nil | untyped)
+
+        # Idempotent. Updates existing notes if wording changed.
+        def inject_prerequisite_notes: () -> untyped
+
+        # Returns the blockquote note to prepend to a non-prerequisite
+        # distilled file, or nil if no prerequisite siblings apply.
+        def prerequisite_note: (untyped name) -> (nil | ::String)
+
+        private
+
+        # Surfaces misconfigured principles at load time. Only invoked
+        # from `load`; specs injecting via `data=` skip this.
+        def validate_principles!: () -> (nil | untyped)
+
+        def principles_filename: (untyped name) -> ::String
+
+        # Routing-table body shared by AGENTS.md and the SKILL.md files.
+        def build_skill_routing_table: () -> untyped
+
+        def agents_md_prerequisite_suffix: (untyped entry, untyped prerequisites, untyped group) -> (::String | ::String | "")
+      end
+    end
+  end
+end

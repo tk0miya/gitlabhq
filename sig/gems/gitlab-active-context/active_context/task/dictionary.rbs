@@ -1,0 +1,25 @@
+module ActiveContext
+  module Task
+    class Dictionary
+      self.@instance: untyped
+
+      @tasks: untyped
+
+      InvalidTaskNameError: untyped
+
+      def self.instance: () -> untyped
+
+      def self.reset!: () -> untyped
+
+      def initialize: () -> void
+
+      def tasks: () -> untyped
+
+      def find_by_name: (untyped name) -> untyped
+
+      private
+
+      def load_task: (untyped name) -> untyped
+    end
+  end
+end

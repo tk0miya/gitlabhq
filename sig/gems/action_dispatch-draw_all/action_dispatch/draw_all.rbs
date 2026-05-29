@@ -1,0 +1,12 @@
+module ActionDispatch
+  module DrawAll
+    RoutesNotFound: untyped
+
+    # Draws all matching files located inside the config/routes directories
+    def draw_all: (untyped routes_name) -> (nil | untyped)
+
+    private
+
+    def draw_route: (untyped path) -> (true | false)
+  end
+end

@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module DataIsolation
+      self.@configuration: untyped
+
+      self.@installed: untyped
+
+      def self.configuration: () -> untyped
+
+      def self.configure: () { (untyped) -> untyped } -> untyped
+
+      def self.reset_configuration!: () -> untyped
+
+      def self.install!: () -> (nil | untyped)
+    end
+  end
+end

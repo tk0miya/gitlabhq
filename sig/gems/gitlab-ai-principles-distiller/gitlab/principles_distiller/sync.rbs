@@ -1,0 +1,74 @@
+module Gitlab
+  module PrinciplesDistiller
+    # Orchestrates the per-principle distillation pipeline: load the
+    # manifest, decide which principles drifted, drive the Duo Workflow
+    # API to refresh them, and (optionally) open a follow-up MR.
+    class Sync
+      @manifest: untyped
+
+      @workflow: untyped
+
+      include AutoMr
+
+      # Cap concurrent Duo Workflow invocations to avoid scheduling too many
+      # child CI pipelines at once during a full re-distillation (~23 principles).
+      MAX_CONCURRENT_DISTILLATIONS: 4
+
+      DISTILL_MAX_RETRIES: 3
+
+      # Backoffs are long because the most common failure is transient
+      # Gitaly node overload on the promisor partial-clone fetch; retrying
+      # immediately would hit the same overloaded node.
+      DISTILL_RETRY_BACKOFF_SECONDS: ::Array[300 | 900 | 1800]
+
+      def self.run: () -> untyped
+
+      def manifest: () -> untyped
+
+      def workflow: () -> untyped
+
+      def run: () -> (nil | untyped)
+
+      # Writes go straight to the working tree. In --push mode disk writes
+      # are deferred (see build_distilled_contents) until after the publish
+      # branch is checked out, so the resulting MR diff contains ONLY the
+      # distilled files.
+      def distill_and_write_principles: (untyped affected, ?rewrite: bool) -> ::Array[untyped]
+
+      def parse_options: () -> untyped
+
+      # Informational only; the Duo agent reads the file itself via the
+      # Workflow API.
+      def announce_distillation_start: (untyped name, untyped mutex) -> untyped
+
+      private
+
+      def distill: (untyped affected, untyped options) -> ::Array[untyped]
+
+      def abort_on_failures: (untyped failed) -> (nil | untyped)
+
+      def publish: (untyped contents, untyped affected, push: untyped) -> (nil | untyped)
+
+      def banner: (untyped message) -> untyped
+
+      def regenerate_static_artifacts: () -> untyped
+
+      # Returns [{principle_name => fully_assembled_file_content}, [failed_names]]
+      # without writing to disk, so --push mode can defer writes until after
+      # the publish branch is checked out off origin/master.
+      def build_distilled_contents: (untyped affected, ?rewrite: bool) -> ::Array[untyped]
+
+      # `mutex` serialises log output and writes to `results`.
+      # Manifest#read_repo_file owns its own mutex for the SSOT file cache.
+      # Manifest must be loaded before forking; otherwise the unsynchronized
+      # `@data ||= load` in Manifest#data would race.
+      def parallel_distill: (untyped affected, ?rewrite: bool) -> untyped
+
+      def distill_principle: (untyped name, untyped config, ?mutex: untyped?, ?rewrite: bool) -> (nil | untyped)
+
+      # Returns the distilled file content stripped of its YAML frontmatter,
+      # or nil if no file exists yet.
+      def read_principles_file: (untyped name) -> (nil | untyped)
+    end
+  end
+end

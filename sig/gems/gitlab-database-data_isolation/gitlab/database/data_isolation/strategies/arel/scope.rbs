@@ -1,0 +1,27 @@
+module Gitlab
+  module Database
+    module DataIsolation
+      module Strategies
+        module Arel
+          class Scope
+            def add_scope: (untyped ast) -> untyped
+
+            private
+
+            def sharding_key_entry: (untyped table_name) -> untyped
+
+            def build_condition: (untyped table_name, untyped keys) -> (nil | untyped)
+
+            def build_column_condition: (untyped table, untyped column, untyped value) -> untyped
+
+            def resolve_value: (untyped type) -> untyped
+
+            def extract_from_tables: (untyped ast) -> untyped
+
+            def extract_table_name: (untyped node) -> untyped
+          end
+        end
+      end
+    end
+  end
+end

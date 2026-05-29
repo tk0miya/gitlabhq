@@ -1,0 +1,23 @@
+module ErrorTrackingOpenAPI
+  class MessagesApi
+    @api_client: untyped
+
+    attr_accessor api_client: untyped
+
+    def initialize: (?untyped api_client) -> void
+
+    # List of messages
+    # @param project_id [Integer] ID of the project where the message was created
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @return [Array<MessageEvent>]
+    def list_messages: (untyped project_id, ?::Hash[untyped, untyped] opts) -> untyped
+
+    # List of messages
+    # @param project_id [Integer] ID of the project where the message was created
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :limit Number of entries to return (default to 20)
+    # @return [Array<(Array<MessageEvent>, Integer, Hash)>] Array<MessageEvent> data, response status code and response headers
+    def list_messages_with_http_info: (untyped project_id, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+  end
+end

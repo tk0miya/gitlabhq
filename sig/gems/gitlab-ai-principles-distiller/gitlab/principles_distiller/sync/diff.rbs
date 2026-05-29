@@ -1,0 +1,39 @@
+module Gitlab
+  module PrinciplesDistiller
+    class Sync
+      # Stateless text helpers for the post-distillation pipeline: strip LLM preamble, suppress rephrasing noise, decide
+      # whether a newly distilled file is materially different.
+      module Diff
+        extend ::Gitlab::PrinciplesDistiller::Sync::Diff
+
+        # Strips everything before the first Markdown heading and the trailing empty "## Output Format" sentinel some
+        # LLMs leave behind.
+        def strip_preamble: (untyped content) -> untyped
+
+        # Per-section line matching: new lines that closely match an old line (>= MATCH_THRESHOLD word overlap) keep the
+        # old wording.
+        # Sections only in old are dropped; sections only in new are kept.
+        def reduce_noise: (untyped old_content, untyped new_content) -> untyped
+
+        # Ignores whitespace and blank lines. nil updated => false; nil current with non-nil updated => true.
+        def meaningful?: (untyped current, untyped updated) -> (false | true | untyped)
+
+        private
+
+        # Word-overlap above which a line is considered the "same item
+        # reworded"; keep the old wording to suppress diff noise.
+        MATCH_THRESHOLD: ::Float
+
+        # Parse into { heading => [lines] } preserving order; preamble before first ### uses nil as key.
+        def parse_sections: (untyped content) -> untyped
+
+        # Jaccard similarity over word tokens.
+        def word_similarity: (untyped line_a, untyped line_b) -> (::Float | untyped)
+
+        def find_best_match: (untyped line, untyped candidates) -> ::Array[untyped]
+
+        def normalize_text: (untyped text) -> untyped
+      end
+    end
+  end
+end

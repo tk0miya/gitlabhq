@@ -1,0 +1,56 @@
+module Gitlab
+  module PrinciplesDistiller
+    class Sync
+      module AutoMr
+        @distillation_base_sha: untyped
+
+        # MR description has a 1 MB hard limit; multiple per-principle patches
+        # may be embedded, so each must stay well under that.
+        DIFF_MAX_LINES: 200
+
+        DIFF_MAX_BYTES: 8192
+
+        def distillation_base_sha: () -> untyped
+
+        # Returns [text, truncated?]. Caps at DIFF_MAX_LINES or DIFF_MAX_BYTES,
+        # whichever hits first.
+        def truncate_diff: (untyped text) -> ::Array[untyped]
+
+        def create_branch_and_mr: (untyped distilled_contents, untyped affected, untyped auto_mr_cfg) -> untyped
+
+        # Renders the per-principle section embedded in the auto-MR
+        # description: principle heading, source-file commit-history links,
+        # and a fenced `git diff prior_sha..origin/<default_branch>`.
+        def principle_diff_section: (untyped name, untyped affected_entry, untyped default_branch) -> untyped
+
+        private
+
+        # CI runners only have origin/<branch>, not a local <branch> ref.
+        # Try remote-tracking first, then local, then HEAD as a fallback.
+        def resolve_distillation_base_sha: () -> untyped
+
+        # CI's shallow clone doesn't include prior SHAs from weeks ago.
+        # Fetch each unique prior_sha so `git diff <prior_sha>..origin/master`
+        # resolves later. Relies on GitLab.com's
+        # `uploadpack.allowReachableSHA1InWant=true` for direct-SHA fetches.
+        def prefetch_prior_shas!: (untyped affected) -> (nil | untyped)
+
+        def sha_present_locally?: (untyped sha) -> untyped
+
+        # Returns [diff_text, truncated?]. diff_text is nil when prior_sha
+        # is unreachable or the diff is empty.
+        def compute_principle_diff: (untyped prior_sha, untyped default_branch, untyped paths) -> (::Array[nil | false] | untyped)
+
+        # Returns the iid of an open MR for the given source branch, or nil.
+        # `order_by=created_at&sort=desc` is explicit because the API default
+        # is implementation-defined.
+        def find_open_mr_iid: (untyped encoded_project, untyped source_branch, untyped api_token) -> (nil | untyped)
+
+        # Embeds the PAT so `git push` works even when origin is the read-only CI_JOB_TOKEN form.
+        def push_remote_url: (untyped api_token, untyped project_path_or_id) -> ::String
+
+        def create_mr: (untyped branch, untyped default_branch, untyped project_id, untyped api_token, untyped changed_principles, untyped affected, untyped date, untyped auto_mr_cfg) -> untyped
+      end
+    end
+  end
+end

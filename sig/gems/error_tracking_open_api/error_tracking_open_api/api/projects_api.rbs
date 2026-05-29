@@ -1,0 +1,21 @@
+module ErrorTrackingOpenAPI
+  class ProjectsApi
+    @api_client: untyped
+
+    attr_accessor api_client: untyped
+
+    def initialize: (?untyped api_client) -> void
+
+    # Deletes all project related data. Mostly for testing purposes and later for production to clean updeleted projects.
+    # @param id [Integer] ID of the project
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_project: (untyped id, ?::Hash[untyped, untyped] opts) -> nil
+
+    # Deletes all project related data. Mostly for testing purposes and later for production to clean updeleted projects.
+    # @param id [Integer] ID of the project
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_project_with_http_info: (untyped id, ?::Hash[untyped, untyped] opts) -> (::Array[untyped] | untyped)
+  end
+end

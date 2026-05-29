@@ -1,0 +1,13 @@
+module Gitlab
+  module Housekeeper
+    class Logger < ::Logger
+      def initialize: (*untyped, **untyped) ?{ (?) -> untyped } -> void
+
+      def puts: (*untyped args) -> untyped
+
+      class Formatter < ::Logger::Formatter
+        def call: (untyped severity, untyped _time, untyped _progname, untyped msg) -> untyped
+      end
+    end
+  end
+end

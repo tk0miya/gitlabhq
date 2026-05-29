@@ -1,0 +1,25 @@
+module Gitlab
+  module Schema
+    module Validation
+      class Runner
+        @structure_sql: untyped
+
+        @database: untyped
+
+        @validators: untyped
+
+        def initialize: (untyped structure_sql, untyped database, validators: untyped) -> void
+
+        def execute: () -> untyped
+
+        private
+
+        attr_reader structure_sql: untyped
+
+        attr_reader database: untyped
+
+        attr_reader validators: untyped
+      end
+    end
+  end
+end

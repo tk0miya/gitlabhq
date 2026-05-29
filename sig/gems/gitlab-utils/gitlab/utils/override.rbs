@@ -1,0 +1,80 @@
+module Gitlab
+  module Utils
+    module Override
+      self.@extensions: untyped
+
+      class Extension
+        @subject: untyped
+
+        @method_names: untyped
+
+        @classes: untyped
+
+        def self.verify_class!: (untyped klass, untyped method_name, untyped arity) -> untyped
+
+        attr_reader subject: untyped
+
+        def initialize: (untyped subject) -> void
+
+        def parents_for: (untyped klass) -> untyped
+
+        def verify!: () -> untyped
+
+        def verify_method!: (klass: untyped, parents: untyped, method_name: untyped, sub_method_arity: untyped) -> (nil | untyped)
+
+        def add_method_name: (untyped method_name, ?untyped? arity) -> untyped
+
+        def add_class: (untyped klass) -> untyped
+
+        def verify_override?: (untyped method_name) -> untyped
+
+        private
+
+        def instance_method_defined?: (untyped klass, untyped name) -> untyped
+
+        def find_direct_method: (untyped klass, untyped name) -> untyped
+
+        def arity_compatible?: (untyped sub_method_arity, untyped super_method_arity) -> untyped
+
+        def method_names: () -> untyped
+
+        def classes: () -> untyped
+      end
+
+      # Instead of writing patterns like this:
+      #
+      #     def f
+      #       raise NotImplementedError unless defined?(super)
+      #
+      #       true
+      #     end
+      #
+      # We could write it like:
+      #
+      #     extend ::Gitlab::Utils::Override
+      #
+      #     override :f
+      #     def f
+      #       true
+      #     end
+      #
+      # This would make sure we're overriding something. See:
+      # https://gitlab.com/gitlab-org/gitlab/issues/1819
+      def override: (untyped method_name) -> (nil | untyped)
+
+      def method_added: (untyped method_name) -> (nil | untyped)
+
+      def included: (?untyped? base) -> untyped
+
+      def prepended: (?untyped? base) -> untyped
+
+      def extended: (?untyped? mod) -> (nil | untyped)
+
+      def queue_verification: (untyped base, ?verify: bool) -> (nil | untyped)
+
+      def self.extensions: () -> untyped
+
+      def self.verify!: () -> untyped
+    end
+  end
+end

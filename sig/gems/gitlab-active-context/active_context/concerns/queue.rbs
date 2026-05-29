@@ -1,0 +1,57 @@
+module ActiveContext
+  module Concerns
+    module Queue
+      @shard: untyped
+
+      def self.included: (untyped base) -> untyped
+
+      def initialize: (untyped shard) -> void
+
+      def redis_key: () -> ::String
+
+      attr_reader shard: untyped
+
+      module ClassMethods
+        SLICE_SIZE: 1000
+
+        SHARD_LIMIT: 1000
+
+        def limit_throughput?: () -> false
+
+        def number_of_shards: () -> untyped
+
+        def register!: () -> untyped
+
+        def push: (untyped references) -> untyped
+
+        def queue_size: (?shards: untyped, ?include_orphaned: bool) -> untyped
+
+        def queued_items: () -> untyped
+
+        def each_queued_items_by_shard: (untyped redis, ?shards: untyped, ?include_orphaned: bool, ?limit: untyped) { (untyped, untyped) -> untyped } -> untyped
+
+        def remove_shard_items: (untyped redis, untyped shard_number, untyped min_score, untyped max_score) -> untyped
+
+        def clear_tracking!: () -> untyped
+
+        def queue_shards: () -> untyped
+
+        def shard_limit: () -> untyped
+
+        def redis_key: () -> ::String
+
+        def redis_set_key: (untyped shard_number) -> ::String
+
+        def redis_score_key: (untyped shard_number) -> ::String
+
+        def queue_name: () -> untyped
+
+        def prefix: () -> untyped
+
+        def name_elements: () -> untyped
+
+        def preprocess_options: () -> ::Hash[untyped, untyped]
+      end
+    end
+  end
+end

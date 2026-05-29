@@ -1,0 +1,41 @@
+module Gitlab
+  module Housekeeper
+    class Git
+      @logger: untyped
+
+      @branch_from: untyped
+
+      HOUSEKEEPER_REMOTE: "housekeeper"
+
+      FALLBACK_REMOTE: "origin"
+
+      def initialize: (logger: untyped, ?branch_from: ::String) -> void
+
+      def with_clean_state: () { (?) -> untyped } -> untyped
+
+      def create_branch: (untyped change) -> untyped
+
+      def in_branch: (untyped branch_name) { () -> untyped } -> untyped
+
+      def create_commit: (untyped change) -> untyped
+
+      def push: (untyped branch_name, ?untyped push_options) -> untyped
+
+      def remote_branch_changed_files: (untyped branch_name, ?untyped? path) -> untyped
+
+      def self.branch_name: (untyped identifiers) -> untyped
+
+      private
+
+      def housekeeper_remote: () -> untyped
+
+      def housekeeper_remote_exists?: () -> untyped
+
+      def create_and_checkout_branch: (untyped branch_name) -> untyped
+
+      def checkout_branch: (untyped branch_name) -> untyped
+
+      def with_return_to_current_branch: (?stashed: bool) { () -> untyped } -> untyped
+    end
+  end
+end

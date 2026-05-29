@@ -1,0 +1,16 @@
+# The Ruby 3.2 does change Net protocol. Please see;
+# https://github.com/ruby/ruby/blob/ruby_3_2/lib/net/protocol.rb#L194-L206
+# vs https://github.com/ruby/ruby/blob/ruby_3_1/lib/net/protocol.rb#L190-L200
+NET_PROTOCOL_VERSION_0_2_0: untyped
+
+module Gitlab
+  module HTTP_V2
+    class BufferedIo
+      HEADER_READ_TIMEOUT: 20
+
+      # Original method:
+      # https://github.com/ruby/ruby/blob/cdb7d699d0641e8f081d590d06d07887ac09961f/lib/net/protocol.rb#L190-L200
+      def readuntil: (untyped terminator, ?bool ignore_eof, ?untyped start_time) -> untyped
+    end
+  end
+end

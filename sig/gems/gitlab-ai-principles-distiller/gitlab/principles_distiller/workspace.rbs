@@ -1,0 +1,14 @@
+module Gitlab
+  module PrinciplesDistiller
+    # Process-wide pointer to the repository workspace. Set via
+    # `Workspace.path = ...` (typically by the bin scripts honoring
+    # `--workspace`), or falls back to `$CI_PROJECT_DIR`.
+    module Workspace
+      attr_writer self.path: untyped
+
+      def self.path: () -> untyped
+
+      def self.join: (*untyped segments) -> untyped
+    end
+  end
+end

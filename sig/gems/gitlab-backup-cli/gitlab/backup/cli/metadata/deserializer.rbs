@@ -1,0 +1,26 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Metadata
+        module Deserializer
+          extend ::Gitlab::Backup::Cli::Metadata::Deserializer
+
+          # Given a JSON primitive +value+ loaded from a file, cast it to the
+          # expected class as specified by +type+
+          #
+          # @param [Symbol] type
+          # @param [Object] value
+          # @return [Object] the parsed and converted value
+          def parse_value: (type: untyped, value: untyped) -> untyped
+
+          # @param [String|Integer|Object] value
+          def parse_string: (untyped value) -> untyped
+
+          def parse_time: (untyped value) -> untyped
+
+          def parse_integer: (untyped value) -> untyped
+        end
+      end
+    end
+  end
+end

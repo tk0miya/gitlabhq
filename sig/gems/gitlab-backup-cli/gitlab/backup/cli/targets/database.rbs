@@ -1,0 +1,48 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Targets
+        class Database < Target
+          @errors: untyped
+
+          # Owner can read/write, group no permission, others no permission
+          FILE_PERMISSION: 384
+
+          IGNORED_ERRORS: ::Array[::Regexp]
+
+          IGNORED_ERRORS_REGEXP: untyped
+
+          # Rake task used to drop all tables from GitLab databases
+          # This task is executed before restoring data
+          DROP_TABLES_TASK: "gitlab:db:drop_tables"
+
+          attr_reader errors: untyped
+
+          def initialize: (untyped context) -> void
+
+          def dump: (untyped destination_dir) -> untyped
+
+          def restore: (untyped source) -> untyped
+
+          def main_database?: (untyped database) -> untyped
+
+          def file_name: (untyped base_dir, untyped database) -> untyped
+
+          def ignore_error?: (untyped line) -> untyped
+
+          private
+
+          def database_dump: (database: untyped, filepath: untyped) -> untyped
+
+          def report_finish_status: (untyped status) -> untyped
+
+          def drop_tables!: () -> untyped
+
+          def restore_tables: (database: untyped, filepath: untyped) -> untyped
+
+          def pg_restore_cmd: (untyped database) -> untyped
+        end
+      end
+    end
+  end
+end

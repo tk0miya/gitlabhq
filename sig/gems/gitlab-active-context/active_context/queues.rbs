@@ -1,0 +1,23 @@
+module ActiveContext
+  class Queues
+    self.@queues_registered: untyped
+
+    self.@queue_classes_map: untyped
+
+    def self.queues: () -> untyped
+
+    def self.raw_queues: () -> untyped
+
+    def self.configured_queue_classes: () -> untyped
+
+    def self.build_raw_queues: () -> untyped
+
+    def self.register_all_queues!: () -> (nil | untyped)
+
+    def self.register!: (untyped queue_class) -> (nil | untyped)
+
+    def self.all_queued_items: () -> untyped
+
+    def self.queue_counts: () -> untyped
+  end
+end

@@ -1,0 +1,41 @@
+module Gitlab
+  module HTTP_V2
+    class Client
+      DEFAULT_TIMEOUT_OPTIONS: { open_timeout: 10, read_timeout: 20, write_timeout: 30 }
+
+      DEFAULT_READ_TOTAL_TIMEOUT: untyped
+
+      SILENT_MODE_ALLOWED_METHODS: ::Array[untyped]
+
+      include HTTParty
+
+      def self.try_get: (untyped path, ?::Hash[untyped, untyped] options) { (?) -> untyped } -> untyped
+
+      def self.configuration: () -> untyped
+
+      private
+
+      alias self.httparty_perform_request self.perform_request
+
+      # TODO: This overwrites a method implemented by `HTTPParty`
+      # The calls to `get/...` will call this method instead of `httparty_perform_request`
+      def self.perform_request: (untyped http_method, untyped path, untyped options) { (?) -> untyped } -> untyped
+
+      def self.async_perform_request: (untyped http_method, untyped path, untyped options, untyped options_with_timeouts, untyped log_info) { (untyped) -> untyped } -> untyped
+
+      def self.sync_perform_request: (untyped http_method, untyped path, untyped options, untyped options_with_timeouts, untyped log_info) { (untyped) -> untyped } -> untyped
+
+      def self.raise_if_options_are_invalid: (untyped options) -> (nil | untyped)
+
+      def self.raise_if_blocked_by_silent_mode: (untyped http_method) -> (nil | untyped)
+
+      def self.check_max_byte_size_limit!: (untyped max_bytesize, untyped byte_size) -> (nil | untyped)
+
+      def self.raise_if_headers_contain_crlf: (untyped options) -> (nil | untyped)
+
+      def self.validate_header_field!: (untyped field, untyped field_type) -> (nil | untyped)
+
+      def self.system_monotonic_time: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,77 @@
+module Gitlab
+  module Housekeeper
+    class Change
+      @labels: untyped
+
+      @assignees: untyped
+
+      @reviewers: untyped
+
+      @non_housekeeper_changes: untyped
+
+      @push_options: untyped
+
+      @aborted: untyped
+
+      @has_conflicts: untyped
+
+      attr_accessor identifiers: untyped
+
+      attr_accessor title: untyped
+
+      attr_accessor description: untyped
+
+      attr_accessor changed_files: untyped
+
+      attr_accessor labels: untyped
+
+      attr_accessor keep_class: untyped
+
+      attr_accessor changelog_type: untyped
+
+      attr_accessor changelog_ee: untyped
+
+      attr_accessor mr_web_url: untyped
+
+      attr_accessor push_options: untyped
+
+      attr_accessor non_housekeeper_changes: untyped
+
+      attr_accessor context: untyped
+
+      attr_accessor has_conflicts: untyped
+
+      attr_reader assignees: untyped
+
+      attr_reader reviewers: untyped
+
+      def initialize: () -> void
+
+      def assignees=: (untyped assignees) -> untyped
+
+      def reviewers=: (untyped reviewers) -> untyped
+
+      def abort!: () -> untyped
+
+      def aborted?: () -> untyped
+
+      def mr_description: () -> ::String
+
+      def commit_message: () -> untyped
+
+      def update_required?: (untyped category) -> untyped
+
+      def already_approved?: () -> untyped
+
+      def valid?: () -> untyped
+
+      def truncated_title: () -> untyped
+
+      def truncate: (untyped text, untyped limit) -> untyped
+
+      private
+
+      def generated_by: () -> untyped
+    end
+  end
+end

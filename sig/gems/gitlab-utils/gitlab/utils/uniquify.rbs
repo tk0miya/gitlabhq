@@ -1,0 +1,19 @@
+module Gitlab
+  module Utils
+    class Uniquify
+      @counter: untyped
+
+      @base: untyped
+
+      def initialize: (?untyped? counter) -> void
+
+      def string: (untyped base) { (untyped) -> untyped } -> untyped
+
+      private
+
+      def base_string: () -> (untyped | ::String)
+
+      def increment_counter!: () -> untyped
+    end
+  end
+end

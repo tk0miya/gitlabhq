@@ -1,0 +1,7 @@
+module ActiveContext
+  class DeadQueue
+    include Concerns::Queue
+
+    def self.number_of_shards: () -> 1
+  end
+end

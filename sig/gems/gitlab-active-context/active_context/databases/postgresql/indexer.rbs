@@ -1,0 +1,37 @@
+module ActiveContext
+  module Databases
+    module Postgresql
+      class Indexer
+        @operations: untyped
+
+        include ActiveContext::Databases::Concerns::Indexer
+
+        BATCH_SIZE: 1000
+
+        def initialize: (*untyped, **untyped) ?{ (?) -> untyped } -> void
+
+        def add_ref: (untyped ref) -> untyped
+
+        def empty?: () -> untyped
+
+        def bulk: () -> untyped
+
+        def process_bulk_errors: (untyped result) -> untyped
+
+        def reset: () -> untyped
+
+        private
+
+        def build_operation: (untyped ref) -> untyped
+
+        def build_upsert_operations: (untyped ref) -> untyped
+
+        def build_indexed_json: (untyped hash, untyped ref) -> untyped
+
+        def build_delete_operation: (ref: untyped, ?include_ref_version: bool) -> ::Hash[::Symbol | :ref, { delete: untyped } | untyped]
+
+        def convert_pg_array: (untyped value) -> (::String | untyped)
+      end
+    end
+  end
+end

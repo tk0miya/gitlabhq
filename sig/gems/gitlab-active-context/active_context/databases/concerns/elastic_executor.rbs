@@ -1,0 +1,43 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      module ElasticExecutor
+        @raw_client: untyped
+
+        include Executor
+
+        private
+
+        def raw_client: () -> untyped
+
+        def do_create_collection: (name: untyped, number_of_partitions: untyped, fields: untyped, ?options: ::Hash[untyped, untyped]) -> (nil | untyped)
+
+        def create_partition: (untyped name, untyped fields, ?::Hash[untyped, untyped] options) -> untyped
+
+        def create_alias: (untyped strategy) -> untyped
+
+        def mappings: (untyped fields, ?::Hash[untyped, untyped] options) -> untyped
+
+        def build_field_mappings: (untyped fields) -> untyped
+
+        def collection_exists?: (untyped strategy) -> (false | untyped)
+
+        def index_exists?: (untyped name) -> untyped
+
+        def alias_exists?: (untyped name) -> untyped
+
+        def do_drop_collection: (untyped collection) -> (nil | untyped)
+
+        def remove_alias: (untyped strategy) -> untyped
+
+        def remove_index: (untyped partition_name) -> untyped
+
+        def settings: (untyped _) -> ::Hash[untyped, untyped]
+
+        def do_add_field: (untyped collection, untyped field) -> untyped
+
+        def do_nullify_field: (untyped collection, untyped field_name, batch_size: untyped) -> untyped
+      end
+    end
+  end
+end

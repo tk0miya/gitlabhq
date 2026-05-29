@@ -1,0 +1,27 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Services
+        class GitalyClient
+          @storages: untyped
+
+          @gitaly_token: untyped
+
+          attr_reader storages: untyped
+
+          attr_reader gitaly_token: untyped
+
+          def initialize: (untyped storages, untyped gitaly_token) -> void
+
+          def connection_data: (untyped storage) -> { "address" => untyped, "token" => untyped }
+
+          private
+
+          def address: (untyped storage) -> untyped
+
+          def token: (untyped storage) -> untyped
+        end
+      end
+    end
+  end
+end

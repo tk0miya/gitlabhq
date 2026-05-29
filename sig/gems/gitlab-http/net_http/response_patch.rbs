@@ -1,0 +1,12 @@
+module Net
+  class HTTPResponse
+    # Original method:
+    # https://github.com/ruby/ruby/blob/v2_7_5/lib/net/http/response.rb#L54-L69
+    #
+    # Our changes:
+    # - Pass along the `start_time` to `Gitlab::HTTP_V2::BufferedIo`, so we can raise a timeout
+    #   if reading the headers takes too long.
+    # - Limit the regexes to avoid ReDoS attacks.
+    def self.each_response_header: (untyped sock) { (untyped, untyped) -> untyped } -> untyped
+  end
+end

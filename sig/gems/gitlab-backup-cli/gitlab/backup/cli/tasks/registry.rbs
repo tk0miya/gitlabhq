@@ -1,0 +1,34 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Tasks
+        class Registry < Task
+          @registry_bucket: untyped
+
+          def self.id: () -> "registry"
+
+          def enabled: () -> untyped
+
+          def human_name: () -> "Container Registry Images"
+
+          def destination_path: () -> "registry.tar.gz"
+
+          attr_reader registry_bucket: untyped
+
+          def set_registry_bucket: (untyped registry_bucket) -> untyped
+
+          def object_storage?: () -> untyped
+
+          # Registry does not use consolidated object storage config.
+          def config: () -> (nil | { object_storage: { connection: untyped, remote_directory: untyped } })
+
+          private
+
+          def local: () -> untyped
+
+          def storage_path: () -> untyped
+        end
+      end
+    end
+  end
+end

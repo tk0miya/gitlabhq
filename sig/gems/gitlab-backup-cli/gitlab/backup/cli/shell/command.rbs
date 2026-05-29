@@ -1,0 +1,72 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Shell
+        # Abstraction to control shell command execution
+        # It provides an easier API to common usages
+        class Command < Base
+          @cmd_args: untyped
+
+          @chdir: untyped
+
+          @env: untyped
+
+          # @return [Hash<String,String>] a hash containing key=>values to be set as ENV when running the command
+          attr_reader env: untyped
+
+          # @return [String|Pathname] A path where a Shell::Command should run from
+          attr_reader chdir: untyped
+
+          # Result data structure from running a command
+          #
+          # @attr [String] stdout
+          # @attr [String] stderr
+          # @attr [Process::Status] status
+          # @attr [Float] duration
+          Result: untyped
+
+          # Result data structure from running a command in single pipeline mode
+          #
+          # @attr [String] stderr
+          # @attr [Process::Status] status
+          # @attr [Float] duration
+          SinglePipelineResult: untyped
+
+          # @example Usage
+          #   Shell::Command.new('echo', 'Some amazing output').capture
+          # @param [Array<String>] cmd_args a list of command and its arguments to run
+          # @param [String|Pathname] chdir a path where Shell::Command should run from
+          # @param [Hash<String,String>] env a hash containing key=>values to be set as ENV when running the command
+          def initialize: (*untyped cmd_args, ?chdir: untyped, ?env: ::Hash[untyped, untyped]) -> void
+
+          # List of command arguments
+          #
+          # @param [Boolean] with_env whether to include env hash in the returned list
+          # @return [Array<Hash|String>]
+          def cmd_args: (?with_env: bool) -> untyped
+
+          # Execute a process and return its output and status
+          #
+          # @return [Command::Result] Captured output from executing a process
+          def capture: () -> untyped
+
+          # Execute a process and intercept its captured output line by line
+          #
+          # @example Usage
+          #    Shell::Command.new('echo', 'Some amazing output').capture_each { |stream, output| puts output }
+          # @yieldparam [Symbol] stream type (either :stdout or :stderr)
+          # @yieldparam [String] output
+          # @return [Command::Result] -- Captured output from executing a process
+          def capture_each: () { (untyped, untyped) -> untyped } -> untyped
+
+          # Run single command in pipeline mode with optional input or output redirection
+          #
+          # @param [IO|String|Array] input stdin redirection
+          # @param [IO|String|Array] output stdout redirection
+          # @return [Command::SinglePipelineResult]
+          def run_single_pipeline!: (?input: untyped?, ?output: untyped?) -> untyped
+        end
+      end
+    end
+  end
+end

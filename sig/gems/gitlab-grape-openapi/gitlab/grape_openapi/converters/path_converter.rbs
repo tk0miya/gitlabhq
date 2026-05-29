@@ -1,0 +1,58 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      class PathConverter
+        @routes: untyped
+
+        @schema_registry: untyped
+
+        @request_body_registry: untyped
+
+        @config: untyped
+
+        # Grape stores response-entity declarations under :entity (when declared
+        # via `entity:` on the route) and :success (when declared via the `success`
+        # DSL inside a `desc` block, in any of its forms). EntityConverter.register
+        # handles all three shapes (Class, Hash with :model, Array of those).
+        RESPONSE_DECLARATIONS: ::Array[:entity | :success]
+
+        def self.convert: (untyped routes, untyped schema_registry, untyped request_body_registry) -> untyped
+
+        def initialize: (untyped routes, untyped schema_registry, untyped request_body_registry) -> void
+
+        def convert: () -> untyped
+
+        private
+
+        attr_reader config: untyped
+
+        attr_reader routes: untyped
+
+        attr_reader schema_registry: untyped
+
+        attr_reader request_body_registry: untyped
+
+        def grouped_routes: () -> untyped
+
+        # Register entities declared on the route's response so they appear in
+        # `components.schemas` only for routes that are actually emitted.
+        # Running this after `skip_route?` keeps registration in sync with the
+        # final spec and avoids `no-unused-components` orphans for entities
+        # that belong only to hidden routes or wildcard catch-alls.
+        def register_route_entities: (untyped route) -> untyped
+
+        def skip_route?: (untyped route) -> (true | untyped)
+
+        def hidden?: (untyped route) -> untyped
+
+        def normalize_path: (untyped route) -> untyped
+
+        def grouping_key: (untyped route) -> untyped
+
+        def build_path_item: (untyped routes_for_path) -> untyped
+
+        def extract_method: (untyped route) -> untyped
+      end
+    end
+  end
+end

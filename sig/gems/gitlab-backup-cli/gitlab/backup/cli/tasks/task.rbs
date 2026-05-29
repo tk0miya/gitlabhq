@@ -1,0 +1,62 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Tasks
+        class Task
+          @context: untyped
+
+          @target: untyped
+
+          attr_writer target: untyped
+
+          attr_reader context: untyped
+
+          def initialize: (context: untyped) -> void
+
+          # Identifier used as parameter in the CLI to skip from executing
+          def self.id: () -> untyped
+
+          # Initiate a backup
+          #
+          # @param [Pathname] backup_path a path where to store the backups
+          def backup!: (untyped backup_path) -> untyped
+
+          def restore!: (untyped archive_directory) -> untyped
+
+          # Key string that identifies the task
+          def id: () -> untyped
+
+          # Name of the task used for logging.
+          def human_name: () -> untyped
+
+          # Where the task should put its backup file/dir
+          def destination_path: () -> untyped
+
+          # Path to remove after a successful backup, uses #destination_path when not specified
+          def cleanup_path: () -> untyped
+
+          # `true` if the destination might not exist on a successful backup
+          def destination_optional: () -> false
+
+          # `true` if the task can be used
+          def enabled: () -> true
+
+          def enabled?: () -> untyped
+
+          def config: () -> (untyped | nil)
+
+          def asynchronous?: () -> untyped
+
+          def wait_until_done!: () -> untyped
+
+          def target: () -> untyped
+
+          private
+
+          # The target factory method
+          def local: () -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Gitlab
+  module PrinciplesDistiller
+    # Minimal GraphQL client for the GitLab API. Returns the parsed `data`
+    # payload, or raises `GraphqlClient::Error` on transport failure,
+    # non-2xx, or a non-empty `errors` array. Error policy (warn vs abort)
+    # is the caller's choice.
+    class GraphqlClient
+      @host: untyped
+
+      @token: untyped
+
+      @read_timeout: untyped
+
+      Error: untyped
+
+      DEFAULT_READ_TIMEOUT: 60
+
+      def initialize: (host: untyped, token: untyped, ?read_timeout: untyped) -> void
+
+      def query: (untyped query, ?::Hash[untyped, untyped] variables) -> untyped
+
+      private
+
+      def post_graphql: (untyped query, untyped variables) -> untyped
+    end
+  end
+end

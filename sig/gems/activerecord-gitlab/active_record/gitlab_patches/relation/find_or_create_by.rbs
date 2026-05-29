@@ -1,0 +1,13 @@
+module ActiveRecord
+  module GitlabPatches
+    module Relation
+      module FindOrCreateBy
+        # Rails commit: https://github.com/rails/rails/commit/023a3eb3c046091a5d52027393a6d29d0576da01
+        # Issue: https://gitlab.com/gitlab-org/gitlab/-/issues/439567
+        def find_or_create_by: (untyped attributes) { (?) -> untyped } -> untyped
+
+        def find_or_create_by!: (untyped attributes) { (?) -> untyped } -> untyped
+      end
+    end
+  end
+end

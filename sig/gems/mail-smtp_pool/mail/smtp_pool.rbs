@@ -1,0 +1,17 @@
+module Mail
+  class SMTPPool
+    @pool: untyped
+
+    POOL_DEFAULTS: { pool_size: 5, pool_timeout: 5 }
+
+    def self.create_pool: (?::Hash[untyped, untyped] settings) -> untyped
+
+    def initialize: (untyped settings) -> void
+
+    def deliver!: (untyped mail) -> untyped
+
+    # This makes it compatible with Mail's `#deliver!` method
+    # https://github.com/mikel/mail/blob/22a7afc23f253319965bf9228a0a430eec94e06d/lib/mail/message.rb#L271
+    def settings: () -> ::Hash[untyped, untyped]
+  end
+end

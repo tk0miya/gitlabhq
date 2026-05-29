@@ -1,0 +1,43 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Services
+        # Holds all database information necessary to initialize individual connections
+        # It handles both single and decomposed databases
+        class Postgres
+          @context: untyped
+
+          @entries: untyped
+
+          @database_configurations: untyped
+
+          include Enumerable
+
+          attr_reader context: untyped
+
+          def initialize: (untyped context) -> void
+
+          # Iterator for configured databases
+          #
+          # @return [Enumerator, Array<Database>]
+          def each: () ?{ (untyped) -> untyped } -> untyped
+
+          # All unique configured databases (excluding hidden/partitions)
+          def entries: () -> untyped
+
+          # @return [Database]
+          def main_database: () -> untyped
+
+          private
+
+          # Return ActiveRecord parsed database configurations object
+          #
+          # @return [ActiveRecord::DatabaseConfigurations]
+          def database_configurations: () -> untyped
+
+          def load_from_database_yaml!: () -> untyped
+        end
+      end
+    end
+  end
+end

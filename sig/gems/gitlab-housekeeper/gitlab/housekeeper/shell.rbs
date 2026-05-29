@@ -1,0 +1,14 @@
+module Gitlab
+  module Housekeeper
+    class Shell
+      Error: untyped
+
+      def self.execute: (*untyped cmd, ?env: ::Hash[untyped, untyped]) -> untyped
+
+      # Run `rubocop --autocorrect --force-exclusion`.
+      #
+      # RuboCop is run without revealed TODOs.
+      def self.rubocop_autocorrect: (untyped files, ?logger: untyped) -> untyped
+    end
+  end
+end

@@ -1,0 +1,46 @@
+module Gitlab
+  module Housekeeper
+    class GitlabClient
+      @token: untyped
+
+      @base_uri: untyped
+
+      @logger: untyped
+
+      @current_user_id: untyped
+
+      Error: untyped
+
+      def initialize: () -> void
+
+      # This looks at the system notes of the merge request to detect if it has been updated by anyone other than the
+      # current housekeeper user. If it has then it assumes that they did this for a reason and we can skip updating
+      # this detail of the merge request. Otherwise we assume we should generate it again using the latest output.
+      def non_housekeeper_changes: (source_project_id: untyped, source_branch: untyped, target_branch: untyped, target_project_id: untyped) -> (::Array[untyped] | untyped)
+
+      def create_or_update_merge_request: (change: untyped, source_project_id: untyped, source_branch: untyped, target_branch: untyped, target_project_id: untyped) -> untyped
+
+      def closed_merge_request_exists?: (source_project_id: untyped, source_branch: untyped, target_branch: untyped, target_project_id: untyped) -> (false | true)
+
+      def get_existing_merge_request: (source_project_id: untyped, source_branch: untyped, target_branch: untyped, target_project_id: untyped) -> (nil | untyped)
+
+      private
+
+      def match_system_note: (untyped note) -> untyped
+
+      def get_merge_request_notes: (target_project_id: untyped, iid: untyped) -> untyped
+
+      def get_merge_request_resource_label_events: (target_project_id: untyped, iid: untyped) -> untyped
+
+      def current_user_id: () -> untyped
+
+      def create_merge_request: (change: untyped, source_project_id: untyped, source_branch: untyped, target_branch: untyped, target_project_id: untyped) -> untyped
+
+      def update_existing_merge_request: (change: untyped, existing_iid: untyped, target_project_id: untyped) -> (nil | untyped)
+
+      def usernames_to_ids: (untyped usernames) -> untyped
+
+      def request: (untyped method, untyped path, ?query: ::Hash[untyped, untyped], ?body: ::Hash[untyped, untyped]) -> untyped
+    end
+  end
+end

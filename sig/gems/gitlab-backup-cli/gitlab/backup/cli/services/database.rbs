@@ -1,0 +1,80 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Services
+        # GitLab installations may include multiple databases
+        # in a denormalized setup
+        #
+        # This represents either the main one or one of the denormalized
+        # with the required connection params
+        class Database
+          @configuration: untyped
+
+          @snapshot_id: untyped
+
+          @connection_name: untyped
+
+          @pg_env_variables: untyped
+
+          @connection_params: untyped
+
+          @connection: untyped
+
+          @connection_pool: untyped
+
+          # @return [ActiveRecord::DatabaseConfigurations::HashConfig] database configuration
+          attr_reader configuration: untyped
+
+          # @return [String] Snapshot ID from the database
+          attr_reader snapshot_id: untyped
+
+          # @return [String] Name used in database yml for connection params
+          attr_reader connection_name: untyped
+
+          # Mapping of activerecord config keys to corresponding ENV variables
+          DATABASE_ENV_VARIABLES: { username: "PGUSER", host: "PGHOST", port: "PGPORT", password: "PGPASSWORD", sslmode: "PGSSLMODE", sslkey: "PGSSLKEY", sslcert: "PGSSLCERT", sslrootcert: "PGSSLROOTCERT", sslcrl: "PGSSLCRL", sslcompression: "PGSSLCOMPRESSION" }
+
+          # PostgreSQL timeout setting
+          TIMEOUT_SETTING: "idle_in_transaction_session_timeout"
+
+          # @param [ActiveRecord::DatabaseConfigurations::HashConfig] configuration
+          def initialize: (untyped configuration) -> void
+
+          # Database connection params and credentials as PG ENV variables
+          #
+          # @return [Hash<String => String>]
+          def pg_env_variables: () -> untyped
+
+          # Return the connection params from `database.yml`
+          #
+          # @return [Hash<Symbol => String>]
+          def connection_params: () -> untyped
+
+          def export_snapshot!: () -> untyped
+
+          def release_snapshot!: () -> (nil | untyped)
+
+          def disable_timeouts!: () -> untyped
+
+          def restore_timeouts!: () -> untyped
+
+          private
+
+          # Connection associated with current database
+          #
+          # @return [ActiveRecord::ConnectionAdapters::PostgreSQLAdapter] connection
+          def connection: () -> untyped
+
+          # @return [ActiveRecord::ConnectionAdapters::ConnectionPool] connection
+          def connection_pool: () -> untyped
+
+          # Creates a new class inheriting from ApplicationRecord to hold the connection pool
+          #
+          # It relies on the connection name to have a unique class that is ties to the connection params
+          # This is necessary to allow for multiple connection pools to exist at the same time
+          def connection_base_model: () -> untyped
+        end
+      end
+    end
+  end
+end

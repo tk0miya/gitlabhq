@@ -1,0 +1,17 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      class TypeResolver
+        TYPE_MAPPINGS: ::Hash["API::Validations::Types::WorkhorseFile" | "Array" | "BigDecimal" | "Boolean" | "date" | "Date" | "date-time" | "dateTime" | "DateTime" | "FalseClass" | "Grape::API::Boolean" | "Gitlab::Color" | :int | "int" | untyped | "Integer" | "File" | "Float" | :hash | "hash" | "Hash" | "JSON" | "Numeric" | "String" | "symbol" | "Symbol" | "text" | "Time" | "TrueClass", "string" | "array" | "number" | "boolean" | "integer" | "object"]
+
+        FORMAT_MAPPINGS: { "API::Validations::Types::WorkhorseFile" => "binary", "date" => "date", "Date" => "date", "date-time" => "date-time", "dateTime" => "date-time", "DateTime" => "date-time", "File" => "binary", "Time" => "date-time" }
+
+        def self.resolve_type: (untyped type) -> (untyped | "object")
+
+        def self.resolve_format: (untyped format, untyped type) -> untyped
+
+        def self.resolve_union_member: (untyped type) -> ({ type: "array", items: { type: untyped } } | { type: untyped })
+      end
+    end
+  end
+end

@@ -1,0 +1,50 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Utils
+        class PgDump
+          @database_name: untyped
+
+          @snapshot_id: untyped
+
+          @schemas: untyped
+
+          @env: untyped
+
+          # Expose snapshot_id to be used when creating a database dump
+          # See https://www.postgresql.org/docs/14/functions-admin.html#FUNCTIONS-SNAPSHOT-SYNCHRONIZATION
+          attr_reader snapshot_id: untyped
+
+          # Dump only specified database schemas instead of everything
+          attr_reader schemas: untyped
+
+          # Database name
+          attr_reader database_name: untyped
+
+          # Additional ENV variables to use when running PgDump
+          attr_reader env: untyped
+
+          # @param [String] database_name
+          # @param [String] snapshot_id the snapshot id to use when creating a database dump
+          # @param [Array<String>] schemas
+          # @param [Hash<String,String>] env
+          def initialize: (database_name: untyped, ?snapshot_id: untyped?, ?schemas: untyped, ?env: ::Hash[untyped, untyped]) -> void
+
+          # Spawn a pg_dump process and assign a given output IO
+          #
+          # @param [IO] output the output IO
+          def spawn: (output: untyped) -> untyped
+
+          def build_command: () -> untyped
+
+          private
+
+          # Returns a list of arguments used by the pg_dump command
+          #
+          # @return [Array<String (frozen)>]
+          def cmd_args: () -> untyped
+        end
+      end
+    end
+  end
+end

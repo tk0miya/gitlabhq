@@ -1,0 +1,89 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      class OperationConverter
+        @route: untyped
+
+        @schema_registry: untyped
+
+        @request_body_registry: untyped
+
+        @config: untyped
+
+        @options: untyped
+
+        @pattern: untyped
+
+        @endpoint: untyped
+
+        @normalized_path: untyped
+
+        DASH_SEGMENT: "Dash"
+
+        def self.convert: (untyped route, untyped schema_registry, untyped request_body_registry) -> untyped
+
+        def initialize: (untyped route, untyped schema_registry, untyped request_body_registry) -> void
+
+        def convert: () -> untyped
+
+        private
+
+        attr_reader config: untyped
+
+        attr_reader route: untyped
+
+        attr_reader options: untyped
+
+        attr_reader pattern: untyped
+
+        attr_reader endpoint: untyped
+
+        attr_reader schema_registry: untyped
+
+        attr_reader request_body_registry: untyped
+
+        def route_method: () -> untyped
+
+        def extract_annotations: () -> (::Hash[untyped, untyped] | untyped)
+
+        def extract_parameters: () -> untyped
+
+        def inject_missing_path_parameters: (untyped params) -> untyped
+
+        def operation_id: () -> ::String
+
+        def extract_description: () -> (untyped | nil)
+
+        def extract_detail: () -> untyped
+
+        def extract_tags: () -> untyped
+
+        def extract_deprecated: () -> untyped
+
+        def extract_hidden: () -> untyped
+
+        def path_segments: () -> untyped
+
+        def normalized_path: () -> untyped
+
+        def normalize_path_pattern: () -> untyped
+
+        def camelize: (untyped string) -> untyped
+
+        def http_method: () -> untyped
+
+        # Get all validations for a single attribute
+        # Looks something like:
+        # [{:attributes=>[:version_prefix],
+        #   :options=>/^[\d+.]+/,
+        #   :required=>false,
+        #   :params_scope=>#<Grape::Validations::ParamsScope:0x000000016dc35820
+        #   :opts=>{:allow_blank=>nil, :fail_fast=>false},
+        #   :validator_class=>Grape::Validations::Validators::RegexpValidator}]
+        def validations_for: (untyped attribute) -> untyped
+
+        def extract_request_body: () -> untyped
+      end
+    end
+  end
+end

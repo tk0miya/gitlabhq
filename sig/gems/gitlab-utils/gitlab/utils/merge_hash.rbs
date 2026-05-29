@@ -1,0 +1,44 @@
+module Gitlab
+  module Utils
+    module MergeHash
+      extend ::Gitlab::Utils::MergeHash
+
+      # Deep merges an array of elements which can be hashes, arrays, or other objects.
+      #
+      # [{ hello: ["world"] },
+      #  { hello: "Everyone" },
+      #  { hello: { greetings: ['Bonjour', 'Hello', 'Hallo', 'Dzien dobry'] } },
+      #   "Goodbye", "Hallo"]
+      # =>  [
+      #       {
+      #         hello:
+      #           [
+      #             "world",
+      #             "Everyone",
+      #             { greetings: ['Bonjour', 'Hello', 'Hallo', 'Dzien dobry'] }
+      #           ]
+      #       },
+      #       "Goodbye"
+      #     ]
+      def merge: (untyped elements) -> untyped
+
+      # This extracts all keys and values from a hash into an array
+      #
+      # { hello: "world", this: { crushes: ["an entire", "hash"] } }
+      # => [:hello, "world", :this, :crushes, "an entire", "hash"]
+      def crush: (untyped array_or_hash) -> untyped
+
+      private
+
+      def merge_hash_into_array: (untyped array, untyped new_hash) -> untyped
+
+      def merge_hash_tree: (untyped first_element, untyped second_element) -> untyped
+
+      def crushable?: (untyped element) -> untyped
+
+      def crush_hash: (untyped hash) -> untyped
+
+      def crush_array: (untyped array) -> untyped
+    end
+  end
+end

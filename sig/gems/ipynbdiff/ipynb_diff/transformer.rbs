@@ -1,0 +1,44 @@
+module IpynbDiff
+  InvalidNotebookError: untyped
+
+  # Returns a markdown version of the Jupyter Notebook
+  class Transformer
+    self.@include_frontmatter: untyped
+
+    @include_frontmatter: untyped
+
+    @hide_images: untyped
+
+    @out_transformer: untyped
+
+    include SymbolizedMarkdownHelper
+
+    def initialize: (?include_frontmatter: bool, ?hide_images: bool) -> void
+
+    def validate_notebook: (untyped notebook) -> untyped
+
+    def transform: (untyped notebook) -> untyped
+
+    def transform_document: (untyped notebook) -> untyped
+
+    def decorate_cell: (untyped rows, untyped cell, untyped symbol) -> ::Array[untyped]
+
+    def transform_cell: (untyped cell, untyped notebook, untyped symbol) -> untyped
+
+    def transform_code_cell: (untyped cell, untyped notebook, untyped symbol) -> ::Array[untyped]
+
+    def transform_outputs: (untyped outputs, untyped symbol) -> ::Array[untyped]
+
+    def transform_text_cell: (untyped cell, untyped symbol) -> untyped
+
+    def transform_metadata: (untyped notebook_json) -> untyped
+
+    private
+
+    # Oj decodes JSON surrogate-pair escapes into 6 bytes of CESU-8 tagged as
+    # UTF-8, which crashes downstream String#rstrip etc. with
+    # Encoding::CompatibilityError. Transcode invalid strings from CESU-8 to
+    # UTF-8 so supplementary-plane characters (emoji, ...) are preserved.
+    def repair_string_encoding: (untyped value) -> untyped
+  end
+end

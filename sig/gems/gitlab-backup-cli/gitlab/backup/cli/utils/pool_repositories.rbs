@@ -1,0 +1,25 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Utils
+        class PoolRepositories
+          @gitlab_basepath: untyped
+
+          PoolReinitializationResult: untyped
+
+          attr_reader gitlab_basepath: untyped
+
+          def initialize: (gitlab_basepath: untyped) -> void
+
+          def reinitialize!: () -> untyped
+
+          private
+
+          def build_reset_task: () -> untyped
+
+          def parse_pool_results: (untyped line) -> untyped
+        end
+      end
+    end
+  end
+end

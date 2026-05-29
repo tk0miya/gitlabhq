@@ -1,0 +1,13 @@
+module Gitlab
+  module Backup
+    module Cli
+      # GitLab Backup CLI
+      #
+      # This supersedes the previous backup rake files and will be
+      # the default interface to handle backups
+      class Runner < Commands::Command
+        def version: () -> untyped
+      end
+    end
+  end
+end

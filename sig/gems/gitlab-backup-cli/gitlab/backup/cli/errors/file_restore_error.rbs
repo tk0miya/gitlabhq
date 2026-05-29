@@ -1,0 +1,19 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Errors
+        class FileRestoreError < StandardError
+          @error_message: untyped
+
+          attr_reader error_message: untyped
+
+          def initialize: (error_message: untyped) -> void
+
+          private
+
+          def build_message: () -> ::String
+        end
+      end
+    end
+  end
+end

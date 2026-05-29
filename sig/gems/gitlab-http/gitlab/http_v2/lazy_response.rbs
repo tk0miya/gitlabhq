@@ -1,0 +1,25 @@
+module Gitlab
+  module HTTP_V2
+    class LazyResponse
+      @promise: untyped
+
+      @path: untyped
+
+      @options: untyped
+
+      @log_info: untyped
+
+      NotExecutedError: untyped
+
+      attr_reader promise: untyped
+
+      def initialize: (untyped promise, untyped path, untyped options, untyped log_info) -> void
+
+      def execute: () -> self
+
+      def wait: () -> self
+
+      def value: () -> untyped
+    end
+  end
+end

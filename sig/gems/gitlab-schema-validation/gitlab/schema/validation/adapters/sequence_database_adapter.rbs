@@ -1,0 +1,35 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Adapters
+        class SequenceDatabaseAdapter
+          @query_result: untyped
+
+          def initialize: (untyped query_result) -> void
+
+          def name: () -> (nil | ::String)
+
+          def column_owner: () -> (nil | ::String)
+
+          def user_owner: () -> untyped
+
+          def start_value: () -> untyped
+
+          def increment_by: () -> untyped
+
+          def min_value: () -> untyped
+
+          def max_value: () -> untyped
+
+          def cycle: () -> untyped
+
+          private
+
+          attr_reader query_result: untyped
+
+          def schema: () -> untyped
+        end
+      end
+    end
+  end
+end

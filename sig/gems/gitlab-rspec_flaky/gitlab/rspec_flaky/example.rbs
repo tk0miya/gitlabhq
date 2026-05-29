@@ -1,0 +1,38 @@
+module Gitlab
+  module RspecFlaky
+    # This is a wrapper class for RSpec::Core::Example
+    class Example
+      @rspec_example: untyped
+
+      @uid: untyped
+
+      extend Forwardable
+
+      def initialize: (untyped rspec_example) -> void
+
+      def uid: () -> untyped
+
+      def example_id: () -> untyped
+
+      def file: () -> untyped
+
+      def line: () -> untyped
+
+      def description: () -> untyped
+
+      def attempts: () -> (untyped | 1)
+
+      def feature_category: () -> untyped
+
+      def to_h: () -> { example_id: untyped, file: untyped, line: untyped, description: untyped, last_attempts_count: untyped, feature_category: untyped }
+
+      private
+
+      attr_reader rspec_example: untyped
+
+      def metadata: () -> untyped
+
+      def execution_result: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Adapters
+        class ColumnDatabaseAdapter
+          @query_result: untyped
+
+          @name: untyped
+
+          def initialize: (untyped query_result) -> void
+
+          def name: () -> untyped
+
+          def table_name: () -> untyped
+
+          def data_type: () -> untyped
+
+          def default: () -> (nil | ::String)
+
+          def nullable: () -> ("NOT NULL" | nil)
+
+          def partition_key?: () -> untyped
+
+          private
+
+          attr_reader query_result: untyped
+        end
+      end
+    end
+  end
+end

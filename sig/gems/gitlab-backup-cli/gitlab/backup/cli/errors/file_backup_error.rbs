@@ -1,0 +1,23 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Errors
+        class FileBackupError < StandardError
+          @storage_path: untyped
+
+          @backup_tarball: untyped
+
+          attr_reader storage_path: untyped
+
+          attr_reader backup_tarball: untyped
+
+          def initialize: (untyped app_files_dir, untyped backup_tarball) -> void
+
+          private
+
+          def build_message: () -> ::String
+        end
+      end
+    end
+  end
+end

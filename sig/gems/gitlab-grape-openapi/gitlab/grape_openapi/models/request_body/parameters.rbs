@@ -1,0 +1,33 @@
+module Gitlab
+  module GrapeOpenapi
+    module Models
+      module RequestBody
+        class Parameters
+          @route: untyped
+
+          @params: untyped
+
+          @path_with_params: untyped
+
+          attr_reader route: untyped
+
+          attr_reader params: untyped
+
+          def initialize: (route: untyped, params: untyped) -> void
+
+          def extract: () -> untyped
+
+          private
+
+          def path_with_params: () -> untyped
+
+          def restructure_nested_params: (untyped body_params) -> untyped
+
+          def parse_bracket_notation: (untyped key) -> untyped
+
+          def insert_nested_param: (untyped root_params, untyped parts, untyped param_options) -> (nil | untyped)
+        end
+      end
+    end
+  end
+end

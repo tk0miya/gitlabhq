@@ -1,0 +1,21 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Tasks
+        class Uploads < Task
+          def self.id: () -> "uploads"
+
+          def human_name: () -> "Uploads"
+
+          def destination_path: () -> "uploads.tar.gz"
+
+          private
+
+          def local: () -> untyped
+
+          def storage_path: () -> untyped
+        end
+      end
+    end
+  end
+end

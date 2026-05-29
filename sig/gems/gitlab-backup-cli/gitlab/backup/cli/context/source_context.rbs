@@ -1,0 +1,108 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Context
+        # This context is equivalent to a Source Install or GDK instance
+        #
+        # Any specific information from the GitLab installation will be
+        # automatically discovered from the current machine
+        class SourceContext
+          @env: untyped
+
+          @gitlab_config: untyped
+
+          # Defaults defined in `config/initializers/1_settings.rb`
+          DEFAULT_SHARED_PATH: "shared"
+
+          DEFAULT_CI_BUILDS_PATH: "builds"
+
+          DEFAULT_JOBS_ARTIFACTS_PATH: "artifacts"
+
+          DEFAULT_SECURE_FILES_PATH: "ci_secure_files"
+
+          DEFAULT_CI_LFS_PATH: "lfs-objects"
+
+          DEFAULT_PACKAGES: "packages"
+
+          DEFAULT_PAGES: "pages"
+
+          DEFAULT_REGISTRY_PATH: "registry"
+
+          DEFAULT_TERRAFORM_STATE_PATH: "terraform_state"
+
+          DEFAULT_UPLOADS_PATH: "public"
+
+          def gitlab_version: () -> untyped
+
+          def backup_basedir: () -> untyped
+
+          # CI Builds basepath
+          def ci_builds_path: () -> untyped
+
+          # Job Artifacts basepath
+          def ci_job_artifacts_path: () -> untyped
+
+          # CI Secure Files basepath
+          def ci_secure_files_path: () -> untyped
+
+          # CI LFS basepath
+          def ci_lfs_path: () -> untyped
+
+          # Packages basepath
+          def packages_path: () -> untyped
+
+          # GitLab Pages basepath
+          def pages_path: () -> untyped
+
+          # Registry basepath
+          def registry_path: () -> untyped
+
+          # Terraform State basepath
+          def terraform_state_path: () -> untyped
+
+          # Upload basepath
+          def upload_path: () -> untyped
+
+          def database_config_file_path: () -> untyped
+
+          def config: (untyped object_type) -> untyped
+
+          def env: () -> untyped
+
+          def config_repositories_storages: () -> untyped
+
+          def gitaly_backup_path: () -> untyped
+
+          def gitaly_token: () -> untyped
+
+          # Return the GitLab base directory
+          # @return [Pathname]
+          def gitlab_basepath: () -> untyped
+
+          def registry_enabled?: () -> untyped
+
+          def object_storage_connection: () -> untyped
+
+          private
+
+          # Return the shared path used as a fallback base location to each blob type
+          # We use this to determine the storage location when everything else fails
+          # @return [Pathname]
+          def gitlab_shared_path: () -> untyped
+
+          # Return a fullpath for a given path
+          #
+          # When the path is already a full one return itself as a Pathname
+          # otherwise uses gitlab_basepath as its base
+          # @param [String|Pathname] path
+          # @return [Pathname]
+          def absolute_path: (untyped path) -> untyped
+
+          def gitlab_config: () -> untyped
+
+          def build_gitlab_config: () -> untyped
+        end
+      end
+    end
+  end
+end

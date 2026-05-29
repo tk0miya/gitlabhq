@@ -1,0 +1,23 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      module CoercerResolver
+        def coercer_mapping_for: (untyped validations) -> (nil | untyped)
+
+        def build_coerced_schema: (untyped mapping) -> untyped
+
+        private
+
+        def extract_coercer_method: (untyped validations) -> (nil | untyped)
+
+        def inline_proc?: (untyped coercer_method) -> (false | true | untyped)
+
+        def resolve_coercer_name: (untyped coercer_method) -> untyped
+
+        def coercer_name_from_source_location: (untyped coercer_method) -> untyped
+
+        def camelize: (untyped str) -> untyped
+      end
+    end
+  end
+end

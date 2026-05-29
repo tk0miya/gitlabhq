@@ -1,0 +1,47 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      class ResponseConverter
+        @route: untyped
+
+        @schema_registry: untyped
+
+        @responses: untyped
+
+        def initialize: (untyped route, untyped schema_registry) -> void
+
+        def convert: () -> untyped
+
+        private
+
+        def extract_success_response: () -> untyped
+
+        def process_class_entity: (untyped entity_class) -> untyped
+
+        def process_hash_entity: (untyped entity_hash) -> untyped
+
+        def process_array_entities: (untyped entity_array) -> untyped
+
+        def process_array_hash_item: (untyped definition) -> untyped
+
+        def extract_failure_responses: () -> untyped
+
+        def add_response_with_entity: (status_code: untyped, description: untyped, entity_class: untyped, ?example: untyped?, ?examples: untyped?) -> untyped
+
+        def add_simple_response: (status_code: untyped, description: untyped) -> untyped
+
+        def infer_success_code: () -> untyped
+
+        def infer_failure_codes: () -> untyped
+
+        def route_params: () -> untyped
+
+        def path_has_resource_parameters?: () -> untyped
+
+        def http_status_text: (untyped code) -> untyped
+
+        def http_method: () -> untyped
+      end
+    end
+  end
+end

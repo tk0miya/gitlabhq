@@ -1,0 +1,25 @@
+module Gitlab
+  module GrapeOpenapi
+    class RequestBodyRegistry
+      @schemas: untyped
+
+      @schema_hashes: untyped
+
+      SCHEMA_PATH_PREFIX: "#/components/schemas/"
+
+      attr_reader schemas: untyped
+
+      def initialize: () -> void
+
+      def register: (untyped schema) -> (nil | { "$ref" => ::String })
+
+      private
+
+      def compute_hash: (untyped schema) -> untyped
+
+      def short_hash: (untyped full_hash) -> untyped
+
+      def normalize_for_hash: (untyped obj) -> untyped
+    end
+  end
+end

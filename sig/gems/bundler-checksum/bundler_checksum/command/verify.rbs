@@ -1,0 +1,13 @@
+module BundlerChecksum::Command
+  module Verify
+    extend ::BundlerChecksum::Command::Verify
+
+    def execute: () -> untyped
+
+    private
+
+    def local_checksums: () -> untyped
+
+    def validate_gem_checksum: (untyped gem_name, untyped gem_version, untyped gem_platform, untyped local_checksum) -> (false | untyped)
+  end
+end

@@ -1,0 +1,35 @@
+module Gitlab
+  module Schema
+    module Validation
+      module SchemaObjects
+        class Sequence < Base
+          @adapter: untyped
+
+          @name: untyped
+
+          @owner: untyped
+
+          @table_name: untyped
+
+          def initialize: (untyped adapter) -> void
+
+          # Sequence should include the schema, as the same name could be used across different schemas
+          #
+          # @example public.sequence_name
+          def name: () -> untyped
+
+          # Fully qualified column reference (schema.table.column)
+          def owner: () -> untyped
+
+          def table_name: () -> untyped
+
+          def statement: () -> untyped
+
+          private
+
+          attr_reader adapter: untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+# rubocop:disable Gitlab/ModuleWithInstanceVariables
+module ActiveRecord
+  module GitlabPatches
+    module Partitioning
+      module Base
+        def _query_constraints_hash: () -> (::Hash[untyped, untyped] | untyped)
+
+        module ClassMethods
+          @query_constraints_list: untyped
+
+          def query_constraints: (*untyped columns_list) -> untyped
+
+          def query_constraints_list: () -> untyped
+        end
+      end
+    end
+  end
+end

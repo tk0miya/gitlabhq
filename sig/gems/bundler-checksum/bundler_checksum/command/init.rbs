@@ -1,0 +1,32 @@
+module BundlerChecksum::Command
+  module Init
+    # Constructor changed with https://github.com/rubygems/rubygems/pull/7678/
+    @compact_index_cache: untyped
+
+    @bundler_version: untyped
+
+    @previous_checksums: untyped
+
+    extend ::BundlerChecksum::Command::Init
+
+    BUNDLER_2_5_0: untyped
+
+    BUNDLER_2_5_12: untyped
+
+    def execute: () -> untyped
+
+    private
+
+    def compact_index_dependencies: (untyped name) -> untyped
+
+    def compact_index_cache: () -> untyped
+
+    def current_bundler_version: () -> untyped
+
+    def previous_checksums: () -> untyped
+
+    def checksum_file: () -> untyped
+
+    def lockfile: () -> untyped
+  end
+end

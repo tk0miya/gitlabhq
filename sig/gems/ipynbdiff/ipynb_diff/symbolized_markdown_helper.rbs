@@ -1,0 +1,13 @@
+module IpynbDiff
+  # Helper functions
+  module SymbolizedMarkdownHelper
+    def ___: (?untyped? symbol, ?::String content) -> { symbol: untyped, content: untyped }
+
+    def symbolize_array: (untyped symbol, untyped content) { (untyped) -> untyped } -> untyped
+  end
+
+  # Simple wrapper for a string
+  class JsonSymbol < String
+    def /: (untyped other) -> untyped
+  end
+end

@@ -1,0 +1,29 @@
+module BundlerChecksum::Command
+  module Lint
+    @gems_with_checksums: untyped
+
+    extend ::BundlerChecksum::Command::Lint
+
+    def execute: () -> untyped
+
+    private
+
+    def lint_specs: (untyped specs) -> untyped
+
+    def lint_spec: (untyped spec) -> untyped
+
+    def error_message_for: (untyped spec, untyped message) -> ::String
+
+    def show_errors: (untyped errors) -> (nil | untyped)
+
+    def default_gem_without_cache_file?: (untyped spec) -> untyped
+
+    def expected_checksum_for: (untyped spec) -> untyped
+
+    def actual_checksum_for: (untyped spec) -> untyped
+
+    def gems_with_checksums: () -> untyped
+
+    def local_checksums: () -> untyped
+  end
+end

@@ -1,0 +1,13 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Validators
+        class MissingTableColumns < Base
+          ERROR_MESSAGE: "The table %s has columns missing from the database"
+
+          def execute: () -> untyped
+        end
+      end
+    end
+  end
+end

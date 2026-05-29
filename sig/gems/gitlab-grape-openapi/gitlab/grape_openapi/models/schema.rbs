@@ -1,0 +1,36 @@
+module Gitlab
+  module GrapeOpenapi
+    module Models
+      # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#schema-object
+      class Schema
+        @properties: untyped
+
+        attr_accessor properties: untyped
+
+        attr_accessor type: untyped
+
+        def initialize: () -> void
+
+        def method_missing: (untyped method_name, *untyped _args) -> untyped
+
+        def respond_to_missing?: (untyped method_name, ?bool _include_private) -> untyped
+
+        def to_h: () -> untyped
+
+        private
+
+        def build_schema_hash: () -> untyped
+
+        def add_type: (untyped hash) -> (untyped | nil)
+
+        def add_properties: (untyped hash) -> (nil | untyped)
+
+        def description: () -> untyped
+
+        def default: () -> untyped
+
+        def example: () -> untyped
+      end
+    end
+  end
+end

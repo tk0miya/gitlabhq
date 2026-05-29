@@ -1,0 +1,26 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Targets
+        # Abstract class used to implement a Backup Target
+        class Target
+          @context: untyped
+
+          attr_reader context: untyped
+
+          def initialize: (?untyped? context) -> void
+
+          def asynchronous?: () -> false
+
+          # dump task backup to `path`
+          #
+          # @param [String] path fully qualified backup task destination
+          def dump: (untyped path) -> untyped
+
+          # restore task backup from `path`
+          def restore: (untyped path) -> untyped
+        end
+      end
+    end
+  end
+end

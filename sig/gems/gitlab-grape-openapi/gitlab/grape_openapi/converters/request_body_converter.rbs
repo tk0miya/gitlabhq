@@ -1,0 +1,49 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      class RequestBodyConverter
+        @route: untyped
+
+        @options: untyped
+
+        @params: untyped
+
+        @request_body_registry: untyped
+
+        DEFAULT_CONTENT_TYPE: "application/json"
+
+        MULTIPART_FORM_DATA_CONTENT_TYPE: "multipart/form-data"
+
+        GET_METHOD: "GET"
+
+        DELETE_METHOD: "DELETE"
+
+        attr_reader route: untyped
+
+        attr_reader options: untyped
+
+        attr_reader params: untyped
+
+        attr_reader request_body_registry: untyped
+
+        def self.convert: (route: untyped, options: untyped, params: untyped, request_body_registry: untyped) -> untyped
+
+        def initialize: (route: untyped, options: untyped, params: untyped, request_body_registry: untyped) -> void
+
+        def convert: () -> (nil | untyped)
+
+        private
+
+        def route_method: () -> untyped
+
+        def build_request_body: (untyped body_params) -> { required: untyped, content: ::Hash[untyped, { schema: untyped }] }
+
+        def content_type: (untyped body_params) -> untyped
+
+        def extract_consumes_content_type: () -> (nil | untyped)
+
+        def allows_file_upload?: (untyped body_params) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Gitlab
+  module Utils
+    class TraversalIdCompactor
+      CompactionLimitCannotBeAchievedError: untyped
+
+      RedundantCompactionEntry: untyped
+
+      UnexpectedCompactionEntry: untyped
+
+      def self.compact: (untyped traversal_ids, untyped limit) -> untyped
+
+      def self.compact_once: (untyped traversal_ids) -> untyped
+
+      def self.validate!: (untyped origin_project_traversal_ids, untyped compacted_traversal_ids) -> true
+
+      private
+
+      def self.find_most_common_namespace_path: (untyped traversal_ids) -> untyped
+
+      def self.starts_with?: (untyped traversal_id, untyped namespace_path) -> untyped
+    end
+  end
+end

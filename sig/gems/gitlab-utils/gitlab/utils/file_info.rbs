@@ -1,0 +1,19 @@
+module Gitlab
+  module Utils
+    module FileInfo
+      # Returns true if:
+      # - File or directory is a symlink.
+      # - File shares a hard link.
+      def self.linked?: (untyped file) -> untyped
+
+      # Returns:
+      # - true if file shares a hard link with another file.
+      # - false if file is a directory, as directories cannot be hard linked.
+      def self.shares_hard_link?: (untyped file) -> untyped
+
+      private
+
+      def self.to_file_stat: (untyped filepath_or_stat) -> untyped
+    end
+  end
+end

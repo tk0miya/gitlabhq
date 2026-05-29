@@ -1,0 +1,12 @@
+module Gitlab
+  module Utils
+    module LogLimitedArray
+      MAXIMUM_ARRAY_LENGTH: untyped
+
+      # Prepare an array for logging by limiting its JSON representation
+      # to around 10 kilobytes. Once we hit the limit, add the sentinel
+      # value as the last item in the returned array.
+      def self.log_limited_array: (untyped array, ?sentinel: ::String) -> (::Array[untyped] | untyped)
+    end
+  end
+end

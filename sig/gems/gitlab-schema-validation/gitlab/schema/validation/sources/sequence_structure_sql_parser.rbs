@@ -1,0 +1,55 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Sources
+        class SequenceStructureSqlParser
+          @parsed_structure: untyped
+
+          @default_schema_name: untyped
+
+          @sequences: untyped
+
+          attr_reader sequences: untyped
+
+          def initialize: (untyped parsed_structure, untyped default_schema_name) -> void
+
+          # Returns a map of sequence name to sequence structure objects
+          def execute: () -> untyped
+
+          private
+
+          attr_reader parsed_structure: untyped
+
+          attr_reader default_schema_name: untyped
+
+          def extract_sequences: () -> untyped
+
+          # Process CREATE SEQUENCE SQL queries. For example:
+          #
+          # CREATE SEQUENCE web_hook_logs_id_seq
+          def process_create_sequence: (untyped create_seq) -> untyped
+
+          # Processes ALTER SEQUENCE SQL queries to extract column owner. For example:
+          #
+          # ALTER SEQUENCE ai_code_suggestion_events_id_seq OWNED BY ai_code_suggestion_events.id;
+          def process_alter_sequence: (untyped alter_seq) -> (nil | untyped)
+
+          # Process ALTER TABLE commands to extract sequence owner. For example:
+          #
+          # ALTER TABLE ONLY web_hook_logs ALTER COLUMN id SET DEFAULT nextval('web_hook_logs_id_seq'::regclass);
+          def process_alter_table: (untyped alter_table) -> untyped
+
+          def extract_sequence_from_default: (untyped expr) -> (nil | untyped)
+
+          def extract_string_from_expr: (untyped expr) -> untyped
+
+          def resolve_schema_name: (untyped schema_name) -> untyped
+
+          def process_sequence_name: (untyped sequence_name) -> ::Array[untyped]
+
+          def nextval_func?: (untyped func_call) -> (false | untyped)
+        end
+      end
+    end
+  end
+end

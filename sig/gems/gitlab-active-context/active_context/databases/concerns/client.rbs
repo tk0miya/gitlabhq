@@ -1,0 +1,17 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      module Client
+        DEFAULT_PREFIX: "gitlab_active_context"
+
+        attr_reader options: untyped
+
+        def search: (untyped _) -> untyped
+
+        private
+
+        def log_search: (collection: untyped) { () -> untyped } -> untyped
+      end
+    end
+  end
+end

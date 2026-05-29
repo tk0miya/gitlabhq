@@ -1,0 +1,12 @@
+module Gitlab
+  module Utils
+    class Nokogiri
+      # Use Nokogiri to convert a css selector into an xpath selector.
+      # Nokogiri can use css selectors with `doc.search()`.  However
+      # for large node trees, it is _much_ slower than using xpath,
+      # by several orders of magnitude.
+      # https://gitlab.com/gitlab-org/gitlab/-/issues/329186
+      def self.css_to_xpath: (untyped css) -> untyped
+    end
+  end
+end

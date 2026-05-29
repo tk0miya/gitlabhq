@@ -1,0 +1,21 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Tasks
+        class Packages < Task
+          def self.id: () -> "packages"
+
+          def human_name: () -> "Packages"
+
+          def destination_path: () -> "packages.tar.gz"
+
+          private
+
+          def local: () -> untyped
+
+          def storage_path: () -> untyped
+        end
+      end
+    end
+  end
+end

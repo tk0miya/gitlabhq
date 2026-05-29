@@ -1,0 +1,25 @@
+module ActiveRecord
+  module GitlabPatches
+    module Partitioning
+      module Reflection
+        module MacroReflection
+          NO_OWNER: untyped
+
+          # We override the method to allow eager loading of partitioned records
+          #
+          # For eager loading the owner is always nil and we supply a benign
+          # object that allows the scope to be evaluated with a query like
+          # `where partition_id between 1 and 100000`
+          # and transforms it into
+          # `where partition_id is not null`
+          # to ensure that no partition is left out by the query.
+          # This is safe because `partition_id` columns are defined as `not null`
+          #
+          def scope_for: (untyped relation, ?untyped? owner) -> untyped
+
+          def relation_includes_partition_id_condition?: (untyped relation) -> untyped
+        end
+      end
+    end
+  end
+end

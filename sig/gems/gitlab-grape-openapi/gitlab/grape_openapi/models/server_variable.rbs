@@ -1,0 +1,24 @@
+module Gitlab
+  module GrapeOpenapi
+    module Models
+      # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#server-variable-object
+      class ServerVariable
+        @default: untyped
+
+        @description: untyped
+
+        @enum: untyped
+
+        attr_reader default: untyped
+
+        attr_reader description: untyped
+
+        attr_reader enum: untyped
+
+        def initialize: (default: untyped, ?description: untyped?, ?enum: untyped?) -> void
+
+        def to_h: () -> untyped
+      end
+    end
+  end
+end

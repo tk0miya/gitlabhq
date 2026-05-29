@@ -1,0 +1,27 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Errors
+        class DatabaseCleanupError < StandardError
+          @task: untyped
+
+          @path: untyped
+
+          @error: untyped
+
+          attr_reader task: untyped
+
+          attr_reader path: untyped
+
+          attr_reader error: untyped
+
+          def initialize: (task: untyped, path: untyped, error: untyped) -> void
+
+          private
+
+          def build_message: () -> ::String
+        end
+      end
+    end
+  end
+end

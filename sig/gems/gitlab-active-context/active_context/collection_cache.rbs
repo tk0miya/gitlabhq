@@ -1,0 +1,25 @@
+module ActiveContext
+  module CollectionCache
+    self.@collections: untyped
+
+    self.@last_refreshed_at: untyped
+
+    TTL: untyped
+
+    def self.collections: () -> untyped
+
+    def self.fetch: (untyped value) -> untyped
+
+    def self.by_id: (untyped id) -> untyped
+
+    def self.by_name: (untyped name) -> untyped
+
+    private
+
+    def self.ttl: () -> untyped
+
+    def self.cache_expired?: () -> (true | untyped)
+
+    def self.refresh_cache: () -> untyped
+  end
+end

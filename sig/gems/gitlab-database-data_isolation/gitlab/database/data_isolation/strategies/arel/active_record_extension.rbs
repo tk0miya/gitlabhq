@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module DataIsolation
+      module Strategies
+        module Arel
+          module ActiveRecordExtension
+            def arel: (*untyped) -> untyped
+
+            private
+
+            def table_has_sharding_key?: () -> untyped
+          end
+        end
+      end
+    end
+  end
+end

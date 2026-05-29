@@ -1,0 +1,40 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Targets
+        # Backup and restores repositories by querying the database
+        class Repositories < Target
+          @gitaly_backup: untyped
+
+          BATCH_SIZE: 1000
+
+          def dump: (untyped destination) -> untyped
+
+          def restore: (untyped source) -> untyped
+
+          def gitaly_backup: () -> untyped
+
+          private
+
+          def remove_all_repositories: () -> untyped
+
+          def enqueue_repositories: () -> untyped
+
+          def enqueue_project_source_code: () -> untyped
+
+          def enqueue_project_wiki: () -> untyped
+
+          def enqueue_group_wiki: () -> untyped
+
+          def enqueue_project_design_management: () -> untyped
+
+          def enqueue_project_snippets: () -> untyped
+
+          def enqueue_personal_snippets: () -> untyped
+
+          def restore_object_pools: () -> untyped
+        end
+      end
+    end
+  end
+end

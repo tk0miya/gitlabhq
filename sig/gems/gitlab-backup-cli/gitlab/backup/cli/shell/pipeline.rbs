@@ -1,0 +1,40 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Shell
+        class Pipeline < Base
+          @shell_commands: untyped
+
+          # Result data structure from running a pipeline
+          #
+          # @attr [String] stderr
+          # @attr [Array<Process::Status>] status_list
+          # @attr [Float] duration
+          Result: untyped
+
+          # List of Shell::Commands that are part of the pipeline
+          attr_reader shell_commands: untyped
+
+          # @param [Array<Shell::Command>] shell_commands list of commands
+          def initialize: (*untyped shell_commands) -> void
+
+          # Run commands in pipeline with optional input or output redirection
+          #
+          # @param [IO|String|Array] input stdin redirection
+          # @param [IO|String|Array] output stdout redirection
+          # @return [Pipeline::Result]
+          def run!: (?input: untyped?, ?output: untyped?) -> untyped
+
+          private
+
+          # Returns an array of arrays that contains the expanded command args with their env hashes when available
+          #
+          # The output is intended to be used directly by Open3.pipeline
+          #
+          # @return [Array<Array<Hash,String>>]
+          def build_command_list: () -> untyped
+        end
+      end
+    end
+  end
+end

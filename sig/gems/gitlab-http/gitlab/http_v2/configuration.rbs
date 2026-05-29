@@ -1,0 +1,19 @@
+module Gitlab
+  module HTTP_V2
+    class Configuration
+      attr_accessor allowed_internal_uris: untyped
+
+      attr_accessor log_exception_proc: untyped
+
+      attr_accessor silent_mode_log_info_proc: untyped
+
+      attr_accessor log_with_level_proc: untyped
+
+      def log_exception: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def silent_mode_log_info: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+      def log_with_level: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module ActiveContext
+  def self.indexing?: () -> untyped
+
+  def self.configure: (*untyped, **untyped) ?{ (?) -> untyped } -> untyped
+
+  def self.adapter: () -> untyped
+
+  def self.separator: () -> untyped
+
+  def self.queues: () -> untyped
+
+  def self.raw_queues: () -> untyped
+
+  def self.track!: (*untyped objects, ?collection: untyped?, ?queue: untyped?) -> untyped
+
+  def self.execute_all_queues!: () -> untyped
+end

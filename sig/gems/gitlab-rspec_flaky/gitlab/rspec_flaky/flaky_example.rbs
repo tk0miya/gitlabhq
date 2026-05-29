@@ -1,0 +1,20 @@
+module Gitlab
+  module RspecFlaky
+    # This represents a flaky RSpec example and is mainly meant to be saved in a JSON file
+    class FlakyExample
+      @attributes: untyped
+
+      ALLOWED_ATTRIBUTES: ::Array[:example_id | :file | :line | :description | :first_flaky_at | :last_flaky_at | :last_flaky_job | :last_attempts_count | :flaky_reports | :feature_category]
+
+      def initialize: (untyped example_hash) -> void
+
+      def update!: (untyped example_hash) -> (nil | untyped)
+
+      def to_h: () -> untyped
+
+      private
+
+      attr_reader attributes: untyped
+    end
+  end
+end

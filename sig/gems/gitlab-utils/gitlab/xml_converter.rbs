@@ -1,0 +1,14 @@
+module Gitlab
+  class XmlConverter < ActiveSupport::XMLConverter
+    # These two variables are internally required by `ActiveSupport::XMLConverter`
+    @xml: untyped
+
+    @disallowed_types: untyped
+
+    MAX_XML_SIZE: untyped
+
+    def initialize: (untyped xml, ?untyped? disallowed_types) -> void
+
+    def to_h: () -> (nil | untyped)
+  end
+end

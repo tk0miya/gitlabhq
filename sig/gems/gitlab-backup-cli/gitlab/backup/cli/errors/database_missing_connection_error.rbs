@@ -1,0 +1,17 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Errors
+        class DatabaseMissingConnectionError < StandardError
+          @connection_name: untyped
+
+          def initialize: (untyped connection_name) -> void
+
+          private
+
+          def build_message: () -> ::String
+        end
+      end
+    end
+  end
+end

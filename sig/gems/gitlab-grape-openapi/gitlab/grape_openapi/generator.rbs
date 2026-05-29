@@ -1,0 +1,29 @@
+module Gitlab
+  module GrapeOpenapi
+    class Generator
+      @api_classes: untyped
+
+      @schema_registry: untyped
+
+      @request_body_registry: untyped
+
+      @tag_registry: untyped
+
+      attr_reader tag_registry: untyped
+
+      def initialize: (?::Hash[untyped, untyped] options) -> void
+
+      def generate: () -> { openapi: "3.0.0", info: untyped, tags: untyped, servers: untyped, paths: untyped, components: { securitySchemes: untyped, schemas: untyped }, security: untyped }
+
+      def security_schemes: () -> untyped
+
+      def initialize_tags: () -> untyped
+
+      def paths: () -> untyped
+
+      private
+
+      def schemas: () -> untyped
+    end
+  end
+end

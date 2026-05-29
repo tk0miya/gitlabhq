@@ -1,0 +1,37 @@
+module Gitlab
+  module Schema
+    module Validation
+      module Adapters
+        class ForeignKeyStructureSqlAdapter
+          @parsed_stmt: untyped
+
+          STATEMENT_REGEX: ::Regexp
+
+          EXTRACT_REGEX: ::Regexp
+
+          def initialize: (untyped parsed_stmt) -> void
+
+          def name: () -> ::String
+
+          def table_name: () -> untyped
+
+          # PgQuery parses FK statements with an extra space in the referenced table column.
+          # This extra space needs to be removed.
+          #
+          # @example REFERENCES ci_pipelines (id) => REFERENCES ci_pipelines(id)
+          def statement: () -> untyped
+
+          private
+
+          attr_reader parsed_stmt: untyped
+
+          def schema_name: () -> untyped
+
+          def foreign_key_name: () -> untyped
+
+          def deparse_stmt: () -> untyped
+        end
+      end
+    end
+  end
+end

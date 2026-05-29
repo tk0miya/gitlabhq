@@ -1,0 +1,15 @@
+module Gitlab
+  module GrapeOpenapi
+    class SchemaRegistry
+      @schemas: untyped
+
+      attr_reader schemas: untyped
+
+      def initialize: () -> void
+
+      def register: (untyped entity_class, untyped schema) -> untyped
+
+      def normalize_entity_class: (untyped entity_class) -> untyped
+    end
+  end
+end

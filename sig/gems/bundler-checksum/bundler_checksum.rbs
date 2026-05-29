@@ -1,0 +1,35 @@
+module Bundler
+  module Patches
+    # This module monkey-patches Bundler to check Gemfile.checksum
+    # when installing gems that are from RubyGems
+    module RubyGemsInstallerPatch
+      def pre_install_checks: () -> untyped
+
+      private
+
+      def validate_local_package_checksum: () -> untyped
+
+      def fetch_checksum_from_file: (untyped spec) -> untyped
+
+      # Modified from
+      # https://github.com/rubygems/rubygems/blob/243173279e79a38f03e318eea8825d1c8824e119/bundler/lib/bundler/rubygems_gem_installer.rb#L116
+      def validate_file_checksum: (untyped checksum) -> true
+    end
+  end
+end
+
+module BundlerChecksum
+  self.@checksum_file: untyped
+
+  self.@checksums_from_file: untyped
+
+  self.@patched: untyped
+
+  def self.checksum_file: () -> untyped
+
+  def self.checksums_from_file: () -> untyped
+
+  def self.checksum_for: (untyped gem_name, untyped gem_version, untyped gem_platform) -> untyped
+
+  def self.patch!: () -> (nil | untyped)
+end

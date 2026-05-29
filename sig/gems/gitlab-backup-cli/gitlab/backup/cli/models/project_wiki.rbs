@@ -1,0 +1,17 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Models
+        class ProjectWiki < Base
+          @storage: untyped
+
+          def storage: () -> untyped
+
+          def disk_path: () -> ::String
+
+          def path_with_namespace: () -> ::String
+        end
+      end
+    end
+  end
+end

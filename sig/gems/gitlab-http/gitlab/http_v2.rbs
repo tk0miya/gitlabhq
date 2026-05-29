@@ -1,0 +1,11 @@
+module Gitlab
+  module HTTP_V2
+    self.@configuration: untyped
+
+    SUPPORTED_HTTP_METHODS: ::Array[:get | :try_get | :post | :patch | :put | :delete | :head | :options]
+
+    def self.configuration: () -> untyped
+
+    def self.configure: () { (untyped) -> untyped } -> untyped
+  end
+end

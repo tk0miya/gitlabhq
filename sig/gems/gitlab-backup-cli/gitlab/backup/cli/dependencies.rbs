@@ -1,0 +1,19 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Dependencies
+        # Search on PATH or default locations for provided binary and return its fullpath
+        #
+        # @param [String] binary name
+        # @return [String|False] full path to the binary file
+        def self.find_executable: (untyped binary) -> (untyped | nil)
+
+        # Check whether provided binary name exists on PATH or default locations
+        #
+        # @param [String] binary name
+        # @return [Boolean] whether binary exists
+        def self.executable_exist?: (untyped name) -> untyped
+      end
+    end
+  end
+end

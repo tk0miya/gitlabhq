@@ -1,0 +1,63 @@
+module ActiveContext
+  module Databases
+    module Concerns
+      module ElasticIndexer
+        @index_operations: untyped
+
+        @bulk_size: untyped
+
+        @bulk_threshold: untyped
+
+        @logger: untyped
+
+        include ActiveContext::Databases::Concerns::Indexer
+
+        DEFAULT_MAX_BULK_SIZE: untyped
+
+        attr_reader index_operations: untyped
+
+        attr_reader bulk_size: untyped
+
+        def initialize: (*untyped, **untyped) ?{ (?) -> untyped } -> void
+
+        def add_ref: (untyped ref) -> untyped
+
+        def empty?: () -> untyped
+
+        # Executes upsert operations in one bulk request
+        # Create a single delete_by_query request for processing deletes
+        def bulk: () -> untyped
+
+        def process_bulk_errors: (untyped results) -> untyped
+
+        def reset: () -> untyped
+
+        private
+
+        # Builds an upsert operation for every ref where operation is :upsert
+        # These operations will be processed in bulk
+        def build_index_operations: (untyped ref) -> (nil | untyped)
+
+        # Builds up a bool query containing multiple shoulds:
+        #   A single terms query containing ids of refs where operation is :delete
+        #   A bool query with a `filter` for the `ref_id` and `must_not` for the `ref_version` for :upsert refs
+        #     This ensures we only delete old versions of the document
+        def build_delete_operations: () -> untyped
+
+        def calculate_operation_size: (untyped operation) -> untyped
+
+        def bulk_threshold: () -> untyped
+
+        def logger: () -> untyped
+
+        def add_index_operation: (untyped op) -> untyped
+
+        def delete_without_version_query: (untyped ref_ids) -> { terms: { ref_id: untyped } }
+
+        def delete_with_version_query: (untyped ref) -> { bool: { filter: { term: { ref_id: untyped } }, must_not: { term: { ref_version: untyped } } } }
+
+        def build_delete_query: (untyped shoulds, untyped ref_ids_to_delete) -> { query: { bool: { should: untyped, minimum_should_match: 1 } } }
+      end
+    end
+  end
+end

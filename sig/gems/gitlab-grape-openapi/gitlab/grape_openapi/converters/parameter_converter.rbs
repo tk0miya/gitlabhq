@@ -1,0 +1,96 @@
+module Gitlab
+  module GrapeOpenapi
+    module Converters
+      class ParameterConverter
+        @name: untyped
+
+        @options: untyped
+
+        @validations: untyped
+
+        @route: untyped
+
+        @coercer_mapping: untyped
+
+        @time_serializer: untyped
+
+        include CoercerResolver
+
+        include Concerns::Serializable
+
+        include Concerns::LimitResolver
+
+        include Concerns::FailFastAnnotatable
+
+        include Concerns::RegexConverter
+
+        attr_reader name: untyped
+
+        attr_reader options: untyped
+
+        attr_reader validations: untyped
+
+        attr_reader route: untyped
+
+        def self.convert: (untyped name, options: untyped, route: untyped, ?validations: untyped) -> untyped
+
+        def initialize: (untyped name, options: untyped, validations: untyped, route: untyped) -> void
+
+        def in_value: () -> ("path" | "query")
+
+        def example: () -> untyped
+
+        def coercer_mapping: () -> untyped
+
+        def schema: () -> untyped
+
+        def build_simple_array_schema: () -> { type: "array", items: { type: untyped } }
+
+        def build_union_schema: (untyped object_type) -> { oneOf: untyped }
+
+        def build_range_schema: (untyped object_type) -> untyped
+
+        def build_enum_schema: (untyped object_type) -> untyped
+
+        def build_array_schema: () -> { type: "array", items: { type: untyped } }
+
+        def build_basic_schema: (untyped object_type, untyped object_format) -> untyped
+
+        def array_type?: (untyped object_type) -> untyped
+
+        def extract_array_item_type: () -> untyped
+
+        def add_regex_validations!: (untyped schema) -> (nil | untyped)
+
+        def convert: () -> (nil | untyped)
+
+        private
+
+        def time_serializer: () -> untyped
+
+        # When a union (oneOf) schema has a `values:` constraint, propagate it
+        # as `enum` onto each oneOf member whose type can carry the values.
+        # Skip Procs/Ranges to mirror build_enum_schema behavior.
+        def apply_union_enum!: (untyped members) -> (nil | untyped)
+
+        # When a union (oneOf) schema has a `default:`, attach it to every member
+        # whose schema can accept the default value. For arrays this includes
+        # checking the items type so `[1, 2]` lands on `items: { type: integer }`
+        # but not on `items: { type: string }`. Empty arrays are type-agnostic
+        # and attach to all array members.
+        def apply_union_default!: (untyped members) -> (nil | untyped)
+
+        def member_accepts_default?: (untyped member, untyped default) -> untyped
+
+        def array_member_accepts?: (untyped member, untyped default) -> (false | true | untyped)
+
+        def openapi_type_accepts?: (untyped openapi_type, untyped value) -> untyped
+
+        # allow_blank defaults to true
+        # when `allow_blank: false` for a string type minLength should be set to 1
+        # when param is required and values option used, the param is not nullable
+        def apply_allow_blank: (untyped schema) -> (untyped | nil)
+      end
+    end
+  end
+end

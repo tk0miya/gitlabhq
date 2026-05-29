@@ -1,0 +1,61 @@
+module Gitlab
+  module Housekeeper
+    class Runner
+      @max_mrs: untyped
+
+      @dry_run: untyped
+
+      @logger: untyped
+
+      @target_branch: untyped
+
+      @push_when_approved: untyped
+
+      @push_when_conflict: untyped
+
+      @keeps: untyped
+
+      @filter_identifiers: untyped
+
+      @git: untyped
+
+      @gitlab_client: untyped
+
+      @all_keeps: untyped
+
+      def initialize: (?max_mrs: ::Integer, ?dry_run: bool, ?keeps: untyped?, ?filter_identifiers: untyped, ?push_when_approved: bool, ?push_when_conflict: bool, ?target_branch: ::String) -> void
+
+      def run: () -> untyped
+
+      def allowed_change?: (untyped change, untyped branch_name) -> (false | true)
+
+      def print_completion_message: (untyped mrs_created_count) -> untyped
+
+      def add_standard_change_data: (untyped change) -> untyped
+
+      def skip_change_if_aborted: (untyped change, untyped branch_name) -> (false | true)
+
+      def setup_merge_request: (untyped change, untyped branch_name, untyped keep) -> untyped
+
+      def git: () -> untyped
+
+      def require_keeps: () -> untyped
+
+      def print_change_details: (untyped change, untyped branch_name) -> untyped
+
+      def create: (untyped change, untyped branch_name, untyped keep) -> untyped
+
+      def get_existing_merge_request: (untyped branch_name) -> untyped
+
+      def has_closed_merge_request?: (untyped branch_name) -> untyped
+
+      def housekeeper_fork_project_id: () -> untyped
+
+      def housekeeper_target_project_id: () -> untyped
+
+      def gitlab_client: () -> untyped
+
+      def all_keeps: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+# Custom differ for Jupyter Notebooks
+module IpynbDiff
+  # The result of a diff object
+  class Diff < SimpleDelegator
+    @from: untyped
+
+    @to: untyped
+
+    attr_reader from: untyped
+
+    attr_reader to: untyped
+
+    def initialize: (untyped from, untyped to, untyped diffy_opts) -> void
+  end
+end

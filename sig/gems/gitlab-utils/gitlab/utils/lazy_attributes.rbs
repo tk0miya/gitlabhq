@@ -1,0 +1,9 @@
+module Gitlab
+  module Utils
+    module LazyAttributes
+      extend ActiveSupport::Concern
+
+      include Gitlab::Utils::StrongMemoize
+    end
+  end
+end

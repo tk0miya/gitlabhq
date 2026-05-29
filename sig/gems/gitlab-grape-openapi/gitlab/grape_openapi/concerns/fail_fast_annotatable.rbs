@@ -1,0 +1,15 @@
+module Gitlab
+  module GrapeOpenapi
+    module Concerns
+      module FailFastAnnotatable
+        FAIL_FAST_ANNOTATION: "(validation stops on first error)"
+
+        private
+
+        def fail_fast_in_validations?: (untyped validations) -> untyped
+
+        def annotate_fail_fast: (untyped desc) -> (untyped | ::String)
+      end
+    end
+  end
+end

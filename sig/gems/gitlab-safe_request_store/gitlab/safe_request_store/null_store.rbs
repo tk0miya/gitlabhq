@@ -1,0 +1,25 @@
+module Gitlab
+  module SafeRequestStore
+    # The methods `begin!`, `clear!`, and `end!` are not defined because they
+    # should only be called directly on `RequestStore`.
+    class NullStore
+      def store: () -> ::Hash[untyped, untyped]
+
+      def active?: () -> nil
+
+      def read: (untyped _key) -> nil
+
+      def []: (untyped _key) -> nil
+
+      def write: (untyped _key, untyped value) -> untyped
+
+      def []=: (untyped _key, untyped value) -> untyped
+
+      def exist?: (untyped _key) -> false
+
+      def fetch: (untyped _key) { () -> untyped } -> untyped
+
+      def delete: (untyped key) ?{ (untyped) -> untyped } -> (untyped | nil)
+    end
+  end
+end

@@ -1,0 +1,89 @@
+module ActiveContext
+  class Reference
+    @collection_id: untyped
+
+    @collection: untyped
+
+    @routing: untyped
+
+    @serialized_args: untyped
+
+    @ref_version: untyped
+
+    @include_ref_fields: untyped
+
+    @documents: untyped
+
+    extend Concerns::ReferenceUtils
+
+    extend Concerns::Preprocessor
+
+    include Preprocessors::ContentFetcher
+
+    include Preprocessors::Embeddings
+
+    include Preprocessors::Preload
+
+    DELIMITER: "|"
+
+    def self.deserialize: (untyped string) -> untyped
+
+    def self.instantiate: (untyped string) -> untyped
+
+    def self.serialize: (collection_id: untyped, routing: untyped, data: untyped) -> untyped
+
+    def self.serialize_data: () -> untyped
+
+    def self.klass: () -> untyped
+
+    def self.preprocess_references: (untyped refs, **untyped options) -> untyped
+
+    attr_reader collection_id: untyped
+
+    attr_reader collection: untyped
+
+    attr_reader routing: untyped
+
+    attr_reader serialized_args: untyped
+
+    attr_reader ref_version: untyped
+
+    attr_accessor include_ref_fields: untyped
+
+    attr_writer documents: untyped
+
+    def initialize: (collection_id: untyped, routing: untyped, ?args: untyped) -> void
+
+    def klass: () -> untyped
+
+    def serialize: () -> untyped
+
+    def init: () -> untyped
+
+    def serialized_attributes: () -> untyped
+
+    def documents: () -> untyped
+
+    def jsons: () -> untyped
+
+    def as_indexed_jsons: () -> untyped
+
+    def operation: () -> untyped
+
+    def identifier: () -> untyped
+
+    def unique_identifier: (untyped index) -> untyped
+
+    def unique_identifiers: () -> ::Array[untyped]
+
+    def indexing_embedding_models: (?next_model_only: bool) -> (::Array[untyped] | untyped)
+
+    def collection_class: () -> untyped
+
+    def partition_name: () -> untyped
+
+    def partition_number: () -> untyped
+
+    def partition: () -> ::String
+  end
+end

@@ -1,0 +1,32 @@
+module Gitlab
+  module Schema
+    module Validation
+      module SchemaObjects
+        class ForeignKey
+          @adapter: untyped
+
+          @name: untyped
+
+          @table_name: untyped
+
+          @statement: untyped
+
+          def initialize: (untyped adapter) -> void
+
+          # Foreign key name should include the schema, as the same name could be used across different schemas
+          #
+          # @example public.foreign_key_name
+          def name: () -> untyped
+
+          def table_name: () -> untyped
+
+          def statement: () -> untyped
+
+          private
+
+          attr_reader adapter: untyped
+        end
+      end
+    end
+  end
+end

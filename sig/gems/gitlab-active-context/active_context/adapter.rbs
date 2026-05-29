@@ -1,0 +1,15 @@
+module ActiveContext
+  module Adapter
+    self.@current: untyped
+
+    def self.current: () -> untyped
+
+    def self.reset: () -> untyped
+
+    def self.for_connection: (untyped connection) -> (nil | untyped)
+
+    private
+
+    def self.load_adapter: () -> (nil | untyped)
+  end
+end

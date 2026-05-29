@@ -1,0 +1,27 @@
+module Gitlab
+  module HTTP_V2
+    class NewConnectionAdapter < HTTParty::ConnectionAdapter
+      @allow_local_requests: untyped
+
+      @extra_allowed_uris: untyped
+
+      @deny_all_requests_except_allowed: untyped
+
+      @outbound_local_requests_allowlist: untyped
+
+      @dns_rebinding_protection_enabled: untyped
+
+      @uri: untyped
+
+      def initialize: (*untyped, **untyped) ?{ (?) -> untyped } -> void
+
+      def connection: () -> untyped
+
+      private
+
+      def validate_url_with_proxy!: (untyped url) -> untyped
+
+      def url_blocker_options: () -> untyped
+    end
+  end
+end

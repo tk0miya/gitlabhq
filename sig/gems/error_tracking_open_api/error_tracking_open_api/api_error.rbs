@@ -1,0 +1,21 @@
+module ErrorTrackingOpenAPI
+  class ApiError < StandardError
+    attr_reader code: untyped
+
+    attr_reader response_headers: untyped
+
+    attr_reader response_body: untyped
+
+    # Usage examples:
+    #   ApiError.new
+    #   ApiError.new("message")
+    #   ApiError.new(:code => 500, :response_headers => {}, :response_body => "")
+    #   ApiError.new(:code => 404, :message => "Not Found")
+    def initialize: (?untyped? arg) -> void
+
+    # Override to_s to display a friendly error message
+    def to_s: () -> untyped
+
+    def message: () -> untyped
+  end
+end

@@ -1,0 +1,23 @@
+module Mail
+  class SMTPPool
+    class Connection < Mail::SMTP
+      @smtp_session: untyped
+
+      def initialize: (untyped values) -> void
+
+      def deliver!: (untyped mail) -> untyped
+
+      def finish: () -> (untyped | nil)
+
+      private
+
+      def smtp_session: () -> untyped
+
+      def start_smtp_session: () -> untyped
+
+      def reset_smtp_session: () -> untyped
+
+      def finish_smtp_session: () -> untyped
+    end
+  end
+end

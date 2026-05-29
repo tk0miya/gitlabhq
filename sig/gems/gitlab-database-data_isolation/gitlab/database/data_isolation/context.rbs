@@ -1,0 +1,17 @@
+module Gitlab
+  module Database
+    module DataIsolation
+      module Context
+        THREAD_KEY: :gitlab_database_data_isolation_disabled
+
+        def self.disable!: () -> untyped
+
+        def self.enable!: () -> untyped
+
+        def self.disabled?: () -> untyped
+
+        def self.without_data_isolation: () { () -> untyped } -> untyped
+      end
+    end
+  end
+end

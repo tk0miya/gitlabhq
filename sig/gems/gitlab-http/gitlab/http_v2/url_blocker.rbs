@@ -1,0 +1,156 @@
+module Gitlab
+  module HTTP_V2
+    class UrlBlocker
+      GETADDRINFO_TIMEOUT_SECONDS: 15
+
+      MAX_VALID_PORT: 65535
+
+      BlockedUrlError: untyped
+
+      HTTP_PROXY_ENV_VARS: ::Array["http_proxy" | "https_proxy" | "HTTP_PROXY" | "HTTPS_PROXY"]
+
+      # Result stores the validation result:
+      # uri - The original URI requested
+      # hostname - The hostname that should be used to connect. For DNS
+      #   rebinding protection, this will be the resolved IP address of
+      #   the hostname.
+      # use_proxy -
+      #   If true, this means that the proxy server specified in the
+      #   http_proxy/https_proxy environment variables should be used.
+      #
+      #   If false, this either means that no proxy server was specified
+      #   or that the hostname in the URL is exempt via the no_proxy
+      #   environment variable. This allows the caller to disable usage
+      #   of a proxy since the IP address may be used to
+      #   connect. Otherwise, Net::HTTP may erroneously compare the IP
+      #   address against the no_proxy list.
+      Result: untyped
+
+      # Validates the given url according to the constraints specified by arguments.
+      #
+      # ports - Raises error if the given URL port is not between given ports.
+      # allow_localhost - Raises error if URL resolves to a localhost IP address and argument is false.
+      # allow_local_network - Raises error if URL resolves to a link-local address and argument is false.
+      # extra_allowed_uris - Array of URI objects that are allowed in addition to hostname and IP constraints.
+      #   This parameter is passed in this class when making the HTTP request.
+      # ascii_only - Raises error if URL has unicode characters and argument is true.
+      # enforce_user - Raises error if URL user doesn't start with alphanumeric characters and argument is true.
+      # enforce_sanitization - Raises error if URL includes any HTML/CSS/JS tags and argument is true.
+      # deny_all_requests_except_allowed - Raises error if URL is not in the allow list and argument is true.
+      #   Can be Boolean or Proc. Defaults to instance app setting.
+      # dns_rebind_protection - Enforce DNS-rebinding attack protection.
+      # outbound_local_requests_allowlist - A list of trusted domains or IP addresses to which local requests are
+      #   allowed when local requests for webhooks and integrations are disabled. This parameter is static and
+      #   comes from the `outbound_local_requests_whitelist` application setting. # rubocop:disable Naming/InclusiveLanguage
+      #
+      # Returns a Result object.
+      # rubocop:disable Metrics/ParameterLists
+      def self.validate_url_with_proxy!: (untyped url, schemes: untyped, ?ports: untyped, ?allow_localhost: bool, ?allow_local_network: bool, ?extra_allowed_uris: untyped, ?ascii_only: bool, ?enforce_user: bool, ?enforce_sanitization: bool, ?deny_all_requests_except_allowed: bool, ?dns_rebind_protection: bool, ?outbound_local_requests_allowlist: untyped) -> untyped
+
+      def self.blocked_url?: (untyped url, **untyped kwargs) -> untyped
+
+      # For backwards compatibility, Returns an array with [<uri>, <original-hostname>].
+      # Issue for refactoring: https://gitlab.com/gitlab-org/gitlab/-/issues/410890
+      def self.validate!: (*untyped, **untyped) ?{ (?) -> untyped } -> ::Array[untyped]
+
+      private
+
+      def self.validate_resolved_uri: (untyped uri, allow_localhost: untyped, allow_local_network: untyped, extra_allowed_uris: untyped, deny_all_requests_except_allowed: untyped, dns_rebind_protection: untyped, outbound_local_requests_allowlist: untyped) -> untyped
+
+      # Returns the given URI with IP address as hostname and the original hostname respectively
+      # in an Array.
+      #
+      # It checks whether the resolved IP address matches with the hostname. If not, it changes
+      # the hostname to the resolved IP address.
+      #
+      # The original hostname is used to validate the SSL, given in that scenario
+      # we'll be making the request to the IP address, instead of using the hostname.
+      def self.enforce_uri_hostname: (untyped ip_address, untyped uri, untyped dns_rebind_protection, untyped proxy_in_use) -> untyped
+
+      def self.ip_address: (untyped address_info) -> untyped
+
+      def self.validate_uri: (uri: untyped, schemes: untyped, ports: untyped, enforce_sanitization: untyped, enforce_user: untyped, ascii_only: untyped) -> (nil | untyped)
+
+      def self.uri_under_proxy_setting?: (untyped uri, untyped ip_address) -> (false | true | untyped)
+
+      # Returns true if an IPv6 hostname is excluded from proxying via no_proxy.
+      #
+      # IPv6 entries in no_proxy may be formatted as:
+      #   2001:db8::1         - bare IPv6 without port
+      #   [2001:db8::1]       - bracketed without port
+      #   [2001:db8::1]:8080  - bracketed with port
+      #
+      # IPAddr is used for comparison so that different textual representations
+      # of the same address match (e.g. 2600:1900::  ==  2600:1900:0:0:0:0:0:0).
+      def self.ipv6_excluded_by_no_proxy?: (untyped ipv6_hostname, untyped port) -> (false | untyped)
+
+      # Returns addrinfo object for the URI.
+      #
+      # @param uri [Addressable::URI]
+      #
+      # @raise [Gitlab::HTTP_V2::UrlBlocker::BlockedUrlError, ArgumentError] raised if host is too long.
+      #
+      # @return [Array<Addrinfo>]
+      def self.get_address_info: (untyped uri) -> untyped
+
+      def self.enforce_address_info_retrievable?: (untyped uri, untyped dns_rebind_protection, untyped deny_all_requests_except_allowed, untyped outbound_local_requests_allowlist) -> (false | true)
+
+      def self.validate_local_request: (address_info: untyped, allow_localhost: untyped, allow_local_network: untyped) -> (nil | untyped)
+
+      def self.validate_shared_address: (untyped addrs_info) -> (nil | untyped)
+
+      def self.validate_html_tags: (untyped uri) -> (nil | untyped)
+
+      def self.parse_url: (untyped url) -> untyped
+
+      def self.multiline_blocked?: (untyped parsed_url) -> (true | false | untyped)
+
+      def self.validate_port: (untyped port, untyped ports) -> (nil | untyped)
+
+      def self.validate_scheme: (untyped scheme, untyped schemes) -> (nil | untyped)
+
+      def self.validate_user: (untyped value) -> (nil | untyped)
+
+      def self.validate_hostname: (untyped value) -> (nil | untyped)
+
+      def self.validate_unicode_restriction: (untyped uri) -> (nil | untyped)
+
+      def self.validate_localhost: (untyped addrs_info) -> (nil | untyped)
+
+      def self.validate_loopback: (untyped addrs_info) -> (nil | untyped)
+
+      def self.validate_local_network: (untyped addrs_info) -> (nil | untyped)
+
+      def self.validate_link_local: (untyped addrs_info) -> (nil | untyped)
+
+      # Raises a BlockedUrlError if the instance is configured to deny all requests.
+      #
+      # This should only be called after allow list checks have been made.
+      def self.validate_deny_all_requests_except_allowed!: (untyped should_deny) -> (nil | untyped)
+
+      # Raises a BlockedUrlError if any IP in `addrs_info` is the limited
+      # broadcast address.
+      # https://datatracker.ietf.org/doc/html/rfc919#section-7
+      def self.validate_limited_broadcast_address: (untyped addrs_info) -> (nil | untyped)
+
+      def self.allowed_uri?: (untyped uri, untyped extra_allowed_uris) -> untyped
+
+      # Allow url from the GitLab instance itself but only for the configured hostname and ports
+      def self.internal?: (untyped uri) -> untyped
+
+      def self.check_uri: (untyped uri, untyped allowlist) -> untyped
+
+      def self.deny_all_requests_except_allowed?: (untyped should_deny) -> untyped
+
+      def self.domain_in_allow_list?: (untyped uri, untyped outbound_local_requests_allowlist) -> untyped
+
+      def self.ip_in_allow_list?: (untyped ip_address, untyped outbound_local_requests_allowlist, ?port: untyped?) -> untyped
+
+      def self.no_proxy_env: () -> untyped
+
+      def self.http_proxy_env?: () -> untyped
+
+      def self.get_port: (untyped uri) -> untyped
+    end
+  end
+end

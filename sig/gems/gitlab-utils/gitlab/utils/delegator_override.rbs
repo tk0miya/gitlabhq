@@ -1,0 +1,21 @@
+module Gitlab
+  module Utils
+    # This module is to validate that delegator classes (`SimpleDelegator`) do not
+    # accidentally override important logic on the fabricated object.
+    module DelegatorOverride
+      self.@validators: untyped
+
+      def delegator_target: (untyped target_class) -> (nil | untyped)
+
+      def delegator_override: (*untyped names) -> (nil | untyped)
+
+      def delegator_override_with: (untyped mod) -> (nil | untyped)
+
+      def self.validator: (untyped delegator_class) -> untyped
+
+      def self.validators: () -> untyped
+
+      def self.verify!: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module ActiveContext
+  class Migration
+    class Dictionary
+      self.@instance: untyped
+
+      @migrations: untyped
+
+      Error: untyped
+
+      DuplicateVersionError: untyped
+
+      InvalidMigrationNameError: untyped
+
+      def self.migrations_path: () -> untyped
+
+      def self.instance: () -> untyped
+
+      def self.reset!: () -> untyped
+
+      def initialize: () -> void
+
+      def migrations: (?versions_only: bool) -> untyped
+
+      def find_by_version: (untyped version) -> untyped
+
+      def find_version_by_class_name: (untyped class_name) -> untyped
+
+      private
+
+      def load_migrations: () -> untyped
+
+      def migration_files: () -> untyped
+
+      def parse_migration_file: (untyped filename) -> untyped
+    end
+  end
+end

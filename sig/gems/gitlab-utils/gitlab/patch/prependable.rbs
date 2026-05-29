@@ -1,0 +1,26 @@
+# rubocop:disable Gitlab/ModuleWithInstanceVariables, Style/IfUnlessModifier
+module Gitlab
+  module Patch
+    module Prependable
+      @_prepended_block: untyped
+
+      class MultiplePrependedBlocks < StandardError
+        def initialize: () -> void
+      end
+
+      def prepend_features: (untyped base) -> (false | true)
+
+      def class_methods: () -> untyped
+
+      def prepended: (?untyped? base) { (?) -> untyped } -> untyped
+
+      def prepended?: (untyped base) -> untyped
+    end
+  end
+end
+
+module ActiveSupport
+  module Concern
+    prepend Gitlab::Patch::Prependable
+  end
+end

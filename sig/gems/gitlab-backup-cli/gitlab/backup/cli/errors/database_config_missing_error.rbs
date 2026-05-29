@@ -1,0 +1,19 @@
+module Gitlab
+  module Backup
+    module Cli
+      module Errors
+        class DatabaseConfigMissingError < StandardError
+          @filepath: untyped
+
+          attr_reader filepath: untyped
+
+          def initialize: (untyped filepath) -> void
+
+          private
+
+          def build_message: () -> ::String
+        end
+      end
+    end
+  end
+end
